@@ -17,7 +17,12 @@ async function submitToAirtable(email) {
     },
     body: JSON.stringify({ fields: { 'Email Template': email } })
   });
-  if (!res.ok) throw new Error('Airtable error');
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    console.error('[Airtable] Status:', res.status, err);
+    throw new Error('Airtable error');
+  }
+  console.log('[Airtable] OK — email saved:', email);
 }
 
 const header = document.getElementById('site-header');
