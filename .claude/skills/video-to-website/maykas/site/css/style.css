@@ -723,3 +723,125 @@ body.scene-active { background: var(--dark); }
 @media (max-width: 480px) {
   .recipes-grid { grid-template-columns: 1fr; }
 }
+
+/* ══════════════════════════════════════════════
+   CTA SECTION — Samarbeten & Bok
+══════════════════════════════════════════════ */
+.cta-section {
+  background: var(--ivory);
+  padding: 7rem 6vw;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 50%, rgba(140,26,38,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 60% at 80% 50%, rgba(74,26,107,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.cta-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.cta-heading {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--charcoal);
+  margin: 0.8rem 0 1rem;
+}
+.cta-sub {
+  font-size: 1rem;
+  color: var(--mid);
+  max-width: 480px;
+  margin: 0 auto;
+}
+.cta-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.cta-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2.8rem 2.4rem;
+  border: 1px solid var(--beige);
+  border-top: 3px solid var(--crimson);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cta-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--purple), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.cta-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(140,26,38,0.10); }
+.cta-card:hover::after { opacity: 1; }
+.cta-card--book { border-top-color: var(--purple); }
+.cta-card-icon {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--crimson), var(--purple));
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ivory);
+  flex-shrink: 0;
+}
+.cta-card--book .cta-card-icon {
+  background: linear-gradient(135deg, var(--purple), var(--crimson));
+}
+.cta-card-title {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+.cta-card-body {
+  font-size: 0.9rem;
+  color: var(--mid);
+  line-height: 1.7;
+  flex: 1;
+}
+.cta-card-body em {
+  color: var(--charcoal);
+  font-style: italic;
+  font-family: var(--serif);
+  font-size: 1rem;
+}
+.cta-email {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--crimson);
+  text-decoration: none;
+  padding: 0.7rem 1.4rem;
+  border: 1.5px solid var(--crimson);
+  border-radius: 50px;
+  transition: background 0.25s ease, color 0.25s ease;
+  align-self: flex-start;
+  margin-top: auto;
+}
+.cta-email:hover {
+  background: var(--crimson);
+  color: var(--ivory);
+}
+@media (max-width: 768px) {
+  .cta-cards { grid-template-columns: 1fr; }
+  .cta-section { padding: 5rem 5vw; }
+}

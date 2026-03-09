@@ -12,23 +12,15 @@
 </head>
 <body>
 
-  <!-- ── LOADER ── -->
-  <div id="loader">
-    <div class="loader-brand">MaykasKitchen</div>
-    <div class="loader-bar-wrap"><div id="loader-bar"></div></div>
-    <div id="loader-percent">0%</div>
-  </div>
-
   <!-- ── HEADER ── -->
   <header class="site-header" id="site-header">
     <nav>
       <a class="nav-logo" href="#">MaykasKitchen</a>
       <ul class="nav-links">
         <li><a href="#">Hem</a></li>
-        <li><a href="#">Om mig</a></li>
         <li><a href="#recept">Recept</a></li>
-        <li><a href="#">Samarbeten</a></li>
-        <li><a href="#">Kontakt</a></li>
+        <li><a href="#kontakt">Samarbeten</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
       </ul>
     </nav>
   </header>
@@ -95,122 +87,9 @@
 
   </section>
 
-  <!-- ── SCENE BACKGROUND (fades in under canvas, replaces dark canvas-bg) ── -->
-  <div id="scene-bg"></div>
-
-  <!-- ── CANVAS (fixed, full viewport) ── -->
-  <div id="canvas-wrap">
-    <canvas id="canvas"></canvas>
-  </div>
-
-  <!-- ── DARK OVERLAY (for stats) ── -->
-  <div id="dark-overlay"></div>
-
-  <!-- ── MARQUEE 1 ── -->
-  <div class="marquee-wrap" id="marquee-1">
-    <div class="marquee-text">MaykasKitchen&nbsp;&nbsp;·&nbsp;&nbsp;Autentiska recept&nbsp;&nbsp;·&nbsp;&nbsp;Assyrisk matkonst&nbsp;&nbsp;·&nbsp;&nbsp;Säsongsbaserat&nbsp;&nbsp;·&nbsp;&nbsp;MaykasKitchen&nbsp;&nbsp;·&nbsp;&nbsp;Autentiska recept&nbsp;&nbsp;·&nbsp;&nbsp;Assyrisk matkonst&nbsp;&nbsp;·&nbsp;&nbsp;Säsongsbaserat&nbsp;&nbsp;·&nbsp;&nbsp;</div>
-  </div>
-
-  <!-- ── MARQUEE 2 ── -->
-  <div class="marquee-wrap marquee-lower" id="marquee-2">
-    <div class="marquee-text">Samarbeta med mig&nbsp;&nbsp;·&nbsp;&nbsp;Kontakta mig&nbsp;&nbsp;·&nbsp;&nbsp;Nya recept varje månad&nbsp;&nbsp;·&nbsp;&nbsp;Kokbok 2025&nbsp;&nbsp;·&nbsp;&nbsp;Samarbeta med mig&nbsp;&nbsp;·&nbsp;&nbsp;Kontakta mig&nbsp;&nbsp;·&nbsp;&nbsp;</div>
-  </div>
-
-  <!-- ── SCROLL CONTAINER (900vh) ── -->
-  <div id="scroll-container">
-
-    <!-- § 1  About — slide-left, align-left -->
-    <section class="scroll-section align-left"
-             data-enter="3" data-leave="17" data-animation="slide-left">
-      <div class="section-inner">
-        <span class="section-label">001 — Om mig</span>
-        <h2 class="section-heading">Passion för<br>matlagning</h2>
-        <p class="section-body">Kock, kreatör och matinfluencer med passion för säsongsbaserad mat, odling och matglädje för hela familjen. Med assyriska/syrianska rötter delar jag ett rikt arv av smaker och traditioner.</p>
-        <p class="section-note">Delar recept och inspiration sedan 2019</p>
-      </div>
-    </section>
-
-    <!-- § 2  Stats — stagger-up, full-width dark overlay -->
-    <section class="scroll-section section-stats"
-             data-enter="19" data-leave="37" data-animation="stagger-up">
-      <div class="stats-grid">
-        <div class="stat">
-          <div class="stat-top">
-            <span class="stat-number" data-value="125">0</span><span class="stat-suffix">K+</span>
-          </div>
-          <span class="stat-label">Instagram följare</span>
-        </div>
-        <div class="stat">
-          <div class="stat-top">
-            <span class="stat-number" data-value="62">0</span><span class="stat-suffix">K+</span>
-          </div>
-          <span class="stat-label">TikTok följare</span>
-        </div>
-        <div class="stat">
-          <div class="stat-top">
-            <span class="stat-number" data-value="200">0</span><span class="stat-suffix">K+</span>
-          </div>
-          <span class="stat-label">Total räckvidd</span>
-        </div>
-        <div class="stat">
-          <div class="stat-top">
-            <span class="stat-number" data-value="8" data-decimals="1">0</span><span class="stat-suffix">%</span>
-          </div>
-          <span class="stat-label">Engagemang</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- § 3  Recipes — slide-right, align-right -->
-    <section class="scroll-section align-right"
-             data-enter="39" data-leave="53" data-animation="slide-right">
-      <div class="section-inner">
-        <span class="section-label">002 — Recept</span>
-        <h2 class="section-heading">Populära<br>recept</h2>
-        <p class="section-body">Autentiska assyriska och syrianska rätter kombinerade med moderna smaker. Enkla metoder, djupa och äkta smaker som hela familjen älskar.</p>
-        <a class="section-link" href="#recept">Utforska recept →</a>
-      </div>
-    </section>
-
-    <!-- § 4  Collaborations — scale-up, align-left -->
-    <section class="scroll-section align-left"
-             data-enter="55" data-leave="69" data-animation="scale-up">
-      <div class="section-inner">
-        <span class="section-label">003 — Samarbeten</span>
-        <h2 class="section-heading">Låt oss skapa<br>tillsammans</h2>
-        <p class="section-body">Kreativa samarbeten med varumärken som delar mina värderingar om autentisk matlagning och kvalitet.</p>
-        <ul class="collab-list">
-          <li>Samarbeten &amp; kampanjer med autentiskt innehåll</li>
-          <li>Receptutveckling &amp; professionell matfoto</li>
-          <li>Video, reels och TikToks med hög kvalitet</li>
-          <li>Matlagningsworkshops &amp; events</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- § 5  Newsletter — rotate-in, align-right -->
-    <section class="scroll-section align-right"
-             data-enter="71" data-leave="84" data-animation="rotate-in">
-      <div class="section-inner">
-        <span class="section-label">004 — Nyhetsbrev</span>
-        <h2 class="section-heading">Matinspiration<br>i din inkorg</h2>
-        <p class="section-body">Prenumerera och få de senaste recepten, säsongsbaserade tips och exklusiva erbjudanden direkt till dig.</p>
-        <form class="nl-form" id="nl-form" novalidate>
-          <input type="email" placeholder="Din e-postadress" required>
-          <button type="submit">Prenumerera</button>
-        </form>
-        <div class="nl-success" id="nl-success" hidden>
-          <span class="nl-check">✓</span>&nbsp;Tack för din prenumeration!
-        </div>
-      </div>
-    </section>
-
-
-  </div><!-- /scroll-container -->
-
 
   <!-- ══════════════════════════════════════════════
-       RECIPE SECTION — appears after scroll experience
+       RECIPE SECTION
   ══════════════════════════════════════════════════ -->
   <section id="recept" class="recipes-section">
 
@@ -317,10 +196,8 @@
       <!-- Recipe 4 -->
       <article class="recipe-card">
         <div class="recipe-img-wrap">
-          <img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHC8zXxYz037zrR9qXSut4TKmZEpjlBcOhHew02"
-               alt="Kafta bil sejnie" loading="lazy"
-               onerror="this.parentElement.querySelector('.recipe-img-fallback').style.display='flex'; this.style.display='none';">
-          <div class="recipe-img-fallback">🍲</div>
+          <img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCKJbVDrdNwFxeKMmirjvq6ZL34tbPu8S2X5Q9"
+               alt="Kafta bil sejnie" loading="lazy">
           <div class="recipe-badge badge-time">60 min</div>
         </div>
         <div class="recipe-body">
@@ -344,6 +221,63 @@
         </div>
       </article>
 
+      <!-- Recipe 5 -->
+      <article class="recipe-card">
+        <div class="recipe-img-wrap">
+          <img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCMH3uifMpaES95dj1pBAJ4iwc3fNXxvqYhzGT"
+               alt="Hummus" loading="lazy">
+          <div class="recipe-badge badge-popular">Populärt</div>
+          <div class="recipe-badge badge-time">15 min</div>
+        </div>
+        <div class="recipe-body">
+          <div class="recipe-tags">
+            <span class="tag">Vegan</span>
+            <span class="tag">Snabb</span>
+            <span class="tag">Syrianskt</span>
+          </div>
+          <div class="recipe-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-val">5.0</span>
+            <span class="rating-sep">·</span>
+            <span class="recipe-likes">♥ 64</span>
+          </div>
+          <h3 class="recipe-name">Hemlagad hummus 🫶</h3>
+          <p class="recipe-desc">Silkeslen hummus från grunden – det enklaste receptet som smakade bäst.</p>
+          <div class="recipe-footer">
+            <span class="recipe-portions">4–6 portioner</span>
+            <a class="recipe-link" href="https://maykaskitchen.se/#recipe/hummus" target="_blank" rel="noopener">Visa recept →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Recipe 6 -->
+      <article class="recipe-card">
+        <div class="recipe-img-wrap">
+          <img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHC8y19NS5037zrR9qXSut4TKmZEpjlBcOhHew0"
+               alt="Kutle" loading="lazy">
+          <div class="recipe-badge badge-time">50 min</div>
+        </div>
+        <div class="recipe-body">
+          <div class="recipe-tags">
+            <span class="tag">Vegetariskt</span>
+            <span class="tag">Traditionellt</span>
+            <span class="tag">Assyriskt</span>
+          </div>
+          <div class="recipe-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-val">4.8</span>
+            <span class="rating-sep">·</span>
+            <span class="recipe-likes">♥ 55</span>
+          </div>
+          <h3 class="recipe-name">Kutle – syriansk bulgurrulle 🌿</h3>
+          <p class="recipe-desc">En klassisk assyrisk/syriansk rätt fylld med kärlek och tradition. Perfekt för helg.</p>
+          <div class="recipe-footer">
+            <span class="recipe-portions">6–8 portioner</span>
+            <a class="recipe-link" href="https://maykaskitchen.se/#recipe/kutle" target="_blank" rel="noopener">Visa recept →</a>
+          </div>
+        </div>
+      </article>
+
     </div><!-- /recipes-grid -->
 
     <div class="recipes-all">
@@ -352,6 +286,42 @@
     </div>
 
   </section><!-- /recipes-section -->
+
+
+  <!-- ══════════════════════════════════════════════
+       CTA — Samarbeten & Bok
+  ══════════════════════════════════════════════════ -->
+  <section id="kontakt" class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-header">
+        <span class="section-label">Kontakt &amp; Samarbeten</span>
+        <h2 class="cta-heading">Låt oss skapa<br>tillsammans</h2>
+        <p class="cta-sub">Matlagning, recept och berättelser som engagerar – redo för nästa projekt.</p>
+      </div>
+
+      <div class="cta-cards">
+
+        <div class="cta-card">
+          <div class="cta-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <h3 class="cta-card-title">Samarbeten</h3>
+          <p class="cta-card-body">Kampanjer, receptutveckling, matfoto, videos och events – autentiskt innehåll som engagerar.</p>
+          <a href="mailto:samarbete@maykaskitchen.se" class="cta-email">samarbete@maykaskitchen.se</a>
+        </div>
+
+        <div class="cta-card cta-card--book">
+          <div class="cta-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <h3 class="cta-card-title">Min bok</h3>
+          <p class="cta-card-body"><em>Maykas gröna kök – Kutle, hummus och kärlek.</em> En resa genom smak, traditioner och kärlek.</p>
+          <a href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener" class="btn-primary">Köp boken →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
 
   <!-- ── FOOTER ── -->
@@ -371,10 +341,9 @@
         <h4>Utforska</h4>
         <ul>
           <li><a href="#">Hem</a></li>
-          <li><a href="#">Om mig</a></li>
           <li><a href="#recept">Recept</a></li>
-          <li><a href="#">Samarbeten</a></li>
-          <li><a href="#">Kontakt</a></li>
+          <li><a href="#kontakt">Samarbeten</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
         </ul>
       </div>
       <div class="footer-newsletter">
