@@ -15,7 +15,7 @@ async function submitToAirtable(email) {
       'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ fields: { Email: email } })
+    body: JSON.stringify({ fields: { 'Email Template': email } })
   });
   if (!res.ok) throw new Error('Airtable error');
 }
@@ -154,6 +154,38 @@ function initForms() {
   });
 }
 
+/* ── MOBILE NAV ──────────────────────────────────────────── */
+function initMobileNav() {
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  const overlay   = document.getElementById('mobile-nav-overlay');
+  if (!hamburger) return;
+
+  function openNav() {
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileNav.classList.add('open');
+    mobileNav.removeAttribute('aria-hidden');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNav() {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileNav.classList.remove('open');
+    mobileNav.setAttribute('aria-hidden', 'true');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.contains('open') ? closeNav() : openNav();
+  });
+  overlay.addEventListener('click', closeNav);
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+}
+
 /* ── BOOT ────────────────────────────────────────────────── */
 window.addEventListener('DOMContentLoaded', () => {
   initHeroWords();
@@ -162,4 +194,5 @@ window.addEventListener('DOMContentLoaded', () => {
   initCTA();
   initForms();
   initPopup();
+  initMobileNav();
 });

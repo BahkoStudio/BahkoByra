@@ -29,8 +29,23 @@
         <li><a href="#kontakt">Samarbeten</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Öppna meny" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
   </header>
+
+  <!-- ── MOBILE NAV ── -->
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <nav class="mobile-nav-links">
+      <a href="#">Hem</a>
+      <a href="#recept">Recept</a>
+      <a href="#kontakt">Samarbeten</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener" class="mobile-nav-book">Köp min bok →</a>
+    </nav>
+  </div>
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
 
   <!-- ── HERO (100vh, split: text | portrait) ── -->
   <section class="hero-standalone" id="hero">
@@ -59,6 +74,7 @@
 
       <div class="hero-actions">
         <a class="btn-primary" href="#recept">Utforska recept</a>
+        <a class="btn-book" href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener noreferrer">Köp min bok</a>
         <a class="btn-ghost" href="https://www.instagram.com/maykaskitchen/" target="_blank" rel="noopener noreferrer">Följ på Instagram</a>
       </div>
 
