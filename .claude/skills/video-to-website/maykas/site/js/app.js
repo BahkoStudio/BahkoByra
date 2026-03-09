@@ -3,6 +3,23 @@
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* ── AIRTABLE CONFIG ─────────────────────────────────────── */
+const AIRTABLE_TOKEN  = 'BYTA_MOT_DIN_TOKEN'; // ← klistra in din Personal Access Token här
+const AIRTABLE_BASE   = 'appmmwhjfVRpQm5FK';
+const AIRTABLE_TABLE  = 'tblVMRAxQzeXOw1OF';
+
+async function submitToAirtable(email) {
+  const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ fields: { Email: email } })
+  });
+  if (!res.ok) throw new Error('Airtable error');
+}
+
 const header = document.getElementById('site-header');
 
 /* ── LENIS — smooth scroll ───────────────────────────────── */
@@ -79,20 +96,59 @@ function initCTA() {
   });
 }
 
-/* ── NEWSLETTER FORM ─────────────────────────────────────── */
+/* ── POPUP ───────────────────────────────────────────────── */
+function initPopup() {
+  const popup    = document.getElementById('nl-popup');
+  const overlay  = document.getElementById('nl-popup-overlay');
+  const closeBtn = document.getElementById('nl-popup-close');
+  const form     = document.getElementById('nl-popup-form');
+  const success  = document.getElementById('nl-popup-success');
+  if (!popup) return;
+
+  let popupTimer = null;
+
+  function openPopup() {
+    popup.classList.add('visible');
+    overlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePopup() {
+    popup.classList.remove('visible');
+    overlay.classList.remove('visible');
+    document.body.style.overflow = '';
+    // Reopen after 90 seconds
+    clearTimeout(popupTimer);
+    popupTimer = setTimeout(openPopup, 90_000);
+  }
+
+  closeBtn.addEventListener('click', closePopup);
+  overlay.addEventListener('click', closePopup);
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = form.querySelector('input[type="email"]').value;
+    try {
+      await submitToAirtable(email);
+    } catch (_) { /* silent — spara ändå */ }
+    form.hidden = true;
+    success.hidden = false;
+    // Stäng popup efter 2.5s
+    setTimeout(closePopup, 2500);
+  });
+
+  // Visa popup efter 2 sekunder vid sidladdning
+  popupTimer = setTimeout(openPopup, 2000);
+}
+
+/* ── FOOTER NEWSLETTER ───────────────────────────────────── */
 function initForms() {
   const form = document.getElementById('footer-nl-form');
   if (!form) return;
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const email = form.querySelector('input[type="email"]').value;
-    try {
-      await fetch('https://hook.eu2.make.com/sfjfkezizhjh4x7r1rrjmjwyei2sufj2', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type: 'newsletter', email, source: 'footer' })
-      });
-    } catch (_) { /* silent */ }
+    try { await submitToAirtable(email); } catch (_) {}
     form.insertAdjacentHTML('afterend', '<p style="font-size:.8rem;color:var(--gold);margin-top:.5rem">✓ Tack!</p>');
     form.remove();
   });
@@ -105,4 +161,5 @@ window.addEventListener('DOMContentLoaded', () => {
   initRecipeSection();
   initCTA();
   initForms();
+  initPopup();
 });

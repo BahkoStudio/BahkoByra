@@ -845,3 +845,137 @@ body.scene-active { background: var(--dark); }
   .cta-cards { grid-template-columns: 1fr; }
   .cta-section { padding: 5rem 5vw; }
 }
+
+/* ══════════════════════════════════════════════
+   POPUP — Newsletter & Bok
+══════════════════════════════════════════════ */
+.nl-popup-overlay {
+  position: fixed; inset: 0; z-index: 900;
+  background: rgba(14,10,8,0.6);
+  backdrop-filter: blur(4px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.nl-popup-overlay.visible { opacity: 1; pointer-events: all; }
+
+.nl-popup {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -48%) scale(0.95);
+  z-index: 901;
+  width: min(480px, 92vw);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.nl-popup.visible {
+  opacity: 1; pointer-events: all;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.nl-popup-inner {
+  background: var(--ivory);
+  border-radius: 24px;
+  padding: 2.5rem 2.2rem 2rem;
+  border-top: 4px solid var(--crimson);
+  box-shadow: 0 32px 80px rgba(14,10,8,0.35);
+  position: relative;
+  text-align: center;
+}
+.nl-popup-close {
+  position: absolute; top: 1rem; right: 1.2rem;
+  background: none; border: none;
+  font-size: 1rem; color: var(--mid);
+  cursor: pointer; padding: 0.4rem;
+  border-radius: 50%; transition: color 0.2s, background 0.2s;
+  line-height: 1;
+}
+.nl-popup-close:hover { color: var(--crimson); background: var(--beige); }
+
+.nl-popup-badge {
+  display: inline-block;
+  font-size: 0.65rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.15em;
+  color: var(--crimson);
+  background: rgba(140,26,38,0.07);
+  padding: 0.3rem 0.9rem; border-radius: 50px;
+  margin-bottom: 1rem;
+}
+.nl-popup-title {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 300; line-height: 1.2;
+  color: var(--charcoal); margin-bottom: 0.75rem;
+}
+.nl-popup-title em {
+  font-style: italic; color: var(--crimson);
+  background: linear-gradient(90deg, var(--crimson), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.nl-popup-sub {
+  font-size: 0.83rem; color: var(--mid);
+  line-height: 1.65; margin-bottom: 1.4rem;
+  max-width: 340px; margin-left: auto; margin-right: auto;
+}
+
+.nl-popup-form {
+  display: flex; flex-direction: column; gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+.nl-popup-form input {
+  padding: 0.8rem 1.2rem;
+  border: 1.5px solid var(--beige);
+  border-radius: 50px; background: var(--white);
+  font-family: var(--sans); font-size: 0.85rem;
+  color: var(--charcoal); outline: none;
+  transition: border-color 0.2s;
+  text-align: center;
+}
+.nl-popup-form input:focus { border-color: var(--crimson); }
+.nl-popup-form button {
+  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, var(--crimson), var(--purple));
+  color: var(--ivory); border: none; border-radius: 50px;
+  font-family: var(--sans); font-size: 0.85rem; font-weight: 500;
+  cursor: pointer; transition: opacity 0.2s;
+}
+.nl-popup-form button:hover { opacity: 0.88; }
+
+.nl-popup-success {
+  font-size: 0.88rem; color: var(--crimson);
+  font-weight: 500; padding: 0.6rem 0 0.4rem;
+}
+
+.nl-popup-divider {
+  display: flex; align-items: center; gap: 0.8rem;
+  margin: 1.2rem 0;
+  color: var(--mid); font-size: 0.75rem;
+}
+.nl-popup-divider::before, .nl-popup-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--beige);
+}
+
+.nl-popup-book {
+  display: flex; align-items: center; gap: 0.9rem;
+  background: linear-gradient(135deg, rgba(74,26,107,0.06), rgba(140,26,38,0.06));
+  border: 1.5px solid var(--beige);
+  border-radius: 14px; padding: 1rem 1.2rem;
+  text-decoration: none; color: var(--charcoal);
+  transition: border-color 0.25s, box-shadow 0.25s;
+  text-align: left;
+}
+.nl-popup-book:hover {
+  border-color: var(--purple);
+  box-shadow: 0 6px 20px rgba(74,26,107,0.12);
+}
+.nl-popup-book-icon { font-size: 1.6rem; flex-shrink: 0; }
+.nl-popup-book div { flex: 1; }
+.nl-popup-book strong {
+  display: block; font-size: 0.85rem; font-weight: 600;
+  color: var(--charcoal); margin-bottom: 0.1rem;
+}
+.nl-popup-book span { font-size: 0.75rem; color: var(--mid); }
+.nl-popup-arrow {
+  color: var(--purple); font-size: 1rem; flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.nl-popup-book:hover .nl-popup-arrow { transform: translateX(3px); }

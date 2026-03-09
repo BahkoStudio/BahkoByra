@@ -368,6 +368,38 @@
     </div>
   </footer>
 
+  <!-- ── POPUP ── -->
+  <div id="nl-popup" class="nl-popup" role="dialog" aria-modal="true" aria-label="Prenumerera">
+    <div class="nl-popup-inner">
+      <button class="nl-popup-close" id="nl-popup-close" aria-label="Stäng">✕</button>
+
+      <div class="nl-popup-badge">MaykasKitchen</div>
+      <h2 class="nl-popup-title">Matglädje<br><em>direkt i din inkorg</em></h2>
+      <p class="nl-popup-sub">Nya recept, säsongsinspirat­ion och exklusiva erbjudanden – gratis varje månad.</p>
+
+      <form class="nl-popup-form" id="nl-popup-form" novalidate>
+        <input type="email" placeholder="Din e-postadress" required>
+        <button type="submit">Prenumerera gratis</button>
+      </form>
+      <div class="nl-popup-success" id="nl-popup-success" hidden>
+        <span>✓</span> Tack! Du är nu med i gemenskapen 🌿
+      </div>
+
+      <div class="nl-popup-divider"><span>eller</span></div>
+
+      <a href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/"
+         target="_blank" rel="noopener" class="nl-popup-book">
+        <span class="nl-popup-book-icon">📖</span>
+        <div>
+          <strong>Köp min bok</strong>
+          <span>Maykas gröna kök – Kutle, hummus och kärlek</span>
+        </div>
+        <span class="nl-popup-arrow">→</span>
+      </a>
+    </div>
+  </div>
+  <div id="nl-popup-overlay" class="nl-popup-overlay"></div>
+
   <script src="js/lenis.min.js"></script>
   <script src="js/gsap.min.js"></script>
   <script src="js/ScrollTrigger.min.js"></script>
