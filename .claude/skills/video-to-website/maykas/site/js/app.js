@@ -46,17 +46,17 @@ function initRecipeSection() {
   const all   = recipeSection.querySelector('.recipes-all');
 
   gsap.from(hdr, {
-    y: 55, opacity: 0, duration: 1.2, ease: 'power4.out',
-    scrollTrigger: { trigger: hdr, start: 'top 85%', toggleActions: 'play none none reverse' }
+    y: 55, opacity: 0, duration: 1.2, ease: 'power4.out', immediateRender: false,
+    scrollTrigger: { trigger: hdr, start: 'top 90%', toggleActions: 'play none none reverse' }
   });
   gsap.from(cards, {
-    y: 45, opacity: 0, stagger: 0.1, duration: 1.0, ease: 'power4.out',
-    scrollTrigger: { trigger: recipeSection.querySelector('.recipes-grid'), start: 'top 80%', toggleActions: 'play none none reverse' }
+    y: 45, opacity: 0, stagger: 0.1, duration: 1.0, ease: 'power4.out', immediateRender: false,
+    scrollTrigger: { trigger: recipeSection.querySelector('.recipes-grid'), start: 'top 90%', toggleActions: 'play none none reverse' }
   });
   if (all) {
     gsap.from(all, {
-      y: 30, opacity: 0, duration: 1.0, ease: 'power4.out',
-      scrollTrigger: { trigger: all, start: 'top 90%', toggleActions: 'play none none reverse' }
+      y: 30, opacity: 0, duration: 1.0, ease: 'power4.out', immediateRender: false,
+      scrollTrigger: { trigger: all, start: 'top 95%', toggleActions: 'play none none reverse' }
     });
   }
 }
@@ -70,12 +70,12 @@ function initCTA() {
   const cards = section.querySelectorAll('.cta-card');
 
   gsap.from(hdr, {
-    y: 50, opacity: 0, duration: 1.2, ease: 'power4.out',
-    scrollTrigger: { trigger: hdr, start: 'top 85%', toggleActions: 'play none none reverse' }
+    y: 50, opacity: 0, duration: 1.2, ease: 'power4.out', immediateRender: false,
+    scrollTrigger: { trigger: hdr, start: 'top 90%', toggleActions: 'play none none reverse' }
   });
   gsap.from(cards, {
-    y: 40, opacity: 0, stagger: 0.15, duration: 1.1, ease: 'power4.out',
-    scrollTrigger: { trigger: cards[0], start: 'top 85%', toggleActions: 'play none none reverse' }
+    y: 40, opacity: 0, stagger: 0.15, duration: 1.1, ease: 'power4.out', immediateRender: false,
+    scrollTrigger: { trigger: cards[0], start: 'top 90%', toggleActions: 'play none none reverse' }
   });
 }
 
