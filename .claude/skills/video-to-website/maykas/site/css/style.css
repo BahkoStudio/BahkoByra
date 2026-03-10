@@ -1083,4 +1083,25 @@ body.scene-active { background: var(--dark); }
   color: var(--purple); font-size: 1rem; flex-shrink: 0;
   transition: transform 0.2s;
 }
+
+/* ── LANG TOGGLE ─────────────────────────────────────────── */
+.lang-toggle {
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  padding: 0.32rem 0.7rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.lang-toggle:hover {
+  background: var(--gold);
+  color: var(--dark);
+}
 .nl-popup-book:hover .nl-popup-arrow { transform: translateX(3px); }

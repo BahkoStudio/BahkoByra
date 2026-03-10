@@ -16,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/i18n.js"></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4880340628636698" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -25,12 +26,13 @@
     <nav>
       <a class="nav-logo" href="#">MaykasKitchen</a>
       <ul class="nav-links">
-        <li><a href="#">Hem</a></li>
-        <li><a href="#recept">Recept</a></li>
-        <li><a href="#kontakt">Samarbeten</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#" data-i18n="nav.home">Hem</a></li>
+        <li><a href="#recept" data-i18n="nav.recipes">Recept</a></li>
+        <li><a href="#kontakt" data-i18n="nav.collab">Samarbeten</a></li>
+        <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
       </ul>
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Öppna meny" aria-expanded="false">
+      <button class="lang-toggle" id="lang-toggle">EN</button>
+      <button class="nav-hamburger" id="nav-hamburger" data-i18n-aria="nav.open" aria-label="Öppna meny" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </nav>
@@ -39,11 +41,11 @@
   <!-- ── MOBILE NAV ── -->
   <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
     <nav class="mobile-nav-links">
-      <a href="#">Hem</a>
-      <a href="#recept">Recept</a>
-      <a href="#kontakt">Samarbeten</a>
-      <a href="#kontakt">Kontakt</a>
-      <a href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener" class="mobile-nav-book">Köp min bok →</a>
+      <a href="#" data-i18n="nav.home">Hem</a>
+      <a href="#recept" data-i18n="nav.recipes">Recept</a>
+      <a href="#kontakt" data-i18n="nav.collab">Samarbeten</a>
+      <a href="#kontakt" data-i18n="nav.contact">Kontakt</a>
+      <a href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener" class="mobile-nav-book" data-i18n="nav.buybook">Köp min bok →</a>
     </nav>
   </div>
   <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
@@ -56,31 +58,31 @@
     <div class="hero-content">
       <div class="hero-eyebrow">
         <div class="hero-line"></div>
-        <span>Assyrisk / syriansk matkonst</span>
+        <span data-i18n="hero.eyebrow">SuryoyoFood</span>
         <div class="hero-line"></div>
       </div>
 
       <h1 class="hero-heading">
-        <span class="hero-word w1">Mat</span>
-        <span class="hero-word w2">från</span>
-        <span class="hero-word w3">hjärtat</span>
+        <span class="hero-word w1" data-i18n="hero.w1">Mat</span>
+        <span class="hero-word w2" data-i18n="hero.w2">från</span>
+        <span class="hero-word w3" data-i18n="hero.w3">hjärtat</span>
         <span class="hero-word w4 hero-amp">&amp;</span>
-        <span class="hero-word w5">själen</span>
+        <span class="hero-word w5" data-i18n="hero.w5">själen</span>
       </h1>
 
-      <p class="hero-sub">
+      <p class="hero-sub" data-i18n="hero.sub">
         Säsongsbaserad matlagning som skapar glädje runt bordet<br>
         för hela familjen – med autentiska assyriska/syrianska rötter.
       </p>
 
       <div class="hero-actions">
-        <a class="btn-primary" href="#recept">Utforska recept</a>
-        <a class="btn-book" href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener noreferrer">Köp min bok</a>
-        <a class="btn-ghost" href="https://www.instagram.com/maykaskitchen/" target="_blank" rel="noopener noreferrer">Följ på Instagram</a>
+        <a class="btn-primary" href="#recept" data-i18n="hero.btn.recipes">Utforska recept</a>
+        <a class="btn-book" href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener noreferrer" data-i18n="hero.btn.book">Köp min bok</a>
+        <a class="btn-ghost" href="https://www.instagram.com/maykaskitchen/" target="_blank" rel="noopener noreferrer" data-i18n="hero.btn.instagram">Följ på Instagram</a>
       </div>
 
       <div class="hero-social">
-        <span class="hero-social-label">Följ mig</span>
+        <span class="hero-social-label" data-i18n="hero.follow">Följ mig</span>
         <div class="hero-social-icons">
           <a href="https://www.instagram.com/maykaskitchen/" target="_blank" rel="noopener" aria-label="Instagram" class="soc-icon">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -98,7 +100,7 @@
       </div>
 
       <div class="hero-scroll-hint">
-        <span>Scrolla</span>
+        <span data-i18n="hero.scroll">Scrolla</span>
         <div class="scroll-arrow">↓</div>
       </div>
     </div>
@@ -124,9 +126,9 @@
     </div>
 
     <div class="recipes-header">
-      <span class="section-label recipes-label">Matinspiration</span>
-      <h2 class="recipes-title">Populära recept</h2>
-      <p class="recipes-desc">Autentiska assyriska och syrianska rätter kombinerade med moderna smaker – enkla tillagningsmetoder och djupa, äkta smaker som hela familjen älskar.</p>
+      <span class="section-label recipes-label" data-i18n="recipes.label">Matinspiration</span>
+      <h2 class="recipes-title" data-i18n="recipes.title">Populära recept</h2>
+      <p class="recipes-desc" data-i18n="recipes.desc">Autentiska assyriska och syrianska rätter kombinerade med moderna smaker – enkla tillagningsmetoder och djupa, äkta smaker som hela familjen älskar.</p>
     </div>
 
     <div class="recipes-grid">
@@ -136,14 +138,14 @@
         <div class="recipe-img-wrap">
           <img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCMH3uifMpaES95dj1pBAJ4iwc3fNXxvqYhzGT"
                alt="Qrimyothe – Mormors munkar" loading="lazy">
-          <div class="recipe-badge badge-popular">Populärt</div>
+          <div class="recipe-badge badge-popular" data-i18n="badge.popular">Populärt</div>
           <div class="recipe-badge badge-time">120 min</div>
         </div>
         <div class="recipe-body">
           <div class="recipe-tags">
-            <span class="tag">Bakverk</span>
-            <span class="tag">Assyriskt</span>
-            <span class="tag">Traditionellt</span>
+            <span class="tag" data-i18n="tag.bakverk">Bakverk</span>
+            <span class="tag" data-i18n="tag.assyriskt">Assyriskt</span>
+            <span class="tag" data-i18n="tag.traditionellt">Traditionellt</span>
           </div>
           <div class="recipe-rating">
             <span class="stars">★★★★★</span>
@@ -151,11 +153,11 @@
             <span class="rating-sep">·</span>
             <span class="recipe-likes">♥ 8</span>
           </div>
-          <h3 class="recipe-name">Qrimyothe – Mormors munkar 🍩</h3>
-          <p class="recipe-desc">Mamma berättar om mormors kärlek i varje tugga. Mer än bara ett recept – ett stycke historia.</p>
+          <h3 class="recipe-name" data-i18n="rc1.name">Qrimyothe – Mormors munkar 🍩</h3>
+          <p class="recipe-desc" data-i18n="rc1.desc">Mamma berättar om mormors kärlek i varje tugga. Mer än bara ett recept – ett stycke historia.</p>
           <div class="recipe-footer">
-            <span class="recipe-portions">20 portioner</span>
-            <a class="recipe-link" href="recept.html?id=qrimyothe-munkar">Visa recept →</a>
+            <span class="recipe-portions" data-i18n="rc1.portions">20 portioner</span>
+            <a class="recipe-link" href="recept.html?id=qrimyothe-munkar" data-i18n="recipe.view">Visa recept →</a>
           </div>
         </div>
       </article>
@@ -165,14 +167,14 @@
         <div class="recipe-img-wrap">
           <img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCKJbVDrdNwFxeKMmirjvq6ZL34tbPu8S2X5Q9"
                alt="Kikärts Tikka Masala" loading="lazy">
-          <div class="recipe-badge badge-popular">Populärt</div>
+          <div class="recipe-badge badge-popular" data-i18n="badge.popular">Populärt</div>
           <div class="recipe-badge badge-time">20 min</div>
         </div>
         <div class="recipe-body">
           <div class="recipe-tags">
-            <span class="tag">Vegetariskt</span>
-            <span class="tag">Vegan</span>
-            <span class="tag">Snabb</span>
+            <span class="tag" data-i18n="tag.vegetariskt">Vegetariskt</span>
+            <span class="tag" data-i18n="tag.vegan">Vegan</span>
+            <span class="tag" data-i18n="tag.snabb">Snabb</span>
           </div>
           <div class="recipe-rating">
             <span class="stars">★★★★★</span>
@@ -180,11 +182,11 @@
             <span class="rating-sep">·</span>
             <span class="recipe-likes">♥ 12</span>
           </div>
-          <h3 class="recipe-name">Krämigaste kikärts-tikka masalan 🤯🔥</h3>
-          <p class="recipe-desc">En gryta som kramar om både hjärta och smaklökar – den krämigaste tikka masalan du kan tänka dig.</p>
+          <h3 class="recipe-name" data-i18n="rc2.name">Krämigaste kikärts-tikka masalan 🤯🔥</h3>
+          <p class="recipe-desc" data-i18n="rc2.desc">En gryta som kramar om både hjärta och smaklökar – den krämigaste tikka masalan du kan tänka dig.</p>
           <div class="recipe-footer">
-            <span class="recipe-portions">4–6 portioner</span>
-            <a class="recipe-link" href="recept.html?id=kikarts-tikka-masala">Visa recept →</a>
+            <span class="recipe-portions" data-i18n="rc2.portions">4–6 portioner</span>
+            <a class="recipe-link" href="recept.html?id=kikarts-tikka-masala" data-i18n="recipe.view">Visa recept →</a>
           </div>
         </div>
       </article>
@@ -198,9 +200,9 @@
         </div>
         <div class="recipe-body">
           <div class="recipe-tags">
-            <span class="tag">Fisk</span>
-            <span class="tag">Snabb</span>
-            <span class="tag">Under 60 min</span>
+            <span class="tag" data-i18n="tag.fisk">Fisk</span>
+            <span class="tag" data-i18n="tag.snabb">Snabb</span>
+            <span class="tag" data-i18n="tag.under60">Under 60 min</span>
           </div>
           <div class="recipe-rating">
             <span class="stars">★★★★★</span>
@@ -208,11 +210,11 @@
             <span class="rating-sep">·</span>
             <span class="recipe-likes">♥ 47</span>
           </div>
-          <h3 class="recipe-name">Kryddig lax- &amp; risbowl</h3>
-          <p class="recipe-desc">Perfekt som fräsch vardagsmiddag eller när du vill lyxa till lunchen. Snabbt, enkelt och smakrikt.</p>
+          <h3 class="recipe-name" data-i18n="rc3.name">Kryddig lax- &amp; risbowl</h3>
+          <p class="recipe-desc" data-i18n="rc3.desc">Perfekt som fräsch vardagsmiddag eller när du vill lyxa till lunchen. Snabbt, enkelt och smakrikt.</p>
           <div class="recipe-footer">
-            <span class="recipe-portions">4 portioner</span>
-            <a class="recipe-link" href="recept.html?id=lax-risbowl">Visa recept →</a>
+            <span class="recipe-portions" data-i18n="rc3.portions">4 portioner</span>
+            <a class="recipe-link" href="recept.html?id=lax-risbowl" data-i18n="recipe.view">Visa recept →</a>
           </div>
         </div>
       </article>
@@ -226,9 +228,9 @@
         </div>
         <div class="recipe-body">
           <div class="recipe-tags">
-            <span class="tag">Kött</span>
-            <span class="tag">Traditionellt</span>
-            <span class="tag">Assyriskt</span>
+            <span class="tag" data-i18n="tag.kott">Kött</span>
+            <span class="tag" data-i18n="tag.traditionellt">Traditionellt</span>
+            <span class="tag" data-i18n="tag.assyriskt">Assyriskt</span>
           </div>
           <div class="recipe-rating">
             <span class="stars">★★★★★</span>
@@ -236,11 +238,11 @@
             <span class="rating-sep">·</span>
             <span class="recipe-likes">♥ 42</span>
           </div>
-          <h3 class="recipe-name">Kafta bil sejnie</h3>
-          <p class="recipe-desc">Traditionell rätt från Mellanöstern med saftiga köttbullar och potatis i smakrik tomatsås.</p>
+          <h3 class="recipe-name" data-i18n="rc4.name">Kafta bil sejnie</h3>
+          <p class="recipe-desc" data-i18n="rc4.desc">Traditionell rätt från Mellanöstern med saftiga köttbullar och potatis i smakrik tomatsås.</p>
           <div class="recipe-footer">
-            <span class="recipe-portions">5–6 portioner</span>
-            <a class="recipe-link" href="recept.html?id=kafta-bil-sejnie">Visa recept →</a>
+            <span class="recipe-portions" data-i18n="rc4.portions">5–6 portioner</span>
+            <a class="recipe-link" href="recept.html?id=kafta-bil-sejnie" data-i18n="recipe.view">Visa recept →</a>
           </div>
         </div>
       </article>
@@ -250,14 +252,14 @@
         <div class="recipe-img-wrap">
           <img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCMH3uifMpaES95dj1pBAJ4iwc3fNXxvqYhzGT"
                alt="Hummus" loading="lazy">
-          <div class="recipe-badge badge-popular">Populärt</div>
+          <div class="recipe-badge badge-popular" data-i18n="badge.popular">Populärt</div>
           <div class="recipe-badge badge-time">15 min</div>
         </div>
         <div class="recipe-body">
           <div class="recipe-tags">
-            <span class="tag">Vegan</span>
-            <span class="tag">Snabb</span>
-            <span class="tag">Syrianskt</span>
+            <span class="tag" data-i18n="tag.vegan">Vegan</span>
+            <span class="tag" data-i18n="tag.snabb">Snabb</span>
+            <span class="tag" data-i18n="tag.syrianskt">Syrianskt</span>
           </div>
           <div class="recipe-rating">
             <span class="stars">★★★★★</span>
@@ -265,11 +267,11 @@
             <span class="rating-sep">·</span>
             <span class="recipe-likes">♥ 64</span>
           </div>
-          <h3 class="recipe-name">Lins- &amp; bulgurjärpar med sumak 🌿</h3>
-          <p class="recipe-desc">Proteinrika vegetariska järpar med linser, bulgur och sumak – fylliga smaker från Mellanöstern.</p>
+          <h3 class="recipe-name" data-i18n="rc5.name">Lins- &amp; bulgurjärpar med sumak 🌿</h3>
+          <p class="recipe-desc" data-i18n="rc5.desc">Proteinrika vegetariska järpar med linser, bulgur och sumak – fylliga smaker från Mellanöstern.</p>
           <div class="recipe-footer">
-            <span class="recipe-portions">4–6 portioner</span>
-            <a class="recipe-link" href="recept.html?id=lins-bulgur-jarpar">Visa recept →</a>
+            <span class="recipe-portions" data-i18n="rc5.portions">4–6 portioner</span>
+            <a class="recipe-link" href="recept.html?id=lins-bulgur-jarpar" data-i18n="recipe.view">Visa recept →</a>
           </div>
         </div>
       </article>
@@ -283,9 +285,9 @@
         </div>
         <div class="recipe-body">
           <div class="recipe-tags">
-            <span class="tag">Vegetariskt</span>
-            <span class="tag">Traditionellt</span>
-            <span class="tag">Assyriskt</span>
+            <span class="tag" data-i18n="tag.vegetariskt">Vegetariskt</span>
+            <span class="tag" data-i18n="tag.traditionellt">Traditionellt</span>
+            <span class="tag" data-i18n="tag.assyriskt">Assyriskt</span>
           </div>
           <div class="recipe-rating">
             <span class="stars">★★★★★</span>
@@ -293,11 +295,11 @@
             <span class="rating-sep">·</span>
             <span class="recipe-likes">♥ 55</span>
           </div>
-          <h3 class="recipe-name">Köfta bil Sanieh 🍅</h3>
-          <p class="recipe-desc">Syrisk ugnsrätt med kryddig köttfärs, potatis och padron paprika i mustig tomatsås.</p>
+          <h3 class="recipe-name" data-i18n="rc6.name">Köfta bil Sanieh 🍅</h3>
+          <p class="recipe-desc" data-i18n="rc6.desc">Syrisk ugnsrätt med kryddig köttfärs, potatis och padron paprika i mustig tomatsås.</p>
           <div class="recipe-footer">
-            <span class="recipe-portions">8 portioner</span>
-            <a class="recipe-link" href="recept.html?id=kofta-bil-sanieh">Visa recept →</a>
+            <span class="recipe-portions" data-i18n="rc6.portions">8 portioner</span>
+            <a class="recipe-link" href="recept.html?id=kofta-bil-sanieh" data-i18n="recipe.view">Visa recept →</a>
           </div>
         </div>
       </article>
@@ -305,8 +307,8 @@
     </div><!-- /recipes-grid -->
 
     <div class="recipes-all">
-      <a class="btn-all-recipes" href="https://maykaskitchen.se/#recept/alla" target="_blank" rel="noopener">Se alla recept</a>
-      <p class="recipes-all-note">13+ autentiska recept från Mayka</p>
+      <a class="btn-all-recipes" href="https://maykaskitchen.se/#recept/alla" target="_blank" rel="noopener" data-i18n="recipes.all">Se alla recept</a>
+      <p class="recipes-all-note" data-i18n="recipes.count">13+ autentiska recept från Mayka</p>
     </div>
 
   </section><!-- /recipes-section -->
@@ -318,9 +320,9 @@
   <section id="kontakt" class="cta-section">
     <div class="cta-inner">
       <div class="cta-header">
-        <span class="section-label">Kontakt &amp; Samarbeten</span>
-        <h2 class="cta-heading">Låt oss skapa<br>tillsammans</h2>
-        <p class="cta-sub">Matlagning, recept och berättelser som engagerar – redo för nästa projekt.</p>
+        <span class="section-label" data-i18n="cta.label">Kontakt &amp; Samarbeten</span>
+        <h2 class="cta-heading" data-i18n="cta.heading">Låt oss skapa<br>tillsammans</h2>
+        <p class="cta-sub" data-i18n="cta.sub">Matlagning, recept och berättelser som engagerar – redo för nästa projekt.</p>
       </div>
 
       <div class="cta-cards">
@@ -329,8 +331,8 @@
           <div class="cta-card-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           </div>
-          <h3 class="cta-card-title">Samarbeten</h3>
-          <p class="cta-card-body">Kampanjer, receptutveckling, matfoto, videos och events – autentiskt innehåll som engagerar.</p>
+          <h3 class="cta-card-title" data-i18n="cta.card1.title">Samarbeten</h3>
+          <p class="cta-card-body" data-i18n="cta.card1.body">Kampanjer, receptutveckling, matfoto, videos och events – autentiskt innehåll som engagerar.</p>
           <a href="mailto:samarbete@maykaskitchen.se" class="cta-email">samarbete@maykaskitchen.se</a>
         </div>
 
@@ -338,9 +340,9 @@
           <div class="cta-card-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           </div>
-          <h3 class="cta-card-title">Min bok</h3>
-          <p class="cta-card-body"><em>Maykas gröna kök – Kutle, hummus och kärlek.</em> En resa genom smak, traditioner och kärlek.</p>
-          <a href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener" class="btn-primary">Köp boken →</a>
+          <h3 class="cta-card-title" data-i18n="cta.card2.title">Min bok</h3>
+          <p class="cta-card-body" data-i18n="cta.card2.body"><em>Maykas gröna kök – Kutle, hummus och kärlek.</em> En resa genom smak, traditioner och kärlek.</p>
+          <a href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener" class="btn-primary" data-i18n="cta.card2.btn">Köp boken →</a>
         </div>
 
       </div>
@@ -353,7 +355,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <span class="footer-logo">MaykasKitchen</span>
-        <p class="footer-tagline">Mat från hjärtat &amp; tro i själen.<br>Assyriska/Syrianska rötter, alltid lagat med kärlek.</p>
+        <p class="footer-tagline" data-i18n="footer.tagline">Mat från hjärtat &amp; tro i själen.<br>Assyriska/Syrianska rötter, alltid lagat med kärlek.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/maykaskitchen/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
           <a href="https://www.tiktok.com/@Maykaskitchen" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
@@ -362,26 +364,26 @@
         </div>
       </div>
       <div class="footer-links">
-        <h4>Utforska</h4>
+        <h4 data-i18n="footer.explore">Utforska</h4>
         <ul>
-          <li><a href="#">Hem</a></li>
-          <li><a href="#recept">Recept</a></li>
-          <li><a href="#kontakt">Samarbeten</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
+          <li><a href="#" data-i18n="nav.home">Hem</a></li>
+          <li><a href="#recept" data-i18n="nav.recipes">Recept</a></li>
+          <li><a href="#kontakt" data-i18n="nav.collab">Samarbeten</a></li>
+          <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
         </ul>
       </div>
       <div class="footer-newsletter">
-        <h4>Nyhetsbrev</h4>
-        <p>Få nya recept och matinspiration direkt i din inkorg!</p>
+        <h4 data-i18n="footer.nl.title">Nyhetsbrev</h4>
+        <p data-i18n="footer.nl.p">Få nya recept och matinspiration direkt i din inkorg!</p>
         <form class="footer-nl-form" id="footer-nl-form" novalidate>
-          <input type="email" placeholder="Din e-post" required>
-          <button type="submit">Prenumerera</button>
+          <input type="email" data-i18n-ph="footer.nl.placeholder" placeholder="Din e-post" required>
+          <button type="submit" data-i18n="footer.nl.btn">Prenumerera</button>
         </form>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 MaykasKitchen. Alla rättigheter förbehållna.</span>
-      <span>Skapad med ♥ i Skåne, Sverige</span>
+      <span data-i18n="footer.copy">© 2025 MaykasKitchen. Alla rättigheter förbehållna.</span>
+      <span data-i18n="footer.made">Skapad med ♥ i Skåne, Sverige</span>
     </div>
   </footer>
 
@@ -391,25 +393,25 @@
       <button class="nl-popup-close" id="nl-popup-close" aria-label="Stäng">✕</button>
 
       <div class="nl-popup-badge">MaykasKitchen</div>
-      <h2 class="nl-popup-title">Matglädje<br><em>direkt i din inkorg</em></h2>
-      <p class="nl-popup-sub">Nya recept, säsongsinspirat­ion och exklusiva erbjudanden – gratis varje månad.</p>
+      <h2 class="nl-popup-title" data-i18n="popup.title">Matglädje<br><em>direkt i din inkorg</em></h2>
+      <p class="nl-popup-sub" data-i18n="popup.sub">Nya recept, säsongsinspirat­ion och exklusiva erbjudanden – gratis varje månad.</p>
 
       <form class="nl-popup-form" id="nl-popup-form" novalidate>
-        <input type="email" placeholder="Din e-postadress" required>
-        <button type="submit">Prenumerera gratis</button>
+        <input type="email" data-i18n-ph="popup.placeholder" placeholder="Din e-postadress" required>
+        <button type="submit" data-i18n="popup.btn">Prenumerera gratis</button>
       </form>
       <div class="nl-popup-success" id="nl-popup-success" hidden>
-        <span>✓</span> Tack! Du är nu med i gemenskapen 🌿
+        <span data-i18n="popup.success"><span>✓</span> Tack! Du är nu med i gemenskapen 🌿</span>
       </div>
 
-      <div class="nl-popup-divider"><span>eller</span></div>
+      <div class="nl-popup-divider"><span data-i18n="popup.or">eller</span></div>
 
       <a href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/"
          target="_blank" rel="noopener" class="nl-popup-book">
         <span class="nl-popup-book-icon">📖</span>
         <div>
-          <strong>Köp min bok</strong>
-          <span>Maykas gröna kök – Kutle, hummus och kärlek</span>
+          <strong data-i18n="popup.book.title">Köp min bok</strong>
+          <span data-i18n="popup.book.sub">Maykas gröna kök – Kutle, hummus och kärlek</span>
         </div>
         <span class="nl-popup-arrow">→</span>
       </a>

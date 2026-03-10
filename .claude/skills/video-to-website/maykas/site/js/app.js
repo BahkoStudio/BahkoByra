@@ -189,6 +189,7 @@ function initMobileNav() {
 
 /* ── BOOT ────────────────────────────────────────────────── */
 window.addEventListener('DOMContentLoaded', () => {
+  initLangToggle();
   initHeroWords();
   initHeader();
   initRecipeSection();
