@@ -377,50 +377,26 @@ body{background:var(--bg);color:var(--text-primary);font-family:var(--font-body)
 
 <!-- BOOKING MODAL -->
 <div class="modal-overlay" id="boka-modal">
-  <div class="modal-box">
+  <div class="modal-box" style="max-width:480px">
     <button class="modal-close" onclick="closeModal()" aria-label="Stäng">✕</button>
-    <div id="modal-form-wrap">
-      <div class="modal-eyebrow">Élara Klinik</div>
-      <h2 class="modal-title">Boka din<br>konsultation</h2>
-      <p class="modal-sub">Fyll i dina uppgifter så återkommer vi inom 24 timmar. Konsultationen är kostnadsfri och utan bindning.</p>
-      <form class="modal-form" id="boka-form" onsubmit="submitForm(event)">
-        <div class="form-row">
-          <div class="form-field">
-            <label>Namn</label>
-            <input type="text" placeholder="Ditt fullständiga namn" required>
-          </div>
-          <div class="form-field">
-            <label>Telefon</label>
-            <input type="tel" placeholder="+46 70 000 00 00">
-          </div>
-        </div>
-        <div class="form-field">
-          <label>E-post</label>
-          <input type="email" placeholder="din@epost.se" required>
-        </div>
-        <div class="form-field">
-          <label>Behandling</label>
-          <select>
-            <option value="">Välj behandling...</option>
-            <option>Läppförstoring</option>
-            <option>Botox — Panna & Ögonområde</option>
-            <option>Hudföryngring PRX-T33</option>
-            <option>Käklinjekonturering</option>
-            <option>Profhilo — Bioremodellering</option>
-            <option>Annan / Vet ej ännu</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <label>Meddelande (valfritt)</label>
-          <textarea placeholder="Berätta gärna om dina önskemål eller frågor..."></textarea>
-        </div>
-        <button type="submit" class="form-submit">Skicka förfrågan →</button>
-      </form>
-    </div>
-    <div class="modal-success" id="modal-success">
-      <div class="success-icon">✓</div>
-      <h3 class="success-title">Tack för din förfrågan!</h3>
-      <p class="success-msg">Vi återkommer inom 24 timmar.<br>Välkommen till Élara Klinik.</p>
+    <div style="display:inline-block;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-light);background:rgba(155,92,246,.1);border:1px solid rgba(155,92,246,.2);border-radius:4px;padding:.35rem .8rem;margin-bottom:1.5rem">Demo av Bahko Byrå</div>
+    <h2 class="modal-title" style="font-size:clamp(1.6rem,4vw,2.4rem)">Vill du ha en<br>sida som denna?</h2>
+    <p class="modal-sub">Boka ett kostnadsfritt 15-minuterssamtal med Mathias. Vi visar exakt hur din kliniks hemsida kan se ut.</p>
+    <button
+      class="form-submit"
+      style="margin-bottom:1rem"
+      data-cal-namespace="15min"
+      data-cal-link="bahkobyra/15min"
+      data-cal-origin="https://cal.eu"
+    >Boka 15 min gratis samtal →</button>
+    <a
+      href="mailto:mathias@bahkobyra.se?subject=Intresserad av demo-hemsida&body=Hej Mathias, jag såg ert demo och vill veta mer."
+      style="display:block;text-align:center;font-size:.75rem;color:var(--text-muted);text-decoration:none;letter-spacing:.1em;padding:.6rem;transition:color .3s"
+      onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--text-muted)'"
+    >Eller skicka ett mejl → mathias@bahkobyra.se</a>
+    <div style="margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid rgba(139,92,246,.1);text-align:center;font-size:.65rem;letter-spacing:.15em;color:var(--text-muted)">
+      <a href="https://bahkobyra.se" target="_blank" style="color:var(--gold-light);text-decoration:none;font-weight:500">Bahko Byrå</a>
+      &nbsp;·&nbsp; Synlighet som säljer.
     </div>
   </div>
 </div>
@@ -649,11 +625,6 @@ function closeModal(){
   document.getElementById("boka-modal").classList.remove("visible");
   document.body.style.overflow="";
 }
-function submitForm(e){
-  e.preventDefault();
-  document.getElementById("modal-form-wrap").style.display="none";
-  document.getElementById("modal-success").classList.add("visible");
-}
 document.getElementById("boka-modal").addEventListener("click",function(e){
   if(e.target===this)closeModal();
 });
@@ -670,6 +641,12 @@ function closeMobileNav(){
   document.getElementById("hamburger").classList.remove("open");
   document.body.style.overflow="";
 }
+</script>
+<!-- Cal.eu embed -->
+<script type="text/javascript">
+(function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,[L,namespace,...Array.from(ar).slice(2)])}else p(cal,ar);return}p(cal,ar)};})(window,"https://cal.eu/embed/embed.js","init");
+Cal("init","15min",{origin:"https://cal.eu"});
+Cal.ns["15min"]("ui",{"hideEventTypeDetails":false,"layout":"month_view"});
 </script>
 </body>
 </html>

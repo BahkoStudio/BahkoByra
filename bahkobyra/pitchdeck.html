@@ -565,13 +565,15 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     <p class="eyebrow">Nästa steg</p>
     <h2 class="cta-big">Redo att fylla<br>din <span class="accent">kalender?</span></h2>
     <p class="cta-sub">Boka ett kostnadsfritt 30-minuters samtal. Vi går igenom din nuläge och visar exakt vad vi kan göra för din klinik.</p>
-    <button class="cta-btn" onclick="window.open('https://bahkobyra.se/boka','_blank')">
-      Boka Gratis Samtal →
-    </button>
+    <button class="cta-btn"
+      data-cal-namespace="15min"
+      data-cal-link="bahkobyra/15min"
+      data-cal-origin="https://cal.eu"
+    >Boka Gratis 15 min Samtal →</button>
     <div class="cta-contact">
-      <a href="mailto:info@bahkobyra.se">info@bahkobyra.se</a>
+      <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a>
       <span style="color:var(--border-md)">|</span>
-      <a href="https://bahkobyra.se">bahkobyra.se</a>
+      <a href="https://bahkobyra.se" target="_blank">bahkobyra.se</a>
     </div>
   </div>
 
@@ -671,6 +673,12 @@ function draw(t) {
 resize(); initOrbs();
 window.addEventListener('resize', () => { resize(); initOrbs(); });
 requestAnimationFrame(draw);
+</script>
+<!-- Cal.eu embed -->
+<script type="text/javascript">
+(function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,[L,namespace,...Array.from(ar).slice(2)])}else p(cal,ar);return}p(cal,ar)};})(window,"https://cal.eu/embed/embed.js","init");
+Cal("init","15min",{origin:"https://cal.eu"});
+Cal.ns["15min"]("ui",{"hideEventTypeDetails":false,"layout":"month_view"});
 </script>
 </body>
 </html>
