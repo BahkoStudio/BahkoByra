@@ -557,19 +557,22 @@ function init() {
   tl.to('#sh', { opacity:1, duration:.5 }, '-=.2');
 
   // SCROLL REVEALS — IntersectionObserver (reliable, no Lenis conflict)
+  const timers = new Map();
   const revealObs = new IntersectionObserver((entries) => {
-    entries.forEach((entry, _i) => {
-      if (!entry.isIntersecting) return;
+    entries.forEach(entry => {
       const el = entry.target;
-      const siblings = el.closest('.svc-g, .proc-g, .why-pts');
-      if (siblings) {
-        // staggered group: delay by sibling index
-        const idx = Array.from(siblings.querySelectorAll('[data-r],[data-rl],[data-rr]')).indexOf(el);
-        setTimeout(() => el.classList.add('in'), idx * 90);
+      if (entry.isIntersecting) {
+        const group = el.closest('.svc-g, .proc-g, .why-pts');
+        const idx = group
+          ? Array.from(group.querySelectorAll('[data-r],[data-rl],[data-rr]')).indexOf(el)
+          : 0;
+        const tid = setTimeout(() => el.classList.add('in'), idx * 90);
+        timers.set(el, tid);
       } else {
-        el.classList.add('in');
+        clearTimeout(timers.get(el));
+        timers.delete(el);
+        el.classList.remove('in');
       }
-      revealObs.unobserve(el);
     });
   }, { threshold: 0.12, rootMargin:'0px 0px -8% 0px' });
 
