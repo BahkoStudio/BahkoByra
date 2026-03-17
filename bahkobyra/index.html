@@ -550,11 +550,27 @@ function init() {
   }, { passive:true });
 
   // Hero entrance
-  const tl = gsap.timeline({ delay:.05 });
-  tl.to('.hero-badge', { opacity:1, y:0, duration:.5, ease:'power2.out' });
-  document.querySelectorAll('.hero-title .line span').forEach((el, i) => tl.to(el, { y:'0%', duration:.75, ease:'power3.out' }, i * .11));
-  tl.to('.hero-sub30 span', { y:'0%', duration:.65, ease:'power3.out' }, '-=.35');
-  tl.to('#sh', { opacity:1, duration:.5 }, '-=.2');
+  function runHeroAnim(delay) {
+    gsap.set('.hero-badge', { opacity:0, y:10 });
+    gsap.set('.hero-title .line span', { y:'110%' });
+    gsap.set('.hero-sub30 span', { y:'110%' });
+    gsap.set('#sh', { opacity:0 });
+    const tl = gsap.timeline({ delay: delay ?? .05 });
+    tl.to('.hero-badge', { opacity:1, y:0, duration:.5, ease:'power2.out' });
+    document.querySelectorAll('.hero-title .line span').forEach((el, i) => tl.to(el, { y:'0%', duration:.75, ease:'power3.out' }, i * .11));
+    tl.to('.hero-sub30 span', { y:'0%', duration:.65, ease:'power3.out' }, '-=.35');
+    tl.to('#sh', { opacity:1, duration:.5 }, '-=.2');
+  }
+  runHeroAnim(.05);
+
+  // Re-animate hero on scroll back
+  let heroLeft = false;
+  new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) { heroLeft = true; }
+      else if (heroLeft) { heroLeft = false; runHeroAnim(0); }
+    });
+  }, { threshold: 0.1 }).observe(document.querySelector('.hero'));
 
   // SCROLL REVEALS — IntersectionObserver (reliable, no Lenis conflict)
   const timers = new Map();
