@@ -34,8 +34,7 @@ jobs:
       - name: Deploy to BahkoStudio/BahkoByra gh-pages (bahkobyra.se)
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.DEMO_REPO_TOKEN }}
-          external_repository: BahkoStudio/BahkoByra
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
           force_orphan: true
