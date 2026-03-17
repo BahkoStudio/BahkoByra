@@ -30,6 +30,11 @@
 }
 html{scroll-behavior:auto}
 body{background:var(--bg);color:var(--text);font-family:var(--inter);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+/* ── SCROLL REVEAL ── */
+[data-r]{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+[data-rl]{opacity:0;transform:translateX(-34px);transition:opacity .8s ease,transform .8s ease}
+[data-rr]{opacity:0;transform:translateX(34px);transition:opacity .8s ease,transform .8s ease}
+[data-r].in,[data-rl].in,[data-rr].in{opacity:1;transform:none}
 
 /* ── LOADER ──*/
 #loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .7s,visibility .7s}
@@ -526,65 +531,51 @@ window.addEventListener('load', () => {
 });
 
 function init() {
-  // Set initial states FIRST — before any CDN dependency can crash
-  gsap.set('[data-r]', { opacity:0, y:34 });
-  gsap.set('[data-rl]', { opacity:0, x:-34 });
-  gsap.set('[data-rr]', { opacity:0, x:34 });
+  // Hero initial states (GSAP handles these — above fold, no scroll needed)
   gsap.set('.hero-title .line span', { y:'110%' });
   gsap.set('.hero-badge', { opacity:0, y:10 });
   gsap.set('#sh', { opacity:0 });
 
-  // LENIS (graceful fallback if CDN fails)
+  // LENIS smooth scroll (graceful fallback if CDN fails)
   try {
     const lenis = new Lenis({ lerp:.08, smoothWheel:true });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(t => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
-    setTimeout(() => ScrollTrigger.refresh(), 100);
   } catch(e) { console.warn('Lenis not available:', e); }
 
-  // HEADER
-  try { ScrollTrigger.create({ start:80, onEnter:()=>document.getElementById('hdr').classList.add('scrolled'), onLeaveBack:()=>document.getElementById('hdr').classList.remove('scrolled') }); } catch(e) {}
+  // HEADER scroll state
+  window.addEventListener('scroll', () => {
+    document.getElementById('hdr').classList.toggle('scrolled', window.scrollY > 80);
+  }, { passive:true });
 
+  // Hero entrance
   const tl = gsap.timeline({ delay:.05 });
   tl.to('.hero-badge', { opacity:1, y:0, duration:.5, ease:'power2.out' });
   document.querySelectorAll('.hero-title .line span').forEach((el, i) => tl.to(el, { y:'0%', duration:.75, ease:'power3.out' }, i * .11));
   tl.to('.hero-sub30 span', { y:'0%', duration:.65, ease:'power3.out' }, '-=.35');
   tl.to('#sh', { opacity:1, duration:.5 }, '-=.2');
 
-  // SCROLL REVEALS
-  gsap.utils.toArray('[data-r]').forEach(el => {
-    gsap.to(el, { opacity:1, y:0, duration:.7, ease:'power2.out', scrollTrigger:{ trigger:el, start:'top 88%', once:true } });
-  });
-  gsap.utils.toArray('[data-rl]').forEach(el => {
-    gsap.to(el, { opacity:1, x:0, duration:.8, ease:'power2.out', scrollTrigger:{ trigger:el, start:'top 85%', once:true } });
-  });
-  gsap.utils.toArray('[data-rr]').forEach(el => {
-    gsap.to(el, { opacity:1, x:0, duration:.8, ease:'power2.out', scrollTrigger:{ trigger:el, start:'top 85%', once:true } });
-  });
-
-  // SERVICE CARDS STAGGER
-  gsap.utils.toArray('.svc[data-r]').forEach((el, i) => {
-    gsap.to(el, { opacity:1, y:0, duration:.55, ease:'power2.out', delay:i*.08, scrollTrigger:{ trigger:'.svc-g', start:'top 86%', once:true } });
-  });
-
-  // PROCESS STAGGER + BORDER
-  gsap.utils.toArray('.pst[data-r]').forEach((el, i) => {
-    ScrollTrigger.create({ trigger:'.proc-g', start:'top 85%', once:true,
-      onEnter: () => {
-        gsap.to(el, { opacity:1, y:0, duration:.55, ease:'power2.out', delay:i*.1 });
-        gsap.to(el, { borderTopColor:'var(--p)', duration:.4, delay:i*.1, ease:'power2.out' });
-        gsap.to(el.querySelector('.pst-n'), { color:'var(--p-dim)', duration:.4, delay:i*.1 });
+  // SCROLL REVEALS — IntersectionObserver (reliable, no Lenis conflict)
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, _i) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const siblings = el.closest('.svc-g, .proc-g, .why-pts');
+      if (siblings) {
+        // staggered group: delay by sibling index
+        const idx = Array.from(siblings.querySelectorAll('[data-r],[data-rl],[data-rr]')).indexOf(el);
+        setTimeout(() => el.classList.add('in'), idx * 90);
+      } else {
+        el.classList.add('in');
       }
+      revealObs.unobserve(el);
     });
-  });
+  }, { threshold: 0.12, rootMargin:'0px 0px -8% 0px' });
 
-  // WHY STAGGER
-  gsap.utils.toArray('.wi[data-r]').forEach((el, i) => {
-    gsap.to(el, { opacity:1, y:0, duration:.6, ease:'power2.out', delay:i*.1, scrollTrigger:{ trigger:'.why-pts', start:'top 86%', once:true } });
-  });
+  document.querySelectorAll('[data-r],[data-rl],[data-rr]').forEach(el => revealObs.observe(el));
 
-  // COUNT UP
+  // COUNT UP — keep ScrollTrigger only here
   document.querySelectorAll('[data-count]').forEach(el => {
     const t = parseInt(el.dataset.count), suf = el.dataset.suf || '';
     const o = { v:0 };
