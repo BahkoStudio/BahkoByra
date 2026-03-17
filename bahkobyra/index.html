@@ -516,6 +516,7 @@ footer{padding:2rem clamp(1.5rem,5vw,4.5rem);display:flex;justify-content:space-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js"></script>
 <script>
+gsap.registerPlugin(ScrollTrigger);
 // LOADER
 const ldBar = document.getElementById('ld-bar');
 let p = 0, iv = setInterval(() => { p = Math.min(p + Math.random()*18, 95); ldBar.style.width = p + '%'; }, 70);
@@ -539,6 +540,7 @@ function init() {
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(t => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
+    setTimeout(() => ScrollTrigger.refresh(), 100);
   } catch(e) { console.warn('Lenis not available:', e); }
 
   // HEADER
