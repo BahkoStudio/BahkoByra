@@ -102,3 +102,26 @@ jobs:
           publish_dir: ./dist-dash
           publish_branch: gh-pages
           force_orphan: true
+
+  deploy-maykas:
+    runs-on: ubuntu-latest
+    needs: deploy
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Maykas site
+        run: |
+          mkdir -p dist-maykas
+          cp -r .claude/skills/video-to-website/maykas/site/. dist-maykas/
+          echo "maykaskitchen.se" > dist-maykas/CNAME
+
+      - name: Deploy to BahkoStudio/MaykaKitchen gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.DEMO_REPO_TOKEN }}
+          external_repository: BahkoStudio/MaykaKitchen
+          publish_dir: ./dist-maykas
+          publish_branch: gh-pages
+          force_orphan: true
