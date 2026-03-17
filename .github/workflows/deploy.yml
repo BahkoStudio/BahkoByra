@@ -8,8 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout
@@ -33,11 +31,13 @@ jobs:
           # Custom domain
           echo "bahkobyra.se" > dist/CNAME
 
-      - name: Deploy to gh-pages (bahkobyra.se)
+      - name: Deploy to BahkoStudio/BahkoByra gh-pages (bahkobyra.se)
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.DEMO_REPO_TOKEN }}
+          external_repository: BahkoStudio/BahkoByra
           publish_dir: ./dist
+          publish_branch: gh-pages
           force_orphan: true
 
   deploy-demo:
