@@ -127,6 +127,28 @@ jobs:
           publish_branch: gh-pages
           force_orphan: true
 
+  deploy-pitchdeck:
+    runs-on: ubuntu-latest
+    needs: deploy
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build pitchdeck structure
+        run: |
+          mkdir -p dist-pitch
+          cp bahkobyra/pitchdeck.html dist-pitch/index.html
+
+      - name: Deploy to BahkoStudio/pitchdeck gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.DEMO_REPO_TOKEN }}
+          external_repository: BahkoStudio/pitchdeck
+          publish_dir: ./dist-pitch
+          publish_branch: gh-pages
+          force_orphan: true
+
   deploy-maykas:
     runs-on: ubuntu-latest
     needs: deploy
