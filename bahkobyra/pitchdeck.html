@@ -304,8 +304,24 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 @media(max-width:768px){
   .two-col{grid-template-columns:1fr;gap:2rem}
   .pricing-cards{flex-direction:column;align-items:center}
+  .price-card{min-width:unset;max-width:100%;width:100%}
   .result-stats{grid-template-columns:repeat(2,1fr)}
   .slide{padding:1.5rem 1.5rem 5rem}
+  .controls{bottom:max(1.2rem,env(safe-area-inset-bottom));gap:.8rem}
+  .ctrl-btn{width:48px;height:48px;font-size:1.1rem}
+  .deck-logo{top:max(1.2rem,env(safe-area-inset-top));font-size:.75rem}
+  .big-title{font-size:clamp(2.4rem,10vw,5rem)}
+  .slide-title{font-size:clamp(1.6rem,7vw,3rem)}
+  .cta-big{font-size:clamp(1.8rem,8vw,4rem)}
+  .cta-contact{flex-direction:column;gap:.8rem}
+  .prob-items,.sol-list,.process-steps{margin-top:1.2rem;gap:.7rem}
+  .r-stat{padding:1rem}
+  .r-num{font-size:2rem}
+}
+@media(max-width:480px){
+  .result-stats{grid-template-columns:1fr}
+  .pricing-cards{gap:.75rem}
+  .slide{padding:1.2rem 1.2rem 4.5rem}
 }
 </style>
 </head>
@@ -315,7 +331,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 
 <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 <div class="deck-logo">
-  <img src="/brand/BahkoStudio-removebg-preview.png" style="height:26px;width:auto;display:inline-block;vertical-align:middle;margin-right:.5rem;filter:brightness(0) invert(1);opacity:.7" onerror="this.style.display='none'"><span>Bahko</span> Byrå
+  <img src="favicon.png" style="height:26px;width:auto;display:inline-block;vertical-align:middle;margin-right:.5rem;filter:brightness(0) invert(1);opacity:.7" onerror="this.style.display='none'"><span>Bahko</span> Byrå
 </div>
 <div class="controls">
   <button class="ctrl-btn" id="prev" aria-label="Föregående">&#8592;</button>
