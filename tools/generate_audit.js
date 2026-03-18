@@ -54,7 +54,7 @@ if (!URL_ARG) {
 const FIRECRAWL_KEY = process.env.FIRECRAWL_API_KEY;
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
 const BREVO_KEY     = process.env.BREVO_API_KEY;
-const FROM_EMAIL    = process.env.FROM_EMAIL   || 'mathias@bahkostudio.live';
+const FROM_EMAIL    = process.env.FROM_EMAIL   || 'mathias@bahkobyra.se';
 const FROM_NAME     = process.env.FROM_NAME    || 'Mathias · Bahko Byrå';
 
 if (!FIRECRAWL_KEY) { console.error('❌ FIRECRAWL_API_KEY saknas i .env'); process.exit(1); }
@@ -72,7 +72,7 @@ console.log(`\n🔍 Scrapar ${URL_ARG} med Firecrawl...`);
 let scraped = '';
 try {
   scraped = execSync(
-    `npx -y firecrawl-cli@latest scrape "${URL_ARG}" --formats markdown`,
+    `npx -y firecrawl-cli@latest scrape "${URL_ARG}" --format markdown`,
     { env: { ...process.env, FIRECRAWL_API_KEY: FIRECRAWL_KEY }, maxBuffer: 4 * 1024 * 1024 }
   ).toString();
   console.log(`✅ Scrapad (${scraped.length} tecken)`);
