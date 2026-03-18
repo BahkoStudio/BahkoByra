@@ -302,26 +302,37 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .cta-contact a:hover{color:var(--p-lt)}
 
 @media(max-width:768px){
-  .two-col{grid-template-columns:1fr;gap:2rem}
-  .pricing-cards{flex-direction:column;align-items:center}
+  .two-col{grid-template-columns:1fr;gap:1.5rem}
+  .pricing-cards{flex-direction:column;align-items:stretch}
   .price-card{min-width:unset;max-width:100%;width:100%}
   .result-stats{grid-template-columns:repeat(2,1fr)}
-  .slide{padding:1.5rem 1.5rem 5rem}
+  /* Slides scroll vertically on mobile so content is never clipped */
+  .slide{
+    overflow-y:auto;-webkit-overflow-scrolling:touch;
+    justify-content:flex-start;align-items:stretch;
+    padding:4.5rem 1.4rem 6rem;
+  }
+  .slide-cover{align-items:center;justify-content:center;text-align:center}
+  .slide-cta{align-items:center;justify-content:center}
   .controls{bottom:max(1.2rem,env(safe-area-inset-bottom));gap:.8rem}
   .ctrl-btn{width:48px;height:48px;font-size:1.1rem}
   .deck-logo{top:max(1.2rem,env(safe-area-inset-top));font-size:.75rem}
   .big-title{font-size:clamp(2.4rem,10vw,5rem)}
-  .slide-title{font-size:clamp(1.6rem,7vw,3rem)}
-  .cta-big{font-size:clamp(1.8rem,8vw,4rem)}
+  .slide-title{font-size:clamp(1.5rem,6vw,2.5rem);margin-bottom:.8rem}
+  .body-text{font-size:.88rem}
+  .cta-big{font-size:clamp(1.8rem,8vw,3.5rem)}
   .cta-contact{flex-direction:column;gap:.8rem}
-  .prob-items,.sol-list,.process-steps{margin-top:1.2rem;gap:.7rem}
+  .prob-items,.sol-list,.process-steps{margin-top:1rem;gap:.6rem}
+  .prob-item,.proc-step{padding:.85rem 1rem}
   .r-stat{padding:1rem}
   .r-num{font-size:2rem}
+  .two-col > *:first-child{order:1}
+  .two-col > *:last-child{order:2}
 }
 @media(max-width:480px){
   .result-stats{grid-template-columns:1fr}
   .pricing-cards{gap:.75rem}
-  .slide{padding:1.2rem 1.2rem 4.5rem}
+  .slide{padding:4rem 1.2rem 5.5rem}
 }
 </style>
 </head>
@@ -432,7 +443,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="p-line"></div>
         <p class="body-text">Vi har byggt en komplett prototyp för en estetisk klinik — Élara Klinik. Samma standard, anpassad till din verksamhet och ditt varumärke.</p>
         <div style="margin-top:1.6rem">
-          <a href="../kliniker/elara-klinik-demo-v2.html" target="_blank" class="demo-link">
+          <a href="https://bahkobyra.cloud" target="_blank" class="demo-link">
             Se live demo →
           </a>
         </div>
@@ -441,7 +452,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
         <div class="demo-dot-grid"></div>
         <div class="demo-label">Élara Klinik</div>
         <div class="demo-sub">Premium estetikklinik — Stockholm</div>
-        <a href="../kliniker/elara-klinik-demo-v2.html" target="_blank" class="demo-link">Öppna demo</a>
+        <a href="https://bahkobyra.cloud" target="_blank" class="demo-link">Öppna demo</a>
       </div>
     </div>
   </div>
@@ -661,12 +672,16 @@ document.addEventListener('wheel', e => {
   if (e.deltaY > 0) next(); else prev();
 }, { passive: true });
 
-// Touch swipe
-let tx = 0;
-document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+// Touch swipe — horizontal only, ignores vertical scroll within slides
+let tx = 0, ty = 0;
+document.addEventListener('touchstart', e => {
+  tx = e.touches[0].clientX;
+  ty = e.touches[0].clientY;
+}, { passive: true });
 document.addEventListener('touchend', e => {
   const dx = tx - e.changedTouches[0].clientX;
-  if (Math.abs(dx) > 50) dx > 0 ? next() : prev();
+  const dy = ty - e.changedTouches[0].clientY;
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) dx > 0 ? next() : prev();
 });
 
 update();
