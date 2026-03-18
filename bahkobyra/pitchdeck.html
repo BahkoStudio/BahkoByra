@@ -335,9 +335,14 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   .proc-body h4{font-size:.85rem}
   .proc-body p{font-size:.72rem}
 
-  /* Pricing: horizontal scroll with snap */
-  .pricing-cards{flex-direction:row;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:.8rem;padding-bottom:.5rem;scroll-snap-type:x mandatory}
-  .price-card{flex:0 0 75vw;scroll-snap-align:start;max-width:none}
+  /* Pricing: stack vertically, hide feature list to save space */
+  .pricing-cards{flex-direction:column;gap:.6rem;margin-top:.8rem;width:100%;max-width:100%}
+  .price-card{min-width:unset;max-width:100%;padding:1rem 1.1rem;display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;align-items:center;gap:.1rem .5rem}
+  .price-tier{font-size:.55rem;grid-column:1;grid-row:1}
+  .price-name{font-size:.95rem;grid-column:1;grid-row:2}
+  .price-amount{font-size:1.2rem;grid-column:2;grid-row:1/3;margin:0;text-align:right}
+  .price-sub{font-size:.6rem;grid-column:1/3;grid-row:3;color:var(--text-faint);margin-top:.2rem}
+  .price-divider,.price-features{display:none}
 
   .r-stat{padding:.8rem}
   .r-num{font-size:1.8rem}
