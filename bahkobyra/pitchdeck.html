@@ -652,6 +652,15 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
 });
 
+// Scroll to navigate
+let scrollLock = false;
+document.addEventListener('wheel', e => {
+  if (scrollLock) return;
+  scrollLock = true;
+  setTimeout(() => scrollLock = false, 700);
+  if (e.deltaY > 0) next(); else prev();
+}, { passive: true });
+
 // Touch swipe
 let tx = 0;
 document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
