@@ -199,8 +199,9 @@ function template(step, lead) {
       html: `<div style="${styles}">
         <p>Hej!</p>
         <p>Det här är mitt sista mejl, lovar.</p>
-        <p>Om ni någon gång funderar på att byta hemsida kan ni alltid höra av er. Svara bara <strong>"ja"</strong> så bokar vi ett gratis 15-minutersmöte.</p>
-        <p>Demot finns kvar: <a href="https://bahkobyra.cloud">bahkobyra.cloud</a></p>
+        <p>Om ni vill ha en <strong>gratis genomgång av er webbplats</strong> — vad som fungerar och vad som kostar er bokningar — kan ni få det här:</p>
+        <p><a href="https://www.bahkobyra.se/kliniker/gratis-granskning.html" style="display:inline-block;margin:6px 0;padding:10px 18px;background:#1a1a1a;color:#fff;text-decoration:none;border-radius:4px;font-size:14px;">Få gratis webbplatsanalys →</a></p>
+        <p>Det tar under 60 sekunder och ni får ett konkret svar inom 24h. Inga krav.</p>
         <p>Lycka till med kliniken!</p>
         ${signature}
       </div>`

@@ -24,9 +24,10 @@ jobs:
           cp bahkobyra/index.html dist/index.html
           cp bahkobyra/pitchdeck.html dist/pitchdeck.html
 
-          # Clinic demo + CRM
+          # Clinic demo + CRM + audit landing
           cp kliniker/elara-klinik-demo-v2.html dist/kliniker/elara-klinik-demo-v2.html
           cp kliniker/crm.html dist/kliniker/crm.html
+          cp kliniker/gratis-granskning.html dist/kliniker/gratis-granskning.html
 
           # Brand assets
           cp brand/* dist/brand/ 2>/dev/null || true
