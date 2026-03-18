@@ -729,26 +729,34 @@ document.getElementById('cf').addEventListener('submit', e => {
 // ── AUDIT POPUP ──────────────────────────────────────────────────────────
 (function(){
   const INTERVAL = 90_000;
-  const overlay = document.getElementById('audit-overlay');
-  const closeBtn = document.getElementById('audit-close');
-
-  const card = document.getElementById('audit-card');
-  function showPopup() {
-    overlay.style.opacity = '1';
-    overlay.style.pointerEvents = 'auto';
-    card.style.transform = 'translateY(0)';
-  }
-  function hidePopup() {
-    overlay.style.opacity = '0';
-    overlay.style.pointerEvents = 'none';
-    card.style.transform = 'translateY(16px)';
-  }
-
-  closeBtn.addEventListener('click', hidePopup);
-  overlay.addEventListener('click', e => { if (e.target === overlay) hidePopup(); });
-
   // First show after 15s, then every 90s automatically
-  setTimeout(() => { showPopup(); setInterval(showPopup, INTERVAL); }, 15_000);
+  // Wait for DOM to be ready before querying elements
+  function initPopup() {
+    const overlay2 = document.getElementById('audit-overlay');
+    const card2 = document.getElementById('audit-card');
+    const closeBtn2 = document.getElementById('audit-close');
+    if (!overlay2 || !card2 || !closeBtn2) return;
+
+    function show() {
+      overlay2.style.opacity = '1';
+      overlay2.style.pointerEvents = 'auto';
+      card2.style.transform = 'translateY(0)';
+    }
+    function hide() {
+      overlay2.style.opacity = '0';
+      overlay2.style.pointerEvents = 'none';
+      card2.style.transform = 'translateY(16px)';
+    }
+    closeBtn2.addEventListener('click', hide);
+    overlay2.addEventListener('click', e => { if (e.target === overlay2) hide(); });
+    setTimeout(() => { show(); setInterval(show, INTERVAL); }, 15_000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPopup);
+  } else {
+    initPopup();
+  }
 })();
 </script>
 
