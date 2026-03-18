@@ -732,8 +732,17 @@ document.getElementById('cf').addEventListener('submit', e => {
   const overlay = document.getElementById('audit-overlay');
   const closeBtn = document.getElementById('audit-close');
 
-  function showPopup() { overlay.classList.add('visible'); }
-  function hidePopup() { overlay.classList.remove('visible'); }
+  const card = document.getElementById('audit-card');
+  function showPopup() {
+    overlay.style.opacity = '1';
+    overlay.style.pointerEvents = 'auto';
+    card.style.transform = 'translateY(0)';
+  }
+  function hidePopup() {
+    overlay.style.opacity = '0';
+    overlay.style.pointerEvents = 'none';
+    card.style.transform = 'translateY(16px)';
+  }
 
   closeBtn.addEventListener('click', hidePopup);
   overlay.addEventListener('click', e => { if (e.target === overlay) hidePopup(); });

@@ -152,16 +152,13 @@ function template(step, lead) {
 
   if (step === 1) {
     return {
-      subject: `Har ${namn} tänkt på detta?`,
+      subject: `Hittade er på Google`,
       html: `<div style="${styles}">
         <p>Hej!</p>
-        <p>Jag heter Mathias och jobbar med hemsidor för kliniker.</p>
-        <p>Jag kikade in på er sida och tog fram ett <strong>gratis demo</strong>. Det visar hur ${namn} kan se ut med en nyare design och en tydlig bokningsknapp.</p>
-        <p>Vi hjälpte nyligen en klinik som hade en liknande sida. Efter bytet fick de <strong>36% fler bokningar</strong> och hamnade på första sidan på Google inom 30 dagar.</p>
-        ${LOOM_URL ? `<p>Jag spelade in en kort genomgång (90 sek) där jag visar vad jag menar:<br><a href="${LOOM_URL}" style="display:inline-block;margin-top:6px;padding:10px 18px;background:#1a1a1a;color:#fff;text-decoration:none;border-radius:4px;font-size:14px;">▶ Se videon</a></p>` : ''}
-        <p>Ta en titt på demot: <a href="https://bahkobyra.cloud">bahkobyra.cloud</a></p>
-        <p>Det tar under 2 minuter. Inga krav.</p>
-        <p>Hör gärna av er!</p>
+        <p>Jag sökte på Google efter kliniker och hittade er sida, snygg!</p>
+        <p>Men jag såg 3 grejer som troligtvis gör att ni missar patienter just nu. Jobbade nyligen med en klinik som fick 36% fler bokningsförfrågningar efter ett par enkla ändringar på hemsidan.</p>
+        <p>Tänkte jag kan göra ett gratis demo för er sida om det är intressant. Svara bara "ok" så fixar jag det, ni kommer inte ångra det!</p>
+        <p>Hörs snart</p>
         ${signature}
       </div>`
     };
@@ -169,12 +166,11 @@ function template(step, lead) {
 
   if (step === 2) {
     return {
-      subject: `Såg ni mitt förslag, ${namn}?`,
+      subject: `Glömde ni bort mig?`,
       html: `<div style="${styles}">
         <p>Hej igen!</p>
-        <p>Såg ni demot jag skickade om ${namn}?</p>
-        <p>Länken: <a href="https://bahkobyra.cloud">bahkobyra.cloud</a></p>
-        <p>Vi jobbar just nu med ett par kliniker i Sverige och det finns fortfarande plats. Vill inte att ni missar det.</p>
+        <p>Skickade ett mejl häromdagen, kanske hamnade i skräpposten.</p>
+        <p>Demot är fortfarande gratis om ni vill ha det. Svara bara "ok" så skickar jag det direkt.</p>
         ${signature}
       </div>`
     };
@@ -182,12 +178,11 @@ function template(step, lead) {
 
   if (step === 3) {
     return {
-      subject: `Kliniker som bytte hemsida`,
+      subject: `En sak till`,
       html: `<div style="${styles}">
         <p>Hej!</p>
-        <p>Kliniker som byter till en modern hemsida får oftast fler bokningar och syns bättre på Google.</p>
-        <p>Vi har gjort ett demo redo för ${namn}: <a href="https://bahkobyra.cloud">bahkobyra.cloud</a></p>
-        <p>Om ni svarar idag bjuder vi på ett gratis 15-minutersmöte.</p>
+        <p>Jobbar just nu med ett par kliniker och har en lucka kvar. Vill inte att ni missar det.</p>
+        <p>Svara "ok" så skickar jag ett gratis demo på hur er sida kan se ut, inga krav.</p>
         ${signature}
       </div>`
     };
@@ -195,14 +190,11 @@ function template(step, lead) {
 
   if (step === 4) {
     return {
-      subject: `Sista mejlet från mig, ${namn}`,
+      subject: `Sista mejlet från mig`,
       html: `<div style="${styles}">
         <p>Hej!</p>
-        <p>Det här är mitt sista mejl, lovar.</p>
-        <p>Om ni vill ha en <strong>gratis genomgång av er webbplats</strong> — vad som fungerar och vad som kostar er bokningar — kan ni få det här:</p>
-        <p><a href="https://www.bahkobyra.se/kliniker/gratis-granskning.html" style="display:inline-block;margin:6px 0;padding:10px 18px;background:#1a1a1a;color:#fff;text-decoration:none;border-radius:4px;font-size:14px;">Få gratis webbplatsanalys →</a></p>
-        <p>Det tar under 60 sekunder och ni får ett konkret svar inom 24h. Inga krav.</p>
-        <p>Lycka till med kliniken!</p>
+        <p>Sista gången jag hör av mig, lovar.</p>
+        <p>Om ni någon gång funderar på hemsidan så hör gärna av er. Lycka till med kliniken!</p>
         ${signature}
       </div>`
     };
