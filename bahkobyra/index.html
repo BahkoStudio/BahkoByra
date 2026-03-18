@@ -301,6 +301,8 @@ footer{padding:2rem clamp(1.5rem,5vw,4.5rem);display:flex;justify-content:space-
   .hero{padding:7rem 1.5rem 4rem}
   .ht-xl,.ht-lg{font-size:clamp(2.2rem,9vw,3.2rem)}
 }
+#audit-overlay.visible{opacity:1;pointer-events:auto}
+#audit-overlay.visible #audit-card{transform:translateY(0)}
 </style>
 </head>
 <body>
@@ -687,6 +689,88 @@ document.getElementById('cf').addEventListener('submit', e => {
   document.getElementById('cf').style.display = 'none';
   document.getElementById('cf-ok').classList.add('show');
 });
+
+// ── AUDIT POPUP ──────────────────────────────────────────────────────────
+(function(){
+  const INTERVAL = 90_000;
+  const overlay = document.getElementById('audit-overlay');
+  const closeBtn = document.getElementById('audit-close');
+
+  function showPopup() {
+    overlay.classList.add('visible');
+  }
+  function hidePopup() {
+    overlay.classList.remove('visible');
+    setTimeout(showPopup, INTERVAL);
+  }
+
+  closeBtn.addEventListener('click', hidePopup);
+  overlay.addEventListener('click', e => { if (e.target === overlay) hidePopup(); });
+
+  // First show after 15s
+  setTimeout(showPopup, 15_000);
+})();
 </script>
+
+<!-- AUDIT POPUP -->
+<div id="audit-overlay" style="
+  position:fixed;inset:0;z-index:9000;
+  background:rgba(6,6,18,.75);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .35s ease;padding:1.5rem
+">
+  <div style="
+    background:#181838;border:1px solid rgba(255,255,255,.12);
+    border-radius:16px;padding:2.2rem 2rem;max-width:420px;width:100%;
+    position:relative;box-shadow:0 24px 60px rgba(0,0,0,.6);
+    transform:translateY(16px);transition:transform .35s ease
+  " id="audit-card">
+    <button id="audit-close" style="
+      position:absolute;top:1rem;right:1rem;background:none;border:none;
+      color:rgba(240,237,255,.4);font-size:1.3rem;cursor:pointer;line-height:1;
+      padding:.2rem .5rem;transition:color .2s
+    " aria-label="Stäng">×</button>
+
+    <div style="font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c9a96e;margin-bottom:.8rem">
+      Tidsbegränsat erbjudande
+    </div>
+    <h2 style="font-size:1.35rem;font-weight:700;color:#F0EDFF;line-height:1.25;margin-bottom:.6rem;font-family:'Space Grotesk',sans-serif">
+      Få en gratis analys av<br>er kliniksajt
+    </h2>
+    <p style="font-size:.82rem;color:rgba(240,237,255,.6);line-height:1.6;margin-bottom:1.4rem">
+      Vi granskar er webbplats mot 10 punkter och skickar rapporten direkt till er inbox — inom 24h.
+    </p>
+
+    <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem">
+      <div style="
+        background:rgba(201,169,110,.12);border:1px solid rgba(201,169,110,.25);
+        border-radius:8px;padding:.6rem 1rem;text-align:center;flex:1
+      ">
+        <div style="font-size:1.1rem;font-weight:700;color:#c9a96e;text-decoration:line-through;opacity:.5">799 kr</div>
+        <div style="font-size:.62rem;color:rgba(240,237,255,.4);letter-spacing:.08em;margin-top:.1rem">ordinarie pris</div>
+      </div>
+      <div style="font-size:1.4rem;color:rgba(240,237,255,.2)">→</div>
+      <div style="
+        background:rgba(201,169,110,.18);border:1px solid rgba(201,169,110,.4);
+        border-radius:8px;padding:.6rem 1rem;text-align:center;flex:1
+      ">
+        <div style="font-size:1.1rem;font-weight:800;color:#c9a96e">GRATIS</div>
+        <div style="font-size:.62rem;color:rgba(240,237,255,.4);letter-spacing:.08em;margin-top:.1rem">just nu</div>
+      </div>
+    </div>
+
+    <a href="/kliniker/gratis-granskning.html" style="
+      display:block;text-align:center;padding:.9rem 1.5rem;
+      background:#c9a96e;color:#0c0a09;font-family:'Space Grotesk',sans-serif;
+      font-size:.88rem;font-weight:700;letter-spacing:.04em;
+      border-radius:8px;text-decoration:none;transition:opacity .2s
+    " onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">
+      Få min gratis analys →
+    </a>
+    <p style="font-size:.68rem;color:rgba(240,237,255,.3);text-align:center;margin-top:.8rem">
+      Inga krav. Svar inom 24h.
+    </p>
+  </div>
+</div>
 </body>
 </html>
