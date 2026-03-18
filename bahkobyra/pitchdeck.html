@@ -301,38 +301,61 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .cta-contact a{color:var(--text-dim);text-decoration:none;transition:color .2s}
 .cta-contact a:hover{color:var(--p-lt)}
 
+/* ── MOBILE: switch to vertical scroll layout ── */
 @media(max-width:768px){
+  /* Let the page scroll naturally */
+  html,body{height:auto !important;overflow:auto !important}
+
+  /* Deck becomes a normal block container */
+  .deck{position:static !important;overflow:visible !important;height:auto !important}
+
+  /* Each slide is a full-screen-height block in the flow */
+  .slide{
+    position:relative !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:none !important;
+    transition:none !important;
+    display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+    min-height:100svh;
+    padding:5rem 1.4rem 4rem;
+    border-bottom:1px solid rgba(255,255,255,.04);
+  }
+  .slide-cover,.slide-cta{align-items:center;text-align:center}
+
+  /* Hide deck controls — user scrolls instead */
+  .controls{display:none !important}
+  .progress-bar{display:none !important}
+
+  /* Logo stays fixed top-left */
+  .deck-logo{font-size:.72rem}
+
+  /* Layouts */
   .two-col{grid-template-columns:1fr;gap:1.5rem}
   .pricing-cards{flex-direction:column;align-items:stretch}
   .price-card{min-width:unset;max-width:100%;width:100%}
   .result-stats{grid-template-columns:repeat(2,1fr)}
-  /* Slides scroll vertically on mobile so content is never clipped */
-  .slide{
-    overflow-y:auto;-webkit-overflow-scrolling:touch;
-    justify-content:flex-start;align-items:stretch;
-    padding:4.5rem 1.4rem 6rem;
-  }
-  .slide-cover{align-items:center;justify-content:center;text-align:center}
-  .slide-cta{align-items:center;justify-content:center}
-  .controls{bottom:max(1.2rem,env(safe-area-inset-bottom));gap:.8rem}
-  .ctrl-btn{width:48px;height:48px;font-size:1.1rem}
-  .deck-logo{top:max(1.2rem,env(safe-area-inset-top));font-size:.75rem}
-  .big-title{font-size:clamp(2.4rem,10vw,5rem)}
+
+  /* Typography */
+  .big-title{font-size:clamp(2.4rem,11vw,5rem)}
   .slide-title{font-size:clamp(1.5rem,6vw,2.5rem);margin-bottom:.8rem}
   .body-text{font-size:.88rem}
   .cta-big{font-size:clamp(1.8rem,8vw,3.5rem)}
+  .eyebrow{font-size:.6rem}
+
+  /* Components */
   .cta-contact{flex-direction:column;gap:.8rem}
   .prob-items,.sol-list,.process-steps{margin-top:1rem;gap:.6rem}
   .prob-item,.proc-step{padding:.85rem 1rem}
   .r-stat{padding:1rem}
   .r-num{font-size:2rem}
-  .two-col > *:first-child{order:1}
-  .two-col > *:last-child{order:2}
+  .cta-btn{width:100%;justify-content:center}
 }
 @media(max-width:480px){
   .result-stats{grid-template-columns:1fr}
   .pricing-cards{gap:.75rem}
-  .slide{padding:4rem 1.2rem 5.5rem}
+  .slide{padding:4.5rem 1.2rem 3.5rem}
 }
 </style>
 </head>
