@@ -223,6 +223,20 @@ section{padding:clamp(5rem,9vw,8rem) clamp(1.5rem,5vw,4.5rem)}
 .wi-t{font-family:var(--syne);font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
 .wi-d{font-size:.81rem;color:var(--text-dim);line-height:1.65;font-weight:400}
 
+/* ── AUDIT BANNER ──*/
+.audit-sec{padding:clamp(3rem,6vw,5rem) clamp(1.5rem,5vw,4.5rem)}
+.audit-card{max-width:900px;margin:0 auto;background:var(--bg2);border:1px solid rgba(201,169,110,.25);border-radius:16px;padding:clamp(2rem,4vw,3rem) clamp(1.5rem,4vw,3rem);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;position:relative;overflow:hidden}
+.audit-card::before{content:'';position:absolute;top:-60%;right:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(201,169,110,.06) 0%,transparent 65%);pointer-events:none}
+.audit-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c9a96e;background:rgba(201,169,110,.12);border:1px solid rgba(201,169,110,.25);border-radius:20px;padding:.3rem .8rem;margin-bottom:.8rem}
+.audit-price{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:700;color:rgba(240,237,255,.4)}
+.audit-price s{color:rgba(240,237,255,.3)}
+.audit-price span{color:#c9a96e;font-size:.9rem}
+.audit-card h3{font-family:var(--syne);font-size:clamp(1.2rem,3vw,1.7rem);font-weight:800;color:var(--text);margin-bottom:.5rem;line-height:1.2}
+.audit-card p{font-size:.85rem;color:var(--text-dim);line-height:1.6;max-width:520px}
+.audit-cta{flex-shrink:0;background:#c9a96e;color:#0c0a09;font-family:var(--syne);font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.9rem 1.8rem;border-radius:8px;text-decoration:none;white-space:nowrap;transition:opacity .2s}
+.audit-cta:hover{opacity:.88}
+@media(max-width:640px){.audit-card{grid-template-columns:1fr}.audit-cta{text-align:center}}
+
 /* ── CTA BAND ──*/
 .cta-band{background:linear-gradient(135deg,#000000 0%,#111111 100%);padding:clamp(3.5rem,7vw,6rem) clamp(1.5rem,5vw,4.5rem);text-align:center;position:relative;overflow:hidden}
 .cta-band::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
@@ -548,6 +562,23 @@ footer{padding:2rem clamp(1.5rem,5vw,4.5rem);display:flex;justify-content:space-
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- GRATIS AUDIT BANNER -->
+<section class="audit-sec">
+  <div class="audit-card" data-r>
+    <div>
+      <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-bottom:.7rem">
+        <div class="audit-badge">Tidsbegränsat erbjudande</div>
+        <div class="audit-price"><s>799 kr</s> → <span>GRATIS</span></div>
+      </div>
+      <h3>Få en gratis 10-punktsanalys<br>av er kliniksajt</h3>
+      <p>Vi granskar er webbplats och skickar en personlig rapport direkt till er inbox — mobilanpassning, SEO, bokningsflöde och mer. Svar inom 24h.</p>
+    </div>
+    <a href="/kliniker/gratis-granskning.html" class="audit-cta">
+      Få gratis analys →
+    </a>
   </div>
 </section>
 
