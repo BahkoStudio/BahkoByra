@@ -732,19 +732,14 @@ document.getElementById('cf').addEventListener('submit', e => {
   const overlay = document.getElementById('audit-overlay');
   const closeBtn = document.getElementById('audit-close');
 
-  function showPopup() {
-    overlay.classList.add('visible');
-  }
-  function hidePopup() {
-    overlay.classList.remove('visible');
-    setTimeout(showPopup, INTERVAL);
-  }
+  function showPopup() { overlay.classList.add('visible'); }
+  function hidePopup() { overlay.classList.remove('visible'); }
 
   closeBtn.addEventListener('click', hidePopup);
   overlay.addEventListener('click', e => { if (e.target === overlay) hidePopup(); });
 
-  // First show after 15s
-  setTimeout(showPopup, 15_000);
+  // First show after 15s, then every 90s automatically
+  setTimeout(() => { showPopup(); setInterval(showPopup, INTERVAL); }, 15_000);
 })();
 </script>
 
