@@ -192,7 +192,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
   padding:9rem var(--gut) 7rem;overflow:hidden;background:var(--navy-3);color:var(--paper)}
 .hero-video{position:absolute;inset:0;z-index:0}
-.hero-video video{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease}
+.hero-video video{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
 .hero-video video.ready{opacity:.9}
 .hero-video::after{content:'';position:absolute;inset:0;
   background:
@@ -206,6 +206,8 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   background:rgba(201,169,110,.08);padding:.42rem 1rem;border-radius:30px;margin-bottom:2.4rem}
 .hero-badge i{width:5px;height:5px;border-radius:50%;background:var(--gold-lt);animation:blink 2.4s var(--ease-io) infinite}
 @keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+.hero-h1 .line{overflow:hidden;display:block}
+.hero-h1 .line > *{display:block;will-change:transform}
 .hero-h1{font-family:var(--display);font-weight:500;color:var(--paper);
   font-size:clamp(2.9rem,8.5vw,8rem);line-height:.98;letter-spacing:-.02em;margin-bottom:1.8rem}
 .hero-h1 .accent{font-style:italic;font-weight:400;
@@ -290,32 +292,6 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .wi-ck svg{width:13px;height:13px;stroke:var(--gold-dk);stroke-width:2.4;fill:none}
 .wi-t{font-family:var(--display);font-size:1.15rem;font-weight:500;margin-bottom:.3rem}
 .wi-d{font-size:.84rem;color:var(--ink-55);line-height:1.7;font-weight:300}
-
-/* ── 16. PRICING ─────────────────────────────────────────── */
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
-.pc{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:2.4rem 2rem;
-  display:flex;flex-direction:column;position:relative;transition:transform .5s var(--ease),border-color .4s,box-shadow .5s}
-.pc:hover{transform:translateY(-8px);border-color:var(--line-2);box-shadow:0 30px 60px -35px rgba(24,28,56,.35)}
-.pc.feat{background:var(--navy);color:var(--paper);border-color:transparent}
-.pc.feat .pc-name{color:var(--paper)}
-.pc.feat .pc-price{color:var(--gold-lt)}
-.pc.feat .pc-sub,.pc.feat .pc-li{color:var(--paper-70)}
-.pc.feat .pc-div{background:var(--paper-line)}
-.pc.feat::before{content:'Populärast';position:absolute;top:0;left:50%;transform:translate(-50%,-50%);
-  font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
-  background:var(--gold);color:var(--navy);padding:.3rem 1rem;border-radius:30px}
-.pc-tier{font-size:.6rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dk)}
-.pc.feat .pc-tier{color:var(--gold-lt)}
-.pc-name{font-family:var(--display);font-style:italic;font-size:1.7rem;font-weight:400;margin-top:.2rem}
-.pc-price{font-family:var(--display);font-size:2.6rem;font-weight:500;line-height:1;margin:.7rem 0 .2rem;letter-spacing:-.02em}
-.pc-unit{font-size:1.1rem;color:var(--ink-55)}
-.pc.feat .pc-unit{color:var(--paper-45)}
-.pc-sub{font-size:.76rem;color:var(--ink-55)}
-.pc-div{height:1px;background:var(--line);margin:1.2rem 0}
-.pc-list{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.8rem}
-.pc-li{font-size:.82rem;color:var(--ink-55);display:flex;gap:.7rem;line-height:1.5;font-weight:300}
-.pc-li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);flex:none;margin-top:.5rem}
-.pc .btn{margin-top:auto;justify-content:center}
 
 /* ── 17. AUDIT BANNER ────────────────────────────────────── */
 .audit-wrap{padding:0 var(--gut)}
@@ -403,8 +379,6 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   .stats{grid-template-columns:repeat(2,1fr)}
   .stat:nth-child(2){border-right:none}
   .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--paper-line)}
-  .price-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
-  .pc.feat{order:-1}
 }
 @media(max-width:860px){
   .nav{display:none}
