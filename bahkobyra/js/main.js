@@ -56,7 +56,7 @@
   function initSmooth() {
     if (reduce || typeof window.Lenis === 'undefined') return;
     try {
-      lenis = new Lenis({ lerp: .085, wheelMultiplier: 1, smoothWheel: true });
+      lenis = new Lenis({ lerp: .065, wheelMultiplier: .9, smoothWheel: true, touchMultiplier: 1.8 });
       if (hasST) {
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((t) => lenis.raf(t * 1000));
@@ -106,8 +106,6 @@
 
   /* ── TEXT: wrap heading words into line spans for masking ─ */
   function splitLines(el) {
-    // Uses existing <span class="line"><span>..</span></span> if present,
-    // otherwise leaves text as-is (already authored in HTML for control).
     return $$('.line > *', el);
   }
 
@@ -122,26 +120,62 @@
       gsap.set(inner, { yPercent: 115 });
       gsap.to(inner, {
         yPercent: 0, duration: 1, ease: 'expo.out', stagger: .09,
-        scrollTrigger: { trigger: h, start: 'top 85%' }
+        scrollTrigger: { trigger: h, start: 'top 84%' }
       });
     });
 
-    // generic staggered reveals (respect optional data-reveal-delay groups)
+    // generic reveals — eyebrows get clip-path wipe, others get y+opacity
     $$('[data-reveal]').forEach((el) => {
       const d = parseFloat(el.dataset.reveal) || 0;
-      gsap.fromTo(el, { y: 38, opacity: 0 }, {
-        y: 0, opacity: 1, duration: .95, ease: 'power3.out', delay: d,
-        scrollTrigger: { trigger: el, start: 'top 88%' }
-      });
+      if (!reduce && el.classList.contains('eyebrow')) {
+        gsap.fromTo(el,
+          { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
+          { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: .85, ease: 'power4.inOut', delay: d,
+            scrollTrigger: { trigger: el, start: 'top 84%' } }
+        );
+      } else {
+        gsap.fromTo(el, { y: 38, opacity: 0 }, {
+          y: 0, opacity: 1, duration: .95, ease: 'power3.out', delay: d,
+          scrollTrigger: { trigger: el, start: 'top 84%' }
+        });
+      }
     });
 
-    // grouped stagger via [data-stagger] parent
+    // eyebrows without data-reveal also get wipe animation
+    $$('.eyebrow:not([data-reveal])').forEach((el) => {
+      if (reduce) return;
+      gsap.fromTo(el,
+        { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
+        { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: .85, ease: 'power4.inOut',
+          scrollTrigger: { trigger: el, start: 'top 84%' } }
+      );
+    });
+
+    // grouped stagger — class-aware for varied animation types
     $$('[data-stagger]').forEach((grp) => {
       const items = $$('[data-stagger-item]', grp);
-      gsap.fromTo(items, { y: 46, opacity: 0 }, {
-        y: 0, opacity: 1, duration: .9, ease: 'power3.out', stagger: .1,
-        scrollTrigger: { trigger: grp, start: 'top 82%' }
-      });
+      if (!items.length) return;
+
+      if (!reduce && grp.classList.contains('svc-grid')) {
+        // 3D tilt-in for service cards
+        gsap.fromTo(items,
+          { y: 60, opacity: 0, rotationX: 14, transformOrigin: '50% 0%' },
+          { y: 0, opacity: 1, rotationX: 0, duration: 1.0, ease: 'power3.out', stagger: .1,
+            scrollTrigger: { trigger: grp, start: 'top 84%' } }
+        );
+      } else if (!reduce && grp.classList.contains('why-list')) {
+        // slide-in from left with blur for why-items
+        gsap.fromTo(items,
+          { x: -48, opacity: 0, filter: 'blur(4px)' },
+          { x: 0, opacity: 1, filter: 'blur(0px)', duration: .9, ease: 'power3.out', stagger: .12,
+            scrollTrigger: { trigger: grp, start: 'top 84%' } }
+        );
+      } else {
+        gsap.fromTo(items, { y: 46, opacity: 0 }, {
+          y: 0, opacity: 1, duration: .9, ease: 'power3.out', stagger: .1,
+          scrollTrigger: { trigger: grp, start: 'top 84%' }
+        });
+      }
     });
   }
 
@@ -154,12 +188,22 @@
         if (!hasGSAP) { el.textContent = target + suf; return; }
         const o = { v: 0 };
         gsap.to(o, {
-          v: target, duration: 2, ease: 'power2.out',
+          v: target, duration: 2.2, ease: 'expo.out',
           onUpdate: () => { el.textContent = Math.round(o.v) + suf; }
         });
       };
-      if (hasST) ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true, onEnter: run });
+      if (hasST) ScrollTrigger.create({ trigger: el, start: 'top 84%', once: true, onEnter: run });
       else run();
+    });
+  }
+
+  /* ── STATS PUNCH ───────────────────────────────────────── */
+  function initStatsPunch() {
+    if (!hasST || reduce) return;
+    // scale punch on stat values — layers with parent's y+opacity reveal
+    gsap.fromTo('.stat-v', { scale: .65 }, {
+      scale: 1, duration: 1.2, stagger: .12, ease: 'back.out(1.6)',
+      scrollTrigger: { trigger: '.stats', start: 'top 84%' }
     });
   }
 
@@ -173,9 +217,7 @@
         scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true }
       });
     });
-    // hero video subtle drift
-    const hv = $('.hero-video');
-    if (hv) gsap.to(hv, { yPercent: 18, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    // hero video drift removed — video is now scroll-driven via currentTime
   }
 
   /* ── PROCESS: pinned horizontal scroll ─────────────────── */
@@ -185,7 +227,6 @@
     if (!pin || !track) return;
     const mq = matchMedia('(min-width: 861px)');
     if (!hasST || reduce || !mq.matches) {
-      // mobile/reduced: vertical reveal fallback
       if (hasST) gsap.fromTo($$('.pstep', track), { y: 40, opacity: 0 },
         { y: 0, opacity: 1, duration: .8, ease: 'power3.out', stagger: .12,
           scrollTrigger: { trigger: track, start: 'top 80%' } });
@@ -196,23 +237,37 @@
       x: () => -getDist(), ease: 'none',
       scrollTrigger: {
         trigger: pin, start: 'top top', end: () => '+=' + getDist(),
-        scrub: 1, pin: true, anticipatePin: 1, invalidateOnRefresh: true
+        scrub: 1.5, pin: true, anticipatePin: 1, invalidateOnRefresh: true
       }
     });
   }
 
-  /* ── MARQUEE (constant drift, velocity-aware) ──────────── */
+  /* ── MARQUEE (velocity-aware drift) ───────────────────── */
   function initMarquee() {
     const track = $('#marquee-track');
     if (!track || !hasGSAP) return;
     const base = track.querySelector('.mq-set');
     if (!base) return;
-    // duplicate until it overflows 2x for seamless loop
     const fill = () => { while (track.scrollWidth < innerWidth * 2) track.appendChild(base.cloneNode(true)); };
     fill();
-    let x = 0; const speed = .4; // px/frame baseline
+
+    const BASE_SPEED = .4;
+    let x = 0;
+    let speed = BASE_SPEED;
+    let targetSpeed = BASE_SPEED;
     const half = () => base.offsetWidth;
+
+    // Accelerate on scroll velocity
+    if (lenis) {
+      lenis.on('scroll', ({ velocity }) => {
+        targetSpeed = BASE_SPEED + Math.abs(velocity) * 0.45;
+      });
+    }
+
     gsap.ticker.add(() => {
+      // Lerp speed toward target, decay target back to base
+      speed += (targetSpeed - speed) * .07;
+      targetSpeed += (BASE_SPEED - targetSpeed) * .025;
       x -= speed;
       if (Math.abs(x) >= half()) x += half();
       track.style.transform = `translateX(${x}px)`;
@@ -235,7 +290,6 @@
     addEventListener('mouseleave', () => ring.classList.add('hide'));
     addEventListener('mouseenter', () => ring.classList.remove('hide'));
 
-    // magnetic pull
     $$('.magnetic').forEach((el) => {
       const str = parseFloat(el.dataset.magnetic) || .35;
       el.addEventListener('mousemove', (e) => {
@@ -295,16 +349,53 @@
     setTimeout(() => { show(); setInterval(show, 90000); }, 18000);
   }
 
-  /* ── HERO VIDEO ────────────────────────────────────────── */
-  function initHeroVideo() {
+  /* ── HERO VIDEO (scroll-driven via currentTime) ────────── */
+  function initHeroVideoScroll() {
     const v = $('#hero-video');
     if (!v) return;
+
+    // Reveal video regardless of scroll approach
     const reveal = () => v.classList.add('ready');
     if (v.readyState >= 2) reveal();
     v.addEventListener('loadeddata', reveal);
     v.addEventListener('canplay', reveal);
-    // some browsers need an explicit play() kick
-    const p = v.play(); if (p && p.catch) p.catch(() => {});
+
+    if (!hasST || reduce) {
+      // Fallback: autoplay loop
+      const p = v.play(); if (p && p.catch) p.catch(() => {});
+      return;
+    }
+
+    // Scroll-driven: map hero scroll progress to video currentTime
+    const setup = () => {
+      const duration = v.duration;
+      if (!duration || isNaN(duration)) return;
+
+      // Pause autoplay — scroll controls playback
+      v.pause();
+      v.currentTime = 0;
+
+      ScrollTrigger.create({
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 0.4,
+        onUpdate: (self) => {
+          const t = self.progress * duration;
+          if (v.readyState >= 2) {
+            v.currentTime = Math.min(t, duration - 0.04);
+          }
+        }
+      });
+    };
+
+    if (v.readyState >= 1 && v.duration) {
+      setup();
+    } else {
+      v.addEventListener('loadedmetadata', setup, { once: true });
+      // Kick load if not started
+      v.load();
+    }
   }
 
   /* ── BOOT ──────────────────────────────────────────────── */
@@ -312,9 +403,10 @@
     initSmooth();
     initHeader();
     initProgress();
-    initHeroVideo();
+    initHeroVideoScroll();
     initReveals();
     initCounters();
+    initStatsPunch();
     initParallax();
     initProcess();
     initMarquee();
@@ -323,24 +415,30 @@
     initForm();
     initPopup();
 
-    // hero entrance (independent of scroll)
+    // hero entrance — each element gets its own distinct animation type
     if (hasGSAP && !reduce) {
       const lines = $$('.hero-h1 .line > *');
       const tl = gsap.timeline({ delay: .1 });
-      gsap.set('.hero-badge,.hero-lede,.hero-svc,.hero-ctas,.scrollcue', { opacity: 0, y: 18 });
+
+      // set initial states
+      gsap.set('.hero-badge', { clipPath: 'inset(0 100% 0 0)', opacity: 0 });
       gsap.set(lines, { yPercent: 118 });
-      tl.to('.hero-badge', { opacity: 1, y: 0, duration: .7, ease: 'power3.out' })
+      gsap.set('.hero-lede', { opacity: 0, filter: 'blur(6px)', y: 12 });
+      gsap.set('.hero-svc', { opacity: 0, y: 18 });
+      gsap.set('.hero-ctas', { opacity: 0, scale: .94, y: 12 });
+      gsap.set('.scrollcue', { opacity: 0, y: 18 });
+
+      tl.to('.hero-badge', { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: .9, ease: 'power4.inOut' })
         .to(lines, { yPercent: 0, duration: 1.1, ease: 'expo.out', stagger: .1 }, '-=.4')
-        .to('.hero-lede', { opacity: 1, y: 0, duration: .8, ease: 'power3.out' }, '-=.6')
+        .to('.hero-lede', { opacity: 1, filter: 'blur(0px)', y: 0, duration: 1.0, ease: 'power3.out' }, '-=.6')
         .to('.hero-svc', { opacity: 1, y: 0, duration: .7, ease: 'power3.out' }, '-=.5')
-        .to('.hero-ctas', { opacity: 1, y: 0, duration: .7, ease: 'power3.out' }, '-=.5')
+        .to('.hero-ctas', { opacity: 1, scale: 1, y: 0, duration: .8, ease: 'back.out(1.5)' }, '-=.5')
         .to('.scrollcue', { opacity: 1, y: 0, duration: .7 }, '-=.4');
     }
 
     if (hasST) setTimeout(() => ScrollTrigger.refresh(), 300);
   }
 
-  // start after preloader; refresh ScrollTrigger after full load (fonts/video)
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', () => preloader(boot));
   else preloader(boot);
   addEventListener('load', () => { if (hasST) ScrollTrigger.refresh(); });
