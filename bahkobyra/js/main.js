@@ -231,7 +231,6 @@
         scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true }
       });
     });
-    // hero video drift removed — video is now scroll-driven via currentTime
   }
 
   /* ── PROCESS: pinned horizontal scroll ─────────────────── */
@@ -288,22 +287,9 @@
     });
   }
 
-  /* ── CUSTOM CURSOR + MAGNETIC ──────────────────────────── */
+  /* ── MAGNETIC BUTTONS ──────────────────────────────────── */
   function initCursor() {
     if (!canHover || reduce) return;
-    const ring = $('#cursor'); const dot = $('#cursor-dot');
-    if (!ring || !dot) return;
-    let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
-    addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`; });
-    const loop = () => { rx += (mx - rx) * .18; ry += (my - ry) * .18; ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`; requestAnimationFrame(loop); };
-    loop();
-    $$('a, button, .magnetic, input, textarea, [data-cursor]').forEach((el) => {
-      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
-    });
-    addEventListener('mouseleave', () => ring.classList.add('hide'));
-    addEventListener('mouseenter', () => ring.classList.remove('hide'));
-
     $$('.magnetic').forEach((el) => {
       const str = parseFloat(el.dataset.magnetic) || .35;
       el.addEventListener('mousemove', (e) => {
@@ -363,58 +349,6 @@
     setTimeout(() => { show(); setInterval(show, 90000); }, 18000);
   }
 
-  /* ── HERO VIDEO (scroll-driven via currentTime) ────────── */
-  function initHeroVideoScroll() {
-    const v = $('#hero-video');
-    if (!v) return;
-
-    // Reveal video regardless of scroll approach
-    const reveal = () => v.classList.add('ready');
-    if (v.readyState >= 2) reveal();
-    v.addEventListener('loadeddata', reveal);
-    v.addEventListener('canplay', reveal);
-
-    if (!hasST || reduce) {
-      // Fallback: autoplay loop
-      const p = v.play(); if (p && p.catch) p.catch(() => {});
-      return;
-    }
-
-    // Scroll-driven: map hero scroll progress to video currentTime
-    const setup = () => {
-      const duration = v.duration;
-      if (!duration || isNaN(duration)) return;
-
-      // Pause autoplay — scroll controls playback
-      v.pause();
-      v.currentTime = 0;
-
-      ScrollTrigger.create({
-        trigger: '.hero',
-        start: 'top top',
-        end: '+=100%',
-        pin: true,
-        anticipatePin: 1,
-        scrub: 0.6,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          const t = self.progress * duration;
-          if (v.readyState >= 2) {
-            v.currentTime = Math.min(t, duration - 0.04);
-          }
-        }
-      });
-    };
-
-    if (v.readyState >= 1 && v.duration) {
-      setup();
-    } else {
-      v.addEventListener('loadedmetadata', setup, { once: true });
-      // Kick load if not started
-      v.load();
-    }
-  }
-
   /* ── DEMO ENTRANCE ─────────────────────────────────────── */
   function initDemoEntrance() {
     if (!hasST || reduce) return;
@@ -445,7 +379,6 @@
     initSmooth();
     initHeader();
     initProgress();
-    initHeroVideoScroll();
     initReveals();
     initCounters();
     initStatsPunch();
@@ -486,4 +419,14 @@
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', () => preloader(boot));
   else preloader(boot);
   addEventListener('load', () => { if (hasST) ScrollTrigger.refresh(); });
+
+  // Failsafe: never leave copy hidden if GSAP/ScrollTrigger stalls
+  setTimeout(() => {
+    const pl = $('#preloader');
+    if (pl && !pl.classList.contains('done')) { pl.style.display = 'none'; pl.classList.add('done'); }
+    $$('[data-reveal]').forEach((el) => {
+      if (getComputedStyle(el).opacity === '0') { el.style.opacity = 1; el.style.transform = 'none'; }
+    });
+    $$('.hero-h1 .line > *').forEach((el) => { el.style.transform = 'none'; });
+  }, 4000);
 })();
