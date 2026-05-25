@@ -4,9 +4,9 @@
    1. Tokens   2. Reset/base   3. Type   4. Utilities
    5. Cursor   6. Progress   7. Preloader   8. Header
    9. Hero    10. Marquee    11. Stats     12. Services
-   13. Process 14. Demo       15. Why       16. Pricing
-   17. Audit   18. CTA        19. Contact   20. Footer
-   21. Popup   22. Responsive 23. Reduced-motion
+   13. Process 14. Demo       15. Why       16. Audit
+   17. CTA     18. Contact    19. Footer    20. Popup
+   21. Responsive 22. Reduced-motion
    ============================================================ */
 
 /* ── 1. TOKENS ───────────────────────────────────────────── */
@@ -293,7 +293,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .wi-t{font-family:var(--display);font-size:1.15rem;font-weight:500;margin-bottom:.3rem}
 .wi-d{font-size:.84rem;color:var(--ink-55);line-height:1.7;font-weight:300}
 
-/* ── 17. AUDIT BANNER ────────────────────────────────────── */
+/* ── 16. AUDIT BANNER ────────────────────────────────────── */
 .audit-wrap{padding:0 var(--gut)}
 .audit{max-width:var(--maxw);margin:0 auto;background:var(--navy);border:1px solid rgba(201,169,110,.28);
   border-radius:var(--r-lg);padding:clamp(2.2rem,4vw,3.4rem);display:grid;grid-template-columns:1fr auto;
@@ -308,7 +308,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .audit h3{font-family:var(--display);font-size:clamp(1.4rem,3vw,2.1rem);font-weight:500;line-height:1.15;margin-bottom:.5rem}
 .audit p{font-size:.86rem;color:var(--paper-70);line-height:1.7;max-width:54ch;font-weight:300}
 
-/* ── 18. CTA BAND ────────────────────────────────────────── */
+/* ── 17. CTA BAND ────────────────────────────────────────── */
 .cta{position:relative;text-align:center;overflow:hidden;background:var(--navy)}
 .cta::before{content:'';position:absolute;inset:0;
   background-image:linear-gradient(rgba(201,169,110,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,110,.05) 1px,transparent 1px);
@@ -320,7 +320,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .cta h2 em{font-style:italic;background:linear-gradient(108deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .cta p{color:var(--paper-70);font-weight:300;margin-bottom:2.6rem;font-size:1.02rem}
 
-/* ── 19. CONTACT ─────────────────────────────────────────── */
+/* ── 18. CONTACT ─────────────────────────────────────────── */
 .contact{background:var(--cream-2);border-top:1px solid var(--line)}
 .contact .wrap{max-width:660px;text-align:center}
 .cform{display:flex;flex-direction:column;gap:1.1rem;margin-top:3rem;text-align:left}
@@ -338,7 +338,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .cok h3{font-family:var(--display);font-size:1.8rem;font-weight:500;margin-bottom:.4rem}
 .cok p{color:var(--ink-55);font-weight:300}
 
-/* ── 20. FOOTER ──────────────────────────────────────────── */
+/* ── 19. FOOTER ──────────────────────────────────────────── */
 .foot{background:var(--navy);color:var(--paper);padding:clamp(4rem,8vw,7rem) var(--gut) 2.5rem}
 .foot-top{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem;
   padding-bottom:clamp(3rem,6vw,5rem);border-bottom:1px solid var(--paper-line)}
@@ -352,7 +352,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .foot-links a{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-45);transition:color .3s}
 .foot-links a:hover{color:var(--gold-lt)}
 
-/* ── 21. POPUP ───────────────────────────────────────────── */
+/* ── 20. POPUP ───────────────────────────────────────────── */
 .pop{position:fixed;inset:0;z-index:9000;background:rgba(13,16,35,.78);backdrop-filter:blur(10px);
   display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .4s}
 .pop.show{opacity:1;pointer-events:auto}
@@ -374,7 +374,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .pop-card .btn{width:100%;justify-content:center}
 .pop-note{font-size:.66rem;color:var(--paper-45);text-align:center;margin-top:.8rem}
 
-/* ── 22. RESPONSIVE ──────────────────────────────────────── */
+/* ── 21. RESPONSIVE ──────────────────────────────────────── */
 @media(max-width:1024px){
   .stats{grid-template-columns:repeat(2,1fr)}
   .stat:nth-child(2){border-right:none}
@@ -397,7 +397,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   .cursor,.cursor-dot{display:none}
 }
 
-/* ── 23. REDUCED MOTION ──────────────────────────────────── */
+/* ── 22. REDUCED MOTION ──────────────────────────────────── */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .js [data-reveal]{opacity:1!important}
