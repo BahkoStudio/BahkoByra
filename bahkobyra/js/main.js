@@ -56,7 +56,8 @@
   function initSmooth() {
     if (reduce || typeof window.Lenis === 'undefined') return;
     try {
-      lenis = new Lenis({ lerp: .065, wheelMultiplier: .9, smoothWheel: true, touchMultiplier: 1.8 });
+      lenis = new Lenis({ lerp: .065, wheelMultiplier: .9, smoothWheel: true, touchMultiplier: 1.8,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
       if (hasST) {
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((t) => lenis.raf(t * 1000));
@@ -115,6 +116,7 @@
 
     // masked headline lines
     $$('[data-lines]').forEach((h) => {
+      if (h.closest('.hero')) return; // boot() entrance handles hero h1
       const inner = splitLines(h);
       if (!inner.length) return;
       gsap.set(inner, { yPercent: 115 });
@@ -133,6 +135,18 @@
           { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: .85, ease: 'power4.inOut', delay: d,
             scrollTrigger: { trigger: el, start: 'top 84%' } }
         );
+      } else if (el.id === 'cform') {
+        // stagger individual fields — more engaging than single-block reveal
+        const items = [...$$('.field', el), el.querySelector('.btn')].filter(Boolean);
+        gsap.to(el, { opacity: 1, duration: .1 });
+        if (!reduce) {
+          gsap.fromTo(items, { y: 22, opacity: 0 }, {
+            y: 0, opacity: 1, duration: .8, ease: 'power3.out', stagger: .09,
+            scrollTrigger: { trigger: el, start: 'top 88%' }
+          });
+        } else {
+          gsap.set(items, { opacity: 1, y: 0 });
+        }
       } else {
         gsap.fromTo(el, { y: 38, opacity: 0 }, {
           y: 0, opacity: 1, duration: .95, ease: 'power3.out', delay: d,
@@ -378,8 +392,11 @@
       ScrollTrigger.create({
         trigger: '.hero',
         start: 'top top',
-        end: 'bottom top',
-        scrub: 0.4,
+        end: '+=100%',
+        pin: true,
+        anticipatePin: 1,
+        scrub: 0.6,
+        invalidateOnRefresh: true,
         onUpdate: (self) => {
           const t = self.progress * duration;
           if (v.readyState >= 2) {
@@ -398,6 +415,31 @@
     }
   }
 
+  /* ── DEMO ENTRANCE ─────────────────────────────────────── */
+  function initDemoEntrance() {
+    if (!hasST || reduce) return;
+    gsap.fromTo('.demo-frame',
+      { y: 70, opacity: 0, rotationY: -6, transformPerspective: 1000 },
+      { y: 0, opacity: 1, rotationY: 0, duration: 1.3, ease: 'power3.out',
+        scrollTrigger: { trigger: '.demo-frame', start: 'top 85%' } }
+    );
+  }
+
+  /* ── FOOTER REVEAL ──────────────────────────────────────── */
+  function initFooterReveal() {
+    if (!hasST || reduce) return;
+    gsap.fromTo('.foot-brand',
+      { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
+      { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: 1.4, ease: 'power4.inOut',
+        scrollTrigger: { trigger: '.foot-brand', start: 'top 92%' } }
+    );
+    gsap.fromTo($$('.foot-cta, .foot-bottom'),
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: .9, ease: 'power3.out', stagger: .15,
+        scrollTrigger: { trigger: '.foot-brand', start: 'top 90%' } }
+    );
+  }
+
   /* ── BOOT ──────────────────────────────────────────────── */
   function boot() {
     initSmooth();
@@ -410,6 +452,8 @@
     initParallax();
     initProcess();
     initMarquee();
+    initDemoEntrance();
+    initFooterReveal();
     initCursor();
     initNav();
     initForm();

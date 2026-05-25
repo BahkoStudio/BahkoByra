@@ -36,7 +36,7 @@ If the user doesn't specify these, ask briefly or use sensible creative defaults
 
 ## Workflow
 
-**FFmpeg and FFprobe are already installed at `C:\Users\nateh\bin\` and on PATH. Do NOT reinstall.**
+**FFmpeg and FFprobe must be available on PATH. Verify first: `ffprobe -version && ffmpeg -version`.**
 
 ### Step 1: Analyze the Video
 
@@ -373,6 +373,17 @@ All types use stagger (0.1-0.15s) and ease `power3.out` (except scale-up: `power
 
 ## Troubleshooting
 
+- **Network-blocked environment** (cloud CI, remote containers): `wget`/`curl` to CDN URLs may be blocked by outbound network policy. If frame extraction fails, use the **`video.currentTime` fallback** instead of canvas: keep the `<video>` element in the hero, remove `autoplay`/`loop`, and map scroll progress to playback time via GSAP ScrollTrigger. Add `pin: true` + `end: '+=100%'` so the hero pins for an extra viewport height while the video plays through. Example:
+  ```js
+  ScrollTrigger.create({
+    trigger: '.hero', start: 'top top', end: '+=100%',
+    pin: true, anticipatePin: 1, scrub: 0.6, invalidateOnRefresh: true,
+    onUpdate: (self) => {
+      if (v.readyState >= 2) v.currentTime = self.progress * v.duration;
+    }
+  });
+  ```
+  This gives the same cinematic scroll-driven feel with zero frame extraction. The browser's own video decoder handles seeking. Graceful fallback: autoplay loop when ScrollTrigger unavailable.
 - **Frames not loading**: Must serve via HTTP, not `file://`
 - **Choppy scrolling**: Increase `scrub` value, reduce frame count
 - **White flashes**: Ensure all frames loaded before hiding loader
