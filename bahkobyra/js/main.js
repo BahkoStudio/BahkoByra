@@ -392,11 +392,8 @@
       ScrollTrigger.create({
         trigger: '.hero',
         start: 'top top',
-        end: '+=100%',
-        pin: true,
-        anticipatePin: 1,
-        scrub: 0.6,
-        invalidateOnRefresh: true,
+        end: 'bottom top',
+        scrub: 0.4,
         onUpdate: (self) => {
           const t = self.progress * duration;
           if (v.readyState >= 2) {
