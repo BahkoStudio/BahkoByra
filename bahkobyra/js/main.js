@@ -140,17 +140,17 @@
         const items = [...$$('.field', el), el.querySelector('.btn')].filter(Boolean);
         gsap.to(el, { opacity: 1, duration: .1 });
         if (!reduce) {
-          gsap.fromTo(items, { y: 22, opacity: 0 }, {
-            y: 0, opacity: 1, duration: .8, ease: 'power3.out', stagger: .09,
+          gsap.fromTo(items, { y: 30, opacity: 0, filter: 'blur(4px)' }, {
+            y: 0, opacity: 1, filter: 'blur(0px)', duration: .95, ease: 'expo.out', stagger: .09,
             scrollTrigger: { trigger: el, start: 'top 88%' }
           });
         } else {
           gsap.set(items, { opacity: 1, y: 0 });
         }
       } else {
-        gsap.fromTo(el, { y: 38, opacity: 0 }, {
-          y: 0, opacity: 1, duration: .95, ease: 'power3.out', delay: d,
-          scrollTrigger: { trigger: el, start: 'top 84%' }
+        gsap.fromTo(el, { y: 56, opacity: 0, filter: 'blur(5px)' }, {
+          y: 0, opacity: 1, filter: 'blur(0px)', duration: 1.1, ease: 'expo.out', delay: d,
+          scrollTrigger: { trigger: el, start: 'top 86%' }
         });
       }
     });
@@ -171,22 +171,33 @@
       if (!items.length) return;
 
       if (!reduce && grp.classList.contains('svc-grid')) {
-        // 3D tilt-in for service cards
+        // cinematic cascade: scale + deep tilt + opacity, expo ease
         gsap.fromTo(items,
-          { y: 60, opacity: 0, rotationX: 14, transformOrigin: '50% 0%' },
-          { y: 0, opacity: 1, rotationX: 0, duration: 1.0, ease: 'power3.out', stagger: .1,
-            scrollTrigger: { trigger: grp, start: 'top 84%' } }
+          { y: 80, opacity: 0, scale: 0.86, rotationX: 26, transformOrigin: '50% 0%' },
+          { y: 0, opacity: 1, scale: 1, rotationX: 0,
+            duration: 1.35, ease: 'expo.out',
+            stagger: { each: 0.075, ease: 'power1.out' },
+            scrollTrigger: { trigger: grp, start: 'top 85%' } }
         );
       } else if (!reduce && grp.classList.contains('why-list')) {
-        // slide-in from left with blur for why-items
+        // elegant vertical cascade with blur — each card flows in
         gsap.fromTo(items,
-          { x: -48, opacity: 0, filter: 'blur(4px)' },
-          { x: 0, opacity: 1, filter: 'blur(0px)', duration: .9, ease: 'power3.out', stagger: .12,
+          { y: 62, opacity: 0, scale: 0.94, filter: 'blur(9px)' },
+          { y: 0, opacity: 1, scale: 1, filter: 'blur(0px)',
+            duration: 1.1, ease: 'expo.out',
+            stagger: { each: 0.16, ease: 'power1.inOut' },
+            scrollTrigger: { trigger: grp, start: 'top 84%' } }
+        );
+        // checkmark circles pop in after cards arrive
+        gsap.fromTo($$('.wi-ck', grp),
+          { scale: 0, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.55, ease: 'back.out(3)',
+            stagger: { each: 0.16, delay: 0.5 },
             scrollTrigger: { trigger: grp, start: 'top 84%' } }
         );
       } else {
-        gsap.fromTo(items, { y: 46, opacity: 0 }, {
-          y: 0, opacity: 1, duration: .9, ease: 'power3.out', stagger: .1,
+        gsap.fromTo(items, { y: 52, opacity: 0, filter: 'blur(4px)' }, {
+          y: 0, opacity: 1, filter: 'blur(0px)', duration: 1.0, ease: 'expo.out', stagger: .11,
           scrollTrigger: { trigger: grp, start: 'top 84%' }
         });
       }
@@ -214,10 +225,10 @@
   /* ── STATS PUNCH ───────────────────────────────────────── */
   function initStatsPunch() {
     if (!hasST || reduce) return;
-    // scale punch on stat values — layers with parent's y+opacity reveal
-    gsap.fromTo('.stat-v', { scale: .65 }, {
-      scale: 1, duration: 1.2, stagger: .12, ease: 'back.out(1.6)',
-      scrollTrigger: { trigger: '.stats', start: 'top 84%' }
+    gsap.fromTo('.stat-v', { scale: .5, opacity: 0, y: 24, filter: 'blur(6px)' }, {
+      scale: 1, opacity: 1, y: 0, filter: 'blur(0px)',
+      duration: 1.45, stagger: .14, ease: 'back.out(2)',
+      scrollTrigger: { trigger: '.stats', start: 'top 82%' }
     });
   }
 
@@ -240,8 +251,10 @@
     if (!pin || !track) return;
     const mq = matchMedia('(min-width: 861px)');
     if (!hasST || reduce || !mq.matches) {
-      if (hasST) gsap.fromTo($$('.pstep', track), { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: .8, ease: 'power3.out', stagger: .12,
+      if (hasST) gsap.fromTo($$('.pstep', track),
+        { y: 65, opacity: 0, scale: .94, filter: 'blur(6px)' },
+        { y: 0, opacity: 1, scale: 1, filter: 'blur(0px)',
+          duration: 1.05, ease: 'expo.out', stagger: { each: .13 },
           scrollTrigger: { trigger: track, start: 'top 80%' } });
       return;
     }
@@ -349,13 +362,32 @@
     setTimeout(() => { show(); setInterval(show, 90000); }, 18000);
   }
 
+  /* ── AUDIT REVEAL ──────────────────────────────────────── */
+  function initAuditReveal() {
+    if (!hasST || reduce) return;
+    const audit = $('.audit');
+    if (!audit) return;
+    const parts = [
+      $('.audit-tags', audit),
+      $('h3', audit),
+      $('p', audit),
+      $('.btn', audit)
+    ].filter(Boolean);
+    gsap.fromTo(parts,
+      { y: 28, opacity: 0, filter: 'blur(5px)' },
+      { y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.95, ease: 'expo.out',
+        stagger: 0.1, delay: 0.2,
+        scrollTrigger: { trigger: audit, start: 'top 83%' } }
+    );
+  }
+
   /* ── DEMO ENTRANCE ─────────────────────────────────────── */
   function initDemoEntrance() {
     if (!hasST || reduce) return;
     gsap.fromTo('.demo-frame',
-      { y: 70, opacity: 0, rotationY: -6, transformPerspective: 1000 },
-      { y: 0, opacity: 1, rotationY: 0, duration: 1.3, ease: 'power3.out',
-        scrollTrigger: { trigger: '.demo-frame', start: 'top 85%' } }
+      { y: 90, opacity: 0, scale: .88, rotationY: -10, transformPerspective: 1600 },
+      { y: 0, opacity: 1, scale: 1, rotationY: 0, duration: 1.8, ease: 'expo.out',
+        scrollTrigger: { trigger: '.demo-frame', start: 'top 88%' } }
     );
   }
 
@@ -368,8 +400,8 @@
         scrollTrigger: { trigger: '.foot-brand', start: 'top 92%' } }
     );
     gsap.fromTo($$('.foot-cta, .foot-bottom'),
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: .9, ease: 'power3.out', stagger: .15,
+      { y: 32, opacity: 0, filter: 'blur(5px)' },
+      { y: 0, opacity: 1, filter: 'blur(0px)', duration: 1.1, ease: 'expo.out', stagger: .18,
         scrollTrigger: { trigger: '.foot-brand', start: 'top 90%' } }
     );
   }
@@ -385,6 +417,7 @@
     initParallax();
     initProcess();
     initMarquee();
+    initAuditReveal();
     initDemoEntrance();
     initFooterReveal();
     initCursor();
