@@ -32,6 +32,10 @@ jobs:
           # Brand assets
           cp brand/* dist/brand/ 2>/dev/null || true
 
+          # SEO
+          cp robots.txt dist/robots.txt
+          cp sitemap.xml dist/sitemap.xml
+
           # Custom domain
           echo "bahkobyra.se" > dist/CNAME
 

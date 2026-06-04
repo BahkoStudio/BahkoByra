@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://www.bahkobyra.se/">
 <meta property="og:title" content="Bahko Byrå | Hemsidor, SEO & Google Ads för Svenska Kliniker">
 <meta property="og:description" content="Bahko Byrå hjälper svenska kliniker att synas på Google, få fler bokningar och växa online. Professionella hemsidor, Google Ads och SEO.">
-<meta property="og:image" content="https://www.bahkobyra.se/favicon.png">
+<meta property="og:image" content="https://www.bahkobyra.se/brand/Bahkostudio.jpg">
 <meta property="og:locale" content="sv_SE">
 <meta property="og:site_name" content="Bahko Byrå">
 
@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Bahko Byrå | Hemsidor, SEO & Google Ads för Svenska Kliniker">
 <meta name="twitter:description" content="Vi hjälper svenska kliniker att synas på Google, få fler bokningar och växa online.">
-<meta name="twitter:image" content="https://www.bahkobyra.se/favicon.png">
+<meta name="twitter:image" content="https://www.bahkobyra.se/brand/Bahkostudio.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,19 +32,23 @@
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="stylesheet" href="css/style.css">
 
-<!-- Schema: Organization + LocalBusiness -->
+<!-- Schema: Organization + LocalBusiness. TODO: lägg till "telephone" och fyll "sameAs" med era sociala profiler (Instagram/Facebook/LinkedIn). -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": ["Organization", "LocalBusiness"],
   "name": "Bahko Byrå",
   "url": "https://www.bahkobyra.se",
-  "logo": "https://www.bahkobyra.se/favicon.png",
+  "logo": "https://www.bahkobyra.se/brand/BahkoStudio-removebg-preview.png",
+  "image": "https://www.bahkobyra.se/brand/Bahkostudio.jpg",
+  "email": "mathias@bahkobyra.se",
   "description": "Digital byrå specialiserad på hemsidor, SEO och Google Ads för svenska kliniker och skönhetsföretag.",
   "slogan": "Synlighet som säljer.",
+  "priceRange": "$$",
   "areaServed": "SE",
   "inLanguage": "sv",
-  "contactPoint": { "@type": "ContactPoint", "contactType": "sales", "areaServed": "SE", "availableLanguage": "Swedish" },
+  "knowsAbout": ["Lokal SEO", "Google Ads", "Webbdesign", "Google Företagsprofil", "Sociala medier-annonsering"],
+  "contactPoint": { "@type": "ContactPoint", "contactType": "sales", "email": "mathias@bahkobyra.se", "areaServed": "SE", "availableLanguage": "Swedish" },
   "sameAs": [],
   "offers": [
     { "@type": "Offer", "name": "Hemsida", "description": "Professionell hemsida för kliniker" },
@@ -268,13 +272,14 @@
       <span class="line"><span><em>kostnadsfria</em> samtal.</span></span>
     </h2>
     <p class="lede" data-reveal style="margin:1.2rem auto 0">Fyll i nedan så hör vi av oss inom 24 timmar för att boka ett kort samtal.</p>
-    <form class="cform" id="cform" data-reveal>
+    <form class="cform" id="cform" action="https://formspree.io/f/mgonrnep" method="POST" data-reveal>
       <div class="crow">
-        <div class="field"><label>Namn</label><input type="text" placeholder="Anna Svensson" required></div>
-        <div class="field"><label>Telefon</label><input type="tel" placeholder="070 000 00 00"></div>
+        <div class="field"><label for="cf-namn">Namn</label><input type="text" id="cf-namn" name="namn" placeholder="Anna Svensson" required autocomplete="name"></div>
+        <div class="field"><label for="cf-tel">Telefon</label><input type="tel" id="cf-tel" name="telefon" placeholder="070 000 00 00" autocomplete="tel"></div>
       </div>
-      <div class="field"><label>E-post</label><input type="email" placeholder="anna@dinverksamhet.se" required></div>
-      <div class="field"><label>Hur kan vi hjälpa dig?</label><textarea placeholder="Berätta kort om din verksamhet och vad du vill uppnå..."></textarea></div>
+      <div class="field"><label for="cf-epost">E-post</label><input type="email" id="cf-epost" name="email" placeholder="anna@dinverksamhet.se" required autocomplete="email"></div>
+      <div class="field"><label for="cf-msg">Hur kan vi hjälpa dig?</label><textarea id="cf-msg" name="meddelande" placeholder="Berätta kort om din verksamhet och vad du vill uppnå..."></textarea></div>
+      <input type="hidden" name="_subject" value="Ny kontaktförfrågan – startsidan (bahkobyra.se)">
       <button class="btn btn-gold magnetic" data-magnetic=".2" type="submit"><span>Skicka Förfrågan</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </form>
     <div class="cok" id="cok">
