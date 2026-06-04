@@ -28,6 +28,7 @@ jobs:
           cp kliniker/elara-klinik-demo-v2.html dist/kliniker/elara-klinik-demo-v2.html
           cp kliniker/crm.html dist/kliniker/crm.html
           cp kliniker/gratis-granskning.html dist/kliniker/gratis-granskning.html
+          cp kliniker/gratis-guide.html dist/kliniker/gratis-guide.html
 
           # Brand assets
           cp brand/* dist/brand/ 2>/dev/null || true
