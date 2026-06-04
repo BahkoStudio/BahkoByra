@@ -343,10 +343,23 @@
   function initForm() {
     const form = $('#cform'); const ok = $('#cok');
     if (!form) return;
-    form.addEventListener('submit', (e) => {
+    const btn = $('button[type="submit"]', form);
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      form.style.display = 'none';
-      if (ok) ok.classList.add('show');
+      if (btn) btn.disabled = true;
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!res.ok) throw new Error('bad response');
+        form.style.display = 'none';
+        if (ok) ok.classList.add('show');
+      } catch {
+        if (btn) btn.disabled = false;
+        alert('Något gick fel. Försök igen eller mejla oss direkt på mathias@bahkobyra.se');
+      }
     });
   }
 
