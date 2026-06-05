@@ -375,6 +375,39 @@
     setTimeout(() => { show(); setInterval(show, 90000); }, 18000);
   }
 
+  /* ── EXTRAS: marquee, CTA glow, stat labels, proc hint ─── */
+  function initExtras() {
+    if (!hasST || reduce) return;
+
+    // marquee band wipes in from left
+    gsap.fromTo('.marquee',
+      { clipPath: 'inset(0 100% 0 0)' },
+      { clipPath: 'inset(0 0% 0 0)', duration: 1.1, ease: 'power4.inOut',
+        scrollTrigger: { trigger: '.marquee', start: 'top 96%' } }
+    );
+
+    // CTA glow scales up as section enters
+    gsap.fromTo('.cta .glow',
+      { scale: 0.4, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 2.2, ease: 'power2.out',
+        scrollTrigger: { trigger: '.cta', start: 'top 75%' } }
+    );
+
+    // stat labels fade in after the number punch
+    gsap.fromTo('.stat-l',
+      { opacity: 0, y: 8 },
+      { opacity: 1, y: 0, duration: .75, ease: 'power3.out', stagger: .13, delay: .9,
+        scrollTrigger: { trigger: '.stats', start: 'top 82%' } }
+    );
+
+    // process hint line slides in
+    gsap.fromTo('.proc-hint',
+      { opacity: 0, x: -24 },
+      { opacity: 1, x: 0, duration: .9, ease: 'expo.out',
+        scrollTrigger: { trigger: '.proc-hint', start: 'top 88%' } }
+    );
+  }
+
   /* ── AUDIT REVEAL ──────────────────────────────────────── */
   function initAuditReveal() {
     if (!hasST || reduce) return;
@@ -427,6 +460,7 @@
     initReveals();
     initCounters();
     initStatsPunch();
+    initExtras();
     initParallax();
     initProcess();
     initMarquee();
