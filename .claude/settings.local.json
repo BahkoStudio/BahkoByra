@@ -6,7 +6,8 @@
       "mcp__a17450d2-4ea5-48c4-873e-2ce7e13cfe42__list_projects",
       "mcp__a17450d2-4ea5-48c4-873e-2ce7e13cfe42__get_project",
       "mcp__a17450d2-4ea5-48c4-873e-2ce7e13cfe42__get_deployment",
-      "mcp__a17450d2-4ea5-48c4-873e-2ce7e13cfe42__web_fetch_vercel_url"
+      "mcp__a17450d2-4ea5-48c4-873e-2ce7e13cfe42__web_fetch_vercel_url",
+      "mcp__a17450d2-4ea5-48c4-873e-2ce7e13cfe42__list_deployments"
     ]
   }
 }
