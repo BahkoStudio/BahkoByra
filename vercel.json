@@ -1,25 +1,26 @@
 {
   "outputDirectory": "bahkobyra",
-  "rewrites": [
+  "routes": [
     {
-      "source": "/",
+      "src": "/",
       "has": [{ "type": "host", "value": "bahkobyra.cloud" }],
-      "destination": "/cloud/index.html"
+      "dest": "/cloud/index.html"
     },
     {
-      "source": "/",
+      "src": "/",
       "has": [{ "type": "host", "value": "www.bahkobyra.cloud" }],
-      "destination": "/cloud/index.html"
+      "dest": "/cloud/index.html"
     },
     {
-      "source": "/elara-klinik-demo-v2.html",
+      "src": "/elara-klinik-demo-v2.html",
       "has": [{ "type": "host", "value": "bahkobyra.cloud" }],
-      "destination": "/cloud/index.html"
+      "dest": "/cloud/index.html"
     },
     {
-      "source": "/elara-klinik-demo-v2.html",
+      "src": "/elara-klinik-demo-v2.html",
       "has": [{ "type": "host", "value": "www.bahkobyra.cloud" }],
-      "destination": "/cloud/index.html"
-    }
+      "dest": "/cloud/index.html"
+    },
+    { "handle": "filesystem" }
   ]
 }
