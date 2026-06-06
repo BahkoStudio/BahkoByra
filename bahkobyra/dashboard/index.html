@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bahko Byrå — Säljmotor / Operativ Dashboard</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#EDE8DF;--cream-2:#F4F0E8;--cream-3:#FBF8F3;
+  --navy:#181C38;--navy-2:#12152E;
+  --gold:#C9A96E;--gold-lt:#E3C88E;--gold-dk:#B08F4D;
+  --ink:#181C38;--ink-70:rgba(24,28,56,.72);--ink-55:rgba(24,28,56,.56);--ink-35:rgba(24,28,56,.35);
+  --line:rgba(201,169,110,.24);--line-2:rgba(201,169,110,.55);
+  --paper:#F5F2EB;--paper-70:rgba(245,242,235,.7);--paper-45:rgba(245,242,235,.45);
+  --ok:#4F9D6B;--warn:#C98A3A;
+  --display:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;
+  --r:4px;--r-lg:10px;--gut:clamp(1.1rem,4vw,2.6rem);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;padding-bottom:4rem}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--gold);color:var(--navy)}
+
+/* ── TOPBAR ── */
+.top{position:sticky;top:0;z-index:50;background:rgba(24,28,56,.97);color:var(--paper);backdrop-filter:blur(12px);
+  padding:1rem var(--gut);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-bottom:1px solid rgba(201,169,110,.25)}
+.brand{font-family:var(--display);font-size:1.3rem;font-weight:500;letter-spacing:.01em;display:flex;align-items:center;gap:.7rem}
+.brand em{font-style:italic;color:var(--gold-lt)}
+.brand .tag{font-family:var(--sans);font-size:.56rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-45);border-left:1px solid var(--line-2);padding-left:.7rem}
+.top-actions{display:flex;gap:.6rem;flex-wrap:wrap}
+.tbtn{font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.55rem 1rem;border-radius:var(--r);border:1px solid var(--line-2);color:var(--paper-70);transition:.25s}
+.tbtn:hover{color:var(--navy);background:var(--gold);border-color:var(--gold)}
+.tbtn.solid{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.tbtn.solid:hover{background:var(--gold-lt);border-color:var(--gold-lt)}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--gut)}
+.sec{margin-top:clamp(2rem,5vw,3.4rem)}
+.sec-h{font-size:.64rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-dk);
+  display:flex;align-items:center;gap:.7rem;margin-bottom:1.1rem}
+.sec-h::before{content:'';width:24px;height:1px;background:var(--gold)}
+.sec-h .hint{margin-left:auto;font-size:.6rem;font-weight:400;letter-spacing:.1em;color:var(--ink-35);text-transform:none}
+
+/* ── KPI ── */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.kpi{background:var(--cream-3);padding:1.4rem 1.5rem;display:flex;flex-direction:column;gap:.5rem}
+.kpi-top{display:flex;align-items:baseline;justify-content:space-between}
+.kpi-l{font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-55)}
+.kpi-v{font-family:var(--display);font-size:2.4rem;font-weight:500;line-height:1;color:var(--navy)}
+.kpi-v small{font-size:1rem;color:var(--ink-35)}
+.counter{display:flex;align-items:center;gap:.5rem;margin-top:.3rem}
+.counter button{width:30px;height:30px;border-radius:var(--r);border:1px solid var(--line-2);font-size:1.1rem;line-height:1;color:var(--gold-dk);transition:.2s}
+.counter button:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.counter .num{font-family:var(--display);font-size:1.8rem;font-weight:600;min-width:2.2rem;text-align:center;color:var(--navy)}
+.counter .goal{font-size:.66rem;color:var(--ink-35)}
+.bar{height:4px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:.2rem}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold-dk),var(--gold-lt));width:0;transition:width .4s var(--ease)}
+
+/* ── LINK CARDS ── */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.9rem}
+.card{display:flex;flex-direction:column;gap:.35rem;background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:1.15rem 1.25rem;transition:.25s;position:relative}
+.card:hover{border-color:var(--line-2);background:var(--cream-2);transform:translateY(-2px);box-shadow:0 16px 34px -26px rgba(24,28,56,.5)}
+.card .ic{font-size:1.2rem}
+.card .t{font-family:var(--display);font-size:1.2rem;font-weight:500;display:flex;align-items:center;gap:.5rem}
+.card .d{font-size:.76rem;color:var(--ink-55);line-height:1.5}
+.card .meta{margin-top:.3rem;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dk);font-weight:600}
+.card.local{background:repeating-linear-gradient(135deg,var(--cream-3),var(--cream-3) 10px,var(--cream-2) 10px,var(--cream-2) 20px)}
+.card .ext{position:absolute;top:1rem;right:1.1rem;color:var(--ink-35);font-size:.8rem}
+
+/* ── PIPELINE ── */
+.pipe{display:flex;gap:.5rem;flex-wrap:wrap}
+.stage{flex:1;min-width:110px;background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r);padding:.8rem .7rem;text-align:center}
+.stage .n{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dk)}
+.stage .nm{font-family:var(--display);font-size:1.05rem;margin-top:.2rem}
+.stage .kpi-mini{font-size:.62rem;color:var(--ink-35);margin-top:.2rem}
+
+/* ── PANELS (offer, phases) ── */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.panel{background:var(--navy);color:var(--paper);border-radius:var(--r-lg);padding:1.5rem 1.6rem;border:1px solid rgba(201,169,110,.25)}
+.panel h3{font-family:var(--display);font-size:1.5rem;font-weight:500;margin-bottom:.2rem}
+.panel h3 em{font-style:italic;color:var(--gold-lt)}
+.panel .sub{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:1rem}
+.panel ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.panel li{font-size:.82rem;color:var(--paper-70);display:flex;gap:.6rem;line-height:1.5}
+.panel li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:.5rem}
+.panel .price{font-family:var(--display);font-size:1.7rem;color:var(--gold-lt);margin:.4rem 0 .2rem}
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+.phase{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.2rem}
+.phase .goal-n{font-family:var(--display);font-size:1.8rem;font-weight:600;color:var(--navy)}
+.phase .lbl{font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:.6rem}
+.phase p{font-size:.76rem;color:var(--ink-55);line-height:1.6}
+
+/* ── SCRIPTS ── */
+.scripts{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.9rem}
+.script{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:.6rem}
+.script-h{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.script-h .nm{font-family:var(--display);font-size:1.15rem;font-weight:500}
+.copy{font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.32rem .6rem;border:1px solid var(--line-2);border-radius:var(--r);color:var(--gold-dk);transition:.2s}
+.copy:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.copy.done{background:var(--ok);color:#fff;border-color:var(--ok)}
+.script pre{font-family:var(--sans);font-size:.76rem;color:var(--ink-70);line-height:1.55;white-space:pre-wrap;background:var(--cream);border:1px solid var(--line);border-radius:var(--r);padding:.7rem .8rem}
+
+/* ── CHECKLIST ── */
+.check{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.2rem 1.4rem}
+.check-row{display:flex;align-items:center;gap:.8rem;padding:.55rem 0;border-bottom:1px solid var(--line);cursor:pointer}
+.check-row:last-child{border-bottom:none}
+.check-box{width:20px;height:20px;border:1px solid var(--line-2);border-radius:5px;flex-shrink:0;display:grid;place-items:center;transition:.2s}
+.check-box svg{width:11px;height:11px;stroke:#fff;stroke-width:3;fill:none;opacity:0;transition:.2s}
+.check-row.done .check-box{background:var(--ok);border-color:var(--ok)}
+.check-row.done .check-box svg{opacity:1}
+.check-row.done .lbl{color:var(--ink-35);text-decoration:line-through}
+.check .lbl{font-size:.86rem}
+.reset{margin-top:.8rem;font-size:.62rem;letter-spacing:.1em;color:var(--ink-35);text-transform:uppercase}
+.reset:hover{color:var(--gold-dk)}
+
+.note{font-size:.7rem;color:var(--ink-35);margin-top:.6rem;line-height:1.5}
+footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.62rem;letter-spacing:.1em;color:var(--ink-35);border-top:1px solid var(--line)}
+
+@media(max-width:720px){
+  .grid2,.phases{grid-template-columns:1fr}
+  .brand .tag{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="brand">Bahko <em>Byrå</em> <span class="tag">Säljmotor · Operativ Dashboard</span></div>
+  <div class="top-actions">
+    <a class="tbtn solid" href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener">+ Boka möte</a>
+    <a class="tbtn" href="https://formspree.io/forms" target="_blank" rel="noopener">Inkommande leads</a>
+    <a class="tbtn" href="mailto:mathias@bahkobyra.se">Mejl</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- KPI -->
+  <section class="sec">
+    <div class="sec-h">Dagens motor <span class="hint">sparas lokalt i din webbläsare</span></div>
+    <div class="kpis">
+      <div class="kpi">
+        <div class="kpi-top"><span class="kpi-l">Outreach idag</span></div>
+        <div class="counter" data-counter="outreach" data-goal="20">
+          <button data-step="-1">−</button>
+          <span class="num">0</span>
+          <button data-step="1">+</button>
+          <span class="goal">/ 20</span>
+        </div>
+        <div class="bar"><i></i></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-top"><span class="kpi-l">Bokade möten · vecka</span></div>
+        <div class="counter" data-counter="meetings" data-goal="5">
+          <button data-step="-1">−</button>
+          <span class="num">0</span>
+          <button data-step="1">+</button>
+          <span class="goal">/ 5</span>
+        </div>
+        <div class="bar"><i></i></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-top"><span class="kpi-l">Skickade offerter · vecka</span></div>
+        <div class="counter" data-counter="quotes" data-goal="3">
+          <button data-step="-1">−</button>
+          <span class="num">0</span>
+          <button data-step="1">+</button>
+          <span class="goal">/ 3</span>
+        </div>
+        <div class="bar"><i></i></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-top"><span class="kpi-l">Mål · återkommande intäkt</span></div>
+        <div class="kpi-v">100<small>k kr/mån</small></div>
+        <div class="goal" style="font-size:.66rem;color:var(--ink-35)">≈ 8 retainers × 12k — nästa nivå: 300k → 1 Mkr</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK LINKS -->
+  <section class="sec">
+    <div class="sec-h">Allt du behöver — snabblänkar</div>
+    <div class="cards">
+      <a class="card" href="https://www.bahkobyra.se/" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">🌐</span> Hemsida</div><div class="d">Din live-sajt — bahkobyra.se</div><div class="meta">Live</div></a>
+      <a class="card" href="https://www.bahkobyra.se/cloud/" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">✨</span> Live Demo</div><div class="d">Élara-demon att skicka till prospekts. Även bahkobyra.cloud</div><div class="meta">Säljbevis</div></a>
+      <a class="card" href="https://www.bahkobyra.se/kliniker/gratis-granskning.html" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">🔍</span> Gratis Analys</div><div class="d">Lead magnet — 10-punktsaudit, värde 799 kr</div><div class="meta">Lead-gen</div></a>
+      <a class="card" href="https://www.bahkobyra.se/kliniker/gratis-guide.html" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">📘</span> Gratis Guide</div><div class="d">Guide + video: ranka högre på Google</div><div class="meta">Lead-gen</div></a>
+      <a class="card" href="https://www.bahkobyra.se/pitchdeck.html" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">🎯</span> Pitchdeck</div><div class="d">Säljdeck för discovery calls</div><div class="meta">Sälj</div></a>
+      <a class="card" href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">📅</span> Boka-länk</div><div class="d">Cal — skicka i all outreach</div><div class="meta">Möten</div></a>
+      <a class="card" href="https://formspree.io/forms" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">📥</span> Inkommande leads</div><div class="d">Formspree-inkorg (alla formulär)</div><div class="meta">CRM-in</div></a>
+      <a class="card local" href="http://localhost:3001/kliniker/crm.html" target="_blank" rel="noopener"><div class="t"><span class="ic">🗂️</span> CRM</div><div class="d">Pipeline & outreach. Kör först <code>node server.js</code></div><div class="meta">Lokalt verktyg</div></a>
+      <a class="card" href="https://github.com/BahkoStudio/BahkoByra/tree/main/workflows" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">📋</span> Workflows</div><div class="d">SOP: cold calling, outreach, lead-enrichment</div><div class="meta">System</div></a>
+      <a class="card" href="https://github.com/BahkoStudio/BahkoByra/tree/main/tools" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">⚙️</span> Tools</div><div class="d">Skript: enrich_leads, generate_audit, outreach_manager…</div><div class="meta">System</div></a>
+      <a class="card" href="https://github.com/BahkoStudio/BahkoByra" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">💾</span> Repo</div><div class="d">All kod & innehåll på GitHub</div><div class="meta">System</div></a>
+      <a class="card" href="mailto:mathias@bahkobyra.se"><div class="t"><span class="ic">✉️</span> Mejl</div><div class="d">mathias@bahkobyra.se</div><div class="meta">Kontakt</div></a>
+    </div>
+  </section>
+
+  <!-- PIPELINE -->
+  <section class="sec">
+    <div class="sec-h">Pipeline — uppdatera i CRM dagligen</div>
+    <div class="pipe">
+      <div class="stage"><div class="n">01</div><div class="nm">Lead</div><div class="kpi-mini">200/mån</div></div>
+      <div class="stage"><div class="n">02</div><div class="nm">Kontaktad</div><div class="kpi-mini">100/v</div></div>
+      <div class="stage"><div class="n">03</div><div class="nm">Svar</div><div class="kpi-mini">10–20%</div></div>
+      <div class="stage"><div class="n">04</div><div class="nm">Möte bokat</div><div class="kpi-mini">5/v</div></div>
+      <div class="stage"><div class="n">05</div><div class="nm">Offert</div><div class="kpi-mini">3/v</div></div>
+      <div class="stage"><div class="n">06</div><div class="nm">Stängd</div><div class="kpi-mini">1–2/v</div></div>
+      <div class="stage"><div class="n">07</div><div class="nm">Onboardad</div><div class="kpi-mini">&lt;48h</div></div>
+    </div>
+  </section>
+
+  <!-- OFFER + PHASES -->
+  <section class="sec">
+    <div class="sec-h">Erbjudande & tillväxttrappa</div>
+    <div class="grid2">
+      <div class="panel">
+        <div class="sub">Productized erbjudande</div>
+        <h3>Klinik <em>Tillväxt</em></h3>
+        <div class="price">35 000 kr + 9 000 kr/mån</div>
+        <p style="font-size:.72rem;color:var(--paper-45);margin-bottom:.8rem">alt. 0 upp + 14 000 kr/mån · 3 mån bindning</p>
+        <ul>
+          <li>Konverterande hemsida</li>
+          <li>Lokal SEO (Google + Maps)</li>
+          <li>Patientbokningsoptimering</li>
+          <li><strong style="color:var(--gold-lt)">Risk-vändare:</strong> mätbart fler bokningar på 90 dagar — annars jobbar vi gratis tills det händer</li>
+        </ul>
+      </div>
+      <div class="phases">
+        <div class="phase"><div class="lbl">Fas 1</div><div class="goal-n">100k</div><p>Du säljer. Ren outbound + demo. Manuell leverans. Bevisa erbjudandet.</p></div>
+        <div class="phase"><div class="lbl">Fas 2</div><div class="goal-n">300k</div><p>Standardiserad leverans, 1 säljare kör maskinen, ads-retainer som default-upsell.</p></div>
+        <div class="phase"><div class="lbl">Fas 3</div><div class="goal-n">1 Mkr</div><p>Två motorer (outbound + inbound), nischat per kliniktyp, årsavtal, processdriven leverans.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCRIPTS -->
+  <section class="sec">
+    <div class="sec-h">Outreach-skript <span class="hint">klicka Kopiera, byt [Namn]/[Klinik]/[länk]</span></div>
+    <div class="scripts">
+      <div class="script">
+        <div class="script-h"><span class="nm">Loom-genomgång</span><button class="copy">Kopiera</button></div>
+        <pre>Hej [Namn]! Jag kollade just på [Klinik]s sajt och spelade in en snabb 3-min genomgång — hittade 3 saker som troligen kostar er bokningar. Byggde också ett snabbt exempel på hur en ny sida kan se ut för er. [Loom-länk]. Ser det intressant ut — boka en kvart: [Cal-länk].</pre>
+      </div>
+      <div class="script">
+        <div class="script-h"><span class="nm">Kallt mejl</span><button class="copy">Kopiera</button></div>
+        <pre>Ämne: 3 saker på [Klinik]s sajt som kostar bokningar
+
+Hej [Namn], jag driver Bahko Byrå — vi hjälper kliniker få fler patientbokningar via sajt + Google. Spelade in en 3-min audit av er sajt (gratis, värde 799 kr): [länk]. Vill ni att jag visar exakt hur ni får fler bokningar från sajten? Boka en kvart: [Cal-länk]. /Mathias</pre>
+      </div>
+      <div class="script">
+        <div class="script-h"><span class="nm">Uppföljning 1 (dag +3)</span><button class="copy">Kopiera</button></div>
+        <pre>Hej [Namn], hann du kika på audit-videon jag skickade? Snabb sammanfattning: [1 konkret grej]. Värt en kort koll? [Cal-länk]</pre>
+      </div>
+      <div class="script">
+        <div class="script-h"><span class="nm">Uppföljning 2 (dag +6)</span><button class="copy">Kopiera</button></div>
+        <pre>Hej [Namn], sista pingen från mig — om bokningar via sajten inte är prio just nu säg bara till så släpper jag. Annars: [Cal-länk]. Ha det fint!</pre>
+      </div>
+      <div class="script">
+        <div class="script-h"><span class="nm">Instagram DM</span><button class="copy">Kopiera</button></div>
+        <pre>Hej! Gillar verkligen det ni gör på [Klinik] 🙌 Jag hjälper kliniker få fler bokningar via sajt + Google och gjorde en snabb gratis-analys av er sajt — vill du att jag skickar den?</pre>
+      </div>
+      <div class="script">
+        <div class="script-h"><span class="nm">Discovery call (20 min)</span><button class="copy">Kopiera</button></div>
+        <pre>1. Nuläge & mål (5 min)
+2. Vad problemet kostar idag (3 min)
+3. Visa demo + audit (5 min)
+4. Erbjudande + pris + risk-vändare (4 min)
+5. Stäng / boka nästa steg (3 min)</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAILY CHECKLIST -->
+  <section class="sec">
+    <div class="sec-h">Daglig checklista <span class="hint">nollställs automatiskt varje dag</span></div>
+    <div class="check" id="check">
+      <div class="check-row" data-id="c1"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Bygg 20 nya kvalade prospekts (ICP) i CRM</span></div>
+      <div class="check-row" data-id="c2"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Skicka 20 personliga outreach (Loom/audit)</span></div>
+      <div class="check-row" data-id="c3"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Följ upp alla från dag −3 och −6</span></div>
+      <div class="check-row" data-id="c4"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Logga varje touch + uppdatera pipeline i CRM</span></div>
+      <div class="check-row" data-id="c5"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Bekräfta & förbered dagens discovery calls</span></div>
+      <div class="check-row" data-id="c6"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Skicka offerter samma dag som mötet</span></div>
+      <button class="reset" id="reset">↺ Nollställ dagen</button>
+    </div>
+    <p class="note">Flaskhalsen är alltid <strong>antalet bokade möten/vecka</strong>. Allt som inte leder till möte eller försäljning är sekundärt.</p>
+  </section>
+
+</div>
+
+<footer>Bahko Byrå · Synlighet som säljer · Intern dashboard (noindex)</footer>
+
+<script>
+const today = new Date().toISOString().slice(0,10);
+const wk = (()=>{const d=new Date();const o=new Date(d.getFullYear(),0,1);return d.getFullYear()+'-W'+Math.ceil((((d-o)/86400000)+o.getDay()+1)/7);})();
+
+/* Counters: outreach=daily, meetings/quotes=weekly */
+document.querySelectorAll('[data-counter]').forEach(c=>{
+  const key=c.dataset.counter, goal=+c.dataset.goal;
+  const daily = key==='outreach';
+  const stamp = daily?today:wk;
+  const storeKey='bb_'+key;
+  const read=()=>{try{const o=JSON.parse(localStorage.getItem(storeKey)||'{}');return o.stamp===stamp?(+o.val||0):0;}catch{return 0;}};
+  const write=v=>localStorage.setItem(storeKey,JSON.stringify({stamp,val:v}));
+  const numEl=c.querySelector('.num'), bar=c.parentElement.querySelector('.bar i');
+  let val=read();
+  const render=()=>{numEl.textContent=val;if(bar)bar.style.width=Math.min(100,(val/goal)*100)+'%';};
+  c.querySelectorAll('button').forEach(b=>b.onclick=()=>{val=Math.max(0,val+ (+b.dataset.step));write(val);render();});
+  render();
+});
+
+/* Copy buttons */
+document.querySelectorAll('.script').forEach(s=>{
+  const btn=s.querySelector('.copy'), txt=s.querySelector('pre').innerText;
+  btn.onclick=async()=>{try{await navigator.clipboard.writeText(txt);}catch{const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();}btn.textContent='Kopierat ✓';btn.classList.add('done');setTimeout(()=>{btn.textContent='Kopiera';btn.classList.remove('done');},1600);};
+});
+
+/* Checklist — resets daily */
+const CK='bb_check';
+function loadCheck(){let o={};try{o=JSON.parse(localStorage.getItem(CK)||'{}');}catch{}if(o.stamp!==today)o={stamp:today,done:{}};return o;}
+function saveCheck(o){localStorage.setItem(CK,JSON.stringify(o));}
+let ck=loadCheck();
+document.querySelectorAll('.check-row').forEach(r=>{
+  const id=r.dataset.id;
+  if(ck.done[id])r.classList.add('done');
+  r.onclick=()=>{r.classList.toggle('done');ck.done[id]=r.classList.contains('done');saveCheck(ck);};
+});
+document.getElementById('reset').onclick=(e)=>{e.stopPropagation();ck={stamp:today,done:{}};saveCheck(ck);document.querySelectorAll('.check-row').forEach(r=>r.classList.remove('done'));};
+</script>
+</body>
+</html>

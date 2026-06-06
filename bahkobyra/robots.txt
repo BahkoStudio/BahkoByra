@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /kliniker/crm.html
+Disallow: /dashboard/
+
+Sitemap: https://www.bahkobyra.se/sitemap.xml
