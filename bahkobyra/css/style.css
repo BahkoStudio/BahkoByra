@@ -206,7 +206,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .hero-h1 .accent{font-style:italic;font-weight:400;
   background:linear-gradient(108deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero-lede{font-size:clamp(.95rem,1.2vw,1.12rem);color:var(--paper-70);line-height:1.85;font-weight:300;max-width:52ch;margin-bottom:1rem}
-.hero-svc{font-size:.72rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--paper-45);margin-bottom:2.8rem}
+.hero-svc{font-size:.78rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--paper-70);margin-bottom:2.8rem}
 .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
 .scrollcue{position:absolute;left:var(--gut);bottom:2.2rem;z-index:2;display:flex;align-items:center;gap:.8rem;color:var(--paper-45)}
 .scrollcue .ln{width:54px;height:1px;background:var(--paper-22);position:relative;overflow:hidden}
@@ -230,7 +230,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .stat-v{font-family:var(--display);font-weight:500;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1;letter-spacing:-.02em;
   background:linear-gradient(120deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   will-change:transform;display:block}
-.stat-l{font-size:.64rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-45);margin-top:.7rem}
+.stat-l{font-size:.64rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-70);margin-top:.7rem}
 
 /* ── 12. SERVICES ────────────────────────────────────────── */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;
@@ -276,7 +276,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 @keyframes dp{0%,100%{opacity:.25}50%{opacity:1}}
 .demo-bar{height:1px;background:var(--paper-line)}
 .demo-bar.a{width:62%}.demo-bar.b{width:88%}.demo-bar.c{width:48%}.demo-bar.d{width:72%}
-.demo-lbl{font-size:.65rem;letter-spacing:.26em;text-transform:uppercase;color:var(--paper-45);margin-top:1rem}
+.demo-lbl{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--paper-70);margin-top:1rem}
 .demo-link{display:inline-flex;align-items:center;gap:.6rem;color:var(--gold-lt);font-size:.72rem;font-weight:500;
   letter-spacing:.14em;text-transform:uppercase;margin-top:2rem;transition:gap .3s}
 .demo-link:hover{gap:1.1rem}
@@ -303,7 +303,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .audit-tags{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-bottom:.9rem}
 .audit-badge{font-size:.56rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);
   background:rgba(201,169,110,.12);border:1px solid rgba(201,169,110,.3);border-radius:30px;padding:.32rem .8rem}
-.audit-price{font-size:.72rem;font-weight:500;color:var(--paper-45)}
+.audit-price{font-size:.72rem;font-weight:500;color:var(--paper-70)}
 .audit-price s{opacity:.7}.audit-price b{color:var(--gold-lt)}
 .audit h3{font-family:var(--display);font-size:clamp(1.4rem,3vw,2.1rem);font-weight:500;line-height:1.15;margin-bottom:.5rem}
 .audit p{font-size:.86rem;color:var(--paper-70);line-height:1.7;max-width:54ch;font-weight:300}
@@ -347,11 +347,11 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .foot-brand{font-family:var(--display);font-weight:500;font-size:clamp(3rem,11vw,9rem);line-height:.9;letter-spacing:-.02em;will-change:clip-path,opacity}
 .foot-brand em{font-style:italic;color:var(--gold-lt)}
 .foot-cta{text-align:right}
-.foot-cta p{color:var(--paper-45);font-size:.8rem;margin-bottom:1rem;letter-spacing:.04em}
+.foot-cta p{color:var(--paper-70);font-size:.8rem;margin-bottom:1rem;letter-spacing:.04em}
 .foot-bottom{max-width:var(--maxw);margin:2rem auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .foot-bottom span{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-45)}
 .foot-links{display:flex;gap:1.6rem}
-.foot-links a{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-45);transition:color .3s}
+.foot-links a{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-70);transition:color .3s}
 .foot-links a:hover{color:var(--gold-lt)}
 
 /* ── 20. POPUP ───────────────────────────────────────────── */
