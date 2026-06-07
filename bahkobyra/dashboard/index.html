@@ -18,7 +18,7 @@
   --ink:#181C38;--ink-70:rgba(24,28,56,.72);--ink-55:rgba(24,28,56,.56);--ink-35:rgba(24,28,56,.35);
   --line:rgba(201,169,110,.24);--line-2:rgba(201,169,110,.55);
   --paper:#F5F2EB;--paper-70:rgba(245,242,235,.7);--paper-45:rgba(245,242,235,.45);
-  --ok:#4F9D6B;--warn:#C98A3A;
+  --ok:#4F9D6B;--warn:#C98A3A;--danger:#C94A4A;
   --display:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;
   --r:4px;--r-lg:10px;--gut:clamp(1.1rem,4vw,2.6rem);
   --ease:cubic-bezier(.22,1,.36,1);
@@ -64,7 +64,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold-dk),var(--gold-lt));width:0;transition:width .4s var(--ease)}
 
 /* ── LINK CARDS ── */
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.9rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.9rem}
 .card{display:flex;flex-direction:column;gap:.35rem;background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);
   padding:1.15rem 1.25rem;transition:.25s;position:relative}
 .card:hover{border-color:var(--line-2);background:var(--cream-2);transform:translateY(-2px);box-shadow:0 16px 34px -26px rgba(24,28,56,.5)}
@@ -72,7 +72,6 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .card .t{font-family:var(--display);font-size:1.2rem;font-weight:500;display:flex;align-items:center;gap:.5rem}
 .card .d{font-size:.76rem;color:var(--ink-55);line-height:1.5}
 .card .meta{margin-top:.3rem;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dk);font-weight:600}
-.card.local{background:repeating-linear-gradient(135deg,var(--cream-3),var(--cream-3) 10px,var(--cream-2) 10px,var(--cream-2) 20px)}
 .card .ext{position:absolute;top:1rem;right:1.1rem;color:var(--ink-35);font-size:.8rem}
 
 /* ── PIPELINE ── */
@@ -82,7 +81,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .stage .nm{font-family:var(--display);font-size:1.05rem;margin-top:.2rem}
 .stage .kpi-mini{font-size:.62rem;color:var(--ink-35);margin-top:.2rem}
 
-/* ── PANELS (offer, phases) ── */
+/* ── PANELS ── */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .panel{background:var(--navy);color:var(--paper);border-radius:var(--r-lg);padding:1.5rem 1.6rem;border:1px solid rgba(201,169,110,.25)}
 .panel h3{font-family:var(--display);font-size:1.5rem;font-weight:500;margin-bottom:.2rem}
@@ -101,17 +100,18 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 /* ── SCRIPTS ── */
 .scripts{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.9rem}
 .script{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:.6rem}
-.script-h{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.script-h{display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
 .script-h .nm{font-family:var(--display);font-size:1.15rem;font-weight:500}
-.copy{font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.32rem .6rem;border:1px solid var(--line-2);border-radius:var(--r);color:var(--gold-dk);transition:.2s}
+.script-h .tag{font-size:.55rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .5rem;border-radius:50px;background:var(--line);color:var(--gold-dk)}
+.copy{font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.32rem .6rem;border:1px solid var(--line-2);border-radius:var(--r);color:var(--gold-dk);transition:.2s;flex-shrink:0}
 .copy:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
 .copy.done{background:var(--ok);color:#fff;border-color:var(--ok)}
 .script pre{font-family:var(--sans);font-size:.76rem;color:var(--ink-70);line-height:1.55;white-space:pre-wrap;background:var(--cream);border:1px solid var(--line);border-radius:var(--r);padding:.7rem .8rem}
 
 /* ── CHECKLIST ── */
 .check{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.2rem 1.4rem}
-.check-row{display:flex;align-items:center;gap:.8rem;padding:.55rem 0;border-bottom:1px solid var(--line);cursor:pointer}
-.check-row:last-child{border-bottom:none}
+.check-row{display:flex;align-items:center;gap:.8rem;padding:.55rem 0;border-bottom:1px solid var(--line);cursor:pointer;user-select:none}
+.check-row:last-of-type{border-bottom:none}
 .check-box{width:20px;height:20px;border:1px solid var(--line-2);border-radius:5px;flex-shrink:0;display:grid;place-items:center;transition:.2s}
 .check-box svg{width:11px;height:11px;stroke:#fff;stroke-width:3;fill:none;opacity:0;transition:.2s}
 .check-row.done .check-box{background:var(--ok);border-color:var(--ok)}
@@ -121,12 +121,58 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .reset{margin-top:.8rem;font-size:.62rem;letter-spacing:.1em;color:var(--ink-35);text-transform:uppercase}
 .reset:hover{color:var(--gold-dk)}
 
+/* ── CRM ── */
+.crm-toolbar{display:flex;gap:.6rem;margin-bottom:.8rem;flex-wrap:wrap}
+.crm-search{flex:1;min-width:200px;font:inherit;font-size:.8rem;padding:.5rem .8rem;border:1px solid var(--line-2);border-radius:var(--r);background:var(--cream-3);color:var(--ink);outline:none}
+.crm-search:focus{border-color:var(--gold)}
+.crm-filter{font:inherit;font-size:.75rem;padding:.5rem .7rem;border:1px solid var(--line-2);border-radius:var(--r);background:var(--cream-3);color:var(--ink);cursor:pointer;outline:none}
+.crm-filter:focus{border-color:var(--gold)}
+.crm-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-lg)}
+table{width:100%;border-collapse:collapse;font-size:.78rem}
+thead{background:var(--navy);color:var(--paper)}
+th{padding:.65rem 1rem;text-align:left;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;white-space:nowrap;color:var(--paper-70)}
+td{padding:.6rem 1rem;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-70)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--cream-2)}
+.status-badge{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .55rem;border-radius:50px;white-space:nowrap;cursor:pointer}
+.s-ny{background:rgba(201,169,110,.15);color:var(--gold-dk)}
+.s-kontaktad{background:rgba(79,157,250,.12);color:#3d7ec0}
+.s-svar{background:rgba(140,100,220,.12);color:#7040b0}
+.s-mote{background:rgba(201,169,110,.3);color:var(--gold-dk)}
+.s-offert{background:rgba(201,120,58,.15);color:#b05820}
+.s-stangd{background:rgba(79,157,107,.15);color:var(--ok)}
+.crm-name{font-weight:500;color:var(--ink)}
+.crm-link{color:var(--gold-dk);font-size:.7rem}
+.crm-link:hover{text-decoration:underline}
+.crm-count{font-size:.7rem;color:var(--ink-35);margin-top:.4rem}
+.crm-add-btn{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem;border:1px solid var(--line-2);border-radius:var(--r);color:var(--gold-dk);transition:.2s}
+.crm-add-btn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+
+/* ── MODAL ── */
+.modal-bg{position:fixed;inset:0;background:rgba(24,28,56,.65);backdrop-filter:blur(4px);z-index:100;display:grid;place-items:center;opacity:0;pointer-events:none;transition:.25s}
+.modal-bg.open{opacity:1;pointer-events:all}
+.modal{background:var(--cream-3);border:1px solid var(--line-2);border-radius:var(--r-lg);padding:1.6rem;width:min(560px,90vw);max-height:88vh;overflow-y:auto;position:relative}
+.modal h4{font-family:var(--display);font-size:1.3rem;font-weight:500;margin-bottom:1rem}
+.modal-close{position:absolute;top:1rem;right:1.1rem;font-size:1.3rem;color:var(--ink-35);line-height:1;cursor:pointer;padding:.2rem}
+.modal-close:hover{color:var(--ink)}
+.field{margin-bottom:.8rem}
+.field label{display:block;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-55);margin-bottom:.3rem}
+.field input,.field select,.field textarea{width:100%;font:inherit;font-size:.82rem;padding:.5rem .7rem;border:1px solid var(--line-2);border-radius:var(--r);background:#fff;color:var(--ink);outline:none;transition:.2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+.field textarea{resize:vertical;min-height:80px}
+.modal-actions{display:flex;gap:.7rem;justify-content:flex-end;margin-top:1.2rem}
+.btn-save{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.55rem 1.2rem;background:var(--gold);color:var(--navy);border:1px solid var(--gold);border-radius:var(--r);transition:.2s}
+.btn-save:hover{background:var(--gold-lt);border-color:var(--gold-lt)}
+.btn-del{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.55rem 1rem;background:transparent;color:var(--danger);border:1px solid rgba(201,74,74,.3);border-radius:var(--r);transition:.2s}
+.btn-del:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
+
 .note{font-size:.7rem;color:var(--ink-35);margin-top:.6rem;line-height:1.5}
 footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.62rem;letter-spacing:.1em;color:var(--ink-35);border-top:1px solid var(--line)}
 
 @media(max-width:720px){
   .grid2,.phases{grid-template-columns:1fr}
   .brand .tag{display:none}
+  th:nth-child(4),td:nth-child(4),th:nth-child(5),td:nth-child(5){display:none}
 }
 </style>
 </head>
@@ -137,6 +183,7 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
   <div class="top-actions">
     <a class="tbtn solid" href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener">+ Boka möte</a>
     <a class="tbtn" href="https://formspree.io/forms" target="_blank" rel="noopener">Inkommande leads</a>
+    <a class="tbtn" href="/dashboard/todo.html">Roadmap</a>
     <a class="tbtn" href="mailto:mathias@bahkobyra.se">Mejl</a>
   </div>
 </div>
@@ -180,33 +227,62 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
       <div class="kpi">
         <div class="kpi-top"><span class="kpi-l">Mål · återkommande intäkt</span></div>
         <div class="kpi-v">100<small>k kr/mån</small></div>
-        <div class="goal" style="font-size:.66rem;color:var(--ink-35)">≈ 8 retainers × 12k — nästa nivå: 300k → 1 Mkr</div>
+        <div class="goal" style="font-size:.66rem;color:var(--ink-35)">≈ 8 retainers × 12k — nästa: 300k → 1 Mkr</div>
       </div>
     </div>
   </section>
 
   <!-- QUICK LINKS -->
   <section class="sec">
-    <div class="sec-h">Allt du behöver — snabblänkar</div>
+    <div class="sec-h">Snabblänkar</div>
     <div class="cards">
-      <a class="card" href="https://www.bahkobyra.se/" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">🌐</span> Hemsida</div><div class="d">Din live-sajt — bahkobyra.se</div><div class="meta">Live</div></a>
-      <a class="card" href="https://www.bahkobyra.se/cloud/" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">✨</span> Live Demo</div><div class="d">Élara-demon att skicka till prospekts. Även bahkobyra.cloud</div><div class="meta">Säljbevis</div></a>
-      <a class="card" href="https://www.bahkobyra.se/kliniker/gratis-granskning.html" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">🔍</span> Gratis Analys</div><div class="d">Lead magnet — 10-punktsaudit, värde 799 kr</div><div class="meta">Lead-gen</div></a>
-      <a class="card" href="https://www.bahkobyra.se/kliniker/gratis-guide.html" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">📘</span> Gratis Guide</div><div class="d">Guide + video: ranka högre på Google</div><div class="meta">Lead-gen</div></a>
-      <a class="card" href="https://www.bahkobyra.se/pitchdeck.html" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">🎯</span> Pitchdeck</div><div class="d">Säljdeck för discovery calls</div><div class="meta">Sälj</div></a>
-      <a class="card" href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">📅</span> Boka-länk</div><div class="d">Cal — skicka i all outreach</div><div class="meta">Möten</div></a>
-      <a class="card" href="https://formspree.io/forms" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">📥</span> Inkommande leads</div><div class="d">Formspree-inkorg (alla formulär)</div><div class="meta">CRM-in</div></a>
-      <a class="card local" href="http://localhost:3001/kliniker/crm.html" target="_blank" rel="noopener"><div class="t"><span class="ic">🗂️</span> CRM</div><div class="d">Pipeline & outreach. Kör först <code>node server.js</code></div><div class="meta">Lokalt verktyg</div></a>
-      <a class="card" href="https://github.com/BahkoStudio/BahkoByra/tree/main/workflows" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">📋</span> Workflows</div><div class="d">SOP: cold calling, outreach, lead-enrichment</div><div class="meta">System</div></a>
-      <a class="card" href="https://github.com/BahkoStudio/BahkoByra/tree/main/tools" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">⚙️</span> Tools</div><div class="d">Skript: enrich_leads, generate_audit, outreach_manager…</div><div class="meta">System</div></a>
-      <a class="card" href="https://github.com/BahkoStudio/BahkoByra" target="_blank" rel="noopener"><span class="ext">↗</span><div class="t"><span class="ic">💾</span> Repo</div><div class="d">All kod & innehåll på GitHub</div><div class="meta">System</div></a>
-      <a class="card" href="mailto:mathias@bahkobyra.se"><div class="t"><span class="ic">✉️</span> Mejl</div><div class="d">mathias@bahkobyra.se</div><div class="meta">Kontakt</div></a>
+      <a class="card" href="https://www.bahkobyra.se/" target="_blank" rel="noopener">
+        <span class="ext">↗</span>
+        <div class="t"><span class="ic">🌐</span> Hemsida</div>
+        <div class="d">Din live-sajt — bahkobyra.se</div>
+        <div class="meta">Live</div>
+      </a>
+      <a class="card" href="https://www.bahkobyra.se/cloud/" target="_blank" rel="noopener">
+        <span class="ext">↗</span>
+        <div class="t"><span class="ic">✨</span> Live Demo</div>
+        <div class="d">Élara-demon att skicka till prospekts — även bahkobyra.cloud</div>
+        <div class="meta">Säljbevis</div>
+      </a>
+      <a class="card" href="https://www.bahkobyra.se/kliniker/gratis-granskning.html" target="_blank" rel="noopener">
+        <span class="ext">↗</span>
+        <div class="t"><span class="ic">🔍</span> Gratis Analys</div>
+        <div class="d">Lead magnet — 10-punktsaudit, värde 799 kr</div>
+        <div class="meta">Lead-gen</div>
+      </a>
+      <a class="card" href="https://www.bahkobyra.se/kliniker/gratis-guide.html" target="_blank" rel="noopener">
+        <span class="ext">↗</span>
+        <div class="t"><span class="ic">📘</span> Gratis Guide</div>
+        <div class="d">Guide + video: ranka högre på Google</div>
+        <div class="meta">Lead-gen</div>
+      </a>
+      <a class="card" href="https://www.bahkobyra.se/pitchdeck.html" target="_blank" rel="noopener">
+        <span class="ext">↗</span>
+        <div class="t"><span class="ic">🎯</span> Pitchdeck</div>
+        <div class="d">Säljdeck för discovery calls</div>
+        <div class="meta">Sälj</div>
+      </a>
+      <a class="card" href="https://formspree.io/forms" target="_blank" rel="noopener">
+        <span class="ext">↗</span>
+        <div class="t"><span class="ic">📥</span> Inkommande leads</div>
+        <div class="d">Formspree-inkorg — alla formulär från sajten</div>
+        <div class="meta">CRM-in</div>
+      </a>
+      <a class="card" href="/dashboard/todo.html">
+        <div class="t"><span class="ic">🗺️</span> Roadmap</div>
+        <div class="d">Nyhetsbrev, e-postautomation, GA4, social bevis och mer</div>
+        <div class="meta">Strategi</div>
+      </a>
     </div>
   </section>
 
   <!-- PIPELINE -->
   <section class="sec">
-    <div class="sec-h">Pipeline — uppdatera i CRM dagligen</div>
+    <div class="sec-h">Pipeline</div>
     <div class="pipe">
       <div class="stage"><div class="n">01</div><div class="nm">Lead</div><div class="kpi-mini">200/mån</div></div>
       <div class="stage"><div class="n">02</div><div class="nm">Kontaktad</div><div class="kpi-mini">100/v</div></div>
@@ -218,9 +294,43 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
     </div>
   </section>
 
+  <!-- CRM -->
+  <section class="sec">
+    <div class="sec-h">CRM — Leads &amp; Prospekts <span class="hint">sparas lokalt · klicka lead för att redigera · klicka status för att byta</span></div>
+    <div class="crm-toolbar">
+      <input class="crm-search" id="crm-search" type="search" placeholder="Sök klinik, kontakt, ort…">
+      <select class="crm-filter" id="crm-status-filter">
+        <option value="">Alla statusar</option>
+        <option value="Ny">Ny</option>
+        <option value="Kontaktad">Kontaktad</option>
+        <option value="Svar">Svar</option>
+        <option value="Möte">Möte</option>
+        <option value="Offert">Offert</option>
+        <option value="Stängd">Stängd</option>
+      </select>
+      <button class="crm-add-btn" id="crm-add">+ Nytt lead</button>
+      <button class="crm-add-btn" id="crm-export" style="color:var(--ink-55)">↓ CSV</button>
+    </div>
+    <div class="crm-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Klinik</th>
+            <th>Kontakt / Beslutsfattare</th>
+            <th>Telefon</th>
+            <th>Ort</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="crm-body"></tbody>
+      </table>
+    </div>
+    <p class="crm-count" id="crm-count"></p>
+  </section>
+
   <!-- OFFER + PHASES -->
   <section class="sec">
-    <div class="sec-h">Erbjudande & tillväxttrappa</div>
+    <div class="sec-h">Erbjudande &amp; tillväxttrappa</div>
     <div class="grid2">
       <div class="panel">
         <div class="sub">Productized erbjudande</div>
@@ -242,40 +352,68 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
     </div>
   </section>
 
-  <!-- SCRIPTS -->
+  <!-- SCRIPTS + DM DRAFTS -->
   <section class="sec">
-    <div class="sec-h">Outreach-skript <span class="hint">klicka Kopiera, byt [Namn]/[Klinik]/[länk]</span></div>
+    <div class="sec-h">Outreach-skript &amp; DM-utkast <span class="hint">klicka Kopiera · byt [Namn] / [Klinik] / [länk]</span></div>
     <div class="scripts">
+
       <div class="script">
-        <div class="script-h"><span class="nm">Loom-genomgång</span><button class="copy">Kopiera</button></div>
-        <pre>Hej [Namn]! Jag kollade just på [Klinik]s sajt och spelade in en snabb 3-min genomgång — hittade 3 saker som troligen kostar er bokningar. Byggde också ett snabbt exempel på hur en ny sida kan se ut för er. [Loom-länk]. Ser det intressant ut — boka en kvart: [Cal-länk].</pre>
-      </div>
-      <div class="script">
-        <div class="script-h"><span class="nm">Kallt mejl</span><button class="copy">Kopiera</button></div>
+        <div class="script-h"><span class="nm">Kallt mejl</span><span class="tag">E-post</span><button class="copy">Kopiera</button></div>
         <pre>Ämne: 3 saker på [Klinik]s sajt som kostar bokningar
 
-Hej [Namn], jag driver Bahko Byrå — vi hjälper kliniker få fler patientbokningar via sajt + Google. Spelade in en 3-min audit av er sajt (gratis, värde 799 kr): [länk]. Vill ni att jag visar exakt hur ni får fler bokningar från sajten? Boka en kvart: [Cal-länk]. /Mathias</pre>
+Hej [Namn], jag driver Bahko Byrå — vi hjälper kliniker få fler patientbokningar via sajt + Google. Spelade in en 3-min gratis-audit av er sajt (värde 799 kr): [Loom-länk]. Vill ni se exakt hur ni kan få fler bokningar? Boka en kvart: https://cal.eu/bahkobyra/15min
+
+/Mathias, Bahko Byrå</pre>
       </div>
+
       <div class="script">
-        <div class="script-h"><span class="nm">Uppföljning 1 (dag +3)</span><button class="copy">Kopiera</button></div>
-        <pre>Hej [Namn], hann du kika på audit-videon jag skickade? Snabb sammanfattning: [1 konkret grej]. Värt en kort koll? [Cal-länk]</pre>
-      </div>
-      <div class="script">
-        <div class="script-h"><span class="nm">Uppföljning 2 (dag +6)</span><button class="copy">Kopiera</button></div>
-        <pre>Hej [Namn], sista pingen från mig — om bokningar via sajten inte är prio just nu säg bara till så släpper jag. Annars: [Cal-länk]. Ha det fint!</pre>
-      </div>
-      <div class="script">
-        <div class="script-h"><span class="nm">Instagram DM</span><button class="copy">Kopiera</button></div>
+        <div class="script-h"><span class="nm">Instagram DM</span><span class="tag">DM</span><button class="copy">Kopiera</button></div>
         <pre>Hej! Gillar verkligen det ni gör på [Klinik] 🙌 Jag hjälper kliniker få fler bokningar via sajt + Google och gjorde en snabb gratis-analys av er sajt — vill du att jag skickar den?</pre>
       </div>
+
       <div class="script">
-        <div class="script-h"><span class="nm">Discovery call (20 min)</span><button class="copy">Kopiera</button></div>
-        <pre>1. Nuläge & mål (5 min)
-2. Vad problemet kostar idag (3 min)
-3. Visa demo + audit (5 min)
-4. Erbjudande + pris + risk-vändare (4 min)
-5. Stäng / boka nästa steg (3 min)</pre>
+        <div class="script-h"><span class="nm">LinkedIn — kontaktförfrågan</span><span class="tag">DM</span><button class="copy">Kopiera</button></div>
+        <pre>Hej [Namn]! Jag såg att ni driver [Klinik] och imponerades av er profil. Jag hjälper kliniker att ranka bättre på Google och konvertera fler besökare till bokningar — vill gärna koppla ihop oss!</pre>
       </div>
+
+      <div class="script">
+        <div class="script-h"><span class="nm">LinkedIn DM (efter accept)</span><span class="tag">DM</span><button class="copy">Kopiera</button></div>
+        <pre>Tack för att du accepterade [Namn]! Jag kollade er sajt och spelade in en kort 3-min genomgång med konkreta förbättringar — gratis, värde 799 kr. Vill du att jag skickar den? [Loom-länk]</pre>
+      </div>
+
+      <div class="script">
+        <div class="script-h"><span class="nm">Loom-genomgång</span><span class="tag">Video</span><button class="copy">Kopiera</button></div>
+        <pre>Hej [Namn]! Jag kollade på [Klinik]s sajt och spelade in en snabb 3-min genomgång — hittade 3 saker som troligen kostar er bokningar. Byggde också ett snabbt exempel på hur en ny sida kan se ut för er. [Loom-länk]. Ser det intressant ut — boka en kvart: https://cal.eu/bahkobyra/15min</pre>
+      </div>
+
+      <div class="script">
+        <div class="script-h"><span class="nm">Telefon — cold call</span><span class="tag">Telefon</span><button class="copy">Kopiera</button></div>
+        <pre>Hej, jag heter Mathias och ringer från Bahko Byrå. Vi specialiserar oss på att hjälpa kliniker som [Klinik] att få fler bokningar via Google och er sajt. Jag har faktiskt tittat på er hemsida och har ett par konkreta förbättringsidéer — tar det 2 minuter att berätta?
+
+[Om ja] Bra! Jag kan skicka en gratis video-audit — 3 minuter, konkreta tips. Vilket är bästa e-posten?
+
+[Om nej/upptagen] Inga problem! Kan jag skicka en kort mejl istället? Vad är er e-postadress?</pre>
+      </div>
+
+      <div class="script">
+        <div class="script-h"><span class="nm">Uppföljning 1 (dag +3)</span><span class="tag">Follow-up</span><button class="copy">Kopiera</button></div>
+        <pre>Hej [Namn], hann du kika på audit-videon jag skickade? Snabb sammanfattning: [1 konkret grej]. Värt en kort koll? https://cal.eu/bahkobyra/15min</pre>
+      </div>
+
+      <div class="script">
+        <div class="script-h"><span class="nm">Uppföljning 2 (dag +6)</span><span class="tag">Follow-up</span><button class="copy">Kopiera</button></div>
+        <pre>Hej [Namn], sista pingen från mig — om bokningar via sajten inte är prio just nu säg bara till så släpper jag. Annars: https://cal.eu/bahkobyra/15min. Ha det fint!</pre>
+      </div>
+
+      <div class="script">
+        <div class="script-h"><span class="nm">Discovery call (20 min)</span><span class="tag">Möte</span><button class="copy">Kopiera</button></div>
+        <pre>1. Nuläge & mål — var är ni nu, vart vill ni? (5 min)
+2. Vad problemet kostar idag — bokningar via sajt vs. telefon? (3 min)
+3. Visa demo + audit — konkret exempel på Élara-kliniken (5 min)
+4. Erbjudande + pris + risk-vändare — 35k + 9k/mån, 90-dagarsgaranti (4 min)
+5. Stäng / boka nästa steg — offert eller pilotprojekt? (3 min)</pre>
+      </div>
+
     </div>
   </section>
 
@@ -287,7 +425,7 @@ Hej [Namn], jag driver Bahko Byrå — vi hjälper kliniker få fler patientbokn
       <div class="check-row" data-id="c2"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Skicka 20 personliga outreach (Loom/audit)</span></div>
       <div class="check-row" data-id="c3"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Följ upp alla från dag −3 och −6</span></div>
       <div class="check-row" data-id="c4"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Logga varje touch + uppdatera pipeline i CRM</span></div>
-      <div class="check-row" data-id="c5"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Bekräfta & förbered dagens discovery calls</span></div>
+      <div class="check-row" data-id="c5"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Bekräfta &amp; förbered dagens discovery calls</span></div>
       <div class="check-row" data-id="c6"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Skicka offerter samma dag som mötet</span></div>
       <button class="reset" id="reset">↺ Nollställ dagen</button>
     </div>
@@ -296,44 +434,229 @@ Hej [Namn], jag driver Bahko Byrå — vi hjälper kliniker få fler patientbokn
 
 </div>
 
+<!-- LEAD MODAL -->
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <button class="modal-close" id="modal-close">×</button>
+    <h4 id="modal-title">Nytt lead</h4>
+    <div class="field"><label>Kliniknamn</label><input id="f-name" type="text" placeholder="Élara Klinik"></div>
+    <div class="field"><label>Webbplats</label><input id="f-web" type="url" placeholder="https://..."></div>
+    <div class="field"><label>Kontaktperson / Beslutsfattare</label><input id="f-contact" type="text" placeholder="Namn — Roll"></div>
+    <div class="field"><label>Telefon</label><input id="f-phone" type="tel" placeholder="+46 70 000 00 00"></div>
+    <div class="field"><label>E-post</label><input id="f-email" type="email" placeholder="namn@klinik.se"></div>
+    <div class="field"><label>Ort</label><input id="f-city" type="text" placeholder="Stockholm"></div>
+    <div class="field"><label>Status</label>
+      <select id="f-status">
+        <option>Ny</option><option>Kontaktad</option><option>Svar</option>
+        <option>Möte</option><option>Offert</option><option>Stängd</option>
+      </select>
+    </div>
+    <div class="field"><label>Anteckningar</label><textarea id="f-notes" placeholder="Senaste touch, beslutspunkt, follow-up datum…"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn-del" id="btn-del" style="display:none">Radera</button>
+      <button class="btn-save" id="btn-save">Spara lead</button>
+    </div>
+  </div>
+</div>
+
 <footer>Bahko Byrå · Synlighet som säljer · Intern dashboard (noindex)</footer>
 
 <script>
-const today = new Date().toISOString().slice(0,10);
-const wk = (()=>{const d=new Date();const o=new Date(d.getFullYear(),0,1);return d.getFullYear()+'-W'+Math.ceil((((d-o)/86400000)+o.getDay()+1)/7);})();
+const today=new Date().toISOString().slice(0,10);
+const wk=(()=>{const d=new Date();const o=new Date(d.getFullYear(),0,1);return d.getFullYear()+'-W'+Math.ceil((((d-o)/86400000)+o.getDay()+1)/7);})();
 
-/* Counters: outreach=daily, meetings/quotes=weekly */
+/* ── KPI COUNTERS ── */
 document.querySelectorAll('[data-counter]').forEach(c=>{
-  const key=c.dataset.counter, goal=+c.dataset.goal;
-  const daily = key==='outreach';
-  const stamp = daily?today:wk;
-  const storeKey='bb_'+key;
+  const key=c.dataset.counter,goal=+c.dataset.goal,daily=key==='outreach',stamp=daily?today:wk,storeKey='bb_'+key;
   const read=()=>{try{const o=JSON.parse(localStorage.getItem(storeKey)||'{}');return o.stamp===stamp?(+o.val||0):0;}catch{return 0;}};
   const write=v=>localStorage.setItem(storeKey,JSON.stringify({stamp,val:v}));
-  const numEl=c.querySelector('.num'), bar=c.parentElement.querySelector('.bar i');
+  const numEl=c.querySelector('.num'),bar=c.parentElement.querySelector('.bar i');
   let val=read();
   const render=()=>{numEl.textContent=val;if(bar)bar.style.width=Math.min(100,(val/goal)*100)+'%';};
-  c.querySelectorAll('button').forEach(b=>b.onclick=()=>{val=Math.max(0,val+ (+b.dataset.step));write(val);render();});
+  c.querySelectorAll('button').forEach(b=>b.onclick=()=>{val=Math.max(0,val+(+b.dataset.step));write(val);render();});
   render();
 });
 
-/* Copy buttons */
+/* ── COPY BUTTONS ── */
 document.querySelectorAll('.script').forEach(s=>{
-  const btn=s.querySelector('.copy'), txt=s.querySelector('pre').innerText;
-  btn.onclick=async()=>{try{await navigator.clipboard.writeText(txt);}catch{const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();}btn.textContent='Kopierat ✓';btn.classList.add('done');setTimeout(()=>{btn.textContent='Kopiera';btn.classList.remove('done');},1600);};
+  const btn=s.querySelector('.copy'),txt=s.querySelector('pre').innerText;
+  btn.onclick=async()=>{
+    try{await navigator.clipboard.writeText(txt);}
+    catch{const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();}
+    btn.textContent='Kopierat ✓';btn.classList.add('done');
+    setTimeout(()=>{btn.textContent='Kopiera';btn.classList.remove('done');},1600);
+  };
 });
 
-/* Checklist — resets daily */
+/* ── CHECKLIST ── */
 const CK='bb_check';
 function loadCheck(){let o={};try{o=JSON.parse(localStorage.getItem(CK)||'{}');}catch{}if(o.stamp!==today)o={stamp:today,done:{}};return o;}
 function saveCheck(o){localStorage.setItem(CK,JSON.stringify(o));}
 let ck=loadCheck();
 document.querySelectorAll('.check-row').forEach(r=>{
-  const id=r.dataset.id;
-  if(ck.done[id])r.classList.add('done');
+  const id=r.dataset.id;if(ck.done[id])r.classList.add('done');
   r.onclick=()=>{r.classList.toggle('done');ck.done[id]=r.classList.contains('done');saveCheck(ck);};
 });
-document.getElementById('reset').onclick=(e)=>{e.stopPropagation();ck={stamp:today,done:{}};saveCheck(ck);document.querySelectorAll('.check-row').forEach(r=>r.classList.remove('done'));};
+document.getElementById('reset').onclick=e=>{e.stopPropagation();ck={stamp:today,done:{}};saveCheck(ck);document.querySelectorAll('.check-row').forEach(r=>r.classList.remove('done'));};
+
+/* ── CRM SEED DATA ── */
+const SEED=[
+  {id:'s01',name:'Akademikliniken',web:'https://ak.se',contact:'Magnus Jansson — VD',phone:'08-614 54 00',email:'info@ak.se',city:'Stockholm / Göteborg / Malmö',status:'Ny',notes:'Nordens ledande estetiska klinik. Ägd av Polaris PE. Grundare Per Hedén & Jan Jernbeck.',updated:today},
+  {id:'s02',name:'Nordiska Kliniken',web:'https://www.nordiskakliniken.se',contact:'Sam Besara — VD',phone:'',email:'',city:'Stockholm / Göteborg',status:'Ny',notes:'Förvärvad av Bergman Clinics. Premiumklinik plastikkirurgi.',updated:today},
+  {id:'s03',name:'Stjärnkliniken',web:'https://www.stjarnkliniken.com',contact:'Gustav Ingestad — VD',phone:'',email:'',city:'Stockholm / Göteborg / multi',status:'Ny',notes:'13 kliniker på 9 orter. Grundare & ordförande: Fredrik Brännström.',updated:today},
+  {id:'s04',name:'RealKliniken',web:'https://realkliniken.se',contact:'Dr. Johan Bilir — Grundare & Ansvarig läkare',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Läkarledd. Botox, fillers, trådlyft, skinbooster.',updated:today},
+  {id:'s05',name:'Beauty Kliniken',web:'https://www.beautykliniken.se',contact:'Kaveh Mirzadeh — Klinikchef & Läkare',phone:'0736729608',email:'info@beautykliniken.se',city:'Stockholm (Idungatan 7)',status:'Ny',notes:'Läpp, rynkor, hårtransplantation. Direktkontakt via mejl.',updated:today},
+  {id:'s06',name:'Stureplanskliniken',web:'https://www.stureplanskliniken.se',contact:'Grundaren — Läkare (se hemsida)',phone:'',email:'',city:'Stockholm (Stureplan)',status:'Ny',notes:'Grundare = läkare, internationell föreläsare sedan 1996. Exklusivt läge.',updated:today},
+  {id:'s07',name:'Form Clinic',web:'https://www.formclinic.se',contact:'Zoje Zenelaj — Grundare & Sjuksköterska',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Legitimerad sjuksköterska. Bra DM-prospect på Instagram.',updated:today},
+  {id:'s08',name:'Amandakliniken',web:'https://amandakliniken.se',contact:'Amanda Siberg — Grundare & Sjuksköterska',phone:'',email:'',city:'Nacka / Stockholm',status:'Ny',notes:'Verksam sedan 2010. Saltsjöbaden.',updated:today},
+  {id:'s09',name:'ATH Beauty Klinik',web:'https://athbeautyklinik.se',contact:'Marwa Atheer — Grundare',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Grundardriven. Bra Instagram-närvaro.',updated:today},
+  {id:'s10',name:'SwedEsthetic',web:'https://www.swedesthetic.se',contact:'Leyla Siris — Ägare & Sjuksköterska',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Sophiahemmet-utbildad. Lång erfarenhet i branschen.',updated:today},
+  {id:'s11',name:'Art Face',web:'https://www.artface.se',contact:'Jenny Andersson — Ägare & Sjuksköterska',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Solopraktiker. Alla behandlingar utförs av Jenny.',updated:today},
+  {id:'s12',name:'FaceSkills',web:'https://faceskills.se',contact:'Ägare — se hemsida',phone:'',email:'',city:'Stockholm (Östermalm)',status:'Ny',notes:'17 år erfarenhet. Östermalm-läge. Injektionsspecialist.',updated:today},
+  {id:'s13',name:'Derma Aesthetics Clinic',web:'https://daclinic.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Specialist på injektionsbehandlingar.',updated:today},
+  {id:'s14',name:'DOCTOR_K',web:'https://doctork.se',contact:'Dr. K — se hemsida',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Ledande klinik inom estetisk injektionsbehandling.',updated:today},
+  {id:'s15',name:'Östermalmkliniken',web:'https://ostermalmkliniken.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Stockholm (Östermalm)',status:'Ny',notes:'Etablerad klinik på Östermalm.',updated:today},
+  {id:'s16',name:'The Faculty',web:'https://thefaculty.com',contact:'Grundare — se hemsida',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Premium plastikkirurgi. "Vetenskap möter skönhet."',updated:today},
+  {id:'s17',name:'Stockholm Plastikkirurgi',web:'https://stockholmplastikkirurgi.com',contact:'Klinikansvarig läkare — se hemsida',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Driven av kvinnlig plastikkirurg. Erfarenhet från Sthlm, Gbg, Lkpg.',updated:today},
+  {id:'s18',name:'Plastikkirurgen Stockholm',web:'https://plastikkirurgen.com',contact:'Mats von Wachenfeldt — Överläkare & Plastikkirurg',phone:'',email:'',city:'Stockholm / Uppsala',status:'Ny',notes:'12 500+ ingrepp. Täcker också Uppsala.',updated:today},
+  {id:'s19',name:'Estetiskainstitutet',web:'https://estetiskainstitutet.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Plastikkirurgi och estetisk vård. Internationell profil.',updated:today},
+  {id:'s20',name:'Estetik & Hälsa',web:'https://www.estetikochhalsa.se',contact:'Grundare — se hemsida',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Startades 2020. Kombinerar estetik och hälsa.',updated:today},
+  {id:'s21',name:'Skönhetskliniken Göteborg',web:'https://www.skonhetskliniken.se',contact:'Katarina Jochems — Grundare & Sjuksköterska',phone:'',email:'',city:'Göteborg',status:'Ny',notes:'Legitimerad sjuksköterska och injektionsspecialist.',updated:today},
+  {id:'s22',name:'Advanced Clinic',web:'https://advancedclinic.se',contact:'Josefine Runesson — Grundare & Sjuksköterska',phone:'',email:'',city:'Göteborg',status:'Ny',notes:'Verksam sedan 2010. Certifierad injektionsbehandlare.',updated:today},
+  {id:'s23',name:'Göteborg Estetik',web:'https://www.gbgestetik.se',contact:'Mary Frindt — Grundare & Tandläkare',phone:'',email:'',city:'Göteborg (Grimmered)',status:'Ny',notes:'Tandläkare som driver estetisk klinik. Startade 2014.',updated:today},
+  {id:'s24',name:'Vikor Klinik',web:'https://www.vikor.se',contact:'Richard — Grundare & Specialistläkare',phone:'',email:'',city:'Göteborg / Jönköping',status:'Ny',notes:'Specialistläkare med 12+ år erfarenhet. Tvåstadsverksamhet.',updated:today},
+  {id:'s25',name:'Elite Clinic',web:'https://eliteclinic.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Göteborg',status:'Ny',notes:'Premium plastikkirurgi och behandlingar.',updated:today},
+  {id:'s26',name:'Gothia Kliniken',web:'https://gothiakliniken.se',contact:'Ägare — se hemsida',phone:'',email:'gothiakliniken@gmail.com',city:'Göteborg',status:'Ny',notes:'Hudvård, fillers, tandblekning, spa. Medlem i Estetiska Injektionsrådet.',updated:today},
+  {id:'s27',name:'Göta Hudklinik',web:'https://www.gotahudklinik.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Göteborg (Erik Dahlbergsgatan 14)',status:'Ny',notes:'Botox, fillers, hudvård. Centralt läge.',updated:today},
+  {id:'s28',name:'Exklusiv Estetik',web:'https://exklusivestetik.se',contact:'Dr. Sylvia Svedberg — Ägare & Läkare',phone:'',email:'',city:'Göteborg',status:'Ny',notes:'Läkarledd premium-klinik.',updated:today},
+  {id:'s29',name:'NOIR by M',web:'https://noirbym.com',contact:'Maya — Grundare',phone:'',email:'',city:'Malmö (Gamla Staden)',status:'Ny',notes:'Legitimerade sjuksköterskor och läkare. Modern estetik-profil.',updated:today},
+  {id:'s30',name:'Estetikcentrum',web:'https://estetikcentrum.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Malmö',status:'Ny',notes:'Skånes största skönhetsklinik. Bröstkirurgi, bukplastik, injektioner, hudvård.',updated:today},
+  {id:'s31',name:'Bellakliniken',web:'https://bellakliniken.com',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Helsingborg (Centralstationen)',status:'Ny',notes:'Legitimerad personal. Tredje våningen i centralstationen.',updated:today},
+  {id:'s32',name:'Estetikspecialisten Malmö',web:'https://www.bokadirekt.se/places/estetikspecialisten-4654',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Malmö (Davidshallstorg)',status:'Ny',notes:'Modern hudvårdsklinik i centrala Malmö.',updated:today},
+  {id:'s33',name:'Örebro Estetik',web:'https://orebroestetik.se',contact:'Linda Flemsjö — Grundare & Sjuksköterska',phone:'',email:'info@orebroestetik.se',city:'Örebro',status:'Ny',notes:'Legitimerad sjuksköterska. info@orebroestetik.se',updated:today},
+  {id:'s34',name:'Hudläkarna Linköping',web:'https://hudlakarna.se',contact:'Dr. Jalal Salih — Läkare',phone:'',email:'',city:'Linköping',status:'Ny',notes:'Dermatologi + estetiska behandlingar.',updated:today},
+  {id:'s35',name:'The Clinic Västerås',web:'https://theclinicvasteras.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Västerås',status:'Ny',notes:'Laser & Estetik. Botox, filler, laserhårborttagning.',updated:today},
+  {id:'s36',name:'Klinik Forma',web:'https://klinikforma.se',contact:'Grundare (Tandhygienist) — se hemsida',phone:'036 550 44 44',email:'info@klinikforma.se',city:'Jönköping',status:'Ny',notes:'Startad 2016. info@klinikforma.se · 036-550 44 44',updated:today},
+  {id:'s37',name:'Estetik By Jelle',web:'https://www.estetikbyjelle.se',contact:'Jelena Gajic — Grundare & Sjuksköterska',phone:'',email:'',city:'Växjö',status:'Ny',notes:'15+ år erfarenhet. Legitimerad sjuksköterska.',updated:today},
+  {id:'s38',name:'Estetiska kliniken by Sandra',web:'https://www.estetiskaklinikenjkpg.se',contact:'Sandra — Grundare & Specialist',phone:'',email:'',city:'Jönköping / Värnamo',status:'Ny',notes:'Certifierad: fillers, botox, profhilo, PRP/PRF, trådlyft.',updated:today},
+  {id:'s39',name:'EH Estetik',web:'https://ehestetik.se',contact:'Ägare — se hemsida',phone:'',email:'',city:'Jönköping / Linköping / Växjö / Skövde',status:'Ny',notes:'Fyra orter. Botox och läppförstoring.',updated:today},
+  {id:'s40',name:'Elins estetiska',web:'https://www.elinsestetiska.se',contact:'Elin — Grundare & Sjuksköterska',phone:'',email:'',city:'Sundsvall',status:'Ny',notes:'Legitimerad sjuksköterska. Botox, fillers, PRP.',updated:today},
+  {id:'s41',name:'Art Clinic',web:'https://artclinic.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Sverige',status:'Ny',notes:'Konsultation och estetiska behandlingar.',updated:today},
+  {id:'s42',name:'Klinik Estetik Stockholm',web:'https://klinikestetik.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Stockholm (Kungsgatan 37)',status:'Ny',notes:'Plastikkirurgi och estetik på Kungsgatan.',updated:today},
+  {id:'s43',name:'Estetik & Vård Örebrokliniken',web:'https://www.bokadirekt.se/places/orebrokliniken-25546',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Örebro',status:'Ny',notes:'Örebrokliniken-lokalisering. Botox, fillers.',updated:today},
+];
+
+const CRM_KEY='bb_crm_v1';
+function loadLeads(){
+  try{
+    const raw=localStorage.getItem(CRM_KEY);
+    if(raw)return JSON.parse(raw);
+    saveLeads(SEED);return SEED;
+  }catch{return SEED;}
+}
+function saveLeads(arr){localStorage.setItem(CRM_KEY,JSON.stringify(arr));}
+
+let leads=loadLeads();
+let editId=null;
+const STATUSES=['Ny','Kontaktad','Svar','Möte','Offert','Stängd'];
+const STATUS_CLS={Ny:'s-ny',Kontaktad:'s-kontaktad',Svar:'s-svar','Möte':'s-mote',Offert:'s-offert',Stängd:'s-stangd'};
+
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function renderCRM(){
+  const q=document.getElementById('crm-search').value.toLowerCase();
+  const sf=document.getElementById('crm-status-filter').value;
+  const filtered=leads.filter(l=>{
+    const txt=(l.name+' '+l.contact+' '+l.city+' '+l.phone+' '+l.notes).toLowerCase();
+    return(!q||txt.includes(q))&&(!sf||l.status===sf);
+  });
+  const tbody=document.getElementById('crm-body');
+  tbody.innerHTML='';
+  if(!filtered.length){
+    tbody.innerHTML='<tr><td colspan="5" style="text-align:center;padding:2rem;color:var(--ink-35)">Inga leads — klicka "+ Nytt lead" för att lägga till</td></tr>';
+  } else {
+    filtered.forEach(l=>{
+      const tr=document.createElement('tr');tr.style.cursor='pointer';
+      let wb='';
+      try{wb=l.web?`<a class="crm-link" href="${l.web}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${new URL(l.web).hostname.replace('www.','')}</a>`:'';}catch{}
+      const sc=STATUS_CLS[l.status]||'s-ny';
+      tr.innerHTML=`<td><span class="crm-name">${esc(l.name)}</span><br>${wb}</td><td>${esc(l.contact||'—')}</td><td>${esc(l.phone||'—')}</td><td>${esc(l.city||'—')}</td><td><span class="status-badge ${sc}" data-id="${l.id}">${esc(l.status)}</span></td>`;
+      tr.onclick=()=>openModal(l.id);
+      tbody.appendChild(tr);
+    });
+  }
+  document.getElementById('crm-count').textContent=`${filtered.length} av ${leads.length} leads`;
+}
+
+function openModal(id){
+  editId=id||null;
+  const l=id?leads.find(x=>x.id===id):{};
+  document.getElementById('modal-title').textContent=id?'Redigera lead':'Nytt lead';
+  document.getElementById('f-name').value=l.name||'';
+  document.getElementById('f-web').value=l.web||'';
+  document.getElementById('f-contact').value=l.contact||'';
+  document.getElementById('f-phone').value=l.phone||'';
+  document.getElementById('f-email').value=l.email||'';
+  document.getElementById('f-city').value=l.city||'';
+  document.getElementById('f-status').value=l.status||'Ny';
+  document.getElementById('f-notes').value=l.notes||'';
+  document.getElementById('btn-del').style.display=id?'':'none';
+  document.getElementById('modal-bg').classList.add('open');
+  setTimeout(()=>document.getElementById('f-name').focus(),50);
+}
+function closeModal(){document.getElementById('modal-bg').classList.remove('open');editId=null;}
+
+document.getElementById('crm-add').onclick=()=>openModal(null);
+document.getElementById('modal-close').onclick=closeModal;
+document.getElementById('modal-bg').onclick=e=>{if(e.target===e.currentTarget)closeModal();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+document.getElementById('btn-save').onclick=()=>{
+  const name=document.getElementById('f-name').value.trim();
+  if(!name)return alert('Kliniknamn krävs');
+  const lead={
+    id:editId||Date.now().toString(),name,
+    web:document.getElementById('f-web').value.trim(),
+    contact:document.getElementById('f-contact').value.trim(),
+    phone:document.getElementById('f-phone').value.trim(),
+    email:document.getElementById('f-email').value.trim(),
+    city:document.getElementById('f-city').value.trim(),
+    status:document.getElementById('f-status').value,
+    notes:document.getElementById('f-notes').value.trim(),
+    updated:today
+  };
+  if(editId){const i=leads.findIndex(x=>x.id===editId);if(i>-1)leads[i]=lead;}
+  else leads.unshift(lead);
+  saveLeads(leads);closeModal();renderCRM();
+};
+
+document.getElementById('btn-del').onclick=()=>{
+  if(!editId||!confirm('Radera detta lead?'))return;
+  leads=leads.filter(x=>x.id!==editId);
+  saveLeads(leads);closeModal();renderCRM();
+};
+
+document.getElementById('crm-body').addEventListener('click',e=>{
+  const b=e.target.closest('.status-badge');if(!b)return;
+  e.stopPropagation();
+  const l=leads.find(x=>x.id===b.dataset.id);if(!l)return;
+  l.status=STATUSES[(STATUSES.indexOf(l.status)+1)%STATUSES.length];
+  saveLeads(leads);renderCRM();
+});
+
+document.getElementById('crm-search').oninput=renderCRM;
+document.getElementById('crm-status-filter').onchange=renderCRM;
+
+document.getElementById('crm-export').onclick=()=>{
+  const rows=[['Klinik','Webbplats','Kontakt','Telefon','E-post','Ort','Status','Anteckningar','Uppdaterad']];
+  leads.forEach(l=>rows.push([l.name,l.web,l.contact,l.phone,l.email,l.city,l.status,l.notes,l.updated]));
+  const csv=rows.map(r=>r.map(v=>'"'+String(v||'').replace(/"/g,'""')+'"').join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,﻿'+encodeURIComponent(csv);
+  a.download='bahkobyra-leads-'+today+'.csv';a.click();
+};
+
+renderCRM();
 </script>
 </body>
 </html>

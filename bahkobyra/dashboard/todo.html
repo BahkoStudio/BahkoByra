@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bahko Byrå — Roadmap &amp; Todo</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#EDE8DF;--cream-2:#F4F0E8;--cream-3:#FBF8F3;
+  --navy:#181C38;--gold:#C9A96E;--gold-lt:#E3C88E;--gold-dk:#B08F4D;
+  --ink:#181C38;--ink-70:rgba(24,28,56,.72);--ink-55:rgba(24,28,56,.56);--ink-35:rgba(24,28,56,.35);
+  --line:rgba(201,169,110,.24);--line-2:rgba(201,169,110,.55);
+  --paper:#F5F2EB;--paper-70:rgba(245,242,235,.7);--paper-45:rgba(245,242,235,.45);
+  --ok:#4F9D6B;--high:#C94A4A;--warn:#C98A3A;
+  --display:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;
+  --r:4px;--r-lg:10px;--gut:clamp(1.1rem,4vw,2.6rem);
+}
+html{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;padding-bottom:4rem}
+a{color:var(--gold-dk)}
+a:hover{text-decoration:underline}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--gold);color:var(--navy)}
+
+.top{position:sticky;top:0;z-index:50;background:rgba(24,28,56,.97);color:var(--paper);backdrop-filter:blur(12px);
+  padding:1rem var(--gut);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-bottom:1px solid rgba(201,169,110,.25)}
+.brand{font-family:var(--display);font-size:1.3rem;font-weight:500;letter-spacing:.01em}
+.brand em{font-style:italic;color:var(--gold-lt)}
+.back{font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.55rem 1rem;border-radius:var(--r);border:1px solid var(--line-2);color:var(--paper-70);transition:.25s;text-decoration:none}
+.back:hover{color:var(--navy);background:var(--gold);border-color:var(--gold)}
+
+.wrap{max-width:900px;margin:0 auto;padding:0 var(--gut)}
+.hero-sec{padding:clamp(2.5rem,6vw,4rem) 0 1.5rem}
+.hero-sec h1{font-family:var(--display);font-size:clamp(2rem,5vw,3.2rem);font-weight:500;line-height:1.15;margin-bottom:.6rem}
+.hero-sec h1 em{font-style:italic;color:var(--gold-dk)}
+.hero-sec p{font-size:.92rem;color:var(--ink-55);max-width:560px;line-height:1.7}
+
+.sec{margin-top:clamp(2.5rem,5vw,3.5rem)}
+.sec-h{font-size:.62rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-dk);
+  display:flex;align-items:center;gap:.7rem;margin-bottom:1.2rem}
+.sec-h::before{content:'';width:24px;height:1px;background:var(--gold)}
+
+.items{display:flex;flex-direction:column;gap:.7rem}
+.item{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.1rem 1.3rem;display:grid;grid-template-columns:auto 1fr auto;gap:.8rem 1rem;align-items:start}
+.item .prio{font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .6rem;border-radius:50px;white-space:nowrap;margin-top:.1rem}
+.p-hog{background:rgba(201,74,74,.12);color:var(--high)}
+.p-med{background:rgba(201,169,110,.2);color:var(--gold-dk)}
+.p-lag{background:rgba(79,157,107,.12);color:var(--ok)}
+.item .title{font-family:var(--display);font-size:1.1rem;font-weight:500;margin-bottom:.25rem}
+.item .desc{font-size:.78rem;color:var(--ink-55);line-height:1.6}
+.item .steps{margin-top:.6rem;list-style:none;display:flex;flex-direction:column;gap:.3rem}
+.item .steps li{font-size:.75rem;color:var(--ink-70);display:flex;gap:.5rem}
+.item .steps li::before{content:'→';color:var(--gold-dk);flex-shrink:0}
+.item .tag-chip{font-size:.55rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;border-radius:50px;background:rgba(24,28,56,.06);color:var(--ink-55);margin-top:.05rem;white-space:nowrap}
+
+.flow{background:var(--navy);color:var(--paper);border-radius:var(--r-lg);padding:1.5rem 1.8rem;border:1px solid rgba(201,169,110,.2);margin-bottom:1rem}
+.flow h3{font-family:var(--display);font-size:1.4rem;font-weight:500;margin-bottom:.3rem}
+.flow .sub{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:1.2rem}
+.flow-steps{display:flex;flex-direction:column;gap:.5rem}
+.flow-step{display:flex;gap:1rem;align-items:flex-start}
+.flow-step .num{width:28px;height:28px;border-radius:50%;background:rgba(201,169,110,.18);border:1px solid rgba(201,169,110,.35);display:grid;place-items:center;font-size:.68rem;font-weight:700;color:var(--gold-lt);flex-shrink:0;margin-top:.05rem}
+.flow-step .body strong{font-size:.82rem;color:var(--paper);display:block;margin-bottom:.15rem}
+.flow-step .body p{font-size:.74rem;color:var(--paper-45);line-height:1.55}
+.flow-connector{margin-left:14px;width:1px;height:16px;background:rgba(201,169,110,.2)}
+
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.8rem;margin-top:1rem}
+.tool{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1rem 1.1rem}
+.tool .tn{font-family:var(--display);font-size:1.05rem;font-weight:500;margin-bottom:.25rem}
+.tool .td{font-size:.73rem;color:var(--ink-55);line-height:1.5}
+.tool .tc{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dk);margin-top:.4rem}
+
+footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.62rem;letter-spacing:.1em;color:var(--ink-35);border-top:1px solid var(--line)}
+@media(max-width:640px){.item{grid-template-columns:1fr}.item .prio{width:fit-content}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="brand">Bahko <em>Byrå</em></div>
+  <a class="back" href="/dashboard/">← Dashboard</a>
+</div>
+
+<div class="wrap">
+
+  <div class="hero-sec">
+    <h1>Roadmap &amp; <em>Nästa steg</em></h1>
+    <p>Vad som behöver byggas för bahkobyra.se — prioriterat efter affärsimpakt. Fokus på lead-automation, nyhetsbrev och konverteringsoptimering.</p>
+  </div>
+
+  <section class="sec">
+    <div class="sec-h">E-post automation — kritisk infrastruktur</div>
+
+    <div class="flow">
+      <h3>Lead-magnet automation</h3>
+      <div class="sub">Trigger → sekvens → möte</div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="num">1</div>
+          <div class="body"><strong>Trigger: Formulär skickat</strong><p>Gratis analys, gratis guide eller video-tips — Formspree webhook → MailerLite/Brevo automation startar</p></div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="num">2</div>
+          <div class="body"><strong>Direkt (0 min): Välkomstmejl</strong><p>Leverera utlovet: guiden/audit-videon/tipsen. "Tack för att du laddar ned — här är din [resurs]." Sätt förväntningarna på nästa mejl.</p></div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="num">3</div>
+          <div class="body"><strong>Dag 2: Social bevis</strong><p>"Såhär hjälpte vi [typ av klinik] att få 40% fler bokningar på 90 dagar." Kort case study. Soft CTA: "Nyfiken? Boka 15 min."</p></div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="num">4</div>
+          <div class="body"><strong>Dag 5: Din gratis audit</strong><p>"Jag kollade faktiskt din sajt — hittade 3 saker." Personlig känsla. Stark CTA till Cal-länken.</p></div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="num">5</div>
+          <div class="body"><strong>Dag 10: Sista chansen</strong><p>"Sista mejlet från mig om du inte är redo. Här är ett konkret 90-dagarsresultat om du är. [Cal-länk]."</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="items">
+      <div class="item">
+        <span class="prio p-hog">Hög</span>
+        <div class="content">
+          <div class="title">Sätt upp MailerLite eller Brevo</div>
+          <div class="desc">Gratis upp till 500–1000 kontakter. Anslut Formspree-webhooks. Bygg välkomstsekvensen ovan.</div>
+          <ul class="steps">
+            <li>Skapa konto på mailerlite.com (gratis)</li>
+            <li>Lägg till API-webhook i Formspree → Settings → Webhooks</li>
+            <li>Bygg automation: trigger "new subscriber" → skicka sekvens</li>
+            <li>Importera nuvarande leads som startpunkt</li>
+          </ul>
+        </div>
+        <span class="tag-chip">Auto</span>
+      </div>
+      <div class="item">
+        <span class="prio p-hog">Hög</span>
+        <div class="content">
+          <div class="title">Nyhetsbrev — månadsutskick</div>
+          <div class="desc">1 konkret tips/mån om hur kliniker får fler bokningar online. Håll listan varm, bygg auktoritet, generera inbound leads.</div>
+          <ul class="steps">
+            <li>Format: 1 tips + 1 case study + 1 CTA → boka möte</li>
+            <li>Planera 3 månader framåt (ämnen: Google Maps, before/after SEO, konvertering)</li>
+            <li>Lägg till "prenumerera"-widget i footer på hemsidan och gratis-sidorna</li>
+          </ul>
+        </div>
+        <span class="tag-chip">Content</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h">Bahkobyra.se — förbättringar</div>
+    <div class="items">
+
+      <div class="item">
+        <span class="prio p-hog">Hög</span>
+        <div class="content">
+          <div class="title">Google Analytics 4 + Search Console</div>
+          <div class="desc">Just nu vet du ingenting om trafiken. GA4 + Search Console visar var folk kommer ifrån och vad de söker.</div>
+          <ul class="steps">
+            <li>Skapa GA4-property → kopiera Measurement ID</li>
+            <li>Lägg till gtag.js i &lt;head&gt; på alla sidor</li>
+            <li>Verifiera Search Console med HTML-tagg</li>
+            <li>Skicka in sitemap: https://www.bahkobyra.se/sitemap.xml</li>
+          </ul>
+        </div>
+        <span class="tag-chip">Analytics</span>
+      </div>
+
+      <div class="item">
+        <span class="prio p-hog">Hög</span>
+        <div class="content">
+          <div class="title">Social bevis — case study eller testimonials</div>
+          <div class="desc">Sidan saknar konkreta resultat. Det är den viktigaste konverteringsfaktorn för en B2B-byrå.</div>
+          <ul class="steps">
+            <li>Kontakta 2–3 nöjda kunder eller bygg case study med Élara som exempel</li>
+            <li>Lägg till "Resultat"-sektion på index.html: "+40% bokningar", "Sida 1 på 60 dagar"</li>
+            <li>Schema markup för Reviews</li>
+          </ul>
+        </div>
+        <span class="tag-chip">Konvertering</span>
+      </div>
+
+      <div class="item">
+        <span class="prio p-med">Medel</span>
+        <div class="content">
+          <div class="title">Live chat — Crisp (gratis)</div>
+          <div class="desc">Fångar besökare som är nyfikna men inte redo att boka. crisp.chat har gratis-plan med bra UX.</div>
+          <ul class="steps">
+            <li>Skapa konto på crisp.chat (gratis)</li>
+            <li>Kopiera widget-kod → lägg till i &lt;head&gt;</li>
+            <li>Välkomstmeddelande: "Hej! Vill du se hur din klinik kan ranka bättre?"</li>
+          </ul>
+        </div>
+        <span class="tag-chip">Konvertering</span>
+      </div>
+
+      <div class="item">
+        <span class="prio p-med">Medel</span>
+        <div class="content">
+          <div class="title">Blog / innehållsmarknadsföring</div>
+          <div class="desc">3–5 SEO-artiklar fångar organisk trafik på lång sikt.</div>
+          <ul class="steps">
+            <li>Skapa /blogg/ katalog med enkel HTML-struktur</li>
+            <li>Artikel 1: "5 saker som gör att patienter lämnar din klinik-sajt"</li>
+            <li>Intern länkning från index.html → blogg</li>
+          </ul>
+        </div>
+        <span class="tag-chip">SEO</span>
+      </div>
+
+      <div class="item">
+        <span class="prio p-med">Medel</span>
+        <div class="content">
+          <div class="title">Google Business Profile för Bahko Byrå</div>
+          <div class="desc">Visas i Google Maps och sökresultat när folk söker "webbyrå kliniker" eller "SEO byrå".</div>
+          <ul class="steps">
+            <li>Gå till business.google.com → skapa profil</li>
+            <li>Adress, telefon, hemsida, öppettider, bilder</li>
+            <li>Uppmana tidiga kunder att lämna recension</li>
+          </ul>
+        </div>
+        <span class="tag-chip">SEO</span>
+      </div>
+
+      <div class="item">
+        <span class="prio p-med">Medel</span>
+        <div class="content">
+          <div class="title">Gratis analys-sidan: bättre formulär</div>
+          <div class="desc">Lägg till fält för lead-kvalificering: "Vad är er största utmaning?" och "Hur många nya patienter vill ni ha per månad?"</div>
+          <ul class="steps">
+            <li>Lägg till 2 extra fält i gratis-granskning.html</li>
+            <li>Tacksida-redirect efter inskickat formulär</li>
+          </ul>
+        </div>
+        <span class="tag-chip">Lead-gen</span>
+      </div>
+
+      <div class="item">
+        <span class="prio p-lag">Låg</span>
+        <div class="content">
+          <div class="title">Meta Pixel + LinkedIn Insight Tag</div>
+          <div class="desc">Retargeting av besökare som inte konverterade — viktigt när du börjar med betald annonsering.</div>
+          <ul class="steps">
+            <li>Meta Business Manager → Pixel ID</li>
+            <li>LinkedIn Campaign Manager → Insight Tag</li>
+            <li>Lägg till via Google Tag Manager</li>
+          </ul>
+        </div>
+        <span class="tag-chip">Annonsering</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h">Rekommenderad verktygsstack</div>
+    <div class="tools">
+      <div class="tool"><div class="tn">MailerLite</div><div class="td">E-postautomation + nyhetsbrev. Gratis upp till 1 000 kontakter.</div><div class="tc">mailerlite.com · Gratis</div></div>
+      <div class="tool"><div class="tn">Google Analytics 4</div><div class="td">Trafik-analys, konverteringsmål, händelsespårning.</div><div class="tc">analytics.google.com · Gratis</div></div>
+      <div class="tool"><div class="tn">Crisp Chat</div><div class="td">Live chat + e-post-sekvenser. Snyggt UI, mobilapp.</div><div class="tc">crisp.chat · Gratis</div></div>
+      <div class="tool"><div class="tn">Loom</div><div class="td">Spela in 3-min audit-videos per prospekt. Kärnverktyget i outreach.</div><div class="tc">loom.com · Gratis</div></div>
+      <div class="tool"><div class="tn">Cal.eu</div><div class="td">Boknings-länk — redan konfigurerad. Bahkobyra/15min.</div><div class="tc">Redan aktivt ✓</div></div>
+      <div class="tool"><div class="tn">Formspree</div><div class="td">Formulärhantering — alla leads samlas. Lägg till webhooks för automation.</div><div class="tc">Redan aktivt ✓</div></div>
+      <div class="tool"><div class="tn">Google Search Console</div><div class="td">Vilka söktermer du rankar på, indexeringsstatus, Core Web Vitals.</div><div class="tc">search.google.com · Gratis</div></div>
+      <div class="tool"><div class="tn">Canva Pro</div><div class="td">Säljmaterial, pitchdeck, sociala bilder. Håll brand-konsekvens.</div><div class="tc">canva.com · ~130 kr/mån</div></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>Bahko Byrå · Intern roadmap (noindex) · Uppdaterad juni 2026</footer>
+</body>
+</html>
