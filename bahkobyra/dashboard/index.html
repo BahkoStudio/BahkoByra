@@ -91,11 +91,6 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .panel li{font-size:.82rem;color:var(--paper-70);display:flex;gap:.6rem;line-height:1.5}
 .panel li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:.5rem}
 .panel .price{font-family:var(--display);font-size:1.7rem;color:var(--gold-lt);margin:.4rem 0 .2rem}
-.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
-.phase{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.2rem}
-.phase .goal-n{font-family:var(--display);font-size:1.8rem;font-weight:600;color:var(--navy)}
-.phase .lbl{font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:.6rem}
-.phase p{font-size:.76rem;color:var(--ink-55);line-height:1.6}
 
 /* ── SCRIPTS ── */
 .scripts{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.9rem}
@@ -169,8 +164,38 @@ tr:hover td{background:var(--cream-2)}
 .note{font-size:.7rem;color:var(--ink-35);margin-top:.6rem;line-height:1.5}
 footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.62rem;letter-spacing:.1em;color:var(--ink-35);border-top:1px solid var(--line)}
 
+/* ── OFFER ── */
+.offer-principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem}
+.op-card{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.2rem 1.3rem}
+.op-num{font-size:.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:.3rem}
+.op-title{font-family:var(--display);font-size:1.2rem;font-weight:600;color:var(--navy);margin-bottom:.4rem}
+.op-body{font-size:.76rem;color:var(--ink-55);line-height:1.55}
+.offer-body{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;margin-top:1.2rem}
+.offer-panel{display:flex;flex-direction:column}
+.offer-rows{display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem}
+.ofr{display:flex;align-items:flex-start;gap:.7rem;font-size:.8rem;color:var(--paper-70);line-height:1.5}
+.ofr-tag{font-size:.48rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.22rem .5rem;border-radius:50px;flex-shrink:0;margin-top:.2rem;white-space:nowrap}
+.ofr-tag.them{background:rgba(201,169,110,.25);color:var(--gold-lt)}
+.ofr-tag.real{background:rgba(79,180,107,.2);color:#6fcb84}
+.ofr-tag.fin{background:rgba(255,255,255,.12);color:var(--paper-70)}
+.ofr-tag.easy{background:rgba(150,110,230,.2);color:#c0a0f5}
+.roi-box{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.4rem 1.5rem}
+.roi-field{margin-bottom:.8rem}
+.roi-field label{display:block;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-55);margin-bottom:.3rem}
+.roi-field input{width:100%;font:inherit;font-size:.88rem;padding:.5rem .7rem;border:1px solid var(--line-2);border-radius:var(--r);background:#fff;color:var(--ink);outline:none;transition:.2s}
+.roi-field input:focus{border-color:var(--gold)}
+.roi-results{background:var(--navy);color:var(--paper);border-radius:var(--r);padding:1rem 1.1rem;display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.8rem}
+.roi-item .lv{font-family:var(--display);font-size:1.55rem;color:var(--gold-lt);line-height:1.1}
+.roi-item .ll{font-size:.58rem;color:var(--paper-45);letter-spacing:.08em;text-transform:uppercase;margin-top:.2rem}
+.roi-item.span2{grid-column:span 2}
+.oc-box{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.2rem 1.4rem;margin-top:.9rem}
+.oc-lbl{font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:.8rem}
+.oc-row{display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:var(--ink-70);padding:.35rem 0;border-bottom:1px solid var(--line)}
+.oc-row:last-child{border-bottom:none}
+.oc-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
 @media(max-width:720px){
-  .grid2,.phases{grid-template-columns:1fr}
+  .grid2,.offer-body{grid-template-columns:1fr}
   .brand .tag{display:none}
   th:nth-child(4),td:nth-child(4),th:nth-child(5),td:nth-child(5){display:none}
 }
@@ -328,27 +353,98 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
     <p class="crm-count" id="crm-count"></p>
   </section>
 
-  <!-- OFFER + PHASES -->
+  <!-- OFFERTFÖRSLAG -->
   <section class="sec">
-    <div class="sec-h">Erbjudande &amp; tillväxttrappa</div>
-    <div class="grid2">
-      <div class="panel">
-        <div class="sub">Productized erbjudande</div>
+    <div class="sec-h">Offertförslag <span class="hint">Hur man bygger ett erbjudande de säger ja till</span></div>
+
+    <div class="offer-principles">
+      <div class="op-card">
+        <div class="op-num">01</div>
+        <div class="op-title">For Them</div>
+        <div class="op-body">Varje mening handlar om <em>deras</em> mål. Aldrig "vi bygger hemsida" — alltid "ni får fler bokningar". Kunden köper resultatet, inte din tjänst.</div>
+      </div>
+      <div class="op-card">
+        <div class="op-num">02</div>
+        <div class="op-title">Real</div>
+        <div class="op-body">Specifika siffror, konkret bevis. Visa audit-videon. Referera till demo-kliniken. Vaga löften dödar förtroende — exakta observationer bygger det.</div>
+      </div>
+      <div class="op-card">
+        <div class="op-num">03</div>
+        <div class="op-title">Financial Sense</div>
+        <div class="op-body">Räkna ut break-even live. 6 extra bokningar à 1 500 kr = 9 000 kr. Det täcker hela retainern. Allt däröver är ren vinst. Gör matte tillsammans.</div>
+      </div>
+      <div class="op-card">
+        <div class="op-num">04</div>
+        <div class="op-title">Easy to Say Yes</div>
+        <div class="op-body">Ge 2 betalningsval, inte 4. 90-dagarsgaranti. Start inom 7 dagar. Varje anledning att tveka måste elimineras innan du stänger.</div>
+      </div>
+    </div>
+
+    <div class="offer-body">
+
+      <div class="panel offer-panel">
+        <div class="sub">Offertmall — copy-paste redo</div>
         <h3>Klinik <em>Tillväxt</em></h3>
         <div class="price">35 000 kr + 9 000 kr/mån</div>
-        <p style="font-size:.72rem;color:var(--paper-45);margin-bottom:.8rem">alt. 0 upp + 14 000 kr/mån · 3 mån bindning</p>
-        <ul>
-          <li>Konverterande hemsida</li>
-          <li>Lokal SEO (Google + Maps)</li>
-          <li>Patientbokningsoptimering</li>
-          <li><strong style="color:var(--gold-lt)">Risk-vändare:</strong> mätbart fler bokningar på 90 dagar — annars jobbar vi gratis tills det händer</li>
-        </ul>
+        <p style="font-size:.72rem;color:var(--paper-45);margin-bottom:1rem">alt. 0 kr upfront + 14 000 kr/mån · 3 mån bindning · start inom 7 dagar</p>
+        <div class="offer-rows">
+          <div class="ofr"><span class="ofr-tag them">For Them</span><span>Mätbart fler patientbokningar via Google och er sajt — inte bara en snyggare hemsida</span></div>
+          <div class="ofr"><span class="ofr-tag real">Real</span><span>Konverterande hemsida + top-3 lokalt på Google + patientbokningsoptimering (täpper läckorna i bokningsflödet)</span></div>
+          <div class="ofr"><span class="ofr-tag fin">$ Sense</span><span>6 extra bokningar/mån à 1 500 kr täcker hela retainern — allt däröver är ren vinst för er klinik</span></div>
+          <div class="ofr"><span class="ofr-tag easy">Easy Yes</span><span>90-dagarsgaranti: inga mätbara resultat → vi jobbar gratis tills det händer. Ni betalar för resultat, inte tid.</span></div>
+        </div>
+        <button class="copy" id="copy-offer" style="margin-top:1.2rem;align-self:flex-start">Kopiera offerttext</button>
+        <pre id="offer-tpl" style="display:none">OFFERT: Klinik Tillväxt — Bahko Byrå
+
+Vad ni får:
+• Konverterande hemsida byggd för att generera bokningar (inte bara se bra ut)
+• Lokal SEO — top-3 på Google i er stad för era behandlingar
+• Patientbokningsoptimering — vi täpper varje läcka i bokningsflödet
+• Löpande uppföljning och optimering varje månad
+
+Vad det kostar:
+Alt 1: 35 000 kr (engång) + 9 000 kr/mån
+Alt 2: 0 kr upfront + 14 000 kr/mån · 3 månaders bindning · start inom 7 dagar
+
+Vad det ger er:
+6 extra bokningar i månaden à 1 500 kr täcker retainern helt.
+Allt däröver är ren vinst — ni betalar inte för tid, ni betalar för resultat.
+
+Risk-vändare:
+Mätbart fler bokningar på 90 dagar — annars jobbar vi gratis tills det händer.
+
+Nästa steg: boka 20 min så visar jag exakt vad jag hittat på er sajt.
+https://cal.eu/bahkobyra/15min
+
+/Mathias, Bahko Byrå
+mathias@bahkobyra.se</pre>
       </div>
-      <div class="phases">
-        <div class="phase"><div class="lbl">Fas 1</div><div class="goal-n">100k</div><p>Du säljer. Ren outbound + demo. Manuell leverans. Bevisa erbjudandet.</p></div>
-        <div class="phase"><div class="lbl">Fas 2</div><div class="goal-n">300k</div><p>Standardiserad leverans, 1 säljare kör maskinen, ads-retainer som default-upsell.</p></div>
-        <div class="phase"><div class="lbl">Fas 3</div><div class="goal-n">1 Mkr</div><p>Två motorer (outbound + inbound), nischat per kliniktyp, årsavtal, processdriven leverans.</p></div>
+
+      <div>
+        <div class="roi-box">
+          <div class="oc-lbl" style="margin-bottom:.3rem">ROI-kalkylator</div>
+          <p style="font-size:.76rem;color:var(--ink-55);margin-bottom:1rem">Räkna ut break-even live under mötet</p>
+          <div class="roi-field">
+            <label>Genomsnittsvärde per bokning (kr)</label>
+            <input id="roi-val" type="number" value="1500" min="100" step="100">
+          </div>
+          <div class="roi-field">
+            <label>Extra bokningar/mån (realistisk prognos)</label>
+            <input id="roi-bk" type="number" value="10" min="1" step="1">
+          </div>
+          <div class="roi-results" id="roi-results"></div>
+        </div>
+
+        <div class="oc-box">
+          <div class="oc-lbl">Erbjudandet håller om alla 5 stämmer ✓</div>
+          <div class="oc-row"><span class="oc-dot"></span>Du pratar om deras bokningar — inte din teknik</div>
+          <div class="oc-row"><span class="oc-dot"></span>Du har en specifik audit eller demo att referera till</div>
+          <div class="oc-row"><span class="oc-dot"></span>Du har räknat ut break-even i kr/mån med dem live</div>
+          <div class="oc-row"><span class="oc-dot"></span>Du har nämnt 90-dagarsgarantin aktivt</div>
+          <div class="oc-row"><span class="oc-dot"></span>Du har gett 2 betalningsval — inte fler, inte färre</div>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -657,6 +753,34 @@ document.getElementById('crm-export').onclick=()=>{
 };
 
 renderCRM();
+
+/* ── ROI CALCULATOR ── */
+function calcROI(){
+  const val=+(document.getElementById('roi-val').value)||1500;
+  const bk=+(document.getElementById('roi-bk').value)||10;
+  const retainer=9000;
+  const extra=val*bk;
+  const roi=Math.round(((extra-retainer)/retainer)*100);
+  const breakeven=Math.ceil(retainer/val);
+  document.getElementById('roi-results').innerHTML=`
+    <div class="roi-item"><div class="lv">${extra.toLocaleString('sv-SE')} kr</div><div class="ll">Extra intäkt / mån</div></div>
+    <div class="roi-item"><div class="lv">${roi>0?'+':''}${roi}%</div><div class="ll">ROI på retainern</div></div>
+    <div class="roi-item span2"><div class="lv">${breakeven} bokn.</div><div class="ll">räcker för break-even (av ${bk} prognos) — ${bk-breakeven>0?bk-breakeven+' ren vinst-bokningar':'öka snitt-värdet'}</div></div>
+  `;
+}
+document.getElementById('roi-val').oninput=calcROI;
+document.getElementById('roi-bk').oninput=calcROI;
+calcROI();
+
+/* ── OFFER COPY ── */
+document.getElementById('copy-offer').onclick=async()=>{
+  const txt=document.getElementById('offer-tpl').innerText;
+  const btn=document.getElementById('copy-offer');
+  try{await navigator.clipboard.writeText(txt);}
+  catch{const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();}
+  btn.textContent='Kopierat ✓';btn.classList.add('done');
+  setTimeout(()=>{btn.textContent='Kopiera offerttext';btn.classList.remove('done');},1600);
+};
 </script>
 </body>
 </html>
