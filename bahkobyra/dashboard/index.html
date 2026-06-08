@@ -91,11 +91,6 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .panel li{font-size:.82rem;color:var(--paper-70);display:flex;gap:.6rem;line-height:1.5}
 .panel li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:.5rem}
 .panel .price{font-family:var(--display);font-size:1.7rem;color:var(--gold-lt);margin:.4rem 0 .2rem}
-.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
-.phase{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.2rem}
-.phase .goal-n{font-family:var(--display);font-size:1.8rem;font-weight:600;color:var(--navy)}
-.phase .lbl{font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:.6rem}
-.phase p{font-size:.76rem;color:var(--ink-55);line-height:1.6}
 
 /* ── SCRIPTS ── */
 .scripts{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.9rem}
@@ -141,6 +136,9 @@ tr:hover td{background:var(--cream-2)}
 .s-mote{background:rgba(201,169,110,.3);color:var(--gold-dk)}
 .s-offert{background:rgba(201,120,58,.15);color:#b05820}
 .s-stangd{background:rgba(79,157,107,.15);color:var(--ok)}
+.s-upp2{background:rgba(79,157,250,.2);color:#2f6aa8}
+.s-upp3{background:rgba(79,157,250,.3);color:#255688}
+.s-nej{background:rgba(201,74,74,.13);color:var(--danger)}
 .crm-name{font-weight:500;color:var(--ink)}
 .crm-link{color:var(--gold-dk);font-size:.7rem}
 .crm-link:hover{text-decoration:underline}
@@ -169,10 +167,89 @@ tr:hover td{background:var(--cream-2)}
 .note{font-size:.7rem;color:var(--ink-35);margin-top:.6rem;line-height:1.5}
 footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.62rem;letter-spacing:.1em;color:var(--ink-35);border-top:1px solid var(--line)}
 
+/* ── OFFER ── */
+.offer-principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem}
+.op-card{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.2rem 1.3rem}
+.op-num{font-size:.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:.3rem}
+.op-title{font-family:var(--display);font-size:1.2rem;font-weight:600;color:var(--navy);margin-bottom:.4rem}
+.op-body{font-size:.76rem;color:var(--ink-55);line-height:1.55}
+.offer-body{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;margin-top:1.2rem}
+.offer-panel{display:flex;flex-direction:column}
+.offer-rows{display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem}
+.ofr{display:flex;align-items:flex-start;gap:.7rem;font-size:.8rem;color:var(--paper-70);line-height:1.5}
+.ofr-tag{font-size:.48rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.22rem .5rem;border-radius:50px;flex-shrink:0;margin-top:.2rem;white-space:nowrap}
+.ofr-tag.them{background:rgba(201,169,110,.25);color:var(--gold-lt)}
+.ofr-tag.real{background:rgba(79,180,107,.2);color:#6fcb84}
+.ofr-tag.fin{background:rgba(255,255,255,.12);color:var(--paper-70)}
+.ofr-tag.easy{background:rgba(150,110,230,.2);color:#c0a0f5}
+.roi-box{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.4rem 1.5rem}
+.roi-field{margin-bottom:.8rem}
+.roi-field label{display:block;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-55);margin-bottom:.3rem}
+.roi-field input{width:100%;font:inherit;font-size:.88rem;padding:.5rem .7rem;border:1px solid var(--line-2);border-radius:var(--r);background:#fff;color:var(--ink);outline:none;transition:.2s}
+.roi-field input:focus{border-color:var(--gold)}
+.roi-results{background:var(--navy);color:var(--paper);border-radius:var(--r);padding:1rem 1.1rem;display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.8rem}
+.roi-item .lv{font-family:var(--display);font-size:1.55rem;color:var(--gold-lt);line-height:1.1}
+.roi-item .ll{font-size:.58rem;color:var(--paper-45);letter-spacing:.08em;text-transform:uppercase;margin-top:.2rem}
+.roi-item.span2{grid-column:span 2}
+.oc-box{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.2rem 1.4rem;margin-top:.9rem}
+.oc-lbl{font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:.8rem}
+.oc-row{display:flex;align-items:center;gap:.6rem;font-size:.78rem;color:var(--ink-70);padding:.35rem 0;border-bottom:1px solid var(--line)}
+.oc-row:last-child{border-bottom:none}
+.oc-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+/* ── NICHE + SEGMENTS ── */
+.niche-tag{display:inline-block;font-size:.5rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.12rem .45rem;border-radius:50px;white-space:nowrap;vertical-align:middle}
+.niche-klinik{background:rgba(201,169,110,.2);color:var(--gold-dk)}
+.niche-bygg{background:rgba(79,130,200,.18);color:#2f6aa8}
+.seg{display:inline-flex;gap:.3rem;background:var(--cream-3);border:1px solid var(--line);border-radius:50px;padding:.25rem}
+.seg button{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .9rem;border-radius:50px;color:var(--ink-55);transition:.2s}
+.seg button.on{background:var(--gold);color:var(--navy)}
+
+/* ── DUE TODAY ── */
+.due{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1rem 1.2rem;margin-bottom:.9rem}
+.due-row{display:flex;align-items:center;gap:.7rem;padding:.45rem 0;border-bottom:1px solid var(--line);font-size:.8rem}
+.due-row:last-child{border-bottom:none}
+.due-row .nm{font-weight:500;color:var(--ink)}
+.due-row .meta{font-size:.62rem;color:var(--ink-35);letter-spacing:.05em}
+.due-row .go{margin-left:auto;font-size:.56rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .6rem;border:1px solid var(--line-2);border-radius:var(--r);color:var(--gold-dk);flex-shrink:0}
+.due-row .go:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.due-empty{font-size:.78rem;color:var(--ink-35)}
+
+/* ── CADENCE (modal) ── */
+.cad-track{display:flex;gap:.35rem;margin:.4rem 0 .2rem}
+.cad-pill{flex:1;text-align:center;font-size:.58rem;font-weight:600;padding:.32rem 0;border-radius:var(--r);background:var(--cream);border:1px solid var(--line);color:var(--ink-35)}
+.cad-pill.on{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.cad-pill.done{background:rgba(79,157,107,.15);color:var(--ok);border-color:rgba(79,157,107,.35)}
+.cad-actions{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-top:.5rem}
+.touch-btn{font-size:.66rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.5rem 1rem;border:1px solid var(--line-2);border-radius:var(--r);color:var(--gold-dk);transition:.2s}
+.touch-btn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.cad-meta{font-size:.66rem;color:var(--ink-55)}
+
+/* ── PLAYBOOK / IG ── */
+.play-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.9rem}
+.play-card{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.2rem 1.3rem}
+.play-card h4{font-family:var(--display);font-size:1.2rem;font-weight:600;color:var(--navy);margin-bottom:.55rem;display:flex;align-items:center;gap:.5rem}
+.play-card .ic{font-size:1rem}
+.play-card ul{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.play-card li{font-size:.76rem;color:var(--ink-55);line-height:1.5;display:flex;gap:.5rem}
+.play-card li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:.45rem}
+.play-card li strong{color:var(--ink-70);font-weight:600}
+.cad-table{width:100%;border-collapse:collapse;font-size:.72rem;margin-top:.2rem}
+.cad-table th,.cad-table td{border:1px solid var(--line);padding:.45rem .6rem;text-align:left;color:var(--ink-70)}
+.cad-table th{background:var(--cream-2);color:var(--gold-dk);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase}
+.cad-table td strong{color:var(--navy)}
+.ladder{display:flex;align-items:stretch;gap:.5rem;flex-wrap:wrap}
+.ladder .rung{flex:1;min-width:170px;background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1rem 1.1rem}
+.ladder .rung .st{font-size:.54rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dk)}
+.ladder .rung .ti{font-family:var(--display);font-size:1.15rem;color:var(--navy);margin:.2rem 0}
+.ladder .rung .de{font-size:.72rem;color:var(--ink-55);line-height:1.45}
+.ladder .arr{display:grid;place-items:center;color:var(--gold);font-size:1.2rem}
+
 @media(max-width:720px){
-  .grid2,.phases{grid-template-columns:1fr}
+  .grid2,.offer-body{grid-template-columns:1fr}
   .brand .tag{display:none}
-  th:nth-child(4),td:nth-child(4),th:nth-child(5),td:nth-child(5){display:none}
+  th:nth-child(3),td:nth-child(3),th:nth-child(4),td:nth-child(4){display:none}
+  .ladder .arr{transform:rotate(90deg)}
 }
 </style>
 </head>
@@ -182,9 +259,10 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
   <div class="brand">Bahko <em>Byrå</em> <span class="tag">Säljmotor · Operativ Dashboard</span></div>
   <div class="top-actions">
     <a class="tbtn solid" href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener">+ Boka möte</a>
-    <a class="tbtn" href="https://formspree.io/forms" target="_blank" rel="noopener">Inkommande leads</a>
+    <a class="tbtn" href="#crm">CRM</a>
+    <a class="tbtn" href="#ig">Instagram</a>
+    <a class="tbtn" href="#spelbok">Spelbok</a>
     <a class="tbtn" href="/dashboard/todo.html">Roadmap</a>
-    <a class="tbtn" href="mailto:mathias@bahkobyra.se">Mejl</a>
   </div>
 </div>
 
@@ -294,19 +372,33 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
     </div>
   </section>
 
+  <!-- DAGENS UPPFÖLJNINGAR -->
+  <section class="sec" id="idag">
+    <div class="sec-h">Dagens uppföljningar <span class="hint">leads vars nästa touch är förfallen — kör cadencen</span></div>
+    <div class="due" id="due-list"></div>
+  </section>
+
   <!-- CRM -->
-  <section class="sec">
-    <div class="sec-h">CRM — Leads &amp; Prospekts <span class="hint">sparas lokalt · klicka lead för att redigera · klicka status för att byta</span></div>
+  <section class="sec" id="crm">
+    <div class="sec-h">CRM — Leads &amp; Prospekts <span class="hint">sparas lokalt · klicka lead för cadence &amp; redigering · klicka status för att byta</span></div>
     <div class="crm-toolbar">
-      <input class="crm-search" id="crm-search" type="search" placeholder="Sök klinik, kontakt, ort…">
+      <input class="crm-search" id="crm-search" type="search" placeholder="Sök namn, kontakt, ort…">
+      <select class="crm-filter" id="crm-niche-filter">
+        <option value="">Alla nischer</option>
+        <option value="klinik">Klinik</option>
+        <option value="bygg">Bygg &amp; hantverk</option>
+      </select>
       <select class="crm-filter" id="crm-status-filter">
         <option value="">Alla statusar</option>
         <option value="Ny">Ny</option>
         <option value="Kontaktad">Kontaktad</option>
+        <option value="Uppföljning 2">Uppföljning 2</option>
+        <option value="Uppföljning 3">Uppföljning 3</option>
         <option value="Svar">Svar</option>
         <option value="Möte">Möte</option>
         <option value="Offert">Offert</option>
         <option value="Stängd">Stängd</option>
+        <option value="Inte intresserad">Inte intresserad</option>
       </select>
       <button class="crm-add-btn" id="crm-add">+ Nytt lead</button>
       <button class="crm-add-btn" id="crm-export" style="color:var(--ink-55)">↓ CSV</button>
@@ -315,9 +407,9 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
       <table>
         <thead>
           <tr>
-            <th>Klinik</th>
+            <th>Namn</th>
             <th>Kontakt / Beslutsfattare</th>
-            <th>Telefon</th>
+            <th>Nästa touch</th>
             <th>Ort</th>
             <th>Status</th>
           </tr>
@@ -328,27 +420,74 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
     <p class="crm-count" id="crm-count"></p>
   </section>
 
-  <!-- OFFER + PHASES -->
-  <section class="sec">
-    <div class="sec-h">Erbjudande &amp; tillväxttrappa</div>
-    <div class="grid2">
-      <div class="panel">
-        <div class="sub">Productized erbjudande</div>
-        <h3>Klinik <em>Tillväxt</em></h3>
-        <div class="price">35 000 kr + 9 000 kr/mån</div>
-        <p style="font-size:.72rem;color:var(--paper-45);margin-bottom:.8rem">alt. 0 upp + 14 000 kr/mån · 3 mån bindning</p>
-        <ul>
-          <li>Konverterande hemsida</li>
-          <li>Lokal SEO (Google + Maps)</li>
-          <li>Patientbokningsoptimering</li>
-          <li><strong style="color:var(--gold-lt)">Risk-vändare:</strong> mätbart fler bokningar på 90 dagar — annars jobbar vi gratis tills det händer</li>
-        </ul>
+  <!-- OFFERTFÖRSLAG -->
+  <section class="sec" id="offert">
+    <div class="sec-h">Offertförslag <span class="hint">välj nisch · front = gratis Google-audit · copy-paste redo</span></div>
+    <div class="seg" id="offer-seg" style="margin-bottom:1.1rem">
+      <button data-niche="klinik" class="on">Klinik</button>
+      <button data-niche="bygg">Bygg &amp; hantverk</button>
+    </div>
+
+    <div class="offer-principles">
+      <div class="op-card">
+        <div class="op-num">01</div>
+        <div class="op-title">For Them</div>
+        <div class="op-body">Varje mening handlar om <em>deras</em> mål. Aldrig "vi bygger hemsida" — alltid "ni får fler bokningar". Kunden köper resultatet, inte din tjänst.</div>
       </div>
-      <div class="phases">
-        <div class="phase"><div class="lbl">Fas 1</div><div class="goal-n">100k</div><p>Du säljer. Ren outbound + demo. Manuell leverans. Bevisa erbjudandet.</p></div>
-        <div class="phase"><div class="lbl">Fas 2</div><div class="goal-n">300k</div><p>Standardiserad leverans, 1 säljare kör maskinen, ads-retainer som default-upsell.</p></div>
-        <div class="phase"><div class="lbl">Fas 3</div><div class="goal-n">1 Mkr</div><p>Två motorer (outbound + inbound), nischat per kliniktyp, årsavtal, processdriven leverans.</p></div>
+      <div class="op-card">
+        <div class="op-num">02</div>
+        <div class="op-title">Real</div>
+        <div class="op-body">Specifika siffror, konkret bevis. Visa audit-videon. Referera till demo-kliniken. Vaga löften dödar förtroende — exakta observationer bygger det.</div>
       </div>
+      <div class="op-card">
+        <div class="op-num">03</div>
+        <div class="op-title">Financial Sense</div>
+        <div class="op-body">Räkna ut break-even live. 6 extra bokningar à 1 500 kr = 9 000 kr. Det täcker hela retainern. Allt däröver är ren vinst. Gör matte tillsammans.</div>
+      </div>
+      <div class="op-card">
+        <div class="op-num">04</div>
+        <div class="op-title">Easy to Say Yes</div>
+        <div class="op-body">Ge 2 betalningsval, inte 4. 90-dagarsgaranti. Start inom 7 dagar. Varje anledning att tveka måste elimineras innan du stänger.</div>
+      </div>
+    </div>
+
+    <div class="offer-body">
+
+      <div class="panel offer-panel">
+        <div class="sub">Offertmall — copy-paste redo</div>
+        <h3 id="offer-title">Klinik <em>Tillväxt</em></h3>
+        <div class="price" id="offer-price">35 000 kr + 9 000 kr/mån</div>
+        <p id="offer-terms" style="font-size:.72rem;color:var(--paper-45);margin-bottom:1rem">alt. 0 kr upfront + 14 000 kr/mån · 3 mån bindning · start inom 7 dagar</p>
+        <div class="offer-rows" id="offer-rows"></div>
+        <button class="copy" id="copy-offer" style="margin-top:1.2rem;align-self:flex-start">Kopiera offerttext</button>
+        <pre id="offer-tpl" style="display:none"></pre>
+      </div>
+
+      <div>
+        <div class="roi-box">
+          <div class="oc-lbl" style="margin-bottom:.3rem">ROI-kalkylator</div>
+          <p style="font-size:.76rem;color:var(--ink-55);margin-bottom:1rem">Räkna ut värdet live under mötet</p>
+          <div class="roi-field">
+            <label id="roi-val-label">Genomsnittsvärde per bokning (kr)</label>
+            <input id="roi-val" type="number" value="1500" min="100" step="100">
+          </div>
+          <div class="roi-field">
+            <label id="roi-bk-label">Extra bokningar/mån (realistisk prognos)</label>
+            <input id="roi-bk" type="number" value="10" min="1" step="1">
+          </div>
+          <div class="roi-results" id="roi-results"></div>
+        </div>
+
+        <div class="oc-box">
+          <div class="oc-lbl">Erbjudandet håller om alla 5 stämmer ✓</div>
+          <div class="oc-row"><span class="oc-dot"></span>Du pratar om deras resultat — inte din teknik</div>
+          <div class="oc-row"><span class="oc-dot"></span>Du har en specifik audit eller demo att referera till</div>
+          <div class="oc-row"><span class="oc-dot"></span>Du har räknat värdet i kr/mån med dem live</div>
+          <div class="oc-row"><span class="oc-dot"></span>Du har nämnt garantin aktivt</div>
+          <div class="oc-row"><span class="oc-dot"></span>Du har gett 2 betalningsval — inte fler, inte färre</div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -408,12 +547,164 @@ Hej [Namn], jag driver Bahko Byrå — vi hjälper kliniker få fler patientbokn
       <div class="script">
         <div class="script-h"><span class="nm">Discovery call (20 min)</span><span class="tag">Möte</span><button class="copy">Kopiera</button></div>
         <pre>1. Nuläge & mål — var är ni nu, vart vill ni? (5 min)
-2. Vad problemet kostar idag — bokningar via sajt vs. telefon? (3 min)
-3. Visa demo + audit — konkret exempel på Élara-kliniken (5 min)
-4. Erbjudande + pris + risk-vändare — 35k + 9k/mån, 90-dagarsgaranti (4 min)
+2. Vad problemet kostar idag — bokningar/jobb via sajt vs. telefon? (3 min)
+3. Visa demo + audit — konkret exempel (Élara-kliniken / demo-sajt) (5 min)
+4. Erbjudande + pris + risk-vändare — garanti (4 min)
 5. Stäng / boka nästa steg — offert eller pilotprojekt? (3 min)</pre>
       </div>
 
+      <div class="script">
+        <div class="script-h"><span class="nm">Gratis Google-audit (Loom)</span><span class="tag">Front-offer</span><button class="copy">Kopiera</button></div>
+        <pre>Hej [Namn], jag märkte 3 saker på er Google Business Profile som troligen skadar er ranking:
+
+ETT: ni saknar [t.ex. kategorier/tjänster] — alla i topp-3 har det.
+TVÅ: [fel hemsida länkad / NAP inte konsekvent].
+TRE: ni har bara [X] bilder — topp-3 har minst 30.
+
+Jag hittade 5 saker till. Vill bjuda in dig till ett 15-min-möte där jag visar dem + mitt erbjudande att fixa allt. Värsta fall: du går därifrån med konkreta nästa steg. Bästa fall: vi fixar det åt er.
+Boka: https://cal.eu/bahkobyra/15min</pre>
+      </div>
+
+      <div class="script">
+        <div class="script-h"><span class="nm">Cadence · Samtal-first</span><span class="tag">Telefon</span><button class="copy">Kopiera</button></div>
+        <pre>DAG 1: Samtal #1 + recap-mejl ("kul att prata — här är gratis-auditen [Loom]")
+DAG 3: Samtal #2 (hann du kika? ett par konkreta grejer till)
+DAG 5: Samtal #3 (sista uppringningen — värt en kvart?)
+DAG 7: Close-loop-mejl ("stänger ärendet om timing inte stämmer — hör av dig när det passar")
+→ Svar = boka möte. Inget svar dag 7 = nurture (+30 dagar).</pre>
+      </div>
+
+      <div class="script">
+        <div class="script-h"><span class="nm">Cadence · IRL-first</span><span class="tag">IRL</span><button class="copy">Kopiera</button></div>
+        <pre>DAG 1: Besök #1 — "Hej, jag jobbar med [kliniker/hantverkare] här i [stad] med Google + hemsidor. Sköter någon er Google-profil?"
+DAG 2: Uppföljning — skicka gratis-auditen (Loom) till mejlen du fick.
+DAG 5: Samtal (om direktnummer) — "hann du kika på videon?"
+→ Svar = boka möte. Annars nurture.</pre>
+      </div>
+
+      <div class="script">
+        <div class="script-h"><span class="nm">Instagram DM-cadence (bygg)</span><span class="tag">DM</span><button class="copy">Kopiera</button></div>
+        <pre>DAG 1: Hej [Namn]! Gillar verkligen jobben ni gör 🙌 Snabb fråga — sköter någon er Google-profil?
+DAG 3: Körde en snabb koll på er profil och såg ett par saker som påverkar er ranking lokalt. Vill du ha en 2-min-video som visar hur jag fixar dem?
+DAG 5: Hann du kika? Tar 2 min och kostar inget — bara konkreta nästa steg för fler jobb via Google.
+DAG 7: Sista pingen från mig 🙂 Om fler jobb via Google inte är prio just nu säg bara till.</pre>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INSTAGRAM-MOTOR -->
+  <section class="sec" id="ig">
+    <div class="sec-h">Instagram-motor — bygg &amp; hantverk <span class="hint">@bahkostudio · top of funnel · säljer hemsidor</span></div>
+
+    <div class="cards" style="margin-bottom:1rem">
+      <div class="card"><div class="t"><span class="ic">🎬</span> 3 reels/vecka</div><div class="d">Hook → problem → agitera → lösning → CTA. Stoppa scrollen sekund 1.</div><div class="meta">Räckvidd</div></div>
+      <div class="card"><div class="t"><span class="ic">🗂️</span> 2 carouseller/vecka</div><div class="d">Utbilda &amp; bevisa expertis. 6–8 slides, spara/dela-magnet.</div><div class="meta">Auktoritet</div></div>
+      <div class="card"><div class="t"><span class="ic">📲</span> Daglig story</div><div class="d">Top-of-mind: polls, BTS, audit-CTA ("DM:a GOOGLE").</div><div class="meta">Närvaro</div></div>
+      <div class="card"><div class="t"><span class="ic">🎯</span> Front-offer</div><div class="d">Varje CTA → gratis Google/GBP-audit → sälj hemsida (engångs).</div><div class="meta">Konvertering</div></div>
+    </div>
+
+    <div class="scripts">
+      <div class="script">
+        <div class="script-h"><span class="nm">Reel-formel</span><span class="tag">Mall</span><button class="copy">Kopiera</button></div>
+        <pre>HOOK (0–2s): "[Trade] tappar jobb varje vecka — och det är inte din skull."
+PROBLEM: kunder googlar "[trade] [stad]" — syns du inte är du borta.
+AGITERA: varje vecka osynlig = förlorade offerter till sämre konkurrenter.
+DISKVALIFICERA: fler annonser löser det inte. Inte heller en "snyggare" sajt.
+LÖSNING: en sajt som rankar + komplett Google-profil = du dyker upp först.
+CTA: "DM:a GOOGLE så gör jag en gratis koll på din profil."
+FUTURE PACING: "Om 60 dagar ringer telefonen för att DU syns först."</pre>
+      </div>
+      <div class="script">
+        <div class="script-h"><span class="nm">Carousell-outline</span><span class="tag">Mall</span><button class="copy">Kopiera</button></div>
+        <pre>Slide 1 (hook): "3 saker som gör att din [trade]-sajt tappar jobb"
+Slide 2: #1 Du syns inte på Google Maps → fix
+Slide 3: #2 Sajten säger inte vad du gör / var → fix
+Slide 4: #3 Inga recensioner/bilder → fix
+Slide 5 (bevis): före/efter eller resultat-siffra
+Slide 6 (CTA): "DM:a GOOGLE för gratis koll på din profil"</pre>
+      </div>
+      <div class="script">
+        <div class="script-h"><span class="nm">Trade-hooks</span><span class="tag">Idéer</span><button class="copy">Kopiera</button></div>
+        <pre>BYGG: "Googla 'byggfirma [stad]'. Inte i topp 3? Här är därför."
+TAK: "Takjobb går till firman som syns först — inte den bästa."
+MÅLERI: "Folk googlar 'målare [stad]' kl 21. Syns du inte = du förlorar jobbet."
+MARK: "Markjobb är high-ticket. Och du är osynlig där kunderna letar."
+
+Kör skillen instagram-engine för en full veckobatch (3 reels + 2 carouseller + DM-cadence).</pre>
+      </div>
+    </div>
+
+    <div class="check" id="ig-week" style="margin-top:1rem">
+      <div class="oc-lbl" style="margin-bottom:.6rem">Veckans content — nollställs varje vecka</div>
+      <div class="check-row" data-id="ig1"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Reel 1 publicerad</span></div>
+      <div class="check-row" data-id="ig2"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Reel 2 publicerad</span></div>
+      <div class="check-row" data-id="ig3"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Reel 3 publicerad</span></div>
+      <div class="check-row" data-id="ig4"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Carousell 1 publicerad</span></div>
+      <div class="check-row" data-id="ig5"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Carousell 2 publicerad</span></div>
+      <div class="check-row" data-id="ig6"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Stories varje dag + svarat på alla DM</span></div>
+      <button class="reset" id="ig-reset">↺ Nollställ veckan</button>
+    </div>
+  </section>
+
+  <!-- SPELBOK -->
+  <section class="sec" id="spelbok">
+    <div class="sec-h">Spelbok — BIAB-metodiken <span class="hint">offer-stegen · cadence · leverans · invändningar</span></div>
+
+    <div class="ladder" style="margin-bottom:1rem">
+      <div class="rung"><div class="st">Front (gratis)</div><div class="ti">Gratis Google-audit</div><div class="de">Enda jobbet: bevisa att du är "the wizard". Loom som visar 3 brister + 5 till på mötet.</div></div>
+      <div class="arr">→</div>
+      <div class="rung"><div class="st">Core (betalt)</div><div class="ti">Hemsida som säljer</div><div class="de">Klinik: hemsida + Local SEO-retainer (9 000 kr/mån). Bygg: hemsida som engångsköp.</div></div>
+      <div class="arr">→</div>
+      <div class="rung"><div class="st">Uppsell</div><div class="ti">Mer wizardry</div><div class="de">När du bevisat magi: Google Ads, Meta Ads, fler sidor. Continuity gör dig rik.</div></div>
+    </div>
+
+    <div class="play-card" style="margin-bottom:1rem">
+      <h4><span class="ic">🔁</span> 7-dagars cadence — välj EN väg per lead</h4>
+      <table class="cad-table">
+        <thead><tr><th>Väg</th><th>Dag 1</th><th>Dag 3</th><th>Dag 5</th><th>Dag 7</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Skriven-first</strong></td><td>Meddelande #1</td><td>Uppföljning #2</td><td>Uppföljning #3</td><td>Uppföljning #4</td></tr>
+          <tr><td><strong>Samtal-first</strong></td><td>Samtal #1 + recap</td><td>Samtal #2</td><td>Samtal #3</td><td>Close-loop-mejl</td></tr>
+          <tr><td><strong>IRL-first</strong></td><td>Besök #1</td><td>Uppföljning</td><td>Samtal (om nr)</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Svar → ENGAGED (svara samma dag, boka möte). Inget svar dag 7 → eskalera EN gång → annars NURTURE (+30 d) eller STÄNG. Aldrig needy.</p>
+    </div>
+
+    <div class="play-grid">
+      <div class="play-card">
+        <h4><span class="ic">📈</span> Local SEO — 3 pelare</h4>
+        <ul>
+          <li><strong>GBP:</strong> 1 huvudkategori, full profil, ~30 tjänster, bilder + posts varje vecka.</li>
+          <li><strong>On-page:</strong> title (BÄSTA + kategori + stad), H1/H2, NAP i footer, inbäddad karta, ~30 sidor.</li>
+          <li><strong>Citations:</strong> Bing, Apple, Foursquare, Yelp + branschkataloger som rankar. Konsekvent NAP.</li>
+        </ul>
+      </div>
+      <div class="play-card">
+        <h4><span class="ic">🧭</span> Sälj-logistik</h4>
+        <ul>
+          <li>Intresse → <strong>Loom</strong>-audit → boka <strong>samtal</strong> → mejl med summering + betallänk → onboarding.</li>
+          <li>Offer = resultat + mekanism + <strong>riskreversering</strong> + villkor. Aldrig en tjänstebeskrivning.</li>
+          <li>Texting = logistik ("när ses vi?"). Korta, mänskliga, hjälpsamma meddelanden.</li>
+        </ul>
+      </div>
+      <div class="play-card">
+        <h4><span class="ic">🛡️</span> Invändningar &amp; frames</h4>
+        <ul>
+          <li><strong>Analyst</strong> (kräver bevis/info): "allt vi går igenom mejlar jag — det finns i skrift."</li>
+          <li><strong>Power</strong> (nedlåtande): bli inte arg, sätt vänligt på plats, disengagera vid behov.</li>
+          <li><strong>Nibbler</strong> (vill alltid lite mer): "Det ingick inte. Jag kan göra det — X kr mer. Vill du?"</li>
+        </ul>
+      </div>
+      <div class="play-card">
+        <h4><span class="ic">🎯</span> Nischer som svarar</h4>
+        <ul>
+          <li><strong>Bygg &amp; renovering</strong> (#1), tak, måleri, mark/anläggning.</li>
+          <li>Städ, låssmed, gas/värme, plattsättning/staket — alla lokala, har pengar, nåbara.</li>
+          <li>Volym slår allt tidigt. Flaskhalsen är alltid <strong>bokade möten/vecka</strong>.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -421,9 +712,9 @@ Hej [Namn], jag driver Bahko Byrå — vi hjälper kliniker få fler patientbokn
   <section class="sec">
     <div class="sec-h">Daglig checklista <span class="hint">nollställs automatiskt varje dag</span></div>
     <div class="check" id="check">
-      <div class="check-row" data-id="c1"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Bygg 20 nya kvalade prospekts (ICP) i CRM</span></div>
+      <div class="check-row" data-id="c1"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Bygg 20 nya kvalade prospekts (klinik + bygg) i CRM</span></div>
       <div class="check-row" data-id="c2"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Skicka 20 personliga outreach (Loom/audit)</span></div>
-      <div class="check-row" data-id="c3"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Följ upp alla från dag −3 och −6</span></div>
+      <div class="check-row" data-id="c3"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Kör alla i "Dagens uppföljningar" (logga touch)</span></div>
       <div class="check-row" data-id="c4"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Logga varje touch + uppdatera pipeline i CRM</span></div>
       <div class="check-row" data-id="c5"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Bekräfta &amp; förbered dagens discovery calls</span></div>
       <div class="check-row" data-id="c6"><span class="check-box"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span><span class="lbl">Skicka offerter samma dag som mötet</span></div>
@@ -439,17 +730,36 @@ Hej [Namn], jag driver Bahko Byrå — vi hjälper kliniker få fler patientbokn
   <div class="modal">
     <button class="modal-close" id="modal-close">×</button>
     <h4 id="modal-title">Nytt lead</h4>
-    <div class="field"><label>Kliniknamn</label><input id="f-name" type="text" placeholder="Élara Klinik"></div>
+    <div class="field"><label>Namn (klinik/företag)</label><input id="f-name" type="text" placeholder="Élara Klinik / Nordbygg AB"></div>
+    <div class="field"><label>Nisch</label>
+      <select id="f-niche"><option value="klinik">Klinik</option><option value="bygg">Bygg &amp; hantverk</option></select>
+    </div>
     <div class="field"><label>Webbplats</label><input id="f-web" type="url" placeholder="https://..."></div>
     <div class="field"><label>Kontaktperson / Beslutsfattare</label><input id="f-contact" type="text" placeholder="Namn — Roll"></div>
     <div class="field"><label>Telefon</label><input id="f-phone" type="tel" placeholder="+46 70 000 00 00"></div>
-    <div class="field"><label>E-post</label><input id="f-email" type="email" placeholder="namn@klinik.se"></div>
+    <div class="field"><label>E-post</label><input id="f-email" type="email" placeholder="namn@foretag.se"></div>
     <div class="field"><label>Ort</label><input id="f-city" type="text" placeholder="Stockholm"></div>
     <div class="field"><label>Status</label>
       <select id="f-status">
-        <option>Ny</option><option>Kontaktad</option><option>Svar</option>
-        <option>Möte</option><option>Offert</option><option>Stängd</option>
+        <option>Ny</option><option>Kontaktad</option><option>Uppföljning 2</option>
+        <option>Uppföljning 3</option><option>Svar</option><option>Möte</option>
+        <option>Offert</option><option>Stängd</option><option>Inte intresserad</option>
       </select>
+    </div>
+    <div class="field"><label>Cadence-väg</label>
+      <select id="f-pathway">
+        <option value="skriven">Skriven-first (mejl/DM)</option>
+        <option value="samtal">Samtal-first</option>
+        <option value="irl">IRL-first</option>
+      </select>
+    </div>
+    <div class="field" id="cad-block" style="display:none">
+      <label>Cadence — dag 1 → 3 → 5 → 7 → nurture</label>
+      <div class="cad-track" id="cad-track"></div>
+      <div class="cad-actions">
+        <button class="touch-btn" id="touch-btn" type="button">＋ Logga touch</button>
+        <span class="cad-meta" id="cad-meta"></span>
+      </div>
     </div>
     <div class="field"><label>Anteckningar</label><textarea id="f-notes" placeholder="Senaste touch, beslutspunkt, follow-up datum…"></textarea></div>
     <div class="modal-actions">
@@ -488,16 +798,21 @@ document.querySelectorAll('.script').forEach(s=>{
   };
 });
 
-/* ── CHECKLIST ── */
-const CK='bb_check';
-function loadCheck(){let o={};try{o=JSON.parse(localStorage.getItem(CK)||'{}');}catch{}if(o.stamp!==today)o={stamp:today,done:{}};return o;}
-function saveCheck(o){localStorage.setItem(CK,JSON.stringify(o));}
-let ck=loadCheck();
-document.querySelectorAll('.check-row').forEach(r=>{
-  const id=r.dataset.id;if(ck.done[id])r.classList.add('done');
-  r.onclick=()=>{r.classList.toggle('done');ck.done[id]=r.classList.contains('done');saveCheck(ck);};
-});
-document.getElementById('reset').onclick=e=>{e.stopPropagation();ck={stamp:today,done:{}};saveCheck(ck);document.querySelectorAll('.check-row').forEach(r=>r.classList.remove('done'));};
+/* ── CHECKLISTS (daglig + veckovis) ── */
+function setupCheck(containerId,storeKey,stamp,resetId){
+  const cont=document.getElementById(containerId);if(!cont)return;
+  let o={};try{o=JSON.parse(localStorage.getItem(storeKey)||'{}');}catch{}
+  if(o.stamp!==stamp)o={stamp,done:{}};
+  const save=()=>localStorage.setItem(storeKey,JSON.stringify(o));
+  cont.querySelectorAll('.check-row').forEach(r=>{
+    const id=r.dataset.id;if(o.done[id])r.classList.add('done');
+    r.onclick=()=>{r.classList.toggle('done');o.done[id]=r.classList.contains('done');save();};
+  });
+  const rb=document.getElementById(resetId);
+  if(rb)rb.onclick=e=>{e.stopPropagation();o={stamp,done:{}};save();cont.querySelectorAll('.check-row').forEach(r=>r.classList.remove('done'));};
+}
+setupCheck('check','bb_check',today,'reset');
+setupCheck('ig-week','bb_ig_week',wk,'ig-reset');
 
 /* ── CRM SEED DATA ── */
 const SEED=[
@@ -547,28 +862,64 @@ const SEED=[
 ];
 
 const CRM_KEY='bb_crm_v1';
+function normalize(l){return Object.assign({niche:'klinik',pathway:'skriven',cadenceDay:'',nextAction:'',lastTouch:''},l);}
 function loadLeads(){
   try{
     const raw=localStorage.getItem(CRM_KEY);
-    if(raw)return JSON.parse(raw);
-    saveLeads(SEED);return SEED;
-  }catch{return SEED;}
+    if(raw)return JSON.parse(raw).map(normalize);
+    saveLeads(SEED);return SEED.map(normalize);
+  }catch{return SEED.map(normalize);}
 }
 function saveLeads(arr){localStorage.setItem(CRM_KEY,JSON.stringify(arr));}
+function addDays(iso,n){const d=new Date(iso||today);d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);}
 
 let leads=loadLeads();
 let editId=null;
-const STATUSES=['Ny','Kontaktad','Svar','Möte','Offert','Stängd'];
-const STATUS_CLS={Ny:'s-ny',Kontaktad:'s-kontaktad',Svar:'s-svar','Möte':'s-mote',Offert:'s-offert',Stängd:'s-stangd'};
+const STATUSES=['Ny','Kontaktad','Uppföljning 2','Uppföljning 3','Svar','Möte','Offert','Stängd','Inte intresserad'];
+const STATUS_CLS={Ny:'s-ny',Kontaktad:'s-kontaktad','Uppföljning 2':'s-upp2','Uppföljning 3':'s-upp3',Svar:'s-svar','Möte':'s-mote',Offert:'s-offert',Stängd:'s-stangd','Inte intresserad':'s-nej'};
+const CAD=[1,3,5,7];
+const NICHE_LBL={klinik:'Klinik',bygg:'Bygg'};
+const PATH_LBL={skriven:'Skriven',samtal:'Samtal',irl:'IRL'};
+const CLOSED=['Stängd','Inte intresserad'];
+
+/* advance cadence one touch: cadenceDay = senast loggade dag */
+function logTouch(l){
+  l.lastTouch=today;
+  if(l.status==='Ny')l.status='Kontaktad';
+  const d=l.cadenceDay;
+  if(d===''||d==null){l.cadenceDay=1;l.nextAction=addDays(today,2);}
+  else if(d==='nurture'){l.nextAction=addDays(today,30);}
+  else{
+    const i=CAD.indexOf(+d);
+    if(i<0||i>=CAD.length-1){l.cadenceDay='nurture';l.nextAction=addDays(today,30);}
+    else{l.cadenceDay=CAD[i+1];l.nextAction=addDays(today,CAD[i+1]-CAD[i]);}
+  }
+}
+function nextDueLabel(l){
+  if(CLOSED.includes(l.status))return '';
+  if(l.cadenceDay==='nurture')return 'nurture';
+  if(l.cadenceDay===''||l.cadenceDay==null)return 'dag 1';
+  const i=CAD.indexOf(+l.cadenceDay);
+  return (i>=0&&i<CAD.length-1)?('dag '+CAD[i+1]):'nurture';
+}
 
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
+function nicheBadge(n){const k=n==='bygg'?'bygg':'klinik';return `<span class="niche-tag niche-${k}">${NICHE_LBL[k]}</span>`;}
+function nextCell(l){
+  if(CLOSED.includes(l.status))return '<span style="color:var(--ink-35)">—</span>';
+  if(!l.nextAction)return '<span style="color:var(--ink-35)">starta cadence</span>';
+  const overdue=l.nextAction<=today;
+  const col=overdue?'var(--danger)':'var(--ink-70)';
+  return `<span style="color:${col};font-weight:${overdue?600:400}">${nextDueLabel(l)} · ${l.nextAction}</span>`;
+}
 function renderCRM(){
   const q=document.getElementById('crm-search').value.toLowerCase();
   const sf=document.getElementById('crm-status-filter').value;
+  const nf=document.getElementById('crm-niche-filter').value;
   const filtered=leads.filter(l=>{
     const txt=(l.name+' '+l.contact+' '+l.city+' '+l.phone+' '+l.notes).toLowerCase();
-    return(!q||txt.includes(q))&&(!sf||l.status===sf);
+    return(!q||txt.includes(q))&&(!sf||l.status===sf)&&(!nf||l.niche===nf);
   });
   const tbody=document.getElementById('crm-body');
   tbody.innerHTML='';
@@ -580,27 +931,58 @@ function renderCRM(){
       let wb='';
       try{wb=l.web?`<a class="crm-link" href="${l.web}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${new URL(l.web).hostname.replace('www.','')}</a>`:'';}catch{}
       const sc=STATUS_CLS[l.status]||'s-ny';
-      tr.innerHTML=`<td><span class="crm-name">${esc(l.name)}</span><br>${wb}</td><td>${esc(l.contact||'—')}</td><td>${esc(l.phone||'—')}</td><td>${esc(l.city||'—')}</td><td><span class="status-badge ${sc}" data-id="${l.id}">${esc(l.status)}</span></td>`;
+      tr.innerHTML=`<td><span class="crm-name">${esc(l.name)}</span> ${nicheBadge(l.niche)}<br>${wb}</td><td>${esc(l.contact||'—')}</td><td>${nextCell(l)}</td><td>${esc(l.city||'—')}</td><td><span class="status-badge ${sc}" data-id="${l.id}">${esc(l.status)}</span></td>`;
       tr.onclick=()=>openModal(l.id);
       tbody.appendChild(tr);
     });
   }
   document.getElementById('crm-count').textContent=`${filtered.length} av ${leads.length} leads`;
+  renderDue();
 }
 
+function renderDue(){
+  const box=document.getElementById('due-list');
+  const due=leads.filter(l=>l.nextAction&&l.nextAction<=today&&!CLOSED.includes(l.status))
+                 .sort((a,b)=>a.nextAction.localeCompare(b.nextAction));
+  if(!due.length){box.innerHTML='<div class="due-empty">Inga förfallna uppföljningar 🎉 — logga en touch på ett lead för att schemalägga nästa.</div>';return;}
+  box.innerHTML=due.map(l=>`<div class="due-row">
+    <span class="nm">${esc(l.name)}</span> ${nicheBadge(l.niche)}
+    <span class="meta">${PATH_LBL[l.pathway]||'—'} · ${nextDueLabel(l)} · förfaller ${l.nextAction}</span>
+    <button class="go" data-touch="${l.id}">✓ Touch</button>
+    <button class="go" data-open="${l.id}">Öppna</button>
+  </div>`).join('');
+}
+
+function renderCadTrack(l){
+  const track=document.getElementById('cad-track');
+  const done=l.cadenceDay,isNur=done==='nurture',nd=nextDueLabel(l);
+  track.innerHTML=CAD.map(d=>{
+    const isDone=isNur||(done!==''&&done!=null&&d<=+done);
+    const isOn=nd==='dag '+d;
+    return `<span class="cad-pill ${isDone?'done':''} ${isOn?'on':''}">D${d}</span>`;
+  }).join('')+`<span class="cad-pill ${isNur?'done':''} ${nd==='nurture'?'on':''}">Nurt</span>`;
+  const meta=document.getElementById('cad-meta');
+  if(CLOSED.includes(l.status))meta.textContent='Avslutad — ingen cadence.';
+  else if(!l.nextAction)meta.textContent='Inte startad — logga första touchen (dag 1).';
+  else{const od=l.nextAction<=today;meta.innerHTML=`Nästa: <strong>${nd}</strong> · ${l.nextAction}${od?' · <span style="color:var(--danger)">förfallen</span>':''}${l.lastTouch?' · senast '+l.lastTouch:''}`;}
+}
 function openModal(id){
   editId=id||null;
-  const l=id?leads.find(x=>x.id===id):{};
+  const l=id?leads.find(x=>x.id===id):normalize({});
   document.getElementById('modal-title').textContent=id?'Redigera lead':'Nytt lead';
   document.getElementById('f-name').value=l.name||'';
+  document.getElementById('f-niche').value=l.niche||'klinik';
   document.getElementById('f-web').value=l.web||'';
   document.getElementById('f-contact').value=l.contact||'';
   document.getElementById('f-phone').value=l.phone||'';
   document.getElementById('f-email').value=l.email||'';
   document.getElementById('f-city').value=l.city||'';
   document.getElementById('f-status').value=l.status||'Ny';
+  document.getElementById('f-pathway').value=l.pathway||'skriven';
   document.getElementById('f-notes').value=l.notes||'';
   document.getElementById('btn-del').style.display=id?'':'none';
+  const cadBlock=document.getElementById('cad-block');
+  if(id){cadBlock.style.display='';renderCadTrack(l);}else{cadBlock.style.display='none';}
   document.getElementById('modal-bg').classList.add('open');
   setTimeout(()=>document.getElementById('f-name').focus(),50);
 }
@@ -613,22 +995,41 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
 document.getElementById('btn-save').onclick=()=>{
   const name=document.getElementById('f-name').value.trim();
-  if(!name)return alert('Kliniknamn krävs');
-  const lead={
+  if(!name)return alert('Namn krävs');
+  const prev=editId?(leads.find(x=>x.id===editId)||{}):{};
+  const lead=normalize({
     id:editId||Date.now().toString(),name,
+    niche:document.getElementById('f-niche').value,
     web:document.getElementById('f-web').value.trim(),
     contact:document.getElementById('f-contact').value.trim(),
     phone:document.getElementById('f-phone').value.trim(),
     email:document.getElementById('f-email').value.trim(),
     city:document.getElementById('f-city').value.trim(),
     status:document.getElementById('f-status').value,
+    pathway:document.getElementById('f-pathway').value,
     notes:document.getElementById('f-notes').value.trim(),
+    cadenceDay:prev.cadenceDay||'',nextAction:prev.nextAction||'',lastTouch:prev.lastTouch||'',
     updated:today
-  };
+  });
   if(editId){const i=leads.findIndex(x=>x.id===editId);if(i>-1)leads[i]=lead;}
   else leads.unshift(lead);
   saveLeads(leads);closeModal();renderCRM();
 };
+
+document.getElementById('touch-btn').onclick=()=>{
+  if(!editId)return;
+  const l=leads.find(x=>x.id===editId);if(!l)return;
+  logTouch(l);saveLeads(leads);
+  document.getElementById('f-status').value=l.status;
+  renderCadTrack(l);renderCRM();
+};
+
+document.getElementById('crm-niche-filter').onchange=renderCRM;
+document.getElementById('due-list').addEventListener('click',e=>{
+  const t=e.target.closest('[data-touch]'),o=e.target.closest('[data-open]');
+  if(t){const l=leads.find(x=>x.id===t.dataset.touch);if(l){logTouch(l);saveLeads(leads);renderCRM();}}
+  else if(o){openModal(o.dataset.open);}
+});
 
 document.getElementById('btn-del').onclick=()=>{
   if(!editId||!confirm('Radera detta lead?'))return;
@@ -648,8 +1049,8 @@ document.getElementById('crm-search').oninput=renderCRM;
 document.getElementById('crm-status-filter').onchange=renderCRM;
 
 document.getElementById('crm-export').onclick=()=>{
-  const rows=[['Klinik','Webbplats','Kontakt','Telefon','E-post','Ort','Status','Anteckningar','Uppdaterad']];
-  leads.forEach(l=>rows.push([l.name,l.web,l.contact,l.phone,l.email,l.city,l.status,l.notes,l.updated]));
+  const rows=[['Namn','Nisch','Webbplats','Kontakt','Telefon','E-post','Ort','Status','Cadence-väg','Nästa touch','Senaste touch','Anteckningar','Uppdaterad']];
+  leads.forEach(l=>rows.push([l.name,l.niche,l.web,l.contact,l.phone,l.email,l.city,l.status,l.pathway,l.nextAction,l.lastTouch,l.notes,l.updated]));
   const csv=rows.map(r=>r.map(v=>'"'+String(v||'').replace(/"/g,'""')+'"').join(',')).join('\n');
   const a=document.createElement('a');
   a.href='data:text/csv;charset=utf-8,﻿'+encodeURIComponent(csv);
@@ -657,6 +1058,133 @@ document.getElementById('crm-export').onclick=()=>{
 };
 
 renderCRM();
+
+/* ── OFFER (niche-switchable) + ROI ── */
+const OFFERS={
+  klinik:{
+    title:'Klinik <em>Tillväxt</em>',
+    price:'35 000 kr + 9 000 kr/mån',
+    terms:'alt. 0 kr upfront + 14 000 kr/mån · 3 mån bindning · start inom 7 dagar',
+    rows:[
+      ['them','For Them','Mätbart fler patientbokningar via Google och er sajt — inte bara en snyggare hemsida'],
+      ['real','Real','Konverterande hemsida + top-3 lokalt på Google + patientbokningsoptimering (täpper läckorna i bokningsflödet)'],
+      ['fin','$ Sense','6 extra bokningar/mån à 1 500 kr täcker hela retainern — allt däröver är ren vinst'],
+      ['easy','Easy Yes','90-dagarsgaranti: inga mätbara resultat → vi jobbar gratis tills det händer']
+    ],
+    tpl:`OFFERT: Klinik Tillväxt — Bahko Byrå
+
+Vad ni får:
+• Konverterande hemsida byggd för att generera bokningar (inte bara se bra ut)
+• Lokal SEO — top-3 på Google i er stad för era behandlingar
+• Patientbokningsoptimering — vi täpper varje läcka i bokningsflödet
+• Löpande uppföljning och optimering varje månad
+
+Vad det kostar:
+Alt 1: 35 000 kr (engång) + 9 000 kr/mån
+Alt 2: 0 kr upfront + 14 000 kr/mån · 3 månaders bindning · start inom 7 dagar
+
+Vad det ger er:
+6 extra bokningar i månaden à 1 500 kr täcker retainern helt.
+Allt däröver är ren vinst — ni betalar inte för tid, ni betalar för resultat.
+
+Risk-vändare:
+Mätbart fler bokningar på 90 dagar — annars jobbar vi gratis tills det händer.
+
+Nästa steg: boka 20 min så visar jag exakt vad jag hittat på er sajt.
+https://cal.eu/bahkobyra/15min
+
+/Mathias, Bahko Byrå
+mathias@bahkobyra.se`,
+    roi:{mode:'retainer',retainer:9000,valLabel:'Genomsnittsvärde per bokning (kr)',bkLabel:'Extra bokningar/mån (realistisk prognos)',val:1500,bk:10}
+  },
+  bygg:{
+    title:'Bygg <em>Tillväxt</em>',
+    price:'29 900 kr (engång)',
+    terms:'konverterande hemsida + komplett Google-profil · ingen bindning · start inom 7 dagar',
+    rows:[
+      ['them','For Them','Fler jobb och offertförfrågningar via en sajt som rankar — inte bara en snyggare webb'],
+      ['real','Real','Konverterande hemsida + komplett Google Business Profile så ni dyker upp först lokalt'],
+      ['fin','$ Sense','Ett enda extra jobb i månaden betalar sajten flera gånger om — high-ticket-bransch'],
+      ['easy','Easy Yes','Fast pris, ingen bindning, gratis Google-audit först så ni ser exakt vad ni får']
+    ],
+    tpl:`OFFERT: Hemsida som säljer — Bahko Byrå
+
+Vad ni får:
+• Konverterande hemsida byggd för att dra in jobb (inte bara se bra ut)
+• Komplett Google Business Profile så ni rankar lokalt
+• Mobilanpassat, snabbt, med tydliga offert-CTA:n
+• Allt klart och live inom överenskommen tid
+
+Vad det kostar:
+29 900 kr (engångskostnad) · ingen bindning · start inom 7 dagar
+
+Vad det ger er:
+Ett enda extra jobb i månaden betalar sajten många gånger om.
+Ni syns först där kunderna letar — och konverterar besökare till offertförfrågningar.
+
+Nästa steg: boka 20 min så går vi igenom er gratis Google-audit.
+https://cal.eu/bahkobyra/15min
+
+/Mathias, Bahko Byrå
+mathias@bahkobyra.se`,
+    roi:{mode:'oneoff',price:29900,valLabel:'Genomsnittsvärde per jobb (kr)',bkLabel:'Extra jobb/mån via sajten (prognos)',val:15000,bk:2}
+  }
+};
+let offerNiche='klinik';
+function renderOffer(){
+  const o=OFFERS[offerNiche];
+  document.getElementById('offer-title').innerHTML=o.title;
+  document.getElementById('offer-price').textContent=o.price;
+  document.getElementById('offer-terms').textContent=o.terms;
+  document.getElementById('offer-rows').innerHTML=o.rows.map(r=>`<div class="ofr"><span class="ofr-tag ${r[0]}">${r[1]}</span><span>${esc(r[2])}</span></div>`).join('');
+  document.getElementById('offer-tpl').textContent=o.tpl;
+  document.getElementById('roi-val-label').textContent=o.roi.valLabel;
+  document.getElementById('roi-bk-label').textContent=o.roi.bkLabel;
+  document.getElementById('roi-val').value=o.roi.val;
+  document.getElementById('roi-bk').value=o.roi.bk;
+  calcROI();
+}
+function calcROI(){
+  const o=OFFERS[offerNiche].roi;
+  const val=+(document.getElementById('roi-val').value)||o.val;
+  const bk=+(document.getElementById('roi-bk').value)||o.bk;
+  const extra=val*bk;
+  let html;
+  if(o.mode==='retainer'){
+    const roi=Math.round(((extra-o.retainer)/o.retainer)*100);
+    const be=Math.ceil(o.retainer/val);
+    html=`
+      <div class="roi-item"><div class="lv">${extra.toLocaleString('sv-SE')} kr</div><div class="ll">Extra intäkt / mån</div></div>
+      <div class="roi-item"><div class="lv">${roi>0?'+':''}${roi}%</div><div class="ll">ROI på retainern</div></div>
+      <div class="roi-item span2"><div class="lv">${be} bokn.</div><div class="ll">räcker för break-even (av ${bk} prognos) — ${bk-be>0?(bk-be)+' ren vinst-bokningar':'öka snitt-värdet'}</div></div>`;
+  } else {
+    const months=extra>0?Math.max(1,Math.ceil(o.price/extra)):'∞';
+    const jobs=Math.ceil(o.price/val);
+    html=`
+      <div class="roi-item"><div class="lv">${extra.toLocaleString('sv-SE')} kr</div><div class="ll">Extra intäkt / mån</div></div>
+      <div class="roi-item"><div class="lv">${months} mån</div><div class="ll">tills sajten är betald</div></div>
+      <div class="roi-item span2"><div class="lv">${jobs} jobb</div><div class="ll">täcker hela sajten (${o.price.toLocaleString('sv-SE')} kr engång)</div></div>`;
+  }
+  document.getElementById('roi-results').innerHTML=html;
+}
+document.getElementById('roi-val').oninput=calcROI;
+document.getElementById('roi-bk').oninput=calcROI;
+document.querySelectorAll('#offer-seg button').forEach(b=>b.onclick=()=>{
+  offerNiche=b.dataset.niche;
+  document.querySelectorAll('#offer-seg button').forEach(x=>x.classList.toggle('on',x===b));
+  renderOffer();
+});
+renderOffer();
+
+/* ── OFFER COPY ── */
+document.getElementById('copy-offer').onclick=async()=>{
+  const txt=document.getElementById('offer-tpl').innerText;
+  const btn=document.getElementById('copy-offer');
+  try{await navigator.clipboard.writeText(txt);}
+  catch{const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();}
+  btn.textContent='Kopierat ✓';btn.classList.add('done');
+  setTimeout(()=>{btn.textContent='Kopiera offerttext';btn.classList.remove('done');},1600);
+};
 </script>
 </body>
 </html>
