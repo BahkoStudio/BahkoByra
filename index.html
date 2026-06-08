@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bahko Byrå | Hemsidor, SEO &amp; Google Ads för Svenska Kliniker</title>
+<meta name="description" content="Bahko Byrå hjälper svenska kliniker att synas på Google, få fler bokningar och växa online. Professionella hemsidor, Google Ads och SEO — anpassat för estetiska kliniker.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#181C38">
+<link rel="canonical" href="https://www.bahkobyra.se/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.bahkobyra.se/">
+<meta property="og:title" content="Bahko Byrå | Hemsidor, SEO & Google Ads för Svenska Kliniker">
+<meta property="og:description" content="Bahko Byrå hjälper svenska kliniker att synas på Google, få fler bokningar och växa online. Professionella hemsidor, Google Ads och SEO.">
+<meta property="og:image" content="https://www.bahkobyra.se/brand/Bahkostudio.jpg">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:site_name" content="Bahko Byrå">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bahko Byrå | Hemsidor, SEO & Google Ads för Svenska Kliniker">
+<meta name="twitter:description" content="Vi hjälper svenska kliniker att synas på Google, få fler bokningar och växa online.">
+<meta name="twitter:image" content="https://www.bahkobyra.se/brand/Bahkostudio.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Schema: Organization + LocalBusiness. TODO: lägg till "telephone" och fyll "sameAs" med era sociala profiler (Instagram/Facebook/LinkedIn). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Organization", "LocalBusiness"],
+  "name": "Bahko Byrå",
+  "url": "https://www.bahkobyra.se",
+  "logo": "https://www.bahkobyra.se/brand/BahkoStudio-removebg-preview.png",
+  "image": "https://www.bahkobyra.se/brand/Bahkostudio.jpg",
+  "email": "mathias@bahkobyra.se",
+  "description": "Digital byrå specialiserad på hemsidor, SEO och Google Ads för svenska kliniker och skönhetsföretag.",
+  "slogan": "Synlighet som säljer.",
+  "priceRange": "$$",
+  "areaServed": "SE",
+  "inLanguage": "sv",
+  "knowsAbout": ["Lokal SEO", "Google Ads", "Webbdesign", "Google Företagsprofil", "Sociala medier-annonsering"],
+  "contactPoint": { "@type": "ContactPoint", "contactType": "sales", "email": "mathias@bahkobyra.se", "areaServed": "SE", "availableLanguage": "Swedish" },
+  "sameAs": [],
+  "offers": [
+    { "@type": "Offer", "name": "Hemsida", "description": "Professionell hemsida för kliniker" },
+    { "@type": "Offer", "name": "Google Ads", "description": "Annonsering på Google riktad mot klinikpatienter" },
+    { "@type": "Offer", "name": "SEO", "description": "Sökmotoroptimering för svenska kliniker" }
+  ]
+}
+</script>
+
+<!-- libs -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js"></script>
+<script defer src="js/main.js"></script>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div class="progress" id="progress"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pl-mark mark">
+    <span class="mark-box"><span>B</span></span>
+    <span class="mark-word" style="color:var(--paper)">Bahko <em>Byrå</em></span>
+  </div>
+  <div class="pl-bar"><i id="pl-bar"></i></div>
+  <div class="pl-num" id="pl-num">000</div>
+</div>
+
+<!-- HEADER -->
+<header class="hdr up" id="hdr">
+  <a href="#top" class="mark sm magnetic" data-magnetic=".2" aria-label="Bahko Byrå">
+    <span class="mark-box"><span>B</span></span>
+    <span class="mark-word">Bahko <em>Byrå</em></span>
+  </a>
+  <nav class="nav">
+    <a href="#tjanster">Tjänster</a>
+    <a href="#process">Process</a>
+    <a href="#demo">Demo</a>
+    <a href="#varfor">Varför Oss</a>
+    <a href="/kliniker/gratis-granskning.html" class="gratis">Gratis Analys<small>värde 799 kr</small></a>
+    <a href="#kontakt" class="btn btn-gold magnetic" data-magnetic=".3"><span>Boka Samtal</span></a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Meny"><span></span><span></span><span></span></button>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mobnav" id="mobnav">
+  <a href="#tjanster">Tjänster</a>
+  <a href="#process">Process</a>
+  <a href="#demo">Demo</a>
+  <a href="#varfor">Varför Oss</a>
+  <a href="/kliniker/gratis-granskning.html"><em>Gratis Analys</em></a>
+  <a href="#kontakt"><em>Boka Samtal</em></a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-img">
+    <img id="hero-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260525_225124_b47c5542-a0f5-406b-b12d-ed95eb0bde39.png" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-grain"></div>
+
+  <div class="hero-inner">
+    <span class="hero-badge"><i></i> Digital Tillväxtbyrå · Sverige</span>
+    <h1 class="hero-h1">
+      <span class="line"><span>Vi fyller din</span></span>
+      <span class="line"><span>kalender med</span></span>
+      <span class="line"><span class="accent">nya kunder.</span></span>
+    </h1>
+    <p class="hero-lede">Sluta vänta på att kunder ska hitta dig. Vi placerar ditt företag framför lokala kunder som aktivt söker dina tjänster — och vi mäter framgång i faktiska bokningar.</p>
+    <p class="hero-svc">Hemsidor &nbsp;·&nbsp; Appar &nbsp;·&nbsp; Google Ads &nbsp;·&nbsp; SEO &nbsp;·&nbsp; Reklamfilmer</p>
+    <div class="hero-ctas">
+      <a href="#kontakt" class="btn btn-gold magnetic" data-magnetic=".3"><span>Boka Gratis Samtal</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="https://www.bahkobyra.se/cloud/" target="_blank" rel="noopener" class="btn btn-ghost magnetic" data-magnetic=".2"><span>Se Live Demo</span></a>
+    </div>
+  </div>
+
+  <div class="scrollcue"><span class="ln"></span><span>Scrolla</span></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track" id="marquee-track">
+    <div class="mq-set" style="display:flex">
+      <span>Fler Bokningar</span><span>Google Ads</span><span>Hemsidor Som Konverterar</span>
+      <span>SEO Som Rankar</span><span>Resultat Inom 30 Dagar</span><span>Reklamfilmer</span><span>Synlighet Som Säljer</span>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="dark" style="padding-top:0;padding-bottom:0">
+  <div class="stats">
+    <div class="stat" data-reveal><div class="stat-v"><span data-count="30" data-suffix=" dgr">0</span></div><div class="stat-l">Resultatgaranti</div></div>
+    <div class="stat" data-reveal="0.05"><div class="stat-v"><span data-count="87" data-suffix="+">0</span></div><div class="stat-l">Klinikleads Klara</div></div>
+    <div class="stat" data-reveal="0.1"><div class="stat-v"><span data-count="3" data-suffix="x">0</span></div><div class="stat-l">Mer Organisk Trafik</div></div>
+    <div class="stat" data-reveal="0.15"><div class="stat-v"><span data-count="100" data-suffix="%">0</span></div><div class="stat-l">Fokus På Ditt Resultat</div></div>
+  </div>
+</section>
+
+<!-- TJÄNSTER -->
+<section id="tjanster">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Tjänster</span>
+      <h2 class="h2" data-lines>
+        <span class="line"><span>Allt du behöver för att</span></span>
+        <span class="line"><span>synas <em>och sälja</em> online.</span></span>
+      </h2>
+    </div>
+    <div class="svc-grid" data-stagger>
+      <article class="svc" data-stagger-item><span class="svc-i">🌐</span><h3 class="svc-n">Hemsidor</h3><p class="svc-d">Konverteringsoptimerade hemsidor som rankar på Google och förvandlar besökare till betalande kunder.</p><span class="svc-tag">Design · Bygg</span></article>
+      <article class="svc" data-stagger-item><span class="svc-i">📱</span><h3 class="svc-n">Appar</h3><p class="svc-d">Skräddarsydda bokningsappar och kundportaler som gör ditt företag tillgängligt dygnet runt.</p><span class="svc-tag">iOS · Android</span></article>
+      <article class="svc" data-stagger-item><span class="svc-i">📈</span><h3 class="svc-n">Google Ads</h3><p class="svc-d">Betald annonsering som visas exakt när dina kunder söker. Mätbart ROI från dag ett.</p><span class="svc-tag">SEM · PPC</span></article>
+      <article class="svc" data-stagger-item><span class="svc-i">🔍</span><h3 class="svc-n">SEO</h3><p class="svc-d">Organisk synlighet som driver konstant trafik utan kostnad per klick — och som ingen kan stänga av.</p><span class="svc-tag">Lokal · Teknisk</span></article>
+      <article class="svc" data-stagger-item><span class="svc-i">🎬</span><h3 class="svc-n">Reklamfilmer</h3><p class="svc-d">Storytelling som stannar i minnet. Professionell videoproduktion för sociala medier och YouTube-annonser.</p><span class="svc-tag">Video · UGC</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS (pinned horizontal) -->
+<section class="process" id="process" style="padding-bottom:0">
+  <div class="proc-head sec-head">
+    <span class="eyebrow">Hur Vi Jobbar</span>
+    <h2 class="h2" data-lines>
+      <span class="line"><span>Från första samtal</span></span>
+      <span class="line"><span>till <em>fulla kalendrar.</em></span></span>
+    </h2>
+  </div>
+  <div class="proc-hint"><span class="ln"></span> Scrolla för att följa processen</div>
+  <div class="proc-pin" id="proc-pin">
+    <div class="proc-track" id="proc-track">
+      <article class="pstep"><div class="pstep-n">01</div><h3 class="pstep-t">Gratis Samtal</h3><p class="pstep-d">20 minuter. Vi analyserar din nuvarande situation och berättar exakt vad som krävs för att nå dina mål.</p></article>
+      <article class="pstep"><div class="pstep-n">02</div><h3 class="pstep-t">Strategi &amp; Demo</h3><p class="pstep-d">Du ser ett skräddarsytt demo och en klar tillväxtstrategi — innan du betalar en krona.</p></article>
+      <article class="pstep"><div class="pstep-n">03</div><h3 class="pstep-t">Vi Bygger Allt</h3><p class="pstep-d">Hemsida, annonser, SEO — vi hanterar hela kedjan. Du fokuserar på din verksamhet.</p></article>
+      <article class="pstep"><div class="pstep-n">04</div><h3 class="pstep-t">Kunder Flödar In</h3><p class="pstep-d">Trafik, leads och bokningar ökar. Vi optimerar löpande för att maximera ROI varje månad.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="dark demo" id="demo">
+  <div class="wrap">
+    <div data-parallax="40">
+      <div class="demo-frame">
+        <div class="glow"></div>
+        <div class="demo-mock">
+          <div class="demo-dots"><i></i><i></i><i></i></div>
+          <div class="demo-bar a"></div><div class="demo-bar b"></div><div class="demo-bar c"></div><div class="demo-bar d"></div>
+          <div class="demo-lbl">Élara Klinik · Live Demo</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow">Live Demo</span>
+      <h2 class="h2" data-lines style="margin-top:1.1rem">
+        <span class="line"><span>Se hur din hemsida</span></span>
+        <span class="line"><span>kan se ut <em>— nu.</em></span></span>
+      </h2>
+      <p class="lede" data-reveal style="margin-top:1.4rem">Vi bygger ett fullständigt demo innan du bestämmer dig. Se bokningssystem, animationer och design i verklighet — inte i mockups.</p>
+      <a href="https://www.bahkobyra.se/cloud/" target="_blank" rel="noopener" class="demo-link magnetic" data-magnetic=".25" data-reveal>Öppna Demo <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- VARFÖR -->
+<section class="why" id="varfor">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Varför Bahko Byrå</span>
+      <h2 class="h2" data-lines style="margin-top:1.1rem">
+        <span class="line"><span>Vi levererar kunder,</span></span>
+        <span class="line"><span><em>inte bara</em> hemsidor.</span></span>
+      </h2>
+      <p class="lede" data-reveal style="margin-top:1.4rem">De flesta byråer levererar en snygg hemsida och försvinner. Vi mäter framgång i faktiska bokningar — och vi är inte nöjda förrän du är det.</p>
+    </div>
+    <div class="why-list" data-stagger>
+      <div class="wi" data-stagger-item><span class="wi-ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="wi-t">Mätbara resultat inom 30 dagar</div><div class="wi-d">Trafik och leads ökar eller vi jobbar utan betalning tills det händer. Vi sätter upp och optimerar snabbt.</div></div></div>
+      <div class="wi" data-stagger-item><span class="wi-ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="wi-t">Specialister på lokala kunder</div><div class="wi-d">Vi fokuserar inte på globala kampanjer. Vi hjälper dig att dominera din lokala marknad — det är där dina kunder finns.</div></div></div>
+      <div class="wi" data-stagger-item><span class="wi-ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="wi-t">100% transparent rapportering</div><div class="wi-d">Veckovisa rapporter. Du ser exakt vad vi gör, vad det kostar och vad det genererar. Inga dolda avgifter.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GRATIS AUDIT BANNER -->
+<section class="audit-wrap" style="padding-top:0">
+  <div class="audit" data-reveal>
+    <div>
+      <div class="audit-tags">
+        <span class="audit-badge">Tidsbegränsat erbjudande</span>
+        <span class="audit-price"><s>799 kr</s> → <b>GRATIS</b></span>
+      </div>
+      <h3>Få en gratis 10-punktsanalys<br>av er kliniksajt</h3>
+      <p>Vi granskar er webbplats och skickar en personlig rapport direkt till er inbox — mobilanpassning, SEO, bokningsflöde och mer. Svar inom 24h.</p>
+    </div>
+    <a href="/kliniker/gratis-granskning.html" class="btn btn-gold magnetic" data-magnetic=".25"><span>Få gratis analys</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta">
+  <div class="glow"></div>
+  <div class="cta-inner">
+    <h2 data-lines>
+      <span class="line"><span>Redo att fylla</span></span>
+      <span class="line"><span>din <em>kalender?</em></span></span>
+    </h2>
+    <p data-reveal>Boka ett gratis 20-minuterssamtal — utan förpliktelser, utan säljsnack.</p>
+    <a href="#kontakt" class="btn btn-gold magnetic" data-magnetic=".3" data-reveal><span>Boka Gratis Samtal Nu</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="contact" id="kontakt">
+  <div class="wrap">
+    <span class="eyebrow center">Kontakt</span>
+    <h2 class="h2" data-lines style="margin-top:1.1rem">
+      <span class="line"><span>Boka ditt</span></span>
+      <span class="line"><span><em>kostnadsfria</em> samtal.</span></span>
+    </h2>
+    <p class="lede" data-reveal style="margin:1.2rem auto 0">Fyll i nedan så hör vi av oss inom 24 timmar för att boka ett kort samtal.</p>
+    <form class="cform" id="cform" action="https://formspree.io/f/mgonrnep" method="POST" data-reveal>
+      <div class="crow">
+        <div class="field"><label for="cf-namn">Namn</label><input type="text" id="cf-namn" name="namn" placeholder="Anna Svensson" required autocomplete="name"></div>
+        <div class="field"><label for="cf-tel">Telefon</label><input type="tel" id="cf-tel" name="telefon" placeholder="070 000 00 00" autocomplete="tel"></div>
+      </div>
+      <div class="field"><label for="cf-epost">E-post</label><input type="email" id="cf-epost" name="email" placeholder="anna@dinverksamhet.se" required autocomplete="email"></div>
+      <div class="field"><label for="cf-msg">Hur kan vi hjälpa dig?</label><textarea id="cf-msg" name="meddelande" placeholder="Berätta kort om din verksamhet och vad du vill uppnå..."></textarea></div>
+      <input type="hidden" name="_subject" value="Ny kontaktförfrågan – startsidan (bahkobyra.se)">
+      <button class="btn btn-gold magnetic" data-magnetic=".2" type="submit"><span>Skicka Förfrågan</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </form>
+    <div class="cok" id="cok">
+      <div class="ic">✓</div>
+      <h3>Tack! Vi återkommer snart.</h3>
+      <p>Vi hör av oss inom 24 timmar för att boka ert samtal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="foot-top">
+    <div class="foot-brand">Bahko <em>Byrå</em></div>
+    <div class="foot-cta">
+      <p>Synlighet som säljer.</p>
+      <a href="#kontakt" class="btn btn-gold magnetic" data-magnetic=".25"><span>Starta Ditt Projekt</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Bahko Byrå</span>
+    <div class="foot-links">
+      <a href="#tjanster">Tjänster</a>
+      <a href="/kliniker/gratis-granskning.html">Gratis Analys</a>
+    </div>
+    <span>bahkobyra.se</span>
+  </div>
+</footer>
+
+<!-- AUDIT POPUP -->
+<div class="pop" id="pop">
+  <div class="pop-card">
+    <button class="pop-x" id="pop-x" aria-label="Stäng">×</button>
+    <div class="pop-ey">Tidsbegränsat erbjudande</div>
+    <h3>Få en gratis analys av er kliniksajt</h3>
+    <p>Vi granskar er webbplats mot 10 punkter och skickar rapporten direkt till er inbox — inom 24h.</p>
+    <div class="pop-prices">
+      <div class="box old"><b>799 kr</b><small>ordinarie</small></div>
+      <span class="arrow">→</span>
+      <div class="box"><b>GRATIS</b><small>just nu</small></div>
+    </div>
+    <a href="/kliniker/gratis-granskning.html" class="btn btn-gold"><span>Få min gratis analys</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <p class="pop-note">Inga krav. Svar inom 24h.</p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gratis Webbplatsanalys för Kliniker | Bahko Byrå</title>
+<meta name="description" content="Få en gratis 10-punktsanalys av er kliniksajt. Vi granskar SEO, mobilanpassning, bokningsflöde och mer — helt gratis, utan krav.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.bahkobyra.se/kliniker/gratis-granskning.html">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#EDE8DF;
+  --cream-2:#F4F0E8;
+  --cream-3:#FBF8F3;
+  --navy:#181C38;
+  --navy-2:#12152E;
+  --gold:#C9A96E;
+  --gold-lt:#E3C88E;
+  --gold-dk:#B08F4D;
+  --ink:#181C38;
+  --ink-70:rgba(24,28,56,.72);
+  --ink-55:rgba(24,28,56,.56);
+  --ink-35:rgba(24,28,56,.35);
+  --line:rgba(201,169,110,.24);
+  --line-2:rgba(201,169,110,.72);
+  --paper:#F5F2EB;
+  --paper-70:rgba(245,242,235,.7);
+  --paper-line:rgba(201,169,110,.2);
+  --display:'Cormorant Garamond',Georgia,serif;
+  --sans:'Outfit',system-ui,sans-serif;
+  --r:3px;
+  --r-lg:6px;
+  --gut:clamp(1.25rem,5vw,4.5rem);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html{scroll-behavior:smooth;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:clamp(15px,.55vw + 13px,17px);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none}
+::selection{background:var(--gold);color:var(--navy)}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem var(--gut);display:flex;justify-content:space-between;align-items:center;background:rgba(237,232,223,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav-brand{font-family:var(--display);font-size:1.1rem;font-weight:500;letter-spacing:.02em;color:var(--ink)}
+.nav-brand em{font-style:italic;color:var(--gold-dk)}
+.nav-back{font-size:.66rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-55);display:flex;align-items:center;gap:.5rem;transition:color .25s}
+.nav-back:hover{color:var(--gold-dk)}
+.nav-back svg{width:12px;height:12px;stroke:currentColor;stroke-width:2;fill:none}
+
+/* ── HERO ── */
+.hero{padding:clamp(7rem,14vw,11rem) var(--gut) clamp(4rem,8vw,7rem);max-width:840px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-size:.62rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-dk);background:rgba(201,169,110,.12);border:1px solid var(--line-2);border-radius:30px;padding:.38rem 1.1rem;margin-bottom:2rem}
+.hero-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.hero-title{font-family:var(--display);font-size:clamp(2.4rem,7vw,4.2rem);font-weight:500;line-height:1.04;letter-spacing:-.015em;margin-bottom:1.3rem;color:var(--ink)}
+.hero-title em{font-style:italic;font-weight:400;background:linear-gradient(108deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:clamp(.92rem,1.3vw,1.08rem);color:var(--ink-70);line-height:1.8;font-weight:300;max-width:54ch;margin:0 auto 3rem}
+.hero-stats{display:flex;gap:0;justify-content:center;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;max-width:480px;margin:0 auto}
+.hero-stat{flex:1;padding:1.4rem 1rem;text-align:center;border-right:1px solid var(--line)}
+.hero-stat:last-child{border-right:none}
+.hero-stat-n{font-family:var(--display);font-size:1.9rem;font-weight:500;line-height:1;background:linear-gradient(120deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-stat-l{font-size:.6rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-55);margin-top:.4rem}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--line);max-width:var(--gut);margin:0 var(--gut)}
+.divider.full{max-width:100%;margin:0}
+
+/* ── SECTION ── */
+.section{padding:clamp(4rem,8vw,7rem) var(--gut);max-width:calc(840px + var(--gut) * 2);margin:0 auto}
+.eyebrow{font-size:.62rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-dk);display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.eyebrow::before{content:'';width:26px;height:1px;background:var(--gold);display:inline-block}
+.section-title{font-family:var(--display);font-size:clamp(1.7rem,4vw,2.6rem);font-weight:500;line-height:1.1;letter-spacing:-.01em;margin-bottom:2.5rem}
+
+/* ── POINTS GRID ── */
+.points-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.point{background:var(--cream-3);padding:1.6rem 1.5rem;display:flex;gap:1.1rem;align-items:flex-start;transition:background .3s}
+.point:hover{background:var(--cream-2)}
+.point-num{font-family:var(--display);font-size:1.1rem;font-style:italic;color:var(--gold);flex-shrink:0;line-height:1;padding-top:.1rem}
+.point-body h4{font-size:.9rem;font-weight:500;color:var(--ink);margin-bottom:.28rem}
+.point-body p{font-size:.78rem;color:var(--ink-55);line-height:1.6;font-weight:300}
+
+/* ── PROCESS STEPS ── */
+.process{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.proc-step{display:flex;gap:1.4rem;align-items:flex-start;padding:1.6rem 1.8rem;background:var(--cream-3);border-bottom:1px solid var(--line);transition:background .3s}
+.proc-step:last-child{border-bottom:none}
+.proc-step:hover{background:var(--cream-2)}
+.proc-n{width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+.proc-n span{font-family:var(--display);font-size:1.05rem;font-style:italic;color:var(--gold-dk);line-height:1}
+.proc-body h4{font-size:.92rem;font-weight:500;margin-bottom:.3rem;color:var(--ink)}
+.proc-body p{font-size:.8rem;color:var(--ink-55);line-height:1.6;font-weight:300}
+
+/* ── FORM SECTION ── */
+.form-section{background:var(--navy);padding:clamp(4rem,8vw,7rem) var(--gut);position:relative;overflow:hidden}
+.form-section::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(201,169,110,.09),transparent 65%);pointer-events:none}
+.form-wrap{max-width:560px;margin:0 auto;position:relative}
+.form-eyebrow{font-size:.62rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.form-eyebrow::before{content:'';width:26px;height:1px;background:var(--gold);display:inline-block}
+.form-title{font-family:var(--display);font-size:clamp(1.9rem,4vw,2.8rem);font-weight:500;line-height:1.08;letter-spacing:-.015em;margin-bottom:.7rem;color:var(--paper)}
+.form-title em{font-style:italic;font-weight:400;color:var(--gold-lt)}
+.form-sub{font-size:.88rem;color:var(--paper-70);line-height:1.7;font-weight:300;margin-bottom:2.8rem}
+
+form{display:flex;flex-direction:column;gap:1rem}
+.field{display:flex;flex-direction:column;gap:.45rem}
+.field label{font-size:.64rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,242,235,.5)}
+.field input{background:rgba(245,242,235,.06);border:1px solid rgba(201,169,110,.2);border-radius:var(--r);padding:.9rem 1.1rem;color:var(--paper);font-family:var(--sans);font-size:.95rem;font-weight:300;outline:none;transition:border-color .3s,background .3s;-webkit-appearance:none;appearance:none}
+.field input:focus{border-color:rgba(201,169,110,.55);background:rgba(245,242,235,.1)}
+.field input::placeholder{color:rgba(245,242,235,.22)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+.submit-btn{margin-top:.6rem;padding:1.05rem 2.2rem;background:var(--gold);color:var(--navy-2);font-family:var(--sans);font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-radius:var(--r);cursor:pointer;transition:background .3s,transform .15s,box-shadow .3s;position:relative;overflow:hidden}
+.submit-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.18) 50%,transparent 100%);transform:translateX(-100%);transition:transform .5s var(--ease)}
+.submit-btn:hover{background:var(--gold-lt);box-shadow:0 8px 28px -10px rgba(201,169,110,.55)}
+.submit-btn:hover::after{transform:translateX(100%)}
+.submit-btn:active{transform:scale(.98)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+
+.form-note{font-size:.66rem;color:rgba(245,242,235,.32);text-align:center;margin-top:.8rem;line-height:1.5;letter-spacing:.04em}
+
+/* ── SUCCESS STATE ── */
+.success{display:none;text-align:center;padding:2.5rem 0;color:var(--paper)}
+.success-ic{width:56px;height:56px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;margin:0 auto 1.4rem;color:var(--gold);font-size:1.4rem}
+.success h3{font-family:var(--display);font-size:1.8rem;font-weight:500;margin-bottom:.5rem}
+.success p{font-size:.88rem;color:var(--paper-70);line-height:1.7;font-weight:300}
+
+/* ── FOOTER ── */
+footer{padding:2.5rem var(--gut);text-align:center;border-top:1px solid var(--line);background:var(--cream-2)}
+footer p{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-35)}
+footer a{color:var(--ink-55);transition:color .25s}
+footer a:hover{color:var(--gold-dk)}
+
+/* ── MOBILE ── */
+@media(max-width:640px){
+  .hero{padding:6.5rem var(--gut) 3.5rem}
+  .hero-stats{flex-direction:column;max-width:220px;border-radius:var(--r)}
+  .hero-stat{border-right:none;border-bottom:1px solid var(--line)}
+  .hero-stat:last-child{border-bottom:none}
+  .points-grid{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr}
+  .nav{padding:1rem var(--gut)}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-brand" href="https://www.bahkobyra.se">Bahko <em>Byrå</em></a>
+  <a class="nav-back" href="https://www.bahkobyra.se">
+    <svg viewBox="0 0 12 12"><polyline points="8,2 4,6 8,10"/></svg>
+    Tillbaka
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Gratis — värde 799 kr · Svar inom 24h</div>
+  <h1 class="hero-title">Hur ser din kliniksajt<br>ut i <em>köparens ögon?</em></h1>
+  <p class="hero-sub">Vi gör en 10-punktsanalys av er webbplats och skickar resultatet direkt till er — helt gratis. Inga strings attached.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-n">10</div>
+      <div class="hero-stat-l">Granskningspunkter</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-n">24h</div>
+      <div class="hero-stat-l">Svar garanterat</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-n">0 kr</div>
+      <div class="hero-stat-l">Alltid gratis</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider full"></div>
+
+<!-- WHAT YOU GET -->
+<section class="section">
+  <div class="eyebrow">Vad vi granskar</div>
+  <h2 class="section-title">10 punkter som avgör om er sajt<br>tappar patienter</h2>
+  <div class="points-grid">
+    <div class="point">
+      <div class="point-num">01</div>
+      <div class="point-body">
+        <h4>Mobilanpassning</h4>
+        <p>70% av kliniksökningar sker på telefon. Fungerar er sajt perfekt på mobil?</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">02</div>
+      <div class="point-body">
+        <h4>Laddningshastighet</h4>
+        <p>Varje extra sekund tappas 7% av besökarna. Hur snabbt laddar er sida?</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">03</div>
+      <div class="point-body">
+        <h4>Lokal SEO & Google Maps</h4>
+        <p>Syns ni när folk söker "[behandling] [stad]"? Är er Google Business-profil komplett?</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">04</div>
+      <div class="point-body">
+        <h4>Bokningsflöde</h4>
+        <p>Hur många klick krävs för att boka? Varje extra steg kostar bokningar.</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">05</div>
+      <div class="point-body">
+        <h4>Trustsignaler</h4>
+        <p>Certifikat, betyg och before/after-bilder — syns de tydligt? Förtroende avgör valet.</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">06</div>
+      <div class="point-body">
+        <h4>Sociala bevis</h4>
+        <p>Recensioner, antal behandlingar, nöjda patienter — visas det på er sajt?</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">07</div>
+      <div class="point-body">
+        <h4>SEO-grundstruktur</h4>
+        <p>Titlar, meta-beskrivningar och URL-struktur — är de optimerade för Google?</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">08</div>
+      <div class="point-body">
+        <h4>Prissättning & erbjudanden</h4>
+        <p>Är priser lätta att hitta? Otydlig prissättning skrämmer bort 43% av besökarna.</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">09</div>
+      <div class="point-body">
+        <h4>Design & varumärke</h4>
+        <p>Speglar designen det er klinik faktiskt erbjuder? Professionellt = förtroende.</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">10</div>
+      <div class="point-body">
+        <h4>Konverteringspotential</h4>
+        <p>Är CTA-knappar tydliga? Fångar ni leads som inte bokar direkt?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider full"></div>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="eyebrow">Så funkar det</div>
+  <h2 class="section-title">Tre steg — klart</h2>
+  <div class="process">
+    <div class="proc-step">
+      <div class="proc-n"><span>1</span></div>
+      <div class="proc-body">
+        <h4>Fyll i formuläret nedan</h4>
+        <p>Ange er kliniknamn, webbadress och e-post. Det tar under 60 sekunder.</p>
+      </div>
+    </div>
+    <div class="proc-step">
+      <div class="proc-n"><span>2</span></div>
+      <div class="proc-body">
+        <h4>Vi analyserar er sajt</h4>
+        <p>Mathias på Bahko Byrå granskar er webbplats mot alla 10 punkter och skriver en personlig rapport.</p>
+      </div>
+    </div>
+    <div class="proc-step">
+      <div class="proc-n"><span>3</span></div>
+      <div class="proc-body">
+        <h4>Rapporten landar i er inkorg</h4>
+        <p>Inom 24 timmar får ni en konkret lista med vad som fungerar och vad som kostar er patienter — utan säljpitch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<div class="form-section">
+  <div class="form-wrap">
+    <div class="form-eyebrow">Starta analysen</div>
+    <h2 class="form-title">Få er <em>gratis</em> rapport</h2>
+    <p class="form-sub">Vi skickar en personlig webbplatsanalys till er e-post inom 24 timmar. Helt gratis, inga krav.</p>
+
+    <form id="audit-form" action="https://formspree.io/f/mgonrnep" method="POST">
+      <div class="field-row">
+        <div class="field">
+          <label for="namn">Ditt namn</label>
+          <input type="text" id="namn" name="namn" placeholder="Mathias Eriksson" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="klinik">Klinikens namn</label>
+          <input type="text" id="klinik" name="klinik" placeholder="Luminos Klinik" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="webbplats">Webbadress</label>
+        <input type="url" id="webbplats" name="webbplats" placeholder="https://erkliniksajt.se" required autocomplete="url">
+      </div>
+      <div class="field">
+        <label for="email">Er e-post</label>
+        <input type="email" id="email" name="email" placeholder="hej@erkliniksajt.se" required autocomplete="email">
+      </div>
+      <input type="hidden" name="_subject" value="Ny audit-förfrågan från webbplatsanalys">
+      <button class="submit-btn" type="submit" id="submit-btn">Skicka — helt gratis</button>
+      <p class="form-note">Vi delar aldrig er information. Ni kan avregistrera er när som helst.</p>
+    </form>
+
+    <div class="success" id="success-msg">
+      <div class="success-ic">✓</div>
+      <h3>Tack — vi återkommer inom 24h!</h3>
+      <p>Mathias på Bahko Byrå granskar er sajt och skickar rapporten till er e-post.<br>Kolla gärna skräpposten om ni inte hör av oss.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p><a href="https://www.bahkobyra.se">Bahko Byrå</a> &nbsp;·&nbsp; Synlighet som säljer &nbsp;·&nbsp; <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a></p>
+</footer>
+
+<script>
+const form = document.getElementById('audit-form');
+const success = document.getElementById('success-msg');
+const btn = document.getElementById('submit-btn');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  btn.disabled = true;
+  btn.textContent = 'Skickar...';
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      form.style.display = 'none';
+      success.style.display = 'block';
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Skicka — helt gratis';
+      alert('Något gick fel. Försök igen eller mejla oss direkt på mathias@bahkobyra.se');
+    }
+  } catch {
+    btn.disabled = false;
+    btn.textContent = 'Skicka — helt gratis';
+    alert('Något gick fel. Försök igen eller mejla oss direkt på mathias@bahkobyra.se');
+  }
+});
+</script>
+</body>
+</html>
