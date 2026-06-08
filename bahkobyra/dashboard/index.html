@@ -136,6 +136,9 @@ tr:hover td{background:var(--cream-2)}
 .s-mote{background:rgba(201,169,110,.3);color:var(--gold-dk)}
 .s-offert{background:rgba(201,120,58,.15);color:#b05820}
 .s-stangd{background:rgba(79,157,107,.15);color:var(--ok)}
+.s-upp2{background:rgba(79,157,250,.2);color:#2f6aa8}
+.s-upp3{background:rgba(79,157,250,.3);color:#255688}
+.s-nej{background:rgba(201,74,74,.13);color:var(--danger)}
 .crm-name{font-weight:500;color:var(--ink)}
 .crm-link{color:var(--gold-dk);font-size:.7rem}
 .crm-link:hover{text-decoration:underline}
@@ -328,10 +331,13 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
         <option value="">Alla statusar</option>
         <option value="Ny">Ny</option>
         <option value="Kontaktad">Kontaktad</option>
+        <option value="Uppföljning 2">Uppföljning 2</option>
+        <option value="Uppföljning 3">Uppföljning 3</option>
         <option value="Svar">Svar</option>
         <option value="Möte">Möte</option>
         <option value="Offert">Offert</option>
         <option value="Stängd">Stängd</option>
+        <option value="Inte intresserad">Inte intresserad</option>
       </select>
       <button class="crm-add-btn" id="crm-add">+ Nytt lead</button>
       <button class="crm-add-btn" id="crm-export" style="color:var(--ink-55)">↓ CSV</button>
@@ -543,8 +549,9 @@ Hej [Namn], jag driver Bahko Byrå — vi hjälper kliniker få fler patientbokn
     <div class="field"><label>Ort</label><input id="f-city" type="text" placeholder="Stockholm"></div>
     <div class="field"><label>Status</label>
       <select id="f-status">
-        <option>Ny</option><option>Kontaktad</option><option>Svar</option>
-        <option>Möte</option><option>Offert</option><option>Stängd</option>
+        <option>Ny</option><option>Kontaktad</option><option>Uppföljning 2</option>
+        <option>Uppföljning 3</option><option>Svar</option><option>Möte</option>
+        <option>Offert</option><option>Stängd</option><option>Inte intresserad</option>
       </select>
     </div>
     <div class="field"><label>Anteckningar</label><textarea id="f-notes" placeholder="Senaste touch, beslutspunkt, follow-up datum…"></textarea></div>
@@ -654,8 +661,8 @@ function saveLeads(arr){localStorage.setItem(CRM_KEY,JSON.stringify(arr));}
 
 let leads=loadLeads();
 let editId=null;
-const STATUSES=['Ny','Kontaktad','Svar','Möte','Offert','Stängd'];
-const STATUS_CLS={Ny:'s-ny',Kontaktad:'s-kontaktad',Svar:'s-svar','Möte':'s-mote',Offert:'s-offert',Stängd:'s-stangd'};
+const STATUSES=['Ny','Kontaktad','Uppföljning 2','Uppföljning 3','Svar','Möte','Offert','Stängd','Inte intresserad'];
+const STATUS_CLS={Ny:'s-ny',Kontaktad:'s-kontaktad','Uppföljning 2':'s-upp2','Uppföljning 3':'s-upp3',Svar:'s-svar','Möte':'s-mote',Offert:'s-offert',Stängd:'s-stangd','Inte intresserad':'s-nej'};
 
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
