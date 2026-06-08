@@ -74,6 +74,26 @@ Stay pragmatic. Stay reliable. Keep learning.
 
 ---
 
+## Säljsystem (BIAB / ProfResults)
+
+Fundamentet för all försäljning. Full playbook: `workflows/sales_methodology.md`. Leverans:
+`workflows/local_seo_delivery.md`. Cadence: `workflows/outreach_cadence.md`. IG: `workflows/instagram_engine.md`.
+Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `bahkobyra/dashboard/index.html`
+(CRM med cadence, offert-väljare, outreach-skript, Instagram-motor, Spelbok).
+
+**Offer-stegen (ett varumärke, två budskap):**
+
+| | Klinik (cold email/call/IRL) | Bygg & hantverk (Instagram @bahkostudio) |
+|--|------------------------------|-------------------------------------------|
+| Front (gratis) | Gratis Google/GBP-audit | Gratis Google/GBP-audit |
+| Core (betalt) | Hemsida + retainer (35 000 kr + 9 000 kr/mån) | Hemsida engångs (29 900 kr) |
+
+- **Offer-regel:** resultat + mekanism + riskreversering + villkor. FOR THEM / REAL / Financial Sense / Easy YES.
+- **Front-offer = bevisa "the wizard"**, inte tjäna pengar. Sen uppsell.
+- **Cadence:** välj EN väg/lead (skriven/samtal/IRL), dag 1/3/5/7 → svar=boka, tyst=nurture/stäng.
+- **Daglig blast:** volym slår allt. Flaskhals = bokade möten/vecka.
+- **Nischer:** kliniker (CRM) + bygg/tak/måleri/mark (Instagram).
+
 ## Skills
 
 Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always loaded; full content loads on invocation.
@@ -84,10 +104,14 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 | video-to-website | `/video-to-website` | "turn this video into a website", "scroll-driven website", "video to website" |
 | excalidraw-diagram | `/excalidraw-diagram` | "draw a diagram", "make a diagram of", "create an Excalidraw diagram" |
 | rapport | `/rapport [klinik]` | "generera rapport", "konkurrensanalys", "klientrapport", "lead-rapport", "analysera [klinik]" |
+| instagram-engine | `/instagram-engine [trade]` | "instagram-motor", "skapa reels", "content-batch", "veckans content", "reels för bygg/tak/måleri/mark" |
+| grill-me | `/grill-me` | "grill me", "stress-test planen", "intervjua mig om planen" |
 
 - **skill-builder** — Guides building/auditing/optimizing skills. Runs Discovery Interview before creating. See `.claude/skills/skill-builder/reference.md`.
 - **video-to-website** — Converts a video into a scroll-driven animated website (FFmpeg + GSAP + Lenis + canvas).
 - **excalidraw-diagram** — Generates editable Excalidraw diagrams, saves `.excalidraw` files.
 - **rapport** — Genererar konkurrensanalys, klientrapporter och lead-profiler. Exporterar till Google Docs/Sheets. Kräver `credentials.json` för Google OAuth. Export-verktyg: `tools/export_to_google_docs.js`.
+- **instagram-engine** — Producerar content-batchar (reels/carouseller/DM-cadence) för bygg/hantverk-nischen (@bahkostudio). Speglas i dashboardens Instagram-motor. Se `.claude/skills/instagram-engine/templates.md`.
+- **grill-me** — Intervjuar dig relentlessly genom designträdet tills delad förståelse nås. Ger rekommenderat svar per fråga, frågar i rundor via AskUserQuestion.
 
 New skills go in `.claude/skills/[skill-name]/SKILL.md`. API keys go in `.env`, never hardcoded.
