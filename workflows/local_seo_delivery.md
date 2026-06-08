@@ -1,7 +1,9 @@
-# Workflow: Local SEO / GBP-leverans
+# Workflow: Local SEO / GBP-leverans (INTERN)
 
-Hur vi faktiskt levererar "Växa på Google" efter att en kund sagt ja. Distillerat från
-`reference/Local_SEO_Workflow.pdf` + `reference/BM_Challenge.pdf`. Detta är service-delivery-SOP:n.
+Hur vi faktiskt levererar "Växa på Google" — som **intern leverans** (klinik-retainer) och som underlag
+för **bahkobyra.se:s** växa-på-google-copy/lead magnet. Distillerat från `reference/Local_SEO_Workflow.pdf`
++ `reference/BM_Challenge.pdf`. **OBS:** detta är leverans/copy för bahkobyra.se — INTE outreach-säljbudskapet.
+Front-offern i outreach/DM = hemsidor (se `workflows/sales_methodology.md`).
 
 ## Objektiv
 
@@ -92,6 +94,7 @@ Veckovis uppdatering till kund varje update-dag. Be kund om: (1) löpande recens
 
 ## Koppling till verktyg
 
-- `tools/generate_audit.js --type=gbp` — producerar GBP-auditen vi använder som front-offer/Loom-underlag.
-- Front-offer levereras via `bahkobyra/kliniker/gratis-granskning.html`.
+- `tools/generate_audit.js --type=gbp` — producerar GBP-auditen vi använder som leverans-underlag (klinik-retainer)
+  och för bahkobyra.se:s växa-på-google-innehåll.
+- bahkobyra.se:s lead magnet (gratis granskning/guide) bor i `bahkobyra/kliniker/`.
 - Sälj-/offer-logik: `workflows/sales_methodology.md`. Cadence: `workflows/outreach_cadence.md`.

@@ -81,14 +81,20 @@ Fundamentet för all försäljning. Full playbook: `workflows/sales_methodology.
 Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `bahkobyra/dashboard/index.html`
 (CRM med cadence, offert-väljare, outreach-skript, Instagram-motor, Spelbok).
 
-**Offer-stegen (ett varumärke, två budskap):**
+**POSITIONERING (viktigt):**
+- **Offerten = hemsidor.** På ALLA kanaler (Instagram, cold email/call/IRL, DM) säljer vi hemsidor som front offer.
+- **"Växa på Google"-copy ENDAST på `www.bahkobyra.se`.** Aldrig i outreach, DM, reels eller dashboard-skript.
+- Local SEO / Google-ranking är intern leverans (klinik-retainer) — inte säljbudskapet.
+
+**Offer-stegen (ett varumärke, två nischer):**
 
 | | Klinik (cold email/call/IRL) | Bygg & hantverk (Instagram @bahkostudio) |
 |--|------------------------------|-------------------------------------------|
-| Front (gratis) | Gratis Google/GBP-audit | Gratis Google/GBP-audit |
-| Core (betalt) | Hemsida + retainer (35 000 kr + 9 000 kr/mån) | Hemsida engångs (29 900 kr) |
+| Front (gratis) | Gratis hemsideförslag (2-min Loom + utkast) | Gratis hemsideförslag (utkast) |
+| Core (betalt) | Hemsida + löpande optimering (35 000 kr + 9 000 kr/mån) | Hemsida engångs (29 900 kr) |
 
 - **Offer-regel:** resultat + mekanism + riskreversering + villkor. FOR THEM / REAL / Financial Sense / Easy YES.
+- **Outreach-copy:** kort, personlig, mänsklig, hjälpsam. En konkret observation om DERAS sajt + en tydlig CTA.
 - **Front-offer = bevisa "the wizard"**, inte tjäna pengar. Sen uppsell.
 - **Cadence:** välj EN väg/lead (skriven/samtal/IRL), dag 1/3/5/7 → svar=boka, tyst=nurture/stäng.
 - **Daglig blast:** volym slår allt. Flaskhals = bokade möten/vecka.

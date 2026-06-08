@@ -1,7 +1,8 @@
 # Workflow: Instagram-motor (bygg & hantverk)
 
 Top-of-funnel-motorn för bygg/hantverk-nischen. Postar från **@bahkostudio**. Säljer hemsidor
-(engångsköp) med gratis Google/GBP-audit som front-offer. Drivs av skillen `instagram-engine`.
+(engångsköp) med gratis hemsideförslag (utkast) som front-offer. Drivs av skillen `instagram-engine`.
+**OBS:** offerten = hemsidor. "Växa på Google"-copy hör ENDAST hemma på bahkobyra.se, aldrig i reels/DM.
 
 ## Objektiv
 
@@ -33,7 +34,7 @@ Varje reel/ad: **Hook → Problem → Agitera → Diskvalificera andra lösninga
 Idé-generering: gå runt och bestäm "jag gör en reel innan jag går hem". Fråga: "om jag drev ett
 [takföretag] och ville ha fler jobb — vad skulle jag undra över?"
 
-CTA leder alltid till front-offern: **gratis Google/GBP-audit** ("DM:a 'GOOGLE' så kollar jag din profil").
+CTA leder alltid till front-offern: **gratis hemsideförslag** ("DM:a 'SAJT' så skickar jag ett utkast på er nya hemsida").
 
 ---
 

@@ -8,7 +8,8 @@ disable-model-invocation: false
 # Instagram-motor (bygg & hantverk)
 
 Producerar content-batchar för **@bahkostudio** som driver top of funnel för bygg/hantverk-nischen.
-Mål: DM-konversationer → gratis Google/GBP-audit → sälj hemsida (engångsköp).
+Mål: DM-konversationer → gratis hemsideförslag (utkast) → sälj hemsida (engångsköp).
+**Offerten = hemsidor. "Växa på Google"-copy hör ENDAST hemma på bahkobyra.se — aldrig i reels/DM.**
 
 Full SOP: `workflows/instagram_engine.md`. Metodik/formler: `workflows/sales_methodology.md`.
 Allt operativt (cadence, skript, content-kalender) speglas i dashboarden:
@@ -24,7 +25,7 @@ Allt operativt (cadence, skript, content-kalender) speglas i dashboarden:
 2. **Hämta vinklar** ur `templates.md` (hooks/carouseller/DM per trade).
 3. **Generera batchen:**
    - **3 reel-script** enligt formeln: Hook → Problem → Agitera → Diskvalificera andra lösningar →
-     Lösning → CTA → Future pacing. CTA = gratis Google-audit ("DM:a 'GOOGLE'").
+     Lösning → CTA → Future pacing. CTA = gratis hemsideförslag ("DM:a 'SAJT'").
    - **2 carousell-outlines** (6–8 slides: hook-slide → värde → bevis → CTA-slide).
    - **Story-idéer** (poll, BTS, audit-CTA).
    - **DM-cadence** (skriven-first dag 1/3/5/7, se `workflows/outreach_cadence.md`).

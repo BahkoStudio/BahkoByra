@@ -35,7 +35,7 @@ Vill du att jag skickar en kort video som visar exakt hur?"
 
 > Front-offerns enda jobb är att etablera dig som "the wizard" — INTE att tjäna pengar.
 
-- Du gör något undeniable billigt/gratis (gratis Google/GBP-audit). Du bevisar magi.
+- Du gör något undeniable billigt/gratis (gratis hemsideförslag / 2-min Loom + utkast). Du bevisar magi.
 - När de sett att du levererar vill de behålla dig **till varje pris**. Wizards får betalt.
 - Sen säljer du allt: hemsida, retainer, Google Ads, Meta Ads.
 - **Continuity (retainer) > engångsköp.** Du börjar varje månad på "inte noll".
@@ -44,7 +44,9 @@ Vill du att jag skickar en kort video som visar exakt hur?"
   det vi har, 2) vi fortsätter klättra. Därför ett månadspaket. Plus: vi jobbar inte med en konkurrent i
   din zon så länge vi samarbetar." (Håll radien rimlig.)
 
-**BahkoByras front-offer = gratis Google/GBP-audit (Loom).** Levereras via `bahkobyra/kliniker/gratis-granskning.html`.
+**BahkoByras offer = hemsidor.** Front-offer på ALLA kanaler = gratis hemsideförslag (2-min Loom som visar
+3 brister på deras sajt + ett utkast på ny startsida). **"Växa på Google"-copy ENDAST på `www.bahkobyra.se`** —
+aldrig i outreach/DM/reels. Local SEO/Google-ranking = intern leverans (klinik-retainer), inte säljbudskap.
 
 ---
 
