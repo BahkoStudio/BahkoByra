@@ -204,6 +204,33 @@
     });
   }
 
+  /* ── SCROLL-DRIVEN HERO VIDEO ──────────────────────────── */
+  function initHeroVideo() {
+    const video = doc.getElementById('hero-video');
+    if (!video || !hasST || reduce) return;
+
+    const setup = () => {
+      const dur = video.duration;
+      if (!dur || isNaN(dur)) return;
+
+      ScrollTrigger.create({
+        trigger: '.hero',
+        start: 'top top',
+        end: '+=110%',
+        pin: true,
+        anticipatePin: 1,
+        scrub: 0.6,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          if (video.readyState >= 2) video.currentTime = self.progress * dur;
+        }
+      });
+    };
+
+    if (video.readyState >= 1) setup();
+    else video.addEventListener('loadedmetadata', setup, { once: true });
+  }
+
   /* ── COUNTERS ──────────────────────────────────────────── */
   function initCounters() {
     $$('[data-count]').forEach((el) => {
@@ -455,6 +482,7 @@
   /* ── BOOT ──────────────────────────────────────────────── */
   function boot() {
     initSmooth();
+    initHeroVideo();
     initHeader();
     initProgress();
     initReveals();

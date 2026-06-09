@@ -21,6 +21,10 @@
       "has": [{ "type": "host", "value": "www.bahkobyra.cloud" }],
       "dest": "/cloud/index.html"
     },
+    {
+      "src": "/cloud/elara-klinik-demo-v2.html",
+      "dest": "/cloud/index.html"
+    },
     { "handle": "filesystem" }
   ]
 }

@@ -80,6 +80,8 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .stage .n{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dk)}
 .stage .nm{font-family:var(--display);font-size:1.05rem;margin-top:.2rem}
 .stage .kpi-mini{font-size:.62rem;color:var(--ink-35);margin-top:.2rem}
+.stage .stage-count{font-family:var(--display);font-size:1.7rem;font-weight:600;color:var(--navy);line-height:1.1;margin-top:.15rem}
+.stage.hot{border-color:var(--gold);background:var(--cream-2)}
 
 /* ── PANELS ── */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
@@ -360,15 +362,15 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
 
   <!-- PIPELINE -->
   <section class="sec">
-    <div class="sec-h">Pipeline</div>
-    <div class="pipe">
-      <div class="stage"><div class="n">01</div><div class="nm">Lead</div><div class="kpi-mini">200/mån</div></div>
-      <div class="stage"><div class="n">02</div><div class="nm">Kontaktad</div><div class="kpi-mini">100/v</div></div>
-      <div class="stage"><div class="n">03</div><div class="nm">Svar</div><div class="kpi-mini">10–20%</div></div>
-      <div class="stage"><div class="n">04</div><div class="nm">Möte bokat</div><div class="kpi-mini">5/v</div></div>
-      <div class="stage"><div class="n">05</div><div class="nm">Offert</div><div class="kpi-mini">3/v</div></div>
-      <div class="stage"><div class="n">06</div><div class="nm">Stängd</div><div class="kpi-mini">1–2/v</div></div>
-      <div class="stage"><div class="n">07</div><div class="nm">Onboardad</div><div class="kpi-mini">&lt;48h</div></div>
+    <div class="sec-h">Pipeline <span class="hint">live från CRM — siffran = antal leads i steget · undertext = mål</span></div>
+    <div class="pipe" id="pipe">
+      <div class="stage"><div class="n">01</div><div class="nm">Ny</div><div class="stage-count" data-stage="Ny">0</div><div class="kpi-mini">fyll på: 20/dag</div></div>
+      <div class="stage"><div class="n">02</div><div class="nm">Kontaktad</div><div class="stage-count" data-stage="Kontaktad">0</div><div class="kpi-mini">inkl. uppföljn. · 100/v</div></div>
+      <div class="stage"><div class="n">03</div><div class="nm">Svar</div><div class="stage-count" data-stage="Svar">0</div><div class="kpi-mini">mål 10–20%</div></div>
+      <div class="stage"><div class="n">04</div><div class="nm">Möte bokat</div><div class="stage-count" data-stage="Möte">0</div><div class="kpi-mini">mål 5/v</div></div>
+      <div class="stage"><div class="n">05</div><div class="nm">Offert</div><div class="stage-count" data-stage="Offert">0</div><div class="kpi-mini">mål 3/v · skicka samma dag</div></div>
+      <div class="stage"><div class="n">06</div><div class="nm">Stängd</div><div class="stage-count" data-stage="Stängd">0</div><div class="kpi-mini">mål 1–2/v · onboarda &lt;48h</div></div>
+      <div class="stage"><div class="n">07</div><div class="nm">Inte intresserad</div><div class="stage-count" data-stage="Inte intresserad">0</div><div class="kpi-mini">nurture +30d</div></div>
     </div>
   </section>
 
@@ -400,8 +402,16 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
         <option value="Stängd">Stängd</option>
         <option value="Inte intresserad">Inte intresserad</option>
       </select>
+      <select class="crm-filter" id="crm-sort">
+        <option value="smart">Smart (förfallna först)</option>
+        <option value="name">Namn A–Ö</option>
+        <option value="updated">Senast uppdaterad</option>
+      </select>
       <button class="crm-add-btn" id="crm-add">+ Nytt lead</button>
       <button class="crm-add-btn" id="crm-export" style="color:var(--ink-55)">↓ CSV</button>
+      <button class="crm-add-btn" id="crm-backup" style="color:var(--ink-55)" title="Ladda ner allt dashboard-data som JSON">↓ Backup</button>
+      <button class="crm-add-btn" id="crm-import" style="color:var(--ink-55)" title="Återställ från JSON-backup">↑ Importera</button>
+      <input type="file" id="crm-import-file" accept=".json,application/json" style="display:none">
     </div>
     <div class="crm-wrap">
       <table>
@@ -927,14 +937,42 @@ function nextCell(l){
   const col=overdue?'var(--danger)':'var(--ink-70)';
   return `<span style="color:${col};font-weight:${overdue?600:400}">${nextDueLabel(l)} · ${l.nextAction}</span>`;
 }
+function sortLeads(arr){
+  const mode=document.getElementById('crm-sort').value;
+  const copy=[...arr];
+  if(mode==='name')return copy.sort((a,b)=>a.name.localeCompare(b.name,'sv'));
+  if(mode==='updated')return copy.sort((a,b)=>(b.updated||'').localeCompare(a.updated||''));
+  // smart: förfallna överst, sedan kommande touch, sedan Ny, avslutade sist
+  const rank=l=>{
+    if(CLOSED.includes(l.status))return 4;
+    if(l.nextAction&&l.nextAction<=today)return 0;
+    if(l.nextAction)return 1;
+    if(l.status==='Ny')return 2;
+    return 3;
+  };
+  return copy.sort((a,b)=>rank(a)-rank(b)||(a.nextAction||'9999').localeCompare(b.nextAction||'9999')||a.name.localeCompare(b.name,'sv'));
+}
+function renderPipe(){
+  const counts={};
+  leads.forEach(l=>{
+    let s=l.status;
+    if(s==='Uppföljning 2'||s==='Uppföljning 3')s='Kontaktad';
+    counts[s]=(counts[s]||0)+1;
+  });
+  document.querySelectorAll('#pipe .stage-count').forEach(el=>{
+    const n=counts[el.dataset.stage]||0;
+    el.textContent=n;
+    el.closest('.stage').classList.toggle('hot',n>0&&el.dataset.stage!=='Inte intresserad');
+  });
+}
 function renderCRM(){
   const q=document.getElementById('crm-search').value.toLowerCase();
   const sf=document.getElementById('crm-status-filter').value;
   const nf=document.getElementById('crm-niche-filter').value;
-  const filtered=leads.filter(l=>{
+  const filtered=sortLeads(leads.filter(l=>{
     const txt=(l.name+' '+l.contact+' '+l.city+' '+l.phone+' '+l.notes).toLowerCase();
     return(!q||txt.includes(q))&&(!sf||l.status===sf)&&(!nf||l.niche===nf);
-  });
+  }));
   const tbody=document.getElementById('crm-body');
   tbody.innerHTML='';
   if(!filtered.length){
@@ -943,7 +981,7 @@ function renderCRM(){
     filtered.forEach(l=>{
       const tr=document.createElement('tr');tr.style.cursor='pointer';
       let wb='';
-      try{wb=l.web?`<a class="crm-link" href="${l.web}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${new URL(l.web).hostname.replace('www.','')}</a>`:'';}catch{}
+      try{wb=l.web?`<a class="crm-link" href="${esc(l.web)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${esc(new URL(l.web).hostname.replace('www.',''))}</a>`:'';}catch{}
       const sc=STATUS_CLS[l.status]||'s-ny';
       tr.innerHTML=`<td><span class="crm-name">${esc(l.name)}</span> ${nicheBadge(l.niche)}<br>${wb}</td><td>${esc(l.contact||'—')}</td><td>${nextCell(l)}</td><td>${esc(l.city||'—')}</td><td><span class="status-badge ${sc}" data-id="${l.id}">${esc(l.status)}</span></td>`;
       tr.onclick=()=>openModal(l.id);
@@ -952,6 +990,7 @@ function renderCRM(){
   }
   document.getElementById('crm-count').textContent=`${filtered.length} av ${leads.length} leads`;
   renderDue();
+  renderPipe();
 }
 
 function renderDue(){
@@ -1010,6 +1049,9 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 document.getElementById('btn-save').onclick=()=>{
   const name=document.getElementById('f-name').value.trim();
   if(!name)return alert('Namn krävs');
+  if(!editId&&leads.some(l=>l.name.toLowerCase()===name.toLowerCase())){
+    if(!confirm('"'+name+'" finns redan i CRM. Lägga till ändå?'))return;
+  }
   const prev=editId?(leads.find(x=>x.id===editId)||{}):{};
   const lead=normalize({
     id:editId||Date.now().toString(),name,
@@ -1061,6 +1103,36 @@ document.getElementById('crm-body').addEventListener('click',e=>{
 
 document.getElementById('crm-search').oninput=renderCRM;
 document.getElementById('crm-status-filter').onchange=renderCRM;
+document.getElementById('crm-sort').onchange=renderCRM;
+
+/* ── BACKUP / IMPORT (allt bb_*-data) ── */
+document.getElementById('crm-backup').onclick=()=>{
+  const data={};
+  for(let i=0;i<localStorage.length;i++){
+    const k=localStorage.key(i);
+    if(k&&k.startsWith('bb_'))data[k]=localStorage.getItem(k);
+  }
+  const a=document.createElement('a');
+  a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(data,null,2));
+  a.download='bahkobyra-dashboard-backup-'+today+'.json';a.click();
+};
+document.getElementById('crm-import').onclick=()=>document.getElementById('crm-import-file').click();
+document.getElementById('crm-import-file').onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const data=JSON.parse(r.result);
+      const keys=Object.keys(data).filter(k=>k.startsWith('bb_'));
+      if(!keys.length)return alert('Ingen dashboard-data hittades i filen.');
+      if(!confirm('Importera '+keys.length+' nycklar? Detta skriver över nuvarande data (CRM, räknare, checklistor).'))return;
+      keys.forEach(k=>localStorage.setItem(k,data[k]));
+      location.reload();
+    }catch{alert('Kunde inte läsa filen — är det en giltig backup-JSON?');}
+  };
+  r.readAsText(f);
+  e.target.value='';
+};
 
 document.getElementById('crm-export').onclick=()=>{
   const rows=[['Namn','Nisch','Webbplats','Kontakt','Telefon','E-post','Ort','Status','Cadence-väg','Nästa touch','Senaste touch','Anteckningar','Uppdaterad']];
