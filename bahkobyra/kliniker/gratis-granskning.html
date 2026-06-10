@@ -7,6 +7,15 @@
 <meta name="description" content="Få en gratis 10-punktsanalys av er kliniksajt. Vi granskar SEO, mobilanpassning, bokningsflöde och mer — helt gratis, utan krav.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.bahkobyra.se/kliniker/gratis-granskning.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.bahkobyra.se/kliniker/gratis-granskning.html">
+<meta property="og:title" content="Gratis Webbplatsanalys för Kliniker | Bahko Byrå">
+<meta property="og:description" content="10-punktsanalys av er kliniksajt — SEO, mobilanpassning, bokningsflöde. Helt gratis, svar inom 24h.">
+<meta property="og:image" content="https://www.bahkobyra.se/brand/Bahkostudio.jpg">
+<meta property="og:locale" content="sv_SE">
+
 <link rel="icon" type="image/png" href="../favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,6 +118,9 @@ form{display:flex;flex-direction:column;gap:1rem}
 .field input{background:rgba(245,242,235,.06);border:1px solid rgba(201,169,110,.2);border-radius:var(--r);padding:.9rem 1.1rem;color:var(--paper);font-family:var(--sans);font-size:.95rem;font-weight:300;outline:none;transition:border-color .3s,background .3s;-webkit-appearance:none;appearance:none}
 .field input:focus{border-color:rgba(201,169,110,.55);background:rgba(245,242,235,.1)}
 .field input::placeholder{color:rgba(245,242,235,.22)}
+.field select{background:rgba(245,242,235,.06);border:1px solid rgba(201,169,110,.2);border-radius:var(--r);padding:.9rem 1.1rem;color:var(--paper);font-family:var(--sans);font-size:.95rem;font-weight:300;outline:none;transition:border-color .3s,background .3s;-webkit-appearance:none;appearance:none;cursor:pointer;width:100%}
+.field select:focus{border-color:rgba(201,169,110,.55);background:rgba(245,242,235,.1)}
+.field select option{background:var(--navy);color:var(--paper)}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 
 .submit-btn{margin-top:.6rem;padding:1.05rem 2.2rem;background:var(--gold);color:var(--navy-2);font-family:var(--sans);font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-radius:var(--r);cursor:pointer;transition:background .3s,transform .15s,box-shadow .3s;position:relative;overflow:hidden}
@@ -125,6 +137,8 @@ form{display:flex;flex-direction:column;gap:1rem}
 .success-ic{width:56px;height:56px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;margin:0 auto 1.4rem;color:var(--gold);font-size:1.4rem}
 .success h3{font-family:var(--display);font-size:1.8rem;font-weight:500;margin-bottom:.5rem}
 .success p{font-size:.88rem;color:var(--paper-70);line-height:1.7;font-weight:300}
+.success-link{display:inline-block;margin-top:1.6rem;font-size:.8rem;color:var(--gold-lt);border:1px solid rgba(201,169,110,.35);border-radius:var(--r);padding:.75rem 1.3rem;transition:background .3s,color .3s}
+.success-link:hover{background:var(--gold);color:var(--navy)}
 
 /* ── FOOTER ── */
 footer{padding:2.5rem var(--gut);text-align:center;border-top:1px solid var(--line);background:var(--cream-2)}
@@ -159,7 +173,7 @@ footer a:hover{color:var(--gold-dk)}
 <section class="hero">
   <div class="hero-badge">Gratis — värde 799 kr · Svar inom 24h</div>
   <h1 class="hero-title">Hur ser din kliniksajt<br>ut i <em>köparens ögon?</em></h1>
-  <p class="hero-sub">Vi gör en 10-punktsanalys av er webbplats och skickar resultatet direkt till er — helt gratis. Inga strings attached.</p>
+  <p class="hero-sub">Vi gör en 10-punktsanalys av er webbplats och skickar resultatet direkt till er — helt gratis, utan krav och utan säljpitch.</p>
   <div class="hero-stats">
     <div class="hero-stat">
       <div class="hero-stat-n">10</div>
@@ -298,7 +312,7 @@ footer a:hover{color:var(--gold-dk)}
       <div class="field-row">
         <div class="field">
           <label for="namn">Ditt namn</label>
-          <input type="text" id="namn" name="namn" placeholder="Mathias Eriksson" required autocomplete="name">
+          <input type="text" id="namn" name="namn" placeholder="Anna Svensson" required autocomplete="name">
         </div>
         <div class="field">
           <label for="klinik">Klinikens namn</label>
@@ -313,6 +327,17 @@ footer a:hover{color:var(--gold-dk)}
         <label for="email">Er e-post</label>
         <input type="email" id="email" name="email" placeholder="hej@erkliniksajt.se" required autocomplete="email">
       </div>
+      <div class="field">
+        <label for="utmaning">Er största utmaning just nu <span style="text-transform:none;letter-spacing:.04em;opacity:.6">(valfritt)</span></label>
+        <select id="utmaning" name="utmaning">
+          <option value="">Välj…</option>
+          <option>Fler bokningar</option>
+          <option>Synas högre på Google</option>
+          <option>Hemsidan känns gammal</option>
+          <option>Vet inte — det är därför jag vill ha analysen</option>
+        </select>
+      </div>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
       <input type="hidden" name="_subject" value="Ny audit-förfrågan från webbplatsanalys">
       <button class="submit-btn" type="submit" id="submit-btn">Skicka — helt gratis</button>
       <p class="form-note">Vi delar aldrig er information. Ni kan avregistrera er när som helst.</p>
@@ -320,8 +345,10 @@ footer a:hover{color:var(--gold-dk)}
 
     <div class="success" id="success-msg">
       <div class="success-ic">✓</div>
-      <h3>Tack — vi återkommer inom 24h!</h3>
+      <h3>Tack — rapporten landar inom 24h!</h3>
       <p>Mathias på Bahko Byrå granskar er sajt och skickar rapporten till er e-post.<br>Kolla gärna skräpposten om ni inte hör av oss.</p>
+      <a class="success-link" href="/kliniker/gratis-guide.html">Medan ni väntar: 3 sätt att ranka högre på Google — gratis guide + video
+        <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none;vertical-align:-2px;margin-left:.3rem"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
 </div>

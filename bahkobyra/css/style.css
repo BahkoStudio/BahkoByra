@@ -282,6 +282,9 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   letter-spacing:.14em;text-transform:uppercase;margin-top:2rem;transition:gap .3s}
 .demo-link:hover{gap:1.1rem}
 .demo-link svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+.demo-proof{margin-top:1.2rem;font-size:.8rem;color:var(--paper-45);font-weight:300}
+.demo-proof a{color:var(--gold-lt);border-bottom:1px solid rgba(201,169,110,.35);padding-bottom:1px;transition:color .3s,border-color .3s}
+.demo-proof a:hover{color:var(--gold);border-color:var(--gold)}
 
 /* ── 15. WHY ─────────────────────────────────────────────── */
 .why .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(2.5rem,6vw,6rem);align-items:start}
@@ -349,6 +352,19 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .foot-brand em{font-style:italic;color:var(--gold-lt)}
 .foot-cta{text-align:right}
 .foot-cta p{color:var(--paper-70);font-size:.8rem;margin-bottom:1rem;letter-spacing:.04em}
+.foot-nl{max-width:var(--maxw);margin:2.4rem auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.4rem 2.5rem;
+  padding:1.8rem 2rem;background:rgba(201,169,110,.06);border:1px solid var(--paper-line);border-radius:var(--r-lg)}
+.foot-nl-copy h4{font-family:var(--display);font-size:1.35rem;font-weight:500;margin-bottom:.3rem}
+.foot-nl-copy p{font-size:.78rem;color:var(--paper-70);font-weight:300;max-width:46ch;line-height:1.6}
+.foot-nl-form{display:flex;gap:.7rem;flex-wrap:wrap;position:relative}
+.foot-nl-form input[type="email"]{min-width:min(280px,70vw);background:rgba(245,242,235,.06);border:1px solid var(--paper-line);
+  color:var(--paper);font-family:var(--sans);font-size:.9rem;font-weight:300;padding:.85rem 1.1rem;border-radius:var(--r);outline:none;
+  transition:border-color .3s,background .3s;-webkit-appearance:none;appearance:none}
+.foot-nl-form input[type="email"]:focus{border-color:rgba(201,169,110,.55);background:rgba(245,242,235,.1)}
+.foot-nl-form input[type="email"]::placeholder{color:rgba(245,242,235,.28)}
+.foot-nl-ok{display:none;font-size:.84rem;color:var(--gold-lt)}
+.foot-nl.sent .foot-nl-form{display:none}
+.foot-nl.sent .foot-nl-ok{display:block}
 .foot-bottom{max-width:var(--maxw);margin:2rem auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .foot-bottom span{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-45)}
 .foot-links{display:flex;gap:1.6rem}
