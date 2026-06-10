@@ -282,6 +282,9 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   letter-spacing:.14em;text-transform:uppercase;margin-top:2rem;transition:gap .3s}
 .demo-link:hover{gap:1.1rem}
 .demo-link svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+.demo-proof{margin-top:1.2rem;font-size:.8rem;color:var(--paper-45);font-weight:300}
+.demo-proof a{color:var(--gold-lt);border-bottom:1px solid rgba(201,169,110,.35);padding-bottom:1px;transition:color .3s,border-color .3s}
+.demo-proof a:hover{color:var(--gold);border-color:var(--gold)}
 
 /* ── 15. WHY ─────────────────────────────────────────────── */
 .why .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(2.5rem,6vw,6rem);align-items:start}
