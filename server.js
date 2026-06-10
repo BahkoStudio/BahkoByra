@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /**
  * server.js — Lokal dev-server för Bahko Byrå
- * Kör: node server.js
- * Öppnar automatiskt i Edge på http://localhost:3000
+ * Kör: node server.js → http://localhost:3001
+ * Speglar Vercel: webbroot = bahkobyra/ (precis som i produktion).
+ * Öppnar automatiskt i Edge.
  */
 
 import { createServer } from 'http';
@@ -63,7 +64,10 @@ const server = createServer((req, res) => {
 
   if (urlPath === '/') urlPath = '/index.html';
 
-  let filePath = join(__dirname, urlPath);
+  // Webbroot = bahkobyra/ (matchar Vercels outputDirectory). Repo-rotens
+  // .tmp/ förblir nåbar för lokala rapporter.
+  const base = urlPath.startsWith('/.tmp/') ? __dirname : join(__dirname, 'bahkobyra');
+  let filePath = join(base, urlPath);
 
   // Serve index.html for directory requests
   if (existsSync(filePath) && statSync(filePath).isDirectory()) {
@@ -96,12 +100,12 @@ server.listen(PORT, () => {
   console.log('══════════════════════════════════════');
   console.log(`  ${url}`);
   console.log('──────────────────────────────────────');
-  console.log(`  Hub:       ${url}/`);
-  console.log(`  Byrå:      ${url}/bahkobyra/`);
-  console.log(`  Pitch:     ${url}/bahkobyra/pitchdeck.html`);
-  console.log(`  Demo:      ${url}/kliniker/elara-klinik-demo-v2.html`);
-  console.log(`  CRM:       ${url}/kliniker/crm.html`);
-  console.log(`  Rapport:   ${url}/.tmp/competitor_report_2026-03-16.html`);
+  console.log(`  Byrå:      ${url}/`);
+  console.log(`  Analys:    ${url}/kliniker/gratis-granskning.html`);
+  console.log(`  Guide:     ${url}/kliniker/gratis-guide.html`);
+  console.log(`  Demo:      ${url}/cloud/`);
+  console.log(`  Dashboard: ${url}/dashboard/`);
+  console.log(`  Pitch:     ${url}/pitchdeck.html`);
   console.log('──────────────────────────────────────');
   console.log('  Ctrl+C för att stänga\n');
 

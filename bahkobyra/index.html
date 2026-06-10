@@ -148,7 +148,7 @@
 <section class="dark" style="padding-top:0;padding-bottom:0">
   <div class="stats">
     <div class="stat" data-reveal><div class="stat-v"><span data-count="30" data-suffix=" dgr">0</span></div><div class="stat-l">Resultatgaranti</div></div>
-    <div class="stat" data-reveal="0.05"><div class="stat-v"><span data-count="87" data-suffix="+">0</span></div><div class="stat-l">Klinikleads Klara</div></div>
+    <div class="stat" data-reveal="0.05"><div class="stat-v"><span data-count="24" data-suffix="h">0</span></div><div class="stat-l">Svar På Gratis Analys</div></div>
     <div class="stat" data-reveal="0.1"><div class="stat-v"><span data-count="3" data-suffix="x">0</span></div><div class="stat-l">Mer Organisk Trafik</div></div>
     <div class="stat" data-reveal="0.15"><div class="stat-v"><span data-count="100" data-suffix="%">0</span></div><div class="stat-l">Fokus På Ditt Resultat</div></div>
   </div>
@@ -282,6 +282,7 @@
       </div>
       <div class="field"><label for="cf-epost">E-post</label><input type="email" id="cf-epost" name="email" placeholder="anna@dinverksamhet.se" required autocomplete="email"></div>
       <div class="field"><label for="cf-msg">Hur kan vi hjälpa dig?</label><textarea id="cf-msg" name="meddelande" placeholder="Berätta kort om din verksamhet och vad du vill uppnå..."></textarea></div>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
       <input type="hidden" name="_subject" value="Ny kontaktförfrågan – startsidan (bahkobyra.se)">
       <button class="btn btn-gold magnetic" data-magnetic=".2" type="submit"><span>Skicka Förfrågan</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </form>
@@ -302,11 +303,26 @@
       <a href="#kontakt" class="btn btn-gold magnetic" data-magnetic=".25"><span>Starta Ditt Projekt</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
+  <div class="foot-nl">
+    <div class="foot-nl-copy">
+      <h4>Ett konkret tillväxttips i månaden</h4>
+      <p>Hur kliniker syns högre på Google och får fler bokningar. Inget brus — avregistrera när du vill.</p>
+    </div>
+    <form class="foot-nl-form" id="nlform" action="https://formspree.io/f/mgonrnep" method="POST">
+      <input type="email" name="email" placeholder="du@dinklinik.se" required autocomplete="email" aria-label="Din e-post">
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <input type="hidden" name="_subject" value="Ny prenumerant – nyhetsbrev (footer bahkobyra.se)">
+      <button class="btn btn-gold" type="submit"><span>Prenumerera</span></button>
+    </form>
+    <p class="foot-nl-ok" id="nl-ok">✓ Tack! Du är med — första tipset landar i din inkorg snart.</p>
+  </div>
   <div class="foot-bottom">
     <span>© 2026 Bahko Byrå</span>
     <div class="foot-links">
       <a href="#tjanster">Tjänster</a>
       <a href="/kliniker/gratis-granskning.html">Gratis Analys</a>
+      <a href="/kliniker/gratis-guide.html">Gratis Guide</a>
+      <a href="https://www.bahkobyra.se/cloud/" target="_blank" rel="noopener">Live Demo</a>
     </div>
     <span>bahkobyra.se</span>
   </div>

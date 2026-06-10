@@ -393,13 +393,40 @@
   /* ── AUDIT POPUP ───────────────────────────────────────── */
   function initPopup() {
     const pop = $('#pop'); if (!pop) return;
+    // Visas en gång per besökare, max var 7:e dag — aldrig på nytt i samma session.
+    const KEY = 'bb_pop_seen';
+    try { if (Date.now() - (+localStorage.getItem(KEY) || 0) < 7 * 864e5) return; } catch (e) { /* visa ändå */ }
     const x = $('#pop-x');
-    const show = () => pop.classList.add('show');
+    const seen = () => { try { localStorage.setItem(KEY, Date.now()); } catch (e) {} };
+    const show = () => { pop.classList.add('show'); seen(); };
     const hide = () => pop.classList.remove('show');
     if (x) x.addEventListener('click', hide);
     pop.addEventListener('click', (e) => { if (e.target === pop) hide(); });
     addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
-    setTimeout(() => { show(); setInterval(show, 90000); }, 18000);
+    setTimeout(show, 22000);
+  }
+
+  /* ── NEWSLETTER (footer) ───────────────────────────────── */
+  function initNewsletter() {
+    const form = $('#nlform'); if (!form) return;
+    const box = form.closest('.foot-nl');
+    const btn = $('button[type="submit"]', form);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (btn) btn.disabled = true;
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!res.ok) throw new Error('bad response');
+        if (box) box.classList.add('sent');
+      } catch {
+        if (btn) btn.disabled = false;
+        alert('Något gick fel. Försök igen eller mejla oss direkt på mathias@bahkobyra.se');
+      }
+    });
   }
 
   /* ── EXTRAS: marquee, CTA glow, stat labels, proc hint ─── */
@@ -498,6 +525,7 @@
     initCursor();
     initNav();
     initForm();
+    initNewsletter();
     initPopup();
 
     // hero entrance — each element gets its own distinct animation type

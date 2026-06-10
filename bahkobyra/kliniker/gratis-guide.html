@@ -152,6 +152,7 @@
           <label for="g-epost">E-post</label>
           <input type="email" id="g-epost" name="email" placeholder="du@dinklinik.se" required autocomplete="email">
         </div>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
         <input type="hidden" name="_subject" value="Ny guide-nedladdning – lead magnet (gratis-guide)">
         <button class="btn" type="submit" id="g-btn"><span>Lås upp guiden + videon</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
         <p class="fine">Ingen bindning. Vi spammar inte. Avregistrera när du vill.</p>
@@ -258,6 +259,16 @@
   const optin = document.getElementById('optin');
   const guide = document.getElementById('guide-content');
   const btn = document.getElementById('g-btn');
+  const UNLOCK_KEY = 'bb_guide_unlocked';
+
+  function unlock(scroll) {
+    optin.style.display = 'none';
+    guide.classList.add('show');
+    if (scroll) guide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Redan registrerad? Guiden förblir upplåst vid återbesök.
+  try { if (localStorage.getItem(UNLOCK_KEY)) unlock(false); } catch {}
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -270,9 +281,8 @@
         headers: { 'Accept': 'application/json' }
       });
       if (!res.ok) throw new Error('bad response');
-      optin.style.display = 'none';
-      guide.classList.add('show');
-      guide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      try { localStorage.setItem(UNLOCK_KEY, '1'); } catch {}
+      unlock(true);
     } catch {
       btn.disabled = false;
       btn.querySelector('span').textContent = 'Lås upp guiden + videon';
