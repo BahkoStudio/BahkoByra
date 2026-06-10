@@ -204,18 +204,6 @@
     });
   }
 
-  /* ── HERO: YouTube-bakgrund ────────────────────────────── */
-  function initHeroYT() {
-    const yt = doc.getElementById('hero-yt');
-    if (!yt) return;
-    if (reduce) { yt.remove(); return; } // rörelsekänsliga får stillbilden
-    yt.addEventListener('load', () => {
-      // kort fördröjning så uppspelningen hunnit starta innan intoning
-      setTimeout(() => yt.classList.add('ready'), 700);
-    });
-    yt.src = yt.dataset.src;
-  }
-
   /* ── COUNTERS ──────────────────────────────────────────── */
   function initCounters() {
     $$('[data-count]').forEach((el) => {
@@ -494,7 +482,6 @@
   /* ── BOOT ──────────────────────────────────────────────── */
   function boot() {
     initSmooth();
-    initHeroYT();
     initHeader();
     initProgress();
     initReveals();
@@ -522,15 +509,17 @@
       gsap.set('.hero-badge', { clipPath: 'inset(0 100% 0 0)', opacity: 0 });
       gsap.set(lines, { yPercent: 118 });
       gsap.set('.hero-lede', { opacity: 0, filter: 'blur(6px)', y: 12 });
-      gsap.set('.hero-svc', { opacity: 0, y: 18 });
+      gsap.set('.hero-video', { opacity: 0, y: 46, scale: .96 });
       gsap.set('.hero-ctas', { opacity: 0, scale: .94, y: 12 });
+      gsap.set('.hero-micro', { opacity: 0 });
       gsap.set('.scrollcue', { opacity: 0, y: 18 });
 
       tl.to('.hero-badge', { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: .9, ease: 'power4.inOut' })
         .to(lines, { yPercent: 0, duration: 1.1, ease: 'expo.out', stagger: .1 }, '-=.4')
         .to('.hero-lede', { opacity: 1, filter: 'blur(0px)', y: 0, duration: 1.0, ease: 'power3.out' }, '-=.6')
-        .to('.hero-svc', { opacity: 1, y: 0, duration: .7, ease: 'power3.out' }, '-=.5')
-        .to('.hero-ctas', { opacity: 1, scale: 1, y: 0, duration: .8, ease: 'back.out(1.5)' }, '-=.5')
+        .to('.hero-video', { opacity: 1, y: 0, scale: 1, duration: 1.25, ease: 'expo.out' }, '-=.55')
+        .to('.hero-ctas', { opacity: 1, scale: 1, y: 0, duration: .8, ease: 'back.out(1.5)' }, '-=.7')
+        .to('.hero-micro', { opacity: 1, duration: .6 }, '-=.45')
         .to('.scrollcue', { opacity: 1, y: 0, duration: .7 }, '-=.4');
     }
 
