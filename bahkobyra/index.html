@@ -109,11 +109,12 @@
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-img">
-    <!-- Videon laddas från /media/hero.mp4 (se bahkobyra/media/README.md).
-         Saknas filen visas postern — sajten ser hel ut ändå. -->
-    <video src="/media/hero.mp4"
-      poster="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260525_225124_b47c5542-a0f5-406b-b12d-ed95eb0bde39.png"
-      autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+    <img class="hero-poster" src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260525_225124_b47c5542-a0f5-406b-b12d-ed95eb0bde39.png"
+      alt="" fetchpriority="high" decoding="async" aria-hidden="true">
+    <!-- Hero-video via YouTube (ljudlös bakgrund). src sätts av main.js → poster visas alltid först. -->
+    <iframe class="hero-yt" id="hero-yt" title="Bahko Byrå hero-video"
+      data-src="https://www.youtube-nocookie.com/embed/ZjvHsth4NJM?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=ZjvHsth4NJM&amp;controls=0&amp;rel=0&amp;playsinline=1&amp;disablekb=1&amp;iv_load_policy=3&amp;modestbranding=1"
+      allow="autoplay; encrypted-media" aria-hidden="true" tabindex="-1"></iframe>
   </div>
   <div class="hero-grain"></div>
 

@@ -204,6 +204,18 @@
     });
   }
 
+  /* ── HERO: YouTube-bakgrund ────────────────────────────── */
+  function initHeroYT() {
+    const yt = doc.getElementById('hero-yt');
+    if (!yt) return;
+    if (reduce) { yt.remove(); return; } // rörelsekänsliga får stillbilden
+    yt.addEventListener('load', () => {
+      // kort fördröjning så uppspelningen hunnit starta innan intoning
+      setTimeout(() => yt.classList.add('ready'), 700);
+    });
+    yt.src = yt.dataset.src;
+  }
+
   /* ── COUNTERS ──────────────────────────────────────────── */
   function initCounters() {
     $$('[data-count]').forEach((el) => {
@@ -482,6 +494,7 @@
   /* ── BOOT ──────────────────────────────────────────────── */
   function boot() {
     initSmooth();
+    initHeroYT();
     initHeader();
     initProgress();
     initReveals();
