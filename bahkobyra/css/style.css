@@ -201,7 +201,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .hero-h1 .line{overflow:hidden;display:block}
 .hero-h1 .line > *{display:block;will-change:transform}
 .hero-h1{font-family:var(--display);font-weight:500;color:var(--paper);
-  font-size:clamp(2.5rem,6.4vw,5.8rem);line-height:1.02;letter-spacing:-.02em;margin-bottom:1.5rem}
+  font-size:clamp(2.1rem,6.4vw,5.8rem);line-height:1.04;letter-spacing:-.02em;margin-bottom:1.5rem}
 .hero-h1 .accent{font-style:italic;font-weight:400;
   background:linear-gradient(108deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero-lede{font-size:clamp(.95rem,1.2vw,1.12rem);color:var(--paper-70);line-height:1.85;font-weight:300;max-width:52ch;margin:0 auto}
@@ -399,6 +399,11 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 @media(max-width:860px){
   .nav{display:none}
   .burger{display:flex}
+  /* Process: pinned horisontell scroll ersätts av nativ svepning med snap */
+  .proc-track{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;padding-bottom:2.5rem}
+  .proc-track::-webkit-scrollbar{display:none}
+  .pstep{scroll-snap-align:center}
   .demo .wrap,.why .wrap{grid-template-columns:1fr}
   .audit{grid-template-columns:1fr}
   .foot-top{flex-direction:column;align-items:flex-start}
