@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0B0B0D">
-<meta name="description" content="GRANIT Bygg & Entreprenad — byggt att ärvas. Demo av Bahko Byrå.">
-<title>GRANIT Bygg &amp; Entreprenad — Byggt att ärvas</title>
+<meta name="description" content="GRANIT Bygg & Entreprenad — från utdömt till drömhus. Demo av Bahko Byrå.">
+<title>GRANIT Bygg &amp; Entreprenad — Från utdömt till drömhus</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossorigin>
@@ -60,6 +60,18 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .scrollcue i::after{content:'';position:absolute;inset:-100% 0 auto;height:100%;background:var(--amber);animation:cue 2.2s var(--ease) infinite}
 @keyframes cue{0%{top:-100%}55%{top:0}100%{top:100%}}
 
+/* ── CINE (scroll-cinematic videoscrub) ── */
+.cine{position:relative;height:100svh;overflow:hidden;background:var(--bg)}
+.cine video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cine::after{content:'';position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgba(11,11,13,.45) 0%,transparent 22%,transparent 72%,rgba(11,11,13,.55) 100%)}
+.cine-line{position:absolute;inset:0;z-index:3;display:grid;place-items:center;text-align:center;padding:0 5vw;opacity:0;will-change:opacity,transform}
+.cine-line h2{font-family:var(--disp);font-weight:900;font-size:clamp(2.2rem,7.8vw,6.8rem);line-height:1;text-transform:uppercase;letter-spacing:-.01em;
+  text-shadow:0 6px 40px rgba(0,0,0,.55)}
+.cine-line .sm{display:block;font-family:var(--sans);font-weight:500;font-size:clamp(.68rem,1vw,.85rem);letter-spacing:.3em;color:var(--amber-lt);margin-bottom:1rem;text-shadow:none}
+.cine-progress{position:absolute;left:50%;bottom:2rem;transform:translateX(-50%);z-index:3;width:min(200px,40vw);height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.cine-progress i{display:block;height:100%;width:100%;background:var(--grad);transform-origin:left;transform:scaleX(0)}
+
 /* ── VISION ── */
 .vision{padding:clamp(6rem,14vw,11rem) clamp(1.2rem,4vw,3rem);max-width:1050px;margin:0 auto;text-align:center}
 .vision h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.7rem,4.2vw,3.4rem);line-height:1.18;letter-spacing:-.01em}
@@ -80,15 +92,6 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .wc-tag{font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--amber-lt)}
 .wc-body h3{font-family:var(--disp);font-weight:800;font-size:1.3rem;margin:.3rem 0 .25rem}
 .wc-body p{font-size:.78rem;color:var(--muted)}
-
-/* ── SCRUB (pinned stortext) ── */
-.scrub{position:relative;height:100svh;overflow:hidden}
-.scrub-bg{position:absolute;inset:0}
-.scrub-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);will-change:transform;filter:brightness(.5)}
-.scrub-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(90% 70% at 50% 50%,transparent 0%,rgba(11,11,13,.75) 100%)}
-.scrub-line{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:0 5vw;opacity:0;will-change:opacity,transform}
-.scrub-line h2{font-family:var(--disp);font-weight:900;font-size:clamp(2.4rem,8.5vw,7.5rem);line-height:1;text-transform:uppercase;letter-spacing:-.01em}
-.scrub-line .sm{display:block;font-family:var(--sans);font-weight:500;font-size:clamp(.7rem,1vw,.85rem);letter-spacing:.3em;color:var(--amber-lt);margin-bottom:1rem}
 
 /* ── CTA ── */
 .cta{padding:clamp(6rem,13vw,10rem) clamp(1.2rem,4vw,3rem);text-align:center;position:relative;overflow:hidden}
@@ -135,8 +138,9 @@ footer a{color:var(--amber-lt)}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
-  .scrub-line{opacity:1!important;position:relative;height:auto;padding:3rem 5vw}
-  .scrub{height:auto}
+  .cine-line{opacity:1!important;position:relative;height:auto;padding:3rem 5vw}
+  .cine{height:auto;min-height:60svh}
+  .cine-progress{display:none}
   .hero h1 .row>span{transform:none!important}
 }
 </style>
@@ -148,24 +152,35 @@ footer a{color:var(--amber-lt)}
   <a class="nav-cta" href="#" onclick="openModal();return false">Begär offert</a>
 </nav>
 
-<!-- HERO -->
+<!-- HERO — Akt 0: det utdömda huset -->
 <header class="hero">
-  <div class="hero-bg"><img id="hero-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_094802_5f43c9e0-be0d-416f-8dd5-9ace8680f2d7.png" alt="" fetchpriority="high"></div>
+  <div class="hero-bg"><img id="hero-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_182550_1cb0eee4-3864-454a-abde-ddb5b00bd1f7.png" alt="" fetchpriority="high"></div>
   <div class="hero-inner">
-    <div class="hero-kicker">Bygg &amp; Entreprenad · Mälardalen</div>
+    <div class="hero-kicker">Bygg &amp; Totalrenovering · Mälardalen</div>
     <h1>
-      <span class="row"><span>Byggt att</span></span>
-      <span class="row"><span class="grad-text">ärvas.</span></span>
+      <span class="row"><span>Vi ser huset</span></span>
+      <span class="row"><span class="grad-text">ingen annan ser.</span></span>
     </h1>
-    <p class="hero-sub">Villor, tak och totalrenoveringar — utförda av hantverkare som skriver fast pris, håller tidplanen och står för jobbet i tio år.</p>
+    <p class="hero-sub">Andra ser ett rivningsobjekt. Vi ser ett drömhus som väntar. Fast pris på papper, hållen tidplan — och tio års garanti på förvandlingen.</p>
     <div class="hero-meta">
       <div class="hm"><b>240+</b><span>Projekt levererade</span></div>
       <div class="hm"><b>10 år</b><span>Garanti på allt</span></div>
       <div class="hm"><b>4.9 ★</b><span>Snittbetyg</span></div>
     </div>
   </div>
-  <div class="scrollcue">Scrolla <i></i></div>
+  <div class="scrollcue">Scrolla — se förvandlingen <i></i></div>
 </header>
+
+<!-- AKT 1 — FÖRVANDLINGEN (videoscrub: gammalt hus → drömhus) -->
+<section class="cine" id="cine1">
+  <video id="vid1" muted playsinline preload="auto" crossorigin="anonymous"
+    poster="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_182550_1cb0eee4-3864-454a-abde-ddb5b00bd1f7.png"
+    src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_182857_9ce4a497-1a91-433a-b04a-392b167a726b.mp4"></video>
+  <div class="cine-line" data-in="0.04" data-out="0.30"><h2><span class="sm">01 — Samma hus</span>Vi river inte<br>drömmar.</h2></div>
+  <div class="cine-line" data-in="0.38" data-out="0.64"><h2><span class="sm">02 — Förvandlingen</span>Vi bygger<br><span class="grad-text">fram dem.</span></h2></div>
+  <div class="cine-line" data-in="0.74" data-out="1.01"><h2><span class="sm">03 — Resultatet</span>Från utdömt<br>till <span class="grad-text">drömhus.</span></h2></div>
+  <div class="cine-progress"><i id="prog1"></i></div>
+</section>
 
 <!-- VISION -->
 <section class="vision" id="vision">
@@ -207,17 +222,19 @@ footer a{color:var(--amber-lt)}
   </div>
 </section>
 
-<!-- SCRUB — pinned stortext -->
-<section class="scrub" id="scrub">
-  <div class="scrub-bg"><img id="scrub-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_113016_0e31b967-c649-4d35-b54a-9cf2ff437907.png" alt=""></div>
-  <div class="scrub-line"><h2><span class="sm">01 — Inga överraskningar</span>Fast pris.<br><span class="grad-text">På papper.</span></h2></div>
-  <div class="scrub-line"><h2><span class="sm">02 — Inga förseningar</span>Färdigt<br><span class="grad-text">i tid.</span></h2></div>
-  <div class="scrub-line"><h2><span class="sm">03 — Inga undanflykter</span>10 års<br><span class="grad-text">garanti.</span></h2></div>
+<!-- AKT 2 — STEGET IN (videoscrub: genom dörren in i drömhuset) -->
+<section class="cine" id="cine2">
+  <video id="vid2" muted playsinline preload="auto" crossorigin="anonymous"
+    poster="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_182740_5c48f715-f0c5-4357-9d90-7e9f50c4a596.png"
+    src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_182942_0a03fd06-ff6d-4bca-a454-1e2ff82f88f0.mp4"></video>
+  <div class="cine-line" data-in="0.05" data-out="0.32"><h2><span class="sm">Sista steget</span>Öppna<br>dörren.</h2></div>
+  <div class="cine-line" data-in="0.72" data-out="1.01"><h2><span class="sm">GRANIT Bygg &amp; Entreprenad</span>Välkommen<br><span class="grad-text">hem.</span></h2></div>
+  <div class="cine-progress"><i id="prog2"></i></div>
 </section>
 
 <!-- CTA -->
 <section class="cta">
-  <h2>Redo att <span class="grad-text">bygga?</span></h2>
+  <h2>Vad ser du i <span class="grad-text">ditt hus?</span></h2>
   <p>Berätta om ditt projekt så återkommer vi med ett fast pris inom 48 timmar — kostnadsfritt och utan förpliktelser.</p>
   <button class="btn-big" onclick="openModal()">
     <span>Begär kostnadsfri offert</span>
@@ -264,7 +281,11 @@ footer a{color:var(--amber-lt)}
   // Nav
   addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60),{passive:true});
 
-  if(reduce)return;
+  if(reduce){
+    // Reduced motion: spela videorna som stillsamma loopar i stället för scrub
+    document.querySelectorAll('.cine video').forEach(v=>{v.loop=true;v.autoplay=true;v.play().catch(()=>{});});
+    return;
+  }
 
   // Hero-entré
   gsap.set('.hero h1 .row>span',{yPercent:115});
@@ -290,15 +311,45 @@ footer a{color:var(--amber-lt)}
   gsap.fromTo('[data-card]',{y:70,opacity:0,scale:.95},{y:0,opacity:1,scale:1,duration:1.1,ease:'expo.out',stagger:.12,
     scrollTrigger:{trigger:'.work-grid',start:'top 84%'}});
 
-  // SCRUB: pinna sektionen, väx bakgrunden, tona stortext i sekvens
-  const lines=gsap.utils.toArray('.scrub-line');
-  const tl=gsap.timeline({scrollTrigger:{trigger:'.scrub',start:'top top',end:'+=280%',pin:true,scrub:.6,anticipatePin:1}});
-  tl.fromTo('#scrub-img',{scale:1.15},{scale:1.0,ease:'none',duration:lines.length+1},0);
-  lines.forEach((l,i)=>{
-    tl.fromTo(l,{opacity:0,scale:.94},{opacity:1,scale:1,duration:.55,ease:'power2.out'},i+0.15)
-      .to(l,{opacity:0,scale:1.04,duration:.45,ease:'power2.in'},i+0.78);
-  });
-  tl.to({},{duration:.3}); // andrum efter sista raden
+  // ── SCROLL-CINEMATIC: pinna sektionen, skrubba videon med scrollen ──
+  // Sandbox-/cloud-vänlig variant: ingen frame-extraktion — webbläsarens egen
+  // dekoder söker i MP4:n via video.currentTime (kräver bara range requests på CDN).
+  function initCine(secId,vidId,progId,scrollLen){
+    const sec=document.getElementById(secId),v=document.getElementById(vidId),prog=document.getElementById(progId);
+    if(!sec||!v)return;
+    v.pause();
+    const lines=Array.from(sec.querySelectorAll('.cine-line')).map(el=>({
+      el,inP:parseFloat(el.dataset.in),outP:parseFloat(el.dataset.out)
+    }));
+    const FADE=.06;
+    let lastT=-1;
+    ScrollTrigger.create({
+      trigger:sec,start:'top top',end:'+='+scrollLen,pin:true,scrub:.5,anticipatePin:1,invalidateOnRefresh:true,
+      onUpdate(self){
+        const p=self.progress;
+        // Videoscrub — kasta inte seek-anrop i onödan
+        if(v.readyState>=1&&v.duration){
+          const t=Math.min(p*v.duration,v.duration-.05);
+          if(Math.abs(t-lastT)>0.02){lastT=t;try{v.currentTime=t;}catch(e){}}
+        }
+        // Textrader: tona in/ut på progress-fönster
+        lines.forEach(({el,inP,outP})=>{
+          let o=0;
+          if(p>=inP&&p<=outP){
+            if(p<inP+FADE)o=(p-inP)/FADE;
+            else if(p>outP-FADE)o=(outP-p)/FADE;
+            else o=1;
+          }
+          o=Math.max(0,Math.min(1,o));
+          el.style.opacity=o;
+          el.style.transform=`scale(${.96+.04*o})`;
+        });
+        if(prog)prog.style.transform=`scaleX(${p})`;
+      }
+    });
+  }
+  initCine('cine1','vid1','prog1','320%');
+  initCine('cine2','vid2','prog2','300%');
 
   setTimeout(()=>ScrollTrigger.refresh(),400);
 })();

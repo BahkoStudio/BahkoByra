@@ -108,6 +108,7 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 |-------|---------|-----------------|
 | skill-builder | `/skill-builder` | "build a skill", "create a new skill", "audit this skill", "optimize skill" |
 | video-to-website | `/video-to-website` | "turn this video into a website", "scroll-driven website", "video to website" |
+| scroll-cinematic | `/scroll-cinematic [företag + nisch/ort]` | "bygg-demo", "scroll-cinematic demosajt", "hus-förvandlings-demo", "demo enligt GRANIT-mallen" |
 | excalidraw-diagram | `/excalidraw-diagram` | "draw a diagram", "make a diagram of", "create an Excalidraw diagram" |
 | rapport | `/rapport [klinik]` | "generera rapport", "konkurrensanalys", "klientrapport", "lead-rapport", "analysera [klinik]" |
 | instagram-engine | `/instagram-engine [trade]` | "instagram-motor", "skapa reels", "content-batch", "veckans content", "reels för bygg/tak/måleri/mark" |
@@ -115,6 +116,7 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 
 - **skill-builder** — Guides building/auditing/optimizing skills. Runs Discovery Interview before creating. See `.claude/skills/skill-builder/reference.md`.
 - **video-to-website** — Converts a video into a scroll-driven animated website (FFmpeg + GSAP + Lenis + canvas).
+- **scroll-cinematic** — Bygg-demosajter enligt GRANIT-mallen med Higgsfield-genererad husförvandling som scroll-resa (gammalt hus → drömhus → kliv in). Kostar ~150 Higgsfield-credits/demo — körs aldrig utan beställning. Output: `bahkobyra/cloud/[kund]/index.html`.
 - **excalidraw-diagram** — Generates editable Excalidraw diagrams, saves `.excalidraw` files.
 - **rapport** — Genererar konkurrensanalys, klientrapporter och lead-profiler. Exporterar till Google Docs/Sheets. Kräver `credentials.json` för Google OAuth. Export-verktyg: `tools/export_to_google_docs.js`.
 - **instagram-engine** — Producerar content-batchar (reels/carouseller/DM-cadence) för bygg/hantverk-nischen (@bahkostudio). Speglas i dashboardens Instagram-motor. Se `.claude/skills/instagram-engine/templates.md`.
