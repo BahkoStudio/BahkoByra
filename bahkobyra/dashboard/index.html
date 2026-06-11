@@ -125,6 +125,8 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .crm-filter{font:inherit;font-size:.75rem;padding:.5rem .7rem;border:1px solid var(--line-2);border-radius:var(--r);background:var(--cream-3);color:var(--ink);cursor:pointer;outline:none}
 .crm-filter:focus{border-color:var(--gold)}
 .crm-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-lg)}
+.crm-wrap.rolled{max-height:360px;overflow-y:auto}
+.crm-wrap.rolled thead{position:sticky;top:0;z-index:1}
 table{width:100%;border-collapse:collapse;font-size:.78rem}
 thead{background:var(--navy);color:var(--paper)}
 th{padding:.65rem 1rem;text-align:left;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;white-space:nowrap;color:var(--paper-70)}
@@ -219,9 +221,11 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
 
 /* ── CADENCE (modal) ── */
 .cad-track{display:flex;gap:.35rem;margin:.4rem 0 .2rem}
-.cad-pill{flex:1;text-align:center;font-size:.58rem;font-weight:600;padding:.32rem 0;border-radius:var(--r);background:var(--cream);border:1px solid var(--line);color:var(--ink-35)}
+.cad-pill{flex:1;text-align:center;font-size:.58rem;font-weight:600;padding:.32rem 0;border-radius:var(--r);background:var(--cream);border:1px solid var(--line);color:var(--ink-35);cursor:pointer;user-select:none;transition:.15s}
+.cad-pill:hover{border-color:var(--gold);color:var(--gold-dk)}
 .cad-pill.on{background:var(--gold);color:var(--navy);border-color:var(--gold)}
 .cad-pill.done{background:rgba(79,157,107,.15);color:var(--ok);border-color:rgba(79,157,107,.35)}
+.cad-pill.done:hover{background:rgba(79,157,107,.28)}
 .cad-actions{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-top:.5rem}
 .touch-btn{font-size:.66rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.5rem 1rem;border:1px solid var(--line-2);border-radius:var(--r);color:var(--gold-dk);transition:.2s}
 .touch-btn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
@@ -409,13 +413,14 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
         <option value="name">Namn A–Ö</option>
         <option value="updated">Senast uppdaterad</option>
       </select>
+      <button class="crm-add-btn" id="crm-list-toggle" title="Fäll ihop/ut hela lead-listan">▴ Fäll ihop lista</button>
       <button class="crm-add-btn" id="crm-add">+ Nytt lead</button>
       <button class="crm-add-btn" id="crm-export" style="color:var(--ink-55)">↓ CSV</button>
       <button class="crm-add-btn" id="crm-backup" style="color:var(--ink-55)" title="Ladda ner allt dashboard-data som JSON">↓ Backup</button>
       <button class="crm-add-btn" id="crm-import" style="color:var(--ink-55)" title="Återställ från JSON-backup">↑ Importera</button>
       <input type="file" id="crm-import-file" accept=".json,application/json" style="display:none">
     </div>
-    <div class="crm-wrap">
+    <div class="crm-wrap" id="crm-wrap">
       <table>
         <thead>
           <tr>
@@ -917,11 +922,10 @@ Kör skillen instagram-engine för en full veckobatch (3 reels + 2 carouseller +
       </select>
     </div>
     <div class="field" id="cad-block" style="display:none">
-      <label>Cadence — dag 1 → 3 → 5 → 7 → nurture</label>
+      <label>Cadence — dag 1 → 3 → 5 → 7 → nurture <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-35)">· klicka en dag för att logga · klicka den gröna igen för att ångra</span></label>
       <div class="cad-track" id="cad-track"></div>
       <div class="cad-actions">
         <button class="touch-btn" id="touch-btn" type="button">＋ Logga touch</button>
-        <button class="touch-btn" id="untouch-btn" type="button" style="display:none">↩ Ångra touch</button>
         <span class="cad-meta" id="cad-meta"></span>
       </div>
     </div>
@@ -1094,7 +1098,7 @@ const SEED=[
 ];
 
 const CRM_KEY='bb_crm_v1';
-function normalize(l){return Object.assign({niche:'klinik',pathway:'skriven',cadenceDay:'',nextAction:'',lastTouch:''},l);}
+function normalize(l){const o=Object.assign({niche:'klinik',pathway:'skriven',cadenceDay:'',nextAction:'',lastTouch:''},l);delete o._prev;return o;}
 function loadLeads(){
   let stored=null;
   try{
@@ -1138,7 +1142,6 @@ const CLOSED=['Stängd','Inte intresserad'];
 
 /* advance cadence one touch: cadenceDay = senast loggade dag */
 function logTouch(l){
-  l._prev={status:l.status,cadenceDay:l.cadenceDay,nextAction:l.nextAction,lastTouch:l.lastTouch};
   l.lastTouch=today;
   if(l.status==='Ny')l.status='Kontaktad';
   const d=l.cadenceDay;
@@ -1150,14 +1153,16 @@ function logTouch(l){
     else{l.cadenceDay=CAD[i+1];l.nextAction=addDays(today,CAD[i+1]-CAD[i]);}
   }
 }
-function undoTouch(l){
-  if(!l||!l._prev)return false;
-  l.status=l._prev.status;l.cadenceDay=l._prev.cadenceDay;
-  l.nextAction=l._prev.nextAction;l.lastTouch=l._prev.lastTouch;
-  delete l._prev;
-  return true;
+/* sätt cadence till exakt steg: '' = ej startad, 1/3/5/7 eller 'nurture' */
+function setCadence(l,d){
+  if(d===''||d==null){l.cadenceDay='';l.nextAction='';l.lastTouch='';return;}
+  if(l.status==='Ny')l.status='Kontaktad';
+  l.lastTouch=today;
+  if(d==='nurture'){l.cadenceDay='nurture';l.nextAction=addDays(today,30);return;}
+  const i=CAD.indexOf(+d);
+  l.cadenceDay=CAD[i];
+  l.nextAction=(i>=CAD.length-1)?addDays(today,30):addDays(today,CAD[i+1]-CAD[i]);
 }
-let lastTouched=null; // id — visar "Ångra" i Dagens uppföljningar direkt efter en touch
 function nextDueLabel(l){
   if(CLOSED.includes(l.status))return '';
   if(l.cadenceDay==='nurture')return 'nurture';
@@ -1236,15 +1241,8 @@ function renderDue(){
   const box=document.getElementById('due-list');
   const due=leads.filter(l=>l.nextAction&&l.nextAction<=today&&!CLOSED.includes(l.status))
                  .sort((a,b)=>a.nextAction.localeCompare(b.nextAction));
-  let undoRow='';
-  const lt=lastTouched&&leads.find(x=>x.id===lastTouched&&x._prev);
-  if(lt)undoRow=`<div class="due-row" style="background:rgba(79,157,107,.08)">
-    <span class="nm">✓ ${esc(lt.name)}</span>
-    <span class="meta">touch loggad · nästa ${nextDueLabel(lt)} · ${lt.nextAction}</span>
-    <button class="go" data-undo="${lt.id}">↩ Ångra</button>
-  </div>`;
-  if(!due.length&&!undoRow){box.innerHTML='<div class="due-empty">Inga förfallna uppföljningar 🎉 — logga en touch på ett lead för att schemalägga nästa.</div>';return;}
-  box.innerHTML=undoRow+due.map(l=>`<div class="due-row">
+  if(!due.length){box.innerHTML='<div class="due-empty">Inga förfallna uppföljningar 🎉 — logga en touch på ett lead för att schemalägga nästa.</div>';return;}
+  box.innerHTML=due.map(l=>`<div class="due-row">
     <span class="nm">${esc(l.name)}</span> ${nicheBadge(l.niche)}
     <span class="meta">${PATH_LBL[l.pathway]||'—'} · ${nextDueLabel(l)} · förfaller ${l.nextAction}</span>
     <button class="go" data-touch="${l.id}">✓ Touch</button>
@@ -1258,13 +1256,12 @@ function renderCadTrack(l){
   track.innerHTML=CAD.map(d=>{
     const isDone=isNur||(done!==''&&done!=null&&d<=+done);
     const isOn=nd==='dag '+d;
-    return `<span class="cad-pill ${isDone?'done':''} ${isOn?'on':''}">D${d}</span>`;
-  }).join('')+`<span class="cad-pill ${isNur?'done':''} ${nd==='nurture'?'on':''}">Nurt</span>`;
+    return `<span class="cad-pill ${isDone?'done':''} ${isOn?'on':''}" data-day="${d}" title="${isDone?'Klicka för att backa hit / ångra':'Klicka för att logga t.o.m. dag '+d}">D${d}</span>`;
+  }).join('')+`<span class="cad-pill ${isNur?'done':''} ${nd==='nurture'?'on':''}" data-day="nurture" title="${isNur?'Klicka för att ångra nurture':'Klicka för att flytta till nurture'}">Nurt</span>`;
   const meta=document.getElementById('cad-meta');
   if(CLOSED.includes(l.status))meta.textContent='Avslutad — ingen cadence.';
   else if(!l.nextAction)meta.textContent='Inte startad — logga första touchen (dag 1).';
   else{const od=l.nextAction<=today;meta.innerHTML=`Nästa: <strong>${nd}</strong> · ${l.nextAction}${od?' · <span style="color:var(--danger)">förfallen</span>':''}${l.lastTouch?' · senast '+l.lastTouch:''}`;}
-  document.getElementById('untouch-btn').style.display=l._prev?'':'none';
 }
 function openModal(id){
   editId=id||null;
@@ -1322,26 +1319,28 @@ document.getElementById('btn-save').onclick=()=>{
 document.getElementById('touch-btn').onclick=()=>{
   if(!editId)return;
   const l=leads.find(x=>x.id===editId);if(!l)return;
-  logTouch(l);lastTouched=l.id;saveLeads(leads);
+  logTouch(l);saveLeads(leads);
   document.getElementById('f-status').value=l.status;
   renderCadTrack(l);renderCRM();
 };
-document.getElementById('untouch-btn').onclick=()=>{
-  if(!editId)return;
+/* klick på pill = logga t.o.m. det steget · klick på sista gröna = backa ett steg */
+document.getElementById('cad-track').addEventListener('click',e=>{
+  const p=e.target.closest('[data-day]');if(!p||!editId)return;
   const l=leads.find(x=>x.id===editId);if(!l)return;
-  if(undoTouch(l)){
-    if(lastTouched===l.id)lastTouched=null;
-    saveLeads(leads);
-    document.getElementById('f-status').value=l.status;
-    renderCadTrack(l);renderCRM();
-  }
-};
+  const d=p.dataset.day;
+  if(String(l.cadenceDay)===d){
+    const i=CAD.indexOf(+d);
+    setCadence(l,d==='nurture'?CAD[CAD.length-1]:(i>0?CAD[i-1]:''));
+  } else setCadence(l,d);
+  saveLeads(leads);
+  document.getElementById('f-status').value=l.status;
+  renderCadTrack(l);renderCRM();
+});
 
 document.getElementById('crm-niche-filter').onchange=renderCRM;
 document.getElementById('due-list').addEventListener('click',e=>{
-  const t=e.target.closest('[data-touch]'),o=e.target.closest('[data-open]'),u=e.target.closest('[data-undo]');
-  if(t){const l=leads.find(x=>x.id===t.dataset.touch);if(l){logTouch(l);lastTouched=l.id;saveLeads(leads);renderCRM();}}
-  else if(u){const l=leads.find(x=>x.id===u.dataset.undo);if(l&&undoTouch(l)){lastTouched=null;saveLeads(leads);renderCRM();}}
+  const t=e.target.closest('[data-touch]'),o=e.target.closest('[data-open]');
+  if(t){const l=leads.find(x=>x.id===t.dataset.touch);if(l){logTouch(l);saveLeads(leads);renderCRM();}}
   else if(o){openModal(o.dataset.open);}
 });
 
@@ -1352,6 +1351,14 @@ document.getElementById('due-list').addEventListener('click',e=>{
   const set=c=>{box.style.display=c?'none':'';caret.textContent=c?'▸':'▾';try{localStorage.setItem(CKEY,c?'1':'');}catch{}};
   document.getElementById('crm-toggle').onclick=()=>set(box.style.display!=='none');
   try{set(localStorage.getItem(CKEY)==='1');}catch{}
+})();
+/* ── CRM: fäll ihop/ut hela lead-listan ── */
+(function(){
+  const wrap=document.getElementById('crm-wrap'),btn=document.getElementById('crm-list-toggle');
+  const RKEY='bb_crm_rolled';
+  const set=r=>{wrap.classList.toggle('rolled',r);btn.textContent=r?'▾ Fäll ut lista':'▴ Fäll ihop lista';try{localStorage.setItem(RKEY,r?'1':'');}catch{}};
+  btn.onclick=()=>set(!wrap.classList.contains('rolled'));
+  try{set(localStorage.getItem(RKEY)==='1');}catch{}
 })();
 
 document.getElementById('btn-del').onclick=()=>{
