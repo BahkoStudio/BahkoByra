@@ -116,7 +116,7 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 
 - **skill-builder** — Guides building/auditing/optimizing skills. Runs Discovery Interview before creating. See `.claude/skills/skill-builder/reference.md`.
 - **video-to-website** — Converts a video into a scroll-driven animated website (FFmpeg + GSAP + Lenis + canvas).
-- **scroll-cinematic** — Bygg-demosajter enligt GRANIT-mallen med Higgsfield-genererad husförvandling (gammalt hus → drömhus → kliv in) som loopande videohero + "Välkommen hem"-loop (gif-känsla, ej scrub). Kostar ~150 Higgsfield-credits/demo — körs aldrig utan beställning. Output: `bahkobyra/cloud/[kund]/index.html`.
+- **scroll-cinematic** — Kunddemos enligt GRANIT-mallen: **Élara-koreografin (`bahkobyra/cloud/index.html`) är ALLTID strukturen för kunddemos** (loader, ordvis hero, sektioner på progress-fönster med varierade entréer, räknare, flytknapp, persist-CTA, Bahko-modal). För bygg: Higgsfield-genererad husförvandling (gammalt hus → drömhus → kliv in) som autoplay-loopar/gif — ALDRIG scroll-scrub. Facit: `bahkobyra/cloud/bygg/index.html`. Kostar ~150 Higgsfield-credits/demo — körs aldrig utan beställning. Output: `bahkobyra/cloud/[kund]/index.html`.
 - **excalidraw-diagram** — Generates editable Excalidraw diagrams, saves `.excalidraw` files.
 - **rapport** — Genererar konkurrensanalys, klientrapporter och lead-profiler. Exporterar till Google Docs/Sheets. Kräver `credentials.json` för Google OAuth. Export-verktyg: `tools/export_to_google_docs.js`.
 - **instagram-engine** — Producerar content-batchar (reels/carouseller/DM-cadence) för bygg/hantverk-nischen (@bahkostudio). Speglas i dashboardens Instagram-motor. Se `.claude/skills/instagram-engine/templates.md`.
