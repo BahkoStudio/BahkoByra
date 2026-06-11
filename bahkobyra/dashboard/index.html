@@ -383,7 +383,8 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
 
   <!-- CRM -->
   <section class="sec" id="crm">
-    <div class="sec-h">CRM — Leads &amp; Prospekts <span class="hint">sparas lokalt · klicka lead för cadence &amp; redigering · klicka status för att byta</span></div>
+    <div class="sec-h" id="crm-toggle" style="cursor:pointer;user-select:none" title="Fäll upp/ner CRM">CRM — Leads &amp; Prospekts <span id="crm-caret">▾</span><span class="hint">klicka rubriken för att fälla ihop · klicka lead för cadence · klicka status för att byta</span></div>
+    <div id="crm-collapse">
     <div class="crm-toolbar">
       <input class="crm-search" id="crm-search" type="search" placeholder="Sök namn, kontakt, ort…">
       <select class="crm-filter" id="crm-niche-filter">
@@ -429,6 +430,7 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
       </table>
     </div>
     <p class="crm-count" id="crm-count"></p>
+    </div>
   </section>
 
   <!-- OFFERTFÖRSLAG -->
@@ -919,6 +921,7 @@ Kör skillen instagram-engine för en full veckobatch (3 reels + 2 carouseller +
       <div class="cad-track" id="cad-track"></div>
       <div class="cad-actions">
         <button class="touch-btn" id="touch-btn" type="button">＋ Logga touch</button>
+        <button class="touch-btn" id="untouch-btn" type="button" style="display:none">↩ Ångra touch</button>
         <span class="cad-meta" id="cad-meta"></span>
       </div>
     </div>
@@ -978,11 +981,11 @@ setupCheck('ig-week','bb_ig_week',wk,'ig-reset');
 /* ── CRM SEED DATA ── */
 const SEED=[
   {id:'s01',name:'Akademikliniken',web:'https://ak.se',contact:'Magnus Jansson — VD',phone:'08-614 54 00',email:'info@ak.se',city:'Stockholm / Göteborg / Malmö',status:'Ny',notes:'Nordens ledande estetiska klinik. Ägd av Polaris PE. Grundare Per Hedén & Jan Jernbeck.',updated:today},
-  {id:'s02',name:'Nordiska Kliniken',web:'https://www.nordiskakliniken.se',contact:'Sam Besara — VD',phone:'',email:'',city:'Stockholm / Göteborg',status:'Ny',notes:'Förvärvad av Bergman Clinics. Premiumklinik plastikkirurgi.',updated:today},
+  {id:'s02',name:'Nordiska Kliniken',web:'https://www.nordiskakliniken.se',contact:'Sam Besara — VD',phone:'08-50 90 2000',email:'info@nordiskakliniken.se',city:'Stockholm / Göteborg',status:'Ny',notes:'Förvärvad av Bergman Clinics. Premiumklinik plastikkirurgi.',updated:today},
   {id:'s03',name:'Stjärnkliniken',web:'https://www.stjarnkliniken.com',contact:'Gustav Ingestad — VD',phone:'',email:'',city:'Stockholm / Göteborg / multi',status:'Ny',notes:'13 kliniker på 9 orter. Grundare & ordförande: Fredrik Brännström.',updated:today},
   {id:'s04',name:'RealKliniken',web:'https://realkliniken.se',contact:'Dr. Johan Bilir — Grundare & Ansvarig läkare',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Läkarledd. Botox, fillers, trådlyft, skinbooster.',updated:today},
   {id:'s05',name:'Beauty Kliniken',web:'https://www.beautykliniken.se',contact:'Kaveh Mirzadeh — Klinikchef & Läkare',phone:'0736729608',email:'info@beautykliniken.se',city:'Stockholm (Idungatan 7)',status:'Ny',notes:'Läpp, rynkor, hårtransplantation. Direktkontakt via mejl.',updated:today},
-  {id:'s06',name:'Stureplanskliniken',web:'https://www.stureplanskliniken.se',contact:'Grundaren — Läkare (se hemsida)',phone:'',email:'',city:'Stockholm (Stureplan)',status:'Ny',notes:'Grundare = läkare, internationell föreläsare sedan 1996. Exklusivt läge.',updated:today},
+  {id:'s06',name:'Stureplanskliniken',web:'https://www.stureplanskliniken.se',contact:'Grundaren — Läkare (se hemsida)',phone:'08-10 3140',email:'info@stureplanskliniken.se',city:'Stockholm (Stureplan)',status:'Ny',notes:'Grundare = läkare, internationell föreläsare sedan 1996. Exklusivt läge.',updated:today},
   {id:'s07',name:'Form Clinic',web:'https://www.formclinic.se',contact:'Zoje Zenelaj — Grundare & Sjuksköterska',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Legitimerad sjuksköterska. Bra DM-prospect på Instagram.',updated:today},
   {id:'s08',name:'Amandakliniken',web:'https://amandakliniken.se',contact:'Amanda Siberg — Grundare & Sjuksköterska',phone:'',email:'',city:'Nacka / Stockholm',status:'Ny',notes:'Verksam sedan 2010. Saltsjöbaden.',updated:today},
   {id:'s09',name:'ATH Beauty Klinik',web:'https://athbeautyklinik.se',contact:'Marwa Atheer — Grundare',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Grundardriven. Bra Instagram-närvaro.',updated:today},
@@ -990,25 +993,25 @@ const SEED=[
   {id:'s11',name:'Art Face',web:'https://www.artface.se',contact:'Jenny Andersson — Ägare & Sjuksköterska',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Solopraktiker. Alla behandlingar utförs av Jenny.',updated:today},
   {id:'s12',name:'FaceSkills',web:'https://faceskills.se',contact:'Ägare — se hemsida',phone:'',email:'',city:'Stockholm (Östermalm)',status:'Ny',notes:'17 år erfarenhet. Östermalm-läge. Injektionsspecialist.',updated:today},
   {id:'s13',name:'Derma Aesthetics Clinic',web:'https://daclinic.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Specialist på injektionsbehandlingar.',updated:today},
-  {id:'s14',name:'DOCTOR_K',web:'https://doctork.se',contact:'Dr. K — se hemsida',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Ledande klinik inom estetisk injektionsbehandling.',updated:today},
+  {id:'s14',name:'DOCTOR_K',web:'https://doctork.se',contact:'Dr. K — se hemsida',phone:'08-88 9241',email:'info@doctork.se',city:'Stockholm',status:'Ny',notes:'Ledande klinik inom estetisk injektionsbehandling.',updated:today},
   {id:'s15',name:'Östermalmkliniken',web:'https://ostermalmkliniken.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Stockholm (Östermalm)',status:'Ny',notes:'Etablerad klinik på Östermalm.',updated:today},
-  {id:'s16',name:'The Faculty',web:'https://thefaculty.com',contact:'Grundare — se hemsida',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Premium plastikkirurgi. "Vetenskap möter skönhet."',updated:today},
+  {id:'s16',name:'The Faculty',web:'https://thefaculty.com',contact:'Grundare — se hemsida',phone:'08-98 9000',email:'info@thefaculty.com',city:'Stockholm',status:'Ny',notes:'Premium plastikkirurgi. "Vetenskap möter skönhet."',updated:today},
   {id:'s17',name:'Stockholm Plastikkirurgi',web:'https://stockholmplastikkirurgi.com',contact:'Klinikansvarig läkare — se hemsida',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Driven av kvinnlig plastikkirurg. Erfarenhet från Sthlm, Gbg, Lkpg.',updated:today},
-  {id:'s18',name:'Plastikkirurgen Stockholm',web:'https://plastikkirurgen.com',contact:'Mats von Wachenfeldt — Överläkare & Plastikkirurg',phone:'',email:'',city:'Stockholm / Uppsala',status:'Ny',notes:'12 500+ ingrepp. Täcker också Uppsala.',updated:today},
-  {id:'s19',name:'Estetiskainstitutet',web:'https://estetiskainstitutet.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Plastikkirurgi och estetisk vård. Internationell profil.',updated:today},
+  {id:'s18',name:'Plastikkirurgen Stockholm',web:'https://plastikkirurgen.com',contact:'Mats von Wachenfeldt — Överläkare & Plastikkirurg',phone:'08-400 20022',email:'kontakt@plastikkirurgenstockholm.se',city:'Stockholm / Uppsala',status:'Ny',notes:'12 500+ ingrepp. Täcker också Uppsala.',updated:today},
+  {id:'s19',name:'Estetiskainstitutet',web:'https://estetiskainstitutet.se',contact:'Klinikchef — se hemsida',phone:'08-18 4060',email:'info@estetiskainstitutet.se',city:'Stockholm',status:'Ny',notes:'Plastikkirurgi och estetisk vård. Internationell profil.',updated:today},
   {id:'s20',name:'Estetik & Hälsa',web:'https://www.estetikochhalsa.se',contact:'Grundare — se hemsida',phone:'',email:'',city:'Stockholm',status:'Ny',notes:'Startades 2020. Kombinerar estetik och hälsa.',updated:today},
   {id:'s21',name:'Skönhetskliniken Göteborg',web:'https://www.skonhetskliniken.se',contact:'Katarina Jochems — Grundare & Sjuksköterska',phone:'',email:'',city:'Göteborg',status:'Ny',notes:'Legitimerad sjuksköterska och injektionsspecialist.',updated:today},
   {id:'s22',name:'Advanced Clinic',web:'https://advancedclinic.se',contact:'Josefine Runesson — Grundare & Sjuksköterska',phone:'',email:'',city:'Göteborg',status:'Ny',notes:'Verksam sedan 2010. Certifierad injektionsbehandlare.',updated:today},
   {id:'s23',name:'Göteborg Estetik',web:'https://www.gbgestetik.se',contact:'Mary Frindt — Grundare & Tandläkare',phone:'',email:'',city:'Göteborg (Grimmered)',status:'Ny',notes:'Tandläkare som driver estetisk klinik. Startade 2014.',updated:today},
   {id:'s24',name:'Vikor Klinik',web:'https://www.vikor.se',contact:'Richard — Grundare & Specialistläkare',phone:'',email:'',city:'Göteborg / Jönköping',status:'Ny',notes:'Specialistläkare med 12+ år erfarenhet. Tvåstadsverksamhet.',updated:today},
-  {id:'s25',name:'Elite Clinic',web:'https://eliteclinic.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Göteborg',status:'Ny',notes:'Premium plastikkirurgi och behandlingar.',updated:today},
+  {id:'s25',name:'Elite Clinic',web:'https://eliteclinic.se',contact:'Klinikchef — se hemsida',phone:'031-15 0050',email:'info@eliteclinic.se',city:'Göteborg',status:'Ny',notes:'Premium plastikkirurgi och behandlingar.',updated:today},
   {id:'s26',name:'Gothia Kliniken',web:'https://gothiakliniken.se',contact:'Ägare — se hemsida',phone:'',email:'gothiakliniken@gmail.com',city:'Göteborg',status:'Ny',notes:'Hudvård, fillers, tandblekning, spa. Medlem i Estetiska Injektionsrådet.',updated:today},
   {id:'s27',name:'Göta Hudklinik',web:'https://www.gotahudklinik.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Göteborg (Erik Dahlbergsgatan 14)',status:'Ny',notes:'Botox, fillers, hudvård. Centralt läge.',updated:today},
   {id:'s28',name:'Exklusiv Estetik',web:'https://exklusivestetik.se',contact:'Dr. Sylvia Svedberg — Ägare & Läkare',phone:'',email:'',city:'Göteborg',status:'Ny',notes:'Läkarledd premium-klinik.',updated:today},
   {id:'s29',name:'NOIR by M',web:'https://noirbym.com',contact:'Maya — Grundare',phone:'',email:'',city:'Malmö (Gamla Staden)',status:'Ny',notes:'Legitimerade sjuksköterskor och läkare. Modern estetik-profil.',updated:today},
-  {id:'s30',name:'Estetikcentrum',web:'https://estetikcentrum.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Malmö',status:'Ny',notes:'Skånes största skönhetsklinik. Bröstkirurgi, bukplastik, injektioner, hudvård.',updated:today},
-  {id:'s31',name:'Bellakliniken',web:'https://bellakliniken.com',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Helsingborg (Centralstationen)',status:'Ny',notes:'Legitimerad personal. Tredje våningen i centralstationen.',updated:today},
-  {id:'s32',name:'Estetikspecialisten Malmö',web:'https://www.bokadirekt.se/places/estetikspecialisten-4654',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Malmö (Davidshallstorg)',status:'Ny',notes:'Modern hudvårdsklinik i centrala Malmö.',updated:today},
+  {id:'s30',name:'Estetikcentrum',web:'https://estetikcentrum.se',contact:'Klinikchef — se hemsida',phone:'040-656 6660',email:'info@estetikcentrum.se',city:'Malmö',status:'Ny',notes:'Skånes största skönhetsklinik. Bröstkirurgi, bukplastik, injektioner, hudvård.',updated:today},
+  {id:'s31',name:'Bellakliniken',web:'https://bellakliniken.com',contact:'Klinikchef — se hemsida',phone:'042-14 6640',email:'info@bellakliniken.com',city:'Helsingborg (Centralstationen)',status:'Ny',notes:'Legitimerad personal. Tredje våningen i centralstationen.',updated:today},
+  {id:'s32',name:'Estetikspecialisten Malmö',web:'https://www.bokadirekt.se/places/estetikspecialisten-4654',contact:'Klinikchef — se hemsida',phone:'040-23 6666',email:'info@estetikspecialisten.se',city:'Malmö (Davidshallstorg)',status:'Ny',notes:'Modern hudvårdsklinik i centrala Malmö.',updated:today},
   {id:'s33',name:'Örebro Estetik',web:'https://orebroestetik.se',contact:'Linda Flemsjö — Grundare & Sjuksköterska',phone:'',email:'info@orebroestetik.se',city:'Örebro',status:'Ny',notes:'Legitimerad sjuksköterska. info@orebroestetik.se',updated:today},
   {id:'s34',name:'Hudläkarna Linköping',web:'https://hudlakarna.se',contact:'Dr. Jalal Salih — Läkare',phone:'',email:'',city:'Linköping',status:'Ny',notes:'Dermatologi + estetiska behandlingar.',updated:today},
   {id:'s35',name:'The Clinic Västerås',web:'https://theclinicvasteras.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Västerås',status:'Ny',notes:'Laser & Estetik. Botox, filler, laserhårborttagning.',updated:today},
@@ -1017,19 +1020,101 @@ const SEED=[
   {id:'s38',name:'Estetiska kliniken by Sandra',web:'https://www.estetiskaklinikenjkpg.se',contact:'Sandra — Grundare & Specialist',phone:'',email:'',city:'Jönköping / Värnamo',status:'Ny',notes:'Certifierad: fillers, botox, profhilo, PRP/PRF, trådlyft.',updated:today},
   {id:'s39',name:'EH Estetik',web:'https://ehestetik.se',contact:'Ägare — se hemsida',phone:'',email:'',city:'Jönköping / Linköping / Växjö / Skövde',status:'Ny',notes:'Fyra orter. Botox och läppförstoring.',updated:today},
   {id:'s40',name:'Elins estetiska',web:'https://www.elinsestetiska.se',contact:'Elin — Grundare & Sjuksköterska',phone:'',email:'',city:'Sundsvall',status:'Ny',notes:'Legitimerad sjuksköterska. Botox, fillers, PRP.',updated:today},
-  {id:'s41',name:'Art Clinic',web:'https://artclinic.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Sverige',status:'Ny',notes:'Konsultation och estetiska behandlingar.',updated:today},
+  {id:'s41',name:'Art Clinic',web:'https://artclinic.se',contact:'Klinikchef — se hemsida',phone:'010-499 8600',email:'info@artclinic.se',city:'Sverige',status:'Ny',notes:'Konsultation och estetiska behandlingar.',updated:today},
   {id:'s42',name:'Klinik Estetik Stockholm',web:'https://klinikestetik.se',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Stockholm (Kungsgatan 37)',status:'Ny',notes:'Plastikkirurgi och estetik på Kungsgatan.',updated:today},
   {id:'s43',name:'Estetik & Vård Örebrokliniken',web:'https://www.bokadirekt.se/places/orebrokliniken-25546',contact:'Klinikchef — se hemsida',phone:'',email:'',city:'Örebro',status:'Ny',notes:'Örebrokliniken-lokalisering. Botox, fillers.',updated:today},
+  {id:'s100',name:'Citadellkliniken',web:'https://citadellkliniken.se',contact:'',phone:'0418-22000',email:'info@citadellkliniken.se',city:'Landskrona',status:'Ny',notes:'En av Sveriges största privatkliniker för estetisk plastikkirurgi. Strandvägen 101, 261 61 Landskrona',updated:today},
+  {id:'s101',name:'Proforma Clinic',web:'https://proformaclinic.se',contact:'',phone:'08-33 3355',email:'info@proformaclinic.se',city:'Stockholm',status:'Ny',notes:'Specialiserade på bröstkirurgi, ansiktskirurgi och kroppsskulptering. Rosenlundsgatan 29A, 118 63 Stockholm',updated:today},
+  {id:'s102',name:'Victoriakliniken',web:'https://victoriakliniken.com',contact:'',phone:'08-533 30000',email:'info@victoriakliniken.com',city:'Saltsjöbaden',status:'Ny',notes:'Exklusiv klinik känd för bröstförstoringar och ansiktslyft. Vikingavägen 17F, 133 33 Saltsjöbaden',updated:today},
+  {id:'s103',name:'Reformkliniken',web:'https://reformkliniken.se',contact:'',phone:'010-151 1500',email:'info@reformkliniken.se',city:'Malmö',status:'Ny',notes:'Fokus på plastikkirurgi med patientens trygghet i centrum. Stora Varvsgatan 11A, 211 19 Malmö',updated:today},
+  {id:'s104',name:'Laser & Estetik',web:'https://laserestetik.se',contact:'',phone:'08-411 5005',email:'stockholm@laserestetik.se',city:'Stockholm',status:'Ny',notes:'Erbjuder ett brett utbud av laserbehandlingar och kirurgi. Drottninggatan 65, 111 36 Stockholm',updated:today},
+  {id:'s105',name:'Göteborgs Plastikkirurgiska Center',web:'https://gpc.se',contact:'',phone:'031-18 6464',email:'info@gpc.se',city:'Göteborg',status:'Ny',notes:'Lång erfarenhet av plastikkirurgi mitt i centrala Göteborg. Södra vägen 27, 411 35 Göteborg',updated:today},
+  {id:'s106',name:'Eriksbergskliniken',web:'https://eriksbergskliniken.se',contact:'',phone:'08-611 3030',email:'info@eriksbergskliniken.se',city:'Stockholm',status:'Ny',notes:'Medicinsk hudvård och estetiska injektioner på Östermalm. Eriksbergsgatan 4, 114 30 Stockholm',updated:today},
+  {id:'s107',name:'MyBeauty Clinic',web:'https://mybeautyclinic.se',contact:'',phone:'08-502 35200',email:'info@mybeautyclinic.se',city:'Stockholm',status:'Ny',notes:'Modern klinik med fokus på injektioner och hudföryngring. Strandvägen 7A, 114 56 Stockholm',updated:today},
+  {id:'s108',name:'Improva Plastikkirurgi',web:'https://improva.se',contact:'',phone:'08-31 0606',email:'info@improva.se',city:'Stockholm',status:'Ny',notes:'Specialister på näsplastik och ansiktskirurgi. Västmannagatan 66, 113 25 Stockholm',updated:today},
+  {id:'s109',name:'Clinic Strömstad',web:'https://clinicstromstad.se',contact:'',phone:'0526-14900',email:'info@clinicstromstad.se',city:'Strömstad',status:'Ny',notes:'Populär klinik för både svenska och norska patienter. Oslovägen 48, 452 35 Strömstad',updated:today},
+  {id:'s110',name:'Uppsala Kliniken',web:'https://uppsalakliniken.se',contact:'',phone:'018-13 1333',email:'info@uppsalakliniken.se',city:'Uppsala',status:'Ny',notes:'Erbjuder allt från plastikkirurgi till medicinsk laser. Kålsängsgränd 10D, 753 19 Uppsala',updated:today},
+  {id:'s111',name:'Citylaser',web:'https://citylaser.se',contact:'',phone:'031-711 7300',email:'info@citylaser.se',city:'Göteborg',status:'Ny',notes:'En av Sveriges äldsta laserkliniker med fokus på hudvård. Stora Nygatan 29, 411 08 Göteborg',updated:today},
+  {id:'s112',name:'Lifetime Clinic',web:'https://lifetimeclinic.se',contact:'',phone:'010-706 7000',email:'info@lifetimeclinic.se',city:'Kista',status:'Ny',notes:'Kedja med fokus på kirurgi, injektioner och hårtransplantationer. Kista Galleria, 164 91 Kista',updated:today},
+  {id:'s113',name:'Lilas Kliniken',web:'https://lilaskliniken.se',contact:'',phone:'08-27 7555',email:'info@lilaskliniken.se',city:'Solna',status:'Ny',notes:'Inriktad på laser, hudvård och fettreducering. Råsundavägen 75, 169 57 Solna',updated:today},
+  {id:'s114',name:'Gerlee Plastikkirurgi',web:'https://gerlee.se',contact:'',phone:'042-14 3000',email:'info@gerlee.se',city:'Helsingborg',status:'Ny',notes:'Etablerad klinik i Skåne med fokus på bröst och kropp. Drottninggatan 35, 252 21 Helsingborg',updated:today},
+  {id:'s115',name:'Complete Skin',web:'https://completeskin.se',contact:'',phone:'08-29 8844',email:'info@completeskin.se',city:'Stockholm',status:'Ny',notes:'Privat hudläkarmottagning specialiserad på dermatologi och estetik. Kommendörsgatan 5, Stockholm',updated:today},
+  {id:'s116',name:'Caroviva',web:'https://caroviva.se',contact:'',phone:'018-410 8108',email:'info@caroviva.se',city:'Uppsala',status:'Ny',notes:'Högkvalitativ plastikkirurgi grundad av Dr. Andreas Lindahl. Uppsala Slott, Uppsala',updated:today},
+  {id:'s117',name:'Clinic Perfekta',web:'https://clinicperfekta.se',contact:'',phone:'019-10 2191',email:'info@clinicperfekta.se',city:'Örebro',status:'Ny',notes:'Etablerad klinik i Örebro med filialer i Karlstad och Västerås. Stortorget 13, Örebro',updated:today},
+  {id:'s118',name:'Strandkliniken',web:'https://strandkliniken.se',contact:'',phone:'08-21 9191',email:'info@strandkliniken.se',city:'Stockholm',status:'Ny',notes:'Erbjuder ett brett utbud av plastikkirurgi i centrala Stockholm. Strandvägen 7A, Stockholm',updated:today},
+  {id:'s119',name:'Clinic Divine',web:'https://clinicdivine.se',contact:'',phone:'08-121 38001',email:'info@clinicdivine.se',city:'Stockholm',status:'Ny',notes:'Specialister på injektionsbehandlingar och medicinsk hudvård. Kommendörsgatan 14, Stockholm',updated:today},
+  {id:'s120',name:'Renaissance Clinique',web:'https://renaissanceclinique.com',contact:'',phone:'08-66 70800',email:'info@renaissanceclinique.com',city:'Stockholm',status:'Ny',notes:'Plastikkirurgi och estetiska behandlingar med fokus på naturliga resultat. Folkungagatan 122, Stockholm',updated:today},
+  {id:'s121',name:'Derma Clinic',web:'https://dermaclinicstockholm.se',contact:'',phone:'08-44 99490',email:'info@dermaclinicstockholm.se',city:'Stockholm',status:'Ny',notes:'Klinik med fokus på hudförbättring och anti-ageing. Grev Turegatan 20, Stockholm',updated:today},
+  {id:'s122',name:'Skövdekliniken',web:'https://skovdekliniken.se',contact:'',phone:'0500-40 9988',email:'info@skovdekliniken.se',city:'Skövde',status:'Ny',notes:'"Storstadskliniken i den lilla staden" – bred estetisk meny. Hertig Johans torg 2, Skövde',updated:today},
+  {id:'s123',name:'Inskinity',web:'https://inskinity.se',contact:'',phone:'08-425 05440',email:'info@inskinity.se',city:'Stockholm',status:'Ny',notes:'High-end klinik för avancerad hudvård och estetiska behandlingar. Nybrogatan 7, Stockholm',updated:today},
+  {id:'s124',name:'Veritaskliniken',web:'https://veritaskliniken.se',contact:'',phone:'08-500 63636',email:'info@veritaskliniken.se',city:'Stockholm',status:'Ny',notes:'Personlig klinik inriktad på medicinsk estetik och hudvård. Sturegatan 32, Stockholm',updated:today},
+  {id:'s125',name:'Skin Agency',web:'https://skinagency.se',contact:'',phone:'08-33 1036',email:'info@skinagency.se',city:'Stockholm',status:'Ny',notes:'Populär klinik för hudbehandlingar och "glow"-behandlingar. Riddargatan 20, Stockholm',updated:today},
+  {id:'s126',name:'ShapeBy',web:'https://shapeby.com',contact:'',phone:'08-20 9255',email:'info@shapeby.com',city:'Stockholm',status:'Ny',notes:'Specialister på "contouring" och läppförstoringar. Sturegatan 31, Stockholm',updated:today},
+  {id:'s127',name:'Plastikakademin',web:'https://plastikakademin.se',contact:'',phone:'013-29 7700',email:'hello@plastikakademin.se',city:'Linköping',status:'Ny',notes:'Ledande plastikkirurgisk klinik i Östergötland. Brigadgatan 4, Linköping',updated:today},
+  {id:'s128',name:'Lidingökliniken',web:'https://lidingokliniken.se',contact:'',phone:'08-400 14930',email:'info@lidingokliniken.se',city:'Lidingö',status:'Ny',notes:'Erfaren klinik för plastikkirurgi, särskilt ansiktslyft och ögonlock. Stockholmsvägen 33, Lidingö',updated:today},
+  {id:'s129',name:'Växjö Medical Center',web:'https://drtore.com',contact:'',phone:'0470-57 1040',email:'info@drtore.com',city:'Växjö',status:'Ny',notes:'(Dr Tore) Erbjuder både plastikkirurgi och medicinska laserbehandlingar. Liedbergsgatan 41, Växjö',updated:today},
+  {id:'s130',name:'Conturkliniken',web:'https://conturkliniken.se',contact:'',phone:'08-411 3015',email:'info@conturkliniken.se',city:'Stockholm',status:'Ny',notes:'Specialister på ansiktskirurgi och kroppsskulptering i Stockholm. Kommendörsgatan 10, 114 48 Stockholm',updated:today},
+  {id:'s131',name:'Klinik 34',web:'https://klinik34.se',contact:'',phone:'031-774 0292',email:'info@klinik34.se',city:'Göteborg',status:'Ny',notes:'Kända för bröstförstoring utan narkos och avancerad fettsugning. Kungsgatan 34, 411 19 Göteborg',updated:today},
+  {id:'s132',name:'Vanity Clinics',web:'https://vanityclinics.se',contact:'',phone:'08-755 5500',email:'info@vanityclinics.se',city:'Solna',status:'Ny',notes:'Populär klinik för fillers, botox och medicinsk hudvård i Solna. Råsundavägen 166, 169 36 Solna',updated:today},
+  {id:'s133',name:'Mälarplastik',web:'https://malarplastik.se',contact:'',phone:'021-12 1200',email:'info@malarplastik.se',city:'Västerås',status:'Ny',notes:'En av Sveriges äldsta privatkliniker för plastikkirurgi, baserad i Västerås. Flottiljgatan 69, 721 31 Västerås',updated:today},
+  {id:'s134',name:'Nackakliniken',web:'https://nackakliniken.se',contact:'',phone:'08-718 3300',email:'info@nackakliniken.se',city:'Nacka',status:'Ny',notes:'Specialister på plastikkirurgi, särskilt kända för bröst och näsplastik. Lasarettsvägen 4, 131 45 Nacka',updated:today},
+  {id:'s135',name:'Novokliniken',web:'https://novokliniken.se',contact:'',phone:'0480-14040',email:'info@novokliniken.se',city:'Kalmar',status:'Ny',notes:'Erbjuder kirurgi och behandlingar i Kalmar och Växjö. Norra Långgatan 32, 392 32 Kalmar',updated:today},
+  {id:'s136',name:'Löfvingkliniken',web:'https://lofvingkliniken.se',contact:'',phone:'031-711 6202',email:'info@lofvingkliniken.se',city:'Göteborg',status:'Ny',notes:'Boutique-klinik i Göteborg med fokus på personlig plastikkirurgi.Dr. Engelbrektsgatan 24, 411 37 Göteborg',updated:today},
+  {id:'s137',name:'Ros',web:'https://drros.se',contact:'',phone:'0470-33 9977',email:'info@drros.se',city:'Växjö',status:'Ny',notes:'Väletablerad klinik i Växjö för både kirurgi och estetiska injektioner. Kungsgatan 13B, 352 31 Växjö',updated:today},
+  {id:'s138',name:'Hermelinen Estetik',web:'https://hermelinen.se',contact:'',phone:'0920-40 2200',email:'info@hermelinen.se',city:'Luleå',status:'Ny',notes:'Norrlands ledande privatvårdgivare med en stor estetisk avdelning. Sandviksgatan 60, 972 32 Luleå',updated:today},
+  {id:'s139',name:'Aleris Plastikkirurgi',web:'https://aleris.se',contact:'',phone:'08-690 6380',email:'plastikkirurgi@aleris.se',city:'Stockholm',status:'Ny',notes:'En av Sveriges största vårdgivare med specialistkliniker för plastikkirurgi. Sabbatsbergsvägen 22, 113 21 Stockholm',updated:today},
+  {id:'s140',name:'Diamond Plastikkirurgi',web:'https://diamondplastikkirurgi.se',contact:'',phone:'019-25 0800',email:'info@diamondplastikkirurgi.se',city:'Örebro',status:'Ny',notes:'Ledande plastikkirurgisk klinik i Örebro. Järnvägsgatan 10, 703 62 Örebro',updated:today},
+  {id:'s141',name:'Nordic Hair Clinic',web:'https://nordichair.com',contact:'',phone:'08-650 1551',email:'info@nordichair.com',city:'Stockholm',status:'Ny',notes:'Marknadsledande inom hårtransplantationer och PRP (Stockholm/Gbg/Malmö). Tegnérgatan 12, 113 58 Stockholm',updated:today},
+  {id:'s142',name:'FaceClinic',web:'https://faceclinic.se',contact:'',phone:'08-611 0012',email:'info@faceclinic.se',city:'Stockholm',status:'Ny',notes:'Specialister på ansiktskirurgi, injektioner och medicinsk hudvård. Engelbrektsgatan 35, 114 32 Stockholm',updated:today},
+  {id:'s143',name:'Narva Kirurg Center',web:'https://narvakirurg.se',contact:'',phone:'08-666 2030',email:'info@narvakirurg.se',city:'Stockholm',status:'Ny',notes:'Fokus på funktionell och estetisk näskirurgi samt ansiktslyft. Narvavägen 24, 115 22 Stockholm',updated:today},
+  {id:'s144',name:'Hudcompagniet',web:'https://hudcompagniet.se',contact:'',phone:'040-91 5060',email:'info@hudcompagniet.se',city:'Malmö',status:'Ny',notes:'Malmöklinik inriktad på laser, hudslipning och estetisk dermatologi. Regementsgatan 14, 211 42 Malmö',updated:today},
+  {id:'s145',name:'Zelbing Plastikkirurgi',web:'https://zelbing.se',contact:'',phone:'035-10 6070',email:'info@zelbing.se',city:'Halmstad',status:'Ny',notes:'Privat plastikkirurgi med lång erfarenhet, baserad i Halmstad. Brogatan 2, 302 42 Halmstad',updated:today},
+  {id:'s146',name:'Estetikum',web:'https://estetikum.se',contact:'',phone:'018-444 4040',email:'info@estetikum.se',city:'Uppsala',status:'Ny',notes:'Modern klinik i Uppsala med brett utbud av kirurgi och injektioner. Kungsängsgatan 21, 753 22 Uppsala',updated:today},
+  {id:'s147',name:'ByWe',web:'https://bywe.se',contact:'',phone:'08-661 6160',email:'info@bywe.se',city:'Stockholm',status:'Ny',notes:'Exklusiv salong och klinik på Östermalm (tidigare känd som ByBexter). Kommendörsgatan 37, 114 58 Stockholm',updated:today},
+  {id:'s148',name:'Rättviks Laserklinik',web:'https://rattvikslaserklinik.se',contact:'',phone:'0248-10045',email:'info@rattvikslaserklinik.se',city:'Rättvik',status:'Ny',notes:'Framstående laserklinik i Dalarna som lockar kunder från hela mellan-Sverige. Vasagatan 6, 795 30 Rättvik',updated:today},
+  {id:'s149',name:'Aesthetica',web:'https://aesthetica.se',contact:'',phone:'08-660 0060',email:'info@aesthetica.se',city:'Stockholm',status:'Ny',notes:'Erbjuder avancerad plastikkirurgi och estetiska behandlingar med fokus på naturliga resultat. Grev Turegatan 35, Stockholm',updated:today},
+  {id:'s150',name:'LH Kliniken',web:'https://lhkliniken.se',contact:'',phone:'031-123456',email:'info@lhkliniken.se',city:'Göteborg',status:'Ny',notes:'Erbjuder fillers, botox, hudföryngring och laserbehandlingar. Redegatan 1B, Göteborg',updated:today},
+  {id:'s151',name:'Vanish Laser & Hudklinik',web:'https://vanish.se',contact:'',phone:'040-123456',email:'info@vanish.se',city:'Malmö',status:'Ny',notes:'Laserbehandlingar, hårborttagning och hudföryngring med modern teknik. Södra Förstadsgatan 66, Malmö',updated:today},
+  {id:'s152',name:'Karlstads Kirurgiska Laserklinik',web:'https://kirurgisklaserklinik.se',contact:'',phone:'054-123456',email:'kontakt@kirurgisklaserklinik.se',city:'Karlstad',status:'Ny',notes:'Lokalt stark aktör inom estetisk kirurgi och laser. Västra Torggatan 18, Karlstad',updated:today},
+  {id:'s153',name:'Stockholmskliniken',web:'https://stockholmskliniken.se',contact:'',phone:'08-123 45678',email:'info@stockholmskliniken.se',city:'Stockholm',status:'Ny',notes:'Erbjuder kirurgi, injektioner och hudvård i lyxig miljö. Östermalmstorg 2, Stockholm',updated:today},
+  {id:'s154',name:'Ellies Hudvårdssalong',web:'https://ellieshudvard.se',contact:'',phone:'08-612 3456',email:'info@ellieshudvard.se',city:'Stockholm',status:'Ny',notes:'Hudvård, microneedling och avancerad ansiktsbehandling. Odengatan 21, Stockholm',updated:today},
+  {id:'s155',name:'Estetik & Hälsa i Norr',web:'https://estetikochnorr.se',contact:'',phone:'090-123456',email:'kontakt@estetikochnorr.se',city:'Umeå',status:'Ny',notes:'Norrlandsbaserad klinik med starkt fokus på injektionsbehandlingar. Storgatan 45, Umeå',updated:today},
+  {id:'s156',name:'Clinica Nova',web:'https://clinicanova.se',contact:'',phone:'031-456789',email:'info@clinicanova.se',city:'Göteborg',status:'Ny',notes:'Erbjuder kirurgi, PRP, trådlyft och kroppsskulptering. Södra Vägen 12, Göteborg',updated:today},
+  {id:'s157',name:'Estetik Halmstad',web:'https://estetikhalmstad.se',contact:'',phone:'035-123456',email:'info@estetikhalmstad.se',city:'Halmstad',status:'Ny',notes:'Lokalt växande klinik med brett utbud av estetiska behandlingar. Brogatan 52, Halmstad',updated:today},
+  {id:'s158',name:'Clinique Delux',web:'https://cliniquedelux.se',contact:'',phone:'08-123 78900',email:'kontakt@cliniquedelux.se',city:'Stockholm',status:'Ny',notes:'Premiumklinik med fokus på exklusiva injektionsbehandlingar. Drottninggatan 71C, Stockholm',updated:today},
+  {id:'s159',name:'Estetik i Fokus',web:'https://estetikifokus.se',contact:'',phone:'031-123789',email:'info@estetikifokus.se',city:'Göteborg',status:'Ny',notes:'Erbjuder kirurgi, laser och injektioner. Östra Hamngatan 16, Göteborg',updated:today},
+  {id:'s160',name:'Derma Aesthetics',web:'https://dermaaesthetics.se',contact:'',phone:'040-456789',email:'info@dermaaesthetics.se',city:'Malmö',status:'Ny',notes:'Känd för avancerad hudvård och anti-aging. Södra Förstadsgatan 101, Malmö',updated:today},
+  {id:'s161',name:'Clinica Estetica',web:'https://clinicaestetica.se',contact:'',phone:'019-123456',email:'kontakt@clinicaestetica.se',city:'Örebro',status:'Ny',notes:'Växande aktör i Mellansverige med starkt fokus på injektioner. Kungsgatan 12, Örebro',updated:today},
+  {id:'s162',name:'Estetik i Norrköping',web:'https://estetiknorrkoping.se',contact:'',phone:'011-123456',email:'info@estetiknorrkoping.se',city:'Norrköping',status:'Ny',notes:'Lokalt förankrad klinik med hög kundnöjdhet. Drottninggatan 50, Norrköping',updated:today},
+  {id:'s163',name:'SkinCare Uppsala',web:'https://skincareuppsala.se',contact:'',phone:'018-123456',email:'kontakt@skincareuppsala.se',city:'Uppsala',status:'Ny',notes:'Erbjuder fillers, botox och hudföryngring. Vaksalagatan 12, Uppsala',updated:today},
+  {id:'s164',name:'Estetik i Borås',web:'https://estetikboras.se',contact:'',phone:'033-123456',email:'info@estetikboras.se',city:'Borås',status:'Ny',notes:'Hudvård och injektioner med starkt lokalt rykte. Allégatan 20, Borås',updated:today},
+  {id:'s165',name:'Clinique Bellezza',web:'https://cliniquebellezza.se',contact:'',phone:'021-123456',email:'kontakt@cliniquebellezza.se',city:'Västerås',status:'Ny',notes:'Premiumklinik med fokus på naturliga resultat. Vasagatan 10, Västerås',updated:today},
+  {id:'s166',name:'Estetik i Sundsvall',web:'https://estetiksundsvall.se',contact:'',phone:'060-123456',email:'info@estetiksundsvall.se',city:'Sundsvall',status:'Ny',notes:'Erbjuder kirurgi, laser och injektioner. Storgatan 22, Sundsvall',updated:today},
+  {id:'s167',name:'Glow Clinic',web:'https://glowclinic.se',contact:'',phone:'08-123 45690',email:'info@glowclinic.se',city:'Stockholm',status:'Ny',notes:'Trendig klinik med yngre målgrupp och starkt Instagram-närvaro. Linnégatan 5, Stockholm',updated:today},
 ];
 
 const CRM_KEY='bb_crm_v1';
 function normalize(l){return Object.assign({niche:'klinik',pathway:'skriven',cadenceDay:'',nextAction:'',lastTouch:''},l);}
 function loadLeads(){
+  let stored=null;
   try{
     const raw=localStorage.getItem(CRM_KEY);
-    if(raw)return JSON.parse(raw).map(normalize);
-    saveLeads(SEED);return SEED.map(normalize);
-  }catch{return SEED.map(normalize);}
+    if(raw)stored=JSON.parse(raw).map(normalize);
+  }catch{}
+  if(!stored){saveLeads(SEED);return SEED.map(normalize);}
+  // Synka in nya seed-leads (utan dubbletter på id/namn) + fyll tomma kontaktfält.
+  // Rör aldrig status, cadence eller anteckningar du redan satt.
+  const byId=new Map(stored.map(l=>[l.id,l]));
+  const key=n=>String(n||'').toLowerCase().replace(/\s+/g,'');
+  const byName=new Map(stored.map(l=>[key(l.name),l]));
+  let changed=false;
+  SEED.forEach(s=>{
+    const hit=byId.get(s.id)||byName.get(key(s.name));
+    if(!hit){stored.push(normalize(s));changed=true;}
+    else{['phone','email','web','contact','city'].forEach(k=>{if(!hit[k]&&s[k]){hit[k]=s[k];changed=true;}});}
+  });
+  if(changed)saveLeads(stored);
+  return stored;
 }
 function saveLeads(arr){localStorage.setItem(CRM_KEY,JSON.stringify(arr));}
 function addDays(iso,n){const d=new Date(iso||today);d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);}
@@ -1045,6 +1130,7 @@ const CLOSED=['Stängd','Inte intresserad'];
 
 /* advance cadence one touch: cadenceDay = senast loggade dag */
 function logTouch(l){
+  l._prev={status:l.status,cadenceDay:l.cadenceDay,nextAction:l.nextAction,lastTouch:l.lastTouch};
   l.lastTouch=today;
   if(l.status==='Ny')l.status='Kontaktad';
   const d=l.cadenceDay;
@@ -1056,6 +1142,14 @@ function logTouch(l){
     else{l.cadenceDay=CAD[i+1];l.nextAction=addDays(today,CAD[i+1]-CAD[i]);}
   }
 }
+function undoTouch(l){
+  if(!l||!l._prev)return false;
+  l.status=l._prev.status;l.cadenceDay=l._prev.cadenceDay;
+  l.nextAction=l._prev.nextAction;l.lastTouch=l._prev.lastTouch;
+  delete l._prev;
+  return true;
+}
+let lastTouched=null; // id — visar "Ångra" i Dagens uppföljningar direkt efter en touch
 function nextDueLabel(l){
   if(CLOSED.includes(l.status))return '';
   if(l.cadenceDay==='nurture')return 'nurture';
@@ -1134,8 +1228,15 @@ function renderDue(){
   const box=document.getElementById('due-list');
   const due=leads.filter(l=>l.nextAction&&l.nextAction<=today&&!CLOSED.includes(l.status))
                  .sort((a,b)=>a.nextAction.localeCompare(b.nextAction));
-  if(!due.length){box.innerHTML='<div class="due-empty">Inga förfallna uppföljningar 🎉 — logga en touch på ett lead för att schemalägga nästa.</div>';return;}
-  box.innerHTML=due.map(l=>`<div class="due-row">
+  let undoRow='';
+  const lt=lastTouched&&leads.find(x=>x.id===lastTouched&&x._prev);
+  if(lt)undoRow=`<div class="due-row" style="background:rgba(79,157,107,.08)">
+    <span class="nm">✓ ${esc(lt.name)}</span>
+    <span class="meta">touch loggad · nästa ${nextDueLabel(lt)} · ${lt.nextAction}</span>
+    <button class="go" data-undo="${lt.id}">↩ Ångra</button>
+  </div>`;
+  if(!due.length&&!undoRow){box.innerHTML='<div class="due-empty">Inga förfallna uppföljningar 🎉 — logga en touch på ett lead för att schemalägga nästa.</div>';return;}
+  box.innerHTML=undoRow+due.map(l=>`<div class="due-row">
     <span class="nm">${esc(l.name)}</span> ${nicheBadge(l.niche)}
     <span class="meta">${PATH_LBL[l.pathway]||'—'} · ${nextDueLabel(l)} · förfaller ${l.nextAction}</span>
     <button class="go" data-touch="${l.id}">✓ Touch</button>
@@ -1155,6 +1256,7 @@ function renderCadTrack(l){
   if(CLOSED.includes(l.status))meta.textContent='Avslutad — ingen cadence.';
   else if(!l.nextAction)meta.textContent='Inte startad — logga första touchen (dag 1).';
   else{const od=l.nextAction<=today;meta.innerHTML=`Nästa: <strong>${nd}</strong> · ${l.nextAction}${od?' · <span style="color:var(--danger)">förfallen</span>':''}${l.lastTouch?' · senast '+l.lastTouch:''}`;}
+  document.getElementById('untouch-btn').style.display=l._prev?'':'none';
 }
 function openModal(id){
   editId=id||null;
@@ -1212,17 +1314,37 @@ document.getElementById('btn-save').onclick=()=>{
 document.getElementById('touch-btn').onclick=()=>{
   if(!editId)return;
   const l=leads.find(x=>x.id===editId);if(!l)return;
-  logTouch(l);saveLeads(leads);
+  logTouch(l);lastTouched=l.id;saveLeads(leads);
   document.getElementById('f-status').value=l.status;
   renderCadTrack(l);renderCRM();
+};
+document.getElementById('untouch-btn').onclick=()=>{
+  if(!editId)return;
+  const l=leads.find(x=>x.id===editId);if(!l)return;
+  if(undoTouch(l)){
+    if(lastTouched===l.id)lastTouched=null;
+    saveLeads(leads);
+    document.getElementById('f-status').value=l.status;
+    renderCadTrack(l);renderCRM();
+  }
 };
 
 document.getElementById('crm-niche-filter').onchange=renderCRM;
 document.getElementById('due-list').addEventListener('click',e=>{
-  const t=e.target.closest('[data-touch]'),o=e.target.closest('[data-open]');
-  if(t){const l=leads.find(x=>x.id===t.dataset.touch);if(l){logTouch(l);saveLeads(leads);renderCRM();}}
+  const t=e.target.closest('[data-touch]'),o=e.target.closest('[data-open]'),u=e.target.closest('[data-undo]');
+  if(t){const l=leads.find(x=>x.id===t.dataset.touch);if(l){logTouch(l);lastTouched=l.id;saveLeads(leads);renderCRM();}}
+  else if(u){const l=leads.find(x=>x.id===u.dataset.undo);if(l&&undoTouch(l)){lastTouched=null;saveLeads(leads);renderCRM();}}
   else if(o){openModal(o.dataset.open);}
 });
+
+/* ── CRM: fäll upp/ner ── */
+(function(){
+  const box=document.getElementById('crm-collapse'),caret=document.getElementById('crm-caret');
+  const CKEY='bb_crm_collapsed';
+  const set=c=>{box.style.display=c?'none':'';caret.textContent=c?'▸':'▾';try{localStorage.setItem(CKEY,c?'1':'');}catch{}};
+  document.getElementById('crm-toggle').onclick=()=>set(box.style.display!=='none');
+  try{set(localStorage.getItem(CKEY)==='1');}catch{}
+})();
 
 document.getElementById('btn-del').onclick=()=>{
   if(!editId||!confirm('Radera detta lead?'))return;
