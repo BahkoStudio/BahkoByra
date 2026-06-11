@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0B0B0D">
+<meta name="description" content="GRANIT Bygg & Entreprenad — byggt att ärvas. Demo av Bahko Byrå.">
+<title>GRANIT Bygg &amp; Entreprenad — Byggt att ärvas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0B0B0D; --bg2:#121215; --card:#17171B;
+  --text:#F2EFE9; --muted:rgba(242,239,233,.6); --dim:rgba(242,239,233,.38);
+  --amber:#E8A33D; --amber-lt:#F6C76B; --amber-dk:#B97A1E;
+  --steel:#8FA3B8; --line:rgba(242,239,233,.1);
+  --grad:linear-gradient(100deg,var(--amber-lt) 0%,var(--amber) 45%,#D96E30 100%);
+  --sans:'Archivo',system-ui,sans-serif; --disp:'Archivo Expanded','Archivo',sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html{background:var(--bg);scroll-behavior:auto}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--amber);color:#16120A}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem clamp(1.2rem,4vw,3rem);transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(11,11,13,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:var(--line)}
+.logo{font-family:var(--disp);font-weight:900;font-size:1.05rem;letter-spacing:.18em;text-transform:uppercase}
+.logo em{font-style:normal;color:var(--amber)}
+.nav-cta{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--grad);color:#16120A;
+  padding:.72rem 1.5rem;border-radius:4px;transition:transform .2s,box-shadow .3s;box-shadow:0 10px 28px -12px rgba(232,163,61,.55)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 16px 36px -12px rgba(232,163,61,.7)}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;will-change:transform}
+.hero-bg::after{content:'';position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(11,11,13,.55) 0%,rgba(11,11,13,.15) 35%,rgba(11,11,13,.4) 70%,rgba(11,11,13,.97) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%;padding:0 clamp(1.2rem,4vw,3rem) clamp(3rem,7vh,5.5rem)}
+.hero-kicker{font-size:.68rem;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--amber-lt);margin-bottom:1.1rem;display:flex;align-items:center;gap:.8rem}
+.hero-kicker::before{content:'';width:34px;height:2px;background:var(--grad)}
+.hero h1{font-family:var(--disp);font-weight:900;font-size:clamp(2.7rem,9.5vw,8.5rem);line-height:.95;letter-spacing:-.015em;text-transform:uppercase}
+.hero h1 .row{display:block;overflow:hidden}
+.hero h1 .row>span{display:block;will-change:transform}
+.hero-sub{max-width:50ch;color:var(--muted);font-size:clamp(.95rem,1.2vw,1.1rem);margin-top:1.4rem;font-weight:400}
+.hero-meta{display:flex;gap:2.2rem;margin-top:2rem;flex-wrap:wrap}
+.hm b{font-family:var(--disp);font-weight:800;font-size:1.25rem;display:block;color:var(--amber-lt)}
+.hm span{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.scrollcue{position:absolute;right:clamp(1.2rem,4vw,3rem);bottom:2.4rem;z-index:2;display:flex;align-items:center;gap:.7rem;color:var(--dim);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase}
+.scrollcue i{display:block;width:1px;height:44px;background:var(--line);position:relative;overflow:hidden}
+.scrollcue i::after{content:'';position:absolute;inset:-100% 0 auto;height:100%;background:var(--amber);animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%{top:-100%}55%{top:0}100%{top:100%}}
+
+/* ── VISION ── */
+.vision{padding:clamp(6rem,14vw,11rem) clamp(1.2rem,4vw,3rem);max-width:1050px;margin:0 auto;text-align:center}
+.vision h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.7rem,4.2vw,3.4rem);line-height:1.18;letter-spacing:-.01em}
+.vision h2 em{font-style:normal;color:var(--amber)}
+.vision p{max-width:62ch;margin:1.8rem auto 0;color:var(--muted);font-size:clamp(.95rem,1.15vw,1.08rem)}
+
+/* ── PROJEKT ── */
+.work{padding:0 clamp(1.2rem,4vw,3rem) clamp(5rem,10vw,8rem);max-width:1320px;margin:0 auto}
+.work-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.4rem}
+.work-head h2{font-family:var(--disp);font-weight:900;font-size:clamp(1.9rem,4.6vw,3.6rem);text-transform:uppercase;letter-spacing:-.01em;line-height:1.05}
+.work-head p{color:var(--dim);font-size:.85rem;max-width:34ch}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.wcard{position:relative;border-radius:8px;overflow:hidden;background:var(--card);aspect-ratio:4/4.6;border:1px solid var(--line);will-change:transform,opacity}
+.wcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
+.wcard:hover img{transform:scale(1.06)}
+.wcard::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(11,11,13,.92) 100%)}
+.wc-body{position:absolute;left:1.3rem;right:1.3rem;bottom:1.2rem;z-index:2}
+.wc-tag{font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--amber-lt)}
+.wc-body h3{font-family:var(--disp);font-weight:800;font-size:1.3rem;margin:.3rem 0 .25rem}
+.wc-body p{font-size:.78rem;color:var(--muted)}
+
+/* ── SCRUB (pinned stortext) ── */
+.scrub{position:relative;height:100svh;overflow:hidden}
+.scrub-bg{position:absolute;inset:0}
+.scrub-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);will-change:transform;filter:brightness(.5)}
+.scrub-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(90% 70% at 50% 50%,transparent 0%,rgba(11,11,13,.75) 100%)}
+.scrub-line{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:0 5vw;opacity:0;will-change:opacity,transform}
+.scrub-line h2{font-family:var(--disp);font-weight:900;font-size:clamp(2.4rem,8.5vw,7.5rem);line-height:1;text-transform:uppercase;letter-spacing:-.01em}
+.scrub-line .sm{display:block;font-family:var(--sans);font-weight:500;font-size:clamp(.7rem,1vw,.85rem);letter-spacing:.3em;color:var(--amber-lt);margin-bottom:1rem}
+
+/* ── CTA ── */
+.cta{padding:clamp(6rem,13vw,10rem) clamp(1.2rem,4vw,3rem);text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(80vw,860px);aspect-ratio:1;
+  background:radial-gradient(circle,rgba(232,163,61,.13),transparent 62%);pointer-events:none}
+.cta h2{font-family:var(--disp);font-weight:900;font-size:clamp(2.2rem,6.5vw,5.2rem);text-transform:uppercase;line-height:1;position:relative}
+.cta p{color:var(--muted);margin:1.2rem auto 2.2rem;max-width:46ch;position:relative}
+.btn-big{display:inline-flex;align-items:center;gap:.7rem;background:var(--grad);color:#16120A;font-weight:800;font-size:.82rem;
+  letter-spacing:.16em;text-transform:uppercase;padding:1.15rem 2.6rem;border-radius:4px;position:relative;
+  box-shadow:0 18px 50px -18px rgba(232,163,61,.6);transition:transform .2s,box-shadow .3s}
+.btn-big:hover{transform:translateY(-2px);box-shadow:0 24px 60px -18px rgba(232,163,61,.8)}
+.btn-big svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.4;fill:none}
+.cta-sub{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin-top:1.1rem;position:relative}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--line);padding:1.8rem clamp(1.2rem,4vw,3rem);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.72rem;color:var(--dim)}
+footer a{color:var(--amber-lt)}
+
+/* ── MODAL (Bahko demo) ── */
+.modal-bg{position:fixed;inset:0;z-index:500;background:rgba(11,11,13,.7);backdrop-filter:blur(10px);display:grid;place-items:center;
+  padding:1.2rem;opacity:0;visibility:hidden;transition:.35s}
+.modal-bg.open{opacity:1;visibility:visible}
+.modal{background:var(--bg2);border:1px solid rgba(232,163,61,.3);border-radius:12px;max-width:480px;width:100%;padding:2.6rem;position:relative;
+  box-shadow:0 40px 110px rgba(0,0,0,.6)}
+.modal-x{position:absolute;top:1rem;right:1.2rem;font-size:1.3rem;color:var(--dim);padding:.4rem}
+.modal-x:hover{color:var(--text)}
+.m-badge{display:inline-block;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--amber-lt);
+  background:rgba(232,163,61,.1);border:1px solid rgba(232,163,61,.25);border-radius:4px;padding:.35rem .8rem;margin-bottom:1.3rem}
+.modal h3{font-family:var(--disp);font-weight:800;font-size:1.7rem;line-height:1.15;margin-bottom:.6rem}
+.modal p{font-size:.88rem;color:var(--muted);margin-bottom:1.6rem}
+.modal .btn-big{width:100%;justify-content:center;font-size:.74rem;padding:1rem 1.4rem}
+.m-alt{display:block;text-align:center;font-size:.74rem;color:var(--dim);margin-top:1rem;transition:color .3s}
+.m-alt:hover{color:var(--amber-lt)}
+.m-foot{margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid var(--line);text-align:center;font-size:.62rem;letter-spacing:.16em;color:var(--dim)}
+.m-foot a{color:var(--amber-lt);font-weight:600}
+
+/* ── MOBIL ── */
+@media(max-width:760px){
+  .work-grid{grid-template-columns:1fr}
+  .wcard{aspect-ratio:4/3.4}
+  .hero-meta{gap:1.4rem}
+  .scrollcue{display:none}
+  .modal{padding:1.8rem 1.4rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .scrub-line{opacity:1!important;position:relative;height:auto;padding:3rem 5vw}
+  .scrub{height:auto}
+  .hero h1 .row>span{transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="logo" href="#">GRANIT<em>.</em></a>
+  <a class="nav-cta" href="#" onclick="openModal();return false">Begär offert</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"><img id="hero-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_094802_5f43c9e0-be0d-416f-8dd5-9ace8680f2d7.png" alt="" fetchpriority="high"></div>
+  <div class="hero-inner">
+    <div class="hero-kicker">Bygg &amp; Entreprenad · Mälardalen</div>
+    <h1>
+      <span class="row"><span>Byggt att</span></span>
+      <span class="row"><span class="grad-text">ärvas.</span></span>
+    </h1>
+    <p class="hero-sub">Villor, tak och totalrenoveringar — utförda av hantverkare som skriver fast pris, håller tidplanen och står för jobbet i tio år.</p>
+    <div class="hero-meta">
+      <div class="hm"><b>240+</b><span>Projekt levererade</span></div>
+      <div class="hm"><b>10 år</b><span>Garanti på allt</span></div>
+      <div class="hm"><b>4.9 ★</b><span>Snittbetyg</span></div>
+    </div>
+  </div>
+  <div class="scrollcue">Scrolla <i></i></div>
+</header>
+
+<!-- VISION -->
+<section class="vision" id="vision">
+  <h2 data-reveal>Varannan byggfirma bygger för besiktningen.<br><em>Vi bygger för generationen efter dig.</em></h2>
+  <p data-reveal>Inget försvinnande efter handpenningen. Inga "det blev lite dyrare". Du får en ansvarig projektledare, ett fast pris på papper och ett dagsfotat bygge du kan följa från soffan.</p>
+</section>
+
+<!-- PROJEKT -->
+<section class="work" id="projekt">
+  <div class="work-head">
+    <h2 data-reveal>Välj hantverk.<br><span class="grad-text">Inte chansning.</span></h2>
+    <p data-reveal>Tre av våra senaste leveranser — fast pris, färdiga i tid.</p>
+  </div>
+  <div class="work-grid">
+    <article class="wcard" data-card>
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_094812_ad5bfa2e-fd73-4f3f-ab72-a64cb45ccbba.png" alt="Nybyggd villa med svart träfasad" loading="lazy">
+      <div class="wc-body">
+        <div class="wc-tag">Nybyggnation</div>
+        <h3>Villa Ekerö</h3>
+        <p>Lösvirkeshus 162 m² — från ritning till nyckel på 9 månader.</p>
+      </div>
+    </article>
+    <article class="wcard" data-card>
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_094814_51875d18-ee08-4322-8dd1-d7e4040e14bf.png" alt="Takläggning i skiffer" loading="lazy">
+      <div class="wc-body">
+        <div class="wc-tag">Tak &amp; Plåt</div>
+        <h3>Takbyte Bromma</h3>
+        <p>Komplett takbyte med skiffer — klart på 12 arbetsdagar.</p>
+      </div>
+    </article>
+    <article class="wcard" data-card>
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_094816_a60d73a8-5553-4747-aab1-ea4c35755772.png" alt="Totalrenoverat badrum i mörk sten" loading="lazy">
+      <div class="wc-body">
+        <div class="wc-tag">Totalrenovering</div>
+        <h3>Badrum Vasastan</h3>
+        <p>Helkaklat med natursten och mässing — våtrumscertifierat.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- SCRUB — pinned stortext -->
+<section class="scrub" id="scrub">
+  <div class="scrub-bg"><img id="scrub-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_113016_0e31b967-c649-4d35-b54a-9cf2ff437907.png" alt=""></div>
+  <div class="scrub-line"><h2><span class="sm">01 — Inga överraskningar</span>Fast pris.<br><span class="grad-text">På papper.</span></h2></div>
+  <div class="scrub-line"><h2><span class="sm">02 — Inga förseningar</span>Färdigt<br><span class="grad-text">i tid.</span></h2></div>
+  <div class="scrub-line"><h2><span class="sm">03 — Inga undanflykter</span>10 års<br><span class="grad-text">garanti.</span></h2></div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Redo att <span class="grad-text">bygga?</span></h2>
+  <p>Berätta om ditt projekt så återkommer vi med ett fast pris inom 48 timmar — kostnadsfritt och utan förpliktelser.</p>
+  <button class="btn-big" onclick="openModal()">
+    <span>Begär kostnadsfri offert</span>
+    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+  <div class="cta-sub">Svar inom 48h · Fast pris · 10 års garanti</div>
+</section>
+
+<footer>
+  <span>GRANIT Bygg &amp; Entreprenad · Demo</span>
+  <span>Byggd av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
+</footer>
+
+<!-- BAHKO DEMO-MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal()" aria-label="Stäng">✕</button>
+    <div class="m-badge">Demo av Bahko Byrå</div>
+    <h3>Vill du ha en sida som denna för ditt byggföretag?</h3>
+    <p>Boka ett kostnadsfritt 15-minuterssamtal med Mathias. Vi visar exakt hur din firmas hemsida kan se ut — och hur den drar in offertförfrågningar.</p>
+    <button class="btn-big" data-cal-namespace="15min" data-cal-link="bahkobyra/15min" data-cal-origin="https://cal.eu">Boka 15 min gratis samtal →</button>
+    <a class="m-alt" href="mailto:mathias@bahkobyra.se?subject=Intresserad av demo-hemsida (bygg)&body=Hej Mathias, jag såg GRANIT-demon och vill veta mer.">Eller mejla → mathias@bahkobyra.se</a>
+    <div class="m-foot"><a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a> · Synlighet som säljer.</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(typeof gsap==='undefined')return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  if(!reduce&&typeof Lenis!=='undefined'){
+    const lenis=new Lenis({duration:1.1,easing:t=>1-Math.pow(1-t,3),smoothWheel:true});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  // Nav
+  addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60),{passive:true});
+
+  if(reduce)return;
+
+  // Hero-entré
+  gsap.set('.hero h1 .row>span',{yPercent:115});
+  gsap.set('.hero-kicker,.hero-sub,.hero-meta,.scrollcue',{opacity:0,y:18});
+  gsap.timeline({delay:.15})
+    .to('.hero-kicker',{opacity:1,y:0,duration:.8,ease:'power3.out'})
+    .to('.hero h1 .row>span',{yPercent:0,duration:1.15,ease:'expo.out',stagger:.12},'-=.45')
+    .to('.hero-sub',{opacity:1,y:0,duration:.9,ease:'power3.out'},'-=.6')
+    .to('.hero-meta',{opacity:1,y:0,duration:.8,ease:'power3.out'},'-=.55')
+    .to('.scrollcue',{opacity:1,y:0,duration:.7},'-=.4');
+
+  // Hero-parallax
+  gsap.to('#hero-img',{yPercent:14,scale:1.06,ease:'none',
+    scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+  // Reveals
+  document.querySelectorAll('[data-reveal]').forEach(el=>{
+    gsap.fromTo(el,{y:46,opacity:0},{y:0,opacity:1,duration:1.05,ease:'expo.out',
+      scrollTrigger:{trigger:el,start:'top 86%'}});
+  });
+
+  // Projektkort
+  gsap.fromTo('[data-card]',{y:70,opacity:0,scale:.95},{y:0,opacity:1,scale:1,duration:1.1,ease:'expo.out',stagger:.12,
+    scrollTrigger:{trigger:'.work-grid',start:'top 84%'}});
+
+  // SCRUB: pinna sektionen, väx bakgrunden, tona stortext i sekvens
+  const lines=gsap.utils.toArray('.scrub-line');
+  const tl=gsap.timeline({scrollTrigger:{trigger:'.scrub',start:'top top',end:'+=280%',pin:true,scrub:.6,anticipatePin:1}});
+  tl.fromTo('#scrub-img',{scale:1.15},{scale:1.0,ease:'none',duration:lines.length+1},0);
+  lines.forEach((l,i)=>{
+    tl.fromTo(l,{opacity:0,scale:.94},{opacity:1,scale:1,duration:.55,ease:'power2.out'},i+0.15)
+      .to(l,{opacity:0,scale:1.04,duration:.45,ease:'power2.in'},i+0.78);
+  });
+  tl.to({},{duration:.3}); // andrum efter sista raden
+
+  setTimeout(()=>ScrollTrigger.refresh(),400);
+})();
+
+function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+</script>
+<!-- Cal.eu embed -->
+<script type="text/javascript">
+(function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,[L,namespace,...Array.from(ar).slice(2)])}else p(cal,ar);return}p(cal,ar)};})(window,"https://cal.eu/embed/embed.js","init");
+Cal("init","15min",{origin:"https://cal.eu"});
+Cal.ns["15min"]("ui",{"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+</body>
+</html>
