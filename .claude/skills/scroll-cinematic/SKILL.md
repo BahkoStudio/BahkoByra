@@ -15,17 +15,24 @@ Higgsfield MCP genererar klippen (1080p), scrollen skrubbar videon.
 
 ## Berättelsen (fast koncept — ändra inte strukturen)
 
-| Sektion | Innehåll | Källa |
-|---------|----------|-------|
-| Hero | **Förvandlingsvideon som autoplay-loop (gif-känsla)** bakom hero-copy ("Vi ser huset ingen annan ser.") | Klipp 1 (A→B) |
-| Mitt | Vision + Projektgrid (3 kort) — GRANIT-mallens mid-sections | Befintliga/nya bilder |
-| Steget in | Fullskärms autoplay-loop: kameran glider in genom dörren, overlay "Välkommen hem." (data-reveal) | Klipp 2 (B→C) |
-| CTA | "Vad ser du i ditt hus?" + Bahko-modal med Cal.eu | Mall |
+**Strukturen = Élara-koreografin** (`bahkobyra/cloud/index.html`) — det är ALLTID den vi använder för
+kunddemos — med Higgsfield-gif:arna i stället för ambient-canvas. Facit för bygg:
+`bahkobyra/cloud/bygg/index.html`.
 
-**Videopresentation (beslut 2026-06-11): autoplay-loopar, INTE scroll-scrub.** `<video autoplay muted loop
-playsinline preload="auto" poster="<keyframe>">`. Ingen pin, ingen seek-logik. Lägg en gest-säkring
-(`touchstart/pointerdown` → `play()` på pausade videos) eftersom lågenergiläge på mobil kan blockera autoplay,
-och pausa looparna vid `prefers-reduced-motion`.
+| Del | Innehåll |
+|-----|----------|
+| Loader | Varumärke + progressbar (simulerad, snabb) |
+| Header | Fixed med nav-länkar + CTA-knapp; hamburger + helskärms-mobilnav under 768px |
+| Hero (100svh) | **Förvandlingsvideon som autoplay-loop (gif)** bakom ordvis staggad rubrik (`.word`, shimmer-accent), tagline, scroll-indikator. Heron tonar ut när scrollen börjar |
+| Fast videolager | **"Steget in"-loopen fixed bakom alla sektioner**, avtäcks med circle-wipe (`clip-path:circle`) när heron lämnar — nedtonad (brightness ~.62 + vinjett) för läsbarhet |
+| Scroll-container (900vh / 620vh mobil) | Absolut positionerade sektioner på progress-fönster (`data-enter`/`data-leave`), VARIERADE entréer — aldrig samma två gånger i rad: slide-left → fade-up → stagger-up → slide-right → stagger-up → scale-up |
+| Sektionerna | 001 Filosofi (sidoställd) · 002 **Före/efter-slider med keyframes A/B** (scroll-avtäckning + drag) · 003 Projektgrid (3 kort) · 004 Tjänstelista · 005 Stats med räknare som tickar upp · CTA med `data-persist="true"` |
+| Övrigt | Marquee i jättetext (outlined, xPercent på scroll) · dark overlay-fönster över projekt+stats · flytande offert-knapp efter 60 % viewport · Bahko-modal (Cal.eu) |
+
+**Videopresentation: autoplay-loopar (gif-känsla), INTE scroll-scrub.** `<video autoplay muted loop
+playsinline preload="auto" poster="<keyframe>">`. Gest-säkring (`touchstart/pointerdown` → `play()` på
+pausade videos) för lågenergiläge, och `prefers-reduced-motion`: pausa videos, döda loadern, gör
+sektionerna statiska (CSS: `#scroll-container{height:auto}`, `.scroll-section{position:static;opacity:1}`).
 
 **Mall/facit:** `bahkobyra/cloud/bygg/index.html` — kopiera den till `bahkobyra/cloud/[kund]/index.html`
 och byt varumärke (namn, färger om kunden har egna, copy, klipp). Behåll alltid: nav, vision,
