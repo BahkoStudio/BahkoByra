@@ -312,8 +312,23 @@ footer a{color:var(--amber-lt)}
     scrollTrigger:{trigger:'.work-grid',start:'top 84%'}});
 
   // ── SCROLL-CINEMATIC: pinna sektionen, skrubba videon med scrollen ──
-  // Sandbox-/cloud-vänlig variant: ingen frame-extraktion — webbläsarens egen
-  // dekoder söker i MP4:n via video.currentTime (kräver bara range requests på CDN).
+  // Videon rör sig I TAKT med scrollen (stannar du, stannar den).
+  // Tre saker krävs för att det ska funka överallt:
+  //  1) Gest-upplåsning — mobila webbläsare avkodar inte video före play() i en användargest
+  //  2) Seek-kö — skicka aldrig ny currentTime innan förra seeken är klar (annars fryser mobilen)
+  //  3) Buffert-uppvärmning strax innan sektionen syns
+  function unlockVideos(){
+    document.querySelectorAll('.cine video').forEach(v=>{
+      if(v.dataset.unlocked)return;
+      v.dataset.unlocked='1';
+      const p=v.play();
+      if(p&&p.then)p.then(()=>v.pause()).catch(()=>{delete v.dataset.unlocked;});
+      else v.pause();
+    });
+  }
+  ['touchstart','wheel','pointerdown','keydown'].forEach(ev=>
+    addEventListener(ev,unlockVideos,{once:true,passive:true}));
+
   function initCine(secId,vidId,progId,scrollLen){
     const sec=document.getElementById(secId),v=document.getElementById(vidId),prog=document.getElementById(progId);
     if(!sec||!v)return;
@@ -322,16 +337,30 @@ footer a{color:var(--amber-lt)}
       el,inP:parseFloat(el.dataset.in),outP:parseFloat(el.dataset.out)
     }));
     const FADE=.06;
-    let lastT=-1;
+
+    // Seek-kö: alltid mot SENASTE målet, en seek i taget
+    let target=0,seekBusy=false;
+    function pump(){
+      if(seekBusy||!(v.readyState>=1&&v.duration))return;
+      const t=Math.min(target*v.duration,v.duration-.05);
+      if(Math.abs(v.currentTime-t)<0.02)return;
+      seekBusy=true;
+      try{v.currentTime=t;}catch(e){seekBusy=false;}
+    }
+    v.addEventListener('seeked',()=>{seekBusy=false;pump();});
+    v.addEventListener('loadedmetadata',pump);
+
+    // Värm upp bufferten en halv viewport innan sektionen når skärmen
+    ScrollTrigger.create({trigger:sec,start:'top 150%',once:true,onEnter(){
+      const p=v.play();if(p&&p.then)p.then(()=>v.pause()).catch(()=>{});
+    }});
+
     ScrollTrigger.create({
-      trigger:sec,start:'top top',end:'+='+scrollLen,pin:true,scrub:.5,anticipatePin:1,invalidateOnRefresh:true,
+      trigger:sec,start:'top top',end:'+='+scrollLen,pin:true,scrub:.8,anticipatePin:1,invalidateOnRefresh:true,
       onUpdate(self){
         const p=self.progress;
-        // Videoscrub — kasta inte seek-anrop i onödan
-        if(v.readyState>=1&&v.duration){
-          const t=Math.min(p*v.duration,v.duration-.05);
-          if(Math.abs(t-lastT)>0.02){lastT=t;try{v.currentTime=t;}catch(e){}}
-        }
+        target=p;
+        pump();
         // Textrader: tona in/ut på progress-fönster
         lines.forEach(({el,inP,outP})=>{
           let o=0;
