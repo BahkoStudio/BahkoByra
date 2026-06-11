@@ -15,13 +15,17 @@ Higgsfield MCP genererar klippen (1080p), scrollen skrubbar videon.
 
 ## Berättelsen (fast koncept — ändra inte strukturen)
 
-| Akt | Innehåll | Källa |
-|-----|----------|-------|
-| 0. Hero | Det utdömda huset, stillbild + premium-copy ("Vi ser huset ingen annan ser.") | Keyframe A |
-| 1. Förvandlingen | Pinned videoscrub: huset renoveras framför ögonen (3 textrader tonar in/ut) | Klipp 1 (A→B) |
-| — Mitt | Vision + Projektgrid (3 kort) — GRANIT-mallens mid-sections | Befintliga/nya bilder |
-| 2. Steget in | Pinned videoscrub: kameran glider fram, dörren öppnas, in i vardagsrummet ("Välkommen hem.") | Klipp 2 (B→C) |
-| 3. CTA | "Vad ser du i ditt hus?" + Bahko-modal med Cal.eu | Mall |
+| Sektion | Innehåll | Källa |
+|---------|----------|-------|
+| Hero | **Förvandlingsvideon som autoplay-loop (gif-känsla)** bakom hero-copy ("Vi ser huset ingen annan ser.") | Klipp 1 (A→B) |
+| Mitt | Vision + Projektgrid (3 kort) — GRANIT-mallens mid-sections | Befintliga/nya bilder |
+| Steget in | Fullskärms autoplay-loop: kameran glider in genom dörren, overlay "Välkommen hem." (data-reveal) | Klipp 2 (B→C) |
+| CTA | "Vad ser du i ditt hus?" + Bahko-modal med Cal.eu | Mall |
+
+**Videopresentation (beslut 2026-06-11): autoplay-loopar, INTE scroll-scrub.** `<video autoplay muted loop
+playsinline preload="auto" poster="<keyframe>">`. Ingen pin, ingen seek-logik. Lägg en gest-säkring
+(`touchstart/pointerdown` → `play()` på pausade videos) eftersom lågenergiläge på mobil kan blockera autoplay,
+och pausa looparna vid `prefers-reduced-motion`.
 
 **Mall/facit:** `bahkobyra/cloud/bygg/index.html` — kopiera den till `bahkobyra/cloud/[kund]/index.html`
 och byt varumärke (namn, färger om kunden har egna, copy, klipp). Behåll alltid: nav, vision,
@@ -69,26 +73,21 @@ Klipp 2 "Steget in": samma params
 - Får du en `preset_recommendation`-notis: kör om bokstavligt med `declined_preset_id` — vi vill ha exakt våra keyframes.
 - Polla med `job_display` tills `status: completed`; ta `results.rawUrl` (cloudfront-MP4).
 
-### 4. Scroll-implementation — två vägar beroende på miljö
+### 4. Videopresentation — autoplay-loop (standard)
 
-**Cloud-sandbox (Claude Code on the web — CDN-nedladdning blockerad, ffmpeg saknas):**
-Hotlinka MP4-url:erna i `<video muted playsinline preload="auto" crossorigin="anonymous" poster="<keyframe>">`
-och skrubba med `video.currentTime` — webbläsarens dekoder söker via range requests (cloudfront stödjer det).
-Mönstret finns färdigt i `bahkobyra/cloud/bygg/index.html` (funktionen `initCine`): pinned ScrollTrigger
-(`end:'+=300%'`, `scrub:.8`), textrader med `data-in`/`data-out` som tonas manuellt i `onUpdate` (FADE=0.06).
+Hotlinka MP4-url:erna (`results.rawUrl`) i `<video autoplay muted loop playsinline preload="auto"
+poster="<keyframe>">`. Hero = klipp 1 bakom hero-copy (med GSAP-parallax på videoelementet),
+"Steget in" = klipp 2 i en 100svh-sektion med overlay-rubrik. Mallen ligger i
+`bahkobyra/cloud/bygg/index.html`. Gest-säkring: vid första `touchstart/pointerdown`, `play()` på
+alla pausade videos (lågenergiläge på mobil blockerar ibland autoplay). `prefers-reduced-motion`:
+pausa looparna (postern står stilla).
 
-**TRE OBLIGATORISKA delar för att currentTime-scrub ska fungera (lärdom 2026-06-11 — utan dem ser videon
-fryst ut på mobil):**
-1. **Gest-upplåsning:** mobila webbläsare avkodar inte video före `play()` i en användargest — kör
-   `play().then(pause)` på alla cine-videos vid första `touchstart/wheel/pointerdown/keydown` (`{once:true}`).
-2. **Seek-kö:** skicka ALDRIG ny `currentTime` innan förra seeken är klar. Håll `target` uppdaterad i
-   `onUpdate`, pumpa nästa seek i `'seeked'`-eventet. Att spamma seeks får mobildekodern att hacka/frysa.
-3. **Buffert-uppvärmning:** separat ScrollTrigger med `start:'top 150%'`, `once:true` som kör
-   `play().then(pause)` strax innan sektionen når skärmen.
-
-**Lokalt (ffmpeg finns + nätverk öppet):** ladda ner MP4:erna, extrahera frames och kör canvas-scrub
-enligt **video-to-website-skillen** (`fps≈12`, webp, 150-300 frames) — mjukare skrubb än currentTime.
-Lägg frames i `bahkobyra/cloud/[kund]/frames/`.
+**Alternativ (endast om kunden uttryckligen ber om scroll-scrub):** `video.currentTime`-scrub kräver
+tre delar för att inte se fryst ut på mobil (lärdom 2026-06-11): (1) gest-upplåsning `play().then(pause)`
+vid första gest, (2) seek-kö — aldrig ny `currentTime` innan `'seeked'` har kommit, pumpa mot senaste
+målet, (3) buffert-uppvärmning via ScrollTrigger `start:'top 150%'`. Lokalt med ffmpeg: extrahera frames
+och kör canvas-scrub enligt video-to-website-skillen (mjukast). Historik: scrub-varianten finns i git
+(`git log bahkobyra/cloud/bygg/index.html`, commit "Videoscrub som faktiskt rör sig…").
 
 ### 5. Copy-regler
 
