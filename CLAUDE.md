@@ -97,6 +97,7 @@ Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `bahko
 - **Outreach-copy:** kort, personlig, mänsklig, hjälpsam. En konkret observation om DERAS sajt + en tydlig CTA.
 - **Front-offer = bevisa "the wizard"**, inte tjäna pengar. Sen uppsell.
 - **Cadence:** välj EN väg/lead (skriven/samtal/IRL), dag 1/3/5/7 → svar=boka, tyst=nurture/stäng.
+- **JA-protokollet (när prospekt säger ja till demo):** gör ENDAST tre saker, i ordning, max 30–50 ord totalt, lugn/saklig ton: 1) instruktion — "Titta bara på [plats] och notera hur [friktion] visar sig." 2) kvalificering (binär, låg friktion) — "Bara så jag förstår — ser du samma sak på din sida idag?" 3) optionalitet — "Om det stämmer efter att du kollat kan jag visa nästa steg — helt upp till dig." ALDRIG pitch, hype, värme-fluff, "let me know" eller call-push. Demo-länken levereras alltid. Full version + färdiga mallar i dashboardens Spelbok/skript.
 - **Daglig blast:** volym slår allt. Flaskhals = bokade möten/vecka.
 - **Nischer:** kliniker (CRM) + bygg/tak/måleri/mark (Instagram).
 
