@@ -74,10 +74,17 @@ Klipp 2 "Steget in": samma params
 **Cloud-sandbox (Claude Code on the web — CDN-nedladdning blockerad, ffmpeg saknas):**
 Hotlinka MP4-url:erna i `<video muted playsinline preload="auto" crossorigin="anonymous" poster="<keyframe>">`
 och skrubba med `video.currentTime` — webbläsarens dekoder söker via range requests (cloudfront stödjer det).
-Detta är samma fallback som dokumenteras i video-to-website-skillens Troubleshooting. Mönstret finns färdigt
-i `bahkobyra/cloud/bygg/index.html` (funktionen `initCine`): pinned ScrollTrigger (`end:'+=300%'`, `scrub:.5`),
-seek-tröskel 0.02s, textrader med `data-in`/`data-out` som tonas manuellt i `onUpdate` (FADE=0.06),
-progress-bar `scaleX`.
+Mönstret finns färdigt i `bahkobyra/cloud/bygg/index.html` (funktionen `initCine`): pinned ScrollTrigger
+(`end:'+=300%'`, `scrub:.8`), textrader med `data-in`/`data-out` som tonas manuellt i `onUpdate` (FADE=0.06).
+
+**TRE OBLIGATORISKA delar för att currentTime-scrub ska fungera (lärdom 2026-06-11 — utan dem ser videon
+fryst ut på mobil):**
+1. **Gest-upplåsning:** mobila webbläsare avkodar inte video före `play()` i en användargest — kör
+   `play().then(pause)` på alla cine-videos vid första `touchstart/wheel/pointerdown/keydown` (`{once:true}`).
+2. **Seek-kö:** skicka ALDRIG ny `currentTime` innan förra seeken är klar. Håll `target` uppdaterad i
+   `onUpdate`, pumpa nästa seek i `'seeked'`-eventet. Att spamma seeks får mobildekodern att hacka/frysa.
+3. **Buffert-uppvärmning:** separat ScrollTrigger med `start:'top 150%'`, `once:true` som kör
+   `play().then(pause)` strax innan sektionen når skärmen.
 
 **Lokalt (ffmpeg finns + nätverk öppet):** ladda ner MP4:erna, extrahera frames och kör canvas-scrub
 enligt **video-to-website-skillen** (`fps≈12`, webp, 150-300 frames) — mjukare skrubb än currentTime.
