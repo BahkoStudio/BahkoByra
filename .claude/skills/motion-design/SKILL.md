@@ -32,7 +32,14 @@ Den används för att attrahera och merförsälja:
 - Intake-frågor ställs med **AskUserQuestion** (inte `ask_user_input_v0`), ALLA i en enda runda (multi-question).
 - **Bildmodell: `gpt_image_2`** (verifierat ID 2026-06-12; params `quality: low/medium/high`, `resolution: 1k/2k/4k`)
   — varianterna "pro/banana/nano" finns INTE. Fallback om gpt_image_2 saknas: `nano_banana_pro`.
-- **Videomodell: `seedance_2_0`** (verifierad i scroll-cinematic-pipelinen; stödjer `start_image`, 1080p, 16:9/9:16/1:1).
+- **Videomodell: `seedance_2_0`** (verifierad i scroll-cinematic-pipelinen; stödjer `start_image`, 1080p, 16:9/9:16/1:1)
+  eller **`kling3_0`** (verifierad 2026-06-12: pro-läge 5s 9:16 ≈ 12,5 credits — mycket billigare än Seedance;
+  `mode: std/pro/4k`, `sound: on/off`, 3–15s). **KLING-KRAV (lärdom): `end_image` ENSAM ger status failed —
+  skicka ALLTID både `start_image` OCH `end_image`.** Generera en startruta (~2 credits) om en saknas,
+  och matcha referensbildernas aspect mot videons.
+- **`media_import_url` accepterar INTE SVG** (lärdom 2026-06-12) — rastrera loggan via `gpt_image_2`
+  med `brand/brand.json`-beskrivningen istället. Färdiga Bahko-rasters finns redan i brand.json
+  (`logo_raster_16x9`, `logo_raster_9x16_stacked`, `brand_sting_9x16`).
 - **Budget-preflight FÖRST:** `balance` + `get_cost:true`. Riktpris: 8s 1080p Seedance ≈ 72 credits,
   storyboard-bild ≈ 2–6 credits beroende på quality. Under 200 credits: fråga användaren innan du kör.
 - Får du `preset_recommendation`-notis: kör om bokstavligt med `declined_preset_id`.
