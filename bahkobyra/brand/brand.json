@@ -2,15 +2,28 @@
   "company_name": "Bahko Byrå",
   "tagline": "Synlighet som säljer.",
   "website": "bahkobyra.se",
-  "target_market": "Kliniker i Sverige",
-  "services": ["Hemsidor", "SEO", "Google Ads", "Social Media Ads"],
-  "primary_color": "#c9a96e",
-  "secondary_color": "#0c0a09",
-  "accent_color": "#e0c48a",
+  "target_market": "Lokala företag i Sverige (kliniker + bygg/hantverk)",
+  "services": [
+    "Hemsidor",
+    "SEO",
+    "Google Ads",
+    "Social Media Ads"
+  ],
+  "primary_color": "#C9A96E",
+  "secondary_color": "#181C38",
+  "accent_color": "#E3C88E",
   "text_color": "#f0ece4",
   "font_heading": "Cormorant Garamond",
   "font_body": "Outfit",
-  "logo_path": "brand/logo.png",
+  "logo_path": "brand/logo.svg",
   "founded": "2025",
-  "location": "Sverige"
+  "location": "Sverige",
+  "logo_url": "https://www.bahkobyra.se/brand/logo.svg",
+  "logo_description": "Guld-B i tunn guldram (kvadrat) till vänster. Ordmärke 'Bahko Byrå' i Cormorant Garamond semibold, marinblå #181C38, 'Byrå' kursivt. Tagline 'SYNLIGHET SOM SÄLJER' i Outfit, versaler, bred spärrning, gråblå #9BA0B0. Cream bakgrund #F7F3EA.",
+  "background_color": "#F7F3EA",
+  "gold_gradient": [
+    "#E3C88E",
+    "#C9A96E",
+    "#B08F4D"
+  ]
 }
