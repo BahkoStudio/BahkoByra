@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 520" role="img" aria-label="Bahko Byrå — Synlighet som säljer">
+  <title>Bahko Byrå</title>
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E3C88E"/>
+      <stop offset="55%" stop-color="#C9A96E"/>
+      <stop offset="100%" stop-color="#B08F4D"/>
+    </linearGradient>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&amp;family=Outfit:wght@400&amp;display=swap');
+      .wordmark{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;fill:#181C38}
+      .b-mark{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600}
+      .tagline{font-family:'Outfit',system-ui,sans-serif;font-weight:400;fill:#9BA0B0;letter-spacing:14px;text-transform:uppercase}
+    </style>
+  </defs>
+
+  <!-- Cream bakgrund -->
+  <rect width="1560" height="520" fill="#F7F3EA"/>
+
+  <!-- Guldram -->
+  <rect x="180" y="110" width="300" height="300" fill="none" stroke="url(#gold)" stroke-width="6"/>
+
+  <!-- Guld-B -->
+  <text class="b-mark" x="330" y="332" font-size="200" text-anchor="middle" fill="url(#gold)">B</text>
+
+  <!-- Ordmärke: Bahko (rak) + Byrå (kursiv) -->
+  <text class="wordmark" x="560" y="295" font-size="128">Bahko <tspan font-style="italic">Byrå</tspan></text>
+
+  <!-- Tagline -->
+  <text class="tagline" x="566" y="368" font-size="33">Synlighet som säljer</text>
+</svg>
