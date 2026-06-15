@@ -73,3 +73,19 @@ Mathias Bahko
 ## När de DM:ar SAJT
 JA-protokollet (max 40 ord): erbjud utkastet → "ser du samma sak på er sida?" → optionalitet.
 Pris frågas = samtal. Alla DM: Tjena, inga tankstreck, Vänliga hälsningar Mathias Bahko.
+
+---
+
+## Genererade slide-bilder (gpt_image_2, 1:1, 2026-06-15)
+
+OBS: AI-genererad text — ÖGONGRANSKA varje slide för svensk stavning (åäö) innan du postar.
+Vid felstavning: bygg om den sliden i Canva (all exakt text finns ovan) eller säg till för omgenerering.
+
+1. https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260615_202434_ef937a4b-66db-4113-9a1d-2f2bc1fa3d2d.png
+2. https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260615_202748_edb4d9ef-0af0-4aba-bb65-74d2af2cf6aa.png
+3. https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260615_202750_22a87f63-da9a-4046-8b2d-2fca6203bcae.png
+4. https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260615_202753_4bf750fe-b4a6-4ab1-93bf-f63404acd606.png
+5. https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260615_202756_aa81b468-ea26-49d7-8807-dc7ef8198753.png
+6. https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260615_203406_3040ea01-9312-4e25-b546-8a43c5926795.png
+7. https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260615_203409_b3d24c8e-b911-40c0-a307-be15199ababc.png
+8. https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260615_203413_f4e65ce9-a50b-4e10-b88f-2bdccf8da6d7.png
