@@ -190,6 +190,11 @@ footer a{color:var(--amber-lt)}
   .modal{padding:1.8rem 1.4rem}
   .service-item{flex-direction:column;gap:.3rem;align-items:flex-start}
 }
+html.fallback #loader{display:none}
+html.fallback #scroll-container{height:auto}
+html.fallback .scroll-section{position:static;opacity:1!important;visibility:visible!important;transform:none!important;padding-top:4rem;padding-bottom:4rem}
+html.fallback .hero-label,html.fallback .hero-tagline,html.fallback .hero-scroll-indicator{opacity:1!important}
+html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   #loader{display:none}
@@ -395,12 +400,15 @@ footer a{color:var(--amber-lt)}
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function(){
   "use strict";
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const htmlEl=document.documentElement, loaderEl=document.getElementById('loader');
+  function goStatic(){htmlEl.classList.add('fallback');if(loaderEl)loaderEl.classList.add('hidden');if(!reduce)document.querySelectorAll('video').forEach(v=>{try{v.play()}catch(e){}});}
+  const failsafe=setTimeout(goStatic,3500);
 
   // Autoplay-säkring: lågenergiläge på mobil kan blockera autoplay tills första gest
   function kickVideos(){document.querySelectorAll('video').forEach(v=>{if(v.paused)v.play().catch(()=>{});});}
@@ -409,17 +417,19 @@ footer a{color:var(--amber-lt)}
 
   if(reduce){
     document.querySelectorAll('video').forEach(v=>{v.autoplay=false;v.pause();});
-    document.getElementById('loader').classList.add('hidden');
+    clearTimeout(failsafe);goStatic();
     return;
   }
-  if(typeof gsap==='undefined')return;
+  if(typeof gsap==='undefined'){clearTimeout(failsafe);goStatic();return;}
   gsap.registerPlugin(ScrollTrigger);
 
-  // ===== LENIS =====
-  const lenis=new Lenis({duration:1.15,easing:t=>1-Math.pow(1-t,3),smoothWheel:true,syncTouch:true,touchMultiplier:1.5});
-  lenis.on('scroll',ScrollTrigger.update);
-  gsap.ticker.add(t=>lenis.raf(t*1000));
-  gsap.ticker.lagSmoothing(0);
+  // ===== LENIS (valfri — demon funkar utan smooth scroll om CDN:en blockeras) =====
+  if(typeof Lenis!=='undefined'){
+    const lenis=new Lenis({duration:1.15,easing:t=>1-Math.pow(1-t,3),smoothWheel:true,syncTouch:true,touchMultiplier:1.5});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+  }
 
   // ===== LOADER =====
   const loaderBar=document.getElementById('loader-bar'),loaderPct=document.getElementById('loader-percent'),loader=document.getElementById('loader');
@@ -428,7 +438,7 @@ footer a{color:var(--amber-lt)}
     loadProg+=Math.random()*16+6; if(loadProg>100)loadProg=100;
     loaderBar.style.width=loadProg+'%'; loaderPct.textContent=Math.round(loadProg)+'%';
     if(loadProg<100){setTimeout(simulateLoad,60+Math.random()*90);}
-    else{setTimeout(()=>{loader.classList.add('hidden');animateHero();},350);}
+    else{clearTimeout(failsafe);setTimeout(()=>{loader.classList.add('hidden');animateHero();},350);}
   })();
 
   // ===== HERO-ENTRÉ (ordvis, Élara-stil) =====
