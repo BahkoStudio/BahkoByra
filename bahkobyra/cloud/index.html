@@ -191,6 +191,14 @@ body{background:var(--bg);color:var(--text-primary);font-family:var(--font-body)
 
 
 /* ===== MOBILE ===== */
+html.fallback #loader{display:none}
+html.fallback #scroll-container{height:auto}
+html.fallback .scroll-section{position:static;opacity:1!important;visibility:visible!important;transform:none!important;padding-top:4rem;padding-bottom:4rem}
+html.fallback .hero-label,html.fallback .hero-tagline,html.fallback .hero-scroll-indicator{opacity:1!important}
+html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
+html.fallback .align-left,html.fallback .align-right{padding-left:5vw;padding-right:5vw}
+html.fallback .align-left .section-inner,html.fallback .align-right .section-inner{max-width:100%}
+html.fallback .marquee-wrap{display:none}
 @media(max-width:768px){
   .header-nav{display:none}
   .hamburger{display:flex}
@@ -418,17 +426,23 @@ body{background:var(--bg);color:var(--text-primary);font-family:var(--font-body)
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function(){
   "use strict";
+  const htmlEl=document.documentElement, loaderEl=document.getElementById("loader");
+  function goStatic(){htmlEl.classList.add("fallback");if(loaderEl)loaderEl.classList.add("hidden");}
+  const failsafe=setTimeout(goStatic,3500);
+  if(typeof gsap==="undefined"){clearTimeout(failsafe);goStatic();return;}
 
-  // ===== LENIS =====
-  const lenis = new Lenis({ duration:1.15, easing:t=>1-Math.pow(1-t,3), smoothWheel:true, syncTouch:true, touchMultiplier:1.5 });
-  lenis.on("scroll", ScrollTrigger.update);
-  gsap.ticker.add(time => lenis.raf(time*1000));
-  gsap.ticker.lagSmoothing(0);
+  // ===== LENIS (valfri) =====
+  if(typeof Lenis!=="undefined"){
+    const lenis = new Lenis({ duration:1.15, easing:t=>1-Math.pow(1-t,3), smoothWheel:true, syncTouch:true, touchMultiplier:1.5 });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add(time => lenis.raf(time*1000));
+    gsap.ticker.lagSmoothing(0);
+  }
 
   // ===== CANVAS =====
   const canvas = document.getElementById("canvas");
@@ -466,7 +480,7 @@ body{background:var(--bg);color:var(--text-primary);font-family:var(--font-body)
     loadProg+=Math.random()*12+3; if(loadProg>100)loadProg=100;
     loaderBar.style.width=loadProg+"%"; loaderPct.textContent=Math.round(loadProg)+"%";
     if(loadProg<100){setTimeout(simulateLoad,80+Math.random()*120);}
-    else{setTimeout(()=>{loader.classList.add("hidden");animateHero();drawAmbient(0);},400);}
+    else{clearTimeout(failsafe);setTimeout(()=>{loader.classList.add("hidden");animateHero();drawAmbient(0);},400);}
   }
   simulateLoad();
 
