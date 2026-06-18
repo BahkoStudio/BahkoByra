@@ -265,7 +265,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 /* Live demo-galleri */
 .demo-inner{max-width:var(--maxw);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
 .demo-head{max-width:640px;margin-bottom:clamp(2rem,5vw,3.2rem)}
-.demo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,2vw,1.6rem)}
+.demo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1rem,2vw,1.6rem)}
 .demo-card{display:block;border:1px solid var(--paper-line);border-radius:var(--r-lg);overflow:hidden;background:rgba(255,255,255,.02);
   transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s}
 .demo-card:hover{transform:translateY(-5px);border-color:rgba(201,169,110,.45);box-shadow:0 24px 60px -24px rgba(0,0,0,.55)}
