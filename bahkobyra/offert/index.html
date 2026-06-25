@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Få en prisuppskattning direkt | Bahko Byrå</title>
+<meta name="description" content="Räkna ut ett ungefärligt pris för ditt byggprojekt på sekunder. Välj tjänst, lägg till tillval och skicka din offertförfrågan.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#EDE8DF;--cream-2:#F4F0E8;--cream-3:#FBF8F3;
+  --navy:#181C38;--navy-2:#12152E;
+  --gold:#C9A96E;--gold-lt:#E3C88E;--gold-dk:#B08F4D;
+  --ink:#181C38;--ink-70:rgba(24,28,56,.72);--ink-55:rgba(24,28,56,.56);--ink-35:rgba(24,28,56,.35);
+  --line:rgba(201,169,110,.24);--line-2:rgba(201,169,110,.6);
+  --paper:#F5F2EB;--paper-70:rgba(245,242,235,.7);--paper-45:rgba(245,242,235,.45);
+  --ok:#4F9D6B;--warn:#C98A3A;--danger:#C94A4A;
+  --display:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;
+  --r:6px;--r-lg:12px;--gut:clamp(1.1rem,4vw,3rem);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html{scroll-behavior:smooth;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:clamp(15px,.5vw+13px,16px);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea,select{font:inherit}
+::selection{background:var(--gold);color:var(--navy)}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:60;padding:1rem var(--gut);display:flex;justify-content:space-between;align-items:center;
+  background:rgba(237,232,223,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav-brand{font-family:var(--display);font-size:1.2rem;font-weight:500;letter-spacing:.02em;display:flex;align-items:center;gap:.6rem}
+.nav-brand em{font-style:italic;color:var(--gold-dk)}
+.nav-brand img{height:30px;width:auto;display:block}
+.nav-back{font-size:.64rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-55);transition:color .25s}
+.nav-back:hover{color:var(--gold-dk)}
+
+/* HERO */
+.hero{padding:clamp(2.6rem,6vw,4.5rem) var(--gut) clamp(1.4rem,3vw,2rem);max-width:760px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:.55rem;font-size:.6rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-dk);
+  background:rgba(201,169,110,.12);border:1px solid var(--line-2);border-radius:30px;padding:.36rem 1rem;margin-bottom:1.4rem}
+.hero-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.hero h1{font-family:var(--display);font-size:clamp(2.1rem,6vw,3.5rem);font-weight:500;line-height:1.05;letter-spacing:-.015em;margin-bottom:1rem}
+.hero h1 em{font-style:italic;font-weight:400;background:linear-gradient(108deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:clamp(.9rem,1.2vw,1.05rem);color:var(--ink-70);font-weight:300;max-width:52ch;margin:0 auto}
+
+/* LAYOUT */
+.shell{max-width:1100px;margin:0 auto;padding:1rem var(--gut) 5rem;display:grid;grid-template-columns:1fr;gap:1.4rem}
+@media(min-width:920px){.shell{grid-template-columns:1fr 360px;align-items:start}}
+
+.steps{display:flex;flex-direction:column;gap:1.2rem;min-width:0}
+.step{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(1.1rem,3vw,1.7rem)}
+.step-h{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.step-n{width:26px;height:26px;flex-shrink:0;border-radius:50%;background:var(--navy);color:var(--gold-lt);font-family:var(--display);font-size:1rem;font-weight:600;display:grid;place-items:center}
+.step-t{font-family:var(--display);font-size:1.45rem;font-weight:500}
+.step-t small{display:block;font-family:var(--sans);font-size:.7rem;font-weight:400;letter-spacing:.04em;color:var(--ink-55);margin-top:.1rem}
+
+/* OPTION CARDS */
+.opts{display:grid;gap:.7rem}
+.opts.grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.opt{display:flex;gap:.8rem;align-items:flex-start;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1rem;cursor:pointer;transition:.2s;position:relative}
+.opt:hover{border-color:var(--line-2);background:var(--cream-3)}
+.opt.sel{border-color:var(--gold);background:#fff;box-shadow:0 0 0 1px var(--gold)}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt-mark{width:20px;height:20px;flex-shrink:0;border:1.5px solid var(--line-2);display:grid;place-items:center;margin-top:.1rem;transition:.2s}
+.opt[data-type=radio] .opt-mark{border-radius:50%}
+.opt[data-type=check] .opt-mark{border-radius:5px}
+.opt.sel .opt-mark{background:var(--gold);border-color:var(--gold)}
+.opt-mark svg{width:11px;height:11px;stroke:var(--navy);stroke-width:3.2;fill:none;opacity:0;transition:.15s}
+.opt.sel .opt-mark svg{opacity:1}
+.opt-body{flex:1;min-width:0}
+.opt-name{font-weight:600;font-size:.92rem;display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap}
+.opt-price{font-family:var(--display);font-size:1.05rem;color:var(--gold-dk);font-weight:600;white-space:nowrap}
+.opt-desc{font-size:.78rem;color:var(--ink-55);line-height:1.5;margin-top:.25rem}
+
+/* FIELDS */
+.field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.field:last-child{margin-bottom:0}
+.field label{font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-55)}
+.field .req{color:var(--gold-dk)}
+.field input,.field textarea{background:#fff;border:1px solid var(--line-2);border-radius:var(--r);padding:.7rem .85rem;color:var(--ink);outline:none;transition:.2s;width:100%}
+.field input:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,110,.18)}
+.field textarea{resize:vertical;min-height:90px}
+.field .hint{font-size:.72rem;color:var(--ink-35)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+.area-wrap{margin-top:1rem;padding-top:1rem;border-top:1px dashed var(--line)}
+.area-wrap[hidden]{display:none}
+
+/* SUMMARY */
+.summary{position:sticky;top:84px;background:var(--navy);color:var(--paper);border-radius:var(--r-lg);padding:1.5rem 1.6rem;border:1px solid rgba(201,169,110,.3)}
+.summary h3{font-family:var(--display);font-size:1.5rem;font-weight:500;margin-bottom:.2rem}
+.summary h3 em{font-style:italic;color:var(--gold-lt)}
+.summary .sub{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:1.1rem}
+.sum-lines{display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.1rem;min-height:1.5rem}
+.sum-line{display:flex;justify-content:space-between;gap:1rem;font-size:.82rem;color:var(--paper-70);line-height:1.4}
+.sum-line .v{color:var(--paper);white-space:nowrap}
+.sum-line.muted{color:var(--paper-45);font-style:italic}
+.sum-divider{height:1px;background:rgba(201,169,110,.3);margin:.2rem 0 1rem}
+.sum-total{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:.3rem}
+.sum-total .l{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-lt)}
+.sum-total .v{font-family:var(--display);font-size:2.3rem;font-weight:600;line-height:1;color:var(--gold-lt)}
+.sum-note{font-size:.7rem;color:var(--paper-45);line-height:1.5;margin-top:.5rem}
+.btn{display:block;width:100%;text-align:center;margin-top:1.2rem;background:var(--gold);color:var(--navy);font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:.95rem 1rem;border-radius:var(--r);transition:.2s}
+.btn:hover:not(:disabled){background:var(--gold-lt)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* BANNER / TOAST */
+.banner{max-width:1100px;margin:0 auto;padding:0 var(--gut)}
+.banner-in{background:#fff;border:1px solid var(--warn);border-left:4px solid var(--warn);border-radius:var(--r);padding:.9rem 1.1rem;font-size:.82rem;color:var(--ink-70);display:flex;gap:.7rem;align-items:flex-start}
+.banner-in strong{color:var(--ink)}
+.banner-in.err{border-color:var(--danger);border-left-color:var(--danger)}
+.toast{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%) translateY(140%);z-index:200;background:var(--navy);color:var(--paper);
+  padding:.85rem 1.3rem;border-radius:var(--r);font-size:.84rem;box-shadow:0 18px 40px -18px rgba(0,0,0,.6);border:1px solid rgba(201,169,110,.4);transition:transform .35s var(--ease);max-width:90vw}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.err{border-color:var(--danger)}
+
+/* SUCCESS */
+.done{max-width:640px;margin:3rem auto;padding:0 var(--gut);text-align:center}
+.done-card{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(2rem,5vw,3rem)}
+.done-ic{width:64px;height:64px;margin:0 auto 1.4rem;border-radius:50%;background:rgba(79,157,107,.12);border:1px solid var(--ok);display:grid;place-items:center}
+.done-ic svg{width:30px;height:30px;stroke:var(--ok);stroke-width:2.5;fill:none}
+.done h2{font-family:var(--display);font-size:2.2rem;font-weight:500;margin-bottom:.6rem}
+.done p{color:var(--ink-70);margin-bottom:.4rem}
+.done .est{font-family:var(--display);font-size:2.4rem;color:var(--gold-dk);font-weight:600;margin:1rem 0}
+.done .restart{margin-top:1.4rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-55);border:1px solid var(--line-2);border-radius:var(--r);padding:.6rem 1.2rem;display:inline-block}
+.done .restart:hover{color:var(--gold-dk);border-color:var(--gold)}
+
+.empty{padding:1.5rem;text-align:center;color:var(--ink-55);font-size:.85rem;background:var(--cream-2);border:1px dashed var(--line-2);border-radius:var(--r)}
+.loading{padding:2rem;text-align:center;color:var(--ink-35);font-size:.85rem}
+[hidden]{display:none !important}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="https://www.bahkobyra.se">
+    <img src="../brand/logo.svg" alt="Bahko Byrå" onerror="this.style.display='none'">
+    <span>Bahko <em>Byrå</em></span>
+  </a>
+  <a class="nav-back" href="https://www.bahkobyra.se">← Till bahkobyra.se</a>
+</nav>
+
+<header class="hero">
+  <span class="hero-badge">Prisuppskattning</span>
+  <h1>Vad kostar <em>ditt projekt?</em></h1>
+  <p>Välj tjänst och tillval så räknar vi ut ett ungefärligt pris direkt. Skicka in så återkommer vi med en exakt offert.</p>
+</header>
+
+<div class="banner" id="banner" hidden></div>
+
+<!-- FORM VIEW -->
+<main class="shell" id="formView">
+  <div class="steps">
+    <section class="step">
+      <div class="step-h"><span class="step-n">1</span><span class="step-t">Välj tjänst<small>Vad gäller projektet?</small></span></div>
+      <div class="opts" id="serviceOpts"><div class="loading">Hämtar tjänster…</div></div>
+      <div class="area-wrap" id="areaWrap" hidden>
+        <div class="field">
+          <label for="area">Yta i m² <span class="req">*</span></label>
+          <input type="number" id="area" min="0" step="1" inputmode="numeric" placeholder="t.ex. 120">
+          <span class="hint" id="areaHint">Den här tjänsten prissätts per kvadratmeter.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="step" id="addonStep">
+      <div class="step-h"><span class="step-n">2</span><span class="step-t">Lägg till tillval<small>Frivilligt — välj det som passar</small></span></div>
+      <div class="opts" id="addonOpts"><div class="loading">Hämtar tillval…</div></div>
+    </section>
+
+    <section class="step">
+      <div class="step-h"><span class="step-n">3</span><span class="step-t">Projektdetaljer<small>Berätta kort om projektet</small></span></div>
+      <div class="field">
+        <label for="details">Beskrivning</label>
+        <textarea id="details" placeholder="Adress, önskemål, tidplan, eller annat bra att veta…"></textarea>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="step-h"><span class="step-n">4</span><span class="step-t">Dina uppgifter<small>Så att vi kan återkomma</small></span></div>
+      <div class="two">
+        <div class="field"><label for="name">Namn <span class="req">*</span></label><input type="text" id="name" autocomplete="name" placeholder="För- och efternamn"></div>
+        <div class="field"><label for="phone">Telefon</label><input type="tel" id="phone" autocomplete="tel" placeholder="07X XXX XX XX"></div>
+      </div>
+      <div class="field"><label for="email">E-post <span class="req">*</span></label><input type="email" id="email" autocomplete="email" placeholder="namn@exempel.se"></div>
+    </section>
+  </div>
+
+  <aside class="summary">
+    <h3>Din <em>uppskattning</em></h3>
+    <div class="sub">Uppdateras direkt</div>
+    <div class="sum-lines" id="sumLines"><div class="sum-line muted">Välj en tjänst för att börja…</div></div>
+    <div class="sum-divider"></div>
+    <div class="sum-total"><span class="l">Uppskattat pris</span><span class="v" id="totalPrice">0 kr</span></div>
+    <p class="sum-note">Riktpris inkl. ev. tillval. Exakt offert lämnas efter platsbesök/genomgång. Priser exkl. moms om inget annat anges.</p>
+    <button class="btn" id="submitBtn" disabled>Skicka offertförfrågan</button>
+  </aside>
+</main>
+
+<!-- SUCCESS VIEW -->
+<section class="done" id="doneView" hidden>
+  <div class="done-card">
+    <div class="done-ic"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+    <h2>Tack — vi har tagit emot din förfrågan!</h2>
+    <p>Vi hör av oss till <strong id="doneEmail"></strong> så snart vi kan.</p>
+    <div class="est" id="doneEst"></div>
+    <p style="font-size:.82rem;color:var(--ink-55)">Detta är ett riktpris. Vi återkommer med en exakt offert.</p>
+    <a class="restart" href="#" id="restartBtn">Gör en ny uppskattning</a>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import {
+  isConfigured, listServices, listAddons, createQuoteRequest,
+  calculateEstimate, serviceCost, formatSEK, toMoney,
+} from './supabase.js';
+
+const $ = (s, r=document) => r.querySelector(s);
+const state = { services: [], addons: [], serviceId: null, addonIds: new Set(), area: '' };
+
+function esc(s){ return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function checkSvg(){ return '<svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>'; }
+
+function showBanner(html, isErr){
+  const b = $('#banner');
+  b.hidden = false;
+  b.innerHTML = `<div class="banner-in ${isErr?'err':''}">${html}</div>`;
+}
+let toastTimer;
+function toast(msg, isErr){
+  const t = $('#toast');
+  t.textContent = msg; t.classList.toggle('err', !!isErr); t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>t.classList.remove('show'), 3800);
+}
+
+const selectedService = () => state.services.find(s => s.id === state.serviceId) || null;
+const selectedAddons = () => state.addons.filter(a => state.addonIds.has(a.id));
+
+function priceLabel(svc){
+  if (svc.pricing_type === 'per_sqm') return `${formatSEK(svc.base_price)} / m²`;
+  return formatSEK(svc.base_price);
+}
+
+function renderServices(){
+  const box = $('#serviceOpts');
+  if (!state.services.length){
+    box.innerHTML = '<div class="empty">Inga tjänster är publicerade ännu. Titta in igen snart.</div>';
+    return;
+  }
+  box.classList.add('grid');
+  box.innerHTML = state.services.map(s => `
+    <label class="opt ${s.id===state.serviceId?'sel':''}" data-type="radio" data-id="${esc(s.id)}">
+      <input type="radio" name="service" value="${esc(s.id)}" ${s.id===state.serviceId?'checked':''}>
+      <span class="opt-mark">${checkSvg()}</span>
+      <span class="opt-body">
+        <span class="opt-name">${esc(s.name)} <span class="opt-price">${priceLabel(s)}</span></span>
+        ${s.description?`<span class="opt-desc">${esc(s.description)}</span>`:''}
+      </span>
+    </label>`).join('');
+  box.querySelectorAll('.opt').forEach(el => el.addEventListener('click', e => {
+    e.preventDefault();
+    state.serviceId = el.dataset.id;
+    renderServices(); syncArea(); recompute();
+  }));
+}
+
+function syncArea(){
+  const svc = selectedService();
+  const wrap = $('#areaWrap');
+  const perSqm = svc && svc.pricing_type === 'per_sqm';
+  wrap.hidden = !perSqm;
+  if (perSqm) $('#areaHint').textContent = `${formatSEK(svc.base_price)} per m². Ange ytan för att se priset.`;
+}
+
+function renderAddons(){
+  const box = $('#addonOpts');
+  if (!state.addons.length){
+    $('#addonStep').hidden = true;
+    return;
+  }
+  $('#addonStep').hidden = false;
+  box.classList.add('grid');
+  box.innerHTML = state.addons.map(a => `
+    <label class="opt ${state.addonIds.has(a.id)?'sel':''}" data-type="check" data-id="${esc(a.id)}">
+      <input type="checkbox" value="${esc(a.id)}" ${state.addonIds.has(a.id)?'checked':''}>
+      <span class="opt-mark">${checkSvg()}</span>
+      <span class="opt-body">
+        <span class="opt-name">${esc(a.name)} <span class="opt-price">+ ${formatSEK(a.price)}</span></span>
+        ${a.description?`<span class="opt-desc">${esc(a.description)}</span>`:''}
+      </span>
+    </label>`).join('');
+  box.querySelectorAll('.opt').forEach(el => el.addEventListener('click', e => {
+    e.preventDefault();
+    const id = el.dataset.id;
+    if (state.addonIds.has(id)) state.addonIds.delete(id); else state.addonIds.add(id);
+    renderAddons(); recompute();
+  }));
+}
+
+function recompute(){
+  const svc = selectedService();
+  const addons = selectedAddons();
+  const lines = $('#sumLines');
+  const rows = [];
+
+  if (!svc){
+    lines.innerHTML = '<div class="sum-line muted">Välj en tjänst för att börja…</div>';
+    $('#totalPrice').textContent = formatSEK(0);
+    $('#submitBtn').disabled = true;
+    return;
+  }
+
+  if (svc.pricing_type === 'per_sqm'){
+    const area = toMoney(state.area);
+    const sc = serviceCost(svc, area);
+    const detail = area > 0 ? `${formatSEK(svc.base_price)}/m² × ${area} m²` : 'ange yta ovan';
+    rows.push(`<div class="sum-line"><span>${esc(svc.name)} <span style="color:var(--paper-45)">(${detail})</span></span><span class="v">${formatSEK(sc)}</span></div>`);
+  } else {
+    rows.push(`<div class="sum-line"><span>${esc(svc.name)}</span><span class="v">${formatSEK(svc.base_price)}</span></div>`);
+  }
+  addons.forEach(a => {
+    rows.push(`<div class="sum-line"><span>+ ${esc(a.name)}</span><span class="v">${formatSEK(a.price)}</span></div>`);
+  });
+  lines.innerHTML = rows.join('');
+
+  const total = calculateEstimate(svc, addons, state.area);
+  $('#totalPrice').textContent = formatSEK(total);
+
+  // Krav för att skicka: tjänst vald + (om per_sqm) area > 0
+  const areaOk = svc.pricing_type !== 'per_sqm' || toMoney(state.area) > 0;
+  $('#submitBtn').disabled = !areaOk;
+}
+
+function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+async function submit(){
+  const svc = selectedService();
+  if (!svc){ toast('Välj en tjänst först.', true); return; }
+  const name = $('#name').value.trim();
+  const email = $('#email').value.trim();
+  if (!name){ toast('Fyll i ditt namn.', true); $('#name').focus(); return; }
+  if (!validEmail(email)){ toast('Fyll i en giltig e-post.', true); $('#email').focus(); return; }
+  if (svc.pricing_type === 'per_sqm' && toMoney(state.area) <= 0){ toast('Ange ytan i m².', true); $('#area').focus(); return; }
+
+  const addons = selectedAddons();
+  const estimate = calculateEstimate(svc, addons, state.area);
+  const btn = $('#submitBtn');
+  btn.disabled = true; const orig = btn.textContent; btn.textContent = 'Skickar…';
+
+  try {
+    await createQuoteRequest({
+      customer_name: name,
+      customer_email: email,
+      customer_phone: $('#phone').value.trim(),
+      service_id: svc.id,
+      service_name: svc.name,
+      addons_snapshot: addons.map(a => ({ id: a.id, name: a.name, price: toMoney(a.price) })),
+      project_area: svc.pricing_type === 'per_sqm' ? toMoney(state.area) : null,
+      project_details: $('#details').value.trim(),
+      estimated_price: estimate,
+    });
+    $('#doneEmail').textContent = email;
+    $('#doneEst').textContent = formatSEK(estimate);
+    $('#formView').hidden = true;
+    $('#banner').hidden = true;
+    $('#doneView').hidden = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch (err) {
+    toast(err.message || 'Något gick fel. Försök igen.', true);
+    btn.disabled = false; btn.textContent = orig;
+  }
+}
+
+function bindInputs(){
+  $('#area').addEventListener('input', e => { state.area = e.target.value; recompute(); });
+  $('#submitBtn').addEventListener('click', submit);
+  $('#restartBtn').addEventListener('click', e => { e.preventDefault(); location.reload(); });
+}
+
+async function init(){
+  bindInputs();
+  if (!isConfigured()){
+    showBanner('<span><strong>Supabase är inte konfigurerat.</strong> Lägg in projekt-URL och anon-nyckel i <code>offert/supabase.js</code> (eller via dashboardens “Anslut Supabase”) så laddas tjänsterna här.</span>', true);
+    $('#serviceOpts').innerHTML = '<div class="empty">Väntar på Supabase-konfiguration…</div>';
+    $('#addonStep').hidden = true;
+    return;
+  }
+  try {
+    const [services, addons] = await Promise.all([
+      listServices({ includeUnpublished: false }),
+      listAddons({ includeUnpublished: false }),
+    ]);
+    state.services = services;
+    state.addons = addons;
+    renderServices(); renderAddons(); syncArea(); recompute();
+  } catch (err) {
+    showBanner(`<span><strong>Kunde inte ladda katalogen.</strong> ${esc(err.message)}</span>`, true);
+    $('#serviceOpts').innerHTML = '<div class="empty">Kunde inte hämta tjänster.</div>';
+    $('#addonStep').hidden = true;
+  }
+}
+
+init();
+</script>
+</body>
+</html>
