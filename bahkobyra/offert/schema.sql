@@ -76,10 +76,14 @@ create trigger trg_add_ons_updated before update on public.add_ons
   for each row execute function public.set_updated_at();
 
 -- ── Row Level Security ──────────────────────────────────────
---  OBS: detta är en demo UTAN inloggning. Dashboarden använder samma
---  publika anon-nyckel som den publika sidan, så anon måste tillåtas
---  hantera katalogen. Lås detta innan skarp drift (t.ex. flytta
---  dashboarden bakom Supabase Auth och begränsa write till authenticated).
+--  ⚠️ OBS — LÄS DETTA. Detta är en demo UTAN inloggning. Dashboarden
+--  använder samma PUBLIKA anon-nyckel som den publika sidan. Anon-nyckeln
+--  skickas till varje besökares webbläsare, så policyn nedan innebär att
+--  VEM SOM HELST med den nyckeln (dvs hela internet) kan läsa
+--  quote_requests (kundens namn, e-post, telefon, projektnotis) och
+--  ändra/ta bort katalogen. Det är acceptabelt för en demo men INTE för
+--  riktiga kunduppgifter. Innan ni går live: lägg dashboarden bakom
+--  Supabase Auth och kör "PRODUKTION: hårdare RLS"-blocket längst ned.
 alter table public.services       enable row level security;
 alter table public.add_ons        enable row level security;
 alter table public.quote_requests enable row level security;
@@ -119,3 +123,36 @@ select * from (values
   ('Ritning & bygglovshjälp',          'Vi tar fram underlag och hjälper er genom bygglovsprocessen.', 7500::numeric, 'published', 4)
 ) as v(name, description, price, status, sort_order)
 where not exists (select 1 from public.add_ons);
+
+-- ============================================================
+--  PRODUKTION: hårdare RLS (frivilligt — kör när dashboarden
+--  flyttats bakom Supabase Auth). Avkommentera hela blocket.
+--  Resultat: publika sidan får BARA läsa publicerade tjänster/
+--  tillval + skapa offertförfrågningar. Läsning/ändring av
+--  förfrågningar och katalog kräver en inloggad (authenticated)
+--  session i dashboarden.
+-- ------------------------------------------------------------
+-- -- services: publik ser bara published; inloggad hanterar allt
+-- drop policy if exists "anon read services"  on public.services;
+-- drop policy if exists "anon write services" on public.services;
+-- create policy "public read published services" on public.services
+--   for select using (status = 'published');
+-- create policy "auth manage services" on public.services
+--   for all to authenticated using (true) with check (true);
+--
+-- -- add_ons: samma uppdelning
+-- drop policy if exists "anon read add_ons"  on public.add_ons;
+-- drop policy if exists "anon write add_ons" on public.add_ons;
+-- create policy "public read published add_ons" on public.add_ons
+--   for select using (status = 'published');
+-- create policy "auth manage add_ons" on public.add_ons
+--   for all to authenticated using (true) with check (true);
+--
+-- -- quote_requests: publik får BARA skapa (insert-policyn behålls);
+-- -- läsning/uppdatering kräver inloggning
+-- drop policy if exists "anon read quotes"   on public.quote_requests;
+-- drop policy if exists "anon update quotes" on public.quote_requests;
+-- create policy "auth read quotes" on public.quote_requests
+--   for select to authenticated using (true);
+-- create policy "auth update quotes" on public.quote_requests
+--   for update to authenticated using (true) with check (true);

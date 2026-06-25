@@ -225,8 +225,8 @@ tbody tr:hover{background:var(--cream-2)}
 
 <!-- SERVICE/ADDON MODAL -->
 <div class="modal-bg" id="modal">
-  <div class="modal">
-    <div class="modal-h"><h3 id="modalTitle">Ny tjänst</h3><button class="modal-x" id="modalClose">×</button></div>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-h"><h3 id="modalTitle">Ny tjänst</h3><button class="modal-x" id="modalClose" aria-label="Stäng">×</button></div>
     <div class="modal-b" id="modalBody"></div>
     <div class="modal-f">
       <button class="btn" id="modalCancel">Avbryt</button>
@@ -237,8 +237,8 @@ tbody tr:hover{background:var(--cream-2)}
 
 <!-- CONNECT MODAL -->
 <div class="modal-bg" id="connModal">
-  <div class="modal">
-    <div class="modal-h"><h3>Anslut Supabase</h3><button class="modal-x" id="connClose">×</button></div>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="connTitle">
+    <div class="modal-h"><h3 id="connTitle">Anslut Supabase</h3><button class="modal-x" id="connClose" aria-label="Stäng">×</button></div>
     <div class="modal-b">
       <p style="font-size:.82rem;color:var(--ink-55);margin-bottom:1.1rem;line-height:1.6">Hämtas i Supabase → Project Settings → API. Sparas lokalt i din webbläsare (localStorage). För produktion: lägg in värdena direkt i <code style="background:var(--cream);padding:.05rem .3rem;border-radius:3px">offert/supabase.js</code>.</p>
       <div class="field"><label for="cfgUrl">Project URL</label><input type="text" id="cfgUrl" placeholder="https://xxxx.supabase.co"></div>
@@ -383,14 +383,15 @@ function renderQuotes(){
         ${q.customer_phone?`<div class="chip muted">${esc(q.customer_phone)}</div>`:''}
       </td>
       <td>
-        <div class="chip"><b>${esc(q.service_name||'—')}</b>${q.project_area?` <span class="muted">· ${esc(q.project_area)} m²</span>`:''}</div>
+        <div class="chip"><b>${esc(q.service_name||'—')}</b>${q.project_area?` <span class="muted">· ${esc(toMoney(q.project_area))} m²</span>`:''}</div>
         ${addons.length?`<div class="chips" style="margin-top:.3rem">${addons.map(a=>`<span class="chip">+ ${esc(a.name)} <span class="muted">(${formatSEK(a.price)})</span></span>`).join('')}</div>`:'<div class="chip muted">Inga tillval</div>'}
         ${q.project_details?`<div class="t-desc" style="margin-top:.35rem">${esc(q.project_details)}</div>`:''}
       </td>
       <td><span class="t-price">${formatSEK(q.estimated_price)}</span></td>
       <td>
         <div style="margin-bottom:.4rem">${statusBadge(q.status==='archived'?'archived2':q.status, {...STATUS_LABELS, archived2:STATUS_LABELS.archived})}</div>
-        <select class="sel" data-status="${esc(q.id)}">${statusOpts}</select>
+        <label class="t-sub" for="st-${esc(q.id)}" style="display:block;margin-bottom:.2rem">Ändra status</label>
+        <select class="sel" id="st-${esc(q.id)}" data-status="${esc(q.id)}" aria-label="Ändra status för ${esc(q.customer_name)}">${statusOpts}</select>
       </td>
       <td class="t-sub">${esc(fmtDate(q.created_at))}</td>
     </tr>`;
@@ -418,35 +419,49 @@ function renderKpis(){
 function renderAll(){ renderServices(); renderAddons(); renderQuotes(); renderKpis(); }
 
 /* ── ACTIONS ── */
+//  busy = enkel spärr mot dubbelklick medan ett anrop är i luften.
+let busy=false;
 async function changeServiceStatus(id,status){
+  if(busy) return; busy=true;
   try{ const u=await setServiceStatus(id,status); const i=store.services.findIndex(s=>s.id===id); if(i>-1)store.services[i]=u; renderAll(); toast('Tjänst uppdaterad.'); }
   catch(e){ toast(e.message,true); }
+  finally{ busy=false; }
 }
 async function removeService(id){
+  if(busy) return;
   const s=store.services.find(x=>x.id===id);
   if(!confirm(`Ta bort tjänsten "${s?s.name:''}"? Detta går inte att ångra.`)) return;
+  busy=true;
   try{ await deleteService(id); store.services=store.services.filter(x=>x.id!==id); renderAll(); toast('Tjänst borttagen.'); }
   catch(e){ toast(e.message,true); }
+  finally{ busy=false; }
 }
 async function changeAddonStatus(id,status){
+  if(busy) return; busy=true;
   try{ const u=await setAddonStatus(id,status); const i=store.addons.findIndex(a=>a.id===id); if(i>-1)store.addons[i]=u; renderAll(); toast('Tillval uppdaterat.'); }
   catch(e){ toast(e.message,true); }
+  finally{ busy=false; }
 }
 async function removeAddon(id){
+  if(busy) return;
   const a=store.addons.find(x=>x.id===id);
   if(!confirm(`Ta bort tillvalet "${a?a.name:''}"? Detta går inte att ångra.`)) return;
+  busy=true;
   try{ await deleteAddon(id); store.addons=store.addons.filter(x=>x.id!==id); renderAll(); toast('Tillval borttaget.'); }
   catch(e){ toast(e.message,true); }
+  finally{ busy=false; }
 }
 async function changeQuoteStatus(id,status){
+  const sel=document.querySelector(`[data-status="${id}"]`);
+  if(sel) sel.disabled=true;
   try{ const u=await updateQuoteStatus(id,status); const i=store.quotes.findIndex(q=>q.id===id); if(i>-1)store.quotes[i]=u; renderAll(); toast('Status sparad.'); }
-  catch(e){ toast(e.message,true); }
+  catch(e){ toast(e.message,true); renderQuotes(); /* återställ select+badge till sparat värde */ }
 }
 
 /* ── MODAL (service/addon) ── */
-const modal=$('#modal'); let modalKind=null, modalId=null;
-function openModal(){ modal.classList.add('show'); }
-function closeModal(){ modal.classList.remove('show'); modalKind=null; modalId=null; }
+const modal=$('#modal'); let modalKind=null, modalId=null, lastFocus=null;
+function openModal(){ lastFocus=document.activeElement; modal.classList.add('show'); }
+function closeModal(){ modal.classList.remove('show'); modalKind=null; modalId=null; if(lastFocus&&lastFocus.focus){ lastFocus.focus(); } lastFocus=null; }
 $('#modalClose').onclick=closeModal; $('#modalCancel').onclick=closeModal;
 modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
 
@@ -532,14 +547,22 @@ function sortStore(){
 }
 
 /* ── CONNECT MODAL ── */
-const connModal=$('#connModal');
-$('#connectBtn').onclick=()=>{ connModal.classList.add('show'); };
-$('#connClose').onclick=()=>connModal.classList.remove('show');
-connModal.addEventListener('click',e=>{ if(e.target===connModal) connModal.classList.remove('show'); });
+const connModal=$('#connModal'); let lastConnFocus=null;
+function closeConn(){ connModal.classList.remove('show'); if(lastConnFocus&&lastConnFocus.focus){ lastConnFocus.focus(); } lastConnFocus=null; }
+$('#connectBtn').onclick=()=>{ lastConnFocus=document.activeElement; connModal.classList.add('show'); setTimeout(()=>$('#cfgUrl').focus(),50); };
+$('#connClose').onclick=closeConn;
+connModal.addEventListener('click',e=>{ if(e.target===connModal) closeConn(); });
+
+/* Esc stänger översta öppna dialogen */
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape') return;
+  if(modal.classList.contains('show')) closeModal();
+  else if(connModal.classList.contains('show')) closeConn();
+});
 $('#connSave').onclick=()=>{
   const url=$('#cfgUrl').value.trim(), key=$('#cfgKey').value.trim();
   if(!url||!key){ toast('Fyll i både URL och nyckel.',true); return; }
-  saveConfig(url,key); connModal.classList.remove('show'); paintConn(); load();
+  saveConfig(url,key); closeConn(); paintConn(); load();
 };
 $('#connClear').onclick=()=>{ clearConfig(); $('#cfgUrl').value=''; $('#cfgKey').value=''; paintConn(); toast('Konfiguration rensad.'); };
 

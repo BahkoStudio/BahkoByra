@@ -57,11 +57,23 @@ och priset, så att gamla förfrågningar inte ändras när du justerar kataloge
   `archived`. Ändras via rullgardinen i dashboardens flik
   *Offertförfrågningar*.
 
-## Säkerhet (viktigt)
+## Säkerhet (läs detta innan ni går live)
 
-Detta är en **demo utan inloggning**. RLS är på, men policyn tillåter anon att
-hantera katalogen eftersom dashboarden använder samma publika anon-nyckel som
-den publika sidan. Innan skarp drift: flytta dashboarden bakom Supabase Auth
-och begränsa skriv-policyn på `services`/`add_ons` till `authenticated`. Den
-publika sidan behöver bara `select` (published) på katalogen + `insert` på
-`quote_requests`.
+Detta är en **demo utan inloggning**. RLS är på, men eftersom dashboarden
+använder samma **publika anon-nyckel** som den publika sidan måste den
+nyckeln tillåtas läsa och skriva allt dashboarden behöver. Anon-nyckeln
+skickas till varje besökares webbläsare, så i praktiken kan **vem som helst**
+med sidans nyckel:
+
+- läsa alla `quote_requests` — dvs kundernas namn, e-post, telefon och
+  projektnotiser (PII), och
+- ändra, publicera, arkivera eller ta bort tjänster/tillval.
+
+Det är OK för en demo, men **samla inte in riktiga kunduppgifter** så här.
+Innan skarp drift:
+
+1. Lägg dashboarden bakom **Supabase Auth** (inloggning).
+2. Avkommentera blocket **"PRODUKTION: hårdare RLS"** längst ned i
+   `schema.sql`. Då får den publika sidan bara läsa *publicerade*
+   tjänster/tillval och *skapa* offertförfrågningar; läsning/ändring av
+   förfrågningar och katalog kräver en inloggad session.
