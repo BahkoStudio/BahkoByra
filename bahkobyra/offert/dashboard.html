@@ -148,7 +148,7 @@ tbody tr:hover{background:var(--cream-2)}
   <div class="top-actions">
     <span class="conn" id="conn"><span class="dot"></span><span id="connTxt">Ej ansluten</span></span>
     <a class="tbtn" href="./index.html" target="_blank" rel="noopener">Publik sida ↗</a>
-    <button class="tbtn" id="connectBtn">Anslut Supabase</button>
+    <button class="tbtn" id="connectBtn">Inställningar</button>
     <button class="tbtn" id="refreshBtn">Uppdatera</button>
   </div>
 </header>
@@ -238,11 +238,11 @@ tbody tr:hover{background:var(--cream-2)}
 <!-- CONNECT MODAL -->
 <div class="modal-bg" id="connModal">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="connTitle">
-    <div class="modal-h"><h3 id="connTitle">Anslut Supabase</h3><button class="modal-x" id="connClose" aria-label="Stäng">×</button></div>
+    <div class="modal-h"><h3 id="connTitle">Anslut databas</h3><button class="modal-x" id="connClose" aria-label="Stäng">×</button></div>
     <div class="modal-b">
-      <p style="font-size:.82rem;color:var(--ink-55);margin-bottom:1.1rem;line-height:1.6">Hämtas i Supabase → Project Settings → API. Sparas lokalt i din webbläsare (localStorage). För produktion: lägg in värdena direkt i <code style="background:var(--cream);padding:.05rem .3rem;border-radius:3px">offert/supabase.js</code>.</p>
-      <div class="field"><label for="cfgUrl">Project URL</label><input type="text" id="cfgUrl" placeholder="https://xxxx.supabase.co"></div>
-      <div class="field"><label for="cfgKey">Anon-nyckel (public)</label><input type="text" id="cfgKey" placeholder="eyJhbGciOi…"></div>
+      <p style="font-size:.82rem;color:var(--ink-55);margin-bottom:1.1rem;line-height:1.6">Anslut din databas för att ladda tjänster, tillval och förfrågningar. Värdena sparas lokalt i din webbläsare. Se README för var du hämtar dem.</p>
+      <div class="field"><label for="cfgUrl">Databas-URL</label><input type="text" id="cfgUrl" placeholder="https://…"></div>
+      <div class="field"><label for="cfgKey">API-nyckel</label><input type="text" id="cfgKey" placeholder="…"></div>
     </div>
     <div class="modal-f">
       <button class="btn" id="connClear">Rensa</button>
@@ -260,7 +260,7 @@ import {
   listAddons, createAddon, updateAddon, setAddonStatus, deleteAddon,
   listQuoteRequests, updateQuoteStatus,
   formatSEK, toMoney, STATUS_LABELS, SERVICE_STATUS_LABELS,
-} from './supabase.js';
+} from './data.js';
 
 const $ = (s,r=document)=>r.querySelector(s);
 const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
@@ -577,8 +577,8 @@ $('#refreshBtn').onclick=load;
 async function load(){
   paintConn();
   if(!isConfigured()){
-    showSetupNotice(`<strong>Kom igång:</strong> 1) Kör <code>offert/schema.sql</code> i Supabase SQL Editor. 2) Klicka <strong>Anslut Supabase</strong> och klistra in projekt-URL + anon-nyckel (eller lägg in dem i <code>offert/supabase.js</code>).`, false);
-    ['#svcTable','#addonTable','#quoteTable'].forEach(s=>$(s).innerHTML='<div class="empty">Anslut Supabase för att ladda data.</div>');
+    showSetupNotice(`<strong>Kom igång:</strong> 1) Skapa tabellerna i din databas (se README). 2) Klicka <strong>Inställningar</strong> och klistra in databas-URL + API-nyckel.`, false);
+    ['#svcTable','#addonTable','#quoteTable'].forEach(s=>$(s).innerHTML='<div class="empty">Anslut databasen för att ladda data.</div>');
     ['#kpiServices','#kpiAddons','#kpiNew','#kpiValue'].forEach(s=>$(s).textContent='–');
     return;
   }

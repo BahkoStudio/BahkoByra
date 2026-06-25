@@ -10,7 +10,7 @@ uppföljning.
 | Fil | Roll |
 |-----|------|
 | `schema.sql` | Skapar tabellerna `services`, `add_ons`, `quote_requests` + RLS + demo-data. Kör en gång i Supabase. |
-| `supabase.js` | Delat datalager: Supabase-klient, CRUD och **prislogiken** (samma uträkning på båda sidor). |
+| `data.js` | Delat datalager: Supabase-klient, CRUD och **prislogiken** (samma uträkning på båda sidor). |
 | `dashboard.html` | Admin (ingen inloggning): hantera tjänster, tillval, priser och se inkomna förfrågningar. |
 | `index.html` | Publik estimator: välj tjänst + tillval, se pris direkt, skicka förfrågan. |
 
@@ -22,9 +22,9 @@ uppföljning.
 
 2. **Anslut.** Hämta `Project URL` + `anon public`-nyckeln i Supabase →
    Project Settings → API. Antingen:
-   - **Snabbt:** öppna `dashboard.html`, klicka **Anslut Supabase**, klistra
+   - **Snabbt:** öppna `dashboard.html`, klicka **Inställningar**, klistra
      in värdena (sparas i webbläsarens localStorage), eller
-   - **För produktion:** skriv in dem i `HARDCODED` högst upp i `supabase.js`.
+   - **För produktion:** skriv in dem i `HARDCODED` högst upp i `data.js`.
 
 3. **Använd.**
    - `dashboard.html` — lägg till/redigera tjänster och tillval, sätt
@@ -44,7 +44,7 @@ Allt pris styrs av datan i Supabase, inte av kod:
 - **Tillval** lägger till sitt `price` ovanpå.
 - **Uppskattning** = tjänstekostnad + summan av valda tillval.
 
-Uträkningen ligger i `calculateEstimate()` i `supabase.js` och används av
+Uträkningen ligger i `calculateEstimate()` i `data.js` och används av
 **både** den publika sidan (för direktvisning) och vid inskick (priset som
 sparas). Förfrågan sparar en **ögonblicksbild** av tjänstenamn, valda tillval
 och priset, så att gamla förfrågningar inte ändras när du justerar katalogen.

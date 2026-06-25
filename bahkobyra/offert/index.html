@@ -221,7 +221,7 @@ input,textarea,select{font:inherit}
 import {
   isConfigured, listServices, listAddons, createQuoteRequest,
   calculateEstimate, serviceCost, formatSEK, toMoney,
-} from './supabase.js';
+} from './data.js';
 
 const $ = (s, r=document) => r.querySelector(s);
 const state = { services: [], addons: [], serviceId: null, addonIds: new Set(), area: '' };
@@ -374,7 +374,7 @@ async function submit(){
     $('#doneView').hidden = false;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } catch (err) {
-    toast(err.message || 'Något gick fel. Försök igen.', true);
+    toast('Något gick fel. Försök igen om en stund.', true);
     btn.disabled = false; btn.textContent = orig;
   }
 }
@@ -388,8 +388,8 @@ function bindInputs(){
 async function init(){
   bindInputs();
   if (!isConfigured()){
-    showBanner('<span><strong>Supabase är inte konfigurerat.</strong> Lägg in projekt-URL och anon-nyckel i <code>offert/supabase.js</code> (eller via dashboardens “Anslut Supabase”) så laddas tjänsterna här.</span>', true);
-    $('#serviceOpts').innerHTML = '<div class="empty">Väntar på Supabase-konfiguration…</div>';
+    showBanner('<span>Prisuppskattningen är inte tillgänglig just nu. Hör av dig så hjälper vi dig direkt.</span>', true);
+    $('#serviceOpts').innerHTML = '<div class="empty">Inte tillgängligt just nu.</div>';
     $('#addonStep').hidden = true;
     return;
   }
@@ -402,8 +402,8 @@ async function init(){
     state.addons = addons;
     renderServices(); renderAddons(); syncArea(); recompute();
   } catch (err) {
-    showBanner(`<span><strong>Kunde inte ladda katalogen.</strong> ${esc(err.message)}</span>`, true);
-    $('#serviceOpts').innerHTML = '<div class="empty">Kunde inte hämta tjänster.</div>';
+    showBanner('<span>Prisuppskattningen är inte tillgänglig just nu. Försök igen om en stund eller hör av dig så hjälper vi dig.</span>', true);
+    $('#serviceOpts').innerHTML = '<div class="empty">Inte tillgängligt just nu.</div>';
     $('#addonStep').hidden = true;
   }
 }
