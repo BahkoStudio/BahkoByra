@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Offert-dashboard — Bahko Byrå</title>
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#EDE8DF;--cream-2:#F4F0E8;--cream-3:#FBF8F3;
+  --navy:#181C38;--navy-2:#12152E;
+  --gold:#C9A96E;--gold-lt:#E3C88E;--gold-dk:#B08F4D;
+  --ink:#181C38;--ink-70:rgba(24,28,56,.72);--ink-55:rgba(24,28,56,.56);--ink-35:rgba(24,28,56,.35);
+  --line:rgba(201,169,110,.24);--line-2:rgba(201,169,110,.55);
+  --paper:#F5F2EB;--paper-70:rgba(245,242,235,.7);--paper-45:rgba(245,242,235,.45);
+  --ok:#4F9D6B;--warn:#C98A3A;--danger:#C94A4A;--info:#5B7CB0;
+  --display:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;
+  --r:4px;--r-lg:10px;--gut:clamp(1.1rem,4vw,2.6rem);--ease:cubic-bezier(.22,1,.36,1);
+}
+html{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;padding-bottom:4rem}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea,select{font:inherit}
+::selection{background:var(--gold);color:var(--navy)}
+
+.top{position:sticky;top:0;z-index:50;background:rgba(24,28,56,.97);color:var(--paper);backdrop-filter:blur(12px);
+  padding:1rem var(--gut);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-bottom:1px solid rgba(201,169,110,.25)}
+.brand{font-family:var(--display);font-size:1.3rem;font-weight:500;display:flex;align-items:center;gap:.7rem}
+.brand em{font-style:italic;color:var(--gold-lt)}
+.brand .tag{font-family:var(--sans);font-size:.56rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-45);border-left:1px solid var(--line-2);padding-left:.7rem}
+.top-actions{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.conn{display:flex;align-items:center;gap:.45rem;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--paper-45)}
+.conn .dot{width:8px;height:8px;border-radius:50%;background:var(--danger)}
+.conn.ok .dot{background:var(--ok)}
+.tbtn{font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.55rem 1rem;border-radius:var(--r);border:1px solid var(--line-2);color:var(--paper-70);transition:.25s}
+.tbtn:hover{color:var(--navy);background:var(--gold);border-color:var(--gold)}
+.tbtn.solid{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.tbtn.solid:hover{background:var(--gold-lt);border-color:var(--gold-lt)}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--gut)}
+.sec{margin-top:clamp(1.4rem,4vw,2.4rem)}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;margin-top:1.4rem}
+.kpi{background:var(--cream-3);padding:1.2rem 1.4rem;display:flex;flex-direction:column;gap:.3rem}
+.kpi-l{font-size:.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-55)}
+.kpi-v{font-family:var(--display);font-size:2.1rem;font-weight:600;line-height:1;color:var(--navy)}
+.kpi-v small{font-size:.9rem;color:var(--ink-35)}
+
+/* TABS */
+.tabs{display:flex;gap:.4rem;margin-top:1.6rem;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tab{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-55);padding:.7rem 1.1rem;border-bottom:2px solid transparent;transition:.2s}
+.tab:hover{color:var(--gold-dk)}
+.tab.active{color:var(--navy);border-bottom-color:var(--gold)}
+.tab .badge{display:inline-block;margin-left:.4rem;font-size:.6rem;background:var(--gold);color:var(--navy);border-radius:30px;padding:.05rem .45rem;font-weight:700}
+
+.panel-h{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:1.6rem 0 1rem;flex-wrap:wrap}
+.panel-h h2{font-family:var(--display);font-size:1.6rem;font-weight:500}
+.panel-h .filters{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.sel{font-size:.74rem;padding:.45rem .7rem;border:1px solid var(--line-2);border-radius:var(--r);background:var(--cream-3);color:var(--ink);cursor:pointer;outline:none}
+.sel:focus{border-color:var(--gold)}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--cream-3)}
+table{width:100%;border-collapse:collapse;font-size:.8rem}
+thead th{text-align:left;font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-55);
+  padding:.85rem 1rem;border-bottom:1px solid var(--line);background:var(--cream-2);white-space:nowrap}
+tbody td{padding:.8rem 1rem;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--cream-2)}
+.t-name{font-weight:600;color:var(--navy)}
+.t-desc{font-size:.72rem;color:var(--ink-55);max-width:34ch;line-height:1.45;margin-top:.15rem}
+.t-price{font-family:var(--display);font-size:1.05rem;font-weight:600;color:var(--navy);white-space:nowrap}
+.t-sub{font-size:.66rem;color:var(--ink-35)}
+.muted{color:var(--ink-35)}
+
+.badge-s{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .55rem;border-radius:30px;white-space:nowrap}
+.s-draft{background:rgba(24,28,56,.08);color:var(--ink-55)}
+.s-published{background:rgba(79,157,107,.16);color:#2f6b48}
+.s-archived{background:rgba(201,74,74,.12);color:#9c3a3a}
+.s-new{background:rgba(91,124,176,.16);color:#3c5a8a}
+.s-contacted{background:rgba(201,138,58,.16);color:#8a5e22}
+.s-quoted{background:rgba(201,169,110,.22);color:var(--gold-dk)}
+.s-won{background:rgba(79,157,107,.18);color:#2f6b48}
+.s-lost{background:rgba(201,74,74,.14);color:#9c3a3a}
+.s-archived2{background:rgba(24,28,56,.08);color:var(--ink-55)}
+
+.acts{display:flex;gap:.35rem;flex-wrap:wrap}
+.act{font-size:.6rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.32rem .6rem;border:1px solid var(--line-2);border-radius:var(--r);color:var(--gold-dk);transition:.18s;white-space:nowrap;background:var(--cream-3)}
+.act:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.act.danger{color:#9c3a3a;border-color:rgba(201,74,74,.4)}
+.act.danger:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
+.chips{display:flex;flex-direction:column;gap:.2rem}
+.chip{font-size:.7rem;color:var(--ink-70)}
+.chip b{color:var(--navy)}
+
+.empty{padding:2.4rem 1rem;text-align:center;color:var(--ink-55);font-size:.86rem}
+.empty b{color:var(--navy)}
+.loading{padding:2.4rem;text-align:center;color:var(--ink-35);font-size:.85rem}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;z-index:100;background:rgba(18,21,46,.55);backdrop-filter:blur(4px);display:grid;place-items:center;padding:1.2rem;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-bg.show{opacity:1;pointer-events:auto}
+.modal{background:var(--cream-3);border:1px solid var(--line-2);border-radius:var(--r-lg);width:min(560px,100%);max-height:90vh;overflow-y:auto;box-shadow:0 30px 70px -30px rgba(0,0,0,.5);transform:translateY(10px);transition:transform .2s}
+.modal-bg.show .modal{transform:translateY(0)}
+.modal-h{padding:1.3rem 1.5rem;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.modal-h h3{font-family:var(--display);font-size:1.5rem;font-weight:500}
+.modal-x{font-size:1.4rem;color:var(--ink-35);line-height:1;padding:.2rem .4rem}
+.modal-x:hover{color:var(--danger)}
+.modal-b{padding:1.4rem 1.5rem}
+.modal-f{padding:1.1rem 1.5rem;border-top:1px solid var(--line);display:flex;gap:.7rem;justify-content:flex-end;flex-wrap:wrap}
+.field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
+.field:last-child{margin-bottom:0}
+.field label{font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-55)}
+.field input,.field textarea,.field select{background:#fff;border:1px solid var(--line-2);border-radius:var(--r);padding:.65rem .8rem;color:var(--ink);outline:none;transition:.18s;width:100%}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,169,110,.16)}
+.field textarea{resize:vertical;min-height:74px}
+.field .hint{font-size:.7rem;color:var(--ink-35)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:520px){.row2{grid-template-columns:1fr}}
+.btn{font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.7rem 1.3rem;border-radius:var(--r);transition:.2s;border:1px solid var(--line-2);color:var(--ink-70)}
+.btn:hover{border-color:var(--gold);color:var(--gold-dk)}
+.btn.solid{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.btn.solid:hover{background:var(--gold-lt);border-color:var(--gold-lt)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+.toast{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%) translateY(140%);z-index:200;background:var(--navy);color:var(--paper);
+  padding:.85rem 1.3rem;border-radius:var(--r);font-size:.84rem;box-shadow:0 18px 40px -18px rgba(0,0,0,.6);border:1px solid rgba(201,169,110,.4);transition:transform .35s var(--ease);max-width:90vw;text-align:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.err{border-color:var(--danger)}
+
+.notice{margin-top:1.4rem;background:#fff;border:1px solid var(--warn);border-left:4px solid var(--warn);border-radius:var(--r);padding:1rem 1.2rem;font-size:.84rem;color:var(--ink-70);line-height:1.6}
+.notice strong{color:var(--ink)}
+.notice code{background:var(--cream);padding:.1rem .35rem;border-radius:3px;font-size:.92em}
+.notice.err{border-color:var(--danger);border-left-color:var(--danger)}
+[hidden]{display:none !important}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">Bahko <em>Byrå</em><span class="tag">Offert-dashboard</span></div>
+  <div class="top-actions">
+    <span class="conn" id="conn"><span class="dot"></span><span id="connTxt">Ej ansluten</span></span>
+    <a class="tbtn" href="./index.html" target="_blank" rel="noopener">Publik sida ↗</a>
+    <button class="tbtn" id="connectBtn">Anslut Supabase</button>
+    <button class="tbtn" id="refreshBtn">Uppdatera</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div id="setupNotice" hidden></div>
+
+  <div class="kpis" id="kpis">
+    <div class="kpi"><span class="kpi-l">Publicerade tjänster</span><span class="kpi-v" id="kpiServices">–</span></div>
+    <div class="kpi"><span class="kpi-l">Aktiva tillval</span><span class="kpi-v" id="kpiAddons">–</span></div>
+    <div class="kpi"><span class="kpi-l">Nya förfrågningar</span><span class="kpi-v" id="kpiNew">–</span></div>
+    <div class="kpi"><span class="kpi-l">Pipeline-värde</span><span class="kpi-v" id="kpiValue">–</span></div>
+  </div>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="services">Tjänster</button>
+    <button class="tab" data-tab="addons">Tillval</button>
+    <button class="tab" data-tab="quotes">Offertförfrågningar <span class="badge" id="quoteBadge" hidden></span></button>
+  </nav>
+
+  <!-- SERVICES -->
+  <section class="sec" id="tab-services">
+    <div class="panel-h">
+      <h2>Tjänster</h2>
+      <div class="filters">
+        <select class="sel" id="svcFilter">
+          <option value="all">Alla statusar</option>
+          <option value="published">Publicerade</option>
+          <option value="draft">Utkast</option>
+          <option value="archived">Arkiverade</option>
+        </select>
+        <button class="btn solid" id="newServiceBtn">+ Ny tjänst</button>
+      </div>
+    </div>
+    <div class="tbl-wrap" id="svcTable"><div class="loading">Laddar…</div></div>
+  </section>
+
+  <!-- ADDONS -->
+  <section class="sec" id="tab-addons" hidden>
+    <div class="panel-h">
+      <h2>Tillval</h2>
+      <div class="filters">
+        <select class="sel" id="addonFilter">
+          <option value="all">Alla statusar</option>
+          <option value="published">Publicerade</option>
+          <option value="draft">Utkast</option>
+          <option value="archived">Arkiverade</option>
+        </select>
+        <button class="btn solid" id="newAddonBtn">+ Nytt tillval</button>
+      </div>
+    </div>
+    <div class="tbl-wrap" id="addonTable"><div class="loading">Laddar…</div></div>
+  </section>
+
+  <!-- QUOTES -->
+  <section class="sec" id="tab-quotes" hidden>
+    <div class="panel-h">
+      <h2>Offertförfrågningar</h2>
+      <div class="filters">
+        <select class="sel" id="quoteFilter">
+          <option value="all">Alla statusar</option>
+          <option value="new">Nya</option>
+          <option value="contacted">Kontaktade</option>
+          <option value="quoted">Offert skickad</option>
+          <option value="won">Vunna</option>
+          <option value="lost">Förlorade</option>
+          <option value="archived">Arkiverade</option>
+        </select>
+      </div>
+    </div>
+    <div class="tbl-wrap" id="quoteTable"><div class="loading">Laddar…</div></div>
+  </section>
+</div>
+
+<!-- SERVICE/ADDON MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="modal-h"><h3 id="modalTitle">Ny tjänst</h3><button class="modal-x" id="modalClose">×</button></div>
+    <div class="modal-b" id="modalBody"></div>
+    <div class="modal-f">
+      <button class="btn" id="modalCancel">Avbryt</button>
+      <button class="btn solid" id="modalSave">Spara</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONNECT MODAL -->
+<div class="modal-bg" id="connModal">
+  <div class="modal">
+    <div class="modal-h"><h3>Anslut Supabase</h3><button class="modal-x" id="connClose">×</button></div>
+    <div class="modal-b">
+      <p style="font-size:.82rem;color:var(--ink-55);margin-bottom:1.1rem;line-height:1.6">Hämtas i Supabase → Project Settings → API. Sparas lokalt i din webbläsare (localStorage). För produktion: lägg in värdena direkt i <code style="background:var(--cream);padding:.05rem .3rem;border-radius:3px">offert/supabase.js</code>.</p>
+      <div class="field"><label for="cfgUrl">Project URL</label><input type="text" id="cfgUrl" placeholder="https://xxxx.supabase.co"></div>
+      <div class="field"><label for="cfgKey">Anon-nyckel (public)</label><input type="text" id="cfgKey" placeholder="eyJhbGciOi…"></div>
+    </div>
+    <div class="modal-f">
+      <button class="btn" id="connClear">Rensa</button>
+      <button class="btn solid" id="connSave">Spara &amp; ladda</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+import {
+  isConfigured, saveConfig, clearConfig,
+  listServices, createService, updateService, setServiceStatus, deleteService,
+  listAddons, createAddon, updateAddon, setAddonStatus, deleteAddon,
+  listQuoteRequests, updateQuoteStatus,
+  formatSEK, toMoney, STATUS_LABELS, SERVICE_STATUS_LABELS,
+} from './supabase.js';
+
+const $ = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const store = { services: [], addons: [], quotes: [], tab: 'services' };
+
+let toastTimer;
+function toast(msg, isErr){
+  const t=$('#toast'); t.textContent=msg; t.classList.toggle('err',!!isErr); t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),3600);
+}
+
+/* ── CONNECTION STATE ── */
+function paintConn(){
+  const ok = isConfigured();
+  $('#conn').classList.toggle('ok', ok);
+  $('#connTxt').textContent = ok ? 'Ansluten' : 'Ej ansluten';
+}
+
+function showSetupNotice(msg, isErr){
+  const n=$('#setupNotice'); n.hidden=false;
+  n.innerHTML=`<div class="notice ${isErr?'err':''}">${msg}</div>`;
+}
+function hideSetupNotice(){ $('#setupNotice').hidden=true; }
+
+/* ── TABS ── */
+$$('.tab').forEach(t=>t.addEventListener('click',()=>{
+  store.tab=t.dataset.tab;
+  $$('.tab').forEach(x=>x.classList.toggle('active',x===t));
+  ['services','addons','quotes'].forEach(name=>{ $('#tab-'+name).hidden = name!==store.tab; });
+}));
+
+/* ── RENDER: SERVICES ── */
+function statusBadge(status, labels){
+  return `<span class="badge-s s-${esc(status)}">${esc(labels[status]||status)}</span>`;
+}
+function priceCell(s){
+  if (s.pricing_type==='per_sqm') return `<span class="t-price">${formatSEK(s.base_price)}</span><div class="t-sub">per m²</div>`;
+  return `<span class="t-price">${formatSEK(s.base_price)}</span><div class="t-sub">fast pris</div>`;
+}
+function renderServices(){
+  const filter=$('#svcFilter').value;
+  let rows=store.services;
+  if (filter!=='all') rows=rows.filter(s=>s.status===filter);
+  const box=$('#svcTable');
+  if (!store.services.length){ box.innerHTML='<div class="empty"><b>Inga tjänster ännu.</b><br>Skapa din första tjänst för att börja bygga prislistan.</div>'; return; }
+  if (!rows.length){ box.innerHTML='<div class="empty">Inga tjänster med den statusen.</div>'; return; }
+  box.innerHTML=`<table><thead><tr>
+    <th>Tjänst</th><th>Prissättning</th><th>Status</th><th style="text-align:right">Åtgärder</th>
+  </tr></thead><tbody>${rows.map(s=>`
+    <tr>
+      <td><div class="t-name">${esc(s.name)}</div>${s.description?`<div class="t-desc">${esc(s.description)}</div>`:''}</td>
+      <td>${priceCell(s)}</td>
+      <td>${statusBadge(s.status, SERVICE_STATUS_LABELS)}</td>
+      <td><div class="acts" style="justify-content:flex-end">
+        <button class="act" data-edit-svc="${esc(s.id)}">Redigera</button>
+        ${s.status!=='published'?`<button class="act" data-pub-svc="${esc(s.id)}">Publicera</button>`:`<button class="act" data-unpub-svc="${esc(s.id)}">Avpublicera</button>`}
+        ${s.status!=='archived'?`<button class="act" data-arch-svc="${esc(s.id)}">Arkivera</button>`:`<button class="act" data-rest-svc="${esc(s.id)}">Återställ</button>`}
+        <button class="act danger" data-del-svc="${esc(s.id)}">Ta bort</button>
+      </div></td>
+    </tr>`).join('')}</tbody></table>`;
+  box.querySelectorAll('[data-edit-svc]').forEach(b=>b.onclick=()=>openServiceModal(b.dataset.editSvc));
+  box.querySelectorAll('[data-pub-svc]').forEach(b=>b.onclick=()=>changeServiceStatus(b.dataset.pubSvc,'published'));
+  box.querySelectorAll('[data-unpub-svc]').forEach(b=>b.onclick=()=>changeServiceStatus(b.dataset.unpubSvc,'draft'));
+  box.querySelectorAll('[data-arch-svc]').forEach(b=>b.onclick=()=>changeServiceStatus(b.dataset.archSvc,'archived'));
+  box.querySelectorAll('[data-rest-svc]').forEach(b=>b.onclick=()=>changeServiceStatus(b.dataset.restSvc,'draft'));
+  box.querySelectorAll('[data-del-svc]').forEach(b=>b.onclick=()=>removeService(b.dataset.delSvc));
+}
+
+/* ── RENDER: ADDONS ── */
+function renderAddons(){
+  const filter=$('#addonFilter').value;
+  let rows=store.addons;
+  if (filter!=='all') rows=rows.filter(a=>a.status===filter);
+  const box=$('#addonTable');
+  if (!store.addons.length){ box.innerHTML='<div class="empty"><b>Inga tillval ännu.</b><br>Lägg till extra tjänster som höjer ordervärdet.</div>'; return; }
+  if (!rows.length){ box.innerHTML='<div class="empty">Inga tillval med den statusen.</div>'; return; }
+  box.innerHTML=`<table><thead><tr>
+    <th>Tillval</th><th>Extrapris</th><th>Status</th><th style="text-align:right">Åtgärder</th>
+  </tr></thead><tbody>${rows.map(a=>`
+    <tr>
+      <td><div class="t-name">${esc(a.name)}</div>${a.description?`<div class="t-desc">${esc(a.description)}</div>`:''}</td>
+      <td><span class="t-price">+ ${formatSEK(a.price)}</span></td>
+      <td>${statusBadge(a.status, SERVICE_STATUS_LABELS)}</td>
+      <td><div class="acts" style="justify-content:flex-end">
+        <button class="act" data-edit-addon="${esc(a.id)}">Redigera</button>
+        ${a.status!=='published'?`<button class="act" data-pub-addon="${esc(a.id)}">Publicera</button>`:`<button class="act" data-unpub-addon="${esc(a.id)}">Avpublicera</button>`}
+        ${a.status!=='archived'?`<button class="act" data-arch-addon="${esc(a.id)}">Arkivera</button>`:`<button class="act" data-rest-addon="${esc(a.id)}">Återställ</button>`}
+        <button class="act danger" data-del-addon="${esc(a.id)}">Ta bort</button>
+      </div></td>
+    </tr>`).join('')}</tbody></table>`;
+  box.querySelectorAll('[data-edit-addon]').forEach(b=>b.onclick=()=>openAddonModal(b.dataset.editAddon));
+  box.querySelectorAll('[data-pub-addon]').forEach(b=>b.onclick=()=>changeAddonStatus(b.dataset.pubAddon,'published'));
+  box.querySelectorAll('[data-unpub-addon]').forEach(b=>b.onclick=()=>changeAddonStatus(b.dataset.unpubAddon,'draft'));
+  box.querySelectorAll('[data-arch-addon]').forEach(b=>b.onclick=()=>changeAddonStatus(b.dataset.archAddon,'archived'));
+  box.querySelectorAll('[data-rest-addon]').forEach(b=>b.onclick=()=>changeAddonStatus(b.dataset.restAddon,'draft'));
+  box.querySelectorAll('[data-del-addon]').forEach(b=>b.onclick=()=>removeAddon(b.dataset.delAddon));
+}
+
+/* ── RENDER: QUOTES ── */
+function fmtDate(iso){
+  try{ return new Date(iso).toLocaleString('sv-SE',{dateStyle:'medium',timeStyle:'short'}); }catch{ return iso; }
+}
+function renderQuotes(){
+  const filter=$('#quoteFilter').value;
+  let rows=store.quotes;
+  if (filter!=='all') rows=rows.filter(q=>q.status===filter);
+  const box=$('#quoteTable');
+  if (!store.quotes.length){ box.innerHTML='<div class="empty"><b>Inga förfrågningar ännu.</b><br>De dyker upp här när besökare skickar in via den publika sidan.</div>'; return; }
+  if (!rows.length){ box.innerHTML='<div class="empty">Inga förfrågningar med den statusen.</div>'; return; }
+  const statusOpts=Object.entries(STATUS_LABELS).map(([k,v])=>`<option value="${k}">${esc(v)}</option>`).join('');
+  box.innerHTML=`<table><thead><tr>
+    <th>Kund</th><th>Tjänst &amp; tillval</th><th>Uppskattning</th><th>Status</th><th>Inkom</th>
+  </tr></thead><tbody>${rows.map(q=>{
+    const addons=Array.isArray(q.addons_snapshot)?q.addons_snapshot:[];
+    return `<tr>
+      <td>
+        <div class="t-name">${esc(q.customer_name)}</div>
+        <div class="chip"><a href="mailto:${esc(q.customer_email)}" style="color:var(--gold-dk)">${esc(q.customer_email)}</a></div>
+        ${q.customer_phone?`<div class="chip muted">${esc(q.customer_phone)}</div>`:''}
+      </td>
+      <td>
+        <div class="chip"><b>${esc(q.service_name||'—')}</b>${q.project_area?` <span class="muted">· ${esc(q.project_area)} m²</span>`:''}</div>
+        ${addons.length?`<div class="chips" style="margin-top:.3rem">${addons.map(a=>`<span class="chip">+ ${esc(a.name)} <span class="muted">(${formatSEK(a.price)})</span></span>`).join('')}</div>`:'<div class="chip muted">Inga tillval</div>'}
+        ${q.project_details?`<div class="t-desc" style="margin-top:.35rem">${esc(q.project_details)}</div>`:''}
+      </td>
+      <td><span class="t-price">${formatSEK(q.estimated_price)}</span></td>
+      <td>
+        <div style="margin-bottom:.4rem">${statusBadge(q.status==='archived'?'archived2':q.status, {...STATUS_LABELS, archived2:STATUS_LABELS.archived})}</div>
+        <select class="sel" data-status="${esc(q.id)}">${statusOpts}</select>
+      </td>
+      <td class="t-sub">${esc(fmtDate(q.created_at))}</td>
+    </tr>`;
+  }).join('')}</tbody></table>`;
+  box.querySelectorAll('[data-status]').forEach(sel=>{
+    const q=store.quotes.find(x=>x.id===sel.dataset.status);
+    if (q) sel.value=q.status;
+    sel.onchange=()=>changeQuoteStatus(sel.dataset.status, sel.value);
+  });
+}
+
+/* ── KPIs ── */
+function renderKpis(){
+  $('#kpiServices').textContent = store.services.filter(s=>s.status==='published').length;
+  $('#kpiAddons').textContent = store.addons.filter(a=>a.status==='published').length;
+  const news = store.quotes.filter(q=>q.status==='new').length;
+  $('#kpiNew').textContent = news;
+  const badge=$('#quoteBadge');
+  if (news>0){ badge.hidden=false; badge.textContent=news; } else badge.hidden=true;
+  const open = store.quotes.filter(q=>!['lost','archived'].includes(q.status));
+  const val = open.reduce((s,q)=>s+toMoney(q.estimated_price),0);
+  $('#kpiValue').innerHTML = `${formatSEK(val)}`;
+}
+
+function renderAll(){ renderServices(); renderAddons(); renderQuotes(); renderKpis(); }
+
+/* ── ACTIONS ── */
+async function changeServiceStatus(id,status){
+  try{ const u=await setServiceStatus(id,status); const i=store.services.findIndex(s=>s.id===id); if(i>-1)store.services[i]=u; renderAll(); toast('Tjänst uppdaterad.'); }
+  catch(e){ toast(e.message,true); }
+}
+async function removeService(id){
+  const s=store.services.find(x=>x.id===id);
+  if(!confirm(`Ta bort tjänsten "${s?s.name:''}"? Detta går inte att ångra.`)) return;
+  try{ await deleteService(id); store.services=store.services.filter(x=>x.id!==id); renderAll(); toast('Tjänst borttagen.'); }
+  catch(e){ toast(e.message,true); }
+}
+async function changeAddonStatus(id,status){
+  try{ const u=await setAddonStatus(id,status); const i=store.addons.findIndex(a=>a.id===id); if(i>-1)store.addons[i]=u; renderAll(); toast('Tillval uppdaterat.'); }
+  catch(e){ toast(e.message,true); }
+}
+async function removeAddon(id){
+  const a=store.addons.find(x=>x.id===id);
+  if(!confirm(`Ta bort tillvalet "${a?a.name:''}"? Detta går inte att ångra.`)) return;
+  try{ await deleteAddon(id); store.addons=store.addons.filter(x=>x.id!==id); renderAll(); toast('Tillval borttaget.'); }
+  catch(e){ toast(e.message,true); }
+}
+async function changeQuoteStatus(id,status){
+  try{ const u=await updateQuoteStatus(id,status); const i=store.quotes.findIndex(q=>q.id===id); if(i>-1)store.quotes[i]=u; renderAll(); toast('Status sparad.'); }
+  catch(e){ toast(e.message,true); }
+}
+
+/* ── MODAL (service/addon) ── */
+const modal=$('#modal'); let modalKind=null, modalId=null;
+function openModal(){ modal.classList.add('show'); }
+function closeModal(){ modal.classList.remove('show'); modalKind=null; modalId=null; }
+$('#modalClose').onclick=closeModal; $('#modalCancel').onclick=closeModal;
+modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+
+function serviceForm(s={}){
+  return `
+    <div class="field"><label for="f_name">Namn <span style="color:var(--gold-dk)">*</span></label><input id="f_name" type="text" value="${esc(s.name||'')}" placeholder="t.ex. Takbyte"></div>
+    <div class="field"><label for="f_desc">Beskrivning</label><textarea id="f_desc" placeholder="Kort beskrivning som visas för besökaren">${esc(s.description||'')}</textarea></div>
+    <div class="row2">
+      <div class="field"><label for="f_ptype">Prismodell</label><select id="f_ptype">
+        <option value="fixed" ${s.pricing_type!=='per_sqm'?'selected':''}>Fast pris</option>
+        <option value="per_sqm" ${s.pricing_type==='per_sqm'?'selected':''}>Per m²</option>
+      </select></div>
+      <div class="field"><label for="f_price" id="f_price_lbl">Baspris (kr)</label><input id="f_price" type="number" min="0" step="1" value="${s.base_price!=null?esc(s.base_price):''}" placeholder="0"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="f_unit">Enhetstext</label><input id="f_unit" type="text" value="${esc(s.unit_label||'')}" placeholder="t.ex. per m² / fast pris"></div>
+      <div class="field"><label for="f_sort">Sortering</label><input id="f_sort" type="number" step="1" value="${s.sort_order!=null?esc(s.sort_order):0}"></div>
+    </div>
+    <div class="field"><label for="f_status">Status</label><select id="f_status">
+      <option value="draft" ${(!s.status||s.status==='draft')?'selected':''}>Utkast (dold)</option>
+      <option value="published" ${s.status==='published'?'selected':''}>Publicerad (syns publikt)</option>
+      <option value="archived" ${s.status==='archived'?'selected':''}>Arkiverad</option>
+    </select></div>`;
+}
+function addonForm(a={}){
+  return `
+    <div class="field"><label for="f_name">Namn <span style="color:var(--gold-dk)">*</span></label><input id="f_name" type="text" value="${esc(a.name||'')}" placeholder="t.ex. Bortforsling"></div>
+    <div class="field"><label for="f_desc">Beskrivning</label><textarea id="f_desc" placeholder="Kort beskrivning">${esc(a.description||'')}</textarea></div>
+    <div class="row2">
+      <div class="field"><label for="f_price">Extrapris (kr) <span style="color:var(--gold-dk)">*</span></label><input id="f_price" type="number" min="0" step="1" value="${a.price!=null?esc(a.price):''}" placeholder="0"></div>
+      <div class="field"><label for="f_sort">Sortering</label><input id="f_sort" type="number" step="1" value="${a.sort_order!=null?esc(a.sort_order):0}"></div>
+    </div>
+    <div class="field"><label for="f_status">Status</label><select id="f_status">
+      <option value="draft" ${(!a.status||a.status==='draft')?'selected':''}>Utkast (dold)</option>
+      <option value="published" ${a.status==='published'?'selected':''}>Publicerad (syns publikt)</option>
+      <option value="archived" ${a.status==='archived'?'selected':''}>Arkiverad</option>
+    </select>`;
+}
+function openServiceModal(id){
+  modalKind='service'; modalId=id||null;
+  const s=id?store.services.find(x=>x.id===id):{};
+  $('#modalTitle').textContent=id?'Redigera tjänst':'Ny tjänst';
+  $('#modalBody').innerHTML=serviceForm(s||{});
+  const sync=()=>{ $('#f_price_lbl').textContent = $('#f_ptype').value==='per_sqm'?'Pris per m² (kr)':'Baspris (kr)'; };
+  $('#f_ptype').onchange=sync; sync();
+  openModal(); setTimeout(()=>$('#f_name').focus(),50);
+}
+function openAddonModal(id){
+  modalKind='addon'; modalId=id||null;
+  const a=id?store.addons.find(x=>x.id===id):{};
+  $('#modalTitle').textContent=id?'Redigera tillval':'Nytt tillval';
+  $('#modalBody').innerHTML=addonForm(a||{});
+  openModal(); setTimeout(()=>$('#f_name').focus(),50);
+}
+$('#modalSave').onclick=async()=>{
+  const name=$('#f_name').value.trim();
+  if(!name){ toast('Namn krävs.',true); $('#f_name').focus(); return; }
+  const btn=$('#modalSave'); btn.disabled=true; const orig=btn.textContent; btn.textContent='Sparar…';
+  try{
+    if(modalKind==='service'){
+      const payload={
+        name, description:$('#f_desc').value,
+        pricing_type:$('#f_ptype').value, base_price:$('#f_price').value||0,
+        unit_label:$('#f_unit').value, sort_order:$('#f_sort').value, status:$('#f_status').value,
+      };
+      if(modalId){ const u=await updateService(modalId,payload); const i=store.services.findIndex(s=>s.id===modalId); if(i>-1)store.services[i]=u; }
+      else { const c=await createService(payload); store.services.push(c); }
+    } else {
+      const payload={
+        name, description:$('#f_desc').value,
+        price:$('#f_price').value||0, sort_order:$('#f_sort').value, status:$('#f_status').value,
+      };
+      if(modalId){ const u=await updateAddon(modalId,payload); const i=store.addons.findIndex(a=>a.id===modalId); if(i>-1)store.addons[i]=u; }
+      else { const c=await createAddon(payload); store.addons.push(c); }
+    }
+    sortStore(); renderAll(); closeModal(); toast('Sparat.');
+  }catch(e){ toast(e.message,true); }
+  finally{ btn.disabled=false; btn.textContent=orig; }
+};
+function sortStore(){
+  const by=(a,b)=>(a.sort_order-b.sort_order)||(new Date(a.created_at)-new Date(b.created_at));
+  store.services.sort(by); store.addons.sort(by);
+}
+
+/* ── CONNECT MODAL ── */
+const connModal=$('#connModal');
+$('#connectBtn').onclick=()=>{ connModal.classList.add('show'); };
+$('#connClose').onclick=()=>connModal.classList.remove('show');
+connModal.addEventListener('click',e=>{ if(e.target===connModal) connModal.classList.remove('show'); });
+$('#connSave').onclick=()=>{
+  const url=$('#cfgUrl').value.trim(), key=$('#cfgKey').value.trim();
+  if(!url||!key){ toast('Fyll i både URL och nyckel.',true); return; }
+  saveConfig(url,key); connModal.classList.remove('show'); paintConn(); load();
+};
+$('#connClear').onclick=()=>{ clearConfig(); $('#cfgUrl').value=''; $('#cfgKey').value=''; paintConn(); toast('Konfiguration rensad.'); };
+
+/* ── LOAD ── */
+$('#svcFilter').onchange=renderServices;
+$('#addonFilter').onchange=renderAddons;
+$('#quoteFilter').onchange=renderQuotes;
+$('#newServiceBtn').onclick=()=>openServiceModal(null);
+$('#newAddonBtn').onclick=()=>openAddonModal(null);
+$('#refreshBtn').onclick=load;
+
+async function load(){
+  paintConn();
+  if(!isConfigured()){
+    showSetupNotice(`<strong>Kom igång:</strong> 1) Kör <code>offert/schema.sql</code> i Supabase SQL Editor. 2) Klicka <strong>Anslut Supabase</strong> och klistra in projekt-URL + anon-nyckel (eller lägg in dem i <code>offert/supabase.js</code>).`, false);
+    ['#svcTable','#addonTable','#quoteTable'].forEach(s=>$(s).innerHTML='<div class="empty">Anslut Supabase för att ladda data.</div>');
+    ['#kpiServices','#kpiAddons','#kpiNew','#kpiValue'].forEach(s=>$(s).textContent='–');
+    return;
+  }
+  hideSetupNotice();
+  ['#svcTable','#addonTable','#quoteTable'].forEach(s=>$(s).innerHTML='<div class="loading">Laddar…</div>');
+  try{
+    const [services,addons,quotes]=await Promise.all([
+      listServices({includeUnpublished:true}),
+      listAddons({includeUnpublished:true}),
+      listQuoteRequests(),
+    ]);
+    store.services=services; store.addons=addons; store.quotes=quotes;
+    renderAll();
+  }catch(e){
+    showSetupNotice(`<strong>Kunde inte ladda data.</strong> ${esc(e.message)}`, true);
+    ['#svcTable','#addonTable','#quoteTable'].forEach(s=>$(s).innerHTML=`<div class="empty">${esc(e.message)}</div>`);
+  }
+}
+
+// Prefill connect fields if already set in localStorage
+try{
+  $('#cfgUrl').value=localStorage.getItem('bb_supabase_url')||'';
+  $('#cfgKey').value=localStorage.getItem('bb_supabase_key')||'';
+}catch{}
+
+load();
+</script>
+</body>
+</html>
