@@ -407,11 +407,11 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   "use strict";
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const htmlEl=document.documentElement, loaderEl=document.getElementById('loader');
-  function goStatic(){htmlEl.classList.add('fallback');if(loaderEl)loaderEl.classList.add('hidden');if(!reduce)document.querySelectorAll('video').forEach(v=>{try{v.play()}catch(e){}});}
+  function goStatic(){htmlEl.classList.add('fallback');if(loaderEl)loaderEl.classList.add('hidden');document.querySelectorAll('.stat-number').forEach(el=>{el.textContent=parseFloat(el.dataset.value).toFixed(parseInt(el.dataset.decimals||'0'));});if(!reduce)document.querySelectorAll('video').forEach(v=>{try{v.play()}catch(e){}});}
   const failsafe=setTimeout(goStatic,3500);
 
   // Autoplay-säkring: lågenergiläge på mobil kan blockera autoplay tills första gest
-  function kickVideos(){document.querySelectorAll('video').forEach(v=>{if(v.paused)v.play().catch(()=>{});});}
+  function kickVideos(){if(reduce)return;document.querySelectorAll('video').forEach(v=>{if(v.paused)v.play().catch(()=>{});});}
   addEventListener('touchstart',kickVideos,{once:true,passive:true});
   addEventListener('pointerdown',kickVideos,{once:true,passive:true});
 

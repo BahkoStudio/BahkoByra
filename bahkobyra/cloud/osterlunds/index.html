@@ -242,7 +242,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   <div class="hero-vid-wrap">
     <video id="hero-vid" autoplay muted loop playsinline preload="auto"
       poster="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260706_194752_366c3e25-f86d-44b3-a581-9268c6c6d9ad.png"
-      src="__HERO_MP4__"></video>
+      src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260706_195152_c65533df-9473-4a35-9926-dd0d9f79b329.mp4"></video>
   </div>
   <div class="hero-content">
     <span class="hero-label">Markarbeten · Grund · Dränering</span>
@@ -262,7 +262,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 <div class="bgvid-wrap" id="bgvid-wrap">
   <video id="bg-vid" autoplay muted loop playsinline preload="metadata"
     poster="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260706_194943_bdcfa585-3a9f-4770-8125-e534c4cb8468.png"
-    src="__BG_MP4__"></video>
+    src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260706_195232_30ea9d1c-7efd-4f53-a2f5-a0638a77548f.mp4"></video>
 </div>
 <div id="dark-overlay"></div>
 
@@ -273,7 +273,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
     <div class="section-inner">
       <span class="section-label">001 / Filosofi</span>
       <h2 class="section-heading">Grunden avgör.<br>Allt annat följer.</h2>
-      <p class="section-body">Ett fint hus på fel mark blir ett dyrt hus. Vi gör jobbet som aldrig syns på bild — schakt, dränering, grund — och gör det så att det håller när allt annat byggs ovanpå. En kontakt, fast pris, och varje lager dokumenterat innan det fylls igen.</p>
+      <p class="section-body">Ett fint hus på fel mark blir ett dyrt hus. Vi gör jobbet som aldrig syns på bild — schakt, dränering, grund — och gör det så att det håller när allt annat byggs ovanpå. En kontakt, fast pris och varje lager dokumenterat innan det fylls igen.</p>
       <p class="section-note">"Andra ser lera och sten. Vi ser en färdig tomt."</p>
     </div>
   </section>
@@ -283,7 +283,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
       <div class="projects-head">
         <span class="section-label">002 / Projekt</span>
         <h2 class="section-heading">Välj precision.<br><span class="grad-text">Inte chansning.</span></h2>
-        <p>Tre exempel på vad vi gör varje vecka — fast pris, rätt från början.</p>
+        <p>Tre exempel på jobb vi gör — fast pris, rätt från början.</p>
       </div>
       <div class="work-grid">
         <article class="wcard">
@@ -291,7 +291,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
           <div class="wc-body">
             <div class="wc-tag">Husgrund</div>
             <h3>Villagrund</h3>
-            <p>Utgrävning, makadam och gjuten platta — klart för stomresning.</p>
+            <p>Schaktning, makadam och gjuten platta — klart för stomresning.</p>
           </div>
         </article>
         <article class="wcard">
@@ -299,7 +299,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
           <div class="wc-body">
             <div class="wc-tag">Stenläggning &amp; Infart</div>
             <h3>Granitinfart</h3>
-            <p>Sättning i granit med grusade kanter — lagd för att ligga still.</p>
+            <p>Handsatt granit med grusade kanter — lagd för att ligga still.</p>
           </div>
         </article>
         <article class="wcard">
@@ -372,7 +372,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
         <span>Begär kostnadsfri offert</span>
         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
-      <span class="cta-sub">Svar inom 24h · Fast pris · Kostnadsfritt platsbesök</span>
+      <span class="cta-sub">Svar inom 24 h · Fast pris · Kostnadsfritt platsbesök</span>
     </div>
   </section>
 
@@ -407,11 +407,11 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   "use strict";
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const htmlEl=document.documentElement, loaderEl=document.getElementById('loader');
-  function goStatic(){htmlEl.classList.add('fallback');if(loaderEl)loaderEl.classList.add('hidden');if(!reduce)document.querySelectorAll('video').forEach(v=>{try{v.play()}catch(e){}});}
+  function goStatic(){htmlEl.classList.add('fallback');if(loaderEl)loaderEl.classList.add('hidden');document.querySelectorAll('.stat-number').forEach(el=>{el.textContent=parseFloat(el.dataset.value).toFixed(parseInt(el.dataset.decimals||'0'));});if(!reduce)document.querySelectorAll('video').forEach(v=>{try{v.play()}catch(e){}});}
   const failsafe=setTimeout(goStatic,3500);
 
   // Autoplay-säkring: lågenergiläge på mobil kan blockera autoplay tills första gest
-  function kickVideos(){document.querySelectorAll('video').forEach(v=>{if(v.paused)v.play().catch(()=>{});});}
+  function kickVideos(){if(reduce)return;document.querySelectorAll('video').forEach(v=>{if(v.paused)v.play().catch(()=>{});});}
   addEventListener('touchstart',kickVideos,{once:true,passive:true});
   addEventListener('pointerdown',kickVideos,{once:true,passive:true});
 
