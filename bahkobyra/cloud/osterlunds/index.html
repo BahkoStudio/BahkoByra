@@ -149,6 +149,36 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .cta-button:hover svg{transform:translateX(4px)}
 .cta-sub{font-size:.6rem;letter-spacing:.24em;color:var(--dim);text-transform:uppercase}
 
+/* ===== STATISK DEL (riktig hemsida efter scroll-upplevelsen) ===== */
+.static-site{position:relative;z-index:6;background:var(--bg)}
+.ss-section{padding:clamp(4rem,9vw,7.5rem) clamp(1.2rem,5vw,4rem);border-top:1px solid var(--line);scroll-margin-top:90px}
+.ss-inner{max-width:1180px;margin:0 auto}
+.ss-h{font-size:clamp(1.7rem,3.6vw,3.2rem)}
+.ss-grid2{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.ss-img{border-radius:10px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:var(--card)}
+.ss-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ss-lead{color:var(--muted);line-height:1.85;font-size:clamp(.9rem,1.05vw,1.02rem)}
+.ss-points{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-top:1.5rem}
+.ss-points li{display:flex;gap:.7rem;align-items:baseline;color:var(--muted);font-size:.9rem}
+.ss-points li::before{content:'—';color:var(--amber);flex-shrink:0}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.4rem}
+.step-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1.6rem 1.4rem}
+.step-num{font-family:var(--disp);font-size:2rem;font-weight:900;color:var(--amber);line-height:1}
+.step-card h3{font-family:var(--disp);font-size:1rem;font-weight:800;margin:.7rem 0 .4rem;text-transform:uppercase;letter-spacing:.04em}
+.step-card p{font-size:.8rem;color:var(--muted);line-height:1.65}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.2rem}
+.contact-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.contact-tel{display:inline-block;font-family:var(--disp);font-weight:900;font-size:clamp(1.9rem,4.5vw,3.4rem);letter-spacing:.01em;color:var(--amber-lt);margin:.6rem 0 .2rem;transition:color .3s}
+.contact-tel:hover{color:var(--amber)}
+.contact-list{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.6rem}
+.contact-item .cl{display:block;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin-bottom:.15rem}
+.contact-item .cv{font-size:1rem;font-weight:600}
+.contact-item .cv a:hover{color:var(--amber-lt)}
+.contact-card{background:var(--card);border:1px solid rgba(232,163,61,.3);border-radius:10px;padding:clamp(1.8rem,4vw,2.6rem);text-align:center}
+.contact-card h3{font-family:var(--disp);font-weight:800;font-size:1.4rem;margin-bottom:.6rem}
+.contact-card p{font-size:.85rem;color:var(--muted);margin-bottom:1.4rem;line-height:1.7}
+.contact-card .cta-button{width:100%;justify-content:center}
+
 /* ===== FLYTANDE OFFERT-KNAPP ===== */
 #float-offert{position:fixed;bottom:max(2.4rem,env(safe-area-inset-bottom));right:2.4rem;z-index:90;background:var(--grad);color:#16120A;font-size:.64rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;padding:.85rem 1.7rem;border-radius:4px;opacity:0;transform:translateY(20px);transition:all .4s ease;pointer-events:none;box-shadow:0 10px 30px -8px rgba(232,163,61,.5)}
 #float-offert.visible{opacity:1;transform:translateY(0);pointer-events:auto}
@@ -177,6 +207,9 @@ footer a{color:var(--amber-lt)}
 @media(max-width:768px){
   .header-nav{display:none}
   .hamburger{display:flex}
+  .ss-grid2,.contact-wrap{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:1fr}
   .align-left,.align-right{padding-left:6vw;padding-right:6vw}
   .align-left .section-inner,.align-right .section-inner{max-width:100%}
   .scroll-section .section-inner{background:rgba(11,11,13,.74);backdrop-filter:blur(8px);padding:1.8rem;border-radius:8px;border:1px solid var(--line)}
@@ -217,19 +250,20 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 
 <!-- MOBILNAV -->
 <nav class="mobile-nav" id="mobile-nav">
-  <a href="#" onclick="closeMobileNav()">Projekt</a>
-  <a href="#" onclick="closeMobileNav()">Tjänster</a>
-  <a href="#" onclick="closeMobileNav()">Om Oss</a>
-  <a href="#" onclick="openModal();closeMobileNav()">Begär Offert</a>
+  <a href="#om-oss" onclick="closeMobileNav()">Om Oss</a>
+  <a href="#process" onclick="closeMobileNav()">Så Går Det Till</a>
+  <a href="#kontakt" onclick="closeMobileNav()">Kontakt</a>
+  <a href="#" onclick="openModal();closeMobileNav();return false">Begär Offert</a>
 </nav>
 
 <!-- HEADER -->
 <header class="site-header" id="site-header">
   <a href="#" class="header-logo">ÖSTERLUNDS<em>.</em></a>
   <nav class="header-nav">
-    <a href="#">Projekt</a>
-    <a href="#">Tjänster</a>
-    <a href="#">Om Oss</a>
+    <a href="#om-oss">Om Oss</a>
+    <a href="#process">Så Går Det Till</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="tel:+46701234567">070-123 45 67</a>
     <a href="#" class="nav-cta" onclick="openModal();return false">Begär Offert</a>
   </nav>
   <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Meny">
@@ -378,11 +412,99 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 
 </div>
 
+<!-- STATISK DEL — riktig hemsida efter scroll-upplevelsen -->
+<div class="static-site">
+
+  <section class="ss-section" id="om-oss">
+    <div class="ss-inner ss-grid2">
+      <div>
+        <span class="section-label">Om Österlunds</span>
+        <h2 class="section-heading ss-h">Jordbyggnad är<br>allt vi gör.</h2>
+        <p class="ss-lead">Österlunds Jordbyggnad utför markarbeten åt villaägare, byggföretag och föreningar. Med egen maskinpark tar vi hand om hela jobbet på tomten — från första schaktet till färdig yta. Du får en kontaktperson, ett fast pris och ett resultat som håller i decennier.</p>
+        <ul class="ss-points">
+          <li>Husgrunder &amp; betongplattor</li>
+          <li>Dränering &amp; fuktsäkring av grund</li>
+          <li>Infarter, stenläggning &amp; grusytor</li>
+          <li>Enskilt avlopp &amp; VA-anslutningar</li>
+          <li>Tomtplanering &amp; finplanering</li>
+        </ul>
+      </div>
+      <div class="ss-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260707_064758_7aef61e3-711b-4fef-98b0-7eb7f041861e.png" alt="Grävmaskin och markarbetare på villatomt i kvällsljus" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="ss-section" id="process">
+    <div class="ss-inner">
+      <span class="section-label">Så går det till</span>
+      <h2 class="section-heading ss-h">Från förfrågan<br>till färdig mark.</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Hör av dig</h3>
+          <p>Ring eller skicka en förfrågan. Du får svar inom 24 timmar, oftast snabbare.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Kostnadsfritt platsbesök</h3>
+          <p>Vi kommer ut, tittar på tomten, mäter och lyssnar på vad du vill göra.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Fast pris på papper</h3>
+          <p>Du får en tydlig offert med pris, tidplan och exakt vad som ingår. Inga överraskningar.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h3>Vi gör jobbet</h3>
+          <p>Maskiner på plats enligt plan. Varje lager dokumenteras och ytan lämnas städad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ss-section" id="galleri">
+    <div class="ss-inner">
+      <span class="section-label">Utförda arbeten</span>
+      <h2 class="section-heading ss-h">Resultat som<br>ligger still.</h2>
+      <div class="gallery-grid">
+        <div class="ss-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260707_064800_14f8a621-9396-4346-90fd-62d273b25dda.png" alt="Färdig trädgård med stenterrass, granittrappa och ny gräsmatta" loading="lazy"></div>
+        <div class="ss-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260707_064802_3880aaa8-707d-4597-8e8c-3be8f7051c37.png" alt="Nyanlagd grusväg med diken mot villa" loading="lazy"></div>
+        <div class="ss-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260706_194943_bdcfa585-3a9f-4770-8125-e534c4cb8468.png" alt="Villa med ny granitinfart, stödmur och dränerad gräsmatta" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ss-section" id="kontakt">
+    <div class="ss-inner contact-wrap">
+      <div>
+        <span class="section-label">Kontakt</span>
+        <h2 class="section-heading ss-h">Berätta vad<br>du vill göra.</h2>
+        <a class="contact-tel" href="tel:+46701234567">070-123 45 67</a>
+        <div class="contact-list">
+          <div class="contact-item"><span class="cl">E-post</span><span class="cv"><a href="mailto:info@osterlundsjordbyggnad.se">info@osterlundsjordbyggnad.se</a></span></div>
+          <div class="contact-item"><span class="cl">Telefontider</span><span class="cv">Vardagar 07–17</span></div>
+          <div class="contact-item"><span class="cl">Förfrågningar</span><span class="cv">Svar inom 24 timmar</span></div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Begär kostnadsfri offert</h3>
+        <p>Beskriv ditt projekt så återkommer vi med ett kostnadsfritt platsbesök och ett fast pris på papper.</p>
+        <button class="cta-button" onclick="openModal()">
+          <span>Begär kostnadsfri offert</span>
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
 <!-- FLYTANDE OFFERT-KNAPP -->
 <button id="float-offert" onclick="openModal()">Begär offert</button>
 
 <footer>
   <span>Österlunds Jordbyggnad · Demo</span>
+  <span><a href="tel:+46701234567">070-123 45 67</a> · <a href="mailto:info@osterlundsjordbyggnad.se">info@osterlundsjordbyggnad.se</a></span>
   <span>Byggd av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
 </footer>
 
