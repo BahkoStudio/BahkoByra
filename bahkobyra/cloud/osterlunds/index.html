@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0B0B0D">
 <meta name="description" content="Österlunds Jordbyggnad — från lera till färdig tomt. Demo av Bahko Byrå.">
-<title>Österlunds Jordbyggnad — Det ingen ser bär allt du ser</title>
+<title>Österlunds Jordbyggnad — Markarbeten, grund &amp; dränering</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossorigin>
@@ -281,8 +281,8 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   <div class="hero-content">
     <span class="hero-label">Markarbeten · Grund · Dränering</span>
     <h1 class="hero-heading">
-      <span class="word">Det ingen ser</span><br>
-      <span class="word accent">bär allt du ser.</span>
+      <span class="word">Vi gör marken</span><br>
+      <span class="word accent">redo att bygga på.</span>
     </h1>
     <p class="hero-tagline">Fast pris innan start · Hållen tidplan · Dokumenterat arbete</p>
   </div>
@@ -303,7 +303,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 <!-- SCROLL CONTAINER -->
 <div id="scroll-container">
 
-  <section class="scroll-section align-left" data-enter="8" data-leave="22" data-animation="slide-left">
+  <section class="scroll-section align-left" data-enter="6" data-leave="24" data-animation="slide-left">
     <div class="section-inner">
       <span class="section-label">001 / Filosofi</span>
       <h2 class="section-heading">Grunden avgör.<br>Allt annat följer.</h2>
@@ -312,7 +312,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
     </div>
   </section>
 
-  <section class="scroll-section section-projects" data-enter="26" data-leave="42" data-animation="stagger-up">
+  <section class="scroll-section section-projects" data-enter="28" data-leave="45" data-animation="stagger-up">
     <div class="projects-inner">
       <div class="projects-head">
         <span class="section-label">002 / Projekt</span>
@@ -348,7 +348,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
     </div>
   </section>
 
-  <section class="scroll-section align-right" data-enter="46" data-leave="60" data-animation="slide-right">
+  <section class="scroll-section align-right" data-enter="49" data-leave="63" data-animation="slide-right">
     <div class="section-inner">
       <span class="section-label">003 / Tjänster</span>
       <h2 class="section-heading">Rätt maskin.<br>Rätt resultat.</h2>
@@ -377,7 +377,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
     </div>
   </section>
 
-  <section class="scroll-section section-stats" data-enter="64" data-leave="78" data-animation="stagger-up">
+  <section class="scroll-section section-stats" data-enter="67" data-leave="80" data-animation="stagger-up">
     <div class="stats-grid">
       <div class="stat">
         <div><span class="stat-number" data-value="100" data-decimals="0">0</span><span class="stat-suffix">%</span></div>
@@ -600,7 +600,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   const sectionStates=new Map();
   sections.forEach(section=>{
     const type=section.dataset.animation,persist=section.dataset.persist==='true';
-    const enter=parseFloat(section.dataset.enter)/100,leave=parseFloat(section.dataset.leave)/100,fadeRange=0.03;
+    const enter=parseFloat(section.dataset.enter)/100,leave=parseFloat(section.dataset.leave)/100,fadeRange=0.045;
     const children=section.querySelectorAll('.section-label,.section-heading,.section-body,.section-note,.cta-button,.cta-sub,.stat,.service-item,.wcard,.projects-head');
     const tl=gsap.timeline({paused:true});
     switch(type){
@@ -622,7 +622,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
         const{tl,persist,enter,leave,fadeRange}=state;
         const shouldShow=p>=(enter-fadeRange)&&(persist?true:p<=(leave+fadeRange));
         if(shouldShow&&!state.active){section.classList.add('active');section.style.visibility='visible';tl.play();state.active=true;}
-        else if(!shouldShow&&state.active&&!state.persisted){tl.reverse();state.active=false;}
+        else if(!shouldShow&&state.active&&!state.persisted){state.active=false;/* ingen reverse — texten tonas bara ut via opacity, ingen rörelse ut */}
         if(persist&&state.active)state.persisted=true;
         if(state.active||state.persisted){
           let o=1;
@@ -643,10 +643,10 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
     ScrollTrigger.create({trigger:scrollContainer,start:'top top',end:'bottom bottom',
       onUpdate:self=>{
         const p=self.progress;
-        if(p>=0.64&&p<=0.78&&!animated.has(el)){
+        if(p>=0.67&&p<=0.80&&!animated.has(el)){
           animated.add(el);
           gsap.to({val:0},{val:target,duration:1.1,ease:'power1.out',onUpdate:function(){el.textContent=this.targets()[0].val.toFixed(decimals);}});
-        } else if(p<0.60&&animated.has(el)){animated.delete(el);el.textContent='0';}
+        } else if(p<0.63&&animated.has(el)){animated.delete(el);el.textContent='0';}
       }
     });
   });
@@ -654,7 +654,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   // ===== DARK OVERLAY (två fönster: projekt + stats) =====
   (function(){
     const overlay=document.getElementById('dark-overlay');
-    const windows=[{e:0.25,l:0.43,max:0.5},{e:0.63,l:0.79,max:0.55}];
+    const windows=[{e:0.27,l:0.46,max:0.5},{e:0.66,l:0.81,max:0.55}];
     const fr=0.035;
     ScrollTrigger.create({trigger:scrollContainer,start:'top top',end:'bottom bottom',scrub:true,
       onUpdate:self=>{
