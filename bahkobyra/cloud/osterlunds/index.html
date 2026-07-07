@@ -213,7 +213,7 @@ footer a{color:var(--amber-lt)}
   .align-left,.align-right{padding-left:6vw;padding-right:6vw}
   .align-left .section-inner,.align-right .section-inner{max-width:100%}
   .scroll-section .section-inner{background:rgba(11,11,13,.74);backdrop-filter:blur(8px);padding:1.8rem;border-radius:8px;border:1px solid var(--line)}
-  #scroll-container{height:400vh}
+  #scroll-container{height:620vh}
   .work-grid{grid-template-columns:1fr;gap:.9rem}
   .wcard{aspect-ratio:4/2.8}
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:1.8rem}
@@ -303,7 +303,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 <!-- SCROLL CONTAINER -->
 <div id="scroll-container">
 
-  <section class="scroll-section align-left" data-enter="6" data-leave="24" data-animation="slide-left">
+  <section class="scroll-section align-left" data-enter="3" data-leave="24" data-animation="slide-left">
     <div class="section-inner">
       <span class="section-label">001 / Filosofi</span>
       <h2 class="section-heading">Grunden avgör.<br>Allt annat följer.</h2>
@@ -547,7 +547,9 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 
   // ===== LENIS (valfri — demon funkar utan smooth scroll om CDN:en blockeras) =====
   if(typeof Lenis!=='undefined'){
-    const lenis=new Lenis({duration:.85,easing:t=>1-Math.pow(1-t,3),smoothWheel:true,syncTouch:true,touchMultiplier:1.5});
+    // syncTouch AV på mobil: native touch-scroll är mjukare och rusar inte —
+    // Lenis mjukar bara mushjul på desktop
+    const lenis=new Lenis({duration:.85,easing:t=>1-Math.pow(1-t,3),smoothWheel:true,syncTouch:false});
     lenis.on('scroll',ScrollTrigger.update);
     gsap.ticker.add(t=>lenis.raf(t*1000));
     gsap.ticker.lagSmoothing(0);
