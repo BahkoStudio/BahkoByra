@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -179,6 +179,65 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .contact-card p{font-size:.85rem;color:var(--muted);margin-bottom:1.4rem;line-height:1.7}
 .contact-card .cta-button{width:100%;justify-content:center}
 
+/* ===== MATSTUGAN-LOGGA (återskapad från kundens logga: guld-serif + underrad) ===== */
+:root{--logo-gold:#C9A96E}
+.brand-mark{display:flex;flex-direction:column;align-items:center;line-height:1}
+.brand-name{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--logo-gold);letter-spacing:.06em;text-transform:none}
+.brand-sub{font-family:var(--sans);font-weight:500;color:var(--logo-gold);font-size:.42em;letter-spacing:.52em;text-transform:uppercase;margin-top:.45em;padding-left:.52em}
+.header-logo .brand-mark{align-items:flex-start}
+.header-logo .brand-name{font-size:1.45rem}
+.header-logo .brand-sub{font-size:.5rem;letter-spacing:.4em;padding-left:.4em}
+.loader-brand .brand-name{font-size:clamp(2.4rem,7vw,4.2rem)}
+
+/* ===== MENY ===== */
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,3.5rem);margin-top:2.4rem}
+.menu-cat h3{font-family:var(--disp);font-size:.78rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--amber-lt);margin-bottom:1.2rem;padding-bottom:.7rem;border-bottom:1px solid rgba(232,163,61,.25)}
+.menu-item{display:flex;flex-direction:column;gap:.15rem;padding:.85rem 0;border-bottom:1px solid var(--line)}
+.menu-item:last-child{border-bottom:none}
+.mi-name{font-family:var(--disp);font-weight:800;font-size:1.02rem}
+.mi-desc{font-size:.8rem;color:var(--muted);line-height:1.55}
+.menu-note{margin-top:2.2rem;text-align:center;font-size:.8rem;color:var(--dim)}
+.menu-note a{color:var(--amber-lt);font-weight:600}
+.menu-signature{grid-column:1/-1;background:var(--card);border:1px solid rgba(232,163,61,.3);border-radius:10px;padding:clamp(1.6rem,3.5vw,2.4rem);display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.4rem,3vw,2.4rem);align-items:center}
+.menu-signature .ss-img{aspect-ratio:16/10}
+.msig-badge{display:inline-block;font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:#16120A;background:var(--grad);border-radius:4px;padding:.35rem .8rem;margin-bottom:.9rem;font-weight:800}
+.menu-signature h3{font-family:var(--disp);font-size:clamp(1.4rem,2.6vw,2.1rem);font-weight:900;text-transform:uppercase;margin-bottom:.5rem}
+.menu-signature p{font-size:.86rem;color:var(--muted);line-height:1.7}
+
+/* ===== BOKNINGSMODAL ===== */
+#boka-modal .modal{max-width:520px}
+.bk-form{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.bk-field{display:flex;flex-direction:column;gap:.35rem}
+.bk-field.full{grid-column:1/-1}
+.bk-field label{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);font-weight:600}
+.bk-field input,.bk-field select{background:var(--card);border:1px solid var(--line);border-radius:6px;color:var(--text);font:inherit;font-size:.9rem;padding:.75rem .9rem;outline:none;transition:border-color .3s;width:100%;-webkit-appearance:none;appearance:none}
+.bk-field input:focus,.bk-field select:focus{border-color:var(--amber)}
+.bk-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23E8A33D' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;padding-right:2.2rem}
+.bk-field input::-webkit-calendar-picker-indicator{filter:invert(.7) sepia(1) saturate(3) hue-rotate(-10deg)}
+.bk-type{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;grid-column:1/-1}
+.bk-type input{display:none}
+.bk-type label{display:block;text-align:center;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.8rem;cursor:pointer;transition:all .25s}
+.bk-type input:checked+label{color:#16120A;background:var(--grad);border-color:transparent}
+.bk-submit{grid-column:1/-1;margin-top:.4rem}
+#bk-confirm{display:none}
+#bk-confirm.show{display:block}
+#bk-form-wrap.hide{display:none}
+.bk-summary{background:var(--card);border:1px solid rgba(232,163,61,.25);border-radius:8px;padding:1.2rem 1.4rem;margin-bottom:1.4rem}
+.bk-summary div{display:flex;justify-content:space-between;gap:1rem;font-size:.84rem;padding:.3rem 0}
+.bk-summary .k{color:var(--dim)}
+.bk-summary .v{font-weight:600;text-align:right}
+.bk-tel-cta{display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;font-family:var(--disp);font-weight:900;font-size:1.3rem;color:var(--amber-lt);background:var(--card);border:1px solid rgba(232,163,61,.35);border-radius:8px;padding:1rem;transition:all .25s}
+.bk-tel-cta:hover{color:var(--amber);border-color:var(--amber)}
+
+/* ===== NUDGE-POPUP (bokning, tidsstyrd — 10s/+90s/+60s, max 3x) ===== */
+#nudge-popup{position:fixed;left:1.6rem;bottom:max(2.4rem,env(safe-area-inset-bottom));z-index:91;width:min(300px,calc(100vw - 3.2rem));background:var(--bg2);border:1px solid rgba(232,163,61,.3);border-radius:10px;padding:1.3rem 1.4rem 1.4rem;box-shadow:0 20px 60px -14px rgba(0,0,0,.55);opacity:0;transform:translateY(16px) scale(.97);visibility:hidden;pointer-events:none;transition:opacity .4s ease,transform .4s ease,visibility .4s}
+#nudge-popup.visible{opacity:1;transform:translateY(0) scale(1);visibility:visible;pointer-events:auto}
+.nudge-close{position:absolute;top:.5rem;right:.6rem;font-size:1rem;color:var(--dim);padding:.4rem;line-height:1}
+.nudge-close:hover{color:var(--text)}
+.nudge-text{font-size:.82rem;color:var(--muted);line-height:1.5;margin-bottom:.9rem;padding-right:1rem}
+.nudge-cta{display:inline-flex;align-items:center;gap:.5rem;font-size:.66rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#16120A;background:var(--grad);padding:.68rem 1.2rem;border-radius:4px;transition:transform .2s,box-shadow .3s;box-shadow:0 10px 26px -10px rgba(232,163,61,.55);cursor:pointer;border:none}
+.nudge-cta:hover{transform:translateY(-1px);box-shadow:0 14px 32px -10px rgba(232,163,61,.7)}
+
 /* ===== FLYTANDE OFFERT-KNAPP ===== */
 #float-offert{position:fixed;bottom:max(2.4rem,env(safe-area-inset-bottom));right:2.4rem;z-index:90;background:var(--grad);color:#16120A;font-size:.64rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;padding:.85rem 1.7rem;border-radius:4px;opacity:0;transform:translateY(20px);transition:all .4s ease;pointer-events:none;box-shadow:0 10px 30px -8px rgba(232,163,61,.5)}
 #float-offert.visible{opacity:1;transform:translateY(0);pointer-events:auto}
@@ -222,6 +281,11 @@ footer a{color:var(--amber-lt)}
   #float-offert{bottom:max(1.4rem,env(safe-area-inset-bottom));right:1.4rem;font-size:.58rem;padding:.72rem 1.3rem}
   .modal{padding:1.8rem 1.4rem}
   .service-item{flex-direction:column;gap:.3rem;align-items:flex-start}
+  .menu-grid{grid-template-columns:1fr}
+  .menu-signature{grid-template-columns:1fr}
+  .bk-form{grid-template-columns:1fr}
+  .bk-type{grid-template-columns:1fr 1fr}
+  #nudge-popup{left:1.1rem;right:1.1rem;width:auto;bottom:max(1.4rem,env(safe-area-inset-bottom))}
 }
 html.fallback #loader{display:none}
 html.fallback #scroll-container{height:auto}
@@ -243,28 +307,28 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 
 <!-- LOADER -->
 <div id="loader">
-  <div class="loader-brand">MATSTUGAN<em>.</em></div>
+  <div class="loader-brand"><span class="brand-mark"><span class="brand-name">Matstugan</span><span class="brand-sub">Pizzeria &amp; Restaurang</span></span></div>
   <div id="loader-bar-wrap"><div id="loader-bar"></div></div>
   <div id="loader-percent">0%</div>
 </div>
 
 <!-- MOBILNAV -->
 <nav class="mobile-nav" id="mobile-nav">
+  <a href="#meny" onclick="closeMobileNav()">Meny</a>
   <a href="#om-oss" onclick="closeMobileNav()">Om Oss</a>
-  <a href="#process" onclick="closeMobileNav()">Så Går Det Till</a>
   <a href="#kontakt" onclick="closeMobileNav()">Kontakt</a>
-  <a href="#" onclick="openModal();closeMobileNav();return false">Beställ</a>
+  <a href="#" onclick="openBooking();closeMobileNav();return false">Boka Bord</a>
 </nav>
 
 <!-- HEADER -->
 <header class="site-header" id="site-header">
-  <a href="#" class="header-logo">MATSTUGAN<em>.</em></a>
+  <a href="#" class="header-logo"><span class="brand-mark"><span class="brand-name">Matstugan</span><span class="brand-sub">Pizzeria &amp; Restaurang</span></span></a>
   <nav class="header-nav">
+    <a href="#meny">Meny</a>
     <a href="#om-oss">Om Oss</a>
-    <a href="#process">Så Går Det Till</a>
     <a href="#kontakt">Kontakt</a>
     <a href="tel:+4648026725">0480-267 25</a>
-    <a href="#" class="nav-cta" onclick="openModal();return false">Beställ</a>
+    <a href="#" class="nav-cta" onclick="openBooking();return false">Boka Bord</a>
   </nav>
   <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Meny">
     <span></span><span></span><span></span>
@@ -432,32 +496,38 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
     </div>
   </section>
 
-  <section class="ss-section" id="process">
+
+  <section class="ss-section" id="meny">
     <div class="ss-inner">
-      <span class="section-label">Så går det till</span>
-      <h2 class="section-heading ss-h">Från beställning<br>till första tuggan.</h2>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-num">1</div>
-          <h3>Ring eller kom in</h3>
-          <p>Beställ på 0480-267 25 eller ta en plats i värmen på Djurängsvägen.</p>
+      <span class="section-label">Meny</span>
+      <h2 class="section-heading ss-h">Bakat, grillat<br>och lagat på plats.</h2>
+      <div class="menu-grid">
+        <div class="menu-signature">
+          <div>
+            <span class="msig-badge">Vår stolthet</span>
+            <h3>Biffpizzan</h3>
+            <p>Egen biff, skivad tunn, med färska champinjoner och lök på nybakad botten. Rekommenderas varm med vitlökssås.</p>
+          </div>
+          <div class="ss-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260719_130918_5050b732-f569-4baa-9f4a-51f4c80c2fd1.png" alt="Biffpizzan — egen biff, vår specialitet" loading="lazy"></div>
         </div>
-        <div class="step-card">
-          <div class="step-num">2</div>
-          <h3>Vi bakar när du beställt</h3>
-          <p>Ingen pizza står och väntar under värmelampan — degen kavlas när ordern kommer in.</p>
+        <div class="menu-cat">
+          <h3>Pizzor — Klassikerna</h3>
+          <div class="menu-item"><span class="mi-name">Margherita</span><span class="mi-desc">Tomatsås, ost</span></div>
+          <div class="menu-item"><span class="mi-name">Vesuvio</span><span class="mi-desc">Skinka</span></div>
+          <div class="menu-item"><span class="mi-name">Capricciosa</span><span class="mi-desc">Skinka, färska champinjoner</span></div>
+          <div class="menu-item"><span class="mi-name">Hawaii</span><span class="mi-desc">Skinka, ananas</span></div>
+          <div class="menu-item"><span class="mi-name">Kebabpizza</span><span class="mi-desc">Kebabkött, lök, feferoni, valfri sås</span></div>
         </div>
-        <div class="step-card">
-          <div class="step-num">3</div>
-          <h3>Färska råvaror</h3>
-          <p>Grönsaker, ost och kött vi valt själva — och egen ryggbiff på biffpizzan.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">4</div>
-          <h3>Hämta eller ät här</h3>
-          <p>Ta med kartongen hem — eller ät direkt ur ugnen hos oss.</p>
+        <div class="menu-cat">
+          <h3>Från grillen &amp; mer</h3>
+          <div class="menu-item"><span class="mi-name">Gyrostallrik</span><span class="mi-desc">Gyros, pommes, sallad och tzatziki</span></div>
+          <div class="menu-item"><span class="mi-name">Kebabtallrik</span><span class="mi-desc">Kebabkött, pommes, sallad, valfri sås</span></div>
+          <div class="menu-item"><span class="mi-name">Hamburgertallrik</span><span class="mi-desc">Grillad burgare med pommes och dressing</span></div>
+          <div class="menu-item"><span class="mi-name">Matiga sallader</span><span class="mi-desc">Fräscha sallader med kyckling, tonfisk eller gyros</span></div>
+          <div class="menu-item"><span class="mi-name">À la carte</span><span class="mi-desc">Fråga oss om dagens rätter</span></div>
         </div>
       </div>
+      <p class="menu-note">Hela menyn med priser får du på plats — eller ring <a href="tel:+4648026725">0480-267 25</a> så berättar vi.</p>
     </div>
   </section>
 
@@ -502,10 +572,68 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 <button id="float-offert" onclick="openModal()">Vill du ha en sån här sida?</button>
 
 <footer>
-  <span>Pizzeria Matstugan · Demo</span>
+  <span style="font-family:'Cormorant Garamond',serif;color:var(--logo-gold);font-size:.95rem">Matstugan <span style="font-size:.6rem;letter-spacing:.3em;text-transform:uppercase">· Pizzeria &amp; Restaurang · Demo</span></span>
   <span><a href="tel:+4648026725">0480-267 25</a> · <a href="mailto:info@pizzeriamatstugan.se">info@pizzeriamatstugan.se</a></span>
   <span>Byggd av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
 </footer>
+
+<!-- BOKNINGSMODAL -->
+<div class="modal-bg" id="boka-modal">
+  <div class="modal">
+    <button class="modal-x" onclick="closeBooking()" aria-label="Stäng">✕</button>
+    <div id="bk-form-wrap">
+      <div class="m-badge">Boka bord · Beställ avhämtning</div>
+      <h3>Vi håller platsen varm.</h3>
+      <p>Fyll i så förbereder vi — du bekräftar med ett snabbt samtal så är allt klart när du kommer.</p>
+      <form class="bk-form" id="bk-form" onsubmit="return submitBooking(event)">
+        <div class="bk-type">
+          <input type="radio" name="bk-type" id="bk-here" value="Äta på plats" checked>
+          <label for="bk-here">Äta här</label>
+          <input type="radio" name="bk-type" id="bk-away" value="Avhämtning">
+          <label for="bk-away">Avhämtning</label>
+        </div>
+        <div class="bk-field"><label for="bk-date">Dag</label><input type="date" id="bk-date" required></div>
+        <div class="bk-field"><label for="bk-time">Tid</label>
+          <select id="bk-time" required>
+            <option value="" disabled selected>Välj tid</option>
+            <option>11:00</option><option>11:30</option><option>12:00</option><option>12:30</option>
+            <option>13:00</option><option>16:00</option><option>16:30</option><option>17:00</option>
+            <option>17:30</option><option>18:00</option><option>18:30</option><option>19:00</option>
+            <option>19:30</option><option>20:00</option>
+          </select>
+        </div>
+        <div class="bk-field"><label for="bk-guests">Antal</label>
+          <select id="bk-guests" required>
+            <option value="" disabled selected>Välj</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8+</option>
+          </select>
+        </div>
+        <div class="bk-field"><label for="bk-name">Namn</label><input type="text" id="bk-name" required autocomplete="name" placeholder="Ditt namn"></div>
+        <div class="bk-field full"><label for="bk-phone">Telefon</label><input type="tel" id="bk-phone" required autocomplete="tel" placeholder="Ditt nummer"></div>
+        <button class="cta-button bk-submit" type="submit"><span>Nästa steg →</span></button>
+      </form>
+    </div>
+    <div id="bk-confirm">
+      <div class="m-badge">Ett samtal kvar</div>
+      <h3>Nästan klart!</h3>
+      <p>Så här ser din bokning ut — ring oss så bekräftar vi direkt och allt står redo.</p>
+      <div class="bk-summary" id="bk-summary"></div>
+      <a class="bk-tel-cta" href="tel:+4648026725"><span>📞</span><span>0480-267 25</span></a>
+      <a class="m-alt" href="#" onclick="backToBooking();return false">← Ändra bokningen</a>
+    </div>
+    <div class="m-foot">Demo av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></div>
+  </div>
+</div>
+
+<!-- NUDGE-POPUP: bokning, tidsstyrd (10s / +90s / +60s, max 3x — se JS) -->
+<div id="nudge-popup">
+  <button class="nudge-close" onclick="dismissNudge()" aria-label="Stäng">✕</button>
+  <p class="nudge-text">Sugen på nybakad pizza? Boka bord eller beställ avhämtning — klart på en minut.</p>
+  <button class="nudge-cta" onclick="openBooking();dismissNudge()">
+    <span>Boka bord →</span>
+  </button>
+</div>
 
 <!-- BAHKO DEMO-MODAL -->
 <div class="modal-bg" id="modal">
@@ -683,11 +811,66 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   setTimeout(()=>ScrollTrigger.refresh(),400);
 })();
 
-// ===== MODAL =====
+// ===== MODAL (Bahko) =====
 function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
 function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeBooking();}});
+
+// ===== BOKNINGSMODAL =====
+function openBooking(){document.getElementById('boka-modal').classList.add('open');document.body.style.overflow='hidden';cancelNudges();}
+function closeBooking(){document.getElementById('boka-modal').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('boka-modal').addEventListener('click',function(e){if(e.target===this)closeBooking();});
+(function(){var d=document.getElementById('bk-date');if(d){var t=new Date();d.min=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');}})();
+function submitBooking(e){
+  e.preventDefault();
+  var type=document.querySelector('input[name="bk-type"]:checked').value;
+  var rows=[['Typ',type],['Dag',document.getElementById('bk-date').value],['Tid',document.getElementById('bk-time').value],
+            ['Antal',document.getElementById('bk-guests').value+(type==='Äta på plats'?' personer':' st')],
+            ['Namn',document.getElementById('bk-name').value],['Telefon',document.getElementById('bk-phone').value]];
+  document.getElementById('bk-summary').innerHTML=rows.map(function(r){return '<div><span class="k">'+r[0]+'</span><span class="v"></span></div>';}).join('');
+  document.querySelectorAll('#bk-summary .v').forEach(function(el,i){el.textContent=rows[i][1];});
+  document.getElementById('bk-form-wrap').classList.add('hide');
+  document.getElementById('bk-confirm').classList.add('show');
+  return false;
+}
+function backToBooking(){
+  document.getElementById('bk-form-wrap').classList.remove('hide');
+  document.getElementById('bk-confirm').classList.remove('show');
+}
+
+// ===== NUDGE-POPUP (bokning) — visas 3 ggr: 10s, +90s, +60s efter varandra =====
+(function(){
+  const NUDGE_DELAYS=[10000,90000,60000];
+  const AUTO_HIDE=8000;
+  let cancelled=false, autoHideTimer=null, timers=[];
+  const popup=document.getElementById('nudge-popup');
+
+  window.dismissNudge=function(){
+    popup.classList.remove('visible');
+    clearTimeout(autoHideTimer);
+  };
+  window.cancelNudges=function(){
+    cancelled=true;
+    dismissNudge();
+    timers.forEach(clearTimeout);
+  };
+
+  function showNudge(){
+    if(cancelled||document.getElementById('boka-modal').classList.contains('open')||document.getElementById('modal').classList.contains('open'))return;
+    popup.classList.add('visible');
+    autoHideTimer=setTimeout(()=>popup.classList.remove('visible'),AUTO_HIDE);
+  }
+  function scheduleNudge(i){
+    if(i>=NUDGE_DELAYS.length)return;
+    const t=setTimeout(()=>{
+      showNudge();
+      scheduleNudge(i+1);
+    },NUDGE_DELAYS[i]);
+    timers.push(t);
+  }
+  scheduleNudge(0);
+})();
 
 // ===== MOBILNAV =====
 function toggleMobileNav(){
