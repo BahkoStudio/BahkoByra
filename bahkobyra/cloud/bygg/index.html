@@ -22,8 +22,8 @@
   --sans:'Archivo',system-ui,sans-serif; --disp:'Archivo Expanded','Archivo',sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
 }
-html{background:var(--bg);scroll-behavior:auto}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
+html{background:var(--bg);scroll-behavior:auto;overflow-x:hidden;overflow-x:clip}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;overflow-x:clip;max-width:100vw;touch-action:pan-y pinch-zoom;-webkit-font-smoothing:antialiased;line-height:1.6}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 ::selection{background:var(--amber);color:#16120A}
@@ -72,7 +72,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .hero-content{position:relative;z-index:2;text-align:center;padding:0 5vw clamp(5rem,12vh,8rem)}
 .hero-label{display:block;font-size:.66rem;font-weight:600;letter-spacing:.42em;color:var(--amber-lt);text-transform:uppercase;margin-bottom:2rem;opacity:0}
 .hero-heading{font-family:var(--disp);font-size:clamp(2.6rem,10.5vw,9.5rem);font-weight:900;line-height:.94;letter-spacing:-.015em;text-transform:uppercase;margin-bottom:1.6rem;text-shadow:0 8px 50px rgba(0,0,0,.5)}
-.hero-heading .word{display:inline-block;opacity:0;transform:translateY(60px)}
+.hero-heading .word{display:inline-block;opacity:0;transform:translateY(26px)}
 .hero-heading .accent{background:var(--grad);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 7s linear infinite}
 @keyframes shimmer{to{background-position:220% center}}
 .hero-tagline{font-size:clamp(.74rem,1.1vw,.95rem);font-weight:400;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;opacity:0}
@@ -93,7 +93,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 #dark-overlay{position:fixed;inset:0;background:var(--bg);opacity:0;z-index:3;pointer-events:none;will-change:opacity}
 
 /* ===== SCROLL CONTAINER ===== */
-#scroll-container{position:relative;width:100%;height:700vh;z-index:5}
+#scroll-container{position:relative;width:100%;height:520vh;z-index:5}
 
 /* ===== SEKTIONER ===== */
 .scroll-section{position:absolute;width:100%;display:flex;align-items:center;opacity:0;visibility:hidden;will-change:transform,opacity}
@@ -149,6 +149,36 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .cta-button:hover svg{transform:translateX(4px)}
 .cta-sub{font-size:.6rem;letter-spacing:.24em;color:var(--dim);text-transform:uppercase}
 
+/* ===== STATISK DEL (riktig hemsida efter scroll-upplevelsen) ===== */
+.static-site{position:relative;z-index:6;background:var(--bg)}
+.ss-section{padding:clamp(4rem,9vw,7.5rem) clamp(1.2rem,5vw,4rem);border-top:1px solid var(--line);scroll-margin-top:90px}
+.ss-inner{max-width:1180px;margin:0 auto}
+.ss-h{font-size:clamp(1.7rem,3.6vw,3.2rem)}
+.ss-grid2{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.ss-img{border-radius:10px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:var(--card)}
+.ss-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ss-lead{color:var(--muted);line-height:1.85;font-size:clamp(.9rem,1.05vw,1.02rem)}
+.ss-points{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-top:1.5rem}
+.ss-points li{display:flex;gap:.7rem;align-items:baseline;color:var(--muted);font-size:.9rem}
+.ss-points li::before{content:'—';color:var(--amber);flex-shrink:0}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.4rem}
+.step-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1.6rem 1.4rem}
+.step-num{font-family:var(--disp);font-size:2rem;font-weight:900;color:var(--amber);line-height:1}
+.step-card h3{font-family:var(--disp);font-size:1rem;font-weight:800;margin:.7rem 0 .4rem;text-transform:uppercase;letter-spacing:.04em}
+.step-card p{font-size:.8rem;color:var(--muted);line-height:1.65}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.2rem}
+.contact-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.contact-tel{display:inline-block;font-family:var(--disp);font-weight:900;font-size:clamp(1.9rem,4.5vw,3.4rem);letter-spacing:.01em;color:var(--amber-lt);margin:.6rem 0 .2rem;transition:color .3s}
+.contact-tel:hover{color:var(--amber)}
+.contact-list{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.6rem}
+.contact-item .cl{display:block;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin-bottom:.15rem}
+.contact-item .cv{font-size:1rem;font-weight:600}
+.contact-item .cv a:hover{color:var(--amber-lt)}
+.contact-card{background:var(--card);border:1px solid rgba(232,163,61,.3);border-radius:10px;padding:clamp(1.8rem,4vw,2.6rem);text-align:center}
+.contact-card h3{font-family:var(--disp);font-weight:800;font-size:1.4rem;margin-bottom:.6rem}
+.contact-card p{font-size:.85rem;color:var(--muted);margin-bottom:1.4rem;line-height:1.7}
+.contact-card .cta-button{width:100%;justify-content:center}
+
 /* ===== FLYTANDE OFFERT-KNAPP ===== */
 #float-offert{position:fixed;bottom:max(2.4rem,env(safe-area-inset-bottom));right:2.4rem;z-index:90;background:var(--grad);color:#16120A;font-size:.64rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;padding:.85rem 1.7rem;border-radius:4px;opacity:0;transform:translateY(20px);transition:all .4s ease;pointer-events:none;box-shadow:0 10px 30px -8px rgba(232,163,61,.5)}
 #float-offert.visible{opacity:1;transform:translateY(0);pointer-events:auto}
@@ -180,9 +210,12 @@ footer a{color:var(--amber-lt)}
   .align-left,.align-right{padding-left:6vw;padding-right:6vw}
   .align-left .section-inner,.align-right .section-inner{max-width:100%}
   .scroll-section .section-inner{background:rgba(11,11,13,.74);backdrop-filter:blur(8px);padding:1.8rem;border-radius:8px;border:1px solid var(--line)}
-  #scroll-container{height:500vh}
+  #scroll-container{height:620vh}
   .work-grid{grid-template-columns:1fr;gap:.9rem}
   .wcard{aspect-ratio:4/2.8}
+  .ss-grid2,.contact-wrap{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:1.8rem}
   .hero-heading{font-size:clamp(2.3rem,11vw,5rem)}
   .cta-button{padding:.95rem 2rem;width:100%;justify-content:center}
@@ -217,19 +250,20 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 
 <!-- MOBILNAV -->
 <nav class="mobile-nav" id="mobile-nav">
-  <a href="#" onclick="closeMobileNav()">Projekt</a>
-  <a href="#" onclick="closeMobileNav()">Tjänster</a>
-  <a href="#" onclick="closeMobileNav()">Om Oss</a>
-  <a href="#" onclick="openModal();closeMobileNav()">Begär Offert</a>
+  <a href="#om-oss" onclick="closeMobileNav()">Om Oss</a>
+  <a href="#process" onclick="closeMobileNav()">Så Går Det Till</a>
+  <a href="#kontakt" onclick="closeMobileNav()">Kontakt</a>
+  <a href="#" onclick="openModal();closeMobileNav();return false">Begär Offert</a>
 </nav>
 
 <!-- HEADER -->
 <header class="site-header" id="site-header">
   <a href="#" class="header-logo">GRANIT<em>.</em></a>
   <nav class="header-nav">
-    <a href="#">Projekt</a>
-    <a href="#">Tjänster</a>
-    <a href="#">Om Oss</a>
+    <a href="#om-oss">Om Oss</a>
+    <a href="#process">Så Går Det Till</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="tel:+46701234567">070-123 45 67</a>
     <a href="#" class="nav-cta" onclick="openModal();return false">Begär Offert</a>
   </nav>
   <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Meny">
@@ -269,7 +303,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 <!-- SCROLL CONTAINER -->
 <div id="scroll-container">
 
-  <section class="scroll-section align-left" data-enter="8" data-leave="22" data-animation="slide-left">
+  <section class="scroll-section align-left" data-enter="3" data-leave="24" data-animation="slide-left">
     <div class="section-inner">
       <span class="section-label">001 / Filosofi</span>
       <h2 class="section-heading">Vi river inte<br>drömmar.</h2>
@@ -278,7 +312,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
     </div>
   </section>
 
-  <section class="scroll-section section-projects" data-enter="26" data-leave="42" data-animation="stagger-up">
+  <section class="scroll-section section-projects" data-enter="28" data-leave="45" data-animation="stagger-up">
     <div class="projects-inner">
       <div class="projects-head">
         <span class="section-label">002 / Projekt</span>
@@ -314,7 +348,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
     </div>
   </section>
 
-  <section class="scroll-section align-right" data-enter="46" data-leave="60" data-animation="slide-right">
+  <section class="scroll-section align-right" data-enter="49" data-leave="63" data-animation="slide-right">
     <div class="section-inner">
       <span class="section-label">003 / Tjänster</span>
       <h2 class="section-heading">Rätt hantverkare.<br>Rätt resultat.</h2>
@@ -343,7 +377,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
     </div>
   </section>
 
-  <section class="scroll-section section-stats" data-enter="64" data-leave="78" data-animation="stagger-up">
+  <section class="scroll-section section-stats" data-enter="67" data-leave="80" data-animation="stagger-up">
     <div class="stats-grid">
       <div class="stat">
         <div><span class="stat-number" data-value="240" data-decimals="0">0</span><span class="stat-suffix">+</span></div>
@@ -378,11 +412,98 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 
 </div>
 
+<!-- STATISK DEL — riktig hemsida efter scroll-upplevelsen -->
+<div class="static-site">
+
+  <section class="ss-section" id="om-oss">
+    <div class="ss-inner ss-grid2">
+      <div>
+        <span class="section-label">Om GRANIT</span>
+        <h2 class="section-heading ss-h">Bygg är allt<br>vi gör.</h2>
+        <p class="ss-lead">GRANIT Bygg &amp; Entreprenad tar hand om hela bygget — från första spadtaget till nyckelfärdigt hus. Du får en ansvarig projektledare, ett fast pris och ett dagsfotat bygge du kan följa hela vägen.</p>
+        <ul class="ss-points">
+          <li>Nybyggnation &amp; totalrenovering</li>
+          <li>Tak &amp; plåtarbeten</li>
+          <li>Badrum &amp; våtrum, certifierat</li>
+          <li>Tillbyggnad &amp; altan, inkl. bygglovshjälp</li>
+        </ul>
+      </div>
+      <div class="ss-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_182740_5c48f715-f0c5-4357-9d90-7e9f50c4a596.png" alt="Renoverad villa i kvällsljus" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="ss-section" id="process">
+    <div class="ss-inner">
+      <span class="section-label">Så går det till</span>
+      <h2 class="section-heading ss-h">Från förfrågan<br>till nyckelfärdigt.</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Hör av dig</h3>
+          <p>Ring eller mejla och beskriv projektet. Du får svar inom 48 timmar.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Kostnadsfritt platsbesök</h3>
+          <p>Vi kommer ut, mäter och går igenom vad som behövs.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Fast pris på papper</h3>
+          <p>Tydlig offert med pris, tidplan och vad som ingår. Inga överraskningar.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h3>Vi bygger</h3>
+          <p>Fast projektledare, dagsfotat bygge, städat när vi kör.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ss-section" id="galleri">
+    <div class="ss-inner">
+      <span class="section-label">Utförda arbeten</span>
+      <h2 class="section-heading ss-h">Resultat som<br>håller i decennier.</h2>
+      <div class="gallery-grid">
+        <div class="ss-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_094812_ad5bfa2e-fd73-4f3f-ab72-a64cb45ccbba.png" alt="Nybyggd villa med svart träfasad" loading="lazy"></div>
+        <div class="ss-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_094814_51875d18-ee08-4322-8dd1-d7e4040e14bf.png" alt="Takläggning i skiffer" loading="lazy"></div>
+        <div class="ss-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_094816_a60d73a8-5553-4747-aab1-ea4c35755772.png" alt="Totalrenoverat badrum i mörk sten" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ss-section" id="kontakt">
+    <div class="ss-inner contact-wrap">
+      <div>
+        <span class="section-label">Kontakt</span>
+        <h2 class="section-heading ss-h">Berätta om<br>ditt projekt.</h2>
+        <a class="contact-tel" href="tel:+46701234567">070-123 45 67</a>
+        <div class="contact-list">
+          <div class="contact-item"><span class="cl">E-post</span><span class="cv"><a href="mailto:info@granitbygg.se">info@granitbygg.se</a></span></div>
+          <div class="contact-item"><span class="cl">Område</span><span class="cv">Mälardalen</span></div>
+          <div class="contact-item"><span class="cl">Förfrågningar</span><span class="cv">Svar inom 48 timmar</span></div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Begär kostnadsfri offert</h3>
+        <p>Beskriv ditt projekt så återkommer vi med ett kostnadsfritt platsbesök och ett fast pris på papper.</p>
+        <button class="cta-button" onclick="openModal()">
+          <span>Begär kostnadsfri offert</span>
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
 <!-- FLYTANDE OFFERT-KNAPP -->
 <button id="float-offert" onclick="openModal()">Begär offert</button>
 
 <footer>
   <span>GRANIT Bygg &amp; Entreprenad · Demo</span>
+  <span><a href="tel:+46701234567">070-123 45 67</a> · <a href="mailto:info@granitbygg.se">info@granitbygg.se</a></span>
   <span>Byggd av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
 </footer>
 
@@ -425,7 +546,9 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 
   // ===== LENIS (valfri — demon funkar utan smooth scroll om CDN:en blockeras) =====
   if(typeof Lenis!=='undefined'){
-    const lenis=new Lenis({duration:1.15,easing:t=>1-Math.pow(1-t,3),smoothWheel:true,syncTouch:true,touchMultiplier:1.5});
+    // syncTouch AV på mobil: native touch-scroll är mjukare och rusar inte —
+    // Lenis mjukar bara mushjul på desktop
+    const lenis=new Lenis({duration:.85,easing:t=>1-Math.pow(1-t,3),smoothWheel:true,syncTouch:false});
     lenis.on('scroll',ScrollTrigger.update);
     gsap.ticker.add(t=>lenis.raf(t*1000));
     gsap.ticker.lagSmoothing(0);
@@ -435,19 +558,19 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   const loaderBar=document.getElementById('loader-bar'),loaderPct=document.getElementById('loader-percent'),loader=document.getElementById('loader');
   let loadProg=0;
   (function simulateLoad(){
-    loadProg+=Math.random()*16+6; if(loadProg>100)loadProg=100;
+    loadProg+=Math.random()*24+16; if(loadProg>100)loadProg=100;
     loaderBar.style.width=loadProg+'%'; loaderPct.textContent=Math.round(loadProg)+'%';
-    if(loadProg<100){setTimeout(simulateLoad,60+Math.random()*90);}
-    else{clearTimeout(failsafe);setTimeout(()=>{loader.classList.add('hidden');animateHero();},350);}
+    if(loadProg<100){setTimeout(simulateLoad,35+Math.random()*45);}
+    else{clearTimeout(failsafe);setTimeout(()=>{loader.classList.add('hidden');animateHero();},180);}
   })();
 
   // ===== HERO-ENTRÉ (ordvis, Élara-stil) =====
   function animateHero(){
     gsap.timeline()
-      .to('.hero-label',{opacity:1,duration:.8,ease:'power2.out'},0.2)
-      .to('.hero-heading .word',{opacity:1,y:0,stagger:.15,duration:1.05,ease:'power3.out'},0.4)
-      .to('.hero-tagline',{opacity:1,duration:.8,ease:'power2.out'},1.05)
-      .to('.hero-scroll-indicator',{opacity:1,duration:.8,ease:'power2.out'},1.35);
+      .to('.hero-label',{opacity:1,duration:.5,ease:'power2.out'},0.05)
+      .to('.hero-heading .word',{opacity:1,y:0,stagger:.08,duration:.55,ease:'power2.out'},0.12)
+      .to('.hero-tagline',{opacity:1,duration:.5,ease:'power2.out'},0.45)
+      .to('.hero-scroll-indicator',{opacity:1,duration:.5,ease:'power2.out'},0.6);
   }
 
   // ===== CIRKELAVTÄCKNING: videolagret avtäcks MEDAN heron scrollar ut =====
@@ -478,16 +601,16 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   const sectionStates=new Map();
   sections.forEach(section=>{
     const type=section.dataset.animation,persist=section.dataset.persist==='true';
-    const enter=parseFloat(section.dataset.enter)/100,leave=parseFloat(section.dataset.leave)/100,fadeRange=0.03;
+    const enter=parseFloat(section.dataset.enter)/100,leave=parseFloat(section.dataset.leave)/100,fadeRange=0.045;
     const children=section.querySelectorAll('.section-label,.section-heading,.section-body,.section-note,.cta-button,.cta-sub,.stat,.service-item,.wcard,.projects-head');
     const tl=gsap.timeline({paused:true});
     switch(type){
-      case 'fade-up': tl.from(children,{y:50,opacity:0,stagger:.12,duration:.9,ease:'power3.out'}); break;
-      case 'slide-left': tl.from(children,{x:-80,opacity:0,stagger:.14,duration:.9,ease:'power3.out'}); break;
-      case 'slide-right': tl.from(children,{x:80,opacity:0,stagger:.14,duration:.9,ease:'power3.out'}); break;
-      case 'scale-up': tl.from(children,{scale:.85,opacity:0,stagger:.12,duration:1.0,ease:'power2.out'}); break;
-      case 'stagger-up': tl.from(children,{y:60,opacity:0,stagger:.13,duration:.85,ease:'power3.out'}); break;
-      case 'clip-reveal': tl.from(children,{clipPath:'inset(100% 0 0 0)',opacity:0,stagger:.15,duration:1.2,ease:'power4.inOut'}); break;
+      case 'fade-up': tl.from(children,{y:22,opacity:0,stagger:.06,duration:.5,ease:'power2.out'}); break;
+      case 'slide-left': tl.from(children,{x:-32,opacity:0,stagger:.07,duration:.5,ease:'power2.out'}); break;
+      case 'slide-right': tl.from(children,{x:32,opacity:0,stagger:.07,duration:.5,ease:'power2.out'}); break;
+      case 'scale-up': tl.from(children,{scale:.96,opacity:0,stagger:.06,duration:.5,ease:'power2.out'}); break;
+      case 'stagger-up': tl.from(children,{y:24,opacity:0,stagger:.06,duration:.45,ease:'power2.out'}); break;
+      case 'clip-reveal': tl.from(children,{clipPath:'inset(100% 0 0 0)',opacity:0,stagger:.08,duration:.6,ease:'power2.inOut'}); break;
     }
     sectionStates.set(section,{tl,persist,enter,leave,fadeRange,active:false,persisted:false});
   });
@@ -500,7 +623,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
         const{tl,persist,enter,leave,fadeRange}=state;
         const shouldShow=p>=(enter-fadeRange)&&(persist?true:p<=(leave+fadeRange));
         if(shouldShow&&!state.active){section.classList.add('active');section.style.visibility='visible';tl.play();state.active=true;}
-        else if(!shouldShow&&state.active&&!state.persisted){tl.reverse();state.active=false;}
+        else if(!shouldShow&&state.active&&!state.persisted){state.active=false;/* ingen reverse — texten tonas bara ut via opacity, ingen rörelse ut */}
         if(persist&&state.active)state.persisted=true;
         if(state.active||state.persisted){
           let o=1;
@@ -521,10 +644,10 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
     ScrollTrigger.create({trigger:scrollContainer,start:'top top',end:'bottom bottom',
       onUpdate:self=>{
         const p=self.progress;
-        if(p>=0.64&&p<=0.78&&!animated.has(el)){
+        if(p>=0.67&&p<=0.80&&!animated.has(el)){
           animated.add(el);
-          gsap.to({val:0},{val:target,duration:2,ease:'power1.out',onUpdate:function(){el.textContent=this.targets()[0].val.toFixed(decimals);}});
-        } else if(p<0.60&&animated.has(el)){animated.delete(el);el.textContent='0';}
+          gsap.to({val:0},{val:target,duration:1.1,ease:'power1.out',onUpdate:function(){el.textContent=this.targets()[0].val.toFixed(decimals);}});
+        } else if(p<0.63&&animated.has(el)){animated.delete(el);el.textContent='0';}
       }
     });
   });
@@ -532,7 +655,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   // ===== DARK OVERLAY (två fönster: projekt + stats) =====
   (function(){
     const overlay=document.getElementById('dark-overlay');
-    const windows=[{e:0.25,l:0.43,max:0.5},{e:0.63,l:0.79,max:0.55}];
+    const windows=[{e:0.27,l:0.46,max:0.5},{e:0.66,l:0.81,max:0.55}];
     const fr=0.035;
     ScrollTrigger.create({trigger:scrollContainer,start:'top top',end:'bottom bottom',scrub:true,
       onUpdate:self=>{
