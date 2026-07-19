@@ -76,6 +76,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .hero-heading .accent{background:var(--grad);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 7s linear infinite}
 @keyframes shimmer{to{background-position:220% center}}
 .hero-tagline{font-size:clamp(.74rem,1.1vw,.95rem);font-weight:400;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;opacity:0}
+.hero-cta-wrap{margin-top:2rem;opacity:0}
 .hero-scroll-indicator{position:absolute;bottom:2.6rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.8rem;opacity:0;z-index:2}
 .hero-scroll-indicator span{font-size:.58rem;letter-spacing:.32em;color:var(--dim);text-transform:uppercase}
 .scroll-arrow{width:1px;height:42px;position:relative;overflow:hidden}
@@ -290,14 +291,14 @@ footer a{color:var(--amber-lt)}
 html.fallback #loader{display:none}
 html.fallback #scroll-container{height:auto}
 html.fallback .scroll-section{position:static;opacity:1!important;visibility:visible!important;transform:none!important;padding-top:4rem;padding-bottom:4rem}
-html.fallback .hero-label,html.fallback .hero-tagline,html.fallback .hero-scroll-indicator{opacity:1!important}
+html.fallback .hero-label,html.fallback .hero-tagline,html.fallback .hero-scroll-indicator,html.fallback .hero-cta-wrap{opacity:1!important}
 html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   #loader{display:none}
   #scroll-container{height:auto}
   .scroll-section{position:static;opacity:1!important;visibility:visible!important;transform:none!important;padding-top:4rem;padding-bottom:4rem}
-  .hero-label,.hero-tagline,.hero-scroll-indicator{opacity:1!important}
+  .hero-label,.hero-tagline,.hero-scroll-indicator,.hero-cta-wrap{opacity:1!important}
   .hero-heading .word{opacity:1!important;transform:none!important}
   .bgvid-wrap{display:none}
 }
@@ -349,6 +350,12 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
       <span class="word accent">Ingenting annat.</span>
     </h1>
     <p class="hero-tagline">Färska råvaror · Biffpizza på egen ryggbiff · Lunch som mättar</p>
+    <div class="hero-cta-wrap">
+      <button class="cta-button" onclick="openBooking()">
+        <span>Boka bord</span>
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
   </div>
   <div class="hero-scroll-indicator">
     <span>Se magin</span>
@@ -698,6 +705,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
       .to('.hero-label',{opacity:1,duration:.5,ease:'power2.out'},0.05)
       .to('.hero-heading .word',{opacity:1,y:0,stagger:.08,duration:.55,ease:'power2.out'},0.12)
       .to('.hero-tagline',{opacity:1,duration:.5,ease:'power2.out'},0.45)
+      .to('.hero-cta-wrap',{opacity:1,duration:.5,ease:'power2.out'},0.55)
       .to('.hero-scroll-indicator',{opacity:1,duration:.5,ease:'power2.out'},0.6);
   }
 
