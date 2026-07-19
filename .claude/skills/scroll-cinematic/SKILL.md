@@ -42,6 +42,7 @@ explicit beställning.**
 | Scroll-container | **520vh desktop / 620vh mobil** (mobil behöver MER, inte mindre — se Tempo-lagar). Absolut positionerade sektioner på progress-fönster, VARIERADE entréer — aldrig samma två gånger i rad |
 | Sektionsfönster | 001 Filosofi `3–24` slide-left · 002 Projektgrid (3 kort) `28–45` stagger-up · 003 Tjänstelista `49–63` slide-right · 004 Stats + räknare `67–80` stagger-up · CTA `84–100` scale-up + `data-persist="true"` |
 | Övrigt | Dark overlay-fönster `0.27–0.46` (max .5) och `0.66–0.81` (max .55) · räknare triggas `0.67–0.80`, nollas < `0.63` · flytande offert-knapp efter 60 % viewport · footer med kontaktuppgifter · Bahko-modal (Cal.eu `bahkobyra/15min`) · `noindex, nofollow` |
+| **Bokningspopup (nudge)** | `#nudge-popup` — liten dismissbar kort-popup (inte samma som Bahko-modalen) som puffar mot bokning/tjänster. Visas **3 gånger totalt**, tidsstyrt från sidladdning: **1:a efter 10s, 2:a 90s senare, 3:e ytterligare 60s senare** (dvs. absolut t≈10s / 100s / 160s). Auto-döljs efter 8s om ingen interagerar. Avbryts helt (`cancelNudges()`) om besökaren redan öppnat Bahko-modalen — nagga inte någon som redan är på väg att boka. CTA öppnar samma modal som `#float-offert`. |
 | **Riktig hemsida-del** (efter scroll-containern) | `.static-site` med fyra sektioner: **Om oss** (bild + brödtext + punktlista tjänster), **Så går det till** (4 steg, `.steps-grid`), **Galleri** (3 bilder, `.gallery-grid` — återanvänd projektkortsbilderna), **Kontakt** (stort klickbart telefonnummer, e-post, område, offert-kort). Nav-länkarna i header/mobilnav pekar på `#om-oss` `#process` `#kontakt`. **Detta är inte valfritt** — utan den känns sidan som en trailer, inte en hemsida (bekräftat av kundfeedback) |
 
 **Medvetet BORTTAGET (beslut 2026-06-11 — lägg inte tillbaka):** marquee-jättetext och
@@ -152,11 +153,13 @@ Konsistensen bygger på referenskedjan — generera i exakt denna ordning:
 
 ### 4. Generera klippen (seedance_2_0_mini — ALLTID mini, ALLTID utan ljud)
 
-**Standardbeslut 2026-07-19 (spar credits):** använd `seedance_2_0_mini` med `generate_audio:false`
-för BÅDA klippen — 20 credits/klipp i stället för 72 för stora seedance_2_0, och demovideorna
-spelas ändå alltid muted. Mini stödjer start_image + end_image men max 720p — det räcker gott
-som bakgrundsvideo bakom text. Uppgradera till seedance_2_0 1080p ENDAST om kunden uttryckligen
-klagar på videokvaliteten.
+**Fast regel, alltid (2026-07-19):** använd `seedance_2_0_mini` med `generate_audio:false`
+för BÅDA klippen, i varje demo, oavsett kreditläge — inte bara när saldot är lågt. 20
+credits/klipp i stället för 72 för stora seedance_2_0, och demovideorna spelas ändå alltid
+muted (autoplay-loopar har aldrig ljud på i denna mall). Mini stödjer start_image + end_image
+men max 720p — det räcker gott som bakgrundsvideo bakom text. Uppgradera till seedance_2_0
+(std-läge, 1080p) ENDAST om kunden uttryckligen klagar på videokvaliteten på en levererad demo
+— gissa aldrig i förväg att en kund behöver högre upplösning.
 
 ```
 Klipp 1 "Förvandlingen" (hero-loopen): duration 8, aspect_ratio 16:9, resolution 720p, generate_audio false
@@ -238,7 +241,9 @@ riskreversering.**
    `touch-action:pan-y` finns (ingen sidled-scroll), Lenis har `syncTouch:false`.
 6. `prefers-reduced-motion`: sidan statisk, videos pausade, räknarna visar RÄTT slutvärde (inte "0").
 7. Den statiska delen finns och nav-länkarna faktiskt scrollar dit (`#om-oss`, `#process`, `#kontakt`).
-8. Committa, pusha, PR → main (Vercel deployar `bahkobyra/`). Skicka demolänken: `bahkobyra.se/cloud/[kund]/`.
+8. `#nudge-popup` finns, `dismissNudge`/`cancelNudges` definierade, CTA-texten matchar kundens nisch
+   (inte "platsbesök" rakt av för en kund utan platsbesök — t.ex. "boka bord"/"beställ" för restaurang).
+9. Committa, pusha, PR → main (Vercel deployar `bahkobyra/`). Skicka demolänken: `bahkobyra.se/cloud/[kund]/`.
 
 ## Guardrails
 

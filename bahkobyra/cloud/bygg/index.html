@@ -188,6 +188,16 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 footer{position:relative;z-index:6;border-top:1px solid var(--line);padding:1.8rem clamp(1.2rem,4vw,3rem);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.7rem;color:var(--dim);background:var(--bg)}
 footer a{color:var(--amber-lt)}
 
+/* ===== NUDGE-POPUP (bokning/tjänster, tidsstyrd — se JS: 10s/+90s/+60s, max 3x) ===== */
+#nudge-popup{position:fixed;left:1.6rem;bottom:max(2.4rem,env(safe-area-inset-bottom));z-index:91;width:min(300px,calc(100vw - 3.2rem));background:var(--bg2);border:1px solid rgba(232,163,61,.3);border-radius:10px;padding:1.3rem 1.4rem 1.4rem;box-shadow:0 20px 60px -14px rgba(0,0,0,.55);opacity:0;transform:translateY(16px) scale(.97);visibility:hidden;pointer-events:none;transition:opacity .4s ease,transform .4s ease,visibility .4s}
+#nudge-popup.visible{opacity:1;transform:translateY(0) scale(1);visibility:visible;pointer-events:auto}
+.nudge-close{position:absolute;top:.5rem;right:.6rem;font-size:1rem;color:var(--dim);padding:.4rem;line-height:1}
+.nudge-close:hover{color:var(--text)}
+.nudge-text{font-size:.82rem;color:var(--muted);line-height:1.5;margin-bottom:.9rem;padding-right:1rem}
+.nudge-cta{display:inline-flex;align-items:center;gap:.5rem;font-size:.66rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#16120A;background:var(--grad);padding:.68rem 1.2rem;border-radius:4px;transition:transform .2s,box-shadow .3s;box-shadow:0 10px 26px -10px rgba(232,163,61,.55)}
+.nudge-cta:hover{transform:translateY(-1px);box-shadow:0 14px 32px -10px rgba(232,163,61,.7)}
+@media(max-width:768px){#nudge-popup{left:1.1rem;right:1.1rem;width:auto;bottom:max(1.4rem,env(safe-area-inset-bottom))}}
+
 /* ===== MODAL (Bahko demo) ===== */
 .modal-bg{position:fixed;inset:0;z-index:500;background:rgba(11,11,13,.72);backdrop-filter:blur(10px);display:grid;place-items:center;padding:1.2rem;opacity:0;visibility:hidden;transition:.35s}
 .modal-bg.open{opacity:1;visibility:visible}
@@ -501,6 +511,15 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 <!-- FLYTANDE OFFERT-KNAPP -->
 <button id="float-offert" onclick="openModal()">Begär offert</button>
 
+<!-- NUDGE-POPUP: bokning/tjänster, tidsstyrd (10s / +90s / +60s, max 3x — se JS) -->
+<div id="nudge-popup">
+  <button class="nudge-close" onclick="dismissNudge()" aria-label="Stäng">✕</button>
+  <p class="nudge-text">Redo att se vad vi kan göra åt ditt hus? Boka ett kostnadsfritt platsbesök — ingen bindning.</p>
+  <button class="nudge-cta" onclick="openModal();dismissNudge()">
+    <span>Boka platsbesök →</span>
+  </button>
+</div>
+
 <footer>
   <span>GRANIT Bygg &amp; Entreprenad · Demo</span>
   <span><a href="tel:+46701234567">070-123 45 67</a> · <a href="mailto:info@granitbygg.se">info@granitbygg.se</a></span>
@@ -684,10 +703,44 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 })();
 
 // ===== MODAL =====
-function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function openModal(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';cancelNudges();}
 function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// ===== NUDGE-POPUP (bokning/tjänster) — visas 3 ggr: 10s, +90s, +60s efter varandra =====
+// Om besökaren redan bokat (öppnat modalen) eller stängt en nudge manuellt, visa inte fler.
+(function(){
+  const NUDGE_DELAYS=[10000,90000,60000]; // 1:a efter 10s, 2:a 90s senare, 3:e 60s efter det
+  const AUTO_HIDE=8000; // döljs själv om ingen interagerar
+  let cancelled=false, autoHideTimer=null, timers=[];
+  const popup=document.getElementById('nudge-popup');
+
+  window.dismissNudge=function(){
+    popup.classList.remove('visible');
+    clearTimeout(autoHideTimer);
+  };
+  window.cancelNudges=function(){
+    cancelled=true;
+    dismissNudge();
+    timers.forEach(clearTimeout);
+  };
+
+  function showNudge(){
+    if(cancelled||document.getElementById('modal').classList.contains('open'))return;
+    popup.classList.add('visible');
+    autoHideTimer=setTimeout(()=>popup.classList.remove('visible'),AUTO_HIDE);
+  }
+  function scheduleNudge(i,elapsed){
+    if(i>=NUDGE_DELAYS.length)return;
+    const t=setTimeout(()=>{
+      showNudge();
+      scheduleNudge(i+1,elapsed+NUDGE_DELAYS[i]);
+    },NUDGE_DELAYS[i]);
+    timers.push(t);
+  }
+  scheduleNudge(0,0);
+})();
 
 // ===== MOBILNAV =====
 function toggleMobileNav(){
