@@ -19,7 +19,7 @@ snygg trailer.
 `bahkobyra/cloud/[kund]/index.html` och byt varumärke (namn, palett om kunden har egen,
 copy, klipp, kontaktuppgifter).
 
-**OBS: Kostar Higgsfield-credits (~150/demo om inget kan återanvändas). Kör aldrig utan
+**OBS: Kostar Higgsfield-credits (~46/demo med seedance_2_0_mini om inget kan återanvändas). Kör aldrig utan
 explicit beställning.**
 
 ## Vem gör vad (håll kostnad och kvalitet i balans)
@@ -127,12 +127,12 @@ Hittar du inget användbart → gå vidare till Steg 2 och generera nytt.
 ### 2. Budget-preflight (OBLIGATORISKT före all ny generering)
 
 ```
-balance → kräver ~160 credits fritt. Under 200: fråga användaren innan du kör.
-generate_video med get_cost:true → verifiera klippkostnad (8s 1080p Seedance ≈ 72 credits/klipp)
+balance → kräver ~50 credits fritt. Under 80: fråga användaren innan du kör.
+generate_video med get_cost:true → verifiera klippkostnad (8s 720p seedance_2_0_mini ≈ 20 credits/klipp)
 ```
 
 Budget per demo (om inget återanvänds): 3 bilder (nano_banana_pro, ~2 credits/st) + 2
-videoklipp à 8s 1080p (~72/st) ≈ **150 credits**. Generera ALDRIG ett tredje
+videoklipp à 8s 720p seedance_2_0_mini (~20/st) ≈ **46 credits**. Generera ALDRIG ett tredje
 "etablerings-klipp" — hero-loopen börjar ändå på det ursprungliga läget.
 
 ### 3. Generera keyframes (nano_banana_pro, 16:9)
@@ -150,10 +150,16 @@ Konsistensen bygger på referenskedjan — generera i exakt denna ordning:
    detalj- eller inifrån-vy av samma scen (interiör, kranlyft i närbild, ren infart från
    markhöjd), samma ljussättning, exteriörens palett ekad i detaljer.
 
-### 4. Generera klippen (seedance_2_0 — stödjer start_image + end_image i 1080p)
+### 4. Generera klippen (seedance_2_0_mini — ALLTID mini, ALLTID utan ljud)
+
+**Standardbeslut 2026-07-19 (spar credits):** använd `seedance_2_0_mini` med `generate_audio:false`
+för BÅDA klippen — 20 credits/klipp i stället för 72 för stora seedance_2_0, och demovideorna
+spelas ändå alltid muted. Mini stödjer start_image + end_image men max 720p — det räcker gott
+som bakgrundsvideo bakom text. Uppgradera till seedance_2_0 1080p ENDAST om kunden uttryckligen
+klagar på videokvaliteten.
 
 ```
-Klipp 1 "Förvandlingen" (hero-loopen): duration 8, aspect_ratio 16:9, resolution 1080p, generate_audio false
+Klipp 1 "Förvandlingen" (hero-loopen): duration 8, aspect_ratio 16:9, resolution 720p, generate_audio false
   medias: [{value:A, role:'start_image'}, {value:B, role:'end_image'}]
   Prompt: "Cinematic time-lapse of [nischanpassad förvandling], locked-off camera, no camera movement…
   The first frame matches the start image exactly and the final frame matches the end image exactly."
