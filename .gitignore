@@ -7,3 +7,18 @@ __pycache__/
 data/leads.json
 data/leads_enriched.json
 node_modules/
+
+# Generella/personliga skills synkade in från globala ~/.claude/skills/ —
+# inte specifika för Bahko Byrå, ska inte i repo-historiken.
+.claude/skills/beast-of-ages-script/
+.claude/skills/docx/
+.claude/skills/goal/
+.claude/skills/morning/
+.claude/skills/pdf/
+.claude/skills/pptx/
+.claude/skills/roast/
+.claude/skills/session-handoff/
+.claude/skills/session-start-hook/
+.claude/skills/skill-creator/
+.claude/skills/storm/
+.claude/skills/xlsx/
