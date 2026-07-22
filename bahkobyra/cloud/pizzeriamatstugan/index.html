@@ -77,7 +77,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 @keyframes shimmer{to{background-position:220% center}}
 .hero-tagline{font-size:clamp(.74rem,1.1vw,.95rem);font-weight:400;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;opacity:0}
 .hero-book-btn{font-size:.66rem;padding:.85rem 2rem}
-.hero-scroll-indicator{position:absolute;bottom:1.3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.8rem;opacity:0;z-index:2}
+.hero-scroll-indicator{position:absolute;bottom:max(1.6rem,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;opacity:0;z-index:2}
 .hero-scroll-indicator span{font-size:.58rem;letter-spacing:.32em;color:var(--dim);text-transform:uppercase}
 .scroll-arrow{width:1px;height:42px;position:relative;overflow:hidden}
 .scroll-arrow::after{content:'';position:absolute;top:-100%;left:0;width:1px;height:100%;background:var(--amber);animation:scrollDown 2.1s var(--ease) infinite}
@@ -365,7 +365,6 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
       <span>Boka bord</span>
       <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </button>
-    <div class="scroll-arrow"></div>
   </div>
 </section>
 
