@@ -20,7 +20,8 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#0B0B0D; --bg2:#121215; --card:#17171B;
-  --text:#F2EFE9; --muted:rgba(242,239,233,.62); --dim:rgba(242,239,233,.4);
+  --text:#F2EFE9; --muted:rgba(242,239,233,.8); --dim:rgba(242,239,233,.58);
+  --scrim:8,10,7;
   --amber:#6BBF59; --amber-lt:#9FE08A; --amber-dk:#3F8F3D;
   --line:rgba(242,239,233,.1);
   --grad:linear-gradient(100deg,var(--amber-lt) 0%,var(--amber) 45%,#2E7D32 100%);
@@ -32,7 +33,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 ::selection{background:var(--amber);color:#0C1408}
-.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+/* Används över videolagret — måste vara ljus, och text-shadow nollas
+   (lyser annars igenom den transparenta fyllningen och blir bokstäverna). */
+.grad-text{background:linear-gradient(100deg,#F4FEEE 0%,#CFF7BE 42%,#9CE589 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 3px 12px rgba(0,0,0,.6))}
 
 /* ===== LOADER ===== */
 #loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease}
@@ -73,15 +76,22 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .hero-standalone{position:relative;width:100%;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;z-index:10}
 .hero-vid-wrap{position:absolute;inset:0}
 .hero-vid-wrap video{width:100%;height:100%;object-fit:cover}
+/* Scrim: mörk halo exakt där texten står + botten- och toppgradient.
+   Måste tåla att videon är ljus och grön, annars försvinner rubriken. */
 .hero-vid-wrap::after{content:'';position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(11,11,13,.62) 0%,rgba(11,11,13,.25) 38%,rgba(11,11,13,.35) 68%,rgba(11,11,13,.92) 100%)}
+  radial-gradient(ellipse 95% 62% at 50% 48%,rgba(var(--scrim),.82) 0%,rgba(var(--scrim),.62) 42%,rgba(var(--scrim),.2) 72%,transparent 88%),
+  linear-gradient(180deg,rgba(var(--scrim),.8) 0%,rgba(var(--scrim),.42) 26%,rgba(var(--scrim),.5) 62%,rgba(var(--scrim),.96) 100%)}
 .hero-content{position:relative;z-index:2;text-align:center;padding:clamp(5rem,11vh,7rem) 5vw clamp(7rem,15vh,10rem)}
-.hero-label{display:block;font-size:.66rem;font-weight:600;letter-spacing:.4em;color:var(--amber-lt);text-transform:uppercase;margin-bottom:1.8rem;opacity:0}
-.hero-heading{font-family:var(--disp);font-size:clamp(2.5rem,9.5vw,8rem);font-weight:900;line-height:.96;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:1.5rem;text-shadow:0 8px 50px rgba(0,0,0,.5)}
+.hero-label{display:block;font-size:.7rem;font-weight:700;letter-spacing:.36em;color:#C8F5B8;text-transform:uppercase;margin-bottom:1.8rem;opacity:0;text-shadow:0 2px 14px rgba(0,0,0,.85)}
+.hero-heading{font-family:var(--disp);font-size:clamp(2.5rem,9.5vw,8rem);font-weight:900;line-height:.96;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:1.5rem;
+  text-shadow:0 2px 10px rgba(0,0,0,.6),0 10px 46px rgba(0,0,0,.75)}
 .hero-heading .word{display:inline-block;opacity:0;transform:translateY(26px)}
-.hero-heading .accent{background:var(--grad);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 7s linear infinite}
+/* Ljus accent: grön gradient mot grönt lövverk blir oläslig — nästan vit-grön krävs */
+/* text-shadow MÅSTE nollas här: med transparent fill lyser skuggan igenom
+   och blir själva bokstäverna. Djup ges av drop-shadow i stället. */
+.hero-heading .accent{background:linear-gradient(100deg,#F4FEEE 0%,#CFF7BE 42%,#9CE589 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;animation:shimmer 7s linear infinite;filter:drop-shadow(0 3px 10px rgba(0,0,0,.55)) drop-shadow(0 10px 34px rgba(0,0,0,.6))}
 @keyframes shimmer{to{background-position:220% center}}
-.hero-tagline{font-size:clamp(.74rem,1.1vw,.95rem);font-weight:400;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;opacity:0}
+.hero-tagline{font-size:clamp(.8rem,1.15vw,1rem);font-weight:500;letter-spacing:.15em;color:rgba(242,239,233,.92);text-transform:uppercase;opacity:0;text-shadow:0 2px 16px rgba(0,0,0,.9)}
 .hero-scroll-indicator{position:absolute;bottom:max(1.6rem,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.8rem;opacity:0;z-index:2}
 .hero-book-btn{font-size:.66rem;padding:.85rem 2rem}
 @media(min-width:769px) and (max-height:880px){
@@ -91,10 +101,10 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
 /* ===== FAST VIDEOLAGER ===== */
 .bgvid-wrap{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;clip-path:circle(0% at 50% 50%);will-change:clip-path}
-.bgvid-wrap video{width:100%;height:100%;object-fit:cover;filter:brightness(.62)}
+.bgvid-wrap video{width:100%;height:100%;object-fit:cover;filter:brightness(.44) saturate(.88)}
 .bgvid-wrap::after{content:'';position:absolute;inset:0;background:
-  radial-gradient(120% 90% at 50% 50%,transparent 0%,rgba(11,11,13,.66) 100%),
-  linear-gradient(180deg,rgba(11,11,13,.45) 0%,transparent 30%,transparent 70%,rgba(11,11,13,.5) 100%)}
+  radial-gradient(120% 90% at 50% 50%,transparent 0%,rgba(var(--scrim),.72) 100%),
+  linear-gradient(180deg,rgba(var(--scrim),.5) 0%,transparent 30%,transparent 70%,rgba(var(--scrim),.55) 100%)}
 
 #dark-overlay{position:fixed;inset:0;background:var(--bg);opacity:0;z-index:3;pointer-events:none;will-change:opacity}
 
@@ -105,6 +115,16 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .align-left{padding-left:6vw;padding-right:50vw}
 .align-right{padding-left:50vw;padding-right:6vw}
 .align-left .section-inner,.align-right .section-inner{max-width:42vw}
+/* Mjuk halo bakom textblocken så de aldrig konkurrerar med videon bakom */
+.scroll-section .section-inner,.projects-head{position:relative}
+.scroll-section .section-inner::before,.projects-head::before{
+  content:'';position:absolute;inset:-3rem -3.5rem;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse 76% 68% at 32% 50%,rgba(var(--scrim),.94) 0%,rgba(var(--scrim),.78) 44%,rgba(var(--scrim),.3) 70%,transparent 84%)}
+.align-right .section-inner::before{background:radial-gradient(ellipse 76% 68% at 68% 50%,rgba(var(--scrim),.94) 0%,rgba(var(--scrim),.78) 44%,rgba(var(--scrim),.3) 70%,transparent 84%)}
+.projects-head::before{background:radial-gradient(ellipse 72% 74% at 50% 50%,rgba(var(--scrim),.92) 0%,rgba(var(--scrim),.72) 46%,rgba(var(--scrim),.26) 72%,transparent 86%)}
+/* stats-grid är ett grid — pseudo-element skulle bli ett extra grid-item, så scrimen läggs som bakgrund */
+.stats-grid{padding:2.6rem 3rem;border-radius:14px;
+  background:radial-gradient(ellipse 74% 78% at 50% 50%,rgba(var(--scrim),.9) 0%,rgba(var(--scrim),.7) 48%,rgba(var(--scrim),.22) 74%,transparent 88%)}
 .section-label{display:block;font-size:.66rem;font-weight:600;letter-spacing:.4em;color:var(--amber-lt);text-transform:uppercase;margin-bottom:1.2rem}
 .section-heading{font-family:var(--disp);font-size:clamp(1.9rem,4.4vw,4rem);font-weight:900;line-height:1.05;text-transform:uppercase;letter-spacing:-.015em;margin-bottom:1.2rem;text-shadow:0 4px 30px rgba(0,0,0,.5)}
 .section-body{font-size:clamp(.86rem,1vw,1rem);font-weight:400;line-height:1.8;color:var(--muted);max-width:480px}
@@ -330,12 +350,12 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
       src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_223053_08178cf6-f2f6-474d-9494-92ed6f5686f0.mp4"></video>
   </div>
   <div class="hero-content">
-    <span class="hero-label">Trädgårdsanläggning &amp; skötsel · Stockholm</span>
+    <span class="hero-label">Trädgårdsanläggning &amp; skötsel · Hela Storstockholm</span>
     <h1 class="hero-heading">
-      <span class="word">Trädgården ni</span><br>
-      <span class="word accent">alltid velat ha.</span>
+      <span class="word">Hela trädgården.</span><br>
+      <span class="word accent">Ett fast pris.</span>
     </h1>
-    <p class="hero-tagline">Fast pris innan start · Bortforsling ingår · En kontakt hela vägen</p>
+    <p class="hero-tagline">Material, jord och bortforsling ingår · Svar inom 24 timmar</p>
   </div>
   <div class="hero-scroll-indicator">
     <button class="cta-button hero-book-btn" onclick="openOffert()">
@@ -360,8 +380,8 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
     <div class="section-inner">
       <span class="section-label">001 / Så jobbar vi</span>
       <h2 class="section-heading">Ni ska slippa<br>tre olika firmor.</h2>
-      <p class="section-body">De flesta trädgårdsprojekt stannar upp på samma ställe: en firma gräver, en annan levererar jord, en tredje forslar bort skräpet. Vi tar hela kedjan själva, från beställning av material till att sista lasset är borta. Ni har en kontakt, ett pris, och vet exakt vad som händer varje dag.</p>
-      <p class="section-note">"Priset ni får är priset ni betalar."</p>
+      <p class="section-body">En gräver. En annan kör fram jorden. En tredje skulle hämta det gamla men dyker aldrig upp. Så ser de flesta trädgårdsprojekt ut, och det är i glappen mellan dem som både veckorna och pengarna försvinner.<br><br>Vi tar hela kedjan själva: material, jord, arbete och bortforsling. Ni får priset innan spaden går i marken och vet varje dag vem som ansvarar för vad.</p>
+      <p class="section-note">"Priset ni får innan vi börjar är priset ni betalar."</p>
     </div>
   </section>
 
@@ -404,7 +424,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   <section class="scroll-section align-right" data-enter="49" data-leave="63" data-animation="slide-right">
     <div class="section-inner">
       <span class="section-label">003 / Tjänster</span>
-      <h2 class="section-heading">Hela trädgården.<br>Samma firma.</h2>
+      <h2 class="section-heading">Från spade<br>till sista lasset.</h2>
       <div class="services-list">
         <div class="service-item">
           <span class="service-name">Trädgårdsanläggning</span>
