@@ -79,10 +79,13 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 /* Scrim: bara ett svagt topp-band (för headern) och ett kraftigt bottenband
    där texten står. Mitten lämnas fri så förvandlingen i videon syns. */
 .hero-vid-wrap::after{content:'';position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(var(--scrim),.6) 0%,rgba(var(--scrim),.14) 16%,transparent 31%,rgba(var(--scrim),.28) 47%,rgba(var(--scrim),.64) 65%,rgba(var(--scrim),.89) 82%,rgba(var(--scrim),.98) 100%)}
+  linear-gradient(180deg,rgba(var(--scrim),.66) 0%,rgba(var(--scrim),.4) 11%,rgba(var(--scrim),.14) 23%,transparent 34%,rgba(var(--scrim),.28) 48%,rgba(var(--scrim),.64) 65%,rgba(var(--scrim),.89) 82%,rgba(var(--scrim),.98) 100%)}
 .hero-content{position:relative;z-index:2;text-align:left;width:100%;max-width:1240px;margin:0 auto;
   padding:0 clamp(1.4rem,6vw,4rem) clamp(3.4rem,8vh,5.5rem)}
-.hero-label{display:block;font-size:.66rem;font-weight:700;letter-spacing:.32em;color:#DFFBD1;text-transform:uppercase;margin-bottom:1.1rem;opacity:0;
+/* Ligger i toppen av heron, i toppbandets mörka del under headern */
+.hero-label{position:absolute;top:clamp(5.4rem,11vh,7.4rem);left:0;right:0;z-index:2;
+  text-align:center;font-size:.66rem;font-weight:700;letter-spacing:.32em;color:#DFFBD1;text-transform:uppercase;opacity:0;
+  padding:0 clamp(1.4rem,6vw,4rem);
   text-shadow:0 1px 3px rgba(0,0,0,.95),0 2px 16px rgba(0,0,0,.9)}
 /* Medvetet mycket mindre än GRANIT-mallen: videon är säljargumentet här,
    rubriken ska ligga i underkant och inte täcka förvandlingen. */
@@ -354,8 +357,8 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
       poster="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_222739_95c29488-7c11-4354-a052-fe1e59d8f03e.png"
       src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_223053_08178cf6-f2f6-474d-9494-92ed6f5686f0.mp4"></video>
   </div>
+  <span class="hero-label">Trädgårdsanläggning &amp; skötsel · Hela Storstockholm</span>
   <div class="hero-content">
-    <span class="hero-label">Trädgårdsanläggning &amp; skötsel · Hela Storstockholm</span>
     <h1 class="hero-heading">
       <span class="word">Hela trädgården.</span><br>
       <span class="word accent">Ett fast pris.</span>
