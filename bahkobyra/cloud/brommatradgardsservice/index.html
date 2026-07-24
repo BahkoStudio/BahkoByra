@@ -73,17 +73,20 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .mobile-nav .mn-tel{font-size:1.1rem;color:var(--amber-lt);letter-spacing:.14em}
 
 /* ===== HERO ===== */
-.hero-standalone{position:relative;width:100%;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;z-index:10}
+.hero-standalone{position:relative;width:100%;height:100svh;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;z-index:10}
 .hero-vid-wrap{position:absolute;inset:0}
 .hero-vid-wrap video{width:100%;height:100%;object-fit:cover}
-/* Scrim: mörk halo exakt där texten står + botten- och toppgradient.
-   Måste tåla att videon är ljus och grön, annars försvinner rubriken. */
+/* Scrim: bara ett svagt topp-band (för headern) och ett kraftigt bottenband
+   där texten står. Mitten lämnas fri så förvandlingen i videon syns. */
 .hero-vid-wrap::after{content:'';position:absolute;inset:0;background:
-  radial-gradient(ellipse 95% 62% at 50% 48%,rgba(var(--scrim),.82) 0%,rgba(var(--scrim),.62) 42%,rgba(var(--scrim),.2) 72%,transparent 88%),
-  linear-gradient(180deg,rgba(var(--scrim),.8) 0%,rgba(var(--scrim),.42) 26%,rgba(var(--scrim),.5) 62%,rgba(var(--scrim),.96) 100%)}
-.hero-content{position:relative;z-index:2;text-align:center;padding:clamp(5rem,11vh,7rem) 5vw clamp(7rem,15vh,10rem)}
-.hero-label{display:block;font-size:.7rem;font-weight:700;letter-spacing:.36em;color:#C8F5B8;text-transform:uppercase;margin-bottom:1.8rem;opacity:0;text-shadow:0 2px 14px rgba(0,0,0,.85)}
-.hero-heading{font-family:var(--disp);font-size:clamp(2.5rem,9.5vw,8rem);font-weight:900;line-height:.96;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:1.5rem;
+  linear-gradient(180deg,rgba(var(--scrim),.6) 0%,rgba(var(--scrim),.14) 16%,transparent 31%,rgba(var(--scrim),.28) 47%,rgba(var(--scrim),.64) 65%,rgba(var(--scrim),.89) 82%,rgba(var(--scrim),.98) 100%)}
+.hero-content{position:relative;z-index:2;text-align:left;width:100%;max-width:1240px;margin:0 auto;
+  padding:0 clamp(1.4rem,6vw,4rem) clamp(3.4rem,8vh,5.5rem)}
+.hero-label{display:block;font-size:.66rem;font-weight:700;letter-spacing:.32em;color:#DFFBD1;text-transform:uppercase;margin-bottom:1.1rem;opacity:0;
+  text-shadow:0 1px 3px rgba(0,0,0,.95),0 2px 16px rgba(0,0,0,.9)}
+/* Medvetet mycket mindre än GRANIT-mallen: videon är säljargumentet här,
+   rubriken ska ligga i underkant och inte täcka förvandlingen. */
+.hero-heading{font-family:var(--disp);font-size:clamp(1.9rem,4.6vw,3.9rem);font-weight:900;line-height:1.02;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:1rem;max-width:15ch;
   text-shadow:0 2px 10px rgba(0,0,0,.6),0 10px 46px rgba(0,0,0,.75)}
 .hero-heading .word{display:inline-block;opacity:0;transform:translateY(26px)}
 /* Ljus accent: grön gradient mot grönt lövverk blir oläslig — nästan vit-grön krävs */
@@ -92,11 +95,12 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .hero-heading .accent{background:linear-gradient(100deg,#F4FEEE 0%,#CFF7BE 42%,#9CE589 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;animation:shimmer 7s linear infinite;filter:drop-shadow(0 3px 10px rgba(0,0,0,.55)) drop-shadow(0 10px 34px rgba(0,0,0,.6))}
 @keyframes shimmer{to{background-position:220% center}}
 .hero-tagline{font-size:clamp(.8rem,1.15vw,1rem);font-weight:500;letter-spacing:.15em;color:rgba(242,239,233,.92);text-transform:uppercase;opacity:0;text-shadow:0 2px 16px rgba(0,0,0,.9)}
-.hero-scroll-indicator{position:absolute;bottom:max(1.6rem,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.8rem;opacity:0;z-index:2}
-.hero-book-btn{font-size:.66rem;padding:.85rem 2rem}
-@media(min-width:769px) and (max-height:880px){
-  .hero-heading{font-size:clamp(2.4rem,7vw,5.6rem);margin-bottom:1.1rem}
-  .hero-label{margin-bottom:1.1rem}
+.hero-scroll-indicator{margin-top:1.9rem;opacity:0}
+.hero-book-btn{font-size:.66rem;padding:.9rem 2.1rem}
+@media(min-width:769px) and (max-height:760px){
+  .hero-heading{font-size:clamp(1.8rem,3.6vw,2.9rem);margin-bottom:.8rem}
+  .hero-label{margin-bottom:.8rem}
+  .hero-scroll-indicator{margin-top:1.3rem}
 }
 
 /* ===== FAST VIDEOLAGER ===== */
@@ -277,7 +281,8 @@ footer a{color:var(--amber-lt)}
   .work-grid{grid-template-columns:1fr;gap:.9rem}
   .wcard{aspect-ratio:4/2.8}
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:1.8rem}
-  .hero-heading{font-size:clamp(2.2rem,10vw,4.4rem)}
+  .hero-heading{font-size:clamp(1.9rem,7.6vw,2.9rem);max-width:100%}
+  .hero-content{padding-bottom:clamp(2.6rem,7vh,4rem)}
   .cta-button{padding:.95rem 2rem;width:100%;justify-content:center}
   .hero-book-btn{width:auto;white-space:nowrap;padding:.9rem 1.8rem}
   #float-offert{bottom:max(1.4rem,env(safe-area-inset-bottom));right:1.4rem;font-size:.58rem;padding:.72rem 1.3rem}
@@ -356,12 +361,12 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
       <span class="word accent">Ett fast pris.</span>
     </h1>
     <p class="hero-tagline">Material, jord och bortforsling ingår · Svar inom 24 timmar</p>
-  </div>
-  <div class="hero-scroll-indicator">
-    <button class="cta-button hero-book-btn" onclick="openOffert()">
-      <span>Begär offert</span>
-      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </button>
+    <div class="hero-scroll-indicator">
+      <button class="cta-button hero-book-btn" onclick="openOffert()">
+        <span>Begär offert</span>
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
   </div>
 </section>
 
