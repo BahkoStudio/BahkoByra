@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 112" role="img" aria-label="Bromma Trädgårdsservice">
+  <title>Bromma Trädgårdsservice</title>
+  <defs>
+    <linearGradient id="leaf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9FE08A"/>
+      <stop offset="55%" stop-color="#6BBF59"/>
+      <stop offset="100%" stop-color="#2E7D32"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Trädmärke -->
+  <g transform="translate(48,56)">
+    <circle r="45" fill="none" stroke="url(#leaf)" stroke-width="2.6" opacity=".5"/>
+    <path d="M0,-30 C14,-30 25,-19 25,-6 C25,5 15,13 0,13 C-15,13 -25,5 -25,-6 C-25,-19 -14,-30 0,-30 Z"
+          fill="url(#leaf)"/>
+    <path d="M0,-26 L0,12 M0,-14 L-11,-5 M0,-14 L11,-5 M0,-1 L-9,7 M0,-1 L9,7"
+          stroke="#0B0B0D" stroke-width="2" stroke-linecap="round" opacity=".38" fill="none"/>
+    <path d="M0,13 L0,30" stroke="url(#leaf)" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M-16,32 L16,32" stroke="url(#leaf)" stroke-width="2.6" stroke-linecap="round" opacity=".7"/>
+  </g>
+
+  <!-- Ordmärke -->
+  <text x="112" y="54" font-family="Archivo, system-ui, sans-serif" font-weight="900"
+        font-size="45" letter-spacing="0.5" fill="#F2EFE9">BROMMA</text>
+  <text x="114" y="87" font-family="Archivo, system-ui, sans-serif" font-weight="600"
+        font-size="18.5" letter-spacing="5.1" fill="#6BBF59">TRÄDGÅRDSSERVICE</text>
+</svg>
