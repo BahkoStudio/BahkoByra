@@ -25,23 +25,6 @@
       "src": "/cloud/elara-klinik-demo-v2.html",
       "dest": "/cloud/index.html"
     },
-    {
-      "src": "/(.*)",
-      "has": [{ "type": "host", "value": "www.brommatradgardsservice.se" }],
-      "status": 308,
-      "headers": { "Location": "https://brommatradgardsservice.se/$1" }
-    },
-    {
-      "src": "/",
-      "has": [{ "type": "host", "value": "brommatradgardsservice.se" }],
-      "dest": "/cloud/brommatradgardsservice/index.html"
-    },
-    {
-      "src": "/(.*)",
-      "has": [{ "type": "host", "value": "brommatradgardsservice.se" }],
-      "dest": "/cloud/brommatradgardsservice/$1"
-    },
-
     { "handle": "filesystem" }
   ]
 }
