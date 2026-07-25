@@ -28,7 +28,10 @@
   --sans:'Archivo',system-ui,sans-serif; --disp:'Archivo',system-ui,sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
 }
-html{background:var(--bg);scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip}
+/* scroll-behavior MÅSTE vara auto: Lenis styr scrollen programmatiskt och
+   CSS-smoothing ovanpå ger dubbel interpolering = hoppig scroll.
+   Ankarlänkar sköts i stället av lenis.scrollTo() längre ner. */
+html{background:var(--bg);scroll-behavior:auto;overflow-x:hidden;overflow-x:clip}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;overflow-x:clip;-webkit-font-smoothing:antialiased;line-height:1.6;touch-action:pan-y pinch-zoom}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
@@ -271,6 +274,9 @@ footer a{color:var(--amber-lt)}
 .of-actions .cta-button{width:100%;justify-content:center}
 .of-tel{display:flex;align-items:center;justify-content:center;gap:.6rem;border:1px solid rgba(107,191,89,.35);border-radius:4px;padding:1rem;font-weight:700;letter-spacing:.12em;color:var(--amber-lt);font-size:.9rem}
 .of-tel:hover{background:rgba(107,191,89,.08)}
+/* sms: fungerar bara på mobil, döljs därför på desktop */
+.of-sms{display:none}
+@media(max-width:768px){.of-sms{display:flex}}
 
 /* ===== MOBIL ===== */
 @media(max-width:768px){
@@ -782,6 +788,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
           <span>Öppna i e-post</span>
           <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
+        <a class="of-tel of-sms" id="of-sms" href="#">Skicka som SMS</a>
         <a class="of-tel" href="tel:+46707666514">Eller ring 070-766 65 14</a>
       </div>
     </div>
@@ -870,6 +877,16 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
     lenis.on('scroll',ScrollTrigger.update);
     gsap.ticker.add(t=>lenis.raf(t*1000));
     gsap.ticker.lagSmoothing(0);
+    window.__lenis=lenis;
+    // Ankarlänkar via Lenis, annars krockar webbläsarens egna hopp med Lenis-loopen
+    document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const t=document.querySelector(a.getAttribute('href'));
+        if(!t)return;
+        e.preventDefault();
+        lenis.scrollTo(t,{offset:-70,duration:1.1});
+      });
+    });
   }
 
   // ===== LOADER =====
@@ -993,13 +1010,18 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 })();
 
 // ===== OFFERTMODAL =====
+// Lenis måste pausas explicit — body{overflow:hidden} stoppar inte den
+function lockScroll(on){
+  document.body.style.overflow=on?'hidden':'';
+  if(window.__lenis){on?window.__lenis.stop():window.__lenis.start();}
+}
 function openOffert(){
   document.getElementById('offert-modal').classList.add('open');
-  document.body.style.overflow='hidden';
+  lockScroll(true);
 }
 function closeOffert(){
   document.getElementById('offert-modal').classList.remove('open');
-  document.body.style.overflow='';
+  lockScroll(false);
   document.getElementById('of-step1').style.display='';
   document.getElementById('of-summary').classList.remove('show');
 }
@@ -1036,6 +1058,9 @@ function submitOffert(e){
     '?subject='+encodeURIComponent('Offertförfrågan: '+tjanst+' ('+ort+')')+
     '&body='+encodeURIComponent(body);
 
+  const sms='Offertförfrågan: '+tjanst+'. '+namn+', '+tel+', '+ort+'.'+(info?(' '+info):'');
+  document.getElementById('of-sms').href='sms:+46707666514?&body='+encodeURIComponent(sms);
+
   document.getElementById('of-step1').style.display='none';
   document.getElementById('of-summary').classList.add('show');
   return false;
@@ -1045,12 +1070,12 @@ function submitOffert(e){
 function toggleMobileNav(){
   const nav=document.getElementById('mobile-nav'),btn=document.getElementById('hamburger');
   nav.classList.toggle('open');btn.classList.toggle('open');
-  document.body.style.overflow=nav.classList.contains('open')?'hidden':'';
+  lockScroll(nav.classList.contains('open'));
 }
 function closeMobileNav(){
   document.getElementById('mobile-nav').classList.remove('open');
   document.getElementById('hamburger').classList.remove('open');
-  document.body.style.overflow='';
+  lockScroll(false);
 }
 </script>
 </body>
