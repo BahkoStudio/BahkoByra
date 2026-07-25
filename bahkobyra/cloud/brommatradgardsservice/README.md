@@ -46,8 +46,7 @@ DNS ligger hos **Loopia**. Vid ändring: rör bara A-post under `@` och CNAME un
 ## Att göra
 
 - [ ] Byt ut AI-genererade bilder mot kundens egna. Galleriet heter "Så kan det se ut" tills dess, det får inte påstå att bilderna är utförda jobb
-- [ ] Lägg till snöröjning och halkbekämpning som tjänst, finns på kundens gamla sajt men saknas här
 - [ ] Uppdatera företagsnamn och organisationsnummer när enskild firma blir AB (september 2026)
-- [ ] Komplettera schema med `@id`, `sameAs` och `openingHoursSpecification` efter domänflytten
+- [ ] Komplettera schema med `openingHoursSpecification` (kräver kundens faktiska öppettider), `geo` (kräver koordinater) och `identifier` (orgnummer, kommer med AB-bytet)
 
 Optimeringsordning och evidensgrader: se `.claude/skills/optimering/` i huvudrepot.
