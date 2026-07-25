@@ -221,6 +221,22 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .pris-tel{display:block;margin-top:.9rem;font-size:.8rem;letter-spacing:.06em;color:var(--amber-lt);font-weight:600}
 .pris-tel:hover{text-decoration:underline}
 
+/* FAQ */
+.faq-list{margin-top:2rem;border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item summary{list-style:none;cursor:pointer;padding:1.35rem 2.6rem 1.35rem 0;position:relative;
+  font-family:var(--disp);font-weight:700;font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.4;transition:color .25s}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--amber-lt)}
+.faq-item summary::after{content:'';position:absolute;right:.4rem;top:50%;width:11px;height:11px;
+  border-right:2px solid var(--amber);border-bottom:2px solid var(--amber);
+  transform:translateY(-70%) rotate(45deg);transition:transform .3s var(--ease)}
+.faq-item[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq-item[open] summary{color:var(--amber-lt)}
+.faq-a{padding:0 2.6rem 1.5rem 0;max-width:70ch}
+.faq-a p{font-size:clamp(.88rem,1vw,1rem);line-height:1.85;color:var(--muted)}
+.faq-a p + p{margin-top:.85rem}
+
 /* Omdömen */
 .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.2rem}
 .rev-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.7rem 1.5rem;display:flex;flex-direction:column}
@@ -351,6 +367,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 <nav class="mobile-nav" id="mobile-nav">
   <a href="#tjanster" onclick="closeMobileNav()">Tjänster</a>
   <a href="#pris" onclick="closeMobileNav()">Pris</a>
+  <a href="#faq" onclick="closeMobileNav()">Frågor</a>
   <a href="#omdomen" onclick="closeMobileNav()">Omdömen</a>
   <a href="#om-oss" onclick="closeMobileNav()">Om oss</a>
   <a href="#omraden" onclick="closeMobileNav()">Områden</a>
@@ -365,6 +382,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   <nav class="header-nav">
     <a href="#tjanster">Tjänster</a>
     <a href="#pris">Pris</a>
+    <a href="#faq">Frågor</a>
     <a href="#omdomen">Omdömen</a>
     <a href="#om-oss">Om oss</a>
     <a href="#kontakt">Kontakt</a>
@@ -765,6 +783,65 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
     </div>
   </section>
 
+  <!-- VANLIGA FRÅGOR -->
+  <section class="ss-section" id="faq">
+    <div class="ss-inner">
+      <span class="ss-label">Vanliga frågor</span>
+      <h2 class="ss-h2">Det ni brukar undra</h2>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Får jag RUT-avdrag på trädgårdsarbete?</summary>
+          <div class="faq-a">
+            <p>På skötsel, ja. Gräsklippning, häckklippning, ogräsrensning, krattning och beskärning ger rutavdrag på arbetskostnaden.</p>
+            <p>På nyanläggning, nej. Att anlägga en ny gräsmatta eller plantera nya växter ger inte rutavdrag enligt Skatteverket, och inte heller stenläggning, murar eller trädgårdsgångar.</p>
+            <p>En detalj många missar: ska en gammal häck bort och en ny in, så ger själva borttagningen rutavdrag även om planteringen inte gör det. Bortforslingen räknas dock inte in. Vi delar upp det på fakturan så ni får avdraget på den del som faktiskt berättigar till det.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Vad kostar det?</summary>
+          <div class="faq-a">
+            <p>Det beror helt på tomten. Två gräsmattor på 200 kvm kan skilja tiotusentals kronor beroende på markförhållanden, åtkomst och vad som ligger under jorden.</p>
+            <p>Därför gissar vi inte över telefon. Vi kommer ut, tittar och räknar. Det besöket är kostnadsfritt och ni binder er inte vid något. Priset ni får innan vi börjar är det ni betalar när vi är klara.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Ingår bortforsling av det gamla?</summary>
+          <div class="faq-a">
+            <p>Ja, alltid. Gammal häck, jordmassor, ris och trädgårdsavfall lastar och kör vi bort själva. Ni ska inte behöva boka en container eller köra till återvinningen efteråt.</p>
+            <p>Vi tar även bortforsling som fristående uppdrag om ni har röjt själva.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>När är bästa tiden att plantera häck?</summary>
+          <div class="faq-a">
+            <p>Vår och höst är bäst. Barrotade plantor sätts under vilperioden, alltså tidig vår innan knoppbrytning eller sen höst efter lövfällning. Krukodlade plantor går att sätta hela säsongen så länge de vattnas ordentligt.</p>
+            <p>Ska häcken stå klar till sommaren är det planeringen på vintern som avgör. Hör av er i god tid, då hinner vi beställa rätt plantor i rätt storlek.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Måste jag vara hemma när ni jobbar?</summary>
+          <div class="faq-a">
+            <p>Nej. Vi går igenom jobbet vid besöket, sedan sköter vi resten. Många av våra kunder är på jobbet när vi är där.</p>
+            <p>Behöver vi tillgång till vatten, el eller garage stämmer vi av det i förväg så ingen överraskning uppstår på plats.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Vilka områden kör ni till?</summary>
+          <div class="faq-a">
+            <p>Vi utgår från Bromma och tar jobb i hela Storstockholm. Vi har utfört arbeten i bland annat Täby, Lidingö, Ekerö, Nacka, Saltsjö-Boo och Rönninge.</p>
+            <p>Är ni osäkra på om vi kör till er, ring så säger vi rakt ut. Vi tackar hellre nej direkt än lovar något vi inte hinner.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- GALLERI -->
   <section class="ss-section" id="galleri">
     <div class="ss-inner">
@@ -906,6 +983,21 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Röjning och bortforsling"}}
     ]
   }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Får jag RUT-avdrag på trädgårdsarbete?","acceptedAnswer":{"@type":"Answer","text":"På skötsel, ja. Gräsklippning, häckklippning, ogräsrensning, krattning och beskärning ger rutavdrag på arbetskostnaden. På nyanläggning, nej. Att anlägga en ny gräsmatta eller plantera nya växter ger inte rutavdrag enligt Skatteverket, och inte heller stenläggning, murar eller trädgårdsgångar. Ska en gammal häck bort och en ny in ger själva borttagningen rutavdrag även om planteringen inte gör det. Bortforslingen räknas dock inte in."}},
+    {"@type":"Question","name":"Vad kostar det?","acceptedAnswer":{"@type":"Answer","text":"Det beror helt på tomten. Två gräsmattor på 200 kvm kan skilja tiotusentals kronor beroende på markförhållanden, åtkomst och vad som ligger under jorden. Därför gissar vi inte över telefon. Vi kommer ut, tittar och räknar. Det besöket är kostnadsfritt och ni binder er inte vid något. Priset ni får innan vi börjar är det ni betalar när vi är klara."}},
+    {"@type":"Question","name":"Ingår bortforsling av det gamla?","acceptedAnswer":{"@type":"Answer","text":"Ja, alltid. Gammal häck, jordmassor, ris och trädgårdsavfall lastar och kör vi bort själva. Vi tar även bortforsling som fristående uppdrag om ni har röjt själva."}},
+    {"@type":"Question","name":"När är bästa tiden att plantera häck?","acceptedAnswer":{"@type":"Answer","text":"Vår och höst är bäst. Barrotade plantor sätts under vilperioden, alltså tidig vår innan knoppbrytning eller sen höst efter lövfällning. Krukodlade plantor går att sätta hela säsongen så länge de vattnas ordentligt. Ska häcken stå klar till sommaren är det planeringen på vintern som avgör."}},
+    {"@type":"Question","name":"Måste jag vara hemma när ni jobbar?","acceptedAnswer":{"@type":"Answer","text":"Nej. Vi går igenom jobbet vid besöket, sedan sköter vi resten. Behöver vi tillgång till vatten, el eller garage stämmer vi av det i förväg."}},
+    {"@type":"Question","name":"Vilka områden kör ni till?","acceptedAnswer":{"@type":"Answer","text":"Vi utgår från Bromma och tar jobb i hela Storstockholm. Vi har utfört arbeten i bland annat Täby, Lidingö, Ekerö, Nacka, Saltsjö-Boo och Rönninge."}}
+  ]
 }
 </script>
 
