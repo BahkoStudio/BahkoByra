@@ -20,7 +20,7 @@ Eftersom mappen är rot serveras filerna direkt på domänen:
 - `/` → `index.html`
 - `/llms.txt` → hamnar i domänroten, vilket krävs för att AI-crawlers ska hitta den
 - `/robots.txt`, `/sitemap.xml` → samma sak
-- `/logo.svg`
+- `/logo.svg`, `/logo-ljus.svg`, `/symbol.svg`
 
 Deploy sker automatiskt vid push till `main`.
 
@@ -38,7 +38,9 @@ DNS ligger hos **Loopia**. Vid ändring: rör bara A-post under `@` och CNAME un
 | Fil | Innehåll |
 |---|---|
 | `index.html` | Hela sajten. Inline CSS och JS, JSON-LD för `LandscapingBusiness` och `FAQPage` |
-| `logo.svg` | Logotyp, används även som favicon |
+| `logo.svg` | Logotyp för mörk bakgrund (headern). Ordmärket är konverterat till paths |
+| `logo-ljus.svg` | Samma logotyp för ljus bakgrund (offert, faktura, dekaler) |
+| `symbol.svg` | Bara symbolen, kvadratisk. Favicon, profilbild på Google och sociala medier |
 | `llms.txt` | Maskinläsbar sammanfattning för AI-crawlers |
 | `robots.txt` | Tillåter alla crawlers, pekar ut sitemap |
 | `sitemap.xml` | En URL, sajten är en one-pager |
