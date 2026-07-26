@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0B0B0D">
 <title>Trädgårdsservice i Bromma och Stockholm | Bromma Trädgårdsservice</title>
-<meta name="description" content="Trädgårdsservice i Bromma och hela Storstockholm. Gräsmattor, häckar, anläggning, skötsel och snöröjning. Fast pris efter kostnadsfritt hembesök. Ring 070-766 65 14.">
+<meta name="description" content="Trädgårdsservice i Bromma och hela Storstockholm. Gräsmattor, häckar, anläggning, skötsel och snöröjning. Kostnadsfritt hembesök, pris innan start. Ring 070-766 65 14.">
 <link rel="canonical" href="https://brommatradgardsservice.se/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Trädgårdsservice i Bromma och Stockholm | Bromma Trädgårdsservice">
-<meta property="og:description" content="Gräsmattor, häckar, anläggning och löpande skötsel. Fast pris efter kostnadsfritt hembesök, bortforsling ingår.">
+<meta property="og:description" content="Gräsmattor, häckar, anläggning och löpande skötsel. Kostnadsfritt hembesök, pris innan start, bortforsling ingår.">
 <meta property="og:locale" content="sv_SE">
 <link rel="icon" href="symbol.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -307,7 +307,9 @@ footer a{color:var(--amber-lt)}
 .of-field{display:flex;flex-direction:column;gap:.35rem}
 .of-field.full{grid-column:1/-1}
 .of-field label{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);font-weight:600}
-.of-field input,.of-field select,.of-field textarea{background:rgba(242,239,233,.05);border:1px solid var(--line);border-radius:6px;padding:.75rem .85rem;color:var(--text);font-family:inherit;font-size:.9rem;transition:border-color .25s}
+/* width:100% + min-width:0 krävs på select: utan det tar den bredden av sin
+   längsta option och spränger formuläret på små skärmar. */
+.of-field input,.of-field select,.of-field textarea{width:100%;min-width:0;background:rgba(242,239,233,.05);border:1px solid var(--line);border-radius:6px;padding:.75rem .85rem;color:var(--text);font-family:inherit;font-size:.9rem;transition:border-color .25s}
 .of-field input:focus,.of-field select:focus,.of-field textarea:focus{outline:none;border-color:var(--amber)}
 .of-field textarea{resize:vertical;min-height:78px}
 .of-field select option{background:var(--bg2);color:var(--text)}
@@ -344,7 +346,9 @@ footer a{color:var(--amber-lt)}
   .work-grid{grid-template-columns:1fr;gap:.9rem}
   .wcard{aspect-ratio:4/2.8}
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:1.8rem}
-  .hero-heading{font-size:clamp(1.9rem,7.6vw,2.9rem);max-width:100%}
+  /* Rubriken måste rymma längsta ordet (TRÄDGÅRDSSERVICE) även på 320px utan
+     att klippas. Lägre min + tätare spärr gör att det alltid får plats. */
+  .hero-heading{font-size:clamp(1.5rem,6.4vw,2.9rem);letter-spacing:-.03em;max-width:100%}
   .hero-content{padding-bottom:clamp(2.6rem,7vh,4rem)}
   .cta-button{padding:.95rem 2rem;width:100%;justify-content:center}
   .hero-book-btn{width:auto;white-space:nowrap;padding:.9rem 1.8rem}
@@ -352,12 +356,28 @@ footer a{color:var(--amber-lt)}
   .modal{padding:1.8rem 1.3rem}
   .service-item{flex-direction:column;gap:.3rem;align-items:flex-start}
   .ss-grid2,.contact-wrap,.pris-wrap{grid-template-columns:1fr}
+  /* Enkolumns-grid: min-width:0 låter spalten krympa, annars tvingar den
+     obrytbara e-postadressen ut spalten och content klipps på små skärmar. */
+  .contact-wrap>*,.ss-grid2>*,.pris-wrap>*{min-width:0}
+  .contact-row{flex-wrap:wrap}
+  .contact-row a{overflow-wrap:anywhere}
   .ss-list{grid-template-columns:1fr}
   .svc-grid,.rev-grid,.gallery-grid{grid-template-columns:1fr}
   .gpanel{flex-direction:column;align-items:flex-start;padding:1.4rem}
   .gpanel-cta{width:100%;justify-content:center;text-align:center}
   .steps-grid{grid-template-columns:repeat(2,1fr)}
   .of-form{grid-template-columns:1fr}
+}
+/* Riktigt små skärmar (320–400px): logga, header-padding och telefonpillret
+   dras ihop så att logga + nummer + hamburgare får plats på en rad. */
+@media(max-width:400px){
+  .site-header{padding-left:1rem;padding-right:1rem}
+  .header-logo img{height:38px}
+  .header-nav .nav-tel{font-size:.66rem;padding:.45rem .7rem;gap:.3rem}
+  .steps-grid{grid-template-columns:1fr}
+  .modal-bg{padding:.7rem}
+  .modal{padding:1.6rem 1.15rem}
+  .of-field{min-width:0}
 }
 html.fallback #loader{display:none}
 html.fallback #scroll-container{height:auto}
@@ -430,9 +450,9 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   <div class="hero-content">
     <h1 class="hero-heading">
       <span class="word">Trädgårdsservice</span><br>
-      <span class="word accent">med fast pris.</span>
+      <span class="word accent">hela vägen.</span>
     </h1>
-    <p class="hero-tagline">Fast pris innan start · Material och bortforsling ingår · Svar inom 24 timmar</p>
+    <p class="hero-tagline">Kostnadsfritt hembesök · Material och bortforsling ingår · Svar inom 24 timmar</p>
     <div class="hero-scroll-indicator">
       <button class="cta-button hero-book-btn" onclick="openOffert()">
         <span>Begär offert</span>
@@ -622,7 +642,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
         <span class="ss-label">Pris</span>
         <h2 class="ss-h2">Vad kostar det?</h2>
         <p class="ss-p">Priset beror på tomten. Två gräsmattor på 200 kvm kan skilja tiotusentals kronor beroende på markförhållanden, åtkomst och vad som ligger under jorden.</p>
-        <p class="ss-p">Därför lämnar vi ingen prisuppgift per telefon. Vi kommer ut, mäter och räknar. Ni får ett fast pris med arbete, material, jord och bortforsling inräknat innan arbetet börjar.</p>
+        <p class="ss-p">Därför lämnar vi ingen prisuppgift per telefon. Vi kommer ut, mäter och räknar. Ni får ett pris med arbete, material, jord och bortforsling inräknat innan arbetet börjar.</p>
         <p class="ss-p"><strong style="color:var(--text)">Det priset står sig.</strong> Visar det sig att något oförutsett tillkommer hör vi av oss innan vi utför det.</p>
       </div>
       <div class="pris-card">
@@ -797,7 +817,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
         <p class="ss-p">Bromma Trädgårdsservice är ett litet team som utför hela trädgårdsprojektet i egen regi. Jens Amnesten leder arbetet på plats och är den ni har kontakt med, från första besöket till att sista lasset är bortkört.</p>
         <p class="ss-p">Vi arbetar både med villaägare som anlägger om hela tomten och med kunder som vill ha en häck planterad eller gräsmattan skött genom säsongen. Oavsett storlek går vi igenom priset innan arbetet börjar, och vi säger till om något inte behöver göras.</p>
         <ul class="ss-list">
-          <li>Fast pris innan start</li>
+          <li>Pris innan start</li>
           <li>Bortforsling ingår</li>
           <li>Material och jord ordnas av oss</li>
           <li>En kontaktperson hela vägen</li>
@@ -879,7 +899,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
         <article class="step-card">
           <div class="step-num">03</div>
           <h3>Ni får priset</h3>
-          <p>Ett fast pris med arbete, material, jord och bortforsling inräknat. Tillkommer något oförutsett hör vi av oss innan vi utför det.</p>
+          <p>Ett pris med arbete, material, jord och bortforsling inräknat. Tillkommer något oförutsett hör vi av oss innan vi utför det.</p>
         </article>
         <article class="step-card">
           <div class="step-num">04</div>
