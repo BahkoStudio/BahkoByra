@@ -102,7 +102,6 @@ ser apex och www ut att vara olika sajter fast de inte är det.
 | `logo-ljus-340.png` | **Headern** på marinblå botten, 7 kB |
 | `logo-mork-340.png` | **Headern** efter scroll, när den blivit cream, 6 kB |
 | `logo-ljus-840.png` | **Laddaren**, 22 kB |
-| `logo-ljus-1160.png` | **Sidfotens** stora ordbild, 27 kB |
 | `favicon.png` | 512 px, märket på marinblå botten. Primär favicon |
 | `apple-touch-icon.png` | 180 px, solid botten eftersom iOS inte hanterar genomskinlighet |
 | `og-image.png` | 1200×630, används av `og:image` och som `image` i schemat |
@@ -113,9 +112,13 @@ Rasterfilerna är genererade ur kundens två logotypfiler: vit bakgrund nycklad 
 genomskinlighet, och en ljus variant där marinblått mappats till krämfärg medan guldet
 lämnats orört. Källfilerna kom via WhatsApp 2026-07-27.
 
-**Kundens riktiga logotyp används överallt**, inte en efterliknelse. En tidigare version
-hade en handritad inline-SVG av märket i headern och laddaren; den är helt borta sedan
+**Kundens riktiga logotyp används i headern och laddaren**, inte en efterliknelse. En
+tidigare version hade en handritad inline-SVG av märket; den är helt borta sedan
 2026-07-27 tillsammans med all `.mark-*`-CSS.
+
+**Sidfoten använder medvetet inte logotypfilen.** Den har en stor typografisk ordbild
+i stället, `Smålands *Måleri*` i Cormorant. Logotypen provades där men tog över hela
+sektionen, och den lilla texten under den drunknade.
 
 De visningsfilerna är nedskalade och kvantiserade till 64 färger. Logotypen har få
 färger, så det syns inte, men originalet på 377 kB blev 6 till 27 kB. Det spelar roll:
