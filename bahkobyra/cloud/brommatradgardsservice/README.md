@@ -61,9 +61,15 @@ hemma i `.env` enligt `CLAUDE.md`.
 
 ### Offertformuläret
 
-`submitOffert` postar till Web3Forms och Jens får mejlet direkt. Går anropet inte
-igenom faller flödet tillbaka på `mailto:` och SMS, alltså exakt det beteende
-sidan hade innan. Steg 2 i modalen har därför två lägen, `setSummaryMode()`:
+> **Nuläge: `CFG.web3forms` är tom, så formuläret levererar inga leads av egen kraft.**
+> Anropet till Web3Forms hoppas över helt, `delivered` blir `false`, och besökaren
+> hamnar alltid i läget "Ett steg kvar". Fyller någon i formuläret utan att sedan
+> klicka mejl, SMS eller ring, får Jens aldrig veta att förfrågan fanns.
+> Beskrivningen nedan gäller först när nyckeln är ifylld.
+
+Med nyckel ifylld postar `submitOffert` till Web3Forms och Jens får mejlet direkt.
+Går anropet inte igenom faller flödet tillbaka på `mailto:` och SMS, alltså exakt
+det beteende sidan hade innan. Steg 2 i modalen har därför två lägen, `setSummaryMode()`:
 
 - **Skickat:** förfrågan ligger hos Jens, mejl och SMS visas som frivilliga genvägar
 - **Ett steg kvar:** inget nådde fram, besökaren måste klicka vidare
@@ -71,6 +77,12 @@ sidan hade innan. Steg 2 i modalen har därför två lägen, `setSummaryMode()`:
 Ett honeypot-fält (`#of-hp`) fångar bottar. Är det ifyllt skickas ingenting.
 
 ### Mätning
+
+> **Nuläge: `CFG.ga4` är tom, så ingen mätning sker.** Samtyckesbannern har
+> `display:none` och får aldrig klassen `show`, `loadGA()` returnerar direkt, och
+> `track()` kastar varje händelse utan att kölägga den. Det finns alltså ingen
+> data alls om hur sajten presterar. Beskrivningen nedan gäller först när mät-ID:t
+> är ifyllt.
 
 GA4 laddas **först efter att besökaren klickat Acceptera**. Ingen begäran går till
 Google innan dess, vilket är varför sajten klarar sig utan cookie-hantering i
@@ -90,5 +102,21 @@ inskickad förfrågan oavsett samtycke, så antalet leads går alltid att stämm
 - [ ] Uppdatera företagsnamn och organisationsnummer när enskild firma blir AB (september 2026)
 - [ ] Fyll i `CFG.web3forms` och `CFG.ga4`. Tills dess levererar formuläret inga leads av egen kraft och ingen mätning sker
 - [ ] Komplettera schema med `openingHoursSpecification` (kräver kundens faktiska öppettider) och `identifier` (orgnummer, kommer med AB-bytet). `geo` är klart
+- [ ] Bekräfta `areaServed` med Jens. Salem, Solna och Sundbyberg står i schemat men nämns ingenstans i copyn; Saltsjö-Boo och Rönninge står i `llms.txt` men saknas i schemat. Ett överbrett tjänsteområde skadar aktivt, så listan ska bara innehålla orter där arbeten faktiskt utförts
+- [ ] Beslut om formuleringen "Det priset står sig" i prissektionen. Den läses som en prisgaranti, vilket Jens sagt att de inte lämnar
+- [ ] Omdöme 4 (Sifat Bin) är omärkt och påstår samtidigt att priset var lägre än hos andra företag. Källbelägg eller ta bort
+- [ ] Bing Places och Bing Webmaster Tools är inte påbörjade
+
+## Bildfiler
+
+| Fil | Användning |
+|-----|-----------|
+| `logo.svg` / `logo.png` | Mörk bakgrund (krämfärgad text). PNG:en är den Jens fått och den GBP kan ta emot |
+| `logo-ljus.svg` / `logo-ljus.png` | Ljus bakgrund (marinblå text) |
+| `symbol.svg` / `favicon.png` | Enbart symbolen. SVG som primär favicon, PNG som reserv |
+| `apple-touch-icon.png` | 180 px, solid bakgrund eftersom iOS inte hanterar genomskinlighet |
+| `og-image.png` | 1200×630, används av `og:image` och som `image` i schemat |
+
+Samtliga PNG:er utom `apple-touch-icon` och `og-image` har äkta alfakanal.
 
 Optimeringsordning och evidensgrader: se `.claude/skills/optimering/` i huvudrepot.
