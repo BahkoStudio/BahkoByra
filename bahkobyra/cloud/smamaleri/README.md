@@ -46,31 +46,39 @@ Eftersom mappen är rot serveras filerna direkt på domänen: `/`, `/robots.txt`
 Deploy sker automatiskt vid push till `main`. **Sajten är live**, så en merge går
 direkt ut till kunden.
 
-## Domän: www måste omdirigeras
+## Domän
 
-**Öppet problem per 2026-07-27.** `smamaleri.se` (apex) servar den här sajten.
-`www.smamaleri.se` servar fortfarande kundens gamla mallsajt.
+**Klart per 2026-07-27.** Båda domänerna ligger i Vercel-projektet `smamaleri`:
 
-DNS hos **Simply.com** är redan rätt, alla tre pekar på Vercel (`216.198.79.1`):
+| Domän | Beteende |
+|---|---|
+| `smamaleri.se` | Servar sajten |
+| `www.smamaleri.se` | **308-omdirigering till apex** |
 
-| Typ | Namn | Värde |
-|---|---|---|
-| A | `smamaleri.se` | 216.198.79.1 |
-| A | `www.smamaleri.se` | 216.198.79.1 |
-| A | `*.smamaleri.se` | 216.198.79.1 |
+Canonical i `index.html` pekar på apex, så www kan aldrig bli den kanoniska adressen.
 
-Vercel dirigerar per domännamn, så `www.smamaleri.se` är tilldelad ett **annat**
-Vercel-projekt. Åtgärd, i den ordningen:
-
-1. Hitta projektet som äger `www.smamaleri.se` och ta bort domänen därifrån
-2. Lägg till `www.smamaleri.se` i det här projektet
-3. Sätt den som **redirect till apex**, inte som egen sajt
-
-Två sajter för samma företag delar signalerna, och med namnkollisionen ovan är det
-extra dyrt. Canonical i `index.html` pekar på apex, så www får aldrig bli kanonisk.
+DNS ligger hos **Simply.com**. De auktoritativa namnservrarna (`ns3.simply.com`) svarar
+`216.198.79.1` för både apex och www, vilket är Vercels IP. Verifierat direkt mot
+Vercels edge med `curl --resolve`, som ger 308 på www och 200 på apex.
 
 **MX-posterna ska aldrig röras.** Kundens e-post går via Google (`SMTP.GOOGLE.COM`)
 och SPF, DKIM och DMARC ligger på samma domän.
+
+### Fälla att komma ihåg vid nästa domänfelsökning
+
+Under utredningen pekade allt först mot att www låg i ett annat Vercel-projekt. Det var
+fel, och två mätningar avslöjade varför:
+
+1. `curl` mot domänen gav `Server: Simply.com` och HTTP 455. Det var inte Vercel som
+   svarade, utan Simplys webbhotell, för att den **lokala resolvern fortfarande hade den
+   gamla A-posten cachad** (94.231.103.145, TTL 3600).
+2. `nslookup` mot den auktoritativa namnservern gav `216.198.79.1`, alltså rätt värde
+   vid källan.
+
+Lärdomen: skilj alltid cache från konfiguration. Fråga den auktoritativa namnservern
+direkt, och testa origin med `curl --resolve doman:443:ip` så att DNS hoppas över helt.
+Att läsa av vad webbläsaren visar räcker inte, olika resolvers hinner olika långt och då
+ser apex och www ut att vara olika sajter fast de inte är det.
 
 ## Filer
 
@@ -119,7 +127,7 @@ gången och 60 sekunder de två följande. Räknaren (`smamaleri_pop_count` i
 
 - [ ] **Web3Forms-nyckel för kontakt@smamaleri.se.** Tills den finns tappas inga leads,
       men varje besökare måste klicka en gång extra
-- [ ] **www-omdirigeringen ovan.** Viktigast av allt just nu
+- [x] ~~www-omdirigering till apex~~ satt till 308 i Vercel 2026-07-27
 - [ ] Byt ut de AI-genererade bilderna mot kundens egna jobbfoton. De ligger på
       CloudFront och är Higgsfield-genererade. De får aldrig påstås vara utförda arbeten
 - [ ] Bekräfta ortlistan med kunden. Bankeryd och Vaggeryd står i chipsen men nämns
