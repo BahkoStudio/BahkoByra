@@ -107,15 +107,17 @@ så att taket kan byta färg med CSS när headern går från marinblå till crea
 Sidan har två vägar in: kontaktformuläret i `#cform` och offertmodalen `#pop`. Båda
 går genom samma leveranslager.
 
-⚠️ **`CFG.web3forms` är tom, och det är avsiktligt.** Nyckeln som föreslogs
-2026-07-27 (`62471305-…`) är **Bromma Trädgårdsservices** och levererar till
-`jens@brommatradgardsservice.se`. Hade den lagts in här skulle Smålands Måleris
-offertförfrågningar hamna hos Jens.
+`CFG.web3forms` är ifylld sedan 2026-07-27 med Smålands Måleris egen access key,
+mottagare `kontakt@smamaleri.se`. Nyckeln är en publik identifierare, avsiktligt i
+klientkoden, och ger ingen åtkomst till något.
 
-Skapa en **ny** access key på web3forms.com med mottagare `kontakt@smamaleri.se` och
-klistra in den i `CFG` i `index.html`. Tills dess levererar båda formulären via
-`mailto` och SMS, och kvittensen säger "Ett steg kvar" i stället för att påstå att
-förfrågan är mottagen.
+⚠️ **Förväxla den aldrig med Bromma Trädgårdsservices nyckel** (`62471305-…`, ligger i
+`bahkobyra/cloud/brommatradgardsservice/`). En Web3Forms-nyckel är låst till en
+mottagaradress, så fel nyckel skickar den ena kundens leads till den andra. Det var
+nära att hända här: den nyckeln föreslogs först för den här sajten.
+
+Går anropet inte igenom faller båda formulären tillbaka på `mailto` och SMS, och
+kvittensen säger "Ett steg kvar" i stället för att påstå att förfrågan är mottagen.
 
 Ett honeypot-fält (`#pf-hp`) fångar bottar i modalen. Är det ifyllt skickas ingenting.
 
@@ -125,8 +127,9 @@ gången och 60 sekunder de två följande. Räknaren (`smamaleri_pop_count` i
 
 ## Att göra
 
-- [ ] **Web3Forms-nyckel för kontakt@smamaleri.se.** Tills den finns tappas inga leads,
-      men varje besökare måste klicka en gång extra
+- [x] ~~Web3Forms-nyckel för kontakt@smamaleri.se~~ ifylld 2026-07-27
+- [ ] **Skicka en testförfrågan efter deploy** och bekräfta att den landar i
+      `kontakt@smamaleri.se`. Nyckeln är inte verifierad end-to-end ännu
 - [x] ~~www-omdirigering till apex~~ satt till 308 i Vercel 2026-07-27
 - [ ] Byt ut de AI-genererade bilderna mot kundens egna jobbfoton. De ligger på
       CloudFront och är Higgsfield-genererade. De får aldrig påstås vara utförda arbeten

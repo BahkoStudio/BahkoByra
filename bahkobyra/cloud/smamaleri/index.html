@@ -1318,13 +1318,19 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
      "förfrågan mottagen" utan att skicka något. Kunden är kund sedan
      2026-07-27, så varje sådan förfrågan var en förlorad affär.
 
-     CFG.web3forms är en publik identifierare, avsiktligt i klientkoden.
-     Skapa nyckeln på web3forms.com med mottagare kontakt@smamaleri.se och
-     klistra in den nedan. Tills den är ifylld levererar båda formulären via
-     mailto och SMS, precis som Bromma gjorde innan sin nyckel fanns.
-     Kvittensen påstår ALDRIG att något är mottaget när inget skickades.
+     CFG.web3forms är en publik identifierare, avsiktligt i klientkoden. Den
+     ger ingen åtkomst till något och styr bara vilken inkorg förfrågningarna
+     hamnar i. Riktiga API-nycklar hör fortsatt hemma i .env enligt CLAUDE.md.
+
+     Nyckeln nedan är Smålands Måleris egen, ifylld 2026-07-27, mottagare
+     kontakt@smamaleri.se. Förväxla den ALDRIG med Bromma Trädgårdsservices
+     (62471305-…): en nyckel är låst till en mottagaradress, så fel nyckel
+     skickar den ena kundens leads till den andra.
+
+     Går anropet inte igenom faller båda formulären tillbaka på mailto och SMS,
+     och kvittensen påstår ALDRIG att något är mottaget när inget skickades.
      ======================================================== */
-  const CFG = { web3forms: '' };
+  const CFG = { web3forms: '9178782b-1aea-4874-9678-b9496d068ceb' };
   const TEL = '+46720119173', TEL_TEXT = '072-011 91 73', MEJL = 'kontakt@smamaleri.se';
 
   function brodtext(d) {
