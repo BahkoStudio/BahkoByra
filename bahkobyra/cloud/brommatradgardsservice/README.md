@@ -73,13 +73,7 @@ Ett honeypot-fält (`#of-hp`) fångar bottar. Är det ifyllt skickas ingenting.
 
 ### Mätning
 
-> **Nuläge: `CFG.ga4` är tom, så ingen mätning sker.** Samtyckesbannern har
-> `display:none` och får aldrig klassen `show`, `loadGA()` returnerar direkt, och
-> `track()` kastar varje händelse utan att kölägga den. Det finns alltså ingen
-> data alls om hur sajten presterar. Beskrivningen nedan gäller först när mät-ID:t
-> är ifyllt.
-
-GA4 laddas **först efter att besökaren klickat Acceptera**. Ingen begäran går till
+`CFG.ga4` är ifylld sedan 2026-07-27 (G-1EKF0NFE5M). GA4 laddas **först efter att besökaren klickat Acceptera**. Ingen begäran går till
 Google innan dess, vilket är varför sajten klarar sig utan cookie-hantering i
 övrigt. Valet sparas i `localStorage` under `bts-consent`.
 
@@ -95,12 +89,10 @@ inskickad förfrågan oavsett samtycke, så antalet leads går alltid att stämm
 
 - [ ] Byt ut AI-genererade bilder mot kundens egna. Galleriet heter "Så kan det se ut" tills dess, det får inte påstå att bilderna är utförda jobb
 - [ ] Uppdatera företagsnamn och organisationsnummer när enskild firma blir AB (september 2026)
-- [ ] Fyll i `CFG.ga4`. Tills dess sker ingen mätning. `CFG.web3forms` ifylld 2026-07-27
 - [ ] Komplettera schema med `openingHoursSpecification` (kräver kundens faktiska öppettider) och `identifier` (orgnummer, kommer med AB-bytet). `geo` är klart
 - [ ] Bekräfta `areaServed` med Jens. Salem, Solna och Sundbyberg står i schemat men nämns ingenstans i copyn; Saltsjö-Boo och Rönninge står i `llms.txt` men saknas i schemat. Ett överbrett tjänsteområde skadar aktivt, så listan ska bara innehålla orter där arbeten faktiskt utförts
 - [ ] Beslut om formuleringen "Det priset står sig" i prissektionen. Den läses som en prisgaranti, vilket Jens sagt att de inte lämnar
 - [ ] Omdöme 4 (Sifat Bin) är omärkt och påstår samtidigt att priset var lägre än hos andra företag. Källbelägg eller ta bort
-- [ ] Bing Places och Bing Webmaster Tools är inte påbörjade
 
 ## Bildfiler
 
