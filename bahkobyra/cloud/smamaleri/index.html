@@ -34,9 +34,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   Smålands Måleri AB — demo
+   Smålands Måleri AB — kundsajt
    Designsystemet är adapterat från bahkobyra.se via bygg-facit
-   (bahkobyra/cloud/bygg/index.html). Medvetet inline: varje demo
+   (bahkobyra/cloud/bygg/index.html). Medvetet inline: varje sajt
    i cloud/ är självbärande.
    ============================================================ */
 
@@ -316,23 +316,23 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .proc-hint .ln{width:40px;height:1px;background:var(--line-2);flex:none}
 
 /* ── ARBETEN ─────────────────────────────────────────────── */
-.demo-inner{max-width:var(--maxw);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
-.demo-head{max-width:760px;margin-bottom:clamp(2rem,5vw,3.2rem)}
-.demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(1rem,2vw,1.6rem)}
-.demo-card{display:block;border:1px solid var(--paper-line);border-radius:var(--r-lg);overflow:hidden;
+.work-inner{max-width:var(--maxw);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
+.work-head{max-width:760px;margin-bottom:clamp(2rem,5vw,3.2rem)}
+.work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(1rem,2vw,1.6rem)}
+.work-card{display:block;border:1px solid var(--paper-line);border-radius:var(--r-lg);overflow:hidden;
   background:rgba(255,255,255,.02);
   transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
-.demo-card:hover{transform:translateY(-5px);border-color:rgba(201,169,110,.45);box-shadow:0 24px 60px -24px rgba(0,0,0,.55)}
-.demo-preview{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--navy-2)}
-.demo-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.demo-card:hover .demo-preview img{transform:scale(1.05)}
-.demo-shield{position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(13,16,35,.55) 100%);transition:background .35s}
-.demo-card:hover .demo-shield{background:linear-gradient(180deg,transparent 40%,rgba(13,16,35,.35) 100%)}
-.demo-card-meta{padding:1.1rem 1.2rem;border-top:1px solid var(--paper-line)}
-.demo-card-top{display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
-.demo-card-meta h3{font-family:var(--display);font-size:1.2rem;font-weight:500;color:var(--paper);margin:0 0 .15rem}
-.demo-card-meta > span{display:block;margin-top:.35rem;font-size:.76rem;color:var(--paper-45);font-weight:300;line-height:1.5}
-.demo-tag{display:inline-flex;align-items:center;white-space:nowrap;color:var(--gold-lt);font-size:.6rem;
+.work-card:hover{transform:translateY(-5px);border-color:rgba(201,169,110,.45);box-shadow:0 24px 60px -24px rgba(0,0,0,.55)}
+.work-preview{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--navy-2)}
+.work-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.work-card:hover .work-preview img{transform:scale(1.05)}
+.work-shield{position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(13,16,35,.55) 100%);transition:background .35s}
+.work-card:hover .work-shield{background:linear-gradient(180deg,transparent 40%,rgba(13,16,35,.35) 100%)}
+.work-card-meta{padding:1.1rem 1.2rem;border-top:1px solid var(--paper-line)}
+.work-card-top{display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+.work-card-meta h3{font-family:var(--display);font-size:1.2rem;font-weight:500;color:var(--paper);margin:0 0 .15rem}
+.work-card-meta > span{display:block;margin-top:.35rem;font-size:.76rem;color:var(--paper-45);font-weight:300;line-height:1.5}
+.work-tag{display:inline-flex;align-items:center;white-space:nowrap;color:var(--gold-lt);font-size:.6rem;
   font-weight:500;letter-spacing:.16em;text-transform:uppercase}
 
 /* ── VARFÖR ──────────────────────────────────────────────── */
@@ -405,7 +405,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   margin:0 auto 1.2rem;color:var(--gold-dk);font-size:1.4rem}
 .cok h3{font-family:var(--display);font-size:1.8rem;font-weight:500;margin-bottom:.4rem}
 .cok p{color:var(--ink-55);font-weight:300}
-.cok .demo-note{margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--line);font-size:.8rem}
+.cok .work-note{margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--line);font-size:.8rem}
 .cok-tel{color:var(--gold-dk);font-weight:600;border-bottom:1px solid var(--line-2)}
 .cok .btn{margin-bottom:.9rem}
 
@@ -432,7 +432,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .foot-links a{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-70);transition:color .3s}
 .foot-links a:hover{color:var(--gold-lt)}
 
-/* ── BAHKO-MODAL ─────────────────────────────────────────── */
+/* ── OFFERTMODAL ─────────────────────────────────────────── */
 .pop{position:fixed;inset:0;z-index:9000;background:rgba(13,16,35,.78);backdrop-filter:blur(10px);
   display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .4s}
 .pop.show{opacity:1;pointer-events:auto}
@@ -545,7 +545,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     </h1>
     <div class="hero-ctas">
       <a href="#" class="btn btn-gold magnetic" data-magnetic=".3" onclick="openPop();return false"><span>Begär kostnadsfri offert</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="#arbeten" class="btn btn-ghost"><span>Se utförda arbeten</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#arbeten" class="btn btn-ghost"><span>Se hur det kan bli</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
     <p class="hero-micro">Kostnadsfri offert · Fast kontaktperson · Jönköping med omnejd</p>
   </div>
@@ -673,52 +673,52 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 </section>
 
 <!-- 6. ARBETEN -->
-<section class="dark demo" id="arbeten">
-  <div class="demo-inner">
-    <div class="demo-head">
-      <span class="eyebrow">Utförda arbeten</span>
+<section class="dark work" id="arbeten">
+  <div class="work-inner">
+    <div class="work-head">
+      <span class="eyebrow">Så kan det se ut</span>
       <h2 class="h2" data-lines style="margin-top:1.1rem">
         <span class="line"><span>Rätt ordning.</span></span>
         <span class="line"><span>Rätt <em>resultat.</em></span></span>
       </h2>
     </div>
 
-    <div class="demo-grid" data-stagger>
-      <article class="demo-card" data-stagger-item>
-        <div class="demo-preview">
+    <div class="work-grid" data-stagger>
+      <article class="work-card" data-stagger-item>
+        <div class="work-preview">
           <img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260726_131312_8614ac12-49cc-4a60-a1d7-a954b5e2f719.png" alt="Nymålad träfasad i antracit med vita knutar" loading="lazy">
-          <div class="demo-shield"></div>
+          <div class="work-shield"></div>
         </div>
-        <div class="demo-card-meta">
-            <div class="demo-card-top">
+        <div class="work-card-meta">
+            <div class="work-card-top">
               <h3>Fasadmålning</h3>
-              <span class="demo-tag">Utvändigt</span>
+              <span class="work-tag">Utvändigt</span>
             </div>
             <span>Tvätt, skrapning, grundning, två strykningar</span>
           </div>
       </article>
-      <article class="demo-card" data-stagger-item>
-        <div class="demo-preview">
+      <article class="work-card" data-stagger-item>
+        <div class="work-preview">
           <img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260726_131315_11f70342-15dc-4254-af02-d8c8d0c00a08.png" alt="Rentvättat och ommålat betongtak" loading="lazy">
-          <div class="demo-shield"></div>
+          <div class="work-shield"></div>
         </div>
-        <div class="demo-card-meta">
-            <div class="demo-card-top">
+        <div class="work-card-meta">
+            <div class="work-card-top">
               <h3>Takmålning &amp; taktvätt</h3>
-              <span class="demo-tag">Tak</span>
+              <span class="work-tag">Tak</span>
             </div>
             <span>Mossan bort innan fukten hinner göra skada</span>
           </div>
       </article>
-      <article class="demo-card" data-stagger-item>
-        <div class="demo-preview">
+      <article class="work-card" data-stagger-item>
+        <div class="work-preview">
           <img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260726_131317_5c560b32-5547-474c-9548-1351bbb85cd6.png" alt="Nymålat ljust vardagsrum med vita snickerier" loading="lazy">
-          <div class="demo-shield"></div>
+          <div class="work-shield"></div>
         </div>
-        <div class="demo-card-meta">
-            <div class="demo-card-top">
+        <div class="work-card-meta">
+            <div class="work-card-top">
               <h3>Målning &amp; tapetsering</h3>
-              <span class="demo-tag">Invändigt</span>
+              <span class="work-tag">Invändigt</span>
             </div>
             <span>Väggar, tak, snickerier, lister och dörrar</span>
           </div>
@@ -855,7 +855,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       <p>Smålands Måleri hör av sig inom en till två arbetsdagar.</p>
       <!-- Innehållet här skrivs om av initForm beroende på om förfrågan
            faktiskt levererades. Texten nedan är utgångsläget. -->
-      <p class="demo-note">Vill du hellre höra av dig direkt? Ring
+      <p class="work-note">Vill du hellre höra av dig direkt? Ring
         <a href="tel:+46720119173" class="cok-tel">072-011 91 73</a>.
       </p>
     </div>
@@ -894,13 +894,12 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       <a href="tel:+46720119173">072-011 91 73</a>
       <a href="mailto:kontakt@smamaleri.se">kontakt@smamaleri.se</a>
     </div>
-    <span>Byggd av <a href="https://bahkobyra.se" target="_blank" rel="noopener" style="color:var(--gold-lt)">Bahko Byrå</a></span>
+    <span>Hemsida av <a href="https://bahkobyra.se" target="_blank" rel="noopener" style="color:var(--gold-lt)">Bahko Byrå</a></span>
   </div>
 </footer>
 
-<!-- OFFERTMODAL. Var tidigare Bahkos demo-modal med Cal.com-bokning till
-     Mathias. Kunden är kund sedan 2026-07-27, så modalen samlar nu deras egna
-     offertförfrågningar i stället.
+<!-- OFFERTMODAL. Samlar kundens egna offertförfrågningar. Innehöll fram till
+     2026-07-27 Bahkos säljmodal; den är helt ersatt och Cal-embedden borttagen.
      OBS: ingen Web3Forms-nyckel finns ännu, se CFG längst ner. Tills den är
      ifylld levererar formuläret via mailto och SMS, exakt som Bromma gjorde
      innan sin nyckel fanns. -->
@@ -1388,7 +1387,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       jobbar(btn, false);
       form.style.display = 'none';
       if (ok) {
-        const h = ok.querySelector('h3'), p = ok.querySelector('p'), not = ok.querySelector('.demo-note');
+        const h = ok.querySelector('h3'), p = ok.querySelector('p'), not = ok.querySelector('.work-note');
         if (levererad) {
           if (h) h.textContent = 'Tack, förfrågan är mottagen';
           if (p) p.textContent = 'Smålands Måleri hör av sig inom en till två arbetsdagar.';
@@ -1438,7 +1437,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     return false;
   };
 
-  /* ── BAHKO-MODAL ───────────────────────────────────────── */
+  /* ── OFFERTMODAL ───────────────────────────────────────── */
   function initPop() {
     const pop = $('#pop');
     if (!pop) return;
