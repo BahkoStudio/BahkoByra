@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0D1023">
-<meta name="description" content="Smålands Måleri AB. Fasadmålning, takmålning, taktvätt och invändigt måleri i Jönköping och hela Småland. Demo av Bahko Byrå.">
+<meta name="description" content="Smålands Måleri AB målar fasader och tak, tvättar tak och fasader och utför invändigt måleri i Jönköping, Huskvarna och Habo. Kostnadsfri offert. Ring 072-011 91 73.">
 <title>Smålands Måleri AB · Måleri och tak i hela Småland</title>
+<link rel="icon" href="symbol.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossorigin>
@@ -98,6 +99,45 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .mark.sm .mark-box{width:34px;height:34px}
 .mark.sm .mark-box span{font-size:1.15rem}
 .mark.sm .mark-word{font-size:1.1rem}
+/* Kundens logotypmärke som vektor: taket med guldpenseldraget som sveper in
+   över vänstra takfallet. Ersätter det generiska S-i-ruta. Explicita färger
+   via variabler så märket fungerar på både navy och cream. */
+.mark-fig{width:54px;height:46px;flex:none;display:block;overflow:visible}
+.mark.sm .mark-fig{width:40px;height:34px}
+.mark-roof{fill:var(--paper)}
+.mark-brush{fill:none;stroke:var(--gold);stroke-width:5.4;stroke-linecap:round}
+.on-cream .mark-roof{fill:var(--navy)}
+/* I laddaren ritar penseldraget sig självt, huset reser sig efter. */
+#preloader .mark-brush{stroke-dasharray:36;stroke-dashoffset:36}
+#preloader .mark-roof{opacity:0}
+
+/* Offertformulär i popupen */
+.pf{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;text-align:left}
+.pf-f{display:flex;flex-direction:column;gap:.3rem}
+.pf-f.full{grid-column:1/-1}
+.pf-f label{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-45);font-weight:600}
+/* width:100% + min-width:0 krävs på select, annars tar den bredden av sin
+   längsta option och spränger formuläret på små skärmar. */
+.pf-f input,.pf-f select,.pf-f textarea{width:100%;min-width:0;background:rgba(245,242,235,.06);
+  border:1px solid var(--paper-line);border-radius:6px;padding:.68rem .8rem;color:var(--paper);
+  font-family:var(--sans);font-size:.86rem;font-weight:300;transition:border-color .25s}
+.pf-f input:focus,.pf-f select:focus,.pf-f textarea:focus{outline:none;border-color:var(--gold)}
+.pf-f textarea{resize:vertical;min-height:70px}
+.pf-f select option{background:var(--navy);color:var(--paper)}
+.pf .btn{grid-column:1/-1;margin-top:.3rem}
+.pf-note{grid-column:1/-1;font-size:.66rem;color:var(--paper-45);text-align:center;line-height:1.5;font-weight:300}
+#pop-done{display:none}
+#pop-done.show{display:block}
+#pop-form.hide{display:none}
+.pf-tel-link{color:var(--gold-lt);font-weight:500}
+.pf-sum{background:rgba(201,169,110,.08);border:1px solid var(--line);border-radius:8px;
+  padding:1rem 1.1rem;margin-bottom:1.3rem;font-size:.84rem;line-height:1.85;
+  color:var(--paper-70);font-weight:300;text-align:left}
+.pf-sum b{color:var(--gold-lt);font-weight:600}
+/* sms: fungerar bara på mobil, döljs därför på desktop */
+.pf-sms{display:none}
+@media(max-width:768px){.pf-sms{display:block}}
+@media(max-width:520px){.pf{grid-template-columns:1fr}}
 
 /* ── HEADER ──────────────────────────────────────────────── */
 .hdr{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.5rem var(--gut);
@@ -114,6 +154,10 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .hdr.scrolled .mark-word{color:var(--ink)}
 .hdr.scrolled .mark-box span{color:var(--gold-dk)}
 .hdr.scrolled .mark-box{border-color:var(--gold)}
+/* Headern går från navy till cream vid scroll, så taket måste byta färg med
+   den, annars försvinner märket in i bakgrunden. */
+.hdr .mark-roof{fill:var(--paper);transition:fill .5s}
+.hdr.scrolled .mark-roof{fill:var(--navy)}
 .nav{display:flex;align-items:center;gap:2.2rem}
 .nav a:not(.btn){font-size:.7rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
   color:var(--paper-70);position:relative;transition:color .3s}
@@ -342,6 +386,8 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .cok h3{font-family:var(--display);font-size:1.8rem;font-weight:500;margin-bottom:.4rem}
 .cok p{color:var(--ink-55);font-weight:300}
 .cok .demo-note{margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--line);font-size:.8rem}
+.cok-tel{color:var(--gold-dk);font-weight:600;border-bottom:1px solid var(--line-2)}
+.cok .btn{margin-bottom:.9rem}
 
 /* ── FOOTER ──────────────────────────────────────────────── */
 .foot{background:var(--navy);color:var(--paper);padding:clamp(4rem,8vw,7rem) var(--gut) 2.5rem}
@@ -428,7 +474,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 <!-- PRELOADER -->
 <div id="preloader">
   <div class="pl-mark mark">
-    <span class="mark-box"><span>S</span></span>
+    <svg class="mark-fig" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path class="mark-brush" d="M5 29 C11 24 17 18 23 12"/><path class="mark-roof" d="M24 9 L42 26 h-5 L24 14 L11 26 H6 Z"/><rect class="mark-roof" x="33.4" y="11.6" width="3.8" height="6.4"/><rect class="mark-roof" x="20.8" y="29" width="2.8" height="2.8"/><rect class="mark-roof" x="24.4" y="29" width="2.8" height="2.8"/><rect class="mark-roof" x="20.8" y="32.6" width="2.8" height="2.8"/><rect class="mark-roof" x="24.4" y="32.6" width="2.8" height="2.8"/></svg>
     <span class="mark-word">Smålands <em>Måleri</em></span>
   </div>
   <div class="pl-bar"><i id="pl-bar"></i></div>
@@ -438,7 +484,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 <!-- HEADER -->
 <header class="hdr up" id="hdr">
   <a href="#top" class="mark sm magnetic" data-magnetic=".2" aria-label="Smålands Måleri">
-    <span class="mark-box"><span>S</span></span>
+    <svg class="mark-fig" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path class="mark-brush" d="M5 29 C11 24 17 18 23 12"/><path class="mark-roof" d="M24 9 L42 26 h-5 L24 14 L11 26 H6 Z"/><rect class="mark-roof" x="33.4" y="11.6" width="3.8" height="6.4"/><rect class="mark-roof" x="20.8" y="29" width="2.8" height="2.8"/><rect class="mark-roof" x="24.4" y="29" width="2.8" height="2.8"/><rect class="mark-roof" x="20.8" y="32.6" width="2.8" height="2.8"/><rect class="mark-roof" x="24.4" y="32.6" width="2.8" height="2.8"/></svg>
     <span class="mark-word">Smålands <em>Måleri</em></span>
   </a>
   <nav class="nav">
@@ -784,8 +830,10 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       <div class="ic">✓</div>
       <h3>Tack, förfrågan är mottagen</h3>
       <p>Smålands Måleri hör av sig inom en till två arbetsdagar.</p>
-      <p class="demo-note">Det här är en demosida. Vill du ha en sida som denna för ditt måleriföretag?
-        <a href="#" onclick="openPop();return false" style="color:var(--gold-dk);border-bottom:1px solid var(--line-2)">Boka 15 minuter med Mathias</a>
+      <!-- Innehållet här skrivs om av initForm beroende på om förfrågan
+           faktiskt levererades. Texten nedan är utgångsläget. -->
+      <p class="demo-note">Vill du hellre höra av dig direkt? Ring
+        <a href="tel:+46720119173" class="cok-tel">072-011 91 73</a>.
       </p>
     </div>
   </div>
@@ -812,7 +860,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   </div>
 
   <div class="foot-bottom">
-    <span>Smålands Måleri AB · Havsörnsgatan 57, 556 10 Jönköping · Demo</span>
+    <span>Smålands Måleri AB · Havsörnsgatan 57, 556 10 Jönköping</span>
     <div class="foot-links">
       <a href="tel:+46720119173">072-011 91 73</a>
       <a href="mailto:kontakt@smamaleri.se">kontakt@smamaleri.se</a>
@@ -821,16 +869,67 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   </div>
 </footer>
 
-<!-- BAHKO DEMO-MODAL -->
+<!-- OFFERTMODAL. Var tidigare Bahkos demo-modal med Cal.com-bokning till
+     Mathias. Kunden är kund sedan 2026-07-27, så modalen samlar nu deras egna
+     offertförfrågningar i stället.
+     OBS: ingen Web3Forms-nyckel finns ännu, se CFG längst ner. Tills den är
+     ifylld levererar formuläret via mailto och SMS, exakt som Bromma gjorde
+     innan sin nyckel fanns. -->
 <div class="pop" id="pop">
   <div class="pop-card">
     <button class="pop-x" id="pop-x" aria-label="Stäng">✕</button>
-    <div class="pop-ey">Demo av Bahko Byrå</div>
-    <h3>Vill du ha en sida som denna för ditt måleriföretag?</h3>
-    <p>Boka ett kostnadsfritt samtal på 15 minuter med Mathias. Vi visar exakt hur er hemsida kan se ut, och hur den drar in offertförfrågningar.</p>
-    <button class="btn btn-gold" data-cal-namespace="15min" data-cal-link="bahkobyra/15min" data-cal-origin="https://cal.eu"><span>Boka 15 min gratis samtal</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-    <a class="pop-alt" href="mailto:mathias@bahkobyra.se?subject=Intresserad av demo-hemsida (måleri)&body=Hej Mathias, jag såg Smålands Måleri-demon och vill veta mer.">Eller mejla mathias@bahkobyra.se</a>
-    <div class="pop-note"><a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a> · Synlighet som säljer.</div>
+
+    <div id="pop-form">
+      <div class="pop-ey">Kostnadsfri offert</div>
+      <h3>Vad ska målas?</h3>
+      <p>Berätta kort vad det gäller, så hör vi av oss. Offerten är kostnadsfri och du binder dig inte vid något.</p>
+      <form class="pf" onsubmit="return sendOffert(event)">
+        <!-- Honeypot: osynligt för människor, bottar fyller i det. Ifyllt = skippa. -->
+        <input type="text" id="pf-hp" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true"
+          style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <div class="pf-f full">
+          <label for="pf-tjanst">Vad gäller det?</label>
+          <select id="pf-tjanst" required>
+            <option>Utvändig målning av villa eller fastighet</option>
+            <option>Invändig målning</option>
+            <option>Takmålning</option>
+            <option>Taktvätt</option>
+            <option>Fasadtvätt</option>
+            <option>Tapetsering</option>
+            <option>Annat eller vet inte än</option>
+          </select>
+        </div>
+        <div class="pf-f">
+          <label for="pf-namn">Namn</label>
+          <input id="pf-namn" type="text" required autocomplete="name">
+        </div>
+        <div class="pf-f">
+          <label for="pf-tel">Telefon</label>
+          <input id="pf-tel" type="tel" required autocomplete="tel">
+        </div>
+        <div class="pf-f full">
+          <label for="pf-ort">Ort</label>
+          <input id="pf-ort" type="text" required placeholder="T.ex. Jönköping, Huskvarna, Habo">
+        </div>
+        <div class="pf-f full">
+          <label for="pf-info">Kort om jobbet (valfritt)</label>
+          <textarea id="pf-info" placeholder="T.ex. ca 140 kvm träfasad, flagnar på södersidan..."></textarea>
+        </div>
+        <button class="btn btn-gold" type="submit"><span>Skicka förfrågan</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <p class="pf-note">Eller ring direkt: <a href="tel:+46720119173" class="pf-tel-link">072-011 91 73</a></p>
+      </form>
+    </div>
+
+    <div id="pop-done">
+      <div class="pop-ey" id="pf-ey">Ett steg kvar</div>
+      <h3 id="pf-head">Skicka din förfrågan</h3>
+      <p id="pf-lead">Här är sammanfattningen. Klicka nedan så öppnas den färdigskriven i din e-post, eller skicka den som SMS.</p>
+      <div class="pf-sum" id="pf-sum"></div>
+      <a class="btn btn-gold" id="pf-mail" href="#"><span id="pf-mail-label">Öppna i e-post</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a class="pop-alt pf-sms" id="pf-sms" href="#">Skicka som SMS</a>
+      <a class="pop-alt" href="tel:+46720119173">Eller ring 072-011 91 73</a>
+    </div>
+
   </div>
 </div>
 
@@ -867,7 +966,18 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   function preloader(done) {
     const pl = $('#preloader'), bar = $('#pl-bar'), num = $('#pl-num'), mark = $('.pl-mark');
     if (!pl) { done(); return; }
+    // Logotypen börjar dold i CSS: penseldraget har full stroke-dashoffset och
+    // takdelarna ligger på opacity 0, så att GSAP kan rita dem. Finns inte GSAP,
+    // eller vill besökaren slippa rörelse, MÅSTE båda tvingas fram här. Utan
+    // det står laddaren tom i tre sekunder.
+    const brush = pl.querySelector('.mark-brush');
+    const roof = pl.querySelectorAll('.mark-roof');
+    const showLogo = () => {
+      if (brush) brush.style.strokeDashoffset = '0';
+      roof.forEach((r) => { r.style.opacity = '1'; });
+    };
     if (reduce || !hasGSAP) {
+      showLogo();
       if (mark) mark.style.opacity = 1;
       pl.style.transition = 'opacity .5s';
       requestAnimationFrame(() => { pl.style.opacity = 0; });
@@ -876,13 +986,18 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     }
     const tl = gsap.timeline({ onComplete: done });
     const counter = { v: 0 };
-    tl.to(mark, { opacity: 1, duration: .7, ease: 'power2.out' })
-      .to(counter, { v: 100, duration: 1.8, ease: 'power2.inOut',
+    // Penseln stryker först, taket reser sig i dess spår, sedan räknaren.
+    // Samma tidsbudget som förut, cirka 3,6 s, så failsafen på 6 s står kvar.
+    tl.to(mark, { opacity: 1, duration: .35, ease: 'power2.out' })
+      .to(brush, { strokeDashoffset: 0, duration: .72, ease: 'power2.inOut' }, '-=.1')
+      .fromTo(roof, { opacity: 0, y: 7 },
+        { opacity: 1, y: 0, duration: .46, ease: 'power2.out', stagger: .04 }, '-=.34')
+      .to(counter, { v: 100, duration: 1.5, ease: 'power2.inOut',
         onUpdate: () => {
           const p = Math.round(counter.v);
           if (num) num.textContent = String(p).padStart(3, '0');
           if (bar) bar.style.right = (100 - p) + '%';
-        } }, '-=.3')
+        } }, '-=.2')
       .to(mark, { opacity: 0, y: -14, duration: .5, ease: 'power2.in' }, '+=.15')
       .to(pl, { clipPath: 'inset(0 0 100% 0)', duration: .9, ease: 'expo.inOut',
         onComplete: () => { pl.classList.add('done'); pl.style.display = 'none'; } }, '-=.1');
@@ -1129,17 +1244,124 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   }
 
   /* ── KONTAKTFORMULÄR ───────────────────────────────────── */
-  // Demo utan mottagare: formuläret visar kvittensläget och pekar mot Bahko.
+  /* ── LEADLEVERANS ──────────────────────────────────────────
+     Sidan var en demo utan mottagare: formuläret gömde sig och visade
+     "förfrågan mottagen" utan att skicka något. Kunden är kund sedan
+     2026-07-27, så varje sådan förfrågan var en förlorad affär.
+
+     CFG.web3forms är en publik identifierare, avsiktligt i klientkoden.
+     Skapa nyckeln på web3forms.com med mottagare kontakt@smamaleri.se och
+     klistra in den nedan. Tills den är ifylld levererar båda formulären via
+     mailto och SMS, precis som Bromma gjorde innan sin nyckel fanns.
+     Kvittensen påstår ALDRIG att något är mottaget när inget skickades.
+     ======================================================== */
+  const CFG = { web3forms: '' };
+  const TEL = '+46720119173', TEL_TEXT = '072-011 91 73', MEJL = 'kontakt@smamaleri.se';
+
+  function brodtext(d) {
+    return 'Hej!\n\nJag vill gärna ha en offert.\n\n' +
+      'Tjänst: ' + d.tjanst + '\nNamn: ' + d.namn + '\nTelefon: ' + d.tel +
+      '\nOrt: ' + d.ort + (d.info ? ('\nOm jobbet: ' + d.info) : '') +
+      '\n\nVänliga hälsningar\n' + d.namn;
+  }
+  function mejlLank(d) {
+    return 'mailto:' + MEJL +
+      '?subject=' + encodeURIComponent('Offertförfrågan: ' + d.tjanst + ' (' + d.ort + ')') +
+      '&body=' + encodeURIComponent(brodtext(d));
+  }
+  function smsLank(d) {
+    return 'sms:' + TEL + '?&body=' + encodeURIComponent('Offertförfrågan: ' + d.tjanst +
+      '. ' + d.namn + ', ' + d.tel + ', ' + d.ort + '.' + (d.info ? (' ' + d.info) : ''));
+  }
+  function las(id) { const el = $(id); return el && el.value ? el.value.trim() : ''; }
+  async function leverera(d) {
+    if (!CFG.web3forms) return false;
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: CFG.web3forms,
+          subject: 'Offertförfrågan: ' + d.tjanst + ' (' + d.ort + ')',
+          from_name: 'smamaleri.se', botcheck: '',
+          'Tjänst': d.tjanst, Namn: d.namn, Telefon: d.tel, Ort: d.ort,
+          'Om jobbet': d.info || '(inget angivet)'
+        })
+      });
+      const json = await res.json().catch(() => ({}));
+      return res.ok && json.success !== false;
+    } catch (err) { return false; }
+  }
+  function jobbar(btn, pa) {
+    if (!btn) return;
+    const s = btn.querySelector('span');
+    if (pa) { btn.setAttribute('aria-busy', 'true'); if (s) s.textContent = 'Skickar...'; }
+    else { btn.removeAttribute('aria-busy'); if (s) s.textContent = 'Skicka förfrågan'; }
+  }
+
+  // Sidans eget kontaktformulär.
   function initForm() {
     const form = $('#cform'), ok = $('#cok');
     if (!form) return;
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const d = { tjanst: las('#f-tjanst') || 'Ej angivet', namn: las('#f-namn'),
+        tel: las('#f-tel'), ort: las('#f-ort'), info: las('#f-info') };
+      const btn = form.querySelector('button[type="submit"]');
+      jobbar(btn, true);
+      const levererad = await leverera(d);
+      jobbar(btn, false);
       form.style.display = 'none';
-      if (ok) ok.classList.add('show');
+      if (ok) {
+        const h = ok.querySelector('h3'), p = ok.querySelector('p'), not = ok.querySelector('.demo-note');
+        if (levererad) {
+          if (h) h.textContent = 'Tack, förfrågan är mottagen';
+          if (p) p.textContent = 'Smålands Måleri hör av sig inom en till två arbetsdagar.';
+          if (not) not.innerHTML = 'Vill du hellre höra av dig direkt? Ring <a href="tel:' + TEL +
+            '" class="cok-tel">' + TEL_TEXT + '</a>.';
+        } else {
+          if (h) h.textContent = 'Ett steg kvar';
+          if (p) p.textContent = 'Klicka nedan så öppnas förfrågan färdigskriven i din e-post, eller ring oss direkt.';
+          if (not) not.innerHTML = '<a class="btn btn-gold" href="' + mejlLank(d) +
+            '"><span>Öppna i e-post</span></a><br><a href="tel:' + TEL + '" class="cok-tel">Eller ring ' +
+            TEL_TEXT + '</a>';
+        }
+        ok.classList.add('show');
+      }
       if (hasST) setTimeout(() => ScrollTrigger.refresh(), 100);
     });
   }
+
+  // Offertmodalen. Samma leveransväg, eget kvittensläge.
+  window.sendOffert = function (e) {
+    e.preventDefault();
+    if (las('#pf-hp')) return false;            // honeypot ifylld: en bott, skicka inget
+    const d = { tjanst: las('#pf-tjanst'), namn: las('#pf-namn'),
+      tel: las('#pf-tel'), ort: las('#pf-ort'), info: las('#pf-info') };
+    const btn = $('.pf .btn');
+    const rader = ['<b>Tjänst:</b> ' + d.tjanst, '<b>Namn:</b> ' + d.namn,
+      '<b>Telefon:</b> ' + d.tel, '<b>Ort:</b> ' + d.ort];
+    if (d.info) rader.push('<b>Om jobbet:</b> ' + d.info);
+    jobbar(btn, true);
+    leverera(d).then((levererad) => {
+      jobbar(btn, false);
+      const sum = $('#pf-sum'), ey = $('#pf-ey'), head = $('#pf-head'), lead = $('#pf-lead'),
+        mail = $('#pf-mail'), sms = $('#pf-sms'), label = $('#pf-mail-label');
+      if (sum) sum.innerHTML = rader.join('<br>');
+      if (mail) mail.href = mejlLank(d);
+      if (sms) sms.href = smsLank(d);
+      if (levererad) {
+        if (ey) ey.textContent = 'Skickat';
+        if (head) head.textContent = 'Tack, vi har fått din förfrågan';
+        if (lead) lead.textContent = 'Vi hör av oss inom en till två arbetsdagar. Här är vad du skickade.';
+        if (label) label.textContent = 'Mejla oss också';
+      }
+      const f = $('#pop-form'), done = $('#pop-done');
+      if (f) f.classList.add('hide');
+      if (done) done.classList.add('show');
+    });
+    return false;
+  };
 
   /* ── BAHKO-MODAL ───────────────────────────────────────── */
   function initPop() {
@@ -1265,12 +1487,6 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     });
   }, 6000);
 })();
-</script>
-<!-- Cal.eu embed -->
-<script type="text/javascript">
-(function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,[L,namespace,...Array.from(ar).slice(2)])}else p(cal,ar);return}p(cal,ar)};})(window,"https://cal.eu/embed/embed.js","init");
-Cal("init","15min",{origin:"https://cal.eu"});
-Cal.ns["15min"]("ui",{"hideEventTypeDetails":false,"layout":"month_view"});
 </script>
 </body>
 </html>
