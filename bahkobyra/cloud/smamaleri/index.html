@@ -104,7 +104,22 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 #preloader{position:fixed;inset:0;z-index:9999;background:var(--navy);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.2rem}
 #preloader.done{pointer-events:none}
-.pl-mark{display:flex;align-items:center;gap:1rem;opacity:0}
+/* Laddaren återger kundens logotyp-lockup i stället för ett generiskt märke:
+   huset med penseldraget över ordbilden, SMÅLANDS i versaler, och MÅLERI AB
+   mellan två guldstreck. Samma uppbyggnad som logotypfilen, så det första
+   besökaren ser är deras eget märke och inget annat. */
+.pl-logo{display:flex;flex-direction:column;align-items:center;opacity:0}
+.pl-fig{width:clamp(78px,15vw,124px);height:auto;display:block;overflow:visible}
+.pl-name{font-family:var(--display);font-weight:600;color:var(--paper);
+  font-size:clamp(1.8rem,6.4vw,3.4rem);line-height:1;letter-spacing:.08em;
+  text-transform:uppercase;margin-top:.45rem;white-space:nowrap}
+.pl-sub{display:flex;align-items:center;gap:clamp(.5rem,2vw,.9rem);margin-top:.7rem}
+.pl-sub span{font-family:var(--sans);font-weight:500;color:var(--gold);
+  font-size:clamp(.6rem,1.6vw,.8rem);letter-spacing:.4em;text-transform:uppercase;white-space:nowrap}
+/* Strecken ritas ut från mitten när ordbilden landat. */
+.pl-rule{display:block;height:1px;width:clamp(24px,7vw,56px);background:var(--gold);transform:scaleX(0)}
+.pl-rule:first-child{transform-origin:100% 50%}
+.pl-rule:last-child{transform-origin:0 50%}
 .pl-num{font-family:var(--display);font-style:italic;color:var(--paper);font-size:1.5rem;
   position:fixed;bottom:clamp(1.5rem,5vw,3rem);right:clamp(1.5rem,5vw,3rem)}
 .pl-bar{width:min(260px,52vw);height:1px;background:var(--paper-22);position:relative;overflow:hidden}
@@ -432,6 +447,35 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .foot-links a{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-70);transition:color .3s}
 .foot-links a:hover{color:var(--gold-lt)}
 
+/* ── FRÅGOR ──────────────────────────────────────────────── */
+/* Egen container i stället för sidans .wrap: sektionen ska kunna flyttas
+   utan att ärva marginaler från ett annat block. */
+.faq-wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
+.faq-list{margin-top:clamp(2rem,4vw,2.8rem);border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item summary{list-style:none;cursor:pointer;position:relative;
+  padding:1.35rem 2.8rem 1.35rem 0;font-family:var(--display);font-weight:500;
+  font-size:clamp(1.05rem,1.9vw,1.4rem);line-height:1.35;color:var(--ink);transition:color .25s}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--gold-dk)}
+.faq-item summary::after{content:'';position:absolute;right:.5rem;top:50%;width:10px;height:10px;
+  border-right:1.5px solid var(--gold-dk);border-bottom:1.5px solid var(--gold-dk);
+  transform:translateY(-70%) rotate(45deg);transition:transform .3s var(--ease)}
+.faq-item[open] summary{color:var(--gold-dk)}
+.faq-item[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq-a{padding:0 2.8rem 1.6rem 0;max-width:68ch}
+.faq-a p{font-size:clamp(.92rem,1.05vw,1.02rem);line-height:1.85;color:var(--ink-70);font-weight:300}
+.faq-a p + p{margin-top:.8rem}
+.faq-a strong{color:var(--ink);font-weight:600}
+.faq-a a{color:var(--gold-dk);text-decoration:underline;text-underline-offset:.18em}
+.faq-a a:hover{color:var(--ink)}
+.faq-a ul{list-style:none;margin:.9rem 0 0;display:grid;gap:.5rem}
+.faq-a li{position:relative;padding-left:1.2rem;font-size:.94rem;line-height:1.7;color:var(--ink-70);font-weight:300}
+.faq-a li::before{content:'';position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.faq-kalla{margin-top:1.1rem;padding-top:.9rem;border-top:1px solid var(--line);
+  font-size:.8rem;line-height:1.6;color:var(--ink-55);font-weight:300}
+@media(max-width:768px){.faq-a{padding-right:0}}
+
 /* ── OFFERTMODAL ─────────────────────────────────────────── */
 .pop{position:fixed;inset:0;z-index:9000;background:rgba(13,16,35,.78);backdrop-filter:blur(10px);
   display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .4s}
@@ -493,9 +537,10 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 
 <!-- PRELOADER -->
 <div id="preloader">
-  <div class="pl-mark mark">
-    <svg class="mark-fig" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path class="mark-brush" d="M5 29 C11 24 17 18 23 12"/><path class="mark-roof" d="M24 9 L42 26 h-5 L24 14 L11 26 H6 Z"/><rect class="mark-roof" x="33.4" y="11.6" width="3.8" height="6.4"/><rect class="mark-roof" x="20.8" y="29" width="2.8" height="2.8"/><rect class="mark-roof" x="24.4" y="29" width="2.8" height="2.8"/><rect class="mark-roof" x="20.8" y="32.6" width="2.8" height="2.8"/><rect class="mark-roof" x="24.4" y="32.6" width="2.8" height="2.8"/></svg>
-    <span class="mark-word">Smålands <em>Måleri</em></span>
+  <div class="pl-logo">
+    <svg class="pl-fig" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path class="mark-brush" d="M5 29 C11 24 17 18 23 12"/><path class="mark-roof" d="M24 9 L42 26 h-5 L24 14 L11 26 H6 Z"/><rect class="mark-roof" x="33.4" y="11.6" width="3.8" height="6.4"/><rect class="mark-roof" x="20.8" y="29" width="2.8" height="2.8"/><rect class="mark-roof" x="24.4" y="29" width="2.8" height="2.8"/><rect class="mark-roof" x="20.8" y="32.6" width="2.8" height="2.8"/><rect class="mark-roof" x="24.4" y="32.6" width="2.8" height="2.8"/></svg>
+    <div class="pl-name">Smålands</div>
+    <div class="pl-sub"><i class="pl-rule"></i><span>Måleri AB</span><i class="pl-rule"></i></div>
   </div>
   <div class="pl-bar"><i id="pl-bar"></i></div>
   <div class="pl-num" id="pl-num">000</div>
@@ -780,6 +825,82 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   </div>
 </section>
 
+<!-- 8b. FRÅGOR
+     Medvetet INGEN FAQPage-markup: rich results för det är avvecklat sedan
+     aug 2023 och dokumentationen deprecerad. Innehållet är däremot värt mycket,
+     både för besökaren och för AI-svar, som citerar självbärande stycken.
+     Därför står företagsnamn och ort utskrivna i stället för "vi" och "här". -->
+<section id="fragor">
+  <div class="faq-wrap">
+    <span class="eyebrow">Vanliga frågor</span>
+    <h2 class="h2" data-lines style="margin-top:1.1rem">
+      <span class="line"><span>Det kunder</span></span>
+      <span class="line"><span>frågar <em>först.</em></span></span>
+    </h2>
+
+    <div class="faq-list" data-reveal="0.05">
+      <details class="faq-item">
+        <summary>Får jag rotavdrag när ni målar?</summary>
+        <div class="faq-a">
+          <p>Ja, på arbetskostnaden. Rotavdraget är <strong>30 procent av arbetskostnaden</strong> och högst <strong>50 000 kronor per person och år</strong>. Det dras direkt på fakturan, så du betalar bara din del.</p>
+          <p>Följande arbeten som Smålands Måleri utför ger rotavdrag i småhus:</p>
+          <ul>
+            <li>Målning av fasad</li>
+            <li>Målning av tak, väggar, golv, element och fönster</li>
+            <li>Målning och lackning av dörrar och köksluckor</li>
+            <li>Tapetsering</li>
+            <li>Fasadtvätt och taktvätt, som räknas som underhåll</li>
+          </ul>
+          <p>Att även <strong>tvätten</strong> ger avdrag är värt att veta, det är den post många tror faller utanför.</p>
+          <p>Det som inte ger avdrag är material, resor och utrustning. Bara arbetet. Du ska äga bostaden och bo där, och är huset yngre än fem år får arbetet bara syfta till att återställa det i ursprungligt skick. För bostadsrätt gäller andra regler än för småhus, eftersom föreningen äger fasaden.</p>
+          <p class="faq-kalla">Källa: Skatteverket, <a href="https://www.skatteverket.se/foretag/skatterochavdrag/rotochrut/gerarbetetratttillrotavdrag.4.5c1163881590be297b5173bf.html" target="_blank" rel="noopener">Ger arbetet rätt till rotavdrag?</a> Kontrollerat juli 2026. Smålands Måleri sköter avdraget på fakturan, men lämnar inga skatteråd utöver det.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Hur vet jag att det är dags att måla om?</summary>
+        <div class="faq-a">
+          <p>Titta på söder- och västersidan först. Där går det alltid snabbast, eftersom solen och det slagregn som bär in kommer därifrån. En fasad kan se hel ut på norrsidan och samtidigt vara färdig på söder.</p>
+          <p>Tecknen att leta efter är flagnande färg, en yta som kritar av sig när du drar handen över den, gråa eller urblekta partier, och trä som börjat spricka upp. Kommer du till bar ved är det bråttom, då tar underhållet över och blir snickeri i stället för måleri.</p>
+          <p>Smålands Måleri säger till om det kan vänta en säsong. Att måla om för tidigt kostar pengar i onödan, och att vänta för länge kostar mer än en ommålning.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>När på året kan man måla utvändigt?</summary>
+        <div class="faq-a">
+          <p>Från sen vår till tidig höst. Färgtillverkarna anger en lägsta arbetstemperatur, ofta runt fem grader, och ytan måste vara torr hela vägen in i träet. Det är därför en fasad inte går att måla dagen efter regn även om det känns torrt på utsidan.</p>
+          <p>Invändig målning och tapetsering går att göra året om. Många lägger det till vintern just för att fasaden ändå får vänta till våren.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Hur lång tid tar ett fasadjobb?</summary>
+        <div class="faq-a">
+          <p>Det avgörs av förarbetet, inte av strykningarna. Tvätt, skrapning, torktid och grundning är det som tar tid, och hur mycket av det som krävs syns först när den gamla färgen är avtvättad.</p>
+          <p>Du får en tidsuppskattning i offerten, innan något börjar. Blir det något oförutsett hör Smålands Måleri av sig innan arbetet fortsätter, i stället för att det dyker upp på slutfakturan.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Vad händer om vädret slår om mitt i jobbet?</summary>
+        <div class="faq-a">
+          <p>Då pausas målningen. Färg som stryks på fuktigt underlag eller får regn på sig innan den torkat sitter inte kvar, och då är hela jobbet bortkastat oavsett hur bra förarbetet var.</p>
+          <p>Smålands Måleri planerar utvändiga jobb med marginal för det och säger till när tidplanen påverkas. Ett par dagars försening är billigare än en fasad som måste göras om.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Måste jag vara hemma när ni arbetar?</summary>
+        <div class="faq-a">
+          <p>Nej. Utvändigt arbete kräver ingen närvaro alls. Invändigt går det lika bra, det som behövs är att vi kommer överens om nyckel eller kod, och tillgång till vatten och el.</p>
+          <p>Du har samma kontaktperson från första samtalet till sista strykningen, så det finns alltid någon att ringa som redan vet vad som är gjort.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- 9. CTA -->
 <section class="cta">
   <div class="glow"></div>
@@ -1032,7 +1153,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 
   /* ── PRELOADER ─────────────────────────────────────────── */
   function preloader(done) {
-    const pl = $('#preloader'), bar = $('#pl-bar'), num = $('#pl-num'), mark = $('.pl-mark');
+    const pl = $('#preloader'), bar = $('#pl-bar'), num = $('#pl-num'), logo = $('.pl-logo');
     if (!pl) { done(); return; }
     // Logotypen börjar dold i CSS: penseldraget har full stroke-dashoffset och
     // takdelarna ligger på opacity 0, så att GSAP kan rita dem. Finns inte GSAP,
@@ -1040,13 +1161,17 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     // det står laddaren tom i tre sekunder.
     const brush = pl.querySelector('.mark-brush');
     const roof = pl.querySelectorAll('.mark-roof');
+    const rules = pl.querySelectorAll('.pl-rule');
+    const name = pl.querySelector('.pl-name');
+    const sub = pl.querySelector('.pl-sub span');
     const showLogo = () => {
       if (brush) brush.style.strokeDashoffset = '0';
       roof.forEach((r) => { r.style.opacity = '1'; });
+      rules.forEach((r) => { r.style.transform = 'scaleX(1)'; });
     };
     if (reduce || !hasGSAP) {
       showLogo();
-      if (mark) mark.style.opacity = 1;
+      if (logo) logo.style.opacity = 1;
       pl.style.transition = 'opacity .5s';
       requestAnimationFrame(() => { pl.style.opacity = 0; });
       setTimeout(() => { pl.classList.add('done'); pl.style.display = 'none'; done(); }, 500);
@@ -1054,19 +1179,27 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     }
     const tl = gsap.timeline({ onComplete: done });
     const counter = { v: 0 };
-    // Penseln stryker först, taket reser sig i dess spår, sedan räknaren.
+    // Logotypen byggs upp i samma ordning som den är ritad: penseln stryker,
+    // huset reser sig i dess spår, SMÅLANDS landar, och guldstrecken dras ut
+    // från mitten kring MÅLERI AB sist. Sedan räknaren.
     // Samma tidsbudget som förut, cirka 3,6 s, så failsafen på 6 s står kvar.
-    tl.to(mark, { opacity: 1, duration: .35, ease: 'power2.out' })
-      .to(brush, { strokeDashoffset: 0, duration: .72, ease: 'power2.inOut' }, '-=.1')
+    // set() på position 0 krävs: namnet och underraden har ingen dold
+    // utgångspunkt i CSS, och utan detta hinner de blinka fram innan sin tween.
+    tl.set([name, sub], { opacity: 0 })
+      .to(logo, { opacity: 1, duration: .3, ease: 'power2.out' })
+      .to(brush, { strokeDashoffset: 0, duration: .7, ease: 'power2.inOut' }, '-=.08')
       .fromTo(roof, { opacity: 0, y: 7 },
-        { opacity: 1, y: 0, duration: .46, ease: 'power2.out', stagger: .04 }, '-=.34')
-      .to(counter, { v: 100, duration: 1.5, ease: 'power2.inOut',
+        { opacity: 1, y: 0, duration: .44, ease: 'power2.out', stagger: .04 }, '-=.32')
+      .fromTo(name, { y: 12 }, { opacity: 1, y: 0, duration: .46, ease: 'power2.out' }, '-=.14')
+      .to(rules, { scaleX: 1, duration: .5, ease: 'power2.inOut' }, '-=.18')
+      .to(sub, { opacity: 1, duration: .4, ease: 'power2.out' }, '-=.4')
+      .to(counter, { v: 100, duration: 1.3, ease: 'power2.inOut',
         onUpdate: () => {
           const p = Math.round(counter.v);
           if (num) num.textContent = String(p).padStart(3, '0');
           if (bar) bar.style.right = (100 - p) + '%';
-        } }, '-=.2')
-      .to(mark, { opacity: 0, y: -14, duration: .5, ease: 'power2.in' }, '+=.15')
+        } }, '-=.12')
+      .to(logo, { opacity: 0, y: -14, duration: .5, ease: 'power2.in' }, '+=.15')
       .to(pl, { clipPath: 'inset(0 0 100% 0)', duration: .9, ease: 'expo.inOut',
         onComplete: () => { pl.classList.add('done'); pl.style.display = 'none'; } }, '-=.1');
   }
