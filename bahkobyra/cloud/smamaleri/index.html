@@ -3,11 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0D1023">
+<!-- Titeln leder med tjänst och ort, inte med varumärket. Det finns ett annat
+     Smålands Måleri AB (org.nr 556960-8002, 42 anställda), så namnet ensamt är
+     ett svagt sökuttryck. "Målare i Jönköping" är det inte. -->
+<title>Målare i Jönköping · Fasadmålning, tak och invändigt måleri | Smålands Måleri AB</title>
 <meta name="description" content="Smålands Måleri AB målar fasader och tak, tvättar tak och fasader och utför invändigt måleri i Jönköping, Huskvarna och Habo. Kostnadsfri offert. Ring 072-011 91 73.">
-<title>Smålands Måleri AB · Måleri och tak i hela Småland</title>
+<!-- Canonical pekar på apex utan www. www.smamaleri.se ska 308-omdirigeras hit
+     i Vercel, se README. Utan detta kan www bli den kanoniska adressen. -->
+<link rel="canonical" href="https://smamaleri.se/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Målare i Jönköping · Fasadmålning, tak och invändigt måleri">
+<meta property="og:description" content="Smålands Måleri AB målar fasader och tak, tvättar tak och fasader och utför invändigt måleri i Jönköping, Huskvarna och Habo. Kostnadsfri offert.">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:url" content="https://smamaleri.se/">
+<meta property="og:site_name" content="Smålands Måleri AB">
+<meta property="og:image" content="https://smamaleri.se/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Smålands Måleri AB">
+<meta name="twitter:card" content="summary_large_image">
+<!-- SVG-ikonen först för moderna webbläsare, PNG som reserv: äldre Safari och
+     de flesta sociala ytor tar inte emot SVG och visar då ingen ikon alls. -->
 <link rel="icon" href="symbol.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossorigin>
@@ -518,7 +538,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   <div class="hero-grain"></div>
 
   <div class="hero-inner">
-    <span class="hero-badge"><i></i> Måleri &amp; tak · Hela Småland</span>
+    <span class="hero-badge"><i></i> Måleri &amp; tak · Jönköping</span>
     <h1 class="hero-h1">
       <span class="line"><span>Samma hus.</span></span>
       <span class="line"><span><span class="accent">Nytt liv.</span></span></span>
@@ -527,7 +547,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       <a href="#" class="btn btn-gold magnetic" data-magnetic=".3" onclick="openPop();return false"><span>Begär kostnadsfri offert</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a href="#arbeten" class="btn btn-ghost"><span>Se utförda arbeten</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
-    <p class="hero-micro">Kostnadsfri offert · Fast kontaktperson · Hela Småland</p>
+    <p class="hero-micro">Kostnadsfri offert · Fast kontaktperson · Jönköping med omnejd</p>
   </div>
 
   <div class="scrollcue"><span class="ln"></span><span>Se förvandlingen</span></div>
@@ -847,7 +867,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   <div class="foot-top">
     <div class="foot-brand">Smålands <em>Måleri</em></div>
     <div class="foot-cta">
-      <p>Måleri och tak i Jönköping och hela Småland</p>
+      <p>Måleri och tak i Jönköping, Huskvarna och Habo</p>
       <a href="#" class="btn btn-gold magnetic" data-magnetic=".25" onclick="openPop();return false"><span>Begär offert</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
@@ -855,10 +875,13 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   <div class="foot-areas">
     <div>
       <h4>Var vi målar</h4>
-      <p>Vi utgår från Jönköping och åtar oss uppdrag i hela Småland. Osäker på om vi kör till dig? Ring så ger vi besked direkt.</p>
+      <p>Vi utgår från Jönköping och arbetar i Huskvarna, Habo, Bankeryd och Vaggeryd. Osäker på om vi kör till dig? Ring så ger vi besked direkt.</p>
     </div>
     <div class="area-chips">
-      <span>Jönköping</span><span>Huskvarna</span><span>Habo</span><span>Bankeryd</span><span>Vaggeryd</span><span>Hela Småland</span>
+      <!-- "Hela Småland" borttaget: ett överbrett tjänsteområde skadar aktivt,
+           det späder ut varje ort. Lägg bara till orter där arbeten faktiskt
+           utförts, och bekräfta listan med kunden. -->
+      <span>Jönköping</span><span>Huskvarna</span><span>Habo</span><span>Bankeryd</span><span>Vaggeryd</span>
     </div>
   </div>
 
@@ -938,6 +961,46 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 
   </div>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"HousePainter",
+  "@id":"https://smamaleri.se/#business",
+  "name":"Smålands Måleri AB",
+  "identifier":"556967-2271",
+  "url":"https://smamaleri.se/",
+  "telephone":"+46720119173",
+  "email":"kontakt@smamaleri.se",
+  "image":"https://smamaleri.se/og-image.png",
+  "logo":"https://smamaleri.se/logo.png",
+  "priceRange":"Offert efter kostnadsfritt besök",
+  "address":{
+    "@type":"PostalAddress",
+    "addressLocality":"Jönköping",
+    "addressRegion":"Jönköpings län",
+    "addressCountry":"SE"
+  },
+  "areaServed":[
+    {"@type":"City","name":"Jönköping"},
+    {"@type":"City","name":"Huskvarna"},
+    {"@type":"City","name":"Habo"},
+    {"@type":"City","name":"Bankeryd"},
+    {"@type":"City","name":"Vaggeryd"}
+  ],
+  "hasOfferCatalog":{
+    "@type":"OfferCatalog","name":"Måleri och taktjänster",
+    "itemListElement":[
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Fasadmålning"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Takmålning"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Taktvätt"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Fasadtvätt"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Invändig målning"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Tapetsering"}}
+    ]
+  }
+}
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
