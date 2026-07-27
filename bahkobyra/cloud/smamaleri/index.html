@@ -25,7 +25,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <!-- SVG-ikonen först för moderna webbläsare, PNG som reserv: äldre Safari och
      de flesta sociala ytor tar inte emot SVG och visar då ingen ikon alls. -->
-<link rel="icon" href="symbol.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.png" type="image/png" sizes="512x512">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -104,47 +103,26 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 #preloader{position:fixed;inset:0;z-index:9999;background:var(--navy);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.2rem}
 #preloader.done{pointer-events:none}
-/* Laddaren återger kundens logotyp-lockup i stället för ett generiskt märke:
-   huset med penseldraget över ordbilden, SMÅLANDS i versaler, och MÅLERI AB
-   mellan två guldstreck. Samma uppbyggnad som logotypfilen, så det första
-   besökaren ser är deras eget märke och inget annat. */
-.pl-logo{display:flex;flex-direction:column;align-items:center;opacity:0}
-.pl-fig{width:clamp(78px,15vw,124px);height:auto;display:block;overflow:visible}
-.pl-name{font-family:var(--display);font-weight:600;color:var(--paper);
-  font-size:clamp(1.8rem,6.4vw,3.4rem);line-height:1;letter-spacing:.08em;
-  text-transform:uppercase;margin-top:.45rem;white-space:nowrap}
-.pl-sub{display:flex;align-items:center;gap:clamp(.5rem,2vw,.9rem);margin-top:.7rem}
-.pl-sub span{font-family:var(--sans);font-weight:500;color:var(--gold);
-  font-size:clamp(.6rem,1.6vw,.8rem);letter-spacing:.4em;text-transform:uppercase;white-space:nowrap}
-/* Strecken ritas ut från mitten när ordbilden landat. */
-.pl-rule{display:block;height:1px;width:clamp(24px,7vw,56px);background:var(--gold);transform:scaleX(0)}
-.pl-rule:first-child{transform-origin:100% 50%}
-.pl-rule:last-child{transform-origin:0 50%}
+/* Laddaren visar kundens riktiga logotyp, inte en efterliknelse. Den avslöjas
+   vänster till höger som ett penseldrag över ytan, vilket är det enda
+   rörelsespråk som hör hemma på en målerisajt. */
+.pl-logo{display:block;opacity:0}
+.pl-img{display:block;width:clamp(220px,52vw,430px);height:auto;
+  clip-path:inset(0 100% 0 0)}
 .pl-num{font-family:var(--display);font-style:italic;color:var(--paper);font-size:1.5rem;
   position:fixed;bottom:clamp(1.5rem,5vw,3rem);right:clamp(1.5rem,5vw,3rem)}
 .pl-bar{width:min(260px,52vw);height:1px;background:var(--paper-22);position:relative;overflow:hidden}
 .pl-bar > i{position:absolute;inset:0 100% 0 0;background:linear-gradient(90deg,var(--gold),var(--gold-lt))}
 
 /* ── LOGOTYP ─────────────────────────────────────────────── */
-.mark{display:inline-flex;align-items:center;gap:.85rem}
-.mark-box{width:46px;height:46px;border:1.5px solid var(--gold);display:grid;place-items:center;flex:none}
-.mark-box span{font-family:var(--display);font-style:italic;font-weight:500;font-size:1.55rem;color:var(--gold);line-height:1;transform:translateY(.02em)}
-.mark-word{font-family:var(--display);font-weight:500;font-size:1.4rem;letter-spacing:.01em;line-height:1;white-space:nowrap}
-.mark-word em{font-style:italic;font-weight:400}
-.mark.sm .mark-box{width:34px;height:34px}
-.mark.sm .mark-box span{font-size:1.15rem}
-.mark.sm .mark-word{font-size:1.1rem}
-/* Kundens logotypmärke som vektor: taket med guldpenseldraget som sveper in
-   över vänstra takfallet. Ersätter det generiska S-i-ruta. Explicita färger
-   via variabler så märket fungerar på både navy och cream. */
-.mark-fig{width:54px;height:46px;flex:none;display:block;overflow:visible}
-.mark.sm .mark-fig{width:40px;height:34px}
-.mark-roof{fill:var(--paper)}
-.mark-brush{fill:none;stroke:var(--gold);stroke-width:5.4;stroke-linecap:round}
-.on-cream .mark-roof{fill:var(--navy)}
-/* I laddaren ritar penseldraget sig självt, huset reser sig efter. */
-#preloader .mark-brush{stroke-dasharray:36;stroke-dashoffset:36}
-#preloader .mark-roof{opacity:0}
+/* Kundens egen logotypfil, i två färgvarianter. Headern går från marinblå till
+   cream vid scroll, så båda ligger stackade och korsfadar. Utan det försvinner
+   den marinblå ordbilden in i den marinblå headern. */
+.brand{position:relative;display:block;flex:none;line-height:0}
+.brand img{display:block;height:clamp(34px,4.8vw,50px);width:auto;transition:opacity .5s}
+.brand-mork{position:absolute;top:0;left:0;opacity:0}
+.hdr.scrolled .brand-ljus{opacity:0}
+.hdr.scrolled .brand-mork{opacity:1}
 
 /* Offertformulär i popupen */
 .pf{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;text-align:left}
@@ -184,15 +162,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .hdr.scrolled{background:rgba(237,232,223,.82);backdrop-filter:blur(18px) saturate(1.4);
   -webkit-backdrop-filter:blur(18px) saturate(1.4);border-bottom:1px solid var(--line);
   padding-top:1rem;padding-bottom:1rem}
-.hdr .mark-word,.hdr .mark-box span{color:var(--paper);transition:color .5s}
-.hdr .mark-box{border-color:var(--gold-lt);transition:border-color .5s}
-.hdr.scrolled .mark-word{color:var(--ink)}
-.hdr.scrolled .mark-box span{color:var(--gold-dk)}
-.hdr.scrolled .mark-box{border-color:var(--gold)}
-/* Headern går från navy till cream vid scroll, så taket måste byta färg med
-   den, annars försvinner märket in i bakgrunden. */
-.hdr .mark-roof{fill:var(--paper);transition:fill .5s}
-.hdr.scrolled .mark-roof{fill:var(--navy)}
+
 .nav{display:flex;align-items:center;gap:2.2rem}
 .nav a:not(.btn){font-size:.7rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
   color:var(--paper-70);position:relative;transition:color .3s}
@@ -430,7 +400,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   flex-wrap:wrap;gap:2rem;padding-bottom:clamp(3rem,6vw,5rem);border-bottom:1px solid var(--paper-line)}
 .foot-brand{font-family:var(--display);font-weight:500;font-size:clamp(2.4rem,8vw,6.5rem);line-height:.95;
   letter-spacing:-.01em;will-change:clip-path,opacity}
-.foot-brand em{font-style:italic;color:var(--gold-lt)}
+.foot-brand img{display:block;width:min(100%,760px);height:auto}
 .foot-cta{text-align:right}
 .foot-cta p{color:var(--paper-70);font-size:.8rem;margin-bottom:1rem;letter-spacing:.04em}
 .foot-areas{max-width:var(--maxw);margin:2.4rem auto 0;display:flex;justify-content:space-between;align-items:center;
@@ -538,9 +508,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 <!-- PRELOADER -->
 <div id="preloader">
   <div class="pl-logo">
-    <svg class="pl-fig" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path class="mark-brush" d="M5 29 C11 24 17 18 23 12"/><path class="mark-roof" d="M24 9 L42 26 h-5 L24 14 L11 26 H6 Z"/><rect class="mark-roof" x="33.4" y="11.6" width="3.8" height="6.4"/><rect class="mark-roof" x="20.8" y="29" width="2.8" height="2.8"/><rect class="mark-roof" x="24.4" y="29" width="2.8" height="2.8"/><rect class="mark-roof" x="20.8" y="32.6" width="2.8" height="2.8"/><rect class="mark-roof" x="24.4" y="32.6" width="2.8" height="2.8"/></svg>
-    <div class="pl-name">Smålands</div>
-    <div class="pl-sub"><i class="pl-rule"></i><span>Måleri AB</span><i class="pl-rule"></i></div>
+    <img class="pl-img" src="logo-ljus-840.png" alt="Smålands Måleri AB" width="840" height="416" fetchpriority="high" decoding="async">
   </div>
   <div class="pl-bar"><i id="pl-bar"></i></div>
   <div class="pl-num" id="pl-num">000</div>
@@ -548,9 +516,9 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 
 <!-- HEADER -->
 <header class="hdr up" id="hdr">
-  <a href="#top" class="mark sm magnetic" data-magnetic=".2" aria-label="Smålands Måleri">
-    <svg class="mark-fig" viewBox="0 0 48 44" aria-hidden="true" focusable="false"><path class="mark-brush" d="M5 29 C11 24 17 18 23 12"/><path class="mark-roof" d="M24 9 L42 26 h-5 L24 14 L11 26 H6 Z"/><rect class="mark-roof" x="33.4" y="11.6" width="3.8" height="6.4"/><rect class="mark-roof" x="20.8" y="29" width="2.8" height="2.8"/><rect class="mark-roof" x="24.4" y="29" width="2.8" height="2.8"/><rect class="mark-roof" x="20.8" y="32.6" width="2.8" height="2.8"/><rect class="mark-roof" x="24.4" y="32.6" width="2.8" height="2.8"/></svg>
-    <span class="mark-word">Smålands <em>Måleri</em></span>
+  <a href="#top" class="brand magnetic" data-magnetic=".2" aria-label="Smålands Måleri AB, till toppen">
+    <img class="brand-ljus" src="logo-ljus-340.png" alt="Smålands Måleri AB" width="340" height="168" decoding="async">
+    <img class="brand-mork" src="logo-mork-340.png" alt="" aria-hidden="true" width="340" height="168" decoding="async">
   </a>
   <nav class="nav">
     <a href="#tjanster">Tjänster</a>
@@ -986,7 +954,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 <!-- FOOTER -->
 <footer class="foot">
   <div class="foot-top">
-    <div class="foot-brand">Smålands <em>Måleri</em></div>
+    <div class="foot-brand"><img src="logo-ljus-1160.png" alt="Smålands Måleri AB" width="1157" height="573" loading="lazy" decoding="async"></div>
     <div class="foot-cta">
       <p>Måleri och tak i Jönköping, Huskvarna och Habo</p>
       <a href="#" class="btn btn-gold magnetic" data-magnetic=".25" onclick="openPop();return false"><span>Begär offert</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
@@ -1155,22 +1123,13 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   function preloader(done) {
     const pl = $('#preloader'), bar = $('#pl-bar'), num = $('#pl-num'), logo = $('.pl-logo');
     if (!pl) { done(); return; }
-    // Logotypen börjar dold i CSS: penseldraget har full stroke-dashoffset och
-    // takdelarna ligger på opacity 0, så att GSAP kan rita dem. Finns inte GSAP,
-    // eller vill besökaren slippa rörelse, MÅSTE båda tvingas fram här. Utan
-    // det står laddaren tom i tre sekunder.
-    const brush = pl.querySelector('.mark-brush');
-    const roof = pl.querySelectorAll('.mark-roof');
-    const rules = pl.querySelectorAll('.pl-rule');
-    const name = pl.querySelector('.pl-name');
-    const sub = pl.querySelector('.pl-sub span');
-    const showLogo = () => {
-      if (brush) brush.style.strokeDashoffset = '0';
-      roof.forEach((r) => { r.style.opacity = '1'; });
-      rules.forEach((r) => { r.style.transform = 'scaleX(1)'; });
-    };
+    // Logotypen ligger bortklippt i CSS så att den kan strykas fram. Finns inte
+    // GSAP, eller vill besökaren slippa rörelse, MÅSTE klippningen nollas här.
+    // Utan den raden står laddaren tom i tre sekunder.
+    const img = pl.querySelector('.pl-img');
+    const visaLogo = () => { if (img) img.style.clipPath = 'inset(0 0% 0 0)'; };
     if (reduce || !hasGSAP) {
-      showLogo();
+      visaLogo();
       if (logo) logo.style.opacity = 1;
       pl.style.transition = 'opacity .5s';
       requestAnimationFrame(() => { pl.style.opacity = 0; });
@@ -1179,21 +1138,11 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     }
     const tl = gsap.timeline({ onComplete: done });
     const counter = { v: 0 };
-    // Logotypen byggs upp i samma ordning som den är ritad: penseln stryker,
-    // huset reser sig i dess spår, SMÅLANDS landar, och guldstrecken dras ut
-    // från mitten kring MÅLERI AB sist. Sedan räknaren.
+    // Ett penseldrag: logotypen stryks fram vänster till höger, sedan räknaren.
     // Samma tidsbudget som förut, cirka 3,6 s, så failsafen på 6 s står kvar.
-    // set() på position 0 krävs: namnet och underraden har ingen dold
-    // utgångspunkt i CSS, och utan detta hinner de blinka fram innan sin tween.
-    tl.set([name, sub], { opacity: 0 })
-      .to(logo, { opacity: 1, duration: .3, ease: 'power2.out' })
-      .to(brush, { strokeDashoffset: 0, duration: .7, ease: 'power2.inOut' }, '-=.08')
-      .fromTo(roof, { opacity: 0, y: 7 },
-        { opacity: 1, y: 0, duration: .44, ease: 'power2.out', stagger: .04 }, '-=.32')
-      .fromTo(name, { y: 12 }, { opacity: 1, y: 0, duration: .46, ease: 'power2.out' }, '-=.14')
-      .to(rules, { scaleX: 1, duration: .5, ease: 'power2.inOut' }, '-=.18')
-      .to(sub, { opacity: 1, duration: .4, ease: 'power2.out' }, '-=.4')
-      .to(counter, { v: 100, duration: 1.3, ease: 'power2.inOut',
+    tl.to(logo, { opacity: 1, duration: .3, ease: 'power2.out' })
+      .to(img, { clipPath: 'inset(0 0% 0 0)', duration: .95, ease: 'power2.inOut' }, '-=.14')
+      .to(counter, { v: 100, duration: 1.35, ease: 'power2.inOut',
         onUpdate: () => {
           const p = Math.round(counter.v);
           if (num) num.textContent = String(p).padStart(3, '0');

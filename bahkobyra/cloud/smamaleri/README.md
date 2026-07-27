@@ -85,11 +85,14 @@ ser apex och www ut att vara olika sajter fast de inte är det.
 | Fil | Innehåll |
 |---|---|
 | `index.html` | Hela sajten. Inline CSS och JS, JSON-LD för `HousePainter` |
-| `logo.png` | Logotypen med genomskinlig bakgrund. Marinblå text, för **ljusa** ytor |
-| `logo-ljus.png` | Samma logotyp med krämfärgad text, för **mörka** ytor |
-| `logo-ord.png` | Enbart ordbilden, utan huset |
-| `symbol.svg` | Bara märket, kvadratiskt. Primär favicon |
-| `favicon.png` | 512 px, märket på marinblå botten. Reserv där SVG inte tas emot |
+| `logo.png` | Original, genomskinlig bakgrund, marinblå text. Arkiv, används inte på sajten |
+| `logo-ljus.png` | Original med krämfärgad text. Arkiv |
+| `logo-ord.png` | Enbart ordbilden, utan huset. Arkiv |
+| `logo-ljus-340.png` | **Headern** på marinblå botten, 7 kB |
+| `logo-mork-340.png` | **Headern** efter scroll, när den blivit cream, 6 kB |
+| `logo-ljus-840.png` | **Laddaren**, 22 kB |
+| `logo-ljus-1160.png` | **Sidfotens** stora ordbild, 27 kB |
+| `favicon.png` | 512 px, märket på marinblå botten. Primär favicon |
 | `apple-touch-icon.png` | 180 px, solid botten eftersom iOS inte hanterar genomskinlighet |
 | `og-image.png` | 1200×630, används av `og:image` och som `image` i schemat |
 | `robots.txt` | Tillåter alla crawlers, pekar ut sitemap |
@@ -99,8 +102,22 @@ Rasterfilerna är genererade ur kundens två logotypfiler: vit bakgrund nycklad 
 genomskinlighet, och en ljus variant där marinblått mappats till krämfärg medan guldet
 lämnats orört. Källfilerna kom via WhatsApp 2026-07-27.
 
-Headern och laddaren använder inte rasterloggan utan en **inline SVG** av samma märke,
-så att taket kan byta färg med CSS när headern går från marinblå till cream.
+**Kundens riktiga logotyp används överallt**, inte en efterliknelse. En tidigare version
+hade en handritad inline-SVG av märket i headern och laddaren; den är helt borta sedan
+2026-07-27 tillsammans med all `.mark-*`-CSS.
+
+De visningsfilerna är nedskalade och kvantiserade till 64 färger. Logotypen har få
+färger, så det syns inte, men originalet på 377 kB blev 6 till 27 kB. Det spelar roll:
+den största filen laddas i headern på varje sidvisning.
+
+**Headern har båda färgvarianterna stackade.** Den går från marinblå till cream vid
+scroll, och den marinblå ordbilden skulle försvinna in i den marinblå headern. Därför
+korsfadar `.brand-ljus` och `.brand-mork` på `.hdr.scrolled`.
+
+Laddaren visar `logo-ljus-840.png` och stryker fram den vänster till höger med
+`clip-path`, som ett penseldrag. Bilden ligger bortklippt i CSS för att kunna avslöjas,
+så vägen utan GSAP och vid reduced motion **måste** nolla klippningen. Utan den raden
+står laddaren tom i tre sekunder.
 
 ## Formulären
 
