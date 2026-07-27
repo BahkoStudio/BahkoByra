@@ -1,6 +1,8 @@
 # Google Företagsprofil — Smålands Måleri
 
-**Kund:** Smålands Måleri AB (namnet enligt kundens egen logotyp)
+**Kund:** Smålands Måleri AB, org.nr **556967-2271**
+**Registrerad adress:** Havsörnsgatan 57 Lgh 1103, 556 10 Jönköping. **Lägenhet**, används
+bara för verifiering och står medvetet inte publikt på sajten.
 **Status:** ingen profil finns enligt kunden. Verifiera i Google Maps på svenska innan en ny skapas, en dubblett är krångligare att städa än att göra rätt från början.
 **Underlag skapat:** 2026-07-27
 **Källa till tjänster och kontaktuppgifter:** kundens egen sajt smamaleri.se samt demon i `bahkobyra/cloud/smamaleri/`
@@ -26,21 +28,28 @@ både fel och något kunden inte vill.
 
 **Skriv exakt det namn företaget använder i verkligheten.** Inget mer, inga sökord.
 
-Kundens logotyp säger **Smålands Måleri AB**. Kundens sajt säger på olika ställen
-"Smålands Måleri" och "Smålands Måleri & Tak".
+**Namn att använda: `Smålands Måleri AB`.** Bekräftat av kunden 2026-07-27, org.nr
+556967-2271. Skriv exakt så, inga sökord efter namnet. Ett namn som "Smålands Måleri
+Fasadmålning Jönköping" kan ge redigering eller avstängning av profilen.
 
-⚠️ **Måste bestämmas innan profilen skapas.** Tre skäl:
+⚠️ **Namnet delas med ett större bolag, och det försvinner inte.** Det finns ett annat
+**Smålands Måleri AB** med org.nr 556960-8002, beskrivet med säte Göteborg respektive
+Malmö, 42 anställda och 29,4 Mkr i omsättning 2021. Två separata aktiebolag med samma
+firmanamn.
 
-1. Google kräver det verkliga företagsnamnet. Ett påhittat eller sökordsstoppat namn
-   ("Smålands Måleri Fasadmålning Jönköping") kan ge redigering eller avstängning.
-2. Det finns minst ett annat etablerat **Smålands Måleri AB**, org.nr 556960-8002, som
-   beskrivs med säte Göteborg respektive Malmö, 42 anställda och 29,4 Mkr i omsättning
-   2021. Oavsett hur registret ser ut kommer vår kund att tävla mot dem om sitt eget
-   namn i sökresultaten. Det är värt att veta i förväg, inte upptäcka efteråt.
-3. Skriver kunden AB måste bolaget vara ett registrerat aktiebolag.
+Konsekvenser att planera för, inte försöka trolla bort:
 
-**Att hämta in:** organisationsnummer. Med det kan namn och säte verifieras, och numret
-hör sedan hemma i sajtens `identifier` i schemat och i sidfoten.
+- Vår kund kommer att tävla mot dem om sitt eget namn i sökresultaten. På "smålands
+  måleri" vinner den etablerade parten länge.
+- **Google-profilen blir därför viktigare än vanligt.** Det är den som knyter namnet till
+  Jönköping och gör att lokala sökare hittar rätt bolag. Utan profil finns vår kund i
+  praktiken inte i det sammanhanget.
+- Sikta på **namn plus ort** som sökuttryck, inte namnet ensamt: "målare Jönköping",
+  "fasadmålning Huskvarna", "taktvätt Habo". Där är den etablerade parten inte stark.
+- Skriv alltid ut orten tillsammans med företagsnamnet i sajtens text och i profilen.
+  Det är den signal som skiljer de två entiteterna åt.
+- Org.nr **556967-2271** hör hemma i sajtens `identifier` i schemat och i sidfoten,
+  just för att göra åtskillnaden maskinläsbar. Är gjort i sidfoten, schemat återstår.
 
 ---
 
@@ -69,7 +78,7 @@ om de inte lägger tak. Fler kategorier späder ut, de skärper inte.
 | Telefon | 072-011 91 73 | Verifierat på deras sajt |
 | Webbplats | https://smamaleri.se | Verifierat, sajten är live |
 | E-post | kontakt@smamaleri.se | Verifierat på deras sajt |
-| Adress | Havsörnsgatan 57, 556 10 Jönköping | Står i sidfoten på vår sida. **Bekräfta med kunden** |
+| Adress | Havsörnsgatan 57 Lgh 1103, 556 10 Jönköping | Bekräftad av kunden. **Lägenhet, ska döljas** |
 
 Telefonnumret måste vara **identiskt formaterat** på profilen, på sajten, i schemat och i
 katalogerna. Ett nummer som skrivs på tre sätt läses i värsta fall som tre företag.
@@ -169,10 +178,9 @@ Ordningen som fungerar:
 
 ## Att hämta in från kunden
 
-- [ ] Organisationsnummer, och därmed exakt firmanamn och bolagsform
-- [ ] Bekräfta att Havsörnsgatan 57 är rätt adress, och om den får stå kvar publikt
-      i sidfoten. Är det en bostadsadress vill många inte det, och för
-      tjänsteområdesföretag krävs den bara för verifieringen
+- [x] ~~Organisationsnummer och exakt firmanamn~~ Smålands Måleri AB, 556967-2271
+- [x] ~~Adress~~ Havsörnsgatan 57 Lgh 1103, 556 10 Jönköping. Lägenhet, borttagen ur
+      sajtens sidfot och ska döljas i profilen
 - [ ] Öppettider, eller besked om att telefonen svarar dygnet runt
 - [ ] De fem till åtta orter där de faktiskt utfört arbeten
 - [ ] Tio riktiga jobbfoton, gärna före och efter på samma objekt

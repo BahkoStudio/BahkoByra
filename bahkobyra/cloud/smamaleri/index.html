@@ -786,7 +786,10 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       <a class="contact-tel" href="tel:+46720119173">072-011 91 73</a>
       <div class="contact-meta">
         <a href="mailto:kontakt@smamaleri.se">kontakt@smamaleri.se</a>
-        <span>Havsörnsgatan 57, Jönköping</span>
+        <!-- Ingen gatuadress här heller: registrerad adress är en lägenhet.
+             Upptagningsområdet säger besökaren mer än en adress hon aldrig
+             ska besöka. -->
+        <span>Jönköping, Huskvarna och Habo</span>
         <span>Svar inom 1 till 2 arbetsdagar</span>
       </div>
       <p class="contact-or">Eller fyll i formuläret, så hör vi av oss.</p>
@@ -860,7 +863,10 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   </div>
 
   <div class="foot-bottom">
-    <span>Smålands Måleri AB · Havsörnsgatan 57, 556 10 Jönköping</span>
+    <!-- Ingen gatuadress: den registrerade adressen är en lägenhet, och företaget
+         är ett tjänsteområdesföretag som arbetar hemma hos kunden. Org.nr står
+         i stället, det förtydligar entiteten utan att publicera ett hem. -->
+    <span>Smålands Måleri AB · Org.nr 556967-2271 · Jönköping</span>
     <div class="foot-links">
       <a href="tel:+46720119173">072-011 91 73</a>
       <a href="mailto:kontakt@smamaleri.se">kontakt@smamaleri.se</a>
@@ -1374,15 +1380,22 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     if (x) x.addEventListener('click', hide);
     pop.addEventListener('click', (e) => { if (e.target === pop) hide(); });
     addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
-    const KEY = 'smamaleri_pop_seen';
-    let seenAt = 0;
-    try { seenAt = +localStorage.getItem(KEY) || 0; } catch (err) { /* visa ändå */ }
-    if (Date.now() - seenAt > 7 * 864e5) {
+    // Popupen visas tre gånger per besökare, sedan aldrig mer. Första gången
+    // efter 22 sekunder, andra och tredje efter 60 sekunder. Räknaren stegas
+    // bara när popupen faktiskt öppnas, så en besökare som lämnar sidan efter
+    // tio sekunder möts av 22-sekundersvarianten även nästa gång.
+    // Går localStorage inte att läsa behandlas besöket som det första: hellre
+    // en popup för mycket än en som aldrig dyker upp.
+    const KEY = 'smamaleri_pop_count';
+    const FORDROJNING = [22000, 60000, 60000];
+    let visade = 0;
+    try { visade = +localStorage.getItem(KEY) || 0; } catch (err) { visade = 0; }
+    if (visade < FORDROJNING.length) {
       setTimeout(() => {
-        if (pop.classList.contains('show')) return;
+        if (pop.classList.contains('show')) return;   // besökaren hann öppna den själv
         window.openPop();
-        try { localStorage.setItem(KEY, Date.now()); } catch (err) {}
-      }, 22000);
+        try { localStorage.setItem(KEY, String(visade + 1)); } catch (err) {}
+      }, FORDROJNING[visade]);
     }
   }
 
