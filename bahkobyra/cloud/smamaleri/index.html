@@ -177,13 +177,12 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .hero-badge i{width:5px;height:5px;border-radius:50%;background:var(--gold-lt);animation:blink 2.4s var(--ease-io) infinite}
 @keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
 .hero-h1{font-family:var(--display);font-weight:500;color:var(--paper);
-  font-size:clamp(2.1rem,6.4vw,5.8rem);line-height:1.04;letter-spacing:-.02em;margin-bottom:1.5rem}
+  font-size:clamp(2.1rem,6.4vw,5.8rem);line-height:1.04;letter-spacing:-.02em;margin-bottom:2.6rem}
 .hero-h1 .line{overflow:hidden;display:block}
 .hero-h1 .line > *{display:block;will-change:transform}
 .hero-h1 .accent{font-style:italic;font-weight:400;
   background:linear-gradient(108deg,var(--gold-lt),var(--gold));-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;text-shadow:none}
-.hero-lede{font-size:clamp(.95rem,1.2vw,1.12rem);color:var(--paper-70);line-height:1.85;font-weight:300;max-width:52ch;margin:0 auto 2.4rem}
 .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
 .hero-micro{margin-top:1.1rem;font-size:.62rem;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--paper-45)}
 .scrollcue{position:absolute;left:var(--gut);bottom:2.2rem;z-index:2;display:flex;align-items:center;gap:.8rem;color:var(--paper-45)}
@@ -230,7 +229,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 /* ── TJÄNSTER ────────────────────────────────────────────── */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;
   background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;perspective:1200px}
-.svc{background:var(--cream-3);padding:2.6rem 2rem;position:relative;overflow:hidden;transition:background .4s}
+.svc{background:var(--cream-3);padding:2.6rem 2rem;position:relative;overflow:hidden;transition:background .4s;display:flex;flex-direction:column}
 .svc::before{content:'';position:absolute;left:0;bottom:0;height:2px;width:0;
   background:linear-gradient(90deg,var(--gold),var(--gold-lt));transition:width .5s var(--ease)}
 .svc:hover{background:var(--cream-2)}
@@ -238,10 +237,10 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .svc-i{width:30px;height:30px;margin-bottom:1.4rem;stroke:var(--gold-dk);stroke-width:1.25;fill:none;
   stroke-linecap:round;stroke-linejoin:round;transition:transform .5s var(--ease),stroke .35s}
 .svc:hover .svc-i{transform:translateY(-6px) scale(1.1);stroke:var(--gold)}
-.svc-n{font-family:var(--display);font-size:1.45rem;font-weight:500;margin-bottom:.5rem;transition:color .35s var(--ease)}
+.svc-n{font-family:var(--display);font-size:1.45rem;font-weight:500;line-height:1.2;min-height:2.4em;margin-bottom:.5rem;transition:color .35s var(--ease)}
 .svc:hover .svc-n{color:var(--gold-dk)}
-.svc-d{font-size:.84rem;color:var(--ink-55);line-height:1.75;font-weight:300;margin-bottom:1rem}
-.svc-tag{font-size:.6rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dk)}
+.svc-d{font-size:.84rem;color:var(--ink-55);line-height:1.75;font-weight:300}
+.svc-tag{margin-top:auto;padding-top:1rem;font-size:.6rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dk)}
 
 /* ── PROCESS ─────────────────────────────────────────────── */
 .process{background:var(--cream-2);overflow:hidden;padding-bottom:0}
@@ -276,14 +275,15 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   background:rgba(255,255,255,.02);
   transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
 .demo-card:hover{transform:translateY(-5px);border-color:rgba(201,169,110,.45);box-shadow:0 24px 60px -24px rgba(0,0,0,.55)}
-.demo-preview{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--navy-2)}
+.demo-preview{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--navy-2)}
 .demo-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
 .demo-card:hover .demo-preview img{transform:scale(1.05)}
 .demo-shield{position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(13,16,35,.55) 100%);transition:background .35s}
 .demo-card:hover .demo-shield{background:linear-gradient(180deg,transparent 40%,rgba(13,16,35,.35) 100%)}
-.demo-card-meta{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.2rem;border-top:1px solid var(--paper-line)}
+.demo-card-meta{padding:1.1rem 1.2rem;border-top:1px solid var(--paper-line)}
+.demo-card-top{display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
 .demo-card-meta h3{font-family:var(--display);font-size:1.2rem;font-weight:500;color:var(--paper);margin:0 0 .15rem}
-.demo-card-meta span{font-size:.72rem;color:var(--paper-45);font-weight:300}
+.demo-card-meta > span{display:block;margin-top:.35rem;font-size:.76rem;color:var(--paper-45);font-weight:300;line-height:1.5}
 .demo-tag{display:inline-flex;align-items:center;white-space:nowrap;color:var(--gold-lt);font-size:.6rem;
   font-weight:500;letter-spacing:.16em;text-transform:uppercase}
 
@@ -333,7 +333,16 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 /* ── KONTAKT ─────────────────────────────────────────────── */
 .contact{background:var(--cream-2);border-top:1px solid var(--line)}
 .contact .wrap{max-width:660px;text-align:center}
-.cform{display:flex;flex-direction:column;gap:1.1rem;margin-top:3rem;text-align:left}
+.contact-direct{margin-top:2.4rem}
+.contact-tel{display:inline-block;font-family:var(--display);font-weight:500;font-size:clamp(2rem,5vw,3.4rem);
+  line-height:1;letter-spacing:-.01em;color:var(--ink);transition:color .3s}
+.contact-tel:hover{color:var(--gold-dk)}
+.contact-meta{display:flex;gap:.6rem 1.6rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;
+  font-size:.84rem;color:var(--ink-55);font-weight:300}
+.contact-meta a{border-bottom:1px solid var(--line);transition:color .3s,border-color .3s}
+.contact-meta a:hover{color:var(--gold-dk);border-color:var(--line-2)}
+.contact-or{margin-top:2.2rem;font-size:.64rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-35)}
+.cform{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.6rem;text-align:left}
 .crow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .field label{font-size:.64rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-35);display:block;margin-bottom:.5rem}
 .field input,.field select,.field textarea{width:100%;min-width:0;background:var(--cream-3);border:1px solid var(--line);color:var(--ink);
@@ -453,6 +462,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     <a href="#tjanster">Tjänster</a>
     <a href="#process">Så går det till</a>
     <a href="#arbeten">Arbeten</a>
+    <a href="#varfor">Varför oss</a>
     <a href="#kontakt">Kontakt</a>
     <a href="tel:+46720119173">072-011 91 73</a>
     <a href="#" class="btn btn-gold magnetic" data-magnetic=".3" onclick="openPop();return false"><span>Begär offert</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
@@ -479,17 +489,16 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   <div class="hero-grain"></div>
 
   <div class="hero-inner">
-    <span class="hero-badge"><i></i> Måleri &amp; tak · Jönköping och hela Småland</span>
+    <span class="hero-badge"><i></i> Måleri &amp; tak · Hela Småland</span>
     <h1 class="hero-h1">
       <span class="line"><span>Samma hus.</span></span>
       <span class="line"><span><span class="accent">Nytt liv.</span></span></span>
     </h1>
-    <p class="hero-lede">Algstrimmorna under fönstren är inte smuts. De håller kvar fukten, och när färgen släpper suger panelen vatten. Vi målar om huset medan det fortfarande bara är ett målerijobb.</p>
     <div class="hero-ctas">
       <a href="#" class="btn btn-gold magnetic" data-magnetic=".3" onclick="openPop();return false"><span>Begär kostnadsfri offert</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a href="#arbeten" class="btn btn-ghost"><span>Se utförda arbeten</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
-    <p class="hero-micro">Kostnadsfri offert · Svar inom 1 till 2 arbetsdagar · Hela Småland</p>
+    <p class="hero-micro">Kostnadsfri offert · Fast kontaktperson · Hela Småland</p>
   </div>
 
   <div class="scrollcue"><span class="ln"></span><span>Se förvandlingen</span></div>
@@ -535,8 +544,8 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   <div class="rb-inner">
     <span class="eyebrow">Resultatet</span>
     <h2 class="rb-h" data-lines>
-      <span class="line"><span>Och sedan syns det</span></span>
-      <span class="line"><span><em>ända inpå.</em></span></span>
+      <span class="line"><span>Och det håller</span></span>
+      <span class="line"><span>även på <em>nära håll.</em></span></span>
     </h2>
   </div>
 </section>
@@ -555,34 +564,34 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 
     <div class="svc-grid" data-stagger>
       <article class="svc" data-stagger-item>
-        <svg class="svc-i" viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-6 7 6v11"/><path d="M9 21v-6h6v6"/></svg>
-        <h3 class="svc-n">Utvändig målning</h3>
-        <p class="svc-d">Tvätt, skrapning och grundning innan första strykningen. Villor och fastigheter i trä och puts.</p>
+        <svg class="svc-i" viewBox="0 0 24 24"><path d="M4 20.5h16"/><rect x="4.5" y="3.5" width="8" height="4.5" rx="1"/><path d="M12.5 5.75h5.5a1.5 1.5 0 0 1 1.5 1.5v1.5a1.5 1.5 0 0 1-1.5 1.5H11"/><path d="M11 10.25v2.25"/><rect x="9.5" y="12.5" width="3" height="4" rx="1"/></svg>
+        <h3 class="svc-n">Fasadmålning</h3>
+        <p class="svc-d">Tvätt, skrapning och grundning före första strykningen. Trä och puts.</p>
         <span class="svc-tag">Villor &amp; fastigheter</span>
       </article>
       <article class="svc" data-stagger-item>
-        <svg class="svc-i" viewBox="0 0 24 24"><path d="M2 12L12 4l10 8"/><path d="M5 11v9h14v-9"/></svg>
+        <svg class="svc-i" viewBox="0 0 24 24"><path d="M2 11.5L12 4l10 7.5"/><path d="M6.5 16h11"/><path d="M8.5 20h7"/></svg>
         <h3 class="svc-n">Takmålning</h3>
-        <p class="svc-d">Betong, tegel eller plåt. Rätt färgsystem för materialet, inte samma burk på allt.</p>
+        <p class="svc-d">Rätt färgsystem för materialet, inte samma burk på allt.</p>
         <span class="svc-tag">Betong · Tegel · Plåt</span>
       </article>
       <article class="svc" data-stagger-item>
-        <svg class="svc-i" viewBox="0 0 24 24"><path d="M4 18c2-6 5-9 8-9s6 3 8 9"/><path d="M12 3v3M7 6l1.5 2.2M17 6l-1.5 2.2"/></svg>
+        <svg class="svc-i" viewBox="0 0 24 24"><path d="M2 9.5L12 3l10 6.5"/><path d="M6.6 14.4c0-1.3 1.1-2.4 1.1-2.4s1.1 1.1 1.1 2.4a1.1 1.1 0 0 1-2.2 0z"/><path d="M10.9 17.6c0-1.3 1.1-2.4 1.1-2.4s1.1 1.1 1.1 2.4a1.1 1.1 0 0 1-2.2 0z"/><path d="M15.2 14.4c0-1.3 1.1-2.4 1.1-2.4s1.1 1.1 1.1 2.4a1.1 1.1 0 0 1-2.2 0z"/></svg>
         <h3 class="svc-n">Taktvätt</h3>
-        <p class="svc-d">Mossan bort innan den hinner lyfta pannorna och släppa in vatten. Alger och smuts med.</p>
+        <p class="svc-d">Mossan håller kvar fukt och leder in vatten där det inte ska.</p>
         <span class="svc-tag">Mossa · Alger · Smuts</span>
       </article>
       <article class="svc" data-stagger-item>
-        <svg class="svc-i" viewBox="0 0 24 24"><path d="M14 6l4 4M3 21l3-1 12-12a2.8 2.8 0 0 0-4-4L2 16l-1 3 3-1"/><path d="M15 21h7"/></svg>
-        <h3 class="svc-n">Invändig målning &amp; tapetsering</h3>
-        <p class="svc-d">Väggar, tak, snickerier, lister och dörrar. Raka kanter och täckande ytor, dammet där det hör hemma.</p>
-        <span class="svc-tag">Väggar · Tak · Snickerier</span>
+        <svg class="svc-i" viewBox="0 0 24 24"><rect x="8.5" y="3" width="7" height="7" rx="1"/><path d="M10.5 10v3.5a1.5 1.5 0 0 0 3 0V10"/><path d="M12 17v4"/></svg>
+        <h3 class="svc-n">Invändigt måleri</h3>
+        <p class="svc-d">Väggar, tak, snickerier och tapet. Raka kanter, dammet där det hör hemma.</p>
+        <span class="svc-tag">Väggar · Tak · Tapet</span>
       </article>
       <article class="svc" data-stagger-item>
-        <svg class="svc-i" viewBox="0 0 24 24"><path d="M6 20c0-3 2-5 2-5s2 2 2 5a2 2 0 0 1-4 0z"/><path d="M14 3l7 7-6 6-7-7z"/></svg>
+        <svg class="svc-i" viewBox="0 0 24 24"><path d="M9.5 8.5h6v10a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2z"/><path d="M9.5 12h6"/><path d="M9.5 8.5v-2h4"/><path d="M18.5 4.5h3M18.5 7.5h2.2M18.5 10.5h3"/></svg>
         <h3 class="svc-n">Fasadtvätt</h3>
-        <p class="svc-d">Rengöring före målning. En fasad som inte är ren håller inte färgen, hur bra färgen än är.</p>
-        <span class="svc-tag">Rengöring före målning</span>
+        <p class="svc-d">En fasad som inte är ren håller inte färgen, hur bra färgen än är.</p>
+        <span class="svc-tag">Före målning</span>
       </article>
     </div>
   </div>
@@ -635,7 +644,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       <span class="eyebrow">Utförda arbeten</span>
       <h2 class="h2" data-lines style="margin-top:1.1rem">
         <span class="line"><span>Rätt ordning.</span></span>
-        <span class="line"><span><em>Rätt</em> resultat.</span></span>
+        <span class="line"><span>Rätt <em>resultat.</em></span></span>
       </h2>
     </div>
 
@@ -646,12 +655,12 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
           <div class="demo-shield"></div>
         </div>
         <div class="demo-card-meta">
-          <div>
-            <h3>Fasadmålning</h3>
+            <div class="demo-card-top">
+              <h3>Fasadmålning</h3>
+              <span class="demo-tag">Utvändigt</span>
+            </div>
             <span>Tvätt, skrapning, grundning, två strykningar</span>
           </div>
-          <span class="demo-tag">Utvändigt</span>
-        </div>
       </article>
       <article class="demo-card" data-stagger-item>
         <div class="demo-preview">
@@ -659,12 +668,12 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
           <div class="demo-shield"></div>
         </div>
         <div class="demo-card-meta">
-          <div>
-            <h3>Takmålning &amp; taktvätt</h3>
-            <span>Mossan bort innan den lyfter pannorna</span>
+            <div class="demo-card-top">
+              <h3>Takmålning &amp; taktvätt</h3>
+              <span class="demo-tag">Tak</span>
+            </div>
+            <span>Mossan bort innan fukten hinner göra skada</span>
           </div>
-          <span class="demo-tag">Tak</span>
-        </div>
       </article>
       <article class="demo-card" data-stagger-item>
         <div class="demo-preview">
@@ -672,12 +681,12 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
           <div class="demo-shield"></div>
         </div>
         <div class="demo-card-meta">
-          <div>
-            <h3>Målning &amp; tapetsering</h3>
+            <div class="demo-card-top">
+              <h3>Målning &amp; tapetsering</h3>
+              <span class="demo-tag">Invändigt</span>
+            </div>
             <span>Väggar, tak, snickerier, lister och dörrar</span>
           </div>
-          <span class="demo-tag">Invändigt</span>
-        </div>
       </article>
     </div>
   </div>
@@ -729,8 +738,8 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
         <span class="audit-badge">Kostnadsfritt</span>
         <span class="audit-note">Svar inom 1 till 2 arbetsdagar</span>
       </div>
-      <h3>Osäker på om det behöver målas om i år?</h3>
-      <p>Skicka några foton på fasaden eller taket, så säger vi rakt ut vad vi ser. Ibland är svaret att det kan vänta en säsong, och då säger vi hellre det än säljer på dig ett jobb.</p>
+      <h3>Vad kostar det att måla om huset?</h3>
+      <p>Det beror på ytan och på vad som döljer sig under den gamla färgen, så vi gissar inte på telefon. Ring eller mejla några foton på fasaden, så säger vi rakt ut vad vi ser. Ibland är svaret att det kan vänta en säsong, och då säger vi hellre det än säljer på dig ett jobb.</p>
     </div>
     <a href="#" class="btn btn-gold magnetic" data-magnetic=".25" onclick="openPop();return false"><span>Begär offert</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
@@ -757,6 +766,16 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       <span class="line"><span>Berätta om</span></span>
       <span class="line"><span><em>ditt</em> hus.</span></span>
     </h2>
+
+    <div class="contact-direct" data-reveal="0.05">
+      <a class="contact-tel" href="tel:+46720119173">072-011 91 73</a>
+      <div class="contact-meta">
+        <a href="mailto:kontakt@smamaleri.se">kontakt@smamaleri.se</a>
+        <span>Havsörnsgatan 57, Jönköping</span>
+        <span>Svar inom 1 till 2 arbetsdagar</span>
+      </div>
+      <p class="contact-or">Eller fyll i formuläret, så hör vi av oss.</p>
+    </div>
 
     <form class="cform" id="cform" data-reveal>
       <div class="field">
@@ -1259,14 +1278,12 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       const tl = gsap.timeline({ delay: .1 });
       gsap.set('.hero-badge', { clipPath: 'inset(0 100% 0 0)', opacity: 0 });
       gsap.set(lines, { yPercent: 118 });
-      gsap.set('.hero-lede', { opacity: 0, filter: 'blur(6px)', y: 12 });
       gsap.set('.hero-ctas', { opacity: 0, scale: .94, y: 12 });
       gsap.set('.hero-micro', { opacity: 0 });
       gsap.set('.scrollcue', { opacity: 0, y: 18 });
 
       tl.to('.hero-badge', { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: .9, ease: 'power4.inOut' })
         .to(lines, { yPercent: 0, duration: 1.1, ease: 'expo.out', stagger: .1 }, '-=.4')
-        .to('.hero-lede', { opacity: 1, filter: 'blur(0px)', y: 0, duration: 1.0, ease: 'power3.out' }, '-=.6')
         .to('.hero-ctas', { opacity: 1, scale: 1, y: 0, duration: .8, ease: 'back.out(1.5)' }, '-=.55')
         .to('.hero-micro', { opacity: 1, duration: .6 }, '-=.45')
         .to('.scrollcue', { opacity: 1, y: 0, duration: .7 }, '-=.4');
@@ -1293,7 +1310,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     $$('[data-stagger-item], .wi-ck').forEach((el) => {
       if (getComputedStyle(el).opacity === '0') { el.style.opacity = 1; el.style.transform = 'none'; el.style.filter = 'none'; }
     });
-    ['.hero-badge', '.hero-lede', '.hero-ctas', '.hero-micro', '.scrollcue'].forEach((sel) => {
+    ['.hero-badge', '.hero-ctas', '.hero-micro', '.scrollcue'].forEach((sel) => {
       const el = $(sel);
       if (el && getComputedStyle(el).opacity === '0') { el.style.opacity = 1; el.style.transform = 'none'; el.style.clipPath = 'none'; }
     });
