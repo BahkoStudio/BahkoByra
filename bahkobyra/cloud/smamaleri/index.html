@@ -953,7 +953,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       if (reduce) { gsap.set(inner, { yPercent: 0 }); return; }
       gsap.set(inner, { yPercent: 115 });
       gsap.to(inner, { yPercent: 0, duration: 1, ease: 'expo.out', stagger: .09,
-        scrollTrigger: { trigger: h, start: 'top 84%' } });
+        scrollTrigger: { trigger: h, start: 'top 84%', once: true } });
     });
 
     $$('[data-reveal]').forEach((el) => {
@@ -961,21 +961,21 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       if (!reduce && el.classList.contains('eyebrow')) {
         gsap.fromTo(el, { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
           { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: .85, ease: 'power4.inOut', delay: d,
-            scrollTrigger: { trigger: el, start: 'top 84%' } });
+            scrollTrigger: { trigger: el, start: 'top 84%', once: true } });
       } else if (el.id === 'cform') {
         const items = [...$$('.field', el), el.querySelector('.btn')].filter(Boolean);
         gsap.to(el, { opacity: 1, duration: .1 });
         if (!reduce) {
           gsap.fromTo(items, { y: 30, opacity: 0, filter: 'blur(4px)' },
             { y: 0, opacity: 1, filter: 'blur(0px)', duration: .95, ease: 'expo.out', stagger: .09,
-              scrollTrigger: { trigger: el, start: 'top 88%' } });
+              scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
         } else {
           gsap.set(items, { opacity: 1, y: 0 });
         }
       } else {
         gsap.fromTo(el, { y: 56, opacity: 0, filter: 'blur(5px)' },
           { y: 0, opacity: 1, filter: 'blur(0px)', duration: 1.1, ease: 'expo.out', delay: d,
-            scrollTrigger: { trigger: el, start: 'top 86%' } });
+            scrollTrigger: { trigger: el, start: 'top 86%', once: true } });
       }
     });
 
@@ -983,7 +983,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       if (reduce) return;
       gsap.fromTo(el, { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
         { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: .85, ease: 'power4.inOut',
-          scrollTrigger: { trigger: el, start: 'top 84%' } });
+          scrollTrigger: { trigger: el, start: 'top 84%', once: true } });
     });
 
     $$('[data-stagger]').forEach((grp) => {
@@ -1000,20 +1000,20 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
         gsap.fromTo(items, { y: 80, opacity: 0, scale: .86, rotationX: 26, transformOrigin: '50% 0%' },
           { y: 0, opacity: 1, scale: 1, rotationX: 0, duration: 1.35, ease: 'expo.out',
             stagger: { each: .075, ease: 'power1.out' },
-            scrollTrigger: { trigger: grp, start: 'top 85%' } });
+            scrollTrigger: { trigger: grp, start: 'top 85%', once: true } });
       } else if (grp.classList.contains('why-list')) {
         gsap.fromTo(items, { y: 62, opacity: 0, scale: .94, filter: 'blur(9px)' },
           { y: 0, opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.1, ease: 'expo.out',
             stagger: { each: .16, ease: 'power1.inOut' },
-            scrollTrigger: { trigger: grp, start: 'top 84%' } });
+            scrollTrigger: { trigger: grp, start: 'top 84%', once: true } });
         gsap.fromTo($$('.wi-ck', grp), { scale: 0, opacity: 0 },
           { scale: 1, opacity: 1, duration: .55, ease: 'back.out(3)',
             stagger: { each: .16, delay: .5 },
-            scrollTrigger: { trigger: grp, start: 'top 84%' } });
+            scrollTrigger: { trigger: grp, start: 'top 84%', once: true } });
       } else {
         gsap.fromTo(items, { y: 52, opacity: 0, filter: 'blur(4px)' },
           { y: 0, opacity: 1, filter: 'blur(0px)', duration: 1.0, ease: 'expo.out', stagger: .11,
-            scrollTrigger: { trigger: grp, start: 'top 84%' } });
+            scrollTrigger: { trigger: grp, start: 'top 84%', once: true } });
       }
     });
   }
@@ -1043,7 +1043,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     if (!hasST || reduce) return;
     gsap.fromTo('.stat-v', { scale: .5, opacity: 0, y: 24, filter: 'blur(6px)' },
       { scale: 1, opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.45, stagger: .14, ease: 'back.out(2)',
-        scrollTrigger: { trigger: '.stats', start: 'top 82%' } });
+        scrollTrigger: { trigger: '.stats', start: 'top 82%', once: true } });
   }
 
   /* ── PROCESS: pinnad horisontell scroll ────────────────── */
@@ -1055,7 +1055,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       if (hasST && !reduce) gsap.fromTo($$('.pstep', track),
         { y: 65, opacity: 0, scale: .94, filter: 'blur(6px)' },
         { y: 0, opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.05, ease: 'expo.out',
-          stagger: { each: .13 }, scrollTrigger: { trigger: track, start: 'top 80%' } });
+          stagger: { each: .13 }, scrollTrigger: { trigger: track, start: 'top 80%', once: true } });
       return;
     }
     track.classList.add('is-pinned');
@@ -1169,16 +1169,16 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     if (!hasST || reduce) return;
     gsap.fromTo('.marquee', { clipPath: 'inset(0 100% 0 0)' },
       { clipPath: 'inset(0 0% 0 0)', duration: 1.1, ease: 'power4.inOut',
-        scrollTrigger: { trigger: '.marquee', start: 'top 96%' } });
+        scrollTrigger: { trigger: '.marquee', start: 'top 96%', once: true } });
     gsap.fromTo('.cta .glow', { scale: .4, opacity: 0 },
       { scale: 1, opacity: 1, duration: 2.2, ease: 'power2.out',
-        scrollTrigger: { trigger: '.cta', start: 'top 75%' } });
+        scrollTrigger: { trigger: '.cta', start: 'top 75%', once: true } });
     gsap.fromTo('.stat-l', { opacity: 0, y: 8 },
       { opacity: 1, y: 0, duration: .75, ease: 'power3.out', stagger: .13, delay: .9,
-        scrollTrigger: { trigger: '.stats', start: 'top 82%' } });
+        scrollTrigger: { trigger: '.stats', start: 'top 82%', once: true } });
     gsap.fromTo('.proc-hint', { opacity: 0, x: -24 },
       { opacity: 1, x: 0, duration: .9, ease: 'expo.out',
-        scrollTrigger: { trigger: '.proc-hint', start: 'top 88%' } });
+        scrollTrigger: { trigger: '.proc-hint', start: 'top 88%', once: true } });
   }
 
   function initAuditReveal() {
@@ -1188,17 +1188,17 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     const parts = [$('.audit-tags', audit), $('h3', audit), $('p', audit), $('.btn', audit)].filter(Boolean);
     gsap.fromTo(parts, { y: 28, opacity: 0, filter: 'blur(5px)' },
       { y: 0, opacity: 1, filter: 'blur(0px)', duration: .95, ease: 'expo.out', stagger: .1, delay: .2,
-        scrollTrigger: { trigger: audit, start: 'top 83%' } });
+        scrollTrigger: { trigger: audit, start: 'top 83%', once: true } });
   }
 
   function initFooterReveal() {
     if (!hasST || reduce) return;
     gsap.fromTo('.foot-brand', { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
       { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: 1.4, ease: 'power4.inOut',
-        scrollTrigger: { trigger: '.foot-brand', start: 'top 92%' } });
+        scrollTrigger: { trigger: '.foot-brand', start: 'top 92%', once: true } });
     gsap.fromTo($$('.foot-cta, .foot-areas, .foot-bottom'), { y: 32, opacity: 0, filter: 'blur(5px)' },
       { y: 0, opacity: 1, filter: 'blur(0px)', duration: 1.1, ease: 'expo.out', stagger: .18,
-        scrollTrigger: { trigger: '.foot-brand', start: 'top 90%' } });
+        scrollTrigger: { trigger: '.foot-brand', start: 'top 90%', once: true } });
   }
 
   /* ── VIDEO-SÄKRING ─────────────────────────────────────── */
