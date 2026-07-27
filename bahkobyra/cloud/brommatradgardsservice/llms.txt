@@ -6,19 +6,25 @@ Bromma Trädgårdsservice drivs av Jens Amnesten tillsammans med två medarbetar
 
 Kontakt: 070-766 65 14, jens@brommatradgardsservice.se
 
+## Sidor
+
+- [Startsida](https://brommatradgardsservice.se/): Samtliga tjänster, pris, process, omdömen, områden och kontakt.
+- [Trädgårdsskötsel i Bromma](https://brommatradgardsservice.se/tradgardsskotsel/): Löpande skötsel moment för moment, intervall, rutavdrag med källa, pris och vanliga frågor.
+- [Häckklippning, häckplantering och borttagning](https://brommatradgardsservice.se/hackklippning/): De tre häckarbetena, planteringstidpunkt, rutavdrag vid häckbyte, pris och vanliga frågor.
+
 ## Tjänster
 
 - [Trädgårdsanläggning](https://brommatradgardsservice.se/#tjanster): Kompletta projekt från planering till färdig trädgård. Markutjämning, materialbeställning, anläggning och bortforsling av det gamla. Förslag på utformningen lämnas innan arbetet börjar.
 - [Gräsmatta och sprinklersystem](https://brommatradgardsservice.se/#tjanster): Rullgräs på förberedd växtbädd, inte utrullat på befintlig jord. Sprinklersystem monteras i samma vända.
-- [Häckplantering och borttagning](https://brommatradgardsservice.se/#tjanster): Tuja, liguster och andra häckar planterade på rätt djup med rätt jord och täckmaterial. Gammal häck tas bort med rothals och körs bort samma dag.
-- [Trädgårdsskötsel](https://brommatradgardsservice.se/#tjanster): Gräsklippning, häckklippning, ogräsrensning och beskärning genom hela säsongen, med fast intervall eller efter behov. Arbetskostnaden berättigar till rutavdrag.
+- [Häckklippning, häckplantering och borttagning](https://brommatradgardsservice.se/hackklippning/): Häckklippning i form med riset bortkört. Tuja, liguster och andra häckar planterade på rätt djup med rätt jord och täckmaterial. Gammal häck tas bort med rothals och körs bort samma dag. Klippning och borttagning ger rutavdrag på arbetskostnaden, plantering av ny häck gör det inte.
+- [Trädgårdsskötsel](https://brommatradgardsservice.se/tradgardsskotsel/): Gräsklippning, häckklippning, ogräsrensning, beskärning, mossbekämpning i gräsmatta och lövhantering genom hela säsongen, med fast intervall eller efter behov. Arbetskostnaden berättigar till rutavdrag.
 - [Jordutjämning och markarbete](https://brommatradgardsservice.se/#tjanster): Utjämning av ojämn tomt, korrigering av lutning och packning så att vatten inte blir stående.
 - [Röjning och bortforsling](https://brommatradgardsservice.se/#tjanster): Gammal häck, ris, jordmassor och trädgårdsavfall. Ingår i projekt, utförs även som fristående uppdrag.
 - [Snöröjning och halkbekämpning](https://brommatradgardsservice.se/#tjanster): Uppfarter, gångar och parkeringar röjs genom vintersäsongen, med halkbekämpning vid behov. Samma kontaktperson året om.
 
 ## Vanliga frågor
 
-- [Rutavdrag på trädgårdsarbete](https://brommatradgardsservice.se/#faq): Skötsel som gräsklippning, häckklippning, ogräsrensning och beskärning ger rutavdrag på arbetskostnaden. Nyanläggning av gräsmatta, plantering av nya växter, stenläggning, murar och trädgårdsgångar ger inte rutavdrag enligt Skatteverket. Vid häckbyte ger borttagningen av den gamla häcken rutavdrag även om planteringen av den nya inte gör det; bortforslingen räknas inte in.
+- [Rutavdrag på trädgårdsarbete](https://brommatradgardsservice.se/tradgardsskotsel/#rutavdrag): Enligt Skatteverkets egna exempel ger följande rutavdrag på arbetskostnaden när arbetet utförs på tomt i nära anslutning till bostaden: häck- och gräsklippning, krattning och ogräsrensning, klippning av buskar, bekämpning av mossa i gräsmatta, beskärning, fällning och borttagande av träd och buskar, röjning av sly, stubbfräsning och vedkapning samt höstgrävning av land och omgrävning av kompost. Följande ger inte rutavdrag: planteringsarbeten, anläggning av gräsmatta, murar, uppfarter, staket och trädgårdsgångar, sten- och plattläggning. Bortforsling av materialet räknas inte in i avdraget ens när arbetet i sig ger avdrag. Vid häckbyte ger därför borttagningen av den gamla häcken rutavdrag medan planteringen av den nya inte gör det. Källa: Skatteverket, "Vilken typ av trädgårdsarbete kan jag få rutavdrag för?".
 - [Vad kostar det](https://brommatradgardsservice.se/#pris): Priset beror på tomtens förutsättningar. Två gräsmattor på 200 kvm kan skilja tiotusentals kronor beroende på markförhållanden, åtkomst och vad som ligger under jorden. Företaget lämnar därför ingen prisuppgift per telefon utan gör ett kostnadsfritt hembesök först.
 - [Ingår bortforsling](https://brommatradgardsservice.se/#faq): Ja, alltid. Gammal häck, jordmassor, ris och trädgårdsavfall lastas och körs bort av företaget.
 - [Bästa tiden att plantera häck](https://brommatradgardsservice.se/#faq): Vår och höst. Barrotade plantor sätts under vilperioden, tidig vår innan knoppbrytning eller sen höst efter lövfällning. Krukodlade plantor kan sättas hela säsongen med tillräcklig vattning.

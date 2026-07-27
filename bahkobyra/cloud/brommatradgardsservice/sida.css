@@ -1,0 +1,334 @@
+/* =====================================================================
+   Bromma Trädgårdsservice — formatmall för tjänstesidor
+   ---------------------------------------------------------------------
+   Startsidan (index.html) har sin CSS inline eftersom den bär
+   scroll-koreografin. Den här filen är avsiktligt utan koreografi:
+   tjänstesidorna är läsesidor, inte upplevelser. Formgivningstokens och
+   komponentnamnen är identiska med startsidans, så en ändring av
+   varumärket görs på samma två ställen och sidorna ser likadana ut.
+   ===================================================================== */
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0B0B0D; --bg2:#121215; --card:#17171B;
+  --text:#F2EFE9; --muted:rgba(242,239,233,.8); --dim:rgba(242,239,233,.58);
+  --amber:#6BBF59; --amber-lt:#9FE08A; --amber-dk:#3F8F3D;
+  --line:rgba(242,239,233,.1);
+  --grad:linear-gradient(100deg,var(--amber-lt) 0%,var(--amber) 45%,#2E7D32 100%);
+  --sans:'Archivo',system-ui,sans-serif; --disp:'Archivo',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html{background:var(--bg);overflow-x:hidden;overflow-x:clip;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;overflow-x:clip;-webkit-font-smoothing:antialiased;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--amber);color:#0C1408}
+:focus-visible{outline:2px solid var(--amber-lt);outline-offset:3px}
+
+/* ===== HEADER =====
+   Till skillnad från startsidan ligger ingen video bakom, så headern har
+   sin bakgrund direkt i stället för att vänta på en scrolled-klass. */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:max(1rem,env(safe-area-inset-top)) clamp(1.2rem,4vw,3rem) 1rem;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(11,11,13,.88);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);
+  border-bottom:1px solid var(--line)}
+.header-logo img{height:56px;width:auto;display:block}
+.header-nav{display:flex;gap:2rem;align-items:center}
+.header-nav a{position:relative;font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;opacity:.75;transition:opacity .3s,color .3s}
+.header-nav a::after{content:'';position:absolute;left:0;bottom:-5px;height:1px;width:0;background:var(--amber);transition:width .35s var(--ease)}
+.header-nav a:hover{opacity:1;color:var(--amber-lt)}
+.header-nav a:hover::after{width:100%}
+.header-nav a[aria-current="page"]{opacity:1;color:var(--amber-lt)}
+.header-nav a[aria-current="page"]::after{width:100%}
+.header-nav .nav-tel{opacity:.9;font-weight:700;color:var(--amber-lt);letter-spacing:.12em}
+.header-nav .nav-cta{opacity:1;background:var(--grad);color:#0C1408;padding:.68rem 1.4rem;border-radius:4px;font-weight:700;box-shadow:0 10px 28px -12px rgba(107,191,89,.55);transition:transform .2s,box-shadow .3s}
+.header-nav .nav-cta::after{display:none}
+.header-nav .nav-cta:hover{transform:translateY(-2px);color:#0C1408;box-shadow:0 16px 36px -12px rgba(107,191,89,.7)}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:10px;margin:-10px;z-index:200}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--text);transition:all .3s ease}
+.hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mobile-nav{position:fixed;inset:0;background:rgba(11,11,13,.97);backdrop-filter:blur(20px);z-index:150;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;opacity:0;visibility:hidden;transition:all .4s ease}
+.mobile-nav.open{opacity:1;visibility:visible}
+.mobile-nav a{font-family:var(--disp);font-size:1.5rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.85;transition:opacity .3s,color .3s}
+.mobile-nav a:hover{opacity:1;color:var(--amber)}
+.mobile-nav .mn-tel{font-size:1.1rem;color:var(--amber-lt);letter-spacing:.14em}
+
+/* ===== SIDHUVUD PÅ TJÄNSTESIDA =====
+   Ingen video. Sidan ska kunna läsas direkt, och en tjänstesida som
+   börjar med 100svh film skjuter ner svaret på frågan besökaren ställde. */
+.page-hero{padding:clamp(8rem,17vh,11rem) clamp(1.2rem,6vw,4rem) clamp(3rem,7vh,4.5rem);
+  background:radial-gradient(ellipse 90% 120% at 12% 0%,rgba(107,191,89,.13) 0%,transparent 62%),var(--bg);
+  border-bottom:1px solid var(--line)}
+.page-hero-inner{max-width:1180px;margin:0 auto}
+.crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:.7rem;color:var(--dim);margin-bottom:1.6rem}
+.crumbs a{color:var(--amber-lt);opacity:.9}
+.crumbs a:hover{text-decoration:underline}
+.crumbs span[aria-current]{color:var(--dim)}
+.page-h1{font-family:var(--disp);font-size:clamp(1.9rem,4.6vw,3.5rem);font-weight:900;line-height:1.06;
+  text-transform:uppercase;letter-spacing:-.02em;margin-bottom:1.2rem;max-width:22ch}
+.page-h1 .accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.page-lead{font-size:clamp(.98rem,1.25vw,1.16rem);line-height:1.8;color:var(--muted);max-width:62ch}
+.page-lead strong{color:var(--text);font-weight:600}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem;align-items:center}
+
+/* ===== INNEHÅLLSSEKTIONER (samma namn som startsidan) ===== */
+.ss-section{padding:clamp(3.4rem,9vh,6rem) clamp(1.2rem,6vw,4rem);border-top:1px solid var(--line)}
+.ss-section:first-of-type{border-top:none}
+.ss-inner{max-width:1180px;margin:0 auto}
+.ss-label{display:block;font-size:.64rem;font-weight:700;letter-spacing:.36em;color:var(--amber);text-transform:uppercase;margin-bottom:1rem}
+.ss-h2{font-family:var(--disp);font-size:clamp(1.6rem,3.4vw,2.7rem);font-weight:900;line-height:1.12;text-transform:uppercase;letter-spacing:-.015em;margin-bottom:1.4rem}
+.ss-h3{font-family:var(--disp);font-size:clamp(1.1rem,1.7vw,1.4rem);font-weight:800;line-height:1.3;margin:2.2rem 0 .8rem}
+.ss-p{font-size:clamp(.92rem,1.05vw,1.04rem);line-height:1.85;color:var(--muted);max-width:68ch}
+.ss-p + .ss-p{margin-top:1rem}
+.ss-p strong{color:var(--text);font-weight:600}
+/* Länkar i brödtext måste vara understrukna: a{text-decoration:none} gäller
+   globalt, och en grön länk utan strykning läses inte som en länk. */
+.ss-p a,.faq-a a,.fact-note a{color:var(--amber-lt);text-decoration:underline;text-underline-offset:.18em}
+.ss-p a:hover,.faq-a a:hover,.fact-note a:hover{color:var(--text)}
+.ss-list{list-style:none;margin-top:1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:.7rem 1.4rem}
+.ss-list li{position:relative;padding-left:1.5rem;font-size:.9rem;color:var(--muted);line-height:1.7}
+.ss-list li::before{content:'';position:absolute;left:0;top:.58em;width:7px;height:7px;border-radius:50%;background:var(--grad)}
+.ss-list.one-col{grid-template-columns:1fr}
+.ss-grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+
+/* Tjänstekort */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.2rem}
+.svc-grid.two{grid-template-columns:repeat(2,1fr)}
+.svc-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.7rem 1.5rem;transition:border-color .35s,transform .35s}
+.svc-card:hover{border-color:rgba(107,191,89,.45);transform:translateY(-3px)}
+.svc-card h3{font-family:var(--disp);font-weight:800;font-size:1.1rem;margin-bottom:.6rem}
+.svc-card p{font-size:.85rem;color:var(--muted);line-height:1.7}
+.svc-card .svc-tag{display:inline-block;font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--amber-lt);border:1px solid rgba(107,191,89,.3);border-radius:3px;padding:.25rem .6rem;margin-bottom:.9rem}
+
+/* ===== FAKTARUTA MED KÄLLA =====
+   Används för rutavdraget. Regler som citeras på en kundsajt ska alltid
+   ha synlig källa: det är både redligt och det som gör texten svår att
+   kopiera för en konkurrent som inte kollat upp saken. */
+.fact-box{background:var(--card);border:1px solid rgba(107,191,89,.28);border-radius:12px;padding:clamp(1.5rem,3vw,2.1rem);margin-top:2rem}
+.fact-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
+.fact-col h3{font-family:var(--disp);font-size:1rem;font-weight:800;margin-bottom:.9rem;display:flex;align-items:center;gap:.55rem}
+.fact-col.yes h3{color:var(--amber-lt)}
+.fact-col.no h3{color:rgba(242,239,233,.72)}
+.fact-mark{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex:none;border-radius:50%;font-size:.7rem;font-weight:900}
+.fact-col.yes .fact-mark{background:rgba(107,191,89,.18);border:1px solid rgba(107,191,89,.5);color:var(--amber-lt)}
+.fact-col.no .fact-mark{background:rgba(242,239,233,.06);border:1px solid var(--line);color:var(--dim)}
+.fact-col ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.fact-col li{position:relative;padding-left:1.1rem;font-size:.88rem;line-height:1.65;color:var(--muted)}
+.fact-col li::before{content:'';position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--amber)}
+.fact-col.no li::before{background:rgba(242,239,233,.3)}
+.fact-note{margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.82rem;line-height:1.7;color:var(--dim)}
+
+/* Pris */
+.pris-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.pris-card{background:var(--card);border:1px solid rgba(107,191,89,.28);border-radius:12px;padding:2.1rem 1.9rem;text-align:center}
+.pris-big{font-family:var(--disp);font-weight:900;font-size:clamp(3rem,7vw,5rem);line-height:1;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pris-lead{font-size:.92rem;color:var(--muted);line-height:1.7;margin:.8rem auto 1.4rem;max-width:34ch}
+.pris-list{grid-template-columns:1fr;text-align:left;max-width:22rem;margin:0 auto 1.6rem}
+.pris-card .cta-button{width:100%;justify-content:center}
+.pris-tel{display:block;margin-top:.9rem;font-size:.8rem;letter-spacing:.06em;color:var(--amber-lt);font-weight:600}
+.pris-tel:hover{text-decoration:underline}
+
+/* Process */
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:2.2rem}
+.step-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.6rem 1.4rem}
+.step-num{font-family:var(--disp);font-weight:900;font-size:1.9rem;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.7rem}
+.step-card h3{font-family:var(--disp);font-weight:800;font-size:1rem;margin-bottom:.45rem}
+.step-card p{font-size:.83rem;color:var(--muted);line-height:1.7}
+
+/* FAQ */
+.faq-list{margin-top:2rem;border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item summary{list-style:none;cursor:pointer;padding:1.35rem 2.6rem 1.35rem 0;position:relative;
+  font-family:var(--disp);font-weight:700;font-size:clamp(1rem,1.5vw,1.14rem);line-height:1.4;transition:color .25s}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--amber-lt)}
+.faq-item summary::after{content:'';position:absolute;right:.4rem;top:50%;width:11px;height:11px;
+  border-right:2px solid var(--amber);border-bottom:2px solid var(--amber);
+  transform:translateY(-70%) rotate(45deg);transition:transform .3s var(--ease)}
+.faq-item[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq-item[open] summary{color:var(--amber-lt)}
+.faq-a{padding:0 2.6rem 1.5rem 0;max-width:70ch}
+.faq-a p{font-size:clamp(.88rem,1vw,1rem);line-height:1.85;color:var(--muted)}
+.faq-a p + p{margin-top:.85rem}
+
+/* Omdömen. Ingen Review- eller AggregateRating-markup: Google tillåter inte
+   att ett företag märker upp omdömen om sig självt. Korten är presentation
+   plus en länk till profilen där betyget står i original. */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:1.6rem}
+.rev-grid.two{grid-template-columns:repeat(2,1fr)}
+.rev-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.7rem 1.5rem;display:flex;flex-direction:column}
+.rev-stars{color:#FBBC04;font-size:.95rem;letter-spacing:.14em}
+.rev-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem}
+.rev-src{display:inline-flex;align-items:center;gap:.34rem;margin-left:auto;font-size:.66rem;color:var(--dim);letter-spacing:.04em}
+.gicon{width:13px;height:13px;flex:none;display:block}
+.rev-text{font-size:.88rem;line-height:1.75;color:var(--muted);flex:1}
+.rev-meta{margin-top:1.2rem;padding-top:.9rem;border-top:1px solid var(--line)}
+.rev-name{font-weight:700;font-size:.86rem}
+.rev-job{font-size:.74rem;color:var(--dim);margin-top:.15rem}
+.gpanel{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.5rem 1.8rem;margin-top:2rem}
+.gpanel-main{display:flex;align-items:center;gap:1.15rem}
+.gpanel-logo{width:36px;height:36px;flex:none;display:block}
+.gpanel-t{font-family:var(--disp);font-weight:800;font-size:1.02rem}
+.gpanel-stars{color:#FBBC04;font-size:1.05rem;letter-spacing:.12em;margin:.22rem 0 .25rem}
+.gpanel-s{font-size:.76rem;color:var(--dim)}
+.gpanel-cta{display:inline-flex;align-items:center;gap:.6rem;font-size:.66rem;font-weight:800;
+  letter-spacing:.18em;text-transform:uppercase;border-radius:100px;padding:.8rem 1.5rem;
+  border:1px solid rgba(107,191,89,.4);background:rgba(107,191,89,.08);
+  transition:background .3s,border-color .3s,transform .25s}
+.gpanel-cta:hover{background:rgba(107,191,89,.18);border-color:var(--amber);transform:translateY(-1px)}
+.gpanel-cta svg{width:13px;height:13px;stroke:var(--amber);stroke-width:2.6;fill:none}
+
+/* Områden */
+.area-wrap{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem}
+.area-chip{border:1px solid rgba(107,191,89,.28);background:rgba(107,191,89,.06);border-radius:100px;padding:.55rem 1.2rem;font-size:.82rem;color:var(--text)}
+
+/* Kontakt */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+.contact-big{display:block;font-family:var(--disp);font-weight:900;font-size:clamp(1.8rem,4.4vw,3.2rem);letter-spacing:-.01em;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin:.4rem 0 1.4rem}
+.contact-row{display:flex;gap:.7rem;font-size:.92rem;color:var(--muted);padding:.7rem 0;border-bottom:1px solid var(--line)}
+.contact-row strong{color:var(--text);min-width:104px;font-weight:600}
+.offer-card{background:var(--card);border:1px solid rgba(107,191,89,.28);border-radius:12px;padding:2rem 1.8rem}
+.offer-card h3{font-family:var(--disp);font-weight:800;font-size:1.35rem;margin-bottom:.7rem}
+.offer-card p{font-size:.88rem;color:var(--muted);margin-bottom:1.5rem}
+.offer-card .cta-button{width:100%;justify-content:center}
+
+/* Vidare-navigering mellan tjänstesidorna */
+.next-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-top:1.8rem}
+.next-card{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.6rem 1.5rem;transition:border-color .35s,transform .35s}
+.next-card:hover{border-color:rgba(107,191,89,.45);transform:translateY(-3px)}
+.next-card .nc-label{font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:.55rem}
+.next-card h3{font-family:var(--disp);font-weight:800;font-size:1.06rem;margin-bottom:.4rem}
+.next-card p{font-size:.84rem;color:var(--muted);line-height:1.7}
+
+/* ===== KNAPPAR ===== */
+.cta-button{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:.8rem;font-size:.74rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#0C1408;background:var(--grad);padding:1.15rem 2.8rem;border-radius:4px;box-shadow:0 18px 50px -18px rgba(107,191,89,.6);transition:box-shadow .35s,transform .25s}
+.cta-button::before{content:'';position:absolute;inset:0;background:var(--amber-lt);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s var(--ease);z-index:0}
+.cta-button:hover::before{transform:scaleX(1)}
+.cta-button:hover{box-shadow:0 24px 60px -18px rgba(107,191,89,.8);transform:translateY(-2px)}
+.cta-button span,.cta-button svg{position:relative;z-index:1}
+.cta-button svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.4;fill:none;transition:transform .35s var(--ease)}
+.cta-button:hover svg{transform:translateX(4px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid rgba(107,191,89,.4);background:rgba(107,191,89,.08);color:var(--amber-lt);
+  padding:1.05rem 1.9rem;border-radius:4px;transition:background .3s,border-color .3s,transform .25s}
+.btn-ghost:hover{background:rgba(107,191,89,.16);border-color:var(--amber);transform:translateY(-2px)}
+
+#float-offert{position:fixed;bottom:max(2.4rem,env(safe-area-inset-bottom));right:2.4rem;z-index:90;background:var(--grad);color:#0C1408;font-size:.64rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;padding:.85rem 1.7rem;border-radius:4px;opacity:0;transform:translateY(20px);transition:all .4s ease;pointer-events:none;box-shadow:0 10px 30px -8px rgba(107,191,89,.5)}
+#float-offert.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+#float-offert:hover{box-shadow:0 16px 40px -8px rgba(107,191,89,.7);transform:translateY(-2px) scale(1.03)}
+
+footer{border-top:1px solid var(--line);padding:2rem clamp(1.2rem,4vw,3rem);display:flex;justify-content:space-between;gap:1rem 1.6rem;flex-wrap:wrap;font-size:.72rem;color:var(--dim);background:var(--bg)}
+footer a{color:var(--amber-lt)}
+footer a:hover{text-decoration:underline}
+.foot-links{display:flex;flex-wrap:wrap;gap:1rem}
+
+/* ===== MODAL / OFFERTFORMULÄR (identisk med startsidan) ===== */
+.modal-bg{position:fixed;inset:0;z-index:500;background:rgba(11,11,13,.75);backdrop-filter:blur(10px);display:grid;place-items:center;padding:1.2rem;opacity:0;visibility:hidden;transition:.35s;overflow-y:auto}
+.modal-bg.open{opacity:1;visibility:visible}
+.modal{background:var(--bg2);border:1px solid rgba(107,191,89,.3);border-radius:12px;max-width:540px;width:100%;padding:2.4rem;position:relative;box-shadow:0 40px 110px rgba(0,0,0,.6);margin:auto}
+.modal-x{position:absolute;top:1rem;right:1.2rem;font-size:1.3rem;color:var(--dim);padding:.4rem}
+.modal-x:hover{color:var(--text)}
+.m-badge{display:inline-block;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--amber-lt);background:rgba(107,191,89,.1);border:1px solid rgba(107,191,89,.25);border-radius:4px;padding:.35rem .8rem;margin-bottom:1.2rem}
+.modal h3{font-family:var(--disp);font-weight:800;font-size:1.55rem;line-height:1.15;margin-bottom:.5rem}
+.modal p.m-sub{font-size:.87rem;color:var(--muted);margin-bottom:1.5rem}
+.of-form{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.of-field{display:flex;flex-direction:column;gap:.35rem}
+.of-field.full{grid-column:1/-1}
+.of-field label{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);font-weight:600}
+/* width:100% + min-width:0 krävs på select: utan det tar den bredden av sin
+   längsta option och spränger formuläret på små skärmar. */
+.of-field input,.of-field select,.of-field textarea{width:100%;min-width:0;background:rgba(242,239,233,.05);border:1px solid var(--line);border-radius:6px;padding:.75rem .85rem;color:var(--text);font-family:inherit;font-size:.9rem;transition:border-color .25s}
+.of-field input:focus,.of-field select:focus,.of-field textarea:focus{outline:none;border-color:var(--amber)}
+.of-field textarea{resize:vertical;min-height:78px}
+.of-field select option{background:var(--bg2);color:var(--text)}
+.of-form .cta-button{grid-column:1/-1;width:100%;justify-content:center;margin-top:.5rem}
+.of-note{grid-column:1/-1;font-size:.7rem;color:var(--dim);text-align:center;line-height:1.6}
+#of-summary{display:none}
+#of-summary.show{display:block}
+.of-alt-note{font-size:.76rem;color:var(--dim);margin:-.6rem 0 1rem;line-height:1.6}
+.cta-button[aria-busy="true"]{opacity:.65;pointer-events:none}
+.of-sum-box{background:rgba(107,191,89,.07);border:1px solid rgba(107,191,89,.25);border-radius:8px;padding:1.2rem 1.3rem;margin-bottom:1.4rem;font-size:.88rem;line-height:1.9}
+.of-sum-box b{color:var(--amber-lt)}
+.of-actions{display:flex;flex-direction:column;gap:.7rem}
+.of-actions .cta-button{width:100%;justify-content:center}
+.of-tel{display:flex;align-items:center;justify-content:center;gap:.6rem;border:1px solid rgba(107,191,89,.35);border-radius:4px;padding:1rem;font-weight:700;letter-spacing:.12em;color:var(--amber-lt);font-size:.9rem}
+.of-tel:hover{background:rgba(107,191,89,.08)}
+/* sms: fungerar bara på mobil, döljs därför på desktop */
+.of-sms{display:none}
+@media(max-width:768px){.of-sms{display:flex}}
+
+/* ===== SAMTYCKE ===== */
+#cookie-bar{position:fixed;left:0;right:0;bottom:0;z-index:400;display:none;
+  align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;
+  padding:1rem clamp(1.2rem,4vw,2.4rem);padding-bottom:max(1rem,env(safe-area-inset-bottom));
+  background:rgba(11,11,13,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);transform:translateY(100%);transition:transform .45s var(--ease)}
+#cookie-bar.show{display:flex}
+#cookie-bar.in{transform:translateY(0)}
+#cookie-bar p{font-size:.8rem;line-height:1.65;color:var(--muted);max-width:64ch;margin:0}
+.cb-actions{display:flex;gap:.6rem;flex:none}
+.cb-actions button{font-size:.64rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  padding:.75rem 1.4rem;border-radius:100px;white-space:nowrap;transition:background .25s,border-color .25s}
+.cb-no{border:1px solid var(--line);color:var(--muted)}
+.cb-no:hover{border-color:var(--muted);color:var(--text)}
+.cb-yes{background:var(--grad);color:#0C1408}
+.cb-yes:hover{filter:brightness(1.08)}
+body.cb-open #float-offert{bottom:calc(var(--cb-h,86px) + 1.2rem)}
+
+/* ===== MOBIL ===== */
+@media(max-width:768px){
+  /* Navlänkarna göms bakom hamburgaren, MEN telefonnumret måste synas direkt.
+     De flesta besökare är på mobil och ringer hellre än fyller i formulär. */
+  .header-nav{display:flex;gap:.9rem}
+  .header-nav a{display:none}
+  .header-nav .nav-tel{display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;
+    font-size:.7rem;letter-spacing:.02em;padding:.5rem .8rem;border-radius:100px;
+    border:1px solid rgba(107,191,89,.45);background:rgba(107,191,89,.12);opacity:1}
+  .header-nav .nav-tel::after{display:none}
+  .hamburger{display:flex}
+  .header-logo img{height:44px}
+  .page-hero{padding-top:clamp(7rem,15vh,9rem)}
+  .page-h1{max-width:100%}
+  .cta-button{padding:.95rem 2rem;width:100%;justify-content:center}
+  .btn-ghost{width:100%;justify-content:center;padding:.95rem 1.6rem}
+  .hero-actions{gap:.7rem}
+  .ss-grid2,.contact-wrap,.pris-wrap,.fact-cols,.next-grid{grid-template-columns:1fr}
+  /* Enkolumns-grid: min-width:0 låter spalten krympa, annars tvingar den
+     obrytbara e-postadressen ut spalten och content klipps på små skärmar. */
+  .contact-wrap>*,.ss-grid2>*,.pris-wrap>*{min-width:0}
+  .contact-row{flex-wrap:wrap}
+  .contact-row a{overflow-wrap:anywhere}
+  .ss-list{grid-template-columns:1fr}
+  .svc-grid,.svc-grid.two,.rev-grid,.rev-grid.two{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:repeat(2,1fr)}
+  .faq-a{padding-right:0}
+  #cookie-bar{flex-direction:column;align-items:stretch;gap:.85rem;padding:1rem 1.1rem}
+  #cookie-bar p{font-size:.76rem}
+  .cb-actions button{flex:1}
+  .gpanel{flex-direction:column;align-items:flex-start;padding:1.4rem}
+  .gpanel-cta{width:100%;justify-content:center;text-align:center}
+  #float-offert{bottom:max(1.4rem,env(safe-area-inset-bottom));right:1.4rem;font-size:.58rem;padding:.72rem 1.3rem}
+  .modal{padding:1.8rem 1.3rem}
+  .of-form{grid-template-columns:1fr}
+}
+/* Riktigt små skärmar: logga, header-padding och telefonpillret dras ihop så
+   att logga + nummer + hamburgare får plats på en rad. */
+@media(max-width:400px){
+  .site-header{padding-left:1rem;padding-right:1rem}
+  .header-logo img{height:38px}
+  .header-nav .nav-tel{font-size:.66rem;padding:.45rem .7rem;gap:.3rem}
+  .steps-grid{grid-template-columns:1fr}
+  .modal-bg{padding:.7rem}
+  .modal{padding:1.6rem 1.15rem}
+  .of-field{min-width:0}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}

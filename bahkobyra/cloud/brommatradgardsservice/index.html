@@ -220,6 +220,12 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .svc-card h3{font-family:var(--disp);font-weight:800;font-size:1.1rem;margin-bottom:.6rem}
 .svc-card p{font-size:.85rem;color:var(--muted);line-height:1.7}
 .svc-card .svc-tag{display:inline-block;font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--amber-lt);border:1px solid rgba(107,191,89,.3);border-radius:3px;padding:.25rem .6rem;margin-bottom:.9rem}
+/* Länk till tjänstens egen sida. Understruken pil-länk, inte en knapp: kortet
+   ska fortfarande läsas som text och inte konkurrera med offert-CTA:n. */
+.svc-more{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-lt);border-bottom:1px solid rgba(107,191,89,.4);padding-bottom:.15rem;transition:color .25s,border-color .25s}
+.svc-more:hover{color:var(--text);border-color:var(--text)}
+.svc-more svg{width:13px;height:13px;stroke:currentColor;stroke-width:2.4;fill:none;transition:transform .3s var(--ease)}
+.svc-more:hover svg{transform:translateX(3px)}
 
 /* Pris */
 .pris-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:center}
@@ -302,8 +308,10 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .offer-card p{font-size:.88rem;color:var(--muted);margin-bottom:1.5rem}
 .offer-card .cta-button{width:100%;justify-content:center}
 
-footer{position:relative;z-index:6;border-top:1px solid var(--line);padding:2rem clamp(1.2rem,4vw,3rem);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.72rem;color:var(--dim);background:var(--bg)}
+footer{position:relative;z-index:6;border-top:1px solid var(--line);padding:2rem clamp(1.2rem,4vw,3rem);display:flex;justify-content:space-between;gap:1rem 1.6rem;flex-wrap:wrap;font-size:.72rem;color:var(--dim);background:var(--bg)}
 footer a{color:var(--amber-lt)}
+footer a:hover{text-decoration:underline}
+.foot-links{display:flex;flex-wrap:wrap;gap:1rem}
 
 /* ===== MODAL / OFFERTFORMULÄR ===== */
 .modal-bg{position:fixed;inset:0;z-index:500;background:rgba(11,11,13,.75);backdrop-filter:blur(10px);display:grid;place-items:center;padding:1.2rem;opacity:0;visibility:hidden;transition:.35s;overflow-y:auto}
@@ -648,11 +656,17 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
           <span class="svc-tag">Häck</span>
           <h3>Häckplantering &amp; borttagning</h3>
           <p>Tuja, liguster och andra häckar planterade på rätt djup med rätt jord och täckmaterial. Ska den gamla häcken bort tar vi rothalsen med och kör bort allt samma dag.</p>
+          <a class="svc-more" href="/hackklippning/">Läs mer om häck
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </article>
         <article class="svc-card">
           <span class="svc-tag">Skötsel</span>
           <h3>Trädgårdsskötsel</h3>
           <p>Gräsklippning, häckklippning, ogräsrensning och beskärning genom hela säsongen. Fast intervall eller efter behov. Arbetskostnaden berättigar till rutavdrag.</p>
+          <a class="svc-more" href="/tradgardsskotsel/">Läs mer om skötsel
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </article>
         <article class="svc-card">
           <span class="svc-tag">Mark</span>
@@ -1047,6 +1061,10 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 
 <footer>
   <span>Bromma Trädgårdsservice · 070-766 65 14 · Storstockholm</span>
+  <span class="foot-links">
+    <a href="/tradgardsskotsel/">Trädgårdsskötsel</a>
+    <a href="/hackklippning/">Häck</a>
+  </span>
   <span>Hemsida av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
 </footer>
 
@@ -1148,6 +1166,12 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   ],
   "address":{"@type":"PostalAddress","addressLocality":"Bromma","addressRegion":"Stockholm","addressCountry":"SE"},
   "geo":{"@type":"GeoCoordinates","latitude":59.3038711,"longitude":18.0193024},
+  "openingHoursSpecification":[{
+    "@type":"OpeningHoursSpecification",
+    "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens":"00:00",
+    "closes":"23:59"
+  }],
   "areaServed":[
     {"@type":"City","name":"Bromma"},
     {"@type":"City","name":"Stockholm"},
