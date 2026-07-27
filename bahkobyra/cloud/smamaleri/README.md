@@ -64,6 +64,17 @@ Vercels edge med `curl --resolve`, som ger 308 på www och 200 på apex.
 **MX-posterna ska aldrig röras.** Kundens e-post går via Google (`SMTP.GOOGLE.COM`)
 och SPF, DKIM och DMARC ligger på samma domän.
 
+### Fälla: cream-blixten i marquee-bandet
+
+Marquee-bandet blinkade vitt en kort stund innan svepet öppnade. Orsaken var att
+`gsap.fromTo` klippte bort **hela** `.marquee` med `clip-path`. Bandet är en fristående
+`div` med egen marinblå bakgrund, inte innehåll i en `.dark`-sektion, så när det klipptes
+bort fanns ingen mörk yta kvar och `html{background:var(--cream)}` lyste igenom.
+
+Fixat genom ett extra lager, `.marquee-clip`, som klipps i stället. Bandets marinblå yta
+ligger alltid kvar. Klipper du något igen: kontrollera vad som finns **bakom** elementet,
+inte bara att animationen ser rätt ut i slutläget.
+
 ### Fälla att komma ihåg vid nästa domänfelsökning
 
 Under utredningen pekade allt först mot att www låg i ett annat Vercel-projekt. Det var
@@ -137,6 +148,29 @@ Går anropet inte igenom faller båda formulären tillbaka på `mailto` och SMS,
 kvittensen säger "Ett steg kvar" i stället för att påstå att förfrågan är mottagen.
 
 Ett honeypot-fält (`#pf-hp`) fångar bottar i modalen. Är det ifyllt skickas ingenting.
+
+## Mätning
+
+`CFG.ga4` är `G-N3EM5QZZBJ`, ifyllt 2026-07-27.
+
+⚠️ **Googles egen kodsnutt är medvetet INTE inklistrad.** Den laddar `gtag` direkt och
+sätter kakor innan besökaren svarat, vilket kräver samtycke i Sverige. Här laddas
+mätkoden först efter att besökaren klickat Acceptera i `#cbar`. Ingen begäran går till
+Google innan dess, och därför klarar sajten sig utan kakhantering i övrigt. Valet sparas
+i `localStorage` under `sm-consent`. Tom `CFG.ga4` = ingen ruta, ingen mätkod, inga kakor.
+
+Händelser som loggas: `ring_klick` (varje klick på ett telefonnummer, med `plats`),
+`offert_oppnad`, `offert_skickad`, `offert_reservlage`, `formular_skickat`,
+`formular_reservlage`, `reservvag_mejl`, `reservvag_sms`.
+
+`offert_skickad` och `formular_skickat` är de riktiga konverteringarna. Web3Forms räknar
+dessutom varje inskickad förfrågan oavsett samtycke, så antalet leads går alltid att
+stämma av även om analysdatan är ofullständig.
+
+Händelser som sker innan samtycke köas i `window.__ko` och skickas när GA laddas.
+**Fälla:** i första versionen skrevs den ena förekomsten med kyrilliskt `о` i stället för
+latinskt `o`. Koden kastade inget fel, kön flushades bara aldrig. Icke-ASCII i
+identifierare är en tystnadsbugg, kontrollera den vid varje ändring här.
 
 Offertmodalen visas tre gånger per besökare, sedan aldrig mer: efter 22 sekunder första
 gången och 60 sekunder de två följande. Räknaren (`smamaleri_pop_count` i

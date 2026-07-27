@@ -245,6 +245,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 /* ── MARQUEE ─────────────────────────────────────────────── */
 .marquee{background:var(--navy);border-top:1px solid var(--paper-line);border-bottom:1px solid var(--paper-line);
   overflow:hidden;padding:1.1rem 0;display:flex;white-space:nowrap}
+.marquee-clip{display:flex;flex:1 1 auto;min-width:0;overflow:hidden}
 .marquee-track{display:flex;flex:none;will-change:transform}
 .marquee-track span{font-family:var(--display);font-style:italic;font-size:1.5rem;color:var(--paper-70);
   padding:0 1.6rem;display:inline-flex;align-items:center;gap:1.6rem}
@@ -446,6 +447,34 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   font-size:.8rem;line-height:1.6;color:var(--ink-55);font-weight:300}
 @media(max-width:768px){.faq-a{padding-right:0}}
 
+/* ── SAMTYCKE ────────────────────────────────────────────── */
+/* Döljs som default. Skriptet visar rutan bara om CFG.ga4 är satt och
+   besökaren inte redan svarat. Ingen begäran går till Google innan Acceptera,
+   vilket är hela skälet att inte klistra in Googles egen kodsnutt: den laddar
+   gtag direkt och sätter kakor innan någon sagt ja. */
+#cbar{position:fixed;left:0;right:0;bottom:0;z-index:8000;display:none;
+  align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;
+  padding:1rem clamp(1.2rem,4vw,2.4rem);padding-bottom:max(1rem,env(safe-area-inset-bottom));
+  background:rgba(13,16,35,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid var(--paper-line);transform:translateY(100%);transition:transform .45s var(--ease)}
+#cbar.show{display:flex}
+#cbar.in{transform:translateY(0)}
+#cbar p{font-size:.82rem;line-height:1.65;color:var(--paper-70);max-width:64ch;margin:0;font-weight:300}
+.cbar-btns{display:flex;gap:.6rem;flex:none}
+.cbar-btns button{font-family:var(--sans);font-size:.66rem;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;padding:.78rem 1.5rem;border-radius:4px;white-space:nowrap;
+  transition:background .25s,border-color .25s,color .25s}
+.cbar-nej{border:1px solid var(--paper-22);color:var(--paper-70)}
+.cbar-nej:hover{color:var(--paper);border-color:var(--paper-45)}
+.cbar-ja{background:var(--gold);color:var(--navy)}
+.cbar-ja:hover{background:var(--gold-lt)}
+@media(max-width:768px){
+  #cbar{flex-direction:column;align-items:stretch;gap:.85rem;padding:1rem 1.1rem}
+  #cbar p{font-size:.78rem}
+  .cbar-btns button{flex:1}
+}
+@media(prefers-reduced-motion:reduce){#cbar{transition:none}}
+
 /* ── OFFERTMODAL ─────────────────────────────────────────── */
 .pop{position:fixed;inset:0;z-index:9000;background:rgba(13,16,35,.78);backdrop-filter:blur(10px);
   display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .4s}
@@ -568,11 +597,16 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 
 <!-- 2. MARQUEE -->
 <div class="marquee">
+  <!-- Extra lager: svepet klipper marquee-clip, inte sjalva bandet. Klipptes
+       .marquee direkt forsvann hela den marinbla ytan och sidans cream-bakgrund
+       lyste igenom i ett ogonblick innan svepet hann oppna. -->
+  <div class="marquee-clip">
   <div class="marquee-track" id="marquee-track">
     <div class="mq-set" style="display:flex">
       <span>Fasadmålning</span><span>Takmålning</span><span>Taktvätt</span>
       <span>Invändigt Måleri</span><span>Tapetsering</span><span>Fasadtvätt</span><span>Kostnadsfri Offert</span>
     </div>
+  </div>
   </div>
 </div>
 
@@ -986,6 +1020,15 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     <span>Hemsida av <a href="https://bahkobyra.se" target="_blank" rel="noopener" style="color:var(--gold-lt)">Bahko Byrå</a></span>
   </div>
 </footer>
+
+<!-- SAMTYCKE. Visas bara om CFG.ga4 är satt och besökaren inte redan svarat. -->
+<div id="cbar" role="dialog" aria-live="polite" aria-label="Samtycke till statistik">
+  <p>Smålands Måleri vill mäta hur sajten används för att kunna förbättra den. Det kräver kakor och sker bara om du godkänner det.</p>
+  <div class="cbar-btns">
+    <button class="cbar-nej" onclick="setConsent(false)">Neka</button>
+    <button class="cbar-ja" onclick="setConsent(true)">Acceptera</button>
+  </div>
+</div>
 
 <!-- OFFERTMODAL. Samlar kundens egna offertförfrågningar. Innehöll fram till
      2026-07-27 Bahkos säljmodal; den är helt ersatt och Cal-embedden borttagen.
@@ -1411,7 +1454,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
      Går anropet inte igenom faller båda formulären tillbaka på mailto och SMS,
      och kvittensen påstår ALDRIG att något är mottaget när inget skickades.
      ======================================================== */
-  const CFG = { web3forms: '9178782b-1aea-4874-9678-b9496d068ceb' };
+  const CFG = { web3forms: '9178782b-1aea-4874-9678-b9496d068ceb', ga4: 'G-N3EM5QZZBJ' };
   const TEL = '+46720119173', TEL_TEXT = '072-011 91 73', MEJL = 'kontakt@smamaleri.se';
 
   function brodtext(d) {
@@ -1455,6 +1498,62 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     else { btn.removeAttribute('aria-busy'); if (s) s.textContent = 'Skicka förfrågan'; }
   }
 
+
+  /* ── SAMTYCKE OCH MÄTNING ──────────────────────────────────
+     Googles egen kodsnutt laddar gtag direkt och sätter kakor innan besökaren
+     svarat. Den är därför medvetet INTE inklistrad. Här laddas mätkoden först
+     efter Acceptera, och händelser som sker innan dess köas i stället för att
+     skickas. Tom CFG.ga4 = ingen ruta, ingen mätkod, inga kakor. ============ */
+  window.setConsent = function (ok) {
+    try { localStorage.setItem('sm-consent', ok ? 'yes' : 'no'); } catch (e) {}
+    const bar = $('#cbar');
+    if (bar) {
+      bar.classList.remove('in');
+      setTimeout(() => bar.classList.remove('show'), 450);
+    }
+    if (ok) loadGA();
+  };
+  function loadGA() {
+    if (!CFG.ga4 || window.__gaLoaded) return;
+    window.__gaLoaded = true;
+    const s = doc.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + CFG.ga4;
+    doc.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', CFG.ga4);
+    (window.__ko || []).forEach((a) => gtag('event', a[0], a[1]));
+    window.__ko = [];
+  }
+  // Loggar bara med samtycke. Utan det hamnar inget i kö och inget skickas.
+  function track(namn, params) {
+    if (!CFG.ga4) return;
+    if (window.gtag) { gtag('event', namn, params || {}); return; }
+    let c = null; try { c = localStorage.getItem('sm-consent'); } catch (e) {}
+    if (c === 'yes') { window.__ko = window.__ko || []; window.__ko.push([namn, params || {}]); }
+  }
+  function initConsent() {
+    if (!CFG.ga4) return;
+    let c = null; try { c = localStorage.getItem('sm-consent'); } catch (e) {}
+    if (c === 'yes') { loadGA(); return; }
+    if (c === 'no') return;
+    const bar = $('#cbar');
+    if (!bar) return;
+    bar.classList.add('show');
+    requestAnimationFrame(() => bar.classList.add('in'));
+  }
+  // Delegerad lyssnare: varje klick pa ett telefonnummer ar en konvertering.
+  addEventListener('click', function (e) {
+    const a = e.target.closest && e.target.closest('a');
+    if (!a) return;
+    const href = a.getAttribute('href') || '';
+    if (href.indexOf('tel:') === 0) track('ring_klick', { plats: a.className || 'okand' });
+    else if (a.id === 'pf-mail') track('reservvag_mejl', {});
+    else if (a.id === 'pf-sms') track('reservvag_sms', {});
+  }, { passive: true });
+
   // Sidans eget kontaktformulär.
   function initForm() {
     const form = $('#cform'), ok = $('#cok');
@@ -1467,6 +1566,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
       jobbar(btn, true);
       const levererad = await leverera(d);
       jobbar(btn, false);
+      track(levererad ? 'formular_skickat' : 'formular_reservlage', { tjanst: d.tjanst, ort: d.ort });
       form.style.display = 'none';
       if (ok) {
         const h = ok.querySelector('h3'), p = ok.querySelector('p'), not = ok.querySelector('.work-note');
@@ -1501,6 +1601,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     jobbar(btn, true);
     leverera(d).then((levererad) => {
       jobbar(btn, false);
+      track(levererad ? 'offert_skickad' : 'offert_reservlage', { tjanst: d.tjanst, ort: d.ort });
       const sum = $('#pf-sum'), ey = $('#pf-ey'), head = $('#pf-head'), lead = $('#pf-lead'),
         mail = $('#pf-mail'), sms = $('#pf-sms'), label = $('#pf-mail-label');
       if (sum) sum.innerHTML = rader.join('<br>');
@@ -1524,7 +1625,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     const pop = $('#pop');
     if (!pop) return;
     const x = $('#pop-x');
-    window.openPop = () => { pop.classList.add('show'); root.classList.add('noscroll'); if (lenis) lenis.stop(); };
+    window.openPop = () => { pop.classList.add('show'); root.classList.add('noscroll'); if (lenis) lenis.stop(); track('offert_oppnad', {}); };
     const hide = () => { pop.classList.remove('show'); root.classList.remove('noscroll'); if (lenis) lenis.start(); };
     window.closePop = hide;
     if (x) x.addEventListener('click', hide);
@@ -1552,7 +1653,9 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
   /* ── EXTRAS ────────────────────────────────────────────── */
   function initExtras() {
     if (!hasST || reduce) return;
-    gsap.fromTo('.marquee', { clipPath: 'inset(0 100% 0 0)' },
+    // Klipper innehallet, inte bandet: bandets marinbla yta ska aldrig
+    // forsvinna, annars syns sidans cream-bakgrund under svepet.
+    gsap.fromTo('.marquee-clip', { clipPath: 'inset(0 100% 0 0)' },
       { clipPath: 'inset(0 0% 0 0)', duration: 1.1, ease: 'power4.inOut',
         scrollTrigger: { trigger: '.marquee', start: 'top 96%', once: true } });
     gsap.fromTo('.cta .glow', { scale: .4, opacity: 0 },
@@ -1606,6 +1709,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     initNav();
     initForm();
     initPop();
+    initConsent();
 
     if (hasGSAP && !reduce) {
       const lines = $$('.hero-h1 .line > *');
