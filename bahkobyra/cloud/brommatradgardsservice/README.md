@@ -61,15 +61,10 @@ hemma i `.env` enligt `CLAUDE.md`.
 
 ### Offertformuläret
 
-> **Nuläge: `CFG.web3forms` är tom, så formuläret levererar inga leads av egen kraft.**
-> Anropet till Web3Forms hoppas över helt, `delivered` blir `false`, och besökaren
-> hamnar alltid i läget "Ett steg kvar". Fyller någon i formuläret utan att sedan
-> klicka mejl, SMS eller ring, får Jens aldrig veta att förfrågan fanns.
-> Beskrivningen nedan gäller först när nyckeln är ifylld.
-
-Med nyckel ifylld postar `submitOffert` till Web3Forms och Jens får mejlet direkt.
-Går anropet inte igenom faller flödet tillbaka på `mailto:` och SMS, alltså exakt
-det beteende sidan hade innan. Steg 2 i modalen har därför två lägen, `setSummaryMode()`:
+`CFG.web3forms` är ifylld sedan 2026-07-27. `submitOffert` postar till Web3Forms och
+Jens får mejlet direkt. Går anropet inte igenom faller flödet tillbaka på `mailto:`
+och SMS, alltså exakt det beteende sidan hade innan nyckeln fanns. Steg 2 i modalen
+har därför två lägen, `setSummaryMode()`:
 
 - **Skickat:** förfrågan ligger hos Jens, mejl och SMS visas som frivilliga genvägar
 - **Ett steg kvar:** inget nådde fram, besökaren måste klicka vidare
@@ -100,7 +95,7 @@ inskickad förfrågan oavsett samtycke, så antalet leads går alltid att stämm
 
 - [ ] Byt ut AI-genererade bilder mot kundens egna. Galleriet heter "Så kan det se ut" tills dess, det får inte påstå att bilderna är utförda jobb
 - [ ] Uppdatera företagsnamn och organisationsnummer när enskild firma blir AB (september 2026)
-- [ ] Fyll i `CFG.web3forms` och `CFG.ga4`. Tills dess levererar formuläret inga leads av egen kraft och ingen mätning sker
+- [ ] Fyll i `CFG.ga4`. Tills dess sker ingen mätning. `CFG.web3forms` ifylld 2026-07-27
 - [ ] Komplettera schema med `openingHoursSpecification` (kräver kundens faktiska öppettider) och `identifier` (orgnummer, kommer med AB-bytet). `geo` är klart
 - [ ] Bekräfta `areaServed` med Jens. Salem, Solna och Sundbyberg står i schemat men nämns ingenstans i copyn; Saltsjö-Boo och Rönninge står i `llms.txt` men saknas i schemat. Ett överbrett tjänsteområde skadar aktivt, så listan ska bara innehålla orter där arbeten faktiskt utförts
 - [ ] Beslut om formuleringen "Det priset står sig" i prissektionen. Den läses som en prisgaranti, vilket Jens sagt att de inte lämnar
