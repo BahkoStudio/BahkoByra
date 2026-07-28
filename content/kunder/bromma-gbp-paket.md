@@ -58,21 +58,37 @@ siffror på projekt (där gäller kostnadsfritt hembesök och fast pris innan st
 Konkurrensbild från lead-analysen juni 2026: Hjärtat Miljöservice visar
 "från 309 kr/h efter RUT", ReGarden 415 kr/h. **X nedan sätts av Jens, aldrig av oss.**
 
+Kategorikolumnen visar de **faktiska svenska kategorinamnen** som står i profilen
+sedan 2026-07-28. Tidigare versioner av tabellen använde de engelska arbetsnamnen.
+
 | Tjänst (skriv så här) | Kategori | Pris i profilen | Beskrivning, max 300 tecken |
 |---|---|---|---|
-| Trädgårdsanläggning | Landscaper | Inget pris | Kompletta projekt från planering till färdig trädgård. Markutjämning, material, anläggning och bortforsling i egen regi. Kostnadsfritt hembesök, fast pris innan start. |
-| Ny gräsmatta och rullgräs | Landscaper | Inget pris | Rullgräs på förberedd växtbädd, inte utrullat på befintlig jord. Sprinklersystem monteras i samma vända. Kostnadsfritt hembesök. |
-| Häckplantering och borttagning | Landscaper | Inget pris | Ny häck planterad på rätt djup med rätt jord. Gammal häck tas bort med rothalsen och körs bort samma dag. Borttagningen ger rutavdrag på arbetskostnaden. |
-| Jordutjämning och markarbete | Landscaper | Inget pris | Utjämning av ojämn tomt, korrigering av lutning och packning så att vatten inte blir stående. Minigrävare 2 ton för trånga tomter. |
-| Löpande trädgårdsskötsel | Lawn care service | Från X kr/h efter rutavdrag | Gräsklippning, häckklippning, ogräsrensning och beskärning genom hela säsongen. Fast intervall eller efter behov. Rutavdrag på arbetskostnaden. |
-| Skötselavtal för BRF och fastighetsägare | Property maintenance | Inget pris | Löpande skötsel av utemiljön med fast intervall och en kontaktperson: gräs, häckar, rabatter, löv och snöröjning i samma avtal. Offert efter kostnadsfri genomgång av ytorna. |
-| Häckklippning | Gardener | Från X kr/h efter rutavdrag | Häckar och buskar klippta i form, riset bortkört samma dag. Ger rutavdrag på arbetskostnaden. |
-| Röjning och bortforsling | Gardener | Inget pris | Gammal häck, ris, jordmassor och trädgårdsavfall. Lastas och körs bort i egen regi. |
-| Snöröjning och halkbekämpning | Snow removal service | Inget pris | Uppfarter, gångar och parkeringar genom vintersäsongen, halkbekämpning vid behov. Samma kontaktperson året om. Säsongsavtal. |
+| Trädgårdsanläggning | Trädgårdsarkitekt | Inget pris | Kompletta projekt från planering till färdig trädgård. Markutjämning, material, anläggning och bortforsling i egen regi. Kostnadsfritt hembesök, fast pris innan start. |
+| Anläggning av gräsmatta | Trädgårdsarkitekt | Inget pris | Rullgräs på förberedd växtbädd, inte utrullat på befintlig jord. Sprinklersystem monteras i samma vända. Kostnadsfritt hembesök och fast pris innan start. |
+| Häckplantering och borttagning | Trädgårdsarkitekt | Inget pris | Ny häck planterad på rätt djup med rätt jord. Gammal häck tas bort med rothalsen och körs bort samma dag. Borttagningen ger rutavdrag, planteringen gör det inte. |
+| Jordutjämning och markarbete | Trädgårdsarkitekt | Inget pris | Utjämning av ojämn tomt, korrigering av lutning och packning så att vatten inte blir stående. Minigrävare 2 ton för trånga tomter. |
+| Löpande trädgårdsskötsel | Trädgårdstjänster | Från X kr/h efter rutavdrag | Gräsklippning, häckklippning, ogräsrensning och beskärning genom hela säsongen, fast intervall eller efter behov. Timpriset gäller efter rutavdrag på arbetskostnaden. |
+| Gräsklippning och gräsmatteskötsel | Trädgårdstjänster | Från X kr/h efter rutavdrag | Klippning genom säsongen, trimmade kanter och mossbekämpning. Priset gäller efter rutavdrag på arbetskostnaden. |
+| Skötselavtal för BRF och fastighetsägare | Trädgårdstjänster | Inget pris | Löpande skötsel av utemiljön med fast intervall och en kontaktperson: gräs, häckar, rabatter, löv och snöröjning i samma avtal. Offert efter kostnadsfri genomgång av ytorna. |
+| Häckklippning | Trädgårdsmästare | Från X kr/h efter rutavdrag | Formklippning i rätt höjd och bredd, jämna kanter, ris och bortforsling ingår. Timpriset gäller efter rutavdrag på arbetskostnaden. |
+| Beskärning av träd och buskar | Trädgårdsmästare | Från X kr/h efter rutavdrag | Beskärning vid rätt tidpunkt för arten, fällning och borttagning av buskar. Ger rutavdrag på arbetskostnaden. |
+| Röjning och bortforsling | Trädgårdsmästare | Inget pris | Gammal häck, ris, jordmassor och trädgårdsavfall lastas och körs bort i egen regi. Röjning av sly ger rutavdrag, bortforslingen räknas inte in. |
+| Snöröjning och halkbekämpning | Snöröjning | Inget pris | Uppfarter, gångar och parkeringar genom vintersäsongen, halkbekämpning vid behov. Säsongsavtal med samma kontaktperson året om. |
 
-Befintliga engelska strukturerade tjänster (Lawn mowing and maintenance, Grass seeding,
-Sod installation) kan stå kvar, de översätts åt sökaren. Ta bort "Garden work", den
-säger ingenting och ersätts av listan ovan.
+**Grässådd, ändrat beslut 2026-07-28.** Tidigare stod här att Googles befintliga
+strukturerade tjänster kan stå kvar. Två av dem, Gräsklippning och underhåll samt
+Installation av gräsmatta, **dubblerar** våra egna rader ovan och saknar
+beskrivning, och samtliga tre upprepas under tre kategorier. Behåll dem bara
+under primärkategorin, ta bort dem ur Trädgårdsmästare och Trädgårdsarkitekt.
+
+**Grässådd får inte stå kvar obekräftad.** Ordet "sådd" finns noll gånger på
+sajten, som i stället aktivt positionerar motsatsen: "Rullgräs på förberedd
+växtbädd, **inte utrullat på befintlig jord**". Tjänsten låg på profilen före
+oss, så den kan mycket väl vara riktig, men den är obelagd i alla våra källor.
+Fråga Jens om han lägger sådd också. Nej: ta bort. Ja: behåll, och skriv in
+sådden i sajtens gräsmattekort så att profil och sajt säger samma sak.
+
+Ta bort "Garden work", den säger ingenting och ersätts av listan ovan.
 
 ## 3. Svar på alla tio omdömen
 
@@ -216,6 +232,33 @@ BRF-avtalet det enda påståendet i profilen som inte har täckning på sajten.
 Sundbyberg, Täby, Lidingö, Nacka, Ekerö, Salem, Rönninge, Stockholm) ska
 speglas i profilens serviceområde.
 
+### Tre ord som drev iväg i relätexten 2026-07-28
+
+När tjänstelistan lästes upp muntligt till webbläsaragenten tillkom tre ord som
+**inte** står i tabellen i avsnitt 2 och inte på sajten: "grässådd",
+"markberedning" och "gödsling", alla i beskrivningen av Anläggning av gräsmatta.
+Tabellens ursprungliga formulering var sajtnära och korrekt. Lärdomen är att
+tjänstetexter ska kopieras ur tabellen, aldrig återberättas, och att avstämningen
+mot sajten ska gälla den text som faktiskt klistras in.
+
+**"Avtal" står noll gånger på sajten**, varken skötselavtal eller säsongsavtal.
+Skötselavtalet är ändå belagt, av Jens eget besked till Mathias 2026-07-28
+("skötselavtal med brf mer prio"), vilket väger tyngre än sajtens copy.
+Säsongsavtalet på snöröjning har inget sådant besked, men är en normal
+avtalsform i branschen och sajten säger redan "samma kontaktperson året om".
+Behåll, men bekräfta med Jens i samma sms som timpriset.
+
+**Kategorin Trädgårdsarkitekt behöver en kontroll.** Planen sa Landscape
+Gardener, alltså en anläggare. Trädgårdsarkitekt är ett ritande yrke: "arkitekt"
+och "ritning" står noll gånger på sajten, och det enda designnära löftet är
+"Ni får förslag på utformningen innan arbetet börjar". Anläggningstjänsterna
+sitter rimligt under den, men etiketten är vad kunden ser. Sök i kategoriväljaren
+på "anlägg" och "landskap" och rapportera vad som finns. Finns en
+anläggarkategori: byt. Är Trädgårdsarkitekt Googles svenska etikett för
+Landscape Gardener: behåll och släpp frågan. Detta är ett undantag från
+regeln att inte iterera på kategorier, eftersom skillnaden är ett annat yrke
+och inte en namnvariant.
+
 ## 6. Beskrivning och öppningsdatum (från skärmbild 2026-07-28)
 
 **Nuvarande beskrivning** är BRF-vinklad i rätt riktning men generisk: "professionell
@@ -267,6 +310,9 @@ var, och för vem.
 - [ ] **Sidan `/tradgardsskotsel-brf/` byggd** — BRF nämns noll gånger på sajten idag,
       och BRF-avtalet är den enda tjänsten i profilen utan täckning
 - [ ] Jens timpris efter rutavdrag inhämtat, ifyllt på skötseltjänsterna
+- [ ] Samma sms: gör han grässådd, och säljer han säsongsavtal på snöröjning?
+- [ ] Grässådd borttagen eller bekräftad, dubblerade Google-tjänster rensade ur de två extrakategorierna
+- [ ] Kategoriväljaren sökt på "anlägg" och "landskap", Trädgårdsarkitekt behållen eller bytt
 - [ ] Google-notisen Review changes öppnad och rapporterad
 - [ ] Dubblettprofilen utredd med Jens innan något röres
 - [ ] Tjänstelistan ersatt med svenska tjänster ovan, X ifyllt av Jens
