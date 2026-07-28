@@ -176,6 +176,46 @@ mot agentens förslag: Landscaper-raderna läggs under **Landscape Gardener**,
 och BRF-avtalet läggs under **Lawn care service** eftersom Property
 maintenance inte är satt som kategori.
 
+### Avstämning mot sajten 2026-07-28
+
+Tjänstelistan är kontrollerad rad för rad mot `brommatradgardsservice.se`, både
+mot filerna i repot och mot de tre live-sidorna (samtliga svarar 200, samma
+innehåll som repot: 4 274 ord på startsidan, 1 573 på skötsel, 1 638 på häck).
+
+Belagt på sajten, alla elva tjänsterna utom en:
+
+| Tjänst i profilen | Var den står på sajten |
+|---|---|
+| Löpande trädgårdsskötsel | Startsidans kort "Trädgårdsskötsel" + egen undersida |
+| Gräsklippning och gräsmatteskötsel | Skötselsidans kort "Gräsklippning", inklusive kanter och mossbekämpning |
+| Häckklippning | Häcksidans kort "Häckklippning" |
+| Beskärning av träd och buskar | Skötselsidans kort "Beskärning", rätt tidpunkt för arten |
+| Röjning och bortforsling | Startsidans kort "Röjning & bortforsling" |
+| Trädgårdsanläggning | Startsidans kort "Trädgårdsanläggning" |
+| Anläggning av gräsmatta | Startsidans kort "Gräsmatta & sprinklersystem" |
+| Häckplantering och borttagning | Startsidans kort + häcksidan, RUT-nyansen står redan där |
+| Jordutjämning och markarbete | Startsidans kort + minigrävare 2 ton i maskinparken |
+| Snöröjning och halkbekämpning | Startsidan och skötselsidan, "uppfarter, gångar och parkeringar" |
+
+**Plattsättning: underkännandet är nu verifierat, inte antaget.** Orden
+"plattläggning" och "stenläggning" finns på sajten men **enbart i
+rutavdragsfaktarutans nej-kolumn**, aldrig som en tjänst Jens utför. Att lista
+den i profilen hade motsagt hans egen sajt på den enda plats där ordet
+förekommer.
+
+**Enda glappet: BRF.** Orden BRF, bostadsrättsförening och fastighetsägare
+förekommer **noll gånger** på sajtens fyra dokument (kontrollerat mot live).
+Sajten talar bara till villaägare. Tjänsten "Skötselavtal för BRF och
+fastighetsägare" ska ändå publiceras, den är Jens uttalade prioritering, men
+glappet lagas på sajten, inte i profilen: en egen sida
+`/tradgardsskotsel-brf/` som avtalet kan länka till. Fram till den finns är
+BRF-avtalet det enda påståendet i profilen som inte har täckning på sajten.
+
+Övriga fält stämmer också: telefon `070-766 65 14` = schemats
+`+46707666514`, och områdeslistan på sajten (Bromma, Västerort, Solna,
+Sundbyberg, Täby, Lidingö, Nacka, Ekerö, Salem, Rönninge, Stockholm) ska
+speglas i profilens serviceområde.
+
 ## 6. Beskrivning och öppningsdatum (från skärmbild 2026-07-28)
 
 **Nuvarande beskrivning** är BRF-vinklad i rätt riktning men generisk: "professionell
@@ -222,7 +262,10 @@ var, och för vem.
 
 - [x] Kategoribeslut taget med Jens 2026-07-28: skötsel/BRF prio, primär behålls
 - [x] Underkategorier satta 2026-07-28 (pending): Landscape Gardener, Gardener, Snow removal service
+- [x] Tjänstelistan avstämd mot sajten 2026-07-28: tio av elva belagda, plattsättning verifierat obelagd
 - [ ] Kontrollera kategoriordningen efter Googles godkännande
+- [ ] **Sidan `/tradgardsskotsel-brf/` byggd** — BRF nämns noll gånger på sajten idag,
+      och BRF-avtalet är den enda tjänsten i profilen utan täckning
 - [ ] Jens timpris efter rutavdrag inhämtat, ifyllt på skötseltjänsterna
 - [ ] Google-notisen Review changes öppnad och rapporterad
 - [ ] Dubblettprofilen utredd med Jens innan något röres
