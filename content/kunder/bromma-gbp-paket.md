@@ -119,6 +119,50 @@ egendom smamaleri.se → URL-inspektion på `https://smamaleri.se/` → Request 
 Sitemaps → `sitemap.xml`. Bonus (5 min): Bing Webmaster Tools har "Import from GSC",
 gör det för smamaleri.se, ChatGPT Search lutar mot Bing-indexet.
 
+
+
+## 6. Beskrivning och öppningsdatum (från skärmbild 2026-07-28)
+
+**Nuvarande beskrivning** är BRF-vinklad i rätt riktning men generisk: "professionell
+trädgårds-, mark- och vinterservice för fastigheter, offentliga verksamheter och
+utemiljöer i Stockholm med omnejd", plus adjektiv. Inga orter, inget rutavdrag,
+ingen tjänstelista, ingen målgrupp villaägare.
+
+**Byt till** (674 tecken, gränsen är 750). Klickväg: Edit profile → About →
+Description. Beskrivningen påverkar inte ranking, den påverkar om den som hittat
+profilen ringer:
+
+> Bromma Trädgårdsservice sköter trädgårdar och utemiljöer i Bromma, Västerort och övriga Storstockholm, för villaägare, bostadsrättsföreningar och fastighetsägare.
+>
+> Vi tar löpande skötselavtal med fast intervall: gräsklippning, häckklippning, ogräsrensning, beskärning, lövhantering och snöröjning, med samma kontaktperson året runt. Vi utför även hela projekt som trädgårdsanläggning, ny gräsmatta, häckplantering och jordutjämning, med egen maskinpark och bortforsling i egen regi.
+>
+> Rutavdrag på arbetskostnaden för skötsel. Kostnadsfritt hembesök och pris innan arbetet börjar. Jens Amnesten leder arbetet på plats och är din kontakt från första besöket till färdigt jobb.
+
+**Öppningsdatum saknas.** Sätt januari 2026, firman registrerades 9 januari 2026.
+Klickväg: samma vy, Opening date → Add.
+
+---
+
+## Presentation för Jens: det här har du, det här gör vi det till
+
+Klistra in eller visa vid nästa avstämning. Skrivet för honom, inte för oss.
+
+| | Du har i dag | Vi gör det till |
+|---|---|---|
+| **Kategori** | Gräsmatteservice, inga underkategorier. Google ser dig som ett gräsklippningsföretag | Gräsmatteservice + Trädgårdsanläggare + Fastighetsskötsel + Snöröjning. Du dyker upp även när föreningar och villaägare söker anläggning, fastighetsskötsel och vinterservice |
+| **Beskrivning** | Allmänt hållen, inga orter, inget rutavdrag | Talar till både BRF och villaägare, nämner orterna, avtalen, rutavdraget och att du leder arbetet själv |
+| **Tjänster** | Fyra stycken, på engelska, bland dem "Garden work" | Nio tjänster på svenska med beskrivning, inklusive Skötselavtal för BRF och fastighetsägare. Timpris efter rutavdrag på skötseln, ditt pris |
+| **Omdömen** | 10 stycken, alla fem stjärnor, inget besvarat | Alla tio besvarade i ditt namn. Svar visar att du är aktiv, och Google väger färskhet och svarsfrekvens |
+| **Instagram** | 1 863 följare som inte syns i profilen | Kopplad, så profilbesökare ser dina riktiga jobb |
+| **Öppningsdatum** | Saknas | Januari 2026 |
+| **Hemsidan** | En sida | Tre: startsida plus egna sidor för trädgårdsskötsel och häck, med rutavdragsreglerna förklarade med Skatteverket som källa |
+| **Mätning** | Ingen baslinje | 1 226 visningar och 168 kundinteraktioner per månad noterat 2026-07-28. Vi jämför om 30 dagar |
+
+**Vad det betyder:** i dag tävlar du bara om gräsklippning. Efter ändringarna tävlar
+du om skötselavtal, anläggning och snöröjning i samma områden, och den som klickar
+in möts av besvarade femstjärniga omdömen och en beskrivning som säger vad du gör,
+var, och för vem.
+
 ## Uppföljning
 
 - [x] Kategoribeslut taget med Jens 2026-07-28: skötsel/BRF prio, primär behålls
@@ -126,5 +170,6 @@ gör det för smamaleri.se, ChatGPT Search lutar mot Bing-indexet.
 - [ ] Tjänstelistan ersatt med svenska tjänster ovan, X ifyllt av Jens
 - [ ] Alla tio omdömen besvarade
 - [ ] Instagram kopplat
+- [ ] Beskrivningen bytt, öppningsdatum satt till januari 2026
 - [ ] Indexering begärd för alla fyra URL:erna, sitemaps inskickade
 - [ ] Om 30 dagar: jämför mot baslinjen 1 226 visningar och 168 interaktioner
