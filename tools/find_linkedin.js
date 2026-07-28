@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * find_linkedin.js — Hitta LinkedIn-profiler för klinikbeslutsfattare
+ * find_linkedin.js — Hitta LinkedIn-profiler för beslutsfattare hos byggfirmor
  *
- * Söker via SerpAPI: site:linkedin.com/in "[kliniknamn]" ägare OR VD OR grundare
+ * Söker via SerpAPI: site:linkedin.com/in "[företagsnamn]" ägare OR VD OR grundare
  * Sparar till .tmp/linkedin_data.json
  *
  * Användning:
@@ -82,12 +82,12 @@ function extractLinkedInProfile(results) {
 }
 
 function extractNameFromTitle(title) {
-  // "Förnamn Efternamn - Ägare - Kliniknamn | LinkedIn" → "Förnamn Efternamn"
+  // "Förnamn Efternamn - Ägare - Företagsnamn | LinkedIn" → "Förnamn Efternamn"
   return (title || '').split(/[-|]/)[0].replace(/\s+/g, ' ').trim() || null;
 }
 
 function extractTitleFromSnippet(text) {
-  const roles = ['ägare', 'vd', 'grundare', 'klinikchef', 'verksamhetschef', 'owner', 'ceo', 'founder'];
+  const roles = ['ägare', 'vd', 'grundare', 'platschef', 'arbetsledare', 'verksamhetschef', 'owner', 'ceo', 'founder'];
   const lower = text.toLowerCase();
   for (const role of roles) {
     if (lower.includes(role)) return role.charAt(0).toUpperCase() + role.slice(1);
@@ -140,7 +140,7 @@ console.log('──────────────────────�
 let found = 0, notFound = 0;
 
 for (const lead of leads) {
-  const query = `site:linkedin.com/in "${lead.namn}" ägare OR VD OR grundare OR klinikchef Sverige`;
+  const query = `site:linkedin.com/in "${lead.namn}" ägare OR VD OR grundare OR platschef Sverige`;
   process.stdout.write(`  #${String(lead.id).padEnd(2)} ${lead.namn.padEnd(38)}`);
 
   if (DRY_RUN) {

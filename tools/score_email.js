@@ -37,11 +37,11 @@ function loadEnv() {
 loadEnv();
 
 const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
-const DEMO_URL           = process.env.DEMO_URL || 'https://bahkobyra.se/kliniker/elara-klinik-demo-v2.html';
+const DEMO_URL           = process.env.DEMO_URL || 'https://bahkobyra.se/cloud/bygg/';
 
 // ── EMAIL TEMPLATES (plain text versions for scoring) ─────────────────────
-// Using a sample clinic for context
-const SAMPLE = { namn: 'Nordiska Kliniken', stad: 'Stockholm', webbplats: 'nordiskakliniken.se' };
+// Using a sample construction firm for context
+const SAMPLE = { namn: 'Nordbygg AB', stad: 'Stockholm', webbplats: 'nordbygg.se' };
 
 const EMAILS = [
   {
@@ -50,11 +50,11 @@ const EMAILS = [
     subject: `Har ${SAMPLE.namn} tänkt på detta?`,
     body: `Hej,
 
-Jag heter Mathias Bahko och driver Bahko Byrå — en digital byrå som specialiserat sig på att hjälpa kliniker i Sverige att synas och attrahera fler patienter online.
+Jag heter Mathias Bahko och driver Bahko Byrå — en digital byrå som specialiserat sig på att hjälpa bygg- och hantverksfirmor i Sverige att synas och dra in fler jobb online.
 
-Jag tittade på er nuvarande webbplats (${SAMPLE.webbplats}) och hade ett par tankar om hur den kan förbättras för att konvertera fler besökare till bokningar.
+Jag tittade på er nuvarande webbplats (${SAMPLE.webbplats}) och hade ett par tankar om hur den kan förbättras för att konvertera fler besökare till offertförfrågningar.
 
-Jag har tagit fram ett kostnadsfritt demo som visar exakt hur ${SAMPLE.namn}s nya hemsida skulle kunna se ut — med snabbare laddtid, mobilanpassad design och en tydlig bokningsfunktion.
+Jag har tagit fram ett kostnadsfritt demo som visar exakt hur ${SAMPLE.namn}s nya hemsida skulle kunna se ut — med snabbare laddtid, mobilanpassad design och en tydlig offertfunktion.
 
 Se ditt demo → ${DEMO_URL}
 
@@ -72,13 +72,13 @@ Bahko Byrå · Synlighet som säljer.`
     subject: `Såg ni mitt förslag, ${SAMPLE.namn}?`,
     body: `Hej igen,
 
-Jag skickade ett mejl häromdagen om ett kostnadsfritt demo vi tagit fram för kliniker i ${SAMPLE.stad}.
+Jag skickade ett mejl häromdagen om ett kostnadsfritt demo vi tagit fram för byggfirmor i ${SAMPLE.stad}.
 
 Ville bara följa upp för att säkra att ni fick det — och om ni har 2 minuter är det verkligen värt att se.
 
 Se demot → ${DEMO_URL}
 
-Vi jobbar för tillfället med ett fåtal kliniker i Sverige och vill säkerställa att ${SAMPLE.namn} inte missar möjligheten.
+Vi jobbar för tillfället med ett fåtal firmor i Sverige och vill säkerställa att ${SAMPLE.namn} inte missar möjligheten.
 
 Med vänliga hälsningar,
 Mathias Bahko
@@ -87,11 +87,11 @@ Bahko Byrå · Synlighet som säljer.`
   {
     step: 3,
     label: 'Uppföljning 2 (Dag 5)',
-    subject: `Kliniker som bytte hemsida — resultaten`,
+    subject: `Firmor som bytte hemsida — resultaten`,
     body: `Hej,
 
-Kliniker som investerar i en professionell, konverteringsoptimerad hemsida ser i genomsnitt:
-- Fler spontana bokningsförfrågningar via hemsidan
+Firmor som investerar i en professionell, konverteringsoptimerad hemsida ser i genomsnitt:
+- Fler spontana offertförfrågningar via hemsidan
 - Bättre ranking på Google för lokala sökningar
 - Tydligare professionellt intryck som motiverar högre priser
 
@@ -113,7 +113,7 @@ Bahko Byrå · Synlighet som säljer.`
 
 Det här är mitt sista mejl — vill inte vara påträngande.
 
-Om ni någon gång undrar vad en modern klinikhemsida kan göra för er, vet ni var ni hittar oss.
+Om ni någon gång undrar vad en modern hemsida kan göra för er firma, vet ni var ni hittar oss.
 
 Svara bara "ja" på det här mejlet så bokar jag ett kostnadsfritt 20-minuterssamtal.
 

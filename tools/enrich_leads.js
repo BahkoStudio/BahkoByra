@@ -51,12 +51,12 @@ const GENERIC_PREFIXES = [
   'kundservice', 'kund', 'verksamhet', 'goteborg', 'stockholm', 'malmo',
   'linkoping', 'vasteras', 'orebro', 'helsingborg', 'jonkoping', 'norrkoping',
   'umea', 'lulea', 'gavle', 'eskilstuna', 'sundsvall', 'vastmanland',
-  'plastikkirurgi', 'estetik', 'clinic', 'klinik', 'office', 'kontor'
+  'bygg', 'entreprenad', 'hantverk', 'office', 'kontor'
 ];
 
 const DECISION_TITLES = [
   'VD', 'ägare', 'owner', 'CEO', 'COO', 'founder', 'co-founder',
-  'klinikchef', 'klinikansvarig', 'medical director', 'verksamhetschef',
+  'platschef', 'arbetsledare', 'projektledare', 'verksamhetschef',
   'läkare', 'plastikkirurg', 'kirurg', 'chef', 'partner', 'managing director',
   'director', 'head', 'principal'
 ];
@@ -172,7 +172,7 @@ function extractPersonalEmails(markdown, domain) {
 }
 
 async function firecrawlFindEmail(domain, apolloHint) {
-  const paths = ['/kontakt', '/om-oss', '/om-kliniken', '/team', '/vara-lakare', '/kontakta-oss'];
+  const paths = ['/kontakt', '/om-oss', '/om-foretaget', '/team', '/vara-tjanster', '/kontakta-oss'];
   const base = `https://${domain}`;
 
   for (const path of paths) {

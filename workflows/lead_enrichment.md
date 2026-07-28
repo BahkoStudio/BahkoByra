@@ -35,8 +35,8 @@ node tools/enrich_leads.js
 ```
 
 Processen:
-1. Hämtar beslutfattare via Apollo.io (VD, ägare, klinikchef, etc.)
-2. Om Apollo inte har en avslöjad e-post → skrapar klinikens webbplats via Firecrawl
+1. Hämtar beslutfattare via Apollo.io (VD, ägare, platschef, etc.)
+2. Om Apollo inte har en avslöjad e-post → skrapar företagets webbplats via Firecrawl
 3. Sparar alla resultat i `data/leads_enriched.json` efter varje lead (crash-safe)
 4. Original `data/leads.json` ändras ALDRIG
 
@@ -49,7 +49,7 @@ node tools/enrich_leads.js --status
 
 Typiska resultat:
 - Apollo: 30-40% av leads (de med aktiva LinkedIn-profiler i Apollo-databasen)
-- Firecrawl: 10-20% ytterligare (kliniker som listar personlig kontakt på webbplatsen)
+- Firecrawl: 10-20% ytterligare (firmor som listar personlig kontakt på webbplatsen)
 - Ej hittad: 40-60% — dessa får fortfarande info@-adressen
 
 ## Steg 5 — Starta outreach

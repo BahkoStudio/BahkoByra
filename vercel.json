@@ -4,26 +4,40 @@
     {
       "src": "/",
       "has": [{ "type": "host", "value": "bahkobyra.cloud" }],
-      "dest": "/cloud/index.html"
+      "dest": "/cloud/bygg/index.html"
     },
     {
       "src": "/",
       "has": [{ "type": "host", "value": "www.bahkobyra.cloud" }],
-      "dest": "/cloud/index.html"
+      "dest": "/cloud/bygg/index.html"
     },
     {
       "src": "/elara-klinik-demo-v2.html",
       "has": [{ "type": "host", "value": "bahkobyra.cloud" }],
-      "dest": "/cloud/index.html"
+      "dest": "/cloud/bygg/index.html"
     },
     {
       "src": "/elara-klinik-demo-v2.html",
       "has": [{ "type": "host", "value": "www.bahkobyra.cloud" }],
-      "dest": "/cloud/index.html"
+      "dest": "/cloud/bygg/index.html"
     },
     {
       "src": "/cloud/elara-klinik-demo-v2.html",
-      "dest": "/cloud/index.html"
+      "dest": "/cloud/bygg/index.html"
+    },
+    {
+      "src": "/cloud/?",
+      "dest": "/cloud/bygg/index.html"
+    },
+    {
+      "src": "/kliniker/gratis-granskning.html",
+      "status": 301,
+      "headers": { "Location": "/foretag/gratis-granskning.html" }
+    },
+    {
+      "src": "/kliniker/gratis-guide.html",
+      "status": 301,
+      "headers": { "Location": "/foretag/gratis-guide.html" }
     },
     {
       "src": "/cloud/brommatradgardsservice(/.*)?",

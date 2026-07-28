@@ -1,7 +1,7 @@
 # Workflow: 7-dagars Outreach-Cadence
 
-Strukturen från "Outreach Cadence"-bilden. Driver klinik-outreachen (cold email / cold call / IRL)
-och styr CRM:et i `bahkobyra/dashboard/index.html`. Bygg/hantverk kör samma logik via Instagram-DM
+Strukturen från "Outreach Cadence"-bilden. Driver bygg-outreachen (cold email / cold call / IRL)
+och styr CRM:et i `bahkobyra/dashboard/index.html`. Instagram-DM kör samma logik
 (se `workflows/instagram_engine.md`).
 
 ## Objektiv
@@ -45,7 +45,7 @@ Stängd` / sidospår `Inte intresserad`.
 
 | Fält | Värden | Syfte |
 |------|--------|-------|
-| `niche` | `klinik` \| `bygg` | filtrera & rätt skript/offer |
+| `niche` | `bygg` | enda nischen sedan 2026-07-28 (klinik avvecklad) |
 | `pathway` | `skriven` \| `samtal` \| `irl` | vilken cadence-kolumn |
 | `cadenceDay` | `1`\|`3`\|`5`\|`7`\|`nurture`\|`stängd` | var i sekvensen |
 | `nextAction` | ISO-datum | när nästa touch ska ske |

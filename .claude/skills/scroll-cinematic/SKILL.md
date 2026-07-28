@@ -7,8 +7,9 @@ disable-model-invocation: true
 
 # Scroll-Cinematic Bygg-Demo (GRANIT-mallen)
 
-Bygger en kunddemo för bygg/anläggning/transport-nischer: **Élara-koreografin**
-(`bahkobyra/cloud/index.html`) — som ALLTID är strukturen för våra kunddemos — med
+Bygger en kunddemo för bygg/anläggning/transport-nischer: **den videodrivna koreografin**
+(fast videolager + sektioner på progress-fönster, se `bahkobyra/cloud/tryggbyggservice/index.html`
+eller `bahkobyra/cloud/vajjebygg/index.html`) med
 **Higgsfield-genererade videoloopar (gif-känsla)** som visar en förvandling i kundens
 egen nisch: gammalt/trasigt/skräpigt → åtgärdat/förvandlat (hero-loopen) → kameran rör
 sig närmare/in i resultatet (bakgrundsloopen). Följt av en **riktig hemsida-del**

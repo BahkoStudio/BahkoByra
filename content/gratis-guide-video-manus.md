@@ -1,6 +1,6 @@
 # Videomanus — "3 sätt att ranka högre på Google"
 
-Videon för leadmagneten på `kliniker/gratis-guide.html`. Samma 3 tips som textguiden, men som film du spelar in själv.
+Videon för leadmagneten på `foretag/gratis-guide.html`. Samma 3 tips som textguiden, men som film du spelar in själv.
 
 **Längd:** ~3–4 min · **Ton:** lugn, hjälpsam, som att du förklarar för en bekant (inte säljig).
 **Setup:** prata rakt in i kameran (mobil i ögonhöjd, ljus framför dig, tyst rum).
@@ -9,12 +9,12 @@ Videon för leadmagneten på `kliniker/gratis-guide.html`. Samma 3 tips som text
 ---
 
 ### 0:00 — Hook
-> "Om du driver en klinik och inte hamnar bland de tre översta när folk googlar din behandling i din stad — då tappar du patienter varje vecka, utan att ens veta om det. Jag ska ge dig tre konkreta saker du kan fixa själv den här veckan för att klättra på Google. Inga tekniska kunskaper behövs. Vi kör."
+> "Om du driver en hantverksfirma och inte hamnar bland de tre översta när folk googlar din tjänst i din stad — då tappar du jobb varje vecka, utan att ens veta om det. Jag ska ge dig tre konkreta saker du kan fixa själv den här veckan för att klättra på Google. Inga tekniska kunskaper behövs. Vi kör."
 
 *[Säg det med energi men lugnt. Le. Första meningen avgör om de stannar.]*
 
 ### 0:20 — Varför det spelar roll
-> "När någon söker, säg 'hudvårdsklinik Västerås', visar Google en karta med tre företag högst upp. De tre får nästan alla samtal. Är du inte där, finns du knappt — även om du är bäst i stan. Och det fina: det går att påverka."
+> "När någon söker, säg 'takläggare Västerås', visar Google en karta med tre företag högst upp. De tre får nästan alla samtal. Är du inte där, finns du knappt — även om du är bäst i stan. Och det fina: det går att påverka."
 
 *[VISA: en Google-sökning på "[behandling] [ort]" så map-packet syns.]*
 
@@ -24,12 +24,12 @@ Videon för leadmagneten på `kliniker/gratis-guide.html`. Samma 3 tips som text
 *[VISA: skärminspelning i en företagsprofil, peka på kategori-fältet.]*
 
 ### 1:40 — Tips 2: Recensioner
-> "Tips två: sätt recensioner i system. Kliniken med flest och färskast recensioner vinner nästan alltid — både Googles förtroende och patientens. Skapa din recensionslänk, korta ner den, och be varje nöjd patient samma dag via SMS eller en QR-kod i receptionen. Svara på alla recensioner. Mål: en till två nya i veckan. För alltid."
+> "Tips två: sätt recensioner i system. Firman med flest och färskast recensioner vinner nästan alltid — både Googles förtroende och kundens. Skapa din recensionslänk, korta ner den, och be varje nöjd kund samma dag via SMS eller en QR-kod på slutfakturan. Svara på alla recensioner. Mål: en till två nya i veckan. För alltid."
 
 *[VISA: ett exempel-SMS med recensionslänk eller en QR-kod.]*
 
 ### 2:40 — Tips 3: Ort + NAP
-> "Tips tre: gör glasklart för Google vad du gör och var. Sätt din ort i rubriken på hemsidan. Och se till att namn, adress och telefonnummer ser exakt likadana ut överallt — sajt, Google, Hitta, Eniro, Facebook. Minsta skillnad förvirrar Google. Lägg också upp kliniken på Bing och Apple Maps med samma uppgifter."
+> "Tips tre: gör glasklart för Google vad du gör och var. Sätt din ort i rubriken på hemsidan. Och se till att namn, adress och telefonnummer ser exakt likadana ut överallt — sajt, Google, Hitta, Eniro, Facebook. Minsta skillnad förvirrar Google. Lägg också upp firman på Bing och Apple Maps med samma uppgifter."
 
 *[VISA: din hemsidas rubrik + ett par kataloger sida vid sida.]*
 

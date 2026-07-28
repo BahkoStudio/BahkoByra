@@ -71,8 +71,8 @@ async function serpSearch(query, apiKey, num = 10) {
 // ── Hämta Instagram/social via SerpAPI ──────────────────────────────────────
 async function getSocialResults(apiKey) {
   const queries = [
-    "svenska webbyrå digital byrå instagram followers kliniker estetik",
-    'site:instagram.com "webbyrå" OR "digital byrå" Sverige kliniker',
+    "svenska webbyrå digital byrå instagram followers bygg hantverk",
+    'site:instagram.com "webbyrå" OR "digital byrå" Sverige bygg hantverkare',
     "webbbyrå SEO reklam Sverige instagram linkedin konto",
   ];
   const allResults = [];
@@ -96,9 +96,9 @@ async function getSocialResults(apiKey) {
 // ── Competitor search via SerpAPI ─────────────────────────────────────────────
 async function getCompetitorResults(apiKey) {
   const queries = [
-    "digital byrå hemsidor SEO reklam kliniker Sverige",
-    "webbyrå estetisk klinik skönhetsklinik hemsida Sverige",
-    "SEO byrå Google Ads hälsa klinik Stockholm Göteborg",
+    "digital byrå hemsidor SEO reklam byggföretag Sverige",
+    "webbyrå byggfirma hantverkare hemsida Sverige",
+    "SEO byrå Google Ads bygg hantverk Stockholm Göteborg",
   ];
   const allResults = [];
   for (const q of queries) {
@@ -120,7 +120,7 @@ async function getCompetitorResults(apiKey) {
 // ── Perplexity queries ────────────────────────────────────────────────────────
 function buildQueries(brand) {
   const services = (brand.services || []).join(", ");
-  const target = brand.target_market || "kliniker i Sverige";
+  const target = brand.target_market || "bygg- och hantverksfirmor i Sverige";
 
   return [
     {
@@ -135,8 +135,8 @@ function buildQueries(brand) {
     },
     {
       id: "clinic_niche",
-      label: "Klinik-nischen",
-      query: `Vilka digitala byråer i Sverige specialiserar sig på kliniker, skönhetssalonger och estetiska kliniker? Nämn specifika byråer, deras erbjudande och priser. Hur marknadsför estetiska kliniker sig online i Sverige 2025?`,
+      label: "Bygg-nischen",
+      query: `Vilka digitala byråer i Sverige specialiserar sig på byggföretag, hantverkare, takläggare och måleri? Nämn specifika byråer, deras erbjudande och priser. Hur marknadsför bygg- och hantverksfirmor sig online i Sverige 2025?`,
     },
     {
       id: "positioning",
@@ -146,12 +146,12 @@ function buildQueries(brand) {
     {
       id: "social_media",
       label: "Social Media & Konkurrenter",
-      query: `Lista svenska digitala byråer och webbbyråer med aktiva Instagram- eller LinkedIn-konton med minst 1000 följare. För varje: kontonamn, plattform, ungefärligt följarantal, typ av innehåll de postar och vilken strategi de verkar använda. Fokus på byråer som riktar sig mot hälsa, kliniker eller B2B 2024-2025.`,
+      query: `Lista svenska digitala byråer och webbbyråer med aktiva Instagram- eller LinkedIn-konton med minst 1000 följare. För varje: kontonamn, plattform, ungefärligt följarantal, typ av innehåll de postar och vilken strategi de verkar använda. Fokus på byråer som riktar sig mot bygg, hantverk eller lokal B2B 2024-2025.`,
     },
     {
       id: "competitor_offers",
       label: "Konkurrenternas erbjudanden",
-      query: `Vad säljer svenska webbbyråer och digitala byråer konkret till kliniker och hälsoföretag? Lista specifika paket, prismodeller (engång vs månadsavgift), vad som ingår och vilka resultat de lovar. Nämn byrånamn. Sverige 2024-2025.`,
+      query: `Vad säljer svenska webbbyråer och digitala byråer konkret till byggföretag och hantverkare? Lista specifika paket, prismodeller (engång vs månadsavgift), vad som ingår och vilka resultat de lovar. Nämn byrånamn. Sverige 2024-2025.`,
     },
     {
       id: "opportunities",

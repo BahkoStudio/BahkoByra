@@ -1,7 +1,7 @@
 ---
 name: rapport
-description: Use when someone asks to generate a report, create a competitor analysis, create a client report, create a lead profile, analyze a clinic, "generera rapport", "konkurrensanalys", "klientrapport", "lead-rapport", or "analysera [klinik/lead]".
-argument-hint: [klinik-namn eller URL]
+description: Use when someone asks to generate a report, create a competitor analysis, create a client report, create a lead profile, analyze a company, "generera rapport", "konkurrensanalys", "klientrapport", "lead-rapport", or "analysera [företag/lead]".
+argument-hint: [företagsnamn eller URL]
 disable-model-invocation: false
 ---
 
@@ -23,11 +23,11 @@ Genererar tre typer av rapporter och exporterar till Google Docs/Sheets.
 
 ### 1. Identifiera rapport-typ och mål
 
-Om argumentet (`$1`) är satt, tolka det som klinik/lead-namn eller URL.
+Om argumentet (`$1`) är satt, tolka det som företags-/lead-namn eller URL.
 
 Om typ är oklar, fråga:
 - "Vilken typ av rapport? (1) Konkurrensanalys (2) Klientrapport (3) Lead-profil"
-- "Vad ska rapporten handla om? (kliniknamn, URL, eller lead-namn)"
+- "Vad ska rapporten handla om? (företagsnamn, URL, eller lead-namn)"
 
 ### 2. Kör research-verktyget
 
@@ -38,9 +38,9 @@ node tools/competitor_research.js
 Läser `.env` för `PERPLEXITY_API_KEY` + `SERPAPI_KEY`.
 Output: `.tmp/research_raw.json`
 
-Om du vill avgränsa till en specifik klinik, be användaren bekräfta och kör sedan:
+Om du vill avgränsa till ett specifikt företag, be användaren bekräfta och kör sedan:
 ```bash
-node tools/competitor_research.js --target="[kliniknamn]"
+node tools/competitor_research.js --target="[företagsnamn]"
 ```
 (om `--target`-flaggan finns, annars gör en generell analys)
 
@@ -48,7 +48,7 @@ node tools/competitor_research.js --target="[kliniknamn]"
 Samla in från användaren:
 - Klientens namn och webbplats
 - Period (t.ex. "mars 2026")
-- Nyckeltal om tillgängliga (trafik, bokningar, konverteringar)
+- Nyckeltal om tillgängliga (trafik, offertförfrågningar, konverteringar)
 
 Scrapa klientens webbplats med Firecrawl för att hämta aktuell info:
 ```bash
@@ -61,11 +61,11 @@ Bygg rapport-innehållet baserat på insamlad data + användarens nyckeltal.
 ```bash
 node tools/enrich_leads.js --id=[lead-id]
 ```
-Eller om du har ett kliniknamn/URL, scrapa och analysera direkt:
+Eller om du har ett företagsnamn/URL, scrapa och analysera direkt:
 ```bash
 npx -y firecrawl-cli@latest scrape [URL] --formats markdown
 ```
-Kombinera med Perplexity-research om kliniken.
+Kombinera med Perplexity-research om företaget.
 
 ### 3. Generera rapport-innehåll
 
@@ -99,7 +99,7 @@ Datum: [DATUM]
 
 ## Resultat denna period
 - Trafik: [siffror]
-- Bokningar: [siffror]
+- Offertförfrågningar: [siffror]
 - Konverteringsgrad: [%]
 
 ## Genomförda aktiviteter
@@ -111,7 +111,7 @@ Datum: [DATUM]
 
 **Lead-profil — struktur (Google Sheets-rader):**
 ```
-Kliniknamn | Webb | Stad | Tjänster | Nuvarande webbstatus | Möjligheter | Kontakt | Prioritet
+Företagsnamn | Webb | Stad | Tjänster | Nuvarande webbstatus | Möjligheter | Kontakt | Prioritet
 ```
 
 ### 4. Exportera till Google Docs/Sheets

@@ -7,7 +7,7 @@ inspelning eller beslut står under "Kräver dig" — i prioritetsordning.
 ## Fixat i denna runda
 
 **Hemsidan (bahkobyra.se)**
-- Intern pipelinesiffra ("87+ Klinikleads Klara") visades för kunder → ersatt med kundlöftet "24h Svar På Gratis Analys"
+- Intern pipelinesiffra ("87+ Leads Klara") visades för kunder → ersatt med kundlöftet "24h Svar På Gratis Analys"
 - Popupen återkom var 90:e sekund i all evighet → visas nu en gång, sedan tyst i 7 dagar (localStorage)
 - Nyhetsbrevsregistrering i footern (Formspree, ämnesrad "Ny prenumerant – nyhetsbrev") + länkar till Gratis Guide och Live Demo
 - Honeypot-spamskydd (`_gotcha`) på kontaktformuläret
