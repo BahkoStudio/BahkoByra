@@ -13,26 +13,32 @@ för verifiering: klistra in efter ändring så kontrolleras resultatet.
 
 ## 1. Kategorier
 
-**Beslut med Jens först, en fråga:** vill han ha MER anläggningsprojekt (högt ordervärde)
-eller MER löpande skötselavtal (jämn intäkt)? Kategorin ska spegla huvudtjänsten.
-*Dokumenterat: primärkategorin är profilens viktigaste inställning.*
-
-**Rekommendation, om svaret är anläggning** (det omdömena pekar mot: tujahäck,
-jordutjämning, häckbyte, gräsmatta med sprinkler):
+**Beslut taget med Jens 2026-07-28:** båda spåren, men **skötselavtal med BRF har
+högst prioritet.** Det avgör uppsättningen:
 
 | Plats | Engelska (som UI:t visar) | Visas för svenska sökare som |
 |---|---|---|
-| Primär | **Landscaper** | Trädgårdsanläggare |
-| Under 1 | Lawn care service | Gräsmatteservice |
-| Under 2 | Gardener | Trädgårdsmästare |
+| Primär | **Lawn care service, behålls oförändrad** | Gräsmatteservice |
+| Under 1 | Landscaper | Trädgårdsanläggare |
+| Under 2 | Property maintenance | Fastighetsskötsel |
 | Under 3 | Snow removal service | Snöröjningstjänst |
 
-Om svaret är skötselavtal: behåll Lawn care service som primär och sätt Landscaper
-som underkategori 1. Max tre underkategorier, fler späder ut. *Dokumenterat.*
+Logiken: primärkategorin speglar skötselspåret och står redan rätt, så den röres
+inte, vilket också tar bort all omverifieringsrisk. Landscaper täcker "båda".
+Property maintenance är BRF-spåret. Snow removal är det som gör året-runt-avtalet
+trovärdigt mot en förening, och det är precis vad en BRF köper.
 
-Klickväg: Edit profile → Business category → penn-ikonen vid Primary category.
-Kategorier är strukturerade och översätts automatiskt till sökarens språk.
-Byt en gång, inte iterativt. Kategoribyte kan i sällsynta fall trigga omverifiering.
+Skriv **Property maintenance** i kategorisökfältet. Skulle den inte dyka upp i
+listan, ta **Gardener** i stället, fältet föreslår bara giltiga kategorier.
+
+Klickväg: Edit profile → Business category → Add another business category tre
+gånger. Primärkategorin lämnas orörd.
+
+**Lucka att täppa senare, inte nu:** sajten talar bara till villaägare, medan
+Jens prioriterar BRF. Gamla mallsajten sålde "fastigheter och offentliga miljöer",
+vår nya gör det inte alls. Nästa innehållssteg efter att tjänstesidorna fått
+mätdata: en sida "Trädgårdsskötsel för BRF och fastighetsägare" med säsongsavtal
+som erbjudande. Skriv inget förrän dess, men tappa inte bort det.
 
 ## 2. Tjänster, på svenska med priser
 
@@ -52,6 +58,7 @@ Konkurrensbild från lead-analysen juni 2026: Hjärtat Miljöservice visar
 | Häckplantering och borttagning | Landscaper | Inget pris | Ny häck planterad på rätt djup med rätt jord. Gammal häck tas bort med rothalsen och körs bort samma dag. Borttagningen ger rutavdrag på arbetskostnaden. |
 | Jordutjämning och markarbete | Landscaper | Inget pris | Utjämning av ojämn tomt, korrigering av lutning och packning så att vatten inte blir stående. Minigrävare 2 ton för trånga tomter. |
 | Löpande trädgårdsskötsel | Lawn care service | Från X kr/h efter rutavdrag | Gräsklippning, häckklippning, ogräsrensning och beskärning genom hela säsongen. Fast intervall eller efter behov. Rutavdrag på arbetskostnaden. |
+| Skötselavtal för BRF och fastighetsägare | Property maintenance | Inget pris | Löpande skötsel av utemiljön med fast intervall och en kontaktperson: gräs, häckar, rabatter, löv och snöröjning i samma avtal. Offert efter kostnadsfri genomgång av ytorna. |
 | Häckklippning | Gardener | Från X kr/h efter rutavdrag | Häckar och buskar klippta i form, riset bortkört samma dag. Ger rutavdrag på arbetskostnaden. |
 | Röjning och bortforsling | Gardener | Inget pris | Gammal häck, ris, jordmassor och trädgårdsavfall. Lastas och körs bort i egen regi. |
 | Snöröjning och halkbekämpning | Snow removal service | Inget pris | Uppfarter, gångar och parkeringar genom vintersäsongen, halkbekämpning vid behov. Samma kontaktperson året om. Säsongsavtal. |
@@ -114,7 +121,8 @@ gör det för smamaleri.se, ChatGPT Search lutar mot Bing-indexet.
 
 ## Uppföljning
 
-- [ ] Kategoribeslut taget med Jens, bytt i profilen
+- [x] Kategoribeslut taget med Jens 2026-07-28: skötsel/BRF prio, primär behålls
+- [ ] Tre underkategorier tillagda: Landscaper, Property maintenance, Snow removal service
 - [ ] Tjänstelistan ersatt med svenska tjänster ovan, X ifyllt av Jens
 - [ ] Alla tio omdömen besvarade
 - [ ] Instagram kopplat
