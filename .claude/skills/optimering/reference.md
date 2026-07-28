@@ -26,6 +26,104 @@ Källa: korsgranskad kartläggning juli 2026. Fyra parallella utredningar med k�
 | "GBP = 32 % av rankingvikten" | **Spekulation** | Whitespark är en åsiktsenkät: 47 konsulter poängsätter 187 faktorer. Ingen mätning, ingen korrelationsdata |
 | "Citerar källor ger +30–40 % AI-synlighet" | **Spekulation** | Princeton-studien mäter på syntetiska korpusar, inte på riktiga AI-svar i produktion |
 | llms.txt förbättrar citering | **Spekulation, lutar mot nej** | Försumbar crawler-trafik mot filen i mätningar |
+| AI Overviews och AI Mode är Google Search, inte separata motorer | **Dokumenterat** | Googles egen optimeringsguide. Samma index, crawling och ranking, AI-teknik ovanpå |
+| AEO och GEO är branschetiketter, inte Google-system | **Dokumenterat** | Följer av ovan. Optimering för generativ AI-sökning hos Google är SEO |
+| Det finns inget AI-specifikt schema | **Dokumenterat** | Googles guide. Schema ger berättigade rich results och tydligare innebörd, inget AI-lyft |
+| `noindex` i rå HTML kan stoppa renderingen | **Dokumenterat** | Google kan hoppa över rendering. JS som tar bort taggen hjälper inte |
+| Innehåll kan gå bra utan uttalat SEO-arbete | **Dokumenterat** | Googles guide säger det uttryckligen. Motmedel mot checklisteceremoni |
+| Chunking av innehåll krävs för AI | **Fel** | Google efterfrågar det inte |
+| En sida per fan-out-variant ger täckning | **Fel** | Google avvisar det uttryckligen. Ger tunna dubbletter |
+
+---
+
+## Källkarta
+
+Skillen säger "verifiera om påståendet i primärkällan". Här är primärkällorna.
+
+**Googles guide för generativ AI-sökning** är huvuddokumentet:
+`developers.google.com/search/docs/fundamentals/ai-optimization-guide`
+
+| Ämne | URL under `developers.google.com` |
+|---|---|
+| Search Essentials | `/search/docs/essentials` |
+| Tekniska krav | `/search/docs/essentials/technical` |
+| Spampolicyer | `/search/docs/essentials/spam-policies` |
+| Hjälpsamt, tillförlitligt, människa först | `/search/docs/fundamentals/creating-helpful-content` |
+| AI-genererat innehåll | `/search/docs/fundamentals/using-gen-ai-content` |
+| Så fungerar Google Search | `/search/docs/fundamentals/how-search-works` |
+| JavaScript-SEO | `/search/docs/crawling-indexing/javascript/javascript-seo-basics` |
+| Crawl budget | `/crawling/docs/crawl-budget` |
+| Sidupplevelse | `/search/docs/appearance/page-experience` |
+| Bild-SEO | `/search/docs/appearance/google-images` |
+| Video-SEO | `/search/docs/appearance/video` |
+| Företagsuppgifter | `/search/docs/appearance/establish-business-details` |
+
+Övrigt: agentvänliga sajter `web.dev/articles/ai-agent-site-ux`, Merchant Center uppladdningsmetoder `support.google.com/merchants/answer/11586438`.
+
+**Regel:** citerar du en siffra eller en policy på en kundsajt, slå upp den här först. Det är också det som gör texten svår för en konkurrent att kopiera, för de har inte gjort det.
+
+---
+
+## Googles pipeline, och var man tappar
+
+Att veta ordningen gör felsökningen snabb, för fel i ett tidigt steg gör allt senare arbete meningslöst.
+
+1. **Upptäckt.** Länkar, sitemaps, omdirigeringar.
+2. **Crawl.** Googlebot hämtar sidan och de resurser den behöver, även CSS, JS och bilder.
+3. **Rendering.** JavaScript körs vid behov. Google är undantaget bland AI-crawlers här.
+4. **Indexering.** Text, bilder, video, metadata, canonical-kluster, språk, plats.
+5. **Servering.** Ranking för frågan.
+6. **Generativa ytor.** Hämtar ur indexet och genererar svar med länkar till källorna.
+
+**Fälla värd att skriva upp:** står `noindex` i den **råa** HTML:en kan Google hoppa över renderingen helt. Att låta JavaScript ta bort taggen senare fungerar alltså inte. Vi har haft en skarp kundsajt liggande med `noindex` i headen, och den hade aldrig kunnat indexeras.
+
+---
+
+## Agentberedskap
+
+Nytt område, och relevant för oss eftersom våra mallar är animationstunga. Webbläsaragenter läser skärmbild, DOM och tillgänglighetsträd. En sida som fungerar för en skärmläsare fungerar oftast för en agent.
+
+- [ ] Knappar är `<button>`, navigation är `<a href>`, inte klickbara `<div>`
+- [ ] Kan inte semantiska element användas: korrekt `role`, `tabindex`, etikett och tillstånd
+- [ ] Formulärfält har `<label for>`, namn och synliga tillstånd
+- [ ] Tillstånd som ändras vid offertförfrågan, filtrering eller bokning syns i gränssnittet
+- [ ] Layouten hoppar inte under uppgiften
+- [ ] Genomskinliga overlays och sticky-element täcker inga kontroller
+- [ ] Kritisk information finns som text, inte bara i bild, canvas eller video
+- [ ] Interaktiva element är synligt tillräckligt stora och har `cursor:pointer`
+- [ ] Namn och roller i tillgänglighetsträdet matchar det man ser
+
+Vår vanligaste avvikelse: `onclick` på ett `<a href="#">` i stället för en riktig knapp. Fungerar för mus, inte för tangentbord eller agent.
+
+---
+
+## Medie-SEO
+
+**Bilder**
+- [ ] Riktiga `<img>` eller `<picture>` med `src`, inte CSS-bakgrunder för innehållsbilder
+- [ ] Beskrivande alt-text på meningsfulla bilder
+- [ ] Bilden ligger nära den text den hör till
+- [ ] Beskrivande filnamn där det är praktiskt
+- [ ] Förhandsbild i metadata, inte extrem bildkvot
+
+**Video**
+- [ ] Videon är framträdande på sidan, unik titel och beskrivning
+- [ ] Giltig tumnagel och stabil video-URL
+- [ ] `VideoObject` när det är berättigat
+- [ ] Google får hämta filen om förhandsvisning eller nyckelmoment ska fungera
+
+---
+
+## Triageordning när en sajt har många fel
+
+1. **Behörighetsblockerare.** Crawl, index, `200`, `noindex`, robots, inloggningsvägg, canonical-fel.
+2. **Innehållets värde.** Commodity-sidor, saknad expertis, tunt eller dubblerat.
+3. **Sidförståelse.** Titlar, rubriker, interna länkar, synlig text, mediekontext, schema.
+4. **Användarupplevelse.** Mobil, hastighet, påträngande element, tydligt huvudinnehåll.
+5. **Rikare ytor.** Bilder, video, Företagsprofil, agentberedskap.
+6. **Mätning.** Search Console, URL-inspektion, löpande innehållsgranskning.
+
+Punkt 1 slår allt annat. Är sidan inte indexerbar är resten preliminärt.
 
 ---
 

@@ -24,6 +24,23 @@ Säg aldrig "det här ger 30 % mer trafik" utan att kunna peka på mätningen. D
 
 **3. Blockerare före finlir.** Om sajten ligger på fel domän, saknar egen URL eller inte är indexerbar är allt annat arbete preliminärt. Kolla det först, varje gång.
 
+## Vad Google själva säger om AI-sökning
+
+Det här korrigerar en vanlig utgångspunkt, inklusive vår egen tidigare formulering.
+
+**AI Overviews och AI Mode är Google Search, inte en separat motor.** De använder samma index, samma crawling, samma ranking och samma kvalitetssystem, med AI-teknik ovanpå. *Dokumenterat, Googles egen optimeringsguide.*
+
+Följden: **AEO och GEO är branschetiketter, inte Google-system.** Att optimera för generativ AI-sökning hos Google är att optimera för Search. Finns det ingen separat mekanism finns det heller inga separata knappar att vrida på, och den som säljer "AEO-paket" som något annat än SEO säljer en etikett.
+
+Två AI-specifika begrepp är däremot verkliga och värda att förstå:
+
+- **Retrieval-augmented generation.** Svaret grundas i sidor som hämtas ur Googles index. Är sidan inte indexerad finns den inte att hämta.
+- **Query fan-out.** Modellen kan skicka flera relaterade frågor samtidigt, inte bara besökarens ordalydelse. Det är därför ett ämne som täcks väl på en stark sida slår tio tunna sidor för gissade frågevarianter.
+
+**Och det viktigaste motmedlet mot checklisteceremoni:** Google skriver uttryckligen att innehåll kan gå bra i Search, inklusive de generativa ytorna, **utan uttalat SEO-arbete**. En sida behöver inte varje punkt i den här skillen. Prioritera det som tar bort blockerare och ökar värdet för besökaren. Att leverera en lång åtgärdslista är lätt, att säga vilka tre punkter som spelar roll är jobbet.
+
+Källkarta med URL:er till Googles egen dokumentation: [reference.md](reference.md).
+
 ## Steg 1 — Kontrollera blockerarna
 
 Kör dessa innan något annat. Om någon fallerar: åtgärda den först, resten är bortkastat.
@@ -111,6 +128,9 @@ SEO utan konvertering är trafik utan intäkt. Kontrollera alltid:
 | Blockera Google-Extended "för säkerhets skull" | Påverkar inte Search, men stänger Gemini |
 | Wikidata-post för småföretag | Raderas rutinmässigt utan oberoende källor |
 | Citera Whitespark-procent ("GBP = 32 % av vikten") som fakta | Åsiktsenkät bland konsulter, inte mätdata |
+| Låta JS ta bort en `noindex` som står i den råa HTML:en | Står `noindex` i originalsvaret kan Google hoppa över renderingen helt. Sidan blir aldrig indexerad |
+| Bygga en sida per gissad long-tail-fråga eller fan-out-variant | Google avvisar det uttryckligen. Ger tunna dubbletter, inte täckning |
+| Köpa eller arrangera omnämnanden och citeringar | Manufacturerad reputation. Riktlinjebrott, och det håller inte |
 
 ## Bortkastad tid (inte farligt, men gör annat)
 
@@ -120,6 +140,9 @@ SEO utan konvertering är trafik utan intäkt. Kontrollera alltid:
 - **`Person`-schema med `hasCredential` för E-E-A-T.** E-E-A-T går inte att märka upp. Skriv i stället "Jens, 12 år i yrket" i brödtext med före/efter-bilder.
 - **llms.txt.** Google stödjer det inte, OpenAI har inte adopterat det. Anthropic och Perplexity läser den. Mätningar visar att de allra flesta filer får noll requests. Gör den om kunden vill, den skadar inte, men sälj den aldrig som en åtgärd med effekt. Den måste ligga i **domänroten** för att hittas alls.
 - **llms-full.txt, ai.txt, Cloudflare Content Signals.** Ingen dokumenterad effekt.
+- **Chunka innehåll i små fragment "för AI".** Google efterfrågar det inte. Sidan ska vara begriplig för en människa, styckeindelning räcker.
+- **Skriva om texten i en särskild "AI-stil".** Det finns ingen sådan stil dokumenterad. Svara på frågan först och var konkret, det är hela tricket.
+- **Särskild Markdown-version av sidan för AI.** Ingen dokumenterad effekt hos Google.
 
 ## Bolagsform-ändring (enskild firma → AB)
 
