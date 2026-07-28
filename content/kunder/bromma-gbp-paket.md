@@ -128,6 +128,54 @@ gör det för smamaleri.se, ChatGPT Search lutar mot Bing-indexet.
 
 
 
+## Läge 2026-07-28 kväll: utfört av webbläsaragenten, plus korrigeringar
+
+**Kategorier satta, väntar på Googles godkännande** (pending, upp till 10 min):
+Lawn care service kvar som primär, under: **Landscape Gardener**, Gardener,
+Snow removal service. "Garden work" borttagen ur alla kategorier.
+
+Taxonomifynd från den faktiska väljaren, ersätter tidigare antaganden:
+- "Landscaper" finns inte i urvalet, kategorin heter **Landscape Gardener**
+- "Gräsmatteservice" finns inte alls i taxonomin
+- Property maintenance ersattes med Gardener enligt fallback-instruktionen.
+  Uppsättningen står, byt inte iterativt. BRF-spåret bärs av tjänsten
+  "Skötselavtal för BRF och fastighetsägare" plus beskrivningen i stället.
+- Pendinglistan visar kategorier alfabetiskt, faktisk ordning kontrolleras
+  efter godkännandet.
+
+**Prisbeslut: 349 kr underkändes.** Agenten interpolerade mellan konkurrenterna
+(Hjärtat 309, ReGarden 415). Regeln står i avsnitt 2: priset sätts av Jens,
+aldrig av oss. Ett timpris i profilen är ett publikt löfte som hans fakturor
+måste hålla. Tjänsterna publiceras utan pris; Jens siffra läggs in i efterhand.
+Sms att skicka: "Tjena! Vad tar du per timme för skötsel efter rutavdrag?
+Ska in i Google-profilen."
+
+**Två fynd som kräver hantering:**
+
+1. **Google-notis i tjänsteredigeraren:** "One or more business categories were
+   changed based on feedback from Google users or other sources" med länken
+   Review changes. Öppna, läs, rapportera. Acceptera eller avvisa ingenting
+   förrän innehållet är rapporterat, notisen kan förklara varför profilen
+   stod som den gjorde.
+2. **Möjlig dubblettprofil:** kontot hanterar även "Bromma Trädgårdsanläggning
+   & Plattläggning i Stockholm" (Gardener, 1 omdöme, Bromma). Rör den inte.
+   Samla först: verifieringsstatus, adress eller område, webbadress, omdömets
+   text, senaste aktivitet. Bekräfta med Jens om den är hans. Är den det och
+   samma verksamhet: behåll huvudprofilen och anmäl dubbletten till Googles
+   support för sammanslagning. Markera den ALDRIG som permanent stängd, det
+   kan visas publikt som att företaget stängt.
+
+**Tjänstenamnet "Trädgårdsanläggning och plattsättning" underkändes:**
+plattsättning finns inte i någon källa om Jens (inte IG-bion, inte sajten,
+inte omdömena), bara i dubblettprofilens namn. Lista aldrig en tjänst som
+inte är belagd. Stenläggning ger dessutom inte rutavdrag, vilket gör felet
+dyrare om det följer med i en beskrivning.
+
+Den godkända tjänstelistan är avsnitt 2 ovan, med två placeringsjusteringar
+mot agentens förslag: Landscaper-raderna läggs under **Landscape Gardener**,
+och BRF-avtalet läggs under **Lawn care service** eftersom Property
+maintenance inte är satt som kategori.
+
 ## 6. Beskrivning och öppningsdatum (från skärmbild 2026-07-28)
 
 **Nuvarande beskrivning** är BRF-vinklad i rätt riktning men generisk: "professionell
@@ -173,7 +221,11 @@ var, och för vem.
 ## Uppföljning
 
 - [x] Kategoribeslut taget med Jens 2026-07-28: skötsel/BRF prio, primär behålls
-- [ ] Tre underkategorier tillagda: Landscaper, Property maintenance, Snow removal service
+- [x] Underkategorier satta 2026-07-28 (pending): Landscape Gardener, Gardener, Snow removal service
+- [ ] Kontrollera kategoriordningen efter Googles godkännande
+- [ ] Jens timpris efter rutavdrag inhämtat, ifyllt på skötseltjänsterna
+- [ ] Google-notisen Review changes öppnad och rapporterad
+- [ ] Dubblettprofilen utredd med Jens innan något röres
 - [ ] Tjänstelistan ersatt med svenska tjänster ovan, X ifyllt av Jens
 - [ ] Alla tio omdömen besvarade
 - [ ] Instagram kopplat
