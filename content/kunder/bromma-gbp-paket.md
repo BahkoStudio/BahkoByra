@@ -1,7 +1,7 @@
 # Google Företagsprofil: åtgärdspaket Bromma Trädgårdsservice
 
 **Skapat:** 2026-07-28 utifrån skärmbilder av profilen (Mathias UI är på engelska).
-**Läge vid granskning:** primärkategori "Lawn care service", noll underkategorier, fyra
+**Läge vid granskning:** primärkategori "Lawn care service" (svensk vy: Trädgårdstjänster), noll underkategorier, fyra
 tjänster på engelska, 10 omdömen med betyg 5,0, **noll besvarade**, Instagram ej kopplat.
 **Baslinje att jämföra mot:** 1 226 visningar/mån, 168 kundinteraktioner (2026-07-28).
 
@@ -16,12 +16,19 @@ för verifiering: klistra in efter ändring så kontrolleras resultatet.
 **Beslut taget med Jens 2026-07-28:** båda spåren, men **skötselavtal med BRF har
 högst prioritet.** Det avgör uppsättningen:
 
-| Plats | Engelska (som UI:t visar) | Visas för svenska sökare som |
+UI:t växlar mellan svenska och engelska beroende på kontospråk, båda namnen anges.
+Kategorifältet föreslår bara giltiga kategorier, så skriv och välj ur listan.
+
+| Plats | Engelskt UI | Svenskt UI |
 |---|---|---|
-| Primär | **Lawn care service, behålls oförändrad** | Gräsmatteservice |
-| Under 1 | Landscaper | Trädgårdsanläggare |
-| Under 2 | Property maintenance | Fastighetsskötsel |
-| Under 3 | Snow removal service | Snöröjningstjänst |
+| Primär | **Lawn care service, behålls oförändrad** | **Trädgårdstjänster** (verifierat i skärmbild 2026-07-28) |
+| Under 1 | Landscaper | sök "trädgårdsanläggning" |
+| Under 2 | Property maintenance | sök "fastighetsskötsel" |
+| Under 3 | Snow removal service | sök "snöröjning" |
+
+Bra nyhet ur skärmbilden: primärkategorin visas för svenska sökare som
+**Trädgårdstjänster**, vilket är bredare än engelskans Lawn care service antyder.
+Den täcker skötselspåret väl, ytterligare ett skäl att inte röra den.
 
 Logiken: primärkategorin speglar skötselspåret och står redan rätt, så den röres
 inte, vilket också tar bort all omverifieringsrisk. Landscaper täcker "båda".
@@ -149,7 +156,7 @@ Klistra in eller visa vid nästa avstämning. Skrivet för honom, inte för oss.
 
 | | Du har i dag | Vi gör det till |
 |---|---|---|
-| **Kategori** | Gräsmatteservice, inga underkategorier. Google ser dig som ett gräsklippningsföretag | Gräsmatteservice + Trädgårdsanläggare + Fastighetsskötsel + Snöröjning. Du dyker upp även när föreningar och villaägare söker anläggning, fastighetsskötsel och vinterservice |
+| **Kategori** | Trädgårdstjänster, inga underkategorier. Google ser dig som ett skötselföretag och inget mer | Trädgårdstjänster + anläggning + fastighetsskötsel + snöröjning. Du dyker upp även när föreningar och villaägare söker anläggning, fastighetsskötsel och vinterservice |
 | **Beskrivning** | Allmänt hållen, inga orter, inget rutavdrag | Talar till både BRF och villaägare, nämner orterna, avtalen, rutavdraget och att du leder arbetet själv |
 | **Tjänster** | Fyra stycken, på engelska, bland dem "Garden work" | Nio tjänster på svenska med beskrivning, inklusive Skötselavtal för BRF och fastighetsägare. Timpris efter rutavdrag på skötseln, ditt pris |
 | **Omdömen** | 10 stycken, alla fem stjärnor, inget besvarat | Alla tio besvarade i ditt namn. Svar visar att du är aktiv, och Google väger färskhet och svarsfrekvens |
