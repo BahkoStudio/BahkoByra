@@ -6,7 +6,7 @@ Källdokument: `reference/BM_Challenge.pdf`, `reference/Build_Your_Business_Live
 
 ## Objektiv
 
-Sälja hemsidor + Local SEO till lokala företag (kliniker via cold outreach, bygg/hantverk via Instagram)
+Sälja hemsidor + Local SEO till lokala företag inom bygg/hantverk (Instagram-DM, cold email/call, IRL)
 med en front-offer som bevisar kompetens → uppsell till betald produkt.
 
 ---
@@ -46,7 +46,7 @@ Vill du att jag skickar en kort video som visar exakt hur?"
 
 **BahkoByras offer = hemsidor.** Front-offer på ALLA kanaler = gratis hemsideförslag (2-min Loom som visar
 3 brister på deras sajt + ett utkast på ny startsida). **"Växa på Google"-copy ENDAST på `www.bahkobyra.se`** —
-aldrig i outreach/DM/reels. Local SEO/Google-ranking = intern leverans (klinik-retainer), inte säljbudskap.
+aldrig i outreach/DM/reels. Local SEO/Google-ranking = intern leverans (uppsell efter sajten), inte säljbudskap.
 
 ---
 
@@ -57,13 +57,13 @@ aldrig i outreach/DM/reels. Local SEO/Google-ranking = intern leverans (klinik-r
 Allt börjar med top of funnel. När du startar ska 80–95% av tiden gå till att skapa en hungrig publik.
 Idealisk daglig blast (anpassad för BahkoByra):
 
-| Kanal | Klinik-nisch | Bygg/hantverk-nisch |
-|-------|--------------|---------------------|
-| Reels | — | 3 reels + 2 carouseller/vecka (@bahkostudio) |
-| Cold email | 20/dag | — |
-| Cold call | 10/dag | — |
-| IG DM | — | enligt skriven-cadence |
-| Nyhetsbrev | 1/mån | 1/mån |
+| Kanal | Bygg/hantverk-nisch |
+|-------|---------------------|
+| Reels | 3 reels + 2 carouseller/vecka (@bahkostudio) |
+| Cold email | 20/dag |
+| Cold call | 10/dag |
+| IG DM | enligt skriven-cadence |
+| Nyhetsbrev | 1/mån |
 
 Flaskhalsen är nästan alltid **antalet bokade möten/vecka**. Optimera för det, inte conversion rate.
 
@@ -99,8 +99,8 @@ Fyra alternativ: (1) gratis mot case study, (2) **betalt upfront i sin helhet (f
 - Välj ETT pris och **stå fast på det** (åtminstone under det samtalet). Memorera. Tveka aldrig.
 - Du kan ändra pris framåt i tiden mellan kunder. Gamla leads: "Vi höjer priset till X, men eftersom vi
   offererade dig det gamla priset håller vi det till och med [datum]."
-- BahkoByra: Klinik = hemsida + retainer (35 000 kr + 9 000 kr/mån, alt. 0 + 14 000 kr/mån, 3 mån bindning).
-  Bygg = hemsida som engångsköp (ingen retainer).
+- BahkoByra: hemsida som engångsköp, 29 900 kr (ingen retainer). Löpande optimering säljs som
+  uppsell först efter levererad sajt.
 
 ---
 
@@ -135,7 +135,7 @@ Jobba med **lokala företag** — du når dem och de har pengar.
 Bygg + renovering (#1), trädvård, mark/trädgård, städ (pressure washing), tak, låssmeder,
 plattsättning/staket, gas/värme, bröllop, catering.
 
-BahkoByra kör: **kliniker** (befintlig CRM, 43 leads) + **bygg/tak/måleri/mark** (Instagram).
+BahkoByra kör: **bygg/tak/måleri/mark/hantverk** (CRM + Instagram). Klinik-nischen avvecklad 2026-07-28.
 
 ---
 

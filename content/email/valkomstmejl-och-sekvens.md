@@ -14,15 +14,15 @@
 
 Hej [Förnamn],
 
-tack för förfrågan! Jag har tagit emot [Klinik]s webbadress och börjar granskningen idag.
+tack för förfrågan! Jag har tagit emot [Företag]s webbadress och börjar granskningen idag.
 
 Det här händer nu:
-1. Jag går igenom er sajt mot alla 10 punkter (mobil, hastighet, lokal SEO, bokningsflöde m.m.)
+1. Jag går igenom er sajt mot alla 10 punkter (mobil, hastighet, lokal SEO, offertflöde m.m.)
 2. Inom 24 timmar får ni en personlig rapport hit till er e-post
-3. Konkret lista: vad som fungerar, och vad som kostar er patienter — utan säljpitch
+3. Konkret lista: vad som fungerar, och vad som kostar er jobb — utan säljpitch
 
 Medan ni väntar: här är vår korta guide med de 3 viktigaste sakerna för att synas
-högre på Google → https://www.bahkobyra.se/kliniker/gratis-guide.html
+högre på Google → https://www.bahkobyra.se/foretag/gratis-guide.html
 
 Hörs inom 24 timmar!
 
@@ -38,7 +38,7 @@ mathias@bahkobyra.se
 Hej [Förnamn],
 
 kul att du vill synas högre på Google! Guiden + videon är upplåst här:
-https://www.bahkobyra.se/kliniker/gratis-guide.html
+https://www.bahkobyra.se/foretag/gratis-guide.html
 
 Kortversionen — börja med detta redan idag:
 1. **Fyll Google Företagsprofilen till 100 %** — rätt huvudkategori, alla tjänster, minst 10 riktiga foton
@@ -47,8 +47,8 @@ Kortversionen — börja med detta redan idag:
 
 Tips 1 ger oftast synlig rörelse inom ett par veckor.
 
-PS: Vill du veta exakt var just din klinik ligger idag? Vi gör en gratis 10-punktsanalys
-av er sajt — svar inom 24h → https://www.bahkobyra.se/kliniker/gratis-granskning.html
+PS: Vill du veta exakt var just ditt företag ligger idag? Vi gör en gratis 10-punktsanalys
+av er sajt — svar inom 24h → https://www.bahkobyra.se/foretag/gratis-granskning.html
 
 /Mathias, Bahko Byrå
 
@@ -56,18 +56,18 @@ av er sajt — svar inom 24h → https://www.bahkobyra.se/kliniker/gratis-gransk
 
 ## 3. Uppföljning — DAG 2 (värde, ingen pitch)
 
-**Ämne:** Det vanligaste misstaget vi ser på kliniksajter
+**Ämne:** Det vanligaste misstaget vi ser på hantverkarsajter
 
 Hej [Förnamn],
 
 snabb fråga: hur många klick tar det att boka en tid på er sajt — från startsidan, i mobilen?
 
-Det är det första vi kollar i varje granskning, för det är där flest bokningar försvinner.
-8 av 10 besökare sitter i mobilen, ofta på kvällen. Om bokningsknappen inte syns direkt,
-eller formuläret kräver fem steg, går de vidare till nästa klinik i listan.
+Det är det första vi kollar i varje granskning, för det är där flest förfrågningar försvinner.
+8 av 10 besökare sitter i mobilen, ofta på kvällen. Om offertknappen inte syns direkt,
+eller formuläret kräver fem steg, går de vidare till nästa firma i listan.
 
 Testa själv ikväll: öppna er sajt i mobilen och ta tid på hur lång tid det tar att boka.
-Mer än 30 sekunder = ni tappar patienter varje vecka.
+Mer än 30 sekunder = ni tappar jobb varje vecka.
 
 Vill du att jag tittar? Jag spelar gärna in en kort video med exakt vad jag ser på er sajt — gratis.
 Svara bara på det här mejlet.
@@ -78,12 +78,12 @@ Svara bara på det här mejlet.
 
 ## 4. Uppföljning — DAG 5 (personlig knuff)
 
-**Ämne:** 2 minuter om [Klinik]s sajt?
+**Ämne:** 2 minuter om [Företag]s sajt?
 
 Hej [Förnamn],
 
 jag har en ledig lucka i veckan och spelar gärna in en kort video (ca 2 min) där jag går
-igenom er sajt — vad som fungerar, och de 2–3 sakerna jag hade fixat först för fler bokningar.
+igenom er sajt — vad som fungerar, och de 2–3 sakerna jag hade fixat först för fler offertförfrågningar.
 
 Kostar inget, kräver inget. Du får videon, gör vad du vill med den.
 
@@ -102,10 +102,10 @@ Hej [Förnamn],
 
 jag vill inte fylla din inkorg — det här är sista mejlet i den här rundan.
 
-Om fler bokningar via sajten inte är prio just nu: helt lugnt, då hörs vi en annan gång.
+Om fler jobb via sajten inte är prio just nu: helt lugnt, då hörs vi en annan gång.
 Du har kvar guiden och kan alltid boka en gratis analys senare.
 
-Om det ÄR prio: boka 15 minuter så visar jag exakt vad jag skulle göra för just er klinik —
+Om det ÄR prio: boka 15 minuter så visar jag exakt vad jag skulle göra för just ert företag —
 inklusive ett utkast på hur er nya startsida kan se ut, innan ni betalar någonting.
 
 https://cal.eu/bahkobyra/15min
@@ -121,6 +121,6 @@ Allt gott!
 - [ ] Skapa konto på MailerLite eller Brevo (gratis upp till ~1 000 kontakter)
 - [ ] Formspree → Settings → Webhooks/Integrations → koppla nya leads till listan
 - [ ] Tre grupper/taggar: `analys`, `guide`, `nyhetsbrev` (styr vilket välkomstmejl som går ut)
-- [ ] Lägg in sekvensen: 0 min → dag 2 → dag 5 → dag 10 (stoppa sekvensen vid svar/bokning)
+- [ ] Lägg in sekvensen: 0 min → dag 2 → dag 5 → dag 10 (stoppa sekvensen vid svar/bokat möte)
 - [ ] Verifiera avsändardomän (SPF + DKIM för bahkobyra.se) så mejlen inte hamnar i skräppost
 - [ ] Testa hela flödet med din egen e-post innan den går live

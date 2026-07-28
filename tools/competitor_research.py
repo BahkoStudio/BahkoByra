@@ -61,7 +61,7 @@ def ask_perplexity(query: str, api_key: str) -> str:
 # ── Queries ─────────────────────────────────────────────────────────────────
 def build_queries(brand: dict) -> list[dict]:
     services_str = ", ".join(brand.get("services", []))
-    target = brand.get("target_market", "kliniker i Sverige")
+    target = brand.get("target_market", "bygg- och hantverksfirmor i Sverige")
     return [
         {
             "id": "landscape",
@@ -98,12 +98,12 @@ def build_queries(brand: dict) -> list[dict]:
         },
         {
             "id": "clinic_niche",
-            "label": "Klinik-nischen specifikt",
+            "label": "Bygg-nischen specifikt",
             "query": (
-                "Vilka digitala byråer i Sverige specialiserar sig på kliniker, skönhetssalonger "
-                "och estetiska kliniker? Finns det byråer som fokuserar specifikt på denna nisch? "
+                "Vilka digitala byråer i Sverige specialiserar sig på byggföretag, hantverkare "
+                "och takläggare? Finns det byråer som fokuserar specifikt på denna nisch? "
                 "Vad är deras erbjudande och priser? "
-                "Hur marknadsför sig estetiska kliniker online i Sverige 2024-2025?"
+                "Hur marknadsför sig bygg- och hantverksfirmor online i Sverige 2024-2025?"
             ),
         },
         {
@@ -113,7 +113,7 @@ def build_queries(brand: dict) -> list[dict]:
                 f"Vad är de största möjligheterna för en ny digital byrå i Sverige som fokuserar på "
                 f"{target} och erbjuder {services_str}? "
                 "Vilka konkurrensfördelar är möjliga? "
-                "Vad efterfrågar kliniker och skönhetskliniker online? "
+                "Vad efterfrågar byggföretag och hantverkare online? "
                 "Hur kan en byrå differentiera sig och ta marknadsandelar?"
             ),
         },

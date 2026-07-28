@@ -101,8 +101,8 @@ server.listen(PORT, () => {
   console.log(`  ${url}`);
   console.log('──────────────────────────────────────');
   console.log(`  Byrå:      ${url}/`);
-  console.log(`  Analys:    ${url}/kliniker/gratis-granskning.html`);
-  console.log(`  Guide:     ${url}/kliniker/gratis-guide.html`);
+  console.log(`  Analys:    ${url}/foretag/gratis-granskning.html`);
+  console.log(`  Guide:     ${url}/foretag/gratis-guide.html`);
   console.log(`  Demo:      ${url}/cloud/`);
   console.log(`  Dashboard: ${url}/dashboard/`);
   console.log(`  Pitch:     ${url}/pitchdeck.html`);

@@ -155,8 +155,8 @@ function template(step, lead) {
       subject: `Hittade er på Google`,
       html: `<div style="${styles}">
         <p>Hej!</p>
-        <p>Jag sökte på Google efter kliniker och hittade er sida, snygg!</p>
-        <p>Men jag såg 3 grejer som troligtvis gör att ni missar patienter just nu. Jobbade nyligen med en klinik som fick 36% fler bokningsförfrågningar efter ett par enkla ändringar på hemsidan.</p>
+        <p>Jag sökte på Google efter hantverkare och hittade er sida, snygg!</p>
+        <p>Men jag såg 3 grejer som troligtvis gör att ni missar jobb just nu. Jobbade nyligen med en firma som fick 36% fler offertförfrågningar efter ett par enkla ändringar på hemsidan.</p>
         <p>Tänkte jag kan göra ett gratis demo för er sida om det är intressant. Svara bara "ok" så fixar jag det, ni kommer inte ångra det!</p>
         <p>Hörs snart</p>
         ${signature}
@@ -181,7 +181,7 @@ function template(step, lead) {
       subject: `En sak till`,
       html: `<div style="${styles}">
         <p>Hej!</p>
-        <p>Jobbar just nu med ett par kliniker och har en lucka kvar. Vill inte att ni missar det.</p>
+        <p>Jobbar just nu med ett par firmor och har en lucka kvar. Vill inte att ni missar det.</p>
         <p>Svara "ok" så skickar jag ett gratis demo på hur er sida kan se ut, inga krav.</p>
         ${signature}
       </div>`
@@ -194,7 +194,7 @@ function template(step, lead) {
       html: `<div style="${styles}">
         <p>Hej!</p>
         <p>Sista gången jag hör av mig, lovar.</p>
-        <p>Om ni någon gång funderar på hemsidan så hör gärna av er. Lycka till med kliniken!</p>
+        <p>Om ni någon gång funderar på hemsidan så hör gärna av er. Lycka till med firman!</p>
         ${signature}
       </div>`
     };

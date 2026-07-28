@@ -84,14 +84,15 @@ Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `bahko
 **POSITIONERING (viktigt):**
 - **Offerten = hemsidor.** På ALLA kanaler (Instagram, cold email/call/IRL, DM) säljer vi hemsidor som front offer.
 - **"Växa på Google"-copy ENDAST på `www.bahkobyra.se`.** Aldrig i outreach, DM, reels eller dashboard-skript.
-- Local SEO / Google-ranking är intern leverans (klinik-retainer) — inte säljbudskapet.
+- Local SEO / Google-ranking är intern leverans (uppsell efter hemsidan) — inte säljbudskapet.
 
-**Offer-stegen (ett varumärke, två nischer):**
+**Offer-stegen (en nisch: bygg & hantverk, alla kanaler):**
 
-| | Klinik (cold email/call/IRL) | Bygg & hantverk (Instagram @bahkostudio) |
-|--|------------------------------|-------------------------------------------|
-| Front (gratis) | Gratis hemsideförslag (2-min Loom + utkast) | Gratis hemsideförslag (utkast) |
-| Core (betalt) | Hemsida + löpande optimering (35 000 kr + 9 000 kr/mån) | Hemsida engångs (29 900 kr) |
+| | Bygg & hantverk (Instagram @bahkostudio, cold email/call/IRL) |
+|--|----------------------------------------------------------------|
+| Front (gratis) | Gratis hemsideförslag (utkast, ev. 2-min Loom) |
+| Core (betalt) | Hemsida engångs (29 900 kr) |
+| Uppsell | Löpande optimering / motion design efter levererad sajt |
 
 - **Offer-regel:** resultat + mekanism + riskreversering + villkor. FOR THEM / REAL / Financial Sense / Easy YES.
 - **Outreach-copy:** kort, personlig, mänsklig, hjälpsam. En konkret observation om DERAS sajt + en tydlig CTA.
@@ -101,7 +102,7 @@ Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `bahko
 - **Skrivregler för alla DM/mejl till prospekt:** mänsklig, naturlig svenska — ALDRIG tankstreck (—) i meddelanden. Börja alltid med en hälsning ("Hejsan!") och avsluta alltid med "Vänliga hälsningar / Mathias Bahko". **Lärdom 2026-06-12: långa DM får inga svar.** Uppföljning del 2 (vid tystnad): max 40 ord, ledig ton ("Tjena!"), formatet är fast: påminn ("vet inte om du hann se demon") + demolänken IGEN + värdelöftet i en mening ("visar exakt varför kunden ska välja just er") + låg friktion ("kika i mobilen, tar en minut"). Ingen omtagning av pitchen.
 - **Varumärke/logga:** Bahko Byrå-loggan ligger i `bahkobyra/brand/logo.svg` (live: bahkobyra.se/brand/logo.svg, definition i `bahkobyra/brand/brand.json`) — använd ALLTID den i allt material: demos, reels, motion design, dokument. Guld-B i guldram + "Bahko *Byrå*" i Cormorant Garamond marinblå #181C38 + tagline "SYNLIGHET SOM SÄLJER". Guld #C9A96E/#E3C88E på cream #F7F3EA.
 - **Daglig blast:** volym slår allt. Flaskhals = bokade möten/vecka.
-- **Nischer:** kliniker (CRM) + bygg/tak/måleri/mark (Instagram).
+- **Nisch:** bygg/tak/måleri/mark/hantverk (CRM + Instagram). Klinik-nischen är avvecklad 2026-07-28 — leads, skript och verktyg borttagna.
 
 ## Skills
 
@@ -113,7 +114,7 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 | video-to-website | `/video-to-website` | "turn this video into a website", "scroll-driven website", "video to website" |
 | scroll-cinematic | `/scroll-cinematic [företag + nisch/ort]` | "bygg-demo", "scroll-cinematic demosajt", "hus-förvandlings-demo", "demo enligt GRANIT-mallen" |
 | excalidraw-diagram | `/excalidraw-diagram` | "draw a diagram", "make a diagram of", "create an Excalidraw diagram" |
-| rapport | `/rapport [klinik]` | "generera rapport", "konkurrensanalys", "klientrapport", "lead-rapport", "analysera [klinik]" |
+| rapport | `/rapport [företag]` | "generera rapport", "konkurrensanalys", "klientrapport", "lead-rapport", "analysera [företag]" |
 | instagram-engine | `/instagram-engine [trade]` | "instagram-motor", "skapa reels", "content-batch", "veckans content", "reels för bygg/tak/måleri/mark" |
 | grill-me | `/grill-me` | "grill me", "stress-test planen", "intervjua mig om planen" |
 | motion-design | `/motion-design [varumärke + classic/hyper]` | "motion design", "animera loggan", "logo-animation", "promovideo", "reels-intro" |
@@ -122,7 +123,7 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 
 - **skill-builder** — Guides building/auditing/optimizing skills. Runs Discovery Interview before creating. See `.claude/skills/skill-builder/reference.md`.
 - **video-to-website** — Converts a video into a scroll-driven animated website (FFmpeg + GSAP + Lenis + canvas).
-- **scroll-cinematic** — Kunddemos enligt GRANIT-mallen. **För bygg/hantverk är facit `bahkobyra/cloud/bygg/index.html` byggt som en tvillingsida till www.bahkobyra.se** (beslut 2026-07-26): Bahkos designsystem (cream/navy/guld, Cormorant Garamond + Outfit), flödande sektioner i ljus/mörk-rytm, preloader, scroll-progressbar, header som göms vid nedscroll, marquee, pinnad horisontell process, och deklarativa animeringar via `data-lines`/`data-reveal`/`data-stagger`/`data-count`/`data-magnetic` på GSAP + ScrollTrigger + Lenis. Élara-koreografin med fast videolager och sektioner på progress-fönster (`bahkobyra/cloud/index.html`) gäller fortfarande **klinik/Élara-demos**, inte bygg. För bygg: Higgsfield-genererad husförvandling (gammalt hus → drömhus → kliv in) som autoplay-loop i heron — ALDRIG scroll-scrub. Kostar ~150 Higgsfield-credits/demo — körs aldrig utan beställning. Output: `bahkobyra/cloud/[kund]/index.html`. **Fälla:** inline `<script>` får aldrig ha `defer` (ignoreras enligt specen) och biblioteksflaggor måste mätas efter att de deferrade CDN-scripten körts, annars dör hela animationslagret tyst.
+- **scroll-cinematic** — Kunddemos enligt GRANIT-mallen. **För bygg/hantverk är facit `bahkobyra/cloud/bygg/index.html` byggt som en tvillingsida till www.bahkobyra.se** (beslut 2026-07-26): Bahkos designsystem (cream/navy/guld, Cormorant Garamond + Outfit), flödande sektioner i ljus/mörk-rytm, preloader, scroll-progressbar, header som göms vid nedscroll, marquee, pinnad horisontell process, och deklarativa animeringar via `data-lines`/`data-reveal`/`data-stagger`/`data-count`/`data-magnetic` på GSAP + ScrollTrigger + Lenis. Koreografin med fast videolager och sektioner på progress-fönster lever kvar i `bahkobyra/cloud/tryggbyggservice/` och `bahkobyra/cloud/vajjebygg/` — använd den för videodrivna demos, GRANIT-mallen för resten. För bygg: Higgsfield-genererad husförvandling (gammalt hus → drömhus → kliv in) som autoplay-loop i heron — ALDRIG scroll-scrub. Kostar ~150 Higgsfield-credits/demo — körs aldrig utan beställning. Output: `bahkobyra/cloud/[kund]/index.html`. **Fälla:** inline `<script>` får aldrig ha `defer` (ignoreras enligt specen) och biblioteksflaggor måste mätas efter att de deferrade CDN-scripten körts, annars dör hela animationslagret tyst.
 - **excalidraw-diagram** — Generates editable Excalidraw diagrams, saves `.excalidraw` files.
 - **rapport** — Genererar konkurrensanalys, klientrapporter och lead-profiler. Exporterar till Google Docs/Sheets. Kräver `credentials.json` för Google OAuth. Export-verktyg: `tools/export_to_google_docs.js`.
 - **instagram-engine** — Producerar content-batchar (reels/carouseller/DM-cadence) för bygg/hantverk-nischen (@bahkostudio). Speglas i dashboardens Instagram-motor. Se `.claude/skills/instagram-engine/templates.md`.

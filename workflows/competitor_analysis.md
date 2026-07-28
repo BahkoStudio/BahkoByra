@@ -28,7 +28,7 @@ Gör 5 Perplexity-sökningar och sparar rå data till `.tmp/research_raw.json`.
 **Vad söks:**
 1. Marknadsöversikt — de 10 främsta byråerna
 2. Prisanalys — vad kostar hemsidor, SEO, ads i Sverige
-3. Klinik-nischen — byråer som fokuserar på kliniker/skönhet
+3. Bygg-nischen — byråer som fokuserar på bygg/hantverk
 4. Positionering & gaps — vad saknar kunderna
 5. Möjligheter — hur ta marknadsandelar
 
@@ -42,7 +42,7 @@ sparar till `.tmp/competitor_report_DATUM.html` och öppnar i browser.
 ## Output
 - **Fil**: `.tmp/competitor_report_DATUM.html`
 - **Öppnas automatiskt** i default browser
-- **Sektioner**: Marknadsöversikt · Prisanalys · Klinik-nischen · Positionering · Möjligheter
+- **Sektioner**: Marknadsöversikt · Prisanalys · Bygg-nischen · Positionering · Möjligheter
 
 ## Hur ofta köra
 - **Månatlig analys** — kör en gång per månad för att hålla koll på marknaden

@@ -9,23 +9,23 @@
 
 ## Utskick 1 (juni) — Google Företagsprofilen
 
-**Ämne:** Därför ligger kliniken under dig högre på Google
+**Ämne:** Därför ligger firman under dig högre på Google
 
 Hej [Förnamn],
 
-en obekväm sanning: Google rankar inte den *bästa* kliniken högst — den rankar den som gjort läxan.
-Och läxan nummer ett är Google Företagsprofilen (rutan med kartan när någon söker "[behandling] [stad]").
+en obekväm sanning: Google rankar inte den *bästa* firman högst — den rankar den som gjort läxan.
+Och läxan nummer ett är Google Företagsprofilen (rutan med kartan när någon söker "[tjänst] [stad]").
 
 **Månadens 10-minutersfix:**
 - Öppna din profil via google.com/business
-- Kolla huvudkategorin — är den *exakt* rätt? ("Hudvårdsklinik", inte "Klinik")
-- Räkna dina foton. Färre än 10? Ladda upp riktiga bilder: lokalen, teamet, resultat
+- Kolla huvudkategorin — är den *exakt* rätt? ("Takläggare", inte "Byggföretag")
+- Räkna dina foton. Färre än 10? Ladda upp riktiga bilder: utförda jobb, teamet, bilarna
 - Fyll i varje tjänst ni erbjuder, med en mening beskrivning per tjänst
 
 En halvtom profil som blir 100 % ifylld rör sig ofta uppåt inom ett par veckor. Gratis synlighet.
 
-Vill du veta exakt var din klinik ligger idag — och vad som håller er nere?
-**Gratis 10-punktsanalys, svar inom 24h →** https://www.bahkobyra.se/kliniker/gratis-granskning.html
+Vill du veta exakt var din firma ligger idag — och vad som håller er nere?
+**Gratis 10-punktsanalys, svar inom 24h →** https://www.bahkobyra.se/foretag/gratis-granskning.html
 
 /Mathias, Bahko Byrå
 
@@ -37,42 +37,42 @@ Vill du veta exakt var din klinik ligger idag — och vad som håller er nere?
 
 Hej [Förnamn],
 
-när en patient jämför två kliniker väljer hon nästan alltid den med flest och *färskast* recensioner.
-Google gör samma bedömning. Ändå ber de flesta kliniker aldrig om recensioner — eller bara i en kampanj
+när en villaägare jämför två firmor väljer hon nästan alltid den med flest och *färskast* recensioner.
+Google gör samma bedömning. Ändå ber de flesta hantverkare aldrig om recensioner — eller bara i en kampanj
 en gång om året.
 
 **Månadens system (sätt upp en gång, kör för alltid):**
-- Skapa din recensionslänk i Företagsprofilen och korta ner den (t.ex. via en QR-kod i receptionen)
-- Be **varje** nöjd patient — samma dag, via SMS. Ett klick för dem
+- Skapa din recensionslänk i Företagsprofilen och korta ner den (t.ex. en QR-kod på slutfakturan)
+- Be **varje** nöjd kund — samma dag jobbet är klart, via SMS. Ett klick för dem
 - Svara på alla recensioner, även de sura. Lugnt och professionellt — alla läser dina svar
 - Mål: 1–2 nya i veckan. Jämnt flöde slår engångspuckel, varje gång
 
-Börja idag: skicka länken till dina tre senaste nöjda patienter.
+Börja idag: skicka länken till dina tre senaste nöjda kunder.
 
-**Vill du ha hela bilden av er synlighet? Gratis analys →** https://www.bahkobyra.se/kliniker/gratis-granskning.html
+**Vill du ha hela bilden av er synlighet? Gratis analys →** https://www.bahkobyra.se/foretag/gratis-granskning.html
 
 /Mathias, Bahko Byrå
 
 ---
 
-## Utskick 3 (augusti) — Sajten som bokningsmotor
+## Utskick 3 (augusti) — Sajten som offertmotor
 
-**Ämne:** Din sajt får besökare. Får den bokningar?
+**Ämne:** Din sajt får besökare. Får den offertförfrågningar?
 
 Hej [Förnamn],
 
 trafik är bara halva jobbet. Andra halvan: vad händer när någon faktiskt landar på er sajt — i mobilen,
-kl 21 en tisdag? Det är där de flesta kliniker läcker patienter utan att märka det.
+kl 21 en tisdag? Det är där de flesta firmor läcker jobb utan att märka det.
 
 **Månadens självtest (ta 5 minuter ikväll):**
-- Öppna er sajt i mobilen. Syns "Boka tid" utan att scrolla?
-- Ta tid: hur många sekunder tar det att genomföra en bokning? Över 30 = ni tappar folk
+- Öppna er sajt i mobilen. Syns "Begär offert" utan att scrolla?
+- Ta tid: hur många sekunder tar det att skicka en offertförfrågan? Över 30 = ni tappar folk
 - Laddar sidan på under 3 sekunder? (Testa på pagespeed.web.dev)
-- Finns riktiga bilder och recensioner synliga — eller bara stockfoton?
+- Finns riktiga bilder på era egna jobb och recensioner synliga — eller bara stockfoton?
 
-Varje besökare som studsar är en patient som bokar hos konkurrenten i stället.
+Varje besökare som studsar är ett jobb som går till konkurrenten i stället.
 
-**Vill du se hur en kliniksajt byggd för bokningar känns? Kika på vårt demo →** https://www.bahkobyra.se/cloud/
+**Vill du se hur en hantverkarsajt byggd för offertförfrågningar känns? Kika på vårt demo →** https://www.bahkobyra.se/cloud/bygg/
 Eller boka 15 min så går vi igenom just er sajt: https://cal.eu/bahkobyra/15min
 
 /Mathias, Bahko Byrå
@@ -81,7 +81,7 @@ Eller boka 15 min så går vi igenom just er sajt: https://cal.eu/bahkobyra/15mi
 
 ## Kommande ämnen (idébank)
 
-- September: Före/efter-bilder + SEO — hur resultatsidor rankar
-- Oktober: "Boka direkt"-flöden vs kontaktformulär — vad datan säger
-- November: Google Ads för kliniker — när det är värt det (och när det inte är det)
+- September: Före/efter-bilder + SEO — hur referenssidor rankar
+- Oktober: "Begär offert"-flöden vs kontaktformulär — vad datan säger
+- November: Google Ads för hantverkare — när det är värt det (och när det inte är det)
 - December: Årsgenomgång — checklistan inför nya året

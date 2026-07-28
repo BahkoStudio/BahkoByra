@@ -1,7 +1,7 @@
 # LinkedIn-prospektering — SOP
 
 ## Syfte
-Hitta klinikägare/beslutsfattare på LinkedIn och kontakta dem direkt. Komplement till kall e-post — kombinerat ger 40% högre engagemang.
+Hitta firmaägare/beslutsfattare på LinkedIn och kontakta dem direkt. Komplement till kall e-post — kombinerat ger 40% högre engagemang.
 
 ## Tidpunkt i sekvensen
 
@@ -18,15 +18,15 @@ Dag 7  → Steg 4-mejl + sista LinkedIn-meddelande
 
 Sök i LinkedIn:
 ```
-[Kliniknamn] ägare
-[Kliniknamn] grundare
-[Kliniknamn] VD
-[Kliniknamn] klinikchef
+[Företagsnamn] ägare
+[Företagsnamn] grundare
+[Företagsnamn] VD
+[Företagsnamn] platschef
 ```
 
-Alternativt: sök på Google `site:linkedin.com/in [kliniknamn]`
+Alternativt: sök på Google `site:linkedin.com/in [företagsnamn]`
 
-**Vem du letar efter:** Ägare, grundare, VD, verksamhetschef, klinikchef. Undvik receptionist och sjuksköterska.
+**Vem du letar efter:** Ägare, grundare, VD, platschef, arbetsledare. Undvik växel och kontorsadministration.
 
 ## Steg 2 — Kontaktförfrågan (MAX 300 tecken)
 
@@ -34,17 +34,17 @@ Skicka UTAN meddelande om du inte har något konkret att säga. Annars — välj
 
 ### Mall A — Neutral (passar alltid)
 ```
-Hej [Förnamn]! Jobbar med hemsidor för svenska estetiska kliniker. Kikade in på [Klinik].se och fick några idéer. Hade velat höra din tanke om en grej.
+Hej [Förnamn]! Jobbar med hemsidor för svenska bygg- och hantverksfirmor. Kikade in på [Företag].se och fick några idéer. Hade velat höra din tanke om en grej.
 ```
 
 ### Mall B — Om de nyligen öppnat/expanderat
 ```
-Hej [Förnamn]! Såg att [Klinik] öppnat/expanderat i [stad] — grattis! Jobbar med hemsidor för kliniker och fick en idé som kan passa er just nu.
+Hej [Förnamn]! Såg att [Företag] öppnat/expanderat i [stad] — grattis! Jobbar med hemsidor för hantverkare och fick en idé som kan passa er just nu.
 ```
 
 ### Mall C — Om de har en tydlig svag punkt (långsam sida, dålig mobil)
 ```
-Hej [Förnamn]! Testade [klinik].se på mobil och lade märke till något. Jobbar med hemsidor för kliniker — kan dela det gratis om du är nyfiken.
+Hej [Förnamn]! Testade [företag].se på mobil och lade märke till något. Jobbar med hemsidor för hantverkare — kan dela det gratis om du är nyfiken.
 ```
 
 ## Steg 3 — Uppföljning (dag 4, efter accepterat)
@@ -52,7 +52,7 @@ Hej [Förnamn]! Testade [klinik].se på mobil och lade märke till något. Jobba
 ```
 Hej [Förnamn]! Tack för att du accepterade.
 
-Jag skickade ett mejl till info@[klinik].se häromdagen med ett demo på hur [Klinik] skulle kunna se ut med en modernare sida och tydligare bokningsknapp.
+Jag skickade ett mejl till info@[företag].se häromdagen med ett demo på hur [Företag] skulle kunna se ut med en modernare sida och tydligare offertknapp.
 
 Får jag fråga — hur nöjd är du med er nuvarande hemsida? Får den in bokningar som den ska?
 ```
@@ -60,9 +60,9 @@ Får jag fråga — hur nöjd är du med er nuvarande hemsida? Får den in bokni
 ## Steg 4 — Sista meddelande (dag 7, om inget svar)
 
 ```
-Hej [Förnamn]! Vill inte störa mer. Om ni någon gång tänker på hemsidan — hör gärna av dig. Demot finns kvar på bahkobyra.cloud.
+Hej [Förnamn]! Vill inte störa mer. Om ni någon gång tänker på hemsidan — hör gärna av dig. Demot finns kvar på bahkobyra.se/cloud/bygg/.
 
-Lycka till med kliniken!
+Lycka till med firman!
 ```
 
 ## Mål per dag
@@ -73,7 +73,7 @@ Lycka till med kliniken!
 
 ## CRM-uppdatering
 
-Efter LinkedIn-kontakt — anteckna i CRM (`kliniker/crm.html`):
+Efter LinkedIn-kontakt — anteckna i CRM (`bahkobyra/dashboard/index.html`):
 ```
 LinkedIn dag [X]: kontaktförfrågan skickad
 LinkedIn dag [X]: accepterat

@@ -2,7 +2,7 @@
 /**
  * generate_audit.js — Bahko Byrå
  *
- * Genererar en 10-punktsanalys av en kliniksajt.
+ * Genererar en 10-punktsanalys av en hantverkar-/byggsajt.
  * Scrapar med Firecrawl, analyserar med Claude, sparar rapport.
  *
  * Krav i .env:
@@ -11,9 +11,9 @@
  *   BREVO_API_KEY (valfritt — skickar rapporten via mejl)
  *
  * Användning:
- *   node tools/generate_audit.js --url=https://klinik.se
- *   node tools/generate_audit.js --url=https://klinik.se --email=hej@klinik.se
- *   node tools/generate_audit.js --url=https://klinik.se --email=hej@klinik.se --send
+ *   node tools/generate_audit.js --url=https://byggfirma.se
+ *   node tools/generate_audit.js --url=https://byggfirma.se --email=hej@byggfirma.se
+ *   node tools/generate_audit.js --url=https://byggfirma.se --email=hej@byggfirma.se --send
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
@@ -47,7 +47,7 @@ const EMAIL_ARG = args.email   || null;
 const SEND      = args.send    === true || args.send === 'true';
 
 if (!URL_ARG) {
-  console.error('❌ Ange en URL: --url=https://klinik.se');
+  console.error('❌ Ange en URL: --url=https://byggfirma.se');
   process.exit(1);
 }
 
@@ -87,9 +87,9 @@ const content = scraped.slice(0, 12000);
 // ── Step 2: Analyze with Claude ────────────────────────────────────────────
 console.log('\n🤖 Analyserar med Claude...');
 
-const prompt = `Du är en senior webbstrateg specialiserad på kliniker och estetisk medicin.
+const prompt = `Du är en senior webbstrateg specialiserad på bygg- och hantverksföretag.
 
-Analysera denna kliniksajt och skriv en 10-punktsanalys. Sajten är: ${URL_ARG}
+Analysera denna hantverkarsajt och skriv en 10-punktsanalys. Sajten är: ${URL_ARG}
 
 Scrapad innehåll:
 ---
@@ -108,9 +108,9 @@ De 10 punkterna:
 1. Mobilanpassning
 2. Laddningshastighet (bedöm baserat på sidans komplexitet/bilder/scripts)
 3. Lokal SEO & Google Maps
-4. Bokningsflöde
-5. Trustsignaler (betyg, certifikat, before/after)
-6. Sociala bevis (recensioner, antal behandlingar)
+4. Offertflöde
+5. Trustsignaler (betyg, F-skatt, försäkring, certifikat, före/efter)
+6. Sociala bevis (recensioner, referensjobb, antal projekt)
 7. SEO-grundstruktur (titlar, meta, URL-struktur)
 8. Prissättning & erbjudanden
 9. Design & varumärke

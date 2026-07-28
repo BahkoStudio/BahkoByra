@@ -1,7 +1,7 @@
 # Outreach Automation — SOP
 
 ## Syfte
-Skicka automatiserade mejlsekvenser till 87 svenska estetiska kliniker. Max 20 mejl/dag. 4 steg per lead under 7 dagar.
+Skicka automatiserade mejlsekvenser till svenska bygg- och hantverksfirmor. Max 20 mejl/dag. 4 steg per lead under 7 dagar.
 
 ## Förutsättningar
 
@@ -25,9 +25,9 @@ LOOM_URL=https://loom.com/share/xxxx  # Valfritt: Loom-video läggs in i Steg 1
 
 | Steg | Dag | Ämne | Fokus |
 |------|-----|------|-------|
-| 1 | 0 | Har [Klinik] tänkt på detta? | Intro + demo-länk |
+| 1 | 0 | Har [Företag] tänkt på detta? | Intro + demo-länk |
 | 2 | 3 | Såg ni mitt förslag? | Uppföljning + demo |
-| 3 | 5 | Kliniker som bytte — resultaten | Social proof |
+| 3 | 5 | Firmor som bytte — resultaten | Social proof |
 | 4 | 7 | Sista mejlet från mig | Sista CTA |
 
 ## Kommandon
@@ -57,7 +57,7 @@ node tools/outreach_manager.js --reset=3
 1. Öppna terminal i projektmappen
 2. Kör `node tools/outreach_manager.js --status` för att se läget
 3. Kör `node tools/outreach_manager.js` för att skicka dagens mejl
-4. Öppna CRM (`kliniker/crm.html`) och uppdatera status för leads som svarat
+4. Öppna CRM (`bahkobyra/dashboard/index.html`) och uppdatera status för leads som svarat
 
 ## State-fil
 

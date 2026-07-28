@@ -2,7 +2,7 @@
 /**
  * enrich_crm_contacts.js — Fyller i mejl/telefon för dashboardens CRM-seed.
  *
- * Besöker varje kliniks sajt (startsida + vanliga kontaktsidor), plockar
+ * Besöker varje företags sajt (startsida + vanliga kontaktsidor), plockar
  * e-post (mailto: + text) och telefon (tel: + svenska format) och skriver
  * resultatet till .tmp/crm_contacts.json.
  *
