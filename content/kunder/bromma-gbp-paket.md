@@ -75,11 +75,21 @@ sedan 2026-07-28. Tidigare versioner av tabellen använde de engelska arbetsnamn
 | Röjning och bortforsling | Trädgårdsmästare | Inget pris | Gammal häck, ris, jordmassor och trädgårdsavfall lastas och körs bort i egen regi. Röjning av sly ger rutavdrag, bortforslingen räknas inte in. |
 | Snöröjning och halkbekämpning | Snöröjning | Inget pris | Uppfarter, gångar och parkeringar genom vintersäsongen, halkbekämpning vid behov. Säsongsavtal med samma kontaktperson året om. |
 
-**Grässådd, ändrat beslut 2026-07-28.** Tidigare stod här att Googles befintliga
-strukturerade tjänster kan stå kvar. Två av dem, Gräsklippning och underhåll samt
-Installation av gräsmatta, **dubblerar** våra egna rader ovan och saknar
-beskrivning, och samtliga tre upprepas under tre kategorier. Behåll dem bara
-under primärkategorin, ta bort dem ur Trädgårdsmästare och Trädgårdsarkitekt.
+**Googles tre strukturerade tjänster: ta bort allihop, ändrat beslut 2026-07-28.**
+Tidigare stod här att de kan stå kvar, sedan att de kan stå kvar under
+primärkategorin. Båda var fel, av samma skäl: de sitter **inuti** samma
+kategorier som våra egna rader, så primärkategorin visar "Gräsklippning och
+underhåll" direkt intill vår "Gräsklippning och gräsmatteskötsel", och
+Trädgårdsarkitekt visar "Installation av gräsmatta" intill vår "Anläggning av
+gräsmatta". Primärkategorin är alltså den sämsta platsen för dubbletten, inte
+den säkraste.
+
+Ta bort **Gräsklippning och underhåll** och **Installation av gräsmatta** ur
+samtliga kategorier. Våra egna rader täcker båda och har beskrivningar med
+rutavdraget inskrivet, vilket Googles saknar. Avvägningen: dubbletter i en
+kundvänd meny är säker skada, medan taxonomiträffar från strukturerade tjänster
+är odokumenterat. Då väljer vi den säkra vinsten. Efter rensningen står exakt
+våra elva rader, tre plus tre plus fyra plus en.
 
 **Grässådd får inte stå kvar obekräftad.** Ordet "sådd" finns noll gånger på
 sajten, som i stället aktivt positionerar motsatsen: "Rullgräs på förberedd
@@ -311,7 +321,8 @@ var, och för vem.
       och BRF-avtalet är den enda tjänsten i profilen utan täckning
 - [ ] Jens timpris efter rutavdrag inhämtat, ifyllt på skötseltjänsterna
 - [ ] Samma sms: gör han grässådd, och säljer han säsongsavtal på snöröjning?
-- [ ] Grässådd borttagen eller bekräftad, dubblerade Google-tjänster rensade ur de två extrakategorierna
+- [ ] Grässådd borttagen eller bekräftad, Googles två dubbletter borttagna ur alla kategorier
+- [ ] Beskrivningen av Anläggning av gräsmatta ersatt med tabellens text (grässådd, markberedning, gödsling bort)
 - [ ] Kategoriväljaren sökt på "anlägg" och "landskap", Trädgårdsarkitekt behållen eller bytt
 - [ ] Google-notisen Review changes öppnad och rapporterad
 - [ ] Dubblettprofilen utredd med Jens innan något röres
