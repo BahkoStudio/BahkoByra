@@ -278,6 +278,10 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
   transition:background .3s,border-color .3s,transform .25s}
 .gpanel-cta:hover{background:rgba(107,191,89,.18);border-color:var(--amber);transform:translateY(-1px)}
 .gpanel-cta svg{width:13px;height:13px;stroke:var(--amber);stroke-width:2.6;fill:none}
+.gpanel-ctas{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.gpanel-cta--rev{border-color:var(--amber);background:rgba(107,191,89,.16)}
+.gpanel-cta--rev:hover{background:rgba(107,191,89,.28)}
+.gpanel-cta--rev svg{fill:var(--amber);stroke:none}
 .rev-text{font-size:.88rem;line-height:1.75;color:var(--muted);flex:1}
 .rev-meta{margin-top:1.2rem;padding-top:.9rem;border-top:1px solid var(--line)}
 .rev-name{font-weight:700;font-size:.86rem}
@@ -410,6 +414,7 @@ body.cb-open #float-offert{bottom:calc(var(--cb-h,86px) + 1.2rem)}
   #cookie-bar p{font-size:.76rem}
   .cb-actions button{flex:1}
   .gpanel{flex-direction:column;align-items:flex-start;padding:1.4rem}
+  .gpanel-ctas{width:100%;flex-direction:column;align-items:stretch}
   .gpanel-cta{width:100%;justify-content:center;text-align:center}
   .steps-grid{grid-template-columns:repeat(2,1fr)}
   .of-form{grid-template-columns:1fr}
@@ -744,11 +749,18 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
             <div class="gpanel-s">Samtliga omdömen nedan har fem stjärnor</div>
           </div>
         </div>
-        <a class="gpanel-cta" href="https://maps.google.com/?cid=3748114357443815533"
-           target="_blank" rel="noopener">
-          <span>Läs alla omdömen på Google</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+        <div class="gpanel-ctas">
+          <a class="gpanel-cta" href="https://maps.google.com/?cid=3748114357443815533"
+             target="_blank" rel="noopener">
+            <span>Läs alla omdömen på Google</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a class="gpanel-cta gpanel-cta--rev" href="https://g.page/r/CW3o-lQm-gM0EBM/review"
+             target="_blank" rel="noopener">
+            <span>Lämna ett omdöme</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.26 6.85.62-5.17 4.53 1.53 6.7L12 16.66 5.89 20.1l1.53-6.69L2.25 8.88l6.85-.62z"/></svg>
+          </a>
+        </div>
       </div>
 
       <div class="rev-grid">
@@ -1169,8 +1181,8 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   "openingHoursSpecification":[{
     "@type":"OpeningHoursSpecification",
     "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-    "opens":"00:00",
-    "closes":"23:59"
+    "opens":"07:00",
+    "closes":"22:00"
   }],
   "areaServed":[
     {"@type":"City","name":"Bromma"},
@@ -1595,7 +1607,9 @@ addEventListener('click',function(e){
   }else if(a.id==='of-sms'){
     track('reservvag_sms',{});
   }else if(a.classList.contains('gpanel-cta')){
-    track('google_profil_klick',{});
+    /* Två knappar delar klassen: skilj på dem så att omdömesrutinens
+       effekt går att mäta separat från vanliga profilbesök. */
+    track(a.classList.contains('gpanel-cta--rev')?'omdome_lamna_klick':'google_profil_klick',{});
   }
 },{passive:true});
 </script>
