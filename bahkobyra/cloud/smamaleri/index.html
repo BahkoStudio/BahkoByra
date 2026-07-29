@@ -1016,6 +1016,12 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     <div class="foot-links">
       <a href="tel:+46720119173">072-011 91 73</a>
       <a href="mailto:kontakt@smamaleri.se">kontakt@smamaleri.se</a>
+      <!-- Diskret placering medvetet: profilen har noll omdömen ännu, och att
+           skicka nya besökare till en tom Google-profil säljer inte. Länken
+           finns för tidigare kunder som får den via sms. När omdömena kommer
+           byggs ett riktigt omdömesfält, som på brommatradgardsservice.se. -->
+      <a id="foot-omdome" href="https://g.page/r/Cbk8zN7nt3H0EAE/review"
+         target="_blank" rel="noopener">Lämna omdöme</a>
     </div>
     <span>Hemsida av <a href="https://bahkobyra.se" target="_blank" rel="noopener" style="color:var(--gold-lt)">Bahko Byrå</a></span>
   </div>
@@ -1558,6 +1564,7 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
     if (href.indexOf('tel:') === 0) track('ring_klick', { plats: a.className || 'okand' });
     else if (a.id === 'pf-mail') track('reservvag_mejl', {});
     else if (a.id === 'pf-sms') track('reservvag_sms', {});
+    else if (a.id === 'foot-omdome') track('omdome_lamna_klick', {});
   }, { passive: true });
 
   // Sidans eget kontaktformulär.
