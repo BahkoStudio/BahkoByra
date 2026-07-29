@@ -224,6 +224,27 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
    ska fortfarande läsas som text och inte konkurrera med offert-CTA:n. */
 .svc-more{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-lt);border-bottom:1px solid rgba(107,191,89,.4);padding-bottom:.15rem;transition:color .25s,border-color .25s}
 .svc-more:hover{color:var(--text);border-color:var(--text)}
+
+/* Samarbeten. Logotypplattan har vit botten även i mörkt läge, och det är inte
+   dekoration: Södermalms märke är mörk text på ljust och skulle försvinna helt
+   mot det mörka kortet, medan Husqvarnas är vitt på blått. Två märken med
+   motsatta bottnar kan bara samsas på en gemensam ljus yta.
+
+   Bilden har fast höjd och fri bredd, så att två märken med olika proportioner
+   blir optiskt lika stora. Södermalms källfil var 447x447 med ordmärket på bara
+   20 procent av höjden; den är beskuren till innehållet, annars hade märket
+   renderats runt 17 px högt intill Husqvarnas fyllda platta. */
+.partner-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-top:2.2rem}
+.partner-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.7rem 1.5rem;transition:border-color .35s,transform .35s}
+.partner-card:hover{border-color:rgba(107,191,89,.45);transform:translateY(-3px)}
+.partner-mark{display:flex;align-items:center;min-height:52px;margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line)}
+.partner-mark.has-logo{align-items:flex-start;border-bottom:none;padding-bottom:0;margin-bottom:1.4rem;min-height:0}
+.partner-mark.has-logo img{background:#fff;border-radius:8px;padding:.7rem .9rem;height:74px;width:auto;max-width:100%;object-fit:contain;display:block;box-sizing:border-box}
+.partner-name{font-family:var(--disp);font-weight:800;font-size:1.2rem;letter-spacing:.01em;line-height:1.15;display:flex;flex-direction:column;gap:.32rem}
+.partner-sub{font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.partner-card h3{font-family:var(--disp);font-weight:800;font-size:1rem;margin-bottom:.5rem}
+.partner-card p{font-size:.85rem;color:var(--muted);line-height:1.7}
+.partner-note{margin-top:1.6rem;font-size:.78rem;color:var(--dim);line-height:1.7}
 .svc-more svg{width:13px;height:13px;stroke:currentColor;stroke-width:2.4;fill:none;transition:transform .3s var(--ease)}
 .svc-more:hover svg{transform:translateX(3px)}
 
@@ -409,7 +430,7 @@ body.cb-open #float-offert{bottom:calc(var(--cb-h,86px) + 1.2rem)}
   .contact-row{flex-wrap:wrap}
   .contact-row a{overflow-wrap:anywhere}
   .ss-list{grid-template-columns:1fr}
-  .svc-grid,.rev-grid,.gallery-grid{grid-template-columns:1fr}
+  .svc-grid,.rev-grid,.gallery-grid,.partner-grid{grid-template-columns:1fr}
   #cookie-bar{flex-direction:column;align-items:stretch;gap:.85rem;padding:1rem 1.1rem}
   #cookie-bar p{font-size:.76rem}
   .cb-actions button{flex:1}
@@ -924,6 +945,27 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
           <span class="svc-tag">Redskap</span>
           <h3>Husqvarna-maskiner</h3>
           <p>Klippare, häcksaxar, trimmers och motorsågar. Proffsutrustning som håller genom en hel säsong.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMARBETEN -->
+  <section class="ss-section" id="samarbeten">
+    <div class="ss-inner">
+      <span class="ss-label">Samarbeten</span>
+      <h2 class="ss-h2">Vilka vi arbetar med</h2>
+      <p class="ss-p">En trädgårdsfirma står och faller med att maskinerna går. Bromma Trädgårdsservice kör därför i huvudsak Husqvarna, och köper och servar maskinerna hos en auktoriserad verkstad i stället för att handla löst där det råkar finnas i lager. En trasig klippare lagas eller byts inom samma vecka i stället för att stoppa ett pågående arbete hos er.</p>
+      <div class="partner-grid">
+        <article class="partner-card">
+          <div class="partner-mark has-logo"><img src="/partner-husqvarna.jpeg" alt="Husqvarna" width="173" height="148" loading="lazy"></div>
+          <h3>Maskiner och redskap</h3>
+          <p>Handredskapen är Husqvarna ur proffsserien: klippare, häcksaxar, trimmers och motorsågar. Utrustning byggd för att gå varje dag genom en hel säsong, inte för en villatomt några helger om året.</p>
+        </article>
+        <article class="partner-card">
+          <div class="partner-mark has-logo"><img src="/partner-sodermalms.png" alt="Södermalms Trädgård, Maskiner och Skog" width="397" height="105" loading="lazy"></div>
+          <h3>Återförsäljare och service</h3>
+          <p>Södermalms är auktoriserad Husqvarna-återförsäljare med egen verkstad, verksam sedan 1961 och med butiker i Skärholmen och Saltsjö-Boo. Här köps och servas maskinparken, och vi rekommenderar varandra.</p>
         </article>
       </div>
     </div>
