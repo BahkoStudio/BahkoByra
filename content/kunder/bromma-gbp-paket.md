@@ -290,9 +290,33 @@ två rader medan sajten inte har en enda sida att skicka den besökaren till.
 
 Det gör `/tradgardsskotsel-brf/` till nästa uppgift på sajten, inte en senare, och
 den ska bära **båda** avtalsformerna: löpande skötsel genom säsongen och snöröjning
-genom vintern, samma kontaktperson året om, offert efter genomgång av ytorna. Det
-är också den enda sidan där Jens 340 kr hör hemma tillsammans med ett avtalsupplägg
-i stället för ett timpris i lösvikt.
+genom vintern, samma kontaktperson året om, offert efter genomgång av ytorna.
+
+**Sidan är byggd och live 2026-07-29.** 1 769 ord i rå HTML, `Service`-schema med
+`audience: BusinessAudience`, `BreadcrumbList`, canonical, i sitemapen och länkad
+från alla tre befintliga sidor.
+
+⚠️ **Rättelse: 340 kr hör INTE hemma på BRF-sidan.** Jag skrev först att det var
+den enda sidan där timpriset hörde hemma tillsammans med ett avtalsupplägg. Det var
+fel, och faktakontrollen mot Skatteverket visade varför: **en bostadsrättsförening
+är en juridisk person och får inget rutavdrag.** Gemensamma ytor tillhör föreningen,
+inte den enskilda medlemmens bostad, och det gäller även om leverantören fakturerar
+medlemmarna direkt i stället för föreningen. Samma sak för fastighetsbolag och
+hyresvärdar.
+
+340 kr är ett pris **efter** rutavdrag, alltså ett privatkundspris. Hade det stått
+på BRF-sidan skulle en styrelse räknat med halva den faktiska arbetskostnaden.
+Sidan publiceras därför helt utan prissiffra: kostnadsfri genomgång av ytorna och
+avtalsförslag med moment, intervall och pris.
+
+Källa: Skatteverkets svar på frågan om medlemmar i en bostadsrättsförening kan få
+rutavdrag om företaget fakturerar dem i stället för föreningen. Svaret är nej, med
+motiveringen att "det är fråga om föreningens/fastighetsägarens gemensamma utrymmen
+som städas, inte den enskilda personens bostad".
+
+Det blev i stället sidans starkaste säljargument: den enda leverantören som säger
+till styrelsen att ett timpris "efter rut" inte är jämförbart med vad föreningen
+kommer att betala.
 
 **Kategorin Trädgårdsarkitekt behöver en kontroll.** Planen sa Landscape
 Gardener, alltså en anläggare. Trädgårdsarkitekt är ett ritande yrke: "arkitekt"
