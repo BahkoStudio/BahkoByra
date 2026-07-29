@@ -206,6 +206,14 @@ Varje tjänstesida får eget `Service`-schema som pekar tillbaka på huvudentite
 - [ ] Canonical pekar på rätt URL på rätt domän
 - [ ] Sajten borttagen ur vår egen `sitemap.xml` efter flytt
 - [ ] Egen `sitemap.xml` på kundens domän
+- [ ] `sitemap.xml` **explicit inlämnad** i Google Search Console, inte bara utpekad i `robots.txt`
+- [ ] Kundsajtens sökväg under `bahkobyra.se/cloud/<kund>/` 301:ad till kundens domän i `vercel.json` efter flytt, annars ligger samma innehåll live på två värdar
+
+**Bing (efter GSC)**
+- [ ] **Bing Webmaster Tools** — importera från Google Search Console, verifieringen ärvs och ingen `msvalidate.01`-tagg behövs
+- [ ] **Kontrollera Sitemaps-listan efter importen.** Verifieringen ärvs, men **sitemaps följer inte med** — importvyn visar "Sitemaps Count: 0" och listan är tom efteråt. Lämna in `sitemap.xml` manuellt. *Verifierat 2026-07-29, Bromma Trädgårdsservice.*
+- [ ] **Bing Places** är en separat tjänst med separat konto: Places driver företagsdata i Maps, Webmaster Tools driver indexeringen som ChatGPT Search lutar mot. Places importeras från Google Företagsprofil och står som "Väntar på publicering" ett par dagar
+- [ ] Kontrollera att importdialogen inte drar in **andra kunders sajter** — den listar allt kontot har åtkomst till, förvalt
 
 **Gråzon att städa**
 - [ ] `opacity:0` / `visibility:hidden` i statisk CSS på innehållssektioner → flytta till `gsap.set()` i JS så innehållet är synligt om skriptet inte kör

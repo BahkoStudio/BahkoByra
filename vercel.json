@@ -44,6 +44,11 @@
       "status": 301,
       "headers": { "Location": "https://brommatradgardsservice.se/" }
     },
+    {
+      "src": "/cloud/smamaleri(/.*)?",
+      "status": 301,
+      "headers": { "Location": "https://smamaleri.se/" }
+    },
     { "handle": "filesystem" }
   ]
 }
