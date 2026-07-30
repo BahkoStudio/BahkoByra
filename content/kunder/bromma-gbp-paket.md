@@ -780,3 +780,53 @@ Under **Snöröjning**:
 
 Befintliga "Snöröjning och halkbekämpning" står kvar, den vänder sig även till
 privatkunder.
+
+
+## Adressfrågan 2026-07-30: basen är Nacka, inte Bromma
+
+Jens uppger att **kontoret är hans bostad i Nacka** och att han har en **lokal i
+Vikingshill med maskinparken**. Gatuadress och postnummer står medvetet inte här:
+det operativa är att basen är Nacka, och det räcker för varje beslut nedan.
+
+### Får adressen ligga på Google? Ja, men dold
+
+En verksamhet som åker ut till kunden är en service area business. För den gäller att
+en riktig adress anges vid verifieringen men **döljs publikt**, med tjänsteområden i
+stället. Det är den dokumenterade uppsättningen för hemmabaserade företag, inte ett
+kringgående.
+
+**Använd lokalen i Vikingshill, inte bostaden**, om det finns hyresavtal. Tre skäl:
+den är inte en bostad, så integritetsfrågan försvinner; den är där maskinparken
+faktiskt står, vilket gör den lättare att styrka; och Jens hemadress hamnar då aldrig
+i Googles register, inte ens dold. Bostaden är reserv om lokalen inte går att
+dokumentera.
+
+**Båda ska döljas.** Inte heller Vikingshill tar emot kunder, och en plats som inte är
+kundmottagande får enligt Googles regler inte visas som besöksadress.
+
+### Konsekvensen som är större än adressfältet
+
+Vilken adress som än väljs ligger den i Nacka, och det är den punkt Google räknar
+avstånd från. Företaget heter Bromma Trädgårdsservice, sajten säger "Vi utgår från
+Bromma" på tre ställen och schemat har `addressLocality: Bromma`.
+
+Det är sannolikt en delförklaring till två saker vi redan noterat: att Google ändrat
+kategorier "based on feedback from users or other sources", och att en tredje listning
+heter Bromma Trädgårdsservice men ligger i Nacka. **Den listningen kan vara den
+geografiskt korrekta**, medan Bromma-profilen vilar på namnet.
+
+**Slutläge som håller:** en profil, namnet Bromma Trädgårdsservice, dold Nacka-adress,
+tjänsteområden som täcker Bromma och Storstockholm. Regelrätt och förenligt med
+verkligheten.
+
+### Ordning och timing
+
+1. Ta reda på vilken adress huvudprofilen står på i dag, och om den är dold eller
+   synlig. Är den redan dold och rimlig är bästa draget att inte röra den.
+2. **Ändra inte adress i högsäsong.** Det kan trigga omverifiering med kort eller
+   telefon. Planera till lågsäsong.
+3. **Gör inte adressändringen samtidigt som de två extra listningarna hanteras.**
+   Då går det inte att se vilken åtgärd som orsakade vilken effekt.
+
+Frågor till Jens: har du hyresavtal på lokalen i Vikingshill, vilken adress står
+profilen på i dag och är den dold, och finns någon bas i Bromma?
