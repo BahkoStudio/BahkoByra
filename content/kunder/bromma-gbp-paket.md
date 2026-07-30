@@ -646,3 +646,78 @@ upprepade redigeringar av samma stycke under sessionen. Ett dubblerat stycke i e
 vars enda syfte är att vara lättläst för maskiner underminerar just det syftet.
 Rättat. **Kontrollen att lägga till:** läs igenom `llms.txt` i sin helhet efter varje
 omgång ändringar, den är kort nog för att det ska gå på tio sekunder.
+
+
+## Jens nivåer och vinteravtal, mottaget 2026-07-30
+
+Jens skickade hela strukturen via Instagram-chatten. Den är mer genomarbetad än
+frågan efterfrågade och innehåller **priser**, som medvetet inte ligger på sajten.
+
+### Förslag 1, trädgårdsskötsel
+
+| | Bas | Standard ⭐ | Premium |
+|---|---|---|---|
+| Pris per månad inkl. moms | 3 495 kr | **6 495 kr** | 9 495 kr |
+| Besök april–oktober | 2 per månad | Varje vecka | Varje vecka |
+| Tillsyn november–mars | 1 per månad | 2 per månad | 2 per månad |
+
+Bas april–oktober: ogräsrensning, blåsning av gångar, tillsyn av planteringar,
+lättare beskärning, borttagning av mindre mängd trädgårdsavfall. November–mars:
+kontroll av planteringar, städning vid behov.
+
+Standard lägger till: häck- och buskputs, beskärning av perenner, gödsling, kontroll
+av bevattning, full bortforsling, höst- och vårstädning, sopning utöver blåsning,
+städning av gården på vintern.
+
+Premium lägger till: prioriterad service, extra tillsyn efter oväder, vattning vid
+torrperiod, plantering av säsongsväxter, löpande rådgivning till styrelsen,
+dokumentation med bilder.
+
+### Alternativ B, vinterberedskap
+
+**995 kr per månad inkl. moms, november–mars.** Ingår: beredskap hela säsongen,
+löpande bevakning av väderprognoser, prioriterad utryckning vid snöfall eller
+halkrisk, kontaktperson tillgänglig under säsongen.
+
+Utfört arbete debiteras separat: manuell snöröjning med skyffel eller snöslunga
+**675 kr/timme inkl. moms**, maskinell snöröjning med förare och mindre hjullastare
+**1 050 kr/timme inkl. moms**, halkbekämpningsmaterial efter förbrukning.
+
+Strukturen är bra och värd att beskriva på sajten även utan siffror: en fast
+beredskapsavgift plus debitering för faktiskt utfört arbete. Det förklarar varför
+snöröjning inte kan ligga på fast intervall, och det gör att en mild vinter blir
+billig utan att beredskapen försvinner.
+
+### Byggt på sidan 2026-07-30
+
+Jämförelsetabell med tre kolumner och tjugo rader, grupperad i April–oktober,
+November–mars och Bara i Premium. Tabellen scrollar i sin egen behållare på telefon
+i stället för att pressa ut sidan i sidled, och har en synlig instruktion om det på
+små skärmar. Plus ett eget avsnitt om vinterberedskapens tvådelade upplägg.
+
+Textens vinkling: **besöksfrekvensen är det som skiljer nivåerna**, inte längden på
+momentlistan. Det är sant här (Bas två besök i månaden mot Standards veckovis) och
+det är den variabel som faktiskt avgör hur ytorna ser ut över en säsong.
+
+### ⚠️ Priserna ligger INTE på sidan, och det är ett öppet beslut
+
+Instruktionen från Mathias 2026-07-30 var "lägg inte priset i sidan". Den gavs innan
+dessa siffror fanns, så beslutet bör tas om med den nya informationen. Argumenten:
+
+**För att publicera:** en styrelse kan självkvalificera sig direkt, och tystnad om
+pris läses som dyrt. Månadsbelopp är dessutom lätta att budgetera, till skillnad från
+ett timpris.
+
+**Mot att publicera:** Jens formulering är "Förslag 1", alltså ett förslag till en
+bestämd förening efter en genomgång av just deras ytor. En förening med tre gånger
+så stora ytor kan inte få Standard för 6 495 kr. Publiceras siffrorna som en publik
+prislista låser de honom mot varje förening som hör av sig, vilket är exakt samma
+fälla som ett publikt timpris.
+
+**Rekommendation:** publicera inte förrän Jens bekräftat att det är standardpriser
+oberoende av föreningens storlek. Är de det, sätt dem i tabellen med tillägget
+"från", eftersom en prisrad då gör tabellen dubbelt så säljande. Är de
+förhandlingspriser för en specifik förening, stannar tabellen som den är.
+
+**Fråga till Jens:** "Är 3 495, 6 495 och 9 495 dina standardpriser oavsett hur stora
+föreningens ytor är, eller är de räknade på just den föreningen?"

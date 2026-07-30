@@ -156,6 +156,36 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .faq-a p{font-size:clamp(.88rem,1vw,1rem);line-height:1.85;color:var(--muted)}
 .faq-a p + p{margin-top:.85rem}
 
+/* Enbart för skärmläsare. Klipps bort visuellt men läses upp, till skillnad
+   från display:none som tar bort elementet ur uppläsningen helt. */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Nivåtabell. Fyra kolumner får inte plats på en telefon utan att texten
+   klipps, så tabellen scrollar i sin egen behållare i stället för att pressa
+   ut sidan i sidled. min-width är därför avsiktlig och ska inte tas bort. */
+.niva-wrap{margin-top:2.2rem;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.niva{width:100%;min-width:560px;border-collapse:collapse;font-size:.85rem}
+.niva th,.niva td{padding:.78rem .9rem;text-align:left;border-bottom:1px solid var(--line)}
+.niva tbody tr:last-child td{border-bottom:none}
+.niva thead th{
+  font-family:var(--disp);font-weight:800;font-size:.74rem;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--text);background:rgba(255,255,255,.02);
+  border-bottom:1px solid var(--line);position:sticky;top:0
+}
+.niva thead th.rek{color:var(--amber-lt)}
+.niva th[scope="row"]{font-weight:600;color:var(--text);width:38%}
+.niva td{color:var(--muted);text-align:center}
+.niva td:first-of-type{text-align:center}
+.niva .ja{color:var(--amber-lt);font-weight:700}
+.niva .nej{color:var(--dim)}
+.niva tbody tr.grupp th{
+  font-family:var(--disp);font-weight:800;font-size:.66rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber);background:rgba(255,255,255,.02)
+}
+.niva-note{margin-top:1.1rem;font-size:.82rem;color:var(--dim);line-height:1.75}
+.niva-scroll-hint{display:none;margin-top:.6rem;font-size:.72rem;color:var(--dim)}
+@media(max-width:640px){.niva-scroll-hint{display:block}}
+
 /* Omdömen. Ingen Review- eller AggregateRating-markup: Google tillåter inte
    att ett företag märker upp omdömen om sig självt. Korten är presentation
    plus en länk till profilen där betyget står i original. */
