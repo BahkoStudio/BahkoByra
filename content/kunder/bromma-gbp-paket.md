@@ -721,3 +721,62 @@ förhandlingspriser för en specifik förening, stannar tabellen som den är.
 
 **Fråga till Jens:** "Är 3 495, 6 495 och 9 495 dina standardpriser oavsett hur stora
 föreningens ytor är, eller är de räknade på just den föreningen?"
+
+
+## Beslut 2026-07-30: priserna publiceras med "Från"
+
+Mathias beslut. Min invändning var att "Förslag 1" var räknat på en bestämd förening
+och att en publik prislista låser Jens mot varje ny förening. **Ordet "Från" löser
+det**: det säger uttryckligen att beloppet är ett utgångspris och att ytorna kan dra
+upp det. Invändningen faller därmed, och sidan blir starkare av att svara på
+prisfrågan än av att tiga om den.
+
+Två detaljer som gör publiceringen försvarbar:
+
+**Inklusive moms är rätt enhet här.** En bostadsrättsförening är normalt inte
+momsregistrerad och betalar därför bruttot. För en förening är det inkluderade
+beloppet den enda siffra som betyder något, till skillnad från ett företag som räknar
+netto.
+
+**Priserna gäller bara föreningar och fastighetsägare.** Det står uttryckligen på
+sidan och i `llms.txt`, så att en villaägare inte tror att 3 495 kr per månad är hens
+alternativ till 340 kr i timmen.
+
+### Så ligger det på sidan
+
+Prisraden är första raden i tabellens `tbody`, inte i `thead`. Skälet är
+tillgänglighet: en skärmläsare ska läsa den som data och inte som kolumnrubrik.
+Visuellt är den ändå tabellens tyngsta rad, för det är den styrelsen letar efter.
+
+Vinterberedskapen har fått sina tre siffror i klartext: från 995 kr per månad för
+beredskapen, 675 kr per timme manuellt, 1 050 kr per timme maskinellt, material efter
+förbrukning.
+
+### Att lägga in i Google Företagsprofilen
+
+**Ta bort** raden "Skötselavtal för BRF och fastighetsägare" (Från 680 kr). Den
+ersätts av tre nivåer, annars uppstår samma dubblettproblem som med Googles egna
+tjänster.
+
+⚠️ **Prisfältet kan inte uttrycka "per månad".** Exakt samma begränsning som tvingade
+in ordet *timpriset* på skötselraderna. Här måste beskrivningen bära **"per månad
+inklusive moms"**, annars läser en styrelse "Från 3 495 kr" som ett engångsbelopp för
+hela avtalet. Det är nu ett mönster värt att namnge: **varje gång ett pris läggs i
+profilen måste enheten stå i beskrivningen.**
+
+Under **Trädgårdstjänster**:
+
+| Tjänst | Pris | Beskrivning |
+|---|---|---|
+| Skötselavtal BRF Bas | Från 3 495 kr | Löpande skötsel av föreningens utemiljö. Två besök i månaden april till oktober, en tillsyn i månaden november till mars. Priset är per månad inklusive moms och gäller föreningar, inte privatkunder. Slutpris efter kostnadsfri genomgång av ytorna. |
+| Skötselavtal BRF Standard | Från 6 495 kr | Veckovisa besök april till oktober med häck- och buskputs, gödsling, kontroll av bevattning samt höst- och vårstädning. Två tillsynsbesök i månaden på vintern. Priset är per månad inklusive moms och gäller föreningar. |
+| Skötselavtal BRF Premium | Från 9 495 kr | Allt i Standard plus prioriterad service, extra tillsyn efter oväder, vattning vid torrperiod, plantering av säsongsväxter, löpande rådgivning till styrelsen och dokumentation med bilder. Priset är per månad inklusive moms. |
+
+Under **Snöröjning**:
+
+| Tjänst | Pris | Beskrivning |
+|---|---|---|
+| Vinterberedskap för BRF och fastighet | Från 995 kr | Beredskap november till mars med löpande bevakning av väderprognoser och prioriterad utryckning vid snöfall. Priset är per månad inklusive moms. Utfört arbete debiteras separat: manuell snöröjning 675 kr per timme, maskinell 1 050 kr per timme. |
+
+Befintliga "Snöröjning och halkbekämpning" står kvar, den vänder sig även till
+privatkunder.
