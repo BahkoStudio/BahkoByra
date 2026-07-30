@@ -440,8 +440,8 @@ var, och för vem.
       dagar fel 2026-07-30. Google använder fältet bara när det är konsekvent korrekt
 - [x] Jens timpris inhämtat 2026-07-28: **340 kr efter rutavdrag**, ifyllt i tabellen
 - [x] Från 340 kr satt på alla fyra skötseltjänster 2026-07-30, samtliga med ordet *timpriset*
-- [ ] **Ta bort Från 680 kr på de sju övriga tjänsterna.** Priset är aldrig satt av Jens och
-      är direkt vilseledande på de fyra projekttjänsterna
+- [x] Från 680 kr på de sju övriga: **Jens egen siffra**, bruttotimpris före rutavdrag.
+      Frågan släppt 2026-07-30, priserna står kvar
 - [x] Grässådd bekräftad ("både och") och säsongsavtal bekräftat, båda 2026-07-28
 - [x] Googles tre dubbletter borttagna 2026-07-30, exakt elva rader kvar
 - [x] Anläggning av gräsmatta har tabellens text 2026-07-30, grässådd inskrivet
@@ -532,28 +532,30 @@ Butikskod: `14933658975711550698`.
 - **Alla tio omdömen är besvarade**
 - Beskrivningen och öppningsdatumet januari 2026 verifierade
 
-### ⚠️ Sju tjänster bär ett pris vi aldrig satt: Från 680 kr
+### Från 680 kr på de sju övriga tjänsterna: Jens egen siffra, står kvar
 
 Skötselavtal för BRF, Röjning och bortforsling, Trädgårdsanläggning, Anläggning av
 gräsmatta, Häckplantering och borttagning, Jordutjämning och markarbete samt
-Snöröjning och halkbekämpning står alla på **Från 680 kr**. Tabellen i avsnitt 2
-säger **Inget pris** för samtliga sju. Siffran är 340 × 2, alltså timpriset före
-rutavdrag, satt av en tidigare agentkörning och aldrig av Jens.
+Snöröjning och halkbekämpning står alla på **Från 680 kr**.
 
-**På de fyra projekttjänsterna är den direkt vilseledande.** En trädgårdsanläggning,
-en ny gräsmatta, en häckplantering och ett markarbete börjar inte vid 680 kronor. Där
-finns ingen tidsenhet som gör siffran begriplig, så en besökare läser den som vad
-jobbet börjar kosta. Det är samma fälla som enhetsproblemet på timpriset, men värre:
-på ett projekt finns ingen tolkning där 680 kr är sant.
+Jag ifrågasatte siffran och antog att den kom från en tidigare agentkörning som
+dubblat 340. **Fel: Jens har satt 680 kr själv** (bekräftat av Mathias 2026-07-30).
+Det är bruttotimpriset, alltså före rutavdrag, vilket är det pris som gäller när
+kunden är en förening eller ett företag och inget avdrag finns att göra.
 
-**På Skötselavtal för BRF är siffran sakligt rimlig men strategiskt fel.** 680 kr är
-bruttotimpriset, och en förening får inget rutavdrag, så det är faktiskt vad en
-styrelse betalar per timme. Men avtalet säljs inte per timme, det säljs per månad
-efter en genomgång av ytorna. Ett timpris i det fältet inbjuder till jämförelse på
-fel storhet.
+Därmed faller invändningen. Regeln har hela tiden varit att priset sätts av kunden
+och aldrig av oss, och den är uppfylld. Tabellens "Inget pris" på dessa sju rader är
+en äldre plan som Jens har ersatt med ett besked.
 
-**Åtgärd: ta bort priset på alla sju.** Sätt fältet till inget pris. Kvar blir de
-fyra skötseltjänsterna med 340 kr, vilket är precis den uppdelning som var beslutad.
+**Beslut: priserna står kvar. Frågan är släppt.**
+
+Kvar att hålla ögonen på, inte att åtgärda: på de fyra projekttjänsterna finns ingen
+tidsenhet i fältet, så "Från 680 kr" kan läsas som vad hela jobbet börjar kosta.
+**Ledande indikator:** hör Jens av sig om samtal där kunden trott att en
+trädgårdsanläggning börjar på 680 kronor, är det den formuleringen som orsakat det,
+och då är åtgärden att skriva in enheten i tjänstebeskrivningen på samma sätt som
+ordet *timpriset* gör på skötselraderna. Innan dess finns inget belägg för att det är
+ett problem.
 
 ### Trädgårdsarkitekt: hårt belägg, frågan slutgiltigt stängd
 
