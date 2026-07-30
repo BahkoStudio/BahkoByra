@@ -431,26 +431,29 @@ var, och för vem.
 - [x] Kategoribeslut taget med Jens 2026-07-28: skötsel/BRF prio, primär behålls
 - [x] Underkategorier satta 2026-07-28 (pending): Landscape Gardener, Gardener, Snow removal service
 - [x] Tjänstelistan avstämd mot sajten 2026-07-28: tio av elva belagda, plattsättning verifierat obelagd
-- [ ] Kontrollera kategoriordningen efter Googles godkännande
+- [x] Kategoriordningen avgjord 2026-07-30: Trädgårdstjänster (primär), Trädgårdsmästare,
+      Trädgårdsarkitekt, Snöröjning. Inte alfabetisk, alltså den verkliga ordningen
 - [x] **Sidan `/tradgardsskotsel-brf/` byggd och live 2026-07-29**, bär båda avtalsformerna.
       1 769 ord i rå HTML, ingen prissiffra eftersom en förening inte får rutavdrag
 - [x] Sektionen för samarbeten live 2026-07-30: Husqvarna och Södermalms med logotyper
 - [ ] `lastmod` i sitemapen kontrolleras vid varje sajtändring. Tre av fyra stod två
       dagar fel 2026-07-30. Google använder fältet bara när det är konsekvent korrekt
 - [x] Jens timpris inhämtat 2026-07-28: **340 kr efter rutavdrag**, ifyllt i tabellen
-- [ ] Från 340 kr satt i prisfältet på de fyra skötseltjänsterna
+- [x] Från 340 kr satt på alla fyra skötseltjänster 2026-07-30, samtliga med ordet *timpriset*
+- [ ] **Ta bort Från 680 kr på de sju övriga tjänsterna.** Priset är aldrig satt av Jens och
+      är direkt vilseledande på de fyra projekttjänsterna
 - [x] Grässådd bekräftad ("både och") och säsongsavtal bekräftat, båda 2026-07-28
-- [ ] Googles tre dubbletter borttagna ur alla kategorier (Grässådd är sann men dubblerar)
-- [ ] Beskrivningen av Anläggning av gräsmatta ersatt med tabellens text (markberedning och gödsling bort, grässådd kvar)
+- [x] Googles tre dubbletter borttagna 2026-07-30, exakt elva rader kvar
+- [x] Anläggning av gräsmatta har tabellens text 2026-07-30, grässådd inskrivet
 - [x] Kategoriväljaren kontrollerad 2026-07-30: ingen anläggarkategori finns, Trädgårdsarkitekt
       är Googles svenska etikett för Landscape Gardener. Frågan stängd, kategorin står kvar
 - [ ] Google-notisen Review changes öppnad och rapporterad
 - [ ] **Tre listningar**, inte två: utred båda med Jens innan något röres. Nacka-listningen
       har identiskt firmanamn som huvudprofilen och är den allvarliga
 - [ ] Tjänstelistan ersatt med svenska tjänster ovan, X ifyllt av Jens
-- [ ] Alla tio omdömen besvarade
+- [x] Alla tio omdömen besvarade 2026-07-30
 - [ ] Instagram kopplat
-- [ ] Beskrivningen bytt, öppningsdatum satt till januari 2026
+- [x] Beskrivningen och öppningsdatum januari 2026 verifierade 2026-07-30
 - [ ] Indexering begärd för alla fyra URL:erna, sitemaps inskickade
 - [ ] Om 30 dagar: jämför mot baslinjen 1 226 visningar och 168 interaktioner
 
@@ -513,3 +516,77 @@ säljande komponenten en sådan sida kan ha.
   citerbara, "uppdrag åt en förening" är det inte
 - Innehållet i Bas, Mellan och Premium
 - När de två medarbetarna faktiskt är anställda, så att formuleringen kan uppdateras
+
+
+## Läge 2026-07-30: profilen genomförd, plus ett fel att rätta
+
+Butikskod: `14933658975711550698`.
+
+**Utfört och verifierat i profilen:**
+
+- Alla fyra skötseltjänster står på **Från 340 kr** och samtliga innehåller ordet
+  *timpriset* i beskrivningen. Gräsklippning och gräsmatteskötsel samt Beskärning
+  ändrades från 680 kr; Löpande trädgårdsskötsel och Häckklippning låg redan rätt
+- Anläggning av gräsmatta har fått den sajtnära texten med **grässådd** inskrivet
+- **Googles tre dubbletter är borta.** Tjänstelistan innehåller exakt elva rader
+- **Alla tio omdömen är besvarade**
+- Beskrivningen och öppningsdatumet januari 2026 verifierade
+
+### ⚠️ Sju tjänster bär ett pris vi aldrig satt: Från 680 kr
+
+Skötselavtal för BRF, Röjning och bortforsling, Trädgårdsanläggning, Anläggning av
+gräsmatta, Häckplantering och borttagning, Jordutjämning och markarbete samt
+Snöröjning och halkbekämpning står alla på **Från 680 kr**. Tabellen i avsnitt 2
+säger **Inget pris** för samtliga sju. Siffran är 340 × 2, alltså timpriset före
+rutavdrag, satt av en tidigare agentkörning och aldrig av Jens.
+
+**På de fyra projekttjänsterna är den direkt vilseledande.** En trädgårdsanläggning,
+en ny gräsmatta, en häckplantering och ett markarbete börjar inte vid 680 kronor. Där
+finns ingen tidsenhet som gör siffran begriplig, så en besökare läser den som vad
+jobbet börjar kosta. Det är samma fälla som enhetsproblemet på timpriset, men värre:
+på ett projekt finns ingen tolkning där 680 kr är sant.
+
+**På Skötselavtal för BRF är siffran sakligt rimlig men strategiskt fel.** 680 kr är
+bruttotimpriset, och en förening får inget rutavdrag, så det är faktiskt vad en
+styrelse betalar per timme. Men avtalet säljs inte per timme, det säljs per månad
+efter en genomgång av ytorna. Ett timpris i det fältet inbjuder till jämförelse på
+fel storhet.
+
+**Åtgärd: ta bort priset på alla sju.** Sätt fältet till inget pris. Kvar blir de
+fyra skötseltjänsterna med 340 kr, vilket är precis den uppdelning som var beslutad.
+
+### Trädgårdsarkitekt: hårt belägg, frågan slutgiltigt stängd
+
+Googles interna sektions-id syns i URL:en när en tjänst öppnas:
+`lawn_care_service` för Trädgårdstjänster, `gardener` för Trädgårdsmästare och
+**`landscaper` för Trädgårdsarkitekt**. Alltså inte `landscape_architect`.
+
+Det är ett direkt belägg, inte en härledning. Min slutsats via uteslutning stämde,
+men den vilade på tre avlästa par; nu finns taxonomins eget id. **Lärdomen skärps:**
+vill man veta vad en kategori verkligen är, läs Googles interna id i URL:en, inte
+den svenska etiketten. Det är den snabbaste och säkraste metoden och bör användas
+direkt nästa gång.
+
+**Kategoriordningen är också avgjord:** Trädgårdstjänster (primär), Trädgårdsmästare,
+Trädgårdsarkitekt, Snöröjning, med ingen väntande granskning. Alfabetiskt hade
+Snöröjning legat först, så detta är den verkliga ordningen och den stämmer med vad
+som sattes. Punkten om att kontrollera ordningen efter godkännande är därmed stängd.
+
+### Rättelse av min egen instruktion
+
+Jag sa att markberedning och gödsling skulle bort ur Anläggning av gräsmatta. De
+fanns aldrig i profilen: den låg på tabellens ursprungliga text. Orden kom in i min
+muntliga relätext, inte i profilen. Det som faktiskt saknades var **grässådd**, och
+det var det som lades till. Nettoresultatet är rätt, men instruktionen pekade på ett
+fel som bara existerade i mitt eget mellansteg.
+
+### Observation om omdömena, för framtiden
+
+Ett av de tio omdömena är från **Jonas Amnesten**, samma efternamn som Jens. Är det
+en familjemedlem strider det mot Googles riktlinjer om omdömen från personer med
+koppling till verksamheten. Omdömet är fyra månader gammalt och besvarat, och ett
+företag kan inte ta bort andras omdömen, så det finns inget att göra åt det nu.
+
+**Regeln framåt:** be aldrig familj eller vänner om omdömen. Ett borttaget omdöme
+kostar mer än det gav, och ett företag som anmäls för det tappar trovärdighet på
+hela profilen. Be i stället varje riktig kund i samma sms som slutfakturan.
