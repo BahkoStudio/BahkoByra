@@ -19,12 +19,20 @@ högst prioritet.** Det avgör uppsättningen:
 UI:t växlar mellan svenska och engelska beroende på kontospråk, båda namnen anges.
 Kategorifältet föreslår bara giltiga kategorier, så skriv och välj ur listan.
 
+**Uppsättningen är satt och verifierad i båda gränssnitten** (uppdaterad 2026-07-30).
+Tabellen visade tidigare de engelska arbetsnamnen ur planen; nu visar den vad som
+faktiskt står i profilen.
+
 | Plats | Engelskt UI | Svenskt UI |
 |---|---|---|
-| Primär | **Lawn care service, behålls oförändrad** | **Trädgårdstjänster** (verifierat i skärmbild 2026-07-28) |
-| Under 1 | Landscaper | sök "trädgårdsanläggning" |
-| Under 2 | Property maintenance | sök "fastighetsskötsel" |
-| Under 3 | Snow removal service | sök "snöröjning" |
+| Primär | Lawn care service, oförändrad | **Trädgårdstjänster** |
+| Under 1 | Landscape Gardener | **Trädgårdsarkitekt** (härlett, se nedan) |
+| Under 2 | Gardener | **Trädgårdsmästare** |
+| Under 3 | Snow removal service | **Snöröjning** |
+
+Planen sa ursprungligen Landscaper och Property maintenance. Landscaper finns inte i
+väljaren, kategorin heter Landscape Gardener. Property maintenance dök inte upp och
+ersattes med Gardener enligt fallback-instruktionen. Båda avvikelserna är accepterade.
 
 Bra nyhet ur skärmbilden: primärkategorin visas för svenska sökare som
 **Trädgårdstjänster**, vilket är bredare än engelskans Lawn care service antyder.
@@ -203,13 +211,35 @@ Ska in i Google-profilen."
    Review changes. Öppna, läs, rapportera. Acceptera eller avvisa ingenting
    förrän innehållet är rapporterat, notisen kan förklara varför profilen
    stod som den gjorde.
-2. **Möjlig dubblettprofil:** kontot hanterar även "Bromma Trädgårdsanläggning
-   & Plattläggning i Stockholm" (Gardener, 1 omdöme, Bromma). Rör den inte.
-   Samla först: verifieringsstatus, adress eller område, webbadress, omdömets
-   text, senaste aktivitet. Bekräfta med Jens om den är hans. Är den det och
-   samma verksamhet: behåll huvudprofilen och anmäl dubbletten till Googles
-   support för sammanslagning. Markera den ALDRIG som permanent stängd, det
-   kan visas publikt som att företaget stängt.
+2. **Dubblettprofiler: det är TRE listningar, inte två** (uppdaterat 2026-07-30).
+   Kontot hanterar utöver huvudprofilen:
+
+   | Listning | Kategori | Omdömen | Ort |
+   |---|---|---|---|
+   | Bromma Trädgårdsanläggning & Plattläggning i Stockholm | Trädgårdsmästare / Gardener | 1 | Bromma |
+   | **Bromma Trädgårdsservice** | Trädgård / Garden | 1 | **Nacka** |
+
+   **Den i Nacka är den allvarliga.** Den har *exakt samma firmanamn* som
+   huvudprofilen. Två profiler med identiskt namn i samma storstadsområde gör
+   att en kund som söker på namnet kan landa på en listning med ett omdöme i
+   stället för tio, och Googles entitetsförståelse får två konkurrerande
+   kandidater för samma företag. Den andra listningen har åtminstone ett eget
+   namn.
+
+   Två omdömen ligger dessutom fel: de hör hemma på huvudprofilen. Vid en
+   sammanslagning följer omdömen med när Google bedömer dem som samma
+   verksamhet, så de är inte förlorade, men de gör ingen nytta där de ligger.
+
+   Rör ingen av dem. Samla först per listning: verifieringsstatus, adress eller
+   område, webbadress, omdömets text och senaste aktivitet. Bekräfta med Jens
+   om de är hans, och om Nacka-listningen är ett gammalt försök eller en
+   autogenererad post.
+
+   Åtgärd beror på svaret. Samma verksamhet: behåll huvudprofilen och anmäl för
+   sammanslagning. Egen verklig plats: behåll men differentiera namn och
+   kategorier. Inte hans alls: anmäl som dubblett via Föreslå en ändring.
+   **Markera ALDRIG någon av dem som permanent stängd**, det kan visas publikt
+   som att företaget har stängt.
 
 **Tjänstenamnet "Trädgårdsanläggning och plattsättning" underkändes:**
 plattsättning finns inte i någon källa om Jens (inte IG-bion, inte sajten,
@@ -318,16 +348,41 @@ Det blev i stället sidans starkaste säljargument: den enda leverantören som s
 till styrelsen att ett timpris "efter rut" inte är jämförbart med vad föreningen
 kommer att betala.
 
-**Kategorin Trädgårdsarkitekt behöver en kontroll.** Planen sa Landscape
-Gardener, alltså en anläggare. Trädgårdsarkitekt är ett ritande yrke: "arkitekt"
-och "ritning" står noll gånger på sajten, och det enda designnära löftet är
-"Ni får förslag på utformningen innan arbetet börjar". Anläggningstjänsterna
-sitter rimligt under den, men etiketten är vad kunden ser. Sök i kategoriväljaren
-på "anlägg" och "landskap" och rapportera vad som finns. Finns en
-anläggarkategori: byt. Är Trädgårdsarkitekt Googles svenska etikett för
-Landscape Gardener: behåll och släpp frågan. Detta är ett undantag från
-regeln att inte iterera på kategorier, eftersom skillnaden är ett annat yrke
-och inte en namnvariant.
+### Trädgårdsarkitekt: kontrollerad 2026-07-30, kategorin står kvar
+
+Frågan var om Trädgårdsarkitekt kunde bytas mot en anläggarkategori, eftersom
+etiketten läser som ett ritande yrke medan sajten säljer anläggning: "arkitekt",
+"ritning" och "design" står noll gånger i sajtens text, "anlägg" fyra gånger.
+Premissen höll alltså. Svaret på frågan är ändå nej, av två skäl.
+
+**Det finns ingen anläggarkategori att byta till.** Sökning på "anlägg" i
+kategoriväljaren gav femton träffar, ingen med trädgård eller mark att göra:
+tennisbanor, beredskapsutbildning, snöanläggning inomhus, militäranläggning,
+kemisk anläggning, grus, sand, avsaltning, fängelse, filtrering, mekanisk,
+solceller, biluthyrning, förbränning, samt uthyrning av anläggningar och
+maskiner. Sökning på "landskap" gav Landskapsarkitekt (som dessutom ligger
+dubblerat, två rader med identisk etikett), Designer för ljussättning av
+landskap, och Landspark. Samtliga är ritande, designande eller en parktyp,
+alltså längre från anläggare än det som redan står.
+
+**Trädgårdsarkitekt ÄR anläggarkategorin, med en lös svensk etikett.**
+De fyra kategorier som sattes i det engelska gränssnittet var Lawn care service
+(primär), Landscape Gardener, Gardener och Snow removal service. Den svenska
+vyn visar Trädgårdstjänster, Trädgårdsarkitekt, Trädgårdsmästare och Snöröjning.
+Tre par är direkt avlästa: Lawn care service = Trädgårdstjänster,
+Gardener = Trädgårdsmästare, Snow removal service = Snöröjning. Då följer det
+fjärde av uteslutning: **Landscape Gardener = Trädgårdsarkitekt.**
+
+Det behövs alltså ingen ny avläsning av den engelska etiketten. Hanteringspanelen
+frös innan den hann läsas, men slutsatsen vilar inte på ett mönster utan på en
+fullständig parning där tre av fyra är bekräftade.
+
+**Lärdomen är generell och värd att komma ihåg:** Googles svenska kategorinamn är
+egna etiketter, inte yrkestitlar och inte bokstavliga översättningar. Att bedöma
+en kategori efter hur den svenska etiketten låter leder fel. Kontrollera vad som
+sattes i taxonomin, inte vad etiketten heter.
+
+Kategorin står kvar. Frågan är stängd och ska inte tas upp igen.
 
 ## 6. Beskrivning och öppningsdatum (från skärmbild 2026-07-28)
 
@@ -387,9 +442,11 @@ var, och för vem.
 - [x] Grässådd bekräftad ("både och") och säsongsavtal bekräftat, båda 2026-07-28
 - [ ] Googles tre dubbletter borttagna ur alla kategorier (Grässådd är sann men dubblerar)
 - [ ] Beskrivningen av Anläggning av gräsmatta ersatt med tabellens text (markberedning och gödsling bort, grässådd kvar)
-- [ ] Kategoriväljaren sökt på "anlägg" och "landskap", Trädgårdsarkitekt behållen eller bytt
+- [x] Kategoriväljaren kontrollerad 2026-07-30: ingen anläggarkategori finns, Trädgårdsarkitekt
+      är Googles svenska etikett för Landscape Gardener. Frågan stängd, kategorin står kvar
 - [ ] Google-notisen Review changes öppnad och rapporterad
-- [ ] Dubblettprofilen utredd med Jens innan något röres
+- [ ] **Tre listningar**, inte två: utred båda med Jens innan något röres. Nacka-listningen
+      har identiskt firmanamn som huvudprofilen och är den allvarliga
 - [ ] Tjänstelistan ersatt med svenska tjänster ovan, X ifyllt av Jens
 - [ ] Alla tio omdömen besvarade
 - [ ] Instagram kopplat
