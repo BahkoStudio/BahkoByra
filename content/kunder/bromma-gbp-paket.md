@@ -377,9 +377,11 @@ var, och för vem.
 - [x] Underkategorier satta 2026-07-28 (pending): Landscape Gardener, Gardener, Snow removal service
 - [x] Tjänstelistan avstämd mot sajten 2026-07-28: tio av elva belagda, plattsättning verifierat obelagd
 - [ ] Kontrollera kategoriordningen efter Googles godkännande
-- [ ] **Sidan `/tradgardsskotsel-brf/` byggd, uppgraderad till nästa uppgift på sajten.**
-      Ska bära båda avtalsformerna: skötsel genom säsongen och snöröjning genom vintern.
-      Jens söker aktivt avtal för att jämna ut takten, sajten säljer bara engångsprojekt
+- [x] **Sidan `/tradgardsskotsel-brf/` byggd och live 2026-07-29**, bär båda avtalsformerna.
+      1 769 ord i rå HTML, ingen prissiffra eftersom en förening inte får rutavdrag
+- [x] Sektionen för samarbeten live 2026-07-30: Husqvarna och Södermalms med logotyper
+- [ ] `lastmod` i sitemapen kontrolleras vid varje sajtändring. Tre av fyra stod två
+      dagar fel 2026-07-30. Google använder fältet bara när det är konsekvent korrekt
 - [x] Jens timpris inhämtat 2026-07-28: **340 kr efter rutavdrag**, ifyllt i tabellen
 - [ ] Från 340 kr satt i prisfältet på de fyra skötseltjänsterna
 - [x] Grässådd bekräftad ("både och") och säsongsavtal bekräftat, båda 2026-07-28
