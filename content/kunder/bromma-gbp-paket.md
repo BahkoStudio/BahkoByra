@@ -457,3 +457,59 @@ var, och för vem.
 **Sajten uppdaterad 2026-07-28** efter Jens besked om sådd: gräsmattekortet i
 `index.html` och raden i `llms.txt` säger nu rullgräs eller grässådd. Case-kortet
 "Ny gräsmatta" är medvetet orört, det beskriver ett utfört jobb med rullgräs.
+
+
+## Jens svar på BRF-frågorna, 2026-07-30
+
+Alla fyra frågorna besvarade, och svaren är inskrivna på `/tradgardsskotsel-brf/`.
+
+| Fråga | Svar |
+|---|---|
+| Avtalstid | Tolv månader, tre månaders uppsägningstid. Anpassningsbart efter omfattning |
+| Fakturering | Fast månadsavgift rekommenderas. Per tillfälle möjligt. Tilläggsarbeten godkänns separat **innan** de utförs |
+| Kapacitet | **Fyra personer** i verksamheten. Ersättare sätts in vid frånvaro |
+| BRF-erfarenhet | Uppdrag åt bostadsrättsföreningar i Bromma, bland annat **BRF Körsbärsdalen**. Referenser lämnas på förfrågan |
+
+Nytt som inte efterfrågades: **tre avtalsnivåer, Bas, Mellan och Premium**, där
+omfattning, besöksintervall och moment anpassas efter ytor och ambitionsnivå.
+
+### ⚠️ Ett påstående på sidan var falskt och är rättat
+
+Jag hade skrivit: *"Vi utför hela arbetet i egen regi med egna maskiner, så det
+finns ingen underentreprenör emellan som kan lämna en fråga obesvarad."*
+
+Jens svar visar att **medarbetarna i dag är underleverantörer**, och två övergår
+inom kort till anställning. Meningen var alltså inte bara oprecis utan direkt
+felaktig, och den hade slagit tillbaka i första styrelsemötet där någon frågade om
+anställningsform.
+
+Meningen är borta. I stället står anställningsformen utskriven i en egen FAQ-fråga,
+tillsammans med det som faktiskt är styrelsens oro: att arbetet blir utfört även när
+någon är sjuk. Fyra personer och möjlighet att sätta in ersättare är ett starkare
+svar än ett påstående om egen regi.
+
+Samma sak rättad i `llms.txt`, som sa "två medarbetare" (nu fyra personer) och
+"i egen regi i stället för via underentreprenör" (nu formulerat om maskinerna, där
+det är sant: egna maskiner i stället för inhyrd utrustning).
+
+### Två saker som medvetet INTE står på sidan
+
+**BRF Körsbärsdalen är inte namngiven.** Att publicera en kunds namn som referens
+kräver den kundens ok, och en styrelse kan ha synpunkter på att stå som publik
+referens. Sidan säger "bostadsrättsföreningar i Bromma" och att referenser lämnas
+på förfrågan, vilket är exakt vad Jens själv erbjöd. **Fråga Jens om föreningen
+godkänner att namnet står på sajten.** Gör de det är det en stark komplettering.
+
+**Nivåerna heter inte Bas, Mellan och Premium på sidan.** Namnen är sanna men
+innehållslösa för en läsare så länge vi inte vet vad som skiljer dem. Sidan säger
+att förslaget lämnas i nivåer och vad som varierar. **Be Jens om vad som ingår i
+varje nivå**, då blir det en jämförelsetabell, vilket är den enskilt mest
+säljande komponenten en sådan sida kan ha.
+
+### Kvar att hämta in
+
+- Godkännande att namnge BRF Körsbärsdalen
+- Ytstorlek, vad som utfördes och årtal för det uppdraget. Konkreta siffror är
+  citerbara, "uppdrag åt en förening" är det inte
+- Innehållet i Bas, Mellan och Premium
+- När de två medarbetarna faktiskt är anställda, så att formuleringen kan uppdateras
