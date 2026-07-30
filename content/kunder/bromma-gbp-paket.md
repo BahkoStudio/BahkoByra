@@ -592,3 +592,241 @@ företag kan inte ta bort andras omdömen, så det finns inget att göra åt det
 **Regeln framåt:** be aldrig familj eller vänner om omdömen. Ett borttaget omdöme
 kostar mer än det gav, och ett företag som anmäls för det tappar trovärdighet på
 hela profilen. Be i stället varje riktig kund i samma sms som slutfakturan.
+
+
+## Omdömesläget 2026-07-30: besvarat men stillastående
+
+Alla tio omdömen är besvarade. Men åldrarna avslöjar det som faktiskt är problemet.
+
+| Ålder | Antal |
+|---|---|
+| 14 veckor | 1 (Albert Ribeh, det senaste) |
+| 18–19 veckor | 3 |
+| 23–25 veckor | 6 |
+
+**Inget nytt omdöme på över tre månader**, och samtliga tio är samlade i ett spann på
+elva veckor i våras. Det ser ut som en engångsinsats vid uppstart följd av tystnad.
+
+Det är allvarligare än det verkar, av tre skäl:
+
+1. **Färskhet är en av de tre kontrollerbara variablerna** för lokal synlighet, och
+   den enda av dem som förfaller av sig själv. Betyget 5,0 och antalet tio står
+   stilla medan färskheten försämras varje vecka.
+2. **Det är högsäsong just nu.** Jens utför trädgårdsjobb varje vecka i juli, alltså
+   finns ett flöde av nöjda kunder som aldrig blir tillfrågade.
+3. **Fyra av tio saknar text**, bara stjärnor. De bidrar till betyget men inte med
+   något citerbart, vilket betyder att den faktiskt användbara omdömesmassan är sex
+   omdömen, inte tio.
+
+**Notering om basens kvalitet:** två konton har noll andra omdömen, ett par har ett
+till två, och ett omdöme är från Jonas Amnesten, samma efternamn som Jens. Var för
+sig är inget av detta ovanligt för privatpersoner, men tillsammans med att alla tio
+kom i samma korta period pekar det mot att de begärts ur ett personligt nätverk.
+Konsekvensen är inte att något ska göras åt de befintliga, utan att basen är
+skörare än siffran 5,0 av tio antyder. Ett stadigt flöde av riktiga kundomdömen
+gör den robust.
+
+**Åtgärd: en rutin, inte en kampanj.** Omdömeslänken finns
+(`g.page/r/CW3o-lQm-gM0EBM/review`) och ligger sedan 2026-07-29 även som knapp på
+alla fyra sidorna. Det som saknas är att någon frågar. Be i samma sms som
+slutfakturan, varje gång, utan undantag. Be gärna om ett foto i omdömet: samtliga
+tio saknar bild, och bilder i omdömen visas i profilen.
+
+**Falsifierbarhet:** kommer inget nytt omdöme inom sex veckor från att rutinen
+införs, är det inte länken eller formuleringen som är problemet utan att frågan inte
+ställs. Då är åtgärden en påminnelse i faktureringsflödet, inte en ny text.
+
+**Baslinje att mäta mot:** 10 omdömen, betyg 5,0, senaste 14 veckor gammalt,
+noll med foto, per 2026-07-30.
+
+### Fel i llms.txt, rättat samma dag
+
+Samarbetsstycket låg **två gånger** i filen och därmed live. Orsaken var mina egna
+upprepade redigeringar av samma stycke under sessionen. Ett dubblerat stycke i en fil
+vars enda syfte är att vara lättläst för maskiner underminerar just det syftet.
+Rättat. **Kontrollen att lägga till:** läs igenom `llms.txt` i sin helhet efter varje
+omgång ändringar, den är kort nog för att det ska gå på tio sekunder.
+
+
+## Jens nivåer och vinteravtal, mottaget 2026-07-30
+
+Jens skickade hela strukturen via Instagram-chatten. Den är mer genomarbetad än
+frågan efterfrågade och innehåller **priser**, som medvetet inte ligger på sajten.
+
+### Förslag 1, trädgårdsskötsel
+
+| | Bas | Standard ⭐ | Premium |
+|---|---|---|---|
+| Pris per månad inkl. moms | 3 495 kr | **6 495 kr** | 9 495 kr |
+| Besök april–oktober | 2 per månad | Varje vecka | Varje vecka |
+| Tillsyn november–mars | 1 per månad | 2 per månad | 2 per månad |
+
+Bas april–oktober: ogräsrensning, blåsning av gångar, tillsyn av planteringar,
+lättare beskärning, borttagning av mindre mängd trädgårdsavfall. November–mars:
+kontroll av planteringar, städning vid behov.
+
+Standard lägger till: häck- och buskputs, beskärning av perenner, gödsling, kontroll
+av bevattning, full bortforsling, höst- och vårstädning, sopning utöver blåsning,
+städning av gården på vintern.
+
+Premium lägger till: prioriterad service, extra tillsyn efter oväder, vattning vid
+torrperiod, plantering av säsongsväxter, löpande rådgivning till styrelsen,
+dokumentation med bilder.
+
+### Alternativ B, vinterberedskap
+
+**995 kr per månad inkl. moms, november–mars.** Ingår: beredskap hela säsongen,
+löpande bevakning av väderprognoser, prioriterad utryckning vid snöfall eller
+halkrisk, kontaktperson tillgänglig under säsongen.
+
+Utfört arbete debiteras separat: manuell snöröjning med skyffel eller snöslunga
+**675 kr/timme inkl. moms**, maskinell snöröjning med förare och mindre hjullastare
+**1 050 kr/timme inkl. moms**, halkbekämpningsmaterial efter förbrukning.
+
+Strukturen är bra och värd att beskriva på sajten även utan siffror: en fast
+beredskapsavgift plus debitering för faktiskt utfört arbete. Det förklarar varför
+snöröjning inte kan ligga på fast intervall, och det gör att en mild vinter blir
+billig utan att beredskapen försvinner.
+
+### Byggt på sidan 2026-07-30
+
+Jämförelsetabell med tre kolumner och tjugo rader, grupperad i April–oktober,
+November–mars och Bara i Premium. Tabellen scrollar i sin egen behållare på telefon
+i stället för att pressa ut sidan i sidled, och har en synlig instruktion om det på
+små skärmar. Plus ett eget avsnitt om vinterberedskapens tvådelade upplägg.
+
+Textens vinkling: **besöksfrekvensen är det som skiljer nivåerna**, inte längden på
+momentlistan. Det är sant här (Bas två besök i månaden mot Standards veckovis) och
+det är den variabel som faktiskt avgör hur ytorna ser ut över en säsong.
+
+### ⚠️ Priserna ligger INTE på sidan, och det är ett öppet beslut
+
+Instruktionen från Mathias 2026-07-30 var "lägg inte priset i sidan". Den gavs innan
+dessa siffror fanns, så beslutet bör tas om med den nya informationen. Argumenten:
+
+**För att publicera:** en styrelse kan självkvalificera sig direkt, och tystnad om
+pris läses som dyrt. Månadsbelopp är dessutom lätta att budgetera, till skillnad från
+ett timpris.
+
+**Mot att publicera:** Jens formulering är "Förslag 1", alltså ett förslag till en
+bestämd förening efter en genomgång av just deras ytor. En förening med tre gånger
+så stora ytor kan inte få Standard för 6 495 kr. Publiceras siffrorna som en publik
+prislista låser de honom mot varje förening som hör av sig, vilket är exakt samma
+fälla som ett publikt timpris.
+
+**Rekommendation:** publicera inte förrän Jens bekräftat att det är standardpriser
+oberoende av föreningens storlek. Är de det, sätt dem i tabellen med tillägget
+"från", eftersom en prisrad då gör tabellen dubbelt så säljande. Är de
+förhandlingspriser för en specifik förening, stannar tabellen som den är.
+
+**Fråga till Jens:** "Är 3 495, 6 495 och 9 495 dina standardpriser oavsett hur stora
+föreningens ytor är, eller är de räknade på just den föreningen?"
+
+
+## Beslut 2026-07-30: priserna publiceras med "Från"
+
+Mathias beslut. Min invändning var att "Förslag 1" var räknat på en bestämd förening
+och att en publik prislista låser Jens mot varje ny förening. **Ordet "Från" löser
+det**: det säger uttryckligen att beloppet är ett utgångspris och att ytorna kan dra
+upp det. Invändningen faller därmed, och sidan blir starkare av att svara på
+prisfrågan än av att tiga om den.
+
+Två detaljer som gör publiceringen försvarbar:
+
+**Inklusive moms är rätt enhet här.** En bostadsrättsförening är normalt inte
+momsregistrerad och betalar därför bruttot. För en förening är det inkluderade
+beloppet den enda siffra som betyder något, till skillnad från ett företag som räknar
+netto.
+
+**Priserna gäller bara föreningar och fastighetsägare.** Det står uttryckligen på
+sidan och i `llms.txt`, så att en villaägare inte tror att 3 495 kr per månad är hens
+alternativ till 340 kr i timmen.
+
+### Så ligger det på sidan
+
+Prisraden är första raden i tabellens `tbody`, inte i `thead`. Skälet är
+tillgänglighet: en skärmläsare ska läsa den som data och inte som kolumnrubrik.
+Visuellt är den ändå tabellens tyngsta rad, för det är den styrelsen letar efter.
+
+Vinterberedskapen har fått sina tre siffror i klartext: från 995 kr per månad för
+beredskapen, 675 kr per timme manuellt, 1 050 kr per timme maskinellt, material efter
+förbrukning.
+
+### Att lägga in i Google Företagsprofilen
+
+**Ta bort** raden "Skötselavtal för BRF och fastighetsägare" (Från 680 kr). Den
+ersätts av tre nivåer, annars uppstår samma dubblettproblem som med Googles egna
+tjänster.
+
+⚠️ **Prisfältet kan inte uttrycka "per månad".** Exakt samma begränsning som tvingade
+in ordet *timpriset* på skötselraderna. Här måste beskrivningen bära **"per månad
+inklusive moms"**, annars läser en styrelse "Från 3 495 kr" som ett engångsbelopp för
+hela avtalet. Det är nu ett mönster värt att namnge: **varje gång ett pris läggs i
+profilen måste enheten stå i beskrivningen.**
+
+Under **Trädgårdstjänster**:
+
+| Tjänst | Pris | Beskrivning |
+|---|---|---|
+| Skötselavtal BRF Bas | Från 3 495 kr | Löpande skötsel av föreningens utemiljö. Två besök i månaden april till oktober, en tillsyn i månaden november till mars. Priset är per månad inklusive moms och gäller föreningar, inte privatkunder. Slutpris efter kostnadsfri genomgång av ytorna. |
+| Skötselavtal BRF Standard | Från 6 495 kr | Veckovisa besök april till oktober med häck- och buskputs, gödsling, kontroll av bevattning samt höst- och vårstädning. Två tillsynsbesök i månaden på vintern. Priset är per månad inklusive moms och gäller föreningar. |
+| Skötselavtal BRF Premium | Från 9 495 kr | Allt i Standard plus prioriterad service, extra tillsyn efter oväder, vattning vid torrperiod, plantering av säsongsväxter, löpande rådgivning till styrelsen och dokumentation med bilder. Priset är per månad inklusive moms. |
+
+Under **Snöröjning**:
+
+| Tjänst | Pris | Beskrivning |
+|---|---|---|
+| Vinterberedskap för BRF och fastighet | Från 995 kr | Beredskap november till mars med löpande bevakning av väderprognoser och prioriterad utryckning vid snöfall. Priset är per månad inklusive moms. Utfört arbete debiteras separat: manuell snöröjning 675 kr per timme, maskinell 1 050 kr per timme. |
+
+Befintliga "Snöröjning och halkbekämpning" står kvar, den vänder sig även till
+privatkunder.
+
+
+## Adressfrågan 2026-07-30: basen är Nacka, inte Bromma
+
+Jens uppger att **kontoret är hans bostad i Nacka** och att han har en **lokal i
+Vikingshill med maskinparken**. Gatuadress och postnummer står medvetet inte här:
+det operativa är att basen är Nacka, och det räcker för varje beslut nedan.
+
+### Får adressen ligga på Google? Ja, men dold
+
+En verksamhet som åker ut till kunden är en service area business. För den gäller att
+en riktig adress anges vid verifieringen men **döljs publikt**, med tjänsteområden i
+stället. Det är den dokumenterade uppsättningen för hemmabaserade företag, inte ett
+kringgående.
+
+**Använd lokalen i Vikingshill, inte bostaden**, om det finns hyresavtal. Tre skäl:
+den är inte en bostad, så integritetsfrågan försvinner; den är där maskinparken
+faktiskt står, vilket gör den lättare att styrka; och Jens hemadress hamnar då aldrig
+i Googles register, inte ens dold. Bostaden är reserv om lokalen inte går att
+dokumentera.
+
+**Båda ska döljas.** Inte heller Vikingshill tar emot kunder, och en plats som inte är
+kundmottagande får enligt Googles regler inte visas som besöksadress.
+
+### Konsekvensen som är större än adressfältet
+
+Vilken adress som än väljs ligger den i Nacka, och det är den punkt Google räknar
+avstånd från. Företaget heter Bromma Trädgårdsservice, sajten säger "Vi utgår från
+Bromma" på tre ställen och schemat har `addressLocality: Bromma`.
+
+Det är sannolikt en delförklaring till två saker vi redan noterat: att Google ändrat
+kategorier "based on feedback from users or other sources", och att en tredje listning
+heter Bromma Trädgårdsservice men ligger i Nacka. **Den listningen kan vara den
+geografiskt korrekta**, medan Bromma-profilen vilar på namnet.
+
+**Slutläge som håller:** en profil, namnet Bromma Trädgårdsservice, dold Nacka-adress,
+tjänsteområden som täcker Bromma och Storstockholm. Regelrätt och förenligt med
+verkligheten.
+
+### Ordning och timing
+
+1. Ta reda på vilken adress huvudprofilen står på i dag, och om den är dold eller
+   synlig. Är den redan dold och rimlig är bästa draget att inte röra den.
+2. **Ändra inte adress i högsäsong.** Det kan trigga omverifiering med kort eller
+   telefon. Planera till lågsäsong.
+3. **Gör inte adressändringen samtidigt som de två extra listningarna hanteras.**
+   Då går det inte att se vilken åtgärd som orsakade vilken effekt.
+
+Frågor till Jens: har du hyresavtal på lokalen i Vikingshill, vilken adress står
+profilen på i dag och är den dold, och finns någon bas i Bromma?
