@@ -592,3 +592,57 @@ företag kan inte ta bort andras omdömen, så det finns inget att göra åt det
 **Regeln framåt:** be aldrig familj eller vänner om omdömen. Ett borttaget omdöme
 kostar mer än det gav, och ett företag som anmäls för det tappar trovärdighet på
 hela profilen. Be i stället varje riktig kund i samma sms som slutfakturan.
+
+
+## Omdömesläget 2026-07-30: besvarat men stillastående
+
+Alla tio omdömen är besvarade. Men åldrarna avslöjar det som faktiskt är problemet.
+
+| Ålder | Antal |
+|---|---|
+| 14 veckor | 1 (Albert Ribeh, det senaste) |
+| 18–19 veckor | 3 |
+| 23–25 veckor | 6 |
+
+**Inget nytt omdöme på över tre månader**, och samtliga tio är samlade i ett spann på
+elva veckor i våras. Det ser ut som en engångsinsats vid uppstart följd av tystnad.
+
+Det är allvarligare än det verkar, av tre skäl:
+
+1. **Färskhet är en av de tre kontrollerbara variablerna** för lokal synlighet, och
+   den enda av dem som förfaller av sig själv. Betyget 5,0 och antalet tio står
+   stilla medan färskheten försämras varje vecka.
+2. **Det är högsäsong just nu.** Jens utför trädgårdsjobb varje vecka i juli, alltså
+   finns ett flöde av nöjda kunder som aldrig blir tillfrågade.
+3. **Fyra av tio saknar text**, bara stjärnor. De bidrar till betyget men inte med
+   något citerbart, vilket betyder att den faktiskt användbara omdömesmassan är sex
+   omdömen, inte tio.
+
+**Notering om basens kvalitet:** två konton har noll andra omdömen, ett par har ett
+till två, och ett omdöme är från Jonas Amnesten, samma efternamn som Jens. Var för
+sig är inget av detta ovanligt för privatpersoner, men tillsammans med att alla tio
+kom i samma korta period pekar det mot att de begärts ur ett personligt nätverk.
+Konsekvensen är inte att något ska göras åt de befintliga, utan att basen är
+skörare än siffran 5,0 av tio antyder. Ett stadigt flöde av riktiga kundomdömen
+gör den robust.
+
+**Åtgärd: en rutin, inte en kampanj.** Omdömeslänken finns
+(`g.page/r/CW3o-lQm-gM0EBM/review`) och ligger sedan 2026-07-29 även som knapp på
+alla fyra sidorna. Det som saknas är att någon frågar. Be i samma sms som
+slutfakturan, varje gång, utan undantag. Be gärna om ett foto i omdömet: samtliga
+tio saknar bild, och bilder i omdömen visas i profilen.
+
+**Falsifierbarhet:** kommer inget nytt omdöme inom sex veckor från att rutinen
+införs, är det inte länken eller formuleringen som är problemet utan att frågan inte
+ställs. Då är åtgärden en påminnelse i faktureringsflödet, inte en ny text.
+
+**Baslinje att mäta mot:** 10 omdömen, betyg 5,0, senaste 14 veckor gammalt,
+noll med foto, per 2026-07-30.
+
+### Fel i llms.txt, rättat samma dag
+
+Samarbetsstycket låg **två gånger** i filen och därmed live. Orsaken var mina egna
+upprepade redigeringar av samma stycke under sessionen. Ett dubblerat stycke i en fil
+vars enda syfte är att vara lättläst för maskiner underminerar just det syftet.
+Rättat. **Kontrollen att lägga till:** läs igenom `llms.txt` i sin helhet efter varje
+omgång ändringar, den är kort nog för att det ska gå på tio sekunder.
