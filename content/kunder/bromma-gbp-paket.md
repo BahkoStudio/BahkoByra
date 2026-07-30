@@ -19,12 +19,20 @@ högst prioritet.** Det avgör uppsättningen:
 UI:t växlar mellan svenska och engelska beroende på kontospråk, båda namnen anges.
 Kategorifältet föreslår bara giltiga kategorier, så skriv och välj ur listan.
 
+**Uppsättningen är satt och verifierad i båda gränssnitten** (uppdaterad 2026-07-30).
+Tabellen visade tidigare de engelska arbetsnamnen ur planen; nu visar den vad som
+faktiskt står i profilen.
+
 | Plats | Engelskt UI | Svenskt UI |
 |---|---|---|
-| Primär | **Lawn care service, behålls oförändrad** | **Trädgårdstjänster** (verifierat i skärmbild 2026-07-28) |
-| Under 1 | Landscaper | sök "trädgårdsanläggning" |
-| Under 2 | Property maintenance | sök "fastighetsskötsel" |
-| Under 3 | Snow removal service | sök "snöröjning" |
+| Primär | Lawn care service, oförändrad | **Trädgårdstjänster** |
+| Under 1 | Landscape Gardener | **Trädgårdsarkitekt** (härlett, se nedan) |
+| Under 2 | Gardener | **Trädgårdsmästare** |
+| Under 3 | Snow removal service | **Snöröjning** |
+
+Planen sa ursprungligen Landscaper och Property maintenance. Landscaper finns inte i
+väljaren, kategorin heter Landscape Gardener. Property maintenance dök inte upp och
+ersattes med Gardener enligt fallback-instruktionen. Båda avvikelserna är accepterade.
 
 Bra nyhet ur skärmbilden: primärkategorin visas för svenska sökare som
 **Trädgårdstjänster**, vilket är bredare än engelskans Lawn care service antyder.
@@ -203,13 +211,35 @@ Ska in i Google-profilen."
    Review changes. Öppna, läs, rapportera. Acceptera eller avvisa ingenting
    förrän innehållet är rapporterat, notisen kan förklara varför profilen
    stod som den gjorde.
-2. **Möjlig dubblettprofil:** kontot hanterar även "Bromma Trädgårdsanläggning
-   & Plattläggning i Stockholm" (Gardener, 1 omdöme, Bromma). Rör den inte.
-   Samla först: verifieringsstatus, adress eller område, webbadress, omdömets
-   text, senaste aktivitet. Bekräfta med Jens om den är hans. Är den det och
-   samma verksamhet: behåll huvudprofilen och anmäl dubbletten till Googles
-   support för sammanslagning. Markera den ALDRIG som permanent stängd, det
-   kan visas publikt som att företaget stängt.
+2. **Dubblettprofiler: det är TRE listningar, inte två** (uppdaterat 2026-07-30).
+   Kontot hanterar utöver huvudprofilen:
+
+   | Listning | Kategori | Omdömen | Ort |
+   |---|---|---|---|
+   | Bromma Trädgårdsanläggning & Plattläggning i Stockholm | Trädgårdsmästare / Gardener | 1 | Bromma |
+   | **Bromma Trädgårdsservice** | Trädgård / Garden | 1 | **Nacka** |
+
+   **Den i Nacka är den allvarliga.** Den har *exakt samma firmanamn* som
+   huvudprofilen. Två profiler med identiskt namn i samma storstadsområde gör
+   att en kund som söker på namnet kan landa på en listning med ett omdöme i
+   stället för tio, och Googles entitetsförståelse får två konkurrerande
+   kandidater för samma företag. Den andra listningen har åtminstone ett eget
+   namn.
+
+   Två omdömen ligger dessutom fel: de hör hemma på huvudprofilen. Vid en
+   sammanslagning följer omdömen med när Google bedömer dem som samma
+   verksamhet, så de är inte förlorade, men de gör ingen nytta där de ligger.
+
+   Rör ingen av dem. Samla först per listning: verifieringsstatus, adress eller
+   område, webbadress, omdömets text och senaste aktivitet. Bekräfta med Jens
+   om de är hans, och om Nacka-listningen är ett gammalt försök eller en
+   autogenererad post.
+
+   Åtgärd beror på svaret. Samma verksamhet: behåll huvudprofilen och anmäl för
+   sammanslagning. Egen verklig plats: behåll men differentiera namn och
+   kategorier. Inte hans alls: anmäl som dubblett via Föreslå en ändring.
+   **Markera ALDRIG någon av dem som permanent stängd**, det kan visas publikt
+   som att företaget har stängt.
 
 **Tjänstenamnet "Trädgårdsanläggning och plattsättning" underkändes:**
 plattsättning finns inte i någon källa om Jens (inte IG-bion, inte sajten,
@@ -318,16 +348,41 @@ Det blev i stället sidans starkaste säljargument: den enda leverantören som s
 till styrelsen att ett timpris "efter rut" inte är jämförbart med vad föreningen
 kommer att betala.
 
-**Kategorin Trädgårdsarkitekt behöver en kontroll.** Planen sa Landscape
-Gardener, alltså en anläggare. Trädgårdsarkitekt är ett ritande yrke: "arkitekt"
-och "ritning" står noll gånger på sajten, och det enda designnära löftet är
-"Ni får förslag på utformningen innan arbetet börjar". Anläggningstjänsterna
-sitter rimligt under den, men etiketten är vad kunden ser. Sök i kategoriväljaren
-på "anlägg" och "landskap" och rapportera vad som finns. Finns en
-anläggarkategori: byt. Är Trädgårdsarkitekt Googles svenska etikett för
-Landscape Gardener: behåll och släpp frågan. Detta är ett undantag från
-regeln att inte iterera på kategorier, eftersom skillnaden är ett annat yrke
-och inte en namnvariant.
+### Trädgårdsarkitekt: kontrollerad 2026-07-30, kategorin står kvar
+
+Frågan var om Trädgårdsarkitekt kunde bytas mot en anläggarkategori, eftersom
+etiketten läser som ett ritande yrke medan sajten säljer anläggning: "arkitekt",
+"ritning" och "design" står noll gånger i sajtens text, "anlägg" fyra gånger.
+Premissen höll alltså. Svaret på frågan är ändå nej, av två skäl.
+
+**Det finns ingen anläggarkategori att byta till.** Sökning på "anlägg" i
+kategoriväljaren gav femton träffar, ingen med trädgård eller mark att göra:
+tennisbanor, beredskapsutbildning, snöanläggning inomhus, militäranläggning,
+kemisk anläggning, grus, sand, avsaltning, fängelse, filtrering, mekanisk,
+solceller, biluthyrning, förbränning, samt uthyrning av anläggningar och
+maskiner. Sökning på "landskap" gav Landskapsarkitekt (som dessutom ligger
+dubblerat, två rader med identisk etikett), Designer för ljussättning av
+landskap, och Landspark. Samtliga är ritande, designande eller en parktyp,
+alltså längre från anläggare än det som redan står.
+
+**Trädgårdsarkitekt ÄR anläggarkategorin, med en lös svensk etikett.**
+De fyra kategorier som sattes i det engelska gränssnittet var Lawn care service
+(primär), Landscape Gardener, Gardener och Snow removal service. Den svenska
+vyn visar Trädgårdstjänster, Trädgårdsarkitekt, Trädgårdsmästare och Snöröjning.
+Tre par är direkt avlästa: Lawn care service = Trädgårdstjänster,
+Gardener = Trädgårdsmästare, Snow removal service = Snöröjning. Då följer det
+fjärde av uteslutning: **Landscape Gardener = Trädgårdsarkitekt.**
+
+Det behövs alltså ingen ny avläsning av den engelska etiketten. Hanteringspanelen
+frös innan den hann läsas, men slutsatsen vilar inte på ett mönster utan på en
+fullständig parning där tre av fyra är bekräftade.
+
+**Lärdomen är generell och värd att komma ihåg:** Googles svenska kategorinamn är
+egna etiketter, inte yrkestitlar och inte bokstavliga översättningar. Att bedöma
+en kategori efter hur den svenska etiketten låter leder fel. Kontrollera vad som
+sattes i taxonomin, inte vad etiketten heter.
+
+Kategorin står kvar. Frågan är stängd och ska inte tas upp igen.
 
 ## 6. Beskrivning och öppningsdatum (från skärmbild 2026-07-28)
 
@@ -376,25 +431,164 @@ var, och för vem.
 - [x] Kategoribeslut taget med Jens 2026-07-28: skötsel/BRF prio, primär behålls
 - [x] Underkategorier satta 2026-07-28 (pending): Landscape Gardener, Gardener, Snow removal service
 - [x] Tjänstelistan avstämd mot sajten 2026-07-28: tio av elva belagda, plattsättning verifierat obelagd
-- [ ] Kontrollera kategoriordningen efter Googles godkännande
-- [ ] **Sidan `/tradgardsskotsel-brf/` byggd, uppgraderad till nästa uppgift på sajten.**
-      Ska bära båda avtalsformerna: skötsel genom säsongen och snöröjning genom vintern.
-      Jens söker aktivt avtal för att jämna ut takten, sajten säljer bara engångsprojekt
+- [x] Kategoriordningen avgjord 2026-07-30: Trädgårdstjänster (primär), Trädgårdsmästare,
+      Trädgårdsarkitekt, Snöröjning. Inte alfabetisk, alltså den verkliga ordningen
+- [x] **Sidan `/tradgardsskotsel-brf/` byggd och live 2026-07-29**, bär båda avtalsformerna.
+      1 769 ord i rå HTML, ingen prissiffra eftersom en förening inte får rutavdrag
+- [x] Sektionen för samarbeten live 2026-07-30: Husqvarna och Södermalms med logotyper
+- [ ] `lastmod` i sitemapen kontrolleras vid varje sajtändring. Tre av fyra stod två
+      dagar fel 2026-07-30. Google använder fältet bara när det är konsekvent korrekt
 - [x] Jens timpris inhämtat 2026-07-28: **340 kr efter rutavdrag**, ifyllt i tabellen
-- [ ] Från 340 kr satt i prisfältet på de fyra skötseltjänsterna
+- [x] Från 340 kr satt på alla fyra skötseltjänster 2026-07-30, samtliga med ordet *timpriset*
+- [x] Från 680 kr på de sju övriga: **Jens egen siffra**, bruttotimpris före rutavdrag.
+      Frågan släppt 2026-07-30, priserna står kvar
 - [x] Grässådd bekräftad ("både och") och säsongsavtal bekräftat, båda 2026-07-28
-- [ ] Googles tre dubbletter borttagna ur alla kategorier (Grässådd är sann men dubblerar)
-- [ ] Beskrivningen av Anläggning av gräsmatta ersatt med tabellens text (markberedning och gödsling bort, grässådd kvar)
-- [ ] Kategoriväljaren sökt på "anlägg" och "landskap", Trädgårdsarkitekt behållen eller bytt
+- [x] Googles tre dubbletter borttagna 2026-07-30, exakt elva rader kvar
+- [x] Anläggning av gräsmatta har tabellens text 2026-07-30, grässådd inskrivet
+- [x] Kategoriväljaren kontrollerad 2026-07-30: ingen anläggarkategori finns, Trädgårdsarkitekt
+      är Googles svenska etikett för Landscape Gardener. Frågan stängd, kategorin står kvar
 - [ ] Google-notisen Review changes öppnad och rapporterad
-- [ ] Dubblettprofilen utredd med Jens innan något röres
+- [ ] **Tre listningar**, inte två: utred båda med Jens innan något röres. Nacka-listningen
+      har identiskt firmanamn som huvudprofilen och är den allvarliga
 - [ ] Tjänstelistan ersatt med svenska tjänster ovan, X ifyllt av Jens
-- [ ] Alla tio omdömen besvarade
+- [x] Alla tio omdömen besvarade 2026-07-30
 - [ ] Instagram kopplat
-- [ ] Beskrivningen bytt, öppningsdatum satt till januari 2026
+- [x] Beskrivningen och öppningsdatum januari 2026 verifierade 2026-07-30
 - [ ] Indexering begärd för alla fyra URL:erna, sitemaps inskickade
 - [ ] Om 30 dagar: jämför mot baslinjen 1 226 visningar och 168 interaktioner
 
 **Sajten uppdaterad 2026-07-28** efter Jens besked om sådd: gräsmattekortet i
 `index.html` och raden i `llms.txt` säger nu rullgräs eller grässådd. Case-kortet
 "Ny gräsmatta" är medvetet orört, det beskriver ett utfört jobb med rullgräs.
+
+
+## Jens svar på BRF-frågorna, 2026-07-30
+
+Alla fyra frågorna besvarade, och svaren är inskrivna på `/tradgardsskotsel-brf/`.
+
+| Fråga | Svar |
+|---|---|
+| Avtalstid | Tolv månader, tre månaders uppsägningstid. Anpassningsbart efter omfattning |
+| Fakturering | Fast månadsavgift rekommenderas. Per tillfälle möjligt. Tilläggsarbeten godkänns separat **innan** de utförs |
+| Kapacitet | **Fyra personer** i verksamheten. Ersättare sätts in vid frånvaro |
+| BRF-erfarenhet | Uppdrag åt bostadsrättsföreningar i Bromma, bland annat **BRF Körsbärsdalen**. Referenser lämnas på förfrågan |
+
+Nytt som inte efterfrågades: **tre avtalsnivåer, Bas, Mellan och Premium**, där
+omfattning, besöksintervall och moment anpassas efter ytor och ambitionsnivå.
+
+### ⚠️ Ett påstående på sidan var falskt och är rättat
+
+Jag hade skrivit: *"Vi utför hela arbetet i egen regi med egna maskiner, så det
+finns ingen underentreprenör emellan som kan lämna en fråga obesvarad."*
+
+Jens svar visar att **medarbetarna i dag är underleverantörer**, och två övergår
+inom kort till anställning. Meningen var alltså inte bara oprecis utan direkt
+felaktig, och den hade slagit tillbaka i första styrelsemötet där någon frågade om
+anställningsform.
+
+Meningen är borta. I stället står anställningsformen utskriven i en egen FAQ-fråga,
+tillsammans med det som faktiskt är styrelsens oro: att arbetet blir utfört även när
+någon är sjuk. Fyra personer och möjlighet att sätta in ersättare är ett starkare
+svar än ett påstående om egen regi.
+
+Samma sak rättad i `llms.txt`, som sa "två medarbetare" (nu fyra personer) och
+"i egen regi i stället för via underentreprenör" (nu formulerat om maskinerna, där
+det är sant: egna maskiner i stället för inhyrd utrustning).
+
+### Två saker som medvetet INTE står på sidan
+
+**BRF Körsbärsdalen är inte namngiven.** Att publicera en kunds namn som referens
+kräver den kundens ok, och en styrelse kan ha synpunkter på att stå som publik
+referens. Sidan säger "bostadsrättsföreningar i Bromma" och att referenser lämnas
+på förfrågan, vilket är exakt vad Jens själv erbjöd. **Fråga Jens om föreningen
+godkänner att namnet står på sajten.** Gör de det är det en stark komplettering.
+
+**Nivåerna heter inte Bas, Mellan och Premium på sidan.** Namnen är sanna men
+innehållslösa för en läsare så länge vi inte vet vad som skiljer dem. Sidan säger
+att förslaget lämnas i nivåer och vad som varierar. **Be Jens om vad som ingår i
+varje nivå**, då blir det en jämförelsetabell, vilket är den enskilt mest
+säljande komponenten en sådan sida kan ha.
+
+### Kvar att hämta in
+
+- Godkännande att namnge BRF Körsbärsdalen
+- Ytstorlek, vad som utfördes och årtal för det uppdraget. Konkreta siffror är
+  citerbara, "uppdrag åt en förening" är det inte
+- Innehållet i Bas, Mellan och Premium
+- När de två medarbetarna faktiskt är anställda, så att formuleringen kan uppdateras
+
+
+## Läge 2026-07-30: profilen genomförd, plus ett fel att rätta
+
+Butikskod: `14933658975711550698`.
+
+**Utfört och verifierat i profilen:**
+
+- Alla fyra skötseltjänster står på **Från 340 kr** och samtliga innehåller ordet
+  *timpriset* i beskrivningen. Gräsklippning och gräsmatteskötsel samt Beskärning
+  ändrades från 680 kr; Löpande trädgårdsskötsel och Häckklippning låg redan rätt
+- Anläggning av gräsmatta har fått den sajtnära texten med **grässådd** inskrivet
+- **Googles tre dubbletter är borta.** Tjänstelistan innehåller exakt elva rader
+- **Alla tio omdömen är besvarade**
+- Beskrivningen och öppningsdatumet januari 2026 verifierade
+
+### Från 680 kr på de sju övriga tjänsterna: Jens egen siffra, står kvar
+
+Skötselavtal för BRF, Röjning och bortforsling, Trädgårdsanläggning, Anläggning av
+gräsmatta, Häckplantering och borttagning, Jordutjämning och markarbete samt
+Snöröjning och halkbekämpning står alla på **Från 680 kr**.
+
+Jag ifrågasatte siffran och antog att den kom från en tidigare agentkörning som
+dubblat 340. **Fel: Jens har satt 680 kr själv** (bekräftat av Mathias 2026-07-30).
+Det är bruttotimpriset, alltså före rutavdrag, vilket är det pris som gäller när
+kunden är en förening eller ett företag och inget avdrag finns att göra.
+
+Därmed faller invändningen. Regeln har hela tiden varit att priset sätts av kunden
+och aldrig av oss, och den är uppfylld. Tabellens "Inget pris" på dessa sju rader är
+en äldre plan som Jens har ersatt med ett besked.
+
+**Beslut: priserna står kvar. Frågan är släppt.**
+
+Kvar att hålla ögonen på, inte att åtgärda: på de fyra projekttjänsterna finns ingen
+tidsenhet i fältet, så "Från 680 kr" kan läsas som vad hela jobbet börjar kosta.
+**Ledande indikator:** hör Jens av sig om samtal där kunden trott att en
+trädgårdsanläggning börjar på 680 kronor, är det den formuleringen som orsakat det,
+och då är åtgärden att skriva in enheten i tjänstebeskrivningen på samma sätt som
+ordet *timpriset* gör på skötselraderna. Innan dess finns inget belägg för att det är
+ett problem.
+
+### Trädgårdsarkitekt: hårt belägg, frågan slutgiltigt stängd
+
+Googles interna sektions-id syns i URL:en när en tjänst öppnas:
+`lawn_care_service` för Trädgårdstjänster, `gardener` för Trädgårdsmästare och
+**`landscaper` för Trädgårdsarkitekt**. Alltså inte `landscape_architect`.
+
+Det är ett direkt belägg, inte en härledning. Min slutsats via uteslutning stämde,
+men den vilade på tre avlästa par; nu finns taxonomins eget id. **Lärdomen skärps:**
+vill man veta vad en kategori verkligen är, läs Googles interna id i URL:en, inte
+den svenska etiketten. Det är den snabbaste och säkraste metoden och bör användas
+direkt nästa gång.
+
+**Kategoriordningen är också avgjord:** Trädgårdstjänster (primär), Trädgårdsmästare,
+Trädgårdsarkitekt, Snöröjning, med ingen väntande granskning. Alfabetiskt hade
+Snöröjning legat först, så detta är den verkliga ordningen och den stämmer med vad
+som sattes. Punkten om att kontrollera ordningen efter godkännande är därmed stängd.
+
+### Rättelse av min egen instruktion
+
+Jag sa att markberedning och gödsling skulle bort ur Anläggning av gräsmatta. De
+fanns aldrig i profilen: den låg på tabellens ursprungliga text. Orden kom in i min
+muntliga relätext, inte i profilen. Det som faktiskt saknades var **grässådd**, och
+det var det som lades till. Nettoresultatet är rätt, men instruktionen pekade på ett
+fel som bara existerade i mitt eget mellansteg.
+
+### Observation om omdömena, för framtiden
+
+Ett av de tio omdömena är från **Jonas Amnesten**, samma efternamn som Jens. Är det
+en familjemedlem strider det mot Googles riktlinjer om omdömen från personer med
+koppling till verksamheten. Omdömet är fyra månader gammalt och besvarat, och ett
+företag kan inte ta bort andras omdömen, så det finns inget att göra åt det nu.
+
+**Regeln framåt:** be aldrig familj eller vänner om omdömen. Ett borttaget omdöme
+kostar mer än det gav, och ett företag som anmäls för det tappar trovärdighet på
+hela profilen. Be i stället varje riktig kund i samma sms som slutfakturan.
