@@ -477,7 +477,7 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
       <div class="panel offer-panel">
         <div class="sub">Offertmall — copy-paste redo</div>
         <h3 id="offer-title">Hemsida som <em>säljer</em></h3>
-        <div class="price" id="offer-price">29 900 kr (engång)</div>
+        <div class="price" id="offer-price">12 000 kr ex moms (engång)</div>
         <p id="offer-terms" style="font-size:.72rem;color:var(--paper-45);margin-bottom:1rem">konverterande hemsida som drar in jobb · ingen bindning · start inom 7 dagar</p>
         <div class="offer-rows" id="offer-rows"></div>
         <button class="copy" id="copy-offer" style="margin-top:1.2rem;align-self:flex-start">Kopiera offerttext</button>
@@ -938,7 +938,7 @@ Kör skillen instagram-engine för en full veckobatch (3 reels + 2 carouseller +
     <div class="ladder" style="margin-bottom:1rem">
       <div class="rung"><div class="st">Front (gratis)</div><div class="ti">Gratis hemsideförslag</div><div class="de">Enda jobbet: bevisa att du är "the wizard". 1 konkret observation om DERAS sajt + klickbart demo (bahkobyra.cloud) + skarpt bevis (smamaleri.se). Anpassas efter köp.</div></div>
       <div class="arr">→</div>
-      <div class="rung"><div class="st">Core (betalt)</div><div class="ti">Hemsida som säljer</div><div class="de">Hemsida som engångsköp (29 900 kr). Löpande optimering säljs som uppsell efter leverans.</div></div>
+      <div class="rung"><div class="st">Core (betalt)</div><div class="ti">Hemsida som säljer</div><div class="de">Hemsida som engångsköp (12 000 kr ex moms). Löpande optimering säljs som uppsell efter leverans.</div></div>
       <div class="arr">→</div>
       <div class="rung"><div class="st">Uppsell</div><div class="ti">Mer wizardry</div><div class="de">När du bevisat magi: fler sidor, annonser, innehåll, underhåll. Continuity gör dig rik.</div></div>
     </div>
@@ -1478,7 +1478,7 @@ renderCRM();
 const OFFERS={
   bygg:{
     title:'Hemsida som <em>säljer</em>',
-    price:'29 900 kr (engång)',
+    price:'12 000 kr ex moms (engång)',
     terms:'konverterande hemsida som drar in jobb · ingen bindning · start inom 7 dagar',
     rows:[
       ['them','For Them','Fler jobb och offertförfrågningar via en hemsida som konverterar — inte bara en snyggare webb'],
@@ -1495,7 +1495,7 @@ Vad ni får:
 • Allt klart och live inom överenskommen tid
 
 Vad det kostar:
-29 900 kr (engångskostnad) · ingen bindning · start inom 7 dagar
+12 000 kr ex moms (engångskostnad) · ingen bindning · start inom 7 dagar
 
 Vad det ger er:
 Ett enda extra jobb i månaden betalar sajten många gånger om.
@@ -1509,7 +1509,7 @@ Eller boka 15 min om du vill gå igenom något först: https://cal.eu/bahkobyra/
 
 /Mathias, Bahko Byrå
 mathias@bahkobyra.se`,
-    roi:{mode:'oneoff',price:29900,valLabel:'Genomsnittsvärde per jobb (kr)',bkLabel:'Extra jobb/mån via sajten (prognos)',val:15000,bk:2}
+    roi:{mode:'oneoff',price:12000,valLabel:'Genomsnittsvärde per jobb (kr)',bkLabel:'Extra jobb/mån via sajten (prognos)',val:15000,bk:2}
   }
 };
 let offerNiche='bygg';
@@ -1536,7 +1536,7 @@ function calcROI(){
   const html=`
       <div class="roi-item"><div class="lv">${extra.toLocaleString('sv-SE')} kr</div><div class="ll">Extra intäkt / mån</div></div>
       <div class="roi-item"><div class="lv">${months} mån</div><div class="ll">tills sajten är betald</div></div>
-      <div class="roi-item span2"><div class="lv">${jobs} jobb</div><div class="ll">täcker hela sajten (${o.price.toLocaleString('sv-SE')} kr engång)</div></div>`;
+      <div class="roi-item span2"><div class="lv">${jobs} jobb</div><div class="ll">täcker hela sajten (${o.price.toLocaleString('sv-SE')} kr ex moms, engång)</div></div>`;
   document.getElementById('roi-results').innerHTML=html;
 }
 document.getElementById('roi-val').oninput=calcROI;

@@ -6,7 +6,7 @@ inte annonser. Det är intern leverans och uppsell långt senare, aldrig säljbu
 **Nisch:** bygg och hantverk. Byggfirmor, målare, takläggare, markarbeten, rör, el, snickare.
 Ring aldrig utanför nischen.
 **Erbjudandet i samtalet:** en helt skräddarsydd ny hemsida för deras firma, gratis, levererad
-på mejl inom 48 timmar. Kärnprodukten (hemsida 29 900 kr engångs) säljs på mötet som bokas
+på mejl inom 48 timmar. Kärnprodukten (hemsida 12 000 kr ex moms, engångs) säljs på mötet som bokas
 EFTER att de sett demon, aldrig i telefonen.
 
 **Telefonsamtalets enda mål: få mejladressen och ett svar på testmejlet.**

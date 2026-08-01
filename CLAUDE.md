@@ -91,7 +91,7 @@ Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `bahko
 | | Bygg & hantverk (Instagram @bahkostudio, cold email/call/IRL) |
 |--|----------------------------------------------------------------|
 | Front (gratis) | Gratis hemsideförslag (utkast, ev. 2-min Loom) |
-| Core (betalt) | Hemsida engångs (29 900 kr) |
+| Core (betalt) | Hemsida engångs (12 000 kr ex moms) |
 | Uppsell | Löpande optimering / motion design efter levererad sajt |
 
 - **Offer-regel:** resultat + mekanism + riskreversering + villkor. FOR THEM / REAL / Financial Sense / Easy YES.

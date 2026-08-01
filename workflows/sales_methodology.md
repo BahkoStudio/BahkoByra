@@ -99,8 +99,8 @@ Fyra alternativ: (1) gratis mot case study, (2) **betalt upfront i sin helhet (f
 - Välj ETT pris och **stå fast på det** (åtminstone under det samtalet). Memorera. Tveka aldrig.
 - Du kan ändra pris framåt i tiden mellan kunder. Gamla leads: "Vi höjer priset till X, men eftersom vi
   offererade dig det gamla priset håller vi det till och med [datum]."
-- BahkoByra: hemsida som engångsköp, 29 900 kr (ingen retainer). Löpande optimering säljs som
-  uppsell först efter levererad sajt.
+- BahkoByra: hemsida som engångsköp, 12 000 kr ex moms (ingen retainer). Löpande optimering säljs som
+  uppsell först efter levererad sajt. (Prisändring 2026-08-01, tidigare 29 900 kr.)
 
 ---
 
