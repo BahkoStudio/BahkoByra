@@ -12,7 +12,7 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --cream:#EDE8DF;--cream-2:#F4F0E8;--cream-3:#FBF8F3;
+  --cream:#F7F3EA;--cream-2:#F1EBDF;--cream-3:#FFFDF9;
   --navy:#181C38;--navy-2:#12152E;
   --gold:#C9A96E;--gold-lt:#E3C88E;--gold-dk:#B08F4D;
   --ink:#181C38;--ink-70:rgba(24,28,56,.72);--ink-55:rgba(24,28,56,.56);--ink-35:rgba(24,28,56,.35);
@@ -30,13 +30,14 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 ::selection{background:var(--gold);color:var(--navy)}
 
 /* ── TOPBAR ── */
-.top{position:sticky;top:0;z-index:50;background:rgba(24,28,56,.97);color:var(--paper);backdrop-filter:blur(12px);
-  padding:1rem var(--gut);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-bottom:1px solid rgba(201,169,110,.25)}
+.top{position:sticky;top:0;z-index:50;background:rgba(247,243,234,.95);color:var(--ink);backdrop-filter:blur(12px);
+  padding:.85rem var(--gut);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-bottom:1px solid var(--line-2)}
 .brand{font-family:var(--display);font-size:1.3rem;font-weight:500;letter-spacing:.01em;display:flex;align-items:center;gap:.7rem}
-.brand em{font-style:italic;color:var(--gold-lt)}
-.brand .tag{font-family:var(--sans);font-size:.56rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-45);border-left:1px solid var(--line-2);padding-left:.7rem}
+.brand img{height:32px;display:block}
+.brand em{font-style:italic;color:var(--gold-dk)}
+.brand .tag{font-family:var(--sans);font-size:.56rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-35);border-left:1px solid var(--line-2);padding-left:.7rem}
 .top-actions{display:flex;gap:.6rem;flex-wrap:wrap}
-.tbtn{font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.55rem 1rem;border-radius:var(--r);border:1px solid var(--line-2);color:var(--paper-70);transition:.25s}
+.tbtn{font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.55rem 1rem;border-radius:var(--r);border:1px solid var(--line-2);color:var(--ink-70);transition:.25s}
 .tbtn:hover{color:var(--navy);background:var(--gold);border-color:var(--gold)}
 .tbtn.solid{background:var(--gold);color:var(--navy);border-color:var(--gold)}
 .tbtn.solid:hover{background:var(--gold-lt);border-color:var(--gold-lt)}
@@ -201,13 +202,6 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
 .oc-row:last-child{border-bottom:none}
 .oc-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
 
-/* ── NICHE + SEGMENTS ── */
-.niche-tag{display:inline-block;font-size:.5rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.12rem .45rem;border-radius:50px;white-space:nowrap;vertical-align:middle}
-.niche-bygg{background:rgba(79,130,200,.18);color:#2f6aa8}
-.seg{display:inline-flex;gap:.3rem;background:var(--cream-3);border:1px solid var(--line);border-radius:50px;padding:.25rem}
-.seg button{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .9rem;border-radius:50px;color:var(--ink-55);transition:.2s}
-.seg button.on{background:var(--gold);color:var(--navy)}
-
 /* ── DUE TODAY ── */
 .due{background:var(--cream-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:1rem 1.2rem;margin-bottom:.9rem}
 .due-row{display:flex;align-items:center;gap:.7rem;padding:.45rem 0;border-bottom:1px solid var(--line);font-size:.8rem}
@@ -261,9 +255,10 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
 <body>
 
 <div class="top">
-  <div class="brand">Bahko <em>Byrå</em> <span class="tag">Säljmotor · Operativ Dashboard</span></div>
+  <div class="brand"><img src="/brand/logo.svg" alt="" onerror="this.remove()">Bahko <em>Byrå</em> <span class="tag">Säljmotor · Bygg &amp; hantverk</span></div>
   <div class="top-actions">
     <a class="tbtn solid" href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener">+ Boka möte</a>
+    <a class="tbtn" href="/cloud/sop-ringa/" target="_blank" rel="noopener">Ring-SOP</a>
     <a class="tbtn" href="#crm">CRM</a>
     <a class="tbtn" href="#epost">E-post</a>
     <a class="tbtn" href="#ig">Instagram</a>
@@ -316,6 +311,12 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
     </div>
   </section>
 
+  <!-- DAGENS UPPFÖLJNINGAR -->
+  <section class="sec" id="idag">
+    <div class="sec-h">Dagens uppföljningar <span class="hint">leads vars nästa touch är förfallen — kör cadencen</span></div>
+    <div class="due" id="due-list"></div>
+  </section>
+
   <!-- QUICK LINKS -->
   <section class="sec">
     <div class="sec-h">Snabblänkar</div>
@@ -326,11 +327,29 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
         <div class="d">Din live-sajt — bahkobyra.se</div>
         <div class="meta">Live</div>
       </a>
+      <a class="card" href="/cloud/sop-ringa/" target="_blank" rel="noopener">
+        <span class="ext">↗</span>
+        <div class="t"><span class="ic">📞</span> SOP · Kalla samtal</div>
+        <div class="d">Säljarens manus: variabler, testmejl-flödet, invändningar, skrivbar dagslogg</div>
+        <div class="meta">Säljare</div>
+      </a>
       <a class="card" href="https://www.bahkobyra.se/cloud/bygg/" target="_blank" rel="noopener">
         <span class="ext">↗</span>
         <div class="t"><span class="ic">✨</span> Live Demo</div>
-        <div class="d">GRANIT-demon att skicka till prospekts — även bahkobyra.cloud</div>
+        <div class="d">GRANIT-demon (huvuddemot) — alla 7 demosajter listade i Ring-SOP:en</div>
         <div class="meta">Säljbevis</div>
+      </a>
+      <a class="card" href="https://smamaleri.se" target="_blank" rel="noopener">
+        <span class="ext">↗</span>
+        <div class="t"><span class="ic">🎨</span> Smålands Måleri</div>
+        <div class="d">Levererad kundsajt (Jönköping) — starkaste beviset i måleri/tak-pitch</div>
+        <div class="meta">Kundsajt</div>
+      </a>
+      <a class="card" href="https://brommatradgardsservice.se" target="_blank" rel="noopener">
+        <span class="ext">↗</span>
+        <div class="t"><span class="ic">🌿</span> Bromma Trädgård</div>
+        <div class="d">Levererad kundsajt (Stockholm) — beviset i mark/trädgård-pitch</div>
+        <div class="meta">Kundsajt</div>
       </a>
       <a class="card" href="https://www.bahkobyra.se/foretag/gratis-granskning.html" target="_blank" rel="noopener">
         <span class="ext">↗</span>
@@ -378,22 +397,12 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
     </div>
   </section>
 
-  <!-- DAGENS UPPFÖLJNINGAR -->
-  <section class="sec" id="idag">
-    <div class="sec-h">Dagens uppföljningar <span class="hint">leads vars nästa touch är förfallen — kör cadencen</span></div>
-    <div class="due" id="due-list"></div>
-  </section>
-
   <!-- CRM -->
   <section class="sec" id="crm">
     <div class="sec-h" id="crm-toggle" style="cursor:pointer;user-select:none" title="Fäll upp/ner CRM">CRM — Leads &amp; Prospekts <span id="crm-caret">▾</span><span class="hint">klicka rubriken för att fälla ihop · klicka lead för cadence · klicka status för att byta</span></div>
     <div id="crm-collapse">
     <div class="crm-toolbar">
       <input class="crm-search" id="crm-search" type="search" placeholder="Sök namn, kontakt, ort…">
-      <select class="crm-filter" id="crm-niche-filter">
-        <option value="">Alla nischer</option>
-        <option value="bygg">Bygg &amp; hantverk</option>
-      </select>
       <select class="crm-filter" id="crm-status-filter">
         <option value="">Alla statusar</option>
         <option value="Ny">Ny</option>
@@ -439,9 +448,6 @@ footer{margin-top:3.5rem;padding:1.5rem var(--gut);text-align:center;font-size:.
   <!-- OFFERTFÖRSLAG -->
   <section class="sec" id="offert">
     <div class="sec-h">Offertförslag <span class="hint">offert = hemsida · copy-paste redo</span></div>
-    <div class="seg" id="offer-seg" style="margin-bottom:1.1rem">
-      <button data-niche="bygg" class="on">Bygg &amp; hantverk</button>
-    </div>
 
     <div class="offer-principles">
       <div class="op-card">
@@ -523,7 +529,7 @@ Märkte en sak på er sajt: [konkret observation — t.ex. "ingen offertknapp h�
 
 Jag bygger hemsidor åt hantverkare som gör besökare till offertförfrågningar. Vill du se hur er sajt skulle kunna se ut? Jag skickar ett klickbart exempel — gratis, utan krav.
 
-Senaste bygget: maykaskitchen.se
+Senaste bygget: smamaleri.se
 
 /Mathias, Bahko Byrå</pre>
       </div>
@@ -559,12 +565,18 @@ https://cal.eu/bahkobyra/15min</pre>
       </div>
 
       <div class="script">
-        <div class="script-h"><span class="nm">Telefon — cold call (bygg)</span><span class="tag">Telefon</span><button class="copy">Kopiera</button></div>
-        <pre>Hej, det är Mathias från Bahko Byrå. Ringer för att jag tittade på [Företag]s hemsida och såg ett par saker som nog kostar er jobb — jag bygger om sånt så att fler besökare faktiskt hör av sig. Tar det 30 sekunder att berätta varför jag ringer?
+        <div class="script-h"><span class="nm">Telefon — kallt samtal (säljar-SOP, kort)</span><span class="tag">Telefon</span><button class="copy">Kopiera</button></div>
+        <pre>MÅL: mejladressen + svar på testmejlet. INTE boka möte. Full SOP: bahkobyra.se/cloud/sop-ringa/
 
-[Om ja] Kort: [1 konkret observation]. Jag har ett klickbart exempel på hur en ny hantverkarsajt kan se ut — vad är bästa mejlen så skickar jag länken?
+ÖPPNING: "Hej [Namn]! [Förnamn] heter jag, ringer från Bahko Byrå. Är det du som har hand om hemsidan på [Företag]?"
 
-[Om nej/upptagen] Inga problem — skickar en kort rad istället. Bästa mejlen?</pre>
+KROPP: "Jag kikade på er hemsida innan jag ringde och la märke till att [SMÄRTA]. Vi bygger hemsidor för just bygg- och hantverksfirmor. Jag vill ta fram en helt skräddarsydd ny hemsida för [Företag], helt gratis — ni har den inom 48 timmar. Jag skickar den på mejl. Vad har ni för mejladress?"
+
+TA MEJLEN: läs upp adressen tillbaka, tecken för tecken.
+
+TESTMEJL (direkt, medan ni pratar): "Jag skickar ett kort mejl nu, bara text utan länkar så det inte fastnar i skräpposten. Svara ok på det, så vet jag att det kom fram — sen är vi igång, och inom 48 timmar har du sidan i inkorgen."
+
+AVSLUT: "Håll utkik efter mejlet, det kommer nu. Ha en bra dag!" — inget möte bokas här; mötet kommer EFTER demon.</pre>
       </div>
 
       <div class="script">
@@ -598,7 +610,7 @@ TVÅ: [konkret — t.ex. ser inte bra ut i mobilen].
 TRE: [konkret — t.ex. inga bilder på era jobb/resultat].
 
 Vill du se hur en ny sajt kan se ut? Jag skickar ett klickbart exempel — gratis, utan krav.
-Senaste bygget: maykaskitchen.se
+Senaste bygget: smamaleri.se
 
 Värsta fall: du får konkreta idéer. Bästa fall: vi bygger en sajt som drar in jobb.</pre>
       </div>
@@ -623,7 +635,7 @@ DAG 5: Samtal (om direktnummer) — "hann du klicka runt i demon?"
       <div class="script">
         <div class="script-h"><span class="nm">Instagram DM-cadence (bygg)</span><span class="tag">DM</span><button class="copy">Kopiera</button></div>
         <pre>DAG 1: Hej [Namn]! Riktigt snyggt jobb på [specifikt projekt ni postat] 🙌 Snabb fråga — vem byggde er hemsida?
-DAG 3: Kikade på er sajt och såg ett par saker som nog kostar er jobb (t.ex. svårt att få offert via mobilen). Vill du se ett klickbart exempel på hur er nya sajt kan se ut? Gratis. (Senaste bygget: maykaskitchen.se)
+DAG 3: Kikade på er sajt och såg ett par saker som nog kostar er jobb (t.ex. svårt att få offert via mobilen). Vill du se ett klickbart exempel på hur er nya sajt kan se ut? Gratis. (Senaste bygget: smamaleri.se)
 DAG 5: Hann du kika? Kostar inget — bara ett konkret exempel på en sajt som drar in fler offertförfrågningar.
 DAG 7: Sista pingen 🙂 Om en ny sajt inte är prio nu säg bara till.</pre>
       </div>
@@ -675,24 +687,6 @@ Mathias Bahko</pre>
       </div>
 
       <div class="script">
-        <div class="script-h"><span class="nm">JA-svar · Bromma Trädgårdsservice (när demon är klar)</span><span class="tag">DM</span><button class="copy">Kopiera</button></div>
-        <pre>Hejsan!
-
-Jag kikade på er sajt innan jag byggde demon. Den pratar snöröjning och fastighetsbolag mitt i juni, samtidigt som ditt flöde är fullt av villaträdgårdar, gräs och häckar. Dina 1 800+ följare som klickar på bio-länken möter alltså vinterbudskap mitt i högsäsongen.
-
-Här är demon: bahkobyra.se/cloud/brommatradgardsservice/
-
-Kika på första skärmen. Juni-läge direkt, gräs, häckar och RUT-pris. Snöröjningen ligger kvar, men som en del av säsongsavtalet där den hör hemma.
-
-Bara så jag förstår, känner du igen bilden av att sajten och flödet säger olika saker?
-
-Om det stämmer när du kollat kan jag visa nästa steg. Helt upp till dig.
-
-Vänliga hälsningar
-Mathias Bahko</pre>
-      </div>
-
-      <div class="script">
         <div class="script-h"><span class="nm">JA-svar · Amiri Bygg AB (GRANIT-demon — ingen custom)</span><span class="tag">DM</span><button class="copy">Kopiera</button></div>
         <pre>Hejsan!
 
@@ -729,18 +723,6 @@ Mathias Bahko</pre>
 Vet inte om du hann se demon jag skickade. Jag har byggt en demosida till er som visar exakt varför kunden ska ringa just er: bahkobyra.se/cloud/alfredallservice/
 
 Öppna i mobilen, tar en minut.
-
-Vänliga hälsningar
-Mathias Bahko</pre>
-      </div>
-
-      <div class="script">
-        <div class="script-h"><span class="nm">Uppföljning del 2 · Bromma Trädgårdsservice</span><span class="tag">DM</span><button class="copy">Kopiera</button></div>
-        <pre>Tjena Jens!
-
-Vet inte om du hann se demon jag skickade. Jag har byggt en demosida till er som visar exakt varför kunden ska boka just er: bahkobyra.se/cloud/brommatradgardsservice/
-
-Kika i mobilen, tar en minut.
 
 Vänliga hälsningar
 Mathias Bahko</pre>
@@ -954,7 +936,7 @@ Kör skillen instagram-engine för en full veckobatch (3 reels + 2 carouseller +
     <div class="sec-h">Spelbok — BIAB-metodiken <span class="hint">offer-stegen · cadence · leverans · invändningar</span></div>
 
     <div class="ladder" style="margin-bottom:1rem">
-      <div class="rung"><div class="st">Front (gratis)</div><div class="ti">Gratis hemsideförslag</div><div class="de">Enda jobbet: bevisa att du är "the wizard". 1 konkret observation om DERAS sajt + klickbart demo (bahkobyra.cloud) + skarpt bevis (maykaskitchen.se). Anpassas efter köp.</div></div>
+      <div class="rung"><div class="st">Front (gratis)</div><div class="ti">Gratis hemsideförslag</div><div class="de">Enda jobbet: bevisa att du är "the wizard". 1 konkret observation om DERAS sajt + klickbart demo (bahkobyra.cloud) + skarpt bevis (smamaleri.se). Anpassas efter köp.</div></div>
       <div class="arr">→</div>
       <div class="rung"><div class="st">Core (betalt)</div><div class="ti">Hemsida som säljer</div><div class="de">Hemsida som engångsköp (29 900 kr). Löpande optimering säljs som uppsell efter leverans.</div></div>
       <div class="arr">→</div>
@@ -1044,9 +1026,6 @@ Kör skillen instagram-engine för en full veckobatch (3 reels + 2 carouseller +
     <button class="modal-close" id="modal-close">×</button>
     <h4 id="modal-title">Nytt lead</h4>
     <div class="field"><label>Namn (företag)</label><input id="f-name" type="text" placeholder="Nordbygg AB / Takläggarna i Örebro"></div>
-    <div class="field"><label>Nisch</label>
-      <select id="f-niche"><option value="bygg">Bygg &amp; hantverk</option></select>
-    </div>
     <div class="field"><label>Webbplats</label><input id="f-web" type="url" placeholder="https://..."></div>
     <div class="field"><label>Kontaktperson / Beslutsfattare</label><input id="f-contact" type="text" placeholder="Namn — Roll"></div>
     <div class="field"><label>Telefon</label><input id="f-phone" type="tel" placeholder="+46 70 000 00 00"></div>
@@ -1130,8 +1109,9 @@ setupCheck('ig-week','bb_ig_week',wk,'ig-reset');
 /* ── CRM SEED DATA ── */
 const SEED=[
   {id:'b01',name:'Alfred Allservice',niche:'bygg',web:'https://alfredallservice.se',contact:'Fråga i DM — bolagsuppgifter ej hittbara',phone:'0380-69 20 07',email:'',city:'Nässjö',status:'Svar',notes:'IG @alfredallservice (77 följare) — POSITIVT DM-SVAR. PAIN: bio-länken död (felstavad alfredallseevice.se, finns ej i DNS) · rätt domän 0 sidor i Google-index + 403 · ingen GBP/katalogpost, numret osökbart · osynlig på snickare/badrumsrenovering nässjö (vinnare: Nässjö Golv, JB Badrum, Fallnafors, Kansjö) · 2 andra firmor heter Alfreds Allservice och äger namnet i sök. KROK: visa döda länken live i mobilen → visa demon. DEMO KLAR: bahkobyra.se/cloud/alfredallservice/ — JA-svar finns i skripten. Demo: före/efter badrum-hero + ring-knapp 0380-69 20 07. Full analys: content/leads/alfred_allservice.md',updated:today},
-  {id:'b02',name:'Bromma Trädgårdsservice',niche:'bygg',web:'https://brommatradgardsservice.se',contact:'Jens Amnesten — Ägare (enskild firma, f. 1994)',phone:'',email:'jens@brommatradgardsservice.se',city:'Bromma/Västerort (säte Nacka)',status:'Svar',notes:'IG @brommatradgardsservice (1 863 följare, proffsig) — POSITIVT DM-SVAR. Firma reg. 9 jan 2026 = 5 mån gammal, uppbyggnadsfas. PAIN: Google ser bara 1 sida, title Startsida - · osynlig på trädgårdsskötsel/gräsklippning bromma · sajtcopy säljer snöröjning+fastigheter MITT I JUNI medan IG säljer villaträdgård · inga priser/RUT (konkurrenter visar från 309 kr/h) · saknas i hitta.se. KROK: 1863 följare klickar bio-länken och möts av vintercopy. Demo: säsongsavtal/ÅVS som huvuderbjudande + offertformulär + RUT-pris. DEMO KLAR: bahkobyra.se/cloud/brommatradgardsservice/ — JA-svar finns i skripten. Full analys: content/leads/bromma_tradgardsservice.md',updated:today},
+  {id:'b02',name:'Bromma Trädgårdsservice',niche:'bygg',web:'https://brommatradgardsservice.se',contact:'Jens Amnesten — Ägare',phone:'070-766 65 14',email:'jens@brommatradgardsservice.se',city:'Bromma, Stockholm',status:'Stängd',notes:'KUND — sajt levererad juli 2026: brommatradgardsservice.se (4 sidor). GBP klar, Bing klar, omdömesrutin igång (baslinje 10 omdömen 5,0). Uppföljning /optimering drift bromma 2026-09-23. Uppsell-kandidat: löpande optimering.',updated:today},
   {id:'b03',name:'Tryggbyggservice',niche:'bygg',web:'',contact:'FRÅGA I DM: ort, org.nr, ägarnamn (ej verifierbart)',phone:'',email:'',city:'Okänd — fråga i DM',status:'Offert',notes:'KÖPSIGNAL 13/6: svarade "mycket intressant och fängslande" + frågade pris. Svar: flytta till snabbt samtal (pris landar live, inte i chatt - se Pris-fråga-skript). NÄSTA: boka samtalet, kvalificera ort/org.nr/ägarnamn, skicka skriftlig offert samma dag. IG @tryggbyggservice (1 074 följare, badrumsrenovering) — POSITIVT DM-SVAR. PAIN: NOLL webbnärvaro (ingen sajt/FB/GBP/katalog, IG-bion HELT TOM utan länk) · 5 namnkopior äger Google-sökningen, Trygg Bygg Skåne AB säljer samma tjänster · heter TRYGG men kan inte verifieras = köpstopp vid 100k-badrumsjobb · toppreels är TikTok-repostar med tomma captions. GULD: tryggbyggservice.se OCH .com LEDIGA — registrera dag 1 innan namnkopiorna gör det. DEMO KLAR: bahkobyra.se/cloud/tryggbyggservice/ — skicka i DM. KROK: googla namnet tillsammans på mötet. Demo: badrum före/efter-hero + trygghetssektion (org.nr/F-skatt/försäkring) + Musse Pigg-spegeln som specialsnickeri-showcase. Full analys: content/leads/tryggbyggservice.md',updated:today},
+  {id:'b38',name:'Smålands Måleri AB',niche:'bygg',web:'https://smamaleri.se',contact:'kontakt@smamaleri.se',phone:'072-011 91 73',email:'kontakt@smamaleri.se',city:'Jönköping',status:'Stängd',notes:'KUND — sajt levererad juli 2026: smamaleri.se (one-pager, org.nr 556967-2271). GBP skapad+verifierad, Bing klar, omdömesrutin igång (baslinje 0 omdömen — mål 5 första månaden). ÖPPET: äkta jobbfoton behövs till GBP + ersätta genererade bilder på sajten. hitta.se/Eniro: poster finns, ska tas över med BankID. Uppsell-kandidat efter omdömen: tjänstesidor.',updated:today},
   {id:'b04',name:'Amiri Bygg AB',niche:'bygg',web:'https://amiribyggab.se',contact:'Medi — kontakt via IG (efternamn okänt, fråga i DM)',phone:'0704-10 41 90',email:'info@amiribyggab.se',city:'Stockholm (Sundbyberg/Kungsängen enl. highlights)',status:'Svar',notes:'IG @amiribyggab.se_official (83 följare, renovering/ombyggnation/totalentreprenad + interiör/kök) — POSITIVT DM-SVAR efter budget-invändning (sa först utanför budget, tackade sen ja till idéer = skicka värde, noll pitch). PAIN: bio-länken går till WhatsApp, INTE hemsidan — domänen amiribyggab.se FINNS (DNS OK) men följare som klickar hamnar i en chatt istället för på projekten. INGEN custom-demo (värdeprincipen) — GRANIT-demon används som exempel: bahkobyra.se/cloud/bygg/. JA-svar finns i skripten.',updated:today},
   // ── Örebro-regionen, insamlade via client-finder 2026-06-12 (alla mejl hittade på publika sidor) ──
   {id:'b05',name:'Sohlberg Solutions AB',niche:'bygg',web:'https://sohlbergsolutions.se',contact:'Familjen Sohlberg — ägare (Marie Terese ordf., Lars Peter ledamot, enl. allabolag)',phone:'076-171 60 38',email:'info@sohlbergsolutions.se',city:'Örebro',status:'Ny',notes:'Snickare & byggfirma, 19 anställda, familjeägt. Skjutbanevägen 11N, 703 84 Örebro. info@ är enda publika mejlen — adressera familjen Sohlberg. Hunter: sebastian@sohlbergsolutions.se (Sebastian Milojevic, platschef) men risky 73 — testa försiktigt.',updated:today},
@@ -1181,6 +1161,9 @@ function loadLeads(){
       // Byggleads (id b*) och egna tillagda leads behålls med status, cadence och anteckningar intakta.
       const kept=JSON.parse(raw).filter(l=>l&&l.niche!=='klinik'&&!/^s\d/.test(String(l.id)));
       stored=kept.map(normalize);
+      // Bromma blev kund juli 2026: lyft sparad post till Stängd en gång (rör inte egna anteckningar).
+      const b02=stored.find(l=>l.id==='b02');
+      if(b02&&b02.status!=='Stängd'){b02.status='Stängd';b02.notes=('KUND — sajt levererad juli 2026: brommatradgardsservice.se. '+(b02.notes||'')).trim();}
     }
   }catch{}
   if(!stored){saveLeads(SEED);return SEED.map(normalize);}
@@ -1214,7 +1197,6 @@ let editId=null;
 const STATUSES=['Ny','Kontaktad','Uppföljning 2','Uppföljning 3','Svar','Möte','Offert','Stängd','Inte intresserad'];
 const STATUS_CLS={Ny:'s-ny',Kontaktad:'s-kontaktad','Uppföljning 2':'s-upp2','Uppföljning 3':'s-upp3',Svar:'s-svar','Möte':'s-mote',Offert:'s-offert',Stängd:'s-stangd','Inte intresserad':'s-nej'};
 const CAD=[1,3,5,7];
-const NICHE_LBL={bygg:'Bygg'};
 const PATH_LBL={skriven:'Skriven',samtal:'Samtal',irl:'IRL'};
 const CLOSED=['Stängd','Inte intresserad'];
 
@@ -1251,7 +1233,6 @@ function nextDueLabel(l){
 
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-function nicheBadge(){return `<span class="niche-tag niche-bygg">${NICHE_LBL.bygg}</span>`;}
 function nextCell(l){
   if(CLOSED.includes(l.status))return '<span style="color:var(--ink-35)">—</span>';
   if(!l.nextAction)return '<span style="color:var(--ink-35)">starta cadence</span>';
@@ -1290,10 +1271,9 @@ function renderPipe(){
 function renderCRM(){
   const q=document.getElementById('crm-search').value.toLowerCase();
   const sf=document.getElementById('crm-status-filter').value;
-  const nf=document.getElementById('crm-niche-filter').value;
   const filtered=sortLeads(leads.filter(l=>{
     const txt=(l.name+' '+l.contact+' '+l.city+' '+l.phone+' '+l.notes).toLowerCase();
-    return(!q||txt.includes(q))&&(!sf||l.status===sf)&&(!nf||l.niche===nf);
+    return(!q||txt.includes(q))&&(!sf||l.status===sf);
   }));
   const tbody=document.getElementById('crm-body');
   tbody.innerHTML='';
@@ -1305,7 +1285,7 @@ function renderCRM(){
       let wb='';
       try{wb=l.web?`<a class="crm-link" href="${esc(l.web)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${esc(new URL(l.web).hostname.replace('www.',''))}</a>`:'';}catch{}
       const sc=STATUS_CLS[l.status]||'s-ny';
-      tr.innerHTML=`<td><span class="crm-name">${esc(l.name)}</span> ${nicheBadge(l.niche)}<br>${wb}</td><td>${esc(l.contact||'—')}</td><td>${nextCell(l)}</td><td>${esc(l.city||'—')}</td><td><span class="status-badge ${sc}" data-id="${l.id}">${esc(l.status)}</span></td>`;
+      tr.innerHTML=`<td><span class="crm-name">${esc(l.name)}</span><br>${wb}</td><td>${esc(l.contact||'—')}</td><td>${nextCell(l)}</td><td>${esc(l.city||'—')}</td><td><span class="status-badge ${sc}" data-id="${l.id}">${esc(l.status)}</span></td>`;
       tr.onclick=()=>openModal(l.id);
       tbody.appendChild(tr);
     });
@@ -1321,7 +1301,7 @@ function renderDue(){
                  .sort((a,b)=>a.nextAction.localeCompare(b.nextAction));
   if(!due.length){box.innerHTML='<div class="due-empty">Inga förfallna uppföljningar 🎉 — logga en touch på ett lead för att schemalägga nästa.</div>';return;}
   box.innerHTML=due.map(l=>`<div class="due-row">
-    <span class="nm">${esc(l.name)}</span> ${nicheBadge(l.niche)}
+    <span class="nm">${esc(l.name)}</span>
     <span class="meta">${PATH_LBL[l.pathway]||'—'} · ${nextDueLabel(l)} · förfaller ${l.nextAction}</span>
     <button class="go" data-touch="${l.id}">✓ Touch</button>
     <button class="go" data-open="${l.id}">Öppna</button>
@@ -1346,7 +1326,6 @@ function openModal(id){
   const l=id?leads.find(x=>x.id===id):normalize({});
   document.getElementById('modal-title').textContent=id?'Redigera lead':'Nytt lead';
   document.getElementById('f-name').value=l.name||'';
-  document.getElementById('f-niche').value=l.niche||'bygg';
   document.getElementById('f-web').value=l.web||'';
   document.getElementById('f-contact').value=l.contact||'';
   document.getElementById('f-phone').value=l.phone||'';
@@ -1377,7 +1356,6 @@ document.getElementById('btn-save').onclick=()=>{
   const prev=editId?(leads.find(x=>x.id===editId)||{}):{};
   const lead=normalize({
     id:editId||Date.now().toString(),name,
-    niche:document.getElementById('f-niche').value,
     web:document.getElementById('f-web').value.trim(),
     contact:document.getElementById('f-contact').value.trim(),
     phone:document.getElementById('f-phone').value.trim(),
@@ -1415,7 +1393,6 @@ document.getElementById('cad-track').addEventListener('click',e=>{
   renderCadTrack(l);renderCRM();
 });
 
-document.getElementById('crm-niche-filter').onchange=renderCRM;
 document.getElementById('due-list').addEventListener('click',e=>{
   const t=e.target.closest('[data-touch]'),o=e.target.closest('[data-open]');
   if(t){const l=leads.find(x=>x.id===t.dataset.touch);if(l){logTouch(l);saveLeads(leads);renderCRM();}}
@@ -1525,7 +1502,7 @@ Ett enda extra jobb i månaden betalar sajten många gånger om.
 Besökare blir offertförfrågningar — istället för att studsa vidare till konkurrenten.
 
 Se själv:
-Senaste leverans: https://maykaskitchen.se
+Senaste leverans: https://smamaleri.se
 
 Nästa steg: svara "kör igång" så startar vi inom 7 dagar.
 Eller boka 15 min om du vill gå igenom något först: https://cal.eu/bahkobyra/15min
@@ -1564,11 +1541,6 @@ function calcROI(){
 }
 document.getElementById('roi-val').oninput=calcROI;
 document.getElementById('roi-bk').oninput=calcROI;
-document.querySelectorAll('#offer-seg button').forEach(b=>b.onclick=()=>{
-  offerNiche=b.dataset.niche;
-  document.querySelectorAll('#offer-seg button').forEach(x=>x.classList.toggle('on',x===b));
-  renderOffer();
-});
 renderOffer();
 
 /* ── OFFER COPY ── */

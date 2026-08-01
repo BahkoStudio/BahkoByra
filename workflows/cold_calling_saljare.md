@@ -243,10 +243,19 @@ när vi ses". Stå fast, vänligt.)*
 
 ---
 
-## 5. Efter varje samtal: logga i CRM
+## 5. Dina verktyg: CRM och mejlkontot
 
-Öppna dashboarden (`bahkobyra/dashboard/index.html`) och logga direkt, inte i slutet av
-dagen. Minnet ljuger redan efter tre samtal.
+**CRM:** https://www.bahkobyra.se/dashboard/ — här bor leadlistan, cadence-spårningen och
+alla skript. Sparas i webbläsaren, så jobba alltid från samma dator och ta en backup
+(knappen "Backup" i CRM-verktygsraden) i slutet av varje vecka.
+
+**Mejlkontot du ringer med:** `kontakta@bahkobyra.se` — testmejl och demoleveranser skickas
+härifrån, aldrig från din privata adress. Lösenordet får du av Mathias vid onboarding,
+det står medvetet inte i det här dokumentet.
+
+### Efter varje samtal: logga i CRM
+
+Logga direkt efter varje samtal, inte i slutet av dagen. Minnet ljuger redan efter tre samtal.
 
 | Utfall | Åtgärd i CRM |
 |---|---|
