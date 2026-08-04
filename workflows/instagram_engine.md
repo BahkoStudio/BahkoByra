@@ -30,9 +30,12 @@ Skippa inte dagar. Volym slår perfektion. (Se daglig blast i `workflows/sales_m
 
 ## Content-formel
 
-Varje reel/ad: **Hook → Problem → Agitera → Diskvalificera andra lösningar → Lösning → CTA → Future pacing.**
-Idé-generering: gå runt och bestäm "jag gör en reel innan jag går hem". Fråga: "om jag drev ett
-[takföretag] och ville ha fler jobb — vad skulle jag undra över?"
+**Alla reel-manus ägs av skillen `reel`** (fyra loopar: hook+kontext → djupare → konsekvens →
+payoff+mjuk CTA, jag-form, tolvårsspråk, 5 hookar → välj 1). Den gamla 7-stegsformeln
+(Hook → Problem → Agitera → …) är pensionerad 2026-08-04 — den producerade byråröst och
+idé-hooks, precis det reel-skillen underkänner.
+Idé-generering: fråga "om jag drev ett [takföretag] och ville ha fler jobb — vad skulle jag
+undra över?" Ämnen och pelare: se `content/ig/kontentplan-bahkostudio.md`.
 
 CTA leder alltid till front-offern: **gratis hemsideförslag** ("DM:a 'SAJT' så skickar jag ett utkast på er nya hemsida").
 
@@ -40,11 +43,14 @@ CTA leder alltid till front-offern: **gratis hemsideförslag** ("DM:a 'SAJT' så
 
 ## Steg (kör skillen `instagram-engine`)
 
-1. Välj trade (bygg/tak/måleri/mark) + vecka.
-2. Generera 3 reel-script (formeln ovan) + 2 carousell-outlines + story-idéer + DM-cadence.
+1. Välj trade (bygg/tak/måleri/mark) + vecka. Ämnen kommer från kalendern i
+   `content/ig/kontentplan-bahkostudio.md` (pelare: kundcase / invändningen / teardown / sanningen / bygg-insikten).
+2. Generera 3 reel-script (via `reel`-skillen) + 2 carousell-outlines + story-idéer + DM-cadence.
 3. Granska FOR THEM/REAL/Financial Sense/Easy YES.
-4. Spara batch till `.tmp/ig_batch_*.md`. Ev. export till Google Sheets (`tools/export_to_google_docs.js`).
-5. Producera/posta. Logga DM-svar som leads i CRM (`niche: bygg`).
+4. Spara batch till `.tmp/ig_batch_*.md`. Färdigproducerat läggs i Drive: BahkoByra-mappen → `Planerat v[nr]/`.
+5. Producera/posta. Logga DM-svar som leads i CRM (`pathway: skriven`).
+6. **Fredagar:** fyll i bladet `IG-logg` i Drive-arket `V1.xlsx` (datum, format, ämne, hook,
+   räckvidd, sparningar, SAJT-DM:ar). Det är mätningen hela self-improvement-loopen står på.
 
 ---
 

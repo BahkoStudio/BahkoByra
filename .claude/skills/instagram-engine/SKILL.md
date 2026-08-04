@@ -12,8 +12,9 @@ Mål: DM-konversationer → gratis hemsideförslag (utkast) → sälj hemsida (e
 **Offerten = hemsidor. "Växa på Google"-copy hör ENDAST hemma på bahkobyra.se — aldrig i reels/DM.**
 
 Full SOP: `workflows/instagram_engine.md`. Metodik/formler: `workflows/sales_methodology.md`.
-Allt operativt (cadence, skript, content-kalender) speglas i dashboarden:
-`bahkobyra/dashboard/index.html` → sektionen **Instagram-motor**.
+Content-kalender och pelare: `content/ig/kontentplan-bahkostudio.md`. Mätning: bladet **IG-logg**
+i Drive-arket `V1.xlsx`. Färdigproducerat: Drive-mappen `Planerat v[nr]/`.
+(Dashboardens gamla Instagram-sektion togs bort 2026-08-01 när dashboarden blev rent CRM.)
 
 ## Cadence (default)
 
@@ -24,8 +25,10 @@ Allt operativt (cadence, skript, content-kalender) speglas i dashboarden:
 1. **Välj trade + vecka.** `$1` = bygg | tak | måleri | mark. Om saknas — fråga.
 2. **Hämta vinklar** ur `templates.md` (hooks/carouseller/DM per trade).
 3. **Generera batchen:**
-   - **3 reel-script** enligt formeln: Hook → Problem → Agitera → Diskvalificera andra lösningar →
-     Lösning → CTA → Future pacing. CTA = gratis hemsideförslag ("DM:a 'SAJT'").
+   - **3 reel-script** enligt skillen `reel` (`.claude/skills/reel/SKILL.md`). Den äger tonen,
+     fyra-loops-strukturen på ett ämne, hook-regeln (skriv fem, välj en) och captionen.
+     Skriv aldrig ett reel-manus efter någon annan mall. Tre manus betyder tre olika ämnen,
+     ett per reel, men strukturen är identisk. CTA = gratis hemsideförslag ("DM:a SAJT").
    - **2 carousell-outlines** (6–8 slides: hook-slide → värde → bevis → CTA-slide).
    - **Story-idéer** (poll, BTS, audit-CTA).
    - **DM-cadence** (skriven-first dag 1/3/5/7, se `workflows/outreach_cadence.md`).
