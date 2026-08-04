@@ -250,9 +250,20 @@ riskreversering.**
 
 - **Credits:** kolla alltid återanvändning (Steg 1) INNAN `balance`/`get_cost`-preflight. Under
   200 credits kvar efter reuse-check → fråga användaren innan du genererar nytt. Max 1 retry per klipp.
-- **Hotlink-risken:** cloudfront-url:erna ägs av Higgsfield. Vid lokal körning: ladda ner och committa
-  MP4 i stället. Notera i PR:en vilken väg som användes. (Cloud-sandboxen kan INTE ladda ner från CDN:et
-  och saknar ffmpeg — där är hotlink enda vägen.)
+- **Hotlinka ALDRIG Higgsfields CDN i det som levereras.** Higgsfield raderar assets efter ~30 dagar,
+  och en hotlänkad sajt tappar då alla bilder och videor tyst — inga fel, bara tomma ytor.
+  *Lärdom 2026-08-04: alla tio dåvarande sajter hotlänkade, inklusive två betalande kunders,
+  och 10 assets fick räddas timmar innan de kunde försvinna.* Rutinen är:
+  1. Ladda ner varje genererad fil direkt vid bygget (`curl` mot `results.rawUrl`).
+  2. Weboptimera: bilder → JPG max 1920 px (`ffmpeg -vf "scale='min(1920,iw)':-2" -q:v 3`),
+     videor → H.264 CRF 26 utan ljudspår (`-an -movflags +faststart`, autoplay-bakgrunder är alltid mutade).
+  3. Lägg i `bahkobyra/cloud/[kund]/media/` med **beskrivande kebab-namn** (`fore-villa-flagnande-farg.jpg`,
+     `video-efter-nybyggt-hus.mp4`) — aldrig hf_-hashen. Committa med sajten.
+  4. Spara originalen i arkivet `testar/bahko-byra/BahkoByrå asset för hemsidor/[kund]/`.
+  5. Ingen `preconnect` mot cloudfront i HTML:en.
+  (Cloud-sandboxen kan inte ladda ner från CDN:et och saknar ffmpeg — bygg där får hotlänka
+  TILLFÄLLIGT, men flagga det i PR:en som blockerande, och nedladdningen görs lokalt innan demon
+  skickas till kund.)
 - **Konsistens före allt:** om keyframe B inte ser ut som SAMMA subjekt som A — generera om B med skarpare
   "IDENTICAL"-instruktion i stället för att acceptera ett annat subjekt. Det är hela konceptet.
 - **Nischen måste vara verifierad** (Steg 0) innan metaforen väljs — gissa aldrig "bygg" bara för
