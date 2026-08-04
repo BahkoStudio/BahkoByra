@@ -257,6 +257,8 @@ footer a{color:var(--gold-dk)}
 'use strict';
 const today=new Date().toISOString().slice(0,10);
 const KEY='bb_crm_v1';
+const DEL_KEY='bb_crm_deleted_v1';
+const MIG_KEY='bb_crm_mig_v1';
 const CAD=[1,3,5,7];
 const STATUSES=['Ny','Kontaktad','Svar','Möte','Offert','Stängd','Inte intresserad'];
 const CLOSED=['Stängd','Inte intresserad'];
@@ -306,8 +308,11 @@ const SEED=[
 
 /* ── STATE ── */
 function norm(l){return Object.assign({id:'',name:'',web:'',contact:'',phone:'',email:'',city:'',status:'Ny',pathway:'samtal',notes:'',cadenceDay:'',nextAction:'',lastTouch:'',updated:today},l);}
+function loadDeleted(){try{const d=JSON.parse(localStorage.getItem(DEL_KEY));return new Set(Array.isArray(d)?d:[]);}catch{return new Set();}}
+function markDeleted(id){const d=loadDeleted();d.add(id);localStorage.setItem(DEL_KEY,JSON.stringify([...d]));}
 function load(){
   let st=null;
+  const mig=(()=>{try{return JSON.parse(localStorage.getItem(MIG_KEY))||{};}catch{return {};}})();
   try{
     const raw=localStorage.getItem(KEY);
     if(raw){
@@ -316,15 +321,21 @@ function load(){
         .map(norm)
         // Gamla plattformens statusar viks in i pipelinens kolumner
         .map(l=>{if(l.status==='Uppföljning 2'||l.status==='Uppföljning 3')l.status='Kontaktad';if(!STATUSES.includes(l.status))l.status='Ny';return l;});
-      const b02=st.find(l=>l.id==='b02');
-      if(b02&&b02.status!=='Stängd'){b02.status='Stängd';b02.notes=('KUND — sajt levererad juli 2026: brommatradgardsservice.se. '+(b02.notes||'')).trim();}
+      // Engångsmigrering — får inte köras vid varje laddning, annars skrivs manuella flyttar över
+      if(!mig.b02){
+        const b02=st.find(l=>l.id==='b02');
+        if(b02&&b02.status!=='Stängd'){b02.status='Stängd';b02.notes=('KUND — sajt levererad juli 2026: brommatradgardsservice.se. '+(b02.notes||'')).trim();}
+        mig.b02=true;localStorage.setItem(MIG_KEY,JSON.stringify(mig));
+      }
     }
   }catch{}
   if(!st){st=SEED.map(norm);save(st);return st;}
+  const deleted=loadDeleted();
   const have=new Set(st.map(l=>l.id));
   const names=new Set(st.map(l=>l.name.toLowerCase().replace(/\s+/g,'')));
   let changed=false;
   SEED.forEach(s=>{
+    if(deleted.has(s.id))return;
     if(!have.has(s.id)&&!names.has(s.name.toLowerCase().replace(/\s+/g,''))){st.push(norm(s));changed=true;}
   });
   if(changed)save(st);
@@ -438,8 +449,37 @@ document.getElementById('board').addEventListener('dragstart',e=>{
 document.getElementById('board').addEventListener('dragend',e=>{
   const c=e.target.closest('.cardc');if(c)c.classList.remove('drag');
   document.querySelectorAll('.col.over').forEach(x=>x.classList.remove('over'));
+  stopAutoScroll();
 });
-document.getElementById('board').addEventListener('dragover',e=>{
+/* auto-scroll: när ett kort dras nära brädans kant scrollar brädan åt det hållet */
+const boardEl=document.getElementById('board');
+let scrollDir=0,scrollRaf=null;
+function autoScroll(){
+  if(!scrollDir){scrollRaf=null;return;}
+  boardEl.scrollLeft+=scrollDir;
+  scrollRaf=requestAnimationFrame(autoScroll);
+}
+function setAutoScroll(clientX){
+  const r=boardEl.getBoundingClientRect(),EDGE=110,SPEED=16;
+  if(clientX<r.left+EDGE)scrollDir=-SPEED*(1-(clientX-r.left)/EDGE);
+  else if(clientX>r.right-EDGE)scrollDir=SPEED*(1-(r.right-clientX)/EDGE);
+  else scrollDir=0;
+  if(scrollDir&&!scrollRaf)scrollRaf=requestAnimationFrame(autoScroll);
+}
+function stopAutoScroll(){scrollDir=0;}
+/* greppa tom yta på brädan och dra för att panorera */
+let panX=null,panStart=0;
+boardEl.addEventListener('mousedown',e=>{
+  if(e.button!==0||e.target.closest('.cardc'))return;
+  panX=e.clientX;panStart=boardEl.scrollLeft;
+});
+window.addEventListener('mousemove',e=>{
+  if(panX==null)return;
+  boardEl.scrollLeft=panStart-(e.clientX-panX);
+});
+window.addEventListener('mouseup',()=>{panX=null;});
+boardEl.addEventListener('dragover',e=>{
+  if(dragId)setAutoScroll(e.clientX);
   const col=e.target.closest('.col');if(!col)return;
   e.preventDefault();e.dataTransfer.dropEffect='move';
   document.querySelectorAll('.col.over').forEach(x=>{if(x!==col)x.classList.remove('over');});
@@ -450,7 +490,7 @@ document.getElementById('board').addEventListener('drop',e=>{
   e.preventDefault();
   const l=leads.find(x=>x.id===dragId);
   if(l&&l.status!==col.dataset.col){l.status=col.dataset.col;l.updated=today;save(leads);}
-  dragId=null;renderAll();
+  dragId=null;stopAutoScroll();renderAll();
 });
 
 /* ── DRAWER ── */
@@ -517,6 +557,7 @@ document.getElementById('dr-save').onclick=()=>{
 };
 document.getElementById('dr-del').onclick=()=>{
   if(!editId||!confirm('Radera detta lead? Det går inte att ångra.'))return;
+  markDeleted(editId);
   leads=leads.filter(x=>x.id!==editId);save(leads);closeDrawer();renderAll();
 };
 document.getElementById('touch').onclick=()=>{
