@@ -177,14 +177,14 @@ if (SEND && EMAIL_ARG) {
 
   // Convert markdown headers/bold to simple HTML
   const htmlReport = fullReport
-    .replace(/^## (.+)$/gm, '<h3 style="color:#c9a96e;margin:1.5rem 0 .5rem;font-size:1rem">$1</h3>')
+    .replace(/^## (.+)$/gm, '<h3 style="color:#047857;margin:1.5rem 0 .5rem;font-size:1rem">$1</h3>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\n/g, '<br>');
 
   const emailHtml = `
 <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;background:#12122A;color:#F0EDFF;padding:2rem;border-radius:8px">
   <div style="margin-bottom:1.5rem">
-    <span style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#c9a96e">Bahko Byrå</span>
+    <span style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#047857">Bahko Byrå</span>
     <h2 style="font-size:1.4rem;margin:.5rem 0 .3rem">Din gratis webbplatsanalys</h2>
     <p style="color:rgba(240,237,255,.6);font-size:.85rem">Här är den personliga analysen av <strong>${domain}</strong></p>
   </div>
