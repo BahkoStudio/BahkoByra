@@ -57,7 +57,7 @@ node tools/outreach_manager.js --reset=3
 1. Öppna terminal i projektmappen
 2. Kör `node tools/outreach_manager.js --status` för att se läget
 3. Kör `node tools/outreach_manager.js` för att skicka dagens mejl
-4. Öppna CRM (`bahkobyra/dashboard/index.html`) och uppdatera status för leads som svarat
+4. Öppna CRM (`bahkobyra/crm-f2822a6f3a/index.html`) och uppdatera status för leads som svarat
 
 ## State-fil
 

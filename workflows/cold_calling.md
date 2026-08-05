@@ -74,7 +74,7 @@ Avsluta alltid positivt — du vet aldrig när de ringer tillbaka.
 
 ## Efter samtalet — CRM-uppdatering
 
-Öppna dashboardens CRM (`bahkobyra/dashboard/index.html`) och anteckna:
+Öppna dashboardens CRM (`bahkobyra/crm-f2822a6f3a/index.html`) och anteckna:
 
 | Vad hände | Anteckning |
 |-----------|------------|

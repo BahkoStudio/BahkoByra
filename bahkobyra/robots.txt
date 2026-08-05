@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /dashboard/
-
 Sitemap: https://www.bahkobyra.se/sitemap.xml

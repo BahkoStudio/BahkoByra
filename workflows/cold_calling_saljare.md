@@ -278,7 +278,7 @@ Full diagnostabell + spök-/avslutsmejl: webbversionen, avsnitt 4.
 
 ## 6. Dina verktyg: CRM och mejlkontot
 
-**CRM:** https://www.bahkobyra.se/dashboard/ — här bor leadlistan, cadence-spårningen och
+**CRM:** https://www.bahkobyra.se/crm-f2822a6f3a/ — här bor leadlistan, cadence-spårningen och
 alla skript. Sparas i webbläsaren, så jobba alltid från samma dator och ta en backup
 (knappen "Backup" i CRM-verktygsraden) i slutet av varje vecka.
 

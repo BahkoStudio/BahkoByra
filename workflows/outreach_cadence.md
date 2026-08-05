@@ -1,7 +1,7 @@
 # Workflow: 7-dagars Outreach-Cadence
 
 Strukturen från "Outreach Cadence"-bilden. Driver bygg-outreachen (cold email / cold call / IRL)
-och styr CRM:et i `bahkobyra/dashboard/index.html`. Instagram-DM kör samma logik
+och styr CRM:et i `bahkobyra/crm-f2822a6f3a/index.html`. Instagram-DM kör samma logik
 (se `workflows/instagram_engine.md`).
 
 ## Objektiv

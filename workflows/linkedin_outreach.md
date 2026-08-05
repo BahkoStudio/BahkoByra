@@ -73,7 +73,7 @@ Lycka till med firman!
 
 ## CRM-uppdatering
 
-Efter LinkedIn-kontakt — anteckna i CRM (`bahkobyra/dashboard/index.html`):
+Efter LinkedIn-kontakt — anteckna i CRM (`bahkobyra/crm-f2822a6f3a/index.html`):
 ```
 LinkedIn dag [X]: kontaktförfrågan skickad
 LinkedIn dag [X]: accepterat

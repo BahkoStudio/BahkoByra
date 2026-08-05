@@ -78,7 +78,7 @@ Stay pragmatic. Stay reliable. Keep learning.
 
 Fundamentet för all försäljning. Full playbook: `workflows/sales_methodology.md`. Leverans:
 `workflows/local_seo_delivery.md`. Cadence: `workflows/outreach_cadence.md`. IG: `workflows/instagram_engine.md`.
-Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `bahkobyra/dashboard/index.html`
+Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `bahkobyra/crm-f2822a6f3a/index.html`
 (CRM med cadence, offert-väljare, outreach-skript, Instagram-motor, Spelbok).
 
 **POSITIONERING (viktigt):**
