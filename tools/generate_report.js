@@ -62,11 +62,11 @@ function mdToHtml(text) {
 function generateHtml(data, brand) {
   const company    = brand.company_name || "Bahko Byrå";
   const tagline    = brand.tagline || "";
-  const primary    = brand.primary_color || "#c9a96e";
+  const primary    = brand.primary_color || "#10B981";
   const secondary  = brand.secondary_color || "#0c0a09";
   const accent     = brand.accent_color || "#e0c48a";
   const textColor  = brand.text_color || "#f0ece4";
-  const fontH      = brand.font_heading || "Cormorant Garamond";
+  const fontH      = brand.font_heading || "Outfit";
   const fontB      = brand.font_body || "Outfit";
   const services   = brand.services || [];
   const target     = brand.target_market || "";
