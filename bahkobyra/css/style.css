@@ -275,7 +275,17 @@ section{padding-top:var(--section);padding-bottom:var(--section)}
 .demo-shield{position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(13,11,9,.55) 100%);transition:background .35s}
 .demo-card:hover .demo-shield{background:linear-gradient(180deg,transparent 40%,rgba(13,11,9,.35) 100%)}
 .demo-card-meta{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.2rem;border-top:1px solid var(--paper-line)}
+/* Senaste kundleveransen spänner över båda kolumnerna. Löser samtidigt att fem
+   kort i ett tvåkolumnsrutnät annars lämnar ett ensamt kort på sista raden. */
+.demo-card-feat{grid-column:1/-1}
+.demo-card-feat .demo-preview{aspect-ratio:16/7}
 .demo-card-meta h3{font-size:1rem;font-weight:500;color:var(--paper);margin:0 0 .15rem}
+/* Bara på sajter som faktiskt är levererade till kund, aldrig på demos.
+   Selektorn måste vara minst lika specifik som `.demo-card-meta span` nedan,
+   annars vinner den och etiketten blir grå i stället för guld. */
+.demo-card-meta h3 .demo-badge{display:inline-block;vertical-align:middle;margin-left:.5rem;padding:.16rem .5rem;
+  border-radius:99px;border:1px solid rgba(201,169,110,.4);background:rgba(201,169,110,.12);color:var(--gold-lt);
+  font-size:.56rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
 .demo-card-meta span{font-size:.72rem;color:var(--paper-45);font-weight:300}
 .demo-open{display:inline-flex;align-items:center;gap:.45rem;white-space:nowrap;color:var(--gold-lt);font-size:.68rem;font-weight:500;
   letter-spacing:.08em;text-transform:uppercase;transition:gap .3s}

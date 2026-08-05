@@ -266,8 +266,8 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 #float-offert.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 #float-offert:hover{box-shadow:0 16px 40px -8px rgba(107,191,89,.7);transform:translateY(-2px) scale(1.03)}
 
-footer{border-top:1px solid var(--line);padding:2rem clamp(1.2rem,4vw,3rem);display:flex;justify-content:space-between;gap:1rem 1.6rem;flex-wrap:wrap;font-size:.72rem;color:var(--dim);background:var(--bg)}
-footer a{color:var(--amber-lt)}
+footer{border-top:1px solid var(--line);padding:2rem clamp(1.2rem,4vw,3rem);display:flex;justify-content:space-between;gap:1rem 1.6rem;flex-wrap:wrap;font-size:.82rem;color:var(--muted);background:var(--bg)}
+footer a{color:var(--amber-lt);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 footer a:hover{text-decoration:underline}
 .foot-links{display:flex;flex-wrap:wrap;gap:1rem}
 
