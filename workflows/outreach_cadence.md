@@ -66,3 +66,28 @@ Alla dag-för-dag-skript (de tre vägarna) + IG-DM-cadence finns kopierbara i da
 - Svarar de → hoppa direkt till ENGAGED, strunta i resten av cadencen.
 - Texting = logistik ("när ringer/ses vi?"), inte långa säljmejl. Korta, mänskliga, hjälpsamma.
 - Eskalera bara EN gång vid tystnad. Sen nurture. Var aldrig needy.
+
+---
+
+## Automatiserat mejlutskick (tools/outreach_manager.js)
+
+Skickar 4-stegssekvensen (dag 0/3/5/7: intro+demo, uppföljning, socialt bevis, sista CTA)
+via one.com-SMTP (nodemailer), max 20 mejl/dag.
+`.env`: `FROM_EMAIL`, `FROM_NAME`, `SMTP_PASSWORD` (one.com), valfria `MAX_PER_DAY`, `LOOM_URL`.
+
+```bash
+node tools/outreach_manager.js --dry-run        # simulera (kör alltid först)
+node tools/outreach_manager.js                  # skicka dagens mejl
+node tools/outreach_manager.js --status         # läget
+node tools/outreach_manager.js --mark-replied=5 # stoppa sekvens vid svar
+node tools/outreach_manager.js --unsubscribe=12 # opt-out (state-filen är GDPR-registret)
+node tools/outreach_manager.js --reset=3        # börja om ett lead
+```
+
+State: `.tmp/outreach_state.json` (auto-skapad). Leadlista: `data/leads.json` —
+**OBS: filen finns inte i repot i dag; verktyget kräver ny leadlista innan det används igen.**
+Daglig rutin: `--status` → kör → uppdatera CRM:et för leads som svarat.
+Svar med "avregistrera"/"ta bort mig" hanteras manuellt med `--unsubscribe`.
+
+*(Ersätter `outreach_automation.md`, raderad 2026-08-05 — dess Resend-setup stämde aldrig
+med koden, som kör nodemailer mot one.com.)*
