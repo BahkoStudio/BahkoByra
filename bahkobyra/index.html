@@ -6,7 +6,7 @@
 <title>Bahko Byrå | Hemsidor, SEO &amp; Google Ads för Lokala Företag</title>
 <meta name="description" content="Bahko Byrå hjälper lokala företag att synas på Google, få fler kunder och växa online. Professionella hemsidor, Google Ads och SEO — byggt för lokala marknader.">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#181C38">
+<meta name="theme-color" content="#0A1628">
 <link rel="canonical" href="https://www.bahkobyra.se/">
 
 <!-- Open Graph -->
@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://www.bahkobyra.se/">
 <meta property="og:title" content="Bahko Byrå | Hemsidor, SEO & Google Ads för Lokala Företag">
 <meta property="og:description" content="Bahko Byrå hjälper lokala företag att synas på Google, få fler kunder och växa online. Professionella hemsidor, Google Ads och SEO.">
-<meta property="og:image" content="https://www.bahkobyra.se/brand/Bahkostudio.jpg">
+<meta property="og:image" content="https://www.bahkobyra.se/brand/logo-raster-16x9.png">
 <meta property="og:locale" content="sv_SE">
 <meta property="og:site_name" content="Bahko Byrå">
 
@@ -22,15 +22,15 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Bahko Byrå | Hemsidor, SEO & Google Ads för Lokala Företag">
 <meta name="twitter:description" content="Vi hjälper lokala företag att synas på Google, få fler kunder och växa online.">
-<meta name="twitter:image" content="https://www.bahkobyra.se/brand/Bahkostudio.jpg">
+<meta name="twitter:image" content="https://www.bahkobyra.se/brand/logo-raster-16x9.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style-v2.css">
 
 <!-- Schema: Organization + LocalBusiness. telephone läggs till när publikt nummer är beslutat (KRÄVER DIG). -->
 <script type="application/ld+json">
@@ -40,8 +40,8 @@
   "@id": "https://www.bahkobyra.se/#organization",
   "name": "Bahko Byrå",
   "url": "https://www.bahkobyra.se",
-  "logo": "https://www.bahkobyra.se/brand/BahkoStudio-removebg-preview.png",
-  "image": "https://www.bahkobyra.se/brand/Bahkostudio.jpg",
+  "logo": "https://www.bahkobyra.se/brand/mark.svg",
+  "image": "https://www.bahkobyra.se/brand/logo-raster-16x9.png",
   "email": "mathias@bahkobyra.se",
   "description": "Digital byrå specialiserad på hemsidor, SEO och Google Ads för lokala företag i Sverige.",
   "slogan": "Synlighet som säljer.",
@@ -58,11 +58,11 @@
 }
 </script>
 
-<!-- libs -->
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js"></script>
-<script defer src="js/main.js"></script>
+<!-- libs (pinnade versioner + SRI) -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous"></script>
+<script defer src="js/main-v2.js"></script>
 <script defer src="js/analytics.js"></script>
 </head>
 <body>
@@ -72,19 +72,17 @@
 
 <!-- PRELOADER -->
 <div id="preloader">
-  <div class="pl-mark mark">
-    <span class="mark-box"><span>B</span></span>
-    <span class="mark-word" style="color:var(--paper)">Bahko <em>Byrå</em></span>
+  <div class="pl-mark">
+    <img src="brand/mark.svg" alt="" width="56" height="56">
+    <span class="mark-word">Bahko Byrå</span>
   </div>
-  <div class="pl-bar"><i id="pl-bar"></i></div>
-  <div class="pl-num" id="pl-num">000</div>
 </div>
 
 <!-- HEADER -->
 <header class="hdr up" id="hdr">
-  <a href="#top" class="mark sm magnetic" data-magnetic=".2" aria-label="Bahko Byrå">
-    <span class="mark-box"><span>B</span></span>
-    <span class="mark-word">Bahko <em>Byrå</em></span>
+  <a href="#top" class="mark magnetic" data-magnetic=".2" aria-label="Bahko Byrå">
+    <img src="brand/mark.svg" alt="" width="42" height="42">
+    <span class="mark-word">Bahko Byrå</span>
   </a>
   <nav class="nav">
     <a href="#tjanster">Tjänster</a>
@@ -92,7 +90,7 @@
     <a href="#demo">Demo</a>
     <a href="#varfor">Varför Oss</a>
     <a href="/foretag/gratis-granskning.html" class="gratis">Gratis Analys</a>
-    <a href="#kontakt" class="btn btn-gold magnetic" data-magnetic=".3"><span>Boka Samtal</span></a>
+    <a href="#kontakt" class="btn btn-primary magnetic" data-magnetic=".3"><span>Boka Samtal</span></a>
   </nav>
   <button class="burger" id="burger" aria-label="Meny"><span></span><span></span><span></span></button>
 </header>
@@ -118,7 +116,7 @@
       <span class="line"><span>Vi fyller din kalender</span></span>
       <span class="line"><span>med <span class="accent">nya kunder.</span></span></span>
     </h1>
-    <p class="hero-lede">Är ditt företag osynligt på Google? Se den korta videon — den visar varför du inte ligger topp 3 när kunder i din stad söker.</p>
+    <p class="hero-lede">Är ditt företag osynligt på Google? Se den korta videon. Den visar varför du inte ligger topp 3 när kunder i din stad söker.</p>
 
     <div class="hero-video">
       <iframe src="https://www.youtube-nocookie.com/embed/ZjvHsth4NJM?rel=0&amp;modestbranding=1&amp;playsinline=1&amp;color=white"
@@ -128,7 +126,7 @@
     </div>
 
     <div class="hero-ctas">
-      <a href="/foretag/gratis-granskning.html" class="btn btn-gold magnetic" data-magnetic=".3"><span>Få Gratis Analys</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="/foretag/gratis-granskning.html" class="btn btn-primary magnetic" data-magnetic=".3"><span>Få Gratis Analys</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
     <p class="hero-micro">Kostnadsfri analys av er hemsida · Svar inom 24 timmar · Inga krav</p>
   </div>
@@ -266,9 +264,9 @@
       <p class="lede" data-reveal style="margin-top:1.4rem">De flesta byråer levererar en snygg hemsida och försvinner. Vi mäter framgång i faktiska bokningar — och vi är inte nöjda förrän du är det.</p>
     </div>
     <div class="why-list" data-stagger>
-      <div class="wi" data-stagger-item><span class="wi-ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="wi-t">Du ser förslaget innan du betalar</div><div class="wi-d">Vi bygger ett komplett hemsideförslag och skickar det inom 48 timmar. Gillar du det kör vi — annars kostar det ingenting.</div></div></div>
-      <div class="wi" data-stagger-item><span class="wi-ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="wi-t">Specialister på lokala kunder</div><div class="wi-d">Vi fokuserar inte på globala kampanjer. Vi hjälper dig att dominera din lokala marknad — det är där dina kunder finns.</div></div></div>
-      <div class="wi" data-stagger-item><span class="wi-ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="wi-t">100% transparent rapportering</div><div class="wi-d">Veckovisa rapporter. Du ser exakt vad vi gör, vad det kostar och vad det genererar. Inga dolda avgifter.</div></div></div>
+      <div class="wi" data-stagger-item><span class="wi-ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="wi-t">Du ser förslaget innan du betalar</div><div class="wi-d">Vi bygger ett komplett hemsideförslag och skickar det inom 48 timmar. Gillar du det kör vi. Annars kostar det ingenting.</div></div></div>
+      <div class="wi" data-stagger-item><span class="wi-ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="wi-t">Specialister på lokala kunder</div><div class="wi-d">Vi fokuserar inte på globala kampanjer. Vi hjälper dig att dominera din lokala marknad, det är där dina kunder finns.</div></div></div>
+      <div class="wi" data-stagger-item><span class="wi-ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="wi-t">100% transparent rapportering</div><div class="wi-d">Veckovisa rapporter. Du ser exakt vad vi gör, vad det kostar och vad det genererar, utan dolda avgifter.</div></div></div>
     </div>
   </div>
 </section>
@@ -281,9 +279,9 @@
         <span class="audit-badge">Kostnadsfri analys</span>
       </div>
       <h3>Få en gratis 10-punktsanalys<br>av er hemsida</h3>
-      <p>Vi granskar er webbplats och skickar en personlig rapport direkt till er inbox — mobilanpassning, SEO, kontaktflöde och mer. Svar inom 24h.</p>
+      <p>Vi granskar er webbplats och skickar en personlig rapport direkt till er inbox: mobilanpassning, SEO, kontaktflöde och mer. Svar inom 24h.</p>
     </div>
-    <a href="/foretag/gratis-granskning.html" class="btn btn-gold magnetic" data-magnetic=".25"><span>Få gratis analys</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a href="/foretag/gratis-granskning.html" class="btn btn-primary magnetic" data-magnetic=".25"><span>Få gratis analys</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
 </section>
 
@@ -296,7 +294,7 @@
       <span class="line"><span>din <em>kalender?</em></span></span>
     </h2>
     <p data-reveal>Boka ett gratis 20-minuterssamtal — utan förpliktelser, utan säljsnack.</p>
-    <a href="#kontakt" class="btn btn-gold magnetic" data-magnetic=".3" data-reveal><span>Boka Gratis Samtal Nu</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a href="#kontakt" class="btn btn-primary magnetic" data-magnetic=".3" data-reveal><span>Boka Gratis Samtal Nu</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
 </section>
 
@@ -338,7 +336,7 @@
       <div class="field"><label for="cf-msg">Hur kan vi hjälpa dig?</label><textarea id="cf-msg" name="meddelande" placeholder="Berätta kort om din verksamhet och vad du vill uppnå..."></textarea></div>
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
       <input type="hidden" name="_subject" value="Ny kontaktförfrågan – startsidan (bahkobyra.se)">
-      <button class="btn btn-gold magnetic" data-magnetic=".2" type="submit"><span>Skicka Förfrågan</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      <button class="btn btn-primary magnetic" data-magnetic=".2" type="submit"><span>Skicka Förfrågan</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </form>
     <div class="cok" id="cok">
       <div class="ic">✓</div>
@@ -351,10 +349,10 @@
 <!-- FOOTER -->
 <footer class="foot">
   <div class="foot-top">
-    <div class="foot-brand">Bahko <em>Byrå</em></div>
+    <div class="foot-brand"><img src="brand/mark.svg" alt="" width="76" height="76"><span>Bahko Byrå</span></div>
     <div class="foot-cta">
       <p>Synlighet som säljer.</p>
-      <a href="#kontakt" class="btn btn-gold magnetic" data-magnetic=".25"><span>Starta Ditt Projekt</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#kontakt" class="btn btn-primary magnetic" data-magnetic=".25"><span>Starta Ditt Projekt</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
   <div class="foot-nl">
@@ -366,7 +364,7 @@
       <input type="email" name="email" placeholder="du@dittforetag.se" required autocomplete="email" aria-label="Din e-post">
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
       <input type="hidden" name="_subject" value="Ny prenumerant – nyhetsbrev (footer bahkobyra.se)">
-      <button class="btn btn-gold" type="submit"><span>Prenumerera</span></button>
+      <button class="btn btn-primary" type="submit"><span>Prenumerera</span></button>
     </form>
     <p class="foot-nl-ok" id="nl-ok">✓ Tack! Du är med — första tipset landar i din inkorg snart.</p>
   </div>
@@ -390,7 +388,7 @@
     <div class="pop-ey">Kostnadsfri hemsideanalys</div>
     <h3>Få en gratis analys av er hemsida</h3>
     <p>Vi granskar er webbplats mot 10 punkter och skickar rapporten direkt till er inbox — inom 24h.</p>
-    <a href="/foretag/gratis-granskning.html" class="btn btn-gold"><span>Få min gratis analys</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a href="/foretag/gratis-granskning.html" class="btn btn-primary"><span>Få min gratis analys</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     <p class="pop-note">Inga krav. Svar inom 24h.</p>
   </div>
 </div>
