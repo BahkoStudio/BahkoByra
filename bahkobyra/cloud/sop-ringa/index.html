@@ -5,33 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Internt arbetsmaterial: ska aldrig indexeras och ligger medvetet utanför sitemapen. -->
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#181C38">
+<meta name="theme-color" content="#F8FAFC">
 <title>SOP: Kalla samtal — Bahko Byrå (internt)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#181C38; --navy-80:rgba(24,28,56,.8); --navy-60:rgba(24,28,56,.6);
-  --gold:#C9A96E; --gold-lt:#E3C88E; --cream:#F7F3EA; --white:#FFFDF9;
-  --line:rgba(24,28,56,.12); --red:#A94438; --green:#3F7A4E;
-  --disp:'Cormorant Garamond',Georgia,serif; --sans:'Outfit',system-ui,sans-serif;
+  --navy:#0A1628; --navy-80:#334155; --navy-60:#475569;
+  --gold:#047857; --gold-lt:#34D399; --smaragd:#10B981; --cream:#F8FAFC; --yta-2:#F1F5F9; --white:#FFFFFF;
+  --line:#E2E8F0; --red:#DC2626; --green:#047857; --danger:#DC2626; --warn:#B45309; --focus:#047857;
+  --disp:'Outfit',system-ui,sans-serif; --sans:'Outfit',system-ui,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{font-family:var(--sans);background:var(--cream);color:var(--navy);font-size:16px;line-height:1.65}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 
 /* Header */
-.top{position:sticky;top:0;z-index:50;background:rgba(247,243,234,.92);backdrop-filter:blur(10px);
+.top{position:sticky;top:0;z-index:50;background:rgba(248,250,252,.92);backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);padding:.8rem 1.4rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 .top img{height:34px;display:block}
-.top .t{font-family:var(--disp);font-weight:600;font-size:1.15rem}
+.top .t{font-family:var(--sans);font-weight:700;font-size:1.1rem}
 .top .badge{margin-left:auto;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
   color:var(--gold);border:1px solid var(--gold);border-radius:100px;padding:.3rem .9rem}
 .nav{display:flex;gap:.4rem;flex-wrap:wrap;padding:.6rem 1.4rem;background:var(--navy)}
-.nav a{color:rgba(255,253,249,.75);text-decoration:none;font-size:.72rem;letter-spacing:.08em;
+.nav a{color:rgba(248,250,252,.8);text-decoration:none;font-size:.72rem;letter-spacing:.08em;
   text-transform:uppercase;padding:.35rem .8rem;border-radius:100px;transition:.25s}
-.nav a:hover{color:var(--gold-lt);background:rgba(227,200,142,.1)}
+.nav a:hover{color:var(--gold-lt);background:rgba(52,211,153,.12)}
 
 .wrap{max-width:860px;margin:0 auto;padding:2.6rem 1.4rem 5rem}
 
@@ -54,13 +55,13 @@ ul,ol{margin:0 0 1rem 1.2rem}
 li{margin:.35rem 0;color:var(--navy-80)}
 
 /* Script cards */
-.say{background:var(--white);border:1px solid var(--line);border-left:4px solid var(--gold);
+.say{background:var(--white);border:1px solid var(--line);border-left:4px solid var(--smaragd);
   border-radius:0 12px 12px 0;padding:1.1rem 1.3rem;margin:.9rem 0;font-size:.98rem;color:var(--navy);
-  box-shadow:0 2px 12px rgba(24,28,56,.05)}
+  box-shadow:0 2px 12px rgba(10,22,40,.05)}
 .say .who{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.4rem}
 .say p{color:var(--navy);margin-bottom:.6rem}
 .say p:last-child{margin-bottom:0}
-.var{background:rgba(201,169,110,.18);border-radius:4px;padding:0 .3em;font-weight:600;white-space:nowrap}
+.var{background:rgba(16,185,129,.16);border-radius:4px;padding:0 .3em;font-weight:600;white-space:nowrap}
 
 /* Variable cards */
 .vcard{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.5rem;margin:1rem 0}
@@ -70,7 +71,7 @@ li{margin:.35rem 0;color:var(--navy-80)}
 
 /* Tables */
 table{border-collapse:collapse;width:100%;margin:1rem 0;background:var(--white);border-radius:12px;overflow:hidden;
-  box-shadow:0 2px 12px rgba(24,28,56,.05);font-size:.88rem}
+  box-shadow:0 2px 12px rgba(10,22,40,.05);font-size:.88rem}
 th{background:var(--navy);color:var(--white);text-align:left;padding:.6rem .9rem;font-weight:600;font-size:.78rem;
   letter-spacing:.06em;text-transform:uppercase}
 td{padding:.6rem .9rem;border-top:1px solid var(--line);vertical-align:top}
@@ -82,17 +83,17 @@ td a{color:var(--navy);font-weight:500}
   padding:.7rem 1rem .7rem 2.6rem;position:relative;margin:.5rem 0}
 .rules{margin-left:0}
 .rules li::before{content:counter(r);counter-increment:r;position:absolute;left:.8rem;top:.72rem;
-  width:1.35rem;height:1.35rem;border-radius:50%;background:var(--gold);color:var(--navy);
+  width:1.35rem;height:1.35rem;border-radius:50%;background:var(--gold);color:#fff;
   font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center}
 .rules{counter-reset:r}
 
 /* Dagslogg */
 .logtools{display:flex;gap:.6rem;flex-wrap:wrap;margin:.8rem 0}
 button{font-family:var(--sans);font-size:.78rem;font-weight:600;letter-spacing:.06em;border-radius:100px;
-  padding:.55rem 1.2rem;cursor:pointer;border:1px solid var(--navy);background:var(--navy);color:var(--white);transition:.2s}
-button:hover{background:var(--gold);border-color:var(--gold);color:var(--navy)}
-button.ghost{background:transparent;color:var(--navy)}
-button.ghost:hover{background:rgba(201,169,110,.15)}
+  padding:.55rem 1.2rem;min-height:44px;cursor:pointer;border:1px solid var(--smaragd);background:var(--smaragd);color:var(--navy);transition:.2s}
+button:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--navy)}
+button.ghost{background:transparent;border-color:var(--navy);color:var(--navy)}
+button.ghost:hover{background:rgba(16,185,129,.12)}
 #logg td{padding:.25rem}
 #logg input{width:100%;border:1px solid transparent;background:transparent;font-family:var(--sans);
   font-size:.86rem;color:var(--navy);padding:.35rem .5rem;border-radius:6px}
@@ -204,7 +205,7 @@ firma, gratis, levererad på mejl inom 48 timmar.</p>
     <p>Direkt efter smärtan kommer beviset: <b>en mening om vad det gav en liknande kund.</b>
     Utan den är smärtan bara kritik. Med den blir den ett skäl att lyssna klart.</p>
     <p><b>Standardraden</b> (använd den om inget bättre finns):</p>
-    <p style="background:var(--cream-2);border-left:4px solid var(--gold);padding:.7rem 1rem;border-radius:0 8px 8px 0">
+    <p style="background:var(--yta-2);border-left:4px solid var(--smaragd);padding:.7rem 1rem;border-radius:0 8px 8px 0">
     "Vi har haft kunder med en sida som liknar er, där små justeringar gett
     <b>tolv procent fler kundförfrågningar</b>."</p>
     <ul>
@@ -447,7 +448,7 @@ firma, gratis, levererad på mejl inom 48 timmar.</p>
     <b>en</b> uppföljning (mallen i avsnitt 3), sen ett avslutsmejl — aldrig fler påminnelser,
     aldrig "ville bara kolla läget".</p>
     <p><b>Avslutsmejlet</b> (skickas för att stänga snyggt, inte för att fiska):</p>
-    <p style="background:var(--cream-2);border-left:4px solid var(--gold);padding:.7rem 1rem;border-radius:0 8px 8px 0">
+    <p style="background:var(--yta-2);border-left:4px solid var(--smaragd);padding:.7rem 1rem;border-radius:0 8px 8px 0">
     "Inga problem, jag stänger ärendet på min sida. Hör av dig om det blir aktuellt längre fram.
     Lycka till med [något konkret från deras verksamhet]!"</p>
     <p>Förvånansvärt ofta väcker just det mejlet svaret som påminnelserna aldrig fick.
