@@ -217,6 +217,18 @@ details.varfor summary{color:var(--em-deep)}
 .regel p{color:var(--ink)}
 .regel p:last-child{margin-bottom:0}
 
+/* INTERNT — provision och prisstege, läses aldrig högt för kunden */
+.internt{
+  background:rgba(220,38,38,.055);border:1px solid rgba(220,38,38,.26);
+  border-radius:var(--r);padding:.85rem 1.1rem;margin:1rem 0;font-size:.96rem;color:var(--ink);
+}
+.internt .h{
+  font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+  color:#B91C1C;font-weight:700;margin-bottom:.35rem;
+}
+.internt p:last-child{margin-bottom:0}
+.internt .matt div{border-color:rgba(220,38,38,.22)}
+
 /* INVÄNDNINGSKORT — måste hittas i under 3 sekunder */
 .inv{
   background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);
@@ -939,7 +951,19 @@ kbd{
       <p><b>Det här är enda stället där priset nämns.</b></p>
     </div>
 
-    <h3>Upplägget: 3 + 5 + 4 + 3 minuter</h3>
+    <div class="callout">
+      <b>Offerten har fyra delar.</b> Saknas en av dem är det ingen offert, det är en
+      tjänstebeskrivning. Ordningen är inte förhandlingsbar: resultatet först, priset sist.
+    </div>
+
+    <div class="matt">
+      <div><b>1 · Resultat</b><br><span class="villkor">Specifikt och mätbart</span></div>
+      <div><b>2 · Mekanism</b><br><span class="villkor">Hur det går till</span></div>
+      <div><b>3 · Riskreversering</b><br><span class="villkor">Vad de riskerar: inget</span></div>
+      <div><b>4 · Villkor</b><br><span class="villkor">Pris, bindning, deras del</span></div>
+    </div>
+
+    <h3>Upplägget: 3 + 2 + 4 + 2 + 4 minuter</h3>
 
     <div class="steg"><span class="num">1</span> Öppna i deras demo <span class="min">3 min</span></div>
     <div class="sag">
@@ -947,37 +971,75 @@ kbd{
     </div>
     <div class="gor">
       <div class="h">Vad du gör</div>
-      <p>Låt dem prata först. <b>Anteckna orden de använder.</b></p>
+      <p>Låt dem prata först. <b>Anteckna orden de använder.</b> Dem återanvänder du i del 1.</p>
     </div>
     <details class="varfor" open><summary>Varför fråga först?</summary>
-      <div class="d"><p>Det de lyfter fram är det du säljer på — inte det du själv tycker är finast.</p></div>
+      <div class="d"><p>Det de lyfter fram är det du säljer på, inte det du själv tycker är finast.</p></div>
     </details>
 
-    <div class="steg"><span class="num">2</span> Vad ni får <span class="min">5 min</span></div>
+    <div class="steg"><span class="num">2</span> Del 1 · Resultatet <span class="min">2 min</span></div>
     <div class="sag">
-      <p>"Det du har sett är ett utkast. Säger du ja gör vi den skarp, och då ingår allt det här:</p>
+      <p>"Det du har sett är ett utkast. Säger du ja gör vi den skarp.</p>
+      <p>Men grejen är inte att sidan blir snyggare. <b>Grejen är att fler hör av sig.</b> Vi har haft
+      kunder med en sida som liknar er, där små justeringar gett <b>tolv procent fler
+      kundförfrågningar</b>. Och det ska märkas inom <b>trettio dagar</b> från att sidan är live."</p>
+    </div>
+    <div class="gor">
+      <div class="h">Vad du gör</div>
+      <p>Säg resultatet i siffror, före allt annat. Sidan är medlet, förfrågningarna är målet.</p>
+    </div>
+    <details class="varfor"><summary>Varför siffror och inte adjektiv?</summary>
+      <div class="d"><p>"Proffsig sida" går inte att ta ställning till. "Tolv procent fler förfrågningar
+      inom trettio dagar" går att säga ja eller nej till. Ett vagt löfte kan aldrig accepteras, bara
+      artigt avvaktas.</p>
+      <p><b>Tolv procent är ett kundcase, inte en utlovad siffra.</b> Säg "vi har haft kunder där",
+      aldrig "ni får". Det du garanterar i del 3 är fler förfrågningar, inte exakt tolv procent.</p></div>
+    </details>
+
+    <div class="steg"><span class="num">3</span> Del 2 · Mekanismen <span class="min">4 min</span></div>
+    <div class="sag">
+      <p>"Så här går det till, konkret:</p>
       <p>Sidan byggs klart med <b>era riktiga bilder, era texter och era kontaktuppgifter</b>.
       Egen domän, alltså er egen adress på nätet. Mejl som funkar. Snabb i mobilen, med
-      offertknapp på varenda skärm — det är den som gör att folk faktiskt hör av sig.</p>
-      <p>Vi har haft kunder med en sida som liknar er där små justeringar gett tolv procent
-      fler kundförfrågningar. Det är den typen av detaljer vi lägger in från start."</p>
+      <b>offertknapp på varenda skärm</b>. Det är den som gör att folk faktiskt hör av sig i stället
+      för att leta vidare till nästa firma.</p>
+      <p>Och tidsplanen: idag säger du ja, jag skickar fakturan direkt efter samtalet. När den är betald
+      bygger vi klart, ni skickar bilder och det ni vill ha med. <b>Inom sju dagar är sidan live.</b>
+      Ni äger den, er domän, allt."</p>
+    </div>
+    <div class="gor">
+      <div class="h">Vad du gör</div>
+      <p>Namnge <b>mekanismen</b> som skapar resultatet: offertknappen och mobilhastigheten.
+      Aldrig "modern design" eller "proffsigt intryck".</p>
     </div>
 
-    <div class="steg"><span class="num">3</span> Hur det går till <span class="min">4 min</span></div>
+    <div class="steg"><span class="num">4</span> Del 3 · Riskreverseringen <span class="min">2 min</span></div>
     <div class="sag">
-      <p>"Så här ser veckan ut:</p>
-      <p>Idag säger du ja, så skickar jag en faktura direkt efter samtalet. När den är betald bygger vi
-      klart — ni skickar bilder och det ni vill ha med, vi gör resten. Ni får titta och säga till om något
-      ska ändras.</p>
-      <p><b>Inom sju dagar är sidan live.</b> Ni äger den, er domän, allt."</p>
+      <p>"Och händer det inte?</p>
+      <p>Har ni inte fått fler kundförfrågningar trettio dagar efter att sidan gått live, då
+      <b>fortsätter vi jobba utan att ta mer betalt tills det händer.</b> Vi justerar sidan, texterna
+      och er Google-profil så länge det behövs. Ni betalar en gång, inte en gång i månaden."</p>
+    </div>
+    <div class="gor">
+      <div class="h">Vad du gör</div>
+      <p>Säg garantin långsamt och <b>var tyst efteråt</b>. Det är meningen som tar bort risken,
+      låt den landa innan du går vidare till priset.</p>
+    </div>
+    <div class="regel">
+      <div class="h">Garantin har två villkor — de sägs i del 4</div>
+      <p>Den gäller så länge kunden <b>skickar sitt material inom en vecka</b> och <b>svarar när någon
+      hör av sig</b>. Säg det som en självklarhet, inte som ett förbehåll: sidan kan skicka folk till
+      dem, men det är de som stänger jobbet. Utan de två villkoren är garantin oändlig.</p>
     </div>
 
-    <div class="steg"><span class="num">4</span> Priset och avslutet <span class="min">3 min</span></div>
+    <div class="steg"><span class="num">5</span> Del 4 · Villkoren <span class="min">4 min</span></div>
     <div class="sag">
-      <p>"Priset är <b>15&nbsp;000 kronor inklusive moms</b>. En gång. Ingen bindning, inga månadsavgifter,
+      <p>"Villkoren är enkla:</p>
+      <p><b>Femtontusen kronor plus moms.</b> En gång. <b>Ingen bindningstid</b>, inga månadsavgifter,
       inga överraskningar.</p>
-      <p>Räkna själv: vad är ett enda jobb värt för er? Ett badrum, ett tak, en fasad — de flesta
-      av våra kunder tjänar in sidan på första jobbet den drar in.</p>
+      <p>Det som krävs av er: bilder och texter inom en vecka, och att ni svarar när någon hör av sig.</p>
+      <p>Räkna själv: vad är ett enda jobb värt för er? Ett badrum, ett tak, en fasad. De flesta av
+      våra kunder tjänar in sidan på första jobbet den drar in.</p>
       <p><b>Ska vi köra?</b> Då mejlar jag fakturan när vi lagt på, och så är ni live nästa vecka."</p>
     </div>
 
@@ -1004,13 +1066,29 @@ kbd{
       <dl>
         <div><dt>Vad det betyder</dt><dd>Värdet landade inte.</dd></div>
         <div class="r"><dt>Rätt drag</dt><dd>Gå tillbaka till det <b>de själva</b> sa att de gillade i demon.</dd></div>
-        <div class="f"><dt>Fel drag</dt><dd>Rabatt.</dd></div>
+        <div class="f"><dt>Fel drag</dt><dd>Rabatt. Värdet fattas, inte kronorna.</dd></div>
       </dl>
     </div>
 
     <div class="regel">
-      <div class="h">Aldrig undantag</div>
-      <p><b>Vi prutar inte.</b> Samma pris för alla — det är en del av tryggheten.</p>
+      <div class="h">Så rör du dig i prisstegen</div>
+      <p>Sänk <b>aldrig frivilligt</b> och aldrig innan värdet landat. Gå ner <b>ett steg i taget</b>,
+      och bara mot ett riktigt motargument, aldrig mot tystnad. Har du sänkt en gång är nästa nivå
+      ditt sista bud. Golvet är <b>8 000 kr ex moms</b>, under det säljer vi inte.</p>
+    </div>
+
+    <div class="internt">
+      <div class="h">Internt · säg aldrig detta högt för kunden</div>
+      <p><b>Prisstegen och din provision.</b> Börja alltid på 15 000. Jobbet är exakt lika stort på
+      varje nivå, så varje steg ner förhandlar du bort från din egen lön.</p>
+      <div class="matt">
+        <div><b>15 000 kr</b><br><span class="villkor">ex moms<br>du får <b>3&nbsp;000&nbsp;kr</b></span></div>
+        <div><b>12 000 kr</b><br><span class="villkor">ex moms<br>du får <b>2&nbsp;500&nbsp;kr</b></span></div>
+        <div><b>10 000 kr</b><br><span class="villkor">ex moms<br>du får <b>2&nbsp;000&nbsp;kr</b></span></div>
+        <div><b>8 000 kr</b><br><span class="villkor">ex moms<br>du får <b>1&nbsp;500&nbsp;kr</b></span></div>
+      </div>
+      <p class="hint">Från 15 000 till 8 000 halveras din provision medan du gör samma jobb.
+      Ett räkneexempel är alltid billigare än en rabatt.</p>
     </div>
   </section>
 
