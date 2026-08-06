@@ -229,22 +229,6 @@ details.varfor summary{color:var(--em-deep)}
 .internt p:last-child{margin-bottom:0}
 .internt .matt div{border-color:rgba(220,38,38,.22)}
 
-/* KODBLOCK + SHEET-KOPPLING — engångssetup i dagsloggen */
-.kod{position:relative;margin:.8rem 0}
-.kod pre{
-  background:var(--navy);color:#E2E8F0;border-radius:var(--r);
-  padding:1.1rem 1.1rem 1rem;margin:0;overflow-x:auto;
-  font-family:ui-monospace,'Cascadia Mono',Consolas,monospace;
-  font-size:.78rem;line-height:1.55;
-}
-.kod .kodkopiera{position:absolute;top:.6rem;right:.6rem}
-.sheetform{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}
-.sheetform input{
-  flex:1;min-width:250px;padding:.62rem .8rem;font:inherit;font-size:.92rem;
-  border:1px solid var(--line-2);border-radius:var(--r);
-  background:var(--white);color:var(--ink);
-}
-.sheetform input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 
 /* INVÄNDNINGSKORT — måste hittas i under 3 sekunder */
 .inv{
@@ -1207,84 +1191,6 @@ kbd{
         <td>Summa</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td></td><td></td>
       </tr></tfoot>
     </table></div>
-    <p class="hint">Raderna sparas löpande i den här webbläsaren. Tryck <b>Spara</b> när
-    du är klar för dagen, då hamnar de i
-    <a href="https://docs.google.com/spreadsheets/d/1XpT_W2YcuthARtZOYIyrqXvikXiUNq01DrgdMq35bRk/edit"
-       target="_blank" rel="noopener">Dagslogg-arket</a> i Drive och följer med även om du byter dator.
-    Sparar du samma datum igen uppdateras raden i stället för att dubbleras.</p>
-
-    <details class="varfor" id="sheetsetup">
-      <summary>Koppla arket (görs en gång per dator)</summary>
-      <div class="d">
-        <p>Sidan har ingen server, så kopplingen går via ett litet skript i arket självt. Inga lösenord
-        eller nycklar hamnar i webbläsaren.</p>
-        <ol class="check">
-          <li>Öppna
-            <a href="https://docs.google.com/spreadsheets/d/1XpT_W2YcuthARtZOYIyrqXvikXiUNq01DrgdMq35bRk/edit"
-               target="_blank" rel="noopener">Dagslogg-arket</a> och välj <b>Tillägg → Apps Script</b>.</li>
-          <li>Radera exempelkoden, klistra in koden här nedanför och spara.</li>
-          <li>Klicka <b>Distribuera → Ny distribution → Webbapp</b>. Kör som <b>dig själv</b>, åtkomst
-            <b>Alla</b>. Godkänn behörigheterna.</li>
-          <li>Kopiera webbapp-URL:en (den slutar på <code>/exec</code>) och klistra in den nedan.</li>
-        </ol>
-        <div class="kod">
-          <button class="btn ghost kodkopiera" type="button">Kopiera koden</button>
-          <pre id="gskod">function doPost(e) {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sh = ss.getSheetByName('Dagslogg') || ss.getSheets()[0];
-  var data = JSON.parse(e.postData.contents);
-  var rader = data.rader || [];
-  var saljare = String(data.saljare || '').trim();
-  var nu = new Date();
-  var tz = ss.getSpreadsheetTimeZone();
-  var fanns = sh.getDataRange().getValues();
-  var nya = 0, uppdaterade = 0;
-
-  rader.forEach(function (r) {
-    var rad = [r.datum, tal(r.ringda), tal(r.nadda), tal(r.mejl), tal(r.svar),
-               tal(r.demo), tal(r.moten), r.ant || '', saljare, nu];
-    var traff = 0;
-    for (var i = 1; i &lt; fanns.length; i++) {
-      var d = fanns[i][0];
-      var dstr = (d instanceof Date)
-        ? Utilities.formatDate(d, tz, 'yyyy-MM-dd')
-        : String(d).trim();
-      if (dstr === r.datum &amp;&amp; String(fanns[i][8] || '').trim() === saljare) {
-        traff = i + 1;
-        break;
-      }
-    }
-    if (traff) {
-      sh.getRange(traff, 1, 1, rad.length).setValues([rad]);
-      uppdaterade++;
-    } else {
-      sh.appendRow(rad);
-      fanns.push(rad);
-      nya++;
-    }
-  });
-
-  return ut({ ok: true, nya: nya, uppdaterade: uppdaterade });
-}
-
-function tal(v) {
-  var n = parseInt(v, 10);
-  return isNaN(n) ? '' : n;
-}
-
-function ut(o) {
-  return ContentService.createTextOutput(JSON.stringify(o))
-    .setMimeType(ContentService.MimeType.JSON);
-}</pre>
-        </div>
-        <div class="sheetform">
-          <input type="url" id="sheeturl" inputmode="url" autocomplete="off"
-                 placeholder="https://script.google.com/macros/s/.../exec"
-                 aria-label="Webbapp-URL från Apps Script">
-          <button class="btn" type="button" onclick="sparaSheetUrl()">Spara kopplingen</button>
-        </div>
-      </div>
-    </details>
   </section>
 
   <!-- ═══════════ COACHNING ═══════════ -->
@@ -1565,7 +1471,6 @@ function ut(o) {
 
   /* ── Google Sheet-koppling. Webbapp-URL:en bor i localStorage, aldrig i koden. ── */
   const URLKEY='bahko_sop_sheet_url', SALJKEY='bahko_sop_saljare';
-  const setup=document.getElementById('sheetsetup');
 
   function status(txt,lage){
     const el=document.getElementById('sheetstatus');
@@ -1574,25 +1479,16 @@ function ut(o) {
     el.style.color = lage==='ok' ? 'var(--ratt)' : lage==='fel' ? 'var(--fel)' : 'var(--ink-4)';
   }
 
-  window.sparaSheetUrl=function(){
-    const inp=document.getElementById('sheeturl');
-    const v=(inp.value||'').trim();
-    if(!/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(v)){
-      status('URL:en ska börja med https://script.google.com/macros/s/ och sluta på /exec.','fel');
-      return;
-    }
-    localStorage.setItem(URLKEY,v);
-    inp.value='';
-    if(setup) setup.open=false;
-    status('Kopplingen är sparad. Nu fungerar Spara-knappen.','ok');
-  };
 
   window.sparaSheet=function(){
-    const url=localStorage.getItem(URLKEY);
+    let url=localStorage.getItem(URLKEY);
     if(!url){
-      if(setup){ setup.open=true; setup.scrollIntoView({block:'center',behavior:'smooth'}); }
-      status('Arket är inte kopplat än. Följ de fyra stegen nedan, det tar en minut.','fel');
-      return;
+      url=(prompt('Klistra in webbapp-URL:en från arkets Apps Script. Den slutar på /exec och behövs en gång per dator.')||'').trim();
+      if(!url){ status('Avbrutet, inget sparat.',null); return; }
+      if(!/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(url)){
+        status('Fel format på URL:en. Den ska sluta på /exec.','fel'); return;
+      }
+      localStorage.setItem(URLKEY,url);
     }
     let saljare=localStorage.getItem(SALJKEY);
     if(!saljare){
@@ -1624,24 +1520,10 @@ function ut(o) {
       .finally(()=>{ if(btn) btn.disabled=false; });
   };
 
-  document.addEventListener('click',function(e){
-    const k=e.target.closest('.kodkopiera');
-    if(!k) return;
-    const kod=document.getElementById('gskod');
-    if(!kod) return;
-    navigator.clipboard.writeText(kod.textContent).then(()=>{
-      k.textContent='Kopierat!';
-      setTimeout(()=>k.textContent='Kopiera koden',1400);
-    }).catch(()=>{
-      k.textContent='Markera koden';
-      setTimeout(()=>k.textContent='Kopiera koden',1800);
-    });
-  });
 
   const saved=load();
   if(saved.length){ saved.forEach(mkRow); } else { mkRow({datum:new Date().toISOString().slice(0,10)}); }
   sums();
-  if(!localStorage.getItem(URLKEY)) status('Arket är inte kopplat än. Öppna "Koppla arket" nedan.',null);
 })();
 </script>
 </body>
