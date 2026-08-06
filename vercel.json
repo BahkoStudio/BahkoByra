@@ -1,4 +1,102 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "nextjs"
+  "outputDirectory": "bahkobyra",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "headers": {
+        "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "SAMEORIGIN",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
+      },
+      "continue": true
+    },
+    {
+      "src": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "bahkobyra.cloud"
+        }
+      ],
+      "dest": "/cloud/bygg/index.html"
+    },
+    {
+      "src": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.bahkobyra.cloud"
+        }
+      ],
+      "dest": "/cloud/bygg/index.html"
+    },
+    {
+      "src": "/elara-klinik-demo-v2.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "bahkobyra.cloud"
+        }
+      ],
+      "dest": "/cloud/bygg/index.html"
+    },
+    {
+      "src": "/elara-klinik-demo-v2.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.bahkobyra.cloud"
+        }
+      ],
+      "dest": "/cloud/bygg/index.html"
+    },
+    {
+      "src": "/cloud/elara-klinik-demo-v2.html",
+      "dest": "/cloud/bygg/index.html"
+    },
+    {
+      "src": "/cloud/?",
+      "dest": "/cloud/bygg/index.html"
+    },
+    {
+      "src": "/kliniker/gratis-granskning.html",
+      "status": 301,
+      "headers": {
+        "Location": "/foretag/gratis-granskning.html"
+      }
+    },
+    {
+      "src": "/kliniker/gratis-guide.html",
+      "status": 301,
+      "headers": {
+        "Location": "/foretag/gratis-guide.html"
+      }
+    },
+    {
+      "src": "/cloud/brommatradgardsservice(/.*)?",
+      "status": 301,
+      "headers": {
+        "Location": "https://brommatradgardsservice.se/"
+      }
+    },
+    {
+      "src": "/cloud/smamaleri(/.*)?",
+      "status": 301,
+      "headers": {
+        "Location": "https://smamaleri.se/"
+      }
+    },
+    {
+      "src": "/pitchdeck.html",
+      "status": 301,
+      "headers": {
+        "Location": "/"
+      }
+    },
+    {
+      "handle": "filesystem"
+    }
+  ]
 }
