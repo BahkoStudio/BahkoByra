@@ -130,6 +130,30 @@ Följande får ALDRIG ändras, flyttas eller raderas utan Mathias uttryckliga be
 - **`bahkobyra/css/style.css` + `bahkobyra/js/main.js`** — FRYSTA, delas med frysta `cloud/bygg`. Egna sidor kör `style-v2.css`/`main-v2.js` — nya byggen länkar aldrig de frysta filerna.
 - **`reference/`-PDF:erna** — levande källdokument (bl.a. sales methodology), inte skräp.
 
+### Repot deployas av TRE Vercel-projekt
+
+Det här är den vanligaste fällan i repot. Tre separata Vercel-projekt bygger från
+samma git-repo, och de delar bara en sak: **roten**.
+
+| Projekt | Root Directory | Domän |
+|---|---|---|
+| `bahko-byra` | `web/` | www.bahkobyra.se + bahkobyra.cloud |
+| `smamaleri` | `bahkobyra/cloud/smamaleri` | smamaleri.se |
+| `brommatradgardsservice.se` | `bahkobyra/cloud/brommatradgardsservice` | brommatradgardsservice.se |
+
+- **Lägg aldrig ett ramverk i repo-roten.** När Next.js låg där failade alla tre
+  projekten samtidigt (2026-08-06). Marknadssajten bor därför i `web/`.
+- **`bahkobyra/cloud/smamaleri/` och `bahkobyra/cloud/brommatradgardsservice/`
+  får inte flyttas** — kundprojektens Root Directory pekar på just de sökvägarna.
+  Se `bahkobyra/LASMIG.md`.
+- **bahkobyra.cloud serveras av samma projekt som bahkobyra.se.** Att domänen
+  visar GRANIT-demon och inte marknadssajten avgörs av värdbaserade rewrites i
+  `web/next.config.mjs`. Rör man dem byter bahkobyra.cloud innehåll.
+- **Kontrollera Output Directory-overriden efter varje deploy-strul.** Den stod
+  2026-08-06 på `.claude/skills/video-to-website/maykas/site` i projektinställningarna,
+  vilket hade serverat Mayka's Kitchen på bahkobyra.se vid nästa deploy av main.
+  Overriden är avslagen sedan dess och ska förbli det: Next.js sköter output själv.
+
 ## Skills
 
 Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always loaded; full content loads on invocation.
