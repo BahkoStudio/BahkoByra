@@ -56,11 +56,31 @@
 }
 
 /* ── TJÄNSTER ── */
+/* Fasta kolumnantal i stället för auto-fit: med fem kort ger auto-fit
+   4+1 och det sista kortet blir ensamt kvar på egen rad. */
 .tjanstNat {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
   margin-top: 2.6rem;
+}
+
+@media (max-width: 1080px) {
+  .tjanstNat {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .tjanstNat {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 460px) {
+  .tjanstNat {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Korten är länkar och lika höga: rubrik uppe, tagg och pil alltid i nederkant. */
