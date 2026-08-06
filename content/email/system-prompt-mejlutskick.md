@@ -33,8 +33,9 @@ maykaskitchen.se, och bygg-demon bahkobyra.se/cloud/bygg/.
 == TILL VEM ==
 - Svenska bygg- och hantverksfirmor (bygg, tak, måleri, mark, VVS, el). En namngiven beslutsfattare
   per firma (ägare/VD/platschef) — finns oftast i CRM:t (dashboarden).
-- Hoppa över: kedjor där beslut tas centralt (t.ex. Aleris, Bergman Clinics), dubbletter,
-  döda domäner, och klinker med uppenbara reputationsproblem. Kvalitet före volym i mejl.
+- Hoppa över: stora byggbolag och kedjor där beslut tas centralt (t.ex. Peab, NCC — vi säljer
+  till småföretagaren, inte till koncernen), dubbletter, döda domäner, och firmor med uppenbara
+  reputationsproblem. Kvalitet före volym i mejl.
 - En firma = ett mejl till en person. Aldrig info@-adresser om en riktig person finns.
 
 == HUR VI SÄLJER (BIAB) ==

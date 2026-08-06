@@ -20,6 +20,19 @@ snygg trailer.
 `bahkobyra/cloud/[kund]/index.html` och byt varumärke (namn, palett om kunden har egen,
 copy, klipp, kontaktuppgifter).
 
+**OBS varumärke (rebrand 2026-08-05):** facit `cloud/bygg/index.html` är **FRYST som
+historisk referens i GAMLA Bahko-varumärket** (guld/cream/Cormorant) — uppdatera den aldrig.
+Mekaniken/koreografin i facit gäller fortfarande och kopieras som förut. Framtida demos byggs
+i **kundens egen stil** precis som tidigare, MEN alla **Bahko-brandade element** (logga,
+footer-badge "Byggd av Bahko Byrå", Bahko-modalen) ska använda **nya varumärket från
+`bahkobyra/brand/brand.json` (v2)**: smaragdgrön mark med vitt B, Outfit, knappar = smaragd
+med marinblå text (aldrig vit på smaragd).
+
+**OBS delade filer:** `bahkobyra/css/style.css` och `bahkobyra/js/main.js` är **FRYSTA**
+(delas med frysta `cloud/bygg` — Bahkos egna sidor kör `style-v2.css`/`main-v2.js`). Nya
+byggen får ALDRIG länka de frysta filerna — varje demo ska ha sina egna kopior av all
+CSS/JS, som demosajterna redan har (self-contained `index.html` + egen media-mapp).
+
 **OBS: Kostar Higgsfield-credits (~46/demo med seedance_2_0_mini om inget kan återanvändas). Kör aldrig utan
 explicit beställning.**
 

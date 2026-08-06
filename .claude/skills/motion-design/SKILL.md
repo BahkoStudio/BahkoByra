@@ -40,6 +40,12 @@ Den används för att attrahera och merförsälja:
 - **`media_import_url` accepterar INTE SVG** (lärdom 2026-06-12) — rastrera loggan via `gpt_image_2`
   med `brand/brand.json`-beskrivningen istället. Färdiga Bahko-rasters finns redan i brand.json
   (`logo_raster_16x9`, `logo_raster_9x16_stacked`, `brand_sting_9x16`).
+- **Bahko-varumärket (rebrand 2026-08-05):** `bahkobyra/brand/brand.json` (v2) är ENDA källan för
+  allt Bahko-material — smaragdgrön rundad kvadrat med vitt B (`brand/mark.svg`), palett marinblå
+  `#0A1628` + smaragd `#10B981`/`#34D399`, typografi Outfit rakt igenom. Det gamla varumärket
+  (guld/cream/Cormorant Garamond) är UTFASAT — generera aldrig nytt Bahko-material i det. OBS:
+  `brand_sting_9x16` (bahko-sting-9x16.mp4) är i GAMLA varumärket — ny sting är en beställningspunkt
+  (Higgsfield-credits), återanvänd inte den gamla i nytt material.
 - **Budget-preflight FÖRST:** `balance` + `get_cost:true`. Riktpris: 8s 1080p Seedance ≈ 72 credits,
   storyboard-bild ≈ 2–6 credits beroende på quality. Under 200 credits: fråga användaren innan du kör.
 - Får du `preset_recommendation`-notis: kör om bokstavligt med `declined_preset_id`.

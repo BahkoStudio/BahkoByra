@@ -81,8 +81,8 @@ function generateHtml(data, brand) {
     : `<span class="logo-text">${company}</span>`;
 
   const research   = data.research || {};
-  const ORDER      = ["landscape", "pricing", "clinic_niche", "social_media", "competitor_offers", "positioning", "opportunities"];
-  const ICONS      = { landscape: "🏢", pricing: "💰", clinic_niche: "🏥", social_media: "📱", competitor_offers: "📦", positioning: "🎯", opportunities: "✨" };
+  const ORDER      = ["landscape", "pricing", "niche_analysis", "social_media", "competitor_offers", "positioning", "opportunities"];
+  const ICONS      = { landscape: "🏢", pricing: "💰", niche_analysis: "🔨", social_media: "📱", competitor_offers: "📦", positioning: "🎯", opportunities: "✨" };
 
   const sectionsHtml = ORDER.filter(k => research[k]).map(k => {
     const sec     = research[k];

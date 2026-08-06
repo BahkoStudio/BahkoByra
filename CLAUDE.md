@@ -13,10 +13,10 @@ You're working inside the **WAT framework** (Workflows, Agents, Tools). This arc
 - This is your role. You're responsible for intelligent coordination.
 - Read the relevant workflow, run tools in the correct sequence, handle failures gracefully, and ask clarifying questions when needed
 - You connect intent to execution without trying to do everything yourself
-- Example: If you need to pull data from a website, don't attempt it directly. Read `workflows/scrape_website.md`, figure out the required inputs, then execute `tools/scrape_single_site.py`
+- Example: If you need a competitor analysis, don't improvise it in chat. Read `workflows/competitor_analysis.md`, figure out the required inputs, then execute `tools/competitor_research.js`
 
 **Layer 3: Tools (The Execution)**
-- Python scripts in `tools/` that do the actual work
+- Node.js-skript (`.js`) i `tools/` that do the actual work — körs med `node tools/<script>.js`
 - API calls, data transformations, file operations, database queries
 - Credentials and API keys are stored in `.env`
 - These scripts are consistent, testable, and fast
@@ -58,11 +58,25 @@ This loop is how the framework improves over time.
 **Directory layout:**
 ```
 .tmp/           # Temporary files (scraped data, intermediate exports). Regenerated as needed.
-tools/          # Python scripts for deterministic execution
+tools/          # Node.js-skript (.js) för deterministisk exekvering
 workflows/      # Markdown SOPs defining what to do and how
+content/        # Copy och SOP:er för utskick (content/email/, content/ig/)
+reference/      # Levande källdokument (PDF:er, bl.a. sales methodology) — raderas aldrig
+bahkobyra/      # Webbroten som Vercel deployar (bahkobyra.se + bahkobyra.cloud)
+docs/           # Beslut och planer (docs/superpowers/ = revisionens planer/specar)
+.claude/skills/ # Skills (se Skills-sektionen)
+server.js       # Lokal dev-server (`npm start`)
 .env            # API keys and environment variables (NEVER store secrets anywhere else)
 credentials.json, token.json  # Google OAuth (gitignored)
 ```
+
+**Verktygen som finns (2026-08-05):** `competitor_research.js`, `enrich_leads.js`,
+`export_to_google_docs.js`, `generate_audit.js`, `generate_report.js`, `outreach_manager.js`,
+`score_email.js` — sju skript, alla Node.js. Ingen Python i `tools/`.
+
+**Raderat material:** allt som tagits bort (verktyg, workflows, sidor) loggas i `DELETIONS.md`
+med motivering och beslut — kolla där innan du letar efter något som "borde finnas".
+Revisionens planer och designbeslut ligger i `docs/superpowers/plans/` och `docs/superpowers/specs/`.
 
 **Core principle:** Local files are just for processing. Anything I need to see or use lives in cloud services. Everything in `.tmp/` is disposable.
 
@@ -100,9 +114,21 @@ Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `bahko
 - **Cadence:** välj EN väg/lead (skriven/samtal/IRL), dag 1/3/5/7 → svar=boka, tyst=nurture/stäng.
 - **JA-protokollet (när prospekt säger ja till demo):** gör ENDAST tre saker, i ordning, lugn/mänsklig ton: 1) instruktion — "Kika på [plats] och se hur [friktion] visar sig." 2) kvalificering (binär, låg friktion) — "Bara så jag förstår, ser du samma sak på din sida idag?" 3) optionalitet — "Om det stämmer när du kollat kan jag visa nästa steg. Helt upp till dig." ALDRIG pitch, hype, värme-fluff, "let me know" eller call-push. Demo-länken levereras alltid. Full version + färdiga mallar i dashboardens Spelbok/skript.
 - **Skrivregler för alla DM/mejl till prospekt:** mänsklig, naturlig svenska — ALDRIG tankstreck (—) i meddelanden. Börja alltid med en hälsning ("Hejsan!") och avsluta alltid med "Vänliga hälsningar / Mathias Bahko". **Lärdom 2026-06-12: långa DM får inga svar.** Uppföljning del 2 (vid tystnad): max 40 ord, ledig ton ("Tjena!"), formatet är fast: påminn ("vet inte om du hann se demon") + demolänken IGEN + värdelöftet i en mening ("visar exakt varför kunden ska välja just er") + låg friktion ("kika i mobilen, tar en minut"). Ingen omtagning av pitchen.
-- **Varumärke/logga:** Bahko Byrå-loggan ligger i `bahkobyra/brand/logo.svg` (live: bahkobyra.se/brand/logo.svg, definition i `bahkobyra/brand/brand.json`) — använd ALLTID den i allt material: demos, reels, motion design, dokument. Guld-B i guldram + "Bahko *Byrå*" i Cormorant Garamond marinblå #181C38 + tagline "SYNLIGHET SOM SÄLJER". Guld #C9A96E/#E3C88E på cream #F7F3EA.
+- **Varumärke/logga (rebrand 2026-08-05):** ALLT definieras i `bahkobyra/brand/brand.json` (v2) — det är källan, beskriv aldrig varumärket ur minnet. Logga = smaragdgrön rundad kvadrat med vitt B (`bahkobyra/brand/mark.svg`; lockups `logo.svg`/`logo-dark.svg`, rena SVG-paths). Palett: bas `#0A1628`, yta `#13233F`, text vit/`#94A7BF`, accent `#10B981`/`#34D399`; ljusa ytor `#F8FAFC` med accent-text `#047857`. **KNAPP-REGEL: smaragd yta med marinblå text — ALDRIG vit text på smaragd (2,54:1, underkänd kontrast).** Typografi: Outfit rakt igenom. Guld/cream/Cormorant Garamond är UTFASAT ur eget material (lever bara kvar i frysta historiska byggen, se Heligt-listan).
 - **Daglig blast:** volym slår allt. Flaskhals = bokade möten/vecka.
-- **Nisch:** bygg/tak/måleri/mark/hantverk (CRM + Instagram). Klinik-nischen är avvecklad 2026-07-28 — leads, skript och verktyg borttagna.
+- **Nisch:** bygg/tak/måleri/mark/hantverk (CRM + Instagram). Klinik-nischen är avvecklad 2026-07-28 — leads och skript borttagna; `tools/score_email.js` omskriven till bygg-nischen 2026-08-05.
+
+## Heligt - rör aldrig utan uttryckligt beslut
+
+Följande får ALDRIG ändras, flyttas eller raderas utan Mathias uttryckliga beslut i den aktuella sessionen:
+
+- **`bahkobyra/cloud/smamaleri/` + `bahkobyra/cloud/brommatradgardsservice/`** — betalande kunders domäner, deployas från samma repo. En ändring här går live hos kund.
+- **De 8 frysta demosajterna** — `cloud/alfredallservice`, `cloud/asmar`, `cloud/bygg`, `cloud/kmctransport`, `cloud/osterlunds`, `cloud/pizzeriamatstugan`, `cloud/tryggbyggservice`, `cloud/vajjebygg`. URL:erna lever i prospekts inkorgar — en trasig demo bränner ett lead.
+- **`.github/workflows/deploy.yml` + `.claude/skills/video-to-website/maykas/site/`** — deployar LIVE maykaskitchen.se vid varje push till main. Rör du sajtmappen ändrar du en betalande kunds sajt.
+- **localStorage-kontrakten `bb_crm_v2` + `bahko_sop_dagslogg_v1`** — nycklar och dataformat. Bryts kontraktet tappar Mathias CRM-data och dagsloggar i webbläsaren.
+- **Alla routes i `vercel.json`** — host-routingen för bahkobyra.cloud kräver legacy-routes: moderna `rewrites` körs EFTER filsystemet, så det som ser redundant ut är bärande.
+- **`bahkobyra/css/style.css` + `bahkobyra/js/main.js`** — FRYSTA, delas med frysta `cloud/bygg`. Egna sidor kör `style-v2.css`/`main-v2.js` — nya byggen länkar aldrig de frysta filerna.
+- **`reference/`-PDF:erna** — levande källdokument (bl.a. sales methodology), inte skräp.
 
 ## Skills
 
@@ -110,9 +136,10 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 
 | Skill | Command | Trigger phrases |
 |-------|---------|-----------------|
-| skill-builder | `/skill-builder` | "build a skill", "create a new skill", "audit this skill", "optimize skill" |
+| skill | `/skill` | "build a skill", "create a new skill", "audit this skill", "optimize skill" |
 | video-to-website | `/video-to-website` | "turn this video into a website", "scroll-driven website", "video to website" |
 | scroll-cinematic | `/scroll-cinematic [företag + nisch/ort]` | "bygg-demo", "scroll-cinematic demosajt", "hus-förvandlings-demo", "demo enligt GRANIT-mallen" |
+| demo-recopy | `/demo-recopy [lead + nisch/ort]` | "återanvänd demon", "byt copy på demon", "ny lead, samma nisch", "modda demon till..." |
 | excalidraw-diagram | `/excalidraw-diagram` | "draw a diagram", "make a diagram of", "create an Excalidraw diagram" |
 | rapport | `/rapport [företag]` | "generera rapport", "konkurrensanalys", "klientrapport", "lead-rapport", "analysera [företag]" |
 | instagram-engine | `/instagram-engine [trade]` | "instagram-motor", "skapa reels", "content-batch", "veckans content", "reels för bygg/tak/måleri/mark" |
@@ -121,9 +148,10 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 | optimering | `/optimering [kund]` | "optimera sajten", "SEO för [kund]", "GEO/AEO", "schema markup", "ranka på Google", "synas i AI-svar", "Google Business Profile" |
 | rensa | `/rensa` | "rensa chatten", "spara och rensa", "clear men behåll det viktiga", "rensa kontexten" |
 
-- **skill-builder** — Guides building/auditing/optimizing skills. Runs Discovery Interview before creating. See `.claude/skills/skill-builder/reference.md`.
-- **video-to-website** — Converts a video into a scroll-driven animated website (FFmpeg + GSAP + Lenis + canvas).
-- **scroll-cinematic** — Kunddemos enligt GRANIT-mallen. **För bygg/hantverk är facit `bahkobyra/cloud/bygg/index.html` byggt som en tvillingsida till www.bahkobyra.se** (beslut 2026-07-26): Bahkos designsystem (cream/navy/guld, Cormorant Garamond + Outfit), flödande sektioner i ljus/mörk-rytm, preloader, scroll-progressbar, header som göms vid nedscroll, marquee, pinnad horisontell process, och deklarativa animeringar via `data-lines`/`data-reveal`/`data-stagger`/`data-count`/`data-magnetic` på GSAP + ScrollTrigger + Lenis. Koreografin med fast videolager och sektioner på progress-fönster lever kvar i `bahkobyra/cloud/tryggbyggservice/` och `bahkobyra/cloud/vajjebygg/` — använd den för videodrivna demos, GRANIT-mallen för resten. För bygg: Higgsfield-genererad husförvandling (gammalt hus → drömhus → kliv in) som autoplay-loop i heron — ALDRIG scroll-scrub. Kostar ~150 Higgsfield-credits/demo — körs aldrig utan beställning. Output: `bahkobyra/cloud/[kund]/index.html`. **Fälla:** inline `<script>` får aldrig ha `defer` (ignoreras enligt specen) och biblioteksflaggor måste mätas efter att de deferrade CDN-scripten körts, annars dör hela animationslagret tyst.
+- **skill** — Guides building/auditing/optimizing skills. Runs Discovery Interview before creating. See `.claude/skills/skill/reference.md`.
+- **video-to-website** — Converts a video into a scroll-driven animated website (FFmpeg + GSAP + Lenis + canvas). OBS: `maykas/site/` i skill-mappen deployar LIVE maykaskitchen.se (se Heligt-listan).
+- **scroll-cinematic** — Kunddemos enligt GRANIT-mallen. **Facit `bahkobyra/cloud/bygg/index.html` är FRYST som historisk referens i GAMLA varumärket** (guld/cream/Cormorant, byggt som tvillingsida till dåvarande bahkobyra.se, beslut 2026-07-26): flödande sektioner i ljus/mörk-rytm, preloader, scroll-progressbar, header som göms vid nedscroll, marquee, pinnad horisontell process, och deklarativa animeringar via `data-lines`/`data-reveal`/`data-stagger`/`data-count`/`data-magnetic` på GSAP + ScrollTrigger + Lenis. **Framtida demos byggs i kundens egen stil som förut, men Bahko-brandade element (logga, footer-badge, Bahko-modal) använder nya varumärket från `brand.json` v2.** Koreografin med fast videolager och sektioner på progress-fönster lever kvar i `bahkobyra/cloud/tryggbyggservice/` och `bahkobyra/cloud/vajjebygg/` — använd den för videodrivna demos, GRANIT-mallen för resten. För bygg: Higgsfield-genererad husförvandling (gammalt hus → drömhus → kliv in) som autoplay-loop i heron — ALDRIG scroll-scrub. Kostar ~150 Higgsfield-credits/demo — körs aldrig utan beställning. Output: `bahkobyra/cloud/[kund]/index.html`. **Fälla:** inline `<script>` får aldrig ha `defer` (ignoreras enligt specen) och biblioteksflaggor måste mätas efter att de deferrade CDN-scripten körts, annars dör hela animationslagret tyst.
+- **demo-recopy** — Återanvänder en befintlig scroll-cinematic-demo för en ny lead i (nära nog) samma nisch: byter ENDAST copy/varumärke, noll ny generering, 0 credits. Syskon-skill till scroll-cinematic.
 - **excalidraw-diagram** — Generates editable Excalidraw diagrams, saves `.excalidraw` files.
 - **rapport** — Genererar konkurrensanalys, klientrapporter och lead-profiler. Exporterar till Google Docs/Sheets. Kräver `credentials.json` för Google OAuth. Export-verktyg: `tools/export_to_google_docs.js`.
 - **instagram-engine** — Producerar content-batchar (reels/carouseller/DM-cadence) för bygg/hantverk-nischen (@bahkostudio). Speglas i dashboardens Instagram-motor. Se `.claude/skills/instagram-engine/templates.md`.
