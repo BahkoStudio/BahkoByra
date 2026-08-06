@@ -1,0 +1,273 @@
+/* Bahko Byrå — designsystem v2 (marinblå + smaragd).
+   Kontrastvärdena är uträknade mot WCAG 2.2: vit text på smaragd är 2,54:1 och
+   får ALDRIG användas. Knappar är smaragdyta med marinblå text (7,15:1). */
+
+:root {
+  --bas: #0a1628;
+  --sektion: #0f1f38;
+  --yta: #13233f;
+
+  --lt: #f8fafc;
+  --lt-2: #f1f5f9;
+  --vit: #ffffff;
+
+  --em: #10b981;
+  --em-lt: #34d399;
+  --em-deep: #047857;
+
+  --text: #ffffff;
+  --text-lag: #94a7bf;
+  --ink: #0a1628;
+  --ink-2: #334155;
+  --ink-3: #475569;
+
+  --linje: #e2e8f0;
+  --linje-2: #cbd5e1;
+  --linje-mork: rgba(255, 255, 255, 0.12);
+
+  --varning: #f59e0b;
+  --fel: #dc2626;
+
+  --r: 10px;
+  --r-lg: 16px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --wrap: 1180px;
+  --header-h: 72px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--lt);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--em-deep);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.mork :focus-visible {
+  outline-color: var(--em-lt);
+}
+
+/* ── Layout ─────────────────────────────────────── */
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 clamp(1.1rem, 4vw, 2rem);
+}
+
+section {
+  padding: clamp(3.5rem, 8vw, 6.5rem) 0;
+}
+
+.mork {
+  background: var(--bas);
+  color: var(--text);
+}
+
+.mork p {
+  color: var(--text-lag);
+}
+
+/* ── Typografi ──────────────────────────────────── */
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.3rem, 6vw, 4.1rem);
+}
+h2 {
+  font-size: clamp(1.9rem, 4.4vw, 3rem);
+}
+h3 {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--em-deep);
+  margin-bottom: 1.1rem;
+}
+
+.mork .eyebrow {
+  color: var(--em-lt);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.lede {
+  font-size: clamp(1.02rem, 1.5vw, 1.16rem);
+  color: var(--ink-3);
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+.mork .lede {
+  color: var(--text-lag);
+}
+
+.accent {
+  color: var(--em-deep);
+}
+
+.mork .accent {
+  color: var(--em-lt);
+}
+
+/* ── Knappar ────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s var(--ease), transform 0.25s var(--ease),
+    border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+/* Smaragdyta + marinblå text. Aldrig vit text på smaragd. */
+.btn-primar {
+  background: var(--em);
+  color: var(--bas);
+}
+
+.btn-primar:hover {
+  background: var(--em-lt);
+  transform: translateY(-2px);
+}
+
+.btn-sekundar {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--linje-2);
+}
+
+.btn-sekundar:hover {
+  border-color: var(--em-deep);
+  color: var(--em-deep);
+  transform: translateY(-2px);
+}
+
+.mork .btn-sekundar {
+  color: var(--text);
+  border-color: var(--linje-mork);
+}
+
+.mork .btn-sekundar:hover {
+  border-color: var(--em-lt);
+  color: var(--em-lt);
+}
+
+.btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.25s var(--ease);
+}
+
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* ── Kort ───────────────────────────────────────── */
+.kort {
+  background: var(--vit);
+  border: 1px solid var(--linje);
+  border-radius: var(--r-lg);
+  padding: 1.6rem;
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
+}
+
+.mork .kort {
+  background: var(--yta);
+  border-color: var(--linje-mork);
+}
+
+/* ── Rörelse ────────────────────────────────────── */
+@keyframes stigIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.stig {
+  animation: stigIn 0.7s var(--ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

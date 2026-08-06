@@ -1,0 +1,132 @@
+.lista {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 820px;
+}
+
+.post {
+  background: var(--vit);
+  border: 1px solid var(--linje);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.post:hover {
+  border-color: var(--linje-2);
+}
+
+.aktiv {
+  border-color: var(--em);
+  box-shadow: 0 10px 34px -22px rgba(4, 120, 87, 0.6);
+}
+
+.rubrik {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: normal;
+}
+
+.knapp {
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.05rem 1.3rem;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.knapp:hover {
+  color: var(--em-deep);
+}
+
+/* Plustecken som blir minus när svaret är öppet. */
+.tecken {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+.tecken::before,
+.tecken::after {
+  content: '';
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--em-deep);
+  transform: translateY(-50%);
+  transition: transform 0.3s var(--ease), opacity 0.2s var(--ease);
+}
+
+.tecken::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.aktiv .tecken::after {
+  transform: translateY(-50%) rotate(0deg);
+  opacity: 0;
+}
+
+/* 0fr → 1fr ger mjuk höjd utan att behöva mäta pixlar. */
+.svarYta {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.34s var(--ease), visibility 0.34s;
+}
+
+.aktiv .svarYta {
+  grid-template-rows: 1fr;
+  visibility: visible;
+}
+
+.svarInner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.svarInner p {
+  padding: 0 1.3rem 1.25rem;
+  color: var(--ink-3);
+  font-size: 0.99rem;
+  text-wrap: pretty;
+}
+
+/* Mörk variant för sektioner på marinblå botten. */
+.mork .post {
+  background: var(--yta);
+  border-color: var(--linje-mork);
+}
+
+.mork .knapp {
+  color: var(--text);
+}
+
+.mork .knapp:hover {
+  color: var(--em-lt);
+}
+
+.mork .tecken::before,
+.mork .tecken::after {
+  background: var(--em-lt);
+}
+
+.mork .svarInner p {
+  color: var(--text-lag);
+}
+
+.mork .aktiv {
+  border-color: var(--em);
+}

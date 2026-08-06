@@ -22,3 +22,7 @@ node_modules/
 .claude/skills/skill-creator/
 .claude/skills/storm/
 .claude/skills/xlsx/
+node_modules/
+.next/
+next-env.d.ts
+server.log

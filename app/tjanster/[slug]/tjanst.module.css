@@ -1,0 +1,157 @@
+.topp {
+  padding-top: clamp(2.6rem, 6vw, 4.2rem);
+  padding-bottom: clamp(2.8rem, 6vw, 4.2rem);
+}
+
+.brod {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.84rem;
+  color: var(--text-lag);
+  margin-bottom: 1.4rem;
+}
+
+.brod a:hover {
+  color: var(--em-lt);
+}
+
+.toppKnappar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.punktNat {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1rem;
+  margin-top: 2.4rem;
+}
+
+.punktNat h3 {
+  margin-bottom: 0.5rem;
+}
+
+.punktNat p {
+  color: var(--ink-3);
+  font-size: 0.95rem;
+  text-wrap: pretty;
+}
+
+.processYta {
+  background: var(--lt-2);
+}
+
+.processSteg {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.6rem;
+}
+
+.processSteg li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: var(--vit);
+  border: 1px solid var(--linje);
+  border-radius: 999px;
+  padding: 0.65rem 1.25rem 0.65rem 0.65rem;
+  font-weight: 600;
+  font-size: 0.94rem;
+}
+
+.processSteg span {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--em);
+  color: var(--bas);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+  margin-top: 2.4rem;
+  padding: 1.8rem;
+  background: var(--bas);
+  color: var(--text);
+  border-radius: var(--r-lg);
+}
+
+.cta h3 {
+  margin-bottom: 0.35rem;
+}
+
+.cta p {
+  color: var(--text-lag);
+  font-size: 0.95rem;
+}
+
+.andraYta {
+  border-top: 1px solid var(--linje);
+}
+
+.andraNat {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+}
+
+.andraKort {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--vit);
+  border: 1px solid var(--linje);
+  border-radius: var(--r-lg);
+  padding: 1.1rem 1.3rem;
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.andraKort:hover {
+  border-color: var(--em);
+  transform: translateY(-3px);
+}
+
+.andraKort strong {
+  display: block;
+  font-size: 1rem;
+}
+
+.andraKort em {
+  display: block;
+  font-style: normal;
+  font-size: 0.87rem;
+  color: var(--ink-3);
+  margin-top: 0.15rem;
+}
+
+.andraKort svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  color: var(--em-deep);
+}
+
+@media (max-width: 620px) {
+  .cta {
+    padding: 1.4rem;
+  }
+  .cta a {
+    width: 100%;
+  }
+}

@@ -1,0 +1,154 @@
+.yta {
+  background: var(--bas);
+  color: var(--text);
+  min-height: calc(100vh - var(--header-h));
+  padding-top: clamp(2.8rem, 6vw, 4.5rem);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.yta .eyebrow {
+  color: var(--em-lt);
+}
+
+.yta .lede {
+  color: var(--text-lag);
+}
+
+.loften {
+  list-style: none;
+  display: grid;
+  gap: 0.7rem;
+  margin: 2rem 0;
+}
+
+.loften li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  color: var(--text-lag);
+  font-size: 0.97rem;
+}
+
+.loften span {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.16);
+  color: var(--em-lt);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.direkt {
+  font-size: 0.94rem;
+  color: var(--text-lag);
+}
+
+.direkt a {
+  color: var(--em-lt);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.formYta {
+  background: var(--vit);
+  border-radius: var(--r-lg);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  color: var(--ink);
+  box-shadow: 0 30px 80px -40px rgba(2, 12, 27, 0.7);
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form label {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.83rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.form input,
+.form textarea {
+  font: inherit;
+  font-size: 1rem; /* minst 16px, annars zoomar iOS in vid fokus */
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--ink);
+  background: var(--lt);
+  border: 1px solid var(--linje-2);
+  border-radius: var(--r);
+  padding: 0.75rem 0.9rem;
+  width: 100%;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.form input:hover,
+.form textarea:hover {
+  border-color: var(--ink-3);
+}
+
+.form input:focus,
+.form textarea:focus {
+  background: var(--vit);
+  border-color: var(--em-deep);
+}
+
+.form textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.rad {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form button {
+  margin-top: 0.4rem;
+  width: 100%;
+}
+
+.finstilt {
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+.gotcha {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 460px) {
+  .rad {
+    grid-template-columns: 1fr;
+  }
+}

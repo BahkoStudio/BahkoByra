@@ -1,0 +1,178 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  /* Solid, inte transparent: headern ligger i normalflödet, så bakom en
+     genomskinlig bakgrund syns body-ytan (ljus) och inte heron. */
+  background: var(--bas);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+/* Vid scroll lyfts headern från innehållet med kant och skugga. */
+.tat {
+  border-bottom-color: var(--linje-mork);
+  box-shadow: 0 10px 30px -22px rgba(0, 0, 0, 0.9);
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 clamp(1.1rem, 4vw, 2rem);
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.marke {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 700;
+  font-size: 1.02rem;
+  letter-spacing: -0.01em;
+  color: #fff;
+  flex: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.9rem;
+  margin-left: auto;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.nav a {
+  color: rgba(255, 255, 255, 0.82);
+  position: relative;
+  padding: 0.35rem 0;
+  transition: color 0.2s var(--ease);
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--em-lt);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s var(--ease);
+}
+
+.nav a:hover {
+  color: #fff;
+}
+
+.nav a:hover::after,
+.aktiv::after {
+  transform: scaleX(1);
+}
+
+.aktiv {
+  color: #fff !important;
+}
+
+.hoger {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex: none;
+}
+
+.headerKnapp {
+  min-height: 42px;
+  padding: 0.55rem 1.2rem;
+  font-size: 0.74rem;
+}
+
+.burgare {
+  display: none;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid var(--linje-mork);
+  border-radius: 10px;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.burgare span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.28s var(--ease), opacity 0.2s var(--ease);
+}
+
+.strecka1 {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.strecka2 {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+.mobil {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .nav,
+  .headerKnapp {
+    display: none;
+  }
+
+  .burgare {
+    display: flex;
+  }
+
+  .mobil {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.6rem clamp(1.1rem, 4vw, 2rem) 1.6rem;
+    background: rgba(10, 22, 40, 0.98);
+    border-bottom: 1px solid var(--linje-mork);
+  }
+
+  .mobil[hidden] {
+    display: none;
+  }
+
+  .mobil a {
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--linje-mork);
+  }
+
+  .mobil a:last-child {
+    border-bottom: 0;
+    margin-top: 0.8rem;
+    justify-content: center;
+  }
+
+  .mobilOppen {
+    animation: stigIn 0.3s var(--ease) both;
+  }
+}
+
+/* Lokal keyframe: CSS Modules hashar animation-namn, så en global
+   keyframe från globals.css går inte att referera härifrån. */
+@keyframes stigIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
