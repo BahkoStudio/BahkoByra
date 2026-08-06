@@ -468,6 +468,9 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   .hero-heading .word{opacity:1!important;transform:none!important}
   .bgvid-wrap{display:none}
 }
+.hero-scroll-indicator{display:flex;flex-direction:column;align-items:center;gap:.9rem}
+.btn-ghost.hero-tel{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.38);border-radius:999px;padding:.72rem 1.35rem;text-decoration:none;transition:background .2s,border-color .2s,transform .2s}
+.btn-ghost.hero-tel:hover{background:rgba(107,191,89,.16);transform:translateY(-2px)}
 </style>
 </head>
 <body>
@@ -532,6 +535,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
         <span>Begär offert</span>
         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
+      <a class="btn-ghost hero-tel" href="tel:+46707666514">Ring 070-766 65 14</a>
     </div>
   </div>
 </section>
@@ -1654,7 +1658,7 @@ addEventListener('click',function(e){
   if(!a)return;
   const href=a.getAttribute('href')||'';
   if(href.indexOf('tel:')===0){
-    const k=['mn-tel','nav-tel','pris-tel','contact-big','of-tel'].find(x=>a.classList.contains(x));
+    const k=['mn-tel','nav-tel','pris-tel','contact-big','of-tel','hero-tel'].find(x=>a.classList.contains(x));
     track('ring_klick',{plats:k||'okand'});
   }else if(a.id==='of-mailto'){
     track('reservvag_mejl',{});
