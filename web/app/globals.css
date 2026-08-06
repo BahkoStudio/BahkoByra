@@ -113,7 +113,7 @@ h4 {
 /* Tracking och leading foljer storleken: stor text vill ha tightare bade
    teckenavstand och radavstand, brodtext vill ligga nara noll. */
 h1 {
-  font-size: clamp(2.3rem, 6vw, 4.1rem);
+  font-size: clamp(1.95rem, 5.6vw, 4.1rem);
   line-height: 1.04;
   letter-spacing: -0.032em;
 }

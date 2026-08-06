@@ -149,13 +149,21 @@
 }
 
 @media (max-width: 860px) {
-  .nav,
-  .headerKnapp {
+  /* Hojd specificitet: .btn i globals.css har samma vikt som .headerKnapp
+     och vinner annars, sa knappen blev kvar och trangde ut headern. */
+  .header .nav,
+  .header .headerKnapp {
     display: none;
   }
 
   .burgare {
     display: flex;
+  }
+
+  /* Navigationen (med sin margin-left: auto) ar dold har, sa hogergruppen
+     behover en egen auto-marginal for att burgaren ska ligga till hoger. */
+  .hoger {
+    margin-left: auto;
   }
 
   .mobil {

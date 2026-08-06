@@ -18,8 +18,16 @@ const CLOUD_VARDAR = [
   { type: 'host', value: 'www.bahkobyra.cloud' },
 ];
 
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+// Repo-roten har en egen package-lock.json for de gamla verktygen. Utan detta
+// gissar Next.js att workspace-roten ligger dar och sparfoljer fel filer.
+const HAR = path.dirname(fileURLToPath(import.meta.url));
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  outputFileTracingRoot: HAR,
   trailingSlash: true,
   poweredByHeader: false,
 

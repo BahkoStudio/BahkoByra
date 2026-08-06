@@ -45,9 +45,7 @@ export default function Start() {
             <i /> För lokala företag i Sverige
           </span>
           <h1>
-            Vi fyller din kalender
-            <br />
-            med <span className="accent">nya kunder.</span>
+            Vi fyller din kalender med <span className="accent">nya kunder.</span>
           </h1>
           <p className={styles.heroLede}>
             Är ditt företag osynligt på Google? Se den korta videon. Den visar varför du inte

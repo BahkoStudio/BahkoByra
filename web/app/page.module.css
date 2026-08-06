@@ -28,6 +28,13 @@
   animation: stigIn 0.75s var(--ease) both;
 }
 
+/* align-items: center gor att barnen storleksanpassas efter innehallet i stallet
+   for behallaren. Utan denna klamp blir max-width: 56ch pa ingressen bredare an
+   skarmen och heron flodar over i mobilen. */
+.heroInner > * {
+  max-width: 100%;
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
