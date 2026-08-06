@@ -2,17 +2,33 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  /* Solid, inte transparent: headern ligger i normalflödet, så bakom en
-     genomskinlig bakgrund syns body-ytan (ljus) och inte heron. */
+  /* Solid i toppen dar headern moter heron, sa den smalter ihop med den.
+     Genomskinlig forst nar innehall faktiskt scrollar under den. */
   background: var(--bas);
   border-bottom: 1px solid transparent;
-  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  transition: background 0.35s var(--ease), border-color 0.35s var(--ease),
+    box-shadow 0.35s var(--ease), backdrop-filter 0.35s var(--ease);
 }
 
-/* Vid scroll lyfts headern från innehållet med kant och skugga. */
 .tat {
-  border-bottom-color: var(--linje-mork);
-  box-shadow: 0 10px 30px -22px rgba(0, 0, 0, 0.9);
+  background: rgba(10, 22, 40, 0.74);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border-bottom-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 14px 34px -26px rgba(0, 0, 0, 0.95);
+}
+
+/* Vibrans: text over en genomskinlig yta behover mer kontrast, inte mindre. */
+.tat .nav a {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .tat {
+    background: var(--bas);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 .inner {
@@ -105,6 +121,10 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
+}
+
+.burgare:active {
+  transform: scale(0.94);
 }
 
 .burgare span {

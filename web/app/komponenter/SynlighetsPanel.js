@@ -3,18 +3,22 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './SynlighetsPanel.module.css';
 
-const MAL = 68;
+// Dag 1 ligger på 10 %, dag 90 landar på 88 %. Kurvan spänner över samma spann.
+const START = 10;
+const MAL = 88;
+
 const RADER = [
   { ikon: '◍', vad: 'Syns i lokala sökningar', utfall: 'Hittas av fler', ton: 'em' },
   { ikon: '✓', vad: 'Offertknapp på varje skärm', utfall: 'Fler förfrågningar', ton: 'em' },
   { ikon: '⌁', vad: 'Snabb i mobilen', utfall: 'Färre som lämnar', ton: 'lt' },
 ];
 
-// Illustration av vad en färdig sida gör, inte mätdata från en enskild kund.
-const KURVA = [4, 18, 14, 30, 26, 44, 52, 48, 66, 74, 88, 96];
+// Illustration av utvecklingen över 90 dagar, inte mätdata från en enskild kund.
+// Första punkten är dag 1 (10 %), sista är dag 90 (88 %).
+const KURVA = [10, 15, 13, 21, 27, 25, 34, 41, 38, 49, 57, 63, 60, 71, 80, 88];
 
 export default function SynlighetsPanel() {
-  const [tal, setTal] = useState(0);
+  const [tal, setTal] = useState(START);
   const [igang, setIgang] = useState(false);
   const panelRef = useRef(null);
 
@@ -44,7 +48,7 @@ export default function SynlighetsPanel() {
         const steg = (nu) => {
           const p = Math.min(1, (nu - start) / tid);
           const mjuk = 1 - Math.pow(1 - p, 3);
-          setTal(Math.round(MAL * mjuk));
+          setTal(Math.round(START + (MAL - START) * mjuk));
           if (p < 1) requestAnimationFrame(steg);
         };
         requestAnimationFrame(steg);

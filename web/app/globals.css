@@ -33,6 +33,7 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --wrap: 1180px;
   --header-h: 72px;
+  --stig-y: 16px;
 }
 
 *,
@@ -105,21 +106,30 @@ h1,
 h2,
 h3,
 h4 {
-  line-height: 1.12;
-  letter-spacing: -0.02em;
   font-weight: 800;
   text-wrap: balance;
 }
 
+/* Tracking och leading foljer storleken: stor text vill ha tightare bade
+   teckenavstand och radavstand, brodtext vill ligga nara noll. */
 h1 {
   font-size: clamp(2.3rem, 6vw, 4.1rem);
+  line-height: 1.04;
+  letter-spacing: -0.032em;
 }
 h2 {
   font-size: clamp(1.9rem, 4.4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.022em;
 }
 h3 {
   font-size: clamp(1.15rem, 2vw, 1.4rem);
-  letter-spacing: -0.01em;
+  line-height: 1.28;
+  letter-spacing: -0.008em;
+}
+h4 {
+  line-height: 1.35;
+  letter-spacing: -0.004em;
 }
 
 .eyebrow {
@@ -218,6 +228,11 @@ h3 {
   color: var(--em-lt);
 }
 
+.btn:active {
+  transform: scale(0.97);
+  transition-duration: 90ms;
+}
+
 .btn svg {
   width: 16px;
   height: 16px;
@@ -247,7 +262,7 @@ h3 {
 @keyframes stigIn {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(var(--stig-y, 16px));
   }
   to {
     opacity: 1;
@@ -259,15 +274,32 @@ h3 {
   animation: stigIn 0.7s var(--ease) both;
 }
 
+/* Dampad rorelse betyder mjukare aterkoppling, inte ingen alls: forflyttningar
+   och loopar tas bort medan opacitet och farg far leva vidare. */
 @media (prefers-reduced-motion: reduce) {
+  :root {
+    --stig-y: 0px;
+  }
+
   html {
     scroll-behavior: auto;
   }
+
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .btn:active {
+    transform: none;
+  }
+}
+
+/* Genomskinliga ytor blir tatare nar anvandaren bett om mindre transparens. */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --header-bakgrund: var(--bas);
   }
 }

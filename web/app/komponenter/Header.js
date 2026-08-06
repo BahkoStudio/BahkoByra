@@ -5,10 +5,16 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import styles from './Header.module.css';
 
+// Case ligger kvar som sida men inte i menyn: de tva gratiserbjudandena
+// ar det som ska vara ett klick bort, precis som pa nuvarande sajt.
 const LANKAR = [
   { href: '/tjanster/hemsidor/', text: 'Hemsidor' },
-  { href: '/case/', text: 'Case' },
   { href: '/om-oss/', text: 'Om oss' },
+];
+
+const EXTERNA = [
+  { href: '/foretag/gratis-granskning.html', text: 'Gratis analys' },
+  { href: '/foretag/gratis-guide.html', text: 'Gratis guide' },
 ];
 
 export default function Header() {
@@ -53,6 +59,11 @@ export default function Header() {
               {l.text}
             </Link>
           ))}
+          {EXTERNA.map((l) => (
+            <a key={l.href} href={l.href}>
+              {l.text}
+            </a>
+          ))}
         </nav>
 
         <div className={styles.hoger}>
@@ -77,6 +88,11 @@ export default function Header() {
           <Link key={l.href} href={l.href}>
             {l.text}
           </Link>
+        ))}
+        {EXTERNA.map((l) => (
+          <a key={l.href} href={l.href}>
+            {l.text}
+          </a>
         ))}
         <Link href="/kontakt/" className="btn btn-primar">
           Gratis förslag

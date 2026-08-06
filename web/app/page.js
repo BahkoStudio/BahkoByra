@@ -1,5 +1,8 @@
 import Link from 'next/link';
+import HeroVideo from './komponenter/HeroVideo';
 import SynlighetsPanel from './komponenter/SynlighetsPanel';
+import ProcessRail from './komponenter/ProcessRail';
+import TjanstIkon from './komponenter/TjanstIkon';
 import Faq from './komponenter/Faq';
 import { TJANSTER, FRAGOR } from './data';
 import styles from './page.module.css';
@@ -10,10 +13,20 @@ const PIL = (
   </svg>
 );
 
-const STEG = [
-  { n: '01', h: 'Du får ett förslag', p: 'Vi bygger en riktig sida åt er och skickar den inom 48 timmar. Kostar ingenting och binder er inte vid något.' },
-  { n: '02', h: 'Ni tittar och säger till', p: 'Gillar ni den gör vi den skarp med era bilder, texter och kontaktuppgifter. Gillar ni den inte är det tack och hej.' },
-  { n: '03', h: 'Sidan går live', p: 'På er egen domän, inom sju dagar. Ni äger sidan, domänen och allt innehåll.' },
+const MARQUEE = [
+  'Fler bokningar',
+  'Google Ads',
+  'Hemsidor som konverterar',
+  'SEO som rankar',
+  'Demo inom 48 timmar',
+  'Synlighet som säljer',
+];
+
+const SIFFROR = [
+  { v: '3', e: 'Leveranser i drift' },
+  { v: '48h', e: 'Till färdigt förslag' },
+  { v: '24h', e: 'Svar på gratis analys' },
+  { v: '12%', e: 'Fler kundförfrågningar, kundcase' },
 ];
 
 const CASE = [
@@ -25,36 +38,94 @@ const CASE = [
 export default function Start() {
   return (
     <>
-      {/* ── HERO ── */}
-      <section className={`mork ${styles.hero}`}>
+      {/* ── HERO: rubrik → video → CTA, som på nuvarande sajt ── */}
+      <section className={`mork ${styles.hero}`} id="top">
         <div className={`wrap ${styles.heroInner}`}>
-          <div className={styles.heroText}>
-            <span className="eyebrow">För bygg och hantverk i Sverige</span>
-            <h1>
-              Hemsidor som ger <span className="accent">fler jobb.</span>
-            </h1>
-            <p className="lede">
-              Vi bygger en riktig sida åt er och skickar den inom 48 timmar. Ni ser exakt hur den
-              blir innan ni bestämmer er, och betalar först när ni sagt ja.
-            </p>
-            <div className={styles.heroKnappar}>
-              <Link href="/kontakt/" className="btn btn-primar">
-                Få gratis förslag {PIL}
-              </Link>
-              <Link href="/case/" className="btn btn-sekundar">
-                Se leveranser
-              </Link>
-            </div>
-            <p className={styles.heroMikro}>Kostnadsfritt · Svar inom 24 timmar · Inga krav</p>
-          </div>
+          <span className={styles.badge}>
+            <i /> För lokala företag i Sverige
+          </span>
+          <h1>
+            Vi fyller din kalender
+            <br />
+            med <span className="accent">nya kunder.</span>
+          </h1>
+          <p className={styles.heroLede}>
+            Är ditt företag osynligt på Google? Se den korta videon. Den visar varför du inte
+            ligger topp 3 när kunder i din stad söker.
+          </p>
 
-          <div className={styles.heroPanel}>
-            <SynlighetsPanel />
+          <HeroVideo />
+
+          <div className={styles.heroKnappar}>
+            <a href="/foretag/gratis-granskning.html" className="btn btn-primar">
+              Få gratis analys {PIL}
+            </a>
+          </div>
+          <p className={styles.heroMikro}>
+            Kostnadsfri analys av er hemsida · Svar inom 24 timmar · Inga krav
+          </p>
+        </div>
+
+        <div className={styles.scrollcue}>
+          <span />
+          Scrolla
+        </div>
+      </section>
+
+      {/* ── MARQUEE ── */}
+      <div className={styles.marquee} aria-hidden="true">
+        <div className={styles.marqueeSpar}>
+          {[0, 1].map((k) => (
+            <div key={k} className={styles.marqueeSet}>
+              {MARQUEE.map((m) => (
+                <span key={m}>
+                  {m}
+                  <i>✦</i>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── SIFFROR ── */}
+      <section className={`mork ${styles.siffrorYta}`}>
+        <div className="wrap">
+          <div className={styles.siffror}>
+            {SIFFROR.map((s) => (
+              <div key={s.e}>
+                <strong>{s.v}</strong>
+                <span>{s.e}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── TJÄNSTER: klickbara kort, lika höga ── */}
+      {/* ── SEKTION 2: synlighetspanelen ── */}
+      <section className={`mork ${styles.panelYta}`} id="synlighet">
+        <div className={`wrap ${styles.panelInner}`}>
+          <div>
+            <span className="eyebrow">Vad som händer</span>
+            <h2>
+              Från osedd till <span className="accent">hittad.</span>
+            </h2>
+            <p className="lede" style={{ marginTop: '1.1rem' }}>
+              De flesta hantverkarsajter tappar kunden på tre ställen: numret syns inte i mobilen,
+              det finns inget enkelt sätt att begära offert, och sidan laddar för långsamt. Vi bygger
+              bort alla tre.
+            </p>
+            <div className={styles.panelKnapp}>
+              <Link href="/tjanster/hemsidor/" className="btn btn-sekundar">
+                Så bygger vi {PIL}
+              </Link>
+            </div>
+          </div>
+          <SynlighetsPanel />
+        </div>
+      </section>
+
+      {/* ── TJÄNSTER: klickbara kort med ikoner ── */}
       <section id="tjanster">
         <div className="wrap">
           <span className="eyebrow">Vad vi gör</span>
@@ -68,6 +139,7 @@ export default function Start() {
           <div className={styles.tjanstNat}>
             {TJANSTER.map((t) => (
               <Link key={t.slug} href={`/tjanster/${t.slug}/`} className={styles.tjanstKort}>
+                <TjanstIkon slug={t.slug} />
                 <h3>{t.namn}</h3>
                 <p>{t.kort}</p>
                 <span className={styles.tjanstFot}>
@@ -80,7 +152,7 @@ export default function Start() {
         </div>
       </section>
 
-      {/* ── PROCESS: med CTA i slutet ── */}
+      {/* ── PROCESS: horisontellt spår med scroll-knappar ── */}
       <section className={`mork ${styles.process}`} id="process">
         <div className="wrap">
           <span className="eyebrow">Hur vi jobbar</span>
@@ -90,15 +162,7 @@ export default function Start() {
             till <span className="accent">fulla kalendrar.</span>
           </h2>
 
-          <ol className={styles.stegNat}>
-            {STEG.map((s) => (
-              <li key={s.n} className="kort">
-                <span className={styles.stegNr}>{s.n}</span>
-                <h3>{s.h}</h3>
-                <p>{s.p}</p>
-              </li>
-            ))}
-          </ol>
+          <ProcessRail />
 
           <div className={styles.processCta}>
             <div>
@@ -141,6 +205,38 @@ export default function Start() {
             <Link href="/case/" className="btn btn-sekundar">
               Se fler leveranser och demos
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── GRATIS ANALYS + GRATIS GUIDE ── */}
+      <section className={styles.gratisYta} id="gratis">
+        <div className="wrap">
+          <span className="eyebrow">Kostnadsfritt att börja</span>
+          <h2>
+            Två sätt att komma <span className="accent">igång direkt.</span>
+          </h2>
+
+          <div className={styles.gratisNat}>
+            <a href="/foretag/gratis-granskning.html" className={styles.gratisKort}>
+              <span className={styles.gratisTagg}>Gratis analys</span>
+              <h3>10-punktsanalys av er hemsida</h3>
+              <p>
+                Vi granskar sidan och skickar en personlig rapport: mobilanpassning, synlighet på
+                Google, kontaktflöde och vad som läcker kunder. Svar inom 24 timmar.
+              </p>
+              <span className={styles.gratisLank}>Få gratis analys {PIL}</span>
+            </a>
+
+            <a href="/foretag/gratis-guide.html" className={styles.gratisKort}>
+              <span className={styles.gratisTagg}>Gratis guide</span>
+              <h3>3 sätt att ranka högre på Google</h3>
+              <p>
+                Guiden plus en kort video som visar exakt hur du tar ditt lokala företag till topp 3
+                på Google och i Maps. Inga tekniska kunskaper behövs.
+              </p>
+              <span className={styles.gratisLank}>Hämta guiden {PIL}</span>
+            </a>
           </div>
         </div>
       </section>
