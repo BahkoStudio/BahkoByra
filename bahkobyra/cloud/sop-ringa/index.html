@@ -2,632 +2,1344 @@
 <html lang="sv">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <!-- Internt arbetsmaterial: ska aldrig indexeras och ligger medvetet utanför sitemapen. -->
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#F8FAFC">
-<title>SOP: Kalla samtal — Bahko Byrå (internt)</title>
+<title>Ring-SOP · Bahko Byrå</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+/* ============================================================
+   RING-SOP — blad + sidomeny
+   Tokens: varumärke v2 — marinblå #0A1628 · smaragd #10B981
+   KNAPP-REGEL: smaragd yta + marinblå text. Aldrig vit på smaragd.
+   Typografi: Outfit rakt igenom.
+   ============================================================ */
 :root{
-  --navy:#0A1628; --navy-80:#334155; --navy-60:#475569;
-  --gold:#047857; --gold-lt:#34D399; --smaragd:#10B981; --cream:#F8FAFC; --yta-2:#F1F5F9; --white:#FFFFFF;
-  --line:#E2E8F0; --red:#DC2626; --green:#047857; --danger:#DC2626; --warn:#B45309; --focus:#047857;
-  --disp:'Outfit',system-ui,sans-serif; --sans:'Outfit',system-ui,sans-serif;
+  --lt:#F8FAFC; --lt-2:#F1F5F9; --white:#FFFFFF;
+  --navy:#0A1628;
+  --em:#10B981; --em-lt:#34D399; --em-deep:#047857;
+  --ink:#0A1628; --ink-2:#334155; --ink-3:#475569; --ink-4:#64748B;
+  --line:#E2E8F0; --line-2:#CBD5E1;
+  --fel:#DC2626; --ratt:#047857; --warn:#B45309; --focus:#047857;
+  --sans:'Outfit',system-ui,-apple-system,sans-serif;
+  --r:6px; --r-lg:12px;
+  --ease:cubic-bezier(.22,1,.36,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:84px}
-body{font-family:var(--sans);background:var(--cream);color:var(--navy);font-size:16px;line-height:1.65}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);background:var(--lt);color:var(--ink);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  display:grid;grid-template-columns:248px 1fr;min-height:100vh;
+}
 :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+::selection{background:var(--em);color:var(--navy)}
+a{color:var(--em-deep)}
 
-/* Header */
-.top{position:sticky;top:0;z-index:50;background:rgba(248,250,252,.92);backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line);padding:.8rem 1.4rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-.top img{height:34px;display:block}
-.top .t{font-family:var(--sans);font-weight:700;font-size:1.1rem}
-.top .badge{margin-left:auto;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--gold);border:1px solid var(--gold);border-radius:100px;padding:.3rem .9rem}
-.nav{display:flex;gap:.4rem;flex-wrap:wrap;padding:.6rem 1.4rem;background:var(--navy)}
-.nav a{color:rgba(248,250,252,.8);text-decoration:none;font-size:.72rem;letter-spacing:.08em;
-  text-transform:uppercase;padding:.35rem .8rem;border-radius:100px;transition:.25s}
-.nav a:hover{color:var(--gold-lt);background:rgba(52,211,153,.12)}
+/* ── SIDOMENY ───────────────────────────────────────────── */
+.side{
+  background:var(--white);border-right:1px solid var(--line);
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+  padding:1.1rem .8rem 1.4rem;display:flex;flex-direction:column;gap:1rem;
+}
+.lock{display:flex;align-items:center;gap:.6rem;padding:.2rem .35rem}
+.mark{
+  width:34px;height:34px;border-radius:8px;background:var(--em);
+  display:grid;place-items:center;font-weight:800;font-size:1.1rem;
+  color:var(--navy);flex:none;
+}
+.lock h1{font-size:1.05rem;font-weight:700;line-height:1.15;letter-spacing:.01em}
+.lock span{display:block;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-4);margin-top:.1rem}
 
-.wrap{max-width:860px;margin:0 auto;padding:2.6rem 1.4rem 5rem}
+nav{display:flex;flex-direction:column;gap:1px}
+.grp{
+  font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4);
+  font-weight:700;padding:.9rem .7rem .3rem;
+}
+.grp:first-child{padding-top:.2rem}
+.nav-i{
+  display:flex;align-items:center;gap:.6rem;width:100%;text-align:left;
+  padding:.62rem .7rem;border-radius:var(--r);border:none;background:none;
+  font-family:var(--sans);font-size:.88rem;color:var(--ink-2);cursor:pointer;
+  min-height:44px;transition:.18s var(--ease);
+}
+.nav-i .n{
+  width:1.55rem;height:1.55rem;border-radius:50%;flex:none;
+  display:grid;place-items:center;font-size:.82rem;font-weight:700;
+  background:var(--lt-2);color:var(--ink-3);transition:.18s;
+}
+.nav-i .lbl{flex:1;min-width:0}
+.nav-i .tid{font-size:.82rem;color:var(--ink-4);font-variant-numeric:tabular-nums}
+.nav-i:hover{background:var(--lt-2);color:var(--ink)}
+.nav-i[aria-current="page"]{
+  background:linear-gradient(90deg,rgba(16,185,129,.16),rgba(16,185,129,.03));
+  color:var(--ink);font-weight:600;box-shadow:inset 2px 0 0 var(--em-deep);
+}
+.nav-i[aria-current="page"] .n{background:var(--em);color:var(--navy)}
+.nav-i[aria-current="page"] .tid{color:var(--em-deep)}
+.nav-i.akut{border:1px dashed var(--line-2);margin-top:.5rem}
+.nav-i.akut .n{background:transparent;font-size:.95rem}
+.side-sp{flex:1;min-height:.5rem}
 
-/* Hero */
-h1{font-family:var(--disp);font-size:clamp(2rem,5vw,2.9rem);font-weight:700;line-height:1.12;margin-bottom:.9rem}
-.lead{font-size:1.02rem;color:var(--navy-80);max-width:60ch}
-.goal{margin:1.6rem 0 0;background:var(--navy);color:var(--white);border-radius:14px;padding:1.3rem 1.5rem}
-.goal b{color:var(--gold-lt)}
-.goal .g1{font-family:var(--disp);font-size:1.3rem;font-weight:600;margin-bottom:.3rem}
-.goal p{font-size:.9rem;color:rgba(255,253,249,.85)}
+/* Målet — alltid synligt */
+.mal{
+  background:var(--navy);color:var(--white);border-radius:var(--r-lg);
+  padding:.85rem .95rem;font-size:.84rem;line-height:1.5;
+}
+.mal .t{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--em-lt);font-weight:700;margin-bottom:.3rem}
+.mal b{color:var(--em-lt)}
 
-/* Sections */
-section{margin-top:3.2rem}
-.kick{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600}
-h2{font-family:var(--disp);font-size:1.75rem;font-weight:700;margin:.3rem 0 1rem}
-h3{font-family:var(--disp);font-size:1.25rem;font-weight:600;margin:1.6rem 0 .5rem}
-p{margin-bottom:.8rem;color:var(--navy-80)}
-p b,li b{color:var(--navy)}
-ul,ol{margin:0 0 1rem 1.2rem}
-li{margin:.35rem 0;color:var(--navy-80)}
+/* ── HUVUDYTA ───────────────────────────────────────────── */
+main{min-width:0;display:flex;flex-direction:column}
+.top{
+  position:sticky;top:0;z-index:40;
+  background:rgba(248,250,252,.94);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  padding:1.15rem clamp(1.1rem,3vw,2.2rem) .95rem;
+}
+.top .fas{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--em-deep);font-weight:700}
+.top h2{font-size:clamp(1.5rem,3.4vw,1.95rem);font-weight:700;line-height:1.12;margin:.15rem 0 .2rem}
+.top p{font-size:.9rem;color:var(--ink-3);max-width:62ch}
+.body{padding:1.9rem clamp(1.1rem,3vw,2.2rem) 5rem;max-width:900px}
 
-/* Script cards */
-.say{background:var(--white);border:1px solid var(--line);border-left:4px solid var(--smaragd);
-  border-radius:0 12px 12px 0;padding:1.1rem 1.3rem;margin:.9rem 0;font-size:.98rem;color:var(--navy);
-  box-shadow:0 2px 12px rgba(10,22,40,.05)}
-.say .who{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.4rem}
-.say p{color:var(--navy);margin-bottom:.6rem}
-.say p:last-child{margin-bottom:0}
+/* ── BLAD ───────────────────────────────────────────────── */
+.blad{display:none}
+.blad.on{display:block;animation:in .28s var(--ease)}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+h3{font-size:1.18rem;font-weight:700;margin:2rem 0 .6rem;line-height:1.25}
+h3:first-child{margin-top:0}
+h4{font-size:1rem;font-weight:600;margin:1.2rem 0 .4rem}
+p{margin-bottom:.8rem;color:var(--ink-2)}
+p b,li b{color:var(--ink)}
+ul,ol{margin:0 0 1rem 1.15rem}
+li{margin:.35rem 0;color:var(--ink-2)}
+.intro{font-size:1rem;color:var(--ink-2);max-width:64ch;margin-bottom:1.4rem}
+
+/* Målet — landningsblocket på blad 1 (#mal pekar hit) */
+.malstor{
+  background:var(--navy);color:var(--white);border-radius:var(--r-lg);
+  padding:1.5rem 1.6rem;margin:0 0 1.6rem;
+}
+.malstor .k{
+  font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--em-lt);font-weight:700;margin-bottom:.4rem;
+}
+.malstor .s{
+  font-size:clamp(1.25rem,2.6vw,1.6rem);font-weight:700;line-height:1.2;margin-bottom:.7rem;
+}
+.malstor p{color:rgba(255,255,255,.86);font-size:.96rem;margin-bottom:0;max-width:60ch}
+.malstor b{color:var(--em-lt)}
+.flode{
+  display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;
+  margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid rgba(148,167,191,.22);
+  font-size:.82rem;
+}
+.flode span{
+  padding:.28rem .7rem;border-radius:100px;
+  background:rgba(148,167,191,.16);color:rgba(255,255,255,.8);white-space:nowrap;
+}
+.flode span.hl{background:var(--em);color:var(--navy);font-weight:700}
+.flode i{color:rgba(148,167,191,.6);font-style:normal}
+
+/* VAD DU GÖR — instruktionen */
+.gor{
+  background:var(--white);border:1px solid var(--line);border-left:4px solid var(--em);
+  border-radius:0 var(--r-lg) var(--r-lg) 0;padding:1rem 1.2rem;margin:.9rem 0;
+}
+.gor .h{
+  font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--em-deep);font-weight:700;margin-bottom:.45rem;
+}
+.gor p{color:var(--ink);margin-bottom:.5rem}
+.gor p:last-child,.gor ul:last-child,.gor ol:last-child{margin-bottom:0}
+
+/* DU SÄGER — repliken som läses högt */
+.sag{
+  background:var(--navy);color:var(--white);border-radius:var(--r-lg);
+  padding:1.1rem 1.3rem;margin:.9rem 0;font-size:1rem;line-height:1.6;
+}
+.sag .h{
+  font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--em-lt);font-weight:700;margin-bottom:.5rem;
+}
+.sag p{color:rgba(255,255,255,.94);margin-bottom:.6rem}
+.sag p:last-child{margin-bottom:0}
+.sag b{color:var(--em-lt)}
+.sag .var{background:rgba(52,211,153,.22);color:var(--em-lt)}
+
+/* MALL — mejl/sms att kopiera */
+.mall{
+  background:var(--white);border:1px dashed var(--line-2);border-radius:var(--r-lg);
+  padding:1rem 1.2rem;margin:.9rem 0;position:relative;
+}
+.mall .h{
+  font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-4);font-weight:700;margin-bottom:.5rem;padding-right:5rem;
+}
+.mall p{color:var(--ink);font-size:.96rem;margin-bottom:.5rem}
+.mall p:last-child{margin-bottom:0}
+
+/* VARFÖR / FÄLLOR — uppfällbart */
+details{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r);
+  margin:.7rem 0;overflow:hidden;
+}
+details summary{
+  cursor:pointer;padding:.7rem 1rem;font-size:.9rem;font-weight:600;
+  color:var(--ink-2);list-style:none;display:flex;align-items:center;gap:.5rem;
+  min-height:44px;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::before{
+  content:'';width:0;height:0;flex:none;
+  border-left:5px solid var(--em-deep);border-top:4px solid transparent;border-bottom:4px solid transparent;
+  transition:transform .2s var(--ease);
+}
+details[open] summary::before{transform:rotate(90deg)}
+details summary:hover{background:var(--lt-2)}
+details .d{padding:.2rem 1rem 1rem 2rem;font-size:.94rem}
+details .d p:last-child,details .d ul:last-child{margin-bottom:0}
+details.varfor summary{color:var(--em-deep)}
+
+/* REGEL — hård, aldrig hopfälld */
+.regel{
+  background:rgba(180,83,9,.07);border:1px solid rgba(180,83,9,.28);
+  border-radius:var(--r);padding:.85rem 1.1rem;margin:.9rem 0;font-size:.96rem;color:var(--ink);
+}
+.regel .h{
+  font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--warn);font-weight:700;margin-bottom:.35rem;
+}
+.regel p{color:var(--ink)}
+.regel p:last-child{margin-bottom:0}
+
+/* INVÄNDNINGSKORT — måste hittas i under 3 sekunder */
+.inv{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:1.1rem 1.3rem;margin:.85rem 0;
+}
+.inv h3{
+  font-size:1.12rem;font-weight:700;color:var(--ink);margin:0 0 .6rem;line-height:1.3;
+}
+.inv .sag{margin:0 0 .6rem}
+.ater{
+  font-size:.86rem;font-weight:600;color:var(--em-deep);margin:0;
+}
+
+/* Diagnoskort (ersätter 4-kolumnstabellen som skrollade av mobilen) */
+.diag{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:1rem 1.2rem;margin:.8rem 0;
+}
+.diag h4{margin:0 0 .55rem;font-size:1rem;color:var(--ink)}
+.diag dl{display:grid;gap:.5rem;font-size:.94rem;margin:0}
+.diag dt{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink-4)}
+.diag dd{margin:0 0 .3rem;color:var(--ink-2)}
+.diag .f dt{color:var(--fel)} .diag .f dd{color:var(--fel)}
+.diag .r dt{color:var(--ratt)} .diag .r dd{color:var(--ratt);font-weight:500}
+
+/* Kort */
+.kort{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:1.15rem 1.35rem;margin:.9rem 0;
+}
+.kort h3{margin-top:0}
+.kort p:last-child,.kort ul:last-child,.kort ol:last-child{margin-bottom:0}
 .var{background:rgba(16,185,129,.16);border-radius:4px;padding:0 .3em;font-weight:600;white-space:nowrap}
+.ja{color:var(--ratt);font-weight:500}
+.nej{color:var(--fel);font-weight:500}
+.callout{
+  background:rgba(16,185,129,.09);border:1px solid rgba(16,185,129,.3);
+  border-radius:var(--r);padding:.85rem 1.1rem;margin:.8rem 0;color:var(--ink);
+}
+.sub{font-weight:400;color:var(--ink-3);font-size:.95rem}
+.villkor{font-size:.88rem;color:var(--ink-3);margin:-.2rem 0 .7rem}
+.lista dl{display:grid;gap:.5rem;font-size:.94rem;margin:0}
+.lista dt{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink-4)}
+.lista dd{margin:0 0 .3rem;color:var(--ink-2)}
 
-/* Variable cards */
-.vcard{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.5rem;margin:1rem 0}
-.vcard h3{margin-top:0}
-.good{color:var(--green)} .bad{color:var(--red)}
-.checklist li{margin:.55rem 0}
+/* Checklista */
+.check{list-style:none;margin-left:0;counter-reset:c}
+.check li{
+  counter-increment:c;position:relative;padding:.55rem 0 .55rem 2.4rem;
+  border-bottom:1px solid var(--line);margin:0;
+}
+.check li:last-child{border-bottom:none}
+.check li::before{
+  content:counter(c);position:absolute;left:0;top:.62rem;
+  width:1.6rem;height:1.6rem;border-radius:50%;background:var(--lt-2);color:var(--em-deep);
+  font-size:.82rem;font-weight:700;display:grid;place-items:center;
+}
 
-/* Tables */
-table{border-collapse:collapse;width:100%;margin:1rem 0;background:var(--white);border-radius:12px;overflow:hidden;
-  box-shadow:0 2px 12px rgba(10,22,40,.05);font-size:.88rem}
-th{background:var(--navy);color:var(--white);text-align:left;padding:.6rem .9rem;font-weight:600;font-size:.78rem;
-  letter-spacing:.06em;text-transform:uppercase}
-td{padding:.6rem .9rem;border-top:1px solid var(--line);vertical-align:top}
-td a{color:var(--navy);font-weight:500}
-.tablewrap{overflow-x:auto}
+/* Regellista */
+.rules{list-style:none;margin-left:0;counter-reset:r}
+.rules li{
+  counter-increment:r;position:relative;background:var(--white);
+  border:1px solid var(--line);border-radius:var(--r);
+  padding:.75rem 1rem .75rem 2.85rem;margin:.5rem 0;
+}
+.rules li::before{
+  content:counter(r);position:absolute;left:.8rem;top:.78rem;
+  width:1.55rem;height:1.55rem;border-radius:50%;background:var(--em);color:var(--navy);
+  font-size:.82rem;font-weight:700;display:grid;place-items:center;
+}
 
-/* Rules */
-.rules li{background:var(--white);border:1px solid var(--line);border-radius:10px;list-style:none;
-  padding:.7rem 1rem .7rem 2.6rem;position:relative;margin:.5rem 0}
-.rules{margin-left:0}
-.rules li::before{content:counter(r);counter-increment:r;position:absolute;left:.8rem;top:.72rem;
-  width:1.35rem;height:1.35rem;border-radius:50%;background:var(--gold);color:#fff;
-  font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center}
-.rules{counter-reset:r}
+/* Steg-etikett i 15-minuterssamtalet */
+.steg{
+  display:flex;align-items:center;gap:.55rem;flex-wrap:wrap;
+  font-size:1.02rem;font-weight:700;color:var(--ink);margin:1.8rem 0 .5rem;
+}
+.steg .num{
+  width:1.75rem;height:1.75rem;border-radius:50%;background:var(--em);color:var(--navy);
+  display:grid;place-items:center;font-size:.84rem;flex:none;
+}
+.steg .min{font-size:.84rem;font-weight:600;color:var(--ink-4);letter-spacing:.04em}
 
-/* Dagslogg */
-.logtools{display:flex;gap:.6rem;flex-wrap:wrap;margin:.8rem 0}
-button{font-family:var(--sans);font-size:.78rem;font-weight:600;letter-spacing:.06em;border-radius:100px;
-  padding:.55rem 1.2rem;min-height:44px;cursor:pointer;border:1px solid var(--smaragd);background:var(--smaragd);color:var(--navy);transition:.2s}
-button:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--navy)}
-button.ghost{background:transparent;border-color:var(--navy);color:var(--navy)}
-button.ghost:hover{background:rgba(16,185,129,.12)}
-#logg td{padding:.25rem}
-#logg input{width:100%;border:1px solid transparent;background:transparent;font-family:var(--sans);
-  font-size:.86rem;color:var(--navy);padding:.35rem .5rem;border-radius:6px}
-#logg input:focus{outline:none;border-color:var(--gold);background:var(--cream)}
-#logg input[type=number]{text-align:center}
-#logg .del{background:none;border:none;color:var(--red);font-size:1rem;padding:.2rem .5rem;cursor:pointer}
-.hint{font-size:.78rem;color:var(--navy-60);margin-top:.4rem}
-tfoot td{font-weight:700;background:var(--cream);text-align:center}
-tfoot td:first-child{text-align:left}
+/* Tabeller */
+table{
+  border-collapse:collapse;width:100%;margin:1rem 0;background:var(--white);
+  border-radius:var(--r-lg);overflow:hidden;font-size:.92rem;
+  box-shadow:0 1px 3px rgba(10,22,40,.05);
+}
+th{
+  background:var(--navy);color:var(--white);text-align:left;padding:.65rem .9rem;
+  font-weight:600;font-size:.88rem;letter-spacing:.01em;
+}
+td{padding:.65rem .9rem;border-top:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+td b{color:var(--ink)}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+tfoot td{font-weight:700;background:var(--lt-2);color:var(--ink)}
 
-.foot{margin-top:4rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.78rem;color:var(--navy-60)}
+/* KNAPPAR — smaragd yta, marinblå text (knappregeln) */
+.logtools{display:flex;gap:.6rem;flex-wrap:wrap;margin:1rem 0}
+button.btn{
+  font-family:var(--sans);font-size:.84rem;font-weight:600;letter-spacing:.03em;
+  border-radius:100px;padding:.6rem 1.2rem;min-height:44px;cursor:pointer;
+  border:1px solid var(--em);background:var(--em);color:var(--navy);transition:.2s;
+}
+button.btn:hover{background:var(--em-lt);border-color:var(--em-lt);color:var(--navy)}
+button.btn.ghost{background:transparent;border-color:var(--line-2);color:var(--ink-2)}
+button.btn.ghost:hover{background:var(--lt-2);border-color:var(--em-deep);color:var(--ink)}
+button.btn.liten{padding:.4rem .95rem;min-height:38px;font-size:.82rem}
+.kopiera{
+  position:absolute;top:.7rem;right:.7rem;font-family:var(--sans);
+  font-size:.82rem;font-weight:600;letter-spacing:.03em;padding:.4rem .85rem;
+  min-height:34px;border-radius:100px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--white);color:var(--ink-3);transition:.2s;
+}
+.kopiera:hover{background:var(--em);border-color:var(--em);color:var(--navy)}
+#logg input{
+  font-family:var(--sans);font-size:.9rem;color:var(--ink);
+  border:1px solid var(--line);border-radius:4px;padding:.4rem .5rem;width:100%;
+  background:var(--white);min-height:38px;
+}
+#logg input:focus{outline:2px solid var(--focus);outline-offset:1px;border-color:var(--em-deep)}
+button.del{
+  font-family:var(--sans);border:none;background:none;color:var(--ink-4);
+  cursor:pointer;font-size:.95rem;padding:.3rem .5rem;min-height:38px;border-radius:4px;
+}
+button.del:hover{background:rgba(220,38,38,.1);color:var(--fel)}
+.hint{font-size:.86rem;color:var(--ink-4);margin-top:.5rem}
+.matt{display:flex;gap:.6rem;flex-wrap:wrap;margin:1rem 0}
+.matt div{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r);
+  padding:.75rem 1rem;flex:1;min-width:135px;
+}
+.matt .v{font-size:1.3rem;font-weight:700;color:var(--em-deep);line-height:1.1}
+.matt .k{font-size:.84rem;color:var(--ink-4);margin-top:.15rem}
 
-@media (max-width:640px){ .top .t{font-size:.95rem} th,td{padding:.5rem .5rem} }
+.foot{
+  margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);
+  font-size:.84rem;color:var(--ink-4);
+}
+kbd{
+  font-family:var(--sans);font-size:.82rem;font-weight:600;background:var(--white);
+  border:1px solid var(--line-2);border-bottom-width:2px;border-radius:4px;
+  padding:.1rem .35rem;color:var(--ink-2);
+}
+
+/* ── MOBIL ──────────────────────────────────────────────── */
+@media (max-width:900px){
+  body{display:block}
+  .side{
+    position:sticky;top:0;height:auto;flex-direction:column;gap:.7rem;
+    border-right:none;border-bottom:1px solid var(--line);padding:.8rem .9rem .7rem;
+    z-index:60;
+  }
+  .lock{padding:0}
+  nav{
+    flex-direction:row;gap:.4rem;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    padding-bottom:.25rem;scrollbar-width:none;
+  }
+  nav::-webkit-scrollbar{display:none}
+  .grp{display:none}
+  .nav-i{
+    width:auto;flex:none;padding:.5rem .85rem;border:1px solid var(--line);
+    border-radius:100px;font-size:.86rem;white-space:nowrap;
+  }
+  .nav-i .tid{display:none}
+  .nav-i[aria-current="page"]{box-shadow:none;border-color:var(--em-deep);background:rgba(16,185,129,.14)}
+  .nav-i.akut{margin-top:0}
+  .side-sp{display:none}
+  .mal{font-size:.82rem;padding:.7rem .85rem}
+  .top{padding:1rem .9rem .8rem}
+  .body{padding:1.4rem .9rem 4rem;max-width:none}
+  .sag,.gor,.mall,.kort,.inv,.diag{padding-left:1rem;padding-right:1rem}
+}
+
+/* ── UTSKRIFT: alla blad, hela manualen på papper ────────── */
 @media print{
-  .nav,.logtools,.top .badge{display:none}
-  body{background:#fff;font-size:11pt}
-  .say,.vcard,table{box-shadow:none}
-  section{page-break-inside:avoid}
+  body{display:block;background:#fff;font-size:11pt}
+  .side,.top,.logtools,.kopiera,.foot,.nav-i,button.btn{display:none}
+  .body{padding:0;max-width:none}
+  .blad{display:block !important;page-break-before:always}
+  .blad:first-of-type{page-break-before:avoid}
+  .blad::before{
+    content:attr(data-print);display:block;font-size:16pt;font-weight:700;
+    margin:0 0 .7rem;color:#0A1628;
+  }
+  .sag,.malstor{background:#fff;color:#0A1628;border:1px solid #0A1628}
+  .sag p,.malstor p{color:#0A1628}
+  .sag b,.sag .h,.malstor b,.malstor .k{color:#047857}
+  .sag .var,.malstor .var{background:none;color:#047857;font-weight:700}
+  .flode{border-top-color:#CBD5E1}
+  .flode span,.flode span.hl{background:none;padding:0}
+  .flode span{color:#0A1628}
+  .flode span.hl{color:#047857;font-weight:700}
+  .flode i{color:#475569}
+  .gor,.kort,.inv,.mall,.diag,table,.rules li{box-shadow:none}
+  details{border:none}
+  details .d{display:block !important;padding-left:1rem}
+  details summary{font-weight:700}
+  details summary::before{display:none}
 }
 </style>
 </head>
 <body>
 
-<header class="top">
-  <img src="/brand/logo.svg" alt="Bahko Byrå" onerror="this.style.display='none'">
-  <span class="t">SOP · Kalla samtal</span>
-  <span class="badge">Internt material</span>
-</header>
-<nav class="nav">
-  <a href="#mal">Målet</a>
-  <a href="#variabler">1. Variablerna</a>
-  <a href="#sajter">2. Våra sajter</a>
-  <a href="#manus">3. Manuset</a>
-  <a href="#invandningar">4. Invändningar</a>
-  <a href="#mote">5. 15-minuterssamtalet</a>
-  <a href="#crm">6. CRM</a>
-  <a href="#regler">7. Regler</a>
-  <a href="#dagslogg">8. Dagslogg</a>
-</nav>
-
-<div class="wrap">
-
-<h1>Kalla samtal som säljer hemsidor</h1>
-<p class="lead">Vi säljer <b>hemsidor</b> till <b>bygg- och hantverksfirmor</b>. Ingenting annat nämns i samtalet:
-inte SEO, inte Google-ranking, inte annonser. Erbjudandet är en helt skräddarsydd ny hemsida för deras
-firma, gratis, levererad på mejl inom 48 timmar.</p>
-
-<div class="goal" id="mal">
-  <div class="g1">Samtalets enda mål: mejladressen och ett svar på testmejlet.</div>
-  <p>Inte boka möte. Inte sälja. <b>Mejl in, svar tillbaka, klart.</b> När demon är skickad och kunden
-  gillar den bokas <a href="#mote" style="color:var(--gold-lt)"><b>15-minuterssamtalet</b></a> — där, och
-  först där, nämns priset (15&nbsp;000 kr, engångs).</p>
-</div>
-
-<!-- ==================== 1. VARIABLERNA ==================== -->
-<section id="variabler">
-  <span class="kick">Avsnitt 1 · Innan du ringer</span>
-  <h2>Variablerna</h2>
-  <p>Manuset innehåller fyra variabler. Du fyller i dem <b>innan</b> du slår numret, aldrig under samtalet.
-  Förberedelsen tar 3–5 minuter per lead. Ring aldrig oförberedd: ett samtal utan konkret observation
-  låter som alla andra säljsamtal de får varje vecka.</p>
-
-  <div class="vcard">
-    <h3><span class="var">[FÖRETAG]</span></h3>
-    <p>Firmans namn som de själva skriver det. Kolla deras sajt eller Google-profil, inte bara CRM-raden.
-    Säger du fel namn är samtalet över innan det börjat.</p>
+<aside class="side">
+  <div class="lock">
+    <div class="mark">B</div>
+    <div>
+      <h1>Ring-SOP</h1>
+      <span>Internt · Bahko Byrå</span>
+    </div>
   </div>
 
-  <div class="vcard">
-    <h3><span class="var">[NAMN]</span></h3>
-    <ul>
-      <li>Finns i CRM eller på sajtens "Om oss"/kontaktsida: använd förnamnet. <i>"Hej Johan!"</i></li>
-      <li>Finns inget namn: öppna med bara <i>"Hej!"</i> och fråga dig fram: <i>"jag söker den som äger firman."</i></li>
-      <li><b>Gissa aldrig ett namn.</b> Fel namn är värre än inget namn.</li>
-    </ul>
+  <nav id="nav" aria-label="Stegen i ordning"></nav>
+
+  <div class="side-sp"></div>
+
+  <div class="mal">
+    <div class="t">Samtalets enda mål</div>
+    <b>Mejl in, svar tillbaka, klart.</b> Inte boka möte. Inte sälja.
   </div>
+</aside>
 
-  <div class="vcard">
-    <h3><span class="var">[SMÄRTA]</span> — den viktigaste variabeln</h3>
-    <p>En konkret sak på <b>deras</b> sajt som kostar dem kunder. Så hittar du den:</p>
-    <p><b>Öppna deras hemsida i mobilen.</b> Inte på datorn. Deras kunder söker "takläggare Västerås"
-    i soffan med telefonen, så det är mobilvyn som räknas.</p>
-    <p><b>Läs den som en kund, inte som en säljare.</b> Föreställ dig: ditt tak läcker, du har tre flikar
-    öppna med tre firmor. Skulle du ringa den här? Varför inte? Det du snubblar på är smärtan.</p>
-    <ol class="checklist">
-      <li><b>Hittar jag telefonnumret direkt?</b> Utan att scrolla, utan att öppna en meny. Vanligaste felet: numret göms bakom hamburgarmenyn.</li>
-      <li><b>Förstår jag inom 5 sekunder vad de gör och var?</b> "Välkommen till oss" säger ingenting. "Takläggare i Västerås" säger allt.</li>
-      <li><b>Finns bilder på riktiga jobb?</b> Före/efter är guld. Stockfoton på leende modeller i hjälm ser alla igenom.</li>
-      <li><b>Är det för mycket text?</b> Väggar av text som ingen läser. En hantverkarsajt ska visa, inte förklara.</li>
-      <li><b>Finns ett sätt att begära offert?</b> En knapp, ett formulär. Eller måste jag leta upp en mejladress själv?</li>
-      <li><b>Ser den gammal ut?</b> Inte mobilanpassad, trasiga bilder, "senaste nytt" från för tre år sen.</li>
-      <li><b>Har de ingen sajt alls?</b> Också en smärta, ofta den enklaste att prata om.</li>
-    </ol>
-    <p><b>Jämför med våra byggda sajter</b> (avsnitt 2). Öppna sajten för deras bransch bredvid deras egen.
-    Skillnaden du ser är exakt det du ska kunna beskriva i telefon.</p>
-    <p><b>Skriv ner smärtan i EN mening innan du ringer.</b> Konkret och neutral, aldrig nedlåtande:</p>
-    <ul>
-      <li class="good"><b>Bra:</b> "offertknappen syns inte på mobilen, man måste öppna menyn för att hitta numret"</li>
-      <li class="good"><b>Bra:</b> "det finns inga bilder på utförda jobb fast ni gjort massor"</li>
-      <li class="bad"><b>Dåligt:</b> "er hemsida är ful och gammal" (förolämpning, inte observation)</li>
-      <li class="bad"><b>Dåligt:</b> "ni borde synas bättre på Google" (fel erbjudande, vi säljer hemsidor)</li>
-    </ul>
-    <p><b>Skulle du köpa?</b> Avsluta förberedelsen med den frågan. Är svaret "faktiskt ja, sajten är
-    riktigt bra": ring nästa lead. Vi ringer bara firmor vi faktiskt kan hjälpa.</p>
-  </div>
+<main>
+  <header class="top">
+    <div class="fas" id="vFas"></div>
+    <h2 id="vTitel"></h2>
+    <p id="vSub"></p>
+  </header>
 
-  <div class="vcard">
-    <h3><span class="var">[LÖSNING]</span> — beviset som gör smärtan värd att fixa</h3>
-    <p>Direkt efter smärtan kommer beviset: <b>en mening om vad det gav en liknande kund.</b>
-    Utan den är smärtan bara kritik. Med den blir den ett skäl att lyssna klart.</p>
-    <p><b>Standardraden</b> (använd den om inget bättre finns):</p>
-    <p style="background:var(--yta-2);border-left:4px solid var(--smaragd);padding:.7rem 1rem;border-radius:0 8px 8px 0">
-    "Vi har haft kunder med en sida som liknar er, där små justeringar gett
-    <b>tolv procent fler kundförfrågningar</b>."</p>
-    <ul>
-      <li>Säg den <b>lugnt och i förbifarten</b> — det är en erfarenhet, inte ett löfte. Lova aldrig
-      tolv procent till just dem.</li>
-      <li>Finns en närmare matchning (t.ex. målaren i Jönköping för en målare) — använd den i stället.
-      En specifik historia slår alltid en procentsiffra.</li>
-      <li>Hitta aldrig på nya siffror. Standardraden är den enda siffran du får använda.</li>
-    </ul>
-  </div>
-</section>
+  <div class="body">
 
-<!-- ==================== 2. SAJTERNA ==================== -->
-<section id="sajter">
-  <span class="kick">Avsnitt 2 · Referenser</span>
-  <h2>Våra byggda sajter — kunna utantill</h2>
-  <p>Öppna alltid sajten för rätt bransch <b>innan</b> samtalet, så du kan beskriva den konkret.
-  Länkarna används i förberedelsen och kan visas på mötet. <b>De skickas aldrig i första mejlet</b>
-  (testmejlet är ren text utan länkar, se manuset).</p>
+  <!-- ═══════════ 1. FÖRBERED LEADET ═══════════ -->
+  <section class="blad" id="b-forbered" data-print="1. Förbered leadet">
+    <div class="malstor">
+      <div class="k">Samtalets enda mål</div>
+      <div class="s">Mejladressen — och ett svar på testmejlet.</div>
+      <p>Inte boka möte. Inte sälja. <b>Mejl in, svar tillbaka, klart.</b> När demon är skickad och kunden
+      gillar den bokas 15-minuterssamtalet — där, och först där, nämns priset.</p>
+      <div class="flode">
+        <span>Förbered</span><i>→</i><span>Ring</span><i>→</i><span class="hl">Mejladress</span><i>→</i>
+        <span class="hl">Svar</span><i>→</i><span>Demo</span><i>→</i><span>15 min</span><i>→</i><span>Kund</span>
+      </div>
+    </div>
 
-  <h3>Demosajter (visningsexempel, påhittade firmor)</h3>
-  <div class="tablewrap"><table>
-    <thead><tr><th>Bransch</th><th>Sajt</th><th>Länk</th></tr></thead>
-    <tbody>
-      <tr><td>Bygg / totalentreprenad</td><td>GRANIT Bygg &amp; Entreprenad <b>(huvuddemot)</b></td><td><a href="https://www.bahkobyra.se/cloud/bygg/" target="_blank" rel="noopener">bahkobyra.se/cloud/bygg</a></td></tr>
-      <tr><td>Badrum / renovering</td><td>Tryggbyggservice</td><td><a href="https://www.bahkobyra.se/cloud/tryggbyggservice/" target="_blank" rel="noopener">…/cloud/tryggbyggservice</a></td></tr>
-      <tr><td>Nybyggnation / renovering</td><td>Vajje Bygg</td><td><a href="https://www.bahkobyra.se/cloud/vajjebygg/" target="_blank" rel="noopener">…/cloud/vajjebygg</a></td></tr>
-      <tr><td>Mark / grund / dränering</td><td>Österlunds Jordbyggnad</td><td><a href="https://www.bahkobyra.se/cloud/osterlunds/" target="_blank" rel="noopener">…/cloud/osterlunds</a></td></tr>
-      <tr><td>Allservice / hantverk</td><td>Alfred Allservice</td><td><a href="https://www.bahkobyra.se/cloud/alfredallservice/" target="_blank" rel="noopener">…/cloud/alfredallservice</a></td></tr>
-      <tr><td>Rör / relining</td><td>Asmar Relining</td><td><a href="https://www.bahkobyra.se/cloud/asmar/" target="_blank" rel="noopener">…/cloud/asmar</a></td></tr>
-      <tr><td>Transport / kranbil</td><td>KMC Transport</td><td><a href="https://www.bahkobyra.se/cloud/kmctransport/" target="_blank" rel="noopener">…/cloud/kmctransport</a></td></tr>
-    </tbody>
-  </table></div>
+    <p class="intro">Vi säljer <b>hemsidor</b> till <b>bygg- och hantverksfirmor</b>. Erbjudandet är en helt
+    skräddarsydd ny hemsida, gratis, levererad på mejl inom 48 timmar. Manuset har fyra variabler —
+    du fyller i dem <b>innan</b> du slår numret, aldrig under samtalet. Räkna 3–5 minuter per lead.</p>
 
-  <h3>Levererade kundsajter (riktiga kunder, starkaste beviset)</h3>
-  <div class="tablewrap"><table>
-    <thead><tr><th>Bransch</th><th>Kund</th><th>Länk</th></tr></thead>
-    <tbody>
-      <tr><td>Måleri / tak</td><td>Smålands Måleri, Jönköping</td><td><a href="https://smamaleri.se" target="_blank" rel="noopener">smamaleri.se</a></td></tr>
-      <tr><td>Trädgård / mark</td><td>Bromma Trädgårdsservice, Stockholm</td><td><a href="https://brommatradgardsservice.se" target="_blank" rel="noopener">brommatradgardsservice.se</a></td></tr>
-    </tbody>
-  </table></div>
-  <p>Kundsajterna väger tyngst: <i>"det här byggde vi åt en målare i Jönköping"</i> slår varje demo.
-  Använd den som ligger närmast prospektets bransch.</p>
-</section>
+    <div class="regel">
+      <div class="h">Aldrig undantag</div>
+      <p>Ring aldrig oförberedd. Ett samtal utan konkret observation låter som alla andra säljsamtal
+      de får varje vecka.</p>
+    </div>
 
-<!-- ==================== 3. MANUSET ==================== -->
-<section id="manus">
-  <span class="kick">Avsnitt 3 · Samtalet</span>
-  <h2>Manuset</h2>
-  <p>Tala lugnt, som en människa. Läs inte innantill: kunna stommen och säg den med egna ord.
-  Ler du när du pratar hörs det, det är inte en myt.</p>
+    <div class="kort">
+      <h3><span class="var">[FÖRETAG]</span></h3>
+      <p>Firmans namn som de själva skriver det. Kolla deras sajt eller Google-profil, inte bara CRM-raden.</p>
+      <details class="varfor"><summary>Varför spelar det roll?</summary>
+        <div class="d"><p>Säger du fel namn är samtalet över innan det börjat.</p></div>
+      </details>
+    </div>
 
-  <h3>Öppning (10 sekunder)</h3>
-  <div class="say"><div class="who">Du säger</div>
-    <p>"Hej <span class="var">[NAMN]</span>! <span class="var">[Ditt förnamn]</span> heter jag, jag ringer
-    från Bahko Byrå. Är det du som har hand om hemsidan på <span class="var">[FÖRETAG]</span>?"</p>
-  </div>
-  <ul>
-    <li><b>Ja:</b> vidare till kroppen.</li>
-    <li><b>Nej:</b> "Inga problem! Vem ska jag prata med om sånt?" Få ett namn, tacka, lägg på, logga.</li>
-    <li><b>"Vad gäller det?":</b> gå direkt på kroppen, det är samma sak som ett ja.</li>
-  </ul>
+    <div class="kort">
+      <h3><span class="var">[NAMN]</span></h3>
+      <ul>
+        <li>Finns i CRM eller på sajtens "Om oss"/kontaktsida: använd förnamnet. <i>"Hej Johan!"</i></li>
+        <li>Finns inget namn: öppna med bara <i>"Hej!"</i> och fråga dig fram:
+        <i>"jag söker den som äger firman."</i></li>
+      </ul>
+      <div class="regel">
+        <div class="h">Aldrig undantag</div>
+        <p><b>Gissa aldrig ett namn.</b> Fel namn är värre än inget namn.</p>
+      </div>
+    </div>
 
-  <h3>Kroppen (30 sekunder)</h3>
-  <div class="say"><div class="who">Du säger</div>
-    <p>"Jag ska vara snabb. Jag kikade på er hemsida innan jag ringde och la märke till att
-    <span class="var">[SMÄRTA]</span>. Det är en sån grej som gör att folk ringer nästa firma istället,
-    fast ni antagligen gör ett bättre jobb.</p>
-    <p><span class="var">[LÖSNING]</span>: "Vi har haft kunder med en sida som liknar er, där små
-    justeringar gett tolv procent fler kundförfrågningar."</p>
-    <p>Vi bygger hemsidor för just bygg- och hantverksfirmor. Det jag vill göra är att ta fram en helt
-    skräddarsydd ny hemsida för <span class="var">[FÖRETAG]</span>, helt gratis. Ni får den inom 48 timmar,
-    ni kikar på den i mobilen, och sen bestämmer ni själva om det är intressant.</p>
-    <p>Jag skickar över den på mejl. <b>Vad har ni för mejladress?</b>"</p>
-  </div>
-  <p><b>Sen är du tyst.</b> Den som pratar först efter frågan förlorar. Fyll inte tystnaden.</p>
+    <div class="kort">
+      <h3><span class="var">[SMÄRTA]</span> <span class="sub">— den viktigaste variabeln</span></h3>
+      <p>En konkret sak på <b>deras</b> sajt som kostar dem kunder.</p>
 
-  <h3>Ta mejlen (kritiskt moment)</h3>
-  <p>Skriv ner adressen och <b>läs upp den tillbaka</b>, tecken för tecken. En feltagen mejladress är
-  ett bortkastat samtal och en byggd demo som aldrig kommer fram.</p>
-  <div class="say"><div class="who">Du säger</div>
-    <p>"Då tar jag den: <span class="var">[läs upp adressen]</span>. Stämmer det?"</p>
-  </div>
+      <div class="gor">
+        <div class="h">Vad du gör</div>
+        <p><b>1. Öppna deras hemsida i mobilen.</b> Inte på datorn.</p>
+        <p><b>2. Läs den som en kund, inte som en säljare.</b> Ditt tak läcker, du har tre flikar öppna med
+        tre firmor. Skulle du ringa den här? Varför inte? Det du snubblar på är smärtan.</p>
+        <p><b>3. Skriv ner smärtan i EN mening</b> innan du ringer. Konkret och neutral, aldrig nedlåtande.</p>
+      </div>
 
-  <h3>Testmejlet (direkt efter, medan ni pratar)</h3>
-  <div class="say"><div class="who">Du säger</div>
-    <p>"Toppen. Då gör vi så här: jag skickar ett kort mejl till dig nu direkt, bara vanlig text utan
-    länkar eller bilagor, så det inte fastnar i skräpposten. Svara kort på det, ett ok räcker, så vet
-    jag att det kommit fram till rätt adress.</p>
-    <p>Vi gör så för att se vilka som är med på riktigt, så vi inte lägger tid på att bygga en sida som
-    sen aldrig öppnas. Så fort du svarat sätter vi igång, och inom 48 timmar har du den nya hemsidan
-    i inkorgen."</p>
-  </div>
-  <p><b>Skicka testmejlet medan ni fortfarande pratar</b>, eller inom fem minuter efter samtalet.
-  Mall — ren text, ingen länk, ingen bild, ingen logga i signaturen:</p>
-  <div class="say"><div class="who">Mejlmall</div>
-    <p><b>Ämne:</b> Ny hemsida till <span class="var">[FÖRETAG]</span></p>
-    <p>Hejsan <span class="var">[NAMN]</span>!</p>
-    <p>Tack för snacket nyss. Svara kort på det här mejlet, så vet jag att det kom fram till rätt adress.
-    Sen bygger vi och du har den nya hemsidan här inom 48 timmar.</p>
-    <p>Vänliga hälsningar<br><span class="var">[Ditt förnamn]</span>, Bahko Byrå</p>
-  </div>
+      <details class="varfor"><summary>Varför just mobilen?</summary>
+        <div class="d"><p>Deras kunder söker "takläggare Västerås" i soffan med telefonen. Det är mobilvyn
+        som räknas — inte hur sajten ser ut på din skärm.</p></div>
+      </details>
 
-  <h3>Avslutning av samtalet</h3>
-  <div class="say"><div class="who">Du säger</div>
-    <p>"Då säger vi så! Håll utkik efter mejlet, det kommer nu på en gång. Så fort du svarat är vi igång.
-    Ha en bra dag!"</p>
-  </div>
-  <p><b>Inget möte bokas i det här samtalet.</b> Först händer alltid samma två saker:</p>
-  <ol>
-    <li>Prospekten svarar på testmejlet → vi bygger (max 48 timmar)</li>
-    <li>Demon levereras på mejl med JA-protokollet (nedan)</li>
-  </ol>
-  <p>Sen finns det <b>två vägar till mötet:</b></p>
-  <ul>
-    <li><b>Väg A — kunden svarar positivt på demomejlet</b> ("snyggt!", "vad kostar det?",
-    "hur går vi vidare?"): hoppa över uppföljningen och boka
-    <a href="#mote"><b>15-minuterssamtalet</b></a> direkt. Två tider att välja på, aldrig en öppen fråga.</li>
-    <li><b>Väg B — tyst efter demon:</b> uppföljning dag 1–2 → när de sett den bokas samtalet</li>
-  </ul>
+      <h4>Sju frågor som hittar smärtan</h4>
+      <ol class="check">
+        <li><b>Hittar jag telefonnumret direkt?</b> Utan att scrolla, utan att öppna en meny.
+        Vanligaste felet: numret göms bakom hamburgarmenyn.</li>
+        <li><b>Förstår jag inom 5 sekunder vad de gör och var?</b> "Välkommen till oss" säger ingenting.
+        "Takläggare i Västerås" säger allt.</li>
+        <li><b>Finns bilder på riktiga jobb?</b> Före/efter är guld. Stockfoton på leende modeller i hjälm
+        ser alla igenom.</li>
+        <li><b>Är det för mycket text?</b> Väggar av text som ingen läser. En hantverkarsajt ska visa,
+        inte förklara.</li>
+        <li><b>Finns ett sätt att begära offert?</b> En knapp, ett formulär. Eller måste jag leta upp en
+        mejladress själv?</li>
+        <li><b>Ser den gammal ut?</b> Inte mobilanpassad, trasiga bilder, "senaste nytt" från för tre år sen.</li>
+        <li><b>Har de ingen sajt alls?</b> Också en smärta, ofta den enklaste att prata om.</li>
+      </ol>
 
-  <h3>När demon levereras — JA-protokollet</h3>
-  <p>Demomejlet följer alltid JA-protokollet. Tre saker, i ordning. Ingen pitch, ingen hype, inget "hör av dig!".</p>
-  <ol>
-    <li><b>Instruktion:</b> "Kika på den i mobilen, och lägg märke till hur snabbt man hittar telefonnumret och offertknappen."</li>
-    <li><b>Kvalificering, en enkel fråga:</b> "Bara så jag förstår, ser du samma sak på er egen sida idag?"</li>
-    <li><b>Optionalitet:</b> "Om det stämmer när du kollat kan jag visa nästa steg. Helt upp till dig."</li>
-  </ol>
+      <div class="gor">
+        <div class="h">Vad du gör</div>
+        <p>Öppna <b>vår</b> sajt för deras bransch bredvid deras egen. Skillnaden du ser är exakt det du
+        ska kunna beskriva i telefon.</p>
+        <p><button class="btn ghost liten" data-till="sajter">Våra sajter →</button></p>
+      </div>
 
-  <h3>Uppföljning efter demon → boka mötet</h3>
-  <p>Dag 1–2 efter att demon skickats, sms eller telefon:</p>
-  <div class="say"><div class="who">Du säger / sms</div>
-    <p>"Hej <span class="var">[NAMN]</span>! Hann du kika på hemsidan vi byggde åt er? Om du gillar den
-    tar vi 15 minuter så går jag igenom hur vi gör den skarp. Passar tisdag eller torsdag bäst?"</p>
-  </div>
-  <p>Ge två val i taget, aldrig en öppen fråga ("när passar det?" ger "jag återkommer").</p>
-  <p>Vid tystnad, <b>en</b> påminnelse (dag 3, sms, max 40 ord):</p>
-  <div class="say"><div class="who">Sms</div>
-    <p>"Tjena <span class="var">[NAMN]</span>! Vet inte om du hann se hemsidan vi byggde åt er. Den visar
-    exakt varför kunden ska välja just er. Ta den i mobilen, tar en minut. /<span class="var">[Ditt förnamn]</span>"</p>
-  </div>
-  <p>Sen tystnad från vår sida — lägg leadet på is: sätt ett ring tillbaka-datum en månad fram i CRM:et.</p>
-</section>
+      <h4>Så formulerar du den</h4>
+      <ul>
+        <li class="ja"><b>Bra:</b> "offertknappen syns inte på mobilen, man måste öppna menyn för att hitta numret"</li>
+        <li class="ja"><b>Bra:</b> "det finns inga bilder på utförda jobb fast ni gjort massor"</li>
+        <li class="nej"><b>Dåligt:</b> "er hemsida är ful och gammal" (förolämpning, inte observation)</li>
+        <li class="nej"><b>Dåligt:</b> "ni borde synas bättre på Google" (fel erbjudande, vi säljer hemsidor)</li>
+      </ul>
 
-<!-- ==================== 4. INVÄNDNINGAR ==================== -->
-<section id="invandningar">
-  <span class="kick">Avsnitt 4 · När de bromsar</span>
-  <h2>Invändningar</h2>
-  <p><b>En invändning är inte en vägg. Det är ett kvitto på ett steg du hoppade över.</b>
-  Svara kort, vänligt, och styr alltid tillbaka mot <b>mejladressen</b>. Max två försök, sen tackar
-  du för tiden. Vi jagar aldrig.</p>
+      <div class="regel">
+        <div class="h">Sista kontrollen</div>
+        <p><b>Skulle du köpa?</b> Är svaret "faktiskt ja, sajten är riktigt bra" — ring nästa lead.
+        Vi ringer bara firmor vi faktiskt kan hjälpa.</p>
+      </div>
+    </div>
 
-  <div class="vcard">
-    <h3>Tre saker om hur folk funkar</h3>
-    <ul>
-      <li><b>Pressa aldrig — trycket studsar.</b> När någon märker att de är mitt i ett säljsamtal säger
-      hjärnan nej automatiskt, oavsett erbjudande. Ju hårdare du trycker, desto hårdare håller de emot.
-      Rätt drag är alltid att släppa trycket: håll med, gör frågan mindre, ge tillbaka kontrollen.</li>
-      <li><b>Skälet de säger är sällan det riktiga skälet.</b> "Ingen tid", "fel timing", "för dyrt"
-      låter logiskt men är oftast en artig yta. Argumentera aldrig mot ytskälet — det är att vinna
-      fel diskussion. Leta efter vad som faktiskt skaver under.</li>
-      <li><b>Folk bestämmer med magen och förklarar med hjärnan.</b> Därför vinner en historia om
-      målaren i Jönköping över tre argument, och därför finns [LÖSNING]-raden: siffran ger hjärnan
-      något att försvara magkänslan med.</li>
-    </ul>
-  </div>
+    <div class="kort">
+      <h3><span class="var">[LÖSNING]</span> <span class="sub">— beviset som gör smärtan värd att fixa</span></h3>
+      <p>Direkt efter smärtan kommer beviset: <b>en mening om vad det gav en liknande kund.</b></p>
 
-  <div class="vcard">
-    <h3>Diagnosen: invändningen pekar på steget som gick fel</h3>
-    <div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%;font-size:.82rem">
-      <tr style="background:var(--navy);color:var(--white)">
-        <th style="padding:.5rem .8rem;text-align:left">Invändning</th>
-        <th style="padding:.5rem .8rem;text-align:left">Steget som gick sönder</th>
-        <th style="padding:.5rem .8rem;text-align:left">Fel drag</th>
-        <th style="padding:.5rem .8rem;text-align:left">Rätt drag</th></tr>
-      <tr><td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">"Inte intresserad" direkt i öppningen</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">Öppningen — du lät som alla andra säljare</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line);color:var(--danger)">Argumentera, förklara mer, fortsätta pitchen</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">Håll med, gör frågan mindre, ge dem utgången</td></tr>
-      <tr><td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">"Inte intresserad" efter att de först lyssnat</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">Smärtan — den träffade inte deras vardag</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line);color:var(--danger)">Byta ämne eller sänka priset i panik</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">Tillbaka till [SMÄRTA]: var det fel observation?</td></tr>
-      <tr><td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">"Kan vi ta det senare?"</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">Ingen anledning att agera nu</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line);color:var(--danger)">Säga "jag ringer igen om en månad" och släppa taget</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">Gör väntan dyr: varje vecka utan knapp = samtal till nästa firma</td></tr>
-      <tr><td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">"Jag ska tänka på saken"</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">Det finns en oro de inte känner sig trygga att säga</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line);color:var(--danger)">Acceptera svaret och vänta på ett samtal som aldrig kommer</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">Gör ärlighet lätt: "är det priset, tajmingen eller något annat?"</td></tr>
-      <tr><td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">"För dyrt" (i 15-minuterssamtalet)</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">Priset kom före värdet</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line);color:var(--danger)">Presentera priset innan värdet, eller pruta</td>
-          <td style="padding:.5rem .8rem;border-bottom:1px solid var(--line)">Skilj "mer än väntat" från "mer än värt" — räkna på ett extra jobb</td></tr>
-      <tr><td style="padding:.5rem .8rem">Tystnad / spökar</td>
-          <td style="padding:.5rem .8rem">Budskapet var glömbart — inte fel tajming</td>
-          <td style="padding:.5rem .8rem;color:var(--danger)">Skicka "ville bara kolla läget"-mejl på rad</td>
-          <td style="padding:.5rem .8rem">Jaga aldrig. Byt vinkel eller stäng snyggt (se längst ner)</td></tr>
+      <div class="callout">
+        <b>Standardraden</b> (använd den om inget bättre finns):<br>
+        "Vi har haft kunder med en sida som liknar er, där små justeringar gett
+        <b>tolv procent fler kundförfrågningar</b>."
+      </div>
+
+      <details class="varfor"><summary>Varför behövs beviset?</summary>
+        <div class="d"><p>Utan det är smärtan bara kritik. Med det blir den ett skäl att lyssna klart.
+        Folk bestämmer med magen och förklarar med hjärnan — siffran ger hjärnan något att försvara
+        magkänslan med.</p></div>
+      </details>
+
+      <details class="falla"><summary>Vanliga misstag</summary>
+        <div class="d">
+          <ul>
+            <li>Säga den för hårt. Den ska låta som en <b>erfarenhet i förbifarten</b>, inte ett löfte.
+            Lova aldrig tolv procent till just dem.</li>
+            <li>Missa en närmare matchning. Finns målaren i Jönköping för en målare — använd den i stället.
+            En specifik historia slår alltid en procentsiffra.</li>
+            <li>Hitta på nya siffror. Standardraden är den enda siffran du får använda.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ═══════════ 2. ÖPPNINGEN ═══════════ -->
+  <section class="blad" id="b-oppningen" data-print="2. Öppningen">
+    <p class="intro">Tala lugnt, som en människa. Läs inte innantill — kunna stommen och säg den med egna
+    ord. Ler du när du pratar hörs det, det är inte en myt.</p>
+
+    <div class="sag">
+      <div class="h">Du säger</div>
+      <p>"Hej <span class="var">[NAMN]</span>! <span class="var">[Ditt förnamn]</span> heter jag, jag ringer
+      från Bahko Byrå. <b>Är det du som har hand om hemsidan på <span class="var">[FÖRETAG]</span>?</b>"</p>
+    </div>
+
+    <h3>Tre svar — tre vägar</h3>
+    <div class="gor">
+      <div class="h">Vad du gör</div>
+      <p><b>"Ja"</b> → vidare till Kroppen.</p>
+      <p><b>"Nej"</b> → "Inga problem! Vem ska jag prata med om sånt?" Få ett namn, tacka, lägg på, logga.</p>
+      <p><b>"Vad gäller det?"</b> → gå direkt på Kroppen. Det är samma sak som ett ja.</p>
+    </div>
+
+    <div class="gor">
+      <div class="h">Nästa steg</div>
+      <p><button class="btn liten" data-till="kroppen">Kroppen →</button></p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 3. KROPPEN ═══════════ -->
+  <section class="blad" id="b-kroppen" data-print="3. Kroppen">
+    <p class="intro">Trettio sekunder: smärtan, konsekvensen, beviset, det gratis erbjudandet, frågan.
+    Sen tystnad.</p>
+
+    <div class="sag">
+      <div class="h">Du säger</div>
+      <p>"Jag ska vara snabb. Jag kikade på er hemsida innan jag ringde och la märke till att
+      <span class="var">[SMÄRTA]</span>. Det är en sån grej som gör att folk ringer nästa firma istället,
+      fast ni antagligen gör ett bättre jobb.</p>
+      <p><span class="var">[LÖSNING]</span>: "vi har haft kunder med en sida som liknar er, där små
+      justeringar gett tolv procent fler kundförfrågningar."</p>
+      <p>Vi bygger hemsidor för just bygg- och hantverksfirmor. Det jag vill göra är att ta fram en helt
+      skräddarsydd ny hemsida för <span class="var">[FÖRETAG]</span>, helt gratis. Ni får den inom 48 timmar,
+      ni kikar på den i mobilen, och sen bestämmer ni själva om det är intressant.</p>
+      <p>Jag skickar över den på mejl. <b>Vad har ni för mejladress?</b>"</p>
+    </div>
+
+    <div class="gor">
+      <div class="h">Vad du gör sedan</div>
+      <p><b>Ingenting. Du är tyst.</b></p>
+    </div>
+
+    <details class="varfor" open><summary>Varför tyst?</summary>
+      <div class="d"><p>Den som pratar först efter frågan förlorar. Fyll inte tystnaden.</p></div>
+    </details>
+
+    <h3>Ta mejlen — det kritiska momentet</h3>
+    <div class="gor">
+      <div class="h">Vad du gör</div>
+      <p>Skriv ner adressen och <b>läs upp den tillbaka</b>, tecken för tecken.</p>
+    </div>
+
+    <div class="sag">
+      <div class="h">Du säger</div>
+      <p>"Då tar jag den: <span class="var">[läs upp adressen]</span>. Stämmer det?"</p>
+    </div>
+
+    <details class="varfor"><summary>Varför läsa upp den?</summary>
+      <div class="d"><p>En feltagen mejladress är ett bortkastat samtal och en byggd demo som aldrig
+      kommer fram.</p></div>
+    </details>
+
+    <div class="gor">
+      <div class="h">Nästa steg</div>
+      <p>Mejladressen i handen — skicka testmejlet <b>medan ni fortfarande pratar</b>.</p>
+      <p><button class="btn liten" data-till="testmejlet">Testmejlet →</button></p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 4. INVÄNDNINGAR ═══════════ -->
+  <section class="blad" id="b-invandningar" data-print="4. Invändningar">
+    <p class="intro"><b>En invändning är inte en vägg. Det är ett kvitto på ett steg du hoppade över.</b>
+    Svara kort, vänligt, och styr alltid tillbaka mot mejladressen.</p>
+
+    <div class="regel">
+      <div class="h">Aldrig undantag</div>
+      <p><b>Max två försök</b>, sen tackar du för tiden. Vi jagar aldrig.</p>
+    </div>
+
+    <div class="inv">
+      <h3>"Jag har inte tid"</h3>
+      <div class="sag">
+        <p>"Förstår, ni är mitt i säsongen. Det är därför vi gör det på mejl: du behöver inte göra någonting,
+        bara svara ok på ett mejl. Sen har du en färdig sida att kika på när det passar dig.
+        <b>Vad har ni för mejladress?</b>"</p>
+      </div>
+      <p class="ater">→ Tillbaka till mejladressen</p>
+    </div>
+
+    <div class="inv">
+      <h3>"Vi är nöjda med vår hemsida"</h3>
+      <div class="sag">
+        <p>"Vad kul, då har ni kommit längre än de flesta. Det jag såg var bara
+        <span class="var">[SMÄRTA]</span>. Kika på vår version när den kommer, så ser du själv om det gör
+        skillnad. Kostar inget och du förbinder dig inte till något. <b>Vad har ni för mejl?</b>"</p>
+      </div>
+      <p class="ater">→ Tillbaka till mejladressen</p>
+    </div>
+
+    <div class="inv">
+      <h3>"Vi har redan en webbyrå"</h3>
+      <div class="sag">
+        <p>"Klokt att ha en fast kontakt. Jag ringer inte för att ta över, men titta på vårt förslag, så vet
+        du vad som finns om ni vill uppdatera framöver. <b>Vad har ni för mejl?</b>"</p>
+      </div>
+      <p class="ater">→ Tillbaka till mejladressen</p>
+    </div>
+
+    <div class="inv">
+      <h3>"Vad kostar det?"</h3>
+      <div class="sag">
+        <p>"Förslaget kostar ingenting, det är på riktigt gratis. Gillar du det och vill att vi gör den skarp
+        har vi ett fast pris som jag går igenom då, inga överraskningar. Men titta på sidan först, det är den
+        som avgör om det ens är intressant."</p>
+      </div>
+      <div class="regel">
+        <div class="h">Aldrig undantag</div>
+        <p><b>Säg aldrig priset i kalla samtalet.</b> Priset hör hemma på mötet, tillsammans med värdet.
+        Pressar de: <i>"det är ett engångspris, ingen bindning, och jag lovar att du får det exakt när vi
+        ses."</i> Stå fast, vänligt.</p>
+      </div>
+    </div>
+
+    <div class="inv">
+      <h3>"Varför måste jag svara på ett mejl?"</h3>
+      <div class="sag">
+        <p>"Två skäl. Dels ser jag att adressen stämmer, det blir fel oftare än man tror. Dels bygger vi varje
+        sida för hand, och då vill vi lägga tiden på firmor som faktiskt kommer titta. <b>Ett ok räcker.</b>"</p>
+      </div>
+    </div>
+
+    <div class="inv">
+      <h3>"Skicka ett mejl istället" / "jag hinner inte prata"</h3>
+      <div class="sag">
+        <p>"Det är exakt det jag föreslår. <b>Vad är bästa adressen?</b>"</p>
+      </div>
+      <p class="ater">→ Tillbaka till mejladressen</p>
+    </div>
+
+    <div class="inv">
+      <h3>"Inte intresserad" / irriterad ton</h3>
+      <div class="sag">
+        <p>"Inga problem, tack för att du var ärlig. Ha en bra dag!"</p>
+      </div>
+      <div class="gor">
+        <div class="h">Vad du gör</div>
+        <p>Lägg på vänligt. Logga <b>Nej tack</b> i CRM:et. <b>Argumentera aldrig.</b></p>
+      </div>
+    </div>
+
+    <details class="varfor"><summary>Varför fungerar mönstret? (teorin bakom)</summary>
+      <div class="d">
+        <p>Varje svar gör samma tre saker: håller med, gör frågan mindre, ger tillbaka kontrollen — och
+        landar alltid på mejladressen. Pressa aldrig: när någon märker att de är mitt i ett säljsamtal
+        säger hjärnan nej automatiskt.</p>
+        <p>Hela resonemanget, diagnostabellen och veckoretron ligger under Coachning.</p>
+        <p><button class="btn ghost liten" data-till="coachning">Coachning →</button></p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ═══════════ 5. TESTMEJLET ═══════════ -->
+  <section class="blad" id="b-testmejlet" data-print="5. Testmejlet">
+    <p class="intro">Grinden i hela processen. Skickas <b>medan ni fortfarande pratar</b>, eller inom fem
+    minuter efter samtalet.</p>
+
+    <div class="sag">
+      <div class="h">Du säger · innan du lägger på</div>
+      <p>"Toppen. Då gör vi så här: jag skickar ett kort mejl till dig nu direkt, bara vanlig text utan
+      länkar eller bilagor, så det inte fastnar i skräpposten. Svara kort på det, ett ok räcker, så vet
+      jag att det kommit fram till rätt adress.</p>
+      <p>Vi gör så för att se vilka som är med på riktigt, så vi inte lägger tid på att bygga en sida som
+      sen aldrig öppnas. Så fort du svarat sätter vi igång, och inom 48 timmar har du den nya hemsidan
+      i inkorgen."</p>
+    </div>
+
+    <div class="mall">
+      <button class="kopiera">Kopiera</button>
+      <div class="h">Mejlmall</div>
+      <p class="villkor">Ren text. Ingen länk, ingen bild, ingen logga i signaturen.</p>
+      <p><b>Ämne:</b> Ny hemsida till <span class="var">[FÖRETAG]</span></p>
+      <p>Hejsan <span class="var">[NAMN]</span>!</p>
+      <p>Tack för snacket nyss. Svara kort på det här mejlet, så vet jag att det kom fram till rätt adress.
+      Sen bygger vi och du har den nya hemsidan här inom 48 timmar.</p>
+      <p>Vänliga hälsningar<br><span class="var">[Ditt förnamn]</span>, Bahko Byrå</p>
+    </div>
+
+    <div class="sag">
+      <div class="h">Du säger · avslutning</div>
+      <p>"Då säger vi så! Håll utkik efter mejlet, det kommer nu på en gång. Så fort du svarat är vi igång.
+      Ha en bra dag!"</p>
+    </div>
+
+    <div class="regel">
+      <div class="h">Aldrig undantag</div>
+      <p><b>Inget svar på testmejlet = ingen demo byggs.</b> Inga undantag, hur trevligt samtalet än var.</p>
+    </div>
+
+    <details class="varfor"><summary>Varför ren text utan länkar?</summary>
+      <div class="d"><p>Två skäl: det fastnar inte i skräpposten, och svaret mäter <b>intresse</b> — inte
+      klickvana.</p></div>
+    </details>
+
+    <div class="kort">
+      <h3>Mejlkontot</h3>
+      <p>Testmejl och demoleveranser skickas från <b>kontakta@bahkobyra.se</b> — aldrig från din privata
+      adress. Lösenordet får du av Mathias vid onboarding.</p>
+    </div>
+
+    <div class="gor">
+      <div class="h">Nästa steg</div>
+      <p>Mejlet skickat — logga samtalet <b>direkt</b>, innan du ringer nästa.</p>
+      <p><button class="btn liten" data-till="logga">Logga i CRM →</button></p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 6. LOGGA I CRM ═══════════ -->
+  <section class="blad" id="b-logga" data-print="6. Logga i CRM">
+    <div class="regel">
+      <div class="h">Direkt, inte sen</div>
+      <p>Logga <b>direkt efter varje samtal</b>, inte i slutet av dagen.
+      Minnet ljuger redan efter tre samtal.</p>
+    </div>
+
+    <h3>Hitta ditt utfall — gör det som står till höger</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Utfall</th><th>Gör så här i CRM:et (kolumnerna heter exakt så här)</th></tr></thead>
+      <tbody>
+        <tr><td><b>Inte nådd</b></td><td>Ligger kvar i <b>Ny</b> · öka ringförsöken · sätt "Ring tillbaka"-datum (snabbknapp, t.ex. Fredag). Max 3 försök</td></tr>
+        <tr><td><b>Fick annat namn</b></td><td>Skriv namnet i Kontaktperson + sätt ringdatum</td></tr>
+        <tr><td><b>Mejl tagen, testmejl skickat</b></td><td>Dra kortet till <b>Mejl tagen</b> · fyll i e-posten · knappen "Kopiera testmejl" ger mallen</td></tr>
+        <tr><td><b>Svar på testmejlet</b></td><td>Dra till <b>Svarat</b> — 48-timmarsklockan startar automatiskt. <b>Säg till Mathias samma dag</b></td></tr>
+        <tr><td><b>Demo levererad</b></td><td>Dra till <b>Demo skickad</b> — uppföljningsdatum dag 2 sätts automatiskt</td></tr>
+        <tr><td><b>15-minuterssamtal bokat</b></td><td>Dra till <b>Möte bokat</b> + sätt datumet · efter mötet: "Kopiera offert" → <b>Offert skickad</b></td></tr>
+        <tr><td><b>Betald faktura</b></td><td>Dra till <b>Kund</b> 🎉</td></tr>
+        <tr><td><b>Inte intresserad</b></td><td>Dra till <b>Nej tack</b> + en rad i anteckningarna om varför</td></tr>
+      </tbody>
     </table></div>
-  </div>
 
-  <div class="say"><div class="who">"Jag har inte tid"</div>
-    <p>"Förstår, ni är mitt i säsongen. Det är därför vi gör det på mejl: du behöver inte göra någonting,
-    bara svara ok på ett mejl. Sen har du en färdig sida att kika på när det passar dig.
-    Vad har ni för mejladress?"</p>
-  </div>
-  <div class="say"><div class="who">"Vi är nöjda med vår hemsida"</div>
-    <p>"Vad kul, då har ni kommit längre än de flesta. Det jag såg var bara <span class="var">[SMÄRTA]</span>.
-    Kika på vår version när den kommer, så ser du själv om det gör skillnad. Kostar inget och du förbinder
-    dig inte till något. Vad har ni för mejl?"</p>
-  </div>
-  <div class="say"><div class="who">"Vi har redan en webbyrå"</div>
-    <p>"Klokt att ha en fast kontakt. Jag ringer inte för att ta över, men titta på vårt förslag, så vet
-    du vad som finns om ni vill uppdatera framöver. Vad har ni för mejl?"</p>
-  </div>
-  <div class="say"><div class="who">"Vad kostar det?"</div>
-    <p>"Förslaget kostar ingenting, det är på riktigt gratis. Gillar du det och vill att vi gör den skarp
-    har vi ett fast pris som jag går igenom då, inga överraskningar. Men titta på sidan först, det är den
-    som avgör om det ens är intressant."</p>
-  </div>
-  <p><b>Säg aldrig priset i kalla samtalet.</b> Priset hör hemma på mötet, tillsammans med värdet. Pressar de:
-  <i>"det är ett engångspris, ingen bindning, och jag lovar att du får det exakt när vi ses."</i> Stå fast, vänligt.</p>
-  <div class="say"><div class="who">"Varför måste jag svara på ett mejl?"</div>
-    <p>"Två skäl. Dels ser jag att adressen stämmer, det blir fel oftare än man tror. Dels bygger vi varje
-    sida för hand, och då vill vi lägga tiden på firmor som faktiskt kommer titta. Ett ok räcker."</p>
-  </div>
-  <div class="say"><div class="who">"Skicka ett mejl istället" / "jag hinner inte prata"</div>
-    <p>"Det är exakt det jag föreslår. Vad är bästa adressen?"</p>
-  </div>
-  <div class="say"><div class="who">"Inte intresserad" / irriterad ton</div>
-    <p>"Inga problem, tack för att du var ärlig. Ha en bra dag!"</p>
-  </div>
-  <p>Lägg på vänligt. Logga <b>Nej tack</b> i CRM:et. Argumentera aldrig.</p>
+    <div class="regel">
+      <div class="h">Startskottet</div>
+      <p><b>Svar på testmejl är startskottet.</b> Samma dag som svaret kommer ska demobygget beställas av
+      Mathias, annars spricker 48-timmarslöftet — och det löftet är hela erbjudandet.</p>
+    </div>
 
-  <div class="vcard">
-    <h3>Tystnad och spökande — efter demo eller offert</h3>
-    <p>Tystnad är sällan ett nej. Det är ett betyg på hur glömbart budskapet var. Regeln:
-    <b>en</b> uppföljning (mallen i avsnitt 3), sen ett avslutsmejl — aldrig fler påminnelser,
-    aldrig "ville bara kolla läget".</p>
-    <p><b>Avslutsmejlet</b> (skickas för att stänga snyggt, inte för att fiska):</p>
-    <p style="background:var(--yta-2);border-left:4px solid var(--smaragd);padding:.7rem 1rem;border-radius:0 8px 8px 0">
-    "Inga problem, jag stänger ärendet på min sida. Hör av dig om det blir aktuellt längre fram.
-    Lycka till med [något konkret från deras verksamhet]!"</p>
-    <p>Förvånansvärt ofta väcker just det mejlet svaret som påminnelserna aldrig fick.
-    Men skicka det för att stänga, inte för att trigga.</p>
-  </div>
+    <div class="kort">
+      <h3>CRM:et</h3>
+      <p><a href="https://www.bahkobyra.se/crm-f2822a6f3a/" target="_blank" rel="noopener"><b>bahkobyra.se/crm-f2822a6f3a</b></a>
+      — leadlistan, cadence-spårningen och alla skript.</p>
+      <div class="gor">
+        <div class="h">Varje fredag</div>
+        <p>Datan sparas i webbläsaren, så jobba alltid från <b>samma dator</b> och ta en backup i slutet av
+        varje vecka: <b>⋯-menyn → "Ladda ner backup"</b>.</p>
+      </div>
+    </div>
+  </section>
 
-  <div class="vcard">
-    <h3>Efter varje samtal som inte gick vägen: fem frågor</h3>
-    <ul>
-      <li>Lät jag som en säljare eller som en hantverkare av hemsidor? (Öppningen)</li>
-      <li>Var smärtan deras vardag eller min idé? (Kroppen)</li>
-      <li>Sa jag [LÖSNING]-raden, eller bara problemet? (Beviset)</li>
-      <li>Bad jag om för mycket? Mejladressen är en liten fråga — höll jag den liten? (Mejlfrågan)</li>
-      <li>Fick de bestämma själva, eller tryckte jag? (Trycket)</li>
+  <!-- ═══════════ 7. FÖLJ UPP → BOKA ═══════════ -->
+  <section class="blad" id="b-folj-upp" data-print="7. Följ upp och boka mötet">
+    <p class="intro"><b>Inget möte bokas i kalla samtalet.</b> Först händer alltid samma två saker.</p>
+
+    <ol class="check">
+      <li>Prospekten svarar på testmejlet → vi bygger (max 48 timmar)</li>
+      <li>Demon levereras på mejl med JA-protokollet</li>
+    </ol>
+
+    <h3>När demon levereras — JA-protokollet</h3>
+    <p>Tre saker, i ordning. Ingen pitch, ingen hype, inget "hör av dig!".</p>
+    <div class="gor">
+      <div class="h">Vad du gör</div>
+      <p><b>1. Instruktion:</b> "Kika på den i mobilen, och lägg märke till hur snabbt man hittar
+      telefonnumret och offertknappen."</p>
+      <p><b>2. Kvalificering, en enkel fråga:</b> "Bara så jag förstår, ser du samma sak på er egen
+      sida idag?"</p>
+      <p><b>3. Optionalitet:</b> "Om det stämmer när du kollat kan jag visa nästa steg. Helt upp till dig."</p>
+    </div>
+
+    <h3>Sen finns två vägar till mötet</h3>
+
+    <div class="kort">
+      <h4 style="margin-top:0;color:var(--ratt)">Väg A — de svarar positivt på demomejlet</h4>
+      <p>("snyggt!", "vad kostar det?", "hur går vi vidare?")</p>
+      <div class="gor">
+        <div class="h">Vad du gör</div>
+        <p><b>Hoppa över uppföljningen</b> och boka 15-minuterssamtalet direkt. Två tider att välja på,
+        aldrig en öppen fråga.</p>
+      </div>
+    </div>
+
+    <div class="kort">
+      <h4 style="margin-top:0;color:var(--warn)">Väg B — tyst efter demon</h4>
+      <p>Uppföljning dag 1–2, sms eller telefon. När de sett den bokas samtalet.</p>
+
+      <div class="sag">
+        <div class="h">Du säger · sms dag 1–2</div>
+        <p>"Hej <span class="var">[NAMN]</span>! Hann du kika på hemsidan vi byggde åt er? Om du gillar den
+        tar vi 15 minuter så går jag igenom hur vi gör den skarp. <b>Passar tisdag eller torsdag bäst?</b>"</p>
+      </div>
+
+      <details class="varfor" open><summary>Varför två tider och inte "när passar det?"</summary>
+        <div class="d"><p>Ge två val i taget. En öppen fråga ger "jag återkommer".</p></div>
+      </details>
+
+      <div class="mall">
+        <button class="kopiera">Kopiera</button>
+        <div class="h">Sms · dag 3</div>
+        <p class="villkor">EN påminnelse. Max 40 ord.</p>
+        <p>"Tjena <span class="var">[NAMN]</span>! Vet inte om du hann se hemsidan vi byggde åt er. Den visar
+        exakt varför kunden ska välja just er. Ta den i mobilen, tar en minut.
+        /<span class="var">[Ditt förnamn]</span>"</p>
+      </div>
+
+      <div class="gor">
+        <div class="h">Sen</div>
+        <p>Tystnad från vår sida. Lägg leadet på is: sätt ett <b>ring tillbaka-datum en månad fram</b>
+        i CRM:et.</p>
+      </div>
+    </div>
+
+    <h3>Tystnad och spökande</h3>
+    <p>Tystnad är sällan ett nej. Det är ett betyg på hur glömbart budskapet var.</p>
+
+    <div class="regel">
+      <div class="h">Regeln</div>
+      <p>Aldrig fler påminnelser än de ovan, och aldrig "ville bara kolla läget". Stäng med avslutsmejlet.</p>
+      <p style="font-size:.88rem;color:var(--ink-3);margin-top:.5rem"><b>Två formuleringar att stämma av
+      med Mathias:</b> den gamla SOP-texten säger på ett ställe <i>en</i> uppföljning + avslutsmejl, och på
+      ett annat uppföljning dag 1–2 <i>och</i> påminnelse dag 3, sen leadet på is en månad. Väg B ovan följer
+      den senare. Kör den tills annat sagts.</p>
+    </div>
+
+    <div class="mall">
+      <button class="kopiera">Kopiera</button>
+      <div class="h">Avslutsmejlet</div>
+      <p class="villkor">Skickas för att stänga snyggt, inte för att fiska.</p>
+      <p>"Inga problem, jag stänger ärendet på min sida. Hör av dig om det blir aktuellt längre fram.
+      Lycka till med <span class="var">[något konkret från deras verksamhet]</span>!"</p>
+    </div>
+
+    <details class="varfor"><summary>Varför funkar avslutsmejlet?</summary>
+      <div class="d"><p>Förvånansvärt ofta väcker just det mejlet svaret som påminnelserna aldrig fick.
+      Men skicka det för att stänga, inte för att trigga.</p></div>
+    </details>
+  </section>
+
+  <!-- ═══════════ 8. STÄNG AFFÄREN ═══════════ -->
+  <section class="blad" id="b-stang" data-print="8. Stäng affären — 15-minuterssamtalet">
+    <p class="intro">Kunden har sett demon och svarat positivt. Nu bokas ett kort samtal, telefon eller
+    video. Målet: ett ja och en faktura skickad samma dag.</p>
+
+    <div class="regel">
+      <div class="h">Enda stället</div>
+      <p><b>Det här är enda stället där priset nämns.</b></p>
+    </div>
+
+    <h3>Upplägget: 3 + 5 + 4 + 3 minuter</h3>
+
+    <div class="steg"><span class="num">1</span> Öppna i deras demo <span class="min">3 min</span></div>
+    <div class="sag">
+      <p>"Kul att du gillade sidan! Innan jag säger nåt: <b>vad fastnade du för själv?</b>"</p>
+    </div>
+    <div class="gor">
+      <div class="h">Vad du gör</div>
+      <p>Låt dem prata först. <b>Anteckna orden de använder.</b></p>
+    </div>
+    <details class="varfor" open><summary>Varför fråga först?</summary>
+      <div class="d"><p>Det de lyfter fram är det du säljer på — inte det du själv tycker är finast.</p></div>
+    </details>
+
+    <div class="steg"><span class="num">2</span> Vad ni får <span class="min">5 min</span></div>
+    <div class="sag">
+      <p>"Det du har sett är ett utkast. Säger du ja gör vi den skarp, och då ingår allt det här:</p>
+      <p>Sidan byggs klart med <b>era riktiga bilder, era texter och era kontaktuppgifter</b>.
+      Egen domän, alltså er egen adress på nätet. Mejl som funkar. Snabb i mobilen, med
+      offertknapp på varenda skärm — det är den som gör att folk faktiskt hör av sig.</p>
+      <p>Vi har haft kunder med en sida som liknar er där små justeringar gett tolv procent
+      fler kundförfrågningar. Det är den typen av detaljer vi lägger in från start."</p>
+    </div>
+
+    <div class="steg"><span class="num">3</span> Hur det går till <span class="min">4 min</span></div>
+    <div class="sag">
+      <p>"Så här ser veckan ut:</p>
+      <p>Idag säger du ja, så skickar jag en faktura direkt efter samtalet. När den är betald bygger vi
+      klart — ni skickar bilder och det ni vill ha med, vi gör resten. Ni får titta och säga till om något
+      ska ändras.</p>
+      <p><b>Inom sju dagar är sidan live.</b> Ni äger den, er domän, allt."</p>
+    </div>
+
+    <div class="steg"><span class="num">4</span> Priset och avslutet <span class="min">3 min</span></div>
+    <div class="sag">
+      <p>"Priset är <b>15&nbsp;000 kronor inklusive moms</b>. En gång. Ingen bindning, inga månadsavgifter,
+      inga överraskningar.</p>
+      <p>Räkna själv: vad är ett enda jobb värt för er? Ett badrum, ett tak, en fasad — de flesta
+      av våra kunder tjänar in sidan på första jobbet den drar in.</p>
+      <p><b>Ska vi köra?</b> Då mejlar jag fakturan när vi lagt på, och så är ni live nästa vecka."</p>
+    </div>
+
+    <h3>Efter ja:et</h3>
+    <ol class="check">
+      <li><b>Skicka fakturan samma dag</b> — helst inom en timme, medan beslutet är varmt.
+      Offertmallen finns i CRM:et (knappen "Kopiera offert" på leadet) om de vill ha det skriftligt först.</li>
+      <li>Flytta leadet till <b>Offert skickad</b> i CRM:et (uppföljningsdatum sätts automatiskt).</li>
+      <li>Betald faktura → status <b>Kund</b> → bygget startar, live inom 7 dagar.</li>
+    </ol>
+
+    <h3>Om de tvekar på priset</h3>
+    <p>Fråga vilket av två det är — svaret avgör vad du gör:</p>
+
+    <div class="diag">
+      <h4>"Mer än vi väntat oss"</h4>
+      <dl>
+        <div class="r"><dt>Rätt drag</dt><dd>Räkneexemplet: ett enda jobb betalar sidan.</dd></div>
+      </dl>
+    </div>
+
+    <div class="diag">
+      <h4>"Mer än det är värt"</h4>
+      <dl>
+        <div><dt>Vad det betyder</dt><dd>Värdet landade inte.</dd></div>
+        <div class="r"><dt>Rätt drag</dt><dd>Gå tillbaka till det <b>de själva</b> sa att de gillade i demon.</dd></div>
+        <div class="f"><dt>Fel drag</dt><dd>Rabatt.</dd></div>
+      </dl>
+    </div>
+
+    <div class="regel">
+      <div class="h">Aldrig undantag</div>
+      <p><b>Vi prutar inte.</b> Samma pris för alla — det är en del av tryggheten.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ REGLERNA ═══════════ -->
+  <section class="blad" id="b-reglerna" data-print="Reglerna som aldrig bryts">
+    <p class="intro">Nio regler. Inga undantag, oavsett hur samtalet gick.</p>
+    <ul class="rules">
+      <li><b>Vi säljer hemsidor.</b> Orden "SEO", "Google-ranking", "synlighet på Google" finns inte i dina
+      samtal. Kommer frågan: "det ingår att sajten byggs rätt tekniskt, men det vi visar är hur den ser ut
+      och hur den säljer."</li>
+      <li><b>Aldrig pris i kalla samtalet.</b> Priset (15&nbsp;000 kr inkl moms) nämns först i
+      15-minuterssamtalet, efter att kunden sett och gillat demon.</li>
+      <li><b>En konkret observation per samtal.</b> Utan [SMÄRTA] ringer du inte.</li>
+      <li><b>Ljug aldrig om vad du sett.</b> Har du inte hittat något fel, ring nästa lead.</li>
+      <li><b>Testmejlet är alltid ren text utan länkar</b>, så det inte fastnar i skräpposten och så att
+      svaret mäter intresse, inte klickvana.</li>
+      <li><b>Inget svar på testmejlet = ingen demo byggs.</b> Regeln skyddar din tid.
+      Inga undantag, hur trevligt samtalet än var.</li>
+      <li><b>48-timmarslöftet hålls.</b> Rapportera svar på testmejl samma dag.</li>
+      <li><b>Max två invändningsrundor</b>, sen tackar du för tiden. Trötta prospekt köper inte, och de
+      pratar med varandra i branschen.</li>
+      <li><b>Respektera nej.</b> Ett nej loggas och lämnas. Vi ringer inte samma firma igen på 6 månader.</li>
     </ul>
-    <p>Varje invändning som återkommer i dagsloggen är inte otur — det är processen som säger
-    var den läcker. Fixa steget, inte argumentet.</p>
+  </section>
+
+  <!-- ═══════════ VÅRA SAJTER ═══════════ -->
+  <section class="blad" id="b-sajter" data-print="Våra sajter">
+    <p class="intro">Öppna alltid sajten för rätt bransch <b>innan</b> samtalet, så du kan beskriva den
+    konkret. Länkarna används i förberedelsen och kan visas på mötet.</p>
+
+    <div class="regel">
+      <div class="h">Aldrig undantag</div>
+      <p><b>Länkarna skickas aldrig i första mejlet.</b> Testmejlet är ren text utan länkar.</p>
+    </div>
+
+    <h3>Levererade kundsajter</h3>
+    <p>Riktiga kunder — det starkaste beviset. <i>"Det här byggde vi åt en målare i Jönköping"</i>
+    slår varje demo.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Bransch</th><th>Kund</th><th>Länk</th></tr></thead>
+      <tbody>
+        <tr><td>Måleri / tak</td><td>Smålands Måleri, Jönköping</td><td><a href="https://smamaleri.se" target="_blank" rel="noopener">smamaleri.se</a></td></tr>
+        <tr><td>Trädgård / mark</td><td>Bromma Trädgårdsservice, Stockholm</td><td><a href="https://brommatradgardsservice.se" target="_blank" rel="noopener">brommatradgardsservice.se</a></td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Demosajter</h3>
+    <p>Visningsexempel med påhittade firmor. Använd den som ligger närmast prospektets bransch.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Bransch</th><th>Sajt</th><th>Länk</th></tr></thead>
+      <tbody>
+        <tr><td>Bygg / totalentreprenad</td><td>GRANIT Bygg &amp; Entreprenad <b>(huvuddemot)</b></td><td><a href="https://www.bahkobyra.se/cloud/bygg/" target="_blank" rel="noopener">…/cloud/bygg</a></td></tr>
+        <tr><td>Badrum / renovering</td><td>Tryggbyggservice</td><td><a href="https://www.bahkobyra.se/cloud/tryggbyggservice/" target="_blank" rel="noopener">…/cloud/tryggbyggservice</a></td></tr>
+        <tr><td>Nybyggnation / renovering</td><td>Vajje Bygg</td><td><a href="https://www.bahkobyra.se/cloud/vajjebygg/" target="_blank" rel="noopener">…/cloud/vajjebygg</a></td></tr>
+        <tr><td>Mark / grund / dränering</td><td>Österlunds Jordbyggnad</td><td><a href="https://www.bahkobyra.se/cloud/osterlunds/" target="_blank" rel="noopener">…/cloud/osterlunds</a></td></tr>
+        <tr><td>Allservice / hantverk</td><td>Alfred Allservice</td><td><a href="https://www.bahkobyra.se/cloud/alfredallservice/" target="_blank" rel="noopener">…/cloud/alfredallservice</a></td></tr>
+        <tr><td>Rör / relining</td><td>Asmar Relining</td><td><a href="https://www.bahkobyra.se/cloud/asmar/" target="_blank" rel="noopener">…/cloud/asmar</a></td></tr>
+        <tr><td>Transport / kranbil</td><td>KMC Transport</td><td><a href="https://www.bahkobyra.se/cloud/kmctransport/" target="_blank" rel="noopener">…/cloud/kmctransport</a></td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="kort">
+      <h3>Instagram</h3>
+      <p><a href="https://www.instagram.com/bahkobyra1/" target="_blank" rel="noopener"><b>@bahkobyra1</b></a>
+      — vårt eget flöde. Prospekt som får testmejlet kollar ofta upp oss innan de svarar: flödet är
+      ditt sociala bevis. Kika själv innan ett ringpass så du vet vad senaste inlägget visar.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ DAGSLOGG ═══════════ -->
+  <section class="blad" id="b-dagslogg" data-print="Dagslogg">
+    <p class="intro"><b>Ring tisdag–torsdag.</b> Hantverkare svarar bäst <b>07:00–09:00</b> och
+    <b>16:00–17:30</b>. Undvik lunch och fredag eftermiddag.</p>
+
+    <div class="matt">
+      <div><div class="v">10–20</div><div class="k">samtal per dag</div></div>
+      <div><div class="v">2 / 10</div><div class="k">mejladresser per nådda</div></div>
+      <div><div class="v">1 / 2</div><div class="k">svar per taget mejl</div></div>
+    </div>
+
+    <p>Fyll i löpande under dagen. Allt sparas automatiskt i din webbläsare på den här datorn.</p>
+
+    <div class="logtools">
+      <button class="btn" onclick="addRow()">+ Ny dag</button>
+      <button class="btn ghost" onclick="window.print()">Skriv ut</button>
+      <button class="btn ghost" onclick="exportCsv()">Exportera CSV</button>
+      <button class="btn ghost" onclick="if(confirm('Rensa hela loggen? Detta går inte att ångra.'))clearLog()">Rensa</button>
+    </div>
+
+    <div class="tablewrap"><table id="logg">
+      <thead><tr>
+        <th>Datum</th><th>Ringda</th><th>Nådda</th><th>Mejl tagna</th><th>Svar på testmejl</th>
+        <th>Demo skickade</th><th>Möten bokade</th><th>Anteckning</th><th></th>
+      </tr></thead>
+      <tbody id="loggbody"></tbody>
+      <tfoot><tr id="sumrow">
+        <td>Summa</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td></td><td></td>
+      </tr></tfoot>
+    </table></div>
+    <p class="hint">Sparas lokalt i webbläsaren, inget skickas någonstans. Byter du dator följer loggen
+    inte med — exportera CSV i slutet av veckan.</p>
+  </section>
+
+  <!-- ═══════════ COACHNING ═══════════ -->
+  <section class="blad" id="b-coachning" data-print="Coachning">
+    <p class="intro">Läses inte mitt i ett samtal. Det här är materialet för veckogenomgången — varför
+    metoden ser ut som den gör, och hur du hittar vad som läcker.</p>
+
+    <div class="kort">
+      <h3>Tre saker om hur folk funkar</h3>
+      <ul>
+        <li><b>Pressa aldrig — trycket studsar.</b> När någon märker att de är mitt i ett säljsamtal säger
+        hjärnan nej automatiskt, oavsett erbjudande. Ju hårdare du trycker, desto hårdare håller de emot.
+        Rätt drag är alltid att släppa trycket: håll med, gör frågan mindre, ge tillbaka kontrollen.</li>
+        <li><b>Skälet de säger är sällan det riktiga skälet.</b> "Ingen tid", "fel timing", "för dyrt"
+        låter logiskt men är oftast en artig yta. Argumentera aldrig mot ytskälet — det är att vinna
+        fel diskussion. Leta efter vad som faktiskt skaver under.</li>
+        <li><b>Folk bestämmer med magen och förklarar med hjärnan.</b> Därför vinner en historia om
+        målaren i Jönköping över tre argument, och därför finns [LÖSNING]-raden: siffran ger hjärnan
+        något att försvara magkänslan med.</li>
+      </ul>
+    </div>
+
+    <h3>Diagnosen: invändningen pekar på steget som gick fel</h3>
+
+    <div class="diag">
+      <h4>"Inte intresserad" — direkt i öppningen</h4>
+      <dl>
+        <div><dt>Steget som gick sönder</dt><dd>Öppningen — du lät som alla andra säljare</dd></div>
+        <div class="f"><dt>Fel drag</dt><dd>Argumentera, förklara mer, fortsätta pitchen</dd></div>
+        <div class="r"><dt>Rätt drag</dt><dd>Håll med, gör frågan mindre, ge dem utgången</dd></div>
+      </dl>
+    </div>
+
+    <div class="diag">
+      <h4>"Inte intresserad" — efter att de först lyssnat</h4>
+      <dl>
+        <div><dt>Steget som gick sönder</dt><dd>Smärtan — den träffade inte deras vardag</dd></div>
+        <div class="f"><dt>Fel drag</dt><dd>Byta ämne eller sänka priset i panik</dd></div>
+        <div class="r"><dt>Rätt drag</dt><dd>Tillbaka till [SMÄRTA]: var det fel observation?</dd></div>
+      </dl>
+    </div>
+
+    <div class="diag">
+      <h4>"Kan vi ta det senare?"</h4>
+      <dl>
+        <div><dt>Steget som gick sönder</dt><dd>Ingen anledning att agera nu</dd></div>
+        <div class="f"><dt>Fel drag</dt><dd>Säga "jag ringer igen om en månad" och släppa taget</dd></div>
+        <div class="r"><dt>Rätt drag</dt><dd>Gör väntan dyr: varje vecka utan knapp = samtal till nästa firma</dd></div>
+      </dl>
+    </div>
+
+    <div class="diag">
+      <h4>"Jag ska tänka på saken"</h4>
+      <dl>
+        <div><dt>Steget som gick sönder</dt><dd>Det finns en oro de inte känner sig trygga att säga</dd></div>
+        <div class="f"><dt>Fel drag</dt><dd>Acceptera svaret och vänta på ett samtal som aldrig kommer</dd></div>
+        <div class="r"><dt>Rätt drag</dt><dd>Gör ärlighet lätt: "är det priset, tajmingen eller något annat?"</dd></div>
+      </dl>
+    </div>
+
+    <div class="diag">
+      <h4>"För dyrt" — i 15-minuterssamtalet</h4>
+      <dl>
+        <div><dt>Steget som gick sönder</dt><dd>Priset kom före värdet</dd></div>
+        <div class="f"><dt>Fel drag</dt><dd>Presentera priset innan värdet, eller pruta</dd></div>
+        <div class="r"><dt>Rätt drag</dt><dd>Skilj "mer än väntat" från "mer än värt" — räkna på ett extra jobb</dd></div>
+      </dl>
+    </div>
+
+    <div class="diag">
+      <h4>Tystnad / spökar</h4>
+      <dl>
+        <div><dt>Steget som gick sönder</dt><dd>Budskapet var glömbart — inte fel tajming</dd></div>
+        <div class="f"><dt>Fel drag</dt><dd>Skicka "ville bara kolla läget"-mejl på rad</dd></div>
+        <div class="r"><dt>Rätt drag</dt><dd>Jaga aldrig. Byt vinkel eller stäng snyggt med avslutsmejlet</dd></div>
+      </dl>
+    </div>
+
+    <div class="kort">
+      <h3>Efter varje samtal som inte gick vägen: fem frågor</h3>
+      <ul>
+        <li>Lät jag som en säljare eller som en hantverkare av hemsidor? <i>(Öppningen)</i></li>
+        <li>Var smärtan deras vardag eller min idé? <i>(Kroppen)</i></li>
+        <li>Sa jag [LÖSNING]-raden, eller bara problemet? <i>(Beviset)</i></li>
+        <li>Bad jag om för mycket? Mejladressen är en liten fråga — höll jag den liten? <i>(Mejlfrågan)</i></li>
+        <li>Fick de bestämma själva, eller tryckte jag? <i>(Trycket)</i></li>
+      </ul>
+      <p>Varje invändning som återkommer i dagsloggen är inte otur — det är processen som säger
+      var den läcker. <b>Fixa steget, inte argumentet.</b></p>
+    </div>
+
+    <div class="kort">
+      <h3>Läs dagsloggen: vad siffrorna säger</h3>
+      <div class="lista">
+        <dl>
+          <div><dt>Få nådda</dt><dd>→ ringtiderna</dd></div>
+          <div><dt>Många nådda men få mejl</dt><dd>→ manuset eller smärtan</dd></div>
+          <div><dt>Många mejl men få svar</dt><dd>→ testmejlets formulering</dd></div>
+          <div><dt>Många demos men inga möten</dt><dd>→ uppföljningen</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    Bahko Byrå · Intern SOP · Version 2026-08-06 ·
+    <a href="https://www.instagram.com/bahkobyra1/" target="_blank" rel="noopener">@bahkobyra1</a> ·
+    Frågor: Mathias<br>
+    <span style="font-size:.78rem">Genväg: <kbd>1</kbd>–<kbd>8</kbd> för stegen, <kbd>I</kbd> för invändningar.</span>
   </div>
-</section>
 
-<!-- ==================== 5. 15-MINUTERSSAMTALET ==================== -->
-<section id="mote">
-  <span class="kick">Avsnitt 5 · Efter demon</span>
-  <h2>15-minuterssamtalet — här stängs affären</h2>
-  <p>Kunden har sett demon och svarat positivt. Nu bokas ett kort samtal (telefon eller video).
-  <b>Det här är enda stället där priset nämns.</b> Målet: ett ja och en faktura skickad samma dag.</p>
-
-  <h3>Upplägget: 3 + 5 + 4 + 3 minuter</h3>
-
-  <div class="say"><div class="who">1. Öppna i deras demo (3 min)</div>
-    <p>"Kul att du gillade sidan! Innan jag säger nåt: vad fastnade du för själv?"</p>
   </div>
-  <p>Låt dem prata först. Det de lyfter fram är det du säljer på — inte det du själv tycker är
-  finast. Anteckna orden de använder.</p>
-
-  <div class="say"><div class="who">2. Vad ni får (5 min)</div>
-    <p>"Det du har sett är ett utkast. Säger du ja gör vi den skarp, och då ingår allt det här:</p>
-    <p>Sidan byggs klart med <b>era riktiga bilder, era texter och era kontaktuppgifter</b>.
-    Egen domän, alltså er egen adress på nätet. Mejl som funkar. Snabb i mobilen, med
-    offertknapp på varenda skärm — det är den som gör att folk faktiskt hör av sig.</p>
-    <p>Vi har haft kunder med en sida som liknar er där små justeringar gett tolv procent
-    fler kundförfrågningar. Det är den typen av detaljer vi lägger in från start."</p>
-  </div>
-
-  <div class="say"><div class="who">3. Hur det går till (4 min)</div>
-    <p>"Så här ser veckan ut: idag säger du ja, så skickar jag en faktura direkt efter samtalet.
-    När den är betald bygger vi klart — ni skickar bilder och det ni vill ha med, vi gör resten.
-    Ni får titta och säga till om något ska ändras. <b>Inom sju dagar är sidan live.</b>
-    Ni äger den, er domän, allt."</p>
-  </div>
-
-  <div class="say"><div class="who">4. Priset och avslutet (3 min)</div>
-    <p>"Priset är <b>15&nbsp;000 kronor</b>. En gång. Ingen bindning, inga månadsavgifter,
-    inga överraskningar.</p>
-    <p>Räkna själv: vad är ett enda jobb värt för er? Ett badrum, ett tak, en fasad — de flesta
-    av våra kunder tjänar in sidan på första jobbet den drar in.</p>
-    <p>Ska vi köra? Då mejlar jag fakturan när vi lagt på, och så är ni live nästa vecka."</p>
-  </div>
-
-  <h3>Efter ja:et</h3>
-  <ol>
-    <li><b>Skicka fakturan samma dag</b> — helst inom en timme, medan beslutet är varmt.
-    Offertmallen finns i CRM:et (knappen "Kopiera offert" på leadet) om de vill ha det skriftligt först.</li>
-    <li>Flytta leadet till <b>Offert skickad</b> i CRM:et (uppföljningsdatum sätts automatiskt).</li>
-    <li>Betald faktura → status <b>Kund</b> → bygget startar, live inom 7 dagar.</li>
-  </ol>
-
-  <h3>Om de tvekar på priset</h3>
-  <p>Skilj på två saker: <b>mer än de väntat sig</b> och <b>mer än det är värt</b>. Fråga vilken det är.
-  "Mer än väntat" möts med räkneexemplet (ett jobb betalar sidan). "Mer än värt" betyder att värdet
-  inte landade — gå tillbaka till det <i>de själva</i> sa att de gillade i demon, aldrig till rabatt.
-  <b>Vi prutar inte.</b> Samma pris för alla, det är en del av tryggheten.</p>
-</section>
-
-<!-- ==================== 5. CRM ==================== -->
-<section id="crm">
-  <span class="kick">Avsnitt 6 · Dina verktyg</span>
-  <h2>CRM och mejlkontot</h2>
-  <div class="vcard">
-    <h3>CRM — dashboarden</h3>
-    <p><a href="https://www.bahkobyra.se/crm-f2822a6f3a/" target="_blank" rel="noopener"><b>bahkobyra.se/crm-f2822a6f3a</b></a>
-    — leadlistan, cadence-spårningen och alla skript. Datan sparas i webbläsaren: jobba alltid från
-    samma dator, och ta en backup (knappen <b>Backup</b> i CRM-verktygsraden) i slutet av varje vecka.</p>
-  </div>
-  <div class="vcard">
-    <h3>Mejlkontot</h3>
-    <p>Testmejl och demoleveranser skickas från <b>kontakta@bahkobyra.se</b> — aldrig från din
-    privata adress. Lösenordet får du av Mathias vid onboarding; det står medvetet inte på den
-    här sidan.</p>
-  </div>
-  <div class="vcard">
-    <h3>Instagram</h3>
-    <p><a href="https://www.instagram.com/bahkobyra1/" target="_blank" rel="noopener"><b>@bahkobyra1</b></a>
-    — vårt eget flöde. Prospekt som får testmejlet kollar ofta upp oss innan de svarar: flödet är
-    ditt sociala bevis. Kika själv innan ett ringpass så du vet vad senaste inlägget visar.</p>
-  </div>
-  <h3>Efter varje samtal: logga i CRM</h3>
-  <p>Logga <b>direkt efter varje samtal</b>, inte i slutet av dagen.
-  Minnet ljuger redan efter tre samtal.</p>
-  <div class="tablewrap"><table>
-    <thead><tr><th>Utfall</th><th>Gör så här i CRM:et (kolumnerna heter exakt så här)</th></tr></thead>
-    <tbody>
-      <tr><td>Inte nådd</td><td>Ligger kvar i <b>Ny</b> · öka ringförsöken · sätt "Ring tillbaka"-datum (snabbknapp, t.ex. Fredag). Max 3 försök</td></tr>
-      <tr><td>Fick annat namn</td><td>Skriv namnet i Kontaktperson + sätt ringdatum</td></tr>
-      <tr><td>Mejl tagen, testmejl skickat</td><td>Dra kortet till <b>Mejl tagen</b> · fyll i e-posten · knappen "Kopiera testmejl" ger mallen</td></tr>
-      <tr><td>Svar på testmejlet</td><td>Dra till <b>Svarat</b> — 48-timmarsklockan startar automatiskt. <b>Säg till Mathias samma dag</b></td></tr>
-      <tr><td>Demo levererad</td><td>Dra till <b>Demo skickad</b> — uppföljningsdatum dag 2 sätts automatiskt</td></tr>
-      <tr><td>15-minuterssamtal bokat</td><td>Dra till <b>Möte bokat</b> + sätt datumet · efter mötet: "Kopiera offert" → <b>Offert skickad</b></td></tr>
-      <tr><td>Betald faktura</td><td>Dra till <b>Kund</b> 🎉</td></tr>
-      <tr><td>Inte intresserad</td><td>Dra till <b>Nej tack</b> + en rad i anteckningarna om varför</td></tr>
-    </tbody>
-  </table></div>
-  <p><b>Svar på testmejl är startskottet.</b> Samma dag som svaret kommer ska demobygget beställas av
-  Mathias, annars spricker 48-timmarslöftet — och det löftet är hela erbjudandet.</p>
-</section>
-
-<!-- ==================== 6. REGLER ==================== -->
-<section id="regler">
-  <span class="kick">Avsnitt 7 · Aldrig undantag</span>
-  <h2>Regler som aldrig bryts</h2>
-  <ul class="rules">
-    <li><b>Vi säljer hemsidor.</b> Orden "SEO", "Google-ranking", "synlighet på Google" finns inte i dina
-    samtal. Kommer frågan: "det ingår att sajten byggs rätt tekniskt, men det vi visar är hur den ser ut
-    och hur den säljer."</li>
-    <li><b>Aldrig pris i kalla samtalet.</b> Priset (15&nbsp;000 kr) nämns först i
-    15-minuterssamtalet, efter att kunden sett och gillat demon.</li>
-    <li><b>En konkret observation per samtal.</b> Utan [SMÄRTA] ringer du inte.</li>
-    <li><b>Ljug aldrig om vad du sett.</b> Har du inte hittat något fel, ring nästa lead.</li>
-    <li><b>Testmejlet är alltid ren text utan länkar</b>, så det inte fastnar i skräpposten och så att
-    svaret mäter intresse, inte klickvana.</li>
-    <li><b>Inget svar på testmejlet = ingen demo byggs.</b> Regeln skyddar din och Mathias tid.
-    Inga undantag, hur trevligt samtalet än var.</li>
-    <li><b>48-timmarslöftet hålls.</b> Rapportera svar på testmejl samma dag.</li>
-    <li><b>Max två invändningsrundor</b>, sen tackar du för tiden. Trötta prospekt köper inte, och de
-    pratar med varandra i branschen.</li>
-    <li><b>Respektera nej.</b> Ett nej loggas och lämnas. Vi ringer inte samma firma igen på 6 månader.</li>
-  </ul>
-</section>
-
-<!-- ==================== 7. DAGSLOGG ==================== -->
-<section id="dagslogg">
-  <span class="kick">Avsnitt 8 · Mät varje dag</span>
-  <h2>Dagslogg</h2>
-  <p><b>Ring tisdag–torsdag.</b> Hantverkare svarar bäst <b>07:00–09:00</b> och <b>16:00–17:30</b>.
-  Undvik lunch och fredag eftermiddag. Volym: <b>10–20 samtal per dag</b>.
-  Mål: <b>2 mejladresser per 10 nådda</b> och <b>1 svar per 2 tagna mejl</b>.</p>
-  <p>Fyll i löpande under dagen. Allt sparas automatiskt i din webbläsare på den här datorn.</p>
-
-  <div class="logtools">
-    <button onclick="addRow()">+ Ny dag</button>
-    <button class="ghost" onclick="window.print()">Skriv ut</button>
-    <button class="ghost" onclick="exportCsv()">Exportera CSV</button>
-    <button class="ghost" onclick="if(confirm('Rensa hela loggen? Detta går inte att ångra.'))clearLog()">Rensa</button>
-  </div>
-
-  <div class="tablewrap"><table id="logg">
-    <thead><tr>
-      <th>Datum</th><th>Ringda</th><th>Nådda</th><th>Mejl tagna</th><th>Svar på testmejl</th>
-      <th>Demo skickade</th><th>Möten bokade</th><th>Anteckning</th><th></th>
-    </tr></thead>
-    <tbody id="loggbody"></tbody>
-    <tfoot><tr id="sumrow">
-      <td>Summa</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td></td><td></td>
-    </tr></tfoot>
-  </table></div>
-  <p class="hint">Sparas lokalt i webbläsaren (localStorage), inget skickas någonstans. Byter du dator
-  följer loggen inte med — exportera CSV i slutet av veckan och lägg i CRM-mappen.</p>
-
-  <p>Siffrorna avgör vad vi ändrar: få nådda = ringtider, många nådda men få mejl = manus/smärta,
-  många mejl men få svar = testmejlets formulering, många demos men inga möten = uppföljningen.</p>
-</section>
-
-<div class="foot">Bahko Byrå · Intern SOP · Version 2026-08-04 ·
-<a href="https://www.instagram.com/bahkobyra1/" target="_blank" rel="noopener">@bahkobyra1</a> ·
-Källa: <code>workflows/cold_calling_saljare.md</code> · Frågor: Mathias Bahko</div>
-
-</div>
+</main>
 
 <script>
+/* ── Bladroutern ─────────────────────────────────────────── */
+(function(){
+  const BLAD=[
+    {g:'Före samtalet'},
+    {id:'forbered',    n:'1', namn:'Förbered leadet', tid:'3–5 min', fas:'Före samtalet',
+     t:'Förbered leadet', s:'Fyra variabler, ifyllda innan du slår numret. Utan dem ringer du inte.'},
+    {g:'Under samtalet'},
+    {id:'oppningen',   n:'2', namn:'Öppningen', tid:'10 sek', fas:'Under samtalet',
+     t:'Öppningen', s:'Tio sekunder som avgör om de lyssnar klart.'},
+    {id:'kroppen',     n:'3', namn:'Kroppen', tid:'30 sek', fas:'Under samtalet',
+     t:'Kroppen', s:'Smärtan, beviset, det gratis erbjudandet — och frågan om mejladressen.'},
+    {id:'invandningar',n:'4', namn:'Invändningar', tid:'live', fas:'Under samtalet',
+     t:'Invändningar', s:'Sju svar. Alla styr tillbaka till mejladressen.'},
+    {id:'testmejlet',  n:'5', namn:'Testmejlet', tid:'direkt', fas:'Under samtalet',
+     t:'Testmejlet', s:'Grinden. Skickas medan ni pratar — inget svar, ingen demo.'},
+    {g:'Efter samtalet'},
+    {id:'logga',       n:'6', namn:'Logga i CRM', tid:'10 sek', fas:'Efter samtalet',
+     t:'Logga i CRM', s:'Direkt efter samtalet. Minnet ljuger redan efter tre samtal.'},
+    {id:'folj-upp',    n:'7', namn:'Följ upp → boka', tid:'dag 1–3', fas:'Efter samtalet',
+     t:'Följ upp och boka mötet', s:'JA-protokollet, två vägar till mötet, och när du slutar följa upp.'},
+    {id:'stang',       n:'8', namn:'Stäng affären', tid:'15 min', fas:'Efter samtalet',
+     t:'Stäng affären', s:'15-minuterssamtalet. Enda stället där priset nämns.'},
+    {g:'Alltid'},
+    {id:'reglerna',    n:'§', namn:'Reglerna', tid:'9 st', fas:'Alltid',
+     t:'Reglerna som aldrig bryts', s:'Nio regler. Inga undantag.'},
+    {id:'sajter',      n:'◇', namn:'Våra sajter', tid:'', fas:'Alltid',
+     t:'Våra sajter', s:'Kunna dem utantill. Öppna rätt bransch innan samtalet.'},
+    {id:'dagslogg',    n:'▦', namn:'Dagslogg', tid:'', fas:'Alltid',
+     t:'Dagslogg', s:'Fyll i löpande. Siffrorna visar var processen läcker.'},
+    {id:'coachning',   n:'◈', namn:'Coachning', tid:'', fas:'Alltid',
+     t:'Coachning', s:'För veckogenomgången — inte mitt i ett samtal.'}
+  ];
+
+  /* Gamla ankarlänkar ska fortsätta fungera */
+  const GAMLA={
+    mal:'forbered', variabler:'forbered', manus:'kroppen', sajter:'sajter',
+    invandningar:'invandningar', mote:'stang', crm:'logga', regler:'reglerna',
+    dagslogg:'dagslogg'
+  };
+
+  const steg=BLAD.filter(b=>b.id);
+  const nav=document.getElementById('nav');
+
+  nav.innerHTML=BLAD.map(b=>{
+    if(b.g) return '<div class="grp">'+b.g+'</div>';
+    return '<button class="nav-i" data-till="'+b.id+'">'+
+      '<span class="n">'+b.n+'</span>'+
+      '<span class="lbl">'+b.namn+'</span>'+
+      (b.tid?'<span class="tid">'+b.tid+'</span>':'')+
+    '</button>';
+  }).join('')+
+  '<button class="nav-i akut" data-till="invandningar">'+
+    '<span class="n">⚡</span><span class="lbl">Mitt i ett samtal?</span></button>';
+
+  function visa(id,skrolla){
+    const b=steg.find(x=>x.id===id)||steg[0];
+    document.querySelectorAll('.blad').forEach(s=>s.classList.remove('on'));
+    const el=document.getElementById('b-'+b.id);
+    if(el) el.classList.add('on');
+    document.getElementById('vFas').textContent=b.fas;
+    document.getElementById('vTitel').textContent=b.t;
+    document.getElementById('vSub').textContent=b.s;
+    document.querySelectorAll('.nav-i').forEach(n=>{
+      if(n.dataset.till===b.id && !n.classList.contains('akut')) n.setAttribute('aria-current','page');
+      else n.removeAttribute('aria-current');
+    });
+    document.title=b.t+' · Ring-SOP';
+    if(skrolla!==false) window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  function franHash(skrolla){
+    const h=(location.hash||'').replace('#','');
+    visa(GAMLA[h]||h||'forbered',skrolla);
+  }
+
+  function till(id){
+    if(location.hash.replace('#','')===id) visa(id);
+    else location.hash=id;
+  }
+
+  document.addEventListener('click',e=>{
+    const k=e.target.closest('[data-till]');
+    if(k){ e.preventDefault(); till(k.dataset.till); return; }
+    const kop=e.target.closest('.kopiera');
+    if(kop){
+      const box=kop.closest('.mall');
+      if(!box) return;
+      const txt=[...box.querySelectorAll('p')].map(p=>p.innerText.trim()).join('\n\n');
+      navigator.clipboard.writeText(txt).then(()=>{
+        kop.textContent='Kopierat!';
+        setTimeout(()=>kop.textContent='Kopiera',1400);
+      }).catch(()=>{
+        kop.textContent='Markera texten';
+        setTimeout(()=>kop.textContent='Kopiera',1800);
+      });
+    }
+  });
+
+  /* Tangentbord: 1–8 för stegen, I för invändningar */
+  document.addEventListener('keydown',e=>{
+    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    const t=e.target.tagName;
+    if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT'||e.target.isContentEditable) return;
+    if(e.key>='1'&&e.key<='8'){ const b=steg.find(x=>x.n===e.key); if(b) till(b.id); }
+    else if(e.key==='i'||e.key==='I'){ till('invandningar'); }
+  });
+
+  window.addEventListener('hashchange',()=>franHash(true));
+  franHash(false);
+})();
+
+/* ── Dagsloggen — FRYST kontrakt (CLAUDE.md Heligt):
+   nyckeln bahko_sop_dagslogg_v1 och postformen får inte ändras. ── */
 (function(){
   const KEY='bahko_sop_dagslogg_v1';
   const NUM=['ringda','nadda','mejl','svar','demo','moten'];
