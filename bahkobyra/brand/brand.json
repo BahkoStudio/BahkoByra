@@ -1,0 +1,46 @@
+{
+  "company_name": "Bahko Byrå",
+  "tagline": "Synlighet som säljer.",
+  "website": "bahkobyra.se",
+  "target_market": "Lokala företag i Sverige (bygg/hantverk)",
+  "services": [
+    "Hemsidor",
+    "SEO",
+    "Google Ads",
+    "Social Media Ads"
+  ],
+  "primary_color": "#10B981",
+  "secondary_color": "#0A1628",
+  "accent_color": "#34D399",
+  "text_color": "#FFFFFF",
+  "text_secondary_dark": "#94A7BF",
+  "background_color": "#0A1628",
+  "surface_dark": "#13233F",
+  "light_background": "#F8FAFC",
+  "accent_text_on_light": "#047857",
+  "semantic": {
+    "ok": "#34D399",
+    "varning": "#F59E0B",
+    "fel": "#F87171",
+    "fel_ljus": "#DC2626",
+    "varning_ljus": "#B45309"
+  },
+  "cta_rule": "Knappar: smaragd-yta (#10B981) med marinblå text (#0A1628). ALDRIG vit text på smaragd (2,54:1 underkänt WCAG).",
+  "font_heading": "Outfit",
+  "font_body": "Outfit",
+  "logo_path": "brand/logo.svg",
+  "logo_dark_path": "brand/logo-dark.svg",
+  "mark_path": "brand/mark.svg",
+  "founded": "2025",
+  "location": "Sverige",
+  "logo_url": "https://www.bahkobyra.se/brand/logo.svg",
+  "logo_description": "Smaragdgrön rundad kvadrat (#10B981) med vitt fett B (rena SVG-paths). Ordmärke 'Bahko Byrå' i Outfit 700 — marinblå #0A1628 på ljust, vitt på mörkt. Tagline 'SYNLIGHET SOM SÄLJER' i Outfit 500, bred spärrning. Rebrand 2026-08-05 (ersatte guld/cream/Cormorant).",
+  "accent_gradient": [
+    "#34D399",
+    "#10B981",
+    "#059669"
+  ],
+  "brand_sting_9x16": "content/ig/media/bahko-sting-9x16.mp4 (OBS: gamla varumärket - ny sting är beställningspunkt, Higgsfield-credits)",
+  "logo_raster_16x9": "https://www.bahkobyra.se/brand/logo-raster-16x9.png",
+  "logo_raster_9x16_stacked": "https://www.bahkobyra.se/brand/logo-raster-9x16-stacked.png"
+}

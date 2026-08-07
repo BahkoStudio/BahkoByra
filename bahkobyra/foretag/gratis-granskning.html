@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gratis Webbplatsanalys för Lokala Företag | Bahko Byrå</title>
+<meta name="description" content="Få en gratis 10-punktsanalys av er hemsida. Vi granskar SEO, mobilanpassning, kontaktflöde och mer — helt gratis, utan krav.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.bahkobyra.se/foretag/gratis-granskning.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.bahkobyra.se/foretag/gratis-granskning.html">
+<meta property="og:title" content="Gratis Webbplatsanalys för Lokala Företag | Bahko Byrå">
+<meta property="og:description" content="10-punktsanalys av er hemsida — SEO, mobilanpassning, kontaktflöde. Helt gratis, svar inom 24h.">
+<meta property="og:image" content="https://www.bahkobyra.se/brand/logo-raster-16x9.png">
+<meta property="og:locale" content="sv_SE">
+<meta name="theme-color" content="#F8FAFC">
+
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --lt:#F8FAFC;
+  --card:#FFFFFF;
+  --base:#0A1628;
+  --em:#10B981;
+  --em-lt:#34D399;
+  --em-deep:#047857;
+  --ink:#0A1628;
+  --ink-2:#475569;
+  --ink-3:#64748B;
+  --line:#E2E8F0;
+  --line-2:rgba(16,185,129,.55);
+  --err:#DC2626;
+  --sans:'Outfit',system-ui,sans-serif;
+  --r:6px;
+  --r-lg:10px;
+  --gut:clamp(1.25rem,5vw,4.5rem);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html{scroll-behavior:smooth;background:var(--lt);color:var(--ink);font-family:var(--sans);font-size:clamp(16px,.5vw + 14px,18px);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none}
+::selection{background:var(--em);color:var(--base)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--em-deep);outline-offset:2px}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem var(--gut);display:flex;justify-content:space-between;align-items:center;background:rgba(248,250,252,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav-brand{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--sans);font-size:1.05rem;font-weight:700;letter-spacing:-.01em;color:var(--ink);min-height:44px}
+.nav-brand img{width:30px;height:30px;border-radius:7px}
+.nav-back{font-size:.66rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:.5rem;transition:color .25s;min-height:44px}
+.nav-back:hover{color:var(--em-deep)}
+.nav-back svg{width:12px;height:12px;stroke:currentColor;stroke-width:2;fill:none}
+
+/* ── HERO ── */
+.hero{padding:clamp(7rem,14vw,11rem) var(--gut) clamp(4rem,8vw,7rem);max-width:840px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;font-size:.62rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--em-deep);background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.4);border-radius:30px;padding:.38rem 1.1rem;margin-bottom:2rem}
+.hero-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--em)}
+.hero-title{font-family:var(--sans);font-size:clamp(2.4rem,7vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.3rem;color:var(--ink)}
+.hero-title em{font-style:normal;color:var(--em-deep)}
+.hero-sub{font-size:clamp(1rem,1.3vw,1.08rem);color:var(--ink-2);line-height:1.8;font-weight:400;max-width:54ch;margin:0 auto 3rem}
+.hero-stats{display:flex;gap:0;justify-content:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;max-width:480px;margin:0 auto}
+.hero-stat{flex:1;padding:1.4rem 1rem;text-align:center;border-right:1px solid var(--line)}
+.hero-stat:last-child{border-right:none}
+.hero-stat-n{font-family:var(--sans);font-size:1.9rem;font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--em-deep)}
+.hero-stat-l{font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);margin-top:.4rem}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--line);max-width:var(--gut);margin:0 var(--gut)}
+.divider.full{max-width:100%;margin:0}
+
+/* ── SECTION ── */
+.section{padding:clamp(4rem,8vw,7rem) var(--gut);max-width:calc(840px + var(--gut) * 2);margin:0 auto}
+.eyebrow{font-size:.62rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--em-deep);display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.eyebrow::before{content:'';width:26px;height:2px;background:var(--em);display:inline-block}
+.section-title{font-family:var(--sans);font-size:clamp(1.7rem,4vw,2.6rem);font-weight:700;line-height:1.12;letter-spacing:-.02em;margin-bottom:2.5rem}
+
+/* ── POINTS GRID ── */
+.points-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.point{background:var(--card);padding:1.6rem 1.5rem;display:flex;gap:1.1rem;align-items:flex-start;transition:background .3s}
+.point:hover{background:var(--lt)}
+.point-num{font-family:var(--sans);font-size:1rem;font-weight:800;color:var(--em-deep);flex-shrink:0;line-height:1;padding-top:.15rem}
+.point-body h4{font-size:.92rem;font-weight:600;color:var(--ink);margin-bottom:.28rem}
+.point-body p{font-size:.8rem;color:var(--ink-2);line-height:1.6;font-weight:400}
+
+/* ── PROCESS STEPS ── */
+.process{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.proc-step{display:flex;gap:1.4rem;align-items:flex-start;padding:1.6rem 1.8rem;background:var(--card);border-bottom:1px solid var(--line);transition:background .3s}
+.proc-step:last-child{border-bottom:none}
+.proc-step:hover{background:var(--lt)}
+.proc-n{width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+.proc-n span{font-family:var(--sans);font-size:1rem;font-weight:700;color:var(--em-deep);line-height:1}
+.proc-body h4{font-size:.94rem;font-weight:600;margin-bottom:.3rem;color:var(--ink)}
+.proc-body p{font-size:.82rem;color:var(--ink-2);line-height:1.6;font-weight:400}
+
+/* ── FORM SECTION ── */
+.form-section{background:var(--card);border-top:1px solid var(--line);padding:clamp(4rem,8vw,7rem) var(--gut);position:relative;overflow:hidden}
+.form-section::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(16,185,129,.07),transparent 65%);pointer-events:none}
+.form-wrap{max-width:560px;margin:0 auto;position:relative}
+.form-eyebrow{font-size:.62rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--em-deep);display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.form-eyebrow::before{content:'';width:26px;height:2px;background:var(--em);display:inline-block}
+.form-title{font-family:var(--sans);font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;margin-bottom:.7rem;color:var(--ink)}
+.form-title em{font-style:normal;color:var(--em-deep)}
+.form-sub{font-size:.9rem;color:var(--ink-2);line-height:1.7;font-weight:400;margin-bottom:2.8rem}
+
+form{display:flex;flex-direction:column;gap:1rem}
+.field{display:flex;flex-direction:column;gap:.45rem}
+.field label{font-size:.64rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.field input{background:var(--lt);border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1.1rem;color:var(--ink);font-family:var(--sans);font-size:1rem;font-weight:400;outline:none;transition:border-color .3s,background .3s;-webkit-appearance:none;appearance:none}
+.field input:focus{border-color:var(--em);background:#fff}
+.field input::placeholder{color:var(--ink-3)}
+.field select{background:var(--lt);border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1.1rem;color:var(--ink);font-family:var(--sans);font-size:1rem;font-weight:400;outline:none;transition:border-color .3s,background .3s;-webkit-appearance:none;appearance:none;cursor:pointer;width:100%}
+.field select:focus{border-color:var(--em);background:#fff}
+.field select option{background:#fff;color:var(--ink)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+/* primärknapp: smaragd med marinblå text */
+.submit-btn{margin-top:.6rem;min-height:44px;padding:1rem 2.2rem;background:var(--em);color:var(--base);font-family:var(--sans);font-size:.84rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:var(--r);cursor:pointer;transition:background .3s,transform .15s,box-shadow .3s;position:relative;overflow:hidden}
+.submit-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.18) 50%,transparent 100%);transform:translateX(-100%);transition:transform .5s var(--ease)}
+.submit-btn:hover{background:var(--em-lt);box-shadow:0 8px 28px -10px rgba(16,185,129,.5)}
+.submit-btn:hover::after{transform:translateX(100%)}
+.submit-btn:active{transform:scale(.98)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+
+.form-note{font-size:.68rem;color:var(--ink-3);text-align:center;margin-top:.8rem;line-height:1.5;letter-spacing:.04em}
+.form-err{color:var(--err);font-size:.9rem;font-weight:500;text-align:center;margin-top:.6rem}
+.form-err[hidden]{display:none}
+
+/* ── SUCCESS STATE ── */
+.success{display:none;text-align:center;padding:2.5rem 0;color:var(--ink)}
+.success-ic{width:56px;height:56px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;margin:0 auto 1.4rem;color:var(--em-deep);font-size:1.4rem}
+.success h3{font-family:var(--sans);font-size:1.6rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.5rem}
+.success p{font-size:.9rem;color:var(--ink-2);line-height:1.7;font-weight:400}
+.success-link{display:inline-flex;align-items:center;min-height:44px;margin-top:1.6rem;font-size:.82rem;font-weight:500;color:var(--em-deep);border:1px solid rgba(16,185,129,.4);border-radius:var(--r);padding:.7rem 1.3rem;transition:background .3s,color .3s}
+.success-link:hover{background:var(--em);color:var(--base)}
+
+/* ── FOOTER ── */
+footer{padding:2.5rem var(--gut);text-align:center;border-top:1px solid var(--line);background:var(--lt)}
+footer p{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+footer a{color:var(--ink-2);transition:color .25s}
+footer a:hover{color:var(--em-deep)}
+
+/* ── MOBILE ── */
+@media(max-width:640px){
+  .hero{padding:6.5rem var(--gut) 3.5rem}
+  .hero-stats{flex-direction:column;max-width:220px;border-radius:var(--r)}
+  .hero-stat{border-right:none;border-bottom:1px solid var(--line)}
+  .hero-stat:last-child{border-bottom:none}
+  .points-grid{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr}
+  .nav{padding:.8rem var(--gut)}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-brand" href="https://www.bahkobyra.se"><img src="/brand/mark.svg" alt="" width="30" height="30">Bahko Byrå</a>
+  <a class="nav-back" href="https://www.bahkobyra.se">
+    <svg viewBox="0 0 12 12"><polyline points="8,2 4,6 8,10"/></svg>
+    Tillbaka
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Gratis — värde 799 kr · Svar inom 24h</div>
+  <h1 class="hero-title">Hur ser din hemsida<br>ut i <em>kundens ögon?</em></h1>
+  <p class="hero-sub">Vi gör en 10-punktsanalys av er webbplats och skickar resultatet direkt till er — helt gratis, utan krav och utan säljpitch.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-n">10</div>
+      <div class="hero-stat-l">Granskningspunkter</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-n">24h</div>
+      <div class="hero-stat-l">Svar garanterat</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-n">0 kr</div>
+      <div class="hero-stat-l">Alltid gratis</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider full"></div>
+
+<!-- WHAT YOU GET -->
+<section class="section">
+  <div class="eyebrow">Vad vi granskar</div>
+  <h2 class="section-title">10 punkter som avgör om er sajt<br>tappar kunder</h2>
+  <div class="points-grid">
+    <div class="point">
+      <div class="point-num">01</div>
+      <div class="point-body">
+        <h4>Mobilanpassning</h4>
+        <p>De flesta lokala sökningar sker på telefon. Fungerar er sajt perfekt på mobil?</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">02</div>
+      <div class="point-body">
+        <h4>Laddningshastighet</h4>
+        <p>Varje extra sekund tappas 7% av besökarna. Hur snabbt laddar er sida?</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">03</div>
+      <div class="point-body">
+        <h4>Lokal SEO & Google Maps</h4>
+        <p>Syns ni när folk söker "[tjänst] [stad]"? Är er Google Företagsprofil komplett?</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">04</div>
+      <div class="point-body">
+        <h4>Boknings- &amp; kontaktflöde</h4>
+        <p>Hur många klick krävs för att boka eller begära offert? Varje extra steg kostar kunder.</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">05</div>
+      <div class="point-body">
+        <h4>Trustsignaler</h4>
+        <p>Certifikat, betyg och riktiga bilder på ert arbete — syns de tydligt? Förtroende avgör valet.</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">06</div>
+      <div class="point-body">
+        <h4>Sociala bevis</h4>
+        <p>Recensioner, genomförda uppdrag, nöjda kunder — visas det på er sajt?</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">07</div>
+      <div class="point-body">
+        <h4>SEO-grundstruktur</h4>
+        <p>Titlar, meta-beskrivningar och URL-struktur — är de optimerade för Google?</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">08</div>
+      <div class="point-body">
+        <h4>Prissättning & erbjudanden</h4>
+        <p>Är priser lätta att hitta? Otydlig prissättning skrämmer bort 43% av besökarna.</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">09</div>
+      <div class="point-body">
+        <h4>Design & varumärke</h4>
+        <p>Speglar designen det ert företag faktiskt erbjuder? Professionellt = förtroende.</p>
+      </div>
+    </div>
+    <div class="point">
+      <div class="point-num">10</div>
+      <div class="point-body">
+        <h4>Konverteringspotential</h4>
+        <p>Är CTA-knappar tydliga? Fångar ni leads som inte bokar direkt?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider full"></div>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="eyebrow">Så funkar det</div>
+  <h2 class="section-title">Tre steg — klart</h2>
+  <div class="process">
+    <div class="proc-step">
+      <div class="proc-n"><span>1</span></div>
+      <div class="proc-body">
+        <h4>Fyll i formuläret nedan</h4>
+        <p>Ange ert företagsnamn, webbadress och e-post. Det tar under 60 sekunder.</p>
+      </div>
+    </div>
+    <div class="proc-step">
+      <div class="proc-n"><span>2</span></div>
+      <div class="proc-body">
+        <h4>Vi analyserar er sajt</h4>
+        <p>Mathias på Bahko Byrå granskar er webbplats mot alla 10 punkter och skriver en personlig rapport.</p>
+      </div>
+    </div>
+    <div class="proc-step">
+      <div class="proc-n"><span>3</span></div>
+      <div class="proc-body">
+        <h4>Rapporten landar i er inkorg</h4>
+        <p>Inom 24 timmar får ni en konkret lista med vad som fungerar och vad som kostar er kunder — utan säljpitch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<div class="form-section">
+  <div class="form-wrap">
+    <div class="form-eyebrow">Starta analysen</div>
+    <h2 class="form-title">Få er <em>gratis</em> rapport</h2>
+    <p class="form-sub">Vi skickar en personlig webbplatsanalys till er e-post inom 24 timmar. Helt gratis, inga krav.</p>
+
+    <form id="audit-form" action="https://formspree.io/f/mgonrnep" method="POST">
+      <div class="field-row">
+        <div class="field">
+          <label for="namn">Ditt namn</label>
+          <input type="text" id="namn" name="namn" placeholder="Anna Svensson" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="foretag">Företagets namn</label>
+          <input type="text" id="foretag" name="foretag" placeholder="Ditt Företag AB" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="webbplats">Webbadress</label>
+        <input type="url" id="webbplats" name="webbplats" placeholder="https://dittforetag.se" required autocomplete="url">
+      </div>
+      <div class="field">
+        <label for="email">Er e-post</label>
+        <input type="email" id="email" name="email" placeholder="hej@dittforetag.se" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="utmaning">Er största utmaning just nu <span style="text-transform:none;letter-spacing:.04em;opacity:.6">(valfritt)</span></label>
+        <select id="utmaning" name="utmaning">
+          <option value="">Välj…</option>
+          <option>Fler kunder &amp; bokningar</option>
+          <option>Synas högre på Google</option>
+          <option>Hemsidan känns gammal</option>
+          <option>Vet inte — det är därför jag vill ha analysen</option>
+        </select>
+      </div>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <input type="hidden" name="_subject" value="Ny audit-förfrågan från webbplatsanalys">
+      <button class="submit-btn" type="submit" id="submit-btn">Skicka — helt gratis</button>
+      <p class="form-err" id="form-err" role="alert" hidden>Något gick fel. Försök igen eller mejla oss direkt på mathias@bahkobyra.se</p>
+      <p class="form-note">Vi delar aldrig er information. Ni kan avregistrera er när som helst.</p>
+    </form>
+
+    <div class="success" id="success-msg">
+      <div class="success-ic">✓</div>
+      <h3>Tack — rapporten landar inom 24h!</h3>
+      <p>Mathias på Bahko Byrå granskar er sajt och skickar rapporten till er e-post.<br>Kolla gärna skräpposten om ni inte hör av oss.</p>
+      <a class="success-link" href="/foretag/gratis-guide.html">Medan ni väntar: 3 sätt att ranka högre på Google — gratis guide + video
+        <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none;vertical-align:-2px;margin-left:.3rem"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p><a href="https://www.bahkobyra.se">Bahko Byrå</a> &nbsp;·&nbsp; Synlighet som säljer &nbsp;·&nbsp; <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a></p>
+</footer>
+
+<script>
+const form = document.getElementById('audit-form');
+const success = document.getElementById('success-msg');
+const btn = document.getElementById('submit-btn');
+const formErr = document.getElementById('form-err');
+
+function showErr() { formErr.hidden = false; }
+function hideErr() { formErr.hidden = true; }
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  hideErr();
+  btn.disabled = true;
+  btn.textContent = 'Skickar...';
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      form.style.display = 'none';
+      success.style.display = 'block';
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Skicka — helt gratis';
+      showErr();
+    }
+  } catch {
+    btn.disabled = false;
+    btn.textContent = 'Skicka — helt gratis';
+    showErr();
+  }
+});
+</script>
+<script defer src="/js/analytics.js"></script>
+</body>
+</html>
