@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './SynlighetsPanel.module.css';
 
 // Dag 1 ligger på 10 %, dag 90 landar på 88 %. Kurvan spänner över samma spann.
@@ -15,64 +15,121 @@ const RADER = [
 
 // Illustration av utvecklingen över 90 dagar, inte mätdata från en enskild kund.
 const KURVA = [10, 15, 13, 21, 27, 25, 34, 41, 38, 49, 57, 63, 60, 71, 80, 88];
-const KURVLANGD = 430;
+const OMKRETS = 2 * Math.PI * 52;
+
+/** Catmull-Rom till bezier: gör den kantiga punktserien till en mjuk kurva. */
+function mjukKurva(varden) {
+  const pkt = varden.map((v, i) => [
+    (i / (varden.length - 1)) * 260,
+    96 - (v / 100) * 78,
+  ]);
+  let d = `M ${pkt[0][0].toFixed(1)} ${pkt[0][1].toFixed(1)}`;
+  for (let i = 0; i < pkt.length - 1; i++) {
+    const p0 = pkt[i - 1] || pkt[i];
+    const p1 = pkt[i];
+    const p2 = pkt[i + 1];
+    const p3 = pkt[i + 2] || p2;
+    const c1x = p1[0] + (p2[0] - p0[0]) / 6;
+    const c1y = p1[1] + (p2[1] - p0[1]) / 6;
+    const c2x = p2[0] - (p3[0] - p1[0]) / 6;
+    const c2y = p2[1] - (p3[1] - p1[1]) / 6;
+    d += ` C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
+  }
+  return d;
+}
+
+const KURVBANA = mjukKurva(KURVA);
 
 export default function SynlighetsPanel() {
-  // 0 = panelen kommer underifrån, 1 = fullt utvecklad. Styrs av scrollpositionen.
-  const [p, setP] = useState(0);
   const panelRef = useRef(null);
+  const bageRef = useRef(null);
+  const talRef = useRef(null);
+  const svgRef = useRef(null);
+  const kurvaRef = useRef(null);
+  const radRefs = useRef([]);
 
   useEffect(() => {
     const el = panelRef.current;
     if (!el) return;
+
+    const kurvlangd = kurvaRef.current ? kurvaRef.current.getTotalLength() : 430;
+    if (kurvaRef.current) {
+      kurvaRef.current.style.strokeDasharray = String(kurvlangd);
+    }
+
+    // Skriver direkt till DOM i stället för att rendera om varje bildruta.
+    const rita = (p) => {
+      const tal = Math.round(START + (MAL - START) * p);
+      if (bageRef.current) {
+        bageRef.current.setAttribute('stroke-dasharray', `${(tal / 100) * OMKRETS} ${OMKRETS}`);
+      }
+      if (talRef.current) talRef.current.textContent = String(tal);
+      if (svgRef.current) svgRef.current.setAttribute('aria-label', `Synlighet ${tal} av 100`);
+      if (kurvaRef.current) {
+        kurvaRef.current.style.strokeDashoffset = String(kurvlangd * (1 - p));
+      }
+      radRefs.current.forEach((rad, i) => {
+        if (!rad) return;
+        const lokal = Math.max(0, Math.min(1, (p - RADER[i].vid) / 0.16));
+        rad.style.opacity = lokal;
+        rad.style.transform = `translateY(${(1 - lokal) * 12}px)`;
+      });
+    };
 
     const dampad =
       typeof window.matchMedia === 'function' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (dampad) {
-      setP(1);
+      rita(1);
       return;
     }
 
+    let mal = 0;
+    let nu = 0;
     let rafId = null;
 
-    const berakna = () => {
-      rafId = null;
+    const lasScroll = () => {
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight || 800;
-      // Nollpunkt: panelens överkant vid nedre kanten av fönstret.
-      // Ett: panelen har rest sig till drygt en tredjedel upp i fönstret.
       const fran = vh * 0.95;
       const till = vh * 0.3;
-      const andel = (fran - r.top) / (fran - till);
-      setP(Math.max(0, Math.min(1, andel)));
+      mal = Math.max(0, Math.min(1, (fran - r.top) / (fran - till)));
     };
 
-    // Scrollhändelser samlas i en bildruta så vi inte räknar om i onödan.
-    const vidScroll = () => {
-      if (rafId === null) rafId = requestAnimationFrame(berakna);
+    /* Utjamning: varje bildruta glider varden en bit narmare scrollens mal.
+       Utan den blir rorelsen lika hackig som hjulets steg. Loopen stannar nar
+       den kommit fram och vaknar igen vid nasta scroll. */
+    const rulle = () => {
+      const kvar = mal - nu;
+      if (Math.abs(kvar) < 0.0008) {
+        nu = mal;
+        rita(nu);
+        rafId = null;
+        return;
+      }
+      nu += kvar * 0.14;
+      rita(nu);
+      rafId = requestAnimationFrame(rulle);
     };
 
-    berakna();
-    window.addEventListener('scroll', vidScroll, { passive: true });
-    window.addEventListener('resize', vidScroll);
+    const vackLoopen = () => {
+      lasScroll();
+      if (rafId === null) rafId = requestAnimationFrame(rulle);
+    };
+
+    lasScroll();
+    nu = mal;
+    rita(nu);
+
+    window.addEventListener('scroll', vackLoopen, { passive: true });
+    window.addEventListener('resize', vackLoopen);
     return () => {
-      window.removeEventListener('scroll', vidScroll);
-      window.removeEventListener('resize', vidScroll);
+      window.removeEventListener('scroll', vackLoopen);
+      window.removeEventListener('resize', vackLoopen);
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
-
-  const tal = Math.round(START + (MAL - START) * p);
-  const omkrets = 2 * Math.PI * 52;
-  const fyllt = (tal / 100) * omkrets;
-
-  const punkter = KURVA.map((v, i) => {
-    const x = (i / (KURVA.length - 1)) * 260;
-    const y = 96 - (v / 100) * 78;
-    return `${x.toFixed(1)},${y.toFixed(1)}`;
-  }).join(' ');
 
   return (
     <div ref={panelRef} className={styles.panel}>
@@ -85,9 +142,10 @@ export default function SynlighetsPanel() {
 
       <div className={styles.rutnat}>
         <div className={styles.matare}>
-          <svg viewBox="0 0 120 120" role="img" aria-label={`Synlighet ${tal} av 100`}>
+          <svg ref={svgRef} viewBox="0 0 120 120" role="img" aria-label="Synlighet 10 av 100">
             <circle cx="60" cy="60" r="52" fill="none" stroke="#e2e8f0" strokeWidth="9" />
             <circle
+              ref={bageRef}
               cx="60"
               cy="60"
               r="52"
@@ -95,7 +153,7 @@ export default function SynlighetsPanel() {
               stroke="url(#gradient)"
               strokeWidth="9"
               strokeLinecap="round"
-              strokeDasharray={`${fyllt} ${omkrets}`}
+              strokeDasharray={`${(START / 100) * OMKRETS} ${OMKRETS}`}
               transform="rotate(-90 60 60)"
             />
             <defs>
@@ -106,7 +164,7 @@ export default function SynlighetsPanel() {
             </defs>
           </svg>
           <div className={styles.talruta}>
-            <strong>{tal}</strong>
+            <strong ref={talRef}>{START}</strong>
             <span>/100</span>
           </div>
         </div>
@@ -123,15 +181,15 @@ export default function SynlighetsPanel() {
               <span className={styles.period}>90 dagar</span>
             </div>
             <svg viewBox="0 0 260 100" preserveAspectRatio="none" aria-hidden="true">
-              <polyline
-                points={punkter}
+              <path
+                ref={kurvaRef}
+                d={KURVBANA}
                 fill="none"
                 stroke="#047857"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeDasharray={KURVLANGD}
-                strokeDashoffset={KURVLANGD * (1 - p)}
+                vectorEffect="non-scaling-stroke"
               />
             </svg>
           </div>
@@ -139,20 +197,19 @@ export default function SynlighetsPanel() {
       </div>
 
       <ul className={styles.rader}>
-        {RADER.map((r) => {
-          // Varje rad kommer in på sin egen punkt i scrollen och backar om man scrollar upp.
-          const lokal = Math.max(0, Math.min(1, (p - r.vid) / 0.16));
-          return (
-            <li
-              key={r.vad}
-              style={{ opacity: lokal, transform: `translateY(${(1 - lokal) * 12}px)` }}
-            >
-              <span className={`${styles.ikon} ${r.ton === 'lt' ? styles.ikonLt : ''}`}>{r.ikon}</span>
-              <span className={styles.vad}>{r.vad}</span>
-              <span className={styles.utfall}>{r.utfall}</span>
-            </li>
-          );
-        })}
+        {RADER.map((r, i) => (
+          <li
+            key={r.vad}
+            ref={(node) => {
+              radRefs.current[i] = node;
+            }}
+            style={{ opacity: 0 }}
+          >
+            <span className={`${styles.ikon} ${r.ton === 'lt' ? styles.ikonLt : ''}`}>{r.ikon}</span>
+            <span className={styles.vad}>{r.vad}</span>
+            <span className={styles.utfall}>{r.utfall}</span>
+          </li>
+        ))}
       </ul>
     </div>
   );
