@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './ProcessRail.module.css';
 
 const STEG = [
@@ -27,67 +27,108 @@ const STEG = [
 ];
 
 /**
- * Horisontell process med scroll-knappar. CSS scroll-snap i stället för
- * pinnad GSAP-scroll: samma känsla, men utan bibliotek som låser huvudtråden.
+ * Korten glider i sidled när sidan scrollas. Ingen egen scrollyta och inget
+ * scrollfält att dra i: sidscrollen är enda källan, precis som i panelen.
+ * Pilarna knuffar sidscrollen så de rör samma sak.
  */
 export default function ProcessRail() {
-  const spar = useRef(null);
-  const [kanBak, setKanBak] = useState(false);
-  const [kanFram, setKanFram] = useState(true);
-
-  const las = () => {
-    const el = spar.current;
-    if (!el) return;
-    setKanBak(el.scrollLeft > 8);
-    setKanFram(el.scrollLeft + el.clientWidth < el.scrollWidth - 8);
-  };
+  const ytaRef = useRef(null);
+  const sparRef = useRef(null);
+  const bakRef = useRef(null);
+  const framRef = useRef(null);
+  const spannRef = useRef({ start: 0, langd: 1, vagstracka: 0 });
 
   useEffect(() => {
-    las();
-    const el = spar.current;
-    if (!el) return;
+    const yta = ytaRef.current;
+    const spar = sparRef.current;
+    if (!yta || !spar) return;
 
-    /* Mushjulet scrollar spåret i sidled. Vid kanterna släpps scrollen
-       vidare till sidan, annars fastnar man i spåret och kommer inte förbi. */
-    const vidHjul = (e) => {
-      // Trackpad i sidled sköter webbläsaren redan korrekt.
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+    const dampad =
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const framat = e.deltaY > 0;
-      const kvarFram = el.scrollWidth - el.clientWidth - el.scrollLeft;
-      if (framat && kvarFram <= 1) return;
-      if (!framat && el.scrollLeft <= 1) return;
-
-      e.preventDefault();
-      el.scrollLeft += e.deltaY;
+    const matUpp = () => {
+      const r = yta.getBoundingClientRect();
+      const sidY = window.scrollY || 0;
+      const vh = window.innerHeight || 800;
+      // Rörelsen sker medan sektionen passerar genom fönstret.
+      const start = r.top + sidY - vh * 0.85;
+      const langd = Math.max(1, r.height + vh * 0.5);
+      const vagstracka = Math.max(0, spar.scrollWidth - yta.clientWidth);
+      spannRef.current = { start, langd, vagstracka };
     };
 
-    el.addEventListener('scroll', las, { passive: true });
-    // passive: false kravs for att preventDefault ska bita pa hjulet.
-    el.addEventListener('wheel', vidHjul, { passive: false });
-    window.addEventListener('resize', las);
+    let mal = 0;
+    let nu = 0;
+    let rafId = null;
+
+    const rita = (p) => {
+      const { vagstracka } = spannRef.current;
+      spar.style.transform = `translate3d(${-p * vagstracka}px, 0, 0)`;
+      if (bakRef.current) bakRef.current.disabled = p <= 0.01;
+      if (framRef.current) framRef.current.disabled = p >= 0.99;
+    };
+
+    const lasScroll = () => {
+      const { start, langd } = spannRef.current;
+      const p = ((window.scrollY || 0) - start) / langd;
+      mal = Math.max(0, Math.min(1, p));
+    };
+
+    // Samma utjämning som panelen: värdet glider mot scrollens mål.
+    const rulle = () => {
+      const kvar = mal - nu;
+      if (Math.abs(kvar) < 0.0005) {
+        nu = mal;
+        rita(nu);
+        rafId = null;
+        return;
+      }
+      nu += kvar * 0.14;
+      rita(nu);
+      rafId = requestAnimationFrame(rulle);
+    };
+
+    const vack = () => {
+      lasScroll();
+      if (rafId === null) rafId = requestAnimationFrame(rulle);
+    };
+
+    const vidResize = () => {
+      matUpp();
+      vack();
+    };
+
+    matUpp();
+    lasScroll();
+    nu = dampad ? mal : mal;
+    rita(nu);
+
+    if (!dampad) {
+      window.addEventListener('scroll', vack, { passive: true });
+    }
+    window.addEventListener('resize', vidResize);
     return () => {
-      el.removeEventListener('scroll', las);
-      el.removeEventListener('wheel', vidHjul);
-      window.removeEventListener('resize', las);
+      window.removeEventListener('scroll', vack);
+      window.removeEventListener('resize', vidResize);
+      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
 
-  const flytta = (riktning) => {
-    const el = spar.current;
-    if (!el) return;
-    const kort = el.querySelector('article');
-    const steg = kort ? kort.offsetWidth + 16 : el.clientWidth * 0.8;
-    el.scrollBy({ left: riktning * steg, behavior: 'smooth' });
+  // Pilarna flyttar sidscrollen ett kort i taget, så de styr samma rörelse.
+  const knuffa = (riktning) => {
+    const { langd } = spannRef.current;
+    const steg = langd / (STEG.length - 1);
+    window.scrollBy({ top: riktning * steg, behavior: 'smooth' });
   };
 
   return (
     <div className={styles.hylla}>
       <div className={styles.knappar}>
         <button
+          ref={bakRef}
           type="button"
-          onClick={() => flytta(-1)}
-          disabled={!kanBak}
+          onClick={() => knuffa(-1)}
           aria-label="Visa föregående steg"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -95,9 +136,9 @@ export default function ProcessRail() {
           </svg>
         </button>
         <button
+          ref={framRef}
           type="button"
-          onClick={() => flytta(1)}
-          disabled={!kanFram}
+          onClick={() => knuffa(1)}
           aria-label="Visa nästa steg"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -106,14 +147,16 @@ export default function ProcessRail() {
         </button>
       </div>
 
-      <div className={styles.spar} ref={spar} tabIndex={0} role="group" aria-label="Processens steg, skrolla i sidled">
-        {STEG.map((s) => (
-          <article key={s.n}>
-            <span className={styles.nr}>{s.n}</span>
-            <h3>{s.h}</h3>
-            <p>{s.p}</p>
-          </article>
-        ))}
+      <div className={styles.yta} ref={ytaRef}>
+        <div className={styles.spar} ref={sparRef}>
+          {STEG.map((s) => (
+            <article key={s.n}>
+              <span className={styles.nr}>{s.n}</span>
+              <h3>{s.h}</h3>
+              <p>{s.p}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   );

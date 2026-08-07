@@ -46,38 +46,21 @@
   height: 19px;
 }
 
-/* Scroll-snap i stället för pinnad GSAP-scroll: samma horisontella känsla,
-   men utan bibliotek som låser huvudtråden. */
+/* Ingen egen scrollyta och inget scrollfalt: sidscrollen flyttar sparet
+   i sidled via transform, sa rorelsen hor ihop med resten av sidan. */
+.yta {
+  overflow: hidden;
+}
+
 .spar {
   display: grid;
   grid-auto-flow: column;
-  /* Tre kort synliga at gangen av fyra, sa det finns verklig resa att scrolla.
-     Med 1fr rymdes nastan alla och bara 92px aterstod, mindre an ett halvt kort,
-     varpa snappningen drog tillbaka spaeret till start. */
   grid-auto-columns: calc((100% - 2rem) / 3);
   gap: 1rem;
-  overflow-x: auto;
-  /* proximity, inte mandatory: mandatory slass med hjulscroll och rycker.
-     Ingen scroll-behavior har heller, den skulle gora varje hjulsteg trogt.
-     Knapparna anvander scrollBy med smooth i stallet. */
-  scroll-snap-type: x proximity;
-  overscroll-behavior-x: contain;
-  padding-bottom: 0.6rem;
-  scrollbar-width: thin;
-  scrollbar-color: var(--linje-mork) transparent;
-}
-
-.spar::-webkit-scrollbar {
-  height: 6px;
-}
-
-.spar::-webkit-scrollbar-thumb {
-  background: var(--linje-mork);
-  border-radius: 999px;
+  will-change: transform;
 }
 
 .spar article {
-  scroll-snap-align: start;
   background: var(--yta);
   border: 1px solid var(--linje-mork);
   border-radius: var(--r-lg);
@@ -114,7 +97,7 @@
 
 @media (max-width: 620px) {
   .spar {
-    grid-auto-columns: 86%;
+    grid-auto-columns: 88%;
   }
   .knappar {
     justify-content: flex-start;
