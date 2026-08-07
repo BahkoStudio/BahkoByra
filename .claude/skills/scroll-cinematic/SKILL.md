@@ -8,16 +8,16 @@ disable-model-invocation: true
 # Scroll-Cinematic Bygg-Demo (GRANIT-mallen)
 
 Bygger en kunddemo för bygg/anläggning/transport-nischer: **den videodrivna koreografin**
-(fast videolager + sektioner på progress-fönster, se `bahkobyra/cloud/tryggbyggservice/index.html`
-eller `bahkobyra/cloud/vajjebygg/index.html`) med
+(fast videolager + sektioner på progress-fönster, se `web/public/cloud/tryggbyggservice/index.html`
+eller `web/public/cloud/vajjebygg/index.html`) med
 **Higgsfield-genererade videoloopar (gif-känsla)** som visar en förvandling i kundens
 egen nisch: gammalt/trasigt/skräpigt → åtgärdat/förvandlat (hero-loopen) → kameran rör
 sig närmare/in i resultatet (bakgrundsloopen). Följt av en **riktig hemsida-del**
 (om oss / så går det till / galleri / kontakt) så sidan känns komplett, inte bara en
 snygg trailer.
 
-**Facit / godkänd slutversion: `bahkobyra/cloud/bygg/index.html`** — kopiera den till
-`bahkobyra/cloud/[kund]/index.html` och byt varumärke (namn, palett om kunden har egen,
+**Facit / godkänd slutversion: `web/public/cloud/bygg/index.html`** — kopiera den till
+`web/public/cloud/[kund]/index.html` och byt varumärke (namn, palett om kunden har egen,
 copy, klipp, kontaktuppgifter).
 
 **OBS varumärke (rebrand 2026-08-05):** facit `cloud/bygg/index.html` är **FRYST som
@@ -25,10 +25,10 @@ historisk referens i GAMLA Bahko-varumärket** (guld/cream/Cormorant) — uppdat
 Mekaniken/koreografin i facit gäller fortfarande och kopieras som förut. Framtida demos byggs
 i **kundens egen stil** precis som tidigare, MEN alla **Bahko-brandade element** (logga,
 footer-badge "Byggd av Bahko Byrå", Bahko-modalen) ska använda **nya varumärket från
-`bahkobyra/brand/brand.json` (v2)**: smaragdgrön mark med vitt B, Outfit, knappar = smaragd
+`web/public/brand/brand.json` (v2)**: smaragdgrön mark med vitt B, Outfit, knappar = smaragd
 med marinblå text (aldrig vit på smaragd).
 
-**OBS delade filer:** `bahkobyra/css/style.css` och `bahkobyra/js/main.js` är **FRYSTA**
+**OBS delade filer:** `web/public/css/style.css` och `web/public/js/main.js` är **FRYSTA**
 (delas med frysta `cloud/bygg` — Bahkos egna sidor kör `style-v2.css`/`main-v2.js`). Nya
 byggen får ALDRIG länka de frysta filerna — varje demo ska ha sina egna kopior av all
 CSS/JS, som demosajterna redan har (self-contained `index.html` + egen media-mapp).
@@ -194,7 +194,7 @@ Klipp 2 "Steget in/närmare" (bakgrundsloopen): samma params
 
 ### 5. Bygg sidan
 
-Kopiera `bahkobyra/cloud/bygg/index.html` → `bahkobyra/cloud/[kund]/index.html` och byt:
+Kopiera `web/public/cloud/bygg/index.html` → `web/public/cloud/[kund]/index.html` och byt:
 1. Varumärke: titel, meta description, loader-brand, header-logo, footer, palett-variabler
    om kunden har egen profil.
 2. Video-url:er + posters (klipp 1 i heron, klipp 2 i `.bgvid-wrap`). Använd platshållare
@@ -270,7 +270,7 @@ riskreversering.**
   1. Ladda ner varje genererad fil direkt vid bygget (`curl` mot `results.rawUrl`).
   2. Weboptimera: bilder → JPG max 1920 px (`ffmpeg -vf "scale='min(1920,iw)':-2" -q:v 3`),
      videor → H.264 CRF 26 utan ljudspår (`-an -movflags +faststart`, autoplay-bakgrunder är alltid mutade).
-  3. Lägg i `bahkobyra/cloud/[kund]/media/` med **beskrivande kebab-namn** (`fore-villa-flagnande-farg.jpg`,
+  3. Lägg i `web/public/cloud/[kund]/media/` med **beskrivande kebab-namn** (`fore-villa-flagnande-farg.jpg`,
      `video-efter-nybyggt-hus.mp4`) — aldrig hf_-hashen. Committa med sajten.
   4. Spara originalen i arkivet `testar/bahko-byra/BahkoByrå asset för hemsidor/[kund]/`.
   5. Ingen `preconnect` mot cloudfront i HTML:en.

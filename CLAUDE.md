@@ -62,7 +62,9 @@ tools/          # Node.js-skript (.js) för deterministisk exekvering
 workflows/      # Markdown SOPs defining what to do and how
 content/        # Copy och SOP:er för utskick (content/email/, content/ig/)
 reference/      # Levande källdokument (PDF:er, bl.a. sales methodology) — raderas aldrig
-bahkobyra/      # Webbroten som Vercel deployar (bahkobyra.se + bahkobyra.cloud)
+web/            # Next.js-appen som Vercel deployar (bahkobyra.se + bahkobyra.cloud)
+web/public/     # Statiskt som serveras skarpt: demos i cloud/, CRM, foretag, brand
+bahkobyra/      # ENDAST kundsajterna smamaleri + brommatradgardsservice (egna Vercel-projekt)
 docs/           # Beslut och planer (docs/superpowers/ = revisionens planer/specar)
 .claude/skills/ # Skills (se Skills-sektionen)
 server.js       # Lokal dev-server (`npm start`)
@@ -92,7 +94,7 @@ Stay pragmatic. Stay reliable. Keep learning.
 
 Fundamentet för all försäljning. Full playbook: `workflows/sales_methodology.md`. Leverans:
 `workflows/local_seo_delivery.md`. Cadence: `workflows/outreach_cadence.md`. IG: `workflows/instagram_engine.md`.
-Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `bahkobyra/crm-f2822a6f3a/index.html`
+Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `web/public/crm-f2822a6f3a/index.html`
 (CRM med cadence, offert-väljare, outreach-skript, Instagram-motor, Spelbok).
 
 **POSITIONERING (viktigt):**
@@ -114,7 +116,7 @@ Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `bahko
 - **Cadence:** välj EN väg/lead (skriven/samtal/IRL), dag 1/3/5/7 → svar=boka, tyst=nurture/stäng.
 - **JA-protokollet (när prospekt säger ja till demo):** gör ENDAST tre saker, i ordning, lugn/mänsklig ton: 1) instruktion — "Kika på [plats] och se hur [friktion] visar sig." 2) kvalificering (binär, låg friktion) — "Bara så jag förstår, ser du samma sak på din sida idag?" 3) optionalitet — "Om det stämmer när du kollat kan jag visa nästa steg. Helt upp till dig." ALDRIG pitch, hype, värme-fluff, "let me know" eller call-push. Demo-länken levereras alltid. Full version + färdiga mallar i dashboardens Spelbok/skript.
 - **Skrivregler för alla DM/mejl till prospekt:** mänsklig, naturlig svenska — ALDRIG tankstreck (—) i meddelanden. Börja alltid med en hälsning ("Hejsan!") och avsluta alltid med "Vänliga hälsningar / Mathias Bahko". **Lärdom 2026-06-12: långa DM får inga svar.** Uppföljning del 2 (vid tystnad): max 40 ord, ledig ton ("Tjena!"), formatet är fast: påminn ("vet inte om du hann se demon") + demolänken IGEN + värdelöftet i en mening ("visar exakt varför kunden ska välja just er") + låg friktion ("kika i mobilen, tar en minut"). Ingen omtagning av pitchen.
-- **Varumärke/logga (rebrand 2026-08-05):** ALLT definieras i `bahkobyra/brand/brand.json` (v2) — det är källan, beskriv aldrig varumärket ur minnet. Logga = smaragdgrön rundad kvadrat med vitt B (`bahkobyra/brand/mark.svg`; lockups `logo.svg`/`logo-dark.svg`, rena SVG-paths). Palett: bas `#0A1628`, yta `#13233F`, text vit/`#94A7BF`, accent `#10B981`/`#34D399`; ljusa ytor `#F8FAFC` med accent-text `#047857`. **KNAPP-REGEL: smaragd yta med marinblå text — ALDRIG vit text på smaragd (2,54:1, underkänd kontrast).** Typografi: Outfit rakt igenom. Guld/cream/Cormorant Garamond är UTFASAT ur eget material (lever bara kvar i frysta historiska byggen, se Heligt-listan).
+- **Varumärke/logga (rebrand 2026-08-05):** ALLT definieras i `web/public/brand/brand.json` (v2) — det är källan, beskriv aldrig varumärket ur minnet. Logga = smaragdgrön rundad kvadrat med vitt B (`web/public/brand/mark.svg`; lockups `logo.svg`/`logo-dark.svg`, rena SVG-paths). Palett: bas `#0A1628`, yta `#13233F`, text vit/`#94A7BF`, accent `#10B981`/`#34D399`; ljusa ytor `#F8FAFC` med accent-text `#047857`. **KNAPP-REGEL: smaragd yta med marinblå text — ALDRIG vit text på smaragd (2,54:1, underkänd kontrast).** Typografi: Outfit rakt igenom. Guld/cream/Cormorant Garamond är UTFASAT ur eget material (lever bara kvar i frysta historiska byggen, se Heligt-listan).
 - **Daglig blast:** volym slår allt. Flaskhals = bokade möten/vecka.
 - **Nisch:** bygg/tak/måleri/mark/hantverk (CRM + Instagram). Klinik-nischen är avvecklad 2026-07-28 — leads och skript borttagna; `tools/score_email.js` omskriven till bygg-nischen 2026-08-05.
 
@@ -127,8 +129,19 @@ Följande får ALDRIG ändras, flyttas eller raderas utan Mathias uttryckliga be
 - **`.github/workflows/deploy.yml` + `.claude/skills/video-to-website/maykas/site/`** — deployar LIVE maykaskitchen.se vid varje push till main. Rör du sajtmappen ändrar du en betalande kunds sajt.
 - **localStorage-kontrakten `bb_crm_v2` + `bahko_sop_dagslogg_v1`** — nycklar och dataformat. Bryts kontraktet tappar Mathias CRM-data och dagsloggar i webbläsaren.
 - **Alla routes i `vercel.json`** — host-routingen för bahkobyra.cloud kräver legacy-routes: moderna `rewrites` körs EFTER filsystemet, så det som ser redundant ut är bärande.
-- **`bahkobyra/css/style.css` + `bahkobyra/js/main.js`** — FRYSTA, delas med frysta `cloud/bygg`. Egna sidor kör `style-v2.css`/`main-v2.js` — nya byggen länkar aldrig de frysta filerna.
+- **`web/public/css/style.css` + `web/public/js/main.js`** — FRYSTA, delas med frysta `cloud/bygg`. Egna sidor kör `style-v2.css`/`main-v2.js` — nya byggen länkar aldrig de frysta filerna.
 - **`reference/`-PDF:erna** — levande källdokument (bl.a. sales methodology), inte skräp.
+
+### Nya demos ska till `web/public/cloud/`
+
+Marknadssajten byggs av Next.js från `web/`, och allt som ska serveras på
+bahkobyra.se ligger i `web/public/`. En demo som hamnar i gamla `bahkobyra/cloud/`
+byggs inte och ger **404 på den länk du precis skickat till prospektet**.
+Det hände 2026-08-06 med två demos och upptäcktes först vid merge.
+
+Enda undantaget är kundsajterna `bahkobyra/cloud/smamaleri/` och
+`bahkobyra/cloud/brommatradgardsservice/`, som har egna Vercel-projekt med
+Root Directory pekad på just de sökvägarna.
 
 ### Repot deployas av TRE Vercel-projekt
 
@@ -174,7 +187,7 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 
 - **skill** — Guides building/auditing/optimizing skills. Runs Discovery Interview before creating. See `.claude/skills/skill/reference.md`.
 - **video-to-website** — Converts a video into a scroll-driven animated website (FFmpeg + GSAP + Lenis + canvas). OBS: `maykas/site/` i skill-mappen deployar LIVE maykaskitchen.se (se Heligt-listan).
-- **scroll-cinematic** — Kunddemos enligt GRANIT-mallen. **Facit `bahkobyra/cloud/bygg/index.html` är FRYST som historisk referens i GAMLA varumärket** (guld/cream/Cormorant, byggt som tvillingsida till dåvarande bahkobyra.se, beslut 2026-07-26): flödande sektioner i ljus/mörk-rytm, preloader, scroll-progressbar, header som göms vid nedscroll, marquee, pinnad horisontell process, och deklarativa animeringar via `data-lines`/`data-reveal`/`data-stagger`/`data-count`/`data-magnetic` på GSAP + ScrollTrigger + Lenis. **Framtida demos byggs i kundens egen stil som förut, men Bahko-brandade element (logga, footer-badge, Bahko-modal) använder nya varumärket från `brand.json` v2.** Koreografin med fast videolager och sektioner på progress-fönster lever kvar i `bahkobyra/cloud/tryggbyggservice/` och `bahkobyra/cloud/vajjebygg/` — använd den för videodrivna demos, GRANIT-mallen för resten. För bygg: Higgsfield-genererad husförvandling (gammalt hus → drömhus → kliv in) som autoplay-loop i heron — ALDRIG scroll-scrub. Kostar ~150 Higgsfield-credits/demo — körs aldrig utan beställning. Output: `bahkobyra/cloud/[kund]/index.html`. **Fälla:** inline `<script>` får aldrig ha `defer` (ignoreras enligt specen) och biblioteksflaggor måste mätas efter att de deferrade CDN-scripten körts, annars dör hela animationslagret tyst.
+- **scroll-cinematic** — Kunddemos enligt GRANIT-mallen. **Facit `web/public/cloud/bygg/index.html` är FRYST som historisk referens i GAMLA varumärket** (guld/cream/Cormorant, byggt som tvillingsida till dåvarande bahkobyra.se, beslut 2026-07-26): flödande sektioner i ljus/mörk-rytm, preloader, scroll-progressbar, header som göms vid nedscroll, marquee, pinnad horisontell process, och deklarativa animeringar via `data-lines`/`data-reveal`/`data-stagger`/`data-count`/`data-magnetic` på GSAP + ScrollTrigger + Lenis. **Framtida demos byggs i kundens egen stil som förut, men Bahko-brandade element (logga, footer-badge, Bahko-modal) använder nya varumärket från `brand.json` v2.** Koreografin med fast videolager och sektioner på progress-fönster lever kvar i `web/public/cloud/tryggbyggservice/` och `web/public/cloud/vajjebygg/` — använd den för videodrivna demos, GRANIT-mallen för resten. För bygg: Higgsfield-genererad husförvandling (gammalt hus → drömhus → kliv in) som autoplay-loop i heron — ALDRIG scroll-scrub. Kostar ~150 Higgsfield-credits/demo — körs aldrig utan beställning. Output: `web/public/cloud/[kund]/index.html`. **Fälla:** inline `<script>` får aldrig ha `defer` (ignoreras enligt specen) och biblioteksflaggor måste mätas efter att de deferrade CDN-scripten körts, annars dör hela animationslagret tyst.
 - **demo-recopy** — Återanvänder en befintlig scroll-cinematic-demo för en ny lead i (nära nog) samma nisch: byter ENDAST copy/varumärke, noll ny generering, 0 credits. Syskon-skill till scroll-cinematic.
 - **excalidraw-diagram** — Generates editable Excalidraw diagrams, saves `.excalidraw` files.
 - **rapport** — Genererar konkurrensanalys, klientrapporter och lead-profiler. Exporterar till Google Docs/Sheets. Kräver `credentials.json` för Google OAuth. Export-verktyg: `tools/export_to_google_docs.js`.

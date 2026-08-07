@@ -9,22 +9,25 @@ export const TJANSTER = [
     rubrik: 'Hemsidor som ger fler jobb',
     ingress:
       'Front offer och det vi är bäst på. Du får ett färdigt förslag på din nya sida inom 48 timmar och ser exakt hur den blir innan du bestämmer dig.',
+    // Punkterna bygger pa research 2026-08-06: omdomen slar allt annat (NBER/AEJ 2024,
+    // Norstat/Reco), pristransparens avgor (NN/g, Baymard, Konsumentverket), riktigt
+    // ansikte bygger fortroende (Ert m.fl.), konkret sprak saljer (Packard & Berger).
     punkter: [
       {
-        h: 'Offertknapp på varenda skärm',
-        p: 'Den vanligaste anledningen till att folk inte hör av sig är att de inte hittar hur. Knappen följer med hela vägen ner.',
+        h: 'Dina riktiga omdömen, högst upp',
+        p: 'Vi lyfter in dina Google-omdömen direkt på sajten, med namn, ort och vad jobbet gällde. Det är det första folk letar efter innan de vågar höra av sig.',
       },
       {
-        h: 'Snabb i mobilen',
-        p: 'Dina kunder söker i soffan med telefonen. Laddar sidan långsamt letar de vidare till nästa firma.',
+        h: 'Priser folk vågar lita på',
+        p: 'Frånpriser, vad som ingår och rätt ROT-avdrag, rakt på sidan. Otydligt pris är ett av de vanligaste skälen till att kunden tyst väljer någon annan.',
       },
       {
-        h: 'Era riktiga bilder och texter',
-        p: 'Före och efter från era egna jobb. Stockfoton på leende modeller i hjälm ser alla igenom.',
+        h: 'En kort video där du pratar',
+        p: 'Vi filmar dig, inte en skådespelare. En halv minut om vem du är och hur ett jobb går till. Kunden ska släppa in dig i sitt hem, då vill de se vem du är först.',
       },
       {
-        h: 'Egen domän och mejl som funkar',
-        p: 'Er egen adress på nätet. Ni äger sidan, domänen, allt.',
+        h: 'Text som låter som du',
+        p: 'Ingen byråsvenska om kvalitet och kundfokus. Konkret: vad du gör, var du jobbar och hur det går till, steg för steg från förfrågan till färdigt jobb.',
       },
     ],
     process: ['Gratis förslag inom 48 timmar', 'Du säger ja', 'Live inom 7 dagar'],

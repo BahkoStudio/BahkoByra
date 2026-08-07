@@ -40,7 +40,7 @@ Den används för att attrahera och merförsälja:
 - **`media_import_url` accepterar INTE SVG** (lärdom 2026-06-12) — rastrera loggan via `gpt_image_2`
   med `brand/brand.json`-beskrivningen istället. Färdiga Bahko-rasters finns redan i brand.json
   (`logo_raster_16x9`, `logo_raster_9x16_stacked`, `brand_sting_9x16`).
-- **Bahko-varumärket (rebrand 2026-08-05):** `bahkobyra/brand/brand.json` (v2) är ENDA källan för
+- **Bahko-varumärket (rebrand 2026-08-05):** `web/public/brand/brand.json` (v2) är ENDA källan för
   allt Bahko-material — smaragdgrön rundad kvadrat med vitt B (`brand/mark.svg`), palett marinblå
   `#0A1628` + smaragd `#10B981`/`#34D399`, typografi Outfit rakt igenom. Det gamla varumärket
   (guld/cream/Cormorant Garamond) är UTFASAT — generera aldrig nytt Bahko-material i det. OBS:

@@ -20,7 +20,7 @@ eller sektionsfönster.** Om den nya leaden kräver andra bilder/klipp för att 
 
 ## Steg 1 — Fråga vilken demo som ska återanvändas
 
-Lista de befintliga demofolderna (kör `ls bahkobyra/cloud/` — listan nedan blir
+Lista de befintliga demofolderna (kör `ls web/public/cloud/` — listan nedan blir
 inaktuell, källan är alltid mappen) och fråga användaren (AskUserQuestion eller ett
 enkelt val i chatten) vilken som ska ligga till grund. Visa varje demos nisch så
 användaren vet vad den faktiskt föreställer:
@@ -62,7 +62,7 @@ Fråga (eller använd redan given info) för:
 ## Steg 4 — Kopiera filen, skriv om ENDAST copy
 
 ```
-cp bahkobyra/cloud/[vald-demo]/index.html bahkobyra/cloud/[ny-kund]/index.html
+cp web/public/cloud/[vald-demo]/index.html web/public/cloud/[ny-kund]/index.html
 ```
 
 Byt i den nya filen — och bara detta:
