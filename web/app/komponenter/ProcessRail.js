@@ -46,10 +46,29 @@ export default function ProcessRail() {
     las();
     const el = spar.current;
     if (!el) return;
+
+    /* Mushjulet scrollar spåret i sidled. Vid kanterna släpps scrollen
+       vidare till sidan, annars fastnar man i spåret och kommer inte förbi. */
+    const vidHjul = (e) => {
+      // Trackpad i sidled sköter webbläsaren redan korrekt.
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+
+      const framat = e.deltaY > 0;
+      const kvarFram = el.scrollWidth - el.clientWidth - el.scrollLeft;
+      if (framat && kvarFram <= 1) return;
+      if (!framat && el.scrollLeft <= 1) return;
+
+      e.preventDefault();
+      el.scrollLeft += e.deltaY;
+    };
+
     el.addEventListener('scroll', las, { passive: true });
+    // passive: false kravs for att preventDefault ska bita pa hjulet.
+    el.addEventListener('wheel', vidHjul, { passive: false });
     window.addEventListener('resize', las);
     return () => {
       el.removeEventListener('scroll', las);
+      el.removeEventListener('wheel', vidHjul);
       window.removeEventListener('resize', las);
     };
   }, []);

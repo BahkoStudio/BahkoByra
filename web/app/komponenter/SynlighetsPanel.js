@@ -8,18 +8,18 @@ const START = 10;
 const MAL = 88;
 
 const RADER = [
-  { ikon: '◍', vad: 'Syns i lokala sökningar', utfall: 'Hittas av fler', ton: 'em' },
-  { ikon: '✓', vad: 'Offertknapp på varje skärm', utfall: 'Fler förfrågningar', ton: 'em' },
-  { ikon: '⌁', vad: 'Snabb i mobilen', utfall: 'Färre som lämnar', ton: 'lt' },
+  { ikon: '◍', vad: 'Syns i lokala sökningar', utfall: 'Hittas av fler', ton: 'em', vid: 0.4 },
+  { ikon: '✓', vad: 'Offertknapp på varje skärm', utfall: 'Fler förfrågningar', ton: 'em', vid: 0.58 },
+  { ikon: '⌁', vad: 'Snabb i mobilen', utfall: 'Färre som lämnar', ton: 'lt', vid: 0.76 },
 ];
 
 // Illustration av utvecklingen över 90 dagar, inte mätdata från en enskild kund.
-// Första punkten är dag 1 (10 %), sista är dag 90 (88 %).
 const KURVA = [10, 15, 13, 21, 27, 25, 34, 41, 38, 49, 57, 63, 60, 71, 80, 88];
+const KURVLANGD = 430;
 
 export default function SynlighetsPanel() {
-  const [tal, setTal] = useState(START);
-  const [igang, setIgang] = useState(false);
+  // 0 = panelen kommer underifrån, 1 = fullt utvecklad. Styrs av scrollpositionen.
+  const [p, setP] = useState(0);
   const panelRef = useRef(null);
 
   useEffect(() => {
@@ -31,35 +31,40 @@ export default function SynlighetsPanel() {
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (dampad) {
-      setTal(MAL);
-      setIgang(true);
+      setP(1);
       return;
     }
 
-    const obs = new IntersectionObserver(
-      ([post]) => {
-        if (!post.isIntersecting) return;
-        obs.disconnect();
-        setIgang(true);
+    let rafId = null;
 
-        // Räknaren tickar upp med requestAnimationFrame, inget bibliotek.
-        const start = performance.now();
-        const tid = 1400;
-        const steg = (nu) => {
-          const p = Math.min(1, (nu - start) / tid);
-          const mjuk = 1 - Math.pow(1 - p, 3);
-          setTal(Math.round(START + (MAL - START) * mjuk));
-          if (p < 1) requestAnimationFrame(steg);
-        };
-        requestAnimationFrame(steg);
-      },
-      { threshold: 0.35 }
-    );
+    const berakna = () => {
+      rafId = null;
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight || 800;
+      // Nollpunkt: panelens överkant vid nedre kanten av fönstret.
+      // Ett: panelen har rest sig till drygt en tredjedel upp i fönstret.
+      const fran = vh * 0.95;
+      const till = vh * 0.3;
+      const andel = (fran - r.top) / (fran - till);
+      setP(Math.max(0, Math.min(1, andel)));
+    };
 
-    obs.observe(el);
-    return () => obs.disconnect();
+    // Scrollhändelser samlas i en bildruta så vi inte räknar om i onödan.
+    const vidScroll = () => {
+      if (rafId === null) rafId = requestAnimationFrame(berakna);
+    };
+
+    berakna();
+    window.addEventListener('scroll', vidScroll, { passive: true });
+    window.addEventListener('resize', vidScroll);
+    return () => {
+      window.removeEventListener('scroll', vidScroll);
+      window.removeEventListener('resize', vidScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, []);
 
+  const tal = Math.round(START + (MAL - START) * p);
   const omkrets = 2 * Math.PI * 52;
   const fyllt = (tal / 100) * omkrets;
 
@@ -70,7 +75,7 @@ export default function SynlighetsPanel() {
   }).join(' ');
 
   return (
-    <div ref={panelRef} className={`${styles.panel} ${igang ? styles.igang : ''}`}>
+    <div ref={panelRef} className={styles.panel}>
       <div className={styles.topp}>
         <span className={styles.titel}>Din synlighet</span>
         <span className={styles.status}>
@@ -119,13 +124,14 @@ export default function SynlighetsPanel() {
             </div>
             <svg viewBox="0 0 260 100" preserveAspectRatio="none" aria-hidden="true">
               <polyline
-                className={styles.linje}
                 points={punkter}
                 fill="none"
                 stroke="#047857"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                strokeDasharray={KURVLANGD}
+                strokeDashoffset={KURVLANGD * (1 - p)}
               />
             </svg>
           </div>
@@ -133,13 +139,20 @@ export default function SynlighetsPanel() {
       </div>
 
       <ul className={styles.rader}>
-        {RADER.map((r, i) => (
-          <li key={r.vad} style={{ '--fordrojning': `${0.5 + i * 0.16}s` }}>
-            <span className={`${styles.ikon} ${r.ton === 'lt' ? styles.ikonLt : ''}`}>{r.ikon}</span>
-            <span className={styles.vad}>{r.vad}</span>
-            <span className={styles.utfall}>{r.utfall}</span>
-          </li>
-        ))}
+        {RADER.map((r) => {
+          // Varje rad kommer in på sin egen punkt i scrollen och backar om man scrollar upp.
+          const lokal = Math.max(0, Math.min(1, (p - r.vid) / 0.16));
+          return (
+            <li
+              key={r.vad}
+              style={{ opacity: lokal, transform: `translateY(${(1 - lokal) * 12}px)` }}
+            >
+              <span className={`${styles.ikon} ${r.ton === 'lt' ? styles.ikonLt : ''}`}>{r.ikon}</span>
+              <span className={styles.vad}>{r.vad}</span>
+              <span className={styles.utfall}>{r.utfall}</span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
