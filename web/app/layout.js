@@ -1,4 +1,5 @@
 import { Outfit } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import Header from './komponenter/Header';
 import Footer from './komponenter/Footer';
@@ -94,6 +95,9 @@ export default function RootLayout({ children }) {
         <main id="innehall">{children}</main>
         <Footer />
         <Popup />
+        {/* GA4 med samtyckesbanner — samma fil som de statiska leadsidorna
+            laddar, så mätningen bor på ett enda ställe. */}
+        <Script src="/js/analytics.js" strategy="afterInteractive" />
       </body>
     </html>
   );
