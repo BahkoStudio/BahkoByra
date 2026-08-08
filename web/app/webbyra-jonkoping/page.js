@@ -16,14 +16,14 @@ const PIL = (
 );
 
 /* Sidan finns för att kontoret finns — det är inte en instansad ortssida.
-   FAS B: när adress, telefonnummer och öppettider är beslutade fylls
-   kontorsblocket nedan på med gatuadress, karta och tider. Skriv "Bahko Byrå
-   i Jönköping", aldrig "vi här": styckena ska bära sig själva utlyfta. */
+   NAP-regeln: adress, nummer och tider nedan ska vara tecken för tecken samma
+   som i footern och Google Företagsprofilen. Skriv "Bahko Byrå i Jönköping",
+   aldrig "vi här": styckena ska bära sig själva utlyfta. */
 
 const LOKALT = [
   {
-    h: 'Kontor i Jönköping',
-    p: 'Bahko Byrå sitter på kontorshotell i Jönköping och det går utmärkt att ses där, före ett beslut eller mitt i ett bygge. Gatuadress och öppettider publiceras här inom kort.',
+    h: 'Kontor i Huskvarna',
+    p: 'Bahko Byrå sitter på Kungsängsvägen 27 i Huskvarna, strax öster om centrala Jönköping. Öppet alla dagar 9 till 18, och det går utmärkt att ses där, före ett beslut eller mitt i ett bygge. Ring 076-254 09 51 innan så står kaffet framme.',
   },
   {
     h: 'Kund i stan, i drift',
@@ -34,6 +34,14 @@ const LOKALT = [
     p: 'Arbetet sker digitalt, så avståndet spelar ingen roll: kunderna finns i Jönköping, Stockholm och däremellan. Kontoret är för er som hellre tar mötet öga mot öga.',
   },
 ];
+
+const BESOK = {
+  adress: ['Kungsängsvägen 27', '561 51 Huskvarna'],
+  tider: 'Alla dagar 9–18',
+  tel: '076-254 09 51',
+  telHref: 'tel:+46762540951',
+  karta: 'https://maps.google.com/?q=Kungs%C3%A4ngsv%C3%A4gen+27,+561+51+Huskvarna',
+};
 
 const FRAGOR_JKPG = [
   {
@@ -110,6 +118,26 @@ export default function Jonkoping() {
               telefonen och era frågor till kontoret, så tittar vi på hur ni syns idag och vad
               som skulle göra störst skillnad först.
             </p>
+          </div>
+
+          <div className={styles.besok}>
+            <div>
+              <h3>Hitta hit</h3>
+              <p>
+                {BESOK.adress[0]}
+                <br />
+                {BESOK.adress[1]}
+              </p>
+              <p>{BESOK.tider}</p>
+            </div>
+            <div className={styles.besokKnappar}>
+              <a href={BESOK.telHref} className="btn btn-primar">
+                Ring {BESOK.tel}
+              </a>
+              <a href={BESOK.karta} target="_blank" rel="noopener" className="btn btn-sekundar">
+                Öppna i kartan
+              </a>
+            </div>
           </div>
         </div>
       </section>

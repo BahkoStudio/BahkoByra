@@ -35,8 +35,9 @@ export default function Kontakt() {
           </ul>
 
           <p className={styles.direkt}>
-            Hellre mejl direkt?{' '}
-            <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a>
+            Hellre prata direkt? Ring <a href="tel:+46762540951">076-254 09 51</a> eller mejla{' '}
+            <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a>. Kontoret på
+            Kungsängsvägen 27 i Huskvarna har öppet alla dagar 9–18.
           </p>
         </div>
 

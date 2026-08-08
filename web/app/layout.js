@@ -32,6 +32,9 @@ export const viewport = {
   themeColor: '#0A1628',
 };
 
+/* NAP-regeln: adress och nummer nedan ska vara tecken för tecken samma som i
+   Google Företagsprofilen. Ändras det ena ändras det andra samma dag.
+   Geo är geokodat från gatuadressen (Nominatim 2026-08-08). */
 const organisationsSchema = {
   '@context': 'https://schema.org',
   '@type': ['Organization', 'LocalBusiness'],
@@ -41,6 +44,34 @@ const organisationsSchema = {
   logo: 'https://www.bahkobyra.se/brand/mark.svg',
   image: 'https://www.bahkobyra.se/brand/logo-raster-16x9.png',
   email: 'mathias@bahkobyra.se',
+  telephone: '+46762540951',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Kungsängsvägen 27',
+    postalCode: '561 51',
+    addressLocality: 'Huskvarna',
+    addressRegion: 'Jönköpings län',
+    addressCountry: 'SE',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 57.78257,
+    longitude: 14.24873,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ],
+    opens: '09:00',
+    closes: '18:00',
+  },
   description:
     'Digital byrå som bygger hemsidor för bygg- och hantverksfirmor i Sverige.',
   slogan: 'Synlighet som säljer.',

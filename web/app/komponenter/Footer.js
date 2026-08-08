@@ -66,7 +66,18 @@ export default function Footer() {
             <h2 className={styles.kolrubrik}>Kontakt</h2>
             <ul>
               <li>
+                {/* NAP: samma format som i Google Företagsprofilen, ändra båda ihop. */}
+                <a href="tel:+46762540951">076-254 09 51</a>
+              </li>
+              <li>
                 <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a>
+              </li>
+              <li>
+                <span className={styles.adress}>
+                  Kungsängsvägen 27
+                  <br />
+                  561 51 Huskvarna
+                </span>
               </li>
               <li>
                 <a href="https://www.instagram.com/bahkobyra1/" target="_blank" rel="noopener">
@@ -79,6 +90,7 @@ export default function Footer() {
 
         <div className={styles.botten}>
           <span>© {new Date().getFullYear()} Bahko Byrå</span>
+          <span>Org.nr 980923-8877 · Godkänd för F-skatt</span>
           <span>bahkobyra.se</span>
         </div>
       </div>
