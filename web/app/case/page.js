@@ -14,27 +14,30 @@ const PIL = (
   </svg>
 );
 
+/* Varje stycke är skrivet för att tåla att lyftas ut ur sidan: firmanamn och
+   ort utskrivna, konkreta detaljer i stället för adjektiv. Det är det som gör
+   texten citerbar för både sökmotorer och AI-svar. */
 const KUNDER = [
   {
     namn: 'Smålands Måleri',
     bransch: 'Måleri · Jönköping',
     url: 'https://smamaleri.se/',
     bild: '/img/demo-smalands-maleri.webp',
-    text: 'Egen domän, offertflöde och ROT-informationen korrekt formulerad mot Skatteverket.',
+    lang: 'Smålands Måleri är en målerifirma i Jönköping som saknade en egen plats på nätet. Bahko Byrå byggde smamaleri.se med ett offertflöde som funkar i mobilen och en ROT-sektion som förklarar avdraget enligt Skatteverkets regler, med länk direkt till källan. Den som ska anlita en målare vill förstå avdraget innan de hör av sig, och det är förvånansvärt många sajter som förklarar det fel.',
   },
   {
     namn: 'Bromma Trädgårdsservice',
     bransch: 'Trädgårdsskötsel · Stockholm',
     url: 'https://brommatradgardsservice.se/',
     bild: '/img/demo-bromma-tradgard.webp',
-    text: 'Telefonnumret alltid synligt, egna sidor per tjänst och tydligt RUT-besked.',
+    lang: 'Bromma Trädgårdsservice sköter trädgårdar i västra Stockholm. Bahko Byrå byggde brommatradgardsservice.se med telefonnumret synligt på varje skärm, egna sidor för häckklippning och trädgårdsskötsel för villaägare och bostadsrättsföreningar, och RUT-beskedet utskrivet per tjänst. För trädgård och hantverk är samtalet det som blir en affär, så hela sidan är byggd runt ringknappen.',
   },
   {
     namn: "Mayka's Kitchen",
     bransch: 'Restaurang & catering',
     url: 'https://maykaskitchen.se',
     bild: '/img/maykaskitchen.jpg',
-    text: 'Receptbibliotek på två språk och en sida byggd runt berättelsen.',
+    lang: "Mayka's Kitchen lagar mat som redan hade ett rykte, men sajten berättade inte historien. Bahko Byrå byggde maykaskitchen.se runt berättelsen om köket, med video, meny och ett receptbibliotek på både svenska och engelska som ger gästerna ett skäl att komma tillbaka till sidan mellan besöken.",
   },
 ];
 
@@ -73,7 +76,7 @@ export default function Case() {
                 <span className={styles.kropp}>
                   <strong>{k.namn}</strong>
                   <em>{k.bransch}</em>
-                  <span className={styles.text}>{k.text}</span>
+                  <span className={styles.text}>{k.lang}</span>
                   <span className={styles.oppna}>Öppna sajt {PIL}</span>
                 </span>
               </a>

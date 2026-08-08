@@ -7,6 +7,12 @@ import Faq from './komponenter/Faq';
 import { TJANSTER, FRAGOR } from './data';
 import styles from './page.module.css';
 
+/* Startsidan nås som /, med parametrar och via www-varianter — den behöver
+   peka ut sig själv. Undersidorna har redan canonical via sina metadata. */
+export const metadata = {
+  alternates: { canonical: '/' },
+};
+
 const PIL = (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
     <path d="M5 12h14M12 5l7 7-7 7" />
