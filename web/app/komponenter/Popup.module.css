@@ -1,0 +1,150 @@
+.lager {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+}
+
+/* Scrim: dämpar bakgrunden så uppmärksamheten hamnar på kortet. */
+.skugga {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgba(6, 14, 26, 0.62);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  animation: tona 0.25s var(--ease) both;
+  cursor: pointer;
+}
+
+.kort {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  background: var(--vit);
+  color: var(--ink);
+  border-radius: var(--r-lg);
+  padding: 2rem 1.8rem 1.6rem;
+  text-align: center;
+  box-shadow: 0 40px 100px -40px rgba(2, 12, 27, 0.85);
+  /* Materialiseras in: skala plus toning, inte bara opacitet. */
+  animation: kortIn 0.34s var(--ease) both;
+}
+
+.kort:focus-visible {
+  outline: 2px solid var(--em-deep);
+  outline-offset: 4px;
+}
+
+.tagg {
+  display: inline-block;
+  padding: 0.32rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.14);
+  color: var(--em-deep);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.kort h2 {
+  font-size: clamp(1.35rem, 3.4vw, 1.65rem);
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+  margin-bottom: 0.7rem;
+}
+
+.kort p {
+  color: var(--ink-3);
+  font-size: 0.96rem;
+  margin-bottom: 1.5rem;
+  text-wrap: pretty;
+}
+
+.kort .btn {
+  width: 100%;
+}
+
+.stang {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.stang:hover {
+  background: var(--lt-2);
+  color: var(--ink);
+}
+
+.stang:active {
+  transform: scale(0.92);
+}
+
+.stang svg {
+  width: 18px;
+  height: 18px;
+}
+
+.senare {
+  display: block;
+  width: 100%;
+  margin-top: 0.7rem;
+  padding: 0.6rem;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 0.88rem;
+  color: var(--ink-3);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.senare:hover {
+  color: var(--ink);
+}
+
+@keyframes tona {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes kortIn {
+  from {
+    opacity: 0;
+    transform: translateY(var(--stig-y, 14px)) scale(0.965);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kort {
+    animation: tona 0.22s var(--ease) both;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .skugga {
+    background: rgba(6, 14, 26, 0.86);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}

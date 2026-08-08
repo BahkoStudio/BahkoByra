@@ -129,14 +129,18 @@ Punkt 1 slår allt annat. Är sidan inte indexerbar är resten preliminärt.
 
 ## Schema: vad som är värt att lägga till
 
-Utgångsläge i våra scroll-cinematic-sajter: `LandscapingBusiness` (eller motsvarande `LocalBusiness`-subtyp), `FAQPage`, `Service`, `Offer`, `City`.
+Utgångsläge i våra scroll-cinematic-sajter: `HomeAndConstructionBusiness` (eller en mer specifik `LocalBusiness`-subtyp som faktiskt finns: `HousePainter`, `RoofingContractor`, `GeneralContractor`, `Plumber`, `Electrician`), `FAQPage`, `Service`, `Offer`, `City`.
+
+> **Varning:** `LandscapingBusiness` finns INTE på schema.org — den har använts i våra mallar
+> tidigare och validerar inte. För mark/trädgård/anläggning: använd `HomeAndConstructionBusiness`
+> (närmaste giltiga typ). Kontrollera alltid nya typer mot schema.org innan de läggs i mallen.
 
 ### Komplettera med
 
 ```json
 {
   "@context": "https://schema.org",
-  "@type": "LandscapingBusiness",
+  "@type": "HomeAndConstructionBusiness",
   "@id": "https://kunddoman.se/#business",
   "name": "Företagsnamn",
   "alternateName": "Tidigare namn (12 mån efter bolagsändring)",

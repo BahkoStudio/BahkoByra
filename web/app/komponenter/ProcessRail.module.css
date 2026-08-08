@@ -1,0 +1,105 @@
+.hylla {
+  position: relative;
+  margin-top: 2.2rem;
+}
+
+.knappar {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: flex-end;
+  margin-bottom: 1.1rem;
+}
+
+.knappar button {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--linje-mork);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease),
+    opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.knappar button:hover:not(:disabled) {
+  background: var(--em);
+  border-color: var(--em);
+  color: var(--bas);
+  transform: translateY(-2px);
+}
+
+.knappar button:active:not(:disabled) {
+  transform: translateY(-2px) scale(0.93);
+  transition-duration: 90ms;
+}
+
+.knappar button:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+
+.knappar svg {
+  width: 19px;
+  height: 19px;
+}
+
+/* Ingen egen scrollyta och inget scrollfalt: sidscrollen flyttar sparet
+   i sidled via transform, sa rorelsen hor ihop med resten av sidan. */
+.yta {
+  overflow: hidden;
+}
+
+.spar {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2rem) / 3);
+  gap: 1rem;
+  will-change: transform;
+}
+
+.spar article {
+  background: var(--yta);
+  border: 1px solid var(--linje-mork);
+  border-radius: var(--r-lg);
+  padding: 1.7rem 1.5rem;
+  min-height: 100%;
+}
+
+.spar h3 {
+  margin-bottom: 0.55rem;
+}
+
+.spar p {
+  color: var(--text-lag);
+  font-size: 0.95rem;
+  text-wrap: pretty;
+}
+
+.nr {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--em-lt);
+  opacity: 0.55;
+  margin-bottom: 0.9rem;
+  line-height: 1;
+}
+
+@media (max-width: 900px) {
+  .spar {
+    grid-auto-columns: calc((100% - 1rem) / 2);
+  }
+}
+
+@media (max-width: 620px) {
+  .spar {
+    grid-auto-columns: 88%;
+  }
+  .knappar {
+    justify-content: flex-start;
+  }
+}

@@ -21,7 +21,7 @@ Output: En branded HTML-rapport med marknadsöversikt, priser, positionering och
 
 ### 1. Research (3-5 minuter)
 ```
-python tools/competitor_research.py
+node tools/competitor_research.js
 ```
 Gör 5 Perplexity-sökningar och sparar rå data till `.tmp/research_raw.json`.
 
@@ -34,7 +34,7 @@ Gör 5 Perplexity-sökningar och sparar rå data till `.tmp/research_raw.json`.
 
 ### 2. Generera rapport
 ```
-python tools/generate_report.py
+node tools/generate_report.js
 ```
 Läser `.tmp/research_raw.json` + `brand/brand.json`, genererar branded HTML,
 sparar till `.tmp/competitor_report_DATUM.html` och öppnar i browser.
@@ -60,7 +60,7 @@ sparar till `.tmp/competitor_report_DATUM.html` och öppnar i browser.
 | Ingen logo visas | Lägg in `brand/logo.png` eller lämna tomt (visar företagsnamn) |
 
 ## Anpassa rapporten
-- **Byt språk på frågor**: Redigera `queries`-listan i `tools/competitor_research.py`
+- **Byt språk på frågor**: Redigera `queries`-listan i `tools/competitor_research.js`
 - **Lägg till sektion**: Lägg till en ny dict i `build_queries()` och ett nytt `section_icons`-entry
 - **Byt färger**: Redigera `brand/brand.json` (primary_color, secondary_color)
 - **Byt font**: Ändra `font_heading` och `font_body` i brand.json (Google Fonts-namn)

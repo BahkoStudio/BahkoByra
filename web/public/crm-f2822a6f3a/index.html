@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F8FAFC">
+<title>Bahko CRM</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#F8FAFC;--cream-2:#F1F5F9;--white:#FFFFFF;
+  --navy:#0A1628;--navy-2:#0A1628;
+  --gold:#10B981;--gold-lt:#34D399;--gold-dk:#047857;
+  --ink:#0A1628;--ink-70:#334155;--ink-50:#475569;--ink-30:#475569;
+  --line:#E2E8F0;--line-2:#CBD5E1;
+  --ok:#047857;--ok-bg:rgba(4,120,87,.10);
+  --hot:#B45309;--hot-bg:rgba(180,83,9,.12);
+  --blue:#4F46E5;--blue-bg:rgba(79,70,229,.10);
+  --lila:#DB2777;--lila-bg:rgba(219,39,119,.10);
+  --warn:#B45309;--warn-bg:rgba(180,83,9,.12);
+  --danger:#DC2626;--danger-bg:rgba(220,38,38,.10);
+  --focus:#047857;
+  --disp:'Outfit',system-ui,sans-serif;--sans:'Outfit',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body{min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font:inherit;color:var(--ink)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+::selection{background:var(--gold);color:var(--navy)}
+
+/* ── HEADER ── */
+header{position:sticky;top:0;z-index:40;background:rgba(248,250,252,.94);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line-2);padding:.85rem clamp(1rem,3vw,2rem);
+  display:flex;align-items:center;gap:1.1rem;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.65rem;font-family:var(--sans);font-size:1.3rem;font-weight:700}
+.brand img{height:34px;display:block}
+.brand em{font-style:normal;color:var(--gold-dk)}
+.brand .tag{font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ink-50);border-left:1px solid var(--line-2);padding-left:.65rem;margin-left:.1rem}
+.search{flex:1;min-width:180px;max-width:420px;display:flex;align-items:center;gap:.5rem;min-height:44px;
+  background:var(--white);border:1px solid var(--line-2);border-radius:100px;padding:.5rem 1rem}
+.search svg{width:14px;height:14px;stroke:var(--gold-dk);stroke-width:2.4;fill:none;flex-shrink:0}
+.search input{border:none;outline:none;background:none;width:100%;font-size:.85rem}
+.search:focus-within{border-color:var(--focus)}
+.hactions{display:flex;gap:.5rem;flex-wrap:wrap;margin-left:auto}
+.hbtn{font-size:.72rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;min-height:44px;
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:.55rem 1.05rem;border-radius:100px;border:1px solid var(--line-2);color:var(--ink-70);transition:.22s}
+.hbtn:hover{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.hbtn.solid{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.hbtn.solid:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--navy)}
+.hmore{position:relative}
+.hmenu{position:absolute;right:0;top:calc(100% + 6px);background:var(--white);border:1px solid var(--line-2);
+  border-radius:12px;box-shadow:0 18px 44px -18px rgba(10,22,40,.35);min-width:220px;padding:.4rem;display:none;z-index:50}
+.hmenu.open{display:block}
+.hmenu button,.hmenu a{display:block;width:100%;text-align:left;font-size:.78rem;padding:.7rem .8rem;border-radius:8px}
+.hmenu button:hover,.hmenu a:hover{background:var(--cream-2)}
+.hmenu .sep{border-top:1px solid var(--line);margin:.35rem .5rem}
+
+.wrap{max-width:1500px;margin:0 auto;padding:1.6rem clamp(1rem,3vw,2rem) 4rem}
+
+/* ── STATS ── */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:.8rem;margin-bottom:1.6rem}
+.stat{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:.95rem 1.15rem;
+  display:flex;flex-direction:column;gap:.1rem;border-top:4px solid var(--line-2)}
+.stat .v{font-family:var(--disp);font-size:2.1rem;font-weight:700;line-height:1;color:var(--navy)}
+.stat .l{font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-50)}
+.stat.ring{border-top-color:var(--warn)} .stat.ring .v{color:var(--warn)}
+.stat.het{border-top-color:#DB2777} .stat.het .v{color:#DB2777}
+.stat.demo{border-top-color:#D97706} .stat.demo .v{color:#B45309}
+.stat.mote{border-top-color:#4F46E5} .stat.mote .v{color:#4F46E5}
+.stat.kund{border-top-color:var(--ok)} .stat.kund .v{color:var(--ok)}
+
+/* ── SECTION HEADS ── */
+.kick{font-size:.62rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-dk);
+  display:flex;align-items:center;gap:.7rem;margin:0 0 .8rem}
+.kick::before{content:'';width:26px;height:1px;background:var(--gold-dk)}
+.kick .hint{margin-left:auto;font-weight:400;letter-spacing:.08em;color:var(--ink-50);text-transform:none;font-size:.62rem}
+
+/* ── IDAG ── */
+.due{background:var(--navy);color:#F8FAFC;border-radius:16px;padding:1.1rem 1.3rem;margin-bottom:1.8rem;
+  border:1px solid rgba(52,211,153,.35)}
+.due .kick{color:var(--gold-lt)} .due .kick::before{background:var(--gold-lt)}
+.due-row{display:flex;align-items:center;gap:.8rem;padding:.55rem 0;border-bottom:1px solid rgba(248,250,252,.12);font-size:.85rem;flex-wrap:wrap}
+.due-row:last-child{border-bottom:none}
+.due-row .nm{font-weight:600;cursor:pointer}
+.due-row .nm:hover{color:var(--gold-lt)}
+.due-row .meta{font-size:.72rem;color:rgba(248,250,252,.72)}
+.due-row .why{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .6rem;border-radius:100px}
+.why.ring{background:rgba(180,83,9,.35);color:#FDBA74}
+.why.h48{background:rgba(219,39,119,.3);color:#F9A8D4}
+.why.folj{background:rgba(52,211,153,.22);color:var(--gold-lt)}
+.due-row .spacer{margin-left:auto}
+.dbtn{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.38rem .9rem;
+  min-height:44px;display:inline-flex;align-items:center;justify-content:center;
+  border-radius:100px;border:1px solid rgba(52,211,153,.5);color:var(--gold-lt);transition:.2s;flex-shrink:0}
+.dbtn:hover{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.due-empty{font-size:.83rem;color:rgba(248,250,252,.8);padding:.3rem 0}
+
+/* ── FILTER ── */
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.fchip{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.42rem .95rem;
+  min-height:44px;display:inline-flex;align-items:center;
+  border-radius:100px;border:1px solid var(--line-2);color:var(--ink-50);transition:.2s;background:var(--white)}
+.fchip:hover{border-color:var(--gold-dk)}
+.fchip.on{background:var(--navy);color:#FFFFFF;border-color:var(--navy)}
+
+/* ── BOARD ── */
+.board{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(224px,1fr);gap:.8rem;
+  overflow-x:auto;padding-bottom:1rem;scroll-snap-type:x proximity}
+.col{background:var(--cream-2);border:1px solid var(--line);border-radius:14px;padding:.7rem;
+  display:flex;flex-direction:column;gap:.55rem;min-height:300px;scroll-snap-align:start;
+  border-top:5px solid var(--accent,var(--line-2));transition:background .2s}
+.col.over{background:#D1FAE5}
+.col-h{display:flex;align-items:center;gap:.5rem;padding:.15rem .3rem}
+.col-h .t{font-family:var(--disp);font-size:1rem;font-weight:700}
+.col-h .n{margin-left:auto;font-size:.72rem;font-weight:700;min-width:1.6rem;height:1.6rem;padding:0 .4rem;
+  border-radius:100px;background:var(--accent,var(--gold-dk));color:var(--ink);display:flex;align-items:center;justify-content:center}
+@supports(background:color-mix(in srgb,red 50%,white)){
+  .col-h .n{background:color-mix(in srgb,var(--accent,var(--gold-dk)) 14%,#fff);color:var(--ink)}
+}
+.col-h .n.zero{background:var(--line);color:var(--ink-50)}
+.col-sub{font-size:.62rem;color:var(--ink-50);padding:0 .3rem .2rem;line-height:1.35}
+.cards{display:flex;flex-direction:column;gap:.55rem;flex:1}
+.cardc{background:var(--white);border:1px solid var(--line);border-left:4px solid var(--accent,var(--line-2));
+  border-radius:11px;padding:.7rem .8rem;cursor:grab;position:relative;
+  transition:transform .18s var(--ease),box-shadow .18s}
+.cardc:hover{transform:translateY(-2px);box-shadow:0 12px 26px -18px rgba(10,22,40,.5)}
+.cardc:active{cursor:grabbing}
+.cardc:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.cardc.drag{opacity:.45;transform:rotate(1.5deg)}
+.cardc .nm{font-weight:600;font-size:.85rem;line-height:1.3}
+.cardc .city{font-size:.7rem;color:var(--ink-50);margin-top:.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.45rem}
+.chip{display:inline-flex;align-items:center;gap:.3rem;font-size:.8rem;font-weight:700;letter-spacing:.04em;
+  text-transform:uppercase;padding:.2rem .55rem;border-radius:100px}
+.chip.due{background:var(--warn-bg);color:var(--warn)}
+.chip.plan{background:rgba(4,120,87,.10);color:var(--gold-dk)}
+.chip.noweb{background:var(--hot-bg);color:var(--hot)}
+.chip.h48{background:var(--lila-bg);color:var(--lila)}
+.chip.h48.sen{background:var(--warn-bg);color:var(--warn)}
+.chip.fors{background:var(--cream-2);color:var(--ink-50)}
+.chip.won{background:var(--ok-bg);color:var(--ok)}
+.col-empty{font-size:.7rem;color:var(--ink-50);text-align:center;padding:1rem .4rem;border:1px dashed var(--line-2);border-radius:10px}
+
+/* ── DRAWER ── */
+.scrim{position:fixed;inset:0;background:rgba(10,22,40,.45);backdrop-filter:blur(3px);
+  opacity:0;pointer-events:none;transition:.28s;z-index:60}
+.scrim.open{opacity:1;pointer-events:all}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(480px,94vw);background:var(--cream);z-index:70;
+  transform:translateX(102%);transition:transform .32s var(--ease);display:flex;flex-direction:column;
+  border-left:1px solid var(--line-2);box-shadow:-24px 0 60px -30px rgba(10,22,40,.5)}
+.drawer.open{transform:none}
+.dr-head{padding:1.2rem 1.4rem .9rem;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:.8rem}
+.dr-head h3{font-family:var(--disp);font-size:1.4rem;font-weight:700;line-height:1.15;flex:1}
+.dr-close{font-size:1.5rem;color:var(--ink-50);line-height:1;min-width:44px;min-height:44px;
+  display:inline-flex;align-items:center;justify-content:center;border-radius:10px}
+.dr-close:hover{color:var(--ink)}
+.dr-body{flex:1;overflow-y:auto;padding:1.1rem 1.4rem}
+.dr-sec{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dk);
+  margin:1.1rem 0 .55rem;display:flex;align-items:center;gap:.6rem}
+.dr-sec::after{content:'';flex:1;height:1px;background:var(--line)}
+.dr-sec:first-child{margin-top:0}
+.dr-quick{display:flex;gap:.45rem;flex-wrap:wrap}
+.q{font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:.42rem .85rem;
+  min-height:44px;display:inline-flex;align-items:center;justify-content:center;background:var(--white);
+  border-radius:100px;border:1px solid var(--line-2);color:var(--gold-dk);transition:.2s;cursor:pointer}
+.q:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.q.done{background:var(--ok);color:#fff;border-color:var(--ok)}
+.field{margin-bottom:.7rem}
+.field label{display:block;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50);margin-bottom:.26rem}
+.field input,.field select,.field textarea{width:100%;font-size:.85rem;padding:.6rem .72rem;min-height:44px;
+  border:1px solid var(--line-2);border-radius:9px;background:var(--white);outline:none;transition:.2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--focus);outline:2px solid var(--focus);outline-offset:0}
+.field textarea{resize:vertical;min-height:100px;line-height:1.55}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.days{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.4rem}
+.day{font-size:.75rem;font-weight:700;padding:.42rem .75rem;border-radius:8px;background:var(--white);
+  min-height:44px;display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--line-2);color:var(--ink-50);transition:.15s}
+.day:hover{border-color:var(--gold-dk);color:var(--gold-dk)}
+.fors-row{display:flex;align-items:center;gap:.7rem}
+.fors-row button{width:44px;height:44px;border-radius:8px;border:1px solid var(--line-2);font-size:1.1rem;color:var(--gold-dk);background:var(--white)}
+.fors-row button:hover{background:var(--gold);color:var(--navy)}
+.fors-row .num{font-family:var(--disp);font-size:1.5rem;font-weight:700;min-width:1.6rem;text-align:center}
+.fors-row .max{font-size:.7rem;color:var(--ink-50)}
+.dr-foot{padding:.9rem 1.4rem;border-top:1px solid var(--line);display:flex;gap:.6rem;align-items:center}
+.save{flex:1;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;min-height:44px;
+  padding:.75rem;border-radius:100px;background:var(--gold);color:var(--navy);transition:.2s}
+.save:hover{background:var(--gold-lt)}
+.del{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.72rem 1rem;min-height:44px;
+  border-radius:100px;border:1px solid rgba(220,38,38,.35);color:var(--danger);transition:.2s}
+.del:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
+
+footer{padding:1.4rem;text-align:center;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-50);border-top:1px solid var(--line)}
+footer a{color:var(--gold-dk)}
+
+@media(max-width:700px){
+  .brand .tag{display:none}
+  .board{grid-auto-columns:82vw}
+  .frow{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand"><img src="/brand/mark.svg" alt="" onerror="this.remove()">Bahko <em>CRM</em><span class="tag">Bygg &amp; hantverk</span></div>
+  <label class="search">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input id="q" type="search" placeholder="Sök lead, ort, anteckning…">
+  </label>
+  <div class="hactions">
+    <button class="hbtn solid" id="new">+ Nytt lead</button>
+    <a class="hbtn" href="/cloud/sop-ringa/" target="_blank" rel="noopener">Ring-SOP</a>
+    <div class="hmore">
+      <button class="hbtn" id="more">⋯</button>
+      <div class="hmenu" id="menu">
+        <a href="https://www.instagram.com/bahkobyra1/" target="_blank" rel="noopener">Instagram · @bahkobyra1</a>
+        <a href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener">Boka möte (cal)</a>
+        <a href="https://www.bahkobyra.se/cloud/bygg/" target="_blank" rel="noopener">GRANIT-demon</a>
+        <a href="https://smamaleri.se" target="_blank" rel="noopener">Kundsajt · Smålands Måleri</a>
+        <a href="https://brommatradgardsservice.se" target="_blank" rel="noopener">Kundsajt · Bromma Trädgård</a>
+        <div class="sep"></div>
+        <button id="csv">Exportera CSV</button>
+        <button id="backup">Ladda ner backup</button>
+        <button id="restore">Importera backup</button>
+        <input type="file" id="restore-file" accept=".json,application/json" style="display:none">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="stats" id="stats"></div>
+
+  <div class="due" id="due">
+    <div class="kick">Att göra idag <span class="hint" id="due-hint"></span></div>
+    <div id="due-list"></div>
+  </div>
+
+  <div class="kick">Pipeline <span class="hint">dra kort mellan kolumner · klicka för detaljer</span></div>
+  <div class="filters" id="filters">
+    <button class="fchip on" data-f="alla">Alla</button>
+    <button class="fchip" data-f="noweb">Utan hemsida</button>
+    <button class="fchip" data-f="ring">Har ringdatum</button>
+    <button class="fchip" data-f="heta">Heta (svarat)</button>
+  </div>
+  <div class="board" id="board"></div>
+
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Lead-detaljer">
+  <div class="dr-head">
+    <h3 id="dr-title">Nytt lead</h3>
+    <button class="dr-close" id="dr-close" aria-label="Stäng">×</button>
+  </div>
+  <div class="dr-body">
+    <div class="dr-sec">Snabbt</div>
+    <div class="dr-quick" id="dr-quick"></div>
+    <div class="dr-sec">Uppgifter</div>
+    <div class="field"><label>Företag</label><input id="f-name" placeholder="Byggfirman i Göteborg AB"></div>
+    <div class="field"><label>Webbplats</label><input id="f-web" type="url" placeholder="https://… (tomt = ingen hemsida, het!)"></div>
+    <div class="frow">
+      <div class="field"><label>Telefon</label><input id="f-phone" type="tel" placeholder="070-…"></div>
+      <div class="field"><label>E-post (tagen i samtalet)</label><input id="f-email" type="email" placeholder="namn@firma.se"></div>
+    </div>
+    <div class="frow">
+      <div class="field"><label>Kontaktperson</label><input id="f-contact" placeholder="Förnamn — roll"></div>
+      <div class="field"><label>Ort</label><input id="f-city" placeholder="Göteborg"></div>
+    </div>
+    <div class="dr-sec">Läge</div>
+    <div class="frow">
+      <div class="field"><label>Status</label><select id="f-status"></select></div>
+      <div class="field"><label>Ringförsök (max 3)</label>
+        <div class="fors-row"><button id="fors-minus" type="button">−</button><span class="num" id="fors-num">0</span><button id="fors-plus" type="button">＋</button><span class="max" id="fors-max"></span></div>
+      </div>
+    </div>
+    <div class="field"><label>Ring tillbaka / nästa åtgärd</label>
+      <input id="f-next" type="date">
+      <div class="days" id="days"></div>
+    </div>
+    <div class="dr-sec">Anteckningar</div>
+    <div class="field"><textarea id="f-notes" placeholder="Smärtan du såg · lösningen du lovade · vad dom sa…"></textarea></div>
+  </div>
+  <div class="dr-foot">
+    <button class="del" id="dr-del" style="display:none">Radera</button>
+    <button class="save" id="dr-save">Spara</button>
+  </div>
+</aside>
+
+<footer>Bahko Byrå · CRM · <a href="/cloud/sop-ringa/">Ring-SOP</a> · <a href="https://www.instagram.com/bahkobyra1/" target="_blank" rel="noopener">@bahkobyra1</a> · data sparas lokalt — ta backup varje fredag</footer>
+
+<script>
+'use strict';
+function fmtISO(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+let today=fmtISO(new Date());
+setInterval(()=>{const t=fmtISO(new Date());if(t!==today){today=t;renderAll();}},60000);
+const KEY='bb_crm_v2';
+const STATUSES=['Ny','Mejl tagen','Svarat','Demo skickad','Möte bokat','Offert skickad','Kund','Nej tack'];
+const CLOSED=['Kund','Nej tack'];
+const COLDEF={
+ 'Ny':            {c:'#0369A1', sub:'Ring. Mål: mejladressen.'},
+ 'Mejl tagen':    {c:'#7C3AED', sub:'Testmejl skickat. Bevaka svar.'},
+ 'Svarat':        {c:'#DB2777', sub:'HET! Demo inom 48 timmar.'},
+ 'Demo skickad':  {c:'#D97706', sub:'Följ upp dag 1–2. Gillar dom den: boka 15 min.'},
+ 'Möte bokat':    {c:'#4F46E5', sub:'15-minuterssamtalet. Manus i SOP:en.'},
+ 'Offert skickad':{c:'#0D9488', sub:'Skickad samma dag som mötet. 15 000 kr.'},
+ 'Kund':          {c:'#047857', sub:'Faktura betald. Bygg skarpt inom 7 dagar.'},
+ 'Nej tack':      {c:'#64748B', sub:'Loggat. Vila 6 månader.'}
+};
+
+/* ── SEED: cold leads Göteborg (Google Sheet, importerad 2026-08-04) ── */
+const SEED=[
+ {id:'c01',name:'Af Bygg Göteborg AB',web:'',phone:'072-249 04 50',city:'Göteborg',notes:'Google: 3.5★ (4 omdömen) · INGEN HEMSIDA – het för sajtpitch · Gårdatorget 1'},
+ {id:'c02',name:'West Tak & Bygg AB',web:'',phone:'076-058 09 87',city:'Göteborg',notes:'INGEN HEMSIDA – het för sajtpitch'},
+ {id:'c03',name:'Byggfabriken',web:'http://www.byggfabriken.se/',phone:'031-797 04 80',city:'Göteborg',notes:'Google: 4.6★ (117 omdömen) · Olivedalsgatan 19 · saknar offertknapp på startsidan (test 4/8)'},
+ {id:'c04',name:'K-Bygg Hisings Backa',web:'https://k-bygg.se/varuhus/k-bygg-hisings-backa',phone:'031-797 55 60',city:'Hisings Backa',notes:'Google: 4.3★ (48) · OBS: kedja/byggvaruhus — låg prioritet'},
+ {id:'c05',name:'Bygg-Göta Göteborg AB',web:'http://www.bygg-gota.se/',phone:'031-58 06 40',city:'Göteborg',notes:'Google: 3.2★ (22 omdömen) · Kämpegatan 16 · saknar offertknapp på startsidan (test 4/8)'},
+ {id:'c06',name:'NordOn Bygg AB',web:'https://www.linkedin.com/company/nordonbyggab/',phone:'073-996 86 10',city:'Göteborg',notes:'Google: 5.0★ (22) · webben är bara en LinkedIn-sida = i praktiken INGEN HEMSIDA, het!'},
+ {id:'c07',name:'Högsbo Wood AB',web:'https://k-bygg.se/varuhus/k-bygg-hogsbo',phone:'031-45 08 50',city:'Västra Frölunda',notes:'Google: 4.4★ (130) · OBS: kedja/byggvaruhus — låg prioritet'},
+ {id:'c08',name:'Karaten Bygg Väst AB',web:'http://www.karatenbygg.se/',phone:'010-164 62 40',city:'Hisings Backa',notes:'Google: 4.6★ (198 omdömen) · saknar offertknapp på startsidan (test 4/8)'},
+ {id:'c09',name:'XL-BYGG Nihlmarks Trä',web:'https://www.xlbygg.se/butiker/xl-bygg-nihlmarks-tra/',phone:'031-52 07 60',city:'Hisings Backa',notes:'Google: 4.5★ (36) · OBS: kedja/byggvaruhus — låg prioritet'},
+ {id:'c10',name:'Tumleheds Bygg AB',web:'http://www.tumlehedsbygg.se/',phone:'031-56 07 77',city:'Hisings Backa',notes:'Google: 3.9★ (34 omdömen) · saknar offertknapp på startsidan (test 4/8)'},
+ {id:'c11',name:'Sörreds Byggvaruhus AB',web:'https://k-bygg.se/varuhus/k-bygg-sorred',phone:'031-54 20 60',city:'Göteborg',notes:'Google: 4.3★ (59) · OBS: kedja/byggvaruhus — låg prioritet'},
+ {id:'c12',name:'Olden Bygg & Miljö AB',web:'https://olden.se/',phone:'031-380 22 60',city:'Göteborg',notes:'Google: 2.0★ (4 omdömen) · Burggrevegatan 29 · saknar offertknapp (test 4/8)'},
+ {id:'c13',name:'Dextera Bygg AB',web:'http://www.dextera.se/',phone:'031-761 00 61',city:'Göteborg',notes:'Google: 4.3★ (6 omdömen) · Vasaplatsen 4 · saknar offertknapp (test 4/8)'},
+ {id:'c14',name:'Erbil Bygg AB',web:'http://erbilbygg.com/',phone:'076-182 41 18',city:'Göteborg',notes:'Google: 5.0★ (28 omdömen) · Holländaregatan 1B · sajten nästan tom (1,7 kB)'},
+ {id:'c15',name:'Goteborg Byggstart AB',web:'http://www.goteborgbygg.com/',phone:'031-300 08 88',city:'Göteborg',notes:'Google: 4.5★ (10 omdömen) · Skårs Led 3 · enda av tio med offert-flöde på sidan'},
+ {id:'c16',name:'Optimera',web:'http://www.optimera.se/',phone:'031-707 25 00',city:'Göteborg',notes:'Google: 4.6★ (99) · OBS: rikstäckande kedja — låg prioritet'},
+ {id:'c17',name:'Johns Bygg & Fasad AB',web:'http://www.johns.se/',phone:'033-20 57 00',city:'Göteborg',notes:'Google: 4.1★ (10 omdömen) · von Utfallsgatan 14 · saknar offertknapp (test 4/8)'},
+ {id:'c18',name:'Bygg Vision Göteborg AB',web:'http://www.byggvisiongbg.se/',phone:'070-456 69 67',city:'Göteborg',notes:'Google: 5.0★ (4 omdömen) · Hildedalsgatan 200 · saknar offertknapp (test 4/8)'},
+ {id:'c19',name:'Konkret Bygg AB',web:'http://www.konkretbygg.se/',phone:'073-266 01 12',city:'Göteborg',notes:'Google: 4.5★ (6 omdömen) · von Utfallsgatan 14c · saknar offertknapp (test 4/8)'},
+ {id:'c20',name:'MBD BYGG AB',web:'https://www.mbdbygg.com/',phone:'073-578 96 04',city:'Göteborg',notes:'Google: 4.9★ (65 omdömen) · Hinnebäcksgatan 123'}
+];
+
+/* ── STATE ── */
+function norm(l){return Object.assign({id:'',name:'',web:'',contact:'',phone:'',email:'',city:'',
+  status:'Ny',notes:'',nextDate:'',svaratAt:'',forsok:0,updated:today},l);}
+function load(){
+  const raw=localStorage.getItem(KEY);
+  if(raw){
+    try{
+      const arr=JSON.parse(raw);
+      if(Array.isArray(arr))return arr.map(norm);
+      throw new Error('inte en lista');
+    }catch(e){
+      try{localStorage.setItem(KEY+'_korrupt_'+Date.now(),raw);}catch{}
+      alert('CRM-datan kunde inte läsas och har sparats undan i webbläsaren. Startlistan laddas — importera din senaste backup via ⋯-menyn.');
+    }
+  }
+  const st=SEED.map(norm); save(st); return st;
+}
+function save(a){localStorage.setItem(KEY,JSON.stringify(a));}
+let leads=load(),editId=null,filter='alla';
+
+function addDays(iso,n){const d=new Date((iso||today)+'T12:00:00');d.setDate(d.getDate()+n);return fmtISO(d);}
+function nextWeekday(dow){ // 1=mån … 7=sön, alltid framåt (idag → +7 dagar)
+  const d=new Date(today+'T12:00:00'); let diff=(dow-((d.getDay()+6)%7+1)+7)%7; if(diff===0)diff=7;
+  return addDays(today,diff);
+}
+function h48(l){ // timmar kvar av 48-timmarslöftet
+  if(l.status!=='Svarat'||!l.svaratAt)return null;
+  const ms=new Date(l.svaratAt+'T12:00:00').getTime()+48*3600*1000-Date.now();
+  return Math.round(ms/3600000);
+}
+const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const fmtDag=iso=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(iso||''))return'';const d=new Date(iso+'T12:00:00');return ['sön','mån','tis','ons','tor','fre','lör'][d.getDay()]+' '+iso.slice(5);};
+
+/* ── MALLAR (kopieras med firmans namn + kontaktens förnamn) ── */
+function fnamn(l){return (l.contact||'').split(/[ —–]/)[0]||'';}
+function tmplTestmejl(l){
+  const n=fnamn(l);
+  return `Ämne: Ny hemsida till ${l.name}
+
+Hejsan${n?' '+n:''}!
+
+Tack för snacket nyss. Svara kort på det här mejlet, så vet jag att det kom fram till rätt adress. Sen bygger vi och du har den nya hemsidan här inom 48 timmar.
+
+Vänliga hälsningar
+[Ditt förnamn], Bahko Byrå`;
+}
+function tmplBokaMote(l){
+  const n=fnamn(l);
+  return `Hej${n?' '+n:''}! Hann du kika på hemsidan vi byggde åt er? Om du gillar den tar vi 15 minuter så går jag igenom hur vi gör den skarp. Passar tisdag eller torsdag bäst? /[Ditt förnamn]`;
+}
+function tmplUppfoljning(l){
+  const n=fnamn(l);
+  return `Tjena${n?' '+n:''}! Vet inte om du hann se hemsidan vi byggde åt er. Den visar exakt varför kunden ska välja just er. Ta den i mobilen, tar en minut. /[Ditt förnamn]`;
+}
+function tmplOffert(l){
+  return `Offert: ny hemsida för ${l.name}
+
+Vad ni får:
+• Hemsidan ni redan sett som förslag, färdigbyggd och anpassad efter er
+• Era egna bilder, texter och kontaktuppgifter
+• Mobilanpassad, snabb, med tydlig offertknapp på varje skärm
+• Egen domän och e-postkoppling
+• Live inom 7 dagar efter godkännande
+
+Pris: 15 000 kronor, engångskostnad. Ingen bindning, inga månadsavgifter.
+
+Vi har haft kunder med sidor som liknar er där små justeringar
+gett 12 procent fler kundförfrågningar.
+
+Nästa steg: svara "kör igång" på det här mejlet så skickar vi
+fakturan och sätter igång direkt.
+
+Vänliga hälsningar
+Mathias Bahko, Bahko Byrå
+mathias@bahkobyra.se`;
+}
+
+/* ── STATS ── */
+function renderStats(){
+  const ring=leads.filter(l=>l.nextDate&&l.nextDate<=today&&!CLOSED.includes(l.status)).length;
+  const heta=leads.filter(l=>l.status==='Svarat').length;
+  const demo=leads.filter(l=>l.status==='Demo skickad').length;
+  const mote=leads.filter(l=>['Möte bokat','Offert skickad'].includes(l.status)).length;
+  const kund=leads.filter(l=>l.status==='Kund').length;
+  document.getElementById('stats').innerHTML=`
+    <div class="stat ring"><span class="v">${ring}</span><span class="l">Att ringa idag</span></div>
+    <div class="stat het"><span class="v">${heta}</span><span class="l">Heta · svarat</span></div>
+    <div class="stat demo"><span class="v">${demo}</span><span class="l">Demos ute</span></div>
+    <div class="stat mote"><span class="v">${mote}</span><span class="l">Möte / offert</span></div>
+    <div class="stat kund"><span class="v">${kund}</span><span class="l">Kunder</span></div>`;
+}
+
+/* ── IDAG ── */
+function renderDue(){
+  const box=document.getElementById('due-list');
+  const rows=leads.filter(l=>{
+    if(CLOSED.includes(l.status))return false;
+    if(l.nextDate&&l.nextDate<=today)return true;
+    return h48(l)!==null;
+  }).sort((a,b)=>(a.nextDate||'9999').localeCompare(b.nextDate||'9999'));
+  document.getElementById('due-hint').textContent=rows.length?rows.length+' st':'';
+  if(!rows.length){box.innerHTML='<div class="due-empty">Inget förfallet. Ring nya leads i kolumnen Ny. 📞</div>';return;}
+  box.innerHTML=rows.map(l=>{
+    const h=h48(l);
+    let why;
+    if(h!==null)why=`<span class="why h48">${h<0?'DEMO FÖRSENAD':'demo inom '+h+' h'}</span>`;
+    else if(l.status==='Demo skickad')why='<span class="why folj">följ upp demon</span>';
+    else if(l.status==='Offert skickad')why='<span class="why folj">följ upp offerten</span>';
+    else why=`<span class="why ring">ring · ${fmtDag(l.nextDate)}</span>`;
+    return `<div class="due-row">
+      <span class="nm" data-open="${esc(l.id)}">${esc(l.name)}</span>${why}
+      <span class="meta">${esc(l.city||'')}</span>
+      <span class="spacer"></span>
+      ${l.phone?`<a class="dbtn" href="tel:${esc(l.phone.replace(/[^\d+]/g,''))}">Ring</a>`:''}
+      <button class="dbtn" data-open="${esc(l.id)}">Öppna</button>
+    </div>`;
+  }).join('');
+}
+document.getElementById('due-list').addEventListener('click',e=>{
+  const o=e.target.closest('[data-open]');if(o)openDrawer(o.dataset.open);
+});
+
+/* ── BOARD ── */
+function chips(l){
+  const out=[];
+  const h=h48(l);
+  if(h!==null)out.push(`<span class="chip h48 ${h<0?'sen':''}">${h<0?'demo försenad':'⏱ '+h+' h kvar'}</span>`);
+  if(l.nextDate&&!CLOSED.includes(l.status))
+    out.push(`<span class="chip ${l.nextDate<=today?'due':'plan'}">${l.nextDate<=today?'idag':fmtDag(l.nextDate)}</span>`);
+  if(!l.web&&!CLOSED.includes(l.status))out.push('<span class="chip noweb">ingen hemsida</span>');
+  if(l.forsok>0&&['Ny','Mejl tagen'].includes(l.status))out.push(`<span class="chip fors">${l.forsok}× ringt</span>`);
+  if(l.status==='Kund')out.push('<span class="chip won">kund</span>');
+  return out.length?`<div class="chips">${out.join('')}</div>`:'';
+}
+function passFilter(l){
+  if(filter==='noweb')return !l.web;
+  if(filter==='ring')return !!l.nextDate&&!CLOSED.includes(l.status);
+  if(filter==='heta')return l.status==='Svarat';
+  return true;
+}
+function renderBoard(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  document.getElementById('board').innerHTML=STATUSES.map(st=>{
+    const def=COLDEF[st];
+    const items=leads.filter(l=>l.status===st&&passFilter(l)&&(!q||(l.name+' '+l.city+' '+l.contact+' '+l.notes).toLowerCase().includes(q)))
+      .sort((a,b)=>(a.nextDate||'9999').localeCompare(b.nextDate||'9999')||a.name.localeCompare(b.name,'sv'));
+    return `<div class="col" data-col="${esc(st)}" style="--accent:${def.c}">
+      <div class="col-h"><span class="t">${esc(st)}</span><span class="n ${items.length?'':'zero'}">${items.length}</span></div>
+      <div class="col-sub">${def.sub}</div>
+      <div class="cards">${items.map(l=>`
+        <div class="cardc" draggable="true" tabindex="0" role="button" aria-label="${esc(l.name)}, status ${esc(st)}. Öppna detaljer" data-id="${esc(l.id)}" style="--accent:${def.c}">
+          <div class="nm">${esc(l.name)}</div>
+          ${l.city?`<div class="city">${esc(l.city)}</div>`:''}
+          ${chips(l)}
+        </div>`).join('')||'<div class="col-empty">tomt</div>'}</div>
+    </div>`;
+  }).join('');
+}
+document.getElementById('board').addEventListener('click',e=>{
+  const c=e.target.closest('.cardc');if(c)openDrawer(c.dataset.id);
+});
+/* P0: tangentbord — Enter/Space på fokuserat kort öppnar detaljvyn (samma som klick) */
+document.getElementById('board').addEventListener('keydown',e=>{
+  if(e.key!=='Enter'&&e.key!==' ')return;
+  const c=e.target.closest('.cardc');if(!c)return;
+  e.preventDefault();openDrawer(c.dataset.id);
+});
+/* auto-scroll: när ett kort dras nära brädans kant scrollar brädan åt det hållet (porterat från #94) */
+const boardEl=document.getElementById('board');
+let scrollDir=0,scrollRaf=null;
+function autoScroll(){
+  if(!scrollDir){scrollRaf=null;return;}
+  boardEl.scrollLeft+=scrollDir;
+  scrollRaf=requestAnimationFrame(autoScroll);
+}
+function setAutoScroll(clientX){
+  const r=boardEl.getBoundingClientRect(),EDGE=110,SPEED=16;
+  if(clientX<r.left+EDGE)scrollDir=-SPEED*(1-(clientX-r.left)/EDGE);
+  else if(clientX>r.right-EDGE)scrollDir=SPEED*(1-(r.right-clientX)/EDGE);
+  else scrollDir=0;
+  if(scrollDir&&!scrollRaf)scrollRaf=requestAnimationFrame(autoScroll);
+}
+function stopAutoScroll(){scrollDir=0;}
+/* greppa tom yta på brädan och dra för att panorera */
+let panX=null,panStart=0;
+boardEl.addEventListener('mousedown',e=>{
+  if(e.button!==0||e.target.closest('.cardc'))return;
+  panX=e.clientX;panStart=boardEl.scrollLeft;
+});
+window.addEventListener('mousemove',e=>{
+  if(panX==null)return;
+  boardEl.scrollLeft=panStart-(e.clientX-panX);
+});
+window.addEventListener('mouseup',()=>{panX=null;});
+let dragId=null;
+document.getElementById('board').addEventListener('dragstart',e=>{
+  const c=e.target.closest('.cardc');if(!c)return;
+  dragId=c.dataset.id;c.classList.add('drag');
+  e.dataTransfer.effectAllowed='move';
+  try{e.dataTransfer.setData('text/plain',dragId);}catch{}
+});
+document.getElementById('board').addEventListener('dragend',e=>{
+  stopAutoScroll();
+  const c=e.target.closest('.cardc');if(c)c.classList.remove('drag');
+  document.querySelectorAll('.col.over').forEach(x=>x.classList.remove('over'));
+});
+document.getElementById('board').addEventListener('dragover',e=>{
+  setAutoScroll(e.clientX);
+  const col=e.target.closest('.col');if(!col)return;
+  e.preventDefault();e.dataTransfer.dropEffect='move';
+  document.querySelectorAll('.col.over').forEach(x=>{if(x!==col)x.classList.remove('over');});
+  col.classList.add('over');
+});
+document.getElementById('board').addEventListener('drop',e=>{
+  const col=e.target.closest('.col');if(!col||!dragId)return;
+  e.preventDefault();stopAutoScroll();
+  const l=leads.find(x=>x.id===dragId);
+  if(l&&l.status!==col.dataset.col){setStatus(l,col.dataset.col);save(leads);}
+  dragId=null;renderAll();
+});
+/* Statusbyte med automatik — stegen hänger ihop med SOP-flödet */
+function setStatus(l,st){
+  l.status=st;l.updated=today;
+  /* svaratAt är historik (syns i CSV) och raderas aldrig — 48h-klockan visas ändå bara i status Svarat */
+  if(st==='Svarat'){if(!l.svaratAt)l.svaratAt=today;l.nextDate='';}
+  else if(st==='Demo skickad'){if(!l.nextDate||l.nextDate<=today)l.nextDate=addDays(today,2);}
+  else if(st==='Möte bokat'){if(!l.nextDate)l.nextDate=today;}
+  else if(st==='Offert skickad'){if(!l.nextDate||l.nextDate<=today)l.nextDate=addDays(today,3);}
+  else if(CLOSED.includes(st)){l.nextDate='';}
+}
+
+/* ── FILTER ── */
+document.getElementById('filters').addEventListener('click',e=>{
+  const b=e.target.closest('.fchip');if(!b)return;
+  filter=b.dataset.f;
+  document.querySelectorAll('.fchip').forEach(x=>x.classList.toggle('on',x===b));
+  renderBoard();
+});
+
+/* ── DRAWER ── */
+const drawer=document.getElementById('drawer'),scrim=document.getElementById('scrim');
+/* P0: dirty-flagga — sätts när anteckningar eller datum ändras, nollställs vid öppning/spara */
+let drawerDirty=false;
+['f-notes','f-next'].forEach(id=>{
+  const el=document.getElementById(id);
+  el.addEventListener('input',()=>{drawerDirty=true;});
+  el.addEventListener('change',()=>{drawerDirty=true;});
+});
+function renderQuick(l){
+  const q=[];
+  if(l.phone)q.push(`<a class="q" href="tel:${esc(l.phone.replace(/[^\d+]/g,''))}">📞 Ring</a>`);
+  if(l.web)q.push(`<a class="q" href="${esc(l.web)}" target="_blank" rel="noopener">Öppna sajt ↗</a>`);
+  if(l.email)q.push(`<a class="q" href="mailto:${esc(l.email)}">Mejla</a>`);
+  q.push(`<button class="q" data-copy="test">Kopiera testmejl</button>`);
+  q.push(`<button class="q" data-copy="boka">Kopiera boka möte</button>`);
+  q.push(`<button class="q" data-copy="folj">Kopiera påminnelse</button>`);
+  q.push(`<button class="q" data-copy="offert">Kopiera offert</button>`);
+  document.getElementById('dr-quick').innerHTML=q.join('');
+}
+document.getElementById('dr-quick').addEventListener('click',async e=>{
+  const b=e.target.closest('[data-copy]');if(!b||!editId)return;
+  const l=leads.find(x=>x.id===editId);if(!l)return;
+  const txt=b.dataset.copy==='test'?tmplTestmejl(l):b.dataset.copy==='boka'?tmplBokaMote(l):b.dataset.copy==='folj'?tmplUppfoljning(l):tmplOffert(l);
+  try{await navigator.clipboard.writeText(txt);}catch{
+    const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();}
+  const old=b.textContent;b.textContent='Kopierat ✓';b.classList.add('done');
+  setTimeout(()=>{b.textContent=old;b.classList.remove('done');},1500);
+});
+function renderDays(){
+  const btns=[['Imorgon',()=>addDays(today,1)],['Onsdag',()=>nextWeekday(3)],['Fredag',()=>nextWeekday(5)],
+              ['Måndag',()=>nextWeekday(1)],['+1 vecka',()=>addDays(today,7)],['Rensa',()=>'']];
+  const box=document.getElementById('days');
+  box.innerHTML=btns.map(([t])=>`<button type="button" class="day">${t}</button>`).join('');
+  [...box.children].forEach((b,i)=>b.onclick=()=>{document.getElementById('f-next').value=btns[i][1]();drawerDirty=true;});
+}
+let forsok=0;
+function setForsok(n){
+  forsok=Math.max(0,Math.min(9,n));
+  document.getElementById('fors-num').textContent=forsok;
+  document.getElementById('fors-max').textContent=forsok>=3?'— släpp efter 3, säger SOP:en':'';
+}
+function openDrawer(id){
+  editId=id||null;
+  const l=id?leads.find(x=>x.id===id):norm({});
+  if(!l)return;
+  document.getElementById('dr-title').textContent=id?l.name:'Nytt lead';
+  document.getElementById('f-status').innerHTML=STATUSES.map(s=>`<option${s===l.status?' selected':''}>${s}</option>`).join('');
+  ['name','web','contact','phone','email','city','notes'].forEach(k=>document.getElementById('f-'+k).value=l[k]||'');
+  document.getElementById('f-next').value=l.nextDate||'';
+  setForsok(l.forsok||0);
+  document.getElementById('dr-del').style.display=id?'':'none';
+  if(id)renderQuick(l);else document.getElementById('dr-quick').innerHTML='<span style="font-size:.7rem;color:var(--ink-30)">spara först, sen kommer knapparna</span>';
+  renderDays();
+  drawerDirty=false;
+  drawer.classList.add('open');scrim.classList.add('open');
+  setTimeout(()=>document.getElementById('f-name').focus(),80);
+}
+function closeDrawer(){drawer.classList.remove('open');scrim.classList.remove('open');editId=null;drawerDirty=false;}
+/* P0: scrim-klick/Esc/kryss dirty-checkar innan stängning */
+function confirmCloseDrawer(){
+  if(drawer.classList.contains('open')&&drawerDirty&&!confirm('Du har osparade ändringar. Stänga ändå?'))return;
+  closeDrawer();
+}
+document.getElementById('dr-close').onclick=confirmCloseDrawer;
+scrim.onclick=confirmCloseDrawer;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){confirmCloseDrawer();document.getElementById('menu').classList.remove('open');}});
+document.getElementById('fors-plus').onclick=()=>setForsok(forsok+1);
+document.getElementById('fors-minus').onclick=()=>setForsok(forsok-1);
+
+document.getElementById('dr-save').onclick=()=>{
+  const name=document.getElementById('f-name').value.trim();
+  if(!name)return alert('Företagsnamn krävs.');
+  if(!editId&&leads.some(l=>l.name.toLowerCase()===name.toLowerCase())&&!confirm('"'+name+'" finns redan. Lägga till ändå?'))return;
+  const prev=editId?(leads.find(x=>x.id===editId)||{}):{};
+  const newStatus=document.getElementById('f-status').value;
+  const manual=document.getElementById('f-next').value;
+  const l=norm({
+    id:editId||('l'+Date.now()),name,
+    web:document.getElementById('f-web').value.trim(),
+    contact:document.getElementById('f-contact').value.trim(),
+    phone:document.getElementById('f-phone').value.trim(),
+    email:document.getElementById('f-email').value.trim(),
+    city:document.getElementById('f-city').value.trim(),
+    status:prev.status||'Ny',
+    notes:document.getElementById('f-notes').value.trim(),
+    nextDate:manual,svaratAt:prev.svaratAt||'',forsok,updated:today
+  });
+  const manualChanged=manual!==(prev.nextDate||'');
+  if(newStatus!==l.status)setStatus(l,newStatus);
+  if(manualChanged)l.nextDate=manual;   // bara ett datum användaren faktiskt ÄNDRAT vinner över automatiken
+  if(editId){const i=leads.findIndex(x=>x.id===editId);if(i>-1)leads[i]=l;}else leads.unshift(l);
+  save(leads);closeDrawer();renderAll();
+};
+document.getElementById('dr-del').onclick=()=>{
+  if(!editId||!confirm('Radera detta lead? Det går inte att ångra.'))return;
+  leads=leads.filter(x=>x.id!==editId);save(leads);closeDrawer();renderAll();
+};
+
+/* ── HEADER ── */
+document.getElementById('new').onclick=()=>openDrawer(null);
+document.getElementById('q').oninput=()=>renderBoard();
+const menu=document.getElementById('menu');
+document.getElementById('more').onclick=e=>{e.stopPropagation();menu.classList.toggle('open');};
+document.addEventListener('click',e=>{if(!e.target.closest('.hmore'))menu.classList.remove('open');});
+
+document.getElementById('csv').onclick=()=>{
+  const rows=[['Namn','Webbplats','Kontakt','Telefon','E-post','Ort','Status','Ringförsök','Nästa åtgärd','Svarade (testmejl)','Anteckningar','Uppdaterad']];
+  leads.forEach(l=>rows.push([l.name,l.web,l.contact,l.phone,l.email,l.city,l.status,l.forsok,l.nextDate,l.svaratAt,l.notes,l.updated]));
+  const csv=rows.map(r=>r.map(v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"').join(';')).join('\r\n');
+  dl('bahko-crm-'+today+'.csv','data:text/csv;charset=utf-8,﻿'+encodeURIComponent(csv));
+};
+document.getElementById('backup').onclick=()=>{
+  const data={};
+  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('bb_'))data[k]=localStorage.getItem(k);}
+  dl('bahko-crm-backup-'+today+'.json','data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(data,null,2)));
+};
+function dl(name,href){const a=document.createElement('a');a.href=href;a.download=name;a.click();}
+document.getElementById('restore').onclick=()=>document.getElementById('restore-file').click();
+document.getElementById('restore-file').onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const data=JSON.parse(r.result);
+      const keys=Object.keys(data).filter(k=>k.startsWith('bb_'));
+      if(!keys.length)return alert('Ingen CRM-data i filen.');
+      if(!confirm('Importera '+keys.length+' nycklar? Skriver över nuvarande data.'))return;
+      keys.forEach(k=>localStorage.setItem(k,data[k]));
+      location.reload();
+    }catch{alert('Kunde inte läsa filen — är det en giltig backup?');}
+  };
+  r.readAsText(f);e.target.value='';
+};
+
+function renderAll(){renderStats();renderDue();renderBoard();}
+renderAll();
+</script>
+</body>
+</html>

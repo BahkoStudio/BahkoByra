@@ -127,27 +127,35 @@ Bahko Byrå · Synlighet som säljer.`
   }
 ];
 
-// ── SCORING PROMPT (from SM+CA 2.0 Outreach AI Prompts) ──────────────────
+// ── SCORING PROMPT (bygg/hantverk-nischen, anpassad från SM+CA 2.0) ───────
 function buildPrompt(email) {
-  return `You are a world-class sales consultant and marketer with deep experience in digital services and online marketing. You understand how to create cold outreach that speaks to real pain points like lack of traffic, low conversions, or stagnant lead pipelines.
+  return `You are a world-class sales consultant with deep experience in cold outreach to small trade businesses. You understand how owners of Swedish construction, roofing, painting, groundwork and other trades companies (bygg/tak/måleri/mark/hantverk) actually read email: on a phone, between jobs, with zero patience for marketing language.
 
-Review the cold outreach email below. This message is meant for cold prospects — Swedish aesthetic/plastic surgery clinic owners and managers — at the very beginning of the sales cycle. The agency (Bahko Byrå) sells websites, Google Ads, SEO, and video production for Swedish clinics.
+Review the cold outreach email below. It is meant for cold prospects — owners of small Swedish trades companies (byggfirmor, takläggare, målerier, markentreprenader, hantverkare) — at the very beginning of the sales cycle. The agency (Bahko Byrå) sells one thing in outreach: websites. Nothing else is pitched in email.
 
-The goal of this message is to secure a simple, positive reply from the recipient that commits to either:
+The goal of this message is to secure a simple, positive reply that commits to either:
 - Option A: Viewing a free demo website (2-minute commitment)
 - Option B: Agreeing to a short 20-minute call
+
+The tone standard this email is judged against (non-negotiable house style):
+- SHORT. A busy tradesman should be able to read it in 20 seconds.
+- Human and natural Swedish — a real person emailing another person, not an agency blasting.
+- ONE concrete, truthful observation about THEIR OWN website (e.g. "er offertknapp syns inte i mobilen"), not generic claims.
+- ONE clear, low-friction CTA. Never two asks.
+- No hype, no superlatives, no urgency theater, no fake scarcity.
+- No em-dashes (tankstreck) anywhere in the message.
 
 Score from 1–10 based on these criteria. Then explain clearly how the message performs in each area, what it does well, and what needs improvement.
 
 SCORING BREAKDOWN:
-- Subject Line + Opening Hook (35%) – Does it earn attention fast? Is it relevant, unexpected, or curiosity-inducing?
-- Relevance to Persona & Pain Points (20%) – Does it speak to a real, specific problem or tension the target is likely facing?
-- Clarity of Offer & Benefit (15%) – Can the reader immediately understand what's in it for them and why it matters now?
-- Emotional/Psychological Leverage (10%) – Does it create urgency, tension, or curiosity without being manipulative or fluffy?
-- CTA Strength (15%) – Is there a clear next step? Does it feel natural, low-friction, and worth taking?
-- Tone, Grammar, and Professionalism (5%) – Is the message clean, typo-free, and confidence-inducing without being stiff or overly formal?
+- Subject Line + Opening Hook (35%) – Does it earn attention fast without sounding like marketing? Short, lowercase-casual, curiosity-inducing beats clever or salesy.
+- Relevance to Persona & Pain Points (20%) – Does it speak to what a trades owner actually worries about (few quote requests, a site that looks dated next to competitors, customers who can't find or call them from mobile)? Is the observation about THEIR site specific and plausible?
+- Clarity of Offer & Benefit (15%) – Is it immediately clear that the offer is a free website draft/demo, what it shows, and why that matters for winning jobs?
+- Emotional/Psychological Leverage (10%) – Does it create genuine curiosity ("what does my site look like to a customer?") without pressure, guilt or manufactured urgency?
+- CTA Strength (15%) – Is there exactly ONE next step, phrased as a low-friction question? Does it feel natural to answer with a short "ja"?
+- Tone, Grammar, and Professionalism (5%) – Clean, typo-free, natural Swedish. Penalize hype words, em-dashes (tankstreck), stiff corporate phrasing, and anything that smells like a mass blast.
 
-Finally, tell me this: If you were a busy Swedish clinic owner receiving this email, would this message earn your attention? Would you take either one of the intended next steps — even just clicking the link? Or would you delete it?
+Finally, tell me this: If you were a busy Swedish construction or trades business owner receiving this email between two jobs, would it earn your attention? Would you take either one of the intended next steps — even just clicking the link? Or would you delete it?
 
 Be honest, punchy, and tactical in your feedback. List 2-4 actionable improvements.
 
@@ -179,7 +187,7 @@ TONE & PROFESSIONALISM (5%): X/10
 [Notes]
 
 VERDICT:
-[1-2 sentences: would a busy clinic owner reply?]
+[1-2 sentences: would a busy Swedish trades business owner reply?]
 
 TOP IMPROVEMENTS:
 1. [improvement]

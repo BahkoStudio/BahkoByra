@@ -262,12 +262,14 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
   padding:1.05rem 1.9rem;border-radius:4px;transition:background .3s,border-color .3s,transform .25s}
 .btn-ghost:hover{background:rgba(107,191,89,.16);border-color:var(--amber);transform:translateY(-2px)}
 
-#float-offert{position:fixed;bottom:max(2.4rem,env(safe-area-inset-bottom));right:2.4rem;z-index:90;background:var(--grad);color:#0C1408;font-size:.64rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;padding:.85rem 1.7rem;border-radius:4px;opacity:0;transform:translateY(20px);transition:all .4s ease;pointer-events:none;box-shadow:0 10px 30px -8px rgba(107,191,89,.5)}
-#float-offert.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-#float-offert:hover{box-shadow:0 16px 40px -8px rgba(107,191,89,.7);transform:translateY(-2px) scale(1.03)}
+/* Lodrätt centrerad vid högerkanten. Sätt aldrig `bottom` samtidigt som `top`:
+   med båda satta och auto-höjd sträcks knappen ut på höjden. */
+#float-offert{position:fixed;top:50%;right:2.4rem;z-index:90;background:var(--grad);color:#0C1408;font-size:.64rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;padding:.85rem 1.7rem;border-radius:4px;opacity:0;transform:translate(24px,-50%);transition:opacity .4s ease,transform .4s ease,box-shadow .4s ease;pointer-events:none;box-shadow:0 10px 30px -8px rgba(107,191,89,.5)}
+#float-offert.visible{opacity:1;transform:translate(0,-50%);pointer-events:auto}
+#float-offert:hover{box-shadow:0 16px 40px -8px rgba(107,191,89,.7);transform:translate(-3px,-50%) scale(1.03)}
 
-footer{border-top:1px solid var(--line);padding:2rem clamp(1.2rem,4vw,3rem);display:flex;justify-content:space-between;gap:1rem 1.6rem;flex-wrap:wrap;font-size:.72rem;color:var(--dim);background:var(--bg)}
-footer a{color:var(--amber-lt)}
+footer{border-top:1px solid var(--line);padding:2rem clamp(1.2rem,4vw,3rem);display:flex;justify-content:space-between;gap:1rem 1.6rem;flex-wrap:wrap;font-size:.82rem;color:var(--muted);background:var(--bg)}
+footer a{color:var(--amber-lt);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 footer a:hover{text-decoration:underline}
 .foot-links{display:flex;flex-wrap:wrap;gap:1rem}
 
@@ -322,7 +324,8 @@ footer a:hover{text-decoration:underline}
 .cb-no:hover{border-color:var(--muted);color:var(--text)}
 .cb-yes{background:var(--grad);color:#0C1408}
 .cb-yes:hover{filter:brightness(1.08)}
-body.cb-open #float-offert{bottom:calc(var(--cb-h,86px) + 1.2rem)}
+/* Knappen sitter mitt på högerkanten och kan inte längre krocka med
+   samtyckesrutan i underkant, så den behöver inte lyftas. */
 
 /* ===== MOBIL ===== */
 @media(max-width:768px){
@@ -357,7 +360,7 @@ body.cb-open #float-offert{bottom:calc(var(--cb-h,86px) + 1.2rem)}
   .gpanel{flex-direction:column;align-items:flex-start;padding:1.4rem}
   .gpanel-ctas{width:100%;flex-direction:column;align-items:stretch}
   .gpanel-cta{width:100%;justify-content:center;text-align:center}
-  #float-offert{bottom:max(1.4rem,env(safe-area-inset-bottom));right:1.4rem;font-size:.58rem;padding:.72rem 1.3rem}
+  #float-offert{right:1.4rem;font-size:.58rem;padding:.72rem 1.3rem}
   .modal{padding:1.8rem 1.3rem}
   .of-form{grid-template-columns:1fr}
 }

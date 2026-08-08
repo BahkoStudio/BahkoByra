@@ -62,11 +62,11 @@ function mdToHtml(text) {
 function generateHtml(data, brand) {
   const company    = brand.company_name || "Bahko Byrå";
   const tagline    = brand.tagline || "";
-  const primary    = brand.primary_color || "#c9a96e";
+  const primary    = brand.primary_color || "#10B981";
   const secondary  = brand.secondary_color || "#0c0a09";
   const accent     = brand.accent_color || "#e0c48a";
   const textColor  = brand.text_color || "#f0ece4";
-  const fontH      = brand.font_heading || "Cormorant Garamond";
+  const fontH      = brand.font_heading || "Outfit";
   const fontB      = brand.font_body || "Outfit";
   const services   = brand.services || [];
   const target     = brand.target_market || "";
@@ -81,8 +81,8 @@ function generateHtml(data, brand) {
     : `<span class="logo-text">${company}</span>`;
 
   const research   = data.research || {};
-  const ORDER      = ["landscape", "pricing", "clinic_niche", "social_media", "competitor_offers", "positioning", "opportunities"];
-  const ICONS      = { landscape: "🏢", pricing: "💰", clinic_niche: "🏥", social_media: "📱", competitor_offers: "📦", positioning: "🎯", opportunities: "✨" };
+  const ORDER      = ["landscape", "pricing", "niche_analysis", "social_media", "competitor_offers", "positioning", "opportunities"];
+  const ICONS      = { landscape: "🏢", pricing: "💰", niche_analysis: "🔨", social_media: "📱", competitor_offers: "📦", positioning: "🎯", opportunities: "✨" };
 
   const sectionsHtml = ORDER.filter(k => research[k]).map(k => {
     const sec     = research[k];
@@ -139,7 +139,7 @@ function generateHtml(data, brand) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${company} — Konkurrensanalys ${year}</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{

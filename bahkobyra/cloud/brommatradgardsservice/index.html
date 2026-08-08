@@ -25,7 +25,6 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -195,9 +194,11 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .cta-sub{font-size:.6rem;letter-spacing:.22em;color:var(--dim);text-transform:uppercase}
 
 /* ===== FLYTANDE OFFERT-KNAPP ===== */
-#float-offert{position:fixed;bottom:max(2.4rem,env(safe-area-inset-bottom));right:2.4rem;z-index:90;background:var(--grad);color:#0C1408;font-size:.64rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;padding:.85rem 1.7rem;border-radius:4px;opacity:0;transform:translateY(20px);transition:all .4s ease;pointer-events:none;box-shadow:0 10px 30px -8px rgba(107,191,89,.5)}
-#float-offert.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-#float-offert:hover{box-shadow:0 16px 40px -8px rgba(107,191,89,.7);transform:translateY(-2px) scale(1.03)}
+/* Lodrätt centrerad vid högerkanten. Sätt aldrig `bottom` samtidigt som `top`:
+   med båda satta och auto-höjd sträcks knappen ut på höjden. */
+#float-offert{position:fixed;top:50%;right:2.4rem;z-index:90;background:var(--grad);color:#0C1408;font-size:.64rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;padding:.85rem 1.7rem;border-radius:4px;opacity:0;transform:translate(24px,-50%);transition:opacity .4s ease,transform .4s ease,box-shadow .4s ease;pointer-events:none;box-shadow:0 10px 30px -8px rgba(107,191,89,.5)}
+#float-offert.visible{opacity:1;transform:translate(0,-50%);pointer-events:auto}
+#float-offert:hover{box-shadow:0 16px 40px -8px rgba(107,191,89,.7);transform:translate(-3px,-50%) scale(1.03)}
 
 /* ===== STATISK DEL ===== */
 .static-site{position:relative;z-index:6;background:var(--bg)}
@@ -333,8 +334,8 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .offer-card p{font-size:.88rem;color:var(--muted);margin-bottom:1.5rem}
 .offer-card .cta-button{width:100%;justify-content:center}
 
-footer{position:relative;z-index:6;border-top:1px solid var(--line);padding:2rem clamp(1.2rem,4vw,3rem);display:flex;justify-content:space-between;gap:1rem 1.6rem;flex-wrap:wrap;font-size:.72rem;color:var(--dim);background:var(--bg)}
-footer a{color:var(--amber-lt)}
+footer{position:relative;z-index:6;border-top:1px solid var(--line);padding:2rem clamp(1.2rem,4vw,3rem);display:flex;justify-content:space-between;gap:1rem 1.6rem;flex-wrap:wrap;font-size:.82rem;color:var(--muted);background:var(--bg)}
+footer a{color:var(--amber-lt);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 footer a:hover{text-decoration:underline}
 .foot-links{display:flex;flex-wrap:wrap;gap:1rem}
 
@@ -383,7 +384,8 @@ footer a:hover{text-decoration:underline}
 .cb-yes{background:var(--grad);color:#0C1408}
 .cb-yes:hover{filter:brightness(1.08)}
 /* Offertknappen lyfts medan bannern syns, annars ligger de över varandra. */
-body.cb-open #float-offert{bottom:calc(var(--cb-h,86px) + 1.2rem)}
+/* Knappen sitter mitt på högerkanten och kan inte längre krocka med
+   samtyckesrutan i underkant, så den behöver inte lyftas. */
 @media(prefers-reduced-motion:reduce){#cookie-bar{transition:none}}
 .of-sum-box{background:rgba(107,191,89,.07);border:1px solid rgba(107,191,89,.25);border-radius:8px;padding:1.2rem 1.3rem;margin-bottom:1.4rem;font-size:.88rem;line-height:1.9}
 .of-sum-box b{color:var(--amber-lt)}
@@ -420,7 +422,7 @@ body.cb-open #float-offert{bottom:calc(var(--cb-h,86px) + 1.2rem)}
   .hero-content{padding-bottom:clamp(2.6rem,7vh,4rem)}
   .cta-button{padding:.95rem 2rem;width:100%;justify-content:center}
   .hero-book-btn{width:auto;white-space:nowrap;padding:.9rem 1.8rem}
-  #float-offert{bottom:max(1.4rem,env(safe-area-inset-bottom));right:1.4rem;font-size:.58rem;padding:.72rem 1.3rem}
+  #float-offert{right:1.4rem;font-size:.58rem;padding:.72rem 1.3rem}
   .modal{padding:1.8rem 1.3rem}
   .service-item{flex-direction:column;gap:.3rem;align-items:flex-start}
   .ss-grid2,.contact-wrap,.pris-wrap{grid-template-columns:1fr}
@@ -466,6 +468,9 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
   .hero-heading .word{opacity:1!important;transform:none!important}
   .bgvid-wrap{display:none}
 }
+.hero-scroll-indicator{display:flex;flex-direction:column;align-items:center;gap:.9rem}
+.btn-ghost.hero-tel{display:inline-flex;align-items:center;gap:.6rem;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.38);border-radius:999px;padding:.72rem 1.35rem;text-decoration:none;transition:background .2s,border-color .2s,transform .2s}
+.btn-ghost.hero-tel:hover{background:rgba(107,191,89,.16);transform:translateY(-2px)}
 </style>
 </head>
 <body>
@@ -515,8 +520,8 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 <section class="hero-standalone">
   <div class="hero-vid-wrap">
     <video id="hero-vid" autoplay muted loop playsinline preload="auto"
-      poster="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_222739_95c29488-7c11-4354-a052-fe1e59d8f03e.png"
-      src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_223053_08178cf6-f2f6-474d-9494-92ed6f5686f0.mp4"></video>
+      poster="media/fore-igenvuxen-tradgard.jpg"
+      src="media/video-fore-igenvuxen-tradgard.mp4"></video>
   </div>
   <span class="hero-label">Trädgårdsservice · Bromma och hela Storstockholm</span>
   <div class="hero-content">
@@ -530,6 +535,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
         <span>Begär offert</span>
         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
+      <a class="btn-ghost hero-tel" href="tel:+46707666514">Ring 070-766 65 14</a>
     </div>
   </div>
 </section>
@@ -537,8 +543,8 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
 <!-- FAST VIDEOLAGER -->
 <div class="bgvid-wrap" id="bgvid-wrap">
   <video id="bg-vid" autoplay muted loop playsinline preload="metadata"
-    poster="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_222907_abd794d7-4c74-4996-b84a-0c8efd723860.png"
-    src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_223121_4151110e-f0ac-40ea-bc63-0be4c6dfbe30.mp4"></video>
+    poster="media/efter-klippt-grasmatta-rabatter.jpg"
+    src="media/video-efter-klippt-tradgard.mp4"></video>
 </div>
 <div id="dark-overlay"></div>
 
@@ -563,7 +569,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
       </div>
       <div class="work-grid">
         <article class="wcard">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_222929_6e26ef20-fa63-42d4-b7fb-dc99bcfde1be.png" alt="Nyanlagd gräsmatta med skarpa kanter" loading="lazy">
+          <img src="media/nyanlagd-grasmatta-skarpa-kanter.jpg" alt="Nyanlagd gräsmatta med skarpa kanter" loading="lazy">
           <div class="wc-body">
             <div class="wc-tag">Gräsmatta</div>
             <h3>Ny gräsmatta</h3>
@@ -571,7 +577,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
           </div>
         </article>
         <article class="wcard">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_222940_c515be9b-b326-48b8-8373-9837f2c3e99e.png" alt="Nyplanterad häck med raka linjer" loading="lazy">
+          <img src="media/nyplanterad-hack-raka-linjer.jpg" alt="Nyplanterad häck med raka linjer" loading="lazy">
           <div class="wc-body">
             <div class="wc-tag">Häck</div>
             <h3>Häckplantering</h3>
@@ -579,7 +585,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
           </div>
         </article>
         <article class="wcard">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_222952_eeb0a9f2-1433-40fa-890e-d4c049a9de17.png" alt="Anlagd trädgård med planteringar" loading="lazy">
+          <img src="media/anlagd-tradgard-planteringar.jpg" alt="Anlagd trädgård med planteringar" loading="lazy">
           <div class="wc-body">
             <div class="wc-tag">Anläggning</div>
             <h3>Trädgårdsanläggning</h3>
@@ -920,7 +926,7 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
         </ul>
       </div>
       <div>
-        <img class="ss-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_222952_eeb0a9f2-1433-40fa-890e-d4c049a9de17.png" alt="Anlagd trädgård med planteringar och gräsmatta" loading="lazy">
+        <img class="ss-img" src="media/anlagd-tradgard-planteringar.jpg" alt="Anlagd trädgård med planteringar och gräsmatta" loading="lazy">
       </div>
     </div>
   </section>
@@ -1090,9 +1096,9 @@ html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
       <span class="ss-label">Galleri</span>
       <h2 class="ss-h2">Så kan det se ut</h2>
       <div class="gallery-grid">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_222929_6e26ef20-fa63-42d4-b7fb-dc99bcfde1be.png" alt="Nyanlagd gräsmatta i villaträdgård" loading="lazy">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_222940_c515be9b-b326-48b8-8373-9837f2c3e99e.png" alt="Nyplanterad häck längs tomtgräns" loading="lazy">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_303UGjarlF5o5kNsAwtwUgTZYoI/hf_20260611_222952_eeb0a9f2-1433-40fa-890e-d4c049a9de17.png" alt="Anlagd trädgård med planteringar" loading="lazy">
+        <img src="media/nyanlagd-grasmatta-skarpa-kanter.jpg" alt="Nyanlagd gräsmatta i villaträdgård" loading="lazy">
+        <img src="media/nyplanterad-hack-raka-linjer.jpg" alt="Nyplanterad häck längs tomtgräns" loading="lazy">
+        <img src="media/anlagd-tradgard-planteringar.jpg" alt="Anlagd trädgård med planteringar" loading="lazy">
       </div>
     </div>
   </section>
@@ -1652,7 +1658,7 @@ addEventListener('click',function(e){
   if(!a)return;
   const href=a.getAttribute('href')||'';
   if(href.indexOf('tel:')===0){
-    const k=['mn-tel','nav-tel','pris-tel','contact-big','of-tel'].find(x=>a.classList.contains(x));
+    const k=['mn-tel','nav-tel','pris-tel','contact-big','of-tel','hero-tel'].find(x=>a.classList.contains(x));
     track('ring_klick',{plats:k||'okand'});
   }else if(a.id==='of-mailto'){
     track('reservvag_mejl',{});

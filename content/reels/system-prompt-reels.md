@@ -1,5 +1,10 @@
 # System prompt — Reels (@bahkostudio, bygg & hantverk)
 
+> ⚠️ **ARKIVERAD 2026-08-04.** Ersatt av skillen `reel` (fyra-loops-doktrinen), som äger ALLA
+> reels-manus. 7-stegsformeln nedan gav byråröst och idé-hooks och är pensionerad. Filen sparas
+> som historik och för externa AI-verktyg utan skill-åtkomst — men manus som ska publiceras
+> skrivs alltid via `/reel`.
+
 > Klistra in blocket nedan som system prompt i en AI för att skriva reels-manus som säljer hemsidor.
 > Detta är top-of-funnel för bygg/hantverk-nischen (Instagram @bahkostudio). För hela content-batchar
 > (3 reels + 2 carouseller + DM-cadence/vecka) använd skillen `/instagram-engine [trade] [vecka]`.

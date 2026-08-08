@@ -1,0 +1,62 @@
+# Bromma Trädgårdsservice — produktionsrutin för contentplanen
+
+**Plan:** `.tmp/rapporter/Contentplan-Bromma-augusti-2026.pdf` (2 reels + 3 bilder/vecka, start v32).
+**Drive:** mappen "Bromma Trädgårdsservice" i den delade Bahko-mappen — allt färdigt content
+och allt råmaterial från Jens bor där. Struktur: 01 Råmaterial från Jens · 02 Färdiga inlägg ·
+03 Reels · 04 Grafik och mallar · 05 Rapporter och planer.
+
+## Grundregeln
+
+**AI får aldrig spela Jens riktiga jobb.** Före/efter, teamet och maskinerna är alltid äkta
+material från Jens (WhatsApp → Drive 01). Higgsfield används ENDAST till:
+ramen (logga-intro/outro på reels) och bakgrunder till tipsgrafiken. Omdömeskorten är
+HTML-mall, ingen AI.
+
+## Byggstenarna (klara 2026-08-04)
+
+| Fil | Vad |
+|---|---|
+| `mallar/omdomeskort.html` | 1080×1080-omdömeskort. Parametrar: `?q=citat&n=namn&j=tjänst, ort` |
+| `mallar/tipsgrafik.html` | 1080×1350-tipsgrafik. Parametrar: `?bg=&k=&t=&b1..b3=&rut=1` |
+| `mallar/bakgrunder/v32–v35*.png` | 4 AI-bakgrunder (gpt_image_2, 3:4, 2k) — UTAN text |
+| `mallar/intro-frame.html` + `intro-start.png` | startbild för logga-intro |
+| `media/logo-intro-5s.mp4` | seedance 2.0-intro, 1080p, loopbar — klistras först/sist på varje reel |
+| `inlagg/` | färdigrenderade inlägg (omdöme + v32–v35-tips) |
+
+## Rendera ett nytt kort (exempel)
+
+```powershell
+& "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless --disable-gpu `
+  --window-size=1080,1080 --hide-scrollbars --screenshot="ut.png" `
+  "file:///C:/Users/mathi/testar/BahkoByra/content/kunder/bromma/mallar/omdomeskort.html?q=CITAT&n=NAMN&j=TJÄNST · ORT"
+```
+Tipsgrafik: samma sak med `tipsgrafik.html`, `--window-size=1080,1350` och bg/t/b1-parametrarna.
+Å/ä/ö i parametrar: URL-koda (`%C3%A5` osv) eller redigera default-texterna i HTML-filen.
+
+## Ny AI-bakgrund (när ett nytt tips-ämne behövs)
+
+```
+higgsfield generate create gpt_image_2 --aspect_ratio 3:4 --resolution 2k --wait \
+  --prompt "<motiv>, dark moody grading, large dark negative space in the upper half, no people, no text"
+```
+~2–5 credits. **Ladda ALLTID ner resultatet direkt** (`curl -o mallar/bakgrunder/<namn>.png <url>`) —
+Higgsfield raderar efter ~30 dagar. Prompt-regler: alltid "no text" (svensk text i AI blir fel,
+mallen lägger texten), alltid mörkt negativt utrymme upptill (rubriken bor där).
+
+## Veckoflödet
+
+1. **Jens skickar klipp/bilder i WhatsApp** → spara i Drive `01 Råmaterial från Jens/<vecka>/`
+2. **Reels klipps i CapCut**: logo-intro (media/logo-intro-5s.mp4) + Jens material + outro (samma fil)
+3. **Onsdagsbilden**: rendera från tipsgrafik-mallen (bakgrund finns för v32–35, ny vid behov)
+4. **Lördagsbilden**: omdömeskort (nio omdömen kvar att göra kort av) eller team/maskin-foto
+5. Färdigt material → Drive `02 Färdiga inlägg` / `03 Reels` → Jens godkänner (2 min) → publicera
+6. Det bästa återpubliceras i Google Företagsprofilen (Jens/GBP-inloggning)
+
+## Manus
+
+Reels-manus skrivs med `/reel`-skillen (fyra loopar, Kallaway-rytm) veckan innan, enligt planen.
+
+## Kostnad
+
+Engångs: intro ~25 credits + 4 bakgrunder ~10 credits. Löpande: ~2–5 credits per ny bakgrund,
+allt annat är gratis (HTML-mallar + Edge headless). Saldo kollas med `higgsfield workspace list`.

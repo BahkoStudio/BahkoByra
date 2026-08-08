@@ -700,10 +700,18 @@ body.scene-active { background: var(--dark); }
 }
 .footer-nl-form button:hover { background: rgba(201,149,42,0.2); }
 .footer-bottom {
-  display: flex; justify-content: space-between;
-  font-size: 0.62rem; letter-spacing: 0.1em;
-  color: rgba(245,240,229,0.15);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem 1.2rem;
+  font-size: 0.68rem; letter-spacing: 0.1em;
+  color: rgba(245,240,229,0.45);
 }
+/* Byråkrediten ska gå att läsa och klicka, till skillnad från radens övriga text. */
+.footer-by { color: rgba(245,240,229,0.6); }
+.footer-by a {
+  color: rgba(245,240,229,0.92); font-weight: 600;
+  text-decoration: underline; text-underline-offset: 3px;
+  transition: color 0.3s;
+}
+.footer-by a:hover { color: #C9952A; }
 
 /* ── HAMBURGER ──────────────────────────────────── */
 .nav-hamburger {

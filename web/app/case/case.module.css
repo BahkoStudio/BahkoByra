@@ -1,0 +1,132 @@
+.topp {
+  padding-top: clamp(2.6rem, 6vw, 4.2rem);
+  padding-bottom: clamp(2.8rem, 6vw, 4.2rem);
+}
+
+.nat {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+  gap: 1.1rem;
+  margin-top: 2.4rem;
+}
+
+.kort {
+  display: flex;
+  flex-direction: column;
+  background: var(--vit);
+  border: 1px solid var(--linje);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
+}
+
+.kort:hover {
+  border-color: var(--em);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px -28px rgba(4, 120, 87, 0.5);
+}
+
+.bild {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--lt-2);
+}
+
+.bild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+
+.kort:hover .bild img {
+  transform: scale(1.04);
+}
+
+/* Kolumn så att "Öppna sajt" hamnar i nederkant oavsett textlängd. */
+.kropp {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.1rem 1.3rem 1.2rem;
+}
+
+.kropp strong {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.kropp em {
+  font-style: normal;
+  font-size: 0.86rem;
+  color: var(--ink-3);
+  margin-top: 0.15rem;
+}
+
+.text {
+  display: block;
+  margin-top: 0.7rem;
+  font-size: 0.93rem;
+  color: var(--ink-3);
+  flex: 1;
+  text-wrap: pretty;
+}
+
+.oppna {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.1rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--em-deep);
+}
+
+.oppna svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.25s var(--ease);
+}
+
+.kort:hover .oppna svg {
+  transform: translateX(3px);
+}
+
+.demoYta {
+  background: var(--lt-2);
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+  margin-top: 2.6rem;
+  padding: 1.8rem;
+  background: var(--bas);
+  color: var(--text);
+  border-radius: var(--r-lg);
+}
+
+.cta h3 {
+  margin-bottom: 0.35rem;
+}
+
+.cta p {
+  color: var(--text-lag);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 620px) {
+  .cta {
+    padding: 1.4rem;
+  }
+  .cta a {
+    width: 100%;
+  }
+}

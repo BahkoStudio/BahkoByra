@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PrisMotor — dynamisk prissättning för byggföretag</title>
+<meta name="description" content="Dynamisk prissättning för bygg och hantverk. Rekommenderar riktpriser utifrån efterfrågan, offertkonvertering, ledig kapacitet och säljtempo.">
+<meta name="theme-color" content="#F8FAFC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+button,select,input{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+input{cursor:text}
+:root{
+  --navy:#F8FAFC;--navy-2:#FFFFFF;--navy-3:#F1F5F9;--navy-4:#E2E8F0;
+  --gold:#047857;--gold-lt:#047857;--gold-dk:#065F46;--smaragd:#10B981;--ink:#0A1628;
+  --paper:#0A1628;--p70:#334155;--p45:#475569;--p28:#64748B;
+  --line:#E2E8F0;--line-2:#CBD5E1;
+  --ok:#047857;--ok-bg:rgba(4,120,87,.10);--warn:#B45309;--warn-bg:rgba(180,83,9,.10);
+  --dgr:#DC2626;--dgr-bg:rgba(220,38,38,.08);--info:#0369A1;--focus:#047857;
+  --display:'Outfit',system-ui,sans-serif;--sans:'Outfit',system-ui,sans-serif;
+  --r:5px;--r-lg:11px;--ease:cubic-bezier(.22,1,.36,1);
+}
+html{background:var(--navy);font-size:15px}
+body{font-family:var(--sans);color:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased;
+  display:grid;grid-template-columns:236px 1fr;min-height:100vh}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+::selection{background:#10B981;color:#0A1628}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:var(--navy)}
+::-webkit-scrollbar-thumb{background:rgba(10,22,40,.18);border-radius:5px}
+::-webkit-scrollbar-thumb:hover{background:rgba(10,22,40,.32)}
+.mono{font-variant-numeric:tabular-nums}
+
+/* ---------- sidomeny ---------- */
+.side{background:var(--navy-2);border-right:1px solid var(--line);display:flex;flex-direction:column;
+  gap:1.1rem;padding:1.15rem .85rem;position:sticky;top:0;height:100vh;overflow-y:auto}
+.lock{display:flex;align-items:center;gap:.6rem;padding:.3rem .35rem .1rem}
+.mark{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;
+  font-family:var(--sans);font-weight:700;font-size:1.15rem;color:#0A1628;flex:none;
+  background:#10B981;overflow:hidden}
+.mark img{width:100%;height:100%;display:block}
+.lock h1{font-family:var(--sans);font-size:1.15rem;font-weight:700;line-height:1.1;letter-spacing:.01em}
+.lock h1 em{font-style:normal;color:var(--gold)}
+.lock span{display:block;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--p45);margin-top:.15rem}
+nav{display:flex;flex-direction:column;gap:2px}
+.nav-i{display:flex;align-items:center;gap:.65rem;padding:.6rem .7rem;border-radius:var(--r);font-size:.82rem;
+  color:var(--p70);transition:.2s var(--ease);text-align:left;width:100%}
+.nav-i svg{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.5;opacity:.75}
+.nav-i:hover{background:var(--navy-3);color:var(--paper)}
+.nav-i.on{background:linear-gradient(90deg,rgba(16,185,129,.16),rgba(16,185,129,.04));color:var(--paper);
+  box-shadow:inset 2px 0 0 var(--gold)}
+.nav-i.on svg{opacity:1;color:var(--gold-lt)}
+.nav-i .cnt{margin-left:auto;font-size:.62rem;font-weight:600;background:var(--gold);color:#fff;
+  padding:.1rem .38rem;border-radius:20px;min-width:20px;text-align:center}
+.side-sp{flex:1}
+.spanel{background:var(--navy-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:.9rem .85rem}
+.spanel h4{font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--p45);margin-bottom:.7rem}
+.spanel h4 b{color:var(--gold-lt);font-weight:600}
+.imp{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;padding:.5rem 0;border-top:1px solid var(--line)}
+.imp:first-of-type{border-top:0;padding-top:0}
+.imp .l{font-size:.72rem;color:var(--p70)}
+.imp .r{text-align:right}
+.imp .r b{display:block;font-size:.82rem;font-weight:600}
+.imp .r span{font-size:.66rem;color:var(--p45)}
+.auto{background:linear-gradient(155deg,rgba(16,185,129,.12),rgba(16,185,129,.02));
+  border:1px solid var(--line-2);border-radius:var(--r-lg);padding:.9rem .85rem}
+.auto-t{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.5rem}
+.auto-t b{font-family:var(--display);font-size:1.02rem;font-weight:600}
+.auto-t b i{font-style:normal;color:var(--gold-lt);font-size:.72rem;font-family:var(--sans);letter-spacing:.1em;margin-left:.3rem}
+.sw{width:36px;height:19px;border-radius:20px;background:var(--navy-4);border:1px solid var(--line-2);position:relative;flex:none;transition:.25s}
+.sw::after{content:'';position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:var(--p45);transition:.25s var(--ease)}
+.sw.on{background:rgba(16,185,129,.25);border-color:rgba(4,120,87,.5)}
+.sw.on::after{left:18px;background:var(--ok)}
+.auto p{font-size:.7rem;color:var(--p70);line-height:1.45}
+.auto .go{margin-top:.7rem;width:100%;background:#10B981;color:#0A1628;font-size:.72rem;font-weight:600;
+  letter-spacing:.06em;padding:.55rem;border-radius:var(--r);display:flex;align-items:center;justify-content:center;gap:.4rem;transition:.2s}
+.auto .go:hover{background:#34D399}
+.byline{display:flex;align-items:center;gap:.5rem;font-size:.6rem;color:var(--p28);padding:0 .35rem;letter-spacing:.04em}
+.byline .m2{width:18px;height:18px;border-radius:4px;display:grid;place-items:center;overflow:hidden;
+  font-family:var(--sans);font-size:.7rem;font-weight:700;color:#0A1628;background:#10B981;flex:none}
+.byline .m2 img{width:100%;height:100%;display:block}
+
+/* ---------- topbar ---------- */
+main{min-width:0;display:flex;flex-direction:column}
+.top{position:sticky;top:0;z-index:40;background:rgba(248,250,252,.94);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);padding:1.15rem 1.6rem .95rem;display:flex;align-items:flex-start;gap:1.2rem;flex-wrap:wrap}
+.top h2{font-family:var(--display);font-size:1.75rem;font-weight:700;line-height:1.1;letter-spacing:.005em}
+.top p{font-size:.78rem;color:var(--p45);margin-top:.15rem}
+.tools{margin-left:auto;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.pill{display:flex;align-items:center;gap:.4rem;border:1px solid var(--line-2);border-radius:var(--r);
+  padding:.5rem .7rem;font-size:.74rem;color:var(--p70);background:var(--navy-2);transition:.2s}
+.pill:hover{color:var(--paper);border-color:var(--gold)}
+.pill svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;opacity:.7}
+.seg{display:flex;background:var(--navy-2);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden}
+.seg button{padding:.5rem .72rem;font-size:.72rem;color:var(--p45);transition:.2s}
+.seg button.on{background:#D1FAE5;color:#065F46}
+.seg button:hover{color:var(--paper)}
+select.pill{cursor:pointer;-webkit-appearance:none;appearance:none;padding-right:1.5rem;
+  background-image:linear-gradient(45deg,transparent 50%,var(--p45) 50%),linear-gradient(135deg,var(--p45) 50%,transparent 50%);
+  background-position:calc(100% - 14px) 52%,calc(100% - 9px) 52%;background-size:5px 5px;background-repeat:no-repeat}
+select.pill option{background:var(--navy-2)}
+.run{background:#10B981;color:#0A1628;font-weight:600;
+  font-size:.76rem;padding:.58rem .95rem;border-radius:var(--r);display:flex;align-items:center;gap:.45rem;transition:.2s var(--ease)}
+.run:hover{background:#34D399;transform:translateY(-1px)}
+.run:disabled{opacity:.55;cursor:wait;transform:none}
+.run svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.6}
+.stamp{width:100%;text-align:right;font-size:.66rem;color:var(--p28);margin-top:-.35rem}
+
+/* ---------- layout ---------- */
+.body{padding:1.3rem 1.6rem 3rem;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:1.1rem;align-items:start}
+.col{display:flex;flex-direction:column;gap:1.1rem;min-width:0}
+.panel{background:var(--navy-2);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.ph{display:flex;align-items:center;gap:.6rem;padding:.95rem 1.1rem;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.ph h3{font-family:var(--display);font-size:1.16rem;font-weight:600;letter-spacing:.01em}
+.ph .tag{font-size:.62rem;font-weight:600;letter-spacing:.06em;background:var(--navy-4);color:var(--gold-lt);
+  padding:.16rem .45rem;border-radius:20px}
+.ph .rt{margin-left:auto;display:flex;align-items:center;gap:.45rem;flex-wrap:wrap}
+.ph .sub{font-size:.7rem;color:var(--p45)}
+.legend{display:flex;gap:.5rem;font-size:.68rem}
+.legend b{display:flex;align-items:center;gap:.3rem;font-weight:500;color:var(--p70);
+  background:var(--navy-3);border-radius:20px;padding:.18rem .5rem}
+.legend b i{width:6px;height:6px;border-radius:50%;display:block}
+
+/* ---------- kpi ---------- */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.kpi{background:var(--navy-2);padding:1rem 1.05rem 0.8rem;display:flex;flex-direction:column;gap:.35rem;min-width:0}
+.kpi .k-t{display:flex;align-items:center;gap:.45rem;font-size:.71rem;color:var(--p70);letter-spacing:.02em}
+.kpi .k-t svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:1.5;flex:none}
+.kpi .k-v{font-family:var(--display);font-size:1.9rem;font-weight:500;line-height:1.05;display:flex;align-items:baseline;gap:.4rem;flex-wrap:wrap}
+.kpi .k-v u{text-decoration:none;font-family:var(--sans);font-size:.7rem;font-weight:600}
+.kpi .k-s{font-size:.65rem;color:var(--p28)}
+.kpi .spark{width:100%;height:30px;margin-top:auto;display:block}
+.up{color:var(--ok)}.down{color:var(--dgr)}.flat{color:var(--p45)}
+
+/* ---------- tabell ---------- */
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.78rem;min-width:900px}
+th{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--p45);
+  text-align:left;padding:.6rem 1.1rem;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--navy-2)}
+th.c,td.c{text-align:center}th.r,td.r{text-align:right}
+td{padding:.62rem 1.1rem;border-bottom:1px solid rgba(10,22,40,.07);vertical-align:middle}
+tbody tr{cursor:pointer;transition:background .15s}
+tbody tr:hover{background:var(--navy-3)}
+tbody tr.sel{background:var(--navy-3);box-shadow:inset 2px 0 0 var(--gold)}
+.svc{display:flex;align-items:center;gap:.65rem;min-width:190px}
+.ico{width:34px;height:34px;border-radius:7px;background:var(--navy-4);border:1px solid var(--line);
+  display:grid;place-items:center;flex:none}
+.ico svg{width:18px;height:18px;stroke:var(--gold-lt);fill:none;stroke-width:1.4}
+.svc b{display:block;font-weight:500;font-size:.79rem}
+.svc span{display:block;font-size:.63rem;color:var(--p28);letter-spacing:.04em}
+.two{line-height:1.25}
+.two b{display:block;font-weight:600;font-size:.79rem}
+.two span{display:block;font-size:.63rem}
+.dot{display:inline-flex;align-items:center;gap:.35rem}
+.ring{width:34px;height:34px;display:block;margin:0 auto}
+.ring text{font-size:11px;font-weight:600;font-family:'Outfit',sans-serif;fill:var(--paper)}
+.act{display:inline-flex;align-items:center;gap:.3rem;font-size:.68rem;font-weight:600;letter-spacing:.03em;
+  padding:.32rem .55rem;border-radius:var(--r);border:1px solid transparent;white-space:nowrap}
+.act svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
+.a-up{background:var(--ok-bg);color:var(--ok);border-color:rgba(4,120,87,.3)}
+.a-dn{background:var(--dgr-bg);color:var(--dgr);border-color:rgba(220,38,38,.3)}
+.a-nc{background:var(--navy-4);color:var(--p70);border-color:var(--line)}
+.a-lk{background:rgba(3,105,161,.1);color:var(--info);border-color:rgba(3,105,161,.28)}
+.st{font-size:.6rem;font-weight:600;letter-spacing:.05em;padding:.14rem .4rem;border-radius:3px;white-space:nowrap}
+.st-ok{background:var(--ok-bg);color:var(--ok)}
+.st-no{background:var(--dgr-bg);color:var(--dgr)}
+.st-w{background:var(--warn-bg);color:var(--warn)}
+.more{display:flex;align-items:center;justify-content:center;gap:.4rem;width:100%;padding:.8rem;
+  font-size:.75rem;color:var(--gold-lt);transition:.2s}
+.more:hover{background:var(--navy-3)}
+.more svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.6}
+
+/* ---------- insikter ---------- */
+.ins{display:flex;gap:.7rem;padding:.85rem 1.1rem;border-bottom:1px solid rgba(10,22,40,.07);cursor:pointer;transition:.18s}
+.ins:hover{background:var(--navy-3)}
+.ins:last-child{border-bottom:0}
+.ins .i-i{width:26px;height:26px;border-radius:6px;display:grid;place-items:center;flex:none;margin-top:1px}
+.ins .i-i svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
+.ins b{display:block;font-size:.78rem;font-weight:600;margin-bottom:.15rem}
+.ins p{font-size:.71rem;color:var(--p70);line-height:1.45}
+.ins p em{font-style:normal;color:var(--gold-lt)}
+
+/* ---------- kategori ---------- */
+.krow{display:grid;grid-template-columns:1fr auto 62px 66px;gap:.6rem;align-items:center;
+  padding:.5rem 1.1rem;border-bottom:1px solid rgba(10,22,40,.06);font-size:.75rem}
+.krow:last-child{border-bottom:0}
+.krow.h{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--p45);padding-top:.65rem;padding-bottom:.55rem}
+.krow .kn{display:flex;align-items:center;gap:.45rem;min-width:0}
+.krow .kn i{width:7px;height:7px;border-radius:2px;background:var(--gold);flex:none;opacity:.8}
+.krow .kv{font-weight:600;font-variant-numeric:tabular-nums}
+.krow .kc{font-size:.7rem;text-align:right;font-variant-numeric:tabular-nums}
+.krow svg{width:66px;height:20px;display:block}
+
+/* ---------- logg ---------- */
+.lg{display:flex;gap:.65rem;padding:.7rem 1.1rem;border-bottom:1px solid rgba(10,22,40,.06)}
+.lg:last-child{border-bottom:0}
+.lg .l-i{width:24px;height:24px;border-radius:6px;background:var(--navy-4);display:grid;place-items:center;flex:none}
+.lg .l-i svg{width:13px;height:13px;stroke:var(--gold-lt);fill:none;stroke-width:1.6}
+.lg b{display:block;font-size:.74rem;font-weight:500}
+.lg span{font-size:.65rem;color:var(--p28)}
+.lg time{margin-left:auto;font-size:.62rem;color:var(--p28);white-space:nowrap;padding-top:.1rem}
+
+/* ---------- simulering ---------- */
+.sim{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:1px;background:var(--line)}
+.sc{background:var(--navy-2);padding:.9rem 1rem;display:flex;flex-direction:column;gap:.25rem}
+.sc .s-l{font-size:.66rem;color:var(--p45)}
+.sc .s-v{font-family:var(--display);font-size:1.55rem;font-weight:500;line-height:1.1}
+.sc .s-d{font-size:.64rem}
+.sc .spark{width:100%;height:24px;margin-top:.3rem}
+.donut{display:flex;align-items:center;gap:1rem;padding:1.1rem;flex-wrap:wrap}
+.donut svg{width:118px;height:118px;flex:none}
+.dl{display:flex;flex-direction:column;gap:.4rem;font-size:.74rem}
+.dl b{display:flex;align-items:center;gap:.45rem;font-weight:400}
+.dl b i{width:9px;height:9px;border-radius:2px;flex:none}
+.dl b u{text-decoration:none;margin-left:auto;font-weight:600;padding-left:.6rem}
+.dl b span{color:var(--p28);font-size:.68rem}
+
+/* ---------- prisregler / historik ---------- */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line)}
+.rule{background:var(--navy-2);padding:1rem 1.1rem}
+.rule label{display:block;font-size:.7rem;color:var(--p70);margin-bottom:.5rem}
+.rule .ri{display:flex;align-items:center;gap:.5rem}
+.rule input{width:74px;background:var(--navy);border:1px solid var(--line-2);border-radius:var(--r);
+  padding:.42rem .55rem;font-size:.86rem;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.rule input:focus{outline:none;border-color:var(--gold)}
+.rule .ru{font-size:.7rem;color:var(--p45)}
+.rule p{font-size:.66rem;color:var(--p28);margin-top:.5rem;line-height:1.45}
+.lim{display:grid;grid-template-columns:1fr 108px 108px 108px;gap:.6rem;align-items:center;padding:.5rem 1.1rem;
+  border-bottom:1px solid rgba(10,22,40,.06);font-size:.75rem}
+.lim.h{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--p45)}
+.lim input{width:100%;background:var(--navy);border:1px solid var(--line);border-radius:var(--r);
+  padding:.35rem .5rem;font-size:.76rem;text-align:right;font-variant-numeric:tabular-nums}
+.lim input:focus{outline:none;border-color:var(--gold)}
+.lim .cur{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.warnrow{color:var(--warn);font-size:.66rem}
+.hbar{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.1rem;border-bottom:1px solid rgba(10,22,40,.06)}
+.ghost{border:1px solid var(--line-2);border-radius:var(--r);padding:.42rem .7rem;font-size:.7rem;color:var(--p70);transition:.2s}
+.ghost:hover{border-color:var(--gold);color:var(--paper)}
+.empty{padding:2.2rem 1.1rem;text-align:center;color:var(--p28);font-size:.78rem}
+
+/* ---------- drawer ---------- */
+.scrim{position:fixed;inset:0;background:rgba(6,8,18,.62);backdrop-filter:blur(3px);opacity:0;pointer-events:none;
+  transition:.3s;z-index:60}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(478px,100%);background:var(--navy-2);
+  border-left:1px solid var(--line-2);z-index:61;transform:translateX(100%);transition:transform .38s var(--ease);
+  display:flex;flex-direction:column;box-shadow:-30px 0 60px -30px rgba(10,22,40,.25)}
+.drawer.on{transform:none}
+.dh{padding:1.15rem 1.3rem 1rem;border-bottom:1px solid var(--line);display:flex;gap:.8rem;align-items:flex-start}
+.dh h3{font-family:var(--display);font-size:1.4rem;font-weight:600;line-height:1.15}
+.dh span{font-size:.66rem;color:var(--p28);letter-spacing:.04em}
+.dh .x{margin-left:auto;width:28px;height:28px;border-radius:var(--r);color:var(--p45);font-size:1.1rem;
+  display:grid;place-items:center;transition:.2s;flex:none}
+.dh .x:hover{background:var(--navy-4);color:var(--paper)}
+.dc{overflow-y:auto;padding:1.15rem 1.3rem 1.6rem;display:flex;flex-direction:column;gap:1.15rem;flex:1}
+.dsec h5{font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dk);
+  display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem}
+.dsec h5::before{content:'';width:16px;height:1px;background:var(--gold-dk)}
+.price{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
+.price .pb{background:var(--navy-3);border:1px solid var(--line);border-radius:var(--r-lg);padding:.7rem .85rem;flex:1;min-width:120px}
+.price .pb span{display:block;font-size:.62rem;color:var(--p45);margin-bottom:.15rem}
+.price .pb b{font-family:var(--display);font-size:1.3rem;font-weight:500;font-variant-numeric:tabular-nums}
+.price .arw{color:var(--gold);font-size:1.1rem}
+.ai{background:linear-gradient(155deg,rgba(16,185,129,.10),rgba(16,185,129,.02));
+  border:1px solid var(--line-2);border-radius:var(--r-lg);padding:.95rem 1rem}
+.ai .aih{display:flex;align-items:center;gap:.45rem;font-size:.62rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold-lt);margin-bottom:.55rem}
+.ai .aih svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.6}
+.ai p{font-size:.8rem;line-height:1.6;color:var(--paper)}
+.ai p+p{margin-top:.6rem;color:var(--p70)}
+.ai .fine{margin-top:.7rem;font-size:.62rem;color:var(--p28);letter-spacing:.02em}
+.sig{display:flex;flex-direction:column;gap:.55rem}
+.sg{display:grid;grid-template-columns:120px 1fr 46px;gap:.6rem;align-items:center;font-size:.72rem}
+.sg .sn{color:var(--p70)}
+.sg .sb{height:7px;background:var(--navy-4);border-radius:4px;position:relative;overflow:hidden}
+.sg .sb::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--p28)}
+.sg .sb i{position:absolute;top:0;bottom:0;border-radius:3px}
+.sg .sv{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.sg .sw2{grid-column:1/-1;font-size:.6rem;color:var(--p28);margin-top:-.35rem}
+.kv{display:grid;grid-template-columns:1fr auto;gap:.4rem .8rem;font-size:.75rem}
+.kv .k{color:var(--p45)}
+.kv .v{text-align:right;font-weight:500;font-variant-numeric:tabular-nums}
+.gr{display:flex;flex-direction:column;gap:.45rem;font-size:.73rem}
+.gr div{display:flex;gap:.5rem;align-items:flex-start;color:var(--p70)}
+.gr div svg{width:13px;height:13px;flex:none;margin-top:3px;stroke:currentColor;fill:none;stroke-width:2}
+.gr .pass{color:var(--p70)}.gr .block{color:var(--warn)}
+.hist{display:flex;flex-direction:column;gap:.5rem}
+.he{border-left:2px solid var(--line-2);padding:.1rem 0 .1rem .7rem}
+.he b{font-size:.74rem;font-weight:600}
+.he span{display:block;font-size:.66rem;color:var(--p45)}
+.he em{font-style:normal;color:var(--p28);font-size:.62rem}
+.df{padding:1rem 1.3rem;border-top:1px solid var(--line);display:flex;gap:.6rem;background:var(--navy-2)}
+.df button{flex:1;padding:.65rem;border-radius:var(--r);font-size:.78rem;font-weight:600;transition:.2s}
+.df .ap{background:var(--smaragd);color:var(--ink)}
+.df .ap:hover{background:#34D399}
+.df .rj{border:1px solid var(--line-2);color:var(--p70)}
+.df .rj:hover{border-color:var(--dgr);color:var(--dgr)}
+.df .locked{flex:1;text-align:center;font-size:.72rem;color:var(--info);padding:.65rem;
+  background:rgba(3,105,161,.08);border:1px solid rgba(3,105,161,.25);border-radius:var(--r)}
+.df .done{flex:1;text-align:center;font-size:.72rem;color:var(--p45);padding:.65rem}
+
+/* ---------- toast ---------- */
+.toasts{position:fixed;bottom:1.2rem;right:1.2rem;z-index:80;display:flex;flex-direction:column;gap:.5rem;align-items:flex-end}
+.toast{background:var(--navy-3);border:1px solid var(--line-2);border-left:3px solid var(--gold);border-radius:var(--r);
+  padding:.65rem .9rem;font-size:.76rem;max-width:330px;box-shadow:0 20px 40px -24px rgba(10,22,40,.25);
+  animation:tin .3s var(--ease)}
+.toast b{display:block;font-weight:600;margin-bottom:.1rem}
+.toast span{color:var(--p70);font-size:.7rem}
+.toast.ok{border-left-color:var(--ok)}.toast.no{border-left-color:var(--dgr)}
+@keyframes tin{from{opacity:0;transform:translateX(20px)}}
+.pulse{animation:pl .9s var(--ease)}
+@keyframes pl{0%{opacity:.35}100%{opacity:1}}
+.hide{display:none!important}
+
+/* ==========================================================================
+   REEL-LÄGE (?reel) — fast 9:16-scen på 540x960 som skalas till skärmen.
+   Croppa en gång i OBS/CapCut, sedan behövs ingen pan och ingen zoom.
+   ========================================================================== */
+html.reel,html.reel body{background:#000;height:100%}
+html.reel body{display:block}
+html.reel .side,html.reel .top,html.reel #drawer,html.reel .scrim{display:none!important}
+html.reel main{min-height:100vh;display:grid;place-items:center;overflow:hidden}
+html.reel .body{display:block;padding:0;grid-template-columns:none}
+.stage{width:540px;height:960px;background:var(--navy);position:relative;overflow:hidden;
+  transform-origin:center;box-shadow:0 0 0 1px rgba(10,22,40,.12);display:flex;flex-direction:column}
+.stage *{scrollbar-width:none}
+.stage *::-webkit-scrollbar{display:none}
+.r-top{padding:20px 18px 12px;display:flex;align-items:center;gap:10px;flex:none;
+  border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(16,185,129,.06),transparent)}
+.r-top .mark{width:30px;height:30px;font-size:1rem;border-radius:5px}
+.r-top h1{font-family:var(--display);font-size:20px;font-weight:600;line-height:1.05}
+.r-top h1 em{font-style:normal;color:var(--gold-lt)}
+.r-top h1 span{display:block;font-family:var(--sans);font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--p45);margin-top:1px}
+.r-per{margin-left:auto;font-size:11px;color:var(--gold-lt);border:1px solid var(--line-2);
+  border-radius:20px;padding:4px 10px;white-space:nowrap}
+.r-scroll{flex:1;overflow-y:auto;padding:14px 18px 96px}
+.r-kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.r-kpi{background:var(--navy-2);border:1px solid var(--line);border-radius:9px;padding:11px 12px}
+.r-kpi span{display:block;font-size:10.5px;color:var(--p45);letter-spacing:.04em}
+.r-kpi b{display:block;font-family:var(--display);font-size:25px;font-weight:500;line-height:1.15;margin:1px 0}
+.r-kpi u{text-decoration:none;font-size:10.5px;font-weight:600}
+.r-lbl{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold-dk);margin:0 0 10px}
+.r-lbl::before{content:'';width:18px;height:1px;background:var(--gold-dk)}
+.r-lbl i{margin-left:auto;font-style:normal;font-size:10px;letter-spacing:.04em;text-transform:none;color:var(--p45)}
+.r-card{background:var(--navy-2);border:1px solid var(--line);border-radius:11px;padding:12px 13px;
+  margin-bottom:9px;cursor:pointer;transition:.2s var(--ease)}
+.r-card:active{transform:scale(.985)}
+.r-card.hl{border-color:var(--line-2);background:var(--navy-3)}
+.r-c1{display:flex;align-items:center;gap:10px}
+.r-c1 .ico{width:34px;height:34px;border-radius:8px}
+.r-c1 .ico svg{width:18px;height:18px}
+.r-c1 b{font-size:14.5px;font-weight:500;line-height:1.25;display:block}
+.r-c1 span{font-size:10px;color:var(--p28);letter-spacing:.05em}
+.r-c1 .r-act{margin-left:auto;flex:none;text-align:right}
+.r-c1 .r-act .act{font-size:10.5px;padding:4px 7px}
+.r-c2{display:flex;gap:14px;margin:10px 0 9px;padding:9px 0;border-top:1px solid rgba(10,22,40,.07);
+  border-bottom:1px solid rgba(10,22,40,.07)}
+.r-c2 div{min-width:0}
+.r-c2 span{display:block;font-size:9.5px;color:var(--p45);letter-spacing:.05em;text-transform:uppercase}
+.r-c2 b{display:block;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.3}
+.r-c2 b i{font-style:normal;font-size:10px;font-weight:500}
+.r-c3{display:flex;align-items:center;gap:9px}
+.r-c3 .p1{font-size:13px;color:var(--p45);text-decoration:line-through;font-variant-numeric:tabular-nums}
+.r-c3 .p2{font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}
+.r-c3 .p0{font-size:15px;font-weight:600;color:var(--p70);font-variant-numeric:tabular-nums}
+.r-c3 .arw{color:var(--gold);font-size:13px}
+.r-c3 .rr{margin-left:auto;display:flex;align-items:center;gap:7px}
+.r-c3 .rr .ring{width:30px;height:30px}
+.r-c3 .rr em{font-style:normal;font-size:9.5px;color:var(--p45);text-align:right;line-height:1.2;max-width:52px}
+.r-ins{background:var(--navy-2);border:1px solid var(--line);border-radius:11px;padding:11px 12px;
+  margin-bottom:9px;display:flex;gap:10px}
+.r-ins .i-i{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;flex:none}
+.r-ins .i-i svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
+.r-ins b{display:block;font-size:12.5px;font-weight:600;margin-bottom:2px}
+.r-ins p{font-size:11px;color:var(--p70);line-height:1.45}
+.r-bot{position:absolute;left:0;right:0;bottom:0;padding:14px 18px 18px;display:flex;align-items:center;gap:10px;
+  background:linear-gradient(180deg,transparent,rgba(248,250,252,.96) 42%);z-index:12}
+.r-bot .run{flex:1;justify-content:center;font-size:13px;padding:11px}
+.r-bot .run svg{width:15px;height:15px}
+.r-bot .sw{width:40px;height:21px}
+.r-bot .sw::after{width:15px;height:15px}
+.r-bot .sw.on::after{left:21px}
+.r-bot small{font-size:9.5px;color:var(--p45);letter-spacing:.06em;text-transform:uppercase;line-height:1.2;max-width:52px}
+.r-ov{position:absolute;inset:0;background:var(--navy);z-index:15;display:flex;flex-direction:column;
+  transform:translateY(100%);transition:transform .34s var(--ease)}
+.r-ov.on{transform:none}
+.r-oh{padding:18px 18px 13px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center;flex:none}
+.r-oh .ico{width:34px;height:34px}
+.r-oh h3{font-family:var(--display);font-size:19px;font-weight:600;line-height:1.15}
+.r-oh span{font-size:10px;color:var(--p28);letter-spacing:.05em}
+.r-oh .x{margin-left:auto;width:28px;height:28px;border-radius:6px;color:var(--p45);display:grid;place-items:center;flex:none;font-size:15px}
+.r-oc{flex:1;overflow-y:auto;padding:15px 18px 20px;display:flex;flex-direction:column;gap:15px}
+.r-oc .price .pb{padding:9px 11px;border-radius:9px}
+.r-oc .price .pb span{font-size:10px}
+.r-oc .price .pb b{font-size:19px}
+.r-oc .ai{padding:13px}
+.r-oc .ai .aih{font-size:10px;margin-bottom:8px}
+.r-oc .ai p{font-size:12.5px;line-height:1.62}
+.r-oc .ai .fine{font-size:9.5px}
+.r-oc .dsec h5{font-size:10px;margin-bottom:9px}
+.r-oc .sg{grid-template-columns:104px 1fr 40px;font-size:11px}
+.r-oc .sg .sw2{font-size:9.5px}
+.r-oc .kv{font-size:12px}
+.r-oc .gr{font-size:11.5px}
+.r-of{padding:13px 18px 18px;border-top:1px solid var(--line);display:flex;gap:9px;flex:none}
+.r-of button{flex:1;padding:12px;border-radius:7px;font-size:13.5px;font-weight:600}
+.r-of .ap{background:var(--smaragd);color:var(--ink)}
+.r-of .rj{border:1px solid var(--line-2);color:var(--p70)}
+.r-of .locked,.r-of .done{flex:1;text-align:center;font-size:12px;padding:12px;color:var(--info)}
+.r-of .done{color:var(--p45)}
+html.reel #toasts{position:absolute;left:18px;right:18px;bottom:80px;align-items:stretch;z-index:20}
+html.reel .toast{max-width:none;font-size:12.5px;padding:11px 13px}
+html.reel .toast span{font-size:11px}
+
+@media(max-width:1180px){.body{grid-template-columns:1fr}}
+@media(max-width:900px){
+  body{grid-template-columns:1fr}
+  .side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;overflow:visible}
+  .side nav{flex-direction:row;flex-wrap:wrap;flex:1}
+  .side .spanel,.side .auto,.side-sp,.byline{display:none}
+  .top h2{font-size:1.45rem}
+}
+</style>
+</head>
+<body>
+
+<aside class="side">
+  <div class="lock">
+    <div class="mark"><img src="/brand/mark.svg" alt=""></div>
+    <div>
+      <h1>Pris<em>Motor</em></h1>
+      <span>Dynamisk prissättning</span>
+    </div>
+  </div>
+
+  <nav id="nav"></nav>
+
+  <div class="side-sp"></div>
+
+  <div class="spanel" id="impact"></div>
+
+  <div class="auto">
+    <div class="auto-t">
+      <b>Autoläge <i id="autoTxt">AV</i></b>
+      <button class="sw" id="autoSw" aria-label="Autoläge"></button>
+    </div>
+    <p id="autoP"></p>
+    <button class="go" id="review">Granska nu
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <div class="byline"><div class="m2"><img src="/brand/mark.svg" alt=""></div> Byggd av Bahko Byrå</div>
+</aside>
+
+<main>
+  <header class="top">
+    <div>
+      <h2 id="vTitle">Prissättningsöversikt</h2>
+      <p id="vSub">Riktpriser som följer efterfrågan, kalender och offertutfall.</p>
+    </div>
+    <div class="tools">
+      <span class="pill" id="periodLbl" style="cursor:default"></span>
+      <div class="seg" id="periodSeg">
+        <button data-p="7" class="on">7 dagar</button>
+        <button data-p="14">14 dagar</button>
+      </div>
+      <select class="pill" id="katSel" aria-label="Filtrera yrkesgren"></select>
+      <button class="run" id="runBtn">
+        <svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></svg>
+        Kör prisanalys
+      </button>
+    </div>
+    <div class="stamp" id="stamp"></div>
+  </header>
+
+  <div class="body" id="body"></div>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true"></aside>
+<div class="toasts" id="toasts"></div>
+
+<script>
+/* ==========================================================================
+   PrisMotor — dynamisk prissättning för byggföretag
+   Ett bygge av Bahko Byrå. All data är seedad och deterministisk: samma
+   siffror varje gång filen öppnas, så bygget går att filma om.
+   ========================================================================== */
+
+/* ---------- 0. grund ---------- */
+const TODAY = new Date(2026, 6, 28);           // fixerad "idag" = 28 juli 2026
+const DAYS  = 28;                              // 28 dagars händelsehistorik
+const nfk   = new Intl.NumberFormat('sv-SE');
+const kr    = v => nfk.format(Math.round(v)) + ' kr';
+const pct   = (v, d = 1) => (v * 100).toFixed(d).replace('.', ',') + ' %';
+const pp    = (v, d = 1) => (v >= 0 ? '+' : '') + (v * 100).toFixed(d).replace('.', ',') + ' pe';
+const num   = (v, d = 1) => v.toFixed(d).replace('.', ',');
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const sum   = a => a.reduce((x, y) => x + y, 0);
+const median = a => { const s = [...a].sort((x, y) => x - y); const m = s.length >> 1;
+  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+const dstr = d => d.toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' });
+const dagSedan = n => { const d = new Date(TODAY); d.setDate(d.getDate() - n); return d; };
+
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+const IKON = {
+  tak:'<path d="M3 11l9-7 9 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/>',
+  mark:'<path d="M4 20h16"/><path d="M7 20V9l5-4 5 4v11"/><path d="M3 14c3-2 5 2 8 0s6 2 8 0"/>',
+  bygg:'<path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-6h6v6"/><path d="M9 11h.01M15 11h.01"/>',
+  maleri:'<path d="M5 3h14v6H5z"/><path d="M12 9v4"/><path d="M9 13h6v8H9z"/>'
+};
+const KATNAMN = { tak:'Tak', mark:'Mark & anläggning', bygg:'Bygg & renovering', maleri:'Måleri' };
+
+/* ---------- 1. tjänsteutbud + beteendeprofiler ----------
+   ledig  = lediga veckor i kalendern av kommande 8 (motsvarar lagernivå)
+   pf     = andel besökare som påbörjar en offertförfrågan
+   win    = andel skickade förfrågningar som blir vunna jobb
+   avhopp = andel påbörjade förfrågningar som aldrig skickas
+   trend  = riktning över perioden (-1 fallande … +1 stigande)                */
+const UTBUD = [
+  { id:'tak-plat',   namn:'Takbyte plåt 120 kvm',        ref:'TAK-PLT-120', kat:'tak',    pris:189000, min:165000, max:225000, ledig:1, andrad:34,  views:206, pf:.085, win:.34, avhopp:.16, trend: .55 },
+  { id:'tak-tegel',  namn:'Takomläggning tegel',         ref:'TAK-TGL-090', kat:'tak',    pris:165000, min:145000, max:196000, ledig:2, andrad:61,  views:168, pf:.072, win:.30, avhopp:.19, trend: .30 },
+  { id:'dranering',  namn:'Dränering villa',             ref:'MRK-DRN-030', kat:'mark',   pris:128000, min:112000, max:150000, ledig:1, andrad:9,   views:192, pf:.090, win:.36, avhopp:.14, trend: .62 },
+  { id:'badrum',     namn:'Badrumsrenovering 6 kvm',     ref:'BYG-BAD-006', kat:'bygg',   pris:168000, min:145000, max:198000, ledig:3, andrad:47,  views:318, pf:.078, win:.11, avhopp:.36, trend: .08 },
+  { id:'kok',        namn:'Köksrenovering nyckelfärdig', ref:'BYG-KOK-001', kat:'bygg',   pris:245000, min:215000, max:290000, ledig:4, andrad:52,  views:296, pf:.017, win:.29, avhopp:.20, trend: .05 },
+  { id:'sten',       namn:'Stenläggning uppfart',        ref:'MRK-STN-080', kat:'mark',   pris: 74000, min: 62000, max: 92000, ledig:6, andrad:39,  views: 96, pf:.046, win:.16, avhopp:.27, trend:-.50 },
+  { id:'inv-mal',    namn:'Invändig målning lägenhet',   ref:'MAL-INV-070', kat:'maleri', pris: 38000, min: 31000, max: 48000, ledig:7, andrad:44,  views: 88, pf:.052, win:.19, avhopp:.24, trend:-.62 },
+  { id:'fasad',      namn:'Fasadmålning villa',          ref:'MAL-FSD-140', kat:'maleri', pris: 96000, min: 84000, max:118000, ledig:3, andrad:58,  views:140, pf:.062, win:.27, avhopp:.20, trend: .18 },
+  { id:'altan',      namn:'Altanbygge med trall',        ref:'BYG-ALT-030', kat:'bygg',   pris: 82000, min: 70000, max:100000, ledig:4, andrad:71,  views:152, pf:.058, win:.24, avhopp:.21, trend: .12 },
+  { id:'fonster',    namn:'Fönsterbyte 8 fönster',       ref:'BYG-FNS-008', kat:'bygg',   pris:112000, min: 98000, max:132000, ledig:4, andrad:6,   views:130, pf:.060, win:.25, avhopp:.22, trend:-.10 },
+  { id:'isolering',  namn:'Tilläggsisolering vind',      ref:'BYG-ISO-120', kat:'bygg',   pris: 58000, min: 49000, max: 72000, ledig:2, andrad:66,  views:146, pf:.080, win:.33, avhopp:.15, trend: .48 },
+  { id:'snoskott',   namn:'Snöskottning tak',            ref:'TAK-SNO-001', kat:'tak',    pris:  9500, min:  8000, max: 14000, ledig:8, andrad:190, views:  9, pf:.030, win:.20, avhopp:.30, trend:-.20 }
+];
+
+/* ---------- 2. händelsegenerering (visning → förfrågan → jobb) ---------- */
+function generera(p, seed) {
+  const rng = mulberry32(seed);
+  const dagar = [];
+  /* Sällsynta händelser (en offert varannan dag) får inte avrundas bort per dag,
+     då hade halva utbudet visat 0 % konvertering. Bråkdelen bärs vidare istället. */
+  const carry = { p: 0, a: 0, v: 0 };
+  const tick = (k, v, tak = Infinity) => {
+    carry[k] += v;
+    const n = Math.min(tak, Math.floor(carry[k]));
+    carry[k] -= n;
+    return Math.max(0, n);
+  };
+  for (let d = 0; d < DAYS; d++) {
+    const datum   = dagSedan(DAYS - 1 - d);
+    const helg    = [0, 6].includes(datum.getDay());
+    const ramp    = 1 + p.trend * ((d - (DAYS - 1) / 2) / ((DAYS - 1) / 2)) * .45;
+    const visningar = Math.max(0, Math.round(p.views / 7 * ramp * (helg ? 1.14 : .96) * (.78 + .44 * rng())));
+    const paborjade = tick('p', visningar * p.pf * (helg ? .82 : 1.06) * (.8 + .4 * rng()));
+    const avbrutna  = tick('a', paborjade * p.avhopp * (.75 + .5 * rng()), paborjade);
+    const skickade  = paborjade - avbrutna;
+    const vunna     = tick('v', skickade * p.win * (.7 + .6 * rng()), skickade);
+    dagar.push({ datum, visningar, paborjade, avbrutna, skickade, vunna });
+  }
+  return dagar;
+}
+
+/* ---------- 3. tillstånd ---------- */
+const LS = 'prismotor_v1';
+const state = {
+  vy: 'oversikt', period: 7, kat: 'alla', auto: false, valdId: null, korning: 0,
+  regler: { maxSteg: 8, kylperiod: 14, godkTroskel: 5, avrundning: 500, minVisningar: 60 },
+  beslut: {}, historik: [], logg: []
+};
+
+const tjanster = UTBUD.map((p, i) => ({
+  ...p, ursprungspris: p.pris, dagar: generera(p, 1337 + i * 977)
+}));
+const T = id => tjanster.find(t => t.id === id);
+
+/* fröhistorik: fyra tidigare beslut så loggen inte startar tom */
+function seedHistorik() {
+  const h = [
+    { id:'dranering', dagar:9,  fran:120000, till:128000, typ:'hoj',  orsak:'Kapacitetsbrist: 1 ledig vecka mot 4 i snitt, efterfrågan 84.', conf:.89, beslut:'Godkänd', av:'Mathias' },
+    { id:'fonster',   dagar:6,  fran:118000, till:112000, typ:'sank', orsak:'Låg offertkonvertering och fem lediga veckor i kalendern.',      conf:.74, beslut:'Godkänd', av:'Mathias' },
+    { id:'sten',      dagar:17, fran:78000,  till:74000,  typ:'sank', orsak:'Fallande säljtempo, överkapacitet i kalendern.',                 conf:.71, beslut:'Godkänd', av:'Autoläge' },
+    { id:'badrum',    dagar:23, fran:168000, till:176000, typ:'hoj',  orsak:'Höga visningstal tolkades som köpvilja.',                        conf:.58, beslut:'Avslagen', av:'Mathias' }
+  ];
+  return h.map(x => ({
+    ts: dagSedan(x.dagar), tjanstId: x.id, tjanst: T(x.id).namn, fran: x.fran, till: x.till,
+    typ: x.typ, orsak: x.orsak, conf: x.conf, beslut: x.beslut, av: x.av
+  }));
+}
+state.historik = seedHistorik();
+state.logg = [
+  { ts: new Date(2026, 6, 28, 10, 24), ikon:'spark', rubrik:'Prisanalys genomförd', text:`${tjanster.length} tjänster analyserade på 28 dagars beteendedata` },
+  { ts: new Date(2026, 6, 28, 10, 24), ikon:'tag',   rubrik:'Rekommendationer genererade', text:'Väntar på granskning' },
+  { ts: dagSedan(6),                   ikon:'rule',  rubrik:'Prisregel uppdaterad', text:'Kylperiod satt till 14 dagar' },
+  { ts: dagSedan(9),                   ikon:'check', rubrik:'Prisändring tillämpad', text:'Dränering villa: 120 000 kr → 128 000 kr' }
+];
+
+/* ---------- 4. spara/läs ---------- */
+function spara() {
+  try {
+    localStorage.setItem(LS, JSON.stringify({
+      regler: state.regler, auto: state.auto, beslut: state.beslut,
+      historik: state.historik.map(h => ({ ...h, ts: h.ts.toISOString() })),
+      logg: state.logg.map(l => ({ ...l, ts: l.ts.toISOString() })),
+      priser: tjanster.map(t => ({ id: t.id, pris: t.pris, andrad: t.andrad, min: t.min, max: t.max }))
+    }));
+  } catch (e) { /* privat läge: kör vidare utan persistens */ }
+}
+function las() {
+  try {
+    const raw = localStorage.getItem(LS); if (!raw) return;
+    const d = JSON.parse(raw);
+    Object.assign(state.regler, d.regler || {});
+    state.auto = !!d.auto; state.beslut = d.beslut || {};
+    if (d.historik) state.historik = d.historik.map(h => ({ ...h, ts: new Date(h.ts) }));
+    if (d.logg) state.logg = d.logg.map(l => ({ ...l, ts: new Date(l.ts) }));
+    (d.priser || []).forEach(p => { const t = T(p.id); if (t) { t.pris = p.pris; t.andrad = p.andrad; t.min = p.min; t.max = p.max; } });
+  } catch (e) { /* trasig cache: ignorera */ }
+}
+las();
+
+/* ---------- 5. mätvärden per tjänst och period ---------- */
+function slice(t, n, offset = 0) {
+  const start = DAYS - n - offset, end = DAYS - offset;
+  return t.dagar.slice(Math.max(0, start), end);
+}
+function aggregera(rader) {
+  const f = k => sum(rader.map(r => r[k]));
+  return { visningar:f('visningar'), paborjade:f('paborjade'), avbrutna:f('avbrutna'), skickade:f('skickade'), vunna:f('vunna') };
+}
+
+function matvarden(t) {
+  const n = state.period;
+  const nu = aggregera(slice(t, n)), forra = aggregera(slice(t, n, n));
+  const visPerDag = nu.visningar / n, forfPerDag = nu.skickade / n;
+  const pfRate  = nu.visningar ? nu.paborjade / nu.visningar : 0;
+  const konv    = nu.skickade ? nu.vunna / nu.skickade : 0;
+  const avhopp  = nu.paborjade ? nu.avbrutna / nu.paborjade : 0;
+  const oms     = nu.vunna * t.pris;
+  const senaste3 = aggregera(slice(t, 3)), tidigare = aggregera(slice(t, n - 3, 3));
+  const mom = (tidigare.visningar / Math.max(1, n - 3)) > 0
+    ? (senaste3.visningar / 3) / (tidigare.visningar / Math.max(1, n - 3)) - 1 : 0;
+  const velNu = nu.vunna / n * 7, velForra = forra.vunna / n * 7;
+  const velTrend = velForra > 0 ? velNu / velForra - 1 : (velNu > 0 ? .5 : 0);
+  return { n, nu, forra, visPerDag, forfPerDag, pfRate, konv, avhopp, oms, mom, velNu, velForra, velTrend,
+    ledigAndel: t.ledig / 8, forlorade: nu.skickade - nu.vunna };
+}
+
+/* katalogens referensnivåer — allt bedöms relativt utbudet, inte mot magiska tal */
+function referens(alla) {
+  const med = alla.filter(x => x.m.nu.visningar >= 20);
+  const g = f => med.length ? median(med.map(f)) : 0;
+  return {
+    visPerDag: g(x => x.m.visPerDag), forfPerDag: g(x => x.m.forfPerDag),
+    pfRate: g(x => x.m.pfRate), konv: g(x => x.m.konv), avhopp: g(x => x.m.avhopp)
+  };
+}
+
+/* efterfrågeindex 0–100: visningar + förfrågningar mot katalogens median, med momentum */
+function efterfragan(m, ref) {
+  const v = ref.visPerDag ? m.visPerDag / ref.visPerDag : 0;
+  const f = ref.forfPerDag ? m.forfPerDag / ref.forfPerDag : 0;
+  const index = .40 * v + .60 * f;
+  const bas = 50 * Math.pow(Math.max(index, .04), .78);
+  return Math.round(clamp(bas + clamp(m.mom, -.5, .5) * 18, 0, 100));
+}
+const efterfraganText = d => d >= 80 ? ['Mycket hög', 'up'] : d >= 65 ? ['Hög', 'up']
+  : d >= 45 ? ['Medel', 'flat'] : d >= 25 ? ['Låg', 'down'] : ['Mycket låg', 'down'];
+const kapacitetText = a => a <= .13 ? ['Fullbokat', 'up'] : a <= .26 ? ['Låg', 'up']
+  : a <= .50 ? ['Medel', 'flat'] : ['Hög', 'down'];
+const konvText = (k, ref) => k >= ref.konv * 1.35 ? ['Hög', 'up'] : k >= ref.konv * .85 ? ['Medel', 'flat']
+  : k >= ref.konv * .5 ? ['Låg', 'down'] : ['Mycket låg', 'down'];
+
+/* ---------- 6. signalerna ----------
+   Fem signaler, var och en normaliserad till -1…+1. Ingen enskild signal får
+   flytta ett pris på egen hand — det är hela poängen med motorn.            */
+function signaler(t, m, ref, demand) {
+  const s = [
+    { namn:'Efterfrågan',      vikt:.28, v: clamp((demand - 50) / 50, -1, 1),
+      text:`${demand}/100 mot katalogens median` },
+    { namn:'Offertkonvertering', vikt:.22, v: ref.konv ? clamp((m.konv - ref.konv) / (ref.konv * .9), -1, 1) : 0,
+      text:`${pct(m.konv)} vunna av skickade offerter (median ${pct(ref.konv)})` },
+    { namn:'Kalendertryck',    vikt:.24, v: clamp((.45 - m.ledigAndel) / .45, -1, 1),
+      text:`${t.ledig} lediga veckor av 8` },
+    { namn:'Säljtempo',        vikt:.16, v: clamp(m.velTrend / .6, -1, 1),
+      text:`${num(m.velNu, 1)} jobb/vecka mot ${num(m.velForra, 1)} föregående period` },
+    { namn:'Prisfriktion',     vikt:.10, v: ref.avhopp ? clamp(-(m.avhopp - ref.avhopp) / (ref.avhopp * .8), -1, 1) : 0,
+      text:`${pct(m.avhopp)} avbryter förfrågan (median ${pct(ref.avhopp)})` }
+  ];
+  return s;
+}
+const poang = s => Math.round(100 * sum(s.map(x => x.v * x.vikt)));
+
+/* ---------- 7. diagnos + rekommendation ---------- */
+function rekommendera(t, m, ref, demand, sig) {
+  const R = state.regler, score = poang(sig);
+  const period = state.period;
+  const minVis = R.minVisningar * (period / 7);
+  const lagKonv = m.konv < ref.konv * .6;
+  const hogtAvhopp = m.avhopp > ref.avhopp * 1.35;
+  const lagPfRate = m.pfRate < ref.pfRate * .45;
+  const tomKalender = m.ledigAndel >= .6;
+
+  let typ = score >= 18 ? 'hoj' : score <= -18 ? 'sank' : 'oforandrat';
+  let diagnos = typ === 'hoj' ? 'prispotential' : typ === 'sank' ? 'svag-efterfragan' : 'balanserad';
+  let flagga = null;
+
+  /* Klausul 1: för lite underlag slår allt annat. */
+  if (m.nu.visningar < minVis) { typ = 'oforandrat'; diagnos = 'lite-data'; }
+
+  /* Klausul 2: många besökare men nästan ingen påbörjar en förfrågan.
+     Det är inte ett prisproblem, det är ett presentationsproblem. Priset rörs inte. */
+  else if (lagPfRate && demand >= 45) {
+    typ = 'oforandrat'; diagnos = 'presentation';
+    flagga = 'Tjänstesidan konverterar inte till förfrågan. Åtgärda innehållet före priset.';
+  }
+
+  /* Klausul 3: hög efterfrågan, låg konvertering, högt avhopp = priset skaver. */
+  else if (demand >= 60 && lagKonv && hogtAvhopp) { typ = 'sank'; diagnos = 'prisfriktion'; }
+
+  /* Klausul 4: fallande tempo och en kalender med hål. */
+  else if (typ === 'sank' && tomKalender) diagnos = 'overkapacitet';
+
+  /* Klausul 5: stigande efterfrågan mot nästan full kalender. */
+  else if (typ === 'hoj' && m.ledigAndel <= .26) diagnos = 'kapacitetsbrist';
+
+  /* prisförslag: score → procent, kapat av maxsteg, golv och tak */
+  let deltaPct = 0, nyttPris = t.pris, kapadAv = [];
+  if (typ !== 'oforandrat') {
+    const rat = typ === 'sank' && diagnos === 'prisfriktion' ? Math.min(score, -20) : score;
+    let p = clamp(rat / 100 * R.maxSteg * 1.7, -R.maxSteg, R.maxSteg);
+    if (typ === 'sank' && p > -1) p = -1;
+    if (typ === 'hoj' && p < 1) p = 1;
+    let np = Math.round(t.pris * (1 + p / 100) / R.avrundning) * R.avrundning;
+    if (np > t.max) { np = t.max; kapadAv.push('takpris'); }
+    if (np < t.min) { np = t.min; kapadAv.push('golvpris'); }
+    if (Math.abs(p) >= R.maxSteg - .2) kapadAv.push(`maxsteg ${R.maxSteg} %`);
+    nyttPris = np; deltaPct = (np - t.pris) / t.pris * 100;
+    if (np === t.pris) { typ = 'oforandrat'; diagnos = kapadAv.length ? 'vid-grans' : 'balanserad'; }
+  }
+
+  const kylKvar = Math.max(0, R.kylperiod - t.andrad);
+  const laast = typ !== 'oforandrat' && kylKvar > 0;
+  const kraverGodk = typ !== 'oforandrat' && Math.abs(deltaPct) >= R.godkTroskel;
+
+  /* confidence: underlag + hur eniga signalerna är + marginal till tröskeln */
+  const dataVikt = clamp(Math.log10(m.nu.visningar + 1) / Math.log10(900), 0, 1);
+  const tecken = Math.sign(score) || 1;
+  const eniga = sig.filter(s => Math.sign(s.v) === tecken && Math.abs(s.v) > .08).length;
+  const samst = clamp((eniga - 1.5) / 3, 0, 1);
+  const marginal = typ === 'oforandrat'
+    ? clamp(1 - Math.abs(score) / 18, 0, 1) : clamp((Math.abs(score) - 18) / 42, 0, 1);
+  let conf = .34 + .26 * dataVikt + .24 * samst + .16 * marginal;
+  if (diagnos === 'lite-data') conf = Math.min(conf, .42);
+  if (diagnos === 'presentation') conf = Math.min(conf, .68);
+  conf = clamp(conf, .2, .96);
+
+  const beslut = state.beslut[t.id] || null;
+  return { typ, diagnos, flagga, score, deltaPct, nyttPris, kapadAv, laast, kylKvar, kraverGodk,
+    conf: Math.round(conf * 100) / 100, prio: Math.abs(score) * conf, beslut };
+}
+
+/* ---------- 8. förklaring på ren svenska ---------- */
+function forklaring(t, m, ref, demand, sig, r) {
+  const stark = [...sig].sort((a, b) => Math.abs(b.v * b.vikt) - Math.abs(a.v * a.vikt));
+  const s1 = stark[0], s2 = stark[1];
+  const kron = kr(Math.abs(r.nyttPris - t.pris));
+  const riktning = r.deltaPct > 0 ? 'höja' : 'sänka';
+  const stycken = [];
+
+  switch (r.diagnos) {
+    case 'kapacitetsbrist':
+      stycken.push(`${t.namn} har efterfrågeindex ${demand} och bara ${t.ledig} ${t.ledig === 1 ? 'ledig vecka' : 'lediga veckor'} kvar i kalendern. Du säljer ${num(m.velNu, 1)} jobb i veckan mot ${num(m.velForra, 1)} förra perioden, och ${pct(m.konv)} av offerterna går hem.`);
+      stycken.push(`Kombinationen betyder att du har fler som vill boka än du har veckor att boka in. Att ${riktning} riktpriset ${kron} till ${kr(r.nyttPris)} filtrerar bort de mest priskänsliga och höjer värdet på veckorna du faktiskt har kvar. Avhoppen ligger på ${pct(m.avhopp)}, alltså inget som pekar på att du redan ligger för högt.`);
+      break;
+    case 'prispotential':
+      stycken.push(`Signalerna pekar uppåt: ${s1.namn.toLowerCase()} (${s1.text}) och ${s2.namn.toLowerCase()} (${s2.text}). Sammanvägt ger det ${r.score} poäng.`);
+      stycken.push(`Det räcker för att flytta riktpriset till ${kr(r.nyttPris)}, alltså ${kron} ${r.deltaPct > 0 ? 'upp' : 'ner'}. Motorn tar små steg med flit: efterfrågan kan svänga på en vecka, men ett pris du dragit upp för snabbt är svårt att backa från utan att förklara sig för kunden.`);
+      break;
+    case 'prisfriktion':
+      stycken.push(`Här är mönstret som brukar missförstås. ${t.namn} drar ${Math.round(m.visPerDag)} visningar om dagen och ${m.nu.paborjade} personer har börjat fylla i en förfrågan, men ${pct(m.avhopp)} avbryter innan de skickar och bara ${pct(m.konv)} av de skickade offerterna går hem.`);
+      stycken.push(`Intresset finns alltså, det är sista steget som brister, och avhoppen sker där priset visas. Motorn föreslår ${kr(r.nyttPris)}, ${kron} lägre. ${m.forlorade} förlorade offerter under perioden kostar mer än marginalen du ger upp. Följ upp om ${state.regler.kylperiod} dagar: om avhoppen ligger kvar är det inte priset som stoppar dem.`);
+      break;
+    case 'overkapacitet':
+      stycken.push(`${t.namn} har ${t.ledig} lediga veckor av 8 och säljtempot faller: ${num(m.velNu, 1)} jobb i veckan mot ${num(m.velForra, 1)} föregående period. Efterfrågeindex ligger på ${demand}.`);
+      stycken.push(`Tomma veckor kostar oavsett vad du sätter för pris, så motorn föreslår ${kr(r.nyttPris)} för att fylla kalendern. ${kron} lägre per jobb är billigare än en vecka utan jobb. Golvpriset ${kr(t.min)} ligger kvar som spärr, så täckningsbidraget hålls.`);
+      break;
+    case 'presentation':
+      stycken.push(`${t.namn} får ${Math.round(m.visPerDag)} visningar om dagen, men bara ${pct(m.pfRate)} påbörjar en förfrågan mot ${pct(ref.pfRate)} för utbudet i snitt. De som väl skickar in konverterar normalt: ${pct(m.konv)}.`);
+      stycken.push(`Besökarna faller alltså bort innan de sett ett pris, och då är priset inte problemet. En sänkning här hade kostat marginal utan att fixa något. Motorn lämnar ${kr(t.pris)} orört och flaggar istället sidan: bilder på färdiga jobb, tydlig kontaktväg och ett konkret referenscase brukar vara det som fattas.`);
+      break;
+    case 'lite-data':
+      stycken.push(`Underlaget räcker inte. ${m.nu.visningar} visningar och ${m.nu.skickade} skickade offerter på ${m.n} dagar är för tunt för att skilja en trend från slumpen.`);
+      stycken.push(`Motorn rör inte priset på så här lite data. Antingen väntar du in mer trafik eller väljer en längre period. Prissättningen på ${t.namn} bör tas för hand tills volymen är uppe.`);
+      break;
+    case 'vid-grans':
+      stycken.push(`Signalerna vill flytta priset, men ${r.kapadAv.join(' och ')} stoppar rörelsen. ${t.namn} ligger redan på ${kr(t.pris)}.`);
+      stycken.push(`Vill du släppa fram ändringen får du justera gränserna i Prisregler. Motorn går aldrig utanför dem på egen hand.`);
+      break;
+    default:
+      stycken.push(`${t.namn} ligger rätt. Efterfrågeindex ${demand}, ${pct(m.konv)} offertkonvertering och ${t.ledig} lediga veckor drar i olika riktningar och tar ut varandra. Sammanvägt: ${r.score} poäng, inom det neutrala spannet.`);
+      stycken.push(`Ingen anledning att röra ${kr(t.pris)} den här veckan. Ett pris som hoppar utan att något förändrats gör bara att kunden ifrågasätter siffran.`);
+  }
+  return stycken;
+}
+
+/* ---------- 9. beräkna allt ---------- */
+let RAD = [], REF = null;
+function berakna() {
+  RAD = tjanster.map(t => ({ t, m: matvarden(t) }));
+  REF = referens(RAD);
+  RAD.forEach(r => {
+    r.demand = efterfragan(r.m, REF);
+    r.sig = signaler(r.t, r.m, REF, r.demand);
+    r.rek = rekommendera(r.t, r.m, REF, r.demand, r.sig);
+    r.text = forklaring(r.t, r.m, REF, r.demand, r.sig, r.rek);
+  });
+  RAD.sort((a, b) => b.rek.prio - a.rek.prio);
+}
+const synliga = () => RAD.filter(r => state.kat === 'alla' || r.t.kat === state.kat);
+const vantande = () => synliga().filter(r => r.rek.typ !== 'oforandrat' && !r.rek.beslut && !r.rek.laast);
+
+/* ---------- 10. små ritverktyg ---------- */
+function spark(vals, farge, w = 120, h = 30) {
+  if (!vals.length) return '';
+  const mx = Math.max(...vals), mn = Math.min(...vals), r = (mx - mn) || 1;
+  const pts = vals.map((v, i) => [i / Math.max(1, vals.length - 1) * w, h - 2 - ((v - mn) / r) * (h - 6)]);
+  const d = pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
+    <path d="${d} L${w} ${h} L0 ${h} Z" fill="${farge}" opacity=".1"/>
+    <path d="${d}" fill="none" stroke="${farge}" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+}
+function ring(v) {
+  const c = 2 * Math.PI * 13, f = c * v;
+  const col = v >= .8 ? 'var(--ok)' : v >= .6 ? 'var(--warn)' : 'var(--dgr)';
+  return `<svg class="ring" viewBox="0 0 34 34"><circle cx="17" cy="17" r="13" fill="none" stroke="var(--navy-4)" stroke-width="2.6"/>
+    <circle cx="17" cy="17" r="13" fill="none" stroke="${col}" stroke-width="2.6" stroke-linecap="round"
+      stroke-dasharray="${f.toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 17 17)"/>
+    <text x="17" y="21" text-anchor="middle">${Math.round(v * 100)}</text></svg>`;
+}
+function delta(v, invert = false) {
+  const cls = Math.abs(v) < .0005 ? 'flat' : (v > 0) !== invert ? 'up' : 'down';
+  const ar = Math.abs(v) < .0005 ? '—' : v > 0 ? '↑' : '↓';
+  return `<span class="${cls}">${ar} ${pct(Math.abs(v))}</span>`;
+}
+const svgIco = k => `<span class="ico"><svg viewBox="0 0 24 24">${IKON[k]}</svg></span>`;
+
+/* ---------- 11. vyer ---------- */
+const NAV = [
+  { id:'oversikt',  namn:'Översikt',          t:'Prissättningsöversikt', s:'Riktpriser som följer efterfrågan, kalender och offertutfall.', ico:'<path d="M4 13h6V4H4zM14 20h6v-9h-6zM4 20h6v-4H4zM14 8h6V4h-6z"/>' },
+  { id:'rek',       namn:'Rekommendationer',  t:'Rekommendationer',      s:'Varje förslag med signalstöd, förklaring och beslut.', ico:'<path d="M12 3v18M5 10l7-7 7 7"/>' },
+  { id:'regler',    namn:'Prisregler',        t:'Prisregler',            s:'Golv, tak, maxsteg och kylperiod. Motorn går aldrig utanför.', ico:'<path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="8" cy="18" r="2"/>' },
+  { id:'historik',  namn:'Historik',          t:'Historik',              s:'Varje rekommendation och varje tillämpad ändring, sparad.', ico:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/>' }
+];
+
+function renderNav() {
+  const v = vantande().length;
+  document.getElementById('nav').innerHTML = NAV.map(n => `
+    <button class="nav-i ${state.vy === n.id ? 'on' : ''}" data-vy="${n.id}">
+      <svg viewBox="0 0 24 24">${n.ico}</svg>${n.namn}
+      ${n.id === 'rek' && v ? `<span class="cnt">${v}</span>` : ''}
+    </button>`).join('');
+  const n = NAV.find(x => x.id === state.vy);
+  document.getElementById('vTitle').textContent = n.t;
+  document.getElementById('vSub').textContent = n.s;
+}
+
+function renderTop() {
+  const till = TODAY, fran = dagSedan(state.period - 1);
+  document.getElementById('periodLbl').innerHTML =
+    `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+     ${dstr(fran)} – ${dstr(till)} ${till.getFullYear()}`;
+  document.getElementById('katSel').innerHTML =
+    `<option value="alla">Alla yrkesgrenar</option>` +
+    Object.entries(KATNAMN).map(([k, v]) => `<option value="${k}" ${state.kat === k ? 'selected' : ''}>${v}</option>`).join('');
+  const senaste = state.logg.find(l => l.rubrik === 'Prisanalys genomförd');
+  document.getElementById('stamp').textContent = 'Senaste analys: ' +
+    (senaste ? senaste.ts.toLocaleString('sv-SE', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' }) : '—');
+}
+
+function renderSide() {
+  const v = synliga();
+  const nu = { oms: 0, vunna: 0, skickade: 0 }, fr = { oms: 0, vunna: 0, skickade: 0 };
+  v.forEach(r => {
+    nu.oms += r.m.nu.vunna * r.t.pris; nu.vunna += r.m.nu.vunna; nu.skickade += r.m.nu.skickade;
+    fr.oms += r.m.forra.vunna * r.t.pris; fr.vunna += r.m.forra.vunna; fr.skickade += r.m.forra.skickade;
+  });
+  const rader = [
+    ['Bokad omsättning', kr(nu.oms), fr.oms ? nu.oms / fr.oms - 1 : 0],
+    ['Snittjobb', kr(nu.vunna ? nu.oms / nu.vunna : 0), (fr.vunna && nu.vunna) ? (nu.oms / nu.vunna) / (fr.oms / fr.vunna) - 1 : 0],
+    ['Offertkonvertering', pct(nu.skickade ? nu.vunna / nu.skickade : 0),
+      (fr.skickade && nu.skickade) ? (nu.vunna / nu.skickade) / (fr.vunna / fr.skickade) - 1 : 0]
+  ];
+  document.getElementById('impact').innerHTML =
+    `<h4>Prispåverkan <b>${state.period} dagar</b></h4>` + rader.map(([l, val, d]) => `
+      <div class="imp"><span class="l">${l}</span><span class="r"><b>${delta(d)}</b><span>${val}</span></span></div>`).join('');
+
+  const vant = vantande().length;
+  document.getElementById('autoSw').classList.toggle('on', state.auto);
+  document.getElementById('autoTxt').textContent = state.auto ? 'PÅ' : 'AV';
+  document.getElementById('autoTxt').style.color = state.auto ? 'var(--ok)' : 'var(--p45)';
+  document.getElementById('autoP').innerHTML = state.auto
+    ? `Ändringar under ${state.regler.godkTroskel} % tillämpas direkt. Allt större väntar på dig.<br><b style="color:var(--gold-lt)">${vant} att granska</b>`
+    : `Inget pris ändras utan att du godkänner det.<br><b style="color:var(--gold-lt)">${vant} att granska</b>`;
+}
+
+/* --- översikt --- */
+function vyOversikt() {
+  const v = synliga();
+  const dgr = state.period;
+  const perDag = k => Array.from({ length: dgr }, (_, i) =>
+    sum(v.map(r => slice(r.t, dgr)[i] ? slice(r.t, dgr)[i][k] : 0)));
+  const omsDag = Array.from({ length: dgr }, (_, i) => sum(v.map(r => (slice(r.t, dgr)[i]?.vunna || 0) * r.t.pris)));
+  const nu = { oms: sum(omsDag), vunna: sum(perDag('vunna')), skickade: sum(perDag('skickade')), visningar: sum(perDag('visningar')) };
+  const fr = v.reduce((a, r) => ({ oms: a.oms + r.m.forra.vunna * r.t.pris, vunna: a.vunna + r.m.forra.vunna,
+    skickade: a.skickade + r.m.forra.skickade, visningar: a.visningar + r.m.forra.visningar }), { oms:0, vunna:0, skickade:0, visningar:0 });
+
+  const kpi = [
+    { l:'Bokad omsättning', v:kr(nu.oms), d:fr.oms ? nu.oms / fr.oms - 1 : 0, c:'#7C3AED', s:omsDag,
+      ico:'<path d="M12 2v20M17 6H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>' },
+    { l:'Snittjobb', v:kr(nu.vunna ? nu.oms / nu.vunna : 0),
+      d:(fr.vunna && nu.vunna) ? (nu.oms / nu.vunna) / (fr.oms / fr.vunna) - 1 : 0, c:'#0369A1',
+      s:Array.from({ length: dgr }, (_, i) => perDag('vunna')[i] ? omsDag[i] / perDag('vunna')[i] : 0),
+      ico:'<rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5h10v2"/>' },
+    { l:'Offertkonvertering', v:pct(nu.skickade ? nu.vunna / nu.skickade : 0),
+      d:(fr.skickade && nu.skickade) ? (nu.vunna / nu.skickade) / (fr.vunna / fr.skickade) - 1 : 0, c:'#047857',
+      s:Array.from({ length: dgr }, (_, i) => perDag('skickade')[i] ? perDag('vunna')[i] / perDag('skickade')[i] : 0),
+      ico:'<circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/>' },
+    { l:'Vunna jobb', v:nfk.format(nu.vunna), d:fr.vunna ? nu.vunna / fr.vunna - 1 : 0, c:'#B45309', s:perDag('vunna'),
+      ico:'<path d="M6 6h15l-2 9H8z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M6 6L5 3H2"/>' },
+    { l:'Tjänster analyserade', v:String(v.length), sub:`${nu.visningar} visningar i perioden`, c:'#047857',
+      s:perDag('visningar'), ico:'<path d="M4 7h16M4 12h16M4 17h10"/>' }
+  ];
+
+  const kpiHtml = `<div class="kpis">${kpi.map(k => `
+    <div class="kpi">
+      <span class="k-t"><svg viewBox="0 0 24 24">${k.ico}</svg>${k.l}</span>
+      <span class="k-v">${k.v} ${k.d !== undefined ? `<u>${delta(k.d)}</u>` : ''}</span>
+      <span class="k-s">${k.sub || `mot föregående ${dgr} dagar`}</span>
+      ${spark(k.s, k.c)}
+    </div>`).join('')}</div>`;
+
+  return `
+  <div class="col">
+    ${kpiHtml}
+    ${panelRek(8)}
+    ${panelSim()}
+  </div>
+  <div class="col">
+    ${panelInsikter()}
+    ${panelKat()}
+    ${panelLogg()}
+  </div>`;
+}
+
+/* --- rekommendationstabell --- */
+function radHtml(r) {
+  const { t, m, rek } = r;
+  const [dTxt, dCls] = efterfraganText(r.demand);
+  const [kTxt, kCls] = kapacitetText(m.ledigAndel);
+  const [cTxt, cCls] = konvText(m.konv, REF);
+  const A = { hoj:['a-up', 'Höj', '<path d="M12 19V5M5 12l7-7 7 7"/>'],
+              sank:['a-dn', 'Sänk', '<path d="M12 5v14M5 12l7 7 7-7"/>'],
+              oforandrat:['a-nc', 'Oförändrat', '<path d="M5 12h14"/>'] }[rek.typ];
+  let atgard = `<span class="act ${A[0]}"><svg viewBox="0 0 24 24">${A[2]}</svg>${A[1]}</span>`;
+  if (rek.laast) atgard = `<span class="act a-lk"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Kylperiod</span>`;
+  else if (rek.beslut) atgard = `<span class="act ${rek.beslut.status === 'godkand' ? 'a-up' : 'a-nc'}">
+      ${rek.beslut.status === 'godkand' ? 'Godkänd' : 'Avslagen'}</span>`;
+  else if (rek.kraverGodk) atgard += ` <span class="st st-w">Godkänn</span>`;
+
+  return `<tr data-id="${t.id}" class="${state.valdId === t.id ? 'sel' : ''}">
+    <td><div class="svc">${svgIco(t.kat)}<div><b>${t.namn}</b><span>${t.ref}</span></div></div></td>
+    <td class="c two"><b>${r.demand}</b><span class="${dCls}">${dTxt}</span></td>
+    <td class="c two"><b class="${kCls}">${t.ledig} v</b><span style="color:var(--p28)">av 8 lediga</span></td>
+    <td class="c two"><b>${pct(m.konv)}</b><span class="${cCls}">${cTxt}</span></td>
+    <td class="r mono">${kr(t.pris)}</td>
+    <td class="r mono">${rek.typ === 'oforandrat' ? '<span style="color:var(--p28)">' + kr(t.pris) + '</span>' : '<b>' + kr(rek.nyttPris) + '</b>'}</td>
+    <td class="r">${rek.typ === 'oforandrat' ? '<span class="flat">— 0 %</span>'
+      : `<span class="${rek.deltaPct > 0 ? 'up' : 'down'}">${rek.deltaPct > 0 ? '↑' : '↓'} ${num(Math.abs(rek.deltaPct), 1)} %</span>`}</td>
+    <td class="c">${ring(rek.conf)}</td>
+    <td>${atgard}</td>
+  </tr>`;
+}
+
+function panelRek(limit) {
+  const v = synliga(), lista = limit ? v.slice(0, limit) : v;
+  const c = { hoj:0, sank:0, oforandrat:0 };
+  v.forEach(r => c[r.rek.typ]++);
+  return `<div class="panel" id="rekPanel">
+    <div class="ph">
+      <h3>Prisrekommendationer</h3>
+      <span class="tag">${vantande().length} att granska</span>
+      <div class="rt">
+        <div class="legend">
+          <b><i style="background:var(--ok)"></i>Höj ${c.hoj}</b>
+          <b><i style="background:var(--dgr)"></i>Sänk ${c.sank}</b>
+          <b><i style="background:var(--p28)"></i>Oförändrat ${c.oforandrat}</b>
+        </div>
+      </div>
+    </div>
+    <div class="tw"><table>
+      <thead><tr>
+        <th>Tjänst</th><th class="c">Efterfrågan</th><th class="c">Ledig kapacitet</th><th class="c">Offertkonv.</th>
+        <th class="r">Riktpris</th><th class="r">Rekommenderat</th><th class="r">Ändring</th><th class="c">Säkerhet</th><th>Åtgärd</th>
+      </tr></thead>
+      <tbody>${lista.map(radHtml).join('')}</tbody>
+    </table></div>
+    ${limit && v.length > limit ? `<button class="more" data-vy="rek">Visa alla ${v.length} rekommendationer
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>` : ''}
+  </div>`;
+}
+
+/* --- simulering + fördelning --- */
+function panelSim() {
+  const p = vantande();
+  /* enkel elasticitet: en höjning kostar volym, en sänkning köper volym */
+  const EL_UPP = -0.45, EL_NED = -0.75;
+  let dOms = 0, dVinst = 0, nuOms = 0, nuVunna = 0, dVunna = 0, nuSkick = 0;
+  synliga().forEach(r => { nuOms += r.m.nu.vunna * r.t.pris; nuVunna += r.m.nu.vunna; nuSkick += r.m.nu.skickade; });
+  p.forEach(r => {
+    const dp = r.rek.deltaPct / 100;
+    const el = dp > 0 ? EL_UPP : EL_NED;
+    const nyaVunna = r.m.nu.vunna * (1 + el * dp);
+    dVunna += nyaVunna - r.m.nu.vunna;
+    dOms += nyaVunna * r.rek.nyttPris - r.m.nu.vunna * r.t.pris;
+    dVinst += nyaVunna * (r.rek.nyttPris - r.t.pris * .62) - r.m.nu.vunna * (r.t.pris * .38);
+  });
+  const nyttSnitt = (nuVunna + dVunna) ? (nuOms + dOms) / (nuVunna + dVunna) : 0;
+  const dSnitt = nuVunna ? nyttSnitt - nuOms / nuVunna : 0;
+  const dKonv = nuSkick ? (nuVunna + dVunna) / nuSkick - nuVunna / nuSkick : 0;
+
+  const kort = [
+    ['Potentiell omsättning', (dOms >= 0 ? '+' : '−') + kr(Math.abs(dOms)), nuOms ? dOms / nuOms : 0, '#7C3AED'],
+    ['Potentiellt snittjobb', (dSnitt >= 0 ? '+' : '−') + kr(Math.abs(dSnitt)), nuVunna ? dSnitt / (nuOms / nuVunna) : 0, '#0369A1'],
+    ['Potentiell konvertering', pp(dKonv), dKonv, '#047857'],
+    ['Potentiellt täckningsbidrag', (dVinst >= 0 ? '+' : '−') + kr(Math.abs(dVinst)), nuOms * .38 ? dVinst / (nuOms * .38) : 0, '#B45309']
+  ];
+  const c = { hoj:0, sank:0, oforandrat:0 }; synliga().forEach(r => c[r.rek.typ]++);
+  const tot = c.hoj + c.sank + c.oforandrat || 1;
+  const C = 2 * Math.PI * 44; let off = 0;
+  const seg = [[c.hoj, 'var(--ok)'], [c.sank, 'var(--dgr)'], [c.oforandrat, 'var(--p28)']].map(([n, col]) => {
+    const l = C * n / tot;
+    const s = `<circle cx="59" cy="59" r="44" fill="none" stroke="${col}" stroke-width="15"
+      stroke-dasharray="${l.toFixed(1)} ${(C - l).toFixed(1)}" stroke-dashoffset="${(-off).toFixed(1)}" transform="rotate(-90 59 59)"/>`;
+    off += l; return s;
+  }).join('');
+
+  return `<div style="display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:1.1rem" class="simwrap">
+    <div class="panel">
+      <div class="ph"><h3>Prispåverkan om allt godkänns</h3>
+        <div class="rt"><span class="sub">${p.length} väntande förslag, antagen priselasticitet</span></div></div>
+      <div class="sim">${kort.map(([l, v, d, col]) => `
+        <div class="sc"><span class="s-l">${l}</span><span class="s-v">${v}</span>
+        <span class="s-d">${delta(d)}</span>
+        ${spark(Array.from({ length: 12 }, (_, i) => Math.sin(i / 2.6 + l.length) * 4 + i * (d >= 0 ? 1 : -1) + 12), col, 120, 22)}</div>`).join('')}
+      </div>
+    </div>
+    <div class="panel">
+      <div class="ph"><h3>Fördelning</h3></div>
+      <div class="donut">
+        <svg viewBox="0 0 118 118">${seg}</svg>
+        <div class="dl">
+          <b><i style="background:var(--ok)"></i>Höj <u>${c.hoj}</u> <span>${Math.round(c.hoj / tot * 100)} %</span></b>
+          <b><i style="background:var(--dgr)"></i>Sänk <u>${c.sank}</u> <span>${Math.round(c.sank / tot * 100)} %</span></b>
+          <b><i style="background:var(--p28)"></i>Oförändrat <u>${c.oforandrat}</u> <span>${Math.round(c.oforandrat / tot * 100)} %</span></b>
+          <b style="border-top:1px solid var(--line);padding-top:.4rem;margin-top:.2rem;color:var(--p45);font-size:.68rem">
+            Totalt <u>${tot} tjänster</u></b>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* --- insikter --- */
+function panelInsikter() {
+  const v = synliga();
+  const g = (f) => v.filter(f);
+  const grupper = [
+    { d:'kapacitetsbrist', rub:'Hög efterfrågan, tom kalender snart full', col:'var(--ok)', bg:'var(--ok-bg)',
+      ico:'<path d="M12 19V5M5 12l7-7 7 7"/>',
+      txt:n => `${n} tjänster har stark efterfrågan och nästan inga lediga veckor. Där finns utrymme att höja riktpriset.` },
+    { d:'prisfriktion', rub:'Intresse som fastnar vid priset', col:'var(--dgr)', bg:'var(--dgr-bg)',
+      ico:'<path d="M12 5v14M5 12l7 7 7-7"/>',
+      txt:n => `${n} tjänster drar många förfrågningar men tappar dem sent, och avhoppen ligger över snittet. Sänkning föreslagen.` },
+    { d:'presentation', rub:'Presentationsproblem, inte prisproblem', col:'var(--warn)', bg:'var(--warn-bg)',
+      ico:'<path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/>',
+      txt:n => `${n} tjänster får trafik men nästan inga påbörjade förfrågningar. Priset lämnas orört, sidan behöver bilder och tydligare kontaktväg.` },
+    { d:'overkapacitet', rub:'Överkapacitet i kalendern', col:'var(--info)', bg:'rgba(3,105,161,.12)',
+      ico:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4"/>',
+      txt:n => `${n} tjänster har hål i kalendern och fallande säljtempo. Kampanjpris föreslaget för att fylla veckorna.` },
+    { d:'lite-data', rub:'För tunt underlag', col:'var(--p45)', bg:'var(--navy-4)',
+      ico:'<path d="M4 19h16M7 16v-5M12 16V7M17 16v-8"/>',
+      txt:n => `${n} tjänster har för lite trafik för att prissättas av motorn. Ta dem för hand tills volymen är uppe.` }
+  ].map(x => ({ ...x, rader: g(r => r.rek.diagnos === x.d) })).filter(x => x.rader.length);
+
+  const last = g(r => r.rek.laast);
+  return `<div class="panel">
+    <div class="ph"><h3>AI-insikter</h3><div class="rt"><span class="sub">${v.length} tjänster</span></div></div>
+    ${grupper.map(x => `
+      <div class="ins" data-open="${x.rader[0].t.id}">
+        <span class="i-i" style="background:${x.bg};color:${x.col}"><svg viewBox="0 0 24 24">${x.ico}</svg></span>
+        <div><b>${x.rub}</b><p>${x.txt(x.rader.length)} <em>${x.rader.slice(0, 2).map(r => r.t.namn).join(', ')}${x.rader.length > 2 ? ' m.fl.' : ''}</em></p></div>
+      </div>`).join('')}
+    ${last.length ? `<div class="ins" data-open="${last[0].t.id}">
+      <span class="i-i" style="background:rgba(3,105,161,.12);color:var(--info)"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></span>
+      <div><b>Låst av kylperiod</b><p>${last.length} förslag väntar för att priset ändrades nyligen. Kortaste tid kvar: ${Math.min(...last.map(r => r.rek.kylKvar))} dagar. <em>${last.map(r => r.t.namn).join(', ')}</em></p></div>
+    </div>` : ''}
+    <button class="more" data-vy="rek">Öppna full analys
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>`;
+}
+
+/* --- kategoriprestanda --- */
+function panelKat() {
+  const rows = Object.keys(KATNAMN).map(k => {
+    const r = RAD.filter(x => x.t.kat === k);
+    const oms = sum(r.map(x => x.m.nu.vunna * x.t.pris));
+    const omsF = sum(r.map(x => x.m.forra.vunna * x.t.pris));
+    const trend = Array.from({ length: state.period }, (_, i) =>
+      sum(r.map(x => (slice(x.t, state.period)[i]?.visningar || 0))));
+    return { k, oms, d: omsF ? oms / omsF - 1 : 0, trend };
+  }).sort((a, b) => b.oms - a.oms);
+  return `<div class="panel">
+    <div class="ph"><h3>Yrkesgrenar</h3><div class="rt"><span class="sub">Bokad omsättning</span></div></div>
+    <div class="krow h"><span>Gren</span><span>Omsättning</span><span class="kc">Förändr.</span><span>Efterfrågan</span></div>
+    ${rows.map(r => `<div class="krow" data-kat="${r.k}">
+      <span class="kn"><i></i>${KATNAMN[r.k]}</span>
+      <span class="kv">${kr(r.oms)}</span>
+      <span class="kc">${delta(r.d)}</span>
+      ${spark(r.trend, r.d >= 0 ? 'var(--ok)' : 'var(--dgr)', 66, 20)}
+    </div>`).join('')}
+  </div>`;
+}
+
+/* --- aktivitetslogg --- */
+const LOGGIKON = {
+  spark:'<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/>',
+  tag:'<path d="M20 12l-8 8-8-8 8-8z"/><circle cx="9" cy="9" r="1"/>',
+  rule:'<path d="M4 6h16M4 12h16M4 18h16"/>',
+  check:'<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/>',
+  no:'<circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/>'
+};
+function tidText(d) {
+  const diff = (TODAY - d) / 864e5;
+  if (diff < 1) return d.toLocaleTimeString('sv-SE', { hour:'2-digit', minute:'2-digit' });
+  if (diff < 2) return 'Igår';
+  return d.toLocaleDateString('sv-SE', { day:'numeric', month:'short' });
+}
+function panelLogg() {
+  return `<div class="panel">
+    <div class="ph"><h3>Senaste händelser</h3><div class="rt"><button class="more" style="padding:0;width:auto;font-size:.7rem" data-vy="historik">Visa allt</button></div></div>
+    ${state.logg.slice(0, 6).map(l => `<div class="lg">
+      <span class="l-i"><svg viewBox="0 0 24 24">${LOGGIKON[l.ikon] || LOGGIKON.tag}</svg></span>
+      <div><b>${l.rubrik}</b><span>${l.text}</span></div><time>${tidText(l.ts)}</time></div>`).join('')}
+  </div>`;
+}
+
+/* --- prisregler --- */
+function vyRegler() {
+  const R = state.regler;
+  const f = [
+    ['maxSteg', 'Största prissteg per ändring', '%', 'Ingen enskild ändring får flytta priset mer än så här mycket, oavsett hur starka signalerna är.'],
+    ['kylperiod', 'Kylperiod mellan ändringar', 'dagar', 'Ett pris som ändrats får ligga stilla. Förhindrar att kunden möter en ny siffra varje vecka.'],
+    ['godkTroskel', 'Godkännandetröskel', '%', 'Ändringar från och med den här storleken kräver alltid ett manuellt godkännande, även med autoläge på.'],
+    ['minVisningar', 'Minsta underlag per vecka', 'visningar', 'Under den här trafiken avstår motorn från att prissätta. För lite data är sämre än ingen data.']
+  ];
+  return `<div class="col">
+    <div class="panel">
+      <div class="ph"><h3>Globala spärrar</h3><div class="rt"><span class="sub">Gäller alla tjänster</span></div></div>
+      <div class="rules">${f.map(([k, l, u, p]) => `
+        <div class="rule"><label for="r-${k}">${l}</label>
+          <div class="ri"><input id="r-${k}" type="number" data-rule="${k}" value="${R[k]}" min="1" step="1"><span class="ru">${u}</span></div>
+          <p>${p}</p></div>`).join('')}
+      </div>
+    </div>
+    <div class="panel">
+      <div class="ph"><h3>Golv och tak per tjänst</h3>
+        <div class="rt"><span class="sub">Motorn går aldrig utanför spannet</span></div></div>
+      <div class="lim h"><span>Tjänst</span><span style="text-align:right">Golvpris</span><span style="text-align:right">Riktpris nu</span><span style="text-align:right">Takpris</span></div>
+      ${RAD.map(r => `<div class="lim">
+        <span class="kn" style="display:flex;gap:.5rem;align-items:center">${svgIco(r.t.kat)}<span>${r.t.namn}
+          ${r.rek.kapadAv.length ? `<span class="warnrow" style="display:block">Kapad av ${r.rek.kapadAv.join(' och ')}</span>` : ''}</span></span>
+        <span><input type="number" data-min="${r.t.id}" value="${r.t.min}" step="1000"></span>
+        <span class="cur">${kr(r.t.pris)}</span>
+        <span><input type="number" data-max="${r.t.id}" value="${r.t.max}" step="1000"></span>
+      </div>`).join('')}
+    </div>
+    <div class="panel">
+      <div class="ph"><h3>Demo</h3></div>
+      <div class="hbar"><span style="font-size:.75rem;color:var(--p70);flex:1">Beslut, historik och prisändringar sparas i webbläsaren.</span>
+        <button class="ghost" id="reset">Nollställ demodata</button></div>
+    </div>
+  </div>
+  <div class="col">${panelInsikter()}${panelLogg()}</div>`;
+}
+
+/* --- historik --- */
+function vyHistorik() {
+  const h = [...state.historik].sort((a, b) => b.ts - a.ts);
+  const tillampade = h.filter(x => x.beslut === 'Godkänd');
+  return `<div class="col">
+    <div class="panel">
+      <div class="ph"><h3>Full historik</h3><span class="tag">${h.length} poster</span>
+        <div class="rt"><span class="sub">${tillampade.length} tillämpade ändringar</span></div></div>
+      ${h.length ? `<div class="tw"><table>
+        <thead><tr><th>Datum</th><th>Tjänst</th><th class="r">Från</th><th class="r">Till</th><th class="r">Ändring</th>
+          <th class="c">Säkerhet</th><th>Motivering</th><th>Beslut</th></tr></thead>
+        <tbody>${h.map(x => `<tr data-id="${x.tjanstId}">
+          <td class="mono" style="white-space:nowrap">${x.ts.toLocaleDateString('sv-SE', { day:'numeric', month:'short', year:'numeric' })}
+            <span style="display:block;font-size:.62rem;color:var(--p28)">${x.av}</span></td>
+          <td>${x.tjanst}</td>
+          <td class="r mono">${kr(x.fran)}</td>
+          <td class="r mono">${kr(x.till)}</td>
+          <td class="r"><span class="${x.till > x.fran ? 'up' : x.till < x.fran ? 'down' : 'flat'}">
+            ${x.till === x.fran ? '— 0 %' : (x.till > x.fran ? '↑ ' : '↓ ') + num(Math.abs((x.till - x.fran) / x.fran * 100), 1) + ' %'}</span></td>
+          <td class="c">${ring(x.conf)}</td>
+          <td style="max-width:320px;color:var(--p70);font-size:.73rem">${x.orsak}</td>
+          <td><span class="st ${x.beslut === 'Godkänd' ? 'st-ok' : x.beslut === 'Avslagen' ? 'st-no' : 'st-w'}">${x.beslut}</span></td>
+        </tr>`).join('')}</tbody></table></div>`
+        : `<div class="empty">Ingen historik ännu.</div>`}
+    </div>
+  </div>
+  <div class="col">${panelLogg()}${panelKat()}</div>`;
+}
+
+/* ---------- 11b. reel-läge (?reel) ----------
+   Samma motor, samma data, men renderad i en fast 9:16-scen på 540x960 som
+   skalas till skärmen. Ett fast utsnitt att spela in, ingen pan och ingen zoom. */
+state.reel = /(^|[?&])reel(&|=|$)/.test(location.search) || location.hash === '#reel';
+if (state.reel) document.documentElement.classList.add('reel');
+
+const REEL_INS = {
+  kapacitetsbrist:{ rub:'Full kalender, utrymme uppåt', col:'var(--ok)', bg:'var(--ok-bg)',
+    ico:'<path d="M12 19V5M5 12l7-7 7 7"/>',
+    txt:n => `${n} tjänster har stark efterfrågan och nästan inga lediga veckor kvar.` },
+  prisfriktion:{ rub:'Intresset fastnar vid priset', col:'var(--dgr)', bg:'var(--dgr-bg)',
+    ico:'<path d="M12 5v14M5 12l7 7 7-7"/>',
+    txt:n => `${n} tjänster drar många förfrågningar men tappar dem sent, med avhopp över snittet.` },
+  presentation:{ rub:'Presentationsproblem, inte pris', col:'var(--warn)', bg:'var(--warn-bg)',
+    ico:'<circle cx="12" cy="12" r="9"/><path d="M12 9v4M12 17h.01"/>',
+    txt:n => `${n} tjänster får trafik men nästan inga påbörjade förfrågningar. Priset lämnas orört.` },
+  overkapacitet:{ rub:'Hål i kalendern', col:'var(--info)', bg:'rgba(3,105,161,.12)',
+    ico:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4"/>',
+    txt:n => `${n} tjänster har lediga veckor och fallande säljtempo.` },
+  'lite-data':{ rub:'För tunt underlag', col:'var(--p45)', bg:'var(--navy-4)',
+    ico:'<path d="M4 19h16M7 16v-5M12 16V7M17 16v-8"/>',
+    txt:n => `${n} tjänster har för lite trafik för att prissättas av motorn.` }
+};
+
+function reelKort(r) {
+  const { t, m, rek } = r;
+  const [dTxt, dCls] = efterfraganText(r.demand);
+  const [, kCls] = kapacitetText(m.ledigAndel);
+  const A = { hoj:['a-up', 'Höj'], sank:['a-dn', 'Sänk'], oforandrat:['a-nc', 'Oförändrat'] }[rek.typ];
+  let badge = `<span class="act ${A[0]}">${A[1]}</span>`;
+  if (rek.laast) badge = `<span class="act a-lk">Kylperiod</span>`;
+  else if (rek.beslut) badge = `<span class="act ${rek.beslut.status === 'godkand' ? 'a-up' : 'a-nc'}">${rek.beslut.status === 'godkand' ? 'Godkänd' : 'Avslagen'}</span>`;
+
+  return `<div class="r-card ${state.valdId === t.id ? 'hl' : ''}" data-open="${t.id}">
+    <div class="r-c1">${svgIco(t.kat)}
+      <div><b>${t.namn}</b><span>${t.ref}</span></div>
+      <span class="r-act">${badge}
+        ${rek.typ !== 'oforandrat' ? `<em style="display:block;font-size:11px;margin-top:4px;font-style:normal"
+          class="${rek.deltaPct > 0 ? 'up' : 'down'}">${rek.deltaPct > 0 ? '↑' : '↓'} ${num(Math.abs(rek.deltaPct), 1)} %</em>` : ''}</span>
+    </div>
+    <div class="r-c2">
+      <div><span>Efterfrågan</span><b>${r.demand}<i class="${dCls}"> ${dTxt}</i></b></div>
+      <div><span>Ledig kapacitet</span><b class="${kCls}">${t.ledig} v<i style="color:var(--p28)"> av 8</i></b></div>
+      <div><span>Offertkonv.</span><b>${pct(m.konv, 0)}</b></div>
+    </div>
+    <div class="r-c3">
+      ${rek.typ === 'oforandrat'
+        ? `<span class="p0">${kr(t.pris)}</span>`
+        : `<span class="p1">${kr(t.pris)}</span><span class="arw">→</span><span class="p2">${kr(rek.nyttPris)}</span>`}
+      <span class="rr">${ring(rek.conf)}<em>säker&shy;het</em></span>
+    </div>
+  </div>`;
+}
+
+function vyReel() {
+  const v = synliga();
+  const agg = k => v.reduce((a, r) => ({ oms:a.oms + r.m[k].vunna * r.t.pris, vunna:a.vunna + r.m[k].vunna,
+    skickade:a.skickade + r.m[k].skickade }), { oms:0, vunna:0, skickade:0 });
+  const nu = agg('nu'), fr = agg('forra');
+  const kpi = [
+    ['Bokad omsättning', kr(nu.oms), fr.oms ? nu.oms / fr.oms - 1 : 0],
+    ['Vunna jobb', nfk.format(nu.vunna), fr.vunna ? nu.vunna / fr.vunna - 1 : 0],
+    ['Offertkonvertering', pct(nu.skickade ? nu.vunna / nu.skickade : 0),
+      (fr.skickade && nu.skickade) ? (nu.vunna / nu.skickade) / (fr.vunna / fr.skickade) - 1 : 0],
+    ['Väntar på dig', vantande().length + ' st', null]
+  ];
+  const grupper = Object.keys(REEL_INS)
+    .map(d => ({ d, n: v.filter(r => r.rek.diagnos === d).length }))
+    .filter(x => x.n).slice(0, 2);
+
+  return `<div class="stage" id="stage">
+    <div class="r-top">
+      <div class="mark"><img src="/brand/mark.svg" alt=""></div>
+      <h1>Pris<em>Motor</em><span>Dynamisk prissättning</span></h1>
+      <span class="r-per">${state.period} dagar</span>
+    </div>
+    <div class="r-scroll" id="rscroll">
+      <div class="r-kpis">${kpi.map(([l, val, d]) => `
+        <div class="r-kpi"><span>${l}</span><b>${val}</b>
+          <u>${d === null ? '<span class="flat">av ' + v.length + ' tjänster</span>' : delta(d)}</u></div>`).join('')}
+      </div>
+      ${grupper.map(g => { const I = REEL_INS[g.d]; return `<div class="r-ins">
+        <span class="i-i" style="background:${I.bg};color:${I.col}"><svg viewBox="0 0 24 24">${I.ico}</svg></span>
+        <div><b>${I.rub}</b><p>${I.txt(g.n)}</p></div></div>`; }).join('')}
+      <div class="r-lbl">Rekommendationer <i>${v.length} tjänster</i></div>
+      ${v.map(reelKort).join('')}
+    </div>
+    <div class="r-bot">
+      <button class="run" data-run="1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></svg>
+        Kör prisanalys
+      </button>
+      <button class="sw ${state.auto ? 'on' : ''}" data-auto="1" aria-label="Autoläge"></button>
+      <small>Auto ${state.auto ? 'på' : 'av'}</small>
+    </div>
+    <div class="r-ov" id="rov"></div>
+  </div>`;
+}
+
+function skalaScen() {
+  const st = document.getElementById('stage'); if (!st) return;
+  st.style.transform = `scale(${Math.min(innerWidth / 540, innerHeight / 960)})`;
+}
+window.addEventListener('resize', skalaScen);
+
+function renderReel() {
+  const body = document.getElementById('body');
+  /* koppla loss toast-lådan först, annars raderas en toast som just poppade
+     när scenen ritas om (den ligger inuti scenen för att komma med i bild) */
+  let tw = document.getElementById('toasts');
+  if (tw) tw.remove();
+  body.innerHTML = vyReel();
+  if (!tw) { tw = document.createElement('div'); tw.id = 'toasts'; tw.className = 'toasts'; }
+  document.getElementById('stage').appendChild(tw);
+  skalaScen();
+}
+
+function openReelKort(id) {
+  const r = RAD.find(x => x.t.id === id); if (!r) return;
+  state.valdId = id;
+  const { t, m, rek } = r;
+  const A = { hoj:['a-up', 'Höj priset'], sank:['a-dn', 'Sänk priset'], oforandrat:['a-nc', 'Lämna orört'] }[rek.typ];
+  const gr = [
+    { ok: rek.kylKvar === 0, txt: rek.kylKvar === 0
+      ? `Kylperiod klar, senaste ändring för ${t.andrad} dagar sedan.`
+      : `Kylperiod aktiv, ${rek.kylKvar} dagar kvar.` },
+    { ok: rek.nyttPris >= t.min && rek.nyttPris <= t.max,
+      txt: `Inom spannet ${kr(t.min)} till ${kr(t.max)}.${rek.kapadAv.length ? ' Kapad av ' + rek.kapadAv.join(' och ') + '.' : ''}` },
+    { ok: !rek.kraverGodk, txt: rek.kraverGodk
+      ? `${num(Math.abs(rek.deltaPct), 1)} % kräver ditt godkännande.`
+      : `Under tröskeln ${state.regler.godkTroskel} %.` }
+  ];
+  let fot;
+  if (rek.typ === 'oforandrat') fot = `<span class="done">Inget beslut behövs.</span>`;
+  else if (rek.laast) fot = `<span class="locked">Låst i ${rek.kylKvar} dagar</span>`;
+  else if (rek.beslut) fot = `<span class="done">${rek.beslut.status === 'godkand' ? 'Godkänd' : 'Avslagen'}</span>`;
+  else fot = `<button class="rj" data-rej="${t.id}">Avslå</button>
+              <button class="ap" data-app="${t.id}">Godkänn ${kr(rek.nyttPris)}</button>`;
+
+  document.getElementById('rov').innerHTML = `
+    <div class="r-oh">${svgIco(t.kat)}
+      <div><h3>${t.namn}</h3><span>${t.ref} · ${KATNAMN[t.kat]}</span></div>
+      <button class="x" data-close="1" aria-label="Stäng">✕</button>
+    </div>
+    <div class="r-oc">
+      <div class="dsec"><h5>Förslag</h5>
+        <div class="price">
+          <div class="pb"><span>Riktpris nu</span><b>${kr(t.pris)}</b></div>
+          <span class="arw">→</span>
+          <div class="pb" style="border-color:var(--line-2)"><span>Rekommenderat</span><b>${kr(rek.nyttPris)}</b></div>
+        </div>
+        <div style="display:flex;gap:7px;margin-top:10px;flex-wrap:wrap;align-items:center">
+          <span class="act ${A[0]}">${A[1]}</span>
+          ${rek.typ !== 'oforandrat' ? `<span class="st ${rek.deltaPct > 0 ? 'st-ok' : 'st-no'}">${rek.deltaPct > 0 ? '+' : ''}${num(rek.deltaPct, 1)} %</span>` : ''}
+          <span class="st st-w">Säkerhet ${Math.round(rek.conf * 100)} %</span>
+        </div>
+        ${rek.flagga ? `<p style="margin-top:10px;font-size:11.5px;color:var(--warn)">⚑ ${rek.flagga}</p>` : ''}
+      </div>
+      <div class="ai">
+        <div class="aih"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></svg> Så tolkar motorn läget</div>
+        ${r.text.map(p => `<p>${p}</p>`).join('')}
+        <div class="fine">Genererad utifrån de fem signalerna nedan. Ingen signal avgör ensam.</div>
+      </div>
+      <div class="dsec"><h5>Signalstöd</h5>
+        <div class="sig">${r.sig.map(s => {
+          const w = Math.abs(s.v) * 50, col = s.v >= 0 ? 'var(--ok)' : 'var(--dgr)';
+          return `<div class="sg"><span class="sn">${s.namn}</span>
+            <span class="sb"><i style="background:${col};${s.v >= 0 ? 'left:50%' : 'right:50%'};width:${w}%"></i></span>
+            <span class="sv" style="color:${col}">${s.v >= 0 ? '+' : ''}${num(s.v, 2)}</span>
+            <span class="sw2">${s.text}</span></div>`;
+        }).join('')}</div>
+      </div>
+      <div class="dsec"><h5>Beteende ${m.n} dagar</h5>
+        <div class="kv">
+          <span class="k">Visningar</span><span class="v">${nfk.format(m.nu.visningar)}</span>
+          <span class="k">Påbörjade förfrågningar</span><span class="v">${m.nu.paborjade}</span>
+          <span class="k">Avbrutna</span><span class="v">${m.nu.avbrutna} (${pct(m.avhopp, 0)})</span>
+          <span class="k">Skickade offerter</span><span class="v">${m.nu.skickade}</span>
+          <span class="k">Vunna jobb</span><span class="v">${m.nu.vunna}</span>
+          <span class="k">Säljtempo</span><span class="v">${num(m.velNu, 1)} jobb/v</span>
+          <span class="k">Ledig kapacitet</span><span class="v">${t.ledig} av 8 veckor</span>
+        </div>
+      </div>
+      <div class="dsec"><h5>Spärrar</h5>
+        <div class="gr">${gr.map(x => `<div class="${x.ok ? 'pass' : 'block'}">
+          <svg viewBox="0 0 24 24">${x.ok ? '<path d="M4 12l5 5L20 6"/>' : '<path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/>'}</svg>
+          <span>${x.txt}</span></div>`).join('')}</div>
+      </div>
+    </div>
+    <div class="r-of">${fot}</div>`;
+  document.getElementById('rov').classList.add('on');
+  document.querySelectorAll('.r-card').forEach(c => c.classList.toggle('hl', c.dataset.open === id));
+}
+
+/* ---------- 12. drawer ---------- */
+function openDrawer(id) {
+  if (state.reel) return openReelKort(id);
+  const r = RAD.find(x => x.t.id === id); if (!r) return;
+  state.valdId = id;
+  const { t, m, rek } = r;
+  const hist = state.historik.filter(h => h.tjanstId === id).sort((a, b) => b.ts - a.ts);
+  const A = { hoj:['a-up', 'Höj priset'], sank:['a-dn', 'Sänk priset'], oforandrat:['a-nc', 'Lämna orört'] }[rek.typ];
+
+  const gr = [
+    { ok: rek.kylKvar === 0, txt: rek.kylKvar === 0
+      ? `Kylperiod klar: senaste ändring för ${t.andrad} dagar sedan (gräns ${state.regler.kylperiod}).`
+      : `Kylperiod aktiv: ${rek.kylKvar} dagar kvar innan priset får röras igen.` },
+    { ok: rek.nyttPris >= t.min && rek.nyttPris <= t.max,
+      txt: `Inom prisspannet ${kr(t.min)} – ${kr(t.max)}.${rek.kapadAv.length ? ' Kapad av ' + rek.kapadAv.join(' och ') + '.' : ''}` },
+    { ok: !rek.kraverGodk, txt: rek.kraverGodk
+      ? `Ändringen är ${num(Math.abs(rek.deltaPct), 1)} % och kräver manuellt godkännande (tröskel ${state.regler.godkTroskel} %).`
+      : `Under godkännandetröskeln ${state.regler.godkTroskel} %${state.auto ? ', autoläge får tillämpa den' : ''}.` },
+    { ok: m.nu.visningar >= state.regler.minVisningar * (state.period / 7),
+      txt: `Underlag: ${m.nu.visningar} visningar och ${m.nu.skickade} skickade offerter på ${m.n} dagar.` }
+  ];
+
+  let fot;
+  if (rek.typ === 'oforandrat') fot = `<span class="done">Inget beslut behövs${rek.flagga ? ' på priset' : ''}.</span>`;
+  else if (rek.laast) fot = `<span class="locked">Låst i ${rek.kylKvar} dagar av kylperioden</span>`;
+  else if (rek.beslut) fot = `<span class="done">${rek.beslut.status === 'godkand' ? 'Godkänd' : 'Avslagen'} ${tidText(new Date(rek.beslut.ts))}</span>`;
+  else fot = `<button class="rj" data-rej="${t.id}">Avslå</button>
+              <button class="ap" data-app="${t.id}">${rek.kraverGodk ? 'Godkänn ändring' : 'Tillämpa'} (${kr(rek.nyttPris)})</button>`;
+
+  document.getElementById('drawer').innerHTML = `
+    <div class="dh">
+      ${svgIco(t.kat)}
+      <div><h3>${t.namn}</h3><span>${t.ref} · ${KATNAMN[t.kat]}</span></div>
+      <button class="x" id="dx" aria-label="Stäng">✕</button>
+    </div>
+    <div class="dc">
+      <div class="dsec">
+        <h5>Förslag</h5>
+        <div class="price">
+          <div class="pb"><span>Riktpris nu</span><b>${kr(t.pris)}</b></div>
+          <span class="arw">→</span>
+          <div class="pb" style="border-color:var(--line-2)"><span>Rekommenderat</span><b>${kr(rek.nyttPris)}</b></div>
+        </div>
+        <div style="display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap;align-items:center">
+          <span class="act ${A[0]}">${A[1]}</span>
+          ${rek.typ !== 'oforandrat' ? `<span class="st ${rek.deltaPct > 0 ? 'st-ok' : 'st-no'}">${rek.deltaPct > 0 ? '+' : ''}${num(rek.deltaPct, 1)} %</span>` : ''}
+          <span class="st st-w">Säkerhet ${Math.round(rek.conf * 100)} %</span>
+          <span style="font-size:.68rem;color:var(--p28)">Poäng ${rek.score > 0 ? '+' : ''}${rek.score}</span>
+        </div>
+        ${rek.flagga ? `<p style="margin-top:.7rem;font-size:.73rem;color:var(--warn)">⚑ ${rek.flagga}</p>` : ''}
+      </div>
+
+      <div class="ai">
+        <div class="aih"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></svg> Så tolkar motorn läget</div>
+        ${r.text.map(p => `<p>${p}</p>`).join('')}
+        <div class="fine">Genererad förklaring utifrån de fem signalerna nedan. Ingen signal avgör ensam.</div>
+      </div>
+
+      <div class="dsec">
+        <h5>Signalstöd</h5>
+        <div class="sig">${r.sig.map(s => {
+          const w = Math.abs(s.v) * 50, col = s.v >= 0 ? 'var(--ok)' : 'var(--dgr)';
+          return `<div class="sg">
+            <span class="sn">${s.namn}</span>
+            <span class="sb"><i style="background:${col};${s.v >= 0 ? 'left:50%' : `right:50%`};width:${w}%"></i></span>
+            <span class="sv" style="color:${col}">${s.v >= 0 ? '+' : ''}${num(s.v, 2)}</span>
+            <span class="sw2">${s.text} · vikt ${Math.round(s.vikt * 100)} %</span>
+          </div>`;
+        }).join('')}</div>
+      </div>
+
+      <div class="dsec">
+        <h5>Beteende ${m.n} dagar</h5>
+        <div class="kv">
+          <span class="k">Visningar på tjänstesidan</span><span class="v">${nfk.format(m.nu.visningar)}</span>
+          <span class="k">Påbörjade offertförfrågningar</span><span class="v">${m.nu.paborjade}</span>
+          <span class="k">Avbrutna innan de skickades</span><span class="v">${m.nu.avbrutna} (${pct(m.avhopp)})</span>
+          <span class="k">Skickade offerter</span><span class="v">${m.nu.skickade}</span>
+          <span class="k">Vunna jobb</span><span class="v">${m.nu.vunna}</span>
+          <span class="k">Förlorade offerter</span><span class="v">${m.forlorade}</span>
+          <span class="k">Säljtempo</span><span class="v">${num(m.velNu, 1)} jobb/v (förra ${num(m.velForra, 1)})</span>
+          <span class="k">Ledig kapacitet</span><span class="v">${t.ledig} av 8 veckor</span>
+          <span class="k">Bokad omsättning</span><span class="v">${kr(m.oms)}</span>
+        </div>
+      </div>
+
+      <div class="dsec">
+        <h5>Spärrar</h5>
+        <div class="gr">${gr.map(x => `<div class="${x.ok ? 'pass' : 'block'}">
+          <svg viewBox="0 0 24 24">${x.ok ? '<path d="M4 12l5 5L20 6"/>' : '<path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/>'}</svg>
+          <span>${x.txt}</span></div>`).join('')}
+        </div>
+      </div>
+
+      <div class="dsec">
+        <h5>Historik för tjänsten</h5>
+        ${hist.length ? `<div class="hist">${hist.map(x => `<div class="he">
+          <b>${kr(x.fran)} → ${kr(x.till)} <span style="font-weight:400;color:${x.till > x.fran ? 'var(--ok)' : 'var(--dgr)'}">
+            ${x.till === x.fran ? '' : (x.till > x.fran ? '+' : '') + num((x.till - x.fran) / x.fran * 100, 1) + ' %'}</span></b>
+          <span>${x.orsak}</span>
+          <em>${x.ts.toLocaleDateString('sv-SE', { day:'numeric', month:'long', year:'numeric' })} · ${x.beslut} av ${x.av} · säkerhet ${Math.round(x.conf * 100)} %</em>
+        </div>`).join('')}</div>`
+        : `<p style="font-size:.74rem;color:var(--p28)">Ingen tidigare ändring. Ursprungspris ${kr(t.ursprungspris)}.</p>`}
+      </div>
+    </div>
+    <div class="df">${fot}</div>`;
+
+  document.getElementById('drawer').classList.add('on');
+  document.getElementById('drawer').setAttribute('aria-hidden', 'false');
+  document.getElementById('scrim').classList.add('on');
+  render(false);
+}
+function closeDrawer() {
+  if (state.reel) {
+    const ov = document.getElementById('rov');
+    state.valdId = null;
+    if (ov) ov.classList.remove('on');
+    document.querySelectorAll('.r-card').forEach(c => c.classList.remove('hl'));
+    return;
+  }
+  state.valdId = null;
+  document.getElementById('drawer').classList.remove('on');
+  document.getElementById('drawer').setAttribute('aria-hidden', 'true');
+  document.getElementById('scrim').classList.remove('on');
+  render(false);
+}
+
+/* ---------- 13. beslut ---------- */
+function toast(rubrik, text, kind = '') {
+  const el = document.createElement('div');
+  el.className = 'toast ' + kind;
+  el.innerHTML = `<b>${rubrik}</b><span>${text}</span>`;
+  document.getElementById('toasts').appendChild(el);
+  setTimeout(() => { el.style.transition = '.3s'; el.style.opacity = 0; el.style.transform = 'translateX(20px)';
+    setTimeout(() => el.remove(), 320); }, 4200);
+}
+function loggPost(ikon, rubrik, text) {
+  state.logg.unshift({ ts: new Date(TODAY.getTime() + 11 * 36e5 + state.logg.length * 6e4), ikon, rubrik, text });
+}
+
+function godkann(id, av = 'Mathias') {
+  const r = RAD.find(x => x.t.id === id); if (!r || r.rek.laast || r.rek.typ === 'oforandrat') return;
+  const fran = r.t.pris, till = r.rek.nyttPris;
+  state.historik.push({ ts: new Date(TODAY), tjanstId: id, tjanst: r.t.namn, fran, till, typ: r.rek.typ,
+    orsak: r.text[0], conf: r.rek.conf, beslut: 'Godkänd', av });
+  state.beslut[id] = { status: 'godkand', ts: new Date(TODAY).toISOString(), fran, till };
+  r.t.pris = till; r.t.andrad = 0;
+  loggPost('check', 'Prisändring tillämpad', `${r.t.namn}: ${kr(fran)} → ${kr(till)}`);
+  toast('Prisändring tillämpad', `${r.t.namn} ligger nu på ${kr(till)}. Kylperiod ${state.regler.kylperiod} dagar startad.`, 'ok');
+  spara(); berakna(); render(); if (state.valdId === id) openDrawer(id);
+}
+function avsla(id) {
+  const r = RAD.find(x => x.t.id === id); if (!r) return;
+  state.historik.push({ ts: new Date(TODAY), tjanstId: id, tjanst: r.t.namn, fran: r.t.pris, till: r.t.pris,
+    typ: r.rek.typ, orsak: `Avslagen. Motorn föreslog ${kr(r.rek.nyttPris)}: ${r.text[0]}`, conf: r.rek.conf,
+    beslut: 'Avslagen', av: 'Mathias' });
+  state.beslut[id] = { status: 'avslagen', ts: new Date(TODAY).toISOString() };
+  loggPost('no', 'Rekommendation avslagen', `${r.t.namn}: priset ligger kvar på ${kr(r.t.pris)}`);
+  toast('Avslagen', `${r.t.namn} behåller ${kr(r.t.pris)}. Beslutet ligger i historiken.`, 'no');
+  spara(); berakna(); render(); if (state.valdId === id) openDrawer(id);
+}
+
+function korAnalys() {
+  const btn = document.getElementById('runBtn');
+  btn.disabled = true; btn.textContent = 'Analyserar…';
+  const rb = document.querySelector('[data-run]');
+  if (rb) { rb.disabled = true; rb.textContent = 'Analyserar…'; }
+  setTimeout(() => {
+    state.korning++;
+    berakna();
+    let auto = 0;
+    if (state.auto) {
+      vantande().filter(r => Math.abs(r.rek.deltaPct) < state.regler.godkTroskel).forEach(r => { godkann(r.t.id, 'Autoläge'); auto++; });
+    }
+    berakna();
+    const v = vantande().length;
+    loggPost('spark', 'Prisanalys genomförd', `${synliga().length} tjänster analyserade på ${state.period} dagars beteendedata`);
+    loggPost('tag', 'Rekommendationer genererade', `${v} väntar på granskning${auto ? `, ${auto} tillämpade av autoläget` : ''}`);
+    spara();
+    btn.disabled = false;
+    btn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></svg> Kör prisanalys`;
+    render();
+    document.getElementById('body').classList.add('pulse');
+    setTimeout(() => document.getElementById('body').classList.remove('pulse'), 900);
+    toast('Analys klar', `${synliga().length} tjänster genomräknade. ${v} förslag väntar på dig${auto ? `, ${auto} tillämpades automatiskt` : ''}.`, 'ok');
+  }, 620);
+}
+
+/* ---------- 14. render ---------- */
+function render(full = true) {
+  if (state.reel) {
+    if (!full) {
+      document.querySelectorAll('.r-card').forEach(c => c.classList.toggle('hl', c.dataset.open === state.valdId));
+      return;
+    }
+    renderReel(); return;
+  }
+  renderNav(); renderTop(); renderSide();
+  if (!full) {
+    document.querySelectorAll('tbody tr').forEach(tr =>
+      tr.classList.toggle('sel', tr.dataset.id === state.valdId));
+    return;
+  }
+  const body = document.getElementById('body');
+  body.innerHTML = state.vy === 'oversikt' ? vyOversikt()
+    : state.vy === 'rek' ? `<div class="col">${panelRek(0)}${panelSim()}</div><div class="col">${panelInsikter()}${panelKat()}</div>`
+    : state.vy === 'regler' ? vyRegler()
+    : vyHistorik();
+}
+
+/* ---------- 15. händelser ---------- */
+document.addEventListener('click', e => {
+  const nav = e.target.closest('[data-vy]');
+  if (nav) { state.vy = nav.dataset.vy; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+
+  const seg = e.target.closest('#periodSeg button');
+  if (seg) { state.period = +seg.dataset.p;
+    document.querySelectorAll('#periodSeg button').forEach(b => b.classList.toggle('on', b === seg));
+    berakna(); render(); if (state.valdId) openDrawer(state.valdId);
+    toast('Period ändrad', `Alla mätvärden och rekommendationer räknas nu på ${state.period} dagar.`); return; }
+
+  if (e.target.closest('#runBtn, [data-run]')) { korAnalys(); return; }
+  if (e.target.closest('#autoSw, [data-auto]')) {
+    state.auto = !state.auto; spara(); render();
+    toast(state.auto ? 'Autoläge på' : 'Autoläge av', state.auto
+      ? `Ändringar under ${state.regler.godkTroskel} % tillämpas vid nästa analys. Större väntar på dig.`
+      : 'Inget pris ändras utan ditt godkännande.'); return; }
+  if (e.target.closest('#review')) { state.vy = 'rek'; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+
+  const kat = e.target.closest('[data-kat]');
+  if (kat) { state.kat = state.kat === kat.dataset.kat ? 'alla' : kat.dataset.kat; render(); return; }
+
+  const app = e.target.closest('[data-app]'); if (app) { godkann(app.dataset.app); return; }
+  const rej = e.target.closest('[data-rej]'); if (rej) { avsla(rej.dataset.rej); return; }
+
+  if (e.target.closest('#dx, [data-close]') || e.target.id === 'scrim') { closeDrawer(); return; }
+
+  const ins = e.target.closest('[data-open]'); if (ins) { openDrawer(ins.dataset.open); return; }
+  const tr = e.target.closest('tbody tr[data-id]'); if (tr) { openDrawer(tr.dataset.id); return; }
+
+  if (e.target.id === 'reset') {
+    try { localStorage.removeItem(LS); } catch (err) {}
+    location.reload(); return;
+  }
+});
+
+document.getElementById('katSel').addEventListener('change', e => {
+  state.kat = e.target.value; render();
+});
+
+document.addEventListener('change', e => {
+  const rule = e.target.dataset.rule;
+  if (rule) {
+    state.regler[rule] = clamp(+e.target.value || 1, 1, rule === 'minVisningar' ? 5000 : 60);
+    e.target.value = state.regler[rule];
+    spara(); berakna(); render();
+    toast('Prisregel uppdaterad', `${e.target.previousElementSibling ? '' : ''}Rekommendationerna är omräknade mot de nya spärrarna.`);
+    loggPost('rule', 'Prisregel uppdaterad', `${rule} satt till ${state.regler[rule]}`);
+    return;
+  }
+  const min = e.target.dataset.min, max = e.target.dataset.max;
+  if (min || max) {
+    const t = T(min || max);
+    if (min) t.min = Math.min(+e.target.value || t.min, t.pris);
+    if (max) t.max = Math.max(+e.target.value || t.max, t.pris);
+    spara(); berakna(); render();
+    toast('Prisspann uppdaterat', `${t.namn}: ${kr(t.min)} – ${kr(t.max)}.`);
+  }
+});
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+/* ---------- 16. start ---------- */
+berakna();
+render();
+</script>
+</body>
+</html>

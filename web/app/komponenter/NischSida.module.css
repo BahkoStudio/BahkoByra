@@ -1,0 +1,186 @@
+.topp {
+  padding-top: clamp(2.6rem, 6vw, 4.2rem);
+  padding-bottom: clamp(2.8rem, 6vw, 4.2rem);
+}
+
+.brod {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.84rem;
+  color: var(--text-lag);
+  margin-bottom: 1.4rem;
+}
+
+.brod a:hover {
+  color: var(--em-lt);
+}
+
+.toppKnappar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.punktNat {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1rem;
+  margin-top: 2.4rem;
+}
+
+.punktNat h3 {
+  margin-bottom: 0.5rem;
+}
+
+.punktNat p {
+  color: var(--ink-3);
+  font-size: 0.95rem;
+  text-wrap: pretty;
+}
+
+.brodtext {
+  max-width: 62ch;
+  margin-top: 2.2rem;
+}
+
+.brodtext p {
+  color: var(--ink-3);
+  text-wrap: pretty;
+}
+
+.brodtext p + p {
+  margin-top: 1rem;
+}
+
+/* Beviskortet: kunden med bild, självbärande stycke och länk ut. */
+.bevisYta {
+  background: var(--lt-2);
+}
+
+.bevis {
+  display: grid;
+  grid-template-columns: minmax(260px, 420px) 1fr;
+  gap: clamp(1.4rem, 4vw, 2.6rem);
+  align-items: center;
+  margin-top: 2.2rem;
+}
+
+.bevisBild {
+  display: block;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--linje);
+  background: var(--vit);
+}
+
+.bevisBild img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.bevisKropp em {
+  display: block;
+  font-style: normal;
+  font-size: 0.87rem;
+  color: var(--ink-3);
+  margin-bottom: 0.4rem;
+}
+
+.bevisKropp p {
+  color: var(--ink-3);
+  margin-top: 0.7rem;
+  max-width: 58ch;
+  text-wrap: pretty;
+}
+
+.lank {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.1rem;
+  font-weight: 600;
+  color: var(--em-deep);
+}
+
+.lank svg {
+  width: 17px;
+  height: 17px;
+  transition: transform 0.25s var(--ease);
+}
+
+.lank:hover svg {
+  transform: translateX(3px);
+}
+
+.processSteg {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.6rem;
+}
+
+.processSteg li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: var(--vit);
+  border: 1px solid var(--linje);
+  border-radius: 999px;
+  padding: 0.65rem 1.25rem 0.65rem 0.65rem;
+  font-weight: 600;
+  font-size: 0.94rem;
+}
+
+.processSteg span {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--em);
+  color: var(--bas);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+  margin-top: 2.4rem;
+  padding: 1.8rem;
+  background: var(--bas);
+  color: var(--text);
+  border-radius: var(--r-lg);
+}
+
+.cta h3 {
+  margin-bottom: 0.35rem;
+}
+
+.cta p {
+  color: var(--text-lag);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 780px) {
+  .bevis {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .cta {
+    padding: 1.4rem;
+  }
+  .cta a {
+    width: 100%;
+  }
+}

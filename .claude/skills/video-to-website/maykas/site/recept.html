@@ -99,6 +99,11 @@
     }
     .lang-toggle { background: transparent; border: 1.5px solid var(--gold); color: var(--gold); font-family: var(--sans); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; padding: 0.32rem 0.7rem; border-radius: 50px; cursor: pointer; transition: background 0.2s, color 0.2s; line-height: 1; }
     .lang-toggle:hover { background: var(--gold); color: var(--dark); }
+
+    /* ── FOOTER ── */
+    .site-footer { max-width: 1080px; margin: 0 auto; padding: 1.6rem 5vw 2.6rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; align-items: center; justify-content: space-between; border-top: 1px solid var(--beige); font-size: 0.78rem; color: var(--mid); }
+    .site-footer a { color: var(--crimson); text-decoration: none; font-weight: 600; }
+    .site-footer a:hover { text-decoration: underline; }
   </style>
   <script src="js/i18n.js"></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4880340628636698" crossorigin="anonymous"></script>
@@ -121,6 +126,11 @@
     <p data-i18n="r.loading">Laddar recept…</p>
   </div>
 </main>
+
+<footer class="site-footer">
+  <span>© 2025 MaykasKitchen</span>
+  <span>Hemsida av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
+</footer>
 
 <script>
 /* ── helper: pick language variant ── */

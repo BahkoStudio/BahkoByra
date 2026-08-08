@@ -134,7 +134,7 @@ function buildQueries(brand) {
       query: `Vad kostar det att anlita en digital byrå i Sverige för ${services}? Konkreta prisintervall (SEK) för: 1) Hemsida/landningssida, 2) SEO per månad, 3) Google Ads management, 4) Paketpris. Nämn byrånamn. 2024-2025.`,
     },
     {
-      id: "clinic_niche",
+      id: "niche_analysis",
       label: "Bygg-nischen",
       query: `Vilka digitala byråer i Sverige specialiserar sig på byggföretag, hantverkare, takläggare och måleri? Nämn specifika byråer, deras erbjudande och priser. Hur marknadsför bygg- och hantverksfirmor sig online i Sverige 2025?`,
     },

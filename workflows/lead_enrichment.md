@@ -12,7 +12,9 @@ FIRECRAWL_API_KEY=...    # firecrawl.dev API-nyckel (redan inlagt)
 ```
 
 ## Innan du kör — Poängsätt mejlmallarna
-Kör email-scorern för att säkra att mallarna håller hög kvalitet:
+Kör email-scorern, som bedömer mallarna mot bygg/hantverk-nischen (svenska bygg-, tak-,
+måleri-, mark- och hantverksföretagare): kort och mänskligt, EN konkret observation om
+DERAS sajt, EN tydlig låg-friktions-CTA, ingen hype, inga tankstreck:
 ```bash
 node tools/score_email.js
 ```

@@ -104,7 +104,7 @@ Sökning `"Tryggbyggservice" omdöme OR recension OR "Google Maps" OR betyg` (20
 - **"Trygghet" som genomfört varumärkeslöfte:** namnet förpliktar. Sektion direkt under hero med org.nr, F-skatt, försäkring/garanti och kundreferenser synligt — "ni heter Trygg; idag kan ingen kund verifiera det, på er sajt är det det första man ser."
 - **Signaturdetaljen som differentiering:** Musse Pigg-spegeln/frästa spegeldetaljer som eget showcase-block ("Specialsnickeri") — visar att de inte är ännu en kakelfirma, motiverar premiumpris.
 - **Mötesmanus-krok (verifierbar live på mötet):** googla "Tryggbyggservice" tillsammans → visa att Trygg Bygg Skåne (samma tjänster) tar deras namnsökningar → visa att tryggbyggservice.se är ledig → "vi tar domänen åt er den här veckan, gratis hemsideförslag finns redan utkastat."
-- **Offer:** front = gratis hemsideförslag (utkast enligt ovan), core = hemsida engångs 29 900 kr. Hemsidor är budskapet — inte SEO-snack.
+- **Offer:** front = gratis hemsideförslag (utkast enligt ovan), core = hemsida engångs 12 000 kr ex moms (prisändring 2026-08-01). Hemsidor är budskapet — inte SEO-snack.
 
 ---
 *Researchad 2026-06-11 av Bahko Byrå. Alla observationer källmärkta per steg ovan. Ej verifierat (fråga i DM/möte): ort, org.nr/bolagsform, beslutsfattarens namn.*
