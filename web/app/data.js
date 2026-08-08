@@ -31,6 +31,12 @@ export const TJANSTER = [
       },
     ],
     process: ['Gratis förslag inom 48 timmar', 'Du säger ja', 'Live inom 7 dagar'],
+    // Interna länkar till nischsidorna och prisguiden, renderas bara när fältet finns.
+    relaterat: [
+      { href: '/hemsida-for-malerifirma/', namn: 'Hemsida för målerifirma', kort: 'ROT rätt, era jobb som bevis och offert i mobilen.' },
+      { href: '/hemsida-for-tradgardsfirma/', namn: 'Hemsida för trädgårdsfirma', kort: 'RUT per tjänst, egna tjänstesidor och ringknapp överallt.' },
+      { href: '/vad-kostar-en-hemsida/', namn: 'Vad kostar en hemsida?', kort: 'Ärligt svar på vad som avgör priset, och fällorna att undvika.' },
+    ],
   },
   {
     slug: 'seo',

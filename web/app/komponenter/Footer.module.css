@@ -14,8 +14,15 @@
 
 .kolumner {
   display: grid;
-  grid-template-columns: 1.4fr repeat(3, 1fr);
-  gap: 2.2rem;
+  grid-template-columns: 1.3fr repeat(4, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 980px) {
+  .kolumner {
+    grid-template-columns: 1.3fr repeat(2, 1fr);
+    row-gap: 2.2rem;
+  }
 }
 
 .marke {

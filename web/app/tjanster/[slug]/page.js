@@ -95,6 +95,26 @@ export default async function Tjanst({ params }) {
         </div>
       </section>
 
+      {t.relaterat && (
+        <section>
+          <div className="wrap">
+            <span className="eyebrow">För ert yrke</span>
+            <h2>Så bygger vi för just er bransch</h2>
+            <div className={styles.andraNat}>
+              {t.relaterat.map((r) => (
+                <Link key={r.href} href={r.href} className={styles.andraKort}>
+                  <span>
+                    <strong>{r.namn}</strong>
+                    <em>{r.kort}</em>
+                  </span>
+                  {PIL}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section>
         <div className="wrap">
           <span className="eyebrow">Vanliga frågor</span>

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { TJANSTER } from '../data';
+import { NISCHER } from '../nischer';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -26,6 +27,20 @@ export default function Footer() {
             </ul>
           </nav>
 
+          <nav aria-label="Hemsida för ert yrke">
+            <h2 className={styles.kolrubrik}>Hemsida för</h2>
+            <ul>
+              {NISCHER.map((n) => (
+                <li key={n.slug}>
+                  <Link href={`/${n.slug}/`}>{n.title.replace('Hemsida för ', '')}</Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/vad-kostar-en-hemsida/">Vad kostar en hemsida?</Link>
+              </li>
+            </ul>
+          </nav>
+
           <nav aria-label="Sidor">
             <h2 className={styles.kolrubrik}>Byrån</h2>
             <ul>
@@ -34,6 +49,9 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/om-oss/">Om oss</Link>
+              </li>
+              <li>
+                <Link href="/webbyra-jonkoping/">Kontor i Jönköping</Link>
               </li>
               <li>
                 <Link href="/kontakt/">Kontakt</Link>
