@@ -27,15 +27,13 @@ const STEG = [
 ];
 
 /**
- * Korten glider i sidled när sidan scrollas. Ingen egen scrollyta och inget
- * scrollfält att dra i: sidscrollen är enda källan, precis som i panelen.
- * Pilarna knuffar sidscrollen så de rör samma sak.
+ * Korten glider i sidled när sidan scrollas. Ingen egen scrollyta, inget
+ * scrollfält att dra i och inga pilar: sidscrollen är enda källan, precis
+ * som i panelen.
  */
 export default function ProcessRail() {
   const ytaRef = useRef(null);
   const sparRef = useRef(null);
-  const bakRef = useRef(null);
-  const framRef = useRef(null);
   const spannRef = useRef({ start: 0, langd: 1, vagstracka: 0 });
 
   useEffect(() => {
@@ -65,8 +63,6 @@ export default function ProcessRail() {
     const rita = (p) => {
       const { vagstracka } = spannRef.current;
       spar.style.transform = `translate3d(${-p * vagstracka}px, 0, 0)`;
-      if (bakRef.current) bakRef.current.disabled = p <= 0.01;
-      if (framRef.current) framRef.current.disabled = p >= 0.99;
     };
 
     const lasScroll = () => {
@@ -115,38 +111,9 @@ export default function ProcessRail() {
     };
   }, []);
 
-  // Pilarna flyttar sidscrollen ett kort i taget, så de styr samma rörelse.
-  const knuffa = (riktning) => {
-    const { langd } = spannRef.current;
-    const steg = langd / (STEG.length - 1);
-    window.scrollBy({ top: riktning * steg, behavior: 'smooth' });
-  };
-
+  // Inga pilar: sidscrollen är enda styrningen, precis som hinten ovanför säger.
   return (
     <div className={styles.hylla}>
-      <div className={styles.knappar}>
-        <button
-          ref={bakRef}
-          type="button"
-          onClick={() => knuffa(-1)}
-          aria-label="Visa föregående steg"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-            <path d="M19 12H5M12 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          ref={framRef}
-          type="button"
-          onClick={() => knuffa(1)}
-          aria-label="Visa nästa steg"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
-
       <div className={styles.yta} ref={ytaRef}>
         <div className={styles.spar} ref={sparRef}>
           {STEG.map((s) => (

@@ -3,49 +3,6 @@
   margin-top: 2.2rem;
 }
 
-.knappar {
-  display: flex;
-  gap: 0.6rem;
-  justify-content: flex-end;
-  margin-bottom: 1.1rem;
-}
-
-.knappar button {
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 1px solid var(--linje-mork);
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-  transition: background 0.25s var(--ease), border-color 0.25s var(--ease),
-    opacity 0.25s var(--ease), transform 0.25s var(--ease);
-}
-
-.knappar button:hover:not(:disabled) {
-  background: var(--em);
-  border-color: var(--em);
-  color: var(--bas);
-  transform: translateY(-2px);
-}
-
-.knappar button:active:not(:disabled) {
-  transform: translateY(-2px) scale(0.93);
-  transition-duration: 90ms;
-}
-
-.knappar button:disabled {
-  opacity: 0.32;
-  cursor: default;
-}
-
-.knappar svg {
-  width: 19px;
-  height: 19px;
-}
-
 /* Ingen egen scrollyta och inget scrollfalt: sidscrollen flyttar sparet
    i sidled via transform, sa rorelsen hor ihop med resten av sidan. */
 .yta {
@@ -98,8 +55,5 @@
 @media (max-width: 620px) {
   .spar {
     grid-auto-columns: 88%;
-  }
-  .knappar {
-    justify-content: flex-start;
   }
 }
