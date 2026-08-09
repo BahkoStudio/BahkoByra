@@ -27,9 +27,9 @@ const STEG = [
 ];
 
 /**
- * Korten glider i sidled när sidan scrollas. Ingen egen scrollyta, inget
- * scrollfält att dra i och inga pilar: sidscrollen är enda källan, precis
- * som i panelen.
+ * Korten glider i sidled när sidan scrollas, och går att dra direkt med mus
+ * eller finger. Ingen egen scrollyta och inget scrollfält: scrollen sätter
+ * grundläget, greppet lägger en förskjutning ovanpå.
  */
 export default function ProcessRail() {
   const ytaRef = useRef(null);
@@ -59,16 +59,25 @@ export default function ProcessRail() {
     let mal = 0;
     let nu = 0;
     let rafId = null;
+    // Greppet ligger ovanpa scrollen som en forskjutning i stallet for att
+    // skriva over den. Da slass de aldrig om samma varde, och sidan behover
+    // inte hoppa nar man slapper.
+    let grepp = 0;
+
+    const klamp = (v) => Math.max(0, Math.min(1, v));
 
     const rita = (p) => {
       const { vagstracka } = spannRef.current;
       spar.style.transform = `translate3d(${-p * vagstracka}px, 0, 0)`;
     };
 
-    const lasScroll = () => {
+    const scrollAndel = () => {
       const { start, langd } = spannRef.current;
-      const p = ((window.scrollY || 0) - start) / langd;
-      mal = Math.max(0, Math.min(1, p));
+      return ((window.scrollY || 0) - start) / langd;
+    };
+
+    const lasScroll = () => {
+      mal = klamp(scrollAndel() + grepp);
     };
 
     // Samma utjämning som panelen: värdet glider mot scrollens mål.
@@ -95,23 +104,86 @@ export default function ProcessRail() {
       vack();
     };
 
+    // --- dra med mus eller finger ---
+    let provar = false;   // pekaren är nere, riktningen inte avgjord än
+    let drar = false;     // riktningen är vågrät, vi styr rörelsen
+    let startX = 0;
+    let startY = 0;
+    let startGrepp = 0;
+    let startAndel = 0;
+
+    const vidNer = (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      if (spannRef.current.vagstracka <= 0) return;
+      provar = true;
+      drar = false;
+      startX = e.clientX;
+      startY = e.clientY;
+      startGrepp = grepp;
+      startAndel = scrollAndel();
+    };
+
+    const vidRor = (e) => {
+      if (!provar) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+
+      if (!drar) {
+        // Vänta tills riktningen är tydlig. Ett lodrätt svep ska fortfarande
+        // scrolla sidan som vanligt, annars går raden inte att passera på mobil.
+        if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+        if (Math.abs(dx) <= Math.abs(dy)) {
+          provar = false;
+          return;
+        }
+        drar = true;
+        yta.setPointerCapture(e.pointerId);
+        yta.classList.add(styles.griper);
+      }
+
+      const { vagstracka } = spannRef.current;
+      // Forskjutningen klamps sa att summan stannar inom 0..1. Utan det byggs
+      // ett overskott upp vid kanterna som maste dras tillbaka innan nagot syns.
+      grepp = Math.max(-startAndel, Math.min(1 - startAndel, startGrepp - dx / vagstracka));
+      mal = klamp(startAndel + grepp);
+      nu = mal; // fingret ska följas 1:1, ingen utjämning under greppet
+      rita(nu);
+      e.preventDefault();
+    };
+
+    const vidSlapp = (e) => {
+      if (drar) {
+        yta.classList.remove(styles.griper);
+        if (yta.hasPointerCapture?.(e.pointerId)) yta.releasePointerCapture(e.pointerId);
+      }
+      provar = false;
+      drar = false;
+    };
+
     matUpp();
     lasScroll();
-    nu = dampad ? mal : mal;
+    nu = mal;
     rita(nu);
 
     if (!dampad) {
       window.addEventListener('scroll', vack, { passive: true });
     }
     window.addEventListener('resize', vidResize);
+    yta.addEventListener('pointerdown', vidNer);
+    yta.addEventListener('pointermove', vidRor, { passive: false });
+    yta.addEventListener('pointerup', vidSlapp);
+    yta.addEventListener('pointercancel', vidSlapp);
     return () => {
       window.removeEventListener('scroll', vack);
       window.removeEventListener('resize', vidResize);
+      yta.removeEventListener('pointerdown', vidNer);
+      yta.removeEventListener('pointermove', vidRor);
+      yta.removeEventListener('pointerup', vidSlapp);
+      yta.removeEventListener('pointercancel', vidSlapp);
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
 
-  // Inga pilar: sidscrollen är enda styrningen, precis som hinten ovanför säger.
   return (
     <div className={styles.hylla}>
       <div className={styles.yta} ref={ytaRef}>

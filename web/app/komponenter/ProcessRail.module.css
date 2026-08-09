@@ -7,6 +7,15 @@
    i sidled via transform, sa rorelsen hor ihop med resten av sidan. */
 .yta {
   overflow: hidden;
+  cursor: grab;
+  /* Lodratt svep ska fortfarande scrolla sidan. Bara vagrata gester tas
+     om hand av greppet. */
+  touch-action: pan-y;
+}
+
+.griper {
+  cursor: grabbing;
+  user-select: none;
 }
 
 .spar {
