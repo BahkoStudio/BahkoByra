@@ -29,8 +29,31 @@ export const TJANSTER = [
         h: 'Text som låter som du',
         p: 'Ingen byråsvenska om kvalitet och kundfokus. Konkret: vad du gör, var du jobbar och hur det går till, steg för steg från förfrågan till färdigt jobb.',
       },
+      {
+        h: 'Offert och ringknapp på varje skärm',
+        p: 'Kunden ska aldrig behöva leta efter hur man hör av sig. Varje extra steg mellan intresse och kontakt är ett steg där någon hoppar av.',
+      },
+      {
+        h: 'Byggd för mobilen först',
+        p: 'De flesta som letar efter en hantverkare gör det i telefonen, ofta stående i rummet det gäller. Sidan ritas för den skärmen först och anpassas uppåt, inte tvärtom.',
+      },
+      {
+        h: 'Snabb även på dålig uppkoppling',
+        p: 'Inga tunga byggverktyg och inga bildspel som laddar i evighet. Sidan ska öppna direkt även för den som står i en källare med två streck.',
+      },
+      {
+        h: 'En egen sida per tjänst',
+        p: 'En sida kan inte handla om allt ni gör. Varje tjänst ni vill bli hittade på får en egen sida med egen rubrik och egen text, i stället för en enda lista på startsidan.',
+      },
+      {
+        h: 'Bevisen som gör er trygga att välja',
+        p: 'F-skatt, försäkring, certifikat och före- och efterbilder från riktiga jobb. Det är sånt kunden letar efter innan de släpper in någon hemma hos sig.',
+      },
+      {
+        h: 'Samma uppgifter som i Google-profilen',
+        p: 'Namn, adress och telefon skrivs likadant på sajten som i er Google Företagsprofil, med karta på kontaktsidan. Olika uppgifter på olika ställen skapar bara tvivel.',
+      },
     ],
-    process: ['Gratis förslag inom 48 timmar', 'Du säger ja', 'Live inom 7 dagar'],
     // Interna länkar till nischsidorna och prisguiden, renderas bara när fältet finns.
     relaterat: [
       { href: '/hemsida-for-malerifirma/', namn: 'Hemsida för målerifirma', kort: 'ROT rätt, era jobb som bevis och offert i mobilen.' },
