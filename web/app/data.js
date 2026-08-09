@@ -9,49 +9,48 @@ export const TJANSTER = [
     rubrik: 'Hemsidor som ger fler jobb',
     ingress:
       'Front offer och det vi är bäst på. Du får ett färdigt förslag på din nya sida inom 48 timmar och ser exakt hur den blir innan du bestämmer dig.',
-    // Punkterna bygger pa research 2026-08-06: omdomen slar allt annat (NBER/AEJ 2024,
-    // Norstat/Reco), pristransparens avgor (NN/g, Baymard, Konsumentverket), riktigt
-    // ansikte bygger fortroende (Ert m.fl.), konkret sprak saljer (Packard & Berger).
+    // De tio granskningspunkterna, ordagrant desamma som pa gratis-granskning.html
+    // sa att sidorna sager samma sak. Beslutat av Mathias 2026-08-09.
     punkter: [
       {
-        h: 'Dina riktiga omdömen, högst upp',
-        p: 'Vi lyfter in dina Google-omdömen direkt på sajten, med namn, ort och vad jobbet gällde. Det är det första folk letar efter innan de vågar höra av sig.',
+        h: 'Mobilanpassning',
+        p: 'De flesta lokala sökningar sker på telefon. Fungerar er sajt perfekt på mobil?',
       },
       {
-        h: 'Priser folk vågar lita på',
-        p: 'Frånpriser, vad som ingår och rätt ROT-avdrag, rakt på sidan. Otydligt pris är ett av de vanligaste skälen till att kunden tyst väljer någon annan.',
+        h: 'Laddningshastighet',
+        p: 'Varje extra sekund tappas 7% av besökarna. Hur snabbt laddar er sida?',
       },
       {
-        h: 'En kort video där du pratar',
-        p: 'Vi filmar dig, inte en skådespelare. En halv minut om vem du är och hur ett jobb går till. Kunden ska släppa in dig i sitt hem, då vill de se vem du är först.',
+        h: 'Lokal SEO & Google Maps',
+        p: 'Syns ni när folk söker "[tjänst] [stad]"? Är er Google Företagsprofil komplett?',
       },
       {
-        h: 'Text som låter som du',
-        p: 'Ingen byråsvenska om kvalitet och kundfokus. Konkret: vad du gör, var du jobbar och hur det går till, steg för steg från förfrågan till färdigt jobb.',
+        h: 'Boknings- & kontaktflöde',
+        p: 'Hur många klick krävs för att boka eller begära offert? Varje extra steg kostar kunder.',
       },
       {
-        h: 'Offert och ringknapp på varje skärm',
-        p: 'Kunden ska aldrig behöva leta efter hur man hör av sig. Varje extra steg mellan intresse och kontakt är ett steg där någon hoppar av.',
+        h: 'Trustsignaler',
+        p: 'Certifikat, betyg och riktiga bilder på ert arbete — syns de tydligt? Förtroende avgör valet.',
       },
       {
-        h: 'Byggd för mobilen först',
-        p: 'De flesta som letar efter en hantverkare gör det i telefonen, ofta stående i rummet det gäller. Sidan ritas för den skärmen först och anpassas uppåt, inte tvärtom.',
+        h: 'Sociala bevis',
+        p: 'Recensioner, genomförda uppdrag, nöjda kunder — visas det på er sajt?',
       },
       {
-        h: 'Snabb även på dålig uppkoppling',
-        p: 'Inga tunga byggverktyg och inga bildspel som laddar i evighet. Sidan ska öppna direkt även för den som står i en källare med två streck.',
+        h: 'SEO-grundstruktur',
+        p: 'Titlar, meta-beskrivningar och URL-struktur — är de optimerade för Google?',
       },
       {
-        h: 'En egen sida per tjänst',
-        p: 'En sida kan inte handla om allt ni gör. Varje tjänst ni vill bli hittade på får en egen sida med egen rubrik och egen text, i stället för en enda lista på startsidan.',
+        h: 'Prissättning & erbjudanden',
+        p: 'Är priser lätta att hitta? Otydlig prissättning skrämmer bort 43% av besökarna.',
       },
       {
-        h: 'Bevisen som gör er trygga att välja',
-        p: 'F-skatt, försäkring, certifikat och före- och efterbilder från riktiga jobb. Det är sånt kunden letar efter innan de släpper in någon hemma hos sig.',
+        h: 'Design & varumärke',
+        p: 'Speglar designen det ert företag faktiskt erbjuder? Professionellt = förtroende.',
       },
       {
-        h: 'Samma uppgifter som i Google-profilen',
-        p: 'Namn, adress och telefon skrivs likadant på sajten som i er Google Företagsprofil, med karta på kontaktsidan. Olika uppgifter på olika ställen skapar bara tvivel.',
+        h: 'Konverteringspotential',
+        p: 'Är CTA-knappar tydliga? Fångar ni leads som inte bokar direkt?',
       },
     ],
     // Interna länkar till nischsidorna och prisguiden, renderas bara när fältet finns.
