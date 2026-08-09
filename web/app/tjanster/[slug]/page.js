@@ -73,15 +73,21 @@ export default async function Tjanst({ params }) {
 
       <section className={styles.processYta}>
         <div className="wrap">
-          <span className="eyebrow">Så går det till</span>
-          <ol className={styles.processSteg}>
-            {t.process.map((s, i) => (
-              <li key={s}>
-                <span>{i + 1}</span>
-                {s}
-              </li>
-            ))}
-          </ol>
+          {/* Tjänster utan process visar bara CTA:n. Hemsidor beskriver i stället
+              allt som byggs in under "Det som gör skillnaden". */}
+          {t.process && (
+            <>
+              <span className="eyebrow">Så går det till</span>
+              <ol className={styles.processSteg}>
+                {t.process.map((s, i) => (
+                  <li key={s}>
+                    <span>{i + 1}</span>
+                    {s}
+                  </li>
+                ))}
+              </ol>
+            </>
+          )}
 
           <div className={styles.cta}>
             <div>
