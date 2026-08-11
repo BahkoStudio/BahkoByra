@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#071417">
+<meta name="description" content="Glowing Service Stockholm AB — hemstäd, flyttstäd och kontorsstäd i Stockholm. Demo av Bahko Byrå.">
+<title>Glowing Service — Städ i Stockholm som glänser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#071417; --bg2:#0E2126; --card:#142E34;
+  --text:#F0F6F7; --muted:rgba(240,246,247,.66); --dim:rgba(240,246,247,.44);
+  --grn:#3EC9DB; --grn-lt:#8CE4F2; --grn-dk:#1E7E8F; /* kakel-cyan — blankt vatten och rena ytor */
+  --line:rgba(240,246,247,.11);
+  --grad:linear-gradient(100deg,var(--grn-lt) 0%,var(--grn) 45%,#17707F 100%);
+  --sans:'Archivo',system-ui,sans-serif; --disp:'Archivo Expanded','Archivo',sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-out-strong:cubic-bezier(.23,1,.32,1); /* CSS-microinteractions ENDAST */
+}
+html{background:var(--bg);scroll-behavior:auto;overflow-x:hidden;overflow-x:clip}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;overflow-x:clip;-webkit-font-smoothing:antialiased;line-height:1.6;touch-action:pan-y pinch-zoom}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--grn);color:#06171B}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+:focus-visible{outline:2px solid var(--grn-lt);outline-offset:3px}
+
+/* ===== LOADER ===== */
+#loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-brand{font-family:var(--disp);font-size:clamp(1.4rem,4vw,2.6rem);font-weight:900;letter-spacing:.22em;margin-bottom:3rem;text-transform:uppercase}
+.loader-brand em{font-style:normal;color:var(--grn)}
+#loader-bar-wrap{width:min(300px,60vw);height:1px;background:rgba(62,201,219,.2);overflow:hidden}
+#loader-bar{width:100%;height:100%;background:var(--grad);transform:scaleX(0);transform-origin:0 50%;transition:transform .25s ease}
+#loader-percent{font-size:.76rem;letter-spacing:.25em;color:var(--dim);margin-top:1.2rem;font-weight:400}
+
+/* ===== HEADER ===== */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;padding:max(1.4rem,env(safe-area-inset-top)) clamp(1.2rem,4vw,3rem) 1.4rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+.site-header.scrolled{background:rgba(7,20,23,.82);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);border-bottom-color:var(--line)}
+.header-logo{font-family:var(--disp);font-weight:900;font-size:.98rem;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.header-logo em{font-style:normal;color:var(--grn)}
+.header-nav{display:flex;gap:2rem;align-items:center}
+.header-nav a{position:relative;font-size:.74rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;opacity:.75;transition:opacity .3s,color .3s;min-height:44px;display:inline-flex;align-items:center}
+.header-nav a::after{content:'';position:absolute;left:0;bottom:12px;height:1px;width:100%;background:var(--grn);transform:scaleX(0);transform-origin:0 50%;transition:transform .35s var(--ease)}
+.header-nav a.nav-tel{opacity:1;color:var(--grn-lt);font-weight:700;letter-spacing:.1em}
+.header-nav .nav-cta{opacity:1;background:var(--grad);color:#06171B;padding:.68rem 1.4rem;border-radius:4px;font-weight:700;box-shadow:0 8px 20px -10px rgba(0,0,0,.6);transition:transform .2s var(--ease-out-strong),box-shadow .3s}
+.header-nav .nav-cta::after{display:none}
+.header-nav a:active{transform:scale(.97)}
+@media(hover:hover) and (pointer:fine){
+  .header-nav a:hover{opacity:1;color:var(--grn-lt)}
+  .header-nav a:hover::after{transform:scaleX(1)}
+  .header-nav .nav-cta:hover{transform:translateY(-2px);color:#06171B;box-shadow:0 12px 26px -10px rgba(0,0,0,.7)}
+  .wcard:hover img{transform:scale(1.06)}
+}
+
+/* Hamburger + mobilnav */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:11px;margin:-11px;z-index:200;transition:transform .16s var(--ease-out-strong)}
+.hamburger:active{transform:scale(.94)}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--text);transition:all .3s ease}
+.hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mobile-nav{position:fixed;inset:0;background:rgba(7,20,23,.96);backdrop-filter:blur(20px);z-index:150;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;visibility:hidden;transition:all .4s ease}
+.mobile-nav.open{opacity:1;visibility:visible}
+.mobile-nav a{font-family:var(--disp);font-size:1.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.85;transition:opacity .3s,color .3s,transform .16s var(--ease-out-strong);min-height:44px;display:flex;align-items:center}
+.mobile-nav a:active{transform:scale(.97)}
+.mobile-nav .mn-tel{color:var(--grn-lt);font-size:1.4rem}
+
+/* ===== HERO ===== */
+.hero-standalone{position:relative;width:100%;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;z-index:10}
+.hero-vid-wrap{position:absolute;inset:0}
+.hero-vid-wrap video{width:100%;height:100%;object-fit:cover}
+.hero-vid-wrap::after{content:'';position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(7,20,23,.6) 0%,rgba(7,20,23,.22) 38%,rgba(7,20,23,.34) 68%,rgba(7,20,23,.92) 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;width:100%;padding:clamp(6.5rem,15vh,9rem) 5vw clamp(6rem,13vh,8.5rem)}
+.hero-label{display:block;font-size:.74rem;font-weight:600;letter-spacing:.36em;color:var(--grn-lt);text-transform:uppercase;margin-bottom:1.8rem;opacity:0}
+.hero-heading{font-family:var(--disp);font-weight:900;text-transform:uppercase;margin:0 auto 1.4rem;max-width:min(1120px,94vw);text-wrap:balance;text-shadow:0 8px 50px rgba(0,0,0,.45)}
+.hero-heading .setup{display:block;font-size:clamp(1.15rem,2.9vw,2.1rem);line-height:1.15;letter-spacing:.005em;color:var(--text);opacity:.9;margin-bottom:.35em}
+.hero-heading .punch{display:block;font-size:clamp(2.5rem,7.2vw,5.6rem);line-height:.94;letter-spacing:-.022em}
+.hero-heading .word{display:inline-block;opacity:0;transform:translateY(.34em)}
+.hero-heading .accent{background:var(--grad);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 7s linear infinite}
+@keyframes shimmer{to{background-position:220% center}}
+.hero-tagline{font-size:clamp(.88rem,1.05vw,1rem);font-weight:400;letter-spacing:.01em;color:var(--muted);opacity:0}
+.hero-scroll-indicator{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.7rem;opacity:0;z-index:2;pointer-events:none}
+@media(max-height:620px){.hero-scroll-indicator{display:none}}
+.hero-scroll-indicator span{font-size:.72rem;letter-spacing:.3em;color:var(--dim);text-transform:uppercase}
+.scroll-arrow{width:1px;height:42px;position:relative;overflow:hidden}
+.scroll-arrow::after{content:'';position:absolute;top:-100%;left:0;width:1px;height:100%;background:var(--grn);animation:scrollDown 2.1s var(--ease) infinite}
+@keyframes scrollDown{0%{top:-100%}50%{top:0}100%{top:100%}}
+
+/* ===== FAST VIDEOLAGER ===== */
+.bgvid-wrap{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;clip-path:circle(0% at 50% 50%);will-change:clip-path}
+.bgvid-wrap video{width:100%;height:100%;object-fit:cover;filter:brightness(.62)}
+.bgvid-wrap::after{content:'';position:absolute;inset:0;background:
+  radial-gradient(120% 90% at 50% 50%,transparent 0%,rgba(7,20,23,.66) 100%),
+  linear-gradient(180deg,rgba(7,20,23,.45) 0%,transparent 30%,transparent 70%,rgba(7,20,23,.5) 100%)}
+
+#dark-overlay{position:fixed;inset:0;background:var(--bg);opacity:0;z-index:3;pointer-events:none;will-change:opacity}
+
+/* ===== SCROLL CONTAINER — tempo-lagarna: 520vh desktop ===== */
+#scroll-container{position:relative;width:100%;height:520vh;z-index:5}
+
+/* ===== SEKTIONER ===== */
+.scroll-section{position:absolute;width:100%;display:flex;align-items:center;opacity:0;visibility:hidden}
+.scroll-section.active{opacity:1;visibility:visible}
+.align-left{padding-left:6vw;padding-right:50vw}
+.align-right{padding-left:50vw;padding-right:6vw}
+.align-left .section-inner,.align-right .section-inner{max-width:42vw}
+.section-label{display:block;font-size:.74rem;font-weight:600;letter-spacing:.36em;color:var(--grn-lt);text-transform:uppercase;margin-bottom:1.1rem}
+.section-heading{font-family:var(--disp);font-size:clamp(1.8rem,4.4vw,4.2rem);font-weight:900;line-height:1.05;text-transform:uppercase;letter-spacing:-.012em;margin-bottom:1.1rem;text-shadow:0 4px 30px rgba(0,0,0,.5)}
+.section-body{font-size:clamp(.86rem,1vw,1rem);font-weight:400;line-height:1.8;color:var(--muted);max-width:480px}
+.section-note{font-size:clamp(.92rem,1.15vw,1.1rem);color:var(--grn-lt);margin-top:1.2rem;font-weight:500;font-style:italic}
+
+/* ===== PROJEKT ===== */
+.section-projects{justify-content:center;padding:0 5vw}
+.projects-inner{width:min(1240px,92vw)}
+.projects-head{text-align:center;margin-bottom:2rem}
+.projects-head .section-heading{margin-bottom:.4rem}
+.projects-head p{color:var(--dim);font-size:.84rem}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.wcard{position:relative;border-radius:8px;overflow:hidden;background:var(--card);aspect-ratio:4/4.4;border:1px solid var(--line)}
+.wcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
+.wcard::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(7,20,23,.94) 100%)}
+.wc-body{position:absolute;left:1.3rem;right:1.3rem;bottom:1.2rem;z-index:2}
+.wc-tag{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--grn-lt)}
+.wc-body h3{font-family:var(--disp);font-weight:800;font-size:1.2rem;margin:.3rem 0 .2rem}
+.wc-body p{font-size:.78rem;color:var(--muted)}
+
+/* ===== TJÄNSTER ===== */
+.services-list{display:flex;flex-direction:column;gap:1.4rem}
+.service-item{display:flex;align-items:baseline;gap:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(62,201,219,.2)}
+.service-name{font-family:var(--disp);font-size:clamp(1rem,1.6vw,1.42rem);font-weight:800;flex:1}
+.service-tag{font-size:.76rem;letter-spacing:.12em;color:var(--grn-lt);font-weight:700;text-transform:uppercase;white-space:nowrap}
+.service-time{font-size:.76rem;color:var(--dim);white-space:nowrap}
+
+/* ===== STATS ===== */
+.section-stats{justify-content:center;text-align:center;padding:0 5vw}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,4vw,4rem);max-width:920px;width:100%}
+.stat{display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.stat-number{font-family:var(--disp);font-size:clamp(2.2rem,4.8vw,4.6rem);font-weight:900;line-height:1}
+.stat-suffix{font-family:var(--disp);font-size:clamp(1rem,1.9vw,1.8rem);font-weight:800;color:var(--grn);margin-left:.08em;display:inline}
+.stat-label{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-top:.35rem}
+
+/* ===== CTA ===== */
+.section-cta{justify-content:center;text-align:center;padding:0 5vw}
+.cta-inner{display:flex;flex-direction:column;align-items:center;gap:1.3rem}
+.cta-button{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.8rem;font-size:.78rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#06171B;background:var(--grad);padding:1.1rem 2.6rem;min-height:44px;border-radius:4px;box-shadow:0 14px 34px -14px rgba(0,0,0,.62);transition:box-shadow .35s,transform .2s var(--ease-out-strong)}
+.cta-button::before{content:'';position:absolute;inset:0;background:var(--grn-lt);transform:scaleX(0);transform-origin:0 50%;transition:transform .45s var(--ease);z-index:0}
+.cta-button span,.cta-button svg{position:relative;z-index:1}
+.cta-button svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.4;fill:none;transition:transform .35s var(--ease)}
+.cta-button:active{transform:scale(.97)}
+@media(hover:hover) and (pointer:fine){
+  .cta-button:hover::before{transform:scaleX(1)}
+  .cta-button:hover{box-shadow:0 20px 44px -16px rgba(0,0,0,.72);transform:translateY(-2px)}
+  .cta-button:hover svg{transform:translateX(4px)}
+}
+.cta-sub{font-size:.88rem;letter-spacing:.01em;color:var(--muted);line-height:1.8}
+
+/* ===== FLYTANDE OFFERT-KNAPP ===== */
+#float-offert{position:fixed;bottom:max(2.2rem,env(safe-area-inset-bottom));right:2.2rem;z-index:90;background:var(--grad);color:#06171B;font-size:.74rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;padding:.9rem 1.7rem;min-height:44px;border-radius:4px;opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .2s var(--ease-out-strong),box-shadow .3s;pointer-events:none;box-shadow:0 10px 26px -10px rgba(0,0,0,.6)}
+#float-offert.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+#float-offert:active{transform:scale(.97)}
+@media(hover:hover) and (pointer:fine){#float-offert:hover{box-shadow:0 14px 32px -12px rgba(0,0,0,.7);transform:translateY(-2px)}}
+
+/* ===== NUDGE-POPUP (parallellt lager, ingen scrim) ===== */
+#nudge-popup{position:fixed;bottom:max(2.2rem,env(safe-area-inset-bottom));left:2.2rem;z-index:95;width:min(330px,calc(100vw - 2.8rem));background:rgba(20,46,52,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(62,201,219,.3);border-radius:10px;padding:1.2rem 1.3rem 1.1rem;box-shadow:0 14px 28px -14px rgba(0,0,0,.62);opacity:0;transform:translateX(-24px);transition:opacity .38s var(--ease),transform .38s var(--ease);pointer-events:none}
+#nudge-popup.visible{opacity:1;transform:translateX(0);pointer-events:auto}
+#nudge-popup .nx{position:absolute;top:.5rem;right:.6rem;font-size:1.05rem;line-height:1;color:var(--dim);padding:.45rem;min-height:44px;min-width:44px;display:flex;align-items:center;justify-content:center;transition:color .25s}
+#nudge-popup .nx:active{transform:scale(.9)}
+#nudge-popup .nk{font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--grn-lt);margin-bottom:.45rem}
+#nudge-popup p{font-size:.86rem;color:var(--text);line-height:1.55;margin-bottom:.9rem;padding-right:1.2rem}
+#nudge-popup button.nb{background:var(--grad);color:#06171B;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;padding:.7rem 1.2rem;min-height:44px;border-radius:4px;width:100%;transition:transform .18s var(--ease-out-strong)}
+#nudge-popup button.nb:active{transform:scale(.97)}
+@media(hover:hover) and (pointer:fine){#nudge-popup .nx:hover{color:var(--text)}}
+
+/* ===== RIKTIG HEMSIDA-DEL ===== */
+.static-site{position:relative;z-index:6;background:var(--bg)}
+.static-site section{padding:clamp(4rem,9vw,7rem) clamp(1.3rem,5vw,4rem);border-top:1px solid var(--line)}
+.static-site section>.ss-inner{padding-top:.4rem}
+.ss-inner{max-width:1140px;margin:0 auto}
+.ss-label{display:block;font-size:.74rem;font-weight:700;letter-spacing:.3em;color:var(--grn-lt);text-transform:uppercase;margin-bottom:.9rem}
+.ss-h{font-family:var(--disp);font-size:clamp(1.6rem,3.4vw,2.8rem);font-weight:900;text-transform:uppercase;line-height:1.08;letter-spacing:-.01em;margin-bottom:1.2rem}
+.ss-p{font-size:.96rem;color:var(--muted);line-height:1.85;max-width:62ch;margin-bottom:.9rem}
+.ss-p:last-child{margin-bottom:0}
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.6rem,4vw,3.4rem);align-items:center}
+.about-img{border-radius:10px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3}
+.about-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ss-list{list-style:none;margin-top:1.2rem}
+.ss-list li{position:relative;padding-left:1.5rem;margin:.55rem 0;font-size:.92rem;color:var(--muted)}
+.ss-list li::before{content:'';position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--grn)}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;counter-reset:st}
+.step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.5rem 1.3rem}
+.step .n{counter-increment:st;font-family:var(--disp);font-size:.82rem;font-weight:900;color:#06171B;background:var(--grn);width:1.9rem;height:1.9rem;border-radius:50%;display:grid;place-items:center;margin-bottom:.9rem}
+.step .n::before{content:counter(st,decimal-leading-zero)}
+.step h3{font-family:var(--disp);font-size:1.02rem;font-weight:800;margin-bottom:.45rem;text-transform:uppercase;letter-spacing:.01em}
+.step p{font-size:.86rem;color:var(--muted);line-height:1.7}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.gallery-grid figure{border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.gallery-grid img{width:100%;aspect-ratio:16/11;object-fit:cover;display:block}
+.gallery-grid figcaption{font-size:.78rem;color:var(--dim);padding:.75rem .95rem}
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.6rem,4vw,3.4rem)}
+.tel-big{font-family:var(--disp);font-size:clamp(1.7rem,4.2vw,3rem);font-weight:900;color:var(--grn-lt);letter-spacing:-.01em;display:inline-flex;align-items:center;min-height:44px;transition:transform .18s var(--ease-out-strong)}
+.tel-big:active{transform:scale(.98)}
+.c-row{margin:1.1rem 0;font-size:.94rem;color:var(--muted)}
+.c-row b{color:var(--text);display:block;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;margin-bottom:.25rem;font-weight:700}
+.offer-card{background:var(--card);border:1px solid rgba(62,201,219,.28);border-radius:12px;padding:1.8rem 1.7rem}
+.offer-card h3{font-family:var(--disp);font-size:1.25rem;font-weight:800;margin-bottom:.6rem;text-transform:uppercase}
+.offer-card p{font-size:.9rem;color:var(--muted);margin-bottom:1.3rem;line-height:1.75}
+.offer-card .cta-button{width:100%}
+
+/* ===== FOOTER ===== */
+footer{position:relative;z-index:6;border-top:1px solid var(--line);padding:1.8rem clamp(1.2rem,4vw,3rem);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.76rem;color:var(--dim);background:var(--bg)}
+footer a{color:var(--grn-lt)}
+
+/* ===== MODAL ===== */
+.modal-bg{position:fixed;inset:0;z-index:500;background:rgba(7,20,23,.74);backdrop-filter:blur(10px);display:grid;place-items:center;padding:1.2rem;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+.modal-bg.open{opacity:1;visibility:visible}
+.modal{background:var(--bg2);border:1px solid rgba(62,201,219,.3);border-radius:12px;max-width:480px;width:100%;padding:2.5rem;position:relative;box-shadow:0 18px 28px -14px rgba(0,0,0,.62);transform-origin:center;transform:scale(.95);opacity:0;transition:transform .34s var(--ease),opacity .34s var(--ease)}
+.modal-bg.open .modal{transform:scale(1);opacity:1}
+.modal-bg:not(.open) .modal{transition:transform .2s ease-out,opacity .2s ease-out}
+.modal-x{position:absolute;top:.7rem;right:.9rem;font-size:1.25rem;color:var(--dim);padding:.5rem;min-height:44px;min-width:44px;display:flex;align-items:center;justify-content:center;transition:color .3s}
+.modal-x:active{transform:scale(.9)}
+.m-badge{display:inline-block;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--grn-lt);background:rgba(62,201,219,.1);border:1px solid rgba(62,201,219,.25);border-radius:4px;padding:.35rem .8rem;margin-bottom:1.2rem}
+.modal h3{font-family:var(--disp);font-weight:800;font-size:1.6rem;line-height:1.18;margin-bottom:.6rem}
+.modal p{font-size:.9rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.7}
+.modal .cta-button{width:100%;font-size:.76rem;padding:1rem 1.4rem}
+.m-alt{display:flex;align-items:center;justify-content:center;text-align:center;font-size:.78rem;color:var(--dim);margin-top:.9rem;min-height:44px;transition:color .3s}
+.m-foot{margin-top:1.5rem;padding-top:1.1rem;border-top:1px solid var(--line);text-align:center;font-size:.8rem;letter-spacing:.04em;color:var(--dim)}
+.m-foot a{color:var(--grn-lt);font-weight:600}
+@media(hover:hover) and (pointer:fine){.modal-x:hover{color:var(--text)}.m-alt:hover{color:var(--grn-lt)}}
+
+/* ===== MOBIL — tempo-lagarna: 620vh (MER än desktop) ===== */
+@media(max-width:768px){
+  .header-nav{display:none}
+  .hamburger{display:flex}
+  .align-left,.align-right{padding-left:6vw;padding-right:6vw}
+  .align-left .section-inner,.align-right .section-inner{max-width:100%}
+  .scroll-section .section-inner{background:rgba(7,20,23,.76);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:1.7rem;border-radius:8px;border:1px solid var(--line)}
+  #scroll-container{height:620vh}
+  .work-grid{grid-template-columns:1fr;gap:.9rem}
+  .wcard{aspect-ratio:4/2.8}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:1.8rem}
+  .hero-heading{max-width:100%}
+  .hero-heading .setup{font-size:clamp(1.05rem,4.6vw,1.5rem)}
+  .hero-heading .punch{font-size:clamp(2.15rem,11vw,3.4rem)}
+  .cta-button{padding:.95rem 1.8rem;width:100%}
+  #float-offert{bottom:max(1.3rem,env(safe-area-inset-bottom));right:1.3rem;font-size:.72rem;padding:.78rem 1.2rem}
+  #nudge-popup{left:1.3rem;right:1.3rem;width:auto;bottom:calc(max(1.3rem,env(safe-area-inset-bottom)) + 4rem)}
+  .modal{padding:1.8rem 1.4rem}
+  .service-item{flex-direction:column;gap:.3rem;align-items:flex-start}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){.steps-grid{grid-template-columns:1fr}}
+
+/* ===== FALLBACK + REDUCED MOTION ===== */
+html.fallback #loader{display:none}
+html.fallback #scroll-container{height:auto}
+html.fallback .scroll-section{position:static;opacity:1!important;visibility:visible!important;transform:none!important;padding-top:4rem;padding-bottom:4rem}
+html.fallback .hero-label,html.fallback .hero-tagline,html.fallback .hero-scroll-indicator{opacity:1!important}
+html.fallback .hero-heading .word{opacity:1!important;transform:none!important}
+html.fallback .ss-rev{opacity:1!important;transform:none!important}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  #loader{display:none}
+  #scroll-container{height:auto}
+  .scroll-section{position:static;opacity:1!important;visibility:visible!important;transform:none!important;padding-top:4rem;padding-bottom:4rem}
+  .hero-label,.hero-tagline,.hero-scroll-indicator{opacity:1!important}
+  .hero-heading .word{opacity:1!important;transform:none!important}
+  .bgvid-wrap{display:none}
+  .ss-rev{opacity:1!important;transform:none!important}
+}
+@media(prefers-reduced-transparency:reduce){
+  .site-header.scrolled{background:rgba(7,20,23,.97);backdrop-filter:none;-webkit-backdrop-filter:none}
+  .mobile-nav{background:rgba(7,20,23,.99);backdrop-filter:none}
+  .scroll-section .section-inner{background:rgba(7,20,23,.97);backdrop-filter:none;-webkit-backdrop-filter:none}
+  #nudge-popup{background:rgba(20,46,52,.99);backdrop-filter:none;-webkit-backdrop-filter:none}
+  .modal-bg{background:rgba(7,20,23,.97);backdrop-filter:none}
+}
+/* Statisk del: engångs-scroll-reveal */
+.ss-rev{opacity:0;transform:translateY(26px)}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-brand">GLOWING SERVICE<em>.</em></div>
+  <div id="loader-bar-wrap"><div id="loader-bar"></div></div>
+  <div id="loader-percent">0%</div>
+</div>
+
+<!-- MOBILNAV -->
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="#om-oss" onclick="closeMobileNav()">Om oss</a>
+  <a href="#process" onclick="closeMobileNav()">Så går det till</a>
+  <a href="#kontakt" onclick="closeMobileNav()">Kontakt</a>
+  <a class="mn-tel" href="tel:0701234567" onclick="closeMobileNav()">070-123 45 67</a>
+  <a href="#" onclick="openModal();closeMobileNav();return false">Begär offert</a>
+</nav>
+
+<!-- HEADER -->
+<header class="site-header" id="site-header">
+  <a href="#" class="header-logo">GLOWING SERVICE<em>.</em></a>
+  <nav class="header-nav">
+    <a href="#om-oss">Om oss</a>
+    <a href="#process">Så går det till</a>
+    <a href="#kontakt">Kontakt</a>
+    <a class="nav-tel" href="tel:0701234567">070-123 45 67</a>
+    <a href="#" class="nav-cta" onclick="openModal();return false">Begär offert</a>
+  </nav>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Meny">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- HERO — förvandlingsloopen -->
+<section class="hero-standalone">
+  <div class="hero-vid-wrap">
+    <video id="hero-vid" autoplay muted loop playsinline preload="auto"
+      poster="media/poster-fore-smutsigt-kok.jpg"
+      src="media/video-storstadningen.mp4"></video>
+  </div>
+  <div class="hero-content">
+    <span class="hero-label">Städ — Stockholm med omnejd</span>
+    <h1 class="hero-heading">
+      <span class="setup word">Rent räcker inte.</span>
+      <span class="punch word accent">Det ska glänsa.</span>
+    </h1>
+    <p class="hero-tagline">Fast pris innan start · Hem, flytt och kontor · Inga överraskningar</p>
+  </div>
+  <div class="hero-scroll-indicator">
+    <span>Se förvandlingen</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- FAST VIDEOLAGER -->
+<div class="bgvid-wrap" id="bgvid-wrap">
+  <video id="bg-vid" autoplay muted loop playsinline preload="metadata"
+    poster="media/poster-efter-skinande-rent.jpg"
+    src="media/video-in-mot-kranen.mp4"></video>
+</div>
+<div id="dark-overlay"></div>
+
+<!-- SCROLL CONTAINER -->
+<div id="scroll-container">
+
+  <section class="scroll-section align-left" data-enter="3" data-leave="24" data-animation="slide-left">
+    <div class="section-inner">
+      <span class="section-label">001 / Hantverket</span>
+      <h2 class="section-heading">Städat är inte alltid rent.</h2>
+      <p class="section-body">Ett snabbstäd flyttar dammet. En riktig städning tar bort det: lister, eluttag, kranar, spisfläkten inifrån, fönstret man tittar genom varje dag. Det är därför det känns annorlunda att kliva in i ett rum vi städat. Inte för att det ser rent ut, utan för att det är det.</p>
+      <p class="section-note">"Om det bara ser rent ut har vi inte städat klart."</p>
+    </div>
+  </section>
+
+  <section class="scroll-section section-projects" data-enter="28" data-leave="45" data-animation="stagger-up">
+    <div class="projects-inner">
+      <div class="projects-head">
+        <span class="section-label">002 / Före och efter</span>
+        <h2 class="section-heading">Samma kök.<br><span class="grad-text">Det glänser.</span></h2>
+        <p>Inget utbytt, inget ommålat. Bara städat på riktigt.</p>
+      </div>
+      <div class="work-grid">
+        <article class="wcard">
+          <img src="media/poster-fore-smutsigt-kok.jpg" alt="Smutsigt kök med flottig spis och fläckiga luckor före städning" loading="lazy" width="1920" height="1072">
+          <div class="wc-body">
+            <div class="wc-tag">Före</div>
+            <h3>Före</h3>
+            <p>Fett på spisen, ränder på luckorna och ett fönster man knappt ser ut genom.</p>
+          </div>
+        </article>
+        <article class="wcard">
+          <img src="media/poster-efter-skinande-rent.jpg" alt="Samma kök skinande rent efter storstädning" loading="lazy" width="1920" height="1072">
+          <div class="wc-body">
+            <div class="wc-tag">Efter</div>
+            <h3>Efter</h3>
+            <p>Samma kök. Och genom det rena fönstret syns huset mittemot igen.</p>
+          </div>
+        </article>
+        <article class="wcard">
+          <img src="media/galleri-kranen.jpg" alt="Makro på blankpolerad kran med vattendroppar" loading="lazy" width="1920" height="1072">
+          <div class="wc-body">
+            <div class="wc-tag">Detaljen</div>
+            <h3>Kranen</h3>
+            <p>Detaljen som avslöjar om någon städat på riktigt eller bara torkat av.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="scroll-section align-right" data-enter="49" data-leave="63" data-animation="slide-right">
+    <div class="section-inner">
+      <span class="section-label">003 / Tjänster</span>
+      <h2 class="section-heading">Det här gör vi.</h2>
+      <div class="services-list">
+        <div class="service-item">
+          <span class="service-name">Hemstäd</span>
+          <span class="service-tag">Återkommande</span>
+          <span class="service-time">Varje vecka eller varannan</span>
+        </div>
+        <div class="service-item">
+          <span class="service-name">Flyttstäd</span>
+          <span class="service-tag">Inför besiktning</span>
+          <span class="service-time">Golv till tak, ugn till lister</span>
+        </div>
+        <div class="service-item">
+          <span class="service-name">Kontorsstäd</span>
+          <span class="service-tag">Utanför arbetstid</span>
+          <span class="service-time">Ni märker oss aldrig</span>
+        </div>
+        <div class="service-item">
+          <span class="service-name">Storstädning</span>
+          <span class="service-tag">Golv till tak</span>
+          <span class="service-time">När det behöver tas i grunden</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 ar ar verifierat ur bolagsregistret (Glowing Service Stockholm AB, org.nr 556920-0628, reg. 2013-01-23). Ovriga tre = erbjudandevillkor. -->
+  <section class="scroll-section section-stats" data-enter="67" data-leave="80" data-animation="stagger-up">
+    <div class="stats-grid">
+      <div class="stat">
+        <div><span class="stat-number" data-value="13" data-decimals="0">0</span><span class="stat-suffix"> år</span></div>
+        <span class="stat-label">Aktiebolag sedan 2013</span>
+      </div>
+      <div class="stat">
+        <div><span class="stat-number" data-value="24" data-decimals="0">0</span><span class="stat-suffix"> h</span></div>
+        <span class="stat-label">Svar på förfrågan</span>
+      </div>
+      <div class="stat">
+        <div><span class="stat-number" data-value="0" data-decimals="0">0</span><span class="stat-suffix"> kr</span></div>
+        <span class="stat-label">Hembesök och offert</span>
+      </div>
+      <div class="stat">
+        <div><span class="stat-number" data-value="0" data-decimals="0">0</span><span class="stat-suffix"> st</span></div>
+        <span class="stat-label">Dolda avgifter</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="scroll-section section-cta" data-enter="84" data-leave="100" data-animation="scale-up" data-persist="true">
+    <div class="cta-inner">
+      <span class="section-label">Nästa steg</span>
+      <h2 class="section-heading" style="font-size:clamp(2.2rem,6vw,5.6rem)">Vad ska<br><span class="grad-text">glänsa först?</span></h2>
+      <button class="cta-button" onclick="openModal()">
+        <span>Begär kostnadsfri offert</span>
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <span class="cta-sub">070-123 45 67 · Fast pris innan start · Inga överraskningar</span>
+    </div>
+  </section>
+
+</div>
+
+<!-- FLYTANDE OFFERT-KNAPP -->
+<button id="float-offert" onclick="openModal()">Begär offert</button>
+
+<!-- NUDGE-POPUP -->
+<div id="nudge-popup" role="complementary" aria-label="Erbjudande">
+  <button class="nx" onclick="dismissNudge()" aria-label="Stäng">✕</button>
+  <div class="nk">Innan flytten</div>
+  <p>Flyttstäd bokas ofta för sent. Säg datumet, så säger vi direkt om vi kan ta det.</p>
+  <button class="nb" onclick="openModal()">Begär offert</button>
+</div>
+
+<!-- ===== RIKTIG HEMSIDA-DEL ===== -->
+<div class="static-site">
+
+  <section id="om-oss">
+    <div class="ss-inner about-grid">
+      <div class="ss-rev">
+        <span class="ss-label">Om oss</span>
+        <h2 class="ss-h">Vi städar. Det ska märkas.</h2>
+        <p class="ss-p">Glowing Service Stockholm AB är ett städföretag i Vallentuna som städat hem, flyttbon och kontor i Stockholm sedan 2013. Litet nog att bry sig om varje kund, gammalt nog att veta vad ett riktigt städ kräver.</p>
+        <p class="ss-p">Samma personer kommer varje gång, du har en kontaktperson, och priset sätts innan vi börjar. Sen städar vi tills det glänser.</p>
+        <ul class="ss-list">
+          <li>Hemstäd — återkommande, varje vecka eller varannan</li>
+          <li>Flyttstäd — inför besiktning och överlämning</li>
+          <li>Kontorsstäd — utanför era arbetstider</li>
+          <li>Storstädning — golv till tak när det behövs</li>
+        </ul>
+      </div>
+      <div class="about-img ss-rev">
+        <img src="media/poster-efter-skinande-rent.jpg" alt="Skinande rent kök efter städning" loading="lazy" width="1920" height="1072">
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="ss-inner">
+      <div class="ss-rev">
+        <span class="ss-label">Så går det till</span>
+        <h2 class="ss-h">Fyra steg, inga överraskningar.</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step ss-rev">
+          <div class="n"></div>
+          <h3>Du hör av dig</h3>
+          <p>Berätta vad som ska städas och hur ofta. Du får ett fast pris direkt, inga besiktningar först.</p>
+        </div>
+        <div class="step ss-rev">
+          <div class="n"></div>
+          <h3>Fast pris</h3>
+          <p>Priset gäller det vi kommit överens om. Det står sig — inga tillägg när vi väl är på plats.</p>
+        </div>
+        <div class="step ss-rev">
+          <div class="n"></div>
+          <h3>Vi städar</h3>
+          <p>Lister, kranar, eluttag, spisfläkt — det man inte ser direkt men känner. Samma personer varje gång.</p>
+        </div>
+        <div class="step ss-rev">
+          <div class="n"></div>
+          <h3>Du synar</h3>
+          <p>Gå igenom rummen innan vi går. Missat något? Då tar vi det på en gång.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galleri">
+    <div class="ss-inner">
+      <div class="ss-rev">
+        <span class="ss-label">Galleri</span>
+        <h2 class="ss-h">Rent som märks.</h2>
+      </div>
+      <div class="gallery-grid">
+        <figure class="ss-rev">
+          <img src="media/poster-fore-smutsigt-kok.jpg" alt="Smutsigt kök före städning" loading="lazy" width="1920" height="1072">
+          <figcaption>Före — fett, ränder och ett fönster i dimma.</figcaption>
+        </figure>
+        <figure class="ss-rev">
+          <img src="media/poster-efter-skinande-rent.jpg" alt="Samma kök skinande rent" loading="lazy" width="1920" height="1072">
+          <figcaption>Efter — samma kök, och utsikten är tillbaka.</figcaption>
+        </figure>
+        <figure class="ss-rev">
+          <img src="media/galleri-kranen.jpg" alt="Blankpolerad kran i närbild" loading="lazy" width="1920" height="1072">
+          <figcaption>Kranen — detaljen som avslöjar.</figcaption>
+        </figure>
+        <figure class="ss-rev">
+          <img src="media/galleri-badrum.jpg" alt="Skinande rent helkaklat badrum" loading="lazy" width="896" height="1200">
+          <figcaption>Badrum — kakel och glas utan en rand.</figcaption>
+        </figure>
+        <figure class="ss-rev">
+          <img src="media/galleri-vardagsrum.jpg" alt="Ljust rent vardagsrum" loading="lazy" width="1400" height="933">
+          <figcaption>Vardagsrum — klart för vardagen igen.</figcaption>
+        </figure>
+        <figure class="ss-rev">
+          <img src="media/galleri-rum-ekgolv.jpg" alt="Rent rum med ekgolv" loading="lazy" width="1920" height="1072">
+          <figcaption>Flyttstäd — klart för nästa hyresgäst.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="ss-inner contact-grid">
+      <div class="ss-rev">
+        <span class="ss-label">Kontakt</span>
+        <h2 class="ss-h">Ring, eller berätta vad som ska städas.</h2>
+        <a class="tel-big" href="tel:0701234567">070-123 45 67</a>
+        <div class="c-row"><b>Mejl</b>info@glowingservice.se</div>
+        <div class="c-row"><b>Instagram</b>@glowingserviceab</div>
+        <div class="c-row"><b>Område</b>Stockholm med omnejd</div>
+      </div>
+      <div class="offer-card ss-rev">
+        <h3>Kostnadsfri offert</h3>
+        <p>Berätta vad som ska städas, hur stort och hur ofta — du får ett fast pris direkt. Kostar ingenting och förbinder dig inte till något.</p>
+        <button class="cta-button" onclick="openModal()">
+          <span>Begär offert</span>
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+
+
+<footer>
+  <span>Glowing Service Stockholm AB · Demo</span>
+  <span>Byggd av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
+</footer>
+
+<!-- BAHKO DEMO-MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal()" aria-label="Stäng">✕</button>
+    <div class="m-badge">Demo av Bahko Byrå</div>
+    <h3>Vill du ha en sida som denna för din firma?</h3>
+    <p>Boka ett kostnadsfritt 15-minuterssamtal med Mathias. Vi visar exakt hur din firmas hemsida kan se ut — och hur den drar in förfrågningar.</p>
+    <button class="cta-button" data-cal-namespace="15min" data-cal-link="bahkobyra/15min" data-cal-origin="https://cal.eu"><span>Boka 15 min gratis samtal →</span></button>
+    <a class="m-alt" href="mailto:mathias@bahkobyra.se?subject=Intresserad av demo-hemsida (stad)&body=Hej Mathias, jag såg Glowing Service-demon och vill veta mer.">Eller mejla → mathias@bahkobyra.se</a>
+    <div class="m-foot"><a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a> · Synlighet som säljer.</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const htmlEl=document.documentElement, loaderEl=document.getElementById('loader');
+  function goStatic(){
+    htmlEl.classList.add('fallback');
+    if(loaderEl)loaderEl.classList.add('hidden');
+    if(!reduce)document.querySelectorAll('video').forEach(v=>{try{v.play()}catch(e){}});
+    // räknarna måste visa sina slutvärden i statiskt läge, inte "0"
+    document.querySelectorAll('.stat-number').forEach(el=>{el.textContent=el.dataset.value;});
+  }
+  const failsafe=setTimeout(goStatic,3500);
+
+  // Autoplay-säkring — men aldrig för reduced-motion-användare
+  function kickVideos(){if(reduce)return;document.querySelectorAll('video').forEach(v=>{if(v.paused)v.play().catch(()=>{});});}
+  addEventListener('touchstart',kickVideos,{once:true,passive:true});
+  addEventListener('pointerdown',kickVideos,{once:true,passive:true});
+
+  if(reduce){
+    document.querySelectorAll('video').forEach(v=>{v.autoplay=false;v.pause();});
+    clearTimeout(failsafe);goStatic();
+    startNudges();
+    return;
+  }
+  if(typeof gsap==='undefined'){clearTimeout(failsafe);goStatic();startNudges();return;}
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ===== LENIS — syncTouch:false (tempo-lagen: mobilen scrollar nativt) =====
+  if(typeof Lenis!=='undefined'){
+    const lenis=new Lenis({duration:1.15,easing:t=>1-Math.pow(1-t,3),smoothWheel:true,syncTouch:false});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  // ===== LOADER (snabb, ~0,6s) =====
+  const loaderBar=document.getElementById('loader-bar'),loaderPct=document.getElementById('loader-percent'),loader=document.getElementById('loader');
+  let loadProg=0;
+  (function simulateLoad(){
+    loadProg+=Math.random()*24+16; if(loadProg>100)loadProg=100;
+    loaderBar.style.transform='scaleX('+(loadProg/100)+')'; loaderPct.textContent=Math.round(loadProg)+'%';
+    if(loadProg<100){setTimeout(simulateLoad,35+Math.random()*45);}
+    else{clearTimeout(failsafe);setTimeout(()=>{loader.classList.add('hidden');animateHero();startNudges();},180);}
+  })();
+
+  // ===== HERO-ENTRÉ (~0,7s totalt) =====
+  function animateHero(){
+    gsap.timeline()
+      .to('.hero-label',{opacity:1,duration:.45,ease:'power2.out'},0.05)
+      .to('.hero-heading .word',{opacity:1,y:0,stagger:.08,duration:.55,ease:'power2.out'},0.15)
+      .to('.hero-tagline',{opacity:1,duration:.45,ease:'power2.out'},0.5)
+      .to('.hero-scroll-indicator',{opacity:1,duration:.45,ease:'power2.out'},0.65);
+  }
+
+  // ===== CIRKELAVTÄCKNING knuten till HERO-utscrollningen =====
+  const scrollContainer=document.getElementById('scroll-container');
+  const heroSection=document.querySelector('.hero-standalone');
+  const bgWrap=document.getElementById('bgvid-wrap');
+
+  ScrollTrigger.create({
+    trigger:heroSection,start:'top top',end:'bottom top',scrub:true,
+    onUpdate:self=>{
+      const p=self.progress;
+      bgWrap.style.clipPath=`circle(${Math.min(1,p*1.35)*75}% at 50% 50%)`;
+    }
+  });
+
+  // ===== SEKTIONER =====
+  const sections=document.querySelectorAll('.scroll-section');
+  function placeSections(){
+    sections.forEach(s=>{
+      const e=parseFloat(s.dataset.enter)/100,l=parseFloat(s.dataset.leave)/100,m=(e+l)/2;
+      s.style.top=(m*scrollContainer.offsetHeight)+'px'; s.style.transform='translateY(-50%)';
+    });
+  }
+  placeSections();
+
+  const sectionStates=new Map();
+  sections.forEach(section=>{
+    const type=section.dataset.animation,persist=section.dataset.persist==='true';
+    const enter=parseFloat(section.dataset.enter)/100,leave=parseFloat(section.dataset.leave)/100,fadeRange=0.045;
+    const children=section.querySelectorAll('.section-label,.section-heading,.section-body,.section-note,.cta-button,.cta-sub,.stat,.service-item,.wcard,.projects-head');
+    const tl=gsap.timeline({paused:true});
+    // Rörelse 22–32px, power2.out — aldrig 50–80px (tempo-lagen)
+    switch(type){
+      case 'slide-left':  tl.from(children,{x:-28,opacity:0,stagger:.07,duration:.5,ease:'power2.out'}); break;
+      case 'slide-right': tl.from(children,{x:28,opacity:0,stagger:.07,duration:.5,ease:'power2.out'}); break;
+      case 'scale-up':    tl.from(children,{scale:.94,opacity:0,stagger:.06,duration:.5,ease:'power2.out'}); break;
+      case 'stagger-up':  tl.from(children,{y:26,opacity:0,stagger:.06,duration:.45,ease:'power2.out'}); break;
+      default:            tl.from(children,{y:26,opacity:0,stagger:.06,duration:.45,ease:'power2.out'});
+    }
+    sectionStates.set(section,{tl,persist,enter,leave,fadeRange,active:false,persisted:false});
+  });
+
+  ScrollTrigger.create({
+    trigger:scrollContainer,start:'top top',end:'bottom bottom',scrub:true,
+    onUpdate:self=>{
+      const p=self.progress;
+      sectionStates.forEach((state,section)=>{
+        const{tl,persist,enter,leave,fadeRange}=state;
+        const shouldShow=p>=(enter-fadeRange)&&(persist?true:p<=(leave+fadeRange));
+        if(shouldShow&&!state.active){
+          section.classList.add('active');section.style.visibility='visible';
+          section.style.willChange='transform,opacity';
+          tl.play();state.active=true;
+        }
+        // INGEN reverse (tempo-lagen 2026-06-11): sektioner tonar bara ut via opacity
+        else if(!shouldShow&&state.active&&!state.persisted){
+          state.active=false;section.style.willChange='auto';
+        }
+        if(persist&&state.active)state.persisted=true;
+        if(state.active||state.persisted){
+          let o=1;
+          if(p<enter)o=Math.max(0,(p-(enter-fadeRange))/fadeRange);
+          else if(!persist&&p>leave)o=Math.max(0,1-(p-leave)/fadeRange);
+          section.style.opacity=o;
+        } else {
+          section.style.opacity=0;
+        }
+      });
+    }
+  });
+
+  // ===== RÄKNARE (trösklar 0.67–0.80, nollas < 0.63) =====
+  const animated=new Set();
+  document.querySelectorAll('.stat-number').forEach(el=>{
+    const target=parseFloat(el.dataset.value),decimals=parseInt(el.dataset.decimals||'0');
+    ScrollTrigger.create({trigger:scrollContainer,start:'top top',end:'bottom bottom',
+      onUpdate:self=>{
+        const p=self.progress;
+        if(p>=0.67&&p<=0.80&&!animated.has(el)){
+          animated.add(el);
+          gsap.to({val:0},{val:target,duration:1.1,ease:'power1.out',onUpdate:function(){el.textContent=this.targets()[0].val.toFixed(decimals);}});
+        } else if(p<0.63&&animated.has(el)){animated.delete(el);el.textContent='0';}
+      }
+    });
+  });
+
+  // ===== DARK OVERLAY (0.27–0.46 max .5 · 0.66–0.81 max .55) =====
+  (function(){
+    const overlay=document.getElementById('dark-overlay');
+    const windows=[{e:0.27,l:0.46,max:0.5},{e:0.66,l:0.81,max:0.55}];
+    const fr=0.035;
+    ScrollTrigger.create({trigger:scrollContainer,start:'top top',end:'bottom bottom',scrub:true,
+      onUpdate:self=>{
+        const p=self.progress;
+        let o=0;
+        windows.forEach(({e,l,max})=>{
+          if(p>=e-fr&&p<=e)o=Math.max(o,((p-(e-fr))/fr)*max);
+          else if(p>e&&p<l)o=Math.max(o,max);
+          else if(p>=l&&p<=l+fr)o=Math.max(o,max*(1-(p-l)/fr));
+        });
+        overlay.style.opacity=o;
+      }
+    });
+  })();
+
+  // ===== STATISK DEL: engångs-scroll-reveal (once:true, samma rörelsevärden) =====
+  document.querySelectorAll('.static-site section').forEach(sec=>{
+    const items=sec.querySelectorAll('.ss-rev');
+    if(!items.length)return;
+    ScrollTrigger.create({
+      trigger:sec,start:'top 85%',once:true,
+      onEnter:()=>gsap.to(items,{opacity:1,y:0,stagger:.07,duration:.5,ease:'power2.out'})
+    });
+  });
+
+  // ===== HEADER + FLYTKNAPP =====
+  addEventListener('scroll',()=>{
+    document.getElementById('site-header').classList.toggle('scrolled',scrollY>80);
+    document.getElementById('float-offert').classList.toggle('visible',scrollY>innerHeight*.6);
+  },{passive:true});
+
+  addEventListener('resize',()=>{placeSections();ScrollTrigger.refresh();});
+  setTimeout(()=>ScrollTrigger.refresh(),400);
+})();
+
+// ===== NUDGE-POPUP: 3 gånger — t≈10s / 100s / 160s, auto-dölj efter 8s =====
+let nudgeTimers=[],nudgeHide=null,nudgesCancelled=false;
+function showNudge(){
+  if(nudgesCancelled)return;
+  const n=document.getElementById('nudge-popup');
+  n.classList.add('visible');
+  clearTimeout(nudgeHide);
+  nudgeHide=setTimeout(()=>n.classList.remove('visible'),8000);
+}
+function dismissNudge(){
+  clearTimeout(nudgeHide);
+  document.getElementById('nudge-popup').classList.remove('visible');
+}
+function cancelNudges(){
+  nudgesCancelled=true;
+  nudgeTimers.forEach(clearTimeout);nudgeTimers=[];
+  dismissNudge();
+}
+function startNudges(){
+  if(nudgesCancelled||nudgeTimers.length)return;
+  [10000,100000,160000].forEach(ms=>nudgeTimers.push(setTimeout(showNudge,ms)));
+}
+
+// ===== MODAL =====
+function openModal(){
+  cancelNudges(); // nagga aldrig någon som redan är på väg att boka
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// ===== MOBILNAV =====
+function toggleMobileNav(){
+  const nav=document.getElementById('mobile-nav'),btn=document.getElementById('hamburger');
+  nav.classList.toggle('open');btn.classList.toggle('open');
+  document.body.style.overflow=nav.classList.contains('open')?'hidden':'';
+}
+function closeMobileNav(){
+  document.getElementById('mobile-nav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow='';
+}
+</script>
+<!-- Cal.eu embed -->
+<script type="text/javascript">
+(function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,[L,namespace,...Array.from(ar).slice(2)])}else p(cal,ar);return}p(cal,ar)};})(window,"https://cal.eu/embed/embed.js","init");
+Cal("init","15min",{origin:"https://cal.eu"});
+Cal.ns["15min"]("ui",{"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+</body>
+</html>
