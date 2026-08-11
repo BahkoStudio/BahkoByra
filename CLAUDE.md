@@ -122,15 +122,17 @@ Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `web/p
 
 ## Heligt - rör aldrig utan uttryckligt beslut
 
-Följande får ALDRIG ändras, flyttas eller raderas utan Mathias uttryckliga beslut i den aktuella sessionen:
+Följande får ALDRIG ändras, flyttas eller raderas utan Mathias uttryckliga beslut i den aktuella sessionen (omverifierad 2026-08-11 mot tre-Vercel-verkligheten):
 
-- **`bahkobyra/cloud/smamaleri/` + `bahkobyra/cloud/brommatradgardsservice/`** — betalande kunders domäner, deployas från samma repo. En ändring här går live hos kund.
-- **De 8 frysta demosajterna** — `cloud/alfredallservice`, `cloud/asmar`, `cloud/bygg`, `cloud/kmctransport`, `cloud/osterlunds`, `cloud/pizzeriamatstugan`, `cloud/tryggbyggservice`, `cloud/vajjebygg`. URL:erna lever i prospekts inkorgar — en trasig demo bränner ett lead.
-- **`.github/workflows/deploy.yml` + `.claude/skills/video-to-website/maykas/site/`** — deployar LIVE maykaskitchen.se vid varje push till main. Rör du sajtmappen ändrar du en betalande kunds sajt.
-- **localStorage-kontrakten `bb_crm_v2` + `bahko_sop_dagslogg_v1`** — nycklar och dataformat. Bryts kontraktet tappar Mathias CRM-data och dagsloggar i webbläsaren.
-- **Alla routes i `vercel.json`** — host-routingen för bahkobyra.cloud kräver legacy-routes: moderna `rewrites` körs EFTER filsystemet, så det som ser redundant ut är bärande.
-- **`web/public/css/style.css` + `web/public/js/main.js`** — FRYSTA, delas med frysta `cloud/bygg`. Egna sidor kör `style-v2.css`/`main-v2.js` — nya byggen länkar aldrig de frysta filerna.
-- **`reference/`-PDF:erna** — levande källdokument (bl.a. sales methodology), inte skräp.
+- **`bahkobyra/cloud/smamaleri/` + `bahkobyra/cloud/brommatradgardsservice/`** — betalande kunders domäner; egna Vercel-projekt med Root Directory på exakt de sökvägarna. Får varken ändras eller FLYTTAS.
+- **De 8 frysta demosajterna i `web/public/cloud/`** — `alfredallservice`, `asmar`, `bygg`, `kmctransport`, `osterlunds`, `pizzeriamatstugan`, `tryggbyggservice`, `vajjebygg`. URL:erna lever i prospekts inkorgar. (Kopiorna i gamla `bahkobyra/cloud/` är döda dubbletter som inte serveras — de får städas i separat beslut, inte i förbifarten.)
+- **Aktiva leaddemos i `web/public/cloud/`** (grontoglanser, galiano, k9maleri, golvresan, solpanelstjejen, glowingservice m.fl.) — INTE frysta: de får förbättras på beställning, men länkarna är skickade till prospekt och får aldrig raderas eller brytas.
+- **`.github/workflows/deploy.yml` + `.claude/skills/video-to-website/maykas/site/`** — deployar LIVE maykaskitchen.se vid varje push till main.
+- **localStorage-kontrakten `bb_crm_v2` + `bahko_sop_dagslogg_v1`** — nycklar och dataformat. Bryts kontraktet tappar Mathias CRM-data och dagsloggar.
+- **`web/next.config.mjs` host-rewrites + `web/vercel.json`** — styr vad bahkobyra.se OCH bahkobyra.cloud serverar. (Ersätter gamla "alla routes i vercel.json": rotens `vercel.json` läses inte längre av något projekt sedan bahko-byra bygger från `web/` — rotfilen är raderingskandidat, men radera den bara i ett eget beslut.)
+- **De tre Vercel-projektens Root Directory-inställningar** (`bahko-byra` = `web/`, kundsajterna = sina mappar) — Root Directory-incidenten 2026-08-06/07 tog ner hela bahkobyra.se. Ändras aldrig från kod eller API utan uttryckligt beslut.
+- **`web/public/css/style.css` + `web/public/js/main.js`** — FRYSTA, delas med frysta `cloud/bygg`. Egna sidor kör `style-v2.css`/`main-v2.js`.
+- **`reference/`-PDF:erna** — levande källdokument, inte skräp.
 
 ### Nya demos ska till `web/public/cloud/`
 
@@ -183,12 +185,15 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 | grill-me | `/grill-me` | "grill me", "stress-test planen", "intervjua mig om planen" |
 | motion-design | `/motion-design [varumärke + classic/hyper]` | "motion design", "animera loggan", "logo-animation", "promovideo", "reels-intro" |
 | optimering | `/optimering [kund]` | "optimera sajten", "SEO för [kund]", "GEO/AEO", "schema markup", "ranka på Google", "synas i AI-svar", "Google Business Profile" |
+| task-observer | (auto) | aktiveras vid varje flerstegssession — fångar lärdomar som ska bli skill-regler |
 | rensa | `/rensa` | "rensa chatten", "spara och rensa", "clear men behåll det viktiga", "rensa kontexten" |
 
 - **skill** — Guides building/auditing/optimizing skills. Runs Discovery Interview before creating. See `.claude/skills/skill/reference.md`.
 - **video-to-website** — Converts a video into a scroll-driven animated website (FFmpeg + GSAP + Lenis + canvas). OBS: `maykas/site/` i skill-mappen deployar LIVE maykaskitchen.se (se Heligt-listan).
-- **scroll-cinematic** — Kunddemos enligt GRANIT-mallen. **Facit `web/public/cloud/bygg/index.html` är FRYST som historisk referens i GAMLA varumärket** (guld/cream/Cormorant, byggt som tvillingsida till dåvarande bahkobyra.se, beslut 2026-07-26): flödande sektioner i ljus/mörk-rytm, preloader, scroll-progressbar, header som göms vid nedscroll, marquee, pinnad horisontell process, och deklarativa animeringar via `data-lines`/`data-reveal`/`data-stagger`/`data-count`/`data-magnetic` på GSAP + ScrollTrigger + Lenis. **Framtida demos byggs i kundens egen stil som förut, men Bahko-brandade element (logga, footer-badge, Bahko-modal) använder nya varumärket från `brand.json` v2.** Koreografin med fast videolager och sektioner på progress-fönster lever kvar i `web/public/cloud/tryggbyggservice/` och `web/public/cloud/vajjebygg/` — använd den för videodrivna demos, GRANIT-mallen för resten. För bygg: Higgsfield-genererad husförvandling (gammalt hus → drömhus → kliv in) som autoplay-loop i heron — ALDRIG scroll-scrub. Kostar ~150 Higgsfield-credits/demo — körs aldrig utan beställning. Output: `web/public/cloud/[kund]/index.html`. **Fälla:** inline `<script>` får aldrig ha `defer` (ignoreras enligt specen) och biblioteksflaggor måste mätas efter att de deferrade CDN-scripten körts, annars dör hela animationslagret tyst.
-- **demo-recopy** — Återanvänder en befintlig scroll-cinematic-demo för en ny lead i (nära nog) samma nisch: byter ENDAST copy/varumärke, noll ny generering, 0 credits. Syskon-skill till scroll-cinematic.
+- **scroll-cinematic** — Kunddemos med videodriven förvandlingskoreografi. **Modern referensimplementation: `web/public/cloud/glowingservice/`** (alla härdade regler). **Facit `web/public/cloud/bygg/index.html` är FRYST som historisk referens i GAMLA varumärket** (guld/cream/Cormorant) — rörs aldrig. Framtida demos byggs i kundens egen stil med egen distinkt palett; Bahko-brandade element (Bahko-modal, footer-badge) använder nya varumärket från `brand.json` v2. Kostar **~49 Higgsfield-credits/demo** (3 keyframes + 2 klipp; recopy = 0) — körs aldrig utan beställning. Output: `web/public/cloud/[kund]/index.html`. Regler för modellval/priser, galleri/mobil/klickvägar och copy-enkelhet bor i skillen — dupliceras inte här. **Fälla:** inline `<script>` får aldrig ha `defer` (ignoreras enligt specen) och biblioteksflaggor måste mätas efter att de deferrade CDN-scripten körts, annars dör hela animationslagret tyst.
+
+- **demo-recopy** — Återanvänder en befintlig scroll-cinematic-demo för en ny lead i (nära nog) samma nisch: byter ENDAST copy/varumärke, noll ny generering, 0 credits. Syskon-skill till scroll-cinematic. **Regel: ny lead i en nisch som redan har demo → alltid demo-recopy först.**
+- **task-observer** — Aktiveras vid start av varje flerstegssession (bygge, deploy, research): loggar mönster och korrigeringar till `.claude/observations.md`; lärdomar med tydligt hem skrivs direkt in i rätt skill som daterad regel (routing-tabell i skillen). Bahko-anpassad bearbetning av rebelytics original (CC BY 4.0, attribution behållen). Vid start av en arbets­session: invoka task-observer innan arbetet börjar.
 - **excalidraw-diagram** — Generates editable Excalidraw diagrams, saves `.excalidraw` files.
 - **rapport** — Genererar konkurrensanalys, klientrapporter och lead-profiler. Exporterar till Google Docs/Sheets. Kräver `credentials.json` för Google OAuth. Export-verktyg: `tools/export_to_google_docs.js`.
 - **instagram-engine** — Producerar content-batchar (reels/carouseller/DM-cadence) för bygg/hantverk-nischen (@bahkostudio). Speglas i dashboardens Instagram-motor. Se `.claude/skills/instagram-engine/templates.md`.
