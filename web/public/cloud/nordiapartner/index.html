@@ -245,8 +245,15 @@ footer a{color:var(--grn-lt)}
   .align-left .section-inner,.align-right .section-inner{max-width:100%}
   .scroll-section .section-inner{background:rgba(10,20,16,.76);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:1.7rem;border-radius:8px;border:1px solid var(--line)}
   #scroll-container{height:620vh}
-  .work-grid{grid-template-columns:1fr;gap:.9rem}
-  .wcard{aspect-ratio:4/2.8}
+  .work-grid{grid-template-columns:repeat(2,1fr);gap:.6rem}
+  .wcard{aspect-ratio:1/1}
+  .wcard:last-child{grid-column:1/-1;aspect-ratio:16/8}
+  .wc-body{left:.9rem;right:.9rem;bottom:.85rem}
+  .wc-body h3{font-size:1.02rem}
+  .wc-body p{font-size:.84rem}
+  .gallery-grid figcaption{font-size:.84rem;padding:.55rem .7rem}
+  .service-time{font-size:.84rem}
+  .about-img{aspect-ratio:16/10}
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:1.8rem}
   .hero-heading{max-width:100%}
   .hero-heading .setup{font-size:clamp(1.05rem,4.6vw,1.5rem)}
@@ -256,7 +263,8 @@ footer a{color:var(--grn-lt)}
   #float-ring{display:inline-flex;align-items:center;justify-content:center;bottom:max(1.3rem,env(safe-area-inset-bottom));right:1.3rem;font-size:.72rem;padding:.78rem 1.2rem}
   .site-header{justify-content:flex-start}
   .header-logo{margin-right:auto}
-  .header-mobile-tel{display:inline-flex;align-items:center;min-height:44px;font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--grn-lt);padding:.4rem .95rem;border:1px solid rgba(63,217,122,.35);border-radius:4px;margin-right:1rem;transition:transform .16s var(--ease-out-strong)}
+  .header-mobile-tel{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;color:var(--grn-lt);border:1px solid rgba(63,217,122,.35);border-radius:50%;margin-right:.9rem;transition:transform .16s var(--ease-out-strong)}
+  .header-mobile-tel svg{width:18px;height:18px;fill:currentColor}
   .header-mobile-tel:active{transform:scale(.96)}
   #nudge-popup{left:1.3rem;right:1.3rem;width:auto;bottom:calc(max(1.3rem,env(safe-area-inset-bottom)) + 4rem)}
   .modal{padding:1.8rem 1.4rem}
@@ -323,7 +331,7 @@ html.fallback .ss-rev{opacity:1!important;transform:none!important}
     <a class="nav-tel" href="tel:0733308179">073-330 81 79</a>
     <a href="#" class="nav-cta" onclick="openModal();return false">Begär offert</a>
   </nav>
-  <a class="header-mobile-tel" href="tel:0733308179" aria-label="Ring Nordia Partner">Ring oss</a>
+  <a class="header-mobile-tel" href="tel:0733308179" aria-label="Ring Nordia Partner, 073-330 81 79"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></a>
   <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Meny">
     <span></span><span></span><span></span>
   </button>
@@ -339,8 +347,8 @@ html.fallback .ss-rev{opacity:1!important;transform:none!important}
   <div class="hero-content">
     <span class="hero-label">Tak &amp; solceller — i hela Sverige</span>
     <h1 class="hero-heading">
-      <span class="setup word">Mossa på teglet. Damm på panelerna.</span>
-      <span class="punch word accent">Vi fixar hela taket.</span>
+      <span class="setup word">Mossa på taket. Damm på panelerna.</span>
+      <span class="punch word accent">Vi fixar taket.</span>
     </h1>
     <p class="hero-tagline">Fast pris innan start · Ett lag för tak och solceller · Svar inom 24 timmar</p>
   </div>
@@ -349,6 +357,16 @@ html.fallback .ss-rev{opacity:1!important;transform:none!important}
     <div class="scroll-arrow"></div>
   </div>
 </section>
+
+<script>
+(function(){
+  var v=document.getElementById('hero-vid');
+  if(v&&matchMedia('(orientation: portrait)').matches){
+    v.poster='media/poster-fore-mossigt-tak-mobil.jpg';
+    v.src='media/video-taket-forvandlas-mobil.mp4';
+  }
+})();
+</script>
 
 <!-- FAST VIDEOLAGER -->
 <div class="bgvid-wrap" id="bgvid-wrap">
@@ -365,7 +383,7 @@ html.fallback .ss-rev{opacity:1!important;transform:none!important}
     <div class="section-inner">
       <span class="section-label">001 / Taket</span>
       <h2 class="section-heading">Mossan är inte bara ful.</h2>
-      <p class="section-body">Mossa suger åt sig vatten. Vattnet fryser, teglet spricker — och panelerna under dammet ger mindre el för varje månad. Vi tvättar teglet, målar det med skydd som håller, och servar solpanelerna. Samma lag, samma dag. Taket ser inte bara nyare ut. Det håller längre och ger mer.</p>
+      <p class="section-body">Mossa håller kvar vatten. Vattnet fryser och spränger teglet. Dammiga paneler ger mindre el varje dag. Vi tvättar, målar och servar. Ett lag, ett besök.</p>
       <p class="section-note">"Du ska inte behöva ringa tre firmor för ett tak."</p>
     </div>
   </section>
@@ -383,7 +401,7 @@ html.fallback .ss-rev{opacity:1!important;transform:none!important}
           <div class="wc-body">
             <div class="wc-tag">Före</div>
             <h3>Före</h3>
-            <p>Mossa på teglet, alger i rännorna och paneler under ett lager damm.</p>
+            <p>Norrsidan har tagit mest stryk. Mossan syns ända från gatan.</p>
           </div>
         </article>
         <article class="wcard">
@@ -391,7 +409,7 @@ html.fallback .ss-rev{opacity:1!important;transform:none!important}
           <div class="wc-body">
             <div class="wc-tag">Efter</div>
             <h3>Efter</h3>
-            <p>Samma tak. Nytvättat, nymålat — och panelerna blanka igen.</p>
+            <p>Rent tegel, skyddande färg och paneler som släpper igenom ljuset.</p>
           </div>
         </article>
         <article class="wcard">
@@ -489,7 +507,7 @@ html.fallback .ss-rev{opacity:1!important;transform:none!important}
 <div id="nudge-popup" role="complementary" aria-label="Erbjudande">
   <button class="nx" onclick="dismissNudge()" aria-label="Stäng">✕</button>
   <div class="nk">Inför hösten</div>
-  <p>Mossan suger åt sig varje regn, och frosten spränger teglet i vinter. Boka takkollen nu — den kostar inget.</p>
+  <p>Mossan suger åt sig varje regn. Boka takkollen innan vintern — den kostar inget.</p>
   <button class="nb" onclick="openModal()">Begär offert</button>
 </div>
 
