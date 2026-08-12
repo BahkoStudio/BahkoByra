@@ -14,17 +14,20 @@ videolager + sektioner på progress-fönster) med **Higgsfield-genererade videol
 Följt av en **riktig hemsida-del** (om oss / så går det till / galleri / kontakt)
 så sidan känns komplett, inte bara en snygg trailer.
 
-**Kostar ~49 credits/demo om inget kan återanvändas (recopy: 0 — prova alltid
+**Kostar ~69 credits/demo om inget kan återanvändas (3 keyframes + två 16:9-klipp
++ porträttheron 9:16; 49 utan porträttklippet, recopy: 0 — prova alltid
 `demo-recopy` först vid känd nisch). Kör aldrig utan explicit beställning.**
 
 ## Referenser & facit
 
-- **Modern referens — KOPIERA DENNA:** `web/public/cloud/glowingservice/index.html`.
+- **Modern referens — KOPIERA DENNA:** `web/public/cloud/nordiapartner/index.html`.
   Nyast, med alla härdade regler: tempo-lagarna, apple-design-heron (setup/punch),
-  galleri/mobil/klick-reglerna, `.static-site`, `#nudge-popup`, typgolvet.
+  porträtthero för mobil, 2-kolumns projektkort, ikon-ringknapp, galleribredtak,
+  tvätta-först-copyn, `.static-site`, `#nudge-popup`, typgolvet.
 - **Palett-/nischvarianter att låna från:** `grontoglanser` (smaragd, fasadtvätt-
   exteriör) · `galiano` (lera, interiörmåleri) · `k9maleri` (kobolt, måleri inne+ute)
-  · `golvresan` (logo-orange, golv) · `solpanelstjejen` (solgul, besiktning, jag-form).
+  · `golvresan` (logo-orange, golv) · `solpanelstjejen` (solgul, besiktning, jag-form)
+  · `glowingservice` (kakel-cyan, städ) · `nordiapartner` (energigrön, tak/solceller).
   Varje ny demo får en EGEN distinkt palett — kolla att den inte krockar med dessa.
 - **Historiskt fryst:** `web/public/cloud/bygg/` = GAMLA varumärket (guld/Cormorant),
   rörs aldrig (CLAUDE.md-beslut). `tryggbyggservice`/`vajjebygg` har den föråldrade
@@ -62,9 +65,13 @@ ger typfel (`input_images.0.type`), använd fil.
 - ~15 % av jobben failar server-side utan orsak och debiteras inte — kör om en gång.
 - **CLI-timeout ≠ jobbfel:** kolla `generate list` innan omkörning; jobbet kan ha
   blivit klart server-side (lärdom 2026-08-11, annars dubbel debitering).
+- **`Error: request failed (no response received)` ≠ jobbfel:** anropet kan ha
+  registrerats ändå — samma rutin, kolla `generate list` först (Nordia keyframe B
+  2026-08-12: felet visades men jobbet blev klart och debiterades).
 - NSFW-flaggade jobb debiteras inte.
-- Budget per demo: 3 keyframes × 3 + 2 klipp × 20 ≈ **49 credits**. Under 200 kvar
-  efter reuse-check: fråga Mathias först. Aldrig ett tredje "etablerings-klipp".
+- Budget per demo: 3 keyframes × 3 + 3 klipp × 20 (två 16:9 + porträttheron 9:16)
+  ≈ **69 credits** (49 om Mathias uttryckligen hoppar porträttklippet). Under 200
+  kvar efter reuse-check: fråga Mathias först. Aldrig ett extra "etablerings-klipp".
 
 ## Vem gör vad
 
@@ -92,7 +99,7 @@ ger typfel (`input_images.0.type`), använd fil.
 |-----|----------|
 | Loader | Varumärke + progressbar (simulerad ~0,6s, animerar `transform:scaleX`, aldrig `width`) |
 | Header | Fixed: logo + nav + klickbart tel + CTA · hamburger + helskärms-mobilnav <768px · kompakt ring-knapp synlig BREDVID hamburgaren på mobil |
-| Hero (100svh) | Förvandlingsloopen autoplay bakom tvådelad rubrik: `.setup` (liten uppställning) + `.punch` (stor accent-poäng), båda `.word`-staggade, rörelse `.34em`. Tagline i normal skrift. `hero-content` har `padding-top:clamp(6.5rem,15vh,9rem)` OCH `padding-bottom:clamp(6rem,13vh,8.5rem)` (rensar header resp. indikator) |
+| Hero (100svh) | Förvandlingsloopen autoplay bakom tvådelad rubrik: `.setup` (liten uppställning) + `.punch` (stor accent-poäng), båda `.word`-staggade, rörelse `.34em`. Tagline i normal skrift. `hero-content` har `padding-top:clamp(6.5rem,15vh,9rem)` OCH `padding-bottom:clamp(6rem,13vh,8.5rem)` (rensar header resp. indikator) · stående läge laddar 9:16-klippet via orientation-scriptet (se Mobilen) |
 | Fast videolager | Bakgrundsloopen fixed bakom sektionerna, `brightness(.62)` + vinjett. Circle-wipe knuten till HERO-utscrollning: `trigger:hero, start:'top top', end:'bottom top'`, radie `min(1,p*1.35)*75%` |
 | Scroll-container | **520vh desktop / 620vh mobil** (mobil MER, inte mindre). Absoluta sektioner på progress-fönster, varierade entréer |
 | Sektionsfönster | 001 `3–24` slide-left · 002 `28–45` stagger-up · 003 `49–63` slide-right · 004 stats `67–80` stagger-up · CTA `84–100` scale-up + `data-persist` |
@@ -153,12 +160,41 @@ Research-audit 2026-08-05 (`storm-reports/scroll-cinematic-craft-audit-briefing.
   **före/efter-paret först**. Thumbs >300 KB: gör en 1280px-variant
   (`ffmpeg -vf "scale=1280:-2" -q:v 4`). Bildtexter: en rad, ≤45 tecken,
   "Namn — kort utfall."
+- Desktop-galleriet får bredtak: `max-width:920px;margin:0 auto`. En
+  fullbredds-thumbrad flaggades "för stora" två gånger (Glowing 2026-08-11,
+  Nordia 2026-08-12).
 
 **Mobilen:**
 - **Hero-postern MÅSTE matcha videons frame 0** — byts videon (Mathias genererar
-  egna): `ffmpeg -i video.mp4 -vframes 1 f0.png` och jämför.
+  egna): `ffmpeg -i video.mp4 -vframes 1 f0.png` och jämför. Gäller BÅDA
+  posterna (16:9 och porträtt).
+- **Porträttheron laddas i stående läge** med inline-script direkt efter
+  hero-markupen (aldrig `defer`):
+
+```html
+<script>
+(function(){
+  var v=document.getElementById('hero-vid');
+  if(v&&matchMedia('(orientation: portrait)').matches){
+    v.poster='media/poster-fore-[motiv]-mobil.jpg';
+    v.src='media/video-[motiv]-mobil.mp4';
+  }
+})();
+</script>
+```
+
+- **Projektkorten:** `repeat(2,1fr);gap:.6rem` + tredje kortet
+  `grid-column:1/-1` — aldrig tre staplade fullbreddare ("bilderna är långa",
+  2026-08-12).
+- **Ikon-ringknapp:** 44×44 px rund telefonikon bredvid hamburgaren
+  (textknappen "Ring oss" trängde loggan vid 390 px). `aria-label` med hela
+  numret.
 - Grid-kollaps: galleri 3→2 (aldrig 1) · steg 4→2→1 · stats 4→2.
-- Test i 390px: ingen sidled-scroll, inget under 13px, galleriet inom ~2,5 skärmhöjder.
+- **Lästext ≥13 px** på mobil (brödtext, korttexter, captions, servicerader).
+  Uppercase-kickers/etiketter ≥11 px är undantagna — de är möbler, inte läsning.
+- **Mediabudget per demo:** hero ≈1 MB · bakgrund ≈1,7 MB · porträtt ≈0,8 MB ·
+  thumbs ≤300 KB · posters ≤300 KB (CRF 26, `-an`, `+faststart` som vanligt).
+- Test i 390px: ingen sidled-scroll, galleriet inom ~2,5 skärmhöjder.
 
 **Klickvägarna:**
 - **Hantverkskunder ringer.** Numret klickbart (`tel:`) i header, mobilnav,
@@ -224,6 +260,10 @@ Under 200 credits efter reuse-check: fråga Mathias.
 
 ### 3. Generera keyframes (se modellblocket för modell/pris)
 
+**Art direction (2026-08-12):** alla keyframes promptas "documentary contractor
+photography, natural muted colors, no HDR" — blank/plastig AI-finish på
+resultatbilden ratades av Mathias ("bilderna är dåliga").
+
 Referenskedjan i exakt denna ordning — konsistensen ÄR konceptet:
 
 1. **A — utgångsläget:** fotorealistiskt, nischanpassat, front trekvartsvy/naturlig
@@ -240,6 +280,12 @@ Explicit förbud funkar: "keep EVERY object, fixture and surface IDENTICAL … N
 new panels … no cabinet or gap added or removed anywhere." Mathias fångade en
 tillsmugen stänkpanel — kostade 104 extra credits.
 
+**Exteriör-checklista (2026-08-12):** samma disciplin utomhus — takpannornas
+PROFIL och typ (**materialprofilen räknas som geometri**), panelantal och
+delning, skorsten/ventiler, takkupa, hängrännor/stuprör, bakgrundshus och träd.
+Pannprofilbytet mellan A och B var det som gjorde Nordias första hero-klipp
+till en synlig morf.
+
 ### 4. Generera klippen (se modellblocket — mini standard, alltid utan ljud)
 
 ```
@@ -250,6 +296,23 @@ Klipp 1 "Förvandlingen" (hero): --start-image A --end-image B, duration 8, 720p
 Klipp 2 "Närmare" (bakgrund): --start-image B --end-image C, samma params
   Prompt: "Single continuous cinematic [dolly/steadicam]… no cuts."
 ```
+
+**Förvandlingen ska se ut som ARBETE, aldrig som en crossfade (2026-08-12):**
+global uttoning ("mossan försvinner överallt samtidigt") läses som AI-morf och
+ratades ("videon är dålig"). Recept: låt en fysisk process röra sig över
+subjektet — högtrycksstråle med dimma, rent bakom, smutsigt framför, rad för
+rad. Prompta explicit "NO glowing lines, NO light effects, no lens flares":
+första svepförsöket renderades som en sci-fi-glödlinje och kasserades (20 cr).
+
+**Porträttheron (obligatorisk om inte Mathias hoppar den):** ett tredje klipp
+med samma klipp-1-prompt och samma A/B-referenser men `--aspect_ratio 9:16` —
+16:9 cover-croppad på stående mobil visar bara en smal remsa av förvandlingen
+("inte telefonoptimerad", 2026-08-12).
+
+**Diagnostisera klippen med frames FÖRE leverans:**
+`ffmpeg -i klipp.mp4 -vf "select='eq(n\,48)+eq(n\,96)+eq(n\,144)',scale=1100:-2,tile=1x3" -frames:v 1 check.jpg`
+och GRANSKA bilden — fångar morf, glödlinjer och geometridrift som
+`generate get` aldrig visar.
 
 `preset_recommendation`-notis → kör om med `declined_preset_id`. Ta `rawUrl`,
 ladda ner OMEDELBART (hotlink-guardrailen nedan).
@@ -272,29 +335,53 @@ Kopiera moderna referensen (`web/public/cloud/glowingservice/index.html`) →
 6. **Fälla:** inline `<script>` får aldrig ha `defer` (ignoreras per spec), och
    biblioteksflaggor måste mätas EFTER att deferrade CDN-script körts.
 
-### 6. Copy-regler (världsklass-copywriter, inte broschyr)
+### 6. Copy-regler (skriv som copyexpert — idé före formel)
 
-Formeln: **led med smärtan → svara med mekanismen → stäng med riskreversering.**
+**Bärande idé FÖRST (2026-08-12 — viktigaste copyregeln):** innan en enda rubrik
+skrivs formuleras EN mening som är (a) sann för kunden, (b) differentierande i
+nischen och (c) samma sak som videon visar. Nordia: *"Det billigaste taket är
+det du redan har"* (tvätta först, byt sist) — hela sidan argumenterar sedan för
+den meningen. En sida som uppfyller alla enkelhetsregler men saknar idé blir en
+staccato-formel; exakt det Mathias ratade med "hela copyn är värdelös" samma
+dag som alla formregler var uppfyllda. Formeln **led med smärtan → svara med
+mekanismen → stäng med riskreversering** är verktyget som bär idén, aldrig
+tvärtom.
 
-**Enkelhetsreglerna (2026-08-11, efter Solpanelstjejen + FloorMagic):**
+**Ärlighet som positionering:** den starkaste riskreverseringen är att avstå
+försäljning. "Räcker det med en tvätt säger vi det. Även när ett byte hade gett
+oss mer betalt." · "Vi säljer inte takbyten till tak som bara behöver ett bad."
+Minst en sådan mening per demo — i 001-citatet eller Om oss.
+
+**EN handling per sida:** samma CTA-verb i header, mobilnav, float-knapp,
+CTA-sektion, nudge och kontaktkort ("Boka gratis takkoll" ×6) — aldrig
+synonymvariation (Begär offert/Kontakta oss/Läs mer). Välj nischens lägsta
+åtagande: takkoll < offert < köp.
+
+**Rytmregeln (2026-08-12):** hero och punchar hålls korta — men brödtext skrivs
+i människoton med varierad meningslängd. En sida där varje mening är 3–5 ord
+läses som reklamrobot. Kolon hellre än tankstreck (em-dash-saturering är en
+AI-kadens som designdetektorn flaggar).
+
+**Enkelhetsreglerna (2026-08-11, oförändrade under idélagret):**
 - **Noll slutledning i heron.** Kräver budskapet två tankesteg är det fel budskap.
   Ratat: "Från marken ser allt rätt ut / Jag går upp och kollar" → ersatt med
   fakta: "Över 500 solcellstak besiktade. / Noll felfria."
 - **Siffran slår bilden** — finns en verifierad siffra som bär smärtan, sätt den
-  i heron. Ingen siffra? Led med kundens rädsla, rakt på.
+  i heron. Ingen siffra? Led med idéns löfte eller kundens rädsla, rakt på
+  ("Funderar du på nytt tak? / Tvätta det först.").
 - **Punchen 2–3 ord.** Aldrig metafor eller ordvits — **spegelfraser räknas som
   ordvits** ("Golvet gör rummet / Vi gör golvet" ratades; kiasmen är fyndig,
   inte tydlig).
-- En idé per rad · korta meningar · du-tilltal · verb före adjektiv · ingen
-  dubblett mellan hero och stats · tolvåringstestet: kan rubriken återberättas
+- En idé per rad · du-tilltal · verb före adjektiv · ingen dubblett mellan
+  hero, projektkort och stats · tolvåringstestet: kan rubriken återberättas
   efter en högläsning?
-- Hero-rubrik konkret på en sekund. Tagline = löften, inte adjektiv ("Fast pris
-  innan start · Klart på utsatt dag"). 001 öppnar med KONKRET smärta, svarar med
-  mekanism, stänger med riskreverserings-citat. Projektkort säljer UTFALL.
-  Process-steg laddas med riskreversering. Om oss positionerar nischen rakt av.
-  CTA: fråga + knapp + löften.
-- Svenska, inga klyschor, kort/tungt/självsäkert. Aldrig "Växa på Google"-copy
-  (endast www.bahkobyra.se, se CLAUDE.md). Personligt varumärke → jag-form.
+- Tagline = löften, inte adjektiv. 001 öppnar med KONKRET smärta, svarar med
+  mekanism, stänger med riskreverserings-citat. Projektkort säljer UTFALL
+  ("taket klarar tio vintrar till"). Process-steg laddas med riskreversering.
+  Om oss positionerar nischen rakt av. CTA: fråga kunden svarar ja på + knappen
+  som svar.
+- Svenska, inga klyschor. Aldrig "Växa på Google"-copy (endast
+  www.bahkobyra.se, se CLAUDE.md). Personligt varumärke → jag-form.
 
 ### 7. QA före leverans
 
@@ -302,7 +389,8 @@ Formeln: **led med smärtan → svara med mekanismen → stäng med riskreverser
 2. Inga platshållar-URL:er kvar; båda `.mp4` + posters satta och lokala.
 3. Sektionsfönster överlappar inte; overlay-/räknarfönster matchar tabellen.
 4. Hero: indikator under taglinen, `autoplay muted loop playsinline` ×2,
-   postern = videons frame 0.
+   postern = videons frame 0. Porträttklippet + orientation-scriptet på plats,
+   mobilpostern = porträttklippets frame 0.
 5. `:active` på alla klickbara; ny transition UTÖKAR befintlig regel; hover gated.
 6. Modal centrerad från `scale(.95)`; nudge in/ut samma bana; `cancelNudges` finns.
 7. Mobil: ring-knapp i headern, 620vh, `overflow-x:clip`, `syncTouch:false`,
@@ -314,7 +402,10 @@ Formeln: **led med smärtan → svara med mekanismen → stäng med riskreverser
 11. Galleri: 2 kolumner mobil, 16/11, före/efter först, thumbs ≤300 KB.
 12. Klick: `tel:` i header/mobilnav/cta-sub/kontakt/footer; float = tel på mobil.
 13. Nudge-CTA matchar nischen.
-14. Designdetektorn körd — nya fynd utanför mallkategorin (Bahko-badge-kickern,
+14. **Designdetektorn körd MANUELLT** — hooken triggar bara på Edit/Write, så
+    skriptbyggda sidor missas tyst:
+    `node ~/.claude/plugins/cache/impeccable/impeccable/<version>/skills/impeccable/scripts/detect.mjs web/public/cloud/[kund]/index.html`
+    från repo-roten. Nya fynd utanför mallkategorin (Bahko-badge-kickern,
     28px-skuggbluren, em-dash-notisen) åtgärdas eller flaggas.
 15. review-animations + web-design-guidelines om motion-/UI-kod ändrats
     (hoppa vid ren rebrand — notera i PR:en).
