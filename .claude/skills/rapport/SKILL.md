@@ -38,11 +38,10 @@ node tools/competitor_research.js
 Läser `.env` för `PERPLEXITY_API_KEY` + `SERPAPI_KEY`.
 Output: `.tmp/research_raw.json`
 
-Om du vill avgränsa till ett specifikt företag, be användaren bekräfta och kör sedan:
+Verktyget tar inga argument och gör alltid en generell marknadsanalys. För att avgränsa till ett specifikt företag: scrapa företaget separat och väv ihop med research-datan i steg 3:
 ```bash
-node tools/competitor_research.js --target="[företagsnamn]"
+npx -y firecrawl-cli@latest scrape [URL] --formats markdown
 ```
-(om `--target`-flaggan finns, annars gör en generell analys)
 
 **Klientrapport:**
 Samla in från användaren:
@@ -116,12 +115,26 @@ Företagsnamn | Webb | Stad | Tjänster | Nuvarande webbstatus | Möjligheter | 
 
 ### 4. Exportera till Google Docs/Sheets
 
-Kör export-verktyget:
+Spara först rapportinnehållet till `.tmp/rapport_content.json`. Formatet beror på exporttyp (verifierat mot `tools/export_to_google_docs.js`):
+
+**För Docs** (konkurrensanalys, klientrapport):
+```json
+{ "markdown": "<hela rapporten som markdown-sträng>" }
+```
+
+**För Sheets** (lead-profil):
+```json
+{
+  "headers": ["Företagsnamn", "Webb", "Stad", "Tjänster", "Nuvarande webbstatus", "Möjligheter", "Kontakt", "Prioritet"],
+  "rows": [{ "Företagsnamn": "...", "Webb": "...", "Stad": "..." }]
+}
+```
+Varje rad är ett objekt med headers som nycklar — saknade nycklar blir tomma celler.
+
+Kör sedan export-verktyget:
 ```bash
 node tools/export_to_google_docs.js --type=[docs|sheets] --title="[rapportnamn]"
 ```
-
-Verktyget läser innehållet från `.tmp/rapport_content.json` och exporterar.
 
 **Första gången (Google OAuth-setup):**
 Om `credentials.json` saknas, guida användaren:
@@ -139,7 +152,7 @@ Om `credentials.json` saknas, guida användaren:
 - Kör aldrig `competitor_research.js` utan att bekräfta med användaren — det gör API-anrop som kostar pengar
 - Om `PERPLEXITY_API_KEY` saknas i `.env`, stoppa och informera användaren
 - Spara alltid rådata till `.tmp/` innan export — aldrig direkt till Google
-- Skapa aldrig ny Google Docs-fil om det redan finns en med samma namn i sessionen — uppdatera befintlig istället
+- Export-verktyget skapar alltid en NY fil (det kan inte uppdatera befintliga) — kör aldrig exporten två gånger med samma titel, lägg datum-/versionssuffix i `--title`
 - Lead-profiler exporteras alltid till Sheets, aldrig till Docs (tabelldata)
 
 ---
