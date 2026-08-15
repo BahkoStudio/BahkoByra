@@ -156,7 +156,8 @@ Research-audit 2026-08-05 (`storm-reports/scroll-cinematic-craft-audit-briefing.
 **Galleriet:**
 - Mobil ≤768px: `grid-template-columns:repeat(2,1fr);gap:.6rem` — **ALDRIG `1fr`**
   (sex fullbreddsbilder = sex skärmhöjder scroll). Desktop: 3 kolumner.
-- Enhetlig `aspect-ratio:16/11` + `object-fit:cover` på alla. Max 6 bilder,
+- Enhetlig `aspect-ratio:1/1` + `object-fit:cover` på alla (Mathias 2026-08-15:
+  16/11 var fortfarande "för stora" — kvadrat är facit nu). Max 6 bilder,
   **före/efter-paret först**. Thumbs >300 KB: gör en 1280px-variant
   (`ffmpeg -vf "scale=1280:-2" -q:v 4`). Bildtexter: en rad, ≤45 tecken,
   "Namn — kort utfall."
@@ -399,7 +400,7 @@ AI-kadens som designdetektorn flaggar).
    `prefers-reduced-transparency` solida plattor.
 9. Typgolv ≥11px; tracking storleksspecifik; entréer bara transform/opacity.
 10. Statiska delen finns, nav-ankarna träffar, engångs-reveal på.
-11. Galleri: 2 kolumner mobil, 16/11, före/efter först, thumbs ≤300 KB.
+11. Galleri: 2 kolumner mobil, 1/1, före/efter först, thumbs ≤300 KB.
 12. Klick: `tel:` i header/mobilnav/cta-sub/kontakt/footer; float = tel på mobil.
 13. Nudge-CTA matchar nischen.
 14. **Designdetektorn körd MANUELLT** — hooken triggar bara på Edit/Write, så
