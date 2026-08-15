@@ -408,7 +408,8 @@ AI-kadens som designdetektorn flaggar).
    `prefers-reduced-transparency` solida plattor.
 9. Typgolv ≥11px; tracking storleksspecifik; entréer bara transform/opacity.
 10. Statiska delen finns, nav-ankarna träffar, engångs-reveal på.
-11. Galleri: 2 kolumner mobil, 1/1, före/efter först, thumbs ≤300 KB.
+11. Galleri: 2 kolumner mobil, 1/1 MED `height:auto` i img-regeln (annars
+    ignoreras ration — attributhöjden vinner), före/efter först, thumbs ≤300 KB.
 12. Klick: `tel:` i header/mobilnav/cta-sub/kontakt/footer; float = tel på mobil.
 13. Nudge-CTA matchar nischen.
 14. **Designdetektorn körd MANUELLT** — hooken triggar bara på Edit/Write, så
