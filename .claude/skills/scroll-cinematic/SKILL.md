@@ -158,6 +158,14 @@ Research-audit 2026-08-05 (`storm-reports/scroll-cinematic-craft-audit-briefing.
   (sex fullbreddsbilder = sex skärmhöjder scroll). Desktop: 3 kolumner.
 - Enhetlig `aspect-ratio:1/1` + `object-fit:cover` på alla (Mathias 2026-08-15:
   16/11 var fortfarande "för stora" — kvadrat är facit nu). Max 6 bilder,
+- **`height:auto` är OBLIGATORISKT i galleri-img-regeln** (rotorsaksfynd
+  2026-08-15): img-taggarna har `width`/`height`-attribut (rätt för CLS), och
+  utan `height:auto` i CSS vinner attributhöjden → `aspect-ratio` IGNORERAS
+  helt och bilderna renderas i pixelhöjd 1000+ px. Detta var grundorsaken till
+  ALLA "för stora"-klagomål — regeln fanns men bet aldrig. Facit-raden:
+  `.gallery-grid img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block}`
+  (fixad i alla nio demos 2026-08-15). Gäller varje img som ska ratio-styras
+  via CSS men har attribut: height:auto först, sen aspect-ratio.
   **före/efter-paret först**. Thumbs >300 KB: gör en 1280px-variant
   (`ffmpeg -vf "scale=1280:-2" -q:v 4`). Bildtexter: en rad, ≤45 tecken,
   "Namn — kort utfall."
