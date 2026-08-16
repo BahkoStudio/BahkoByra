@@ -42,7 +42,9 @@ CUT = {
              ((678, 324), (710, 508), 48)],
 }
 SS = 4                                       # supersampling för mjuka kanter
-AXEL_R = 30                                  # axelplattans radie, se build_mask
+AXEL_DJUP = 52                               # hur långt in i kroppen armroten går, se build_mask
+AXEL_KNUT = 19                               # knutens radie i rotationspunkten, se build_mask
+AXEL_IN = 30                               # knutens radie i rotationspunkten, se build_mask
 
 NAVY = (10, 22, 40)
 
@@ -82,30 +84,40 @@ def build_mask(size, delar=("kropp", "arm_v", "arm_h")):
         rr(*CUT["body"])
         for leg in CUT["legs"]:
             rr(*leg)
-    # Armlagren får en axelplatta: en cirkel centrerad i rotationspunkten.
-    # En cirkel roterad kring sitt eget centrum är identisk med sig själv, så
-    # leden kan aldrig glipa mot kroppen hur mycket armen än svänger.
-    def axelplatta(tip):
-        r = AXEL_R
+    # Armen förlängs inåt i kroppen istället för att få en påklistrad platta.
+    # Roten begravs bakom kroppen (armlagren ritas före kroppen i webben), så
+    # den syns aldrig — men armen har alltid material innanför silhuetten när
+    # den svänger, och det som eventuellt tittar fram har armens egen form.
+    bx0, by0, bx1, by1, _r = CUT["body"]
+    mitt = ((bx0 + bx1) / 2, (by0 + by1) / 2)
+
+    def rotad(tip, djup):
+        """Punkten `djup` pixlar in mot kroppens mitt från armens spets."""
+        dx, dy = mitt[0] - tip[0], mitt[1] - tip[1]
+        L = math.hypot(dx, dy)
+        return (tip[0] + dx / L * djup, tip[1] + dy / L * djup)
+
+    # En liten knut i själva rotationspunkten håller armen visuellt fast vid
+    # kroppen även i ytterlägen — droppen är spetsig där och skulle annars se
+    # lös ut. Knuten ligger bakom kroppen, så den kan inte ge någon fläck.
+    def axelknut(tip):
+        r = AXEL_KNUT
         d.ellipse([(tip[0] - r) * SS, (tip[1] - r) * SS,
                    (tip[0] + r) * SS, (tip[1] + r) * SS], fill=255)
 
     if "arm_v" in delar:
-        teardrop(*CUT["arms"][0])
-        axelplatta(CUT["arms"][0][0])
+        tip, c, r = CUT["arms"][0]
+        teardrop(rotad(tip, AXEL_DJUP), c, r)
+        axelknut(rotad(tip, AXEL_IN))
     if "arm_h" in delar:
-        teardrop(*CUT["arms"][1])
-        axelplatta(CUT["arms"][1][0])
+        tip, c, r = CUT["arms"][1]
+        teardrop(rotad(tip, AXEL_DJUP), c, r)
+        axelknut(rotad(tip, AXEL_IN))
 
     mask = m.resize((w, h), Image.LANCZOS)
-    if delar == ("kropp",) or "kropp" in delar:
-        # Krymp ett snäpp så bakgrundens kantljus inte följer med
-        mask = mask.filter(ImageFilter.MinFilter(3))
-    else:
-        # Armlagren växer istället: de ligger ovanpå kroppen och ska täcka
-        # skarven vid axeln när armen svänger, annars syns kroppens kantlinje
-        # som en mörk skåra.
-        mask = mask.filter(ImageFilter.MaxFilter(5))
+    # Krymp ett snäpp så bakgrundens kantljus inte följer med. Gäller alla
+    # lager: armarna ligger bakom kroppen, så de behöver inte täcka någon skarv.
+    mask = mask.filter(ImageFilter.MinFilter(3))
     return mask.filter(ImageFilter.GaussianBlur(0.7))
 
 
@@ -163,9 +175,14 @@ def main():
         print(f"  ✓ web/public/brand/maskot/bahko-{namn}.webp {lager.size}")
 
     # Axelpunkterna i procent av ramen — CSS transform-origin för armlagren
+    bx0, by0, bx1, by1, _rr = CUT["body"]
+    mitt = ((bx0 + bx1) / 2, (by0 + by1) / 2)
     for etikett, (tip, _c, _r) in zip(("vänster", "höger"), CUT["arms"]):
-        px = (tip[0] - ram[0]) / (ram[2] - ram[0]) * 100
-        py = (tip[1] - ram[1]) / (ram[3] - ram[1]) * 100
+        dx, dy = mitt[0] - tip[0], mitt[1] - tip[1]
+        L = math.hypot(dx, dy)
+        ix, iy = tip[0] + dx / L * AXEL_IN, tip[1] + dy / L * AXEL_IN
+        px = (ix - ram[0]) / (ram[2] - ram[0]) * 100
+        py = (iy - ram[1]) / (ram[3] - ram[1]) * 100
         print(f"     axel {etikett}: transform-origin: {px:.1f}% {py:.1f}%")
 
     # Ikonerna beskärs till kroppen med ögat. Hela figuren blir gröt vid 16 px
