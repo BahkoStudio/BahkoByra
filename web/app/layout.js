@@ -26,7 +26,7 @@ export const metadata = {
     siteName: 'Bahko Byrå',
     images: ['/brand/logo-raster-16x9.png'],
   },
-  icons: { icon: '/favicon.png', apple: '/favicon.png' },
+  icons: { icon: '/favicon.png', apple: '/apple-touch-icon.png' },
 };
 
 export const viewport = {

@@ -34,15 +34,16 @@
   "founded": "2025",
   "location": "Sverige",
   "mascot": {
-    "name": "Hemsidedoktorn",
-    "beslut": "Mathias val 2026-08-16",
-    "utseende": "Lekfull blank smaragdgrön rundad kub (accent #10B981) med vitt fett B, ETT stort vänligt öga med glimt, litet leende, smaragdgrönt stetoskop med silverbröstplatta. Vit läkarrock endast i utvalda scener.",
-    "regler": "Med i allt Bahko-content (karuseller, bilder, reels). Vid AI-generering skickas alltid master-bilden som referens + 'Match the reference character EXACTLY'. QA: exakt ETT öga, leende, stetoskop synligt.",
-    "webb_assets": "web/public/brand/maskot/hemsidedoktorn-{master,pekar,undersoker,vinkar}.webp (komponent: app/komponenter/Maskot.js)",
-    "kanoniska_original": "Drive: BahkoByra/Brand/maskot/ (master + poser + LASMIG-kanonfil)"
+    "name": "Bahko-maskoten",
+    "beslut": "Mathias val 2026-08-16 — ersatte Hemsidedoktorn samma dag",
+    "utseende": "Lekfull blank smaragdgrön rundad glaskub med vitt fett B, ETT stort öga med glimt uppe till höger, två droppformade armar och två korta ben. Inget stetoskop, ingen läkarrock.",
+    "regler": "Med i allt Bahko-content (karuseller, bilder, reels) och som logotypmärke samt favicon. Vid AI-generering skickas alltid master-bilden som referens + 'Match the reference character EXACTLY'. QA: exakt ETT öga, B:et vänsterställt, ögat uppe till höger.",
+    "webb_assets": "web/public/brand/maskot/bahko-master.{webp,png} (komponent: app/komponenter/Maskot.js). Ikoner: favicon.png, apple-touch-icon.png. Märke/lockups: brand/mark.svg, logo.svg, logo-dark.svg",
+    "kalla": "tools/assets/mascot-sheet.png (karaktärsark). Bygg om allt med: python3 tools/assets/build_mascot.py",
+    "poser": "Endast master är frilagd. Arket har fler vinklar — pekar/vinkar/undersöker kan klippas ut vid behov."
   },
   "logo_url": "https://www.bahkobyra.se/brand/logo.svg",
-  "logo_description": "Smaragdgrön rundad kvadrat (#10B981) med vitt fett B (rena SVG-paths). Ordmärke 'Bahko Byrå' i Outfit 700 — marinblå #0A1628 på ljust, vitt på mörkt. Tagline 'SYNLIGHET SOM SÄLJER' i Outfit 500, bred spärrning. Rebrand 2026-08-05 (ersatte guld/cream/Cormorant).",
+  "logo_description": "Maskoten (grön glaskub med vitt B och ett öga) som märke. Ordmärke 'Bahko Byrå' i Outfit 700 — marinblå #0A1628 på ljust, vitt på mörkt. Tagline 'SYNLIGHET SOM SÄLJER' i Outfit 500, bred spärrning. Maskoten ersatte den platta B-brickan 2026-08-16.",
   "accent_gradient": [
     "#34D399",
     "#10B981",
