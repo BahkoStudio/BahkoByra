@@ -28,6 +28,7 @@ beskurna bilden (CROP), uppmätta med rutnät mot originalet.
 
 import base64
 import math
+import re
 from PIL import Image, ImageDraw, ImageFilter
 
 SRC = "tools/assets/mascot-sheet.png"
@@ -41,6 +42,7 @@ CUT = {
              ((678, 324), (710, 508), 48)],
 }
 SS = 4                                       # supersampling för mjuka kanter
+AXEL_R = 30                                  # axelplattans radie, se build_mask
 
 NAVY = (10, 22, 40)
 
@@ -50,7 +52,10 @@ OLD_MARK = ('<rect x="8" y="8" width="84" height="84" rx="19" fill="#10B981"/>'
             'd="M32 24h24q17 0 17 15.5q0 9.5-9 12.5q13 3 13 14.5Q77 82 58 82H32Zm12 11v12h12q8 0 8-6t-8-6Zm0 23v13h14q9 0 9-6.5T58 58Z"/></g>')
 
 
-def build_mask(size):
+def build_mask(size, delar=("kropp", "arm_v", "arm_h")):
+    """Mask för valda kroppsdelar. Armarna kan ritas var för sig så de kan
+    animeras separat i webben — figuren är en stel render, gesterna byggs
+    genom att rotera armlagren kring axeln."""
     w, h = size
     m = Image.new("L", (w * SS, h * SS), 0)
     d = ImageDraw.Draw(m)
@@ -73,15 +78,35 @@ def build_mask(size):
                    (cx * SS, cy * SS), (t2[0] * SS, t2[1] * SS)], fill=255)
         d.ellipse([(cx - r) * SS, (cy - r) * SS, (cx + r) * SS, (cy + r) * SS], fill=255)
 
-    rr(*CUT["body"])
-    for leg in CUT["legs"]:
-        rr(*leg)
-    for tip, center, r in CUT["arms"]:
-        teardrop(tip, center, r)
+    if "kropp" in delar:
+        rr(*CUT["body"])
+        for leg in CUT["legs"]:
+            rr(*leg)
+    # Armlagren får en axelplatta: en cirkel centrerad i rotationspunkten.
+    # En cirkel roterad kring sitt eget centrum är identisk med sig själv, så
+    # leden kan aldrig glipa mot kroppen hur mycket armen än svänger.
+    def axelplatta(tip):
+        r = AXEL_R
+        d.ellipse([(tip[0] - r) * SS, (tip[1] - r) * SS,
+                   (tip[0] + r) * SS, (tip[1] + r) * SS], fill=255)
+
+    if "arm_v" in delar:
+        teardrop(*CUT["arms"][0])
+        axelplatta(CUT["arms"][0][0])
+    if "arm_h" in delar:
+        teardrop(*CUT["arms"][1])
+        axelplatta(CUT["arms"][1][0])
 
     mask = m.resize((w, h), Image.LANCZOS)
-    # Krymp ett snäpp så bakgrundens kantljus inte följer med, mjuka sedan kanten
-    return mask.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(0.7))
+    if delar == ("kropp",) or "kropp" in delar:
+        # Krymp ett snäpp så bakgrundens kantljus inte följer med
+        mask = mask.filter(ImageFilter.MinFilter(3))
+    else:
+        # Armlagren växer istället: de ligger ovanpå kroppen och ska täcka
+        # skarven vid axeln när armen svänger, annars syns kroppens kantlinje
+        # som en mörk skåra.
+        mask = mask.filter(ImageFilter.MaxFilter(5))
+    return mask.filter(ImageFilter.GaussianBlur(0.7))
 
 
 def fit(img, size, pad=0.04, bg=None):
@@ -123,6 +148,26 @@ def main():
     web.save("web/public/brand/maskot/bahko-master.png", optimize=True)
     print(f"  ✓ web/public/brand/maskot/bahko-master.{{webp,png}} {web.size}")
 
+    # ── Lager för gester ────────────────────────────────────────────────────
+    # Figuren är en stel render, så armarna klipps ut som egna lager och
+    # roteras med CSS kring axeln. Alla lager delar samma ram (bbox för hela
+    # figuren) så de kan staplas med inset:0 utan att räkna om positioner.
+    ram = full.getbbox()
+    skala = 760 / max(ram[2] - ram[0], ram[3] - ram[1])
+    for namn, delar in (("kropp", ("kropp",)), ("arm-vanster", ("arm_v",)), ("arm-hoger", ("arm_h",))):
+        lager = base.convert("RGBA")
+        lager.putalpha(build_mask(base.size, delar))
+        lager = lager.crop(ram)
+        lager.thumbnail((760, 760), Image.LANCZOS)
+        lager.save(f"web/public/brand/maskot/bahko-{namn}.webp", quality=92, method=6)
+        print(f"  ✓ web/public/brand/maskot/bahko-{namn}.webp {lager.size}")
+
+    # Axelpunkterna i procent av ramen — CSS transform-origin för armlagren
+    for etikett, (tip, _c, _r) in zip(("vänster", "höger"), CUT["arms"]):
+        px = (tip[0] - ram[0]) / (ram[2] - ram[0]) * 100
+        py = (tip[1] - ram[1]) / (ram[3] - ram[1]) * 100
+        print(f"     axel {etikett}: transform-origin: {px:.1f}% {py:.1f}%")
+
     # Ikonerna beskärs till kroppen med ögat. Hela figuren blir gröt vid 16 px
     # och armar och ben äter yta från B:et, det enda som måste läsa i en flik.
     bx0, by0, bx1, by1, _ = CUT["body"]
@@ -151,10 +196,14 @@ def main():
     new_mark = f'<image x="4" y="{round((100 - mh) / 2)}" width="{mw}" height="{mh}" href="data:image/png;base64,{lb64}"/>'
     for path in ("web/public/brand/logo.svg", "web/public/brand/logo-dark.svg"):
         s = open(path).read()
-        if OLD_MARK not in s:
-            print(f"  ⚠ {path}: hittar inte det gamla märket, hoppar över")
+        if OLD_MARK in s:                       # första körningen: platta brickan sitter kvar
+            s = s.replace(OLD_MARK, new_mark, 1)
+        elif '<image x="4"' in s:               # senare körningar: byt ut förra maskoten
+            s = re.sub(r'<image x="4"[^>]*/>', new_mark, s, count=1)
+        else:
+            print(f"  ⚠ {path}: hittar varken brickan eller ett tidigare maskotlager")
             continue
-        open(path, "w").write(s.replace(OLD_MARK, new_mark, 1))
+        open(path, "w").write(s)
         print(f"  ✓ {path} (maskot {mw}×{mh})")
 
 
