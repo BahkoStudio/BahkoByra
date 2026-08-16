@@ -37,13 +37,14 @@
     "name": "Bahko-maskoten",
     "beslut": "Mathias val 2026-08-16 — ersatte Hemsidedoktorn samma dag",
     "utseende": "Lekfull blank smaragdgrön rundad glaskub med vitt fett B, ETT stort öga med glimt uppe till höger, två droppformade armar och två korta ben. Inget stetoskop, ingen läkarrock.",
-    "regler": "Med i allt Bahko-content (karuseller, bilder, reels) och som logotypmärke samt favicon. Vid AI-generering skickas alltid master-bilden som referens + 'Match the reference character EXACTLY'. QA: exakt ETT öga, B:et vänsterställt, ögat uppe till höger.",
-    "webb_assets": "web/public/brand/maskot/bahko-master.{webp,png} (komponent: app/komponenter/Maskot.js). Ikoner: favicon.png, apple-touch-icon.png. Märke/lockups: brand/mark.svg, logo.svg, logo-dark.svg",
-    "kalla": "tools/assets/mascot-sheet.png (karaktärsark). Bygg om allt med: python3 tools/assets/build_mascot.py",
-    "poser": "Endast master är frilagd. Arket har fler vinklar — pekar/vinkar/undersöker kan klippas ut vid behov."
+    "regler": "3D-figuren är med i Bahko-content (karuseller, bilder, reels) och som animerad figur på sajten (sektioner, popup). Loggan och faviconen använder det PLATTA märket, inte 3D-rendern. Vid AI-generering skickas alltid master-bilden som referens + 'Match the reference character EXACTLY'. QA: exakt ETT öga, B:et vänsterställt, ögat uppe till höger.",
+    "webb_assets": "web/public/brand/maskot/bahko-master.{webp,png} + gestlager bahko-{kropp,arm-vanster,arm-hoger}.webp (komponent: app/komponenter/Maskot.js — gester: master/vinkar/pekar/undersoker/dansar). Ikoner och märke (PLATTA märket): favicon.png, apple-touch-icon.png, brand/mark.svg, logo.svg, logo-dark.svg",
+    "kalla": "tools/assets/mascot-sheet.png (karaktärsark, 3D) + tools/assets/mark-flat.png (platta märket). Bygg om allt med: python3 tools/assets/build_mascot.py",
+    "poser": "Endast master är frilagd. Arket har fler vinklar — pekar/vinkar/undersöker kan klippas ut vid behov.",
+    "kanoniska_original": "Drive: BahkoByra/Brand/maskot/ (bahko-master + LÄSMIG-kanonfil). Fullres original bor i repot: tools/assets/"
   },
   "logo_url": "https://www.bahkobyra.se/brand/logo.svg",
-  "logo_description": "Maskoten (grön glaskub med vitt B och ett öga) som märke. Ordmärke 'Bahko Byrå' i Outfit 700 — marinblå #0A1628 på ljust, vitt på mörkt. Tagline 'SYNLIGHET SOM SÄLJER' i Outfit 500, bred spärrning. Maskoten ersatte den platta B-brickan 2026-08-16.",
+  "logo_description": "Platta 2D-märket: smaragdgrön rundad kvadrat med vitt fett B och ETT öga (källa tools/assets/mark-flat.png). Används i mark.svg, lockups, favicon och apple-touch-icon — 3D-rendern i loggan blev för mycket (beslut 2026-08-16). Ordmärke 'Bahko Byrå' i Outfit 700 — marinblå #0A1628 på ljust, vitt på mörkt. Tagline 'SYNLIGHET SOM SÄLJER' i Outfit 500, bred spärrning.",
   "accent_gradient": [
     "#34D399",
     "#10B981",
