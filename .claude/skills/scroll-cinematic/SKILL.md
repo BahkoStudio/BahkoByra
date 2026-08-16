@@ -203,7 +203,12 @@ Research-audit 2026-08-05 (`storm-reports/scroll-cinematic-craft-audit-briefing.
   Uppercase-kickers/etiketter ≥11 px är undantagna — de är möbler, inte läsning.
 - **Mediabudget per demo:** hero ≈1 MB · bakgrund ≈1,7 MB · porträtt ≈0,8 MB ·
   thumbs ≤300 KB · posters ≤300 KB (CRF 26, `-an`, `+faststart` som vanligt).
-- Test i 390px: ingen sidled-scroll, galleriet inom ~2,5 skärmhöjder.
+- Test i 390px: ingen sidled-scroll, galleriet inom ~2,5 skärmhöjder, och
+  INGA layouthopp när lazy-bilder laddar (Mathias 2026-08-16: "innehåll hoppar
+  en millisekund vid galleriet på iPhone" — orsak: bildruta utan storleksstyrning
+  knäpper till rätt storlek vid laddning; iOS saknar Chromes scroll-förankring så
+  hoppet syns. Varje lazy-img MÅSTE ha styrd låda: aspect-ratio + height:auto,
+  eller absolut img med height:100% i ratio-satt container).
 
 **Klickvägarna:**
 - **Hantverkskunder ringer.** Numret klickbart (`tel:`) i header, mobilnav,
