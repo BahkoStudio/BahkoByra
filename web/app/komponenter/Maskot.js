@@ -30,9 +30,12 @@ export default function Maskot({ pose = 'master', stil = 'rund', alt = 'Bahko-ma
       {/* Figurlagret bär kroppens rörelse. Armarna ligger inuti så de följer med
           när hon andas och lutar sig — annars spricker axelleden. */}
       <span className={styles.figur}>
-        <img className={styles.kropp} src={LAGER.kropp} alt="" aria-hidden="true" loading="lazy" />
+        {/* Armarna ritas FÖRE kroppen och hamnar därmed bakom den. Axelroten
+            göms då av kroppens egen silhuett, oavsett hur armen svänger — det
+            är det som tar bort cirkeln vid armhålan. */}
         <img className={styles.armVanster} src={LAGER.armVanster} alt="" aria-hidden="true" loading="lazy" />
         <img className={styles.armHoger} src={LAGER.armHoger} alt="" aria-hidden="true" loading="lazy" />
+        <img className={styles.kropp} src={LAGER.kropp} alt="" aria-hidden="true" loading="lazy" />
       </span>
     </span>
   );

@@ -1,7 +1,12 @@
-/* Maskoten ritas i tre lager: kropp, vänster arm, höger arm. Lagren delar ram
-   och staplas ovanpå varandra, så armarna kan roteras kring axeln var för sig.
-   Axelpunkterna kommer från tools/assets/build_mascot.py (spetsen på droppen).
-   Ingen ram och ingen cirkel: figuren är frilagd med transparent bakgrund. */
+/* Maskoten ritas i tre lager: kropp, vänster arm, höger arm.
+
+   Armlagren ligger FÖRE kroppen i DOM och hamnar därmed bakom den. Varje arm
+   är dessutom förlängd in i kroppen (se AXEL_DJUP i tools/assets/build_mascot.py),
+   så axelroten begravs bakom kroppens silhuett. Det är det som gör att leden
+   inte visar någon cirkel eller skåra hur mycket armen än svänger — och det är
+   därför utslagen nedan kan vara stora.
+
+   Axelpunkterna kommer från byggskriptet. Ändras de här spricker rotationen. */
 
 .maskot {
   position: relative;
@@ -9,15 +14,6 @@
   flex-shrink: 0;
   line-height: 0;
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Figurlagret bär kroppens rörelse så armarna följer med i den */
-.figur {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  animation: bahkoAndas 5.5s ease-in-out infinite;
 }
 
 .maskot img {
@@ -29,89 +25,100 @@
   display: block;
 }
 
-/* Kroppen bär skuggan — annars får varje arm en egen och de krockar.
-   Den ligger kvar i flödet så spannet får sin höjd. */
+/* Figurlagret bär kroppens rörelse så armarna följer med i den */
+.figur {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: bahkoAndas 3.4s ease-in-out infinite;
+}
+
+/* Kroppen bär skuggan — annars får varje arm en egen och de krockar */
 .kropp {
   filter: drop-shadow(0 14px 26px rgba(4, 12, 26, 0.45));
 }
 
-/* Exakt axelplattans centrum — nudgas dessa spricker leden */
-.armVanster { transform-origin: 11.7% 45.1%; }
-.armHoger   { transform-origin: 88.8% 43.5%; }
+.armVanster { transform-origin: 15.8% 44.7%; }
+.armHoger   { transform-origin: 84.7% 43.3%; }
 
-/* ── Gester ────────────────────────────────────────────────────────────────
-   Små utslag och långa pauser. En maskot som gestikulerar oavbrutet blir en
-   blinkande banner — hon ska kännas närvarande, inte kräva uppmärksamhet. */
+/* ── Rörelser ─────────────────────────────────────────────────────────── */
 
+/* Kroppen studsar och vaggar */
 @keyframes bahkoAndas {
-  0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50%      { transform: translateY(-8px) rotate(1deg); }
+  0%, 100% { transform: translateY(0) rotate(-2.5deg); }
+  30%      { transform: translateY(-16px) rotate(2deg); }
+  55%      { transform: translateY(-6px) rotate(-1deg); }
+  75%      { transform: translateY(-13px) rotate(2.5deg); }
 }
 
-/* Viloläge: armarna svajar svagt i motfas */
+/* Lutar sig fram mot erbjudandet */
+@keyframes bahkoLutar {
+  0%, 100% { transform: translateY(0) rotate(3deg); }
+  30%      { transform: translateY(-15px) rotate(8deg); }
+  60%      { transform: translateY(-5px) rotate(5deg); }
+}
+
+/* Viloläge: armarna svingar i motfas */
 @keyframes armVila {
-  0%, 100% { transform: rotate(0deg); }
-  50%      { transform: rotate(2deg); }
+  0%, 100% { transform: rotate(-7deg); }
+  50%      { transform: rotate(16deg); }
 }
 
 @keyframes armVilaSpegel {
-  0%, 100% { transform: rotate(0deg); }
-  50%      { transform: rotate(-2deg); }
+  0%, 100% { transform: rotate(7deg); }
+  50%      { transform: rotate(-16deg); }
 }
 
-/* Vinkar: lyfter armen, viftar ett par gånger, står sedan still en lång stund */
+/* Vinkar: armen UPP (-135 = upp åt höger) och fyra viftningar däromkring */
 @keyframes armVinkar {
-  0%, 62%, 100% { transform: rotate(0deg); }
-  66%           { transform: rotate(-9deg); }
-  71%           { transform: rotate(-17deg); }
-  76%           { transform: rotate(-8deg); }
-  81%           { transform: rotate(-16deg); }
-  88%           { transform: rotate(-7deg); }
-  94%           { transform: rotate(-2deg); }
+  0%, 6%, 100% { transform: rotate(0deg); }
+  15%          { transform: rotate(-140deg); }
+  24%          { transform: rotate(-118deg); }
+  33%          { transform: rotate(-156deg); }
+  42%          { transform: rotate(-120deg); }
+  51%          { transform: rotate(-154deg); }
+  60%          { transform: rotate(-122deg); }
+  70%          { transform: rotate(-148deg); }
+  82%          { transform: rotate(-20deg); }
 }
 
-/* Pekar: sträcker ut armen mot erbjudandet och håller kvar, med små nudgar */
+/* Pekar: höger arm rakt ut mot texten (-90) och pumpar mot knappen */
 @keyframes armPekar {
-  0%, 100% { transform: rotate(6deg); }
-  35%      { transform: rotate(12deg); }
-  50%      { transform: rotate(8deg); }
-  65%      { transform: rotate(11deg); }
+  0%, 100% { transform: rotate(-72deg); }
+  25%      { transform: rotate(-99deg); }
+  45%      { transform: rotate(-84deg); }
+  65%      { transform: rotate(-97deg); }
 }
 
-/* Undersöker: kupar armen framför sig, som att hålla upp något och titta */
+/* Undersöker: vänster arm lyfts upp (+ = medurs för vänsterarmen) */
 @keyframes armUndersoker {
-  0%, 100% { transform: rotate(-4deg); }
-  50%      { transform: rotate(-9deg); }
+  0%, 100% { transform: rotate(12deg); }
+  40%      { transform: rotate(52deg); }
+  70%      { transform: rotate(34deg); }
 }
 
-/* master — viloställning */
-.master .armVanster { animation: armVila 6s ease-in-out infinite; }
-.master .armHoger   { animation: armVilaSpegel 6s ease-in-out infinite; }
+/* ── Gest per sammanhang ──────────────────────────────────────────────── */
 
-/* vinkar — höger arm hälsar */
-.vinkar .armHoger   { animation: armVinkar 7s ease-in-out infinite; }
-.vinkar .armVanster { animation: armVila 6s ease-in-out infinite; }
+.master .armVanster { animation: armVila 3.8s ease-in-out infinite; }
+.master .armHoger   { animation: armVilaSpegel 3.8s ease-in-out infinite; }
 
-/* pekar — vänster arm sträcks ut mot texten, kroppen lutar med */
-.pekar .armVanster  { animation: armPekar 3.6s ease-in-out infinite; }
-.pekar .armHoger    { animation: armVilaSpegel 6s ease-in-out infinite; }
-.pekar .figur       { animation: bahkoLutar 3.6s ease-in-out infinite; }
+.vinkar .armHoger   { animation: armVinkar 4.5s ease-in-out infinite; }
+.vinkar .armVanster { animation: armVila 3.8s ease-in-out infinite; }
 
-@keyframes bahkoLutar {
-  0%, 100% { transform: translateY(0) rotate(2deg); }
-  40%      { transform: translateY(-7px) rotate(4deg); }
-}
+.pekar .armHoger    { animation: armPekar 2.6s ease-in-out infinite; }
+.pekar .armVanster  { animation: armVila 3.8s ease-in-out infinite; }
+.pekar .figur       { animation: bahkoLutar 2.6s ease-in-out infinite; }
 
-/* undersoker — kupad arm, lugn kropp */
-.undersoker .armHoger   { animation: armUndersoker 5s ease-in-out infinite; }
-.undersoker .armVanster { animation: armVila 6s ease-in-out infinite; }
+.undersoker .armVanster { animation: armUndersoker 3.6s ease-in-out infinite; }
+.undersoker .armHoger   { animation: armVilaSpegel 3.8s ease-in-out infinite; }
 
 /* Hover: hela figuren hoppar till */
 .maskot:hover {
-  transform: translateY(-7px) scale(1.05);
+  transform: translateY(-9px) scale(1.06);
 }
 
-/* ── Storlekar ─────────────────────────────────────────────────────────── */
+/* ── Storlekar ────────────────────────────────────────────────────────── */
 
 .rund  { width: 190px; height: 190px; }
 .flyt  { width: 160px; height: 160px; }
@@ -128,7 +135,7 @@
 }
 
 @keyframes bahkoHalsar {
-  from { transform: translateY(18px) scale(0.85); opacity: 0; }
+  from { transform: translateY(22px) scale(0.8); opacity: 0; }
   to   { transform: translateY(0) scale(1); opacity: 1; }
 }
 
