@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import HeroVideo from './komponenter/HeroVideo';
+import Maskot from './komponenter/Maskot';
 import SynlighetsPanel from './komponenter/SynlighetsPanel';
 import ProcessRail from './komponenter/ProcessRail';
 import TjanstIkon from './komponenter/TjanstIkon';
@@ -124,6 +125,9 @@ export default function Start() {
                 Så bygger vi {PIL}
               </Link>
             </div>
+            <div style={{ marginTop: '2.2rem' }}>
+              <Maskot pose="undersoker" stil="rund" alt="Hemsidedoktorn undersöker en hemsida med stetoskop" />
+            </div>
           </div>
           <SynlighetsPanel />
         </div>
@@ -169,6 +173,7 @@ export default function Start() {
           <ProcessRail />
 
           <div className={styles.processCta}>
+            <Maskot pose="pekar" stil="flyt" alt="Hemsidedoktorn pekar mot knappen för gratis förslag" />
             <div>
               <h3>Vill ni se hur er sida skulle se ut?</h3>
               <p>Vi bygger förslaget först. Ni bestämmer sen.</p>
@@ -250,7 +255,8 @@ export default function Start() {
         <div className="wrap">
           <span className="eyebrow">Vanliga frågor</span>
           <h2>
-            Raka svar, <span className="accent">inga säljtrick.</span>
+            Raka svar, <span className="accent">inga säljtrick.</span>{' '}
+            <Maskot pose="vinkar" stil="liten" alt="Hemsidedoktorn vinkar" />
           </h2>
           <p className="lede" style={{ margin: '1rem 0 2.4rem' }}>
             Det här undrar de flesta bygg- och hantverksfirmor som hör av sig.
