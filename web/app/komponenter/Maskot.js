@@ -12,6 +12,7 @@ import styles from './Maskot.module.css';
      vinkar     hälsar, för rubriker och popup
      pekar      sträcker ut armen mot erbjudandet
      undersoker lutar sig fram och tittar, för genomgångar
+     dansar     tvåtaktsdans, för CTA-kortet — glad energi vid erbjudandet
      master     lugn viloställning */
 
 const LAGER = {
@@ -20,7 +21,7 @@ const LAGER = {
   armHoger: '/brand/maskot/bahko-arm-hoger.webp',
 };
 
-const GESTER = ['master', 'vinkar', 'pekar', 'undersoker'];
+const GESTER = ['master', 'vinkar', 'pekar', 'undersoker', 'dansar'];
 
 export default function Maskot({ pose = 'master', stil = 'rund', alt = 'Bahko-maskoten' }) {
   const gest = GESTER.includes(pose) ? pose : 'master';

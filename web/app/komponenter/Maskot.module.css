@@ -98,6 +98,25 @@
   70%      { transform: rotate(34deg); }
 }
 
+/* Dansar: tvåtakt — kroppen studsar från sida till sida, armarna pumpar
+   växelvis i luften. Samma period på alla tre lagren så de håller takten. */
+@keyframes bahkoDansar {
+  0%, 100% { transform: translateX(-9px) translateY(0) rotate(-7deg); }
+  25%      { transform: translateX(0) translateY(-20px) rotate(0deg); }
+  50%      { transform: translateX(9px) translateY(0) rotate(7deg); }
+  75%      { transform: translateX(0) translateY(-20px) rotate(0deg); }
+}
+
+@keyframes armDansVanster {
+  0%, 100% { transform: rotate(54deg); }
+  50%      { transform: rotate(-6deg); }
+}
+
+@keyframes armDansHoger {
+  0%, 100% { transform: rotate(6deg); }
+  50%      { transform: rotate(-54deg); }
+}
+
 /* ── Gest per sammanhang ──────────────────────────────────────────────── */
 
 .master .armVanster { animation: armVila 3.8s ease-in-out infinite; }
@@ -112,6 +131,10 @@
 
 .undersoker .armVanster { animation: armUndersoker 3.6s ease-in-out infinite; }
 .undersoker .armHoger   { animation: armVilaSpegel 3.8s ease-in-out infinite; }
+
+.dansar .figur      { animation: bahkoDansar 1.6s ease-in-out infinite; }
+.dansar .armVanster { animation: armDansVanster 1.6s ease-in-out infinite; }
+.dansar .armHoger   { animation: armDansHoger 1.6s ease-in-out infinite; }
 
 /* Hover: hela figuren hoppar till */
 .maskot:hover {
@@ -152,6 +175,7 @@
   .vinkar .armVanster, .vinkar .armHoger,
   .pekar .armVanster, .pekar .armHoger, .pekar .figur,
   .undersoker .armVanster, .undersoker .armHoger,
+  .dansar .figur, .dansar .armVanster, .dansar .armHoger,
   .popup {
     animation: none;
   }

@@ -7,15 +7,20 @@ driftverktyg utan en engångsgenerator för bildassets, och den kräver Pillow
 (bildbehandling saknas i Node-kedjan). Därför ligger den i tools/assets/
 tillsammans med källbilden, avskild från de sju Node-verktygen.
 
-Källa:  tools/assets/mascot-sheet.png            (renderat karaktärsark)
+Källor: tools/assets/mascot-sheet.png            (renderat karaktärsark — 3D-figuren)
+        tools/assets/mark-flat.png               (platta 2D-märket — logga/favicon)
 Skriver:
   web/public/brand/maskot/bahko-master.webp      maskoten frilagd, transparent
   web/public/brand/maskot/bahko-master.png       samma, för verktyg som inte gillar webp
-  web/public/favicon.png                         256×256, kroppsbeskuren
-  web/public/apple-touch-icon.png                180×180 på marinblå
-  web/public/brand/mark.svg                      logotypmärket = maskoten
-  web/public/brand/logo.svg                      lockup ljus botten
-  web/public/brand/logo-dark.svg                 lockup mörk botten
+  web/public/favicon.png                         256×256, platta märket, transparent
+  web/public/apple-touch-icon.png                180×180, platta märket på marinblå
+  web/public/brand/mark.svg                      logotypmärket = platta märket
+  web/public/brand/logo.svg                      lockup ljus botten (platta märket)
+  web/public/brand/logo-dark.svg                 lockup mörk botten (platta märket)
+
+Beslut 2026-08-16: loggan och faviconen använder det PLATTA märket — 3D
+överallt blev för mycket. 3D-maskoten lever som figur i sektioner, popup
+och content (mascot.png/webp + gestlagren).
 
 Kör:  python3 tools/assets/build_mascot.py       (kräver Pillow)
 
@@ -32,6 +37,7 @@ import re
 from PIL import Image, ImageDraw, ImageFilter
 
 SRC = "tools/assets/mascot-sheet.png"
+FLAT = "tools/assets/mark-flat.png"
 CROP = (30, 45, 800, 772)          # hjältefiguren i arkets vänstra del
 
 CUT = {
@@ -185,19 +191,18 @@ def main():
         py = (iy - ram[1]) / (ram[3] - ram[1]) * 100
         print(f"     axel {etikett}: transform-origin: {px:.1f}% {py:.1f}%")
 
-    # Ikonerna beskärs till kroppen med ögat. Hela figuren blir gröt vid 16 px
-    # och armar och ben äter yta från B:et, det enda som måste läsa i en flik.
-    bx0, by0, bx1, by1, _ = CUT["body"]
-    head = full.crop((bx0 - 6, by0 - 6, bx1 + 6, by1 + 6))
+    # Ikoner och märke: PLATTA 2D-märket. 3D-rendern i loggan blev för mycket —
+    # den lever som figur i sektionerna, märket och faviconen är platta.
+    flat = Image.open(FLAT).convert("RGBA")
 
-    squeeze(fit(head, 256, pad=0.02)).save("web/public/favicon.png", optimize=True)
-    print("  ✓ web/public/favicon.png 256×256")
+    squeeze(fit(flat, 256, pad=0.02), 128).save("web/public/favicon.png", optimize=True)
+    print("  ✓ web/public/favicon.png 256×256 (platta märket)")
 
-    fit(head, 180, pad=0.10, bg=NAVY).convert("RGB").save("web/public/apple-touch-icon.png")
+    fit(flat, 180, pad=0.12, bg=NAVY).convert("RGB").save("web/public/apple-touch-icon.png")
     print("  ✓ web/public/apple-touch-icon.png 180×180")
 
-    # Märket: maskoten i en kvadratisk vy, ersätter den platta B-brickan
-    b64, size = embed(fit(head, 150, pad=0.02), 150, 200)
+    # Märket i header/preloader
+    b64, size = embed(fit(flat, 150, pad=0.02), 150, 128)
     with open("web/public/brand/mark.svg", "w") as f:
         f.write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" '
                 f'height="100" role="img" aria-label="Bahko Byrå">\n'
@@ -206,17 +211,17 @@ def main():
                 f'</svg>\n')
     print("  ✓ web/public/brand/mark.svg")
 
-    # Lockups: byt ut den platta brickan mot maskoten, ordmärket rörs inte
-    lb64, (lw, lh) = embed(cut, 200, 160)
-    mh = 92
+    # Lockups: platta märket där brickan satt, ordmärket rörs inte
+    lb64, (lw, lh) = embed(flat, 180, 128)
+    mh = 84
     mw = round(mh * lw / lh)
-    new_mark = f'<image x="4" y="{round((100 - mh) / 2)}" width="{mw}" height="{mh}" href="data:image/png;base64,{lb64}"/>'
+    new_mark = f'<image x="8" y="8" width="{mw}" height="{mh}" href="data:image/png;base64,{lb64}"/>'
     for path in ("web/public/brand/logo.svg", "web/public/brand/logo-dark.svg"):
         s = open(path).read()
         if OLD_MARK in s:                       # första körningen: platta brickan sitter kvar
             s = s.replace(OLD_MARK, new_mark, 1)
-        elif '<image x="4"' in s:               # senare körningar: byt ut förra maskoten
-            s = re.sub(r'<image x="4"[^>]*/>', new_mark, s, count=1)
+        elif '<image x=' in s:               # senare körningar: byt ut förra maskoten
+            s = re.sub(r'<image x="\d+"[^>]*/>', new_mark, s, count=1)
         else:
             print(f"  ⚠ {path}: hittar varken brickan eller ett tidigare maskotlager")
             continue
