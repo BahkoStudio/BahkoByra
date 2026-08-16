@@ -126,7 +126,7 @@ export default function Start() {
               </Link>
             </div>
             <div style={{ marginTop: '2.2rem' }}>
-              <Maskot pose="undersoker" stil="rund" alt="Hemsidedoktorn undersöker en hemsida med stetoskop" />
+              <Maskot pose="undersoker" stil="rund" alt="Bahko-maskoten tittar på en hemsida" />
             </div>
           </div>
           <SynlighetsPanel />
@@ -173,7 +173,7 @@ export default function Start() {
           <ProcessRail />
 
           <div className={styles.processCta}>
-            <Maskot pose="pekar" stil="flyt" alt="Hemsidedoktorn pekar mot knappen för gratis förslag" />
+            <Maskot pose="pekar" stil="flyt" alt="Bahko-maskoten vid knappen för gratis förslag" />
             <div>
               <h3>Vill ni se hur er sida skulle se ut?</h3>
               <p>Vi bygger förslaget först. Ni bestämmer sen.</p>
@@ -256,7 +256,7 @@ export default function Start() {
           <span className="eyebrow">Vanliga frågor</span>
           <h2>
             Raka svar, <span className="accent">inga säljtrick.</span>{' '}
-            <Maskot pose="vinkar" stil="liten" alt="Hemsidedoktorn vinkar" />
+            <Maskot pose="vinkar" stil="liten" alt="Bahko-maskoten" />
           </h2>
           <p className="lede" style={{ margin: '1rem 0 2.4rem' }}>
             Det här undrar de flesta bygg- och hantverksfirmor som hör av sig.
