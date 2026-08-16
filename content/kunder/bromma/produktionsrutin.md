@@ -9,8 +9,21 @@ och allt råmaterial från Jens bor där. Struktur: 01 Råmaterial från Jens ·
 
 **AI får aldrig spela Jens riktiga jobb.** Före/efter, teamet och maskinerna är alltid äkta
 material från Jens (WhatsApp → Drive 01). Higgsfield används ENDAST till:
-ramen (logga-intro/outro på reels) och bakgrunder till tipsgrafiken. Omdömeskorten är
-HTML-mall, ingen AI.
+ramen (logga-intro/outro på reels), bakgrunder till tipsgrafiken och **maskotvärlden**
+(se nedan). Omdömeskorten är HTML-mall, ingen AI.
+
+## Maskoten "Robotklipparen" (kanon 2026-08-16, Mathias val)
+
+Bromma har en officiell maskot: en gullig leksaksaktig robotgräsklippare (originaldesign,
+INTE en Husqvarna-kopia) — grön gradient-kropp, cream-paneler, antenn med gul glödande kula,
+två stora runda strålkastarögon, lövdekal. Den används för **undervisande innehåll**
+(karuseller, tipsbilder, maskot-reels) och är uppenbart en karaktär — den bryter därför inte
+grundregeln ovan. Jens äkta material förblir kravet för allt som visar riktiga jobb.
+
+- Kanon + referensbilder: Drive `Bromma Trädgårdsservice/04 Grafik och mallar/maskot/`
+  (master + poser: klipper, häck, vinter-med-snöskyffel; LASMIG-filen har genererings-regler)
+- Vid AI-generering: skicka ALLTID med `robotklipparen-master.png` som referensbild och kräv
+  "Match the reference character EXACTLY" i prompten; QA: antenn med gul kula, lövdekal, leende
 
 ## Byggstenarna (klara 2026-08-04)
 
