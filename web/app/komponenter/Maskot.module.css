@@ -1,48 +1,108 @@
 .maskot {
   display: inline-block;
-  overflow: hidden;
   flex-shrink: 0;
   line-height: 0;
 }
 
+/* Maskoten är frilagd med transparent bakgrund: ingen ram, ingen cirkel och
+   ingen beskärning. contain, inte cover — cover kapade armar och ben. */
 .maskot img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  /* Skuggan följer figurens silhuett istället för en fyrkantig ruta */
+  filter: drop-shadow(0 14px 26px rgba(4, 12, 26, 0.45));
 }
 
-/* Sektionsporträtt: rund med smaragdring, den navy studiobakgrunden i
-   bilden smälter in i sajtens mörka ytor. */
+/* ── Rörelser ──────────────────────────────────────────────────────────────
+   En glad säljare: svävar lugnt, lutar sig fram mot erbjudandet, vinkar till.
+   Alla rörelser är små och långsamma — figuren ska kännas levande, inte pilla
+   på uppmärksamheten. Stängs av helt vid prefers-reduced-motion längst ner. */
+
+@keyframes bahkoSvavar {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50%      { transform: translateY(-10px) rotate(1.5deg); }
+}
+
+/* Lutar sig mot texten och nickar till, som "kolla här" */
+@keyframes bahkoPekar {
+  0%, 100% { transform: translateY(0) rotate(6deg); }
+  40%      { transform: translateY(-8px) rotate(11deg); }
+  55%      { transform: translateY(-2px) rotate(8deg); }
+  70%      { transform: translateY(-6px) rotate(10deg); }
+}
+
+/* Vinkar till med jämna mellanrum, står still däremellan */
+@keyframes bahkoVinkar {
+  0%, 82%, 100% { transform: rotate(0deg); }
+  86%           { transform: rotate(-16deg); }
+  90%           { transform: rotate(13deg); }
+  94%           { transform: rotate(-9deg); }
+  97%           { transform: rotate(4deg); }
+}
+
+/* Sektionsporträtt */
 .rund {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  border: 2px solid rgba(16, 185, 129, 0.45);
-  box-shadow: 0 18px 44px rgba(4, 12, 26, 0.45);
+  width: 190px;
+  height: 190px;
+  transform-origin: 50% 90%;
+  animation: bahkoSvavar 5.5s ease-in-out infinite;
 }
 
-/* Svävande kort: lätt lutning, som att doktorn tittar in i sektionen. */
+/* Bredvid erbjudandet: lutar sig fram mot knappen */
 .flyt {
-  width: 150px;
-  height: 150px;
-  border-radius: 26px;
-  transform: rotate(-3deg);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  box-shadow: 0 22px 48px rgba(4, 12, 26, 0.5);
+  width: 160px;
+  height: 160px;
+  transform-origin: 50% 92%;
+  animation: bahkoPekar 3.8s ease-in-out infinite;
 }
 
-/* Inline-badge vid rubriker. */
+/* Popupen: tittar upp över kortets överkant och vinkar när rutan dyker upp */
+.popup {
+  width: 104px;
+  height: 104px;
+  margin: -4.6rem auto 0.4rem;
+  display: block;
+  transform-origin: 50% 88%;
+  animation: bahkoHalsar 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+             bahkoVinkar 6s ease-in-out 0.7s infinite;
+}
+
+@keyframes bahkoHalsar {
+  from { transform: translateY(18px) scale(0.85); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Inline-badge vid rubrik */
 .liten {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  border: 2px solid rgba(16, 185, 129, 0.5);
+  width: 76px;
+  height: 76px;
   vertical-align: middle;
+  transform-origin: 50% 85%;
+  animation: bahkoVinkar 7s ease-in-out infinite;
+}
+
+/* Hoppar till när man petar på henne. Effekten sitter på bilden, inte på
+   spannet — en pågående animation vinner annars över hover-transformen. */
+.maskot img {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.maskot:hover img {
+  transform: translateY(-7px) scale(1.06);
 }
 
 @media (max-width: 720px) {
-  .rund { width: 128px; height: 128px; }
-  .flyt { width: 108px; height: 108px; }
-  .liten { width: 56px; height: 56px; }
+  .rund { width: 132px; height: 132px; }
+  .popup { width: 86px; height: 86px; margin-top: -3.8rem; }
+  .flyt { width: 112px; height: 112px; }
+  .liten { width: 58px; height: 58px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rund, .flyt, .liten, .popup { animation: none; }
+  .popup { opacity: 1; transform: none; }
+  .flyt { transform: rotate(6deg); }
+  .maskot:hover img { transform: none; }
 }

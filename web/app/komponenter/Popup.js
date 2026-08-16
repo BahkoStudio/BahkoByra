@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styles from './Popup.module.css';
+import Maskot from './Maskot';
 
 // Sekunder innan popupen visas, och innan den kommer tillbaka efter en stängning.
 const INTERVALL = 30;
@@ -55,6 +56,8 @@ export default function Popup() {
             <path d="M18 6 6 18M6 6l12 12" />
           </svg>
         </button>
+
+        <Maskot pose="vinkar" stil="popup" alt="Bahko-maskoten vinkar" />
 
         <span className={styles.tagg}>Kostnadsfri hemsideanalys</span>
         <h2 id="popup-rubrik">Vill ni veta vad som stoppar kunderna?</h2>
