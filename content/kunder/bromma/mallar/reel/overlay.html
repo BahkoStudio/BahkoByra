@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>Reel-overlay</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:transparent}
+  body{font-family:'Archivo','Segoe UI',sans-serif}
+
+  /* Mörk sammetsband bakom texten så den är läsbar mot rörligt gräs */
+  .band{position:absolute;left:0;right:0;bottom:0;height:1020px;
+    background:linear-gradient(180deg,
+      rgba(11,11,13,0) 0%,
+      rgba(11,11,13,.16) 26%,
+      rgba(11,11,13,.60) 62%,
+      rgba(11,11,13,.86) 100%)}
+
+  .block{position:absolute;left:88px;right:88px;bottom:430px}
+  .kicker{display:inline-block;font-size:30px;font-weight:800;letter-spacing:.3em;
+    text-transform:uppercase;color:#9FE08A;border-left:8px solid #6BBF59;
+    padding-left:22px;margin-bottom:30px}
+  h1{font-size:96px;line-height:1.04;font-weight:900;letter-spacing:-.02em;color:#F2EFE9;
+    text-shadow:0 6px 34px rgba(0,0,0,.75), 0 2px 6px rgba(0,0,0,.5)}
+  h1 em{font-style:normal;color:#9FE08A}
+  h1 span{display:block;white-space:nowrap}
+</style>
+</head>
+<body>
+  <div class="band" id="band"></div>
+  <div class="block">
+    <span class="kicker" id="k"></span>
+    <h1 id="t"></h1>
+  </div>
+<script>
+const BEATS = [
+  { k:'September',        t:'Bästa tiden att så gräs<br><em>är nu.</em>' },
+  { k:'Därför nu',        t:'Jorden är fortfarande varm.<br><em>Fröet gror snabbt.</em>' },
+  { k:'Bonusen',          t:'Ogräset har slutat växa.<br><em>Gräset får fritt fram.</em>' },
+  { k:'Så gör du',        t:'Vattna lite<br><em>varje dag tills det gror.</em>' },
+  { k:'Resultatet',       t:'Några veckor senare<br><em>är fläcken borta.</em>' },
+  { k:'Slipper du krånglet', t:'Hinner du inte?<br><em>Vi gör det åt dig.</em>' },
+  { k:'Bromma Trädgårdsservice', t:'Ring så kommer vi ut.<br><em>Kostnadsfritt hembesök.</em>' }
+];
+const i = parseInt(new URLSearchParams(location.search).get('i') || '0', 10);
+const b = BEATS[i];
+document.getElementById('k').textContent = b.k;
+const t = document.getElementById('t');
+// Varje rad är en egen nowrap-rad. Fontstorleken krymper tills den bredaste
+// raden får plats - annars bryter webbläsaren raden en extra gång och rytmen dör.
+t.innerHTML = b.t.split('<br>').map(r => '<span>' + r + '</span>').join('');
+const rader = [...t.querySelectorAll('span')];
+const maxbredd = t.clientWidth;
+let px = 96;
+t.style.fontSize = px + 'px';
+while (px > 52 && rader.some(r => r.scrollWidth > maxbredd)) {
+  px -= 2;
+  t.style.fontSize = px + 'px';
+}
+</script>
+</body>
+</html>
