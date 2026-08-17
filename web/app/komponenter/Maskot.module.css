@@ -136,24 +136,39 @@
 .dansar .armVanster { animation: armDansVanster 1.6s ease-in-out infinite; }
 .dansar .armHoger   { animation: armDansHoger 1.6s ease-in-out infinite; }
 
-/* Går: vaggar in från vänster mot panelen (en gång), sen pek-loop mot grafen.
-   Promenaden ligger på yttre lagret så hover-transitionen tar över efteråt
-   (backwards, inte both — annars låser sluttillståndet transformen). */
-@keyframes bahkoGar {
-  0%   { transform: translateX(-150px) translateY(0) rotate(-5deg); }
-  15%  { transform: translateX(-122px) translateY(-14px) rotate(4deg); }
-  30%  { transform: translateX(-92px)  translateY(0) rotate(-5deg); }
-  45%  { transform: translateX(-64px)  translateY(-14px) rotate(4deg); }
-  60%  { transform: translateX(-38px)  translateY(0) rotate(-4deg); }
-  75%  { transform: translateX(-16px)  translateY(-11px) rotate(3deg); }
-  90%  { transform: translateX(-3px)   translateY(0) rotate(-1deg); }
-  100% { transform: translateX(0) translateY(0) rotate(0deg); }
+/* Går: patrull-loop (Mathias beslut 2026-08-17 — "han ska gå tillbaka också").
+   Ett varv på 14 s: vaggar fram till panelens hörn (0–24 %), står och pekar
+   på grafen (27–60 %), vaggar hem baklänges (62–84 %) och vilar (86–100 %).
+   Armen pekar bara i stå-fönstret — samma period på båda lagren håller takten.
+   Promenaden ligger på yttre lagret så hover-transitionen fungerar mellan varven. */
+@keyframes bahkoPatrull {
+  0%        { transform: translateX(-150px) translateY(0) rotate(-4deg); }
+  5%        { transform: translateX(-122px) translateY(-13px) rotate(4deg); }
+  10%       { transform: translateX(-94px)  translateY(0) rotate(-4deg); }
+  15%       { transform: translateX(-64px)  translateY(-13px) rotate(4deg); }
+  20%       { transform: translateX(-34px)  translateY(0) rotate(-3deg); }
+  24%       { transform: translateX(-8px)   translateY(-9px) rotate(2deg); }
+  27%, 60%  { transform: translateX(0) translateY(0) rotate(0deg); }
+  65%       { transform: translateX(-30px)  translateY(-12px) rotate(-4deg); }
+  70%       { transform: translateX(-62px)  translateY(0) rotate(4deg); }
+  75%       { transform: translateX(-94px)  translateY(-12px) rotate(-4deg); }
+  80%       { transform: translateX(-124px) translateY(0) rotate(4deg); }
+  84%, 100% { transform: translateX(-150px) translateY(0) rotate(-2deg); }
 }
 
-.gar                { animation: bahkoGar 2.6s ease-in-out backwards; }
-.gar .armVanster    { animation: armVila 1.3s ease-in-out 2; }
-.gar .armHoger      { animation: armPekar 2.6s ease-in-out 2.6s infinite; }
-.gar .figur         { animation: bahkoLutar 2.6s ease-in-out 2.6s infinite; }
+/* Armen: vila under promenaden, peka mot grafen bara medan han står vid panelen */
+@keyframes armPekarPatrull {
+  0%, 26%, 62%, 100% { transform: rotate(0deg); }
+  31%                { transform: rotate(-96deg); }
+  39%                { transform: rotate(-76deg); }
+  47%                { transform: rotate(-98deg); }
+  55%                { transform: rotate(-82deg); }
+  58%                { transform: rotate(-92deg); }
+}
+
+.gar                { animation: bahkoPatrull 14s ease-in-out infinite; }
+.gar .armVanster    { animation: armVila 3.5s ease-in-out infinite; }
+.gar .armHoger      { animation: armPekarPatrull 14s ease-in-out infinite; }
 
 /* Grind: engångsgester hålls frysta tills komponenten släpper dem (syns i bild).
    Utan detta spelas promenaden vid sidladdning, långt innan panelen scrollats fram. */
