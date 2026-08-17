@@ -155,6 +155,15 @@
 .gar .armHoger      { animation: armPekar 2.6s ease-in-out 2.6s infinite; }
 .gar .figur         { animation: bahkoLutar 2.6s ease-in-out 2.6s infinite; }
 
+/* Grind: engångsgester hålls frysta tills komponenten släpper dem (syns i bild).
+   Utan detta spelas promenaden vid sidladdning, långt innan panelen scrollats fram. */
+.pausad,
+.pausad .figur,
+.pausad .armVanster,
+.pausad .armHoger {
+  animation-play-state: paused;
+}
+
 /* Hover: hela figuren hoppar till */
 .maskot:hover {
   transform: translateY(-9px) scale(1.06);
