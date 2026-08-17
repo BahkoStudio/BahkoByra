@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.className+=" js";</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alla muggar – Mugglagret</title>
+<meta name="description" content="Hela sortimentet av tryckta keramikmuggar. Filtrera på motiv och färg. Demo av Bahko Byrå.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="media/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="announce">
+  Leverans 3–6 dagar<span>·</span>Spårbar frakt i hela Sverige<span>·</span>Fast pris 136 kr oavsett motiv
+</div>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <a class="brand" href="index.html">
+      <img src="media/logo.png" alt="Mugglagret" width="46" height="46">
+      <span><span class="brand-name">Mugglagret</span><span class="brand-sub">Estd 2024</span></span>
+    </a>
+    <nav class="nav">
+      <a href="katalog.html" class="is-active">Alla muggar</a>
+      <a href="index.html#motiv">Motiv</a>
+      <a href="index.html#foretag">Företag</a>
+      <a href="index.html#om">Om oss</a>
+    </nav>
+    <div class="hdr-tools">
+      <button class="icon-btn" data-demo="Sökfunktionen visas i den färdiga sajten." aria-label="Sök">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </button>
+      <button class="icon-btn" data-cart-open aria-label="Varukorg">
+        <svg viewBox="0 0 24 24"><path d="M6 2l-2 5v13a2 2 0 002 2h12a2 2 0 002-2V7l-2-5z"/><path d="M4 7h16M16 11a4 4 0 01-8 0"/></svg>
+        <span class="cart-dot">0</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Meny" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mnav" id="mnav">
+  <a href="katalog.html">Alla muggar</a>
+  <a href="index.html#motiv">Motiv</a>
+  <a href="index.html#foretag">Företag</a>
+  <a href="index.html#om">Om oss</a>
+</nav>
+
+<div class="wrap">
+  <p class="crumbs"><a href="index.html">Hem</a><span>/</span><span id="shop-crumb">Alla muggar</span></p>
+</div>
+
+<section class="cat-hero">
+  <div class="wrap">
+    <span class="eyebrow">Butiken</span>
+    <h1 id="shop-title">Alla muggar</h1>
+    <p id="shop-lead">Hela sortimentet av tryckta keramikmuggar, 11 oz.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="shop">
+
+    <aside class="filters" id="filters">
+      <div class="fgroup">
+        <h4>Motiv</h4>
+        <button class="fbtn is-on" data-cat="alla">Alla muggar <span>38</span></button>
+        <button class="fbtn" data-cat="katter">Katter <span>8</span></button>
+        <button class="fbtn" data-cat="djur">Djur <span>6</span></button>
+        <button class="fbtn" data-cat="fjaril">Fjäril <span>4</span></button>
+        <button class="fbtn" data-cat="karlek">Kärlek &amp; vänskap <span>6</span></button>
+        <button class="fbtn" data-cat="retro">Retro <span>6</span></button>
+        <button class="fbtn" data-cat="stader">Världens städer <span>2</span></button>
+        <button class="fbtn" data-cat="texter">Texter &amp; bilder <span>6</span></button>
+      </div>
+
+      <div class="fgroup">
+        <h4>Färg på handtag &amp; insida</h4>
+        <div class="fcolors" id="filter-colors"></div>
+        <p style="font-size:.76rem;color:var(--muted);margin-top:.9rem" id="filter-color-note">Alla motiv finns i samtliga sju färger.</p>
+      </div>
+
+      <div class="fgroup">
+        <h4>Pris</h4>
+        <p style="font-size:.88rem;color:var(--ink-2)">Ett fast pris i hela butiken: <b style="color:var(--ink)">136 kr</b> per mugg.</p>
+        <p style="font-size:.8rem;color:var(--muted);margin-top:.5rem">Ska du beställa 25 st eller fler? <a href="index.html#foretag" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--line-2)">Se volympriser</a></p>
+      </div>
+    </aside>
+
+    <main>
+      <div class="shop-bar">
+        <span class="shop-count" id="shop-count"></span>
+        <div class="shop-sort">
+          <button class="btn btn--ghost filter-toggle" id="filter-toggle" style="min-height:42px;padding:.5rem 1.1rem">Filter</button>
+          <label for="shop-sort" class="eyebrow" style="letter-spacing:.14em">Sortera</label>
+          <select id="shop-sort">
+            <option value="senast">Senast tillagda</option>
+            <option value="nyheter">Nyheter först</option>
+            <option value="namn">Namn A–Ö</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="pgrid" id="shop-grid"></div>
+    </main>
+
+  </div>
+</div>
+
+<!-- ===================== FÖRETAG-BAND ===================== -->
+<section class="b2b">
+  <div class="wrap b2b-grid">
+    <div class="rv">
+      <span class="eyebrow">Företag &amp; profilmuggar</span>
+      <h2>Fler än 25 muggar?</h2>
+      <p>Då gäller volympris. Kostnadsfri digital mockup före tryck, och faktura med 30 dagar vid godkänd kreditprövning.</p>
+      <a class="btn" href="index.html#foretag">Se prissteg</a>
+    </div>
+    <div class="rv">
+      <table class="price-table">
+        <thead><tr><th>Antal</th><th>Pris/st</th><th>Leverans</th></tr></thead>
+        <tbody>
+          <tr><td>25–49 st</td><td><b>79 kr</b></td><td>7–10 dagar</td></tr>
+          <tr><td>100–249 st</td><td><b>59 kr</b></td><td>5–8 dagar</td></tr>
+          <tr><td>500+ st</td><td><b>Offert</b></td><td>Enligt ök.</td></tr>
+        </tbody>
+      </table>
+      <p class="price-note">Riktpriser exkl. moms. Startkostnad 399 kr för trycksetup, frakt tillkommer.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div class="ftr-lead">
+        <a class="brand" href="index.html">
+          <img src="media/logo.png" alt="Mugglagret" width="46" height="46" loading="lazy">
+          <span><span class="brand-name">Mugglagret</span><span class="brand-sub">Estd 2024</span></span>
+        </a>
+        <p>Muggar med tryck för hem, present och företag. Snygga motiv, skarpa tryck och muggar som håller länge.</p>
+        <a href="https://www.instagram.com/mugglagret_se" target="_blank" rel="noopener">Instagram @mugglagret_se →</a>
+      </div>
+      <div>
+        <h4>Handla</h4>
+        <ul>
+          <li><a href="katalog.html">Alla muggar</a></li>
+          <li><a href="katalog.html?kategori=katter">Katter</a></li>
+          <li><a href="katalog.html?kategori=retro">Retro</a></li>
+          <li><a href="katalog.html?kategori=stader">Världens städer</a></li>
+          <li><a href="katalog.html?kategori=texter">Texter &amp; bilder</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Mugglagret</h4>
+        <ul>
+          <li><a href="index.html#om">Om oss</a></li>
+          <li><a href="index.html#foretag">Företag &amp; profilmuggar</a></li>
+          <li><a href="index.html#motiv">Motiv</a></li>
+          <li><a href="#" data-demo="Bloggen kopplas på i den färdiga sajten.">Muggnyheter</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kundservice</h4>
+        <ul>
+          <li><a href="mailto:info@mugglagret.se">info@mugglagret.se</a></li>
+          <li><a href="#" data-demo="Frakt &amp; retur kopplas på i den färdiga sajten.">Frakt &amp; retur</a></li>
+          <li><a href="#" data-demo="Köpvillkoren kopplas på i den färdiga sajten.">Köpvillkor</a></li>
+          <li><a href="#" data-demo="Vanliga frågor kopplas på i den färdiga sajten.">Vanliga frågor</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr-bar">
+      <span>© 2026 Mugglagret.se · Demo</span>
+      <span>Byggd av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="demo-toast hide" id="demo-toast"></div>
+<button id="float-demo" onclick="openModal()">Om demon</button>
+
+<div class="modal-bg" id="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Om demon">
+    <button class="modal-x" onclick="closeModal()" aria-label="Stäng">✕</button>
+    <div class="m-badge">Demo av Bahko Byrå</div>
+    <h3>Så här kan Mugglagret se ut</h3>
+    <p>Det här är ett kostnadsfritt förslag byggt på era egna produkter — ingen beställning, inget åtagande. Vill ni se hur den skulle fungera skarpt med kassa och lager? Boka ett kostnadsfritt 15-minuterssamtal med Mathias.</p>
+    <a class="m-cta" href="#" data-cal-namespace="15min" data-cal-link="bahkobyra/15min" data-cal-origin="https://cal.eu">Boka 15 min gratis samtal →</a>
+    <a class="m-alt" href="mailto:mathias@bahkobyra.se?subject=Intresserad av demo-hemsida (Mugglagret)&body=Hej Mathias, jag såg Mugglagret-demon och vill veta mer.">Eller mejla → mathias@bahkobyra.se</a>
+    <div class="m-foot"><a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a> · Synlighet som säljer.</div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script type="text/javascript">
+(function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,[L,namespace,...Array.from(ar).slice(2)])}else p(cal,ar);return}p(cal,ar)};})(window,"https://cal.eu/embed/embed.js","init");
+Cal("init","15min",{origin:"https://cal.eu"});
+Cal.ns["15min"]("ui",{"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+</body>
+</html>
