@@ -561,3 +561,23 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Scenen runt synlighetspanelen: maskoten går in nerifrån vänster och
+   pekar på grafen. Negativ vänsterkant på desktop, indragen på mobil. */
+.panelScen {
+  position: relative;
+}
+
+.panelMaskot {
+  position: absolute;
+  left: -84px;
+  bottom: -14px;
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .panelMaskot {
+    left: 4px;
+    bottom: -10px;
+  }
+}

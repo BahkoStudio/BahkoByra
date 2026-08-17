@@ -125,11 +125,13 @@ export default function Start() {
                 Så bygger vi {PIL}
               </Link>
             </div>
-            <div style={{ marginTop: '2.2rem' }}>
-              <Maskot pose="undersoker" stil="rund" alt="Bahko-maskoten tittar på en hemsida" />
-            </div>
           </div>
-          <SynlighetsPanel />
+          <div className={styles.panelScen}>
+            <SynlighetsPanel />
+            <span className={styles.panelMaskot}>
+              <Maskot pose="gar" stil="flyt" alt="Bahko-maskoten går fram till synlighetspanelen och pekar på grafen" />
+            </span>
+          </div>
         </div>
       </section>
 
