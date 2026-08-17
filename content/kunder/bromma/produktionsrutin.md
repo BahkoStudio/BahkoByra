@@ -58,12 +58,26 @@ mallen lägger texten), alltid mörkt negativt utrymme upptill (rubriken bor dä
 
 ## Veckoflödet
 
-1. **Jens skickar klipp/bilder i WhatsApp** → spara i Drive `01 Råmaterial från Jens/<vecka>/`
-2. **Reels klipps i CapCut**: logo-intro (media/logo-intro-5s.mp4) + Jens material + outro (samma fil)
+1. **Jens skickar klipp/bilder i WhatsApp** → spara i Drive `01 Råmaterial från Jens/<vecka>/`.
+   Kommer inget material: veckan körs ändå (karuseller + tipsbilder + ev. maskot-reel) — grundregeln
+   gäller, AI ersätter aldrig äkta jobbmaterial, den fyller bara undervisningsluckan.
+2. **Reels**: med Jens-material klipps de i CapCut (logo-intro media/logo-intro-5s.mp4 + material +
+   outro). Utan material: maskot-reel varannan vecka (Higgsfield, robotklipparen-master.png som
+   referens, ~20–30 credits, alltid brandad med logga-vattenstämpel + outro).
 3. **Onsdagsbilden**: rendera från tipsgrafik-mallen (bakgrund finns för v32–35, ny vid behov)
 4. **Lördagsbilden**: omdömeskort (nio omdömen kvar att göra kort av) eller team/maskin-foto
 5. Färdigt material → Drive `02 Färdiga inlägg` / `03 Reels` → Jens godkänner (2 min) → publicera
 6. Det bästa återpubliceras i Google Företagsprofilen (Jens/GBP-inloggning)
+
+## Godkännandefönster (panelbeslut 2026-08-17 — flaskhalsen är loopen, inte produktionen)
+
+- Veckoleveransen WhatsApp:as till Jens SAMMA DAG den läggs i Drive.
+- Inget svar inom 48 h ⇒ **förgodkända format postas ändå** (tipsbilder, omdömeskort,
+  karuseller enligt mall). Endast HELT NYA format kräver aktivt ja.
+- Ansvar: Jens svarar på kommentarer (hans röst, grundregeln); Mathias flaggar obesvarade
+  kommentarer efter 24 h.
+- Maskot-dosering: max 1 maskotpost per vecka (brand-beslut 2026-08-17).
+- Månadsmätning sista fredagen: räckvidd, följare, förfrågningar (fråga Jens) — 3 rader i V1.
 
 ## Manus
 

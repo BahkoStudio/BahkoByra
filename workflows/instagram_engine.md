@@ -1,7 +1,7 @@
 # Workflow: Instagram-motor (bygg & hantverk)
 
-Top-of-funnel-motorn för bygg/hantverk-nischen. Postar från **@bahkostudio**. Säljer hemsidor
-(engångsköp) med gratis hemsideförslag (utkast) som front-offer. Drivs av skillen `instagram-engine`.
+Top-of-funnel-motorn för bygg/hantverk-nischen. Postar från **@bahkobyra**. Säljer hemsidor
+(engångsköp) med kostnadsfri demo (utkast) som front-offer. Drivs av skillen `instagram-engine`.
 **OBS:** offerten = hemsidor. "Växa på Google"-copy hör ENDAST hemma på bahkobyra.se, aldrig i reels/DM.
 
 ## Objektiv
@@ -35,22 +35,22 @@ payoff+mjuk CTA, jag-form, tolvårsspråk, 5 hookar → välj 1). Den gamla 7-st
 (Hook → Problem → Agitera → …) är pensionerad 2026-08-04 — den producerade byråröst och
 idé-hooks, precis det reel-skillen underkänner.
 Idé-generering: fråga "om jag drev ett [takföretag] och ville ha fler jobb — vad skulle jag
-undra över?" Ämnen och pelare: se `content/ig/kontentplan-bahkostudio.md`.
+undra över?" Ämnen och pelare: se `content/ig/kontentplan-bahkobyra.md`.
 
-CTA leder alltid till front-offern: **gratis hemsideförslag** ("DM:a 'SAJT' så skickar jag ett utkast på er nya hemsida").
+CTA leder alltid till front-offern: **kostnadsfri demo** ("DM:a 'DEMO' så skickar jag ett utkast på er nya hemsida").
 
 ---
 
 ## Steg (kör skillen `instagram-engine`)
 
 1. Välj trade (bygg/tak/måleri/mark) + vecka. Ämnen kommer från kalendern i
-   `content/ig/kontentplan-bahkostudio.md` (pelare: kundcase / invändningen / teardown / sanningen / bygg-insikten).
+   `content/ig/kontentplan-bahkobyra.md` (pelare: kundcase / invändningen / teardown / sanningen / bygg-insikten).
 2. Generera 3 reel-script (via `reel`-skillen) + 2 carousell-outlines + story-idéer + DM-cadence.
 3. Granska FOR THEM/REAL/Financial Sense/Easy YES.
 4. Spara batch till `.tmp/ig_batch_*.md`. Färdigproducerat läggs i Drive: BahkoByra-mappen → `Planerat v[nr]/`.
 5. Producera/posta. Logga DM-svar som leads i CRM (`pathway: skriven`).
-6. **Fredagar:** fyll i bladet `IG-logg` i Drive-arket `V1.xlsx` (datum, format, ämne, hook,
-   räckvidd, sparningar, SAJT-DM:ar). Det är mätningen hela self-improvement-loopen står på.
+6. **Fredagar:** fyll i bladet `IG-logg` i Google Sheet-arket `V1` (Drive → BahkoByra → Leads), bladet IG-logg (datum, format, ämne, hook,
+   räckvidd, sparningar, DEMO-DM:ar). Det är mätningen hela self-improvement-loopen står på.
 
 ---
 

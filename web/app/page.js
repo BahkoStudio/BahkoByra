@@ -175,13 +175,13 @@ export default function Start() {
           <ProcessRail />
 
           <div className={styles.processCta}>
-            <Maskot pose="dansar" stil="flyt" alt="Bahko-maskoten dansar vid knappen för gratis förslag" />
+            <Maskot pose="pekar" stil="flyt" alt="Bahko-maskoten pekar på demo-erbjudandet" />
             <div>
               <h3>Vill ni se hur er sida skulle se ut?</h3>
-              <p>Vi bygger förslaget först. Ni bestämmer sen.</p>
+              <p>Vi bygger demon först. Ni bestämmer sen.</p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">
-              Få gratis förslag {PIL}
+              Se er kostnadsfria demo {PIL}
             </Link>
           </div>
         </div>

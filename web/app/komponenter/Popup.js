@@ -57,17 +57,17 @@ export default function Popup() {
           </svg>
         </button>
 
-        <Maskot pose="vinkar" stil="popup" alt="Bahko-maskoten vinkar" />
+        <Maskot pose="pekar" stil="popup" alt="Bahko-maskoten pekar på erbjudandet" />
 
-        <span className={styles.tagg}>Kostnadsfri hemsideanalys</span>
-        <h2 id="popup-rubrik">Vill ni veta vad som stoppar kunderna?</h2>
+        <span className={styles.tagg}>Kostnadsfri demo</span>
+        <h2 id="popup-rubrik">Se er nya hemsida innan ni bestämmer er.</h2>
         <p>
-          Vi går igenom er sida mot tio punkter och skickar en personlig rapport: vad som gör att
-          folk hör av sig, och vad som får dem att lämna. Svar inom 24 timmar.
+          Vi bygger en demo av er nya hemsida inom 48 timmar. Ni ser exakt vad ni får,
+          innan ni bestämmer något. Kostar inget.
         </p>
 
-        <a href="/foretag/gratis-granskning.html" className="btn btn-primar">
-          Få min gratis analys
+        <a href="/kontakt/" className="btn btn-primar">
+          Se er kostnadsfria demo
         </a>
         <button className={styles.senare} onClick={stang}>
           Inte nu
