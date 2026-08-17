@@ -33,7 +33,8 @@ grundregeln ovan. Jens äkta material förblir kravet för allt som visar riktig
 | `mallar/tipsgrafik.html` | 1080×1350-tipsgrafik. Parametrar: `?bg=&k=&t=&b1..b3=&rut=1` |
 | `mallar/bakgrunder/v32–v35*.png` | 4 AI-bakgrunder (gpt_image_2, 3:4, 2k) — UTAN text |
 | `mallar/intro-frame.html` + `intro-start.png` | startbild för logga-intro |
-| `media/logo-intro-5s.mp4` | seedance 2.0-intro, 1080p, loopbar — klistras först/sist på varje reel |
+| `media/logo-intro-5s.mp4` | seedance 2.0-intro, **1920×1080 liggande** — funkar i CapCut-reels men får svarta band om den klistras rakt in i en 9:16-film. Använd `mallar/reel/outro.html` som slutbild istället |
+| `mallar/reel/` | reel-pipeline: textbilder, vattenstämpel, slutbild och `bygg-reel.sh`. Se `mallar/reel/LASMIG.md` |
 | `inlagg/` | färdigrenderade inlägg (omdöme + v32–v35-tips) |
 
 ## Rendera ett nytt kort (exempel)
@@ -62,8 +63,10 @@ mallen lägger texten), alltid mörkt negativt utrymme upptill (rubriken bor dä
    Kommer inget material: veckan körs ändå (karuseller + tipsbilder + ev. maskot-reel) — grundregeln
    gäller, AI ersätter aldrig äkta jobbmaterial, den fyller bara undervisningsluckan.
 2. **Reels**: med Jens-material klipps de i CapCut (logo-intro media/logo-intro-5s.mp4 + material +
-   outro). Utan material: maskot-reel varannan vecka (Higgsfield, robotklipparen-master.png som
-   referens, ~20–30 credits, alltid brandad med logga-vattenstämpel + outro).
+   outro). Utan material: maskot-reel varannan vecka, byggd med `mallar/reel/bygg-reel.sh`
+   (2–3 seedance-klipp à 8 s, robotklipparen-master.png som referens, svensk text, logga hela
+   vägen, musik och ljudeffekter, brandad slutbild). Räkna ~150 credits per reel.
+   **Reelen ska ha ljud i filen** — en tyst reel tappar halva effekten i flödet.
 3. **Onsdagsbilden**: rendera från tipsgrafik-mallen (bakgrund finns för v32–35, ny vid behov)
 4. **Lördagsbilden**: omdömeskort (nio omdömen kvar att göra kort av) eller team/maskin-foto
 5. Färdigt material → Drive `02 Färdiga inlägg` / `03 Reels` → Jens godkänner (2 min) → publicera
@@ -87,3 +90,8 @@ Reels-manus skrivs med `/reel`-skillen (fyra loopar, Kallaway-rytm) veckan innan
 
 Engångs: intro ~25 credits + 4 bakgrunder ~10 credits. Löpande: ~2–5 credits per ny bakgrund,
 allt annat är gratis (HTML-mallar + Edge headless). Saldo kollas med `higgsfield workspace list`.
+
+Maskot-reel (mätt 2026-08-17): seedance 2.0 i 9:16 och 1080p kostar **9 credits per sekund**,
+så ett 8-sekundersklipp går på 72 och ett 12-sekunders på 108. Musik (`sonilo_music`) ~2 credits
+för 34 sekunder. En hel 30-sekundersreel med två nya klipp landade på ~150 credits.
+Vill man ner i pris: återanvänd ett befintligt klipp och lägg bara till ett nytt.
