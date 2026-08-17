@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import styles from './Maskot.module.css';
 
 /* Bahko-maskoten — grön glaskub med vitt B och ett öga (kanon 2026-08-16, se brand.json).
@@ -27,8 +30,38 @@ const GESTER = ['master', 'vinkar', 'pekar', 'undersoker', 'dansar', 'gar'];
 export default function Maskot({ pose = 'master', stil = 'rund', alt = 'Bahko-maskoten' }) {
   const gest = GESTER.includes(pose) ? pose : 'master';
 
+  /* Går-gesten är en engångspromenad. Utan grind spelas den vid sidladdning,
+     långt innan panelen är i bild — så den hålls pausad tills figuren faktiskt
+     syns (lärdom 2026-08-17: promenaden var "inte live" fast koden låg ute). */
+  const behoverGrind = gest === 'gar';
+  const [igang, setIgang] = useState(!behoverGrind);
+  const rotRef = useRef(null);
+
+  useEffect(() => {
+    if (!behoverGrind || igang) return;
+    const rot = rotRef.current;
+    if (!rot || typeof IntersectionObserver === 'undefined') {
+      setIgang(true);
+      return;
+    }
+    const obs = new IntersectionObserver(
+      (poster) => {
+        if (poster.some((p) => p.isIntersecting)) {
+          setIgang(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.35 }
+    );
+    obs.observe(rot);
+    return () => obs.disconnect();
+  }, [behoverGrind, igang]);
+
+  const klasser = [styles.maskot, styles[stil], styles[gest]];
+  if (!igang) klasser.push(styles.pausad);
+
   return (
-    <span className={`${styles.maskot} ${styles[stil]} ${styles[gest]}`} role="img" aria-label={alt}>
+    <span ref={rotRef} className={klasser.join(' ')} role="img" aria-label={alt}>
       {/* Figurlagret bär kroppens rörelse. Armarna ligger inuti så de följer med
           när hon andas och lutar sig — annars spricker axelleden. */}
       <span className={styles.figur}>
