@@ -1,0 +1,416 @@
+/* ============================================================================
+   Demokit v1 — stilar.
+   Ärver typskala, .btn, .wrap och .eyebrow från globals.css. Här ligger bara
+   det som är demospecifikt.
+
+   HÖJDREGELN (viktigast i hela filen): aldrig `vh`. Alltid `svh` eller
+   innehållsdriven höjd.
+   Mätt 2026-08-17 på de gamla demos: när iPhones adressfält krymper växer
+   viewporten, varje vh-mått räknas om, och dokumentet växte 518 px mitt i
+   scrollningen — 17 av 19 demos ryckte till av just detta. `svh` är den lilla
+   viewporten (adressfältet utfällt) och ändras inte när fältet rör sig.
+   ========================================================================= */
+
+.rot {
+  position: relative;
+  overflow-x: clip;
+  touch-action: pan-y pinch-zoom;
+  background: var(--bas);
+  color: var(--text);
+}
+
+/* --------------------------------------------------------------- hero + scen */
+
+/* Scenen är högre än fönstret; innehållet sitter sticky och lämnar över från
+   film till fotografi medan man scrollar. Det ersätter den gamla circle-wipen,
+   som krävde ett andra videolager. */
+.scen { position: relative; height: 190svh; }
+.klister {
+  position: sticky; top: 0; height: 100svh; overflow: hidden;
+  display: grid; place-items: center;
+}
+.heroMedia { position: absolute; inset: 0; }
+.heroMedia video,
+.heroMedia img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.frysbild { opacity: 0; will-change: opacity; }
+
+/* Korn + vinjett: filmtextur för noll JS och noll bytes. */
+.korn {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 45%, transparent 40%, rgba(0, 0, 0, .55) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, .45) 0%, transparent 22%, transparent 62%, rgba(0, 0, 0, .72) 100%);
+}
+
+.heroText {
+  position: relative; z-index: 2; text-align: center;
+  padding: clamp(6.5rem, 15vh, 9rem) clamp(1.2rem, 5vw, 3rem) clamp(6rem, 13vh, 8.5rem);
+  max-width: min(1120px, 94vw);
+  will-change: transform, opacity;
+}
+.etikett {
+  display: block; font-size: .74rem; font-weight: 600; letter-spacing: .36em;
+  text-transform: uppercase; color: var(--em-lt); margin-bottom: 1.6rem;
+}
+.rubrik {
+  font-weight: 800; text-transform: uppercase; text-wrap: balance;
+  margin: 0 auto 1.3rem; text-shadow: 0 8px 50px rgba(0, 0, 0, .45);
+}
+/* Tvådelad rubrik: liten uppställning, stor poäng. Storleksspecifik tracking —
+   samma värden som mallen använt sedan hero-typografin härdades. */
+.setup {
+  display: block; font-size: clamp(1.15rem, 2.9vw, 2.1rem);
+  line-height: 1.15; letter-spacing: .005em; opacity: .9; margin-bottom: .35em;
+}
+.punch {
+  display: block; font-size: clamp(2.5rem, 7.2vw, 5.6rem);
+  line-height: .94; letter-spacing: -.022em;
+  background: var(--d-grad); -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.tagline { font-size: clamp(.88rem, 1.05vw, 1rem); color: var(--text-lag); }
+
+.scrollcue {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  z-index: 2; font-size: .72rem; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--text-lag); display: grid; justify-items: center; gap: .6rem;
+}
+.pil { width: 1px; height: 34px; background: linear-gradient(var(--em-lt), transparent); }
+
+/* Hårfin progressrand överst. Ett element, bara transform. */
+.progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 120;
+  background: var(--em); transform: scaleX(0); transform-origin: 0 50%;
+}
+
+/* --------------------------------------------------------------- sektioner */
+
+.sektion { position: relative; padding: clamp(4rem, 9vw, 7rem) 0; }
+.sektionYta { background: var(--sektion); }
+.inner { max-width: 1180px; margin: 0 auto; padding: 0 clamp(1.1rem, 4vw, 2rem); }
+.smal { max-width: 920px; }
+
+.sekEtikett {
+  display: block; font-size: .74rem; font-weight: 700; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--em-lt); margin-bottom: 1rem;
+}
+.sekRubrik {
+  font-weight: 800; text-transform: uppercase; line-height: 1.06;
+  letter-spacing: -.018em; margin-bottom: 1.1rem;
+  font-size: clamp(1.8rem, 4.4vw, 3.4rem);
+}
+.brod {
+  font-size: clamp(.94rem, 1.1vw, 1.05rem); line-height: 1.8;
+  color: var(--text-lag); max-width: 60ch; margin-bottom: 1rem;
+}
+.brod:last-child { margin-bottom: 0; }
+
+/* Ärlighetsmeningen — den ska sticka ut, den är sidans starkaste löfte. */
+.arlig {
+  margin-top: 1.6rem; padding-left: 1.1rem;
+  border-left: 2px solid var(--em);
+  font-size: clamp(1rem, 1.2vw, 1.15rem); line-height: 1.6; color: var(--text);
+}
+
+.tvaKol {
+  display: grid; grid-template-columns: 1.05fr .95fr;
+  gap: clamp(1.6rem, 4vw, 3.4rem); align-items: center;
+}
+.bildruta {
+  position: relative; aspect-ratio: 4 / 3; border-radius: var(--r-lg);
+  overflow: hidden; border: 1px solid var(--linje);
+}
+.bildruta img { object-fit: cover; }
+
+/* ------------------------------------------------------------- före / efter */
+
+/* Efterbilden avslöjas med clip-path medan man scrollar. Draglisten togs bort
+   i juni för att den krockade med bakgrundsvideon — den finns inte längre,
+   och scrollvarianten kräver ingen interaktion alls. */
+.foreEfter { position: relative; aspect-ratio: 16 / 10; border-radius: var(--r-lg);
+  overflow: hidden; border: 1px solid var(--linje); }
+.foreEfter img { object-fit: cover; }
+.efterLager { clip-path: inset(0 100% 0 0); will-change: clip-path; }
+.feEtikett {
+  position: absolute; bottom: .9rem; z-index: 3;
+  font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+  padding: .45rem .8rem; border-radius: 3px;
+  background: rgba(0, 0, 0, .62); backdrop-filter: blur(8px); color: #fff;
+}
+.feFore { left: .9rem; }
+.feEfter { right: .9rem; }
+
+/* ---------------------------------------------------------------- löften */
+
+.loftenGrid {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: clamp(1.6rem, 4vw, 3.2rem); align-items: center;
+}
+.matare { position: relative; width: 190px; height: 190px; }
+.matare svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.matarSpar { fill: none; stroke: var(--linje); stroke-width: 6; }
+.matarBage {
+  fill: none; stroke: var(--em); stroke-width: 6; stroke-linecap: round;
+  will-change: stroke-dashoffset;
+}
+.matarTal {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-weight: 800; font-size: 2.4rem; letter-spacing: -.02em;
+}
+.loftenRader { display: grid; gap: .1rem; }
+.loftRad {
+  display: flex; align-items: baseline; gap: .8rem;
+  padding: .95rem 0; border-bottom: 1px solid var(--linje);
+}
+.loftTal { font-weight: 800; font-size: 1.7rem; color: var(--em-lt); min-width: 2.6ch; }
+.loftEtikett { font-size: .95rem; color: var(--text-lag); }
+
+/* ---------------------------------------------------------------- process */
+
+.spar { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr);
+  gap: 1rem; }
+.steg {
+  background: var(--yta); border: 1px solid var(--linje);
+  border-radius: var(--r-lg); padding: 1.5rem 1.3rem;
+}
+.stegN {
+  font-weight: 800; font-size: .8rem; color: var(--bas); background: var(--em);
+  width: 1.9rem; height: 1.9rem; border-radius: 50%;
+  display: grid; place-items: center; margin-bottom: .9rem;
+}
+.steg h3 { font-size: 1.02rem; font-weight: 800; margin-bottom: .45rem;
+  text-transform: uppercase; letter-spacing: .01em; }
+.steg p { font-size: .88rem; line-height: 1.7; color: var(--text-lag); }
+
+/* --------------------------------------------------------------- tjänster */
+
+.tjanstRad {
+  display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+  padding: 1.1rem 0; border-bottom: 1px solid var(--linje);
+}
+.tjanstNamn { font-weight: 800; font-size: clamp(1rem, 1.6vw, 1.4rem); flex: 1; }
+.tjanstTagg { font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--em-lt); font-weight: 700; }
+.tjanstDetalj { font-size: .8rem; color: var(--text-lag); }
+
+/* ---------------------------------------------------------------- galleri */
+
+/* next/image med fill: inga width/height-attribut alls, lådan äger höjden.
+   Det gör buggklassen "attributhöjd vinner över aspect-ratio" strukturellt
+   omöjlig — den kostade månader i den gamla mallen. */
+.galleri {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem;
+  max-width: 920px; margin: 0 auto;
+}
+.galleriRuta {
+  position: relative; aspect-ratio: 1 / 1; border-radius: var(--r);
+  overflow: hidden; border: 1px solid var(--linje); background: var(--yta);
+}
+.galleriRuta img { object-fit: cover; }
+.bildtext {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  font-size: .8rem; color: #fff; padding: 1.6rem .8rem .6rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .78));
+}
+
+/* ---------------------------------------------------------------- kontakt */
+
+.telStor {
+  font-weight: 800; font-size: clamp(1.7rem, 4.2vw, 3rem); color: var(--em-lt);
+  letter-spacing: -.01em; display: inline-flex; align-items: center;
+  min-height: 44px; transition: transform .16s var(--d-ease);
+}
+.telStor:active { transform: scale(.98); }
+.rad { margin: 1.1rem 0; font-size: .95rem; color: var(--text-lag); }
+.rad b {
+  color: var(--text); display: block; font-size: .74rem; letter-spacing: .24em;
+  text-transform: uppercase; margin-bottom: .25rem; font-weight: 700;
+}
+.offertkort {
+  background: var(--yta); border: 1px solid var(--linje);
+  border-radius: var(--r-lg); padding: 1.8rem 1.7rem;
+}
+.offertkort h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: .6rem;
+  text-transform: uppercase; }
+.offertkort p { font-size: .9rem; color: var(--text-lag); margin-bottom: 1.3rem;
+  line-height: 1.75; }
+
+/* ------------------------------------------------------------------- CTA */
+
+.slutcta { text-align: center; padding: clamp(5rem, 12vw, 9rem) 0; }
+.slutcta .rubrik { margin-bottom: 1.8rem; }
+.ctaUnder { display: block; margin-top: 1.1rem; font-size: .88rem; color: var(--text-lag); }
+
+/* -------------------------------------------------------------------- krom */
+
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; gap: 1rem;
+  padding: .9rem clamp(1.1rem, 4vw, 2rem);
+  transition: background .3s, backdrop-filter .3s, border-color .3s;
+  border-bottom: 1px solid transparent;
+}
+.headerTat {
+  background: color-mix(in srgb, var(--bas) 82%, transparent);
+  backdrop-filter: blur(14px); border-bottom-color: var(--linje);
+}
+.logga { font-weight: 800; font-size: .98rem; letter-spacing: .14em;
+  text-transform: uppercase; white-space: nowrap; margin-right: auto; }
+.logga em { font-style: normal; color: var(--em); }
+.nav { display: flex; align-items: center; gap: 1.4rem; }
+.nav a { font-size: .82rem; color: var(--text-lag); }
+.navTel { color: var(--text) !important; font-weight: 600; }
+
+/* 44×44 ringknapp bredvid hamburgaren: hantverkskunder ringer, och en textknapp
+   trängde loggan vid 390 px. */
+.ringknapp {
+  display: none; align-items: center; justify-content: center;
+  min-width: 44px; min-height: 44px; border-radius: 50%;
+  color: var(--em-lt); border: 1px solid var(--linje);
+  transition: transform .16s var(--d-ease);
+}
+.ringknapp:active { transform: scale(.96); }
+.ringknapp svg { width: 18px; height: 18px; fill: currentColor; }
+
+.hamburgare {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  min-width: 44px; min-height: 44px; align-items: center;
+}
+.hamburgare span { display: block; width: 22px; height: 2px; background: var(--text);
+  transition: transform .3s var(--d-ease), opacity .2s; }
+.hamburgareOppen span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburgareOppen span:nth-child(2) { opacity: 0; }
+.hamburgareOppen span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobilnav {
+  position: fixed; inset: 0; z-index: 99; background: var(--bas);
+  display: grid; align-content: center; justify-items: center; gap: 1.6rem;
+  opacity: 0; visibility: hidden; transition: opacity .32s var(--d-ease), visibility .32s;
+}
+.mobilnavOppen { opacity: 1; visibility: visible; }
+.mobilnav a { font-size: 1.3rem; font-weight: 700; }
+
+.flyt {
+  position: fixed; z-index: 90;
+  bottom: max(1.4rem, env(safe-area-inset-bottom)); right: 1.4rem;
+  background: var(--d-grad); color: var(--bas);
+  font-size: .74rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+  padding: .9rem 1.6rem; min-height: 44px; border-radius: var(--r);
+  opacity: 0; transform: translateY(18px); pointer-events: none;
+  transition: opacity .35s, transform .2s var(--d-ease);
+  box-shadow: 0 10px 26px -10px rgba(0, 0, 0, .6);
+}
+.flytSyns { opacity: 1; transform: none; pointer-events: auto; }
+.flyt:active { transform: scale(.97); }
+
+.nudge {
+  position: fixed; z-index: 95; left: 1.4rem;
+  bottom: calc(max(1.4rem, env(safe-area-inset-bottom)) + 4.2rem);
+  width: min(330px, calc(100vw - 2.8rem));
+  background: color-mix(in srgb, var(--yta) 94%, transparent);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--linje); border-radius: var(--r-lg);
+  padding: 1.2rem 1.3rem 1.1rem;
+  opacity: 0; transform: translateX(-24px); pointer-events: none;
+  transition: opacity .38s var(--d-ease), transform .38s var(--d-ease);
+}
+.nudgeSyns { opacity: 1; transform: none; pointer-events: auto; }
+.nudgeKick { font-size: .72rem; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--em-lt); margin-bottom: .45rem; }
+.nudge p { font-size: .88rem; line-height: 1.55; margin-bottom: .9rem; padding-right: 1rem; }
+.stang {
+  position: absolute; top: .4rem; right: .5rem; min-width: 44px; min-height: 44px;
+  display: grid; place-items: center; color: var(--text-lag); font-size: 1.05rem;
+}
+.stang:active { transform: scale(.9); }
+
+.fot {
+  border-top: 1px solid var(--linje); padding: 1.8rem clamp(1.2rem, 4vw, 3rem);
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  font-size: .78rem; color: var(--text-lag);
+}
+.fot a { color: var(--em-lt); }
+
+/* ------------------------------------------------------------------ modal */
+
+.modalBg {
+  position: fixed; inset: 0; z-index: 500; display: grid; place-items: center;
+  padding: 1.2rem; background: color-mix(in srgb, var(--bas) 76%, transparent);
+  backdrop-filter: blur(10px);
+  opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
+}
+.modalOppen { opacity: 1; visibility: visible; }
+.modal {
+  background: var(--sektion); border: 1px solid var(--linje);
+  border-radius: var(--r-lg); max-width: 480px; width: 100%; padding: 2.4rem;
+  position: relative; transform-origin: center; transform: scale(.95); opacity: 0;
+  transition: transform .34s var(--d-ease), opacity .34s var(--d-ease);
+}
+.modalOppen .modal { transform: none; opacity: 1; }
+/* Stänger snabbare än den öppnar. */
+.modalBg:not(.modalOppen) .modal { transition-duration: .2s; }
+.modalBadge {
+  display: inline-block; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--em-lt); border: 1px solid var(--linje); border-radius: 3px;
+  padding: .35rem .8rem; margin-bottom: 1.1rem;
+}
+.modal h3 { font-size: 1.5rem; font-weight: 800; line-height: 1.2; margin-bottom: .6rem; }
+.modal p { font-size: .92rem; color: var(--text-lag); margin-bottom: 1.4rem; line-height: 1.7; }
+.modalAlt { display: grid; place-items: center; min-height: 44px; margin-top: .9rem;
+  font-size: .8rem; color: var(--text-lag); }
+
+/* ----------------------------------------------------------------- entréer */
+
+/* 26 px, 480 ms, 65 ms stagger — mitt i mallens härdade spann. Bara transform
+   och opacity, aldrig layoutegenskaper. */
+/* Scopade under .rot: CSS Modules kräver att varje selektor innehåller minst
+   en lokal klass, annars vägrar bygget ("pure selectors"). */
+.rot [data-stig] {
+  opacity: 0; transform: translateY(26px);
+  transition:
+    opacity .48s var(--d-ease) calc(var(--i, 0) * 65ms),
+    transform .48s var(--d-ease) calc(var(--i, 0) * 65ms);
+}
+.rot [data-stig]:global(.inne) { opacity: 1; transform: none; }
+
+/* -------------------------------------------------------------------- mobil */
+
+@media (max-width: 768px) {
+  .nav { display: none; }
+  .ringknapp, .hamburgare { display: flex; }
+  .tvaKol, .loftenGrid { grid-template-columns: 1fr; }
+  .matare { width: 150px; height: 150px; margin: 0 auto; }
+  .spar { grid-auto-flow: row; grid-auto-columns: auto; }
+  /* Aldrig en kolumn: sex fullbreddsbilder blir sex skärmhöjders scroll. */
+  .galleri { grid-template-columns: repeat(2, 1fr); gap: .6rem; }
+  .bildtext { font-size: .84rem; padding: 1.2rem .6rem .5rem; }
+  /* Lästext aldrig under 13 px på telefon. */
+  .brod { font-size: .95rem; }
+  .steg p, .tjanstDetalj, .rad { font-size: .88rem; }
+  .flyt { left: 1.1rem; right: 1.1rem; text-align: center; }
+  .nudge { left: 1.1rem; right: 1.1rem; width: auto; }
+  .scen { height: 210svh; }
+}
+
+/* Muspekare finns inte på telefon — hovertillstånd får aldrig fastna där. */
+@media (hover: hover) and (pointer: fine) {
+  .nav a:hover, .fot a:hover { color: var(--em-lt); }
+  .flyt:hover { transform: translateY(-2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rot [data-stig] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .scen { height: auto; }
+  .klister { position: relative; height: 100svh; }
+  .efterLager { clip-path: none !important; }
+  .frysbild { opacity: 0 !important; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .headerTat, .nudge, .modalBg { backdrop-filter: none; }
+  .headerTat { background: var(--bas); }
+}

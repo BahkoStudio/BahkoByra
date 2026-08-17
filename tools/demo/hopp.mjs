@@ -70,8 +70,16 @@ const LADKOLL_KALLA = `(() => {
     // OBS: kolla ALDRIG getComputedStyle().height mot 'auto' — den returnerar
     // alltid den använda höjden i pixlar för ett renderat element, så villkoret
     // blir aldrig sant (buggen som gjorde att grinden missade en planterad bugg
-    // 2026-08-17). Styrd låda = aspect-ratio ELLER ett height-attribut.
-    if (el.loading === 'lazy' && !ar && !el.hasAttribute('height')) {
+    // 2026-08-17). Styrd låda = aspect-ratio ELLER height-attribut ELLER en
+    // förälder som äger höjden (mönstret next/image fill använder: absolut
+    // positionerad bild i en ruta med egen aspect-ratio).
+    const far = el.parentElement;
+    const fs = far ? getComputedStyle(far) : null;
+    const foralderStyr = Boolean(
+      fs && s.position === 'absolute'
+      && (tolkaRatio(fs.aspectRatio) || parseFloat(fs.height) > 0),
+    );
+    if (el.loading === 'lazy' && !ar && !el.hasAttribute('height') && !foralderStyr) {
       fel.push({
         typ: 'lazy-utan-lada', el: kort(el),
         orsak: 'lazy-laddad utan aspect-ratio och utan height-attribut: lådan saknar höjd tills bilden kommit',
@@ -138,13 +146,45 @@ export async function kollaViewportfallan(flik, { bas = 844, vaxt = 916 } = {}) 
   const h2 = await mat(vaxt);
   await mat(bas); // återställ
 
+  /**
+   * Höjdmätningen ensam räcker inte som DOM: Chrome-emuleringen ändrar hela
+   * viewporten, så `svh` krymper där precis som `vh`. På en riktig iPhone är
+   * det just skillnaden som spelar roll — `svh` är den lilla viewporten och
+   * rör sig INTE när adressfältet gör det.
+   *
+   * Därför mäts orsaken i stället: används osäkra `vh`-enheter i höjdregler?
+   * Det är deterministiskt, oberoende av emuleringens brister, och pekar
+   * dessutom direkt på raden som ska ändras.
+   */
+  const osakra = await flik.utvardera(`(() => {
+    // Läs reglernas fulltext i stället för att plocka enskilda egenskaper:
+    // enklare, och missar inte regler inuti @media eller @supports.
+    const bitar = [];
+    for (const el of document.querySelectorAll('style')) bitar.push(el.textContent || '');
+    for (const ark of document.styleSheets) {
+      try {
+        for (const r of ark.cssRules) bitar.push(r.cssText || '');
+      } catch { /* annan domän, t.ex. Google Fonts */ }
+    }
+
+    // Hitta höjdregler i vh. svh/lvh/dvh är säkra och ska INTE fastna:
+    // negativ lookbehind utesluter dem.
+    const monster = /(?:^|[;{\\s])(height|min-height|max-height)\\s*:\\s*([^;}]*?(?<![sldv])\\b[\\d.]+vh[^;}]*)/gi;
+    const traffar = new Set();
+    for (const bit of bitar) {
+      let m;
+      while ((m = monster.exec(bit)) !== null) traffar.add(m[1] + ': ' + m[2].trim());
+    }
+    return [...traffar].slice(0, 6);
+  })()`);
+
   const viewportDelta = vaxt - bas;
   const dokDelta = h2 - h1;
-  // Ren innehållshöjd ändras inte alls; ett hero i vh ändras med exakt deltat.
-  // Mer än dubbla deltat betyder att stora vh-block räknas om mitt i scrollen.
   return {
     fore: h1, efter: h2, delta: dokDelta, viewportDelta,
-    fel: dokDelta > viewportDelta * 2,
+    osakra,
+    // Stoppar på ORSAKEN (vh i höjdregler), inte på emuleringens symptom.
+    fel: osakra.length > 0,
   };
 }
 
@@ -220,11 +260,12 @@ export function skrivRapport(namn, r) {
 
   if (r.viewport) {
     const v = r.viewport;
-    rader.push(`  iOS-VIEWPORT: dokumentet ${v.fore} → ${v.efter} px (+${v.delta}) när adressfältet krymper `
-      + `${v.fel ? '— STOPP' : '— ok'}`);
+    rader.push(`  iOS-VIEWPORT: ${v.osakra.length ? `${v.osakra.length} höjdregler i vh` : 'inga vh-höjder'} `
+      + `(dokumentet ${v.fore} → ${v.efter} px i emulering) ${v.fel ? '— STOPP' : '— ok'}`);
     if (v.fel) {
-      rader.push('    Sidan bygger höjd på vh-enheter. På iPhone växer viewporten mitt i');
-      rader.push('    scrollningen, allt räknas om och innehållet rycker till.');
+      rader.push('    På iPhone växer viewporten när adressfältet krymper, varje vh räknas om');
+      rader.push('    och innehållet rycker till. Byt till svh, som inte rör sig:');
+      v.osakra.forEach((o) => rader.push(`      ${o}`));
     }
   }
   return rader.join('\n');

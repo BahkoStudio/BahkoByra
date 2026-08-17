@@ -4,6 +4,7 @@ import './globals.css';
 import Header from './komponenter/Header';
 import Footer from './komponenter/Footer';
 import Popup from './komponenter/Popup';
+import Skal from './komponenter/Skal';
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -87,17 +88,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="sv" className={outfit.variable}>
       <body style={{ fontFamily: 'var(--font-outfit), system-ui, sans-serif' }}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationsSchema) }}
-        />
-        <Header />
-        <main id="innehall">{children}</main>
-        <Footer />
-        <Popup />
-        {/* GA4 med samtyckesbanner — samma fil som de statiska leadsidorna
-            laddar, så mätningen bor på ett enda ställe. */}
-        <Script src="/js/analytics.js" strategy="afterInteractive" />
+        {/* Skal döljer Bahkos krom på kunddemos under /demo/ — allt annat
+            renderas exakt som förut. */}
+        <Skal
+          schema={
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationsSchema) }}
+            />
+          }
+          header={<Header />}
+          footer={<Footer />}
+          popup={<Popup />}
+          /* GA4 med samtyckesbanner — samma fil som de statiska leadsidorna
+             laddar, så mätningen bor på ett enda ställe. */
+          matning={<Script src="/js/analytics.js" strategy="afterInteractive" />}
+        >
+          {children}
+        </Skal>
       </body>
     </html>
   );
