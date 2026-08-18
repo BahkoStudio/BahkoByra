@@ -100,36 +100,68 @@
   <a href="#om">Om oss</a>
 </nav>
 
-<!-- ===================== HERO ===================== -->
+<!-- ===================== HERO =====================
+     Motivväggen ersatte två stillbilder (Mathias 2026-08-18: "heros är
+     värdelös"). Kundens egna muggar glider i tre spalter i olika takt, vilket
+     ger videokänsla utan en enda videofil — och visar bredden i sortimentet,
+     som är själva säljargumentet. mix-blend-mode:multiply löser bildernas vita
+     studiobakgrund: den försvinner in i grädden, så muggarna svävar fritt i
+     stället för att sitta i vita rutor. -->
 <section class="hero">
   <div class="wrap hero-grid">
-    <div class="rv">
-      <span class="eyebrow">Tryckta keramikmuggar · Sedan 2024</span>
-      <h1>Det enda du håller i <em>varje morgon</em>.</h1>
-      <p>Över 600 motiv tryckta på 11 oz keramik. Välj mellan sju färger på handtag och insida — samma pris oavsett vilket motiv du fastnar för.</p>
+    <div class="hero-txt">
+      <span class="eyebrow">600+ motiv · 11 oz keramik · sedan 2024</span>
+      <h1>Hitta muggen du <em>faktiskt</em> vill dricka ur.</h1>
+      <p>Ett fast pris, sju färger, hundratals motiv. Välj ditt och få det hem inom tre till sex dagar.</p>
+
       <div class="hero-cta">
-        <a class="btn" href="katalog.html">Handla alla muggar</a>
+        <a class="btn" href="katalog.html">Välj ditt motiv</a>
         <a class="btn btn--ghost" href="#foretag">Muggar till företag</a>
       </div>
+
       <p class="hero-now">
         <i class="pulse" aria-hidden="true"></i>
-        <b data-cutoff>&nbsp;</b> kvar för att din mugg packas idag — sen går den i morgondagens utleverans
+        <b data-cutoff>&nbsp;</b> kvar — beställer du nu packas den idag
       </p>
+
       <div class="hero-facts">
-        <div><strong>600+</strong><span>Motiv i butiken</span></div>
-        <div><strong>136 kr</strong><span>Fast pris</span></div>
-        <div><strong>7</strong><span>Färgval</span></div>
+        <div><strong>136 kr</strong><span>Fast pris, alla motiv</span></div>
+        <div><strong>7</strong><span>Färger på handtag</span></div>
         <div><strong>3–6</strong><span>Dagars leverans</span></div>
       </div>
     </div>
 
-    <div class="hero-art rv">
-      <figure><img src="media/katter-2.jpg" alt="Keramikmugg med kattmotiv i pastell" width="494" height="592" fetchpriority="high"></figure>
-      <figure><img src="media/retro-1.jpg" alt="Retro keramikmugg i akvarell" width="494" height="592"></figure>
-      <figure>
-        <b>Samma pris,<br>alla motiv.</b>
-        <i>136 kr · 11 oz keramik</i>
-      </figure>
+    <div class="hero-vagg" aria-hidden="true">
+      <div class="vagg-kol">
+        <img src="media/katter-2.jpg" alt="" width="494" height="592" fetchpriority="high">
+        <img src="media/retro-1.jpg" alt="" width="494" height="592">
+        <img src="media/fjaril-1.jpg" alt="" width="494" height="592">
+        <img src="media/texter-5.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/katter-2.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/retro-1.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/fjaril-1.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/texter-5.jpg" alt="" width="494" height="592" loading="lazy">
+      </div>
+      <div class="vagg-kol vagg-kol--ned">
+        <img src="media/karlek-2.jpg" alt="" width="494" height="592">
+        <img src="media/stader-1.jpg" alt="" width="494" height="592">
+        <img src="media/djur-2.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/retro-5.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/karlek-2.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/stader-1.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/djur-2.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/retro-5.jpg" alt="" width="494" height="592" loading="lazy">
+      </div>
+      <div class="vagg-kol vagg-kol--tredje">
+        <img src="media/katter-8.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/texter-2.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/fjaril-3.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/katter-5.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/katter-8.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/texter-2.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/fjaril-3.jpg" alt="" width="494" height="592" loading="lazy">
+        <img src="media/katter-5.jpg" alt="" width="494" height="592" loading="lazy">
+      </div>
     </div>
   </div>
 </section>
@@ -141,7 +173,7 @@
       <div>
         <span class="eyebrow eyebrow--live"><i class="pulse" aria-hidden="true"></i>Nytt denna vecka</span>
         <h2>Färska motiv, samma pris</h2>
-        <p>Sortimentet fylls på löpande. De här ligger först i katalogen just nu.</p>
+        <p>De senaste motiven, först i katalogen.</p>
       </div>
       <a class="link-underline" href="katalog.html?nytt=1">Se alla nya →</a>
     </div>
@@ -198,47 +230,6 @@
   </div>
 </section>
 
-<!-- ===================== KURERADE BLOCK ===================== -->
-<section class="sec">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div>
-        <span class="eyebrow">Utvalt just nu</span>
-        <h2>Tre motivvärldar att börja i</h2>
-      </div>
-    </div>
-
-    <div class="feats">
-      <article class="feat rv">
-        <div class="feat-img"><img src="media/katter-8.jpg" alt="Kattmugg med blomstermotiv" loading="lazy" width="494" height="592"></div>
-        <div class="feat-body">
-          <h3>Katter</h3>
-          <p>Pastell, papperskonst och akvarell. Den motivfamilj som fyller flest kundvagnar — och den som oftast köps som present.</p>
-          <a class="link-underline" href="katalog.html?kategori=katter">Se kattmuggar →</a>
-        </div>
-      </article>
-
-      <article class="feat rv">
-        <div class="feat-img"><img src="media/retro-5.jpg" alt="Retromugg med japansk soluppgång" loading="lazy" width="494" height="592"></div>
-        <div class="feat-body">
-          <h3>Retro</h3>
-          <p>Bilar, lyktor och soluppgångar i akvarell. Lugnare linjer och dovare färger — motiv som håller på kontorsbordet.</p>
-          <a class="link-underline" href="katalog.html?kategori=retro">Se retromuggar →</a>
-        </div>
-      </article>
-
-      <article class="feat rv">
-        <div class="feat-img"><img src="media/stader-1.jpg" alt="Mugg med stadsmotiv" loading="lazy" width="494" height="592"></div>
-        <div class="feat-body">
-          <h3>Världens städer</h3>
-          <p>En mugg för hemstaden, eller för staden man längtar tillbaka till. Saknas din ort? Hör av dig så trycker vi den.</p>
-          <a class="link-underline" href="katalog.html?kategori=stader">Se stadsmuggar →</a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
 <!-- ===================== HANDPLOCKAT ===================== -->
 <section class="sec sec--cream">
   <div class="wrap">
@@ -246,12 +237,26 @@
       <div>
         <span class="eyebrow">Handplockat</span>
         <h2>Favoriter ur sortimentet</h2>
-        <p>Alla muggar kostar 136 kr och finns i sju färger. Klicka på en mugg för att se motivet i närbild.</p>
+        <p>Alla kostar 136 kr och finns i sju färger.</p>
       </div>
       <a class="link-underline" href="katalog.html">Se hela sortimentet →</a>
     </div>
 
     <div class="pgrid" id="home-grid"></div>
+  </div>
+</section>
+
+<!-- ===================== BRÅDSKEBAND =====================
+     Mitt på sidan, där man har sett sortimentet och är på väg att skrolla
+     vidare: samma deadline igen, med vägen till kassan. -->
+<section class="band">
+  <div class="wrap band-in">
+    <div>
+      <span class="band-flagga"><i class="pulse" aria-hidden="true"></i>Dagens packning</span>
+      <h2>Beställ inom <b data-cutoff>&nbsp;</b> så går din mugg idag</h2>
+      <p>Efter det packas den nästa arbetsdag. Leverans 3–6 dagar med spårbar frakt.</p>
+    </div>
+    <a class="btn btn--cream" href="katalog.html">Välj motiv nu</a>
   </div>
 </section>
 
@@ -262,17 +267,17 @@
       <div class="promise">
         <svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg>
         <b>Tryck som håller</b>
-        <p>Blank vit keramik som framhäver färgen. Varje design testas för skarpa linjer och lång livslängd — muggen ser lika bra ut efter många koppar.</p>
+        <p>Blank vit keramik som framhäver färgen. Skarpa linjer som håller efter många koppar.</p>
       </div>
       <div class="promise">
         <svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
         <b>Spårbart hela vägen</b>
-        <p>Leverans på 3–6 dagar med spårbar frakt i hela Sverige. Du får ett kolli som går att följa från lagret till ombudet.</p>
+        <p>3–6 dagar med spårbar frakt i hela Sverige, hela vägen till ombudet.</p>
       </div>
       <div class="promise">
         <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H8l-4 4V5a2 2 0 012-2h13a2 2 0 012 2z"/></svg>
         <b>Personlig service</b>
-        <p>Vill du trycka egen bild eller logga? Skicka det du har så gör vi en kostnadsfri mockup innan något går i tryck.</p>
+        <p>Egen bild eller logga? Skicka den, du får en kostnadsfri mockup före tryck.</p>
       </div>
     </div>
   </div>
@@ -281,16 +286,13 @@
 <!-- ===================== OM ===================== -->
 <section class="sec sec--cream" id="om">
   <div class="wrap hero-grid">
-    <div class="hero-art rv" style="grid-template-columns:1fr">
-      <figure style="background:var(--paper);display:grid;place-items:center;padding:2.6rem">
-        <img src="media/logo.png" alt="Mugglagret" style="aspect-ratio:auto;max-width:280px" loading="lazy">
-      </figure>
+    <div class="om-logo rv">
+      <img src="media/logo.png" alt="Mugglagret" width="280" height="280" loading="lazy">
     </div>
     <div class="rv">
       <span class="eyebrow">Om Mugglagret</span>
       <h2 style="font-size:clamp(1.8rem,3.6vw,2.7rem);margin:1rem 0 1.2rem">Vi gör favoritmuggar — varje dag</h2>
-      <p style="color:var(--ink-2);margin-bottom:1.4rem">Mugglagret är butiken för dig som älskar muggar med personlighet. Hos oss finns tryckta muggar för alla tillfällen: vardagskaffet, hemmamyset, den personliga presenten och företagets profilmugg.</p>
-      <p style="color:var(--ink-2);margin-bottom:2rem">Idén är enkel — snygga motiv, skarpa tryck och muggar som håller länge. Vi fyller på sortimentet löpande, och letar du efter något speciellt hjälper vi dig hitta rätt.</p>
+      <p style="color:var(--ink-2);margin-bottom:2rem">Snygga motiv, skarpa tryck och muggar som håller länge — för vardagskaffet, presenten och företagets profilmugg. Vi fyller på sortimentet löpande, och letar du efter något speciellt hjälper vi dig hitta rätt.</p>
       <a class="btn btn--ghost" href="katalog.html">Se sortimentet</a>
     </div>
   </div>
@@ -302,7 +304,7 @@
     <div class="rv">
       <span class="eyebrow">Företag &amp; profilmuggar</span>
       <h2>Er logga. Vår keramik.</h2>
-      <p>Volympriser från 25 muggar, kostnadsfri digital mockup före tryck och faktura med 30 dagar vid godkänd kreditprövning. Perfekt för kontoret, eventet, onboardingen eller som kundgåva.</p>
+      <p>Volympriser från 25 muggar, kostnadsfri mockup före tryck och faktura med 30 dagar vid godkänd kreditprövning.</p>
       <a class="btn" href="#" data-demo="Offertformuläret kopplas på i den färdiga sajten.">Begär offert</a>
     </div>
 
@@ -329,7 +331,7 @@
   <div class="wrap rv">
     <span class="eyebrow">Muggnyheter</span>
     <h2>Nya motiv innan alla andra</h2>
-    <p>Vi släpper nya designer löpande. Få dem i inkorgen tillsammans med utvalda erbjudanden.</p>
+    <p>Nya motiv och utvalda erbjudanden, direkt i inkorgen.</p>
     <form class="news-form" onsubmit="return false">
       <input type="email" placeholder="Din e-postadress" aria-label="E-postadress" required>
       <button class="btn" type="submit" data-demo="Nyhetsbrevet kopplas på i den färdiga sajten.">Anmäl mig</button>
