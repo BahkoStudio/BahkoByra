@@ -84,18 +84,21 @@
     });
   }
 
-  function swatchRow(n) {
+  function swatchRow(n, valdFarg) {
     return COLORS.slice(0, n || COLORS.length).map(function (c) {
-      return '<i style="background:' + c.hex + '"></i>';
+      return '<i class="' + (c.id === valdFarg ? "is-on" : "") +
+             '" style="background:' + c.hex + '"></i>';
     }).join("");
   }
 
-  function cardHTML(p, i) {
+  function cardHTML(p, i, valdFarg) {
     /* De första korten i en grid ligger ofta redan i vyn — lazy där ger
        synlig pop-in. Ladda dem direkt. */
     var lazy = i != null && i < 4 ? "" : ' loading="lazy"';
+    /* Har man valt färg i katalogen följer valet med till produktsidan */
+    var href = "produkt.html?p=" + p.id + (valdFarg ? "&farg=" + valdFarg : "");
     return '' +
-      '<a class="pcard rv" href="produkt.html?p=' + p.id + '">' +
+      '<a class="pcard rv" href="' + href + '">' +
         '<div class="pcard-img">' +
           (p.isNew
             ? '<span class="pcard-tag pcard-tag--new">Nyhet</span>'
@@ -109,7 +112,7 @@
           '<span class="pcard-cat">' + esc(CATS[p.cat]) + '</span>' +
           '<h3>' + esc(p.title) + '</h3>' +
           '<div class="pcard-price"><b>' + PRICE + '</b><span>11 oz keramik</span></div>' +
-          '<div class="pcard-swatches">' + swatchRow(7) + '</div>' +
+          '<div class="pcard-swatches">' + swatchRow(7, valdFarg) + '</div>' +
         '</div>' +
       '</a>';
   }
@@ -457,18 +460,28 @@
     var grid = document.getElementById("shop-grid");
     if (!grid) return;
 
-    var state = { cat: "alla", color: null, sort: "senast" };
+    /* "nytt" är ett eget läge bland kategorierna, inte en sorteringsordning:
+       då syns det i filtret var man är, och Alla muggar är ett tryck bort. */
+    var state = { cat: "alla", color: null, sort: "nyheter" };
 
     var params = new URLSearchParams(location.search);
     if (params.get("kategori") && CATS[params.get("kategori")]) state.cat = params.get("kategori");
+    if (params.get("nytt")) state.cat = "nytt";
+    if (params.get("farg") && COLORS.filter(function (c) { return c.id === params.get("farg"); })[0]) {
+      state.color = params.get("farg");
+    }
 
     var countEl = document.getElementById("shop-count");
     var titleEl = document.getElementById("shop-title");
     var leadEl = document.getElementById("shop-lead");
     var crumbEl = document.getElementById("shop-crumb");
+    var chipWrap = document.getElementById("shop-chips");
+    var colorNote = document.getElementById("filter-color-note");
 
+    var TITLAR = { alla: "Alla muggar", nytt: "Nytt denna vecka" };
     var LEADS = {
       alla:   "Hela sortimentet av tryckta keramikmuggar, 11 oz. Sju färgval på handtag och insida — samma pris oavsett motiv.",
+      nytt:   "De senaste motiven, uppe den här veckan. Samma pris, samma sju färger.",
       katter: "Kattmotiv i pastell, papperskonst och akvarell. Vår mest efterfrågade motivfamilj.",
       djur:   "Djurmotiv för dig som vill ha lite liv i morgonkaffet.",
       fjaril: "Fjärilar och blomster i mjuka toner — lugna motiv som passar de flesta hem.",
@@ -478,65 +491,160 @@
       texter: "Böcker, texter och blandade motiv för läshörnan och kontoret."
     };
 
+    function rubrik(cat) { return TITLAR[cat] || CATS[cat]; }
+
+    function urval(cat) {
+      return P.filter(function (p) {
+        if (cat === "alla") return true;
+        if (cat === "nytt") return p.isNew;
+        return p.cat === cat;
+      });
+    }
+
+    /* Siffrorna räknas fram ur P, samma källa som räknaren ovanför gridet —
+       hårdkodade antal i HTML glider ifrån varandra så fort ett motiv läggs till. */
+    function skrivAntal() {
+      Array.prototype.forEach.call(document.querySelectorAll("[data-cat]"), function (b) {
+        var span = b.querySelector("span");
+        if (span) span.textContent = urval(b.getAttribute("data-cat")).length;
+      });
+    }
+
+    /* Chips-raden: samma kategorier som i panelen, men alltid synliga */
+    if (chipWrap) {
+      var chipsOrdning = ["alla", "nytt"].concat(Object.keys(CATS));
+      chipWrap.innerHTML = chipsOrdning.map(function (c) {
+        return '<button class="chip" type="button" data-cat="' + c + '">' +
+               esc(rubrik(c)) + ' <span></span></button>';
+      }).join("");
+    }
+
+    function fargNamn() {
+      var c = COLORS.filter(function (x) { return x.id === state.color; })[0];
+      return c ? c.name : null;
+    }
+
     function render() {
-      var list = P.filter(function (p) { return state.cat === "alla" || p.cat === state.cat; });
+      var list = urval(state.cat);
 
       if (state.sort === "namn") {
         list = list.slice().sort(function (a, b) { return a.title.localeCompare(b.title, "sv"); });
-      } else if (state.sort === "nyheter") {
+      } else {
+        /* Nyheter först är förvalet — och det enda som faktiskt gör något */
         list = list.slice().sort(function (a, b) { return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0) || a.id - b.id; });
       }
 
-      grid.innerHTML = list.length
-        ? list.map(cardHTML).join("")
-        : '<p class="empty">Inga muggar matchar filtret just nu.</p>';
+      if (list.length) {
+        grid.innerHTML = list.map(function (p, i) { return cardHTML(p, i, state.color); }).join("");
+      } else {
+        /* Ingen återvändsgränd: säg vad som gallrade bort och ge vägen ut */
+        grid.innerHTML = '' +
+          '<div class="empty">' +
+            '<h2>Inga muggar i ' + esc(rubrik(state.cat)) + ' just nu</h2>' +
+            '<p>Vi fyller på sortimentet löpande. Under tiden finns ' + P.length +
+              ' andra motiv, alla till 136 kr.</p>' +
+            '<button class="btn" type="button" data-nollstall>Visa alla ' + P.length + ' muggar</button>' +
+          '</div>' +
+          POPULARA.slice(0, 4).map(function (id, i) {
+            var p = P.filter(function (x) { return x.id === id; })[0];
+            return p ? cardHTML(p, i, state.color) : "";
+          }).join("");
+      }
 
-      countEl.innerHTML = "Visar <b>" + list.length + "</b> av " + P.length + " muggar i demon";
-      titleEl.textContent = state.cat === "alla" ? "Alla muggar" : CATS[state.cat];
+      countEl.innerHTML = "Visar <b>" + list.length + "</b> av " + P.length + " muggar";
+      titleEl.textContent = rubrik(state.cat);
       leadEl.textContent = LEADS[state.cat];
-      crumbEl.textContent = state.cat === "alla" ? "Alla muggar" : CATS[state.cat];
+      crumbEl.textContent = rubrik(state.cat);
 
       Array.prototype.forEach.call(document.querySelectorAll("[data-cat]"), function (b) {
-        b.classList.toggle("is-on", b.getAttribute("data-cat") === state.cat);
+        var pa = b.getAttribute("data-cat") === state.cat;
+        b.classList.toggle("is-on", pa);
+        b.setAttribute("aria-pressed", pa ? "true" : "false");
       });
+      if (colorNote) {
+        var namn = fargNamn();
+        colorNote.textContent = namn
+          ? namn + " följer med till produktsidan. Alla motiv finns i alla sju färger."
+          : "Alla motiv finns i samtliga sju färger. Välj här så följer färgen med.";
+      }
+      skrivAntal();
+      märkFilter();
       initReveal();
     }
 
     Array.prototype.forEach.call(document.querySelectorAll("[data-cat]"), function (b) {
-      b.addEventListener("click", function () { state.cat = b.getAttribute("data-cat"); render(); });
+      b.addEventListener("click", function () {
+        state.cat = b.getAttribute("data-cat");
+        render();
+        stängPanel();
+      });
+    });
+
+    grid.addEventListener("click", function (e) {
+      if (!e.target.closest("[data-nollstall]")) return;
+      state.cat = "alla";
+      state.color = null;
+      render();
     });
 
     var colorWrap = document.getElementById("filter-colors");
     if (colorWrap) {
       colorWrap.innerHTML = COLORS.map(function (c) {
-        return '<button class="fcolor" data-color="' + c.id + '" style="background:' + c.hex +
-               '" title="' + c.name + '" aria-label="' + c.name + '"></button>';
+        return '<button class="fcolor" type="button" data-color="' + c.id + '" style="--sw:' + c.hex +
+               '" title="' + c.name + '" aria-pressed="false" aria-label="' + c.name + '"></button>';
       }).join("");
-      var colorNote = document.getElementById("filter-color-note");
       colorWrap.addEventListener("click", function (e) {
         var b = e.target.closest(".fcolor");
         if (!b) return;
         var id = b.getAttribute("data-color");
         state.color = state.color === id ? null : id;
         Array.prototype.forEach.call(colorWrap.children, function (el) {
-          el.classList.toggle("is-on", el.getAttribute("data-color") === state.color);
+          var pa = el.getAttribute("data-color") === state.color;
+          el.classList.toggle("is-on", pa);
+          el.setAttribute("aria-pressed", pa ? "true" : "false");
         });
-        if (colorNote) {
-          var c = COLORS.filter(function (x) { return x.id === state.color; })[0];
-          colorNote.textContent = c
-            ? "Visar alla motiv i " + c.name + "."
-            : "Alla motiv finns i samtliga sju färger.";
-        }
+        render();
       });
+      if (state.color) {
+        Array.prototype.forEach.call(colorWrap.children, function (el) {
+          var pa = el.getAttribute("data-color") === state.color;
+          el.classList.toggle("is-on", pa);
+          el.setAttribute("aria-pressed", pa ? "true" : "false");
+        });
+      }
     }
 
     var sortEl = document.getElementById("shop-sort");
-    if (sortEl) sortEl.addEventListener("change", function () { state.sort = sortEl.value; render(); });
+    if (sortEl) {
+      sortEl.value = state.sort;
+      sortEl.addEventListener("change", function () { state.sort = sortEl.value; render(); });
+    }
 
+    /* Filterknappen: etikett, aria-expanded och antal aktiva filter */
     var fToggle = document.getElementById("filter-toggle");
-    if (fToggle) {
+    var panel = document.getElementById("filters");
+
+    function aktivaFilter() {
+      return (state.cat === "alla" ? 0 : 1) + (state.color ? 1 : 0);
+    }
+    function märkFilter() {
+      if (!fToggle) return;
+      var oppen = panel && panel.classList.contains("open");
+      var n = aktivaFilter();
+      fToggle.textContent = (oppen ? "Stäng filter" : "Filter") + (n ? " (" + n + ")" : "");
+      fToggle.setAttribute("aria-expanded", oppen ? "true" : "false");
+    }
+    function stängPanel() {
+      if (panel && panel.classList.contains("open")) {
+        panel.classList.remove("open");
+        märkFilter();
+      }
+    }
+    if (fToggle && panel) {
+      fToggle.setAttribute("aria-controls", "filters");
       fToggle.addEventListener("click", function () {
-        document.getElementById("filters").classList.toggle("open");
+        panel.classList.toggle("open");
+        märkFilter();
       });
     }
 
@@ -548,7 +656,8 @@
     var root = document.getElementById("pdp");
     if (!root) return;
 
-    var id = parseInt(new URLSearchParams(location.search).get("p"), 10);
+    var params = new URLSearchParams(location.search);
+    var id = parseInt(params.get("p"), 10);
     var p = P.filter(function (x) { return x.id === id; })[0] || P[0];
 
     document.title = p.title + " – Mugglagret";
@@ -558,33 +667,34 @@
     document.getElementById("pdp-crumb-cat").href = "katalog.html?kategori=" + p.cat;
     document.getElementById("pdp-crumb-name").textContent = p.title;
 
-    /* bildgalleri: produktens egen bild + tre grannar ur samma kategori */
-    var siblings = P.filter(function (x) { return x.cat === p.cat && x.id !== p.id; }).slice(0, 3);
-    var shots = [p].concat(siblings);
+    /* EN bild per mugg är allt vi har fått av kunden. Ingen tumnagelspalt
+       fylld med andra motiv: den fick kunden att tro att hon såg fler
+       vinklar av samma mugg. Fler vinklar byggs när fler bilder finns. */
     var mainImg = document.getElementById("pdp-main-img");
-    var thumbs = document.getElementById("pdp-thumbs");
-
     mainImg.src = p.img;
     mainImg.alt = p.title + " – keramikmugg 11 oz";
-    thumbs.innerHTML = shots.map(function (s, i) {
-      return '<button class="pdp-thumb' + (i === 0 ? " is-on" : "") + '" data-src="' + s.img +
-             '" aria-label="Visa bild ' + (i + 1) + '"><img src="' + s.img + '" alt="" loading="lazy"></button>';
-    }).join("");
-    thumbs.addEventListener("click", function (e) {
-      var b = e.target.closest(".pdp-thumb");
-      if (!b) return;
-      mainImg.src = b.getAttribute("data-src");
-      Array.prototype.forEach.call(thumbs.children, function (el) { el.classList.remove("is-on"); });
-      b.classList.add("is-on");
-    });
 
-    /* färgval */
-    var picked = COLORS[0];
+    /* Samma märke som i katalogen — signalen som fick klicket bekräftas här */
+    var flagga = document.getElementById("pdp-flagga");
+    var mainWrap = document.getElementById("pdp-main");
+    if (p.isNew) {
+      if (flagga) flagga.textContent = "Nyhet denna vecka";
+      if (mainWrap) mainWrap.insertAdjacentHTML("afterbegin", '<span class="pcard-tag pcard-tag--new">Nyhet</span>');
+    } else if (POPULARA.indexOf(p.id) > -1) {
+      if (flagga) flagga.textContent = "Populär just nu";
+      if (mainWrap) mainWrap.insertAdjacentHTML("afterbegin", '<span class="pcard-tag pcard-tag--pop">Populär just nu</span>');
+    }
+
+    /* färgval — förvalet kan komma från katalogen via ?farg= */
+    var LJUSA = { white: 1, yellow: 1, pink: 1 };
+    var picked = COLORS.filter(function (c) { return c.id === params.get("farg"); })[0] || COLORS[0];
     var colorWrap = document.getElementById("pdp-colors");
     var colorName = document.getElementById("pdp-color-name");
-    colorWrap.innerHTML = COLORS.map(function (c, i) {
-      return '<button class="color' + (i === 0 ? " is-on" : "") + '" data-id="' + c.id +
-             '" style="background:' + c.hex + '" title="' + c.name + '" aria-label="' + c.name + '"></button>';
+    colorWrap.innerHTML = COLORS.map(function (c) {
+      return '<button class="color' + (c.id === picked.id ? " is-on" : "") + '" type="button" data-id="' + c.id +
+             '" data-ljus="' + (LJUSA[c.id] ? "1" : "0") + '" style="background:' + c.hex +
+             '" title="' + c.name + '" aria-pressed="' + (c.id === picked.id ? "true" : "false") +
+             '" aria-label="' + c.name + '"></button>';
     }).join("");
     colorName.textContent = picked.name;
     colorWrap.addEventListener("click", function (e) {
@@ -592,28 +702,71 @@
       if (!b) return;
       picked = COLORS.filter(function (c) { return c.id === b.getAttribute("data-id"); })[0];
       colorName.textContent = picked.name;
-      Array.prototype.forEach.call(colorWrap.children, function (el) { el.classList.remove("is-on"); });
-      b.classList.add("is-on");
+      Array.prototype.forEach.call(colorWrap.children, function (el) {
+        var pa = el === b;
+        el.classList.toggle("is-on", pa);
+        el.setAttribute("aria-pressed", pa ? "true" : "false");
+      });
     });
 
-    /* antal */
+    /* antal — skrivbart, så 25 st inte kräver 24 tryck på plus */
     var qty = 1;
     var qtyEl = document.getElementById("pdp-qty");
-    document.getElementById("qty-minus").addEventListener("click", function () {
-      qty = Math.max(1, qty - 1); qtyEl.textContent = qty;
-    });
-    document.getElementById("qty-plus").addEventListener("click", function () {
-      qty = Math.min(99, qty + 1); qtyEl.textContent = qty;
-    });
+    var sumEl = document.getElementById("pdp-sum");
+    var volymEl = document.getElementById("pdp-volym");
 
-    /* lägg i varukorgen */
+    function skrivAntal() {
+      if (qtyEl.value !== String(qty)) qtyEl.value = qty;
+      if (sumEl) {
+        sumEl.innerHTML = qty > 1
+          ? qty + " × 136 kr = <b>" + (qty * 136) + " kr</b> inkl. moms"
+          : "<b>136 kr</b> inkl. moms";
+      }
+      /* Vid 25 st gäller volympris — då ska sidan inte stå kvar på 136 kr */
+      if (volymEl) volymEl.classList.toggle("visa", qty >= 25);
+    }
+    function sattAntal(n) {
+      qty = Math.min(99, Math.max(1, n || 1));
+      skrivAntal();
+    }
+    document.getElementById("qty-minus").addEventListener("click", function () { sattAntal(qty - 1); });
+    document.getElementById("qty-plus").addEventListener("click", function () { sattAntal(qty + 1); });
+    qtyEl.addEventListener("input", function () {
+      var n = parseInt(qtyEl.value, 10);
+      if (!isNaN(n)) { qty = Math.min(99, Math.max(1, n)); if (volymEl) volymEl.classList.toggle("visa", qty >= 25); if (sumEl) skrivSum(); }
+    });
+    qtyEl.addEventListener("change", function () { sattAntal(parseInt(qtyEl.value, 10)); });
+    function skrivSum() {
+      sumEl.innerHTML = qty > 1
+        ? qty + " × 136 kr = <b>" + (qty * 136) + " kr</b> inkl. moms"
+        : "<b>136 kr</b> inkl. moms";
+    }
+    skrivAntal();
+
+    /* lägg i varukorgen — med kvittens i sidan, inte bara en låda som glider in */
     var addBtn = document.getElementById("pdp-add");
+    var tillKorg = document.getElementById("pdp-till-korg");
     if (addBtn) {
+      var addText = addBtn.textContent;
       addBtn.addEventListener("click", function () {
         window.mugCartAdd({
           id: p.id, title: p.title, img: p.img, price: p.price,
           color: picked.id, colorName: picked.name, qty: qty
         });
+        addBtn.textContent = "Lagd i varukorgen ✓";
+        addBtn.classList.add("is-lagd");
+        if (tillKorg) tillKorg.classList.add("visa");
+        clearTimeout(addBtn._t);
+        addBtn._t = setTimeout(function () {
+          addBtn.textContent = addText;
+          addBtn.classList.remove("is-lagd");
+        }, 2600);
+      });
+    }
+    if (tillKorg) {
+      tillKorg.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (window.mugCartOpen) window.mugCartOpen();
       });
     }
 

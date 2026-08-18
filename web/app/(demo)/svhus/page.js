@@ -13,18 +13,32 @@ import styles from './svhus.module.css';
    av alla hantverkare", energieffektiva material, tidlös design.
 
    Teknik (Mathias krav: "allting optimerat och next.js"):
-   - Server-renderad, NOLL klient-JS. Modalen körs på :target, inte på script.
+   - Server-renderad, INGEN EGEN klient-JS: modalen, menyn och dragspelet körs
+     på :target och <details>, inte på script. (App Router-runtimen från Next
+     följer däremot med sidan — ska de kilobyten bort är enda vägen att
+     leverera SV Hus som statisk fil i web/public/cloud/svhus/ likt övriga demos.)
    - Fonterna självhostas av next/font — ingen extern förfrågan i kritisk väg.
+     Kursiven ligger i en egen instans med preload: false: den används bara i
+     ett par rubrikord och ska inte belasta första renderingen.
    - Rörelsen ligger i scroll-driven CSS (animation-timeline) med synligt
      utgångsläge, så sidan är komplett även där stödet saknas.
    =========================================================================== */
 
 const display = Newsreader({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
-  style: ['normal', 'italic'],
+  weight: ['300', '400'],
   display: 'swap',
   variable: '--sv-display',
+});
+
+/* Kursiven: egen instans, hämtas först när den behövs. */
+const displayKursiv = Newsreader({
+  subsets: ['latin'],
+  weight: ['300', '400'],
+  style: ['italic'],
+  display: 'swap',
+  preload: false,
+  variable: '--sv-display-kursiv',
 });
 
 const ui = Inter({
@@ -35,7 +49,7 @@ const ui = Inter({
 });
 
 export const metadata = {
-  title: 'SV Hus AB — vi tar hela vägen från ritning till inflytt',
+  title: 'SV Hus AB — ni bygger ett hus en gång',
   description:
     'SV Hus AB bygger och renoverar hus i hela Sverige. Vi ansvarar för allt: arkitekt, bygglov, byggnation och samordning av hantverkarna. Förslag på hemsida från Bahko Byrå.',
   robots: { index: false, follow: false },
@@ -44,12 +58,20 @@ export const metadata = {
 const TEL = '070-448 59 28';
 const TEL_HREF = 'tel:+46704485928';
 
+/* En källa för navigationen: header, mobilmeny och footer läser samma lista. */
+const LANKAR = [
+  { href: '#tjanster', txt: 'Vad vi gör' },
+  { href: '#process', txt: 'Så går det till' },
+  { href: '#varfor', txt: 'Varför SV Hus' },
+  { href: '#fragor', txt: 'Vanliga frågor' },
+];
+
 const TJANSTER = [
   {
     nr: '01',
     namn: 'Nybyggnation',
     text:
-      'Nytt hus från tomt till nyckel. Vi håller ihop arkitekt, konstruktör, bygglov och alla yrkesgrupper, så att du har en part att ringa i stället för elva.',
+      'Nytt hus från tomt till nyckel. Vi håller ihop arkitekt, konstruktör, bygglov och alla yrkesgrupper, så att ni har en part som svarar för helheten.',
     punkter: ['Arkitekt och konstruktion', 'Bygglov och kontrollansvarig', 'Grund till inflyttning'],
   },
   {
@@ -79,12 +101,12 @@ const STEG = [
   {
     nr: '1',
     namn: 'Första samtalet',
-    text: 'Vi går igenom vad ni vill göra, vad tomten och huset tillåter, och vad det rimligen landar på. Kostar ingenting och binder ingenting.',
+    text: 'Vi går igenom vad ni vill göra, vad tomten och huset tillåter och vad de olika delarna av bygget innebär. Ni behöver inga färdiga ritningar för att ta det samtalet.',
   },
   {
     nr: '2',
     namn: 'Ritning och kalkyl',
-    text: 'Arkitekt och konstruktör tar fram handlingarna. Ni får en kalkyl som är uppdelad post för post, inte en klumpsumma.',
+    text: 'Arkitekt och konstruktör tar fram handlingarna, och ni får se vad de olika delarna av bygget innebär innan något beslutas.',
   },
   {
     nr: '3',
@@ -94,12 +116,12 @@ const STEG = [
   {
     nr: '4',
     namn: 'Byggnation',
-    text: 'Vi bygger enligt svensk AMA-standard och samordnar alla yrkesgrupper. Ni har en kontaktperson och en tidplan som hålls uppdaterad.',
+    text: 'Vi bygger enligt svensk AMA-standard och samordnar alla yrkesgrupper. Eftersom samordningen är vår är det oss ni ringer när ni vill veta var bygget står.',
   },
   {
     nr: '5',
     namn: 'Överlämning',
-    text: 'Besiktning, genomgång och dokumentation. Vi lämnar över ett hus som är klart, inte ett hus med en lista över vad som återstår.',
+    text: 'Besiktning, genomgång och dokumentation. Det som besiktningen tar upp går vi igenom med er, i stället för att ni ska upptäcka det efter inflytt.',
   },
 ];
 
@@ -107,7 +129,7 @@ const SKAL = [
   {
     rubrik: 'En part för hela bygget',
     text:
-      'Från arkitekt och bygglov till byggnation och samordning av hantverkarna. Du slipper vara projektledare för ditt eget hus på kvällarna.',
+      'Från arkitekt och bygglov till byggnation och samordning av hantverkarna. Ni slipper vara projektledare för ert eget hus på kvällarna.',
   },
   {
     rubrik: 'Byggt enligt AMA',
@@ -120,38 +142,52 @@ const SKAL = [
       'Energieffektiva material och hållbara konstruktioner. Vi väljer det som står sig genom generationer framför det som är billigast i upphandlingen.',
   },
   {
-    rubrik: 'Traditionellt hantverk, moderna lösningar',
+    rubrik: 'Personlig service, inte växel',
     text:
-      'Företaget började som ett litet team med stor passion för byggande. Det som har vuxit är projekten och räckvidden, inte avståndet till kunden.',
+      'Traditionellt byggande med moderna lösningar och personlig service. Ni pratar med den som håller i bygget, inte med en växel som lovar att någon ringer upp.',
   },
 ];
 
+/* Ordningen är avsiktlig: pengar och risk först, administration sedan. Det är
+   i den ordningen en familj som ska bygga faktiskt oroar sig. */
 const FRAGOR = [
   {
-    q: 'Sköter ni bygglovet?',
-    a: 'Ja. Vi sammanställer handlingarna, lämnar in ansökan och håller kontakten med kommunen och kontrollansvarig fram till startbesked. Det ingår i att vi ansvarar för hela vägen.',
+    q: 'Vad kostar det att bygga nytt?',
+    a: 'Det avgörs av tomten, storleken och vilken nivå ni vill ha på material och inredning. Därför börjar vi med ett samtal om tomt, storlek och materialnivå — innan någon siffra sätts.',
   },
   {
-    q: 'Vad kostar det att bygga nytt?',
-    a: 'Det avgörs av tomten, storleken och vilken nivå ni vill ha på material och inredning. Därför börjar vi med ett samtal och en kalkyl som är uppdelad post för post, så att ni ser vad varje del kostar innan något är beslutat.',
+    q: 'Hur vet vi att kostnaden inte drar iväg?',
+    a: 'Genom att en part ansvarar för hela kedjan. Det som brukar bli dyrt är inte hantverket, det är ändringar som upptäcks sent och yrkesgrupper som väntar på varandra. Vi går igenom tomt, hus och materialnivå innan bygget startar, och det som ändras under vägen tar vi upp med er innan det utförs.',
   },
   {
     q: 'Hur lång tid tar ett projekt?',
-    a: 'En tillbyggnad räknas i veckor, ett nytt hus i månader, och bygglovet är ofta den del som styr starten mest. Ni får en tidplan när ritningarna är klara, och den hålls uppdaterad under bygget.',
+    a: 'En tillbyggnad räknas i veckor, ett nytt hus i månader, och bygglovet är ofta den del som styr starten mest. Ni får en tidplan när ritningarna är klara.',
+  },
+  {
+    q: 'Kan vi bo kvar under en renovering?',
+    a: 'Ofta ja vid en avgränsad del av huset, mer sällan vid en totalrenovering där stammar, el och ventilation byts. Vi säger rakt ut vilket av alternativen som gäller ert hus i stället för att ni får upptäcka det när köket är utrivet.',
+  },
+  {
+    q: 'Sköter ni bygglovet?',
+    a: 'Ja. Vi sammanställer handlingarna, lämnar in ansökan och håller kontakten med kommunen och kontrollansvarig fram till startbesked. Det ingår i vårt ansvar, det är inget tillval.',
+  },
+  {
+    q: 'Vi har redan ritningar. Kan ni bygga efter dem?',
+    a: 'Ja. Vi kan gå in som byggherrens förlängda arm och ta handlingar, upphandling, tidplan och byggnation från de ritningar ni har. Vi säger också till om vi ser något i konstruktionen som bör lösas annorlunda innan bygget startar.',
+  },
+  {
+    q: 'Vem är min kontaktperson?',
+    a: 'Eftersom vi samordnar alla hantverkare är det oss ni ringer, inte varje yrkesgrupp var för sig.',
   },
   {
     q: 'Arbetar ni utanför Stockholmsområdet?',
     a: 'Ja. Vi har vårt säte i Österåker och driver projekt över hela Sverige.',
   },
-  {
-    q: 'Vem är min kontaktperson?',
-    a: 'En och samma person genom hela projektet. Du behöver aldrig ringa runt bland yrkesgrupperna för att få veta var bygget står.',
-  },
 ];
 
 export default function SvHusDemo() {
   return (
-    <div className={`${display.variable} ${ui.variable} ${styles.sida}`}>
+    <div className={`${display.variable} ${displayKursiv.variable} ${ui.variable} ${styles.sida}`}>
       {/* ---------- header ---------- */}
       <header className={styles.hdr}>
         <div className={styles.hdrIn}>
@@ -169,13 +205,14 @@ export default function SvHusDemo() {
           </a>
 
           <nav className={styles.nav}>
-            <a href="#tjanster">Vad vi gör</a>
-            <a href="#process">Så går det till</a>
-            <a href="#varfor">Varför SV Hus</a>
-            <a href="#fragor">Frågor</a>
+            {LANKAR.map((l) => (
+              <a href={l.href} key={l.href}>
+                {l.txt}
+              </a>
+            ))}
           </nav>
 
-          <a className={styles.hdrTel} href={TEL_HREF}>
+          <a className={styles.hdrTel} href={TEL_HREF} aria-label={`Ring ${TEL}`}>
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path
                 d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z"
@@ -185,9 +222,31 @@ export default function SvHusDemo() {
                 strokeLinejoin="round"
               />
             </svg>
-            {TEL}
+            <span className={styles.hdrTelNr} aria-hidden="true">
+              {TEL}
+            </span>
+            <span className={styles.hdrTelKort} aria-hidden="true">
+              Ring
+            </span>
           </a>
         </div>
+
+        {/* Mobilmenyn: <details>, samma teknik som frågorna. Ingen klient-JS,
+            och den finns i DOM även om CSS aldrig laddar. */}
+        <details className={styles.mobilNav}>
+          <summary>
+            <span>Meny</span>
+            <span className={styles.mobilNavIkon} aria-hidden="true" />
+          </summary>
+          <nav className={styles.mobilNavPanel}>
+            {LANKAR.map((l) => (
+              <a href={l.href} key={l.href}>
+                {l.txt}
+              </a>
+            ))}
+            <a href="#kontakt">Kontakt</a>
+          </nav>
+        </details>
       </header>
 
       {/* ---------- hero ---------- */}
@@ -195,7 +254,9 @@ export default function SvHusDemo() {
         {/* Ritningen bakom rubriken: husets sektion i linjer. Ren SVG, så den
             är skarp i alla upplösningar och väger ingenting. */}
         <svg className={styles.ritning} viewBox="0 0 900 620" fill="none" aria-hidden="true">
-          <g stroke="currentColor" strokeWidth="1">
+          {/* vector-effect sätts i CSS (den ärvs inte), så linjerna behåller
+              sin tjocklek när ritningen skalas ner. */}
+          <g stroke="currentColor" strokeWidth="1.6">
             <path d="M90 470h720M90 470V250l360-170 360 170v220" />
             <path d="M170 470V300h180v170M170 300h180" />
             <path d="M470 470V330h250v140M470 400h250M595 330v140" />
@@ -209,38 +270,37 @@ export default function SvHusDemo() {
         <div className={styles.heroIn}>
           <p className={styles.eyebrow}>Österåker · projekt i hela Sverige</p>
           <h1 className={styles.h1}>
-            Vi tar hela vägen
+            Ni bygger ett hus en gång.
             <br />
-            <em>från ritning till inflytt.</em>
+            <em>Vi tar ansvaret för varje steg.</em>
           </h1>
           <p className={styles.heroLead}>
-            SV Hus bygger och renoverar hus åt familjer som vill ha ett bygge som går att lita på. Vi
-            ansvarar för allt: arkitekt, bygglov, byggnation och samordningen av alla hantverkare. Du
-            har en part att ringa, och en tidplan som håller.
+            Ett husprojekt har elva yrkesgrupper, en kommun och en kalkyl som ska hålla ihop. SV Hus
+            tar arkitekt, bygglov, byggnation och samordningen av alla hantverkare — så att ni kan
+            lägga tiden på hur huset ska bli, inte på att hålla ihop bygget.
           </p>
           <div className={styles.heroCta}>
             <a className={styles.btn} href={TEL_HREF}>
               Ring {TEL}
             </a>
             <a className={`${styles.btn} ${styles.btnGhost}`} href="#kontakt">
-              Boka ett platsbesök
+              Berätta om ert projekt
             </a>
           </div>
           <p className={styles.heroMikro}>
-            Kostnadsfritt första samtal · Byggt enligt svensk AMA-standard · SV Hus AB, org.nr
-            559499-4062
+            Byggt enligt svensk AMA-standard · SV Hus AB, org.nr 559499-4062
           </p>
         </div>
       </section>
 
       {/* ---------- förtroenderad ---------- */}
-      <div className={styles.remsa}>
+      <div className={styles.remsa} role="group" aria-label="Det här ingår">
         <div className={styles.remsaIn}>
           <span>Arkitekt till nyckel</span>
           <span>Bygglov och kontrollansvarig</span>
           <span>Svensk AMA-standard</span>
-          <span>Energieffektiva material</span>
-          <span>En kontaktperson hela vägen</span>
+          <span>Energieffektivt som syns på driftkostnaden</span>
+          <span>Vi samordnar alla hantverkare</span>
         </div>
       </div>
 
@@ -250,11 +310,11 @@ export default function SvHusDemo() {
           <div className={styles.sekHuvud}>
             <p className={styles.eyebrow}>Vad vi gör</p>
             <h2 className={styles.h2}>
-              Fyra sätt vi tar hand om <em>ett hus</em>
+              Vad är det ni vill <em>bygga?</em>
             </h2>
             <p className={styles.sekLead}>
-              Vare sig det står färdigt om ett år eller behöver rivas ut i vår: samma
-              ansvar, samma standard, samma kontaktperson.
+              Fyra ingångar. Känner ni igen ert projekt i någon av dem har vi tagit den
+              vägen förut, från första ritning till besiktning.
             </p>
           </div>
 
@@ -313,13 +373,27 @@ export default function SvHusDemo() {
                 Hus som står sig <em>genom generationer</em>
               </h2>
               <p className={styles.sekLead}>
-                SV Hus började med en enkel idé: att förena traditionellt byggande med
-                moderna lösningar och personlig service. Våra projekt planeras med
-                långsiktighet i fokus, och vi bygger relationer som är lika starka som
-                husen vi uppför.
+                Traditionellt byggande med moderna lösningar och personlig service. Vi
+                väljer energieffektiva material och konstruktioner som ska hålla när huset
+                har bytt ägare två gånger — och bygger enligt svensk AMA-standard, så att
+                det som ligger bakom ytan är beskrivet och kontrollerbart.
               </p>
+
+              {/* Samma linjespråk som heron, men en sektion genom vägg: det som
+                  ligger bakom ytan. Ren SVG, inga bilder av kundens projekt. */}
+              <svg className={styles.planritning} viewBox="0 0 460 150" fill="none" aria-hidden="true">
+                <g stroke="currentColor" strokeWidth="1.6">
+                  <path d="M20 20h420M20 130h420" />
+                  <path d="M20 20v110M120 20v110M240 20v110M440 20v110" />
+                  <path d="M20 44h420M20 106h420" strokeDasharray="5 9" />
+                  <path d="M60 44v62M180 44v62M300 44v62M380 44v62" strokeDasharray="5 9" />
+                  <circle cx="120" cy="75" r="4" />
+                  <circle cx="240" cy="75" r="4" />
+                </g>
+              </svg>
+
               <a className={styles.btn} href="#kontakt">
-                Prata med oss om ditt projekt
+                Berätta om ert projekt
               </a>
             </div>
 
@@ -341,18 +415,32 @@ export default function SvHusDemo() {
           <div className={styles.sekHuvud}>
             <p className={styles.eyebrow}>Vanliga frågor</p>
             <h2 className={styles.h2}>Det ni brukar fråga först</h2>
+            <p className={styles.sekLead}>
+              Åtta frågor vi får varje gång, i den ordning de brukar komma. Svaren är
+              desamma som ni får i telefon.
+            </p>
           </div>
 
-          <div className={styles.fragor}>
-            {FRAGOR.map((f) => (
-              <details className={styles.fraga} key={f.q}>
-                <summary>
-                  {f.q}
-                  <span className={styles.fragaIkon} aria-hidden="true" />
-                </summary>
-                <p>{f.a}</p>
-              </details>
-            ))}
+          <div className={styles.fragorGrid}>
+            <div className={styles.fragor}>
+              {FRAGOR.map((f) => (
+                <details className={styles.fraga} key={f.q}>
+                  <summary>
+                    {f.q}
+                    <span className={styles.fragaIkon} aria-hidden="true" />
+                  </summary>
+                  <p>{f.a}</p>
+                </details>
+              ))}
+            </div>
+
+            <aside className={styles.fragaKort}>
+              <h3>Hittar ni inte svaret?</h3>
+              <p>Ring och fråga rakt ut. Vi svarar på vad som gäller just ert hus.</p>
+              <a className={`${styles.btn} ${styles.btnMork}`} href={TEL_HREF}>
+                Ring {TEL}
+              </a>
+            </aside>
           </div>
         </div>
       </section>
@@ -369,8 +457,8 @@ export default function SvHusDemo() {
                 <em>Vi säger vad som krävs.</em>
               </h2>
               <p className={styles.sekLead}>
-                Första samtalet kostar ingenting och binder ingenting. Ring, eller skriv
-                några rader om projektet, så hör vi av oss.
+                Ring, eller skriv några rader om projektet. Ju mer vi vet om tomt, hus och
+                tidplan, desto konkretare kan första samtalet bli.
               </p>
 
               <div className={styles.kontaktRader}>
@@ -389,16 +477,23 @@ export default function SvHusDemo() {
               </div>
             </div>
 
-            {/* Formuläret är avsiktligt inte kopplat i demon — den riktiga
-                sajten får en e-post- eller CRM-koppling. */}
-            <form className={styles.form} action={`mailto:info@svhus.se`} method="post">
+            {/* Formuläret har medvetet ingen action: vi har ingen verifierad
+                e-postadress till SV Hus, och en knapp som tiger är värre än en
+                knapp som säger vad som gäller. Kopplingen (inkorg eller CRM)
+                sätts upp vid skarp leverans. Ingen submit-knapp = ingen tyst
+                misslyckad inskickning, och telefonen är den aktiva vägen in. */}
+            <form className={styles.form} aria-describedby="form-not">
               <label>
                 Namn
-                <input type="text" name="namn" autoComplete="name" required />
+                <input type="text" name="namn" autoComplete="name" />
               </label>
               <label>
                 Telefon
-                <input type="tel" name="telefon" autoComplete="tel" required />
+                <input type="tel" name="telefon" autoComplete="tel" />
+              </label>
+              <label>
+                E-post (valfritt)
+                <input type="email" name="epost" autoComplete="email" />
               </label>
               <label>
                 Vad handlar det om?
@@ -414,11 +509,16 @@ export default function SvHusDemo() {
                 Kort om projektet
                 <textarea name="meddelande" rows={4} placeholder="Tomt, hus, ungefärlig storlek, när ni vill börja" />
               </label>
-              <button type="submit" className={styles.btn}>
-                Skicka förfrågan
-              </button>
+              <a className={styles.btn} href={TEL_HREF}>
+                Ring {TEL} — så hör vi av oss
+              </a>
+              <p className={styles.formNot} id="form-not">
+                Skriv kort om tomt, hus och när ni vill börja — då kan vi ge ett vettigt
+                svar direkt i första samtalet. Inga massutskick, ingen säljlista.
+              </p>
               <p className={styles.formNot}>
-                Vi svarar samma eller nästa arbetsdag. Inga massutskick, ingen säljlista.
+                Obs: i det här förslaget är formuläret inte inkopplat. I den skarpa sajten
+                landar det direkt i er inkorg. Fram till dess är telefonen vägen in.
               </p>
             </form>
           </div>
@@ -440,11 +540,13 @@ export default function SvHusDemo() {
               </p>
             </div>
             <div className={styles.ftrLankar}>
-              <a href="#tjanster">Vad vi gör</a>
-              <a href="#process">Så går det till</a>
-              <a href="#varfor">Varför SV Hus</a>
-              <a href="#fragor">Frågor</a>
+              {LANKAR.map((l) => (
+                <a href={l.href} key={l.href}>
+                  {l.txt}
+                </a>
+              ))}
               <a href={TEL_HREF}>{TEL}</a>
+              <a href="#top">Till toppen</a>
             </div>
           </div>
           <div className={styles.ftrBar}>
@@ -462,14 +564,17 @@ export default function SvHusDemo() {
       {/* ---------- Bahko: demo-märkning, helt utan JS ----------
           Öppnas med :target. Ingen hydrering, inget script, fungerar även
           om allt annat fallerar. */}
+      {/* Stängningsankaret. Det ligger fast i vyn (se .stangdAnkare), så när
+          :target släpper flyttas inte skrollpositionen en pixel. */}
+      <span className={styles.stangdAnkare} id="stangd" />
       <a className={styles.demoKnapp} href="#bahko-demo">
         Om det här förslaget
       </a>
 
       <div className={styles.modalLager} id="bahko-demo">
-        <a className={styles.modalSkugga} href="#top" aria-label="Stäng" />
+        <a className={styles.modalSkugga} href="#stangd" tabIndex={-1} aria-hidden="true" />
         <div className={styles.modal} role="dialog" aria-modal="true" aria-labelledby="bahko-rubrik">
-          <a className={styles.modalX} href="#top" aria-label="Stäng">
+          <a className={styles.modalX} href="#stangd" aria-label="Stäng">
             ✕
           </a>
           <span className={styles.modalBadge}>Förslag av Bahko Byrå</span>

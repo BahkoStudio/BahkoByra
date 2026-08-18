@@ -5,6 +5,20 @@
    Kontrastregeln följd överallt: ljus yta -> mörk text, aldrig tvärtom.
    =========================================================================== */
 
+/* Sidan är nästan svart, och webbläsarens standard body{margin:8px} + vit
+   canvas skulle rama in den med en vit list (och ge vitt overscroll på iOS).
+   Modulen äger därför de två raderna själv — ingen delad globals.css behövs.
+   scroll-padding-top hör hit av samma skäl: headern är klistrad och 72 px hög,
+   så varje ankarhopp måste landa under den. */
+:global(html),
+:global(body) {
+  margin: 0;
+  background: #0C1013;
+}
+:global(html) {
+  scroll-padding-top: 88px;
+}
+
 .sida {
   --ink: #0C1013;
   --yta: #14191E;
@@ -12,13 +26,29 @@
   --linje: #2A333B;
   --ljus: #F4F1EB;
   --ljus-70: rgba(244, 241, 235, 0.7);
-  --ljus-45: rgba(244, 241, 235, 0.45);
+  /* 0.58 ger ca 5,4:1 mot --ink. Allt som är text använder den här eller
+     --ljus-70; --ljus-30 är bara till linjer och rent dekorativa lager. */
+  --ljus-58: rgba(244, 241, 235, 0.58);
+  --ljus-30: rgba(244, 241, 235, 0.3);
   --sten: #EDE7DB;
   --brass: #D6BE95;
   --brass-lj: #EBD9B4;
+  /* Mässing som klarar 4,5:1 mot --sten — för småtext på ljus yta. */
+  --brass-mork: #6E5620;
+  --ink-mjuk: #4A4640;
+  --linje-ljus: rgba(12, 16, 19, 0.42);
+  --linje-ljus-svag: rgba(12, 16, 19, 0.22);
 
   --disp: var(--sv-display), 'Times New Roman', serif;
+  --disp-kursiv: var(--sv-display-kursiv), var(--sv-display), 'Times New Roman', serif;
   --ui: var(--sv-ui), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Typskala: fem steg i stället för 29 lösa värden. */
+  --tx-xs: 0.72rem;
+  --tx-s: 0.82rem;
+  --tx-m: 0.95rem;
+  --tx-l: 1.05rem;
+  --tx-xl: clamp(1.1rem, 1.6vw, 1.25rem);
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --gut: clamp(1.15rem, 4vw, 3.5rem);
@@ -26,11 +56,32 @@
 
   background: var(--ink);
   color: var(--ljus);
+  color-scheme: dark;
   font-family: var(--ui);
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+}
+.sekLjus {
+  color-scheme: light;
+}
+
+/* En gemensam fokusmarkering för allt som går att nå med tangentbord. */
+.sida a:focus-visible,
+.sida button:focus-visible,
+.sida summary:focus-visible,
+.sida details:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+/* Ljusa kontroller får mörk ring, annars syns den inte. */
+.btn:focus-visible,
+.hdrTel:focus-visible,
+.demoKnapp:focus-visible,
+.sekLjus a:focus-visible,
+.sekLjus summary:focus-visible {
+  outline-color: var(--ink);
 }
 
 .sida *,
@@ -59,10 +110,8 @@
   font-size: clamp(2.5rem, 7vw, 5.4rem);
   line-height: 1.02;
   letter-spacing: -0.025em;
-}
-.h1 em {
-  font-style: italic;
-  color: var(--brass);
+  margin: 1.3rem 0 1.6rem;
+  max-width: 22ch;
 }
 
 .h2 {
@@ -73,15 +122,18 @@
   letter-spacing: -0.02em;
   margin-top: 0.9rem;
 }
+/* Kursiven ligger i en egen fontinstans (preload: false) — därför egen family. */
+.h1 em,
 .h2 em {
+  font-family: var(--disp-kursiv);
   font-style: italic;
   color: var(--brass);
 }
 
 .eyebrow {
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--brass);
 }
@@ -174,7 +226,7 @@
   font-size: 0.58rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--ljus-45);
+  color: var(--ljus-58);
   margin-top: 0.16rem;
 }
 
@@ -232,9 +284,107 @@
   }
 }
 
+.hdrTelKort {
+  display: none;
+}
+
+/* ---------- mobilmeny: <details>, ingen klient-JS ---------- */
+.mobilNav {
+  display: none;
+  border-top: 1px solid var(--linje);
+}
+.mobilNav summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 46px;
+  padding-inline: var(--gut);
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--tx-s);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ljus-70);
+}
+.mobilNav summary::-webkit-details-marker {
+  display: none;
+}
+.mobilNavIkon {
+  position: relative;
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+.mobilNavIkon::before,
+.mobilNavIkon::after {
+  content: '';
+  position: absolute;
+  background: var(--brass);
+  transition: opacity 0.25s var(--ease);
+}
+.mobilNavIkon::before {
+  left: 0;
+  top: 6px;
+  width: 13px;
+  height: 1.5px;
+}
+.mobilNavIkon::after {
+  left: 6px;
+  top: 0;
+  width: 1.5px;
+  height: 13px;
+}
+.mobilNav[open] .mobilNavIkon::after {
+  opacity: 0;
+}
+.mobilNavPanel {
+  display: flex;
+  flex-direction: column;
+  padding: 0.3rem var(--gut) 0.8rem;
+  background: var(--yta);
+  border-top: 1px solid var(--linje);
+}
+.mobilNavPanel a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  font-size: var(--tx-m);
+  color: var(--ljus);
+  border-bottom: 1px solid var(--linje);
+}
+.mobilNavPanel a:last-child {
+  border-bottom: 0;
+}
+
 @media (max-width: 900px) {
   .nav {
     display: none;
+  }
+  .mobilNav {
+    display: block;
+  }
+}
+
+/* Riktigt smala skärmar: loggans ortsrad och hela telefonnumret får inte
+   trycka ut varandra ur headern (sidan har overflow-x: clip och skulle
+   klippa numret tyst). */
+@media (max-width: 480px) {
+  .brand {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .hdr .brandTxt i {
+    display: none;
+  }
+  .hdrTelNr {
+    display: none;
+  }
+  .hdrTelKort {
+    display: inline;
+  }
+  .hdrTel {
+    padding: 0 0.9rem;
   }
 }
 
@@ -259,16 +409,30 @@
   opacity: 0.16;
   pointer-events: none;
 }
+/* vector-effect ärvs inte — den måste sitta på formerna, annars blir
+   linjerna hårfina när ritningen skalas ner och aliasar bort på 1x-skärmar. */
+.ritning path,
+.ritning circle,
+.planritning path,
+.planritning circle {
+  vector-effect: non-scaling-stroke;
+}
+/* Samma linjespråk återkommer i #varfor: en sektion genom vägg. */
+.planritning {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  margin-top: 2.2rem;
+  color: var(--brass);
+  opacity: 0.34;
+}
 .heroIn {
   position: relative;
   z-index: 1;
   max-width: var(--max);
   margin: 0 auto;
   padding-inline: var(--gut);
-}
-.h1 {
-  margin: 1.3rem 0 1.6rem;
-  max-width: 20ch;
 }
 .heroLead {
   font-size: clamp(1rem, 1.5vw, 1.14rem);
@@ -286,18 +450,29 @@
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ljus-45);
+  color: var(--ljus-58);
+}
+/* I mellanspannet ligger ritningen annars rakt bakom rubriken — den flyttas
+   längre ut i högerkanten i stället. */
+@media (min-width: 781px) and (max-width: 1100px) {
+  .ritning {
+    right: -18%;
+    width: 62%;
+  }
 }
 @media (max-width: 780px) {
-  /* Ritningen får inte konkurrera med brödtexten på en liten skärm:
-     den sjunker ner under rubriken och tonas ner. */
+  /* Ritningen får inte konkurrera med brödtexten på en liten skärm: den
+     sjunker ner under CTA-blocket i stället för att ligga bakom texten. */
   .ritning {
     top: auto;
-    bottom: -6%;
-    right: -34%;
+    bottom: -4%;
+    right: -22%;
     translate: none;
-    width: 150%;
-    opacity: 0.07;
+    width: 128%;
+    opacity: 0.12;
+  }
+  .heroIn {
+    padding-bottom: 4.5rem;
   }
   .h1 {
     max-width: none;
@@ -429,7 +604,7 @@
 .tjanst li {
   font-size: 0.78rem;
   letter-spacing: 0.04em;
-  color: var(--ljus-45);
+  color: var(--ljus-70);
   padding-left: 0.95rem;
   position: relative;
 }
@@ -637,7 +812,7 @@
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ljus-45);
+  color: var(--ljus-58);
 }
 .kontaktRad b {
   font-family: var(--disp);
@@ -664,7 +839,7 @@ a.kontaktRad b {
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ljus-45);
+  color: var(--ljus-70);
 }
 .form input,
 .form select,
@@ -695,7 +870,7 @@ a.kontaktRad b {
 }
 .formNot {
   font-size: 0.75rem;
-  color: var(--ljus-45);
+  color: var(--ljus-58);
 }
 @media (max-width: 860px) {
   .kontaktGrid {
@@ -741,7 +916,7 @@ a.kontaktRad b {
   justify-content: space-between;
   gap: 0.7rem;
   font-size: 0.75rem;
-  color: var(--ljus-45);
+  color: var(--ljus-58);
 }
 .ftrBar a {
   color: var(--brass);
@@ -812,7 +987,7 @@ a.kontaktRad b {
   top: 0.7rem;
   right: 0.9rem;
   font-size: 1rem;
-  color: var(--ljus-45);
+  color: var(--ljus-58);
   padding: 0.4rem;
   line-height: 1;
 }
@@ -861,7 +1036,7 @@ a.kontaktRad b {
   font-size: 0.7rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ljus-45);
+  color: var(--ljus-58);
 }
 
 /* ---------- rörelse: scroll-driven CSS, noll JS ----------
