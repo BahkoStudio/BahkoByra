@@ -490,8 +490,11 @@ export default function SvHusDemo() {
 
           <div className={styles.fragorGrid}>
             <div className={styles.fragor}>
+              {/* name-attributet gör dragspelet exklusivt: öppnas en fråga
+                  stänger webbläsaren den förra själv. Ingen JS. I äldre
+                  webbläsare ignoreras attributet och flera kan stå öppna. */}
               {FRAGOR.map((f) => (
-                <details className={styles.fraga} key={f.q}>
+                <details className={styles.fraga} name="faq" key={f.q}>
                   <summary>
                     {f.q}
                     <span className={styles.fragaIkon} aria-hidden="true" />
