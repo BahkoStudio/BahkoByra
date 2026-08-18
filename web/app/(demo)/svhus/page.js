@@ -274,12 +274,6 @@ export default function SvHusDemo() {
               <br />
               <em>Vi tar ansvaret för varje steg.</em>
             </h1>
-            <p className={styles.heroLead}>
-              Ett husprojekt är många yrkesgrupper, en kommun och en kalkyl som ska hålla ihop. SV
-              Hus ansvarar för allt från arkitekt och bygglov till byggnation och samordningen av
-              alla hantverkare — så att ni kan lägga tiden på hur huset ska bli, inte på att hålla
-              ihop bygget.
-            </p>
             <div className={styles.heroCta}>
               <a className={styles.btn} href={TEL_HREF}>
                 Ring {TEL}
@@ -288,9 +282,6 @@ export default function SvHusDemo() {
                 Berätta om ert projekt
               </a>
             </div>
-            <p className={styles.heroMikro}>
-              Byggt enligt svensk AMA-standard · SV Hus AB, org.nr 559499-4062
-            </p>
           </div>
 
           {/* Videon är ren HTML (autoplay muted loop playsinline) — ingen
@@ -315,14 +306,24 @@ export default function SvHusDemo() {
         </div>
       </section>
 
-      {/* ---------- förtroenderad ---------- */}
-      <div className={styles.remsa} role="group" aria-label="Det här ingår">
-        <div className={styles.remsaIn}>
-          <span>Arkitekt till nyckel</span>
-          <span>Bygglov</span>
-          <span>Svensk AMA-standard</span>
-          <span>Energieffektiva material</span>
-          <span>Vi samordnar alla hantverkare</span>
+      {/* ---------- tjänste-tejpen ----------
+          Rullar med ren CSS (translateX till -50 %, listan ligger dubblerad så
+          loopen är sömlös). Kopian är aria-hidden — skärmläsare hör listan en
+          gång, och prefers-reduced-motion stannar bandet. */}
+      <div className={styles.tejp} role="group" aria-label="Det här ingår">
+        <div className={styles.tejpSpar}>
+          {[false, true].map((kopia) => (
+            <div className={styles.tejpIn} aria-hidden={kopia || undefined} key={kopia ? 'b' : 'a'}>
+              <span>Nybyggnation</span>
+              <span>Renovering</span>
+              <span>Arkitekt och bygglov</span>
+              <span>Vi samordnar alla hantverkare</span>
+              <span>Svensk AMA-standard</span>
+              <span>Energieffektiva material</span>
+              <span>Personlig service</span>
+              <span>Projekt i hela Sverige</span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -445,18 +446,18 @@ export default function SvHusDemo() {
                 det som ligger bakom ytan är beskrivet och kontrollerbart.
               </p>
 
-              {/* Samma linjespråk som heron, men en sektion genom vägg: det som
-                  ligger bakom ytan. Ren SVG, inga bilder av kundens projekt. */}
-              <svg className={styles.planritning} viewBox="0 0 460 150" fill="none" aria-hidden="true">
-                <g stroke="currentColor" strokeWidth="1.6">
-                  <path d="M20 20h420M20 130h420" />
-                  <path d="M20 20v110M120 20v110M240 20v110M440 20v110" />
-                  <path d="M20 44h420M20 106h420" strokeDasharray="5 9" />
-                  <path d="M60 44v62M180 44v62M300 44v62M380 44v62" strokeDasharray="5 9" />
-                  <circle cx="120" cy="75" r="4" />
-                  <circle cx="240" cy="75" r="4" />
-                </g>
-              </svg>
+              {/* Hantverket i bild i stället för linjer — sektionen kändes tom
+                  utan något att fästa blicken på. Illustration, inte kundens
+                  projekt: därav bildtexten. */}
+              <figure className={styles.varforBild}>
+                <Image
+                  src="/svhus/media/taklaggning-skiffer.jpg"
+                  alt="Händer som lägger skiffertak, närbild på hantverket"
+                  width={1200}
+                  height={896}
+                />
+                <figcaption>Illustration — hantverk och material</figcaption>
+              </figure>
 
               <a className={styles.btn} href="#kontakt">
                 Berätta om ert projekt
@@ -665,6 +666,30 @@ export default function SvHusDemo() {
           :target släpper flyttas inte skrollpositionen en pixel. Delas med
           mobilmenyn. */}
       <span className={styles.stangdAnkare} id="stangd" />
+      {/* ---------- kontakt-popup, helt utan JS ----------
+          Entrén sköts av en CSS-animation med 14 sekunders fördröjning, och
+          stängningen av checkbox-mönstret: :checked på inputen gömmer kortet.
+          Ren HTML/CSS — sidans nollklient-JS-egenskap består. Vid
+          prefers-reduced-motion visas popupen inte alls: en ruta som dyker upp
+          av sig själv ÄR rörelse. */}
+      <input type="checkbox" id="popup-bort" className={styles.popupBort} aria-hidden="true" tabIndex={-1} />
+      <aside className={styles.popup} aria-label="Kontakta SV Hus">
+        <label className={styles.popupX} htmlFor="popup-bort" role="button" aria-label="Stäng" tabIndex={0}>
+          ✕
+        </label>
+        <p className={styles.popupEyebrow}>Funderar ni på att bygga?</p>
+        <p className={styles.popupTxt}>
+          Berätta om ert projekt, så säger vi hur vi skulle ta det vidare — från ritning till
+          inflytt.
+        </p>
+        <a className={`${styles.btn} ${styles.popupCta}`} href={TEL_HREF}>
+          Ring {TEL}
+        </a>
+        <a className={styles.popupAlt} href="#kontakt">
+          Eller skriv några rader →
+        </a>
+      </aside>
+
       <a className={styles.demoKnapp} href="#bahko-demo">
         Om det här förslaget
       </a>
