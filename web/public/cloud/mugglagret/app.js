@@ -425,8 +425,11 @@
     var bar = document.getElementById("stickybar");
     if (!bar) return;
     var floatBtn = document.getElementById("float-demo");
+    /* På produktsidan är köpraden hela poängen — där kommer remsan tidigare,
+       så köpknappen alltid finns inom räckhåll. */
+    var trosk = document.getElementById("pdp") ? 0.45 : 0.9;
     var onScroll = function () {
-      var visa = window.scrollY > window.innerHeight * 0.9;
+      var visa = window.scrollY > window.innerHeight * trosk;
       bar.classList.toggle("visible", visa);
       /* Bahko-knappen flyttas upp så den inte hamnar under remsan */
       if (floatBtn) floatBtn.classList.toggle("lyft", visa);
