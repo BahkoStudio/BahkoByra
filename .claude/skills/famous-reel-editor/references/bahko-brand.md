@@ -61,6 +61,22 @@ vill ha en ANNAN rad under adressen, annars står ”SYNLIGHET SOM SÄLJER” du
 
 Loggan är alltid det **platta** materialet, aldrig 3D-rendern (beslut 2026-08-16).
 
+## SFX
+
+`scripts/sfx.py` syntetiserar ljuden lokalt ur `beats.json` — ingen sampelbank,
+inga credits. Korttyp styr ljudet: `hook`/`cta` får riser, `graf`/`outro` whoosh,
+`statgraf`/`kundcase` pop, `checklista` tre tick. Spåret normaliseras till
+−18 dBFS och läggs in med `SFX=cards/sfx.m4a` (nivå `SFX_VOL`, default 0.5).
+
+Rösten ska alltid dominera. Hör du SFX:en som ett eget element är den för hög.
+
+## Tempo
+
+Varje kort ska hinna **läsas**, inte bara visas. `gen_bahko.py` varnar för beats
+under 1,4s, och listornas stagger skalas efter beatens längd. Sikta 3–5s per
+kort. Blir det trångt: slå ihop beats eller stryk ett kort — fem kort som hinns
+med slår nio som blinkar (Mathias 2026-08-18).
+
 ## GSAP paketeras lokalt
 
 Kortlagret laddar `assets/bahko/gsap.min.js`, inte CDN:et. Är biblioteket

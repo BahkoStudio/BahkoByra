@@ -121,6 +121,21 @@ for i, (trig, _, _) in enumerate(BEATS):
     if i and starts[i] <= starts[i - 1]:
         sys.exit(f"beat {i} ('{trig}') ligger före eller på beat {i-1} ({starts[i]} <= {starts[i-1]}).")
 
+# TEMPOSPÄRR. Mathias 2026-08-18: "det går för fort, man hinner inte med".
+# Ett kort under ~1,4s hinner inte läsas — ögat ska hitta rubriken, läsa siffran
+# och se grafen. Blir listan lång: slå ihop beats, ta bort ett kort, eller flytta
+# triggern. Det är ALLTID bättre med fem kort som hinns med än nio som blinkar.
+MIN_BEAT = 1.4
+korta = [(i, BEATS[i][0], ends[i] - starts[i]) for i in range(len(BEATS))
+         if ends[i] - starts[i] < MIN_BEAT]
+if korta:
+    print(f"VARNING: {len(korta)} av {len(BEATS)} beats är kortare än {MIN_BEAT}s "
+          f"— de hinns inte med:")
+    for i, trig, d in korta:
+        print(f"  beat {i} '{trig}': {d:.2f}s")
+    print("  Slå ihop dem med granngrannen eller stryk ett kort. Färre kort som "
+          "hinns med slår fler som blinkar.")
+
 
 def inner(i, t, p):
     if t == "hook":
@@ -185,8 +200,13 @@ for i, ((trig, t, p), s, e) in enumerate(zip(BEATS, starts, ends)):
                       f'document.getElementById("big{i}").textContent=Math.round(this.targets()[0].v)+"{p.get("suffix","")}";}}}},{s+0.15:.2f});')
         js.append(f'tl.fromTo("#sp{i}",{{attr:{{"stroke-dashoffset":760}}}},{{attr:{{"stroke-dashoffset":0}},duration:1.0,ease:"power2.out"}},{s+0.2:.2f});')
     if t == "checklista":
-        for j in range(len(p["rows"])):
-            js.append(f'tl.fromTo("#b{i}l{j}",{{opacity:0,x:-46}},{{opacity:1,x:0,duration:0.26,ease:"back.out(1.8)"}},{s+0.15+j*0.3:.2f});')
+        # Staggern skalas efter tillgänglig tid: tre rader med fast 0,3s lucka i ett
+        # kort beat blir ett blink. Radernas entré ska vara klar innan sista tredjedelen
+        # så det finns tid att LÄSA dem.
+        n_rader = len(p["rows"])
+        lucka = min(0.42, max(0.16, (dur * 0.55) / max(1, n_rader)))
+        for j in range(n_rader):
+            js.append(f'tl.fromTo("#b{i}l{j}",{{opacity:0,x:-46}},{{opacity:1,x:0,duration:0.26,ease:"back.out(1.8)"}},{s+0.15+j*lucka:.2f});')
     if t == "cta":
         js.append(f'tl.fromTo("#c{i}k",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.3,ease:"power3.out"}},{s+0.1:.2f});')
         js.append(f'tl.fromTo("#c{i}b",{{opacity:0,scale:0.86}},{{opacity:1,scale:1,duration:0.32,ease:"back.out(2)"}},{max(s+0.5, e-1.4):.2f});')
@@ -271,9 +291,14 @@ window.__timelines=window.__timelines||{{}};const tl=gsap.timeline({{paused:true
 window.__timelines["main"]=tl;</script></body></html>'''
 
 Path("index.html").write_text(HTML, encoding="utf-8")
-print(f"gen_bahko: {len(BEATS)} beats, {TOTAL:.2f}s")
+# Tidsatt beat-lista för scripts/sfx.py — ljudet ska landa på samma bildruta som kortet.
+Path("beats.json").write_text(json.dumps(
+    [{"start": starts[i], "slut": ends[i], "typ": BEATS[i][1], "trigger": BEATS[i][0]}
+     for i in range(len(BEATS))], indent=1, ensure_ascii=False), encoding="utf-8")
+print(f"gen_bahko: {len(BEATS)} beats, {TOTAL:.2f}s  (beats.json skriven för sfx.py)")
 print("  intro: avskalad (inget märke) | outro: logo-dark + tagline")
 print("  maskot: INTE i korten — maskot_frames.py + MASKOT_FONSTER i compose_bahko.sh")
 print(f"  palett: accent {A}/{AB}  bas {BAS}  CTA {CTA_YTA} på {CTA_TXT}")
 for i, ((trig, t, p), s, e) in enumerate(zip(BEATS, starts, ends)):
-    print(f"  {s:6.2f}-{e:6.2f} {t:11s} {trig}")
+    flagga = "  <-- för kort" if e - s < MIN_BEAT else ""
+    print(f"  {s:6.2f}-{e:6.2f} ({e-s:4.2f}s) {t:11s} {trig}{flagga}")

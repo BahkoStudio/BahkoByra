@@ -10,6 +10,8 @@
 # Usage: compose_bahko.sh <cut.mp4> <cards.mp4> <capt_dir> <maskot_dir> <out.mp4> [crop_y=420]
 #   MASKOT_XY=x:y   överstyr placeringen (default: nedre vänster, fri från både
 #                   undertexterna och Instagrams knapprad på högerkanten)
+#   SFX=cards/sfx.m4a   SFX-spår från scripts/sfx.py, blandas UNDER rösten
+#                       (SFX_VOL=0.5 för att ändra nivån)
 #   MASKOT_FONSTER="4.2-8.6,22.0-27.4"   tidsfönster där figuren syns. Detta är
 #                   NORMALFALLET: maskoten ska vara med där hon passar innehållet,
 #                   inte tvingad genom hela klippet (Mathias 2026-08-18). Utan
@@ -20,6 +22,7 @@ CUT="$1"; CARDS="$2"; CAPT="$3"; MASK="$4"; OUT="$5"; CY="${6:-420}"
 SKILL_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 MUSIC="${MUSIC:-$SKILL_DIR/assets/bg-music.m4a}"
 MUSIC_VOL="${MUSIC_VOL:-0.06}"
+SFX_VOL="${SFX_VOL:-0.5}"
 MASK_FPS="${MASK_FPS:-12}"
 
 for d in "$CAPT" "$MASK"; do
@@ -94,8 +97,20 @@ color=c=black:s=1080x1920[bg];[bg][v]overlay=0:864:shortest=1[stage];\
 # ffmpeg 6.x medan sampelantalet svarar mot 48kHz -> ljudet blir dubbelt så snabbt.
 # Röst normaliserad till dialognivå, musik lågt (6%). +faststart => filen öppnas
 # i QuickTime och streamar direkt.
-ffmpeg -y -i "$OUT.noaudio.mp4" -i "$MUSIC" -filter_complex \
+# Rösten normaliseras, musiken ligger lågt, SFX:en mellan dem. normalize=0 på amix
+# är avsiktligt: annars sänker ffmpeg rösten i takt med att grenar läggs till.
+if [ -n "$SFX" ]; then
+  [ -f "$SFX" ] || { echo "FEL: SFX-filen finns inte: $SFX" >&2; exit 1; }
+  ffmpeg -y -i "$OUT.noaudio.mp4" -i "$MUSIC" -i "$SFX" -filter_complex \
+"[0:a]loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000[vo];\
+[1:a]atrim=start=4,asetpts=PTS-STARTPTS,volume=$MUSIC_VOL,afade=in:st=0:d=0.5,afade=out:st=$FOUT:d=2,aresample=48000[m];\
+[2:a]volume=$SFX_VOL,aresample=48000[sx];\
+[vo][m][sx]amix=inputs=3:duration=first:normalize=0[a]" \
+    -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -ar 48000 -shortest -movflags +faststart "$OUT"
+else
+  ffmpeg -y -i "$OUT.noaudio.mp4" -i "$MUSIC" -filter_complex \
 "[0:a]loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000[vo];[1:a]atrim=start=4,asetpts=PTS-STARTPTS,volume=$MUSIC_VOL,afade=in:st=0:d=0.5,afade=out:st=$FOUT:d=2,aresample=48000[m];[vo][m]amix=inputs=2:duration=first:normalize=0[a]" \
-  -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -ar 48000 -shortest -movflags +faststart "$OUT"
+    -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -ar 48000 -shortest -movflags +faststart "$OUT"
+fi
 rm -f "$OUT.noaudio.mp4"
-echo "KLAR -> $OUT   (maskot ${MW}x${MH} vid ${MX}:${MY})"
+echo "KLAR -> $OUT   (maskot ${MW}x${MH} vid ${MX}:${MY}${SFX:+, SFX på $SFX_VOL})"
