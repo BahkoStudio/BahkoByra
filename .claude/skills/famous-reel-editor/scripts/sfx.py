@@ -98,15 +98,30 @@ def tick(dur=0.012, seed=2) -> list[float]:
     return [rnd.uniform(-1, 1) * e[i] * 0.5 for i in range(n)]
 
 
+# Relativ vikt per ljud EFTER att varje ljud toppnormaliserats. Utan detta steg
+# bestämmer det längsta/starkaste ljudet (risern) den globala skalan och trycker
+# ner resten: ticken mätte -48 dB mot risern -27 och blev ohörbar under rösten.
+VIKT = {"riser": 1.00, "whoosh": 0.90, "pop": 0.85, "tick3": 0.80}
+
+
+def toppnormalisera(s: list[float], mal: float) -> list[float]:
+    topp = max((abs(v) for v in s), default=0.0)
+    if topp <= 0:
+        return s
+    k = mal / topp
+    return [v * k for v in s]
+
+
 def bygg_ljud() -> dict:
     t = tick()
-    return {
+    rå = {
         "whoosh": whoosh(),
         "pop": pop(),
         "riser": riser(),
         # tre tick i följd: en rad i en lista som checkas av
         "tick3": t + [0.0] * int(SR * 0.14) + t + [0.0] * int(SR * 0.14) + t,
     }
+    return {k: toppnormalisera(v, VIKT[k]) for k, v in rå.items()}
 
 
 def main() -> None:
