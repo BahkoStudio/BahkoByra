@@ -46,6 +46,11 @@ const nextConfig = {
       { source: '/cloud/brommatradgardsservice/:path*', destination: 'https://brommatradgardsservice.se/', permanent: true },
       { source: '/cloud/smamaleri', destination: 'https://smamaleri.se/', permanent: true },
       { source: '/cloud/smamaleri/:path*', destination: 'https://smamaleri.se/', permanent: true },
+      // Shabifix byggdes om som Next.js-route 2026-08-18 (Mathias beslut: alla
+      // demo-recopy/hemsidor-demos i Next.js). Gamla länken är skickad till
+      // prospektet och får aldrig brytas — den pekas om hit.
+      { source: '/cloud/shabifix', destination: '/shabifix/', permanent: true },
+      { source: '/cloud/shabifix/:path*', destination: '/shabifix/', permanent: true },
       // Raderad förpivot-artefakt.
       { source: '/pitchdeck.html', destination: '/', permanent: true },
     ];
