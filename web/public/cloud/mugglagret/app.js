@@ -72,6 +72,11 @@
 
   var PRICE = "136 kr";
 
+  /* Populär-märket sitter på en fast lista, inte på slump: samma mugg är
+     märkt vid varje besök och på varje sida. Listan ska bytas mot riktig
+     försäljningsdata när butiken är skarp. */
+  var POPULARA = [3, 9, 17, 27, 33];
+
   /* ---------- hjälpare ---------- */
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
@@ -92,7 +97,11 @@
     return '' +
       '<a class="pcard rv" href="produkt.html?p=' + p.id + '">' +
         '<div class="pcard-img">' +
-          (p.isNew ? '<span class="pcard-tag pcard-tag--new">Nyhet</span>' : '') +
+          (p.isNew
+            ? '<span class="pcard-tag pcard-tag--new">Nyhet</span>'
+            : POPULARA.indexOf(p.id) > -1
+              ? '<span class="pcard-tag pcard-tag--pop">Populär just nu</span>'
+              : '') +
           '<img src="' + p.img + '" alt="' + esc(p.title) + ' – keramikmugg 11 oz"' + lazy + ' width="494" height="592">' +
           '<span class="pcard-quick">Välj färg</span>' +
         '</div>' +

@@ -1,0 +1,894 @@
+/* ===========================================================================
+   SV HUS AB — palett och typografi
+   Egen distinkt palett: kalksten/mässing mot nästan svart. Ingen krock med
+   befintliga demos (smaragd, lera, kobolt, orange, solgul, cyan, energigrön).
+   Kontrastregeln följd överallt: ljus yta -> mörk text, aldrig tvärtom.
+   =========================================================================== */
+
+.sida {
+  --ink: #0C1013;
+  --yta: #14191E;
+  --yta-2: #1C2329;
+  --linje: #2A333B;
+  --ljus: #F4F1EB;
+  --ljus-70: rgba(244, 241, 235, 0.7);
+  --ljus-45: rgba(244, 241, 235, 0.45);
+  --sten: #EDE7DB;
+  --brass: #D6BE95;
+  --brass-lj: #EBD9B4;
+
+  --disp: var(--sv-display), 'Times New Roman', serif;
+  --ui: var(--sv-ui), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --gut: clamp(1.15rem, 4vw, 3.5rem);
+  --max: 1240px;
+
+  background: var(--ink);
+  color: var(--ljus);
+  font-family: var(--ui);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.sida *,
+.sida *::before,
+.sida *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.sida a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: var(--gut);
+}
+
+/* ---------- typografi ---------- */
+.h1 {
+  font-family: var(--disp);
+  font-weight: 300;
+  font-size: clamp(2.5rem, 7vw, 5.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+.h1 em {
+  font-style: italic;
+  color: var(--brass);
+}
+
+.h2 {
+  font-family: var(--disp);
+  font-weight: 300;
+  font-size: clamp(1.9rem, 4vw, 3.1rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-top: 0.9rem;
+}
+.h2 em {
+  font-style: italic;
+  color: var(--brass);
+}
+
+.eyebrow {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 1.7rem;
+  border: 0;
+  border-radius: 2px;
+  background: var(--brass);
+  color: var(--ink);
+  font-family: var(--ui);
+  font-size: 0.79rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), transform 0.2s var(--ease);
+}
+.btnGhost {
+  background: transparent;
+  color: var(--ljus);
+  box-shadow: inset 0 0 0 1px var(--linje);
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    background: var(--brass-lj);
+  }
+  .btnGhost:hover {
+    background: var(--yta-2);
+    color: var(--ljus);
+  }
+}
+.btn:active {
+  transform: scale(0.985);
+}
+
+/* ---------- header ---------- */
+.hdr {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(12, 16, 19, 0.86);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--linje);
+}
+.hdrIn {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: var(--gut);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-shrink: 0;
+}
+.brandMark {
+  width: 34px;
+  height: 34px;
+  color: var(--brass);
+  display: grid;
+  place-items: center;
+}
+.brandMark svg {
+  width: 100%;
+  height: 100%;
+}
+.brandTxt {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.brandTxt b {
+  font-family: var(--disp);
+  font-size: 1.22rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.brandTxt i {
+  font-style: normal;
+  font-size: 0.58rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ljus-45);
+  margin-top: 0.16rem;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+.nav a {
+  font-size: 0.85rem;
+  color: var(--ljus-70);
+  position: relative;
+  padding-block: 0.4rem;
+  transition: color 0.25s var(--ease);
+}
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--brass);
+  transition: width 0.35s var(--ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav a:hover {
+    color: var(--ljus);
+  }
+  .nav a:hover::after {
+    width: 100%;
+  }
+}
+
+.hdrTel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 44px;
+  padding: 0 1.05rem;
+  border-radius: 2px;
+  background: var(--brass);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.3s var(--ease);
+}
+.hdrTel svg {
+  width: 16px;
+  height: 16px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hdrTel:hover {
+    background: var(--brass-lj);
+  }
+}
+
+@media (max-width: 900px) {
+  .nav {
+    display: none;
+  }
+}
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3.5rem, 9vw, 7.5rem) 0 clamp(3rem, 7vw, 6rem);
+  background:
+    radial-gradient(120% 90% at 85% 0%, rgba(214, 190, 149, 0.09), transparent 60%),
+    var(--ink);
+}
+/* Ritningen: husets sektion i linjer, låg opacitet bakom rubriken */
+.ritning {
+  position: absolute;
+  top: 50%;
+  right: -8%;
+  translate: 0 -50%;
+  width: min(58%, 720px);
+  height: auto;
+  color: var(--brass);
+  opacity: 0.16;
+  pointer-events: none;
+}
+.heroIn {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: var(--gut);
+}
+.h1 {
+  margin: 1.3rem 0 1.6rem;
+  max-width: 20ch;
+}
+.heroLead {
+  font-size: clamp(1rem, 1.5vw, 1.14rem);
+  color: var(--ljus-70);
+  max-width: 52ch;
+  margin-bottom: 2.4rem;
+}
+.heroCta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.heroMikro {
+  margin-top: 1.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ljus-45);
+}
+@media (max-width: 780px) {
+  /* Ritningen får inte konkurrera med brödtexten på en liten skärm:
+     den sjunker ner under rubriken och tonas ner. */
+  .ritning {
+    top: auto;
+    bottom: -6%;
+    right: -34%;
+    translate: none;
+    width: 150%;
+    opacity: 0.07;
+  }
+  .h1 {
+    max-width: none;
+  }
+  .heroCta .btn {
+    width: 100%;
+  }
+}
+
+/* ---------- förtroenderemsa ---------- */
+.remsa {
+  border-block: 1px solid var(--linje);
+  background: var(--yta);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.remsa::-webkit-scrollbar {
+  display: none;
+}
+/* Punkterna radbryts på stora skärmar (inget får klippas vid högerkanten)
+   och blir en sidoscroll först när de inte får plats. */
+.remsaIn {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.05rem var(--gut);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 2.1rem;
+}
+@media (max-width: 900px) {
+  .remsaIn {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+}
+.remsaIn span {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ljus-70);
+  position: relative;
+  padding-left: 1rem;
+}
+.remsaIn span::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  translate: 0 -50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--brass);
+}
+
+/* ---------- sektioner ---------- */
+.sek {
+  padding: clamp(3.5rem, 8vw, 7rem) 0;
+}
+.sekLjus {
+  background: var(--sten);
+  color: var(--ink);
+}
+.sekLjus .eyebrow {
+  color: #8A6A32;
+}
+.sekLjus .h2 em {
+  color: #8A6A32;
+}
+.sekLjus .sekLead {
+  color: #4A4640;
+}
+
+.sekHuvud {
+  max-width: 62ch;
+  margin-bottom: clamp(2.2rem, 4vw, 3.4rem);
+}
+.sekLead {
+  margin-top: 1.1rem;
+  color: var(--ljus-70);
+  font-size: 1.02rem;
+}
+
+/* ---------- tjänster ---------- */
+.tjanster {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--linje);
+  border: 1px solid var(--linje);
+}
+.tjanst {
+  background: var(--ink);
+  padding: clamp(1.5rem, 2.4vw, 2.1rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: background 0.35s var(--ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .tjanst:hover {
+    background: var(--yta);
+  }
+}
+.tjanstNr {
+  font-family: var(--disp);
+  font-size: 0.95rem;
+  color: var(--brass);
+  letter-spacing: 0.1em;
+}
+.tjanst h3 {
+  font-family: var(--disp);
+  font-size: 1.42rem;
+  font-weight: 400;
+  line-height: 1.15;
+}
+.tjanst p {
+  font-size: 0.92rem;
+  color: var(--ljus-70);
+}
+.tjanst ul {
+  list-style: none;
+  margin-top: auto;
+  padding-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.tjanst li {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--ljus-45);
+  padding-left: 0.95rem;
+  position: relative;
+}
+.tjanst li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 1px;
+  background: var(--brass);
+}
+@media (max-width: 1000px) {
+  .tjanster {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 620px) {
+  .tjanster {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- process ---------- */
+.steg {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.4rem;
+  counter-reset: steg;
+}
+.stegItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(12, 16, 19, 0.16);
+}
+.stegNr {
+  font-family: var(--disp);
+  font-size: 2.4rem;
+  font-weight: 300;
+  line-height: 1;
+  color: #8A6A32;
+}
+.stegItem h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.stegItem p {
+  font-size: 0.89rem;
+  color: #4A4640;
+}
+@media (max-width: 1000px) {
+  .steg {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .steg {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+  .stegItem {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 1rem;
+    padding-top: 1.1rem;
+  }
+  .stegNr {
+    font-size: 1.7rem;
+  }
+}
+
+/* ---------- varför ---------- */
+.varforGrid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.varforText .btn {
+  margin-top: 2rem;
+}
+.skal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--linje);
+  border: 1px solid var(--linje);
+}
+.skalItem {
+  background: var(--yta);
+  padding: clamp(1.3rem, 2.2vw, 1.9rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.skalItem h3 {
+  font-family: var(--disp);
+  font-size: 1.18rem;
+  font-weight: 400;
+  color: var(--brass-lj);
+}
+.skalItem p {
+  font-size: 0.88rem;
+  color: var(--ljus-70);
+}
+@media (max-width: 900px) {
+  .varforGrid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .skal {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- frågor ---------- */
+.fragor {
+  border-top: 1px solid rgba(12, 16, 19, 0.16);
+  max-width: 80ch;
+}
+.fraga {
+  border-bottom: 1px solid rgba(12, 16, 19, 0.16);
+}
+.fraga summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--disp);
+  font-size: clamp(1.05rem, 1.8vw, 1.32rem);
+  font-weight: 400;
+}
+.fraga summary::-webkit-details-marker {
+  display: none;
+}
+.fragaIkon {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+.fragaIkon::before,
+.fragaIkon::after {
+  content: '';
+  position: absolute;
+  background: #8A6A32;
+  transition: opacity 0.25s var(--ease), rotate 0.3s var(--ease);
+}
+.fragaIkon::before {
+  left: 0;
+  top: 7px;
+  width: 15px;
+  height: 1.5px;
+}
+.fragaIkon::after {
+  left: 7px;
+  top: 0;
+  width: 1.5px;
+  height: 15px;
+}
+.fraga[open] .fragaIkon::after {
+  opacity: 0;
+}
+.fraga p {
+  padding-bottom: 1.4rem;
+  max-width: 68ch;
+  font-size: 0.95rem;
+  color: #4A4640;
+}
+
+/* ---------- kontakt ---------- */
+.kontakt {
+  padding: clamp(3.5rem, 8vw, 7rem) 0;
+  background:
+    radial-gradient(100% 80% at 15% 0%, rgba(214, 190, 149, 0.1), transparent 62%),
+    var(--ink);
+}
+.kontaktGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.kontaktRader {
+  margin-top: 2.2rem;
+  border-top: 1px solid var(--linje);
+}
+.kontaktRad {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--linje);
+}
+.kontaktRad span {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ljus-45);
+}
+.kontaktRad b {
+  font-family: var(--disp);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--ljus);
+}
+a.kontaktRad b {
+  color: var(--brass);
+}
+
+.form {
+  background: var(--yta);
+  border: 1px solid var(--linje);
+  padding: clamp(1.4rem, 2.6vw, 2.1rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ljus-45);
+}
+.form input,
+.form select,
+.form textarea {
+  font-family: var(--ui);
+  font-size: 0.95rem;
+  color: var(--ljus);
+  background: var(--ink);
+  border: 1px solid var(--linje);
+  border-radius: 2px;
+  padding: 0.8rem 0.9rem;
+  min-height: 46px;
+  width: 100%;
+  text-transform: none;
+  letter-spacing: normal;
+}
+.form textarea {
+  resize: vertical;
+}
+.form input:focus-visible,
+.form select:focus-visible,
+.form textarea:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 1px;
+}
+.form .btn {
+  margin-top: 0.35rem;
+}
+.formNot {
+  font-size: 0.75rem;
+  color: var(--ljus-45);
+}
+@media (max-width: 860px) {
+  .kontaktGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- footer ---------- */
+.ftr {
+  border-top: 1px solid var(--linje);
+  background: var(--yta);
+  padding: clamp(2.4rem, 5vw, 3.6rem) 0 1.6rem;
+}
+.ftrGrid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2rem;
+  padding-bottom: 2.2rem;
+}
+.ftrText {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--ljus-70);
+  max-width: 46ch;
+}
+.ftrLankar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--ljus-70);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ftrLankar a:hover {
+    color: var(--brass);
+  }
+}
+.ftrBar {
+  border-top: 1px solid var(--linje);
+  padding-top: 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.7rem;
+  font-size: 0.75rem;
+  color: var(--ljus-45);
+}
+.ftrBar a {
+  color: var(--brass);
+}
+@media (max-width: 700px) {
+  .ftrGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Bahko: demo-knapp och modal, helt utan JS ---------- */
+.demoKnapp {
+  position: fixed;
+  right: 1.5rem;
+  bottom: max(1.5rem, env(safe-area-inset-bottom));
+  z-index: 70;
+  display: inline-flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 0 1.4rem;
+  border-radius: 3px;
+  background: #10b981;
+  color: #0a1628;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.6);
+}
+
+.modalLager {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ease), visibility 0.3s;
+}
+/* :target-tricket — modalen öppnas av länken, inte av ett script */
+.modalLager:target {
+  opacity: 1;
+  visibility: visible;
+}
+.modalSkugga {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 9, 11, 0.78);
+  backdrop-filter: blur(3px);
+}
+.modal {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 460px);
+  background: var(--yta);
+  border: 1px solid var(--linje);
+  border-radius: 4px;
+  padding: clamp(1.6rem, 3vw, 2.3rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  text-align: left;
+}
+.modalX {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.9rem;
+  font-size: 1rem;
+  color: var(--ljus-45);
+  padding: 0.4rem;
+  line-height: 1;
+}
+.modalBadge {
+  align-self: flex-start;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #0a1628;
+  background: #10b981;
+  padding: 0.4rem 0.7rem;
+  border-radius: 2px;
+}
+.modal h3 {
+  font-family: var(--disp);
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.modal p {
+  font-size: 0.92rem;
+  color: var(--ljus-70);
+}
+.modalCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  background: #10b981;
+  color: #0a1628;
+  border-radius: 3px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+.modalAlt {
+  font-size: 0.85rem;
+  color: var(--brass);
+  text-align: center;
+}
+.modalFot {
+  border-top: 1px solid var(--linje);
+  padding-top: 0.9rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ljus-45);
+}
+
+/* ---------- rörelse: scroll-driven CSS, noll JS ----------
+   Utgångsläget är SYNLIGT. Animationen läggs bara på där
+   animation-timeline stöds, så sidan aldrig kan bli tom. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .sekHuvud,
+    .tjanst,
+    .stegItem,
+    .skalItem,
+    .varforText,
+    .form,
+    .kontaktRader {
+      animation: stigUpp linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 26%;
+    }
+  }
+}
+@keyframes stigUpp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

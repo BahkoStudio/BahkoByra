@@ -235,18 +235,18 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .mnav a{font-family:var(--disp);font-size:2rem;padding:.6rem 0;border-bottom:1px solid var(--line)}
 
 /* ---------- hero ---------- */
-.hero{padding:clamp(3.2rem,7vw,6rem) 0 clamp(3rem,6vw,5.5rem)}
-.hero-grid{display:grid;grid-template-columns:1.02fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
-.hero h1{font-size:clamp(2.6rem,6.4vw,4.75rem);margin:1.5rem 0 1.4rem}
+.hero{padding:clamp(2.2rem,4vw,3.4rem) 0 clamp(2.6rem,5vw,4.4rem);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(1.8rem,4vw,4rem);align-items:center}
+.hero-txt{padding-block:clamp(0rem,2vw,1.4rem)}
+.hero h1{font-size:clamp(2.5rem,5.6vw,4.3rem);margin:1.2rem 0 1.1rem;max-width:19ch}
 .hero h1 em{font-style:italic;color:var(--ink-2)}
 .hero p{font-size:clamp(1rem,1.6vw,1.14rem);color:var(--ink-2);max-width:45ch;margin-bottom:2.3rem}
 .hero-cta{display:flex;flex-wrap:wrap;gap:.8rem}
 
 /* Brådskan i hero: en rad, inte en skrikande banner */
-.hero-now{
-  display:flex;align-items:center;gap:.55rem;
-  margin-top:1.5rem;font-size:.85rem;color:var(--ink-2);
-}
+.hero-now{margin-top:1.5rem;font-size:.85rem;color:var(--ink-2)}
+.hero-now .pulse{display:inline-block;vertical-align:middle;margin-right:.5rem}
+.hero-now b{white-space:nowrap}
 .hero-now b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
 
 .eyebrow--live{display:inline-flex!important;align-items:center;gap:.45rem;color:var(--terra)}
@@ -254,25 +254,56 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 /* Nytt-raden: fyra kort på en rad */
 .pgrid--rad{grid-template-columns:repeat(4,1fr)}
 .hero-facts{
-  display:flex;flex-wrap:wrap;gap:1.6rem 2.6rem;margin-top:3.2rem;
-  padding-top:1.9rem;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:1.3rem 2.6rem;margin-top:2.1rem;
+  padding-top:1.5rem;border-top:1px solid var(--line);
 }
 .hero-facts div strong{display:block;font-family:var(--disp);font-size:1.6rem;font-weight:600;line-height:1.1}
 .hero-facts div span{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
 
 /* Källbilderna är 494×592 (5:6). Alla bildramar hålls på 5/6 eller 1/1 —
    bredare format skär av muggen. */
-.hero-art{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
-.hero-art figure{background:var(--cream);border-radius:3px;overflow:hidden;position:relative}
-.hero-art img{width:100%;aspect-ratio:5/6;object-fit:cover;transition:transform 1.1s var(--ease)}
-.hero-art figure:nth-child(3){
-  grid-column:1/-1;background:var(--ink);color:var(--cream);
-  display:flex;align-items:center;justify-content:space-between;gap:1.2rem;
-  padding:1.5rem 1.8rem;flex-wrap:wrap;
+/* ---------- motivväggen i heron ----------
+   Tre spalter med kundens muggar som glider i olika takt och riktning.
+   Videokänsla utan videofil: inget att buffra, inget som kan misslyckas.
+   Slingan är sömlös eftersom bildlistan ligger dubblerad i HTML och
+   spalten flyttas exakt -50%.
+   multiply tar bort bildernas vita studiobakgrund mot grädden, så muggarna
+   svävar i stället för att sitta i vita rutor. */
+.hero-vagg{
+  position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;
+  height:clamp(430px,46vw,600px);overflow:hidden;
 }
-.hero-art figure:nth-child(3) b{font-family:var(--disp);font-size:1.75rem;font-weight:600;line-height:1.08}
-.hero-art figure:nth-child(3) i{font-style:normal;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;opacity:.6;text-align:right}
-@media(hover:hover) and (pointer:fine){.hero-art figure:hover img{transform:scale(1.045)}}
+/* Uttoningen är ett överlägg i sidans gräddfärg, INTE en mask: en mask hade
+   isolerat blend-gruppen och slagit ut multiply, varpå bildernas vita
+   studiobakgrund syns som rutor igen. */
+.hero-vagg::before,
+.hero-vagg::after{
+  content:'';position:absolute;left:0;right:0;height:14%;z-index:2;pointer-events:none;
+}
+.hero-vagg::before{top:0;background:linear-gradient(180deg,var(--paper),transparent)}
+.hero-vagg::after{bottom:0;background:linear-gradient(0deg,var(--paper),transparent)}
+.vagg-kol{
+  display:flex;flex-direction:column;gap:.85rem;
+  animation:vaggGlid 46s linear infinite;
+  will-change:transform;
+}
+.vagg-kol--ned{animation-duration:58s;animation-direction:reverse}
+.vagg-kol--tredje{animation-duration:52s}
+.vagg-kol img{
+  width:100%;aspect-ratio:5/6;object-fit:cover;
+  mix-blend-mode:multiply;
+}
+@keyframes vaggGlid{
+  from{transform:translateY(0)}
+  to{transform:translateY(-50%)}
+}
+@keyframes vaggGlidSid{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .vagg-kol{animation:none}
+}
 
 /* ---------- sektionsrubriker ---------- */
 .sec{padding:clamp(3.4rem,6.5vw,6rem) 0}
@@ -688,12 +719,24 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 @media(max-width:900px){
   .nav{display:none}
   .burger{display:block;width:44px;height:44px;padding:11px 12px}
-  .hero-grid{grid-template-columns:1fr;gap:2.6rem}
-  .hero-art{order:-1;grid-template-columns:1fr 1fr}
-  /* Mörka påståendekortet hamnar FÖRE rubriken när konsten flyttas upp.
-     Faktaraden bär samma budskap (136 kr · fast pris) — dölj kortet i stället. */
-  .hero-art figure:nth-child(3){display:none}
-  .feats{grid-template-columns:1fr}
+  .hero-grid{grid-template-columns:1fr;gap:1.9rem}
+  /* Väggen flyttas UPP: rörelsen är det första man ser, sen erbjudandet.
+     Och den vänds på sidled — en stående spalt hinner bara visa en och en
+     halv mugg på 390 px, resten blir vita luckor. */
+  .hero-vagg{
+    order:-1;display:block;height:auto;overflow:hidden;
+    margin-inline:calc(var(--pad) * -1);
+  }
+  .hero-vagg::before,
+  .hero-vagg::after{top:0;bottom:0;height:auto;width:12%}
+  .hero-vagg::before{left:0;right:auto;background:linear-gradient(90deg,var(--paper),transparent)}
+  .hero-vagg::after{right:0;left:auto;background:linear-gradient(270deg,var(--paper),transparent)}
+  .vagg-kol{
+    flex-direction:row;gap:.5rem;
+    animation-name:vaggGlidSid;animation-duration:38s;
+  }
+  .vagg-kol img{width:44vw;flex:0 0 auto}
+  .vagg-kol--ned,.vagg-kol--tredje{display:none}
   .promises{grid-template-columns:1fr}
   .b2b-grid{grid-template-columns:1fr;gap:2.4rem}
   .pdp{grid-template-columns:1fr;gap:2.2rem}
@@ -737,3 +780,29 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   #float-demo{right:1rem;bottom:max(1rem,env(safe-area-inset-bottom));padding:.8rem 1.1rem;font-size:.66rem}
   .modal{padding:1.9rem 1.4rem}
 }
+
+/* ---------- brådskeband mitt på sidan ---------- */
+.band{background:var(--ink);color:var(--paper);padding:clamp(2.2rem,4vw,3.2rem) 0}
+.band-in{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.band-flagga{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.64rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--cream);opacity:.75;
+}
+.band h2{font-size:clamp(1.4rem,2.6vw,2.1rem);margin:.7rem 0 .5rem}
+.band h2 b{font-weight:500;color:#E8B48F;font-variant-numeric:tabular-nums}
+.band p{font-size:.9rem;color:rgba(244,237,224,.62);max-width:52ch}
+@media(max-width:700px){
+  .band-in{flex-direction:column;align-items:flex-start;gap:1.4rem}
+  .band .btn{width:100%}
+}
+
+/* ---------- om-sektionens logga ---------- */
+.om-logo{
+  background:var(--paper);border-radius:3px;
+  display:grid;place-items:center;padding:clamp(2rem,4vw,3.4rem);
+}
+.om-logo img{width:100%;max-width:280px;height:auto}
+
+/* ---------- populärt-märke på produktkort ---------- */
+.pcard-tag--pop{background:var(--terra);color:#fff;border-color:var(--terra)}
