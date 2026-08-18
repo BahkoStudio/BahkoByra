@@ -188,6 +188,7 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 | optimering | `/optimering [kund]` | "optimera sajten", "SEO för [kund]", "GEO/AEO", "schema markup", "ranka på Google", "synas i AI-svar", "Google Business Profile" |
 | task-observer | (auto) | aktiveras vid varje flerstegssession — fångar lärdomar som ska bli skill-regler |
 | rensa | `/rensa` | "rensa chatten", "spara och rensa", "clear men behåll det viktiga", "rensa kontexten" |
+| famous-reel-editor | `/famous-reel-editor` | "editera reelen", "gör en reel av videon", "short med animationerna", "reel som denna länk" |
 
 - **skill** — Guides building/auditing/optimizing skills. Runs Discovery Interview before creating. See `.claude/skills/skill/reference.md`.
 - **video-to-website** — Converts a video into a scroll-driven animated website (FFmpeg + GSAP + Lenis + canvas). OBS: `maykas/site/` i skill-mappen deployar LIVE maykaskitchen.se (se Heligt-listan).
@@ -202,6 +203,7 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 - **grill-me** — Intervjuar dig relentlessly genom designträdet tills delad förståelse nås. Ger rekommenderat svar per fråga, frågar i rundor via AskUserQuestion.
 - **motion-design** — Higgsfield-flöde brief → storyboard (en grid-bild, gpt_image_2) → video (seedance_2_0). Används för reels-hooks (@bahkostudio), uppsell efter hemsideleverans och eget varumärke — ALDRIG som front offer. Kostar credits, körs aldrig utan beställning.
 - **rensa** — Destillerar ENDAST det nödvändiga från sessionen till `.tmp/session-context.md` (överlever `/clear`), säger sedan åt dig att köra det inbyggda `/clear`. Skillnad mot session-handoff: skriver till fil istället för chatt, och tar bara med minsta möjliga (aktiv uppgift, låsta beslut, rörda filer, körande tillstånd, nästa steg). `/clear` kan inte köras av skillen själv.
+- **famous-reel-editor** — Klipper en rå talking-head-klipp (vertikal eller 4K liggande) till färdig 9:16-reel: talande huvud i nedre bandet, animerade motion-graphics-scheman i övre, karaoke-undertexter (ett ord), musik och 1-2 AI-B-roll via Higgsfield. Accentfärg är temabar (default grön #2fe081, orange #f0813f för Claude-content). **Installerad 2026-08-18 med ENDAST `SKILL.md`** — stödfilerna (`scripts/`, `assets/`, `references/`) saknas, så pipelinen kan inte köras förrän de läggs till. Kör aldrig Higgsfield-credits utan beställning.
 - **optimering** — SEO, lokal SEO, GEO och AEO för kundsajter. Kärnvärdet är att skilja **dokumenterat från branschmyt**: varje åtgärd märks med evidensgrad, och skillen har en svartlista över sånt som riskerar manuell åtgärd från Google (dolt innehåll, review-schema på egna omdömen). Blockerar alltid på grundfel först (egen domän, indexerbarhet, innehåll i rå HTML) innan finlir. Evidenstabell, schema-mallar och kända fällor i våra egna mallar: `.claude/skills/optimering/reference.md`.
 
 New skills go in `.claude/skills/[skill-name]/SKILL.md`. API keys go in `.env`, never hardcoded.
