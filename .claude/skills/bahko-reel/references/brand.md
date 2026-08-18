@@ -1,4 +1,4 @@
-# Bahko-läge — reels i BahkoByrås varumärke
+# Varumärket i en Bahko-reel
 
 Gäller när reelen är Mathias som pratar till publiken för @bahkostudio.
 Allt nedan är låst av `brand.json` v2 eller av Mathias beslut i session.
@@ -8,16 +8,15 @@ läses ur `web/public/brand/brand.json`, som är enda källan.
 ## Kedjan
 
 ```
-1  transcribe.py              råklippet -> ordtider
-2  (EDL, cutjoin, silence_keep, re-transcribe)     som vanligt, se SKILL.md
-3  bahko_assets.py cards      palett + märke + maskotlager + Outfit -> cards/assets/bahko/
-4  gen_bahko.py <cutF.json>   kortlagret i Bahko-stil (övre bandet)
-5  captions.py                karaoke-undertexter
-6  maskot_frames.py           maskoten som sömlöst loopande PNG-sekvens
-7  compose_bahko.sh           ansikte + kort + MASKOT + text + musik
+1  klipp klart videon          famous-reel-editor: transcribe -> EDL -> cutjoin -> silence_keep
+2  brand.py grafik             palett + logga + maskotlager + Outfit + gsap ur brand.json
+3  gen.py <cutF.json>          grafiklagret som ALFA, paneler ovanpå full video
+4  hyperframes --format mov    alfa-rendering (mp4 = svart, täcker videon)
+5  maskot.py / sfx.py / captions.py    efter Mathias val
+6  compose.sh                  full video + grafik + valda lager
 ```
 
-Steg 3 kopierar ur brand.json vid varje körning, så en varumärkesändring slår
+Steg 2 kopierar ur brand.json vid varje körning, så en varumärkesändring slår
 igenom på nästa reel utan att något dupliceras in i skillen.
 
 ## Palett (ur brand.json — ändra där, inte här)
@@ -36,20 +35,17 @@ smaragd är 2,54:1 och underkänt enligt WCAG. `gen_bahko.py` tar färgerna ur
 
 ## Typografi
 
-Outfit rakt igenom, wght 100–900. `bahko_assets.py` kopierar
-`assets/fonts/Outfit[wght].ttf` in i projektet eftersom korten renderas i
-Chromium och `@font-face` måste peka på en fil i projektmappen.
+Outfit rakt igenom, wght 100–900. `brand.py` kopierar `assets/Outfit[wght].ttf` in i projektet eftersom grafiken
+renderas i Chromium och `@font-face` måste peka på en fil i projektmappen.
 
-Undertexterna körs fortfarande i Montserrat Black — det är skillens
-validerade karaoke-stil och sitter i `captions.py`. Vill du ha Outfit även
-där: `CAPTION_FONT=<skill>/assets/fonts/"Outfit[wght].ttf"`.
-Guld/cream/Cormorant är utfasat ur eget material.
+`captions.py` i den här skillen tar Outfit i första hand (Montserrat finns kvar
+som reserv via `CAPTION_FONT`). Guld/cream/Cormorant är utfasat ur eget material.
 
 ## Intro och outro
 
 **Intron är avskalad** (Mathias 2026-08-18): inget märke, ingen figur, inget
 varumärkespynt i öppningen. Hooken ska bära ensam — och den första sekunden är
-det sämsta läget att ha en halvtom panel, så lägg hookens bild där från ruta 1.
+det sämsta läget att ha en halvtom panel, så lägg hookens innehåll där från ruta 1.
 
 **Outron bär varumärkeslåset.** Korttypen `outro` lägger ordmärket + adressen
 sist. Alltid **`logo-dark.svg`** (vit text) — `logo.svg` har marinblå text
@@ -61,15 +57,6 @@ vill ha en ANNAN rad under adressen, annars står ”SYNLIGHET SOM SÄLJER” du
 
 Loggan är alltid det **platta** materialet, aldrig 3D-rendern (beslut 2026-08-16).
 
-## SFX
-
-`scripts/sfx.py` syntetiserar ljuden lokalt ur `beats.json` — ingen sampelbank,
-inga credits. Korttyp styr ljudet: `hook`/`cta` får riser, `graf`/`outro` whoosh,
-`statgraf`/`kundcase` pop, `checklista` tre tick. Spåret normaliseras till
-−18 dBFS och läggs in med `SFX=cards/sfx.m4a` (nivå `SFX_VOL`, default 0.5).
-
-Rösten ska alltid dominera. Hör du SFX:en som ett eget element är den för hög.
-
 ## Tempo
 
 Varje kort ska hinna **läsas**, inte bara visas. `gen_bahko.py` varnar för beats
@@ -77,13 +64,24 @@ under 1,4s, och listornas stagger skalas efter beatens längd. Sikta 3–5s per
 kort. Blir det trångt: slå ihop beats eller stryk ett kort — fem kort som hinns
 med slår nio som blinkar (Mathias 2026-08-18).
 
+## Musik
+
+Skillen syntetiserar **inte** musik. Ett påhittat spår låter påhittat (mätt
+2026-08-18: "musiken är värdelös"). Lägg ett eget spår på `assets/musik.m4a` —
+då används det automatiskt — eller peka med `MUSIC=`. Ett genererat spår är en
+Higgsfield-beställning och kostar credits.
+
+SFX följer däremot med: `sfx.py` syntetiserar dem lokalt ur `beats.json`, inga
+credits. Rösten ska alltid dominera; hörs SFX:en som ett eget element är den
+för hög.
+
 ## GSAP paketeras lokalt
 
-Kortlagret laddar `assets/bahko/gsap.min.js`, inte CDN:et. Är biblioteket
+Grafiklagret laddar `assets/gsap.min.js`, inte CDN:et. Är biblioteket
 onåbart vid rendering blir `gsap` undefined och hyperframes renderar korten i
 sitt slutläge — full bild, **noll animation** — med bara en mild varning.
-`bahko_assets.py` kopierar in biblioteket och `gen_bahko.py` kastar högt om det
-saknas, så felet inte kan gå tyst i produktion.
+`brand.py` kopierar in biblioteket och `gen.py` kastar högt om det saknas, så
+felet inte kan gå tyst i produktion.
 
 ## Maskoten
 
@@ -92,16 +90,14 @@ assistent, supporter, kompis — i de fönster där hon **passar innehållet**, 
 tvingad genom hela klippet och inte låst till intro/outro. `brand.json` är
 uppdaterad, så källan och praxis stämmer.
 
-Fönstren sätts på compose-steget:
-`MASKOT_FONSTER="4.2-8.6,22.0-27.4"`. Utan variabeln ligger hon på hela tiden,
-vilket bara är rätt för korta klipp där hon passar överallt.
+Fönstren sätts på compose-steget: `MASKOT=maskot MASKOT_FONSTER="4.2-8.6,22.0-27.4"`.
+Utan `MASKOT` är hon inte med alls — det är Mathias val, inte skillens.
 
 Konstruktion:
 
-* Maskoten kan **inte** ligga i kortlagret. `hyperframes render` ger yuv420p
-  utan alpha, och kortbandet klipps till de övre 864 px. Den renderas därför
-  separat av `maskot_frames.py` och läggs på i `compose_bahko.sh`, precis som
-  undertexterna.
+* Maskoten renderas separat av `maskot.py` och läggs på i `compose.sh`. Hon
+  ligger inte i grafiklagret: hon ska stå i nedre delen där videon är, och
+  grafiklagrets paneler hör till den övre säkra zonen.
 * Figuren ritas i tre frilagda lager (kropp + två armar) som delar samma
   732×690-ram — samma lagerkontrakt som `web/app/komponenter/Maskot.js`.
   Gesten byggs genom att rotera ett armlager kring axeln.
@@ -125,8 +121,7 @@ vänsterställt. Inget stetoskop, ingen läkarrock.
 
 **Varför inte nedre höger:** Instagrams knapprad (gilla/kommentera/dela) ligger
 längs högerkanten, grovt x>950 och y 1100–1750. En figur där blir delvis täckt
-i flödet. Undertexterna landar kring y=778–900, så figuren måste också ligga
-tydligt under dem. `compose_bahko.sh` varnar om `MASKOT_XY` ger y < 920.
+i flödet. Samma zon styr var panelerna får ligga.
 
 ## Positionering i copy
 

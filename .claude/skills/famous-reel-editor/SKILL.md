@@ -15,7 +15,7 @@ Turn ONE raw vertical talking-head clip into a finished 9:16 reel: the speaker i
 - `ffmpeg` for composition + music. **Local ffmpeg usually has no libass** → subtitles are baked with PIL (captions.py), NOT with `subtitles=`.
 - Caption font: Montserrat (bundled at `assets/fonts/Montserrat-VariableFont_wght.ttf`, weight 900). captions.py finds it automatically.
 - Bundled assets: `assets/logos/` (whatsapp, claude, openai, github), `assets/bg-music.m4a` (default background track — swap it for your own with `MUSIC=/path/to/track.m4a`).
-- **Bahko-läge:** `scripts/bahko_assets.py` (varumärke ur brand.json), `scripts/gen_bahko.py` (kortlager), `scripts/maskot_frames.py` (maskoten som PNG-loop) och `scripts/compose_bahko.sh` (komposition med maskot). Regler i `references/bahko-brand.md`.
+- **Bahko-reels** har egen skill: `.claude/skills/bahko-reel/` (full video i hela ramen, grafik som alfa-lager, maskot, SFX). Den här skillen är originalet med delad talking-head/kortband-layout.
 - **Higgsfield MCP** for AI-generated B-roll (Seedance 2.0, image-to-video / text-to-video). Deferred tools — load via ToolSearch before calling (search "higgsfield generate_video media_upload jobs_wait", or `select:` the `mcp__…__generate_video`, `media_upload`, `media_confirm`, `jobs_wait`, `job_display`, `balance` tools of the Higgsfield server; the server-name prefix varies per session).
 
 ## Pipeline (run in order, inside one project folder, e.g. `~/reels/<name>/`)
@@ -90,47 +90,6 @@ Sometimes you'll get clips (a screen-recording of a site, a report, a list) to s
 - **Cover the card** underneath with a black-band for the whole B-roll window (`color=black:s=1080x864` overlay with `enable`), extended to the START of the next beat (so the card doesn't reappear at the edges).
 - **Framing**: landscape/screen clip → full-bleed `scale=-2:864,crop=1080:864` (fills the band, no letterbox); portrait clip (a document) → `scale=-2:824` centered. Dark B-roll blends into the black; for bright ones rely on the subtitle shadow.
 - **Clip timing**: `[N:v]trim=0:DUR,setpts=PTS-STARTPTS,fps=25,scale=...,setpts=PTS+A/TB[bv]` then `overlay` with enable in the window. Full example: `references/examples/compose-broll.sh`.
-
-## Bahko-läge (reels för @bahkostudio)
-
-När reelen är Mathias som pratar till publiken i BahkoByrås varumärke körs samma
-pipeline, men steg 8/13 byts ut och två steg läggs till:
-
-```
-3b  python <skill>/scripts/bahko_assets.py cards          # palett + märke + maskot + Outfit + gsap ur brand.json
-8b  cd cards && python <skill>/scripts/gen_bahko.py ../edit/tF/transcripts/cutF.json   # skriver även beats.json
-9b  python <skill>/scripts/sfx.py cards/beats.json cards/sfx.m4a <total_s>             # SFX tidsatt till korten
-12b python <skill>/scripts/maskot_frames.py <maskot_dir> maskot 300 vinkar 12 4.0
-13b SFX=cards/sfx.m4a MASKOT_FONSTER="11.4-14.7,21.3-28.1" \
-      bash <skill>/scripts/compose_bahko.sh edit/cutF.mp4 cards/cards_all.mp4 edit/capt maskot renders/<namn>-FINAL.mp4 <crop_y>
-```
-
-**SFX** syntetiseras i `scripts/sfx.py` (ren stdlib, inga sampelbibliotek, inga
-credits) och tidsätts från `beats.json`: riser när ett beat öppnar, whoosh när ett
-kort kommer in, pop när en siffra landar, tick per rad i en lista. Topparna ligger
-på −18 dBFS och blandas under rösten — hörs de tydligt är de för höga.
-
-**TEMPO.** `gen_bahko.py` varnar för varje beat under 1,4s. Mathias 2026-08-18:
-"det går för fort, man hinner inte med". Ett kort ska hinna läsas — rubrik, siffra,
-graf. Får du varningen: slå ihop beats eller stryk ett kort. Fem kort som hinns
-med slår nio som blinkar. Sikta på 3–5s per kort.
-
-**Intron är avskalad** (inget märke, ingen figur — hooken bär ensam) och **outron
-bär varumärkeslåset** (korttypen `outro`: logo-dark.svg + adress; taglinen sitter
-redan i ordmärket, så sätt `tagline` bara om du vill ha en ANNAN rad).
-Det MÅSTE vara logo-dark — `logo.svg` har marinblå text och försvinner på bandet.
-
-**Maskoten** står vid Mathias i nedre bandet, i de fönster där hon passar
-innehållet — inte tvingad genom hela klippet. Styrs med
-`MASKOT_FONSTER="4.2-8.6,22.0-27.4"`. Hon kan inte ligga i korten: kortlagret
-saknar alpha och klipps till övre 864px, så figuren renderas som egen PNG-sekvens.
-Bara en sömlös cykel renderas och loopas — 48 rutor räcker oavsett reellängd.
-Standardplacering nedre VÄNSTER (Instagrams knapprad täcker högerkanten).
-
-Palett, CTA-regel (smaragdyta + marinblå text, ALDRIG vit text på smaragd),
-typografi, loggval och alla mätta maskotvärden bor i
-**`references/bahko-brand.md`** — läs den innan du bygger en Bahko-reel, och
-beskriv aldrig varumärket ur minnet: `web/public/brand/brand.json` är källan.
 
 ## ERRORS NOT TO REPEAT (learned the hard way)
 | Error | Rule |
