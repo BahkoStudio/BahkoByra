@@ -15,6 +15,7 @@ Turn ONE raw vertical talking-head clip into a finished 9:16 reel: the speaker i
 - `ffmpeg` for composition + music. **Local ffmpeg usually has no libass** → subtitles are baked with PIL (captions.py), NOT with `subtitles=`.
 - Caption font: Montserrat (bundled at `assets/fonts/Montserrat-VariableFont_wght.ttf`, weight 900). captions.py finds it automatically.
 - Bundled assets: `assets/logos/` (whatsapp, claude, openai, github), `assets/bg-music.m4a` (default background track — swap it for your own with `MUSIC=/path/to/track.m4a`).
+- **Bahko-läge:** `scripts/bahko_assets.py` (varumärke ur brand.json), `scripts/gen_bahko.py` (kortlager), `scripts/maskot_frames.py` (maskoten som PNG-loop) och `scripts/compose_bahko.sh` (komposition med maskot). Regler i `references/bahko-brand.md`.
 - **Higgsfield MCP** for AI-generated B-roll (Seedance 2.0, image-to-video / text-to-video). Deferred tools — load via ToolSearch before calling (search "higgsfield generate_video media_upload jobs_wait", or `select:` the `mcp__…__generate_video`, `media_upload`, `media_confirm`, `jobs_wait`, `job_display`, `balance` tools of the Higgsfield server; the server-name prefix varies per session).
 
 ## Pipeline (run in order, inside one project folder, e.g. `~/reels/<name>/`)
@@ -90,6 +91,28 @@ Sometimes you'll get clips (a screen-recording of a site, a report, a list) to s
 - **Framing**: landscape/screen clip → full-bleed `scale=-2:864,crop=1080:864` (fills the band, no letterbox); portrait clip (a document) → `scale=-2:824` centered. Dark B-roll blends into the black; for bright ones rely on the subtitle shadow.
 - **Clip timing**: `[N:v]trim=0:DUR,setpts=PTS-STARTPTS,fps=25,scale=...,setpts=PTS+A/TB[bv]` then `overlay` with enable in the window. Full example: `references/examples/compose-broll.sh`.
 
+## Bahko-läge (reels för @bahkostudio)
+
+När reelen är Mathias som pratar till publiken i BahkoByrås varumärke körs samma
+pipeline, men steg 8/13 byts ut och två steg läggs till:
+
+```
+3b  python <skill>/scripts/bahko_assets.py cards          # palett + märke + maskot + Outfit ur brand.json
+8b  cd cards && python <skill>/scripts/gen_bahko.py ../edit/tF/transcripts/cutF.json
+12b python <skill>/scripts/maskot_frames.py <maskot_dir> maskot 300 vinkar 12 4.0
+13b bash <skill>/scripts/compose_bahko.sh edit/cutF.mp4 cards/cards_all.mp4 edit/capt maskot renders/<namn>-FINAL.mp4 <crop_y>
+```
+
+Maskoten står VID honom i nedre bandet genom HELA reelen (assistent, supporter,
+kompis — Mathias beslut 2026-08-18). Den ligger inte i korten: kortlagret saknar
+alpha och klipps till övre 864px, så figuren renderas som egen PNG-sekvens.
+Bara en sömlös cykel renderas och loopas — 48 rutor räcker oavsett reellängd.
+
+Palett, CTA-regel (smaragdyta + marinblå text, ALDRIG vit text på smaragd),
+typografi, loggval och alla mätta maskotvärden bor i
+**`references/bahko-brand.md`** — läs den innan du bygger en Bahko-reel, och
+beskriv aldrig varumärket ur minnet: `web/public/brand/brand.json` är källan.
+
 ## ERRORS NOT TO REPEAT (learned the hard way)
 | Error | Rule |
 |--------|--------|
@@ -133,6 +156,13 @@ Sometimes you'll get clips (a screen-recording of a site, a report, a list) to s
 | **transcribe_groq.py serves a stale cached transcript after a re-cut** | It caches by filename: re-rendering `cutF.mp4` and re-running the transcriber returns "cached: cutF.json" — the OLD transcript — so the clipped-word verification silently passes against stale words. After ANY re-cut, `rm -rf` the edit-dir (or the transcripts json) before re-transcribing, and check the tool didn't print "cached". |
 | **Scribe collapses a hyphenated phrase into ONE mega-word** | ElevenLabs Scribe can emit a spoken phrase as a single hyphenated "word" (e.g. "know-everything-about-me", 24 chars, ~1s) — as a one-word karaoke caption it overflows the frame. Scan the final transcript for words >14 chars containing 2+ hyphens; in `*_cap.json` split them into their component words with evenly-interpolated times across the original window. Card triggers can keep the original mega-word (it's a fine anchor). |
 | **Hook "before" visual waits for its trigger word** | In a "from this to this" hook, anchoring the BEFORE visual to the first "this" leaves the opening ~1.3s of the reel with an empty top band — the worst second to be empty (c0886 feedback: "show bad website first"). Rule: the BEFORE state of any before/after hook is on screen from t=0 (frame 1), with only a small scale-punch on its trigger word; the swap to AFTER stays on its word. Also make the swap sequential, not a crossfade: old exits fully (fast, ~0.16s, ending at the trigger) before/as the new pops, or both are semi-visible for several frames. |
+
+| **loudnorm ger 96kHz -> ljudet dubbelt så snabbt** | På ffmpeg 6.x (Linux) lämnar `loudnorm` ifrån sig 96kHz medan sampelantalet svarar mot 48kHz: 6,0s spelas som 3,1s, pipröst. Syns INTE på macOS/ffmpeg 7, så felet reser osett mellan maskiner och tre reels levererades innan det mättes (2026-08-18). FIX: `aresample=48000` efter loudnorm OCH efter musikgrenen, plus `-ar 48000` på utgången. Ligger nu i compose.sh och compose_bahko.sh. Verifiera alltid: `ffprobe` audio- vs videolängd. |
+| **Andra passet saknade `-shortest`** | `loudnorm` lägger till fördröjning, så ljudet blev 100ms längre än videon — sista tiondelen frös bilden. `-shortest` på andra ffmpeg-passet ger 7ms drift. |
+| **Maskotens arm roterad i fel riktning** | Axeln ligger på armens INRE kant och PIL roterar moturs vid positiv vinkel. Höger arm lyfts därför av POSITIV vinkel, vänster av NEGATIV. Fel tecken viker in armen över magen — läses som att den kryper, inte vinkar. Och vinkeln måste vara 40–62°: armarna är korta droppar tätt mot kroppen, allt under ~50° blir vobbling. Båda felen kostade en runda var, hittade bara genom att TITTA på en kontaktkarta. |
+| **Fast marginal runt en roterad figur** | En lyft arm svepte utanför duken med 10% fast marginal. Marginalen ska RÄKNAS: radien från axeln till armens yttersta punkt, så duken rymmer axeln ± r. Verifiera med tröskel (alfa>32) — `getbbox()` fångar kantutjämning ner till alfa 1 och ger falsklarm. |
+| **Maskot/figur i kortlagret** | Går inte: `hyperframes render` ger yuv420p utan alpha och kortbandet klipps till övre 864px. Allt som ska ligga över ansiktet renderas som PNG-sekvens och läggs på i compose, som undertexterna. |
+| **Nedre höger krockar med Instagrams knapprad** | Gilla/kommentera/dela ligger längs högerkanten (grovt x>950, y 1100–1750). Grafik där blir delvis täckt i flödet. Nedre VÄNSTER är fri, och håll y minst 920 så undertexterna (y≈778–900) inte krockar. |
 
 ## Self-learning (MANDATORY at the end of a reel)
 The goal is to **one-shot** the reel. Every edit must make the skill better. When the reel is delivered and approved (or after the last feedback round):
