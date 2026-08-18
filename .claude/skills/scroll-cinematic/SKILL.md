@@ -348,6 +348,14 @@ Kopiera moderna referensen (`web/public/cloud/glowingservice/index.html`) →
    historik-siffror (240+ projekt, 4,9★) endast för fiktiva varumärken.
 6. **Fälla:** inline `<script>` får aldrig ha `defer` (ignoreras per spec), och
    biblioteksflaggor måste mätas EFTER att deferrade CDN-script körts.
+7. **Fälla (2026-08-18, hittad i alla nio aktiva demos):** nudge-tillståndet
+   (`let nudgeTimers…nudgesCancelled`) måste deklareras FÖRE huvud-IIFE:n.
+   Reservvägarna (reduced motion, utebliven CDN) anropar `startNudges()`
+   synkront inifrån IIFE:n — en `let` som deklareras efteråt ligger då i TDZ,
+   och kraschen dödar resten av skriptet (modal, mobilnav) för exakt de
+   användare som behövde reservvägen. QA-steget `node --check` fångar INTE
+   detta (giltig syntax) — testa alltid sidan med `prefers-reduced-motion:
+   reduce` emulerad i Playwright och räkna pageerror.
 
 ### 6. Copy-regler (skriv som copyexpert — idé före formel)
 
