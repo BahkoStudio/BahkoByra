@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Faq from '../komponenter/Faq';
+import Faq from '../../komponenter/Faq';
 import styles from './prisguide.module.css';
 
 export const metadata = {

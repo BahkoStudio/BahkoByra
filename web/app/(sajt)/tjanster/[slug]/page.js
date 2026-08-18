@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Faq from '../../komponenter/Faq';
-import { TJANSTER, FRAGOR } from '../../data';
+import Faq from '../../../komponenter/Faq';
+import { TJANSTER, FRAGOR } from '../../../data';
 import styles from './tjanst.module.css';
 
 const PIL = (

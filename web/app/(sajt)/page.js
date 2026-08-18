@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import HeroVideo from './komponenter/HeroVideo';
-import Maskot from './komponenter/Maskot';
-import SynlighetsPanel from './komponenter/SynlighetsPanel';
-import ProcessRail from './komponenter/ProcessRail';
-import TjanstIkon from './komponenter/TjanstIkon';
-import Faq from './komponenter/Faq';
-import { TJANSTER, FRAGOR } from './data';
+import HeroVideo from '../komponenter/HeroVideo';
+import Maskot from '../komponenter/Maskot';
+import SynlighetsPanel from '../komponenter/SynlighetsPanel';
+import ProcessRail from '../komponenter/ProcessRail';
+import TjanstIkon from '../komponenter/TjanstIkon';
+import Faq from '../komponenter/Faq';
+import { TJANSTER, FRAGOR } from '../data';
 import styles from './page.module.css';
 
 /* Startsidan nås som /, med parametrar och via www-varianter — den behöver

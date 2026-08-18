@@ -1,5 +1,5 @@
-import NischSida from '../komponenter/NischSida';
-import { NISCHER } from '../nischer';
+import NischSida from '../../komponenter/NischSida';
+import { NISCHER } from '../../nischer';
 
 const nisch = NISCHER.find((n) => n.slug === 'hemsida-for-malerifirma');
 

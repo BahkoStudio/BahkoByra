@@ -1,9 +1,9 @@
 import { Outfit } from 'next/font/google';
 import Script from 'next/script';
-import './globals.css';
-import Header from './komponenter/Header';
-import Footer from './komponenter/Footer';
-import Popup from './komponenter/Popup';
+import '../globals.css';
+import Header from '../komponenter/Header';
+import Footer from '../komponenter/Footer';
+import Popup from '../komponenter/Popup';
 
 const outfit = Outfit({
   subsets: ['latin'],
