@@ -104,7 +104,17 @@ html:has(.sida) {
   padding: 0;
 }
 
-.sida a {
+/* KASKADEN: den här regeln är basen för alla länkar som inte har egen färg
+   (loggan, footerkolumnen, kontaktraderna). Den skrevs tidigare .sida a, alltså
+   0,1,1 — och slog då ut VARJE komponentklass på 0,1,0: .btn, .btnMork,
+   .demoKnapp, .modalCta och .hdrTel fick color: inherit i stället för sin egen
+   färg. Resultatet var ljus text på mässing (1,60:1) och ink på ink (1,00:1) i
+   FAQ-kortet, alltså osynlig text.
+   :where() nollar specificiteten på a, så regeln väger 0,1,0 och ligger FÖRST
+   i filet: varje komponentklass längre ner vinner på ordning i stället för att
+   behöva !important eller uppskruvad selektor. Länkar utan egen färg ärver
+   fortfarande som förut. */
+.sida :where(a) {
   color: inherit;
   text-decoration: none;
 }
@@ -156,6 +166,10 @@ html:has(.sida) {
   justify-content: center;
   min-height: 52px;
   padding: 0 1.7rem;
+  /* Klassen sitter både på <a> och på formulärets <button type="submit"> —
+     appearance nollar UA-knappen så de två ser identiska ut. */
+  appearance: none;
+  -webkit-appearance: none;
   border: 0;
   border-radius: 2px;
   background: var(--brass);
@@ -311,27 +325,27 @@ html:has(.sida) {
   display: none;
 }
 
-/* ---------- mobilmeny: <details>, ingen klient-JS ---------- */
-.mobilNav {
+/* ---------- mobilmeny: :target-panel, ingen klient-JS ----------
+   Var tidigare <details>: den låg kvar utfälld över innehållet när besökaren
+   valde en länk, eftersom [open] inte påverkas av en hashnavigering. Nu ligger
+   panelen i ett fixed lager med id="meny" som visas på :target — hoppar hashen
+   till #tjanster slutar panelen vara target och fälls in av sig själv. Fixed
+   betyder också att webbläsaren inte behöver skrolla för att nå målet, så
+   skrollpositionen står still. */
+.mobilNavKnapp {
   display: none;
-  border-top: 1px solid var(--linje);
-}
-.mobilNav summary {
-  display: flex;
   align-items: center;
   gap: 0.5rem;
-  min-height: 46px;
-  padding-inline: var(--gut);
-  cursor: pointer;
-  list-style: none;
+  min-height: 44px;
+  padding: 0 1rem;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px var(--linje);
+  color: var(--ljus);
   font-size: var(--tx-s);
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ljus-70);
-}
-.mobilNav summary::-webkit-details-marker {
-  display: none;
+  white-space: nowrap;
 }
 .mobilNavIkon {
   position: relative;
@@ -358,17 +372,42 @@ html:has(.sida) {
   width: 1.5px;
   height: 13px;
 }
-.mobilNav[open] .mobilNavIkon::after {
-  opacity: 0;
-}
-.mobilNavPanel {
+.mobilMenyLager {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
   display: flex;
   flex-direction: column;
-  padding: 0.3rem var(--gut) 0.8rem;
-  background: var(--yta);
-  border-top: 1px solid var(--linje);
+  opacity: 0;
+  visibility: hidden;
+  /* Stängd panel ska inte kosta något under skroll. */
+  content-visibility: hidden;
+  transition: opacity 0.25s var(--ease), visibility 0.25s;
 }
-.mobilNavPanel a {
+.mobilMenyLager:target {
+  opacity: 1;
+  visibility: visible;
+  content-visibility: visible;
+}
+.mobilMenySkugga {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 9, 11, 0.72);
+}
+.mobilMenyPanel {
+  position: relative;
+  z-index: 1;
+  /* Panelen börjar under den 72 px höga headern, som förblir synlig. */
+  margin-top: 72px;
+  max-height: calc(100dvh - 72px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0.3rem var(--gut) 0.9rem;
+  background: var(--yta);
+  border-block: 1px solid var(--linje);
+}
+.mobilMenyPanel a {
   display: flex;
   align-items: center;
   min-height: 48px;
@@ -376,7 +415,11 @@ html:has(.sida) {
   color: var(--ljus);
   border-bottom: 1px solid var(--linje);
 }
-.mobilNavPanel a:last-child {
+.mobilMenyStang {
+  color: var(--ljus-70);
+  font-size: var(--tx-s);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   border-bottom: 0;
 }
 
@@ -384,8 +427,15 @@ html:has(.sida) {
   .nav {
     display: none;
   }
-  .mobilNav {
-    display: block;
+  .mobilNavKnapp {
+    display: inline-flex;
+  }
+}
+/* Ovanför brytpunkten finns ingen öppnare — då ska lagret inte heller kunna
+   nås av en gammal #meny-länk i adressfältet. */
+@media (min-width: 901px) {
+  .mobilMenyLager {
+    display: none;
   }
 }
 
@@ -408,6 +458,15 @@ html:has(.sida) {
   }
   .hdrTel {
     padding: 0 0.9rem;
+  }
+  /* Tre element i headern på 360 px: luften och knapparnas sidopadding krymper
+     hellre än att något klipps av sidans overflow-x: clip. */
+  .hdrIn {
+    gap: 0.55rem;
+  }
+  .mobilNavKnapp {
+    padding: 0 0.75rem;
+    letter-spacing: 0.06em;
   }
 }
 
