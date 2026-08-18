@@ -479,22 +479,8 @@ html:has(.sida) {
     radial-gradient(120% 90% at 85% 0%, rgba(214, 190, 149, 0.09), transparent 60%),
     var(--ink);
 }
-/* Ritningen: husets sektion i linjer, låg opacitet bakom rubriken */
-.ritning {
-  position: absolute;
-  top: 50%;
-  right: -8%;
-  translate: 0 -50%;
-  width: min(58%, 720px);
-  height: auto;
-  color: var(--brass);
-  opacity: 0.16;
-  pointer-events: none;
-}
 /* vector-effect ärvs inte — den måste sitta på formerna, annars blir
    linjerna hårfina när ritningen skalas ner och aliasar bort på 1x-skärmar. */
-.ritning path,
-.ritning circle,
 .planritning path,
 .planritning circle {
   vector-effect: non-scaling-stroke;
@@ -515,6 +501,96 @@ html:has(.sida) {
   max-width: var(--max);
   margin: 0 auto;
   padding-inline: var(--gut);
+  display: grid;
+  grid-template-columns: 1.04fr 0.96fr;
+  gap: clamp(2rem, 4.5vw, 4.5rem);
+  align-items: center;
+}
+.heroTxt {
+  min-width: 0;
+}
+
+/* Filmen: ren HTML-video, postern gör att ytan aldrig är tom */
+.heroFilm {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--linje);
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.7);
+}
+.heroFilm video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1376 / 768;
+  object-fit: cover;
+}
+.heroFilm figcaption {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  padding: 0.32rem 0.65rem;
+  border-radius: 2px;
+  background: rgba(12, 16, 19, 0.72);
+  backdrop-filter: blur(4px);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ljus-70);
+}
+@media (max-width: 900px) {
+  .heroIn {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ---------- före / efter ---------- */
+.forvandling {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.8rem, 2vw, 1.4rem);
+}
+.forvandling figure {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--linje);
+}
+.forvandling img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1376 / 768;
+  object-fit: cover;
+}
+.forvandling figcaption {
+  position: absolute;
+  left: 0.85rem;
+  top: 0.85rem;
+}
+.forvandling figcaption b {
+  display: inline-block;
+  padding: 0.35rem 0.8rem;
+  border-radius: 2px;
+  background: rgba(12, 16, 19, 0.78);
+  backdrop-filter: blur(4px);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass-lj);
+}
+.forvandlingNot {
+  margin-top: 0.9rem;
+  font-size: var(--tx-xs);
+  letter-spacing: 0.08em;
+  color: var(--ljus-58);
+}
+@media (max-width: 640px) {
+  .forvandling {
+    grid-template-columns: 1fr;
+  }
 }
 .heroLead {
   font-size: clamp(1rem, 1.5vw, 1.14rem);

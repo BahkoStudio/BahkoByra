@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Newsreader, Inter } from 'next/font/google';
 import styles from './svhus.module.css';
 
@@ -265,46 +266,52 @@ export default function SvHusDemo() {
 
       {/* ---------- hero ---------- */}
       <section className={styles.hero} id="top">
-        {/* Ritningen bakom rubriken: husets sektion i linjer. Ren SVG, så den
-            är skarp i alla upplösningar och väger ingenting. */}
-        <svg className={styles.ritning} viewBox="0 0 900 620" fill="none" aria-hidden="true">
-          {/* vector-effect sätts i CSS (den ärvs inte), så linjerna behåller
-              sin tjocklek när ritningen skalas ner. */}
-          <g stroke="currentColor" strokeWidth="1.6">
-            <path d="M90 470h720M90 470V250l360-170 360 170v220" />
-            <path d="M170 470V300h180v170M170 300h180" />
-            <path d="M470 470V330h250v140M470 400h250M595 330v140" />
-            <path d="M450 80v390" strokeDasharray="6 10" />
-            <path d="M90 250h720" strokeDasharray="6 10" />
-            <circle cx="450" cy="80" r="5" />
-            <path d="M60 470h-25M60 250h-25M35 250v220" />
-          </g>
-        </svg>
-
         <div className={styles.heroIn}>
-          <p className={styles.eyebrow}>Österåker · projekt i hela Sverige</p>
-          <h1 className={styles.h1}>
-            Ni bygger ett hus en gång.
-            <br />
-            <em>Vi tar ansvaret för varje steg.</em>
-          </h1>
-          <p className={styles.heroLead}>
-            Ett husprojekt är många yrkesgrupper, en kommun och en kalkyl som ska hålla ihop. SV Hus
-            ansvarar för allt från arkitekt och bygglov till byggnation och samordningen av alla
-            hantverkare — så att ni kan lägga tiden på hur huset ska bli, inte på att hålla ihop
-            bygget.
-          </p>
-          <div className={styles.heroCta}>
-            <a className={styles.btn} href={TEL_HREF}>
-              Ring {TEL}
-            </a>
-            <a className={`${styles.btn} ${styles.btnGhost}`} href="#kontakt">
-              Berätta om ert projekt
-            </a>
+          <div className={styles.heroTxt}>
+            <p className={styles.eyebrow}>Österåker · projekt i hela Sverige</p>
+            <h1 className={styles.h1}>
+              Ni bygger ett hus en gång.
+              <br />
+              <em>Vi tar ansvaret för varje steg.</em>
+            </h1>
+            <p className={styles.heroLead}>
+              Ett husprojekt är många yrkesgrupper, en kommun och en kalkyl som ska hålla ihop. SV
+              Hus ansvarar för allt från arkitekt och bygglov till byggnation och samordningen av
+              alla hantverkare — så att ni kan lägga tiden på hur huset ska bli, inte på att hålla
+              ihop bygget.
+            </p>
+            <div className={styles.heroCta}>
+              <a className={styles.btn} href={TEL_HREF}>
+                Ring {TEL}
+              </a>
+              <a className={`${styles.btn} ${styles.btnGhost}`} href="#kontakt">
+                Berätta om ert projekt
+              </a>
+            </div>
+            <p className={styles.heroMikro}>
+              Byggt enligt svensk AMA-standard · SV Hus AB, org.nr 559499-4062
+            </p>
           </div>
-          <p className={styles.heroMikro}>
-            Byggt enligt svensk AMA-standard · SV Hus AB, org.nr 559499-4062
-          </p>
+
+          {/* Videon är ren HTML (autoplay muted loop playsinline) — ingen
+              klient-JS, och postern gör att ytan aldrig är tom. Illustration
+              ur vårt demobibliotek, inte SV Hus eget projekt: därför bildtexten,
+              och därför inga formuleringar om "våra projekt" någonstans. */}
+          <figure className={styles.heroFilm}>
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="/svhus/media/efter-nybyggt-morkgratt-hus.jpg"
+              width={1376}
+              height={768}
+            >
+              <source src="/svhus/media/video-efter-nybyggt-morkgratt-hus.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Illustration — era projektfoton läggs in här</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -318,6 +325,50 @@ export default function SvHusDemo() {
           <span>Vi samordnar alla hantverkare</span>
         </div>
       </div>
+
+      {/* ---------- före / efter ----------
+          Det starkaste en byggfirma kan visa är förvandlingen. Två stillbilder
+          räcker — tydligare än en video här, och sidan förblir lätt. */}
+      <section className={styles.sek} id="forvandling">
+        <div className={styles.wrap}>
+          <div className={styles.sekHuvud}>
+            <p className={styles.eyebrow}>Förvandlingen</p>
+            <h2 className={styles.h2}>
+              Från det här. <em>Till det här.</em>
+            </h2>
+            <p className={styles.sekLead}>
+              Ett hus som fått förfalla, eller ett som aldrig byggts — vägen är densamma: ritning,
+              bygglov, byggnation, inflytt. Och en part som håller ihop den.
+            </p>
+          </div>
+
+          <div className={styles.forvandling}>
+            <figure>
+              <Image
+                src="/svhus/media/fore-forfallet-gult-hus.jpg"
+                alt="Äldre hus med sliten gul fasad, före arbetet"
+                width={1376}
+                height={768}
+              />
+              <figcaption>
+                <b>Före</b>
+              </figcaption>
+            </figure>
+            <figure>
+              <Image
+                src="/svhus/media/efter-nybyggt-morkgratt-hus.jpg"
+                alt="Nybyggt hus med mörkgrå träfasad, efter arbetet"
+                width={1376}
+                height={768}
+              />
+              <figcaption>
+                <b>Efter</b>
+              </figcaption>
+            </figure>
+          </div>
+          <p className={styles.forvandlingNot}>Illustrationsbilder — byts mot SV Hus egna projektfoton.</p>
+        </div>
+      </section>
 
       {/* ---------- tjänster ---------- */}
       <section className={styles.sek} id="tjanster">
