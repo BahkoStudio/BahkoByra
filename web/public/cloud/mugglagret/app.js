@@ -339,6 +339,8 @@
      =========================================================== */
   var CUTOFF_HOUR = 14;
 
+  var VECKODAG = ["på söndag", "på måndag", "på tisdag", "på onsdag", "på torsdag", "på fredag", "på lördag"];
+
   function tidTillCutoff() {
     var nu = new Date();
     var mal = new Date(nu.getFullYear(), nu.getMonth(), nu.getDate(), CUTOFF_HOUR, 0, 0, 0);
@@ -347,21 +349,35 @@
     /* Helg: nästa packning sker på måndagen */
     while (mal.getDay() === 0 || mal.getDay() === 6) mal.setDate(mal.getDate() + 1);
     var kvar = Math.max(0, mal - nu);
+
+    /* Dagsordet räknas ut från MÅLDATUMET, aldrig från passerad-flaggan:
+       en lördag före 14:00 är inte passerad, men packningen sker ändå på
+       måndagen. Alla platser på sajten skriver samma ord som klockan här. */
+    var idagMitt = new Date(nu.getFullYear(), nu.getMonth(), nu.getDate());
+    var malMitt = new Date(mal.getFullYear(), mal.getMonth(), mal.getDate());
+    var dagar = Math.round((malMitt - idagMitt) / 86400000);
+    var dag = dagar === 0 ? "idag" : dagar === 1 ? "i morgon" : VECKODAG[mal.getDay()];
+
     var h = Math.floor(kvar / 3600000);
     var m = Math.floor((kvar % 3600000) / 60000);
     var s = Math.floor((kvar % 60000) / 1000);
-    return {
-      passerad: passerad,
-      text: h > 0 ? h + " h " + m + " min" : m + " min " + (s < 10 ? "0" : "") + s + " s"
-    };
+    var text;
+    /* Över ett dygn: dagar och timmar. "67 h 59 min" läses inte som en tid. */
+    if (h >= 24) text = Math.floor(h / 24) + " d " + (h % 24) + " h";
+    else if (h > 0) text = h + " h " + m + " min";
+    else text = m + " min " + (s < 10 ? "0" : "") + s + " s";
+
+    return { passerad: passerad, dagar: dagar, dag: dag, text: text };
   }
 
   function initCutoff() {
-    var mal = document.querySelectorAll("[data-cutoff]");
-    if (!mal.length) return;
+    var tider = document.querySelectorAll("[data-cutoff]");
+    var dagord = document.querySelectorAll("[data-cutoff-dag]");
+    if (!tider.length && !dagord.length) return;
     function tick() {
       var t = tidTillCutoff();
-      Array.prototype.forEach.call(mal, function (el) { el.textContent = t.text; });
+      Array.prototype.forEach.call(tider, function (el) { el.textContent = t.text; });
+      Array.prototype.forEach.call(dagord, function (el) { el.textContent = t.dag; });
     }
     tick();
     setInterval(tick, 1000);
@@ -428,6 +444,17 @@
     /* På produktsidan är köpraden hela poängen — där kommer remsan tidigare,
        så köpknappen alltid finns inom räckhåll. */
     var trosk = document.getElementById("pdp") ? 0.45 : 0.9;
+
+    /* Remsan är fixerad över sidans nederkant. Footern måste reservera exakt
+       dess höjd, annars hamnar krediteringen under remsan (mätt 390 px). */
+    var reservera = function () {
+      document.documentElement.style.setProperty("--sticky-space", bar.offsetHeight + "px");
+    };
+    reservera();
+    window.addEventListener("resize", reservera);
+    window.addEventListener("orientationchange", reservera);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(reservera);
+
     var onScroll = function () {
       var visa = window.scrollY > window.innerHeight * trosk;
       bar.classList.toggle("visible", visa);

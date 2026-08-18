@@ -141,6 +141,10 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .brand img{transition:width .3s var(--ease),height .3s var(--ease)}
 .brand{display:flex;align-items:center;gap:.7rem;flex-shrink:0}
 .brand img{width:46px;height:46px;object-fit:contain}
+/* Namn och årtal är två rader — styrt av CSS, inte av om HTML-koden råkar ha
+   ett blanktecken mellan spanen. Utan detta blev det "MugglagretESTD 2024". */
+.brand>span{display:flex;flex-direction:column;align-items:flex-start}
+.brand-name,.brand-sub{display:block}
 .brand-name{
   font-family:var(--disp);font-size:1.24rem;font-weight:600;letter-spacing:-.02em;line-height:1;
 }
@@ -439,6 +443,10 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 
 /* ---------- footer ---------- */
 .ftr{background:var(--cream);border-top:1px solid var(--line-2);padding:clamp(3rem,5vw,4.4rem) 0 0}
+/* Klisterremsan är fixerad över sidans nederkant. Footern reserverar exakt
+   remsans höjd (app.js sätter --sticky-space) så krediteringen aldrig hamnar
+   under den. Värdet nedan är fallbacken innan skriptet hunnit mäta. */
+.ftr{padding-bottom:var(--sticky-space,4.4rem)}
 .ftr-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2.6rem}
 .ftr-lead p{font-size:.9rem;color:var(--ink-2);max-width:34ch;margin:1rem 0 1.4rem}
 .ftr h2{font-family:var(--ui);font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem}
@@ -759,15 +767,27 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   max-width:var(--max);margin:0 auto;
   display:flex;align-items:center;justify-content:space-between;gap:1.2rem;
 }
-.stickybar-txt{display:flex;align-items:center;gap:.55rem;font-size:.82rem;line-height:1.35}
+/* EN rad, alltid. Tidigare låg raden i flex, vilket gjorde varje textnod till
+   en egen krympbar kolumn — orden delades ("136 / kr") och remsan blev 48 px
+   hög på 390 px. Nu är den vanlig inline-text som aldrig radbryts. */
+.stickybar-txt{
+  display:block;min-width:0;font-size:.82rem;line-height:1.35;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.stickybar-txt i{vertical-align:middle;margin-right:.5rem}
 .stickybar-txt b{font-weight:600;font-variant-numeric:tabular-nums;color:var(--white)}
+.stickybar-txt .sb-kort{display:none}
 .stickybar .btn{background:var(--cream);color:var(--ink);flex-shrink:0}
 .stickybar .btn.is-lagd{background:#3F6B4A;color:var(--paper)}
 @media(hover:hover) and (pointer:fine){.stickybar .btn:hover{background:var(--white)}}
 @media(max-width:720px){
-  .stickybar-in{gap:.8rem}
-  .stickybar-txt{font-size:.74rem}
+  .stickybar-in{gap:.7rem}
+  .stickybar-txt{font-size:.72rem}
   .stickybar-txt i{display:none}
+  /* Kortare formulering på mobil så hela köpraden ryms på en rad */
+  .stickybar-txt .sb-lang{display:none}
+  .stickybar-txt .sb-kort{display:inline}
+  .stickybar .btn{font-size:.68rem;padding-inline:.85rem}
 }
 /* Mindre rörelse ska gälla ALLA överlägg, inte bara scroll-avslöjandena */
 @media(prefers-reduced-motion:reduce){
