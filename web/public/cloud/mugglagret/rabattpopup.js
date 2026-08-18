@@ -128,6 +128,10 @@
     if (!lager) bygg();
     if (!stat.slutTid) {
       stat.slutTid = Date.now() + CONFIG.minuter * 60000;
+      /* Procent och kod sparas med deadlinen: varukorgen i app.js läser samma
+         nyckel och räknar av rabatten, så koden vi visar också gör något. */
+      stat.procent = CONFIG.procent;
+      stat.kod = CONFIG.kod;
       skriv(stat);
     }
     lager.classList.add("rp-on");

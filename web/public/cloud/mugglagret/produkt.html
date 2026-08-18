@@ -289,9 +289,10 @@
     <span class="stickybar-txt">
       <i class="pulse" aria-hidden="true"></i>
       <span class="sb-lang"><b>136 kr</b> — beställ inom <b data-cutoff>&nbsp;</b> så packas den <span data-cutoff-dag>&nbsp;</span></span>
-      <span class="sb-kort"><b>136 kr</b> · <b data-cutoff>&nbsp;</b> kvar, packas <span data-cutoff-dag>&nbsp;</span></span>
+      <span class="sb-kort" aria-hidden="true"><b>136 kr</b> · <b data-cutoff>&nbsp;</b> → <span data-cutoff-dag-kort>&nbsp;</span></span>
+      <span class="sb-mini" aria-hidden="true"><b data-cutoff>&nbsp;</b> → <span data-cutoff-dag-kort>&nbsp;</span></span>
     </span>
-    <button class="btn btn--sm" type="button" id="sticky-add">Lägg i varukorgen</button>
+    <button class="btn btn--sm" type="button" id="sticky-add" data-lagd="Lagd ✓">Lägg i korgen</button>
   </div>
 </div>
 
@@ -311,6 +312,7 @@
 </div>
 
 <script src="app.js"></script>
+<script src="rabattpopup.js"></script>
 <script type="text/javascript">
 (function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,[L,namespace,...Array.from(ar).slice(2)])}else p(cal,ar);return}p(cal,ar)};})(window,"https://cal.eu/embed/embed.js","init");
 Cal("init","15min",{origin:"https://cal.eu"});

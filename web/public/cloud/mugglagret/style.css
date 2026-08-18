@@ -771,12 +771,12 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
    en egen krympbar kolumn — orden delades ("136 / kr") och remsan blev 48 px
    hög på 390 px. Nu är den vanlig inline-text som aldrig radbryts. */
 .stickybar-txt{
-  display:block;min-width:0;font-size:.82rem;line-height:1.35;
+  display:block;min-width:0;position:relative;font-size:.82rem;line-height:1.35;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .stickybar-txt i{vertical-align:middle;margin-right:.5rem}
 .stickybar-txt b{font-weight:600;font-variant-numeric:tabular-nums;color:var(--white)}
-.stickybar-txt .sb-kort{display:none}
+.stickybar-txt .sb-kort,.stickybar-txt .sb-mini{display:none}
 .stickybar .btn{background:var(--cream);color:var(--ink);flex-shrink:0}
 .stickybar .btn.is-lagd{background:#3F6B4A;color:var(--paper)}
 @media(hover:hover) and (pointer:fine){.stickybar .btn:hover{background:var(--white)}}
@@ -784,10 +784,20 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   .stickybar-in{gap:.7rem}
   .stickybar-txt{font-size:.72rem}
   .stickybar-txt i{display:none}
-  /* Kortare formulering på mobil så hela köpraden ryms på en rad */
-  .stickybar-txt .sb-lang{display:none}
+  /* Kortare formulering på mobil så hela köpraden ryms på en rad. Den långa
+     versionen göms visuellt men läses upp av skärmläsare — hela meningen
+     finns kvar för den som inte ser pilen. */
+  .stickybar-txt .sb-lang{
+    position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);
+  }
   .stickybar-txt .sb-kort{display:inline}
-  .stickybar .btn{font-size:.68rem;padding-inline:.85rem}
+  .stickybar .btn{font-size:.66rem;padding-inline:.8rem}
+}
+/* Riktigt smala telefoner (320 px): priset står ändå på varje kort och på
+   produktsidan — deadlinen är det remsan måste få plats till. */
+@media(max-width:379px){
+  .stickybar-txt .sb-kort{display:none}
+  .stickybar-txt .sb-mini{display:inline}
 }
 /* Mindre rörelse ska gälla ALLA överlägg, inte bara scroll-avslöjandena */
 @media(prefers-reduced-motion:reduce){
@@ -977,3 +987,14 @@ summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
 
 /* ---------- populärt-märke på produktkort ---------- */
 .pcard-tag--pop{background:var(--terra);color:#fff;border-color:var(--terra)}
+
+/* ---------- rabattrad i varukorgen ----------
+   Popupen (rabattpopup.js) skriver deadline, procent och kod till localStorage;
+   varukorgen läser samma nyckel. Raden visas bara medan klockan tickar. */
+.cart-rabatt{
+  display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  padding:.7rem .85rem;margin-bottom:.6rem;
+  background:var(--cream);border-radius:3px;
+  font-size:.82rem;color:var(--ink-2);
+}
+.cart-rabatt b{color:#8F4A2F;letter-spacing:.06em}

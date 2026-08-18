@@ -200,6 +200,20 @@
   function cartSum(items) {
     return items.reduce(function (n, i) { return n + i.qty * i.price; }, 0);
   }
+  /* Rabatten som popupen delar ut. Varukorgen läser SAMMA localStorage-nyckel
+     som rabattpopup.js skriver, så en kod som visas för kunden också räknas av.
+     En kod som inte gör något i kassan är ett brutet löfte inne i demon.
+     Rabatten gäller bara medan popupens klocka fortfarande tickar. */
+  var RABATT_NYCKEL = "mugglagret_demo_rabatt_v1";
+
+  function aktivRabatt() {
+    try {
+      var r = JSON.parse(localStorage.getItem(RABATT_NYCKEL) || "{}");
+      if (!r.slutTid || Date.now() > r.slutTid) return null;
+      return { procent: r.procent || 10, kod: r.kod || "MUGG10", slutTid: r.slutTid };
+    } catch (e) { return null; }
+  }
+
   function hexFor(colorId) {
     var c = COLORS.filter(function (x) { return x.id === colorId; })[0];
     return c ? c.hex : "#FFFFFF";
@@ -262,8 +276,19 @@
           '</div>';
       }).join("");
 
+      var brutto = cartSum(items);
+      var rab = aktivRabatt();
+      var avdrag = rab ? Math.round(brutto * rab.procent / 100) : 0;
+
       foot.innerHTML = '' +
-        '<div class="cart-sum"><span>Summa</span><b>' + cartSum(items) + ' kr</b></div>' +
+        (rab
+          ? '<div class="cart-rabatt">' +
+              '<span>Rabattkod <b>' + esc(rab.kod) + '</b></span>' +
+              '<b>−' + avdrag + ' kr</b>' +
+            '</div>'
+          : '') +
+        '<div class="cart-sum"><span>Summa</span><b>' + (brutto - avdrag) + ' kr</b></div>' +
+        (rab ? '<p class="cart-note">' + rab.procent + ' % avdraget. Rabatten gäller så länge klockan i erbjudandet tickar.</p>' : '') +
         '<p class="cart-note">Frakt räknas i kassan. Leverans 3–6 dagar med spårbar frakt.</p>' +
         '<button class="btn btn--block" data-demo="Kassan kopplas på i den färdiga sajten.">Till kassan</button>' +
         '<button class="cart-cont" data-cart-close>Fortsätt handla</button>';
@@ -340,6 +365,8 @@
   var CUTOFF_HOUR = 14;
 
   var VECKODAG = ["på söndag", "på måndag", "på tisdag", "på onsdag", "på torsdag", "på fredag", "på lördag"];
+  /* Kort form för klisterremsan, där varje tecken räknas på små skärmar */
+  var VECKODAG_KORT = ["söndag", "måndag", "tisdag", "onsdag", "torsdag", "fredag", "lördag"];
 
   function tidTillCutoff() {
     var nu = new Date();
@@ -357,6 +384,7 @@
     var malMitt = new Date(mal.getFullYear(), mal.getMonth(), mal.getDate());
     var dagar = Math.round((malMitt - idagMitt) / 86400000);
     var dag = dagar === 0 ? "idag" : dagar === 1 ? "i morgon" : VECKODAG[mal.getDay()];
+    var dagKort = dagar === 0 ? "idag" : dagar === 1 ? "i morgon" : VECKODAG_KORT[mal.getDay()];
 
     var h = Math.floor(kvar / 3600000);
     var m = Math.floor((kvar % 3600000) / 60000);
@@ -367,17 +395,19 @@
     else if (h > 0) text = h + " h " + m + " min";
     else text = m + " min " + (s < 10 ? "0" : "") + s + " s";
 
-    return { passerad: passerad, dagar: dagar, dag: dag, text: text };
+    return { passerad: passerad, dagar: dagar, dag: dag, dagKort: dagKort, text: text };
   }
 
   function initCutoff() {
     var tider = document.querySelectorAll("[data-cutoff]");
     var dagord = document.querySelectorAll("[data-cutoff-dag]");
-    if (!tider.length && !dagord.length) return;
+    var dagordKort = document.querySelectorAll("[data-cutoff-dag-kort]");
+    if (!tider.length && !dagord.length && !dagordKort.length) return;
     function tick() {
       var t = tidTillCutoff();
       Array.prototype.forEach.call(tider, function (el) { el.textContent = t.text; });
       Array.prototype.forEach.call(dagord, function (el) { el.textContent = t.dag; });
+      Array.prototype.forEach.call(dagordKort, function (el) { el.textContent = t.dagKort; });
     }
     tick();
     setInterval(tick, 1000);
@@ -784,7 +814,8 @@
       if (tillKorg) tillKorg.classList.add("visa");
       if (!knapp) return;
       if (!knapp._text) knapp._text = knapp.textContent;
-      knapp.textContent = "Lagd i varukorgen ✓";
+      /* Remsans knapp har trång plats — den bär en egen kort bekräftelse. */
+      knapp.textContent = knapp.getAttribute("data-lagd") || "Lagd i varukorgen ✓";
       knapp.classList.add("is-lagd");
       clearTimeout(knapp._t);
       knapp._t = setTimeout(function () {

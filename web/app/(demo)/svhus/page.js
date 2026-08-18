@@ -160,7 +160,7 @@ const SKAL = [
   {
     rubrik: 'Material som håller',
     text:
-      'Energieffektiva material och hållbara konstruktioner. Vi väljer det som står sig genom generationer framför det som är billigast i upphandlingen.',
+      'Energieffektiva material och hållbara konstruktioner. Vi väljer det som står sig genom generationer framför det som är billigast just nu.',
   },
   {
     rubrik: 'Personlig service, inte växel',
