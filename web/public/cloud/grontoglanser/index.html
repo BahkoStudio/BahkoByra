@@ -595,6 +595,11 @@ html.fallback .ss-rev{opacity:1!important;transform:none!important}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
+// Nudge-tillståndet deklareras FÖRE IIFE:n: reservvägarna (reduced motion,
+// utebliven CDN) anropar startNudges() synkront inifrån den, och en let som
+// deklareras efteråt ligger då i TDZ — kraschen dödade resten av skriptet
+// (modal, mobilnav) för exakt de användare som behövde reservvägen.
+let nudgeTimers=[],nudgeHide=null,nudgesCancelled=false;
 (function(){
   "use strict";
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -773,7 +778,6 @@ html.fallback .ss-rev{opacity:1!important;transform:none!important}
 })();
 
 // ===== NUDGE-POPUP: 3 gånger — t≈10s / 100s / 160s, auto-dölj efter 8s =====
-let nudgeTimers=[],nudgeHide=null,nudgesCancelled=false;
 function showNudge(){
   if(nudgesCancelled)return;
   const n=document.getElementById('nudge-popup');
