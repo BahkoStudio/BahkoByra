@@ -84,18 +84,21 @@
     });
   }
 
-  function swatchRow(n) {
+  function swatchRow(n, valdFarg) {
     return COLORS.slice(0, n || COLORS.length).map(function (c) {
-      return '<i style="background:' + c.hex + '"></i>';
+      return '<i class="' + (c.id === valdFarg ? "is-on" : "") +
+             '" style="background:' + c.hex + '"></i>';
     }).join("");
   }
 
-  function cardHTML(p, i) {
+  function cardHTML(p, i, valdFarg) {
     /* De första korten i en grid ligger ofta redan i vyn — lazy där ger
        synlig pop-in. Ladda dem direkt. */
     var lazy = i != null && i < 4 ? "" : ' loading="lazy"';
+    /* Har man valt färg i katalogen följer valet med till produktsidan */
+    var href = "produkt.html?p=" + p.id + (valdFarg ? "&farg=" + valdFarg : "");
     return '' +
-      '<a class="pcard rv" href="produkt.html?p=' + p.id + '">' +
+      '<a class="pcard rv" href="' + href + '">' +
         '<div class="pcard-img">' +
           (p.isNew
             ? '<span class="pcard-tag pcard-tag--new">Nyhet</span>'
@@ -109,7 +112,7 @@
           '<span class="pcard-cat">' + esc(CATS[p.cat]) + '</span>' +
           '<h3>' + esc(p.title) + '</h3>' +
           '<div class="pcard-price"><b>' + PRICE + '</b><span>11 oz keramik</span></div>' +
-          '<div class="pcard-swatches">' + swatchRow(7) + '</div>' +
+          '<div class="pcard-swatches">' + swatchRow(7, valdFarg) + '</div>' +
         '</div>' +
       '</a>';
   }
@@ -197,6 +200,20 @@
   function cartSum(items) {
     return items.reduce(function (n, i) { return n + i.qty * i.price; }, 0);
   }
+  /* Rabatten som popupen delar ut. Varukorgen läser SAMMA localStorage-nyckel
+     som rabattpopup.js skriver, så en kod som visas för kunden också räknas av.
+     En kod som inte gör något i kassan är ett brutet löfte inne i demon.
+     Rabatten gäller bara medan popupens klocka fortfarande tickar. */
+  var RABATT_NYCKEL = "mugglagret_demo_rabatt_v1";
+
+  function aktivRabatt() {
+    try {
+      var r = JSON.parse(localStorage.getItem(RABATT_NYCKEL) || "{}");
+      if (!r.slutTid || Date.now() > r.slutTid) return null;
+      return { procent: r.procent || 10, kod: r.kod || "MUGG10", slutTid: r.slutTid };
+    } catch (e) { return null; }
+  }
+
   function hexFor(colorId) {
     var c = COLORS.filter(function (x) { return x.id === colorId; })[0];
     return c ? c.hex : "#FFFFFF";
@@ -259,8 +276,19 @@
           '</div>';
       }).join("");
 
+      var brutto = cartSum(items);
+      var rab = aktivRabatt();
+      var avdrag = rab ? Math.round(brutto * rab.procent / 100) : 0;
+
       foot.innerHTML = '' +
-        '<div class="cart-sum"><span>Summa</span><b>' + cartSum(items) + ' kr</b></div>' +
+        (rab
+          ? '<div class="cart-rabatt">' +
+              '<span>Rabattkod <b>' + esc(rab.kod) + '</b></span>' +
+              '<b>−' + avdrag + ' kr</b>' +
+            '</div>'
+          : '') +
+        '<div class="cart-sum"><span>Summa</span><b>' + (brutto - avdrag) + ' kr</b></div>' +
+        (rab ? '<p class="cart-note">' + rab.procent + ' % avdraget. Rabatten gäller så länge klockan i erbjudandet tickar.</p>' : '') +
         '<p class="cart-note">Frakt räknas i kassan. Leverans 3–6 dagar med spårbar frakt.</p>' +
         '<button class="btn btn--block" data-demo="Kassan kopplas på i den färdiga sajten.">Till kassan</button>' +
         '<button class="cart-cont" data-cart-close>Fortsätt handla</button>';
@@ -336,6 +364,10 @@
      =========================================================== */
   var CUTOFF_HOUR = 14;
 
+  var VECKODAG = ["på söndag", "på måndag", "på tisdag", "på onsdag", "på torsdag", "på fredag", "på lördag"];
+  /* Kort form för klisterremsan, där varje tecken räknas på små skärmar */
+  var VECKODAG_KORT = ["söndag", "måndag", "tisdag", "onsdag", "torsdag", "fredag", "lördag"];
+
   function tidTillCutoff() {
     var nu = new Date();
     var mal = new Date(nu.getFullYear(), nu.getMonth(), nu.getDate(), CUTOFF_HOUR, 0, 0, 0);
@@ -344,21 +376,38 @@
     /* Helg: nästa packning sker på måndagen */
     while (mal.getDay() === 0 || mal.getDay() === 6) mal.setDate(mal.getDate() + 1);
     var kvar = Math.max(0, mal - nu);
+
+    /* Dagsordet räknas ut från MÅLDATUMET, aldrig från passerad-flaggan:
+       en lördag före 14:00 är inte passerad, men packningen sker ändå på
+       måndagen. Alla platser på sajten skriver samma ord som klockan här. */
+    var idagMitt = new Date(nu.getFullYear(), nu.getMonth(), nu.getDate());
+    var malMitt = new Date(mal.getFullYear(), mal.getMonth(), mal.getDate());
+    var dagar = Math.round((malMitt - idagMitt) / 86400000);
+    var dag = dagar === 0 ? "idag" : dagar === 1 ? "i morgon" : VECKODAG[mal.getDay()];
+    var dagKort = dagar === 0 ? "idag" : dagar === 1 ? "i morgon" : VECKODAG_KORT[mal.getDay()];
+
     var h = Math.floor(kvar / 3600000);
     var m = Math.floor((kvar % 3600000) / 60000);
     var s = Math.floor((kvar % 60000) / 1000);
-    return {
-      passerad: passerad,
-      text: h > 0 ? h + " h " + m + " min" : m + " min " + (s < 10 ? "0" : "") + s + " s"
-    };
+    var text;
+    /* Över ett dygn: dagar och timmar. "67 h 59 min" läses inte som en tid. */
+    if (h >= 24) text = Math.floor(h / 24) + " d " + (h % 24) + " h";
+    else if (h > 0) text = h + " h " + m + " min";
+    else text = m + " min " + (s < 10 ? "0" : "") + s + " s";
+
+    return { passerad: passerad, dagar: dagar, dag: dag, dagKort: dagKort, text: text };
   }
 
   function initCutoff() {
-    var mal = document.querySelectorAll("[data-cutoff]");
-    if (!mal.length) return;
+    var tider = document.querySelectorAll("[data-cutoff]");
+    var dagord = document.querySelectorAll("[data-cutoff-dag]");
+    var dagordKort = document.querySelectorAll("[data-cutoff-dag-kort]");
+    if (!tider.length && !dagord.length && !dagordKort.length) return;
     function tick() {
       var t = tidTillCutoff();
-      Array.prototype.forEach.call(mal, function (el) { el.textContent = t.text; });
+      Array.prototype.forEach.call(tider, function (el) { el.textContent = t.text; });
+      Array.prototype.forEach.call(dagord, function (el) { el.textContent = t.dag; });
+      Array.prototype.forEach.call(dagordKort, function (el) { el.textContent = t.dagKort; });
     }
     tick();
     setInterval(tick, 1000);
@@ -422,8 +471,22 @@
     var bar = document.getElementById("stickybar");
     if (!bar) return;
     var floatBtn = document.getElementById("float-demo");
+    /* På produktsidan är köpraden hela poängen — där kommer remsan tidigare,
+       så köpknappen alltid finns inom räckhåll. */
+    var trosk = document.getElementById("pdp") ? 0.45 : 0.9;
+
+    /* Remsan är fixerad över sidans nederkant. Footern måste reservera exakt
+       dess höjd, annars hamnar krediteringen under remsan (mätt 390 px). */
+    var reservera = function () {
+      document.documentElement.style.setProperty("--sticky-space", bar.offsetHeight + "px");
+    };
+    reservera();
+    window.addEventListener("resize", reservera);
+    window.addEventListener("orientationchange", reservera);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(reservera);
+
     var onScroll = function () {
-      var visa = window.scrollY > window.innerHeight * 0.9;
+      var visa = window.scrollY > window.innerHeight * trosk;
       bar.classList.toggle("visible", visa);
       /* Bahko-knappen flyttas upp så den inte hamnar under remsan */
       if (floatBtn) floatBtn.classList.toggle("lyft", visa);
@@ -457,18 +520,28 @@
     var grid = document.getElementById("shop-grid");
     if (!grid) return;
 
-    var state = { cat: "alla", color: null, sort: "senast" };
+    /* "nytt" är ett eget läge bland kategorierna, inte en sorteringsordning:
+       då syns det i filtret var man är, och Alla muggar är ett tryck bort. */
+    var state = { cat: "alla", color: null, sort: "nyheter" };
 
     var params = new URLSearchParams(location.search);
     if (params.get("kategori") && CATS[params.get("kategori")]) state.cat = params.get("kategori");
+    if (params.get("nytt")) state.cat = "nytt";
+    if (params.get("farg") && COLORS.filter(function (c) { return c.id === params.get("farg"); })[0]) {
+      state.color = params.get("farg");
+    }
 
     var countEl = document.getElementById("shop-count");
     var titleEl = document.getElementById("shop-title");
     var leadEl = document.getElementById("shop-lead");
     var crumbEl = document.getElementById("shop-crumb");
+    var chipWrap = document.getElementById("shop-chips");
+    var colorNote = document.getElementById("filter-color-note");
 
+    var TITLAR = { alla: "Alla muggar", nytt: "Nytt denna vecka" };
     var LEADS = {
       alla:   "Hela sortimentet av tryckta keramikmuggar, 11 oz. Sju färgval på handtag och insida — samma pris oavsett motiv.",
+      nytt:   "De senaste motiven, uppe den här veckan. Samma pris, samma sju färger.",
       katter: "Kattmotiv i pastell, papperskonst och akvarell. Vår mest efterfrågade motivfamilj.",
       djur:   "Djurmotiv för dig som vill ha lite liv i morgonkaffet.",
       fjaril: "Fjärilar och blomster i mjuka toner — lugna motiv som passar de flesta hem.",
@@ -478,65 +551,161 @@
       texter: "Böcker, texter och blandade motiv för läshörnan och kontoret."
     };
 
+    function rubrik(cat) { return TITLAR[cat] || CATS[cat]; }
+
+    function urval(cat) {
+      return P.filter(function (p) {
+        if (cat === "alla") return true;
+        if (cat === "nytt") return p.isNew;
+        return p.cat === cat;
+      });
+    }
+
+    /* Siffrorna räknas fram ur P, samma källa som räknaren ovanför gridet —
+       hårdkodade antal i HTML glider ifrån varandra så fort ett motiv läggs till. */
+    function skrivAntal() {
+      Array.prototype.forEach.call(document.querySelectorAll("[data-cat]"), function (b) {
+        var span = b.querySelector("span");
+        if (span) span.textContent = urval(b.getAttribute("data-cat")).length;
+      });
+    }
+
+    /* Chips-raden: samma kategorier som i panelen, men alltid synliga */
+    if (chipWrap) {
+      var chipsOrdning = ["alla", "nytt"].concat(Object.keys(CATS));
+      chipWrap.innerHTML = chipsOrdning.map(function (c) {
+        return '<button class="chip" type="button" data-cat="' + c + '">' +
+               esc(rubrik(c)) + ' <span></span></button>';
+      }).join("");
+    }
+
+    function fargNamn() {
+      var c = COLORS.filter(function (x) { return x.id === state.color; })[0];
+      return c ? c.name : null;
+    }
+
     function render() {
-      var list = P.filter(function (p) { return state.cat === "alla" || p.cat === state.cat; });
+      var list = urval(state.cat);
 
       if (state.sort === "namn") {
         list = list.slice().sort(function (a, b) { return a.title.localeCompare(b.title, "sv"); });
-      } else if (state.sort === "nyheter") {
+      } else {
+        /* Nyheter först är förvalet — och det enda som faktiskt gör något */
         list = list.slice().sort(function (a, b) { return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0) || a.id - b.id; });
       }
 
-      grid.innerHTML = list.length
-        ? list.map(cardHTML).join("")
-        : '<p class="empty">Inga muggar matchar filtret just nu.</p>';
+      if (list.length) {
+        grid.innerHTML = list.map(function (p, i) { return cardHTML(p, i, state.color); }).join("");
+      } else {
+        /* Ingen återvändsgränd: säg vad som gallrade bort och ge vägen ut */
+        grid.innerHTML = '' +
+          '<div class="empty">' +
+            '<h2>Inga muggar i ' + esc(rubrik(state.cat)) + ' just nu</h2>' +
+            '<p>Vi fyller på sortimentet löpande. Under tiden finns ' + P.length +
+              ' andra motiv, alla till 136 kr.</p>' +
+            '<button class="btn" type="button" data-nollstall>Visa alla ' + P.length + ' muggar</button>' +
+          '</div>' +
+          POPULARA.slice(0, 4).map(function (id, i) {
+            var p = P.filter(function (x) { return x.id === id; })[0];
+            return p ? cardHTML(p, i, state.color) : "";
+          }).join("");
+      }
 
-      countEl.innerHTML = "Visar <b>" + list.length + "</b> av " + P.length + " muggar i demon";
-      titleEl.textContent = state.cat === "alla" ? "Alla muggar" : CATS[state.cat];
+      countEl.innerHTML = "Visar <b>" + list.length + "</b> av " + P.length + " muggar";
+      titleEl.textContent = rubrik(state.cat);
       leadEl.textContent = LEADS[state.cat];
-      crumbEl.textContent = state.cat === "alla" ? "Alla muggar" : CATS[state.cat];
+      crumbEl.textContent = rubrik(state.cat);
 
       Array.prototype.forEach.call(document.querySelectorAll("[data-cat]"), function (b) {
-        b.classList.toggle("is-on", b.getAttribute("data-cat") === state.cat);
+        var pa = b.getAttribute("data-cat") === state.cat;
+        b.classList.toggle("is-on", pa);
+        b.setAttribute("aria-pressed", pa ? "true" : "false");
       });
+      if (colorNote) {
+        var namn = fargNamn();
+        colorNote.textContent = namn
+          ? namn + " följer med till produktsidan. Alla motiv finns i alla sju färger."
+          : "Alla motiv finns i samtliga sju färger. Välj här så följer färgen med.";
+      }
+      skrivAntal();
+      malaFarger();
+      märkFilter();
       initReveal();
     }
 
     Array.prototype.forEach.call(document.querySelectorAll("[data-cat]"), function (b) {
-      b.addEventListener("click", function () { state.cat = b.getAttribute("data-cat"); render(); });
+      b.addEventListener("click", function () {
+        state.cat = b.getAttribute("data-cat");
+        render();
+        stängPanel();
+      });
     });
 
+    grid.addEventListener("click", function (e) {
+      if (!e.target.closest("[data-nollstall]")) return;
+      state.cat = "alla";
+      state.color = null;
+      render();
+    });
+
+    /* Färgvalet är en VARIANT, inte ett filter: alla motiv finns i alla sju
+       färger, så valet byter förhandsvisning i korten och följer med till
+       produktsidan via ?farg=. Ingenting gallras bort — och noten säger inte
+       längre något annat än vad som händer. */
     var colorWrap = document.getElementById("filter-colors");
     if (colorWrap) {
       colorWrap.innerHTML = COLORS.map(function (c) {
-        return '<button class="fcolor" data-color="' + c.id + '" style="background:' + c.hex +
-               '" title="' + c.name + '" aria-label="' + c.name + '"></button>';
+        return '<button class="fcolor" type="button" data-color="' + c.id + '" style="--sw:' + c.hex +
+               '" title="' + c.name + '" aria-pressed="false" aria-label="' + c.name + '"></button>';
       }).join("");
-      var colorNote = document.getElementById("filter-color-note");
       colorWrap.addEventListener("click", function (e) {
         var b = e.target.closest(".fcolor");
         if (!b) return;
         var id = b.getAttribute("data-color");
         state.color = state.color === id ? null : id;
-        Array.prototype.forEach.call(colorWrap.children, function (el) {
-          el.classList.toggle("is-on", el.getAttribute("data-color") === state.color);
-        });
-        if (colorNote) {
-          var c = COLORS.filter(function (x) { return x.id === state.color; })[0];
-          colorNote.textContent = c
-            ? "Visar alla motiv i " + c.name + "."
-            : "Alla motiv finns i samtliga sju färger.";
-        }
+        render();
+      });
+    }
+    function malaFarger() {
+      if (!colorWrap) return;
+      Array.prototype.forEach.call(colorWrap.children, function (el) {
+        var pa = el.getAttribute("data-color") === state.color;
+        el.classList.toggle("is-on", pa);
+        el.setAttribute("aria-pressed", pa ? "true" : "false");
       });
     }
 
     var sortEl = document.getElementById("shop-sort");
-    if (sortEl) sortEl.addEventListener("change", function () { state.sort = sortEl.value; render(); });
+    if (sortEl) {
+      sortEl.value = state.sort;
+      sortEl.addEventListener("change", function () { state.sort = sortEl.value; render(); });
+    }
 
+    /* Filterknappen: etikett, aria-expanded och antal aktiva filter */
     var fToggle = document.getElementById("filter-toggle");
-    if (fToggle) {
+    var panel = document.getElementById("filters");
+
+    function aktivaFilter() {
+      return (state.cat === "alla" ? 0 : 1) + (state.color ? 1 : 0);
+    }
+    function märkFilter() {
+      if (!fToggle) return;
+      var oppen = panel && panel.classList.contains("open");
+      var n = aktivaFilter();
+      fToggle.textContent = (oppen ? "Stäng filter" : "Filter") + (n ? " (" + n + ")" : "");
+      fToggle.setAttribute("aria-expanded", oppen ? "true" : "false");
+    }
+    function stängPanel() {
+      if (panel && panel.classList.contains("open")) {
+        panel.classList.remove("open");
+        märkFilter();
+      }
+    }
+    if (fToggle && panel) {
+      fToggle.setAttribute("aria-controls", "filters");
       fToggle.addEventListener("click", function () {
-        document.getElementById("filters").classList.toggle("open");
+        panel.classList.toggle("open");
+        märkFilter();
       });
     }
 
@@ -548,7 +717,8 @@
     var root = document.getElementById("pdp");
     if (!root) return;
 
-    var id = parseInt(new URLSearchParams(location.search).get("p"), 10);
+    var params = new URLSearchParams(location.search);
+    var id = parseInt(params.get("p"), 10);
     var p = P.filter(function (x) { return x.id === id; })[0] || P[0];
 
     document.title = p.title + " – Mugglagret";
@@ -558,33 +728,34 @@
     document.getElementById("pdp-crumb-cat").href = "katalog.html?kategori=" + p.cat;
     document.getElementById("pdp-crumb-name").textContent = p.title;
 
-    /* bildgalleri: produktens egen bild + tre grannar ur samma kategori */
-    var siblings = P.filter(function (x) { return x.cat === p.cat && x.id !== p.id; }).slice(0, 3);
-    var shots = [p].concat(siblings);
+    /* EN bild per mugg är allt vi har fått av kunden. Ingen tumnagelspalt
+       fylld med andra motiv: den fick kunden att tro att hon såg fler
+       vinklar av samma mugg. Fler vinklar byggs när fler bilder finns. */
     var mainImg = document.getElementById("pdp-main-img");
-    var thumbs = document.getElementById("pdp-thumbs");
-
     mainImg.src = p.img;
     mainImg.alt = p.title + " – keramikmugg 11 oz";
-    thumbs.innerHTML = shots.map(function (s, i) {
-      return '<button class="pdp-thumb' + (i === 0 ? " is-on" : "") + '" data-src="' + s.img +
-             '" aria-label="Visa bild ' + (i + 1) + '"><img src="' + s.img + '" alt="" loading="lazy"></button>';
-    }).join("");
-    thumbs.addEventListener("click", function (e) {
-      var b = e.target.closest(".pdp-thumb");
-      if (!b) return;
-      mainImg.src = b.getAttribute("data-src");
-      Array.prototype.forEach.call(thumbs.children, function (el) { el.classList.remove("is-on"); });
-      b.classList.add("is-on");
-    });
 
-    /* färgval */
-    var picked = COLORS[0];
+    /* Samma märke som i katalogen — signalen som fick klicket bekräftas här */
+    var flagga = document.getElementById("pdp-flagga");
+    var mainWrap = document.getElementById("pdp-main");
+    if (p.isNew) {
+      if (flagga) flagga.textContent = "Nyhet denna vecka";
+      if (mainWrap) mainWrap.insertAdjacentHTML("afterbegin", '<span class="pcard-tag pcard-tag--new">Nyhet</span>');
+    } else if (POPULARA.indexOf(p.id) > -1) {
+      if (flagga) flagga.textContent = "Populär just nu";
+      if (mainWrap) mainWrap.insertAdjacentHTML("afterbegin", '<span class="pcard-tag pcard-tag--pop">Populär just nu</span>');
+    }
+
+    /* färgval — förvalet kan komma från katalogen via ?farg= */
+    var LJUSA = { white: 1, yellow: 1, pink: 1 };
+    var picked = COLORS.filter(function (c) { return c.id === params.get("farg"); })[0] || COLORS[0];
     var colorWrap = document.getElementById("pdp-colors");
     var colorName = document.getElementById("pdp-color-name");
-    colorWrap.innerHTML = COLORS.map(function (c, i) {
-      return '<button class="color' + (i === 0 ? " is-on" : "") + '" data-id="' + c.id +
-             '" style="background:' + c.hex + '" title="' + c.name + '" aria-label="' + c.name + '"></button>';
+    colorWrap.innerHTML = COLORS.map(function (c) {
+      return '<button class="color' + (c.id === picked.id ? " is-on" : "") + '" type="button" data-id="' + c.id +
+             '" data-ljus="' + (LJUSA[c.id] ? "1" : "0") + '" style="background:' + c.hex +
+             '" title="' + c.name + '" aria-pressed="' + (c.id === picked.id ? "true" : "false") +
+             '" aria-label="' + c.name + '"></button>';
     }).join("");
     colorName.textContent = picked.name;
     colorWrap.addEventListener("click", function (e) {
@@ -592,28 +763,72 @@
       if (!b) return;
       picked = COLORS.filter(function (c) { return c.id === b.getAttribute("data-id"); })[0];
       colorName.textContent = picked.name;
-      Array.prototype.forEach.call(colorWrap.children, function (el) { el.classList.remove("is-on"); });
-      b.classList.add("is-on");
+      Array.prototype.forEach.call(colorWrap.children, function (el) {
+        var pa = el === b;
+        el.classList.toggle("is-on", pa);
+        el.setAttribute("aria-pressed", pa ? "true" : "false");
+      });
     });
 
-    /* antal */
+    /* antal — skrivbart, så 25 st inte kräver 24 tryck på plus */
     var qty = 1;
     var qtyEl = document.getElementById("pdp-qty");
-    document.getElementById("qty-minus").addEventListener("click", function () {
-      qty = Math.max(1, qty - 1); qtyEl.textContent = qty;
-    });
-    document.getElementById("qty-plus").addEventListener("click", function () {
-      qty = Math.min(99, qty + 1); qtyEl.textContent = qty;
-    });
+    var sumEl = document.getElementById("pdp-sum");
+    var volymEl = document.getElementById("pdp-volym");
 
-    /* lägg i varukorgen */
+    function malaSumma() {
+      /* Vid ett styck står priset redan stort ovanför — ingen upprepning */
+      if (sumEl) {
+        sumEl.innerHTML = qty > 1
+          ? qty + " × 136 kr = <b>" + (qty * 136) + " kr</b> inkl. moms"
+          : "";
+      }
+      /* Vid 25 st gäller volympris — då får sidan inte stå kvar på 136 kr */
+      if (volymEl) volymEl.classList.toggle("visa", qty >= 25);
+    }
+    function sattAntal(n) {
+      qty = Math.min(99, Math.max(1, isNaN(n) ? 1 : n));
+      if (qtyEl.value !== String(qty)) qtyEl.value = qty;
+      malaSumma();
+    }
+    document.getElementById("qty-minus").addEventListener("click", function () { sattAntal(qty - 1); });
+    document.getElementById("qty-plus").addEventListener("click", function () { sattAntal(qty + 1); });
+    /* Under skrivandet rörs inte fältets värde — bara summan och volymraden */
+    qtyEl.addEventListener("input", function () {
+      var n = parseInt(qtyEl.value, 10);
+      if (!isNaN(n)) { qty = Math.min(99, Math.max(1, n)); malaSumma(); }
+    });
+    qtyEl.addEventListener("change", function () { sattAntal(parseInt(qtyEl.value, 10)); });
+    sattAntal(1);
+
+    /* lägg i varukorgen — med kvittens i sidan, inte bara en låda som glider in */
     var addBtn = document.getElementById("pdp-add");
-    if (addBtn) {
-      addBtn.addEventListener("click", function () {
-        window.mugCartAdd({
-          id: p.id, title: p.title, img: p.img, price: p.price,
-          color: picked.id, colorName: picked.name, qty: qty
-        });
+    var stickyAdd = document.getElementById("sticky-add");
+    var tillKorg = document.getElementById("pdp-till-korg");
+
+    function laggIKorg(knapp) {
+      window.mugCartAdd({
+        id: p.id, title: p.title, img: p.img, price: p.price,
+        color: picked.id, colorName: picked.name, qty: qty
+      });
+      if (tillKorg) tillKorg.classList.add("visa");
+      if (!knapp) return;
+      if (!knapp._text) knapp._text = knapp.textContent;
+      /* Remsans knapp har trång plats — den bär en egen kort bekräftelse. */
+      knapp.textContent = knapp.getAttribute("data-lagd") || "Lagd i varukorgen ✓";
+      knapp.classList.add("is-lagd");
+      clearTimeout(knapp._t);
+      knapp._t = setTimeout(function () {
+        knapp.textContent = knapp._text;
+        knapp.classList.remove("is-lagd");
+      }, 2600);
+    }
+    if (addBtn) addBtn.addEventListener("click", function () { laggIKorg(addBtn); });
+    if (stickyAdd) stickyAdd.addEventListener("click", function () { laggIKorg(stickyAdd); });
+    if (tillKorg) {
+      tillKorg.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (window.mugCartOpen) window.mugCartOpen();
       });
     }
 
@@ -626,14 +841,19 @@
       h.setAttribute("aria-expanded", open ? "true" : "false");
     });
 
-    /* relaterat */
+    /* relaterat — rubriken måste stämma med vad som faktiskt visas */
     var rel = document.getElementById("pdp-related");
     if (rel) {
-      var more = P.filter(function (x) { return x.cat === p.cat && x.id !== p.id; });
-      if (more.length < 4) {
-        more = more.concat(P.filter(function (x) { return x.cat !== p.cat && x.id !== p.id; }));
+      var samma = P.filter(function (x) { return x.cat === p.cat && x.id !== p.id; });
+      var more = samma;
+      var relTitel = "Fler " + CATS[p.cat].toLowerCase();
+      if (samma.length < 4) {
+        more = samma.concat(P.filter(function (x) { return x.cat !== p.cat && x.id !== p.id; }));
+        relTitel = "Fler motiv";
       }
-      rel.innerHTML = more.slice(0, 4).map(cardHTML).join("");
+      var relH = document.getElementById("pdp-related-title");
+      if (relH) relH.textContent = relTitel;
+      rel.innerHTML = more.slice(0, 4).map(function (x, i) { return cardHTML(x, i, picked.id); }).join("");
     }
   }
 

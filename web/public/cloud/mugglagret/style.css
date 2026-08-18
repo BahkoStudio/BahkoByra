@@ -9,11 +9,15 @@
   --cream-2:#EDE3D2;
   --ink:#2B211D;
   --ink-2:#6B564C;
-  --muted:#8C7B71;
+  /* Mörkad 2026-08-18: gamla #8C7B71 gav 3,88:1 mot paper och 3,48:1 mot
+     cream — under 4,5:1 på all liten text. Nu 5,4:1 mot paper, 5,1:1 mot cream. */
+  --muted:#6E5C52;
   --line:#E6DBC9;
   --line-2:#D8CAB4;
   --white:#FFFFFF;
   --terra:#A85C3E;
+  /* Terra klarar inte 4,5:1 mot cream — den här varianten gör det (5,6:1) */
+  --terra-djup:#8F4A2F;
 
   --disp:'Fraunces',Georgia,'Times New Roman',serif;
   --ui:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
@@ -137,6 +141,10 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .brand img{transition:width .3s var(--ease),height .3s var(--ease)}
 .brand{display:flex;align-items:center;gap:.7rem;flex-shrink:0}
 .brand img{width:46px;height:46px;object-fit:contain}
+/* Namn och årtal är två rader — styrt av CSS, inte av om HTML-koden råkar ha
+   ett blanktecken mellan spanen. Utan detta blev det "MugglagretESTD 2024". */
+.brand>span{display:flex;flex-direction:column;align-items:flex-start}
+.brand-name,.brand-sub{display:block}
 .brand-name{
   font-family:var(--disp);font-size:1.24rem;font-weight:600;letter-spacing:-.02em;line-height:1;
 }
@@ -191,8 +199,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   background:var(--cream);border-radius:3px;padding:1.3rem;
   display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;
 }
-.mega-flag{display:flex;align-items:center;gap:.45rem;font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);font-weight:600}
-.mega-side h4{font-family:var(--disp);font-size:1.18rem;font-weight:600;line-height:1.2}
+.mega-flag{display:flex;align-items:center;gap:.45rem;font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra-djup);font-weight:600}
+.mega-rubrik{display:block;font-family:var(--disp);font-size:1.18rem;font-weight:600;line-height:1.2}
 .mega-side p{font-size:.82rem;color:var(--ink-2);line-height:1.5}
 .mega-note{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:auto}
 @media(max-width:1000px){.mega{display:none}}
@@ -228,11 +236,25 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .mnav{
   position:fixed;inset:0;z-index:79;background:var(--paper);
   padding:7.5rem var(--pad) 2rem;
-  transform:translateX(100%);transition:transform .42s var(--ease);
+  transform:translateX(100%);transition:transform .42s var(--ease),visibility .42s;
   display:flex;flex-direction:column;gap:.4rem;
+  overflow-y:auto;
+  /* visibility, inte bara transform: annars ligger länkarna kvar i
+     tab-ordningen när menyn är stängd och skärmläsare läser dem. */
+  visibility:hidden;
 }
-.mnav.open{transform:translateX(0)}
-.mnav a{font-family:var(--disp);font-size:2rem;padding:.6rem 0;border-bottom:1px solid var(--line)}
+.mnav.open{transform:translateX(0);visibility:visible}
+.mnav a{font-family:var(--disp);font-size:1.55rem;padding:.5rem 0;border-bottom:1px solid var(--line)}
+.mnav .mnav-cta{
+  font-family:var(--ui);font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper);border:0;
+  display:flex;align-items:center;justify-content:center;min-height:50px;margin-bottom:.7rem;
+}
+.mnav .mnav-rubrik{
+  font-family:var(--ui);font-size:.64rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin:1.1rem 0 .2rem;border:0;padding:0;
+}
+.mnav .mnav-kat{font-size:1.18rem;padding:.55rem 0}
 
 /* ---------- hero ---------- */
 .hero{padding:clamp(2.2rem,4vw,3.4rem) 0 clamp(2.6rem,5vw,4.4rem);overflow:hidden}
@@ -378,6 +400,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .pcard-price span{font-size:.73rem;color:var(--muted)}
 .pcard-swatches{display:flex;gap:.28rem;margin-top:.7rem}
 .pcard-swatches i{width:12px;height:12px;border-radius:50%;border:1px solid rgba(0,0,0,.14);display:block}
+/* Färgen man valt i katalogen syns i varje kort och följer med till produktsidan */
+.pcard-swatches i.is-on{box-shadow:0 0 0 1.5px var(--paper),0 0 0 3px var(--ink)}
 @media(hover:hover) and (pointer:fine){
   .pcard:hover .pcard-img{border-color:var(--ink)}
   .pcard:hover .pcard-img img{transform:scale(1.05)}
@@ -395,12 +419,14 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .price-table th,.price-table td{padding:.82rem 1rem;text-align:left;border-bottom:1px solid rgba(244,237,224,.16)}
 .price-table th{
   font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(244,237,224,.5);font-weight:500;
+  color:rgba(244,237,224,.6);font-weight:500;
 }
 .price-table td:last-child,.price-table th:last-child{text-align:right}
 .price-table tbody tr:last-child td{border-bottom:0}
 .price-table td b{font-weight:600}
-.price-note{font-size:.72rem;color:rgba(244,237,224,.45);margin-top:1rem}
+/* Prisvillkoren (exkl. moms, 399 kr trycksetup) är den finstilt som INTE får
+   missförstås — .68 ger 7:1 mot ink, gamla .45 gav 3,88:1. */
+.price-note{font-size:.72rem;color:rgba(244,237,224,.68);margin-top:1rem}
 
 /* ---------- nyhetsbrev ---------- */
 .news{text-align:center;padding:clamp(3.4rem,6.5vw,5.6rem) 0}
@@ -417,11 +443,17 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 
 /* ---------- footer ---------- */
 .ftr{background:var(--cream);border-top:1px solid var(--line-2);padding:clamp(3rem,5vw,4.4rem) 0 0}
+/* Klisterremsan är fixerad över sidans nederkant. Footern reserverar exakt
+   remsans höjd (app.js sätter --sticky-space) så krediteringen aldrig hamnar
+   under den. Värdet nedan är fallbacken innan skriptet hunnit mäta. */
+.ftr{padding-bottom:var(--sticky-space,4.4rem)}
 .ftr-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2.6rem}
 .ftr-lead p{font-size:.9rem;color:var(--ink-2);max-width:34ch;margin:1rem 0 1.4rem}
-.ftr h4{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1.1rem}
-.ftr li{margin-bottom:.6rem}
+.ftr h2{font-family:var(--ui);font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem}
+.ftr li{margin-bottom:.1rem}
 .ftr li a,.ftr-lead a{font-size:.89rem;color:var(--ink-2);transition:color .25s}
+/* Höjden kommer från träffytan, inte från marginalen */
+.ftr li a{display:flex;align-items:center;min-height:44px}
 @media(hover:hover) and (pointer:fine){.ftr li a:hover,.ftr-lead a:hover{color:var(--ink)}}
 .ftr-bar{
   margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--line-2);
@@ -433,7 +465,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 /* ---------- katalog ---------- */
 .crumbs{font-size:.75rem;color:var(--muted);padding:1.5rem 0 0}
 .crumbs a{transition:color .25s}
-.crumbs span{margin:0 .45rem;opacity:.5}
+.crumbs span{margin:0 .45rem}
+.crumbs .sep{color:var(--muted)}
 @media(hover:hover) and (pointer:fine){.crumbs a:hover{color:var(--ink)}}
 
 .cat-hero{padding:2.2rem 0 2.6rem;border-bottom:1px solid var(--line)}
@@ -444,20 +477,59 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .filters{align-self:start;position:sticky;top:100px}
 .fgroup{border-bottom:1px solid var(--line);padding-bottom:1.6rem;margin-bottom:1.6rem}
 .fgroup:last-child{border-bottom:0}
-.fgroup h4{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.fgroup h2{font-family:var(--ui);font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
 .fbtn{
   display:flex;align-items:center;justify-content:space-between;width:100%;gap:.6rem;
-  min-height:38px;padding:.34rem 0;font-size:.88rem;color:var(--ink-2);
+  min-height:44px;padding:.34rem 0;font-size:.88rem;color:var(--ink-2);
   transition:color .25s;text-align:left;
 }
 .fbtn span{font-size:.72rem;color:var(--muted)}
 .fbtn.is-on{color:var(--ink);font-weight:600}
 .fbtn.is-on span{color:var(--ink-2)}
 @media(hover:hover) and (pointer:fine){.fbtn:hover{color:var(--ink)}}
-.fcolors{display:flex;flex-wrap:wrap;gap:.5rem}
-.fcolor{width:28px;height:28px;border-radius:50%;border:1px solid var(--line-2);position:relative;transition:transform .2s var(--ease)}
-.fcolor.is-on{box-shadow:0 0 0 1.5px var(--paper),0 0 0 3px var(--ink)}
-@media(hover:hover) and (pointer:fine){.fcolor:hover{transform:scale(1.1)}}
+
+/* Filtrets prisrad: en mening, inte ett filter utan filter */
+.fnote{font-size:.82rem;color:var(--ink-2)}
+.fnote b{color:var(--ink);font-weight:600}
+.fnote a{color:var(--ink);font-weight:600;border-bottom:1px solid var(--line-2)}
+.fnote--liten{font-size:.76rem;color:var(--muted);margin-top:.7rem}
+
+/* Tryckytan är 44 px, den synliga pricken 28 px — prickarna får inte se
+   klumpiga ut bara för att fingret ska hitta. */
+.fcolors{display:flex;flex-wrap:wrap;gap:.15rem}
+.fcolor{
+  width:44px;height:44px;border-radius:50%;border:0;background:none !important;
+  position:relative;transition:transform .2s var(--ease);
+}
+.fcolor::before{
+  content:'';position:absolute;left:50%;top:50%;width:28px;height:28px;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:var(--sw);border:1px solid var(--line-2);
+}
+.fcolor.is-on::before{box-shadow:0 0 0 1.5px var(--paper),0 0 0 3px var(--ink)}
+@media(hover:hover) and (pointer:fine){.fcolor:hover::before{transform:translate(-50%,-50%) scale(1.12)}}
+
+/* Kategori-chips ovanför gridet: aktivt val syns och byts på ett tryck,
+   utan att filterpanelen behöver öppnas. */
+.chips{display:none}
+.chips-rad{
+  display:flex;gap:.5rem;overflow-x:auto;padding:0 var(--pad) .9rem;
+  margin-inline:calc(var(--pad) * -1);scroll-snap-type:x proximity;
+  -webkit-overflow-scrolling:touch;
+}
+.chip{
+  flex:0 0 auto;scroll-snap-align:start;
+  min-height:44px;display:inline-flex;align-items:center;gap:.4rem;
+  padding:.5rem 1rem;border:1px solid var(--line-2);border-radius:100px;
+  font-size:.82rem;color:var(--ink-2);white-space:nowrap;background:var(--paper);
+}
+.chip span{font-size:.72rem;color:var(--muted)}
+.chip.is-on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip.is-on span{color:rgba(244,237,224,.72)}
+
+/* Filterknappen bor OVANFÖR .shop, alltså ovanför panelen den öppnar */
+.shop-mobilbar{display:flex;align-items:center;gap:.6rem}
+.shop-mobilbar:empty{display:none}
 
 .shop-bar{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
@@ -469,12 +541,17 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .shop-sort select{
   font:inherit;font-size:.84rem;color:var(--ink);background:var(--paper);
   border:1px solid var(--line-2);border-radius:2px;padding:.55rem 2rem .55rem .8rem;
-  min-height:42px;appearance:none;cursor:pointer;
+  min-height:44px;appearance:none;cursor:pointer;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B564C' stroke-width='1.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right .55rem center;background-size:15px;
 }
-.filter-toggle{display:none}
-.empty{padding:4rem 1rem;text-align:center;color:var(--muted);grid-column:1/-1}
+/* Höjden bor här, inte i en inline-style på knappen */
+.filter-toggle{display:none;min-height:44px;padding:.5rem 1.1rem}
+
+/* Tomt läge: säg vad som filtrerade bort och ge en väg ut */
+.empty{grid-column:1/-1;padding:3rem 1rem;text-align:center}
+.empty h2{font-size:1.35rem;margin-bottom:.6rem}
+.empty p{color:var(--ink-2);font-size:.92rem;margin-bottom:1.4rem}
 .pager{display:flex;justify-content:center;gap:.4rem;margin-top:3.2rem}
 .pager button{
   min-width:44px;min-height:44px;border:1px solid var(--line-2);border-radius:2px;
@@ -485,16 +562,12 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 
 /* ---------- produktsida ---------- */
 .pdp{display:grid;grid-template-columns:1.08fr 1fr;gap:clamp(2rem,5vw,4.5rem);padding:2rem 0 clamp(3rem,6vw,5rem)}
-.pdp-media{display:grid;grid-template-columns:78px 1fr;gap:.85rem;align-items:start}
-.pdp-thumbs{display:flex;flex-direction:column;gap:.6rem}
-.pdp-thumb{
-  border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--white);
-  transition:border-color .25s;padding:0;
-}
-.pdp-thumb img{width:100%;aspect-ratio:1/1;object-fit:cover}
-.pdp-thumb.is-on{border-color:var(--ink)}
-.pdp-main{border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--white)}
-.pdp-main img{width:100%;aspect-ratio:5/6;object-fit:cover}
+/* En bild per mugg är allt vi har från kunden — därför en spalt, ingen
+   tumnagelrad som låtsas att det finns fler vinklar. */
+.pdp-media{align-self:start}
+.pdp-main{position:relative;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--white)}
+.pdp-main img{width:100%;aspect-ratio:5/6;object-fit:cover;background:var(--cream)}
+.pdp-main .pcard-tag{top:1rem;left:1rem}
 
 .pdp-info{padding-top:.4rem}
 .pdp-info h1{font-size:clamp(1.85rem,3.6vw,2.7rem);margin:.8rem 0 1rem}
@@ -505,29 +578,76 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--ink-2);
   margin-bottom:1.9rem;
 }
-.pdp-stock i{width:7px;height:7px;border-radius:50%;background:#4E8C5B;display:block}
-.pdp-desc{color:var(--ink-2);font-size:.95rem;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--line)}
+.pdp-stock i{width:7px;height:7px;border-radius:50%;background:#4E8C5B;display:block;flex-shrink:0}
+.pdp-desc{color:var(--ink-2);font-size:.95rem;margin-bottom:1.6rem;padding-bottom:1.6rem;border-bottom:1px solid var(--line)}
+
+/* Märket som fick klicket bekräftas vid priset */
+.pdp-flagga{
+  display:inline-flex;align-items:center;gap:.45rem;margin-bottom:.7rem;
+  font-size:.64rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--terra-djup);
+}
+.pdp-flagga:empty{display:none}
+
+/* Radsumma + volympris: företagsköparen ska inte se fel pris */
+.pdp-sum{font-size:.86rem;color:var(--ink-2);margin-bottom:.8rem}
+.pdp-sum:empty{display:none}
+.pdp-sum b{color:var(--ink);font-weight:600}
+.pdp-volym{
+  display:none;gap:.5rem;flex-direction:column;
+  background:var(--cream);border:1px solid var(--line);border-radius:3px;
+  padding:.9rem 1rem;margin-bottom:1.2rem;font-size:.85rem;color:var(--ink-2);
+}
+.pdp-volym.visa{display:flex}
+.pdp-volym b{color:var(--ink)}
+.pdp-volym a{color:var(--ink);font-weight:600;border-bottom:1px solid var(--line-2);align-self:flex-start}
+
+/* Raden under köpknappen: leveranslöfte + samma nedräkning som resten av sajten */
+.pdp-efter{font-size:.82rem;color:var(--ink-2);margin-bottom:.5rem}
+.pdp-efter b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pdp-till-korg{
+  display:none;font-size:.8rem;color:var(--ink);font-weight:600;
+  border-bottom:1px solid var(--line-2);margin-bottom:.6rem;
+}
+.pdp-till-korg.visa{display:inline-block}
+.btn.is-lagd{background:#3F6B4A}
+.pdp-farg-note{font-size:.78rem;color:var(--ink-2);margin:0 0 1.5rem;max-width:48ch}
 
 .opt-label{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.85rem}
 .opt-label b{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
 .opt-label em{font-style:normal;font-size:.84rem;color:var(--ink-2)}
-.colors{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.9rem}
+.colors{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:.8rem}
 .color{
   width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);
   position:relative;transition:transform .2s var(--ease);
 }
 .color.is-on{box-shadow:0 0 0 2px var(--paper),0 0 0 3.5px var(--ink)}
+/* Synligt kryss i vald färg — ringen räcker inte på Ceramic White mot ljus yta */
+.color.is-on::after{
+  content:'';position:absolute;left:50%;top:50%;width:13px;height:7px;
+  transform:translate(-58%,-70%) rotate(-45deg);
+  border-left:2px solid currentColor;border-bottom:2px solid currentColor;
+}
+.color[data-ljus="1"]{color:var(--ink)}
+.color{color:#fff}
 @media(hover:hover) and (pointer:fine){.color:hover{transform:scale(1.08)}}
 
-.qty-row{display:flex;gap:.7rem;margin-bottom:1rem;flex-wrap:wrap}
+.qty-row{display:flex;gap:.7rem;margin-bottom:.9rem;flex-wrap:nowrap;align-items:stretch}
 .qty{display:flex;align-items:center;border:1px solid var(--line-2);border-radius:2px;flex-shrink:0}
-.qty button{width:46px;height:48px;font-size:1.1rem;color:var(--ink-2);transition:color .2s}
-.qty span{min-width:38px;text-align:center;font-size:.95rem;font-weight:600}
+.qty button{width:44px;height:48px;font-size:1.1rem;color:var(--ink-2);transition:color .2s}
+.qty input{
+  width:44px;height:48px;border:0;background:none;text-align:center;
+  font:inherit;font-size:.95rem;font-weight:600;color:var(--ink);
+  -moz-appearance:textfield;appearance:textfield;
+}
+.qty input::-webkit-outer-spin-button,
+.qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 @media(hover:hover) and (pointer:fine){.qty button:hover{color:var(--ink)}}
-.qty-row .btn{flex:1;min-width:200px}
-.pdp-usp{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;font-size:.8rem;color:var(--muted);margin:1.3rem 0 2rem}
+.qty-row .btn{flex:1;min-width:0;padding-inline:1rem}
+.pdp-usp{display:flex;flex-direction:column;gap:.5rem;font-size:.82rem;color:var(--ink-2);margin:1.5rem 0 2rem}
 .pdp-usp span{display:inline-flex;align-items:center;gap:.45rem}
-.pdp-usp span::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--line-2)}
+.pdp-usp span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--terra);flex-shrink:0}
+.pdp-usp b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
 
 .acc{border-top:1px solid var(--line)}
 .acc-item{border-bottom:1px solid var(--line)}
@@ -581,11 +701,16 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .cart-row-var{display:flex;align-items:center;gap:.4rem;font-size:.76rem;color:var(--muted);margin-bottom:.7rem}
 .cart-row-var i{width:11px;height:11px;border-radius:50%;border:1px solid rgba(0,0,0,.16);display:block;flex-shrink:0}
 .cart-qty{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:2px}
-.cart-qty button{width:32px;height:32px;font-size:.95rem;color:var(--ink-2);transition:color .2s}
-.cart-qty span{min-width:26px;text-align:center;font-size:.84rem;font-weight:600}
-.cart-row-end{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:.5rem}
+/* 44 px på de mest felkritiska knapparna i hela demon: ett feltryck här
+   ändrar eller raderar en rad i varukorgen. */
+.cart-qty button{width:44px;height:44px;font-size:.95rem;color:var(--ink-2);transition:color .2s}
+.cart-qty span{min-width:30px;text-align:center;font-size:.84rem;font-weight:600}
+.cart-row-end{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:.2rem}
 .cart-row-end b{font-size:.94rem;font-weight:600;white-space:nowrap}
-.cart-row-end button{font-size:.72rem;color:var(--muted);border-bottom:1px solid transparent;transition:color .25s,border-color .25s}
+.cart-row-end button{
+  display:inline-flex;align-items:center;min-height:44px;padding-inline:.2rem;margin-right:-.2rem;
+  font-size:.72rem;color:var(--muted);border-bottom:1px solid transparent;transition:color .25s,border-color .25s;
+}
 
 .cart-sum{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.5rem}
 .cart-sum span{font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
@@ -632,23 +757,70 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   position:fixed;left:0;right:0;bottom:0;z-index:88;
   background:var(--ink);color:var(--cream);
   padding:.72rem var(--pad) calc(.72rem + env(safe-area-inset-bottom));
-  transform:translateY(105%);transition:transform .42s var(--ease);
+  transform:translateY(105%);transition:transform .42s var(--ease),visibility .42s;
+  /* Remsan innehåller en knapp — utan visibility går fokus till en osynlig
+     kontroll innan remsan glidit in. */
+  visibility:hidden;
 }
-.stickybar.visible{transform:none}
+.stickybar.visible{transform:none;visibility:visible}
 .stickybar-in{
   max-width:var(--max);margin:0 auto;
   display:flex;align-items:center;justify-content:space-between;gap:1.2rem;
 }
-.stickybar-txt{display:flex;align-items:center;gap:.55rem;font-size:.82rem;line-height:1.35}
+/* EN rad, alltid. Tidigare låg raden i flex, vilket gjorde varje textnod till
+   en egen krympbar kolumn — orden delades ("136 / kr") och remsan blev 48 px
+   hög på 390 px. Nu är den vanlig inline-text som aldrig radbryts. */
+.stickybar-txt{
+  display:block;min-width:0;position:relative;font-size:.82rem;line-height:1.35;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.stickybar-txt i{vertical-align:middle;margin-right:.5rem}
 .stickybar-txt b{font-weight:600;font-variant-numeric:tabular-nums;color:var(--white)}
+.stickybar-txt .sb-kort,.stickybar-txt .sb-mini{display:none}
 .stickybar .btn{background:var(--cream);color:var(--ink);flex-shrink:0}
+.stickybar .btn.is-lagd{background:#3F6B4A;color:var(--paper)}
 @media(hover:hover) and (pointer:fine){.stickybar .btn:hover{background:var(--white)}}
 @media(max-width:720px){
-  .stickybar-in{gap:.8rem}
-  .stickybar-txt{font-size:.74rem}
+  .stickybar-in{gap:.7rem}
+  .stickybar-txt{font-size:.72rem}
   .stickybar-txt i{display:none}
+  /* Kortare formulering på mobil så hela köpraden ryms på en rad. Den långa
+     versionen göms visuellt men läses upp av skärmläsare — hela meningen
+     finns kvar för den som inte ser pilen. */
+  .stickybar-txt .sb-lang{
+    position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);
+  }
+  .stickybar-txt .sb-kort{display:inline}
+  .stickybar .btn{font-size:.66rem;padding-inline:.8rem}
 }
-@media(prefers-reduced-motion:reduce){.stickybar{transition:none}}
+/* Riktigt smala telefoner (320 px): priset står ändå på varje kort och på
+   produktsidan — deadlinen är det remsan måste få plats till. */
+@media(max-width:379px){
+  .stickybar-txt .sb-kort{display:none}
+  .stickybar-txt .sb-mini{display:inline}
+}
+/* Mindre rörelse ska gälla ALLA överlägg, inte bara scroll-avslöjandena */
+@media(prefers-reduced-motion:reduce){
+  .stickybar,.mnav,.drawer,.drawer-bg,.modal,.modal-bg,.hdr-in,.demo-toast,.mega{
+    transition:none;animation:none;
+  }
+}
+
+/* ---------- fokus ----------
+   En egen ring som är avstämd mot sidans ytor. Utan den får mörka knappar
+   (.btn, #float-demo, .stickybar .btn) webbläsarens standardring mot fel
+   bakgrund, och färgprickarnas ring krockar med is-on-skuggan. */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+.b2b a:focus-visible,.b2b button:focus-visible,
+.band a:focus-visible,
+.stickybar a:focus-visible,.stickybar button:focus-visible,
+.announce a:focus-visible,
+.modal a:focus-visible,.modal button:focus-visible{outline-color:#E8B48F}
+.fcolor:focus-visible,.color:focus-visible{outline-offset:0}
 
 .demo-toast{
   position:fixed;z-index:95;left:50%;bottom:1.6rem;transform:translateX(-50%);
@@ -740,29 +912,38 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   .promises{grid-template-columns:1fr}
   .b2b-grid{grid-template-columns:1fr;gap:2.4rem}
   .pdp{grid-template-columns:1fr;gap:2.2rem}
+  /* Utan tak blir bilden full sidbredd mellan 761 och 900 px — då är hela
+     första skärmen ett foto och priset ligger utanför vyn. */
+  .pdp-media{max-width:520px;margin-inline:auto;width:100%}
   .sec-head{flex-direction:column;align-items:flex-start;gap:1.1rem}
 }
 
 @media(max-width:760px){
-  .shop{grid-template-columns:1fr;padding-top:1.6rem}
-  .filters{position:static;display:none;padding-bottom:1.8rem;margin-bottom:1.6rem;border-bottom:1px solid var(--line)}
+  .shop{grid-template-columns:1fr;padding-top:1.4rem}
+  .filters{position:static;display:none;padding:0 0 1.6rem;margin-bottom:1.4rem;border-bottom:1px solid var(--line)}
   .filters.open{display:block}
   .filter-toggle{display:inline-flex}
-  .pdp-media{grid-template-columns:1fr}
-  .pdp-thumbs{flex-direction:row;order:2;overflow-x:auto;padding-bottom:.3rem}
-  .pdp-thumb{flex:0 0 74px}
-  /* Sju prickar ska rymmas på EN rad i 390 px, och köpknappen får inte
-     radbrytas mellan "LÄGG I" och "VARUKORGEN". */
-  .colors{gap:.5rem}
-  .color{width:40px;height:40px}
-  .qty-row{flex-direction:column;align-items:stretch}
-  .qty{align-self:flex-start}
-  .qty-row .btn{width:100%;min-width:0}
+  .chips{display:block}
+  /* Priset ska synas utan skroll och köpknappen inom första skärmen: bilden
+     får inte äta hela vyn, och allt mellan rubrik och knapp hålls tätt. */
+  .pdp{padding-top:.9rem;gap:1.1rem}
+  .pdp-main img{aspect-ratio:4/5;max-height:31svh}
+  .pdp-info{padding-top:0}
+  .pdp-info h1{font-size:1.5rem;margin:.4rem 0 .45rem}
+  .pdp-flagga{margin-bottom:.45rem}
+  .pdp-stock{margin-bottom:1rem}
+  .opt-label{margin-bottom:.5rem}
+  .pdp-farg-note{font-size:.75rem;margin-bottom:.8rem}
+  .pdp-desc{margin-bottom:1.2rem;padding-bottom:1.2rem}
+  .colors{gap:.35rem}
+  .color{width:42px;height:42px}
+  /* Antal och köpknapp på SAMMA rad även på 390 px: 44+44+44 px räknare
+     plus knapp = 353 px med marginal. */
+  .qty-row .btn{font-size:.7rem;padding-inline:.6rem}
 }
 
 @media(max-width:640px){
   .announce{font-size:.62rem;letter-spacing:.1em}
-  .announce span:nth-of-type(2),.announce em:nth-of-type(3){display:none}
   .hdr-in{height:66px}
   .brand img{width:38px;height:38px}
   .brand-name{font-size:1.06rem}
@@ -806,3 +987,14 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 
 /* ---------- populärt-märke på produktkort ---------- */
 .pcard-tag--pop{background:var(--terra);color:#fff;border-color:var(--terra)}
+
+/* ---------- rabattrad i varukorgen ----------
+   Popupen (rabattpopup.js) skriver deadline, procent och kod till localStorage;
+   varukorgen läser samma nyckel. Raden visas bara medan klockan tickar. */
+.cart-rabatt{
+  display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  padding:.7rem .85rem;margin-bottom:.6rem;
+  background:var(--cream);border-radius:3px;
+  font-size:.82rem;color:var(--ink-2);
+}
+.cart-rabatt b{color:#8F4A2F;letter-spacing:.06em}

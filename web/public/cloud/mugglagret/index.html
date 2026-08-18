@@ -19,7 +19,7 @@
   <div class="announce-in">
     <p class="announce-now">
       <i class="pulse" aria-hidden="true"></i>
-      Beställ inom <b data-cutoff>&nbsp;</b> — packas idag
+      Beställ inom <b data-cutoff>&nbsp;</b> — packas <span data-cutoff-dag>&nbsp;</span>
     </p>
     <p class="announce-roll" id="announce-roll" aria-hidden="true">
       <span class="is-on">Leverans 3–6 dagar</span>
@@ -64,7 +64,7 @@
             </div>
             <div class="mega-side">
               <span class="mega-flag"><i class="pulse" aria-hidden="true"></i>Nytt denna vecka</span>
-              <h4>Åtta nya motiv uppe</h4>
+              <b class="mega-rubrik">Åtta nya motiv uppe</b>
               <p>Vi fyller på sortimentet löpande. De nyaste ligger först i katalogen.</p>
               <a class="btn btn--sm" href="katalog.html?nytt=1">Se de nya →</a>
               <span class="mega-note">Fast pris 136 kr · 11 oz keramik · sju färger</span>
@@ -121,7 +121,7 @@
 
       <p class="hero-now">
         <i class="pulse" aria-hidden="true"></i>
-        <b data-cutoff>&nbsp;</b> kvar — beställer du nu packas den idag
+        <b data-cutoff>&nbsp;</b> kvar — beställer du nu packas den <span data-cutoff-dag>&nbsp;</span>
       </p>
 
       <div class="hero-facts">
@@ -253,7 +253,7 @@
   <div class="wrap band-in">
     <div>
       <span class="band-flagga"><i class="pulse" aria-hidden="true"></i>Dagens packning</span>
-      <h2>Beställ inom <b data-cutoff>&nbsp;</b> så går din mugg idag</h2>
+      <h2>Beställ inom <b data-cutoff>&nbsp;</b> så går din mugg <span data-cutoff-dag>&nbsp;</span></h2>
       <p>Efter det packas den nästa arbetsdag. Leverans 3–6 dagar med spårbar frakt.</p>
     </div>
     <a class="btn btn--cream" href="katalog.html">Välj motiv nu</a>
@@ -354,7 +354,7 @@
       </div>
 
       <div>
-        <h4>Handla</h4>
+        <h2>Handla</h2>
         <ul>
           <li><a href="katalog.html">Alla muggar</a></li>
           <li><a href="katalog.html?kategori=katter">Katter</a></li>
@@ -365,7 +365,7 @@
       </div>
 
       <div>
-        <h4>Mugglagret</h4>
+        <h2>Mugglagret</h2>
         <ul>
           <li><a href="#om">Om oss</a></li>
           <li><a href="#foretag">Företag &amp; profilmuggar</a></li>
@@ -375,7 +375,7 @@
       </div>
 
       <div>
-        <h4>Kundservice</h4>
+        <h2>Kundservice</h2>
         <ul>
           <li><a href="mailto:info@mugglagret.se">info@mugglagret.se</a></li>
           <li><a href="#" data-demo="Frakt &amp; retur kopplas på i den färdiga sajten.">Frakt &amp; retur</a></li>
@@ -397,7 +397,9 @@
   <div class="stickybar-in">
     <span class="stickybar-txt">
       <i class="pulse" aria-hidden="true"></i>
-      <b>136 kr</b> fast pris — beställ inom <b data-cutoff>&nbsp;</b> så packas den idag
+      <span class="sb-lang"><b>136 kr</b> fast pris — beställ inom <b data-cutoff>&nbsp;</b> så packas den <span data-cutoff-dag>&nbsp;</span></span>
+      <span class="sb-kort" aria-hidden="true"><b>136 kr</b> · <b data-cutoff>&nbsp;</b> → <span data-cutoff-dag-kort>&nbsp;</span></span>
+      <span class="sb-mini" aria-hidden="true"><b data-cutoff>&nbsp;</b> → <span data-cutoff-dag-kort>&nbsp;</span></span>
     </span>
     <a class="btn btn--sm" href="katalog.html">Välj motiv →</a>
   </div>
@@ -420,6 +422,7 @@
 </div>
 
 <script src="app.js"></script>
+<script src="rabattpopup.js"></script>
 <!-- Cal.eu embed -->
 <script type="text/javascript">
 (function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,[L,namespace,...Array.from(ar).slice(2)])}else p(cal,ar);return}p(cal,ar)};})(window,"https://cal.eu/embed/embed.js","init");
