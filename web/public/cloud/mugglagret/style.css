@@ -63,6 +63,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .btn--ghost{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
 .btn--cream{background:var(--cream);color:var(--ink)}
 .btn--block{width:100%}
+.btn--sm{padding:.6rem 1.05rem;font-size:.72rem}
 @media(hover:hover) and (pointer:fine){
   .btn:hover{background:var(--ink-2)}
   .btn--ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
@@ -81,9 +82,42 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .announce{
   background:var(--ink);color:var(--cream);
   font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
-  text-align:center;padding:.62rem 1rem;
+  padding:.62rem 1rem;
 }
-.announce span{opacity:.55;margin:0 .55rem}
+.announce-in{
+  max-width:var(--max);margin:0 auto;padding-inline:var(--pad);
+  display:flex;align-items:center;justify-content:center;gap:1.6rem;
+}
+.announce-now{display:flex;align-items:center;gap:.5rem;white-space:nowrap}
+.announce-now b{font-weight:700;letter-spacing:.1em;font-variant-numeric:tabular-nums}
+
+/* Rullisten byter budskap i stället för att trycka in allt på en rad.
+   Budskapen ligger i SAMMA grid-cell, inte absolut placerade — då blir
+   containern lika bred som det längsta budskapet och inget klipps av. */
+.announce-roll{display:grid;place-items:center;overflow:hidden;opacity:.72}
+.announce-roll span{
+  grid-area:1/1;white-space:nowrap;
+  opacity:0;transform:translateY(70%);
+  transition:opacity .45s var(--ease),transform .45s var(--ease);
+}
+.announce-roll span.is-on{opacity:1;transform:none}
+@media(max-width:900px){.announce-roll{display:none}}
+@media(prefers-reduced-motion:reduce){
+  .announce-roll span{transition:none}
+}
+
+/* Pulsande punkt — samma signal överallt där något är på gång just nu */
+.pulse{
+  width:6px;height:6px;border-radius:50%;background:var(--terra);
+  flex-shrink:0;box-shadow:0 0 0 0 rgba(168,92,62,.55);
+  animation:pulseRing 2.2s var(--ease) infinite;
+}
+@keyframes pulseRing{
+  0%   {box-shadow:0 0 0 0 rgba(168,92,62,.5)}
+  70%  {box-shadow:0 0 0 7px rgba(168,92,62,0)}
+  100% {box-shadow:0 0 0 0 rgba(168,92,62,0)}
+}
+@media(prefers-reduced-motion:reduce){.pulse{animation:none}}
 
 /* ---------- header ---------- */
 .hdr{
@@ -94,7 +128,13 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .hdr-in{
   max-width:var(--max);margin:0 auto;padding-inline:var(--pad);
   height:78px;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+  transition:height .3s var(--ease);
 }
+/* Krymper när man scrollar så innehållet får plats, men märket syns kvar */
+.hdr.is-tight{box-shadow:0 6px 24px rgba(43,33,29,.07)}
+.hdr.is-tight .hdr-in{height:60px}
+.hdr.is-tight .brand img{width:36px;height:36px}
+.brand img{transition:width .3s var(--ease),height .3s var(--ease)}
 .brand{display:flex;align-items:center;gap:.7rem;flex-shrink:0}
 .brand img{width:46px;height:46px;object-fit:contain}
 .brand-name{
@@ -113,6 +153,59 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 }
 .nav a.is-active::after{width:100%}
 @media(hover:hover) and (pointer:fine){.nav a:hover::after{width:100%}}
+
+/* ---------- mega-meny ---------- */
+.nav-drop{position:relative;display:flex;align-items:center}
+.nav-trigger{
+  display:flex;align-items:center;gap:.35rem;
+  background:none;border:0;padding:0;cursor:pointer;
+  font-family:var(--ui);font-size:.83rem;letter-spacing:.02em;color:var(--ink);
+  position:relative;
+}
+.nav-trigger svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s var(--ease)}
+.nav-drop.open .nav-trigger svg{transform:rotate(180deg)}
+
+.mega{
+  position:absolute;top:calc(100% + 1.35rem);left:50%;transform:translate(-50%,-8px);
+  width:min(92vw,940px);
+  background:var(--paper);border:1px solid var(--line);border-radius:4px;
+  box-shadow:0 24px 60px rgba(43,33,29,.14);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .26s var(--ease),transform .26s var(--ease),visibility .26s;
+}
+.nav-drop.open .mega{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
+.mega-in{display:grid;grid-template-columns:1fr 250px;gap:1.6rem;padding:1.5rem}
+.mega-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem}
+.mega-cats a{display:block;text-decoration:none;color:var(--ink)}
+.mega-cats img{
+  width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:3px;background:var(--cream);
+  transition:transform .5s var(--ease);
+}
+.mega-cats a b{display:block;font-size:.82rem;font-weight:600;margin-top:.55rem}
+.mega-cats a span{display:block;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.15rem}
+@media(hover:hover) and (pointer:fine){
+  .mega-cats a:hover img{transform:scale(1.05)}
+  .mega-cats a:hover b{color:var(--terra)}
+}
+.mega-side{
+  background:var(--cream);border-radius:3px;padding:1.3rem;
+  display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;
+}
+.mega-flag{display:flex;align-items:center;gap:.45rem;font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);font-weight:600}
+.mega-side h4{font-family:var(--disp);font-size:1.18rem;font-weight:600;line-height:1.2}
+.mega-side p{font-size:.82rem;color:var(--ink-2);line-height:1.5}
+.mega-note{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:auto}
+@media(max-width:1000px){.mega{display:none}}
+
+/* Knappen i headern: köpvägen är aldrig mer än ett klick bort */
+.hdr-cta{
+  display:inline-flex;align-items:center;
+  margin-left:.5rem;padding:.62rem 1.05rem;
+  background:var(--ink);color:var(--paper);border-radius:2px;
+  font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;white-space:nowrap;transition:background .25s var(--ease)}
+@media(hover:hover) and (pointer:fine){.hdr-cta:hover{background:var(--terra)}}
+@media(max-width:860px){.hdr-cta{display:none}}
 
 .hdr-tools{display:flex;align-items:center;gap:.35rem}
 .icon-btn{
@@ -148,6 +241,18 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .hero h1 em{font-style:italic;color:var(--ink-2)}
 .hero p{font-size:clamp(1rem,1.6vw,1.14rem);color:var(--ink-2);max-width:45ch;margin-bottom:2.3rem}
 .hero-cta{display:flex;flex-wrap:wrap;gap:.8rem}
+
+/* Brådskan i hero: en rad, inte en skrikande banner */
+.hero-now{
+  display:flex;align-items:center;gap:.55rem;
+  margin-top:1.5rem;font-size:.85rem;color:var(--ink-2);
+}
+.hero-now b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+.eyebrow--live{display:inline-flex!important;align-items:center;gap:.45rem;color:var(--terra)}
+
+/* Nytt-raden: fyra kort på en rad */
+.pgrid--rad{grid-template-columns:repeat(4,1fr)}
 .hero-facts{
   display:flex;flex-wrap:wrap;gap:1.6rem 2.6rem;margin-top:3.2rem;
   padding-top:1.9rem;border-top:1px solid var(--line);
@@ -487,6 +592,32 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 }
 #float-demo.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 #float-demo:active{transform:scale(.97)}
+/* Lyfts när klisterremsan är framme, annars ligger de på varandra */
+#float-demo.lyft{bottom:max(5.4rem,calc(env(safe-area-inset-bottom) + 4.6rem))}
+@media(max-width:720px){#float-demo.lyft{bottom:max(6.2rem,calc(env(safe-area-inset-bottom) + 5.4rem))}}
+
+/* ---------- klisterremsa: pris + dagens deadline hela vägen ner ---------- */
+.stickybar{
+  position:fixed;left:0;right:0;bottom:0;z-index:88;
+  background:var(--ink);color:var(--cream);
+  padding:.72rem var(--pad) calc(.72rem + env(safe-area-inset-bottom));
+  transform:translateY(105%);transition:transform .42s var(--ease);
+}
+.stickybar.visible{transform:none}
+.stickybar-in{
+  max-width:var(--max);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:1.2rem;
+}
+.stickybar-txt{display:flex;align-items:center;gap:.55rem;font-size:.82rem;line-height:1.35}
+.stickybar-txt b{font-weight:600;font-variant-numeric:tabular-nums;color:var(--white)}
+.stickybar .btn{background:var(--cream);color:var(--ink);flex-shrink:0}
+@media(hover:hover) and (pointer:fine){.stickybar .btn:hover{background:var(--white)}}
+@media(max-width:720px){
+  .stickybar-in{gap:.8rem}
+  .stickybar-txt{font-size:.74rem}
+  .stickybar-txt i{display:none}
+}
+@media(prefers-reduced-motion:reduce){.stickybar{transition:none}}
 
 .demo-toast{
   position:fixed;z-index:95;left:50%;bottom:1.6rem;transform:translateX(-50%);

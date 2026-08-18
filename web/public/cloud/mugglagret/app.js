@@ -320,15 +320,127 @@
     });
   }
 
+  /* ===========================================================
+     BRÅDSKAN — dagens packningsdeadline, ett räkneverk för hela sajten.
+     Mekaniken är äkta: klockan 14:00 är gränsen, efter det gäller nästa
+     arbetsdag. Alla platser som visar tiden läser samma källa.
+     =========================================================== */
+  var CUTOFF_HOUR = 14;
+
+  function tidTillCutoff() {
+    var nu = new Date();
+    var mal = new Date(nu.getFullYear(), nu.getMonth(), nu.getDate(), CUTOFF_HOUR, 0, 0, 0);
+    var passerad = nu >= mal;
+    if (passerad) mal.setDate(mal.getDate() + 1);
+    /* Helg: nästa packning sker på måndagen */
+    while (mal.getDay() === 0 || mal.getDay() === 6) mal.setDate(mal.getDate() + 1);
+    var kvar = Math.max(0, mal - nu);
+    var h = Math.floor(kvar / 3600000);
+    var m = Math.floor((kvar % 3600000) / 60000);
+    var s = Math.floor((kvar % 60000) / 1000);
+    return {
+      passerad: passerad,
+      text: h > 0 ? h + " h " + m + " min" : m + " min " + (s < 10 ? "0" : "") + s + " s"
+    };
+  }
+
+  function initCutoff() {
+    var mal = document.querySelectorAll("[data-cutoff]");
+    if (!mal.length) return;
+    function tick() {
+      var t = tidTillCutoff();
+      Array.prototype.forEach.call(mal, function (el) { el.textContent = t.text; });
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  /* ---------- rullande budskap i toppremsan ---------- */
+  function initRoll() {
+    var roll = document.getElementById("announce-roll");
+    if (!roll) return;
+    var items = roll.querySelectorAll("span");
+    if (items.length < 2) return;
+    var i = 0;
+    setInterval(function () {
+      items[i].classList.remove("is-on");
+      i = (i + 1) % items.length;
+      items[i].classList.add("is-on");
+    }, 3600);
+  }
+
+  /* ---------- headern: mega-meny + krympläge ---------- */
+  function initHeader() {
+    var hdr = document.getElementById("hdr");
+    if (hdr) {
+      var onScroll = function () {
+        hdr.classList.toggle("is-tight", window.scrollY > 40);
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+
+    var drop = document.querySelector("[data-drop]");
+    if (!drop) return;
+    var trigger = drop.querySelector(".nav-trigger");
+    var stang = null;
+
+    function satt(open) {
+      drop.classList.toggle("open", open);
+      if (trigger) trigger.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    /* Klick styr på pekskärm och tangentbord, hover på mus. Fördröjd
+       stängning så menyn inte försvinner när pekaren korsar mellanrummet. */
+    if (trigger) {
+      trigger.addEventListener("click", function () { satt(!drop.classList.contains("open")); });
+    }
+    if (window.matchMedia("(hover:hover) and (pointer:fine)").matches) {
+      drop.addEventListener("mouseenter", function () { clearTimeout(stang); satt(true); });
+      drop.addEventListener("mouseleave", function () {
+        stang = setTimeout(function () { satt(false); }, 180);
+      });
+    }
+    document.addEventListener("click", function (e) {
+      if (!drop.contains(e.target)) satt(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") satt(false);
+    });
+  }
+
+  /* ---------- klisterremsan: pris och deadline följer med nedåt ---------- */
+  function initStickybar() {
+    var bar = document.getElementById("stickybar");
+    if (!bar) return;
+    var floatBtn = document.getElementById("float-demo");
+    var onScroll = function () {
+      var visa = window.scrollY > window.innerHeight * 0.9;
+      bar.classList.toggle("visible", visa);
+      /* Bahko-knappen flyttas upp så den inte hamnar under remsan */
+      if (floatBtn) floatBtn.classList.toggle("lyft", visa);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
   /* ---------- startsidans produktgrid ---------- */
   function initHome() {
     var grid = document.getElementById("home-grid");
-    if (!grid) return;
-    var picks = [1, 15, 25, 20, 5, 31, 35, 27, 2, 22, 29, 33];
-    grid.innerHTML = picks.map(function (id, i) {
-      var p = P.filter(function (x) { return x.id === id; })[0];
-      return p ? cardHTML(p, i) : "";
-    }).join("");
+    if (grid) {
+      var picks = [1, 15, 25, 20, 5, 31, 35, 27, 2, 22, 29, 33];
+      grid.innerHTML = picks.map(function (id, i) {
+        var p = P.filter(function (x) { return x.id === id; })[0];
+        return p ? cardHTML(p, i) : "";
+      }).join("");
+    }
+
+    /* Nytt denna vecka — samma mönster som de stora butikerna: färska släpp
+       högt upp på sidan, så sortimentet känns levande vid varje besök. */
+    var nytt = document.getElementById("nytt-grid");
+    if (nytt) {
+      var nya = P.filter(function (p) { return p.isNew; }).slice(0, 4);
+      nytt.innerHTML = nya.map(function (p, i) { return cardHTML(p, i); }).join("");
+    }
   }
 
   /* ---------- katalogsidan ---------- */
@@ -519,6 +631,10 @@
   /* ---------- start ---------- */
   document.addEventListener("DOMContentLoaded", function () {
     initNav();
+    initHeader();
+    initCutoff();
+    initRoll();
+    initStickybar();
     initModal();
     initCart();
     initDemoActions();
