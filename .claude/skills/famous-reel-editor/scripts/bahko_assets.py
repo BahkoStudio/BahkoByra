@@ -16,7 +16,7 @@ Usage:
     BAHKO_BRAND_DIR=/sökväg python scripts/bahko_assets.py cards
 """
 from __future__ import annotations
-import json, os, shutil, sys
+import json, os, shutil, sys, textwrap
 from pathlib import Path
 
 # Lager som maskoten ritas av. Alla delar samma 732x690-ram och är frilagda,
@@ -92,12 +92,25 @@ def main() -> None:
 
     # Outfit följer med från skillen: korten renderas i Chromium via hyperframes och
     # @font-face måste peka på en fil som ligger i projektet, inte i skill-mappen.
-    font = Path(__file__).resolve().parent.parent / "assets" / "fonts" / "Outfit[wght].ttf"
+    skill_assets = Path(__file__).resolve().parent.parent / "assets"
+    font = skill_assets / "fonts" / "Outfit[wght].ttf"
     if font.exists():
         shutil.copy2(font, dest / font.name)
         kopierade.append(font.name)
     else:
         saknade.append(font.name)
+
+    # GSAP lokalt i stället för CDN: hämtas biblioteket över nätet vid rendering
+    # är kortlagret beroende av att jsdelivr är nåbart. Är det inte det blir
+    # gsap undefined, skriptet kastar, och hyperframes renderar korten i sitt
+    # SLUTLÄGE utan en enda animation — med bara en mild varning
+    # (sub_timeline_script_failure). Tyst kvalitetsförlust, mätt 2026-08-18.
+    gsap = skill_assets / "vendor" / "gsap.min.js"
+    if gsap.exists():
+        shutil.copy2(gsap, dest / gsap.name)
+        kopierade.append(gsap.name)
+    else:
+        saknade.append(gsap.name)
 
     (dest / "palett.json").write_text(json.dumps(palett(brand), indent=2, ensure_ascii=False))
 
@@ -110,9 +123,15 @@ def main() -> None:
     print(f"  maskotlager kompletta: {'JA' if lager_ok else 'NEJ — gestanimationen faller tillbaka på master'}")
     if saknade:
         print(f"  SAKNAS i källan: {', '.join(saknade)}")
+    # Ingen substrängmatchning på doseringstexten: den formuleringen ändras, och en
+    # naiv sökning på "intro/outro" började ljuga så fort regeln skrevs om till
+    # "inte låst till intro/outro" (2026-08-18). Skriv ut regeln i sin helhet i
+    # stället och låt läsaren tolka den.
     dos = brand.get("mascot", {}).get("dosering", "")
-    if "intro/outro" in dos:
-        print("  doseringsregel aktiv: maskot i reels = ENDAST intro/outro-overlay")
+    if dos:
+        print("  doseringsregel ur brand.json (läs den, tolka inte rubriken):")
+        for rad in textwrap.wrap(dos, 96):
+            print(f"    {rad}")
 
 
 if __name__ == "__main__":

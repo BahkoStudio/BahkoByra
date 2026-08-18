@@ -45,18 +45,40 @@ validerade karaoke-stil och sitter i `captions.py`. Vill du ha Outfit även
 där: `CAPTION_FONT=<skill>/assets/fonts/"Outfit[wght].ttf"`.
 Guld/cream/Cormorant är utfasat ur eget material.
 
-## Loggan
+## Intro och outro
 
-Det **platta** 2D-märket (`mark.svg`), aldrig 3D-rendern — beslut 2026-08-16.
-`gen_bahko.py` lägger det uppe till vänster i kortbandet.
+**Intron är avskalad** (Mathias 2026-08-18): inget märke, ingen figur, inget
+varumärkespynt i öppningen. Hooken ska bära ensam — och den första sekunden är
+det sämsta läget att ha en halvtom panel, så lägg hookens bild där från ruta 1.
+
+**Outron bär varumärkeslåset.** Korttypen `outro` lägger ordmärket + adressen
+sist. Alltid **`logo-dark.svg`** (vit text) — `logo.svg` har marinblå text
+`#0A1628` och försvinner på det marinblå bandet. Mätt: 14,7 % nästan-vita pixlar
+i logo-dark mot 5,0 % i logo.svg, där bara det vita B:et i märket lyser.
+
+Ordmärket **bär redan taglinen**. Sätt `tagline` i beatens parametrar bara om du
+vill ha en ANNAN rad under adressen, annars står ”SYNLIGHET SOM SÄLJER” dubbelt.
+
+Loggan är alltid det **platta** materialet, aldrig 3D-rendern (beslut 2026-08-16).
+
+## GSAP paketeras lokalt
+
+Kortlagret laddar `assets/bahko/gsap.min.js`, inte CDN:et. Är biblioteket
+onåbart vid rendering blir `gsap` undefined och hyperframes renderar korten i
+sitt slutläge — full bild, **noll animation** — med bara en mild varning.
+`bahko_assets.py` kopierar in biblioteket och `gen_bahko.py` kastar högt om det
+saknas, så felet inte kan gå tyst i produktion.
 
 ## Maskoten
 
-**Regel 2026-08-18 (Mathias):** figuren står VID Mathias i nedre bandet genom
-hela reelen — assistent, supporter, kompis. Det ersätter den tidigare
-doseringen i brand.json (”reels = endast intro/outro-overlay”, panelbeslut
-2026-08-17, omprövas 2026-09-04). **brand.json är ännu inte uppdaterad** —
-källan och praxis pekar isär tills den skrivs om.
+**Regel 2026-08-18 (Mathias):** figuren står VID Mathias i nedre bandet som
+assistent, supporter, kompis — i de fönster där hon **passar innehållet**, inte
+tvingad genom hela klippet och inte låst till intro/outro. `brand.json` är
+uppdaterad, så källan och praxis stämmer.
+
+Fönstren sätts på compose-steget:
+`MASKOT_FONSTER="4.2-8.6,22.0-27.4"`. Utan variabeln ligger hon på hela tiden,
+vilket bara är rätt för korta klipp där hon passar överallt.
 
 Konstruktion:
 

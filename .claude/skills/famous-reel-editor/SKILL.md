@@ -103,10 +103,17 @@ pipeline, men steg 8/13 byts ut och två steg läggs till:
 13b bash <skill>/scripts/compose_bahko.sh edit/cutF.mp4 cards/cards_all.mp4 edit/capt maskot renders/<namn>-FINAL.mp4 <crop_y>
 ```
 
-Maskoten står VID honom i nedre bandet genom HELA reelen (assistent, supporter,
-kompis — Mathias beslut 2026-08-18). Den ligger inte i korten: kortlagret saknar
-alpha och klipps till övre 864px, så figuren renderas som egen PNG-sekvens.
+**Intron är avskalad** (inget märke, ingen figur — hooken bär ensam) och **outron
+bär varumärkeslåset** (korttypen `outro`: logo-dark.svg + adress; taglinen sitter
+redan i ordmärket, så sätt `tagline` bara om du vill ha en ANNAN rad).
+Det MÅSTE vara logo-dark — `logo.svg` har marinblå text och försvinner på bandet.
+
+**Maskoten** står vid Mathias i nedre bandet, i de fönster där hon passar
+innehållet — inte tvingad genom hela klippet. Styrs med
+`MASKOT_FONSTER="4.2-8.6,22.0-27.4"`. Hon kan inte ligga i korten: kortlagret
+saknar alpha och klipps till övre 864px, så figuren renderas som egen PNG-sekvens.
 Bara en sömlös cykel renderas och loopas — 48 rutor räcker oavsett reellängd.
+Standardplacering nedre VÄNSTER (Instagrams knapprad täcker högerkanten).
 
 Palett, CTA-regel (smaragdyta + marinblå text, ALDRIG vit text på smaragd),
 typografi, loggval och alla mätta maskotvärden bor i
@@ -157,6 +164,7 @@ beskriv aldrig varumärket ur minnet: `web/public/brand/brand.json` är källan.
 | **Scribe collapses a hyphenated phrase into ONE mega-word** | ElevenLabs Scribe can emit a spoken phrase as a single hyphenated "word" (e.g. "know-everything-about-me", 24 chars, ~1s) — as a one-word karaoke caption it overflows the frame. Scan the final transcript for words >14 chars containing 2+ hyphens; in `*_cap.json` split them into their component words with evenly-interpolated times across the original window. Card triggers can keep the original mega-word (it's a fine anchor). |
 | **Hook "before" visual waits for its trigger word** | In a "from this to this" hook, anchoring the BEFORE visual to the first "this" leaves the opening ~1.3s of the reel with an empty top band — the worst second to be empty (c0886 feedback: "show bad website first"). Rule: the BEFORE state of any before/after hook is on screen from t=0 (frame 1), with only a small scale-punch on its trigger word; the swap to AFTER stays on its word. Also make the swap sequential, not a crossfade: old exits fully (fast, ~0.16s, ending at the trigger) before/as the new pops, or both are semi-visible for several frames. |
 
+| **GSAP från CDN = korten renderas UTAN animation** | Laddas gsap från jsdelivr och nätet är stängt (företagsproxy, offline, CDN-strul) blir `gsap` undefined, skriptet kastar, och hyperframes renderar varje kort i sitt SLUTLÄGE — full bild, noll rörelse — med bara en mild `sub_timeline_script_failure`-varning. Tyst kvalitetsförlust som lätt går i produktion. Mätt 2026-08-18: alla tre CDN:er blockerade, animationerna döda, bildrutorna inom ett beat identiska. FIX: paketera gsap lokalt (`assets/vendor/gsap.min.js`, hämtad med `npm pack gsap`) och peka dit; `gen_bahko.py` gör det och kastar HÖGT om gsap saknas. Verifiering som faktiskt bevisar något: jämför två bildrutor inom samma beat — 0 px skillnad = ingenting animerar. |
 | **loudnorm ger 96kHz -> ljudet dubbelt så snabbt** | På ffmpeg 6.x (Linux) lämnar `loudnorm` ifrån sig 96kHz medan sampelantalet svarar mot 48kHz: 6,0s spelas som 3,1s, pipröst. Syns INTE på macOS/ffmpeg 7, så felet reser osett mellan maskiner och tre reels levererades innan det mättes (2026-08-18). FIX: `aresample=48000` efter loudnorm OCH efter musikgrenen, plus `-ar 48000` på utgången. Ligger nu i compose.sh och compose_bahko.sh. Verifiera alltid: `ffprobe` audio- vs videolängd. |
 | **Andra passet saknade `-shortest`** | `loudnorm` lägger till fördröjning, så ljudet blev 100ms längre än videon — sista tiondelen frös bilden. `-shortest` på andra ffmpeg-passet ger 7ms drift. |
 | **Maskotens arm roterad i fel riktning** | Axeln ligger på armens INRE kant och PIL roterar moturs vid positiv vinkel. Höger arm lyfts därför av POSITIV vinkel, vänster av NEGATIV. Fel tecken viker in armen över magen — läses som att den kryper, inte vinkar. Och vinkeln måste vara 40–62°: armarna är korta droppar tätt mot kroppen, allt under ~50° blir vobbling. Båda felen kostade en runda var, hittade bara genom att TITTA på en kontaktkarta. |

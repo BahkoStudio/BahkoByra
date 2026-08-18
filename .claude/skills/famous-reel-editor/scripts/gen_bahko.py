@@ -8,17 +8,22 @@ brand.json-källan till cards/assets/bahko/). Sen:
 
 Varumärkesregler som är inbyggda och inte konfigurerbara här:
 
-  * MASKOTEN LIGGER INTE HÄR. Mathias beslut 2026-08-18: figuren står VID honom
-    i nedre bandet genom hela reelen — assistent, supporter, kompis. Det ersätter
-    den tidigare intro/outro-doseringen för reels (brand.json, panelbeslut
-    2026-08-17, omprövas 2026-09-04). Kortlagret kan ändå inte bära henne:
-    hyperframes renderar yuv420p utan alpha och kortbandet klipps till de övre
-    864 px. Maskoten renderas därför av scripts/maskot_frames.py och läggs på i
-    scripts/compose_bahko.sh. Här bor bara det platta märket.
+  * INTRON ÄR AVSKALAD (Mathias 2026-08-18): inget märke, ingen figur, inget
+    varumärkespynt i öppningen. Hooken ska bära ensam.
+  * OUTRON BÄR VARUMÄRKESLÅSET: korttypen "outro" lägger logo-dark.svg + tagline
+    sist. Det MÅSTE vara logo-dark (vit text) — logo.svg är marinblå #0A1628 och
+    blir osynlig på det marinblå bandet.
+  * MASKOTEN LIGGER INTE HÄR. Hon står vid Mathias i nedre bandet, i de fönster
+    där hon passar innehållet (Mathias 2026-08-18). Kortlagret kan inte bära
+    henne: hyperframes renderar yuv420p utan alpha och kortbandet klipps till de
+    övre 864 px. Hon renderas av scripts/maskot_frames.py och läggs på i
+    scripts/compose_bahko.sh, som styr fönstren med MASKOT_FONSTER.
   * CTA-REGELN: smaragdyta med marinblå text. Vit text på smaragd är 2,54:1 och
     underkänt, så CTA-korten tar färgerna ur palett.json (CTA_YTA/CTA_TEXT).
   * TYPOGRAFI: Outfit rakt igenom. Guld/cream/Cormorant är utfasat.
-  * LOGGAN: det PLATTA märket (mark.svg), aldrig 3D-rendern.
+  * LOGGAN: alltid det PLATTA materialet, aldrig 3D-rendern. Outron använder
+    ordmärket logo-dark.svg; mark.svg finns kopierad i projektet om du vill ha
+    bara symbolen någonstans.
 
 Redigera BEATS längst ner. trigger = ordet kortet ska dyka upp på.
 """
@@ -104,6 +109,7 @@ BEATS = [
     ("lösning_ord",      "checklista", {"eyebrow": "DET DU FÅR", "rows": ["Hemsida som säljer", "Syns när kunden söker", "Klar på en vecka"]}),
     ("bevis_ord",        "kundcase",  {"eyebrow": "RIKTIG KUND", "namn": "Småmåleri", "resultat": "fler förfrågningar varje vecka"}),
     ("cta_ord",          "cta",       {"eyebrow": "NÄSTA STEG", "kw": "GRATIS FÖRSLAG", "knapp": "SKRIV \"HEMSIDA\""}),
+    ("outro_ord",        "outro",     {"webb": "bahkobyra.se"}),   # taglinen sitter i ordmärket
 ]
 starts = [find(t) for t, _, _ in BEATS]
 ends = [starts[i + 1] for i in range(len(starts) - 1)] + [TOTAL]
@@ -145,6 +151,14 @@ def inner(i, t, p):
         # knappen väntar på sitt ord (lärdom: tom CTA-ruta i 3s).
         return (f'{eb(p["eyebrow"])}<div class="kw"><span class="hl" id="c{i}k">{esc(p["kw"])}</span></div>'
                 f'<div class="knapp" id="c{i}b">{esc(p["knapp"])}</div>')
+    if t == "outro":
+        # logo-dark.svg = VIT text. logo.svg är marinblå och försvinner på bandet.
+        # Ordmärket BÄR REDAN taglinen — sätt "tagline" bara om du vill ha en ANNAN
+        # rad under adressen, annars dubbleras "SYNLIGHET SOM SÄLJER" på skärmen.
+        tag = p.get("tagline", "")
+        tagrad = f'<div class="tagline" id="tg{i}">{esc(tag)}</div>' if tag else ""
+        return (f'<div class="lockup"><img src="assets/bahko/logo-dark.svg" class="ordmarke" id="lm{i}"/>'
+                f'{tagrad}<div class="webb" id="wb{i}">{esc(p.get("webb", "bahkobyra.se"))}</div></div>')
     return ""
 
 
@@ -176,13 +190,16 @@ for i, ((trig, t, p), s, e) in enumerate(zip(BEATS, starts, ends)):
     if t == "cta":
         js.append(f'tl.fromTo("#c{i}k",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.3,ease:"power3.out"}},{s+0.1:.2f});')
         js.append(f'tl.fromTo("#c{i}b",{{opacity:0,scale:0.86}},{{opacity:1,scale:1,duration:0.32,ease:"back.out(2)"}},{max(s+0.5, e-1.4):.2f});')
+    if t == "outro":
+        js.append(f'tl.fromTo("#lm{i}",{{opacity:0,y:34,scale:0.94}},{{opacity:1,y:0,scale:1,duration:0.42,ease:"back.out(1.6)"}},{s+0.1:.2f});')
+        if p.get("tagline"):
+            js.append(f'tl.fromTo("#tg{i}",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.3,ease:"power3.out"}},{s+0.4:.2f});')
+        js.append(f'tl.fromTo("#wb{i}",{{opacity:0}},{{opacity:1,duration:0.3}},{s+0.62:.2f});')
     js.append(f'tl.to("#beat{i}",{{opacity:0,duration:0.16,ease:"power2.in"}},{e-0.16:.2f});')
     tw.append("\n      ".join(js))
 
-# ---------- märke ----------
-# Det PLATTA märket (mark.svg), aldrig 3D-rendern — se brand.json logo_description.
-MARK = '<img id="mark" src="assets/bahko/mark.svg" class="mark"/>'
-mjs = ['tl.fromTo("#mark",{opacity:0,y:-16},{opacity:1,y:0,duration:0.4,ease:"power3.out"},0.10);']
+# Intron är avskalad: inget märke i öppningen. Varumärket landar i outro-kortet.
+mjs = []
 
 # ---------- dekorlager ----------
 NP = 20
@@ -201,7 +218,8 @@ for k in range(3):
 
 HTML = f'''<!doctype html><html lang="sv"><head><meta charset="UTF-8"/>
 <meta name="viewport" content="width=1080, height=1920"/>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="assets/bahko/gsap.min.js"></script>
+<script>if(!window.gsap){{document.write('<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"><\/script>');}}</script>
 <style>
 @font-face{{font-family:"Outfit";src:url("assets/bahko/Outfit[wght].ttf") format("truetype-variations");font-weight:100 900;font-display:block}}
 *{{margin:0;padding:0;box-sizing:border-box}}
@@ -233,15 +251,20 @@ html,body{{width:1080px;height:1920px;overflow:hidden;background:#000;font-famil
 .knapp{{align-self:flex-start;background:{CTA_YTA};color:{CTA_TXT};font-size:52px;font-weight:900;
         letter-spacing:1px;padding:24px 44px;border-radius:20px;box-shadow:0 0 40px {rgba(A,0.5)}}}
 .inner.cta{{background:{rgba(YTA,0.92)};border:2px solid {A};border-radius:26px;padding:42px;box-shadow:0 0 46px {GL}}}
-.mark{{position:absolute;top:44px;left:64px;width:112px;height:112px;z-index:6;
-       filter:drop-shadow(0 0 18px {rgba(A,0.45)})}}
+/* outro-lockup: ordmärket i logo-dark (vit text) + tagline + adress */
+.inner.outro{{align-items:center;text-align:center;gap:30px}}
+.lockup{{display:flex;flex-direction:column;align-items:center;gap:26px}}
+.ordmarke{{width:760px;height:auto;filter:drop-shadow(0 0 26px {rgba(A,0.45)})}}
+.tagline{{color:{A};font-size:40px;font-weight:700;letter-spacing:8px;text-transform:uppercase}}
+.webb{{color:{TXT2};font-size:34px;font-weight:600;letter-spacing:3px}}
 </style></head><body>
 <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL:.2f}" data-width="1080" data-height="1920">
   <div id="bgz" data-start="0" data-duration="{TOTAL:.2f}" data-track-index="0"><div id="grid"></div><div id="glow"></div>{streaks}{parts}</div>
   {"".join(clips)}
-  <div id="marklayer" data-start="0" data-duration="{TOTAL:.2f}" data-track-index="{len(BEATS)+3}">{MARK}</div>
 </div>
-<script>window.__timelines=window.__timelines||{{}};const tl=gsap.timeline({{paused:true}});
+<script>
+if(!window.gsap){{throw new Error("gsap laddades inte - korten skulle renderats helt utan animation");}}
+window.__timelines=window.__timelines||{{}};const tl=gsap.timeline({{paused:true}});
       {chr(10).join(bg)}
       {chr(10).join(mjs)}
       {chr(10).join(tw)}
@@ -249,7 +272,8 @@ window.__timelines["main"]=tl;</script></body></html>'''
 
 Path("index.html").write_text(HTML, encoding="utf-8")
 print(f"gen_bahko: {len(BEATS)} beats, {TOTAL:.2f}s")
-print("  maskot: INTE i korten — rendera med maskot_frames.py och lägg på i compose_bahko.sh")
+print("  intro: avskalad (inget märke) | outro: logo-dark + tagline")
+print("  maskot: INTE i korten — maskot_frames.py + MASKOT_FONSTER i compose_bahko.sh")
 print(f"  palett: accent {A}/{AB}  bas {BAS}  CTA {CTA_YTA} på {CTA_TXT}")
 for i, ((trig, t, p), s, e) in enumerate(zip(BEATS, starts, ends)):
     print(f"  {s:6.2f}-{e:6.2f} {t:11s} {trig}")
