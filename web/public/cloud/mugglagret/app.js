@@ -568,6 +568,7 @@
           : "Alla motiv finns i samtliga sju färger. Välj här så följer färgen med.";
       }
       skrivAntal();
+      malaFarger();
       märkFilter();
       initReveal();
     }
@@ -587,6 +588,10 @@
       render();
     });
 
+    /* Färgvalet är en VARIANT, inte ett filter: alla motiv finns i alla sju
+       färger, så valet byter förhandsvisning i korten och följer med till
+       produktsidan via ?farg=. Ingenting gallras bort — och noten säger inte
+       längre något annat än vad som händer. */
     var colorWrap = document.getElementById("filter-colors");
     if (colorWrap) {
       colorWrap.innerHTML = COLORS.map(function (c) {
@@ -598,20 +603,16 @@
         if (!b) return;
         var id = b.getAttribute("data-color");
         state.color = state.color === id ? null : id;
-        Array.prototype.forEach.call(colorWrap.children, function (el) {
-          var pa = el.getAttribute("data-color") === state.color;
-          el.classList.toggle("is-on", pa);
-          el.setAttribute("aria-pressed", pa ? "true" : "false");
-        });
         render();
       });
-      if (state.color) {
-        Array.prototype.forEach.call(colorWrap.children, function (el) {
-          var pa = el.getAttribute("data-color") === state.color;
-          el.classList.toggle("is-on", pa);
-          el.setAttribute("aria-pressed", pa ? "true" : "false");
-        });
-      }
+    }
+    function malaFarger() {
+      if (!colorWrap) return;
+      Array.prototype.forEach.call(colorWrap.children, function (el) {
+        var pa = el.getAttribute("data-color") === state.color;
+        el.classList.toggle("is-on", pa);
+        el.setAttribute("aria-pressed", pa ? "true" : "false");
+      });
     }
 
     var sortEl = document.getElementById("shop-sort");
@@ -715,54 +716,54 @@
     var sumEl = document.getElementById("pdp-sum");
     var volymEl = document.getElementById("pdp-volym");
 
-    function skrivAntal() {
-      if (qtyEl.value !== String(qty)) qtyEl.value = qty;
+    function malaSumma() {
+      /* Vid ett styck står priset redan stort ovanför — ingen upprepning */
       if (sumEl) {
         sumEl.innerHTML = qty > 1
           ? qty + " × 136 kr = <b>" + (qty * 136) + " kr</b> inkl. moms"
-          : "<b>136 kr</b> inkl. moms";
+          : "";
       }
-      /* Vid 25 st gäller volympris — då ska sidan inte stå kvar på 136 kr */
+      /* Vid 25 st gäller volympris — då får sidan inte stå kvar på 136 kr */
       if (volymEl) volymEl.classList.toggle("visa", qty >= 25);
     }
     function sattAntal(n) {
-      qty = Math.min(99, Math.max(1, n || 1));
-      skrivAntal();
+      qty = Math.min(99, Math.max(1, isNaN(n) ? 1 : n));
+      if (qtyEl.value !== String(qty)) qtyEl.value = qty;
+      malaSumma();
     }
     document.getElementById("qty-minus").addEventListener("click", function () { sattAntal(qty - 1); });
     document.getElementById("qty-plus").addEventListener("click", function () { sattAntal(qty + 1); });
+    /* Under skrivandet rörs inte fältets värde — bara summan och volymraden */
     qtyEl.addEventListener("input", function () {
       var n = parseInt(qtyEl.value, 10);
-      if (!isNaN(n)) { qty = Math.min(99, Math.max(1, n)); if (volymEl) volymEl.classList.toggle("visa", qty >= 25); if (sumEl) skrivSum(); }
+      if (!isNaN(n)) { qty = Math.min(99, Math.max(1, n)); malaSumma(); }
     });
     qtyEl.addEventListener("change", function () { sattAntal(parseInt(qtyEl.value, 10)); });
-    function skrivSum() {
-      sumEl.innerHTML = qty > 1
-        ? qty + " × 136 kr = <b>" + (qty * 136) + " kr</b> inkl. moms"
-        : "<b>136 kr</b> inkl. moms";
-    }
-    skrivAntal();
+    sattAntal(1);
 
     /* lägg i varukorgen — med kvittens i sidan, inte bara en låda som glider in */
     var addBtn = document.getElementById("pdp-add");
+    var stickyAdd = document.getElementById("sticky-add");
     var tillKorg = document.getElementById("pdp-till-korg");
-    if (addBtn) {
-      var addText = addBtn.textContent;
-      addBtn.addEventListener("click", function () {
-        window.mugCartAdd({
-          id: p.id, title: p.title, img: p.img, price: p.price,
-          color: picked.id, colorName: picked.name, qty: qty
-        });
-        addBtn.textContent = "Lagd i varukorgen ✓";
-        addBtn.classList.add("is-lagd");
-        if (tillKorg) tillKorg.classList.add("visa");
-        clearTimeout(addBtn._t);
-        addBtn._t = setTimeout(function () {
-          addBtn.textContent = addText;
-          addBtn.classList.remove("is-lagd");
-        }, 2600);
+
+    function laggIKorg(knapp) {
+      window.mugCartAdd({
+        id: p.id, title: p.title, img: p.img, price: p.price,
+        color: picked.id, colorName: picked.name, qty: qty
       });
+      if (tillKorg) tillKorg.classList.add("visa");
+      if (!knapp) return;
+      if (!knapp._text) knapp._text = knapp.textContent;
+      knapp.textContent = "Lagd i varukorgen ✓";
+      knapp.classList.add("is-lagd");
+      clearTimeout(knapp._t);
+      knapp._t = setTimeout(function () {
+        knapp.textContent = knapp._text;
+        knapp.classList.remove("is-lagd");
+      }, 2600);
     }
+    if (addBtn) addBtn.addEventListener("click", function () { laggIKorg(addBtn); });
+    if (stickyAdd) stickyAdd.addEventListener("click", function () { laggIKorg(stickyAdd); });
     if (tillKorg) {
       tillKorg.addEventListener("click", function (e) {
         e.preventDefault();
@@ -779,14 +780,19 @@
       h.setAttribute("aria-expanded", open ? "true" : "false");
     });
 
-    /* relaterat */
+    /* relaterat — rubriken måste stämma med vad som faktiskt visas */
     var rel = document.getElementById("pdp-related");
     if (rel) {
-      var more = P.filter(function (x) { return x.cat === p.cat && x.id !== p.id; });
-      if (more.length < 4) {
-        more = more.concat(P.filter(function (x) { return x.cat !== p.cat && x.id !== p.id; }));
+      var samma = P.filter(function (x) { return x.cat === p.cat && x.id !== p.id; });
+      var more = samma;
+      var relTitel = "Fler " + CATS[p.cat].toLowerCase();
+      if (samma.length < 4) {
+        more = samma.concat(P.filter(function (x) { return x.cat !== p.cat && x.id !== p.id; }));
+        relTitel = "Fler motiv";
       }
-      rel.innerHTML = more.slice(0, 4).map(cardHTML).join("");
+      var relH = document.getElementById("pdp-related-title");
+      if (relH) relH.textContent = relTitel;
+      rel.innerHTML = more.slice(0, 4).map(function (x, i) { return cardHTML(x, i, picked.id); }).join("");
     }
   }
 

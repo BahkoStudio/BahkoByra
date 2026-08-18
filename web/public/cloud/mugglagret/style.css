@@ -396,6 +396,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .pcard-price span{font-size:.73rem;color:var(--muted)}
 .pcard-swatches{display:flex;gap:.28rem;margin-top:.7rem}
 .pcard-swatches i{width:12px;height:12px;border-radius:50%;border:1px solid rgba(0,0,0,.14);display:block}
+/* Färgen man valt i katalogen syns i varje kort och följer med till produktsidan */
+.pcard-swatches i.is-on{box-shadow:0 0 0 1.5px var(--paper),0 0 0 3px var(--ink)}
 @media(hover:hover) and (pointer:fine){
   .pcard:hover .pcard-img{border-color:var(--ink)}
   .pcard:hover .pcard-img img{transform:scale(1.05)}
@@ -517,6 +519,10 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .chip.is-on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .chip.is-on span{color:rgba(244,237,224,.72)}
 
+/* Filterknappen bor OVANFÖR .shop, alltså ovanför panelen den öppnar */
+.shop-mobilbar{display:flex;align-items:center;gap:.6rem}
+.shop-mobilbar:empty{display:none}
+
 .shop-bar{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
   padding-bottom:1.5rem;margin-bottom:1.8rem;border-bottom:1px solid var(--line);
@@ -576,7 +582,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .pdp-flagga:empty{display:none}
 
 /* Radsumma + volympris: företagsköparen ska inte se fel pris */
-.pdp-sum{font-size:.86rem;color:var(--ink-2);margin-bottom:1rem}
+.pdp-sum{font-size:.86rem;color:var(--ink-2);margin-bottom:.8rem}
+.pdp-sum:empty{display:none}
 .pdp-sum b{color:var(--ink);font-weight:600}
 .pdp-volym{
   display:none;gap:.5rem;flex-direction:column;
@@ -596,12 +603,12 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 }
 .pdp-till-korg.visa{display:inline-block}
 .btn.is-lagd{background:#3F6B4A}
-.pdp-farg-note{font-size:.78rem;color:var(--ink-2);margin:-1.2rem 0 1.7rem;max-width:46ch}
+.pdp-farg-note{font-size:.78rem;color:var(--ink-2);margin:0 0 1.5rem;max-width:48ch}
 
 .opt-label{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.85rem}
 .opt-label b{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
 .opt-label em{font-style:normal;font-size:.84rem;color:var(--ink-2)}
-.colors{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.9rem}
+.colors{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:.8rem}
 .color{
   width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);
   position:relative;transition:transform .2s var(--ease);
@@ -755,6 +762,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .stickybar-txt{display:flex;align-items:center;gap:.55rem;font-size:.82rem;line-height:1.35}
 .stickybar-txt b{font-weight:600;font-variant-numeric:tabular-nums;color:var(--white)}
 .stickybar .btn{background:var(--cream);color:var(--ink);flex-shrink:0}
+.stickybar .btn.is-lagd{background:#3F6B4A;color:var(--paper)}
 @media(hover:hover) and (pointer:fine){.stickybar .btn:hover{background:var(--white)}}
 @media(max-width:720px){
   .stickybar-in{gap:.8rem}
@@ -882,11 +890,8 @@ summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
 
 @media(max-width:760px){
   .shop{grid-template-columns:1fr;padding-top:1.4rem}
-  /* Panelen ligger EFTER main i DOM och lyfts upp med order, så knappen som
-     öppnar den alltid syns ovanför den. */
-  .filters{position:static;display:none;order:1;padding:0 0 1.6rem;margin-bottom:1.4rem;border-bottom:1px solid var(--line)}
+  .filters{position:static;display:none;padding:0 0 1.6rem;margin-bottom:1.4rem;border-bottom:1px solid var(--line)}
   .filters.open{display:block}
-  .shop main{order:2}
   .filter-toggle{display:inline-flex}
   .chips{display:block}
   /* Priset ska synas utan skroll: bilden får inte äta hela första skärmen. */
@@ -895,6 +900,9 @@ summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
   .pdp-info{padding-top:0}
   .colors{gap:.35rem}
   .color{width:42px;height:42px}
+  /* Antal och köpknapp på SAMMA rad även på 390 px: 44+44+44 px räknare
+     plus knapp = 353 px med marginal. */
+  .qty-row .btn{font-size:.7rem;padding-inline:.6rem}
 }
 
 @media(max-width:640px){

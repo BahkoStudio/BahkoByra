@@ -101,7 +101,7 @@ const STEG = [
   {
     nr: '1',
     namn: 'Första samtalet',
-    text: 'Vi går igenom vad ni vill göra, vad tomten och huset tillåter och vad de olika delarna av bygget innebär. Ni behöver inga färdiga ritningar för att ta det samtalet.',
+    text: 'Vi går igenom vad ni vill göra, vad tomten och huset tillåter och vad som behöver lösas först. Ni behöver inga färdiga ritningar för att ta det samtalet.',
   },
   {
     nr: '2',
@@ -416,8 +416,8 @@ export default function SvHusDemo() {
             <p className={styles.eyebrow}>Vanliga frågor</p>
             <h2 className={styles.h2}>Det ni brukar fråga först</h2>
             <p className={styles.sekLead}>
-              Åtta frågor vi får varje gång, i den ordning de brukar komma. Svaren är
-              desamma som ni får i telefon.
+              Pengar och risk först, administration sedan — frågorna kommer oftast i den
+              ordningen. Gäller det just ert hus är telefonen snabbare än en sida.
             </p>
           </div>
 
