@@ -43,11 +43,11 @@
     + 'opacity:0;visibility:hidden;transition:opacity .32s cubic-bezier(.22,1,.36,1),visibility .32s}'
     + '.rp-lager.rp-on{opacity:1;visibility:visible}'
     + '.rp-skugga{position:absolute;inset:0;background:rgba(28,58,19,.55);backdrop-filter:blur(3px);border:0;padding:0;cursor:pointer}'
-    + '.rp-kort{position:relative;z-index:1;width:min(100%,428px);background:#fcfcf7;border:1px solid #e2e2da;border-radius:16px;'
+    + '.rp-kort{position:relative;outline:none;z-index:1;width:min(100%,428px);background:#fcfcf7;border:1px solid #e2e2da;border-radius:16px;'
     + 'padding:2.1rem 1.7rem 1.6rem;text-align:center;'
     + 'transform:translateY(14px) scale(.97);transition:transform .34s cubic-bezier(.34,1.56,.64,1)}'
     + '.rp-lager.rp-on .rp-kort{transform:none}'
-    + '.rp-x{position:absolute;top:.35rem;right:.35rem;width:44px;height:44px;display:grid;place-items:center;'
+    + '.rp-x{position:absolute;top:.55rem;right:.55rem;width:44px;height:44px;display:grid;place-items:center;border-radius:1000px;'
     + 'background:none;border:0;cursor:pointer;color:#666666;font-size:1.05rem;line-height:1}'
     + '.rp-x:hover{color:#1c3a13}'
     + '.rp-flagga{display:inline-flex;align-items:center;gap:.45rem;font-size:.63rem;font-weight:700;'
@@ -91,7 +91,7 @@
     lager.className = "rp-lager";
     lager.innerHTML = ''
       + '<button class="rp-skugga" type="button" aria-label="Stäng"></button>'
-      + '<div class="rp-kort" role="dialog" aria-modal="true" aria-labelledby="rp-rubrik">'
+      + '<div class="rp-kort" role="dialog" aria-modal="true" aria-labelledby="rp-rubrik" tabindex="-1">'
       +   '<button class="rp-x" type="button" aria-label="Stäng">&#10005;</button>'
       +   '<span class="rp-flagga"><i class="rp-punkt" aria-hidden="true"></i>Gäller en kort stund</span>'
       +   '<h2 id="rp-rubrik">' + CONFIG.procent + ' % på din första mugg</h2>'
@@ -137,7 +137,7 @@
     lager.classList.add("rp-on");
     document.body.style.overflow = "hidden";
     sisteFokus = document.activeElement;
-    lager.querySelector(".rp-x").focus();
+    lager.querySelector(".rp-kort").focus();
     tick();
     timer = setInterval(tick, 1000);
     document.addEventListener("keydown", vidTangent);

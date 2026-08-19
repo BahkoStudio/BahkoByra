@@ -96,7 +96,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
   display:flex;align-items:center;justify-content:center;gap:1.6rem;
 }
 .announce-now{display:flex;align-items:center;gap:.5rem;white-space:nowrap}
-.announce-now b{font-weight:700;letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.announce-now b{font-weight:500;letter-spacing:.1em;font-variant-numeric:tabular-nums}
 
 /* Rullisten byter budskap i stället för att trycka in allt på en rad.
    Budskapen ligger i SAMMA grid-cell, inte absolut placerade — då blir
@@ -138,7 +138,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
   transition:height .3s var(--ease);
 }
 /* Krymper när man scrollar så innehållet får plats, men märket syns kvar */
-.hdr.is-tight{box-shadow:0 6px 24px rgba(43,33,29,.07)}
+.hdr.is-tight{border-bottom-color:var(--line-2)}
 .hdr.is-tight .hdr-in{height:60px}
 .hdr.is-tight .brand img{width:36px;height:36px}
 .brand img{transition:width .3s var(--ease),height .3s var(--ease)}
@@ -212,7 +212,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
   display:inline-flex;align-items:center;
   margin-left:.5rem;padding:.62rem 1.05rem;
   background:var(--ink);color:var(--paper);border-radius:1000px;
-  font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  font-size:.74rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
   text-decoration:none;white-space:nowrap;transition:background .25s var(--ease)}
 @media(hover:hover) and (pointer:fine){.hdr-cta:hover{background:var(--terra)}}
 @media(max-width:860px){.hdr-cta{display:none}}
@@ -271,7 +271,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .hero-now{margin-top:1.5rem;font-size:.85rem;color:var(--ink-2)}
 .hero-now .pulse{display:inline-block;vertical-align:middle;margin-right:.5rem}
 .hero-now b{white-space:nowrap}
-.hero-now b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.hero-now b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
 
 .eyebrow--live{display:inline-flex!important;align-items:center;gap:.45rem;color:var(--ink)}
 
@@ -281,7 +281,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
   display:flex;flex-wrap:wrap;gap:1.3rem 2.6rem;margin-top:2.1rem;
   padding-top:1.5rem;border-top:1px solid var(--line);
 }
-.hero-facts div strong{display:block;font-family:var(--disp);font-size:1.6rem;font-weight:600;line-height:1.1}
+.hero-facts div strong{display:block;font-family:var(--disp);font-size:1.6rem;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.1}
 .hero-facts div span{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
 
 /* Källbilderna är 494×592 (5:6). Alla bildramar hålls på 5/6 eller 1/1 —
@@ -398,7 +398,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .pcard-cat{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .pcard-body h3{font-size:1.02rem;font-weight:600;margin:.34rem 0 .5rem;line-height:1.28;flex:1}
 .pcard-price{display:flex;align-items:baseline;gap:.55rem}
-.pcard-price b{font-size:.98rem;font-weight:600}
+.pcard-price b{font-size:.98rem;font-weight:500;font-variant-numeric:tabular-nums}
 .pcard-price span{font-size:.73rem;color:var(--muted)}
 .pcard-swatches{display:flex;gap:.28rem;margin-top:.7rem}
 .pcard-swatches i{width:12px;height:12px;border-radius:50%;border:1px solid rgba(0,0,0,.14);display:block}
@@ -413,22 +413,22 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 /* ---------- B2B-band ---------- */
 .b2b{background:var(--ink);color:var(--cream)}
 .b2b-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center;padding:clamp(3.2rem,6vw,5.4rem) 0}
-.b2b .eyebrow{color:rgba(244,237,224,.55)}
+.b2b .eyebrow{color:rgba(252,252,247,.72)}
 .b2b h2{font-size:clamp(1.9rem,3.8vw,3rem);margin:1rem 0 1.2rem}
-.b2b p{color:rgba(244,237,224,.76);max-width:46ch;margin-bottom:2.2rem}
+.b2b p{color:rgba(252,252,247,.78);max-width:46ch;margin-bottom:2.2rem}
 .b2b .btn{background:var(--cream);color:var(--ink)}
 .price-table{width:100%;border-collapse:collapse;font-size:.88rem}
-.price-table th,.price-table td{padding:.82rem 1rem;text-align:left;border-bottom:1px solid rgba(244,237,224,.16)}
+.price-table th,.price-table td{padding:.82rem 1rem;text-align:left;border-bottom:1px solid rgba(252,252,247,.16)}
 .price-table th{
   font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(244,237,224,.6);font-weight:500;
+  color:rgba(252,252,247,.72);font-weight:500;
 }
 .price-table td:last-child,.price-table th:last-child{text-align:right}
 .price-table tbody tr:last-child td{border-bottom:0}
 .price-table td b{font-weight:600}
 /* Prisvillkoren (exkl. moms, 399 kr trycksetup) är den finstilt som INTE får
    missförstås — .68 ger 7:1 mot ink, gamla .45 gav 3,88:1. */
-.price-note{font-size:.72rem;color:rgba(244,237,224,.68);margin-top:1rem}
+.price-note{font-size:.72rem;color:rgba(252,252,247,.74);margin-top:1rem}
 
 /* ---------- nyhetsbrev ---------- */
 .news{text-align:center;padding:clamp(3.4rem,6.5vw,5.6rem) 0}
@@ -527,7 +527,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 }
 .chip span{font-size:.72rem;color:var(--muted)}
 .chip.is-on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.chip.is-on span{color:rgba(244,237,224,.72)}
+.chip.is-on span{color:rgba(252,252,247,.76)}
 
 /* Filterknappen bor OVANFÖR .shop, alltså ovanför panelen den öppnar */
 .shop-mobilbar{display:flex;align-items:center;gap:.6rem}
@@ -574,7 +574,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .pdp-info{padding-top:.4rem}
 .pdp-info h1{font-size:clamp(1.85rem,3.6vw,2.7rem);margin:.8rem 0 1rem}
 .pdp-price{display:flex;align-items:baseline;gap:.8rem;margin-bottom:.4rem}
-.pdp-price b{font-family:var(--disp);font-size:1.9rem;font-weight:600}
+.pdp-price b{font-family:var(--disp);font-size:1.9rem;font-weight:500;font-variant-numeric:tabular-nums}
 .pdp-price span{font-size:.8rem;color:var(--muted)}
 .pdp-stock{
   display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--ink-2);
@@ -606,7 +606,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 
 /* Raden under köpknappen: leveranslöfte + samma nedräkning som resten av sajten */
 .pdp-efter{font-size:.82rem;color:var(--ink-2);margin-bottom:.5rem}
-.pdp-efter b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pdp-efter b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
 .pdp-till-korg{
   display:none;font-size:.8rem;color:var(--ink);font-weight:600;
   border-bottom:1px solid var(--line-2);margin-bottom:.6rem;
@@ -649,7 +649,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .pdp-usp{display:flex;flex-direction:column;gap:.5rem;font-size:.82rem;color:var(--ink-2);margin:1.5rem 0 2rem}
 .pdp-usp span{display:inline-flex;align-items:center;gap:.45rem}
 .pdp-usp span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--terra);flex-shrink:0}
-.pdp-usp b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.pdp-usp b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
 
 .acc{border-top:1px solid var(--line)}
 .acc-item{border-bottom:1px solid var(--line)}
@@ -776,7 +776,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .stickybar-txt i{vertical-align:middle;margin-right:.5rem}
-.stickybar-txt b{font-weight:600;font-variant-numeric:tabular-nums;color:var(--white)}
+.stickybar-txt b{font-weight:500;font-variant-numeric:tabular-nums;color:var(--white)}
 .stickybar-txt .sb-kort,.stickybar-txt .sb-mini{display:none}
 .stickybar .btn{background:var(--cream);color:var(--ink);flex-shrink:0}
 .stickybar .btn.is-lagd{background:#3F6B4A;color:var(--paper)}
@@ -815,7 +815,7 @@ a:focus-visible,
 button:focus-visible,
 select:focus-visible,
 input:focus-visible,
-summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .b2b a:focus-visible,.b2b button:focus-visible,
 .band a:focus-visible,
 .stickybar a:focus-visible,.stickybar button:focus-visible,
@@ -971,7 +971,7 @@ summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
 }
 .band h2{font-size:clamp(1.4rem,2.6vw,2.1rem);margin:.7rem 0 .5rem}
 .band h2 b{font-weight:500;color:var(--terra);font-variant-numeric:tabular-nums}
-.band p{font-size:.9rem;color:rgba(244,237,224,.62);max-width:52ch}
+.band p{font-size:.9rem;color:rgba(252,252,247,.74);max-width:52ch}
 @media(max-width:700px){
   .band-in{flex-direction:column;align-items:flex-start;gap:1.4rem}
   .band .btn{width:100%}
