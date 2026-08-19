@@ -1,3 +1,4 @@
+import Maskot from '../komponenter/Maskot';
 import styles from './kontakt.module.css';
 
 export const metadata = {
@@ -17,7 +18,7 @@ export default function Kontakt() {
   return (
     <section className={styles.yta}>
       <div className={`wrap ${styles.inner}`}>
-        <div>
+        <div data-trapp>
           <span className="eyebrow">Kostnadsfritt förslag</span>
           <h1>Se er nya sida innan ni bestämmer er.</h1>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
@@ -34,6 +35,11 @@ export default function Kontakt() {
             ))}
           </ul>
 
+          <p className={styles.maskotRad}>
+            <Maskot pose="vinkar" stil="liten" alt="Bahko-maskoten vinkar" />
+            <span>Vi läser varje förfrågan själva. Ingen bot, ingen säljavdelning.</span>
+          </p>
+
           <p className={styles.direkt}>
             Hellre prata direkt? Ring <a href="tel:+46762540951">076-254 09 51</a> eller mejla{' '}
             <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a>. Kontoret på
@@ -41,7 +47,7 @@ export default function Kontakt() {
           </p>
         </div>
 
-        <div className={styles.formYta}>
+        <div className={styles.formYta} data-avsloja="upp">
           <form action="https://formspree.io/f/mgonrnep" method="POST" className={styles.form}>
             <div className={styles.rad}>
               <label>

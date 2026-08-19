@@ -12,11 +12,11 @@
   align-items: start;
 }
 
-.yta .eyebrow {
+.yta :global(.eyebrow) {
   color: var(--em-lt);
 }
 
-.yta .lede {
+.yta :global(.lede) {
   color: var(--text-lag);
 }
 
@@ -81,7 +81,7 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--ink-2);
+  color: var(--text-lag);
 }
 
 .form input,
@@ -151,4 +151,15 @@
   .rad {
     grid-template-columns: 1fr;
   }
+}
+
+/* Maskoten hälsar där man tar kontakt — vänster sida, bredvid raden om att
+   en människa läser förfrågan. Ribban: han byter sida mellan sidorna. */
+.maskotRad {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 1.6rem;
+  font-size: 0.98rem;
+  color: var(--text-lag);
 }

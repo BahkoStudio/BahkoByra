@@ -25,7 +25,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: stigIn 0.75s var(--ease) both;
+  animation: stigIn 0.75s var(--studs) both;
 }
 
 /* align-items: center gor att barnen storleksanpassas efter innehallet i stallet
@@ -569,15 +569,44 @@
 }
 
 .panelMaskot {
-  position: absolute;
-  left: -120px;
-  bottom: -10px;
-  z-index: 2;
+  display: block;
+  margin: 1.6rem 0 0 -18px;
 }
 
 @media (max-width: 900px) {
   .panelMaskot {
-    left: 4px;
-    bottom: -10px;
+    margin-left: 0;
+  }
+}
+
+/* Maskotplaceringar: han byter sida hela vagen ner (bar.md, mekanism 4).
+   Siffrorna hoger, panelen vanster, processen hoger, erbjudandena vanster, FAQ hoger. */
+.siffrorRad {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.siffrorRad .siffror {
+  flex: 1;
+}
+
+.siffrorMaskot {
+  flex-shrink: 0;
+  display: block;
+}
+
+.gratisMaskot {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 1.1rem;
+  font-size: 0.98rem;
+  color: var(--ink-3);
+}
+
+@media (max-width: 900px) {
+  .siffrorMaskot {
+    display: none;
   }
 }

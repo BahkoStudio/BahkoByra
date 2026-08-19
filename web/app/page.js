@@ -47,7 +47,7 @@ export default function Start() {
     <>
       {/* ── HERO: rubrik → video → CTA, som på nuvarande sajt ── */}
       <section className={`mork ${styles.hero}`} id="top">
-        <div className={`wrap ${styles.heroInner}`}>
+        <div className={`wrap ${styles.heroInner}`} data-trapp>
           <span className={styles.badge}>
             <i /> För lokala företag i Sverige
           </span>
@@ -95,8 +95,8 @@ export default function Start() {
 
       {/* ── SIFFROR ── */}
       <section className={`mork ${styles.siffrorYta}`}>
-        <div className="wrap">
-          <div className={styles.siffror}>
+        <div className={`wrap ${styles.siffrorRad}`}>
+          <div className={styles.siffror} data-trapp>
             {SIFFROR.map((s) => (
               <div key={s.e}>
                 <strong>{s.v}</strong>
@@ -104,12 +104,15 @@ export default function Start() {
               </div>
             ))}
           </div>
+          <span className={styles.siffrorMaskot}>
+            <Maskot pose="pekar" stil="flyt" alt="Bahko-maskoten pekar på siffrorna" />
+          </span>
         </div>
       </section>
 
       {/* ── SEKTION 2: synlighetspanelen ── */}
       <section className={`mork ${styles.panelYta}`} id="synlighet">
-        <div className={`wrap ${styles.panelInner}`}>
+        <div className={`wrap ${styles.panelInner}`} data-trapp>
           <div>
             <span className="eyebrow">Vad som händer</span>
             <h2>
@@ -125,12 +128,12 @@ export default function Start() {
                 Så bygger vi {PIL}
               </Link>
             </div>
+            <span className={styles.panelMaskot}>
+              <Maskot pose="gar" stil="flyt" alt="Bahko-maskoten går fram och pekar mot synlighetspanelen" />
+            </span>
           </div>
           <div className={styles.panelScen}>
             <SynlighetsPanel />
-            <span className={styles.panelMaskot}>
-              <Maskot pose="gar" stil="flyt" alt="Bahko-maskoten går fram till synlighetspanelen och pekar på grafen" />
-            </span>
           </div>
         </div>
       </section>
@@ -146,7 +149,7 @@ export default function Start() {
             Hemsidan är grunden. Resten bygger vi på när den står och fungerar.
           </p>
 
-          <div className={styles.tjanstNat}>
+          <div className={styles.tjanstNat} data-trapp>
             {TJANSTER.map((t) => (
               <Link key={t.slug} href={`/tjanster/${t.slug}/`} className={styles.tjanstKort}>
                 <TjanstIkon slug={t.slug} />
@@ -172,10 +175,11 @@ export default function Start() {
             till <span className="accent">fulla kalendrar.</span>
           </h2>
 
-          <ProcessRail />
+          <div data-avsloja="upp">
+            <ProcessRail />
+          </div>
 
-          <div className={styles.processCta}>
-            <Maskot pose="pekar" stil="flyt" alt="Bahko-maskoten pekar på demo-erbjudandet" />
+          <div className={styles.processCta} data-avsloja="upp">
             <div>
               <h3>Vill ni se hur er sida skulle se ut?</h3>
               <p>Vi bygger demon först. Ni bestämmer sen.</p>
@@ -183,6 +187,7 @@ export default function Start() {
             <Link href="/kontakt/" className="btn btn-primar">
               Se er kostnadsfria demo {PIL}
             </Link>
+            <Maskot pose="pekar" stil="flyt" alt="Bahko-maskoten pekar på knappen för kostnadsfri demo" />
           </div>
         </div>
       </section>
@@ -195,7 +200,7 @@ export default function Start() {
             Riktiga sajter, <span className="accent">riktiga firmor.</span>
           </h2>
 
-          <div className={styles.caseNat}>
+          <div className={styles.caseNat} data-trapp>
             {CASE.map((c) => (
               <a key={c.namn} href={c.url} target="_blank" rel="noopener" className={styles.caseKort}>
                 <span className={styles.caseBild}>
@@ -227,8 +232,12 @@ export default function Start() {
           <h2>
             Två sätt att komma <span className="accent">igång direkt.</span>
           </h2>
+          <p className={styles.gratisMaskot}>
+            <Maskot pose="vinkar" stil="liten" alt="Bahko-maskoten vinkar vid de kostnadsfria erbjudandena" />
+            <span>Båda är gratis. Ni behöver inte bestämma något idag.</span>
+          </p>
 
-          <div className={styles.gratisNat}>
+          <div className={styles.gratisNat} data-trapp>
             <a href="/foretag/gratis-granskning.html" className={styles.gratisKort}>
               <span className={styles.gratisTagg}>Gratis analys</span>
               <h3>10-punktsanalys av er hemsida</h3>
@@ -258,7 +267,7 @@ export default function Start() {
           <span className="eyebrow">Vanliga frågor</span>
           <h2>
             Raka svar, <span className="accent">inga säljtrick.</span>{' '}
-            <Maskot pose="vinkar" stil="liten" alt="Bahko-maskoten" />
+            <Maskot pose="undersoker" stil="liten" alt="Bahko-maskoten undersöker frågorna" />
           </h2>
           <p className="lede" style={{ margin: '1rem 0 2.4rem' }}>
             Det här undrar de flesta bygg- och hantverksfirmor som hör av sig.

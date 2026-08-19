@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Faq from '../../komponenter/Faq';
 import { TJANSTER, FRAGOR } from '../../data';
+import Maskot from '../../komponenter/Maskot';
 import styles from './tjanst.module.css';
 
 const PIL = (
@@ -35,7 +36,7 @@ export default async function Tjanst({ params }) {
   return (
     <>
       <section className={`mork ${styles.topp}`}>
-        <div className="wrap">
+        <div className="wrap" data-trapp>
           <nav className={styles.brod} aria-label="Brödsmulor">
             <Link href="/">Start</Link>
             <span aria-hidden="true">/</span>
@@ -60,7 +61,7 @@ export default async function Tjanst({ params }) {
         <div className="wrap">
           <span className="eyebrow">Vad ni får</span>
           <h2>Det som gör skillnaden</h2>
-          <div className={styles.punktNat}>
+          <div className={styles.punktNat} data-trapp>
             {t.punkter.map((p) => (
               <div key={p.h} className="kort">
                 <h3>{p.h}</h3>
@@ -89,11 +90,12 @@ export default async function Tjanst({ params }) {
             </>
           )}
 
-          <div className={styles.cta}>
+          <div className={styles.cta} data-avsloja="upp">
             <div>
               <h3>Vill ni se hur er sida skulle se ut?</h3>
               <p>Vi bygger förslaget först. Ni bestämmer sen.</p>
             </div>
+            <Maskot pose="pekar" stil="flyt" alt="Bahko-maskoten pekar på knappen för gratis förslag" />
             <Link href="/kontakt/" className="btn btn-primar">
               Få gratis förslag {PIL}
             </Link>
@@ -106,7 +108,7 @@ export default async function Tjanst({ params }) {
           <div className="wrap">
             <span className="eyebrow">För ert yrke</span>
             <h2>Så bygger vi för just er bransch</h2>
-            <div className={styles.andraNat}>
+            <div className={styles.andraNat} data-trapp>
               {t.relaterat.map((r) => (
                 <Link key={r.href} href={r.href} className={styles.andraKort}>
                   <span>
@@ -134,7 +136,7 @@ export default async function Tjanst({ params }) {
       <section className={styles.andraYta}>
         <div className="wrap">
           <span className="eyebrow">Fler tjänster</span>
-          <div className={styles.andraNat}>
+          <div className={styles.andraNat} data-trapp>
             {andra.map((a) => (
               <Link key={a.slug} href={`/tjanster/${a.slug}/`} className={styles.andraKort}>
                 <span>
