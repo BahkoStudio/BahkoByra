@@ -260,7 +260,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .mnav .mnav-kat{font-size:1.18rem;padding:.55rem 0}
 
 /* ---------- hero ---------- */
-.hero{padding:clamp(2.2rem,4vw,3.4rem) 0 clamp(2.6rem,5vw,4.4rem);overflow:hidden}
+/* Sektionsluft: golvet är 4rem (64px) enligt Seeds lågdensitetsrytm. */
+.hero{padding:clamp(4rem,4.4vw,4.6rem) 0 clamp(4rem,5vw,4.8rem);overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(1.8rem,4vw,4rem);align-items:center}
 .hero-txt{padding-block:clamp(0rem,2vw,1.4rem)}
 .hero h1{font-size:clamp(2.5rem,5.6vw,4.3rem);margin:1.2rem 0 1.1rem;max-width:19ch}
@@ -331,7 +332,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 }
 
 /* ---------- sektionsrubriker ---------- */
-.sec{padding:clamp(3.4rem,6.5vw,6rem) 0}
+.sec{padding:clamp(4.2rem,6.5vw,6rem) 0}
 .sec--cream{background:var(--cream)}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:2.6rem}
 .sec-head h2{font-size:clamp(1.8rem,3.6vw,2.85rem)}
@@ -432,7 +433,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .price-note{font-size:.72rem;color:rgba(252,252,247,.74);margin-top:1rem}
 
 /* ---------- nyhetsbrev ---------- */
-.news{text-align:center;padding:clamp(3.4rem,6.5vw,5.6rem) 0}
+.news{text-align:center;padding:clamp(4.2rem,6.5vw,5.6rem) 0}
 .news h2{font-size:clamp(1.8rem,3.6vw,2.7rem);margin:1rem auto .9rem;max-width:16ch}
 .news p{color:var(--ink-2);max-width:44ch;margin:0 auto 2rem}
 .news-form{display:flex;gap:.6rem;max-width:440px;margin:0 auto;flex-wrap:wrap}
@@ -445,7 +446,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .news-note{font-size:.72rem;color:var(--muted);margin-top:1rem}
 
 /* ---------- footer ---------- */
-.ftr{background:var(--cream);border-top:1px solid var(--line-2);padding:clamp(3rem,5vw,4.4rem) 0 0}
+.ftr{background:var(--cream);border-top:1px solid var(--line-2);padding:clamp(4.2rem,5vw,4.6rem) 0 0}
 /* Klisterremsan är fixerad över sidans nederkant. Footern reserverar exakt
    remsans höjd (app.js sätter --sticky-space) så krediteringen aldrig hamnar
    under den. Värdet nedan är fallbacken innan skriptet hunnit mäta. */
@@ -472,7 +473,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .crumbs .sep{color:var(--muted)}
 @media(hover:hover) and (pointer:fine){.crumbs a:hover{color:var(--ink)}}
 
-.cat-hero{padding:2.2rem 0 2.6rem;border-bottom:1px solid var(--line)}
+.cat-hero{padding:4.2rem 0 4.4rem;border-bottom:1px solid var(--line)}
 .cat-hero h1{font-size:clamp(2.1rem,4.6vw,3.4rem);margin:.9rem 0 .8rem}
 .cat-hero p{color:var(--ink-2);max-width:56ch}
 
@@ -963,7 +964,7 @@ summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 }
 
 /* ---------- brådskeband mitt på sidan ---------- */
-.band{background:var(--ink);color:var(--paper);padding:clamp(2.2rem,4vw,3.2rem) 0}
+.band{background:var(--ink);color:var(--paper);padding:clamp(4.2rem,5vw,5.2rem) 0}
 .band-in{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
 .band-flagga{
   display:inline-flex;align-items:center;gap:.5rem;
