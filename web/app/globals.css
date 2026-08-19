@@ -199,11 +199,19 @@ h4 {
 .btn-primar {
   background: var(--em);
   color: var(--bas);
+  /* Duolingos sticker-språk: hård kant utan oskärpa, ingen glöd */
+  box-shadow: 0 4px 0 var(--em-deep);
 }
 
 .btn-primar:hover {
   background: var(--em-lt);
   transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--em-deep);
+}
+
+.btn-primar:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--em-deep);
 }
 
 .btn-sekundar {
@@ -246,11 +254,10 @@ h4 {
 /* ── Kort ───────────────────────────────────────── */
 .kort {
   background: var(--vit);
-  border: 1px solid var(--linje);
+  border: 2px solid var(--linje);
   border-radius: var(--r-lg);
   padding: 1.6rem;
-  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease),
-    box-shadow 0.25s var(--ease);
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
 }
 
 .mork .kort {
@@ -271,7 +278,7 @@ h4 {
 }
 
 .stig {
-  animation: stigIn 0.7s var(--ease) both;
+  animation: stigIn 0.7s var(--studs) both;
 }
 
 /* Dampad rorelse betyder mjukare aterkoppling, inte ingen alls: forflyttningar
@@ -301,5 +308,79 @@ h4 {
 @media (prefers-reduced-transparency: reduce) {
   :root {
     --header-bakgrund: var(--bas);
+  }
+}
+
+/* ── Avslöjning: sektioner kommer in när man scrollar dit ──────────────────
+   Ribban (docs/design/bar.md) säger: en sektion, en entré, ett håll. Rörelsen
+   passerar viloläget och studsar tillbaka, och den tar 400 till 900 ms.
+
+   Allt är scopat under .js-rorelse, som komponenten Rorelse sätter på <html>.
+   Utan JavaScript sätts klassen aldrig och sidan visas som vanligt — annars
+   hade ett skriptfel gjort hela sajten osynlig. */
+
+:root {
+  /* Studs: kurvan går över 1 och tillbaka, det är det som ger överskjutningen */
+  --studs: cubic-bezier(0.34, 1.8, 0.5, 1);
+  --t-entre: 620ms;
+  --t-mikro: 180ms;
+  --avsl: 56px;
+  --trapp: 70ms;
+}
+
+.js-rorelse [data-avsloja],
+.js-rorelse [data-trapp] > * {
+  opacity: 0;
+  transition: opacity var(--t-entre) var(--ease),
+    transform var(--t-entre) var(--studs);
+}
+
+.js-rorelse [data-avsloja='upp'],
+.js-rorelse [data-trapp] > * {
+  transform: translateY(var(--avsl));
+}
+
+.js-rorelse [data-avsloja='vanster'] {
+  transform: translateX(calc(var(--avsl) * -1));
+}
+
+.js-rorelse [data-avsloja='hoger'] {
+  transform: translateX(var(--avsl));
+}
+
+.js-rorelse [data-avsloja].synlig,
+.js-rorelse [data-trapp].synlig > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* Trappa: barnen kommer in efter varandra, inte i klump */
+.js-rorelse [data-trapp].synlig > *:nth-child(1) { transition-delay: 0ms; }
+.js-rorelse [data-trapp].synlig > *:nth-child(2) { transition-delay: calc(var(--trapp) * 1); }
+.js-rorelse [data-trapp].synlig > *:nth-child(3) { transition-delay: calc(var(--trapp) * 2); }
+.js-rorelse [data-trapp].synlig > *:nth-child(4) { transition-delay: calc(var(--trapp) * 3); }
+.js-rorelse [data-trapp].synlig > *:nth-child(5) { transition-delay: calc(var(--trapp) * 4); }
+.js-rorelse [data-trapp].synlig > *:nth-child(6) { transition-delay: calc(var(--trapp) * 5); }
+
+/* Mikrorörelse: knappar och kort svarar direkt, med samma studs */
+.btn:hover {
+  transition-duration: var(--t-mikro);
+  transition-timing-function: var(--studs);
+}
+
+.kort:hover {
+  transition-duration: var(--t-mikro);
+  transition-timing-function: var(--studs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --avsl: 0px;
+    --trapp: 0ms;
+  }
+
+  .js-rorelse [data-avsloja],
+  .js-rorelse [data-trapp] > * {
+    transform: none;
   }
 }

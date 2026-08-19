@@ -14,17 +14,15 @@
   display: flex;
   flex-direction: column;
   background: var(--vit);
-  border: 1px solid var(--linje);
+  border: 2px solid var(--linje);
   border-radius: var(--r-lg);
   overflow: hidden;
-  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease),
-    box-shadow 0.25s var(--ease);
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
 }
 
 .kort:hover {
   border-color: var(--em);
   transform: translateY(-4px);
-  box-shadow: 0 20px 48px -28px rgba(4, 120, 87, 0.5);
 }
 
 .bild {

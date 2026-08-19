@@ -6,7 +6,7 @@ import styles from './ProcessRail.module.css';
 const STEG = [
   {
     n: '01',
-    h: 'Du får ett förslag',
+    h: 'Ni får ett förslag',
     p: 'Vi bygger en riktig sida åt er och skickar den inom 48 timmar. Kostar ingenting och binder er inte vid något.',
   },
   {

@@ -14,8 +14,6 @@
   border: 0;
   padding: 0;
   background: rgba(6, 14, 26, 0.62);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
   animation: tona 0.25s var(--ease) both;
   cursor: pointer;
 }
@@ -29,7 +27,6 @@
   border-radius: var(--r-lg);
   padding: 2rem 1.8rem 1.6rem;
   text-align: center;
-  box-shadow: 0 40px 100px -40px rgba(2, 12, 27, 0.85);
   /* Materialiseras in: skala plus toning, inte bara opacitet. */
   animation: kortIn 0.34s var(--ease) both;
 }

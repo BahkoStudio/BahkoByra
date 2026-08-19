@@ -8,7 +8,7 @@ const PIL = (
   </svg>
 );
 
-const PROCESS = ['Gratis förslag inom 48 timmar', 'Ni säger ja', 'Live inom 7 dagar'];
+const PROCESS = ['Kostnadsfritt förslag inom 48 timmar', 'Ni säger ja', 'Live inom 7 dagar'];
 
 /**
  * Gemensam mall för nischsidorna (en per hantverksyrke, data i app/nischer.js).
@@ -31,7 +31,7 @@ export default function NischSida({ nisch }) {
           </p>
           <div className={styles.toppKnappar}>
             <Link href="/kontakt/" className="btn btn-primar">
-              Få gratis förslag {PIL}
+              Få kostnadsfritt förslag {PIL}
             </Link>
             <a href={nisch.bevis.url} target="_blank" rel="noopener" className="btn btn-sekundar">
               Se leveransen
@@ -109,7 +109,7 @@ export default function NischSida({ nisch }) {
               <p>Färdigt förslag inom 48 timmar. Kostar ingenting, binder er inte vid något.</p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">
-              Få gratis förslag {PIL}
+              Få kostnadsfritt förslag {PIL}
             </Link>
           </div>
         </div>

@@ -3,6 +3,7 @@ import Script from 'next/script';
 import '../globals.css';
 import Header from '../komponenter/Header';
 import Footer from '../komponenter/Footer';
+import Rorelse from '../komponenter/Rorelse';
 import Popup from '../komponenter/Popup';
 
 const outfit = Outfit({
@@ -91,6 +92,15 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationsSchema) }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "document.documentElement.classList.add('js-rorelse');" +
+              "setTimeout(function(){var n=document.querySelectorAll('[data-avsloja],[data-trapp]');" +
+              "for(var i=0;i<n.length;i++){n[i].classList.add('synlig')}},2500)",
+          }}
+        />
+        <Rorelse />
         <Header />
         <main id="innehall">{children}</main>
         <Footer />
