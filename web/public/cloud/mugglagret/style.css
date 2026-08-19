@@ -425,7 +425,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 }
 .price-table td:last-child,.price-table th:last-child{text-align:right}
 .price-table tbody tr:last-child td{border-bottom:0}
-.price-table td b{font-weight:600}
+.price-table td b{font-weight:500;font-variant-numeric:tabular-nums}
 /* Prisvillkoren (exkl. moms, 399 kr trycksetup) är den finstilt som INTE får
    missförstås — .68 ger 7:1 mot ink, gamla .45 gav 3,88:1. */
 .price-note{font-size:.72rem;color:rgba(252,252,247,.74);margin-top:1rem}
@@ -492,7 +492,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 
 /* Filtrets prisrad: en mening, inte ett filter utan filter */
 .fnote{font-size:.82rem;color:var(--ink-2)}
-.fnote b{color:var(--ink);font-weight:600}
+.fnote b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
 .fnote a{color:var(--ink);font-weight:600;border-bottom:1px solid var(--line-2)}
 .fnote--liten{font-size:.76rem;color:var(--muted);margin-top:.7rem}
 
@@ -666,7 +666,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .acc-body li::before{content:'';position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--line-2)}
 
 /* ---------- varukorgslåda ---------- */
-.cart-dot.is-empty{background:var(--line-2);color:var(--ink-2)}
+.cart-dot.is-empty{background:var(--cream);color:var(--ink)}
 .drawer-bg{
   position:fixed;inset:0;z-index:300;background:rgba(43,33,29,.42);
   opacity:0;visibility:hidden;transition:opacity .32s ease,visibility .32s ease;
@@ -970,7 +970,7 @@ summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
   color:var(--cream);opacity:.75;
 }
 .band h2{font-size:clamp(1.4rem,2.6vw,2.1rem);margin:.7rem 0 .5rem}
-.band h2 b{font-weight:500;color:var(--terra);font-variant-numeric:tabular-nums}
+.band h2 b{font-weight:500;color:var(--paper);font-variant-numeric:tabular-nums}
 .band p{font-size:.9rem;color:rgba(252,252,247,.74);max-width:52ch}
 @media(max-width:700px){
   .band-in{flex-direction:column;align-items:flex-start;gap:1.4rem}
