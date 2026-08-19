@@ -51,6 +51,12 @@ const nextConfig = {
       // prospektet och får aldrig brytas — den pekas om hit.
       { source: '/cloud/shabifix', destination: '/shabifix/', permanent: true },
       { source: '/cloud/shabifix/:path*', destination: '/shabifix/', permanent: true },
+      // Glowing Service byggdes om som måleri-demo 2026-08-19 (första var fel
+      // nisch — städ). Gamla länken är skickad till Yoro och pekas om hit.
+      // Statiska filen ligger kvar som scroll-cinematic-kodreferens men serveras
+      // aldrig: redirects körs före filsystemet.
+      { source: '/cloud/glowingservice', destination: '/glowingservice/', permanent: true },
+      { source: '/cloud/glowingservice/:path*', destination: '/glowingservice/', permanent: true },
       // Raderad förpivot-artefakt.
       { source: '/pitchdeck.html', destination: '/', permanent: true },
     ];
