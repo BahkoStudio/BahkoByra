@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.className+=" js";</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Produkt – Mugglagret</title>
+<meta name="description" content="Tryckt keramikmugg 11 oz i sju färgval. Fast pris 136 kr, leverans 3–6 dagar. Demo av Bahko Byrå.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="media/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="announce">
+  <div class="announce-in">
+    <p class="announce-now">
+      <i class="pulse" aria-hidden="true"></i>
+      Beställ inom <b data-cutoff>&nbsp;</b> — packas <span data-cutoff-dag>&nbsp;</span>
+    </p>
+    <p class="announce-roll" id="announce-roll" aria-hidden="true">
+      <span class="is-on">Leverans 3–6 dagar</span>
+      <span>Spårbar frakt i hela Sverige</span>
+      <span>Fast pris 136 kr oavsett motiv</span>
+      <span>Sju färgval på handtag och insida</span>
+    </p>
+  </div>
+</div>
+
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a class="brand" href="index.html">
+      <img src="media/logo.png" alt="Mugglagret" width="46" height="46">
+      <span><span class="brand-name">Mugglagret</span><span class="brand-sub">Estd 2024</span></span>
+    </a>
+
+    <nav class="nav">
+      <a href="katalog.html">Alla muggar</a>
+
+      <div class="nav-drop" data-drop>
+        <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega">
+          Motiv
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="mega" id="mega">
+          <div class="mega-in">
+            <div class="mega-cats">
+              <a href="katalog.html?kategori=katter"><img src="media/katter-5.jpg" alt="" loading="lazy" width="494" height="592"><b>Katter</b><span>Mest sålda</span></a>
+              <a href="katalog.html?kategori=djur"><img src="media/djur-2.jpg" alt="" loading="lazy" width="494" height="592"><b>Djur</b><span>Se motiv</span></a>
+              <a href="katalog.html?kategori=fjaril"><img src="media/fjaril-1.jpg" alt="" loading="lazy" width="494" height="592"><b>Fjäril</b><span>Se motiv</span></a>
+              <a href="katalog.html?kategori=karlek"><img src="media/karlek-2.jpg" alt="" loading="lazy" width="494" height="592"><b>Kärlek</b><span>Present</span></a>
+              <a href="katalog.html?kategori=retro"><img src="media/retro-3.jpg" alt="" loading="lazy" width="494" height="592"><b>Retro</b><span>Se motiv</span></a>
+              <a href="katalog.html?kategori=stader"><img src="media/stader-1.jpg" alt="" loading="lazy" width="494" height="592"><b>Städer</b><span>Hemstaden</span></a>
+              <a href="katalog.html?kategori=texter"><img src="media/texter-2.jpg" alt="" loading="lazy" width="494" height="592"><b>Texter</b><span>Se motiv</span></a>
+              <a href="index.html#foretag"><img src="media/texter-5.jpg" alt="" loading="lazy" width="494" height="592"><b>Egen design</b><span>Från 25 st</span></a>
+            </div>
+            <div class="mega-side">
+              <span class="mega-flag"><i class="pulse" aria-hidden="true"></i>Nytt denna vecka</span>
+              <b class="mega-rubrik">Åtta nya motiv uppe</b>
+              <p>Vi fyller på sortimentet löpande. De nyaste ligger först i katalogen.</p>
+              <a class="btn btn--sm" href="katalog.html?nytt=1">Se de nya →</a>
+              <span class="mega-note">Fast pris 136 kr · 11 oz keramik · sju färger</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="index.html#foretag">Företag</a>
+      <a href="index.html#om">Om oss</a>
+    </nav>
+
+    <div class="hdr-tools">
+      <button class="icon-btn" data-demo="Sökfunktionen visas i den färdiga sajten." aria-label="Sök">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </button>
+      <button class="icon-btn" data-cart-open aria-label="Varukorg">
+        <svg viewBox="0 0 24 24"><path d="M6 2l-2 5v13a2 2 0 002 2h12a2 2 0 002-2V7l-2-5z"/><path d="M4 7h16M16 11a4 4 0 01-8 0"/></svg>
+        <span class="cart-dot">0</span>
+      </button>
+      <a class="hdr-cta" href="katalog.html">Handla nu</a>
+      <button class="burger" id="burger" aria-label="Meny" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mnav" id="mnav">
+  <a class="mnav-cta" href="katalog.html">Handla alla muggar</a>
+  <span class="mnav-rubrik">Motiv</span>
+  <a class="mnav-kat" href="katalog.html?kategori=katter">Katter</a>
+  <a class="mnav-kat" href="katalog.html?kategori=djur">Djur</a>
+  <a class="mnav-kat" href="katalog.html?kategori=fjaril">Fjäril</a>
+  <a class="mnav-kat" href="katalog.html?kategori=karlek">Kärlek &amp; vänskap</a>
+  <a class="mnav-kat" href="katalog.html?kategori=retro">Retro</a>
+  <a class="mnav-kat" href="katalog.html?kategori=stader">Världens städer</a>
+  <a class="mnav-kat" href="katalog.html?kategori=texter">Texter &amp; bilder</a>
+  <span class="mnav-rubrik">Mugglagret</span>
+  <a class="mnav-kat" href="katalog.html?nytt=1">Nytt denna vecka</a>
+  <a class="mnav-kat" href="index.html#foretag">Företag &amp; volympris</a>
+  <a class="mnav-kat" href="index.html#om">Om oss</a>
+</nav>
+
+<div class="wrap">
+  <p class="crumbs">
+    <a href="index.html">Hem</a><span class="sep">/</span>
+    <a href="katalog.html" id="pdp-crumb-cat">Alla muggar</a><span class="sep">/</span>
+    <span id="pdp-crumb-name">Produkt</span>
+  </p>
+</div>
+
+<div class="wrap">
+  <div class="pdp" id="pdp">
+
+    <div class="pdp-media">
+      <!-- En bild per mugg, ingen tumnagelspalt: vi har bara ett foto per
+           motiv, och tumnaglar fyllda med ANDRA motiv fick kunden att tro
+           att hon såg fler vinklar av samma mugg.
+           src sätts av app.js — platshållaren är neutral så första målningen
+           aldrig visar en annan produkt. -->
+      <div class="pdp-main" id="pdp-main">
+        <img id="pdp-main-img"
+             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='494' height='592'%3E%3Crect width='494' height='592' fill='%23F4EDE0'/%3E%3C/svg%3E"
+             alt="Keramikmugg 11 oz med tryckt motiv" width="494" height="592" fetchpriority="high">
+      </div>
+    </div>
+
+    <div class="pdp-info">
+      <span class="eyebrow" id="pdp-cat">Katter</span>
+      <h1 id="pdp-title">Produkt</h1>
+      <span class="pdp-flagga" id="pdp-flagga"></span>
+
+      <div class="pdp-price">
+        <b>136 kr</b>
+        <span>inkl. moms · fast pris, alla motiv</span>
+      </div>
+      <p class="pdp-stock"><i aria-hidden="true"></i> Trycks på beställning · levereras 3–6 dagar med spårbar frakt</p>
+
+      <div class="opt-label">
+        <b>Färg på handtag &amp; insida</b>
+        <em id="pdp-color-name">Ceramic White</em>
+      </div>
+      <div class="colors" id="pdp-colors"></div>
+      <p class="pdp-farg-note">Utsidan är alltid blank vit — färgen sitter på handtag och insida. Bilderna visar vit modell.</p>
+
+      <div class="qty-row">
+        <div class="qty">
+          <button type="button" id="qty-minus" aria-label="Minska antal">−</button>
+          <input id="pdp-qty" type="number" inputmode="numeric" min="1" max="99" step="1" value="1" aria-label="Antal">
+          <button type="button" id="qty-plus" aria-label="Öka antal">+</button>
+        </div>
+        <button class="btn" type="button" id="pdp-add">Lägg i varukorgen</button>
+      </div>
+
+      <p class="pdp-sum" id="pdp-sum" aria-live="polite"></p>
+
+      <div class="pdp-volym" id="pdp-volym">
+        <span><b>25 st eller fler?</b> Då gäller volympris från 79 kr/st ex moms, plus 399 kr trycksetup.</span>
+        <a href="index.html#foretag">Se alla prissteg →</a>
+      </div>
+
+      <p class="pdp-efter">Beställ inom <b data-cutoff>&nbsp;</b> så packas den <span data-cutoff-dag>&nbsp;</span>.</p>
+      <a class="pdp-till-korg" id="pdp-till-korg" href="#">Till varukorgen →</a>
+
+      <div class="pdp-usp">
+        <span>Fast pris 136 kr oavsett motiv</span>
+        <span>Kostnadsfri digital mockup vid egen bild eller logga</span>
+        <span>25 st eller fler? Volympris från 79 kr/st ex moms</span>
+      </div>
+
+      <p class="pdp-desc">11 oz blank keramik, ca 3,25 dl. Blank yta för skarpt tryck.</p>
+
+      <div class="acc">
+        <div class="acc-item">
+          <button class="acc-head" type="button" aria-expanded="false">Specifikation <i>+</i></button>
+          <div class="acc-body">
+            <ul>
+              <li>Kapacitet: 11 oz (ca 3,25 dl)</li>
+              <li>Material: keramik, blank vit finish</li>
+              <li>Sju färgval på handtag och insida: White, Yellow, Pink, Green, Red, Black, Blue</li>
+            </ul>
+            <p style="margin-top:.7rem">Skötselråd och tålighet i mikro och diskmaskin fyller vi i här med era egna uppgifter.</p>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" type="button" aria-expanded="false">Frakt &amp; villkor <i>+</i></button>
+          <div class="acc-body">
+            <p>Leveranstid 3–6 dagar med spårbar frakt i hela Sverige. Beställningar före 14:00 på vardagar packas samma dag.</p>
+            <p style="margin-top:.7rem">Egen bild eller logga? Du får en kostnadsfri digital mockup före tryck. Frågor före köp: <a href="mailto:info@mugglagret.se" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--line-2)">info@mugglagret.se</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== RELATERAT ===================== -->
+<section class="sec sec--cream">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <h2 id="pdp-related-title">Fler motiv</h2>
+        <p>Samma pris, samma sju färger.</p>
+      </div>
+      <a class="link-underline" href="katalog.html">Se alla muggar →</a>
+    </div>
+    <div class="pgrid" id="pdp-related"></div>
+  </div>
+</section>
+
+<!-- ===================== LÖFTEN ===================== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="promises rv">
+      <div class="promise">
+        <svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg>
+        <b>Tryck som håller</b>
+        <p>Blank vit keramik som framhäver färgen. Skarpa linjer som håller efter många koppar.</p>
+      </div>
+      <div class="promise">
+        <svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+        <b>Spårbart hela vägen</b>
+        <p>3–6 dagar med spårbar frakt i hela Sverige, hela vägen till ombudet.</p>
+      </div>
+      <div class="promise">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H8l-4 4V5a2 2 0 012-2h13a2 2 0 012 2z"/></svg>
+        <b>Personlig service</b>
+        <p>Egen bild eller logga? Skicka den, du får en kostnadsfri mockup före tryck.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div class="ftr-lead">
+        <a class="brand" href="index.html">
+          <img src="media/logo.png" alt="Mugglagret" width="46" height="46" loading="lazy">
+          <span><span class="brand-name">Mugglagret</span><span class="brand-sub">Estd 2024</span></span>
+        </a>
+        <p>Muggar med tryck för hem, present och företag. Snygga motiv, skarpa tryck och muggar som håller länge.</p>
+        <a href="https://www.instagram.com/mugglagret_se" target="_blank" rel="noopener">Instagram @mugglagret_se →</a>
+      </div>
+      <div>
+        <h2>Handla</h2>
+        <ul>
+          <li><a href="katalog.html">Alla muggar</a></li>
+          <li><a href="katalog.html?kategori=katter">Katter</a></li>
+          <li><a href="katalog.html?kategori=retro">Retro</a></li>
+          <li><a href="katalog.html?kategori=stader">Världens städer</a></li>
+          <li><a href="katalog.html?kategori=texter">Texter &amp; bilder</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Mugglagret</h2>
+        <ul>
+          <li><a href="index.html#om">Om oss</a></li>
+          <li><a href="index.html#foretag">Företag &amp; profilmuggar</a></li>
+          <li><a href="index.html#motiv">Motiv</a></li>
+          <li><a href="#" data-demo="Bloggen kopplas på i den färdiga sajten.">Muggnyheter</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Kundservice</h2>
+        <ul>
+          <li><a href="mailto:info@mugglagret.se">info@mugglagret.se</a></li>
+          <li><a href="#" data-demo="Frakt &amp; retur kopplas på i den färdiga sajten.">Frakt &amp; retur</a></li>
+          <li><a href="#" data-demo="Köpvillkoren kopplas på i den färdiga sajten.">Köpvillkor</a></li>
+          <li><a href="#" data-demo="Vanliga frågor kopplas på i den färdiga sajten.">Vanliga frågor</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr-bar">
+      <span>© 2026 Mugglagret.se · Demo</span>
+      <span>Byggd av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- Klisterremsan: motivet, priset och köpknappen följer med hela vägen ner -->
+<div class="stickybar" id="stickybar">
+  <div class="stickybar-in">
+    <span class="stickybar-txt">
+      <i class="pulse" aria-hidden="true"></i>
+      <span class="sb-lang"><b>136 kr</b> — beställ inom <b data-cutoff>&nbsp;</b> så packas den <span data-cutoff-dag>&nbsp;</span></span>
+      <span class="sb-kort" aria-hidden="true"><b>136 kr</b> · <b data-cutoff>&nbsp;</b> → <span data-cutoff-dag-kort>&nbsp;</span></span>
+      <span class="sb-mini" aria-hidden="true"><b data-cutoff>&nbsp;</b> → <span data-cutoff-dag-kort>&nbsp;</span></span>
+    </span>
+    <button class="btn btn--sm" type="button" id="sticky-add" data-lagd="Lagd ✓">Lägg i korgen</button>
+  </div>
+</div>
+
+<div class="demo-toast hide" id="demo-toast"></div>
+<button id="float-demo" onclick="openModal()">Om demon</button>
+
+<div class="modal-bg" id="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Om demon">
+    <button class="modal-x" onclick="closeModal()" aria-label="Stäng">✕</button>
+    <div class="m-badge">Demo av Bahko Byrå</div>
+    <h3>Så här kan Mugglagret se ut</h3>
+    <p>Det här är ett kostnadsfritt förslag byggt på era egna produkter — ingen beställning, inget åtagande. Vill ni se hur den skulle fungera skarpt med kassa och lager? Boka ett kostnadsfritt 15-minuterssamtal med Mathias.</p>
+    <a class="m-cta" href="#" data-cal-namespace="15min" data-cal-link="bahkobyra/15min" data-cal-origin="https://cal.eu">Boka 15 min gratis samtal →</a>
+    <a class="m-alt" href="mailto:mathias@bahkobyra.se?subject=Intresserad av demo-hemsida (Mugglagret)&body=Hej Mathias, jag såg Mugglagret-demon och vill veta mer.">Eller mejla → mathias@bahkobyra.se</a>
+    <div class="m-foot"><a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a> · Synlighet som säljer.</div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script src="rabattpopup.js"></script>
+<script type="text/javascript">
+(function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,[L,namespace,...Array.from(ar).slice(2)])}else p(cal,ar);return}p(cal,ar)};})(window,"https://cal.eu/embed/embed.js","init");
+Cal("init","15min",{origin:"https://cal.eu"});
+Cal.ns["15min"]("ui",{"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+</body>
+</html>
