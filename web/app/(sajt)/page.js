@@ -56,7 +56,7 @@ export default function Start() {
           </h1>
           <p className={styles.heroLede}>
             Syns ni inte på Google går jobben till någon annan. Videon visar varför, och vad
-            vi gör åt det. En minut, rakt på sak.
+            vi gör åt det. Två minuter, rakt på sak.
           </p>
 
           <HeroVideo />

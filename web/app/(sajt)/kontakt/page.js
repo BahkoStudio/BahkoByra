@@ -36,7 +36,7 @@ export default function Kontakt() {
           </ul>
 
           <p className={styles.maskotRad}>
-            <Maskot pose="vinkar" stil="liten" alt="Bahko-maskoten vinkar" />
+            <Maskot pose="vinkar" stil="stor" alt="Bahko-maskoten vinkar" />
             <span>Vi läser varje förfrågan själva. Ingen bot, ingen säljavdelning.</span>
           </p>
 

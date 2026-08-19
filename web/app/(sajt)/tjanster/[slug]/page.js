@@ -95,7 +95,7 @@ export default async function Tjanst({ params }) {
               <h3>Vill ni se hur er sida skulle se ut?</h3>
               <p>Vi bygger förslaget först. Ni bestämmer sen.</p>
             </div>
-            <Maskot pose="pekar" stil="flyt" alt="Bahko-maskoten pekar på knappen för kostnadsfritt förslag" />
+            <Maskot pose="pekar" stil="stor" alt="Bahko-maskoten pekar på knappen för kostnadsfritt förslag" />
             <Link href="/kontakt/" className="btn btn-primar">
               Få kostnadsfritt förslag {PIL}
             </Link>
