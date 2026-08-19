@@ -139,7 +139,7 @@ def main() -> None:
     #      figuren ovanför bildtextraden.
     x = 40
     y = 1920 - CH - 150
-    print(f"  MASKOT_XY={x}:{y}   (nedre höger, fri från undertexterna)")
+    print(f"  MASKOT_XY={x}:{y}   (nedre vänster, fri från IG:s knapprad och bildtext)")
 
 
 if __name__ == "__main__":
