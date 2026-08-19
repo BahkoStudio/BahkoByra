@@ -51,7 +51,7 @@
     /* Färger enligt varumärke v2: yta #13233F, knapp = smaragd med marinblå text
        (knappregeln: aldrig vit text på smaragd). */
     b.style.cssText = 'position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:9999;max-width:420px;width:calc(100% - 32px);background:#13233F;color:#fff;border:1px solid rgba(255,255,255,.08);padding:16px 18px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.35);font:14px/1.5 Outfit,sans-serif';
-    b.innerHTML = '<p style="margin:0 0 10px">Vi vill använda anonym besöksstatistik (Google Analytics) för att förbättra sajten. Okej för dig?</p>' +
+    b.innerHTML = '<p style="margin:0 0 10px">Vi vill använda anonym besöksstatistik (Google Analytics) för att förbättra sajten. Är det okej?</p>' +
       '<div style="display:flex;gap:10px">' +
       '<button id="bb-c-ja" style="flex:1;padding:9px 14px;border:0;border-radius:8px;background:#10B981;color:#0A1628;font-weight:600;cursor:pointer">Okej</button>' +
       '<button id="bb-c-nej" style="flex:1;padding:9px 14px;border:1px solid rgba(255,255,255,.3);border-radius:8px;background:transparent;color:#fff;cursor:pointer">Nej tack</button></div>';

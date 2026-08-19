@@ -13,8 +13,8 @@ const LANKAR = [
 ];
 
 const EXTERNA = [
-  { href: '/foretag/gratis-granskning.html', text: 'Gratis analys' },
-  { href: '/foretag/gratis-guide.html', text: 'Gratis guide' },
+  { href: '/foretag/gratis-granskning.html', text: 'Kostnadsfri analys' },
+  { href: '/foretag/gratis-guide.html', text: 'Kostnadsfri guide' },
 ];
 
 export default function Header() {
@@ -68,7 +68,7 @@ export default function Header() {
 
         <div className={styles.hoger}>
           <Link href="/kontakt/" className={`btn btn-primar ${styles.headerKnapp}`}>
-            Gratis förslag
+            Kostnadsfritt förslag
           </Link>
           <button
             className={styles.burgare}
@@ -95,7 +95,7 @@ export default function Header() {
           </a>
         ))}
         <Link href="/kontakt/" className="btn btn-primar">
-          Gratis förslag
+          Kostnadsfritt förslag
         </Link>
       </div>
     </header>

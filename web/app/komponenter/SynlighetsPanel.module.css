@@ -3,7 +3,6 @@
   border: 1px solid var(--linje);
   border-radius: var(--r-lg);
   padding: 1.5rem;
-  box-shadow: 0 24px 70px -30px rgba(2, 12, 27, 0.55);
   color: var(--ink);
   width: 100%;
   max-width: 470px;

@@ -72,7 +72,7 @@ export default function OmOss() {
               <p>Förslaget är gratis och kommer inom 48 timmar.</p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">
-              Få gratis förslag {PIL}
+              Få kostnadsfritt förslag {PIL}
             </Link>
           </div>
         </div>

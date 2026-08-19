@@ -2,14 +2,14 @@ import Maskot from '../../komponenter/Maskot';
 import styles from './kontakt.module.css';
 
 export const metadata = {
-  title: 'Få ett gratis hemsideförslag',
+  title: 'Få ett kostnadsfritt hemsideförslag',
   description:
     'Berätta kort om er firma så bygger vi ett förslag på er nya hemsida och skickar det inom 48 timmar. Kostnadsfritt och utan krav.',
   alternates: { canonical: '/kontakt/' },
 };
 
 const LOFTEN = [
-  'Förslaget är gratis och binder er inte vid något',
+  'Förslaget är kostnadsfritt och binder er inte vid något',
   'Ni ser hela sidan innan ni bestämmer er',
   'Svar inom 24 timmar, förslag inom 48',
 ];
@@ -81,7 +81,7 @@ export default function Kontakt() {
               aria-hidden="true"
               className={styles.gotcha}
             />
-            <input type="hidden" name="_subject" value="Ny förfrågan om gratis hemsideförslag" />
+            <input type="hidden" name="_subject" value="Ny förfrågan om kostnadsfritt hemsideförslag" />
 
             <button type="submit" className="btn btn-primar">
               Skicka förfrågan

@@ -48,7 +48,7 @@ export default async function Tjanst({ params }) {
           </p>
           <div className={styles.toppKnappar}>
             <Link href="/kontakt/" className="btn btn-primar">
-              Få gratis förslag {PIL}
+              Få kostnadsfritt förslag {PIL}
             </Link>
             <Link href="/case/" className="btn btn-sekundar">
               Se leveranser
@@ -95,9 +95,9 @@ export default async function Tjanst({ params }) {
               <h3>Vill ni se hur er sida skulle se ut?</h3>
               <p>Vi bygger förslaget först. Ni bestämmer sen.</p>
             </div>
-            <Maskot pose="pekar" stil="flyt" alt="Bahko-maskoten pekar på knappen för gratis förslag" />
+            <Maskot pose="pekar" stil="flyt" alt="Bahko-maskoten pekar på knappen för kostnadsfritt förslag" />
             <Link href="/kontakt/" className="btn btn-primar">
-              Få gratis förslag {PIL}
+              Få kostnadsfritt förslag {PIL}
             </Link>
           </div>
         </div>

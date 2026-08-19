@@ -84,7 +84,7 @@ export default function Jonkoping() {
           </p>
           <div className={styles.toppKnappar}>
             <Link href="/kontakt/" className="btn btn-primar">
-              Få gratis förslag {PIL}
+              Få kostnadsfritt förslag {PIL}
             </Link>
             <Link href="/case/" className="btn btn-sekundar">
               Se leveranser
@@ -150,7 +150,7 @@ export default function Jonkoping() {
               <p>Förslaget byggs inom 48 timmar. Ni bestämmer sen.</p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">
-              Få gratis förslag {PIL}
+              Få kostnadsfritt förslag {PIL}
             </Link>
           </div>
         </div>
