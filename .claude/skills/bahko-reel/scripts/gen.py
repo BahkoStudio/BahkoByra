@@ -63,18 +63,61 @@ ZON_H = 700
 ZON_X = 60
 ZON_B = 1080 - 2 * ZON_X
 
-d = json.load(open(sys.argv[1] if len(sys.argv) > 1 else "cut_transcript.json"))
-WS = [w for w in d["words"] if w.get("type") != "spacing" and w.get("start") is not None]
-TOTAL = round(WS[-1]["end"], 2) + 0.3
+# ---------------- tidssättning: två lägen ----------------
+# ORD-LÄGET fanns först: ett transkript ger ord -> sekund, och varje beat triggas
+# på ett ord i talet. Kräver transkribering, alltså en API-nyckel.
+#
+# SEKUND-LÄGET (Mathias beslut 2026-08-19: han producerar videon själv, ingen VO,
+# ingen avatar, ingen transkribering): tiderna sätts för hand och argumentet är
+# videons längd i sekunder i stället för en transkriptfil.
+#
+#     python gen.py 24.5                              sekund-triggers: ("3.5", ...)
+#     python gen.py ../edit/tF/transcripts/cutF.json  ord-triggers:    ("hook_ord", ...)
+#
+# En numerisk trigger tolkas som sekunder i BÅDA lägena.
+
+ARG = sys.argv[1] if len(sys.argv) > 1 else "cut_transcript.json"
 
 
-def norm(s): return re.sub(r"[^a-zåäöé0-9 ]", "", s.lower())
+def as_sec(v):
+    """Sekunder om v är ett tal (både 3.5 och 3,5 går), annars None."""
+    try:
+        return round(float(str(v).replace(",", ".")), 2)
+    except (TypeError, ValueError):
+        return None
 
 
-TOK = [norm(w["text"]) for w in WS]
+MANUELL = as_sec(ARG) is not None
+if MANUELL:
+    WS, TOK, TOTAL = [], [], as_sec(ARG)
+    if TOTAL <= 0:
+        sys.exit("videons längd måste vara större än 0 sekunder.")
+elif Path(ARG).exists():
+    d = json.load(open(ARG, encoding="utf-8"))
+    WS = [w for w in d["words"] if w.get("type") != "spacing" and w.get("start") is not None]
+    TOK, TOTAL = None, round(WS[-1]["end"], 2) + 0.3
+else:
+    sys.exit(f"'{ARG}' är varken en transkriptfil eller ett antal sekunder.\n"
+             f"  utan VO: python gen.py <videons_langd_i_sekunder>\n"
+             f"  med VO:  python gen.py <transkript.json>")
+
+
+def norm(s): return re.sub(r"[^a-zåäöé0-9 ]", "", str(s).lower())
+
+
+if not MANUELL:
+    TOK = [norm(w["text"]) for w in WS]
 
 
 def find(trig):
+    s = as_sec(trig)
+    if s is not None:
+        if s > TOTAL:
+            sys.exit(f"trigger {s}s ligger efter videons slut ({TOTAL}s).")
+        return s
+    if MANUELL:
+        sys.exit(f"trigger '{trig}' är ett ord, men det finns inget transkript att\n"
+                 f"  leta i. Sätt sekunder i stället: (\"3.5\", \"graf\", {{...}}).")
     tt = norm(trig).split()
     for i in range(len(TOK) - len(tt) + 1):
         if TOK[i:i + len(tt)] == tt:
@@ -86,6 +129,11 @@ def find(trig):
 
 
 def find_after(trig, after):
+    s = as_sec(trig)
+    if s is not None:
+        return s if s >= after - 0.01 else after
+    if MANUELL:
+        sys.exit(f"trigger '{trig}' är ett ord, men det finns inget transkript.")
     tt = norm(trig).split()
     for i in range(len(TOK) - len(tt) + 1):
         if TOK[i:i + len(tt)] == tt and WS[i]["start"] >= after - 0.01:

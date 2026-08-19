@@ -1,6 +1,6 @@
 ---
 name: bahko-reel
-description: Använd när ett klipp där Mathias pratar ska bli en färdig 9:16-reel i BahkoByrås varumärke. Videon fyller HELA ramen hela tiden och den animerade grafiken ligger som ett genomskinligt lager ovanpå - ingen delad ram, inget svart band. Maskoten står vid honom i valda fönster. Text, musik och SFX är val han styr, inget läggs på av sig självt. Trigga på "bahko-reel", "gör en reel av det här klippet", "reel med grafik över mig", "reel för @bahkostudio", eller när ett talking-head-klipp av Mathias ska bli reel. INTE för kunddemos (se scroll-cinematic/hemsidor) och INTE för publicering.
+description: Använd när en färdigklippt 9:16-video ska få BahkoByrås animerade grafik och motion ovanpå. Mathias filmar och klipper själv - ingen avatar, ingen VO, ingen transkribering, och panelernas tider sätts i sekunder. Videon fyller HELA ramen hela tiden och grafiken ligger som ett genomskinligt alfa-lager över den, ingen delad ram och inget svart band. Maskoten står vid honom i valda fönster. Text, musik och SFX är val han styr, inget läggs på av sig självt. Trigga på "bahko-reel", "lägg grafik på det här klippet", "animera min video", "motion på det här", "reel för @bahkostudio", eller när en färdig video ska bli reel. INTE för kunddemos (se scroll-cinematic/hemsidor) och INTE för publicering.
 ---
 
 # Bahko-reel
@@ -15,40 +15,58 @@ honom. Maskoten står vid honom där hon passar.
 Halva bilden motion, halva person. Den här skillen gör inte det (Mathias beslut
 2026-08-18) — videon fyller allt, grafiken flyter ovanpå.
 
-De tunga stegen i klippningen är inte dubblerade. Transkribering, EDL, klipp och
-tystnadstrim körs med `famous-reel-editor/scripts/` (transcribe, cutjoin,
-silence_keep) — reglerna för dem bor i den skillen och ska läsas där, särskilt
-allt om att hitta rena tagningar och att inte klippa av ord.
+Klippningen ligger inte här och är inte dubblerad. Mathias klipper själv och
+lämnar ett färdigt klipp — den här skillen börjar där redigeringen slutar. Ska en
+rå tagning någon gång klippas maskinellt finns transcribe, cutjoin och
+silence_keep i `famous-reel-editor/scripts/`, och reglerna för dem läses där.
 
 ## Kedjan
 
+Mathias producerar videon själv (beslut 2026-08-19): **ingen avatar, ingen VO,
+ingen transkribering.** Han lämnar ett färdigklippt klipp, skillen gör animering
+och motion. Klippsteget i famous-reel-editor (transcribe -> EDL -> cutjoin ->
+silence_keep) körs alltså inte, och ingen API-nyckel behövs.
+
 ```
-1  Klipp klart videon med famous-reel-editor: transcribe -> EDL -> cutjoin ->
-   silence_keep -> cutjoin -> RE-transkribera det färdiga klippet.
-   Är källan liggande: beskär till 1080x1920 FÖRST, hela ramen ska vara video.
+0  Kontrollera det inlämnade klippet:
+      ffprobe -v error -select_streams v:0 \
+        -show_entries stream=width,height -show_entries format=duration \
+        -of default=nw=1 <video>
+   Måste vara 1080x1920. Är källan liggande: beskär till 1080x1920 FÖRST,
+   hela ramen ska vara video. Längden i sekunder går vidare till steg 2.
 
-2  python <skill>/scripts/brand.py grafik
+1  python <skill>/scripts/brand.py grafik
       palett, logga, maskotlager, Outfit och gsap ur brand.json
+      Kräver BahkoByra-repot (eller BAHKO_BRAND_DIR=<mapp med brand.json>).
 
-3  cd grafik && python <skill>/scripts/gen.py ../edit/tF/transcripts/cutF.json
-      grafiklagret + beats.json
+2  cd grafik && python <skill>/scripts/gen.py <videons_langd_i_sekunder>
+      Sätt BEATS i gen.py med SEKUNDER som trigger: ("3.5", "graf", {...}).
+      Skriver grafiklagret + beats.json.
 
-4  npx hyperframes render . --format mov -o grafik.mov
+3  npx hyperframes render . --format mov -o grafik.mov
       MÅSTE vara --format mov (eller png-sequence). En mp4 har ingen alfakanal
       och täcker videon helt svart.
 
-5  python <skill>/scripts/maskot.py <maskot_dir> maskot 300 vinkar 12 4.0     (om maskot)
-   python <skill>/scripts/sfx.py grafik/beats.json grafik/sfx.m4a <total_s>   (om SFX)
-   python <skill>/scripts/captions.py <transkript> capt 12 92                 (om text)
+4  python <skill>/scripts/maskot.py <maskot_dir> maskot 300 vinkar 12 4.0   (om maskot)
+   python <skill>/scripts/sfx.py grafik/beats.json grafik/sfx.m4a <total_s>  (om SFX)
 
-6  MASKOT=maskot MASKOT_FONSTER="4.2-8.6,11.0-15.4" SFX=grafik/sfx.m4a \
-     bash <skill>/scripts/compose.sh edit/cutF.mp4 grafik/grafik.mov renders/<namn>.mp4
+5  MASKOT=maskot MASKOT_FONSTER="4.2-8.6,11.0-15.4" SFX=grafik/sfx.m4a \
+     bash <skill>/scripts/compose.sh <video> grafik/grafik.mov renders/<namn>.mp4
 ```
+
+**Var tiderna kommer ifrån.** Utan transkript finns inga ord att hänga panelerna
+på, så de tidsätts för hand: se klippet, skriv ner sekunden där varje panel ska
+komma in, lägg in den som trigger. `gen.py` vägrar en ordtrigger i det här läget
+och vägrar en sekund som ligger efter videons slut.
+
+**Om det ändå finns tal i klippet** och undertexter ska med: `captions.py` läser
+ett transkript med ordtider och kan inte köras utan ett. Då krävs
+transkribering — säg till, det är ett eget beslut och en egen nyckel.
 
 ## Vad som är Mathias val, inte skillens
 
 Inget av det här läggs på av sig självt. Utan flaggor blir resultatet: full
-video, grafik ovanpå, bara rösten.
+video, grafik ovanpå, och originalljudet ur Mathias klipp orört.
 
 | Val | Flagga | Not |
 |---|---|---|

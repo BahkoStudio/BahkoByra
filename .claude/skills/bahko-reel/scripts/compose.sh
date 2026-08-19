@@ -24,6 +24,18 @@
 #   npx hyperframes render . --format mov -o grafik.mov
 # En mp4 har ingen alfakanal och täcker videon helt svart.
 set -e
+# Hitta en python som FAKTISKT kör. På Windows ligger Microsoft Stores stubbar
+# (python, python3) tidigt i PATH och svarar "Python was not found" i stället för
+# att köra - därför testas varje kandidat med en riktig körning, inte med
+# command -v. Sätt PY=<sökväg> för att överstyra.
+if [ -z "${PY:-}" ]; then
+  for k in python3 python py \
+      "$LOCALAPPDATA/Programs/Python/Python313/python.exe" \
+      "$LOCALAPPDATA/Programs/Python/Python312/python.exe"; do
+    if "$k" -c "import sys" >/dev/null 2>&1; then PY="$k"; break; fi
+  done
+fi
+[ -n "${PY:-}" ] || { echo "FEL: hittar ingen fungerande python. Microsoft Store-stubben räknas inte. Sätt PY=<sökväg till python.exe>." >&2; exit 1; }
 VIDEO="$1"; GRAFIK="$2"; OUT="$3"
 [ -n "$OUT" ] || { echo "Usage: compose.sh <video.mp4> <grafik.mov> <out.mp4>" >&2; exit 1; }
 for f in "$VIDEO" "$GRAFIK"; do
@@ -74,7 +86,7 @@ if [ -n "$MASKOT" ]; then
   fi
   MASK_OV=""
   if [ -n "$MASKOT_FONSTER" ]; then
-    EN=$(python3 - "$MASKOT_FONSTER" "$DUR" <<'PYW'
+    EN=$("$PY" - "$MASKOT_FONSTER" "$DUR" <<'PYW'
 import sys
 spec, dur = sys.argv[1], float(sys.argv[2])
 delar = []
@@ -117,7 +129,7 @@ fi
 # aresample=48000 efter loudnorm och -ar 48000 på utgången är obligatoriskt: utan
 # dem lämnar loudnorm ifrån sig 96kHz medan sampelantalet svarar mot 48kHz, och
 # ljudet blir dubbelt så snabbt (6,0s spelas som 3,1s). Mätt på ffmpeg 6.1.1.
-FOUT=$(python3 -c "print(max(0,$DUR-2))")
+FOUT=$("$PY" -c "print(max(0,$DUR-2))")
 FC+="[0:a]loudnorm=I=-16:TP=-1.5:LRA=11,aresample=48000[vo];"
 GRENAR="[vo]"
 NGRENAR=1
