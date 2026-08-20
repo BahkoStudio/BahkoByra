@@ -371,13 +371,15 @@ button.btn{
 button.btn:hover{background:var(--em-lt);border-color:var(--em-lt);color:var(--navy)}
 button.btn.ghost{background:transparent;border-color:var(--line-2);color:var(--ink-2)}
 button.btn.ghost:hover{background:var(--lt-2);border-color:var(--em-deep);color:var(--ink)}
-button.btn.liten{padding:.4rem .95rem;min-height:38px;font-size:.82rem}
+/* 44px ar minsta trygga tryckyta pa telefon. Uppmatt 2026-08-20: de sma
+   knapparna lag pa 38px och kopiera-knappen pa 34px. */
+button.btn.liten{padding:.55rem .95rem;min-height:44px;font-size:.82rem}
 .kopiera{
   position:absolute;top:.7rem;right:.7rem;font-family:var(--sans);
   font-size:.82rem;font-weight:600;letter-spacing:.03em;padding:.4rem .85rem;
   min-height:34px;border-radius:100px;cursor:pointer;
   border:1px solid var(--line-2);background:var(--white);color:var(--ink-3);transition:.2s;
-}
+min-height:44px}
 .kopiera:hover{background:var(--em);border-color:var(--em);color:var(--navy)}
 #logg input{
   font-family:var(--sans);font-size:.9rem;color:var(--ink);
@@ -390,7 +392,16 @@ button.del{
   cursor:pointer;font-size:.95rem;padding:.3rem .5rem;min-height:38px;border-radius:4px;
 }
 button.del:hover{background:rgba(220,38,38,.1);color:var(--fel)}
-.hint{font-size:.86rem;color:var(--ink-4);margin-top:.5rem}
+.hint{font-size:.86rem;color:var(--ink-3);margin-top:.5rem}
+
+/* Dagsloggens falt lag pa 38px och radera-knappen pa 28x38 (uppmatt 2026-08-20).
+   Tabellen fylls i pa telefon, sa traffytan maste racka till. */
+#logg input,#logg select{min-height:44px;min-width:44px}
+button.del{min-width:44px;min-height:44px}
+
+/* Lankarna i sajttabellen ar enda innehallet i sin cell, alltsa fristaende
+   kontroller - de lag pa 19px hojd. Lankar inne i en MENING ror vi inte. */
+#b-sajter td a{display:inline-flex;align-items:center;min-height:44px}
 .matt{display:flex;gap:.6rem;flex-wrap:wrap;margin:1rem 0}
 .matt div{
   background:var(--white);border:1px solid var(--line);border-radius:var(--r);
