@@ -203,7 +203,30 @@ header{position:sticky;top:0;z-index:40;background:rgba(248,250,252,.94);backdro
 footer{padding:1.4rem;text-align:center;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-50);border-top:1px solid var(--line)}
 footer a{color:var(--gold-dk)}
 
+/* ── VYFLIKAR: kalla leads och warm leads, samma bräda och samma UI ── */
+.vyflikar{display:flex;gap:.35rem;margin:0 0 1.5rem;border-bottom:2px solid var(--line);align-items:flex-end}
+.vyflik{border-bottom:3px solid transparent;font-size:.95rem;font-weight:700;color:var(--ink-50);
+  padding:.7rem 1rem;margin-bottom:-2px;display:inline-flex;align-items:center;gap:.5rem;
+  min-height:44px;transition:.18s var(--ease)}
+.vyflik:hover{color:var(--navy)}
+.vyflik.on{color:var(--navy);border-bottom-color:var(--gold)}
+.vyflik .n{font-size:.72rem;font-weight:700;background:var(--line);color:var(--ink-50);
+  border-radius:100px;padding:.12rem .5rem;min-width:1.6rem;text-align:center}
+.vyflik.on .n{background:var(--navy);color:#FFFFFF}
+
+/* Warm-fält i detaljvyn visas bara i warm-vyn */
+.dr-varm{display:none}
+body.vy-varma .dr-varm{display:block}
+body:not(.vy-varma) .bara-varm{display:none}
+
+/* Prioritet och betyg på warm-korten */
+.chip.prio-hog{background:var(--danger-bg);color:var(--danger)}
+.chip.prio-medium{background:var(--warn-bg);color:var(--warn)}
+.chip.prio-lag{background:var(--cream-2);color:var(--ink-50)}
+.chip.betyg{background:var(--blue-bg);color:var(--blue)}
+
 @media(max-width:700px){
+  .vyflik{font-size:.88rem;padding:.7rem .7rem}
   .brand .tag{display:none}
   .board{grid-auto-columns:82vw}
   .frow{grid-template-columns:1fr}
@@ -230,6 +253,8 @@ footer a{color:var(--gold-dk)}
         <a href="https://smamaleri.se" target="_blank" rel="noopener">Kundsajt · Smålands Måleri</a>
         <a href="https://brommatradgardsservice.se" target="_blank" rel="noopener">Kundsajt · Bromma Trädgård</a>
         <div class="sep"></div>
+        <button id="imp-varm">Importera warm leads (CSV)</button>
+        <input type="file" id="imp-varm-file" accept=".csv,text/csv" style="display:none">
         <button id="csv">Exportera CSV</button>
         <button id="backup">Ladda ner backup</button>
         <button id="restore">Importera backup</button>
@@ -240,6 +265,11 @@ footer a{color:var(--gold-dk)}
 </header>
 
 <div class="wrap">
+
+  <div class="vyflikar" role="tablist" aria-label="Välj lista">
+    <button class="vyflik on" data-vy="kalla" role="tab" aria-selected="true">Kalla leads <span class="n" id="n-kalla">0</span></button>
+    <button class="vyflik" data-vy="varma" role="tab" aria-selected="false">Warm leads <span class="n" id="n-varma">0</span></button>
+  </div>
 
   <div class="stats" id="stats"></div>
 
@@ -254,6 +284,7 @@ footer a{color:var(--gold-dk)}
     <button class="fchip" data-f="noweb">Utan hemsida</button>
     <button class="fchip" data-f="ring">Har ringdatum</button>
     <button class="fchip" data-f="heta">Heta (svarat)</button>
+    <button class="fchip bara-varm" data-f="hogprio">Hög prio</button>
   </div>
   <div class="board" id="board"></div>
 
@@ -290,6 +321,27 @@ footer a{color:var(--gold-dk)}
       <input id="f-next" type="date">
       <div class="days" id="days"></div>
     </div>
+    <div class="dr-sec dr-varm">Från arket</div>
+    <div class="dr-varm">
+      <div class="frow">
+        <div class="field"><label>Instagram</label><input id="f-ig" placeholder="@firman"></div>
+        <div class="field"><label>Tjänst de vill ha</label><input id="f-tjanst" placeholder="Hemsida + SEO"></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>Lead score (1–5)</label><input id="f-score" type="number" min="1" max="5"></div>
+        <div class="field"><label>Intresse (1–5)</label><input id="f-intresse" type="number" min="1" max="5"></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>Prioritet</label>
+          <select id="f-prio"><option value="">—</option><option>Hög</option><option>Medium</option><option>Låg</option></select>
+        </div>
+        <div class="field"><label>Senaste kontakt (DM)</label><input id="f-senast" type="date"></div>
+      </div>
+      <div class="field"><label>Vad sa de?</label><textarea id="f-sa" rows="2" placeholder="Ordagrant om möjligt…"></textarea></div>
+      <div class="field"><label>Problem de nämnde</label><textarea id="f-problem" rows="2"></textarea></div>
+      <div class="field"><label>Invändningar</label><textarea id="f-invandning" rows="2"></textarea></div>
+      <div class="field"><label>Vad jag tror de vill ha</label><textarea id="f-vill" rows="2"></textarea></div>
+    </div>
     <div class="dr-sec">Anteckningar</div>
     <div class="field"><textarea id="f-notes" placeholder="Smärtan du såg · lösningen du lovade · vad dom sa…"></textarea></div>
   </div>
@@ -306,10 +358,12 @@ footer a{color:var(--gold-dk)}
 function fmtISO(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 let today=fmtISO(new Date());
 setInterval(()=>{const t=fmtISO(new Date());if(t!==today){today=t;renderAll();}},60000);
-const KEY='bb_crm_v2';
-const STATUSES=['Ny','Mejl tagen','Svarat','Demo skickad','Möte bokat','Offert skickad','Kund','Nej tack'];
-const CLOSED=['Kund','Nej tack'];
-const COLDEF={
+/* ── VYER ──────────────────────────────────────────────────────────────────
+   Två listor, samma bräda och samma UI. Kalla leads bor kvar i bb_crm_v2 med
+   oförändrad form — den nyckeln är ett fast kontrakt. Warm leads får en egen
+   nyckel och egna fält, så de två kan aldrig skriva över varandra. */
+const STATUSES_KALL=['Ny','Mejl tagen','Svarat','Demo skickad','Möte bokat','Offert skickad','Kund','Nej tack'];
+const COLDEF_KALL={
  'Ny':            {c:'#0369A1', sub:'Ring. Mål: mejladressen.'},
  'Mejl tagen':    {c:'#7C3AED', sub:'Testmejl skickat. Bevaka svar.'},
  'Svarat':        {c:'#DB2777', sub:'HET! Demo inom 48 timmar.'},
@@ -319,6 +373,32 @@ const COLDEF={
  'Kund':          {c:'#047857', sub:'Faktura betald. Bygg skarpt inom 7 dagar.'},
  'Nej tack':      {c:'#64748B', sub:'Loggat. Vila 6 månader.'}
 };
+/* Warm-pipelinen följer arkets egen Status DM och lägger till stegen framåt
+   som behövs för att faktiskt stänga: demo, möte, kund. */
+const STATUSES_VARM=['Ny','Kontaktad','Svarat','Demo skickad','Möte bokat','Kund',
+                     'Ej svarat','Ignorerar','Går ej att dma','Ej intresserad'];
+const COLDEF_VARM={
+ 'Ny':            {c:'#0369A1', sub:'Inte DM:ad än. Skriv först, ring sen.'},
+ 'Kontaktad':     {c:'#7C3AED', sub:'DM skickat. Vänta 2 dagar, följ upp.'},
+ 'Svarat':        {c:'#DB2777', sub:'HET! Demo inom 48 timmar.'},
+ 'Demo skickad':  {c:'#D97706', sub:'Följ upp dag 1–2. Gillar dom den: boka 15 min.'},
+ 'Möte bokat':    {c:'#4F46E5', sub:'15 minuter. Manus i Ring-SOP:en.'},
+ 'Kund':          {c:'#047857', sub:'Faktura betald. Bygg skarpt inom 7 dagar.'},
+ 'Ej svarat':     {c:'#B45309', sub:'Tyst efter uppföljning. Testa ringa istället.'},
+ 'Ignorerar':     {c:'#9A3412', sub:'Läser men svarar inte. Byt vinkel eller kanal.'},
+ 'Går ej att dma':{c:'#64748B', sub:'Stängda DM. Hitta mejl eller telefon.'},
+ 'Ej intresserad':{c:'#64748B', sub:'Loggat. Vila 6 månader.'}
+};
+
+const VYER={
+  kalla:{key:'bb_crm_v2',        statuses:STATUSES_KALL, closed:['Kund','Nej tack'],
+         coldef:COLDEF_KALL, varm:false, namn:'Kalla leads'},
+  varma:{key:'bb_crm_warm_v1',   statuses:STATUSES_VARM, closed:['Kund','Ej intresserad','Går ej att dma'],
+         coldef:COLDEF_VARM, varm:true,  namn:'Warm leads'}
+};
+let vy='kalla';
+let KEY, STATUSES, CLOSED, COLDEF;
+function V(){return VYER[vy];}
 
 /* ── SEED: cold leads Göteborg (Google Sheet, importerad 2026-08-04) ── */
 const SEED=[
@@ -347,22 +427,52 @@ const SEED=[
 /* ── STATE ── */
 function norm(l){return Object.assign({id:'',name:'',web:'',contact:'',phone:'',email:'',city:'',
   status:'Ny',notes:'',nextDate:'',svaratAt:'',forsok:0,updated:today},l);}
+/* Warm leads bär arkets extrafält. Egen normaliserare så att kalla leads
+   behåller exakt sin form i bb_crm_v2. */
+function normVarm(l){return Object.assign({id:'',name:'',ig:'',web:'',contact:'',phone:'',email:'',city:'',
+  tjanst:'',status:'Ny',notes:'',nextDate:'',svaratAt:'',forsok:0,
+  score:'',intresse:'',prio:'',sa:'',problem:'',invandning:'',vill:'',senastKontakt:'',
+  updated:today},l);}
+function normalisera(l){return V().varm?normVarm(l):norm(l);}
 function load(){
   const raw=localStorage.getItem(KEY);
   if(raw){
     try{
       const arr=JSON.parse(raw);
-      if(Array.isArray(arr))return arr.map(norm);
+      if(Array.isArray(arr))return arr.map(normalisera);
       throw new Error('inte en lista');
     }catch(e){
       try{localStorage.setItem(KEY+'_korrupt_'+Date.now(),raw);}catch{}
       alert('CRM-datan kunde inte läsas och har sparats undan i webbläsaren. Startlistan laddas — importera din senaste backup via ⋯-menyn.');
     }
   }
-  const st=SEED.map(norm); save(st); return st;
+  /* Warm-vyn börjar tom — leadsen importeras från arket via ⋯-menyn. */
+  const st=(V().varm?[]:SEED).map(normalisera); save(st); return st;
 }
 function save(a){localStorage.setItem(KEY,JSON.stringify(a));}
-let leads=load(),editId=null,filter='alla';
+let leads=[],editId=null,filter='alla';
+
+/* Byter aktiv lista. Allt annat i appen läser KEY/STATUSES/CLOSED/COLDEF,
+   så vyskiftet är det enda stället som behöver veta att det finns två. */
+function setVy(v){
+  if(!VYER[v])return;
+  vy=v; const cfg=VYER[v];
+  KEY=cfg.key; STATUSES=cfg.statuses; CLOSED=cfg.closed; COLDEF=cfg.coldef;
+  document.body.classList.toggle('vy-varma',cfg.varm);
+  document.querySelectorAll('.vyflik').forEach(b=>{
+    const on=b.dataset.vy===v;
+    b.classList.toggle('on',on); b.setAttribute('aria-selected',on?'true':'false');
+  });
+  if(filter==='hogprio'&&!cfg.varm)filter='alla';
+  document.querySelectorAll('#filters .fchip').forEach(b=>b.classList.toggle('on',b.dataset.f===filter));
+  leads=load();
+  try{localStorage.setItem('bb_crm_vy',v);}catch{}
+  renderAll();
+}
+function antal(v){
+  try{const raw=localStorage.getItem(VYER[v].key);const a=raw?JSON.parse(raw):[];return Array.isArray(a)?a.length:0;}
+  catch{return 0;}
+}
 
 function addDays(iso,n){const d=new Date((iso||today)+'T12:00:00');d.setDate(d.getDate()+n);return fmtISO(d);}
 function nextWeekday(dow){ // 1=mån … 7=sön, alltid framåt (idag → +7 dagar)
@@ -423,11 +533,24 @@ mathias@bahkobyra.se`;
 
 /* ── STATS ── */
 function renderStats(){
+  document.getElementById('n-kalla').textContent=antal('kalla');
+  document.getElementById('n-varma').textContent=antal('varma');
   const ring=leads.filter(l=>l.nextDate&&l.nextDate<=today&&!CLOSED.includes(l.status)).length;
   const heta=leads.filter(l=>l.status==='Svarat').length;
   const demo=leads.filter(l=>l.status==='Demo skickad').length;
   const mote=leads.filter(l=>['Möte bokat','Offert skickad'].includes(l.status)).length;
   const kund=leads.filter(l=>l.status==='Kund').length;
+  if(V().varm){
+    const oppnade=leads.filter(l=>!CLOSED.includes(l.status)).length;
+    const hog=leads.filter(l=>l.prio==='Hög'&&!CLOSED.includes(l.status)).length;
+    document.getElementById('stats').innerHTML=`
+    <div class="stat ring"><span class="v">${ring}</span><span class="l">Att göra idag</span></div>
+    <div class="stat het"><span class="v">${heta}</span><span class="l">Heta · svarat</span></div>
+    <div class="stat demo"><span class="v">${demo}</span><span class="l">Demos ute</span></div>
+    <div class="stat mote"><span class="v">${hog}</span><span class="l">Hög prio kvar</span></div>
+    <div class="stat kund"><span class="v">${oppnade}</span><span class="l">Öppna warm leads</span></div>`;
+    return;
+  }
   document.getElementById('stats').innerHTML=`
     <div class="stat ring"><span class="v">${ring}</span><span class="l">Att ringa idag</span></div>
     <div class="stat het"><span class="v">${heta}</span><span class="l">Heta · svarat</span></div>
@@ -476,19 +599,24 @@ function chips(l){
   if(!l.web&&!CLOSED.includes(l.status))out.push('<span class="chip noweb">ingen hemsida</span>');
   if(l.forsok>0&&['Ny','Mejl tagen'].includes(l.status))out.push(`<span class="chip fors">${l.forsok}× ringt</span>`);
   if(l.status==='Kund')out.push('<span class="chip won">kund</span>');
+  if(V().varm){
+    if(l.prio)out.push(`<span class="chip prio-${l.prio==='Hög'?'hog':l.prio==='Medium'?'medium':'lag'}">${esc(l.prio.toLowerCase())} prio</span>`);
+    if(l.score||l.intresse)out.push(`<span class="chip betyg">${esc(l.score||'–')}/${esc(l.intresse||'–')} lead·intr</span>`);
+  }
   return out.length?`<div class="chips">${out.join('')}</div>`:'';
 }
 function passFilter(l){
   if(filter==='noweb')return !l.web;
   if(filter==='ring')return !!l.nextDate&&!CLOSED.includes(l.status);
   if(filter==='heta')return l.status==='Svarat';
+  if(filter==='hogprio')return l.prio==='Hög';
   return true;
 }
 function renderBoard(){
   const q=document.getElementById('q').value.trim().toLowerCase();
   document.getElementById('board').innerHTML=STATUSES.map(st=>{
     const def=COLDEF[st];
-    const items=leads.filter(l=>l.status===st&&passFilter(l)&&(!q||(l.name+' '+l.city+' '+l.contact+' '+l.notes).toLowerCase().includes(q)))
+    const items=leads.filter(l=>l.status===st&&passFilter(l)&&(!q||(l.name+' '+l.city+' '+l.contact+' '+l.notes+' '+(l.ig||'')+' '+(l.sa||'')+' '+(l.problem||'')+' '+(l.vill||'')).toLowerCase().includes(q)))
       .sort((a,b)=>(a.nextDate||'9999').localeCompare(b.nextDate||'9999')||a.name.localeCompare(b.name,'sv'));
     return `<div class="col" data-col="${esc(st)}" style="--accent:${def.c}">
       <div class="col-h"><span class="t">${esc(st)}</span><span class="n ${items.length?'':'zero'}">${items.length}</span></div>
@@ -627,12 +755,16 @@ function setForsok(n){
 }
 function openDrawer(id){
   editId=id||null;
-  const l=id?leads.find(x=>x.id===id):norm({});
+  const l=id?leads.find(x=>x.id===id):normalisera({});
   if(!l)return;
   document.getElementById('dr-title').textContent=id?l.name:'Nytt lead';
   document.getElementById('f-status').innerHTML=STATUSES.map(s=>`<option${s===l.status?' selected':''}>${s}</option>`).join('');
   ['name','web','contact','phone','email','city','notes'].forEach(k=>document.getElementById('f-'+k).value=l[k]||'');
   document.getElementById('f-next').value=l.nextDate||'';
+  if(V().varm){
+    ["ig","tjanst","score","intresse","prio","sa","problem","invandning","vill"].forEach(k=>{const e=document.getElementById('f-'+k);if(e)e.value=l[k]||'';});
+    const se=document.getElementById('f-senast');if(se)se.value=l.senastKontakt||'';
+  }
   setForsok(l.forsok||0);
   document.getElementById('dr-del').style.display=id?'':'none';
   if(id)renderQuick(l);else document.getElementById('dr-quick').innerHTML='<span style="font-size:.7rem;color:var(--ink-30)">spara först, sen kommer knapparna</span>';
@@ -660,7 +792,7 @@ document.getElementById('dr-save').onclick=()=>{
   const prev=editId?(leads.find(x=>x.id===editId)||{}):{};
   const newStatus=document.getElementById('f-status').value;
   const manual=document.getElementById('f-next').value;
-  const l=norm({
+  const l=normalisera({
     id:editId||('l'+Date.now()),name,
     web:document.getElementById('f-web').value.trim(),
     contact:document.getElementById('f-contact').value.trim(),
@@ -671,6 +803,10 @@ document.getElementById('dr-save').onclick=()=>{
     notes:document.getElementById('f-notes').value.trim(),
     nextDate:manual,svaratAt:prev.svaratAt||'',forsok,updated:today
   });
+  if(V().varm){
+    ["ig","tjanst","score","intresse","prio","sa","problem","invandning","vill"].forEach(k=>{const e=document.getElementById('f-'+k);if(e)l[k]=e.value.trim();});
+    const se=document.getElementById('f-senast');if(se)l.senastKontakt=se.value;
+  }
   const manualChanged=manual!==(prev.nextDate||'');
   if(newStatus!==l.status)setStatus(l,newStatus);
   if(manualChanged)l.nextDate=manual;   // bara ett datum användaren faktiskt ÄNDRAT vinner över automatiken
@@ -681,6 +817,14 @@ document.getElementById('dr-del').onclick=()=>{
   if(!editId||!confirm('Radera detta lead? Det går inte att ångra.'))return;
   leads=leads.filter(x=>x.id!==editId);save(leads);closeDrawer();renderAll();
 };
+
+/* ── VYFLIKAR ── */
+document.querySelector('.vyflikar').addEventListener('click',e=>{
+  const b=e.target.closest('.vyflik');
+  if(!b||b.dataset.vy===vy)return;
+  if(drawer.classList.contains('open')){if(drawerDirty&&!confirm('Du har osparade ändringar. Byta lista ändå?'))return;closeDrawer();}
+  setVy(b.dataset.vy);
+});
 
 /* ── HEADER ── */
 document.getElementById('new').onclick=()=>openDrawer(null);
@@ -718,8 +862,140 @@ document.getElementById('restore-file').onchange=e=>{
   r.readAsText(f);e.target.value='';
 };
 
+/* ── IMPORT: warm leads från Google-arket ─────────────────────────────────
+   Ladda ner fliken som CSV i Sheets (Arkiv → Ladda ner → CSV) och välj filen
+   här. Rubrikraden läses på namn, så kolumnordningen får ändras i arket.
+   Firmor som redan finns i listan uppdateras istället för att dubbleras. */
+function parseCSV(text){
+  if(text.charCodeAt(0)===0xFEFF)text=text.slice(1);
+  const delim=(text.split('\n')[0].match(/;/g)||[]).length>(text.split('\n')[0].match(/,/g)||[]).length?';':',';
+  const rader=[];let f='',rad=[],cit=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(cit){
+      if(c==='"'){ if(text[i+1]==='"'){f+='"';i++;} else cit=false; }
+      else f+=c;
+    }else if(c==='"')cit=true;
+    else if(c===delim){rad.push(f);f='';}
+    else if(c==='\n'){rad.push(f);f='';rader.push(rad);rad=[];}
+    else if(c!=='\r')f+=c;
+  }
+  if(f!==''||rad.length){rad.push(f);rader.push(rad);}
+  return rader.filter(r=>r.some(v=>String(v).trim()!==''));
+}
+const IMPORTKARTA=[
+  ['name',      ['företagsnamn','foretagsnamn','företag','namn']],
+  ['ig',        ['instagram @','instagram','insta']],
+  ['contact',   ['kontaktperson','kontakt']],
+  ['phone',     ['telefonnummer','telefon']],
+  ['web',       ['deras hemsida','hemsida','webbplats']],
+  ['email',     ['email','e-post','mejl']],
+  ['city',      ['stad','ort']],
+  ['tjanst',    ['tjänst','tjanst']],
+  ['status',    ['status dm','status']],
+  ['score',     ['lead score (1-5)','lead score']],
+  ['intresse',  ['intresse (1-5)','intresse']],
+  ['prio',      ['prioritet']],
+  ['sa',        ['vad sa de?','vad sa de']],
+  ['problem',   ['problem de nämnde','problem']],
+  ['invandning',['invändningar','invandningar']],
+  ['vill',      ['vad jag tror dem vill ha','vad de vill ha']],
+  ['senastKontakt',['datum för senaste kontakt (sociala medier)','datum för senaste kontakt']],
+  ['nextDate',  ['nästa åtgärd (datum)','nästa åtgärd']],
+  ['forsok',    ['antal ringförsök','ringförsök']],
+  ['notes',     ['samtalsanteckning','anteckning','anteckningar']]
+];
+/* Arkets statusord kan skilja sig i stavning och blanksteg — en tolerant matchning. */
+function statusFranArket(v){
+  const t=String(v||'').trim().toLowerCase();
+  if(!t)return 'Ny';
+  const träff=STATUSES_VARM.find(s=>s.toLowerCase()===t);
+  if(träff)return träff;
+  if(t.startsWith('ej svar')||t.startsWith('inget svar'))return 'Ej svarat';
+  if(t.startsWith('ej intress')||t.startsWith('inte intress'))return 'Ej intresserad';
+  if(t.startsWith('ignor'))return 'Ignorerar';
+  if(t.includes('går ej')||t.includes('gar ej')||t.includes('kan ej dm'))return 'Går ej att dma';
+  if(t.startsWith('kontaktad')||t.startsWith('dm skick'))return 'Kontaktad';
+  if(t.startsWith('svarat')||t.startsWith('svarade'))return 'Svarat';
+  if(t.startsWith('demo'))return 'Demo skickad';
+  if(t.includes('möte')||t.includes('mote'))return 'Möte bokat';
+  if(t.startsWith('kund'))return 'Kund';
+  return 'Ny';
+}
+const isoDatum=v=>{
+  const t=String(v||'').trim();
+  if(/^\d{4}-\d{2}-\d{2}$/.test(t))return t;
+  const m=t.match(/^(\d{1,2})[\/.](\d{1,2})[\/.](\d{4})$/);
+  if(m)return m[3]+'-'+String(m[2]).padStart(2,'0')+'-'+String(m[1]).padStart(2,'0');
+  return '';
+};
+function importeraVarma(text){
+  const rader=parseCSV(text);
+  if(rader.length<2){alert('Filen ser tom ut — hittade ingen rubrikrad plus data.');return;}
+  const rubrik=rader[0].map(h=>String(h).trim().toLowerCase());
+  const idx={};
+  IMPORTKARTA.forEach(([falt,alias])=>{
+    const i=rubrik.findIndex(h=>alias.includes(h));
+    if(i>-1)idx[falt]=i;
+  });
+  if(idx.name===undefined){alert('Hittade ingen kolumn med företagsnamn. Är det rätt flik som exporterats?');return;}
+  const fore=leads.length;let nya=0,upp=0,hoppade=0;
+  rader.slice(1).forEach((r,n)=>{
+    const namn=String(r[idx.name]||'').replace(/\s+/g,' ').trim();
+    if(!namn){hoppade++;return;}
+    const rå={};
+    Object.keys(idx).forEach(f=>{rå[f]=String(r[idx[f]]==null?'':r[idx[f]]).replace(/\s+/g,' ').trim();});
+    const post={
+      name:namn, ig:rå.ig||'', contact:rå.contact||'', phone:rå.phone||'', web:rå.web||'',
+      email:rå.email||'', city:rå.city||'', tjanst:rå.tjanst||'',
+      status:statusFranArket(rå.status),
+      score:rå.score||'', intresse:rå.intresse||'', prio:rå.prio||'',
+      sa:rå.sa||'', problem:rå.problem||'', invandning:rå.invandning||'', vill:rå.vill||'',
+      senastKontakt:isoDatum(rå.senastKontakt), nextDate:isoDatum(rå.nextDate),
+      forsok:Math.max(0,parseInt(rå.forsok,10)||0), notes:rå.notes||'', updated:today
+    };
+    const fanns=leads.findIndex(l=>l.name.toLowerCase()===namn.toLowerCase());
+    if(fanns>-1){
+      /* Befintlig firma: fyll bara på det som är tomt hos oss, skriv aldrig över
+         arbete som gjorts i CRM:et. Status och anteckningar lämnas orörda. */
+      const l=leads[fanns];
+      Object.keys(post).forEach(k=>{
+        if(k==='status'||k==='notes'||k==='updated')return;
+        if(!l[k]&&post[k])l[k]=post[k];
+      });
+      l.updated=today; upp++;
+    }else{
+      leads.unshift(normVarm(Object.assign({id:'w'+Date.now()+'_'+n},post)));
+      nya++;
+    }
+  });
+  save(leads); renderAll();
+  alert('Import klar.\n\n'+nya+' nya warm leads\n'+upp+' befintliga kompletterade'+
+        (hoppade?'\n'+hoppade+' rader utan företagsnamn hoppades över':'')+
+        '\n\nTotalt i listan: '+leads.length+' (var '+fore+')');
+}
+document.getElementById('imp-varm').onclick=()=>{
+  if(!V().varm){alert('Byt till fliken Warm leads först, så hamnar importen i rätt lista.');return;}
+  document.getElementById('imp-varm-file').click();
+};
+document.getElementById('imp-varm-file').onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{try{importeraVarma(String(r.result));}catch(err){alert('Kunde inte läsa filen: '+err.message);}};
+  r.readAsText(f,'utf-8');
+  e.target.value='';
+};
+
 function renderAll(){renderStats();renderDue();renderBoard();}
-renderAll();
+/* Vyn kan djuplänkas med ?vy=varma, annars kommer den senast använda tillbaka. */
+setVy((function(){
+  try{
+    var fran=new URLSearchParams(location.search).get('vy');
+    if(VYER[fran])return fran;
+    var v=localStorage.getItem('bb_crm_vy');
+    return VYER[v]?v:'kalla';
+  }catch(e){return 'kalla';}
+})());
 </script>
 </body>
 </html>
