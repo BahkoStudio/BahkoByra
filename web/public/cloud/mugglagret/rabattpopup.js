@@ -81,6 +81,8 @@
     + 'font-size:.78rem;color:#666666;text-decoration:underline;text-underline-offset:3px}'
     + '.rp-nej:hover{color:#1c3a13}'
     + '.rp-fot{margin-top:.7rem;font-size:.68rem;color:#666666}'
+    /* Samma mattstil som priset har i banderollen, remsan och hero-statsen. */
+    + '.rp-fot b{font-weight:500;font-variant-numeric:tabular-nums;color:#1c3a13}'
     + '@media(max-width:420px){.rp-kort{padding:1.8rem 1.2rem 1.3rem}.rp-kort h2{font-size:1.42rem}.rp-tid{font-size:1.6rem}}'
     + '@media(prefers-reduced-motion:reduce){.rp-lager,.rp-kort{transition:none}.rp-punkt{animation:none}}';
 
@@ -110,7 +112,7 @@
       +     '</button></div>'
       +   '<a class="rp-cta" href="katalog.html">Välj din mugg</a>'
       +   '<button class="rp-nej" type="button">Nej tack, jag betalar fullt pris</button>'
-      +   '<p class="rp-fot">Fast pris 136 kr &middot; 11 oz keramik &middot; leverans 3&ndash;6 dagar</p>'
+      +   '<p class="rp-fot">Fast pris <b>136 kr</b> &middot; 11 oz keramik &middot; leverans <b>3&ndash;6 dagar</b></p>'
       + '</div>';
     document.body.appendChild(lager);
     tidEl = lager.querySelector("[data-rp-tid]");
