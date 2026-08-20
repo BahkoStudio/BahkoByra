@@ -488,21 +488,36 @@
     /* Nedräkningsbandet bär samma deadline och samma köpknapp som remsan. Ligger
        de framme samtidigt står budskapet dubbelt på en enda mörkgrön yta, utan
        linje emellan — bandet äger då skärmen och remsan drar sig undan. */
-    var bandet = document.querySelector(".band");
-    var bandetSyns = false;
-    if (bandet && "IntersectionObserver" in window) {
-      new IntersectionObserver(function (poster) {
-        bandetSyns = poster[0].isIntersecting;
-        bar.classList.toggle("bandet-syns", bandetSyns);
-        if (floatBtn) floatBtn.classList.toggle("lyft", bar.classList.contains("visible") && !bandetSyns);
-      }, { threshold: 0.01 }).observe(bandet);
+    /* Vilka sektioner remsan ska vika för avgörs av YTAN, inte av klassnamnet:
+       ligger sektionen på samma mörkgröna botten som remsan finns ingen skarv
+       mellan dem, och då står två nedräkningar och två CTA:er i samma fält.
+       Katalogens företagssektion är ljus och räknas därför inte in. */
+    var remsansYta = getComputedStyle(bar).backgroundColor;
+    var doljFor = [];
+    Array.prototype.forEach.call(document.querySelectorAll("section"), function (sek) {
+      if (getComputedStyle(sek).backgroundColor === remsansYta) doljFor.push(sek);
+    });
+    var iVagen = 0;
+    if (doljFor.length && "IntersectionObserver" in window) {
+      var obs = new IntersectionObserver(function (poster) {
+        poster.forEach(function (post) {
+          iVagen += post.isIntersecting ? 1 : -1;
+        });
+        if (iVagen < 0) iVagen = 0;
+        bar.classList.toggle("bandet-syns", iVagen > 0);
+        if (floatBtn) floatBtn.classList.toggle("lyft", bar.classList.contains("visible") && iVagen === 0);
+      /* threshold 0, inte 0.01: ett högt band som bara visar sin underkant når
+         aldrig 1 % av sin egen yta i vy, och då kom remsan tillbaka precis i
+         skarven — mätt på 390 px. */
+      }, { threshold: 0 });
+      doljFor.forEach(function (sek) { obs.observe(sek); });
     }
 
     var onScroll = function () {
       var visa = window.scrollY > window.innerHeight * trosk;
       bar.classList.toggle("visible", visa);
       /* Bahko-knappen flyttas upp så den inte hamnar under remsan */
-      if (floatBtn) floatBtn.classList.toggle("lyft", visa && !bandetSyns);
+      if (floatBtn) floatBtn.classList.toggle("lyft", visa && iVagen === 0);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -517,7 +532,7 @@
          läser sektionen som en omtagning: samma foto, samma badge, samma pris.
          Urvalet nedan är disjunkt mot båda och medvetet utan isNew, så
          NYHET-badgen betyder något där den faktiskt sitter. */
-      var picks = [3, 8, 12, 13, 16, 18, 19, 22, 26, 28, 33, 35];
+      var picks = [3, 8, 12, 13, 16, 18, 19, 22];
       grid.innerHTML = picks.map(function (id, i) {
         var p = P.filter(function (x) { return x.id === id; })[0];
         return p ? cardHTML(p, i) : "";
