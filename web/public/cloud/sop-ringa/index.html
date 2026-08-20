@@ -171,6 +171,36 @@ li{margin:.35rem 0;color:var(--ink-2)}
 .sag b{color:var(--em-lt)}
 .sag .var{background:rgba(52,211,153,.22);color:var(--em-lt)}
 
+/* Hopplisten: bladet ar 7,7 skarmar pa telefon (uppmatt 2026-08-20). Utan den
+   maste man skrolla blint mitt i ett samtal. Klistrad hogst upp sa den alltid
+   nas, och sidledsskrollbar sa den aldrig tvingar sidan att spilla over. */
+.ms-hopp{
+  position:sticky;top:0;z-index:20;
+  /* En generell nav{flex-direction:column} pa rad 57 traffar aven den har
+     listen och staplade chipsen lodratt (365px hog pa dator). Riktningen
+     maste sattas explicit. */
+  display:flex;flex-direction:row;gap:.4rem;overflow-x:auto;
+  margin:0 0 1.2rem;padding:.55rem 0;
+  background:var(--lt);border-bottom:1px solid var(--line);
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.ms-hopp::-webkit-scrollbar{display:none}
+.ms-chip{
+  display:inline-flex;align-items:center;gap:.4rem;flex:0 0 auto;
+  min-height:44px;padding:.4rem .8rem;
+  background:var(--white);border:1px solid var(--line-2);border-radius:100px;
+  font-family:var(--sans);font-size:.84rem;color:var(--ink-2);cursor:pointer;
+  transition:background .18s,border-color .18s,color .18s;
+}
+.ms-chip b{
+  display:flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;flex-shrink:0;
+  background:var(--em);color:var(--navy);font-size:.76rem;font-weight:800;
+}
+.ms-chip:hover,.ms-chip:focus-visible{background:var(--navy);border-color:var(--navy);color:var(--white)}
+.ms-chip[aria-current="true"]{background:var(--navy);border-color:var(--navy);color:var(--white)}
+@media print{ .ms-hopp{display:none} }
+
 /* ═══ MANUSBLADET ═══
    Bladet ÄR hela samtalet: replikerna, invändningarna och testmejlet bor här och
    ingen annanstans. Sektionerna Öppningen, Kroppen, Invändningar och Testmejlet
@@ -685,10 +715,20 @@ kbd{
       <p><button class="btn ghost liten" data-till="forbered">Förbered leadet →</button></p>
     </div>
 
+    <nav class="ms-hopp" aria-label="Hoppa till del av manuset">
+        <button class="ms-chip" data-hopp="ms-1"><b>1</b><span>Öppningen</span></button>
+        <button class="ms-chip" data-hopp="ms-2"><b>2</b><span>Kroppen</span></button>
+        <button class="ms-chip" data-hopp="ms-3"><b>3</b><span>Ta mejlen</span></button>
+        <button class="ms-chip" data-hopp="ms-4"><b>4</b><span>Avslut</span></button>
+        <button class="ms-chip" data-hopp="ms-5"><b>5</b><span>Hej då</span></button>
+        <button class="ms-chip" data-hopp="ms-inv"><b>!</b><span>Invändning</span></button>
+        <button class="ms-chip" data-hopp="ms-mejl"><b>✉</b><span>Testmejlet</span></button>
+    </nav>
+
     <p class="intro">Tala lugnt, som en människa. Läs inte innantill — kunna stommen och säg den med egna
     ord. Ler du när du pratar hörs det, det är inte en myt.</p>
 
-    <div class="m-steg">
+    <div class="m-steg" id="ms-1">
       <div class="m-nr">1</div>
       <div>
         <div class="m-namn">Öppningen</div>
@@ -706,7 +746,7 @@ kbd{
       </div>
     </div>
 
-    <div class="m-steg">
+    <div class="m-steg" id="ms-2">
       <div class="m-nr">2</div>
       <div>
         <div class="m-namn">Kroppen</div>
@@ -732,7 +772,7 @@ kbd{
       </div>
     </div>
 
-    <div class="m-steg">
+    <div class="m-steg" id="ms-3">
       <div class="m-nr">3</div>
       <div>
         <div class="m-namn">Ta mejlen</div>
@@ -751,7 +791,7 @@ kbd{
       </div>
     </div>
 
-    <div class="m-steg">
+    <div class="m-steg" id="ms-4">
       <div class="m-nr">4</div>
       <div>
         <div class="m-namn">Innan du lägger på</div>
@@ -767,7 +807,7 @@ kbd{
       </div>
     </div>
 
-    <div class="m-steg">
+    <div class="m-steg" id="ms-5">
       <div class="m-nr">5</div>
       <div>
         <div class="m-namn">Avslutningen</div>
@@ -788,7 +828,7 @@ kbd{
       </div>
     </div>
 
-    <h3>Om de invänder</h3>
+    <h3 id="ms-inv">Om de invänder</h3>
     <p class="intro"><b>En invändning är inte en vägg. Det är ett kvitto på ett steg du hoppade över.</b>
     Svara kort, vänligt, och styr alltid tillbaka mot mejladressen.</p>
     <div class="inv">
@@ -877,7 +917,7 @@ kbd{
       </div>
     </details>
 
-    <h3>Testmejlet</h3>
+    <h3 id="ms-mejl">Testmejlet</h3>
     <p class="intro">Grinden i hela processen. Skickas <b>medan ni fortfarande pratar</b>, eller inom fem
     minuter efter samtalet.</p>
 
@@ -1645,6 +1685,51 @@ kbd{
   const saved=load();
   if(saved.length){ saved.forEach(mkRow); } else { mkRow({datum:new Date().toISOString().slice(0,10)}); }
   sums();
+})();
+</script>
+<script>
+/* Hopplisten i Manuset: ett tryck i stallet for blind skroll. Markerar ocksa
+   vilken del man befinner sig i, sa man ser var i samtalet man ar. */
+(function(){
+  "use strict";
+  var lista = document.querySelector('.ms-hopp');
+  if (!lista) return;
+  var chips = [].slice.call(lista.querySelectorAll('.ms-chip'));
+
+  lista.addEventListener('click', function(e){
+    var c = e.target.closest('.ms-chip');
+    if (!c) return;
+    var mal = document.getElementById(c.getAttribute('data-hopp'));
+    if (!mal) return;
+    var y = mal.getBoundingClientRect().top + window.scrollY - lista.getBoundingClientRect().height - 12;
+    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+  });
+
+  /* markera narmaste del ovanfor mitten av skarmen */
+  var mal = chips.map(function(c){ return document.getElementById(c.getAttribute('data-hopp')); });
+  function markera(){
+    if (!document.getElementById('b-manuset') ||
+        getComputedStyle(document.getElementById('b-manuset')).display === 'none') return;
+    var mitt = window.scrollY + window.innerHeight * 0.35;
+    var bast = -1;
+    /* Vid sidans slut kan sista delen aldrig na 35%-linjen — markera den anda. */
+    var iBotten = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+    mal.forEach(function(m, i){
+      if (m && m.getBoundingClientRect().top + window.scrollY <= mitt) bast = i;
+    });
+    if (iBotten) bast = mal.length - 1;
+    chips.forEach(function(c, i){
+      if (i === bast) c.setAttribute('aria-current', 'true');
+      else c.removeAttribute('aria-current');
+    });
+  }
+  var vantar = false;
+  window.addEventListener('scroll', function(){
+    if (vantar) return;
+    vantar = true;
+    requestAnimationFrame(function(){ markera(); vantar = false; });
+  }, { passive: true });
+  markera();
 })();
 </script>
 </body>
