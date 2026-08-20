@@ -171,6 +171,28 @@ li{margin:.35rem 0;color:var(--ink-2)}
 .sag b{color:var(--em-lt)}
 .sag .var{background:rgba(52,211,153,.22);color:var(--em-lt)}
 
+/* Genvagstipset: sidan HAR tangentbordsgenvagar men de var odokumenterade
+   (0 omnamnanden, uppmatt 2026-08-20). Visas bara pa breda skarmar — pa en
+   telefon finns inget tangentbord att trycka pa. */
+.kbd-tips{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .7rem;
+  margin:0 0 .8rem;padding:.7rem .9rem;
+  background:rgba(148,167,191,.09);border-radius:var(--r);
+  font-size:.78rem;color:var(--ink-3);
+}
+.kbd-tips b{
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-4);width:100%;
+}
+.kbd-tips kbd{
+  display:inline-block;min-width:1.5em;padding:.1em .35em;
+  background:var(--white);border:1px solid var(--line-2);border-bottom-width:2px;
+  border-radius:4px;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  color:var(--ink);text-align:center;
+}
+@media(max-width:900px){ .kbd-tips{display:none} }
+@media print{ .kbd-tips{display:none} }
+
 /* Hopplisten: bladet ar 7,7 skarmar pa telefon (uppmatt 2026-08-20). Utan den
    maste man skrolla blint mitt i ett samtal. Klistrad hogst upp sa den alltid
    nas, och sidledsskrollbar sa den aldrig tvingar sidan att spilla over. */
@@ -522,6 +544,11 @@ kbd{
 
   <div class="side-sp"></div>
 
+  <div class="kbd-tips">
+    <b>Genvägar</b>
+    <span><kbd>1</kbd>–<kbd>5</kbd> steg</span>
+    <span><kbd>I</kbd> invändningar</span>
+  </div>
   <div class="mal">
     <div class="t">Samtalets enda mål</div>
     <b>Mejl in, svar tillbaka, klart.</b> Inte boka möte. Inte sälja.
@@ -1514,8 +1541,9 @@ kbd{
       (b.tid?'<span class="tid">'+b.tid+'</span>':'')+
     '</button>';
   }).join('')+
-  '<button class="nav-i akut" data-till="manuset">'+
-    '<span class="n">⚡</span><span class="lbl">Mitt i ett samtal?</span></button>';
+  '<button class="nav-i akut" data-till="manuset" data-hoppa="ms-inv">'+
+    '<span class="n">⚡</span><span class="lbl">Mitt i ett samtal?</span>'+
+    '<span class="tid">invändningar</span></button>';
 
   function visa(id,skrolla){
     const b=steg.find(x=>x.id===id)||steg[0];
@@ -1543,9 +1571,26 @@ kbd{
     else location.hash=id;
   }
 
+  /* Ga till en sektion OCH rulla till en bestamd del i den. Akut-knappen och
+     tangenten I ska landa pa invandningarna, inte pa toppen av Manuset —
+     mitt i ett samtal ar det svaret man behover, inte inledningen. */
+  function tillDel(id,del){
+    till(id);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      const m=document.getElementById(del);
+      if(!m) return;
+      const lista=document.querySelector('.ms-hopp');
+      const off=(lista?lista.getBoundingClientRect().height:0)+12;
+      window.scrollTo({top:Math.max(0,m.getBoundingClientRect().top+window.scrollY-off),behavior:'smooth'});
+    }));
+  }
+
   document.addEventListener('click',e=>{
     const k=e.target.closest('[data-till]');
-    if(k){ e.preventDefault(); till(k.dataset.till); return; }
+    if(k){ e.preventDefault();
+      if(k.dataset.hoppa) tillDel(k.dataset.till,k.dataset.hoppa);
+      else till(k.dataset.till);
+      return; }
     const kop=e.target.closest('.kopiera');
     if(kop){
       const box=kop.closest('.mall');
@@ -1561,13 +1606,16 @@ kbd{
     }
   });
 
-  /* Tangentbord: 1–8 för stegen, I för invändningar */
+  /* Tangentbord: siffra = steg (numren kommer ur BLAD, inte hardkodade),
+     I = invandningarna inne i Manuset. Intervallet var 1–8 fran den gamla
+     sektionsindelningen; stegen ar 1–5 sedan de fyra samtalssektionerna
+     slogs ihop. */
   document.addEventListener('keydown',e=>{
     if(e.metaKey||e.ctrlKey||e.altKey) return;
     const t=e.target.tagName;
     if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT'||e.target.isContentEditable) return;
-    if(e.key>='1'&&e.key<='8'){ const b=steg.find(x=>x.n===e.key); if(b) till(b.id); }
-    else if(e.key==='i'||e.key==='I'){ till('manuset'); }
+    if(e.key>='1'&&e.key<='9'){ const b=steg.find(x=>x.n===e.key); if(b) till(b.id); }
+    else if(e.key==='i'||e.key==='I'){ tillDel('manuset','ms-inv'); }
   });
 
   window.addEventListener('hashchange',()=>franHash(true));
