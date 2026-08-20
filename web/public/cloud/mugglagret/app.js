@@ -512,7 +512,12 @@
   function initHome() {
     var grid = document.getElementById("home-grid");
     if (grid) {
-      var picks = [1, 15, 25, 20, 5, 31, 35, 27, 2, 22, 29, 33];
+      /* Favoritgriden får INTE innehålla samma muggar som nyhetsraden ovanför
+         (id 1, 2, 5, 15 — de fyra första isNew) eller kategoriplattorna, annars
+         läser sektionen som en omtagning: samma foto, samma badge, samma pris.
+         Urvalet nedan är disjunkt mot båda och medvetet utan isNew, så
+         NYHET-badgen betyder något där den faktiskt sitter. */
+      var picks = [3, 8, 12, 13, 16, 18, 19, 22, 26, 28, 33, 35];
       grid.innerHTML = picks.map(function (id, i) {
         var p = P.filter(function (x) { return x.id === id; })[0];
         return p ? cardHTML(p, i) : "";
