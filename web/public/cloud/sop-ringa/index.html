@@ -1148,7 +1148,17 @@ kbd{
 
     <h3>Upplägget: 3 + 2 + 4 + 2 + 4 minuter</h3>
 
-    <div class="steg"><span class="num">1</span> Öppna i deras demo <span class="min">3 min</span></div>
+    <nav class="ms-hopp" aria-label="Hoppa till del av mötet">
+      <button class="ms-chip" data-hopp="st-1"><b>1</b><span>Demon</span></button>
+      <button class="ms-chip" data-hopp="st-2"><b>2</b><span>Resultatet</span></button>
+      <button class="ms-chip" data-hopp="st-3"><b>3</b><span>Mekanismen</span></button>
+      <button class="ms-chip" data-hopp="st-4"><b>4</b><span>Risken</span></button>
+      <button class="ms-chip" data-hopp="st-5"><b>5</b><span>Villkoren</span></button>
+      <button class="ms-chip" data-hopp="st-ja"><b>✓</b><span>Efter ja</span></button>
+      <button class="ms-chip" data-hopp="st-pris"><b>kr</b><span>Priset</span></button>
+    </nav>
+
+    <div class="steg" id="st-1"><span class="num">1</span> Öppna i deras demo <span class="min">3 min</span></div>
     <div class="sag">
       <p>"Kul att du gillade sidan! Innan jag säger nåt: <b>vad fastnade du för själv?</b>"</p>
     </div>
@@ -1160,7 +1170,7 @@ kbd{
       <div class="d"><p>Det de lyfter fram är det du säljer på, inte det du själv tycker är finast.</p></div>
     </details>
 
-    <div class="steg"><span class="num">2</span> Del 1 · Resultatet <span class="min">2 min</span></div>
+    <div class="steg" id="st-2"><span class="num">2</span> Del 1 · Resultatet <span class="min">2 min</span></div>
     <div class="sag">
       <p>"Det du har sett är ett utkast. Säger du ja gör vi den skarp.</p>
       <p>Men grejen är inte att sidan blir snyggare. <b>Grejen är att fler hör av sig.</b> Vi har haft
@@ -1179,7 +1189,7 @@ kbd{
       aldrig "ni får". Det du garanterar i del 3 är fler förfrågningar, inte exakt tolv procent.</p></div>
     </details>
 
-    <div class="steg"><span class="num">3</span> Del 2 · Mekanismen <span class="min">4 min</span></div>
+    <div class="steg" id="st-3"><span class="num">3</span> Del 2 · Mekanismen <span class="min">4 min</span></div>
     <div class="sag">
       <p>"Så här går det till, konkret:</p>
       <p>Sidan byggs klart med <b>era riktiga bilder, era texter och era kontaktuppgifter</b>.
@@ -1196,7 +1206,7 @@ kbd{
       Aldrig "modern design" eller "proffsigt intryck".</p>
     </div>
 
-    <div class="steg"><span class="num">4</span> Del 3 · Riskreverseringen <span class="min">2 min</span></div>
+    <div class="steg" id="st-4"><span class="num">4</span> Del 3 · Riskreverseringen <span class="min">2 min</span></div>
     <div class="sag">
       <p>"Och händer det inte?</p>
       <p>Har ni inte fått fler kundförfrågningar trettio dagar efter att sidan gått live, då
@@ -1215,7 +1225,7 @@ kbd{
       dem, men det är de som stänger jobbet. Utan de två villkoren är garantin oändlig.</p>
     </div>
 
-    <div class="steg"><span class="num">5</span> Del 4 · Villkoren <span class="min">4 min</span></div>
+    <div class="steg" id="st-5"><span class="num">5</span> Del 4 · Villkoren <span class="min">4 min</span></div>
     <div class="sag">
       <p>"Villkoren är enkla:</p>
       <p><b>Femtontusen kronor plus moms.</b> En gång. <b>Ingen bindningstid</b>, inga månadsavgifter,
@@ -1226,7 +1236,7 @@ kbd{
       <p><b>Ska vi köra?</b> Då mejlar jag fakturan när vi lagt på, och så är ni live nästa vecka."</p>
     </div>
 
-    <h3>Efter ja:et</h3>
+    <h3 id="st-ja">Efter ja:et</h3>
     <ol class="check">
       <li><b>Skicka fakturan samma dag</b> — helst inom en timme, medan beslutet är varmt.
       Offertmallen finns i CRM:et (knappen "Kopiera offert" på leadet) om de vill ha det skriftligt först.</li>
@@ -1234,7 +1244,7 @@ kbd{
       <li>Betald faktura → status <b>Kund</b> → bygget startar, live inom 7 dagar.</li>
     </ol>
 
-    <h3>Om de tvekar på priset</h3>
+    <h3 id="st-pris">Om de tvekar på priset</h3>
     <p>Fråga vilket av två det är — svaret avgör vad du gör:</p>
 
     <div class="diag">
@@ -1736,35 +1746,54 @@ kbd{
    vilken del man befinner sig i, sa man ser var i samtalet man ar. */
 (function(){
   "use strict";
-  var lista = document.querySelector('.ms-hopp');
-  if (!lista) return;
-  var chips = [].slice.call(lista.querySelectorAll('.ms-chip'));
+  /* Flera hopplistor pa sidan: en i Manuset, en i Stang affaren. Varje list
+     ar bunden till sin EGEN sektion, sa markeringen bara rakna nar just den
+     sektionen visas. Tidigare version bands till forsta listan och kollade
+     hardkodat mot #b-manuset. */
+  var listor = [].slice.call(document.querySelectorAll('.ms-hopp')).map(function(lista){
+    var chips = [].slice.call(lista.querySelectorAll('.ms-chip'));
+    return {
+      lista: lista,
+      blad: lista.closest('.blad'),
+      chips: chips,
+      mal: chips.map(function(c){ return document.getElementById(c.getAttribute('data-hopp')); })
+    };
+  });
+  if (!listor.length) return;
 
-  lista.addEventListener('click', function(e){
-    var c = e.target.closest('.ms-chip');
-    if (!c) return;
-    var mal = document.getElementById(c.getAttribute('data-hopp'));
-    if (!mal) return;
-    var y = mal.getBoundingClientRect().top + window.scrollY - lista.getBoundingClientRect().height - 12;
-    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+  listor.forEach(function(L){
+    L.lista.addEventListener('click', function(e){
+      var c = e.target.closest('.ms-chip');
+      if (!c) return;
+      var mal = document.getElementById(c.getAttribute('data-hopp'));
+      if (!mal) return;
+      var y = mal.getBoundingClientRect().top + window.scrollY - L.lista.getBoundingClientRect().height - 12;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    });
   });
 
-  /* markera narmaste del ovanfor mitten av skarmen */
-  var mal = chips.map(function(c){ return document.getElementById(c.getAttribute('data-hopp')); });
   function markera(){
-    if (!document.getElementById('b-manuset') ||
-        getComputedStyle(document.getElementById('b-manuset')).display === 'none') return;
-    var mitt = window.scrollY + window.innerHeight * 0.35;
-    var bast = -1;
-    /* Vid sidans slut kan sista delen aldrig na 35%-linjen — markera den anda. */
     var iBotten = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
-    mal.forEach(function(m, i){
-      if (m && m.getBoundingClientRect().top + window.scrollY <= mitt) bast = i;
-    });
-    if (iBotten) bast = mal.length - 1;
-    chips.forEach(function(c, i){
-      if (i === bast) c.setAttribute('aria-current', 'true');
-      else c.removeAttribute('aria-current');
+    listor.forEach(function(L){
+      /* Dold sektion: stada bort gamla markeringar i stallet for att hoppa over,
+         annars ligger en inaktuell markering kvar nar man byter sektion. */
+      if (!L.blad || getComputedStyle(L.blad).display === 'none') {
+        L.chips.forEach(function(c){ c.removeAttribute('aria-current'); });
+        return;
+      }
+      /* Referenslinjen ar underkanten pa den klistrade listen, inte 35 % av
+         skarmen. Med 35 % markerades den SENARE av tva narliggande rubriker
+         (uppmatt: st-ja gav st-pris). Nu markeras den som faktiskt star hogst upp. */
+      var linje = L.lista.getBoundingClientRect().height + 30;
+      var bast = -1;
+      L.mal.forEach(function(m, i){
+        if (m && m.getBoundingClientRect().top <= linje) bast = i;
+      });
+      if (iBotten) bast = L.mal.length - 1;
+      L.chips.forEach(function(c, i){
+        if (i === bast) c.setAttribute('aria-current', 'true');
+        else c.removeAttribute('aria-current');
+      });
     });
   }
   var vantar = false;
@@ -1773,6 +1802,7 @@ kbd{
     vantar = true;
     requestAnimationFrame(function(){ markera(); vantar = false; });
   }, { passive: true });
+  window.addEventListener('hashchange', markera);
   markera();
 })();
 </script>
