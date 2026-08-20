@@ -259,8 +259,9 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .mnav a{font-family:var(--disp);font-size:1.55rem;padding:.5rem 0;border-bottom:1px solid var(--line)}
 .mnav .mnav-cta{
   font-family:var(--ui);font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  background:var(--ink);color:var(--paper);border:0;
-  display:flex;align-items:center;justify-content:center;min-height:50px;margin-bottom:.7rem;
+  background:var(--ink);color:var(--paper);border:0;border-radius:1000px;
+  display:flex;align-items:center;justify-content:center;min-height:50px;
+  padding-inline:1.9rem;margin-bottom:.7rem;
 }
 .mnav .mnav-rubrik{
   font-family:var(--ui);font-size:.64rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
@@ -658,7 +659,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
   border-bottom:1px solid var(--line-2);margin-bottom:.6rem;
 }
 .pdp-till-korg.visa{display:inline-block}
-.btn.is-lagd{background:#3F6B4A}
+/* Bekraftelsen bars av texten (\u2713), inte av en ny gronton. */
+.btn.is-lagd{background:var(--ink)}
 .pdp-farg-note{font-size:.78rem;color:var(--ink-2);margin:0 0 1.5rem;max-width:48ch}
 
 .opt-label{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.85rem}
@@ -826,11 +828,13 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
   display:block;min-width:0;position:relative;font-size:.82rem;line-height:1.35;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
-.stickybar-txt i{vertical-align:middle;margin-right:.5rem}
+/* Remsan visar redan nedrakningen i text; pulspunkten dar var enbart en tredje
+   lime-forekomst pa skarmen och trangde undan badgens accent. */
+.stickybar-txt i.pulse{display:none}
 .stickybar-txt b{font-weight:500;font-variant-numeric:tabular-nums;color:var(--white)}
 .stickybar-txt .sb-kort,.stickybar-txt .sb-mini{display:none}
 .stickybar .btn{background:var(--paper);color:var(--ink);flex-shrink:0}
-.stickybar .btn.is-lagd{background:#3F6B4A;color:var(--paper)}
+.stickybar .btn.is-lagd{background:var(--paper);color:var(--ink)}
 /* Hovern byter inte yta — den lyfter. Annars far samma knapproll tva ytor. */
 @media(hover:hover) and (pointer:fine){.stickybar .btn:hover{transform:translateY(-1px)}}
 @media(max-width:720px){

@@ -51,7 +51,7 @@
     + 'background:none;border:0;cursor:pointer;color:#666666;font-size:1.05rem;line-height:1}'
     + '.rp-x:hover{color:#1c3a13}'
     + '.rp-flagga{display:inline-flex;align-items:center;gap:.45rem;font-size:.63rem;font-weight:700;'
-    + 'letter-spacing:.2em;text-transform:uppercase;color:#1c3a13;background:#d3fa99;padding:.35rem .7rem;border-radius:1000px}'
+    + 'letter-spacing:.2em;text-transform:uppercase;color:#1c3a13;background:#eeeee9;padding:.35rem .7rem;border-radius:1000px}'
     + '.rp-punkt{width:6px;height:6px;border-radius:50%;background:#1c3a13;flex-shrink:0;'
     + 'animation:rpPuls 2.2s cubic-bezier(.22,1,.36,1) infinite}'
     + '@keyframes rpPuls{0%{box-shadow:0 0 0 0 rgba(211,250,153,.7)}70%{box-shadow:0 0 0 7px rgba(211,250,153,0)}'
