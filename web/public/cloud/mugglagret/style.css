@@ -70,14 +70,16 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
   transition:background .3s var(--ease),transform .2s var(--ease);
 }
 .btn:active{transform:scale(.98)}
-.btn--ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+/* 2px, inte spec:ens 1.5px: renderaren snappar 1.5px till 1 device-px, sa den
+   deklarerade kanten blev tynnare an avsett. */
+.btn--ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
 .btn--cream{background:var(--paper);color:var(--ink)}
 .btn--block{width:100%}
 .btn--sm{padding:.6rem 1.05rem;font-size:.72rem}
 @media(hover:hover) and (pointer:fine){
   .btn:hover{background:var(--ink-hover)}
   .btn--ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-  .btn--cream:hover{background:var(--cream)}
+  .btn--cream:hover{transform:translateY(-1px)}
 }
 
 .link-underline{
@@ -118,6 +120,9 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 
 /* Pulsande punkt — samma signal överallt där något är på gång just nu */
 .pulse{
+  /* inline-block: som inline-element ignorerades width och punkten blev
+     ett tunt lodratt streck i klisterremsan. */
+  display:inline-block;vertical-align:middle;
   width:6px;height:6px;border-radius:50%;background:var(--terra);
   flex-shrink:0;
   animation:pulseRing 2.2s var(--ease) infinite;
@@ -217,7 +222,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
   background:var(--ink);color:var(--paper);border-radius:1000px;
   font-size:.74rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
   text-decoration:none;white-space:nowrap;transition:background .25s var(--ease)}
-@media(hover:hover) and (pointer:fine){.hdr-cta:hover{background:var(--terra)}}
+/* Lime bar ALDRIG snow-text (1,07:1). Forest pa lime = 10,8:1. */
+@media(hover:hover) and (pointer:fine){.hdr-cta:hover{background:var(--terra);color:var(--ink)}}
 @media(max-width:860px){.hdr-cta{display:none}}
 
 .hdr-tools{display:flex;align-items:center;gap:.35rem}
@@ -432,7 +438,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .b2b .eyebrow{color:rgba(252,252,247,.72)}
 .b2b h2{font-size:clamp(1.9rem,3.8vw,3rem);margin:1rem 0 1.2rem}
 .b2b p{color:rgba(252,252,247,.78);max-width:46ch;margin-bottom:2.2rem}
-.b2b .btn{background:var(--cream);color:var(--ink)}
+/* Fylld knapp pa mork yta har EN yta i hela systemet: snow + forest-text. */
+.b2b .btn{background:var(--paper);color:var(--ink)}
 /* Hela tabellen ar en sifferkolumn: antal och leveransdagar ar ocksa tal och
    maste linjera med priset. */
 .price-table{width:100%;border-collapse:collapse;font-size:.88rem;font-variant-numeric:tabular-nums}
@@ -805,6 +812,9 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
   visibility:hidden;
 }
 .stickybar.visible{transform:none;visibility:visible}
+/* Bandet ager budskapet nar det ar i vy; remsan drar sig undan sa samma
+   nedrakning och samma knapp inte star dubbelt pa samma morkgrona yta. */
+.stickybar.bandet-syns{transform:translateY(100%);visibility:hidden}
 .stickybar-in{
   max-width:var(--max);margin:0 auto;
   display:flex;align-items:center;justify-content:space-between;gap:1.2rem;
@@ -819,9 +829,10 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .stickybar-txt i{vertical-align:middle;margin-right:.5rem}
 .stickybar-txt b{font-weight:500;font-variant-numeric:tabular-nums;color:var(--white)}
 .stickybar-txt .sb-kort,.stickybar-txt .sb-mini{display:none}
-.stickybar .btn{background:var(--cream);color:var(--ink);flex-shrink:0}
+.stickybar .btn{background:var(--paper);color:var(--ink);flex-shrink:0}
 .stickybar .btn.is-lagd{background:#3F6B4A;color:var(--paper)}
-@media(hover:hover) and (pointer:fine){.stickybar .btn:hover{background:var(--white)}}
+/* Hovern byter inte yta — den lyfter. Annars far samma knapproll tva ytor. */
+@media(hover:hover) and (pointer:fine){.stickybar .btn:hover{transform:translateY(-1px)}}
 @media(max-width:720px){
   .stickybar-in{gap:.7rem}
   .stickybar-txt{font-size:.72rem}
