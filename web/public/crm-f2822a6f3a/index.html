@@ -954,6 +954,13 @@ function importeraVarma(text){
       senastKontakt:isoDatum(rå.senastKontakt), nextDate:isoDatum(rå.nextDate),
       forsok:Math.max(0,parseInt(rå.forsok,10)||0), notes:rå.notes||'', updated:today
     };
+    /* Ringplan: har arket inget datum får leadet ett efter prioritet, så det
+       hamnar i "Att göra idag" i rätt ordning i stället för allt på en gång.
+       Stängda lägen (ej intresserad, går ej att dma) får inget datum. */
+    if(!post.nextDate&&!VYER.varma.closed.includes(post.status)){
+      const hopp=post.prio==='Hög'?0:post.prio==='Medium'?1:2;
+      post.nextDate=addDays(today,hopp);
+    }
     const fanns=leads.findIndex(l=>l.name.toLowerCase()===namn.toLowerCase());
     if(fanns>-1){
       /* Befintlig firma: fyll bara på det som är tomt hos oss, skriv aldrig över
