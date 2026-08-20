@@ -94,7 +94,9 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .announce{
   background:var(--ink);color:var(--cream);
   font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
-  padding:.62rem 1rem;
+  /* Sidopaddingen bor pa .announce-in (samma kolumn som .wrap); en extra
+     1rem har flyttade banderollen ur register vid allt utom 1400px. */
+  padding:.62rem 0;
 }
 .announce-in{
   max-width:var(--max);margin:0 auto;padding-inline:var(--pad);
@@ -816,7 +818,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .stickybar{border-top:1px solid rgba(252,252,247,.18);
   position:fixed;left:0;right:0;bottom:0;z-index:88;
   background:var(--ink);color:var(--cream);
-  padding:.72rem var(--pad) calc(.72rem + env(safe-area-inset-bottom));
+  padding:.72rem 0 calc(.72rem + env(safe-area-inset-bottom));
   transform:translateY(105%);transition:transform .42s var(--ease),visibility .42s;
   /* Remsan innehåller en knapp — utan visibility går fokus till en osynlig
      kontroll innan remsan glidit in. */
@@ -826,8 +828,10 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 /* Bandet ager budskapet nar det ar i vy; remsan drar sig undan sa samma
    nedrakning och samma knapp inte star dubbelt pa samma morkgrona yta. */
 .stickybar.bandet-syns{transform:translateY(100%);visibility:hidden}
+/* Exakt samma kolumn som .wrap — remsan ar fixed, sa ett register-fel syns
+   hela tiden och inte bara i sidans botten. */
 .stickybar-in{
-  max-width:var(--max);margin:0 auto;
+  max-width:var(--max);margin:0 auto;padding-inline:var(--pad);
   display:flex;align-items:center;justify-content:space-between;gap:1.2rem;
 }
 /* EN rad, alltid. Tidigare låg raden i flex, vilket gjorde varje textnod till
@@ -1039,7 +1043,7 @@ summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .band h2{font-size:clamp(1.4rem,2.6vw,2.1rem);margin:.7rem 0 .5rem}
 /* Siffran hålls under 32px så rubrikvikt-regeln (max 350 över 32px) inte krockar
    med sifferregeln (medium vikt, tabular-nums). */
-.band h2 b{font-size:.8em;font-weight:500;color:var(--paper);font-variant-numeric:tabular-nums}
+.band h2 b{font-weight:300;color:var(--paper);font-variant-numeric:tabular-nums}
 .band p{font-size:.9rem;color:rgba(252,252,247,.74);max-width:52ch}
 @media(max-width:700px){
   .band-in{flex-direction:column;align-items:flex-start;gap:1.4rem}
