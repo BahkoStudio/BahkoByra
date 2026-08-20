@@ -172,10 +172,10 @@ li{margin:.35rem 0;color:var(--ink-2)}
 .sag .var{background:rgba(52,211,153,.22);color:var(--em-lt)}
 
 /* ═══ MANUSBLADET ═══
-   Bladet innehåller INGEN egen replik — det klonar sektionernas .sag- och
-   .inv-block vid sidladdning (byggaren ligger sist i filen). Därför finns varje
-   replik på exakt ett ställe. Skrivs en replik om i sin sektion följer bladet med.
-   Typografin är större här: bladet läses medan telefonen ringer. */
+   Bladet ÄR hela samtalet: replikerna, invändningarna och testmejlet bor här och
+   ingen annanstans. Sektionerna Öppningen, Kroppen, Invändningar och Testmejlet
+   togs bort 2026-08-20 — de innehöll samma text och tvingade en att byta sida
+   mitt i ett samtal. Typografin är större här: bladet läses medan telefonen ringer. */
 .m-lead{
   background:rgba(16,185,129,.09);border:1px solid rgba(16,185,129,.3);
   border-radius:var(--r-lg);padding:.9rem 1.15rem;margin:0 0 1.4rem;
@@ -496,32 +496,6 @@ kbd{
 
   <div class="body">
 
-  <!-- ═══════════ MANUSET — byggs av sektionernas egna repliker ═══════════ -->
-  <section class="blad" id="b-manuset" data-print="Manuset">
-    <p class="m-lead"><b>Det här bladet läser du medan telefonen ringer.</b> Replikerna nedan hämtas från
-    stegen — det finns bara en version att hålla uppdaterad. Förklaringarna till varför de ser ut som de
-    gör finns kvar i stegen.</p>
-
-    <div class="gor">
-      <div class="h">Innan du slår numret</div>
-      <p><span class="var">[FÖRETAG]</span> <span class="var">[NAMN]</span>
-      <span class="var">[SMÄRTA]</span> ska vara ifyllda. Är de inte det: ring inte.</p>
-      <p><button class="btn ghost liten" data-till="forbered">Förbered leadet →</button></p>
-    </div>
-
-    <div id="manus-steg"></div>
-
-    <h3>Om de invänder</h3>
-    <div class="m-inv" id="manus-inv"></div>
-
-    <div class="gor">
-      <div class="h">Direkt efter samtalet</div>
-      <p>Skicka testmejlet <b>medan du minns adressen</b>, och logga samtalet innan du ringer nästa.</p>
-      <p><button class="btn liten" data-till="testmejlet">Testmejlet →</button>
-      <button class="btn ghost liten" data-till="logga">Logga i CRM →</button></p>
-    </div>
-  </section>
-
   <!-- ═══════════ 1. FÖRBERED LEADET ═══════════ -->
   <section class="blad" id="b-forbered" data-print="1. Förbered leadet">
     <div class="malstor">
@@ -687,37 +661,45 @@ kbd{
     </div>
   </section>
 
-  <!-- ═══════════ 2. ÖPPNINGEN ═══════════ -->
-  <section class="blad" id="b-oppningen" data-print="2. Öppningen">
+  <!-- ═══════════ MANUSET — hela samtalet på ett blad ═══════════ -->
+  <section class="blad" id="b-manuset" data-print="2. Manuset">
+    <p class="m-lead"><b>Det här bladet är hela samtalet.</b> Replikerna, invändningarna och testmejlet
+    ligger här — du behöver inte byta sida mitt i ett samtal. Förklaringarna ligger vikta under
+    "Varför?" så de inte är i vägen.</p>
+
+    <div class="gor">
+      <div class="h">Innan du slår numret</div>
+      <p><span class="var">[FÖRETAG]</span> <span class="var">[NAMN]</span>
+      <span class="var">[SMÄRTA]</span> ska vara ifyllda. Är de inte det: ring inte.</p>
+      <p><button class="btn ghost liten" data-till="forbered">Förbered leadet →</button></p>
+    </div>
+
     <p class="intro">Tala lugnt, som en människa. Läs inte innantill — kunna stommen och säg den med egna
     ord. Ler du när du pratar hörs det, det är inte en myt.</p>
 
-    <div class="sag">
+    <div class="m-steg">
+      <div class="m-nr">1</div>
+      <div>
+        <div class="m-namn">Öppningen</div>
+        <div class="sag">
       <div class="h">Du säger</div>
       <p>"Hej <span class="var">[NAMN]</span>! <span class="var">[Ditt förnamn]</span> heter jag, jag ringer
       från Bahko Byrå. <b>Är det du som har hand om hemsidan på <span class="var">[FÖRETAG]</span>?</b>"</p>
     </div>
-
-    <h3>Tre svar — tre vägar</h3>
-    <div class="gor">
+        <div class="gor">
       <div class="h">Vad du gör</div>
       <p><b>"Ja"</b> → vidare till Kroppen.</p>
       <p><b>"Nej"</b> → "Inga problem! Vem ska jag prata med om sånt?" Få ett namn, tacka, lägg på, logga.</p>
       <p><b>"Vad gäller det?"</b> → gå direkt på Kroppen. Det är samma sak som ett ja.</p>
     </div>
-
-    <div class="gor">
-      <div class="h">Nästa steg</div>
-      <p><button class="btn liten" data-till="kroppen">Kroppen →</button></p>
+      </div>
     </div>
-  </section>
 
-  <!-- ═══════════ 3. KROPPEN ═══════════ -->
-  <section class="blad" id="b-kroppen" data-print="3. Kroppen">
-    <p class="intro">Trettio sekunder: smärtan, konsekvensen, beviset, det gratis erbjudandet, frågan.
-    Sen tystnad.</p>
-
-    <div class="sag">
+    <div class="m-steg">
+      <div class="m-nr">2</div>
+      <div>
+        <div class="m-namn">Kroppen</div>
+        <div class="sag">
       <div class="h">Du säger</div>
       <p>"Jag ska vara snabb. Jag kikade på er hemsida innan jag ringde och la märke till att
       <span class="var">[SMÄRTA]</span>. Det är en sån grej som gör att folk ringer nästa firma istället,
@@ -729,49 +711,75 @@ kbd{
       ni kikar på den i mobilen, och sen bestämmer ni själva om det är intressant.</p>
       <p>Jag skickar över den på mejl. <b>Vad har ni för mejladress?</b>"</p>
     </div>
-
-    <div class="gor">
+        <div class="gor">
       <div class="h">Vad du gör sedan</div>
       <p><b>Ingenting. Du är tyst.</b></p>
     </div>
-
-    <details class="varfor" open><summary>Varför tyst?</summary>
+        <details class="varfor" open><summary>Varför tyst?</summary>
       <div class="d"><p>Den som pratar först efter frågan förlorar. Fyll inte tystnaden.</p></div>
     </details>
-
-    <h3>Ta mejlen — det kritiska momentet</h3>
-    <div class="gor">
-      <div class="h">Vad du gör</div>
-      <p>Skriv ner adressen och <b>läs upp den tillbaka</b>, tecken för tecken.</p>
+      </div>
     </div>
 
-    <div class="sag">
+    <div class="m-steg">
+      <div class="m-nr">3</div>
+      <div>
+        <div class="m-namn">Ta mejlen</div>
+        <div class="sag">
       <div class="h">Du säger</div>
       <p>"Då tar jag den: <span class="var">[läs upp adressen]</span>. Stämmer det?"</p>
     </div>
-
-    <details class="varfor"><summary>Varför läsa upp den?</summary>
+        <div class="gor">
+      <div class="h">Vad du gör</div>
+      <p>Skriv ner adressen och <b>läs upp den tillbaka</b>, tecken för tecken.</p>
+    </div>
+        <details class="varfor"><summary>Varför läsa upp den?</summary>
       <div class="d"><p>En feltagen mejladress är ett bortkastat samtal och en byggd demo som aldrig
       kommer fram.</p></div>
     </details>
-
-    <div class="gor">
-      <div class="h">Nästa steg</div>
-      <p>Mejladressen i handen — skicka testmejlet <b>medan ni fortfarande pratar</b>.</p>
-      <p><button class="btn liten" data-till="testmejlet">Testmejlet →</button></p>
+      </div>
     </div>
-  </section>
 
-  <!-- ═══════════ 4. INVÄNDNINGAR ═══════════ -->
-  <section class="blad" id="b-invandningar" data-print="4. Invändningar">
+    <div class="m-steg">
+      <div class="m-nr">4</div>
+      <div>
+        <div class="m-namn">Innan du lägger på</div>
+        <div class="sag">
+      <div class="h">Du säger · innan du lägger på</div>
+      <p>"Toppen. Då gör vi så här: jag skickar ett kort mejl till dig nu direkt, bara vanlig text utan
+      länkar eller bilagor, så det inte fastnar i skräpposten. Svara kort på det, ett ok räcker, så vet
+      jag att det kommit fram till rätt adress.</p>
+      <p>Vi gör så för att se vilka som är med på riktigt, så vi inte lägger tid på att bygga en sida som
+      sen aldrig öppnas. Så fort du svarat sätter vi igång, och inom 48 timmar har du den nya hemsidan
+      i inkorgen."</p>
+    </div>
+      </div>
+    </div>
+
+    <div class="m-steg">
+      <div class="m-nr">5</div>
+      <div>
+        <div class="m-namn">Avslutningen</div>
+        <div class="sag">
+      <div class="h">Du säger · avslutning</div>
+      <p>"Då säger vi så! Håll utkik efter mejlet, det kommer nu på en gång. Så fort du svarat är vi igång.
+      Ha en bra dag!"</p>
+    </div>
+        <div class="sag">
+      <div class="h">Du säger</div>
+      <p>"Går det bra om jag ringer tillbaka om 2–3 dagar, vid exempelvis 14 eller 15?"</p>
+    </div>
+        <details class="varfor"><summary>Varför en tid och inte bara "jag hör av mig"?</summary>
+      <div class="d"><p>Två klockslag är lättare att svara på än en öppen fråga, och du får ett legitimt
+      skäl att ringa igen. Raden <b>ersätter inte</b> svaret på testmejlet — grinden är fortfarande
+      mejlsvaret. Det här är bara vägen tillbaka in om svaret aldrig kommer.</p></div>
+    </details>
+      </div>
+    </div>
+
+    <h3>Om de invänder</h3>
     <p class="intro"><b>En invändning är inte en vägg. Det är ett kvitto på ett steg du hoppade över.</b>
     Svara kort, vänligt, och styr alltid tillbaka mot mejladressen.</p>
-
-    <div class="regel">
-      <div class="h">Aldrig undantag</div>
-      <p><b>Max två försök</b>, sen tackar du för tiden. Vi jagar aldrig.</p>
-    </div>
-
     <div class="inv">
       <h3>"Jag har inte tid"</h3>
       <div class="sag">
@@ -843,6 +851,11 @@ kbd{
       </div>
     </div>
 
+    <div class="regel">
+      <div class="h">Aldrig undantag</div>
+      <p><b>Max två försök</b>, sen tackar du för tiden. Vi jagar aldrig.</p>
+    </div>
+
     <details class="varfor"><summary>Varför fungerar mönstret? (teorin bakom)</summary>
       <div class="d">
         <p>Varje svar gör samma tre saker: håller med, gör frågan mindre, ger tillbaka kontrollen — och
@@ -852,26 +865,14 @@ kbd{
         <p><button class="btn ghost liten" data-till="coachning">Coachning →</button></p>
       </div>
     </details>
-    <div class="gor">
-      <div class="h">Nästa steg</div>
-      <p>Invändningen hanterad — styr tillbaka till frågan om mejladressen.</p>
-      <p><button class="btn liten" data-till="kroppen">Tillbaka till Kroppen →</button></p>
-    </div>
-  </section>
 
-  <!-- ═══════════ 5. TESTMEJLET ═══════════ -->
-  <section class="blad" id="b-testmejlet" data-print="5. Testmejlet">
+    <h3>Testmejlet</h3>
     <p class="intro">Grinden i hela processen. Skickas <b>medan ni fortfarande pratar</b>, eller inom fem
     minuter efter samtalet.</p>
 
-    <div class="sag">
-      <div class="h">Du säger · innan du lägger på</div>
-      <p>"Toppen. Då gör vi så här: jag skickar ett kort mejl till dig nu direkt, bara vanlig text utan
-      länkar eller bilagor, så det inte fastnar i skräpposten. Svara kort på det, ett ok räcker, så vet
-      jag att det kommit fram till rätt adress.</p>
-      <p>Vi gör så för att se vilka som är med på riktigt, så vi inte lägger tid på att bygga en sida som
-      sen aldrig öppnas. Så fort du svarat sätter vi igång, och inom 48 timmar har du den nya hemsidan
-      i inkorgen."</p>
+    <div class="regel">
+      <div class="h">Aldrig undantag</div>
+      <p><b>Inget svar på testmejlet = ingen demo byggs.</b> Inga undantag, hur trevligt samtalet än var.</p>
     </div>
 
     <div class="mall">
@@ -883,29 +884,6 @@ kbd{
       <p>Tack för snacket nyss. Svara kort på det här mejlet, så vet jag att det kom fram till rätt adress.
       Sen bygger vi och du har den nya hemsidan här inom 48 timmar.</p>
       <p>Vänliga hälsningar<br><span class="var">[Ditt förnamn]</span>, Bahko Byrå</p>
-    </div>
-
-    <div class="sag">
-      <div class="h">Du säger · avslutning</div>
-      <p>"Då säger vi så! Håll utkik efter mejlet, det kommer nu på en gång. Så fort du svarat är vi igång.
-      Ha en bra dag!"</p>
-    </div>
-
-    <h3>Avslutningsraden — håll dörren öppen</h3>
-    <div class="sag">
-      <div class="h">Du säger</div>
-      <p>"Går det bra om jag ringer tillbaka om 2–3 dagar, vid exempelvis 14 eller 15?"</p>
-    </div>
-
-    <details class="varfor"><summary>Varför en tid och inte bara "jag hör av mig"?</summary>
-      <div class="d"><p>Två klockslag är lättare att svara på än en öppen fråga, och du får ett legitimt
-      skäl att ringa igen. Raden <b>ersätter inte</b> svaret på testmejlet — grinden är fortfarande
-      mejlsvaret. Det här är bara vägen tillbaka in om svaret aldrig kommer.</p></div>
-    </details>
-
-    <div class="regel">
-      <div class="h">Aldrig undantag</div>
-      <p><b>Inget svar på testmejlet = ingen demo byggs.</b> Inga undantag, hur trevligt samtalet än var.</p>
     </div>
 
     <details class="varfor"><summary>Varför ren text utan länkar?</summary>
@@ -926,8 +904,12 @@ kbd{
     </div>
   </section>
 
+
+
+
+
   <!-- ═══════════ 6. LOGGA I CRM ═══════════ -->
-  <section class="blad" id="b-logga" data-print="6. Logga i CRM">
+  <section class="blad" id="b-logga" data-print="3. Logga i CRM">
     <p class="intro">Loggen är inte administration, den är underlaget för nästa samtal. Tio sekunder
     direkt efter samtalet — innan du slår nästa nummer.</p>
 
@@ -976,7 +958,7 @@ kbd{
   </section>
 
   <!-- ═══════════ 7. FÖLJ UPP → BOKA ═══════════ -->
-  <section class="blad" id="b-folj-upp" data-print="7. Följ upp och boka mötet">
+  <section class="blad" id="b-folj-upp" data-print="4. Följ upp och boka mötet">
     <p class="intro"><b>Inget möte bokas i kalla samtalet.</b> Först händer alltid samma två saker.</p>
 
     <ol class="check">
@@ -1069,7 +1051,7 @@ kbd{
   </section>
 
   <!-- ═══════════ 8. STÄNG AFFÄREN ═══════════ -->
-  <section class="blad" id="b-stang" data-print="8. Stäng affären — 15-minuterssamtalet">
+  <section class="blad" id="b-stang" data-print="5. Stäng affären — 15-minuterssamtalet">
     <p class="intro">Kunden har sett demon och svarat positivt. Nu bokas ett kort samtal, telefon eller
     video. Målet: ett ja och en faktura skickad samma dag.</p>
 
@@ -1440,27 +1422,18 @@ kbd{
 /* ── Bladroutern ─────────────────────────────────────────── */
 (function(){
   const BLAD=[
-    {g:'Mitt i samtalet'},
-    {id:'manuset',     n:'▶', namn:'Manuset', tid:'allt du säger', fas:'Mitt i samtalet',
-     t:'Manuset', s:'Alla repliker i ordning, på ett blad. Hämtade från stegen — ingen andra version.'},
     {g:'Före samtalet'},
     {id:'forbered',    n:'1', namn:'Förbered leadet', tid:'3–5 min', fas:'Före samtalet',
      t:'Förbered leadet', s:'Fyra variabler, ifyllda innan du slår numret. Utan dem ringer du inte.'},
     {g:'Under samtalet'},
-    {id:'oppningen',   n:'2', namn:'Öppningen', tid:'10 sek', fas:'Under samtalet',
-     t:'Öppningen', s:'Tio sekunder som avgör om de lyssnar klart.'},
-    {id:'kroppen',     n:'3', namn:'Kroppen', tid:'30 sek', fas:'Under samtalet',
-     t:'Kroppen', s:'Smärtan, beviset, det gratis erbjudandet — och frågan om mejladressen.'},
-    {id:'invandningar',n:'4', namn:'Invändningar', tid:'live', fas:'Under samtalet',
-     t:'Invändningar', s:'Sju svar. Alla styr tillbaka till mejladressen.'},
-    {id:'testmejlet',  n:'5', namn:'Testmejlet', tid:'direkt', fas:'Under samtalet',
-     t:'Testmejlet', s:'Grinden. Skickas medan ni pratar — inget svar, ingen demo.'},
+    {id:'manuset',     n:'2', namn:'Manuset', tid:'allt du säger', fas:'Under samtalet',
+     t:'Manuset', s:'Hela samtalet på ett blad: replikerna, invändningarna och testmejlet.'},
     {g:'Efter samtalet'},
-    {id:'logga',       n:'6', namn:'Logga i CRM', tid:'10 sek', fas:'Efter samtalet',
+    {id:'logga',       n:'3', namn:'Logga i CRM', tid:'10 sek', fas:'Efter samtalet',
      t:'Logga i CRM', s:'Direkt efter samtalet. Minnet ljuger redan efter tre samtal.'},
-    {id:'folj-upp',    n:'7', namn:'Följ upp → boka', tid:'dag 1–3', fas:'Efter samtalet',
+    {id:'folj-upp',    n:'4', namn:'Följ upp → boka', tid:'dag 1–3', fas:'Efter samtalet',
      t:'Följ upp och boka mötet', s:'JA-protokollet, två vägar till mötet, och när du slutar följa upp.'},
-    {id:'stang',       n:'8', namn:'Stäng affären', tid:'15 min', fas:'Efter samtalet',
+    {id:'stang',       n:'5', namn:'Stäng affären', tid:'15 min', fas:'Efter samtalet',
      t:'Stäng affären', s:'15-minuterssamtalet. Enda stället där priset nämns.'},
     {g:'Alltid'},
     {id:'reglerna',    n:'§', namn:'Reglerna', tid:'9 st', fas:'Alltid',
@@ -1475,9 +1448,12 @@ kbd{
 
   /* Gamla ankarlänkar ska fortsätta fungera */
   const GAMLA={
-    mal:'forbered', variabler:'forbered', manus:'kroppen', sajter:'sajter',
-    invandningar:'invandningar', mote:'stang', crm:'logga', regler:'reglerna',
-    dagslogg:'dagslogg'
+    mal:'forbered', variabler:'forbered', sajter:'sajter',
+    mote:'stang', crm:'logga', regler:'reglerna', dagslogg:'dagslogg',
+    /* Sektionerna Öppningen, Kroppen, Invändningar och Testmejlet slogs ihop
+       till Manuset — gamla bokmärken ska landa där, inte på en 404. */
+    manus:'manuset', oppningen:'manuset', kroppen:'manuset',
+    invandningar:'manuset', testmejlet:'manuset'
   };
 
   const steg=BLAD.filter(b=>b.id);
@@ -1491,7 +1467,7 @@ kbd{
       (b.tid?'<span class="tid">'+b.tid+'</span>':'')+
     '</button>';
   }).join('')+
-  '<button class="nav-i akut" data-till="invandningar">'+
+  '<button class="nav-i akut" data-till="manuset">'+
     '<span class="n">⚡</span><span class="lbl">Mitt i ett samtal?</span></button>';
 
   function visa(id,skrolla){
@@ -1544,7 +1520,7 @@ kbd{
     const t=e.target.tagName;
     if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT'||e.target.isContentEditable) return;
     if(e.key>='1'&&e.key<='8'){ const b=steg.find(x=>x.n===e.key); if(b) till(b.id); }
-    else if(e.key==='i'||e.key==='I'){ till('invandningar'); }
+    else if(e.key==='i'||e.key==='I'){ till('manuset'); }
   });
 
   window.addEventListener('hashchange',()=>franHash(true));
@@ -1658,80 +1634,6 @@ kbd{
   const saved=load();
   if(saved.length){ saved.forEach(mkRow); } else { mkRow({datum:new Date().toISOString().slice(0,10)}); }
   sums();
-})();
-</script>
-<script>
-/* ═══ MANUSBLADET byggs av sektionernas EGNA repliker ═══
-   Enda sanningen är sektionerna. Bladet klonar deras .sag- och .inv-block, så en
-   replik finns på exakt ett ställe i filen. Skrivs den om i sin sektion följer
-   bladet med automatiskt. Hittas ett källblock inte SÄGER bladet det, istället
-   för att tyst visa en tom sida. */
-(function(){
-  "use strict";
-
-  var PLAN = [
-    { nr:'1', namn:'Öppningen',          sek:'b-oppningen',  sag:[0],   gor:[0] },
-    { nr:'2', namn:'Kroppen',            sek:'b-kroppen',    sag:[0],   gor:[0] },
-    { nr:'3', namn:'Ta mejlen',          sek:'b-kroppen',    sag:[1],   gor:[1] },
-    { nr:'4', namn:'Innan du lägger på', sek:'b-testmejlet', sag:[0]            },
-    { nr:'5', namn:'Avslutningen',       sek:'b-testmejlet', sag:[1,2]          }
-  ];
-
-  function bygg(){
-    var ut = document.getElementById('manus-steg');
-    var utInv = document.getElementById('manus-inv');
-    if (!ut || !utInv) return;
-
-    var saknas = [];
-
-    PLAN.forEach(function(p){
-      var sek = document.getElementById(p.sek);
-      if (!sek) { saknas.push(p.sek); return; }
-      var sag = sek.querySelectorAll('.sag');
-      var gor = sek.querySelectorAll('.gor');
-
-      var rad = document.createElement('div');
-      rad.className = 'm-steg';
-
-      var nr = document.createElement('div');
-      nr.className = 'm-nr';
-      nr.textContent = p.nr;
-      rad.appendChild(nr);
-
-      var hoger = document.createElement('div');
-      var namn = document.createElement('div');
-      namn.className = 'm-namn';
-      namn.textContent = p.namn;
-      hoger.appendChild(namn);
-
-      p.sag.forEach(function(i){
-        if (sag[i]) hoger.appendChild(sag[i].cloneNode(true));
-        else saknas.push(p.sek + ' .sag[' + i + ']');
-      });
-      (p.gor || []).forEach(function(i){
-        if (gor[i]) hoger.appendChild(gor[i].cloneNode(true));
-        else saknas.push(p.sek + ' .gor[' + i + ']');
-      });
-
-      rad.appendChild(hoger);
-      ut.appendChild(rad);
-    });
-
-    var inv = document.querySelectorAll('#b-invandningar .inv');
-    if (!inv.length) saknas.push('#b-invandningar .inv');
-    Array.prototype.forEach.call(inv, function(k){ utInv.appendChild(k.cloneNode(true)); });
-
-    if (saknas.length) {
-      var fel = document.createElement('div');
-      fel.className = 'regel';
-      fel.innerHTML = '<div class="h">Manuset kunde inte byggas helt</div><p>Följande källblock hittades inte: '
-        + saknas.join(', ') + '. Replikerna finns kvar i stegen i menyn.</p>';
-      ut.insertBefore(fel, ut.firstChild);
-    }
-  }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bygg);
-  else bygg();
 })();
 </script>
 </body>
