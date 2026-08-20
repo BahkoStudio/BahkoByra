@@ -200,10 +200,10 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
   transition:transform .5s var(--ease);
 }
 .mega-cats a b{display:block;font-size:.82rem;font-weight:600;margin-top:.55rem}
-.mega-cats a span{display:block;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.15rem}
+.mega-cats a span{display:block;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.15rem;font-weight:500;font-variant-numeric:tabular-nums}
 @media(hover:hover) and (pointer:fine){
   .mega-cats a:hover img{transform:scale(1.05)}
-  .mega-cats a:hover b{color:var(--terra)}
+  .mega-cats a:hover b{color:var(--ink-hover)}
 }
 .mega-side{
   background:var(--cream);border-radius:16px;padding:1.3rem;
@@ -354,7 +354,15 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .sec-head p{color:var(--ink-2);max-width:52ch;margin-top:.85rem}
 
 /* ---------- kategorigrid ---------- */
-.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.cats{
+  display:flex;gap:.9rem;overflow-x:auto;padding-bottom:.5rem;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;scrollbar-color:var(--line-2) transparent;
+}
+.cats::-webkit-scrollbar{height:5px}
+.cats::-webkit-scrollbar-track{background:transparent}
+.cats::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:1000px}
+.cats > *{flex:0 0 clamp(148px,16vw,196px);scroll-snap-align:start}
 .cat{
   position:relative;display:block;background:var(--white);
   border:1px solid var(--line);border-radius:16px;overflow:hidden;
@@ -364,7 +372,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 .cat-foot{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.95rem 1.15rem}
 .cat-foot b{font-family:var(--disp);font-size:1.02rem;font-weight:600}
 /* 'Fran 25 st' star intill priset — samma mattstil. */
-.cat-foot span{font-size:.7rem;color:var(--muted);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.cat-foot span{font-size:.7rem;color:var(--muted);letter-spacing:.06em;font-weight:500;font-variant-numeric:tabular-nums}
 @media(hover:hover) and (pointer:fine){
   .cat:hover{border-color:var(--ink);transform:translateY(-3px)}
   .cat:hover img{transform:scale(1.06)}
@@ -804,7 +812,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 @media(max-width:720px){#float-demo.lyft{bottom:max(6.2rem,calc(env(safe-area-inset-bottom) + 5.4rem))}}
 
 /* ---------- klisterremsa: pris + dagens deadline hela vägen ner ---------- */
-.stickybar{
+/* Harlinje sa remsan aldrig flyter ihop med en morkgron sektion. */
+.stickybar{border-top:1px solid rgba(252,252,247,.18);
   position:fixed;left:0;right:0;bottom:0;z-index:88;
   background:var(--ink);color:var(--cream);
   padding:.72rem var(--pad) calc(.72rem + env(safe-area-inset-bottom));
@@ -937,7 +946,7 @@ summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
    RESPONSIVT
    =========================================================== */
 @media(max-width:1080px){
-  .cats{grid-template-columns:repeat(3,1fr)}
+  .cats > *{flex-basis:clamp(140px,34vw,170px)}
   .pgrid{grid-template-columns:repeat(3,1fr)}
   .ftr-grid{grid-template-columns:1fr 1fr}
   .shop{grid-template-columns:200px 1fr}
@@ -1003,7 +1012,8 @@ summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
   .hdr-in{height:66px}
   .brand img{width:38px;height:38px}
   .brand-name{font-size:1.06rem}
-  .cats{grid-template-columns:repeat(2,1fr);gap:.8rem}
+  .cats{gap:.7rem}
+  .cats > *{flex-basis:46vw}
   .pgrid{grid-template-columns:repeat(2,1fr);gap:1.5rem .8rem}
   .pcard-quick{display:none}
   .pcard-body h3{font-size:.92rem}
