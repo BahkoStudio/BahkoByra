@@ -1,25 +1,31 @@
 /* ===========================================================
    MUGGLAGRET — demo av Bahko Byrå
-   Palett hämtad ur kundens egen logotyp (varm brun + créme).
+   Omklädd 2026-08-19 i Seed-stilen (refero-referens, Mathias beställning):
+   Snow White-canvas, Forest Depths-text/CTA/mörka band, Warm Stone-ytor,
+   lime ENDAST som badge-accent. Pill-knappar, 16px-kort, inga skuggor,
+   Inter 300 i rubriker. Motivväggen i heron är orörd (multiply mot snow
+   white fungerar som mot gamla cremen).
    =========================================================== */
 
 :root{
-  --paper:#FCFAF5;
-  --cream:#F4EDE0;
-  --cream-2:#EDE3D2;
-  --ink:#2B211D;
-  --ink-2:#6B564C;
-  /* Mörkad 2026-08-18: gamla #8C7B71 gav 3,88:1 mot paper och 3,48:1 mot
-     cream — under 4,5:1 på all liten text. Nu 5,4:1 mot paper, 5,1:1 mot cream. */
-  --muted:#6E5C52;
-  --line:#E6DBC9;
-  --line-2:#D8CAB4;
-  --white:#FFFFFF;
-  --terra:#A85C3E;
+  --paper:#fcfcf7;
+  --cream:#eeeee9;
+  --cream-2:#e2e2da;
+  --ink:#1c3a13;
+  /* Sekundartext ar Pewter ur Seed-systemet. Hovertoningen ar en morkgron
+     toning, inte gratt: knappar ska aldrig lamna gronskalan. */
+  --ink-2:#666666;
+  --ink-hover:#2a5520;
+  /* Pewter ur Seed-systemet: 5,7:1 mot paper, 5,0:1 mot cream. */
+  --muted:#666666;
+  --line:#e2e2da;
+  --line-2:#c4c7c4;
+  --white:#fcfcf7;
+  --terra:#d3fa99;
   /* Terra klarar inte 4,5:1 mot cream — den här varianten gör det (5,6:1) */
-  --terra-djup:#8F4A2F;
+  --terra-djup:#1c3a13;
 
-  --disp:'Fraunces',Georgia,'Times New Roman',serif;
+  --disp:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --ui:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
 
   --ease:cubic-bezier(.22,1,.36,1);
@@ -46,7 +52,7 @@ a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 ul{list-style:none}
 
-h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:-.015em}
+h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:-.018em}
 
 .wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
 .hide{display:none !important}
@@ -59,19 +65,19 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
   min-height:48px;padding:.85rem 1.9rem;
-  font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  background:var(--ink);color:var(--paper);border-radius:2px;
+  font-size:.76rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper);border-radius:1000px;
   transition:background .3s var(--ease),transform .2s var(--ease);
 }
 .btn:active{transform:scale(.98)}
-.btn--ghost{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
-.btn--cream{background:var(--cream);color:var(--ink)}
+.btn--ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn--cream{background:var(--paper);color:var(--ink)}
 .btn--block{width:100%}
 .btn--sm{padding:.6rem 1.05rem;font-size:.72rem}
 @media(hover:hover) and (pointer:fine){
-  .btn:hover{background:var(--ink-2)}
+  .btn:hover{background:var(--ink-hover)}
   .btn--ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-  .btn--cream:hover{background:var(--cream-2)}
+  .btn--cream:hover{background:var(--cream)}
 }
 
 .link-underline{
@@ -93,7 +99,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   display:flex;align-items:center;justify-content:center;gap:1.6rem;
 }
 .announce-now{display:flex;align-items:center;gap:.5rem;white-space:nowrap}
-.announce-now b{font-weight:700;letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.announce-now b{font-weight:500;letter-spacing:.1em;font-variant-numeric:tabular-nums}
 
 /* Rullisten byter budskap i stället för att trycka in allt på en rad.
    Budskapen ligger i SAMMA grid-cell, inte absolut placerade — då blir
@@ -113,20 +119,20 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 /* Pulsande punkt — samma signal överallt där något är på gång just nu */
 .pulse{
   width:6px;height:6px;border-radius:50%;background:var(--terra);
-  flex-shrink:0;box-shadow:0 0 0 0 rgba(168,92,62,.55);
+  flex-shrink:0;
   animation:pulseRing 2.2s var(--ease) infinite;
 }
 @keyframes pulseRing{
-  0%   {box-shadow:0 0 0 0 rgba(168,92,62,.5)}
-  70%  {box-shadow:0 0 0 7px rgba(168,92,62,0)}
-  100% {box-shadow:0 0 0 0 rgba(168,92,62,0)}
+  0%   {box-shadow:0 0 0 0 rgba(211,250,153,.6)}
+  70%  {box-shadow:0 0 0 7px rgba(211,250,153,0)}
+  100% {box-shadow:0 0 0 0 rgba(211,250,153,0)}
 }
 @media(prefers-reduced-motion:reduce){.pulse{animation:none}}
 
 /* ---------- header ---------- */
 .hdr{
   position:sticky;top:0;z-index:80;
-  background:rgba(252,250,245,.92);backdrop-filter:blur(14px);
+  background:rgba(252,252,247,.92);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line);
 }
 .hdr-in{
@@ -135,7 +141,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   transition:height .3s var(--ease);
 }
 /* Krymper när man scrollar så innehållet får plats, men märket syns kvar */
-.hdr.is-tight{box-shadow:0 6px 24px rgba(43,33,29,.07)}
+.hdr.is-tight{border-bottom-color:var(--line-2)}
 .hdr.is-tight .hdr-in{height:60px}
 .hdr.is-tight .brand img{width:36px;height:36px}
 .brand img{transition:width .3s var(--ease),height .3s var(--ease)}
@@ -176,8 +182,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .mega{
   position:absolute;top:calc(100% + 1.35rem);left:50%;transform:translate(-50%,-8px);
   width:min(92vw,940px);
-  background:var(--paper);border:1px solid var(--line);border-radius:4px;
-  box-shadow:0 24px 60px rgba(43,33,29,.14);
+  background:var(--paper);border:1px solid var(--line);border-radius:16px;
   opacity:0;visibility:hidden;pointer-events:none;
   transition:opacity .26s var(--ease),transform .26s var(--ease),visibility .26s;
 }
@@ -186,7 +191,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .mega-cats{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem}
 .mega-cats a{display:block;text-decoration:none;color:var(--ink)}
 .mega-cats img{
-  width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:3px;background:var(--cream);
+  width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;background:var(--cream);
   transition:transform .5s var(--ease);
 }
 .mega-cats a b{display:block;font-size:.82rem;font-weight:600;margin-top:.55rem}
@@ -196,7 +201,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   .mega-cats a:hover b{color:var(--terra)}
 }
 .mega-side{
-  background:var(--cream);border-radius:3px;padding:1.3rem;
+  background:var(--cream);border-radius:16px;padding:1.3rem;
   display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;
 }
 .mega-flag{display:flex;align-items:center;gap:.45rem;font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra-djup);font-weight:600}
@@ -209,8 +214,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .hdr-cta{
   display:inline-flex;align-items:center;
   margin-left:.5rem;padding:.62rem 1.05rem;
-  background:var(--ink);color:var(--paper);border-radius:2px;
-  font-size:.74rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper);border-radius:1000px;
+  font-size:.74rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
   text-decoration:none;white-space:nowrap;transition:background .25s var(--ease)}
 @media(hover:hover) and (pointer:fine){.hdr-cta:hover{background:var(--terra)}}
 @media(max-width:860px){.hdr-cta{display:none}}
@@ -224,8 +229,9 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 @media(hover:hover) and (pointer:fine){.icon-btn:hover{background:var(--cream)}}
 .cart-dot{
   position:absolute;top:7px;right:6px;min-width:17px;height:17px;padding:0 4px;
-  background:var(--terra);color:#fff;border-radius:9px;
-  font-size:.6rem;font-weight:700;line-height:17px;text-align:center;
+  background:var(--terra);color:var(--ink);border-radius:1000px;
+  font-size:.6rem;font-weight:500;line-height:17px;text-align:center;
+  font-variant-numeric:tabular-nums;
 }
 .burger{display:none}
 .burger span{display:block;width:20px;height:1.5px;background:var(--ink);margin:4px 0;transition:transform .3s var(--ease),opacity .2s}
@@ -257,7 +263,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .mnav .mnav-kat{font-size:1.18rem;padding:.55rem 0}
 
 /* ---------- hero ---------- */
-.hero{padding:clamp(2.2rem,4vw,3.4rem) 0 clamp(2.6rem,5vw,4.4rem);overflow:hidden}
+/* Sektionsluft: golvet är 4rem (64px) enligt Seeds lågdensitetsrytm. */
+.hero{padding:clamp(4rem,4.4vw,4.6rem) 0 clamp(4rem,5vw,4.8rem);overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(1.8rem,4vw,4rem);align-items:center}
 .hero-txt{padding-block:clamp(0rem,2vw,1.4rem)}
 .hero h1{font-size:clamp(2.5rem,5.6vw,4.3rem);margin:1.2rem 0 1.1rem;max-width:19ch}
@@ -269,9 +276,9 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .hero-now{margin-top:1.5rem;font-size:.85rem;color:var(--ink-2)}
 .hero-now .pulse{display:inline-block;vertical-align:middle;margin-right:.5rem}
 .hero-now b{white-space:nowrap}
-.hero-now b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.hero-now b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
 
-.eyebrow--live{display:inline-flex!important;align-items:center;gap:.45rem;color:var(--terra)}
+.eyebrow--live{display:inline-flex!important;align-items:center;gap:.45rem;color:var(--ink)}
 
 /* Nytt-raden: fyra kort på en rad */
 .pgrid--rad{grid-template-columns:repeat(4,1fr)}
@@ -279,7 +286,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   display:flex;flex-wrap:wrap;gap:1.3rem 2.6rem;margin-top:2.1rem;
   padding-top:1.5rem;border-top:1px solid var(--line);
 }
-.hero-facts div strong{display:block;font-family:var(--disp);font-size:1.6rem;font-weight:600;line-height:1.1}
+.hero-facts div strong{display:block;font-family:var(--disp);font-size:1.6rem;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.1}
 .hero-facts div span{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
 
 /* Källbilderna är 494×592 (5:6). Alla bildramar hålls på 5/6 eller 1/1 —
@@ -328,8 +335,12 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 }
 
 /* ---------- sektionsrubriker ---------- */
-.sec{padding:clamp(3.4rem,6.5vw,6rem) 0}
+.sec{padding:clamp(4.2rem,6.5vw,6rem) 0}
 .sec--cream{background:var(--cream)}
+/* Tva cream-sektioner i rad blir ett obrutet falt dar tva amnen delar yta.
+   Den andra vander till snow sa ogat far sin reset — korten har egen kant och
+   tappar ingen definition mot den ljusare ytan. */
+.sec--cream + .sec--cream{background:var(--paper)}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:2.6rem}
 .sec-head h2{font-size:clamp(1.8rem,3.6vw,2.85rem)}
 .sec-head .eyebrow{margin-bottom:.75rem;display:block}
@@ -339,13 +350,14 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
 .cat{
   position:relative;display:block;background:var(--white);
-  border:1px solid var(--line);border-radius:3px;overflow:hidden;
+  border:1px solid var(--line);border-radius:16px;overflow:hidden;
   transition:border-color .3s,transform .35s var(--ease);
 }
 .cat img{width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--cream);transition:transform .7s var(--ease)}
 .cat-foot{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.95rem 1.15rem}
 .cat-foot b{font-family:var(--disp);font-size:1.02rem;font-weight:600}
-.cat-foot span{font-size:.7rem;color:var(--muted);letter-spacing:.06em}
+/* 'Fran 25 st' star intill priset — samma mattstil. */
+.cat-foot span{font-size:.7rem;color:var(--muted);letter-spacing:.06em;font-variant-numeric:tabular-nums}
 @media(hover:hover) and (pointer:fine){
   .cat:hover{border-color:var(--ink);transform:translateY(-3px)}
   .cat:hover img{transform:scale(1.06)}
@@ -353,7 +365,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 
 /* ---------- kurerade block ---------- */
 .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
-.feat{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.feat{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .feat-img{background:var(--cream);overflow:hidden}
 .feat-img img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .8s var(--ease)}
 .feat-body{padding:1.7rem 1.6rem 1.9rem;display:flex;flex-direction:column;flex:1}
@@ -362,8 +374,11 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 @media(hover:hover) and (pointer:fine){.feat:hover .feat-img img{transform:scale(1.05)}}
 
 /* ---------- löften ---------- */
-.promises{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+/* Avdelarna ar KANTER, inte en genomlysande bakgrund: en fjarde graton bakom
+   rutnatet mats som en egen sektionsyta aven nar den bara syns som 1px. */
+.promises{display:grid;grid-template-columns:repeat(3,1fr)}
 .promise{background:var(--paper);padding:2.3rem 1.9rem}
+.promise + .promise{border-inline-start:1px solid var(--line)}
 .promise svg{width:26px;height:26px;fill:none;stroke:var(--ink-2);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;margin-bottom:1.1rem}
 .promise b{display:block;font-family:var(--disp);font-size:1.16rem;font-weight:600;margin-bottom:.45rem}
 .promise p{font-size:.87rem;color:var(--ink-2)}
@@ -372,20 +387,20 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem 1.05rem}
 .pcard{display:flex;flex-direction:column;position:relative}
 .pcard-img{
-  position:relative;background:var(--white);border:1px solid var(--line);border-radius:3px;
+  position:relative;background:var(--white);border:1px solid var(--line);border-radius:16px;
   overflow:hidden;transition:border-color .3s var(--ease);
 }
 .pcard-img img{width:100%;aspect-ratio:5/6;object-fit:cover;transition:transform .7s var(--ease)}
 .pcard-tag{
   position:absolute;top:.7rem;left:.7rem;z-index:2;
-  background:var(--paper);border:1px solid var(--line-2);border-radius:2px;
+  background:var(--paper);border:1px solid var(--line-2);border-radius:1000px;
   font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   padding:.3rem .6rem;color:var(--ink-2);
 }
-.pcard-tag--new{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.pcard-tag--new{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .pcard-quick{
   position:absolute;left:.7rem;right:.7rem;bottom:.7rem;z-index:2;
-  min-height:42px;padding:.6rem;border-radius:2px;
+  min-height:42px;padding:.6rem;border-radius:1000px;
   background:var(--ink);color:var(--paper);
   font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-align:center;
   opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s var(--ease);
@@ -396,12 +411,12 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .pcard-cat{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .pcard-body h3{font-size:1.02rem;font-weight:600;margin:.34rem 0 .5rem;line-height:1.28;flex:1}
 .pcard-price{display:flex;align-items:baseline;gap:.55rem}
-.pcard-price b{font-size:.98rem;font-weight:600}
+.pcard-price b{font-size:.98rem;font-weight:500;font-variant-numeric:tabular-nums}
 .pcard-price span{font-size:.73rem;color:var(--muted)}
 .pcard-swatches{display:flex;gap:.28rem;margin-top:.7rem}
 .pcard-swatches i{width:12px;height:12px;border-radius:50%;border:1px solid rgba(0,0,0,.14);display:block}
 /* Färgen man valt i katalogen syns i varje kort och följer med till produktsidan */
-.pcard-swatches i.is-on{box-shadow:0 0 0 1.5px var(--paper),0 0 0 3px var(--ink)}
+.pcard-swatches i.is-on{outline:1.5px solid var(--ink);outline-offset:1.5px}
 @media(hover:hover) and (pointer:fine){
   .pcard:hover .pcard-img{border-color:var(--ink)}
   .pcard:hover .pcard-img img{transform:scale(1.05)}
@@ -410,39 +425,63 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 
 /* ---------- B2B-band ---------- */
 .b2b{background:var(--ink);color:var(--cream)}
-.b2b-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center;padding:clamp(3.2rem,6vw,5.4rem) 0}
-.b2b .eyebrow{color:rgba(244,237,224,.55)}
+/* padding-block, INTE padding-shorthand: shorthanden nollade .wrap:ens
+   padding-inline (samma element, samma specificitet, senare i filen) och
+   sektionen låg kant i kant mot skärmkanten under 1340px. */
+.b2b-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center;padding-block:clamp(4.2rem,6vw,5.4rem)}
+.b2b .eyebrow{color:rgba(252,252,247,.72)}
 .b2b h2{font-size:clamp(1.9rem,3.8vw,3rem);margin:1rem 0 1.2rem}
-.b2b p{color:rgba(244,237,224,.76);max-width:46ch;margin-bottom:2.2rem}
+.b2b p{color:rgba(252,252,247,.78);max-width:46ch;margin-bottom:2.2rem}
 .b2b .btn{background:var(--cream);color:var(--ink)}
-.price-table{width:100%;border-collapse:collapse;font-size:.88rem}
-.price-table th,.price-table td{padding:.82rem 1rem;text-align:left;border-bottom:1px solid rgba(244,237,224,.16)}
+/* Hela tabellen ar en sifferkolumn: antal och leveransdagar ar ocksa tal och
+   maste linjera med priset. */
+.price-table{width:100%;border-collapse:collapse;font-size:.88rem;font-variant-numeric:tabular-nums}
+.price-table td{font-weight:500}
+.price-table th,.price-table td{padding:.82rem 1rem;text-align:left;border-bottom:1px solid rgba(252,252,247,.16)}
 .price-table th{
   font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(244,237,224,.6);font-weight:500;
+  color:rgba(252,252,247,.72);font-weight:500;
 }
 .price-table td:last-child,.price-table th:last-child{text-align:right}
 .price-table tbody tr:last-child td{border-bottom:0}
-.price-table td b{font-weight:600}
+.price-table td b{font-weight:500;font-variant-numeric:tabular-nums}
 /* Prisvillkoren (exkl. moms, 399 kr trycksetup) är den finstilt som INTE får
    missförstås — .68 ger 7:1 mot ink, gamla .45 gav 3,88:1. */
-.price-note{font-size:.72rem;color:rgba(244,237,224,.68);margin-top:1rem}
+.price-note{font-size:.72rem;color:rgba(252,252,247,.74);margin-top:1rem}
+
+/* Ljus B2B-variant: ligger .b2b direkt efter det morkgrona nedraknings-bandet
+   (katalogsidan) smalter de tva forest-ytorna ihop till ett enda 700px+ block
+   med tva konkurrerande rubriker och tva konkurrerande CTA:er. Seed-systemet
+   bygger hierarki pa binara ytor, sa den andra sektionen byter till Warm Stone
+   och ogat far sin reset. Regeln ar adjacenscentrerad: den slar till overallt
+   dar ordningen upprepas, utan att index.html (dar bada har ljusa naboer)
+   paverkas. */
+.band + .b2b{background:var(--paper);color:var(--ink)}
+.band + .b2b .eyebrow{color:var(--muted)}
+.band + .b2b p{color:var(--ink-2)}
+.band + .b2b .btn{background:var(--ink);color:var(--paper)}
+.band + .b2b .price-table th,
+.band + .b2b .price-table td{border-bottom-color:var(--line-2)}
+.band + .b2b .price-table th{color:var(--muted)}
+.band + .b2b .price-note{color:var(--ink-2)}
+.band + .b2b a:focus-visible,
+.band + .b2b button:focus-visible{outline-color:var(--ink)}
 
 /* ---------- nyhetsbrev ---------- */
-.news{text-align:center;padding:clamp(3.4rem,6.5vw,5.6rem) 0}
+.news{text-align:center;padding:clamp(4.2rem,6.5vw,5.6rem) 0}
 .news h2{font-size:clamp(1.8rem,3.6vw,2.7rem);margin:1rem auto .9rem;max-width:16ch}
 .news p{color:var(--ink-2);max-width:44ch;margin:0 auto 2rem}
 .news-form{display:flex;gap:.6rem;max-width:440px;margin:0 auto;flex-wrap:wrap}
 .news-form input{
   flex:1;min-width:200px;min-height:48px;padding:.8rem 1.1rem;
-  background:var(--white);border:1px solid var(--line-2);border-radius:2px;
+  background:var(--white);border:1px solid var(--line-2);border-radius:1000px;
   font:inherit;font-size:.92rem;color:var(--ink);
 }
 .news-form input:focus{outline:2px solid var(--ink);outline-offset:-1px}
 .news-note{font-size:.72rem;color:var(--muted);margin-top:1rem}
 
 /* ---------- footer ---------- */
-.ftr{background:var(--cream);border-top:1px solid var(--line-2);padding:clamp(3rem,5vw,4.4rem) 0 0}
+.ftr{background:var(--cream);border-top:1px solid var(--line-2);padding:clamp(4.2rem,5vw,4.6rem) 0 0}
 /* Klisterremsan är fixerad över sidans nederkant. Footern reserverar exakt
    remsans höjd (app.js sätter --sticky-space) så krediteringen aldrig hamnar
    under den. Värdet nedan är fallbacken innan skriptet hunnit mäta. */
@@ -469,7 +508,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .crumbs .sep{color:var(--muted)}
 @media(hover:hover) and (pointer:fine){.crumbs a:hover{color:var(--ink)}}
 
-.cat-hero{padding:2.2rem 0 2.6rem;border-bottom:1px solid var(--line)}
+.cat-hero{padding:4.2rem 0 4.4rem;border-bottom:1px solid var(--line)}
 .cat-hero h1{font-size:clamp(2.1rem,4.6vw,3.4rem);margin:.9rem 0 .8rem}
 .cat-hero p{color:var(--ink-2);max-width:56ch}
 
@@ -483,14 +522,14 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   min-height:44px;padding:.34rem 0;font-size:.88rem;color:var(--ink-2);
   transition:color .25s;text-align:left;
 }
-.fbtn span{font-size:.72rem;color:var(--muted)}
-.fbtn.is-on{color:var(--ink);font-weight:600}
+.fbtn span{font-size:.72rem;color:var(--muted);font-weight:500;font-variant-numeric:tabular-nums}
+.fbtn.is-on{color:var(--ink);font-weight:500}
 .fbtn.is-on span{color:var(--ink-2)}
 @media(hover:hover) and (pointer:fine){.fbtn:hover{color:var(--ink)}}
 
 /* Filtrets prisrad: en mening, inte ett filter utan filter */
-.fnote{font-size:.82rem;color:var(--ink-2)}
-.fnote b{color:var(--ink);font-weight:600}
+.fnote{font-size:.82rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.fnote b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
 .fnote a{color:var(--ink);font-weight:600;border-bottom:1px solid var(--line-2)}
 .fnote--liten{font-size:.76rem;color:var(--muted);margin-top:.7rem}
 
@@ -506,7 +545,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   transform:translate(-50%,-50%);border-radius:50%;
   background:var(--sw);border:1px solid var(--line-2);
 }
-.fcolor.is-on::before{box-shadow:0 0 0 1.5px var(--paper),0 0 0 3px var(--ink)}
+.fcolor.is-on::before{outline:1.5px solid var(--ink);outline-offset:1.5px}
 @media(hover:hover) and (pointer:fine){.fcolor:hover::before{transform:translate(-50%,-50%) scale(1.12)}}
 
 /* Kategori-chips ovanför gridet: aktivt val syns och byts på ett tryck,
@@ -523,9 +562,9 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   padding:.5rem 1rem;border:1px solid var(--line-2);border-radius:100px;
   font-size:.82rem;color:var(--ink-2);white-space:nowrap;background:var(--paper);
 }
-.chip span{font-size:.72rem;color:var(--muted)}
+.chip span{font-size:.72rem;color:var(--muted);font-weight:500;font-variant-numeric:tabular-nums}
 .chip.is-on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.chip.is-on span{color:rgba(244,237,224,.72)}
+.chip.is-on span{color:rgba(252,252,247,.76)}
 
 /* Filterknappen bor OVANFÖR .shop, alltså ovanför panelen den öppnar */
 .shop-mobilbar{display:flex;align-items:center;gap:.6rem}
@@ -535,12 +574,14 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
   padding-bottom:1.5rem;margin-bottom:1.8rem;border-bottom:1px solid var(--line);
 }
-.shop-count{font-size:.82rem;color:var(--muted)}
-.shop-count b{color:var(--ink);font-weight:600}
+.shop-count{font-size:.82rem;color:var(--muted);font-weight:500;font-variant-numeric:tabular-nums}
+/* Samma mattstil som priser och nedrakningar: medium vikt + tabular-nums,
+   sa sifferkolumnen inte hoppar nar filtret byter antal. */
+.shop-count b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
 .shop-sort{display:flex;align-items:center;gap:.6rem}
 .shop-sort select{
   font:inherit;font-size:.84rem;color:var(--ink);background:var(--paper);
-  border:1px solid var(--line-2);border-radius:2px;padding:.55rem 2rem .55rem .8rem;
+  border:1px solid var(--line-2);border-radius:1000px;padding:.55rem 2rem .55rem .8rem;
   min-height:44px;appearance:none;cursor:pointer;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B564C' stroke-width='1.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right .55rem center;background-size:15px;
@@ -554,7 +595,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .empty p{color:var(--ink-2);font-size:.92rem;margin-bottom:1.4rem}
 .pager{display:flex;justify-content:center;gap:.4rem;margin-top:3.2rem}
 .pager button{
-  min-width:44px;min-height:44px;border:1px solid var(--line-2);border-radius:2px;
+  min-width:44px;min-height:44px;border:1px solid var(--line-2);border-radius:1000px;
   font-size:.85rem;transition:background .25s,border-color .25s;
 }
 .pager button.is-on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
@@ -565,14 +606,14 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 /* En bild per mugg är allt vi har från kunden — därför en spalt, ingen
    tumnagelrad som låtsas att det finns fler vinklar. */
 .pdp-media{align-self:start}
-.pdp-main{position:relative;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--white)}
+.pdp-main{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--white)}
 .pdp-main img{width:100%;aspect-ratio:5/6;object-fit:cover;background:var(--cream)}
 .pdp-main .pcard-tag{top:1rem;left:1rem}
 
 .pdp-info{padding-top:.4rem}
 .pdp-info h1{font-size:clamp(1.85rem,3.6vw,2.7rem);margin:.8rem 0 1rem}
 .pdp-price{display:flex;align-items:baseline;gap:.8rem;margin-bottom:.4rem}
-.pdp-price b{font-family:var(--disp);font-size:1.9rem;font-weight:600}
+.pdp-price b{font-family:var(--disp);font-size:1.9rem;font-weight:500;font-variant-numeric:tabular-nums}
 .pdp-price span{font-size:.8rem;color:var(--muted)}
 .pdp-stock{
   display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--ink-2);
@@ -595,7 +636,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .pdp-sum b{color:var(--ink);font-weight:600}
 .pdp-volym{
   display:none;gap:.5rem;flex-direction:column;
-  background:var(--cream);border:1px solid var(--line);border-radius:3px;
+  background:var(--cream);border:1px solid var(--line);border-radius:16px;
   padding:.9rem 1rem;margin-bottom:1.2rem;font-size:.85rem;color:var(--ink-2);
 }
 .pdp-volym.visa{display:flex}
@@ -604,7 +645,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 
 /* Raden under köpknappen: leveranslöfte + samma nedräkning som resten av sajten */
 .pdp-efter{font-size:.82rem;color:var(--ink-2);margin-bottom:.5rem}
-.pdp-efter b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pdp-efter b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
 .pdp-till-korg{
   display:none;font-size:.8rem;color:var(--ink);font-weight:600;
   border-bottom:1px solid var(--line-2);margin-bottom:.6rem;
@@ -621,7 +662,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);
   position:relative;transition:transform .2s var(--ease);
 }
-.color.is-on{box-shadow:0 0 0 2px var(--paper),0 0 0 3.5px var(--ink)}
+.color.is-on{outline:1.5px solid var(--ink);outline-offset:2px}
 /* Synligt kryss i vald färg — ringen räcker inte på Ceramic White mot ljus yta */
 .color.is-on::after{
   content:'';position:absolute;left:50%;top:50%;width:13px;height:7px;
@@ -633,7 +674,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 @media(hover:hover) and (pointer:fine){.color:hover{transform:scale(1.08)}}
 
 .qty-row{display:flex;gap:.7rem;margin-bottom:.9rem;flex-wrap:nowrap;align-items:stretch}
-.qty{display:flex;align-items:center;border:1px solid var(--line-2);border-radius:2px;flex-shrink:0}
+.qty{display:flex;align-items:center;border:1px solid var(--line-2);border-radius:1000px;flex-shrink:0}
 .qty button{width:44px;height:48px;font-size:1.1rem;color:var(--ink-2);transition:color .2s}
 .qty input{
   width:44px;height:48px;border:0;background:none;text-align:center;
@@ -647,7 +688,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .pdp-usp{display:flex;flex-direction:column;gap:.5rem;font-size:.82rem;color:var(--ink-2);margin:1.5rem 0 2rem}
 .pdp-usp span{display:inline-flex;align-items:center;gap:.45rem}
 .pdp-usp span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--terra);flex-shrink:0}
-.pdp-usp b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.pdp-usp b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
 
 .acc{border-top:1px solid var(--line)}
 .acc-item{border-bottom:1px solid var(--line)}
@@ -664,9 +705,11 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 .acc-body li::before{content:'';position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:50%;background:var(--line-2)}
 
 /* ---------- varukorgslåda ---------- */
-.cart-dot.is-empty{background:var(--line-2);color:var(--ink-2)}
+.cart-dot.is-empty{background:var(--cream);color:var(--ink)}
 .drawer-bg{
-  position:fixed;inset:0;z-index:300;background:rgba(43,33,29,.42);
+  /* Samma forest-scrim som rabattpopupen; rgba(43,33,29) var kvar fran den
+     gamla varmbruna paletten. */
+  position:fixed;inset:0;z-index:300;background:rgba(28,58,19,.55);
   opacity:0;visibility:hidden;transition:opacity .32s ease,visibility .32s ease;
 }
 .drawer-bg.open{opacity:1;visibility:visible}
@@ -696,11 +739,11 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
 
 .cart-row{display:grid;grid-template-columns:80px 1fr auto;gap:.9rem;padding:1.15rem 0;border-bottom:1px solid var(--line)}
 .cart-row:last-child{border-bottom:0}
-.cart-row img{width:80px;aspect-ratio:5/6;object-fit:cover;border:1px solid var(--line);border-radius:2px;background:var(--white)}
+.cart-row img{width:80px;aspect-ratio:5/6;object-fit:cover;border:1px solid var(--line);border-radius:1000px;background:var(--white)}
 .cart-row-mid b{display:block;font-family:var(--disp);font-size:1rem;font-weight:600;line-height:1.25;margin-bottom:.3rem}
 .cart-row-var{display:flex;align-items:center;gap:.4rem;font-size:.76rem;color:var(--muted);margin-bottom:.7rem}
 .cart-row-var i{width:11px;height:11px;border-radius:50%;border:1px solid rgba(0,0,0,.16);display:block;flex-shrink:0}
-.cart-qty{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:2px}
+.cart-qty{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:1000px}
 /* 44 px på de mest felkritiska knapparna i hela demon: ett feltryck här
    ändrar eller raderar en rad i varukorgen. */
 .cart-qty button{width:44px;height:44px;font-size:.95rem;color:var(--ink-2);transition:color .2s}
@@ -741,8 +784,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   position:fixed;z-index:90;right:1.7rem;bottom:max(1.7rem,env(safe-area-inset-bottom));
   background:#10B981;color:#0A1628;
   font-size:.71rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
-  padding:.9rem 1.5rem;min-height:46px;border-radius:3px;
-  box-shadow:0 12px 28px -12px rgba(10,22,40,.55);
+  padding:.9rem 1.5rem;min-height:46px;border-radius:16px;
   opacity:0;transform:translateY(18px);pointer-events:none;
   transition:opacity .4s ease,transform .25s var(--ease);
 }
@@ -775,7 +817,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:500;line-height:1.1;letter-spacing:
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .stickybar-txt i{vertical-align:middle;margin-right:.5rem}
-.stickybar-txt b{font-weight:600;font-variant-numeric:tabular-nums;color:var(--white)}
+.stickybar-txt b{font-weight:500;font-variant-numeric:tabular-nums;color:var(--white)}
 .stickybar-txt .sb-kort,.stickybar-txt .sb-mini{display:none}
 .stickybar .btn{background:var(--cream);color:var(--ink);flex-shrink:0}
 .stickybar .btn.is-lagd{background:#3F6B4A;color:var(--paper)}
@@ -814,12 +856,12 @@ a:focus-visible,
 button:focus-visible,
 select:focus-visible,
 input:focus-visible,
-summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .b2b a:focus-visible,.b2b button:focus-visible,
 .band a:focus-visible,
 .stickybar a:focus-visible,.stickybar button:focus-visible,
 .announce a:focus-visible,
-.modal a:focus-visible,.modal button:focus-visible{outline-color:#E8B48F}
+.modal a:focus-visible,.modal button:focus-visible{outline-color:var(--terra)}
 .fcolor:focus-visible,.color:focus-visible{outline-offset:0}
 
 .demo-toast{
@@ -827,7 +869,6 @@ summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
   max-width:calc(100vw - 2rem);
   background:#0A1628;color:#fff;border:1px solid rgba(16,185,129,.3);border-radius:4px;
   padding:.75rem 1.2rem;font-size:.8rem;line-height:1.4;text-align:center;
-  box-shadow:0 12px 26px -12px rgba(10,22,40,.6);
   animation:toast-in .3s var(--ease);
 }
 @keyframes toast-in{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
@@ -842,7 +883,6 @@ summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
 .modal{
   background:#13233F;color:#fff;border:1px solid rgba(16,185,129,.3);border-radius:12px;
   max-width:470px;width:100%;padding:2.4rem;position:relative;font-family:var(--ui);
-  box-shadow:0 18px 30px -14px rgba(0,0,0,.6);
   transform:scale(.95);opacity:0;transition:transform .34s var(--ease),opacity .34s var(--ease);
 }
 .modal-bg.open .modal{transform:scale(1);opacity:1}
@@ -910,6 +950,7 @@ summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
   .vagg-kol img{width:44vw;flex:0 0 auto}
   .vagg-kol--ned,.vagg-kol--tredje{display:none}
   .promises{grid-template-columns:1fr}
+  .promise + .promise{border-inline-start:0;border-block-start:1px solid var(--line)}
   .b2b-grid{grid-template-columns:1fr;gap:2.4rem}
   .pdp{grid-template-columns:1fr;gap:2.2rem}
   /* Utan tak blir bilden full sidbredd mellan 761 och 900 px — då är hela
@@ -963,7 +1004,7 @@ summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
 }
 
 /* ---------- brådskeband mitt på sidan ---------- */
-.band{background:var(--ink);color:var(--paper);padding:clamp(2.2rem,4vw,3.2rem) 0}
+.band{background:var(--ink);color:var(--paper);padding:clamp(4.2rem,5vw,5.2rem) 0}
 .band-in{display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
 .band-flagga{
   display:inline-flex;align-items:center;gap:.5rem;
@@ -971,8 +1012,10 @@ summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
   color:var(--cream);opacity:.75;
 }
 .band h2{font-size:clamp(1.4rem,2.6vw,2.1rem);margin:.7rem 0 .5rem}
-.band h2 b{font-weight:500;color:#E8B48F;font-variant-numeric:tabular-nums}
-.band p{font-size:.9rem;color:rgba(244,237,224,.62);max-width:52ch}
+/* Siffran hålls under 32px så rubrikvikt-regeln (max 350 över 32px) inte krockar
+   med sifferregeln (medium vikt, tabular-nums). */
+.band h2 b{font-size:.8em;font-weight:500;color:var(--paper);font-variant-numeric:tabular-nums}
+.band p{font-size:.9rem;color:rgba(252,252,247,.74);max-width:52ch}
 @media(max-width:700px){
   .band-in{flex-direction:column;align-items:flex-start;gap:1.4rem}
   .band .btn{width:100%}
@@ -980,13 +1023,13 @@ summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
 
 /* ---------- om-sektionens logga ---------- */
 .om-logo{
-  background:var(--paper);border-radius:3px;
+  background:var(--paper);border-radius:16px;
   display:grid;place-items:center;padding:clamp(2rem,4vw,3.4rem);
 }
 .om-logo img{width:100%;max-width:280px;height:auto}
 
 /* ---------- populärt-märke på produktkort ---------- */
-.pcard-tag--pop{background:var(--terra);color:#fff;border-color:var(--terra)}
+.pcard-tag--pop{background:var(--terra);color:var(--ink);border-color:var(--terra)}
 
 /* ---------- rabattrad i varukorgen ----------
    Popupen (rabattpopup.js) skriver deadline, procent och kod till localStorage;
@@ -994,7 +1037,7 @@ summary:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
 .cart-rabatt{
   display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
   padding:.7rem .85rem;margin-bottom:.6rem;
-  background:var(--cream);border-radius:3px;
+  background:var(--cream);border-radius:16px;
   font-size:.82rem;color:var(--ink-2);
 }
-.cart-rabatt b{color:#8F4A2F;letter-spacing:.06em}
+.cart-rabatt b{color:var(--ink);letter-spacing:.06em}
