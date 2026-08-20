@@ -134,7 +134,7 @@ export default function SynlighetsPanel() {
   return (
     <div ref={panelRef} className={styles.panel}>
       <div className={styles.topp}>
-        <span className={styles.titel}>Din synlighet</span>
+        <span className={styles.titel}>Er synlighet</span>
         <span className={styles.status}>
           <i /> live
         </span>

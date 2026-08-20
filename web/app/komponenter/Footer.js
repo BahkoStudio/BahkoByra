@@ -57,7 +57,7 @@ export default function Footer() {
                 <Link href="/kontakt/">Kontakt</Link>
               </li>
               <li>
-                <a href="/foretag/gratis-guide.html">Gratis guide</a>
+                <a href="/foretag/gratis-guide.html">Kostnadsfri guide</a>
               </li>
             </ul>
           </nav>

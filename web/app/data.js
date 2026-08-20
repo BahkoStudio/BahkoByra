@@ -8,7 +8,7 @@ export const TJANSTER = [
     kort: 'Hemsidor som gör att fler hör av sig, inte bara ser snyggare ut.',
     rubrik: 'Hemsidor som ger fler jobb',
     ingress:
-      'Front offer och det vi är bäst på. Du får ett färdigt förslag på din nya sida inom 48 timmar och ser exakt hur den blir innan du bestämmer dig.',
+      'Det vi är bäst på. Ni får ett färdigt förslag på er nya hemsida inom 48 timmar och ser exakt hur den blir innan ni bestämmer er.',
     // De tio granskningspunkterna, ordagrant desamma som pa gratis-granskning.html
     // sa att sidorna sager samma sak. Beslutat av Mathias 2026-08-09.
     punkter: [
@@ -64,10 +64,10 @@ export const TJANSTER = [
     slug: 'seo',
     namn: 'SEO',
     tagg: 'Lokal · Teknisk',
-    kort: 'Synas när någon i din stad söker efter det du gör.',
+    kort: 'Synas när någon i er stad söker efter det ni gör.',
     rubrik: 'Synas när kunden söker',
     ingress:
-      'Svenskar söker "takläggare Örebro", inte "takläggning". Lokal SEO handlar om att finnas där, med rätt uppgifter, när någon i närheten behöver dig.',
+      'Svenskar söker "takläggare Örebro", inte "takläggning". Lokal SEO handlar om att finnas där, med rätt uppgifter, när någon i närheten behöver er.',
     punkter: [
       {
         h: 'Google Företagsprofil',
@@ -92,10 +92,10 @@ export const TJANSTER = [
     slug: 'google-ads',
     namn: 'Google Ads',
     tagg: 'SEM · PPC',
-    kort: 'Betald annonsering som visas exakt när dina kunder söker.',
+    kort: 'Betald annonsering som visas exakt när era kunder söker.',
     rubrik: 'Annonser när behovet finns',
     ingress:
-      'SEO tar tid. Annonser ger utrymme direkt, för de sökningar där någon redan letar efter det du säljer.',
+      'SEO tar tid. Annonser ger utrymme direkt, för de sökningar där någon redan letar efter det ni säljer.',
     punkter: [
       { h: 'Rätt sökord', p: 'Vi annonserar på köpsignaler, inte på nyfikenhet.' },
       { h: 'Geografisk styrning', p: 'Bara i det område ni faktiskt åker ut till.' },
@@ -140,22 +140,22 @@ export const FRAGOR = [
   {
     fraga: 'Vad kostar en ny hemsida?',
     svar:
-      'Fast engångspris utan månadsavgifter eller bindningstid. Du får exakt pris i det kostnadsfria förslaget, innan du bestämmer dig. Vi tar aldrig betalt för att visa dig hur sidan skulle kunna se ut.',
+      'Fast engångspris utan månadsavgifter eller bindningstid. Ni får exakt pris i det kostnadsfria förslaget, innan ni bestämmer er. Vi tar aldrig betalt för att visa hur sidan skulle kunna se ut.',
   },
   {
     fraga: 'Hur snabbt kan den vara klar?',
     svar:
-      'Du får ett färdigt förslag inom 48 timmar. Säger du ja är sidan normalt live inom sju dagar, på din egen domän. Det som brukar ta tid är att få in bilder och texter, så ju snabbare du skickar dem desto snabbare går det.',
+      'Ni får ett färdigt förslag inom 48 timmar. Säger ni ja är sidan normalt live inom sju dagar, på er egen domän. Det som brukar ta tid är att få in bilder och texter, så ju snabbare ni skickar dem desto snabbare går det.',
   },
   {
     fraga: 'Måste jag kunna något tekniskt?',
     svar:
-      'Nej. Bahko Byrå sköter domän, publicering, texter och bilder. Du berättar om din verksamhet och skickar bilder från jobb ni gjort, vi gör resten.',
+      'Nej. Bahko Byrå sköter domän, publicering, texter och bilder. Ni berättar om er verksamhet och skickar bilder från jobb ni gjort, vi gör resten.',
   },
   {
     fraga: 'Vad händer efter lanseringen?',
     svar:
-      'Hemsidan är din. Ni äger sidan och domänen. Vill ni växa vidare hjälper vi till med synlighet på Google, omdömen och löpande förbättringar, men det är helt valfritt och inget abonnemang som rullar på i bakgrunden.',
+      'Ni äger sidan och domänen. Vill ni växa vidare hjälper vi till med synlighet på Google, omdömen och löpande förbättringar, men det är helt valfritt och inget abonnemang som rullar på i bakgrunden.',
   },
   {
     fraga: 'Jag har redan en hemsida, är det lönt att byta?',

@@ -98,7 +98,7 @@ export default function Prisguide() {
           </p>
           <div className={styles.toppKnappar}>
             <Link href="/kontakt/" className="btn btn-primar">
-              Få exakt pris i gratis förslag {PIL}
+              Få exakt pris i kostnadsfritt förslag {PIL}
             </Link>
           </div>
         </div>
@@ -142,7 +142,7 @@ export default function Prisguide() {
               </p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">
-              Få gratis förslag {PIL}
+              Få kostnadsfritt förslag {PIL}
             </Link>
           </div>
         </div>

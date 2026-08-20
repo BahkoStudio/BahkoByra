@@ -114,7 +114,7 @@ export default function Case() {
               <p>Vi bygger förslaget inom 48 timmar. Kostnadsfritt.</p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">
-              Få gratis förslag {PIL}
+              Få kostnadsfritt förslag {PIL}
             </Link>
           </div>
         </div>
