@@ -65,7 +65,7 @@
     + '.rp-tid-txt{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#666666}'
     + '.rp-kod{display:flex;align-items:center;justify-content:center;gap:.6rem;margin:1.05rem 0 1.15rem;'
     + 'padding:.7rem;border:1px dashed #c4c7c4;border-radius:16px;background:#eeeee9}'
-    + '.rp-kod b{font-size:1rem;letter-spacing:.22em;color:#1c3a13}'
+    + '.rp-kod b{font-size:1rem;letter-spacing:.22em;color:#1c3a13;font-weight:500;font-variant-numeric:tabular-nums}'
     + '.rp-kod span{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#666666}'
     + '.rp-cta{display:flex;align-items:center;justify-content:center;min-height:52px;width:100%;'
     + 'background:#1c3a13;color:#fcfcf7;border-radius:1000px;font-size:.76rem;font-weight:600;'
