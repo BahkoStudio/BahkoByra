@@ -271,7 +271,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 
 /* ---------- hero ---------- */
 /* Sektionsluft: golvet är 4rem (64px) enligt Seeds lågdensitetsrytm. */
-.hero{padding:clamp(4rem,4.4vw,4.6rem) 0 clamp(4rem,5vw,4.8rem);overflow:hidden}
+.hero{padding:clamp(4rem,4.4vw,4.6rem) 0 clamp(4rem,5vw,4.8rem);overflow:hidden;border-bottom:1px solid var(--line)}
 .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(1.8rem,4vw,4rem);align-items:center}
 .hero-txt{padding-block:clamp(0rem,2vw,1.4rem)}
 .hero h1{font-size:clamp(2.5rem,5.6vw,4.3rem);margin:1.2rem 0 1.1rem;max-width:19ch}
@@ -314,7 +314,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
    studiobakgrund syns som rutor igen. */
 .hero-vagg::before,
 .hero-vagg::after{
-  content:'';position:absolute;left:0;right:0;height:14%;z-index:2;pointer-events:none;
+  content:'';position:absolute;left:0;right:0;height:26%;z-index:2;pointer-events:none;
 }
 .hero-vagg::before{top:0;background:linear-gradient(180deg,var(--paper),transparent)}
 .hero-vagg::after{bottom:0;background:linear-gradient(0deg,var(--paper),transparent)}
