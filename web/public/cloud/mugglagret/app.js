@@ -485,11 +485,24 @@
     window.addEventListener("orientationchange", reservera);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(reservera);
 
+    /* Nedräkningsbandet bär samma deadline och samma köpknapp som remsan. Ligger
+       de framme samtidigt står budskapet dubbelt på en enda mörkgrön yta, utan
+       linje emellan — bandet äger då skärmen och remsan drar sig undan. */
+    var bandet = document.querySelector(".band");
+    var bandetSyns = false;
+    if (bandet && "IntersectionObserver" in window) {
+      new IntersectionObserver(function (poster) {
+        bandetSyns = poster[0].isIntersecting;
+        bar.classList.toggle("bandet-syns", bandetSyns);
+        if (floatBtn) floatBtn.classList.toggle("lyft", bar.classList.contains("visible") && !bandetSyns);
+      }, { threshold: 0.01 }).observe(bandet);
+    }
+
     var onScroll = function () {
       var visa = window.scrollY > window.innerHeight * trosk;
       bar.classList.toggle("visible", visa);
       /* Bahko-knappen flyttas upp så den inte hamnar under remsan */
-      if (floatBtn) floatBtn.classList.toggle("lyft", visa);
+      if (floatBtn) floatBtn.classList.toggle("lyft", visa && !bandetSyns);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();

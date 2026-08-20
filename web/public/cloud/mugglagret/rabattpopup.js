@@ -60,7 +60,7 @@
     + 'letter-spacing:-.015em;color:#1c3a13;margin:.85rem 0 .6rem}'
     + '.rp-kort p{font-size:.92rem;line-height:1.55;color:#3d5934;margin:0 auto .3rem;max-width:34ch}'
     + '.rp-klocka{display:flex;align-items:baseline;justify-content:center;gap:.5rem;margin:1.15rem 0 .35rem}'
-    + '.rp-tid{font-family:"Inter",system-ui,sans-serif;font-size:2.5rem;font-weight:500;line-height:1;'
+    + '.rp-tid{font-family:"Inter",system-ui,sans-serif;font-size:1.75rem;font-weight:500;line-height:1;'
     + 'color:#1c3a13;font-variant-numeric:tabular-nums}'
     + '.rp-tid-txt{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#666666}'
     + '.rp-kod{display:flex;align-items:center;justify-content:center;gap:.6rem;margin:1.05rem 0 1.15rem;'
@@ -75,7 +75,7 @@
     + 'font-size:.78rem;color:#666666;text-decoration:underline;text-underline-offset:3px}'
     + '.rp-nej:hover{color:#1c3a13}'
     + '.rp-fot{margin-top:.7rem;font-size:.68rem;color:#666666}'
-    + '@media(max-width:420px){.rp-kort{padding:1.8rem 1.2rem 1.3rem}.rp-kort h2{font-size:1.42rem}.rp-tid{font-size:2.1rem}}'
+    + '@media(max-width:420px){.rp-kort{padding:1.8rem 1.2rem 1.3rem}.rp-kort h2{font-size:1.42rem}.rp-tid{font-size:1.6rem}}'
     + '@media(prefers-reduced-motion:reduce){.rp-lager,.rp-kort{transition:none}.rp-punkt{animation:none}}';
 
   function injiceraStil() {
