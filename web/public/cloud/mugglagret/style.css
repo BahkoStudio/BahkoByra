@@ -414,7 +414,10 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;line-height:1.1;letter-spacing:
 
 /* ---------- B2B-band ---------- */
 .b2b{background:var(--ink);color:var(--cream)}
-.b2b-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center;padding:clamp(3.2rem,6vw,5.4rem) 0}
+/* padding-block, INTE padding-shorthand: shorthanden nollade .wrap:ens
+   padding-inline (samma element, samma specificitet, senare i filen) och
+   sektionen låg kant i kant mot skärmkanten under 1340px. */
+.b2b-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center;padding-block:clamp(4.2rem,6vw,5.4rem)}
 .b2b .eyebrow{color:rgba(252,252,247,.72)}
 .b2b h2{font-size:clamp(1.9rem,3.8vw,3rem);margin:1rem 0 1.2rem}
 .b2b p{color:rgba(252,252,247,.78);max-width:46ch;margin-bottom:2.2rem}
