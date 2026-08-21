@@ -116,6 +116,9 @@ header{position:sticky;top:0;z-index:40;background:rgba(248,250,252,.94);backdro
 /* ── BOARD ── */
 .board{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(224px,1fr);gap:.8rem;
   overflow-x:auto;padding-bottom:1rem;scroll-snap-type:x proximity}
+/* Under panorering ska handen visa att brädan greppas, och kolumnsnapet
+   stängas av så dragningen inte drar emot. */
+.board.panorerar{cursor:grabbing;scroll-snap-type:none}
 .col{background:var(--cream-2);border:1px solid var(--line);border-radius:14px;padding:.7rem;
   display:flex;flex-direction:column;gap:.55rem;min-height:300px;scroll-snap-align:start;
   border-top:5px solid var(--accent,var(--line-2));transition:background .2s}
@@ -1056,17 +1059,34 @@ function setAutoScroll(clientX){
   if(scrollDir&&!scrollRaf)scrollRaf=requestAnimationFrame(autoScroll);
 }
 function stopAutoScroll(){scrollDir=0;}
+/* Mushjulet flyttar brädan i sidled. I ändläget släpps rullningen vidare
+   till sidan, annars känns det som att skrollen fastnat mot kanten.
+   Ctrl lämnas ifred så webbläsarens zoom fungerar som vanligt, och en
+   mus eller styrplatta som redan skickar horisontella svep får styra. */
+boardEl.addEventListener('wheel',e=>{
+  if(e.ctrlKey)return;
+  const max=boardEl.scrollWidth-boardEl.clientWidth;
+  if(max<=1)return;
+  const steg=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
+  if(!steg)return;
+  if(steg<0&&boardEl.scrollLeft<=0)return;
+  if(steg>0&&boardEl.scrollLeft>=max-1)return;
+  boardEl.scrollLeft+=steg;
+  e.preventDefault();
+},{passive:false});
+
 /* greppa tom yta på brädan och dra för att panorera */
 let panX=null,panStart=0;
 boardEl.addEventListener('mousedown',e=>{
   if(e.button!==0||e.target.closest('.cardc'))return;
   panX=e.clientX;panStart=boardEl.scrollLeft;
+  boardEl.classList.add('panorerar');
 });
 window.addEventListener('mousemove',e=>{
   if(panX==null)return;
   boardEl.scrollLeft=panStart-(e.clientX-panX);
 });
-window.addEventListener('mouseup',()=>{panX=null;});
+window.addEventListener('mouseup',()=>{panX=null;boardEl.classList.remove('panorerar');});
 let dragId=null;
 document.getElementById('board').addEventListener('dragstart',e=>{
   const c=e.target.closest('.cardc');if(!c)return;
