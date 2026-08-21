@@ -474,6 +474,44 @@ export default function NordicSnickareDemo() {
               </figcaption>
             </figure>
           </div>
+          <div className={styles.galleri}>
+            <figure>
+              <Image
+                src="/nordicsnickare/media/galleri-fogen-mot-snedtaket.jpg"
+                alt="Fogen där luckan möter snedtaket i närbild"
+                width={1200}
+                height={678}
+              />
+              <figcaption>Fogen mot snedtaket.</figcaption>
+            </figure>
+            <figure>
+              <Image
+                src="/nordicsnickare/media/galleri-fiskbensparkett-ek.jpg"
+                alt="Fiskbensparkett i ek lagd i ett ljust rum"
+                width={896}
+                height={1200}
+              />
+              <figcaption>Fiskbensparkett i ek, lagd på plats.</figcaption>
+            </figure>
+            <figure>
+              <Image
+                src="/nordicsnickare/media/galleri-mattbestalld-bjorkplywood.jpg"
+                alt="Måttbeställd rund spegel fräst i björkplywood ovanför en träbänk"
+                width={896}
+                height={1200}
+              />
+              <figcaption>Måttbeställd spegel i björkplywood.</figcaption>
+            </figure>
+            <figure>
+              <Image
+                src="/nordicsnickare/media/galleri-altan-uterum.jpg"
+                alt="Nybyggd altan med inglasat uterum"
+                width={896}
+                height={1200}
+              />
+              <figcaption>Altan och inglasat uterum.</figcaption>
+            </figure>
+          </div>
           <p className={styles.forvandlingNot}>
             Illustrationsbilder — byts mot era egna projektfoton.
           </p>
@@ -584,10 +622,10 @@ export default function NordicSnickareDemo() {
 
               <figure className={styles.varforBild}>
                 <Image
-                  src="/nordicsnickare/media/galleri-fogen-mot-snedtaket.jpg"
-                  alt="Närbild på fogen där skåpsluckan möter det sneda taket"
-                  width={1200}
-                  height={678}
+                  src="/nordicsnickare/media/om-oss-platsbyggt.jpg"
+                  alt="Färdig platsbyggd garderob som följer takfallen i ett äldre sovrum"
+                  width={1600}
+                  height={904}
                 />
               </figure>
 

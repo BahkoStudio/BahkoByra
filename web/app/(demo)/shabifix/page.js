@@ -425,6 +425,35 @@ export default function ShabifixDemo() {
               </figcaption>
             </figure>
           </div>
+          <div className={styles.galleri}>
+            <figure>
+              <Image
+                src="/shabifix/media/galleri-detalj-skarpt-snitt.jpg"
+                alt="Närbild på ett skarpt målningssnitt mot lister"
+                width={1280}
+                height={717}
+              />
+              <figcaption>Snittet mot listen.</figcaption>
+            </figure>
+            <figure>
+              <Image
+                src="/shabifix/media/galleri-nymalad-trafasad.jpg"
+                alt="Nymålad träfasad i dagsljus"
+                width={1280}
+                height={717}
+              />
+              <figcaption>Nymålad träfasad.</figcaption>
+            </figure>
+            <figure>
+              <Image
+                src="/shabifix/media/galleri-nymalat-vardagsrum.jpg"
+                alt="Nymålat vardagsrum med vita väggar"
+                width={1280}
+                height={717}
+              />
+              <figcaption>Nymålat vardagsrum.</figcaption>
+            </figure>
+          </div>
           <p className={styles.forvandlingNot}>
             Illustrationsbilder — byts mot era egna projektfoton.
           </p>
@@ -534,8 +563,8 @@ export default function ShabifixDemo() {
 
               <figure className={styles.varforBild}>
                 <Image
-                  src="/shabifix/media/galleri-detalj-skarpt-snitt.jpg"
-                  alt="Närbild på ett skarpt målningssnitt mot lister"
+                  src="/shabifix/media/poster-efter-nymalat.jpg"
+                  alt="Nymålat rum med rena ytor efter arbetet"
                   width={1280}
                   height={717}
                 />
