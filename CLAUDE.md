@@ -82,8 +82,8 @@ När två källor säger olika:
 - **Varje mapp under `web/public/cloud/` och `web/app/(demo)/` är en länk som ligger i någons
   inkorg.** Får aldrig raderas eller brytas. De 8 frysta (`alfredallservice`, `asmar`, `bygg`,
   `kmctransport`, `osterlunds`, `pizzeriamatstugan`, `tryggbyggservice`, `vajjebygg`) rörs inte
-  alls; övriga får förbättras på beställning. Kopiorna i gamla `bahkobyra/cloud/` är döda
-  dubbletter som inte serveras — städas i eget beslut, inte i förbifarten.
+  alls; övriga får förbättras på beställning. `bahkobyra/cloud/` innehåller sedan 2026-08-21
+  ENDAST de två kundsajterna — de 17 döda dubbletterna är borta (finns i git-historiken).
 - **`.github/workflows/deploy.yml` + `.claude/skills/video-to-website/maykas/site/`** — deployar
   LIVE maykaskitchen.se vid varje push till main.
 - **localStorage-kontrakten `bb_crm_v2` + `bahko_sop_dagslogg_v1`** — nycklar och dataformat.

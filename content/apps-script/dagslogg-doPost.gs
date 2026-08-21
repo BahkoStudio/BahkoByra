@@ -6,7 +6,7 @@
  * Distribution: webbapp, "Execute as: Me", "Who has access: Anyone".
  * ("Anyone" kräver Execute as: Me — annars visas bara Only myself / Anyone with Google account.)
  *
- * Anropas av Spara-knappen i bahkobyra/cloud/sop-ringa/index.html. Webbapp-URL:en
+ * Anropas av Spara-knappen i web/public/cloud/sop-ringa/index.html. Webbapp-URL:en
  * lagras i besökarens localStorage (bahko_sop_sheet_url), aldrig i repot.
  *
  * Upsert på datum + säljare: samma dag sparad igen uppdaterar raden i stället för att dubblera.
