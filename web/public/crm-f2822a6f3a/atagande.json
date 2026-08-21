@@ -1,0 +1,34 @@
+[
+  {
+    "vad": "Klientrapport till Bromma Trädgårdsservice (Jens)",
+    "kadens": "vecka",
+    "veckodag": "sondag",
+    "start": "2026-08-02",
+    "var": "content/kunder/bromma/rapporter/",
+    "kund": "Bromma Trädgårdsservice"
+  },
+  {
+    "vad": "Bromma contentleverans (2 reels + 3 bilder)",
+    "kadens": "vecka",
+    "veckodag": "mandag",
+    "start": "2026-08-03",
+    "var": "content/kunder/bromma/produktionsrutin.md",
+    "kund": "Bromma Trädgårdsservice"
+  },
+  {
+    "vad": "IG-karusell @bahkobyra",
+    "kadens": "vecka",
+    "veckodag": "torsdag",
+    "start": "2026-08-06",
+    "var": "/instagram-engine → Drive H:",
+    "kund": null
+  },
+  {
+    "vad": "Lead-bevakning Shabifix",
+    "kadens": "4 veckor",
+    "start": "2026-08-16",
+    "slutdatum": "2026-11-15",
+    "var": "dashboarden",
+    "kund": null
+  }
+]

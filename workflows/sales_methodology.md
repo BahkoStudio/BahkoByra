@@ -59,7 +59,7 @@ Idealisk daglig blast (anpassad för BahkoByra):
 
 | Kanal | Bygg/hantverk-nisch |
 |-------|---------------------|
-| Reels | 3 reels + 2 carouseller/vecka (@bahkostudio) |
+| Reels | 3 reels + 2 carouseller/vecka (@bahkobyra) |
 | Cold email | 20/dag |
 | Cold call | 10/dag |
 | IG DM | enligt skriven-cadence |

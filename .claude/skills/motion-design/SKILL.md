@@ -10,14 +10,15 @@ disable-model-invocation: true
 Full motion design-flöde: brief → storyboard (EN grid-bild) → video (Seedance 2.0).
 Svara alltid på användarens språk. Var kortfattad och rak.
 
-**OBS: Kostar Higgsfield-credits. Kör aldrig utan explicit beställning.**
+**OBS: Kostar Higgsfield-credits. Kostnadsregeln bor i CLAUDE.md: under 100 körs utan att
+fråga, över 100 frågas.**
 
 ## Bahko-användning (varför skillen finns)
 
 Motion design är **ALDRIG front offer** — hemsidor är offerten (positioneringsregeln i CLAUDE.md).
 Den används för att attrahera och merförsälja:
 
-1. **Reels-hooks för @bahkostudio** (ihop med instagram-engine): 5s kinetiska intro-stings till
+1. **Reels-hooks för @bahkobyra** (ihop med instagram-engine): 5s kinetiska intro-stings till
    content-batcharna — högre stopp-effekt i flödet än statisk text. Format 9:16, highMD.
 2. **Uppsell-trappan ("Mer wizardry"):** logo-animation/promovideo som tilläggstjänst EFTER
    hemsideleveransen — kundens nya sajt + en animerad brand-video till deras IG. Prissätts separat.

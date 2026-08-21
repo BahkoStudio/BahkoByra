@@ -72,8 +72,9 @@ Kontrastregeln: ljus yta → mörk text; Bahko-element följer knappregeln
    (aldrig deras JS). Byggbiblioteket: `web/public/cloud/bygg/media/`
    (GRANIT: före/efter-hus + videor, villa, badrum, skiffertak), även
    `nordiapartner`, `ekstromsbygg` m.fl. Kopiera till `web/public/<kund>/media/`.
-2. **Higgsfield-generering** (via MCP `mcp__Higgsfield__*`; kör ALDRIG utan
-   Mathias beställning, kostnadskoll med `get_cost: true` före varje modell):
+2. **Higgsfield-generering** (via MCP `mcp__Higgsfield__*`; kostnadsregeln bor i
+   CLAUDE.md: under 100 credits körs, över 100 frågas. Kostnadskoll med
+   `get_cost: true` före varje modell):
    - **Bilder: `nano_banana_2`** med kundens egen bild som referens
      (uppmätt 1,5 cr/st; Mathias 2026-08-18: modellen är bra). Prompten låser
      produkten: "Keep ... EXACTLY as in the reference, unchanged".

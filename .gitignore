@@ -26,3 +26,14 @@ node_modules/
 .next/
 next-env.d.ts
 server.log
+
+# Nedladdningsskräp (låg i git till 2026-08-21, finns kvar i historiken)
+.dl/
+
+# Råmaterial och Higgsfield-genererat hör inte i repot
+# (flyttat till OneDrive/Dokument/Backups/higgsfield-genererat/ 2026-08-21)
+bahkobyra/BahkoByrå asset för hemsidor/
+start-server.bat
+
+# Maskinspecifika instruktioner - bara denna dator
+CLAUDE.local.md

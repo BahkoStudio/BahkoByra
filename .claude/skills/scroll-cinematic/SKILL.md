@@ -16,7 +16,8 @@ så sidan känns komplett, inte bara en snygg trailer.
 
 **Kostar ~69 credits/demo om inget kan återanvändas (3 keyframes + två 16:9-klipp
 + porträttheron 9:16; 49 utan porträttklippet, recopy: 0 — prova alltid
-`demo-recopy` först vid känd nisch). Kör aldrig utan explicit beställning.**
+`demo-recopy` först vid känd nisch). Kostnadsregeln bor i CLAUDE.md: under 100 credits
+körs utan att fråga, över 100 frågas.**
 
 ## Referenser & facit
 
