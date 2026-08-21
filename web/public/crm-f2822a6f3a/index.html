@@ -206,6 +206,14 @@ footer a{color:var(--gold-dk)}
 /* Ringd-knappen är neutral tills man klickar, sedan smaragd med marinblå
    text — samma knappregel som resten av sajten. */
 .dbtn.ringd.pa,.q.ringd.pa{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700}
+/* Fällbara sektioner: rubriken är knappen. Pilen tar dekorstreckets
+   plats till vänster, så den sitter intill texten man klickar på. */
+.kick.fallbar{cursor:pointer;user-select:none}
+.kick.fallbar:hover{color:var(--gold)}
+.kick.fallbar::before{content:'▾';width:auto;height:auto;background:none;font-size:1.5em;
+  line-height:1;transition:transform .2s var(--ease)}
+.kick.fallbar.ihop::before{transform:rotate(-90deg)}
+.falld{display:none !important}
 .ringgrupp{display:inline-flex;align-items:center;gap:.25rem}
 .ringlabel{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-50);margin-right:.15rem}
 .ringgrupp .dbtn{min-width:2.1rem;padding-left:.5rem;padding-right:.5rem;justify-content:center}
@@ -280,14 +288,15 @@ body:not(.vy-varma) .bara-varm{display:none}
     <button class="vyflik" data-vy="varma" role="tab" aria-selected="false">Warm leads <span class="n" id="n-varma">0</span></button>
   </div>
 
+  <div class="kick fallbar" data-fall="stats">Nyckeltal</div>
   <div class="stats" id="stats"></div>
 
   <div class="due" id="due">
-    <div class="kick">Att göra idag <span class="hint" id="due-hint"></span></div>
+    <div class="kick fallbar" data-fall="due">Att göra idag <span class="hint" id="due-hint"></span></div>
     <div id="due-list"></div>
   </div>
 
-  <div class="kick">Pipeline <span class="hint">dra kort mellan kolumner · klicka för detaljer</span></div>
+  <div class="kick fallbar" data-fall="pipeline">Pipeline <span class="hint">dra kort mellan kolumner · klicka för detaljer</span></div>
   <div class="filters" id="filters">
     <button class="fchip on" data-f="alla">Alla</button>
     <button class="fchip" data-f="noweb">Utan hemsida</button>
@@ -940,7 +949,18 @@ function renderDue(){
     if(ringtIdag(l))return true;
     if(l.nextDate&&l.nextDate<=today)return true;
     return h48(l)!==null;
-  }).sort((a,b)=>(a.nextDate||'9999').localeCompare(b.nextDate||'9999'));
+  });
+  /* Sorteringsnyckeln får inte ändras av att man markerar ett steg. Ett
+     lead som ringts i dag sorteras därför på dagens datum och inte på
+     det nya, framflyttade — annars hoppar raden till listans slut i
+     samma klick och den gröna knappen syns aldrig där man tryckte.
+     Prioritet och namn som andra och tredje nyckel gör ordningen
+     entydig, så ingenting flyttar sig av en markering. */
+  const PRIOORD={'Hög':0,Medium:1,'Låg':2};
+  const nyckel=l=>(V().varm&&ringtIdag(l))?today:(l.nextDate||'9999');
+  rows.sort((a,b)=>nyckel(a).localeCompare(nyckel(b))
+    ||(PRIOORD[a.prio]??3)-(PRIOORD[b.prio]??3)
+    ||a.name.localeCompare(b.name,'sv'));
   document.getElementById('due-hint').textContent=rows.length?rows.length+' st':'';
   if(!rows.length){box.innerHTML='<div class="due-empty">Inget förfallet. Ring nya leads i kolumnen Ny. 📞</div>';return;}
   box.innerHTML=rows.map(l=>{
@@ -1384,7 +1404,37 @@ document.getElementById('imp-varm-file').onchange=e=>{
   e.target.value='';
 };
 
-function renderAll(){renderStats();renderDue();renderBoard();}
+function renderAll(){renderStats();renderDue();renderBoard();visaFallt();}
+/* ── FÄLLBARA SEKTIONER ──────────────────────────────────────────────
+   Klick på en rubrik fäller ihop sin sektion. Läget sparas, så listan
+   ser ut som man lämnade den nästa gång. */
+const FALLBART={stats:['stats'],due:['due-list'],pipeline:['filters','board']};
+function lasFallt(){
+  try{const r=localStorage.getItem('bb_crm_fallt');const a=r?JSON.parse(r):[];return Array.isArray(a)?a:[];}
+  catch{return [];}
+}
+function visaFallt(){
+  const fallt=lasFallt();
+  Object.keys(FALLBART).forEach(function(k){
+    const ihop=fallt.indexOf(k)>-1;
+    const rubrik=document.querySelector('.kick.fallbar[data-fall="'+k+'"]');
+    if(rubrik)rubrik.classList.toggle('ihop',ihop);
+    FALLBART[k].forEach(function(id){
+      const el=document.getElementById(id);
+      if(el)el.classList.toggle('falld',ihop);
+    });
+  });
+}
+document.addEventListener('click',function(e){
+  const r=e.target.closest('.kick.fallbar');if(!r)return;
+  const k=r.dataset.fall;if(!FALLBART[k])return;
+  const fallt=lasFallt();
+  const i=fallt.indexOf(k);
+  if(i>-1)fallt.splice(i,1);else fallt.push(k);
+  try{localStorage.setItem('bb_crm_fallt',JSON.stringify(fallt));}catch{}
+  visaFallt();
+});
+
 /* Vyn kan djuplänkas med ?vy=varma, annars kommer den senast använda tillbaka. */
 setVy((function(){
   try{
