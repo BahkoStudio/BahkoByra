@@ -807,12 +807,6 @@ html:has(.sida) {
     background: var(--yta);
   }
 }
-.tjanstNr {
-  font-family: var(--disp);
-  font-size: var(--tx-m);
-  color: var(--brass);
-  letter-spacing: 0.1em;
-}
 .tjanst h3 {
   font-family: var(--disp);
   font-size: 1.42rem;
@@ -859,41 +853,9 @@ html:has(.sida) {
 }
 
 /* ---------- process ---------- */
-.steg {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.4rem;
-}
-.stegItem {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--linje-ljus);
-}
-.stegNr {
-  font-family: var(--disp);
-  font-size: 2.4rem;
-  font-weight: 300;
-  line-height: 1;
-  color: var(--brass-mork);
-}
-.stegItem h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
-.stegItem p {
-  font-size: var(--tx-m);
-  color: var(--ink-mjuk);
-}
 /* Fem steg i två kolumner ger ett tomt fack på sista raden. Tre kolumner
    ger 3+2, vilket läser som en avslutad sektion. */
 @media (max-width: 1000px) {
-  .steg {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
 @media (max-width: 760px) {
   /* Stående: bildremsan i 9:16-klippet slutar vid ca 32 % av höjden.
@@ -910,28 +872,141 @@ html:has(.sida) {
       var(--ink) 100%
     );
   }
-  .steg {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .stegItem:last-child {
     grid-column: 1 / -1;
   }
 }
 @media (max-width: 560px) {
-  .steg {
-    grid-template-columns: 1fr;
-    gap: 1.1rem;
+}
+
+/* ---------- så går det till: klickbara steg, noll JavaScript ----------
+   En dold radioknapp per steg ligger som syskon före flikarna och kortet.
+   :checked väljer både aktiv flik och synlig panel. Radio i stället för
+   en div med onClick ger piltangentsnavigering och rätt roll gratis. */
+.stegBlock {
+  position: relative;
+  display: grid;
+  gap: 1.4rem;
+}
+.stegRadio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.stegVal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+/* Flikarna star pa den LJUSA sektionsytan: mork text, aldrig ljus.
+   Ljus text pa ljus botten gjorde de inaktiva flikarna naestan osynliga. */
+.stegKnapp {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border: 1px solid var(--linje-ljus);
+  border-radius: 3px;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-mjuk);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.stegKnapp:hover {
+  color: var(--ink);
+  border-color: var(--brass-mork);
+}
+.stegKort {
+  border: 1px solid var(--linje);
+  border-radius: 4px;
+  background: var(--ink);
+  /* Mork yta i en ljus sektion — fargen maste vandas explicit har, annars
+     arvs sektionens morka text och rubriken blir mork pa morkt. */
+  color: var(--ljus);
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+}
+.stegPanel {
+  display: none;
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+.stegPanel h3 {
+  color: var(--ljus);
+  font-family: var(--disp);
+  font-weight: 300;
+  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+  letter-spacing: -0.012em;
+  margin-bottom: 0.6rem;
+}
+.stegPanel p {
+  color: var(--ljus-70);
+  max-width: 54ch;
+}
+.stegRitning {
+  display: block;
+  width: clamp(120px, 18vw, 190px);
+  height: auto;
+  overflow: visible;
+}
+.stegRitning path {
+  fill: none;
+  stroke: var(--brass);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.85;
+}
+
+/* Aktiv flik och synlig panel. Fem par, ett per steg. */
+.stegRadio:nth-of-type(1):checked ~ .stegVal .stegKnapp:nth-child(1),
+.stegRadio:nth-of-type(2):checked ~ .stegVal .stegKnapp:nth-child(2),
+.stegRadio:nth-of-type(3):checked ~ .stegVal .stegKnapp:nth-child(3),
+.stegRadio:nth-of-type(4):checked ~ .stegVal .stegKnapp:nth-child(4),
+.stegRadio:nth-of-type(5):checked ~ .stegVal .stegKnapp:nth-child(5) {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: var(--ink);
+}
+.stegRadio:nth-of-type(1):checked ~ .stegKort .stegPanel:nth-child(1),
+.stegRadio:nth-of-type(2):checked ~ .stegKort .stegPanel:nth-child(2),
+.stegRadio:nth-of-type(3):checked ~ .stegKort .stegPanel:nth-child(3),
+.stegRadio:nth-of-type(4):checked ~ .stegKort .stegPanel:nth-child(4),
+.stegRadio:nth-of-type(5):checked ~ .stegKort .stegPanel:nth-child(5) {
+  display: grid;
+}
+/* Tangentbordsfokus måste synas på flikarna — radion är dold, så ringen
+   sätts på labeln via :focus-visible på inputen. */
+.stegRadio:focus-visible ~ .stegVal .stegKnapp {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+
+/* Panelen glider in när man byter steg. Rörelsen bär inget innehåll, så den
+   stängs av helt vid prefers-reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .stegRadio:checked ~ .stegKort .stegPanel {
+    animation: stegIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
-  .stegItem {
-    flex-direction: row;
-    align-items: baseline;
-    gap: 1rem;
-    padding-top: 1.1rem;
-  }
-  .stegNr {
-    font-size: 1.7rem;
+  .stegRadio:checked ~ .stegKort .stegPanel .stegRitning path {
+    stroke-dasharray: 500;
+    animation: ritas 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 }
+@keyframes stegIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 700px) {
+  .stegPanel { grid-template-columns: 1fr; }
+  .stegRitning { width: 130px; }
+}
+
 
 /* ---------- varför ---------- */
 .varforGrid {

@@ -156,34 +156,84 @@ const TJANSTER = [
   },
 ];
 
+/* En ritning per steg, i samma linjespråk som tjänstekorten. */
+const STEGRITNINGAR = {
+  matning: (
+    <>
+      <path d="M14 74h172v22H14z" />
+      <path d="M32 74v10M50 74v14M68 74v10M86 74v14M104 74v10M122 74v14M140 74v10M158 74v14" />
+      <path d="M14 56h172M14 50v12M186 50v12" />
+      <path d="M60 30h80" />
+    </>
+  ),
+  ritning: (
+    <>
+      <path d="M28 18h144v84H28z" />
+      <path d="M44 38h64M44 52h96M44 66h48" />
+      <path d="M120 60h36v30h-36z" />
+      <path d="M28 110h144M28 106v8M172 106v8" />
+    </>
+  ),
+  tillverkning: (
+    <>
+      <path d="M18 62h164" />
+      <path d="M18 62l8-10 8 10 8-10 8 10 8-10 8 10 8-10 8 10 8-10 8 10 8-10 8 10 8-10 8 10 8-10 8 10 8-10 8 10 8-10 8 10" />
+      <path d="M18 78h164v18H18z" />
+      <path d="M92 30v20" />
+    </>
+  ),
+  montering: (
+    <>
+      <path d="M100 18v46" />
+      <path d="M88 30h24M88 40h24M88 50h24" />
+      <path d="M100 64l-10 12h20z" />
+      <path d="M30 96h140" />
+      <path d="M46 96V84h108v12" />
+    </>
+  ),
+  genomgang: (
+    <>
+      <path d="M34 20h132v80H34z" />
+      <path d="M100 20v80" />
+      <path d="M86 56h6M108 56h6" />
+      <path d="M52 74l14 14 28-32" />
+    </>
+  ),
+};
+
 const STEG = [
   {
     nr: '1',
     namn: 'Kostnadsfri mätning',
+    ritning: 'matning',
     text:
       'Vi kommer hem, mäter och tittar på vinklarna. Du får höra vad som går att göra med ytan och vad det kostar. Räcker en hyllsektion säger vi det.',
   },
   {
     nr: '2',
     namn: 'Ritning och fast pris',
+    ritning: 'ritning',
     text:
       'Du ser hur det kommer att sitta innan något beställs, och priset sätts innan vi börjar. Hittar vi något oväntat bakom gipsen ringer vi först.',
   },
   {
     nr: '3',
     namn: 'Tillverkning',
+    ritning: 'tillverkning',
     text:
       'Delarna tillverkas efter dina mått. Det är därför de passar mot ett tak som lutar och en vägg som inte är rak någonstans.',
   },
   {
     nr: '4',
     namn: 'Montering',
+    ritning: 'montering',
     text:
       'Vi monterar på plats och skär till mot taket där det behövs. Vi städar efter oss varje dag, inte bara den sista.',
   },
   {
     nr: '5',
     namn: 'Genomgång',
+    ritning: 'genomgang',
     text:
       'Vi går igenom allt tillsammans innan vi åker. Sitter en lucka emot justerar vi den då, inte om en månad.',
   },
@@ -447,7 +497,6 @@ export default function NordicSnickareDemo() {
           <div className={styles.tjanster}>
             {TJANSTER.map((t) => (
               <article className={styles.tjanst} key={t.nr}>
-                <span className={styles.tjanstNr}>{t.nr}</span>
                 <svg className={styles.ritning} viewBox="0 0 200 120" aria-hidden="true">
                   {RITNINGAR[t.ritning]}
                 </svg>
@@ -478,17 +527,43 @@ export default function NordicSnickareDemo() {
             </p>
           </div>
 
-          <ol className={styles.steg}>
-            {STEG.map((s) => (
-              <li className={styles.stegItem} key={s.nr}>
-                <span className={styles.stegNr}>{s.nr}</span>
-                <div>
-                  <h3>{s.namn}</h3>
-                  <p>{s.text}</p>
-                </div>
-              </li>
+          {/* Klickbara steg utan en rad JavaScript: en dold radioknapp per
+              steg, och :checked visar rätt panel. Radio ger dessutom
+              piltangentsnavigering gratis, vilket en div med onClick inte gör. */}
+          <div className={styles.stegBlock}>
+            {STEG.map((s, i) => (
+              <input
+                type="radio"
+                name="steg"
+                id={`steg-${s.nr}`}
+                className={styles.stegRadio}
+                defaultChecked={i === 0}
+                key={`r-${s.nr}`}
+              />
             ))}
-          </ol>
+
+            <div className={styles.stegVal} role="tablist" aria-label="Så går det till">
+              {STEG.map((s) => (
+                <label className={styles.stegKnapp} htmlFor={`steg-${s.nr}`} key={`l-${s.nr}`}>
+                  <span>{s.namn}</span>
+                </label>
+              ))}
+            </div>
+
+            <div className={styles.stegKort}>
+              {STEG.map((s) => (
+                <article className={styles.stegPanel} key={`p-${s.nr}`}>
+                  <svg className={styles.stegRitning} viewBox="0 0 200 120" aria-hidden="true">
+                    {STEGRITNINGAR[s.ritning]}
+                  </svg>
+                  <div>
+                    <h3>{s.namn}</h3>
+                    <p>{s.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

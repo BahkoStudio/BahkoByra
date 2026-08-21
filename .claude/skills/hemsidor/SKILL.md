@@ -237,7 +237,8 @@ aldrig tvärtom.
 | Hero-text | **EN rubrik.** Ingen lede, ingen tagline | Filmen visar redan vad som görs; text som upprepar den är slop och ströks 2026-08-21. Etikett ovanför rubriken får stå — den säger vad firman gör, vilket en okänd firma behöver. |
 | Hero-video | `autoplay muted loop playsinline preload="metadata"` + `poster`, `object-fit: cover` över hela heron | **Drönarshot är standard** (Mathias 2026-08-21): en FPV-flygning som glider genom rummet och landar på arbetet visar både hemmet och hantverket. En locked-off-shot ratades. Gradient över videon för läsbarhet: nästan klar där förvandlingen sker, tät nedtill där rubriken står. Playwrights Chromium saknar H.264 — verifiera via poster och HTTP 200, **inte** `readyState`. Postern måste matcha bildruta 0; börjar klippet i en dålig vy, trimma bort de första sekunderna i stället för att välja en annan poster. |
 | Hero per orientering | Två `<video>`, ett liggande och ett stående, växlade med CSS | Inget script: `<source media>` fungerar inte för video i Chrome, och ett orientation-script bryter noll-klient-JS. Selektorerna behöver två klasser (se kaskad-lärdomen). Det dolda elementet kostar bara sin `preload="metadata"`. |
-| Tjänstekort | En måttsatt linjeritning per kort som ritar sig själv i vy | `stroke-dasharray` + `animation-timeline: view()` bakom `@supports`, med **färdigritat utgångsläge** — annars står korten tomma utan stöd. Ritningen är nischens eget språk och bär kortet utan att kosta en bild. `vector-effect: non-scaling-stroke` måste sitta på formen, inte på `svg`: den ärvs inte, och utan den blir linjen hårfin vid nedskalning. |
+| Tjänstekort | En måttsatt linjeritning per kort som ritar sig själv i vy | `stroke-dasharray` + `animation-timeline: view()` bakom `@supports`, med **färdigritat utgångsläge** — annars står korten tomma utan stöd. Ritningen är nischens eget språk och bär kortet utan att kosta en bild. `vector-effect: non-scaling-stroke` måste sitta på formen, inte på `svg`: den ärvs inte, och utan den blir linjen hårfin vid nedskalning. **Inga ordningssiffror** (01, 02 …) — de ratades som AI-slop 2026-08-21. |
+| Klickbara steg | En dold `<input type="radio">` per steg som syskon FÖRE flikarna och kortet; `:checked ~` väljer aktiv flik och synlig panel | Radio i stället för en `div` med onClick ger piltangentsnavigering och rätt roll gratis, och håller sidan på noll klient-JS. Sätt fokusringen via `.stegRadio:focus-visible ~` — radion är dold, så ringen måste flyttas till labeln. Mät att exakt EN panel är synlig, i webbläsaren. |
 | Före/efter | Två stillbilder i ett par | Starkare och lättare än video här. Märk som illustration. |
 | Scroll-reveal | `animation-timeline: view()` bakom `@supports`, synligt utgångsläge | Sidan måste vara komplett utan stöd. |
 | Bildlådor | `next/image` med `width`/`height` | Varje lazy-bild måste ha styrd låda, annars hoppar innehållet när den laddar (iOS saknar Chromes scroll-förankring). Ska ration styras i CSS trots attributen: `height:auto` **före** `aspect-ratio`, annars vinner attributhöjden och ration ignoreras helt. |
@@ -265,6 +266,11 @@ typografin, copyn, mediasökvägarna och modalens mailto-ärende.
   element som faktiskt renderas — det syns inte i koden, bara i webbläsaren.
 - Kontrast: ljus yta → mörk text, aldrig tvärtom. Bahko-element följer
   knappregeln: marinblå `#0A1628` på smaragd `#10B981` (7,1:1), aldrig vit text
+- **En mörk yta inuti en ljus sektion måste vända textfärgen explicit.** Ärver
+  den sektionens färg blir rubriken mörk på mörkt. Hände i processkortet
+  2026-08-21: både de inaktiva flikarna (ljus text på ljus yta) och
+  panelrubriken (mörk på mörk) föll samtidigt. Mät varje ny yta, båda
+  riktningarna.
   på smaragd (2,54:1).
 - Typskala i fem steg som CSS-variabler, inte lösa värden. Inget under 11 px.
 - **Inga versaler på rader över ~35 tecken** — ordformen försvinner. Räkna
