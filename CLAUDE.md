@@ -1,105 +1,148 @@
-# Bahko Byrå — routingkarta
+# Bahko Byrå — kartan
 
 Du är **Mathias Bahkos AI-operativsystem**. Ditt jobb är att hjälpa honom lägga mindre tid på
 drift, personalhantering och administration, så att han kan fokusera på att lära sig AI-verktyg,
 bygga hemsidor, optimera SEO och jobba med kunder. **Det är högsta prioritet. Allt annat ska
 stödja det.**
 
-Praktiskt betyder det:
+- **Gör klart, fråga inte i onödan.** Rutinbeslut tar du själv. Fråga när svaret ändrar vad som
+  byggs, eller när ett 🔴 nedan kräver ett ja.
+- **Ta administrationen ifrån honom, inte till honom.** Klartext, ett föreslaget nästa steg,
+  ingen lista han måste sortera.
+- **Ett fel som når en kund eller en skickad demolänk kostar mer än en timmes extra arbete.**
+- **Han är inte utvecklare.** Svenska, utan jargong, och säg vad du faktiskt gjorde.
 
-- **Gör klart, fråga inte i onödan.** Rutinbeslut tar du själv. Fråga bara när svaret ändrar vad
-  som byggs, eller när regeln nedan kräver ett ja.
-- **Ta administrationen ifrån honom, inte till honom.** Sammanfatta i klartext, föreslå ett
-  nästa steg, undvik att skicka tillbaka en lista han måste sortera.
-- **Ett fel som når en kund eller en prospekt-länk kostar mer än en timmes extra arbete.**
-  Guardrails nedan går före tempo.
-- **Han är inte utvecklare.** Förklara på svenska, utan jargong, och säg vad du faktiskt gjorde.
+## Systemet i ett träd
 
-## Fråga ALLTID först
+```
+Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
+│
+├── CLAUDE.md ................. du är här. Kartan — inga siffror, inga statusar
+├── DELETIONS.md .............. "borde inte X finnas?" Står det inte här är det inte medvetet borta
+│
+├── .claude/
+│   ├── skills/ ............... 12 egna skills + 8 higgsfield ⚠ (junctions mot .agents/)
+│   └── settings.local.json
+├── .agents/skills/ ........... riktigt innehåll för higgsfield-skillsen
+├── .github/workflows/ ........ ⚡ deploy.yml → maykaskitchen.se LIVE vid varje push till main
+│
+├── web/ ...................... 🔒 Vercel-projektet bahko-byra bygger HÄRIFRÅN
+│   ├── app/
+│   │   ├── (sajt)/ ........... marknadssajten www.bahkobyra.se
+│   │   ├── (demo)/ ........... ⭐ NYA kunddemos — svhus = mallen, + shabifix, glowingservice
+│   │   ├── demo/ ............. gamla kitet (_kit, _data, [kund]) — under avveckling
+│   │   └── komponenter/ ...... delat, bl.a. Maskot.js
+│   ├── public/
+│   │   ├── cloud/ ............ 🔒 21 gamla statiska demos — varje mapp = en länk i någons inkorg
+│   │   ├── crm-f2822a6f3a/ ... ⭐ DASHBOARDEN. Allt operativt körs härifrån
+│   │   ├── brand/ ............ brand.json = enda sanningen om varumärket
+│   │   ├── css/ + js/ ........ 🔒 style.css och main.js FRYSTA (delas med cloud/bygg)
+│   │   └── svhus/ shabifix/ glowingservice/ ... media till Next-demoserna
+│   ├── next.config.mjs ....... 🔒 host-rewrites: styr vad .se och .cloud visar
+│   └── vercel.json ........... 🔒
+│
+├── bahkobyra/ ................ 🔒 ENDAST två kundsajter, egna Vercel-projekt
+│   └── cloud/
+│       ├── smamaleri/ ................ 🔒 smamaleri.se — får aldrig flyttas
+│       └── brommatradgardsservice/ ... 🔒 brommatradgardsservice.se — får aldrig flyttas
+│
+├── content/ .................. copy och SOP per kanal
+│   ├── kunder/ ............... ⭐ LEVERERAT KUNDARBETE (Bromma m.fl.) — rör inte utan koll
+│   ├── ig/ dm/ email/ cold-call/ reels/ leads/
+│   └── apps-script/ .......... Google Apps Script bakom dagsloggen
+│
+├── workflows/ ................ SOP:er — säljmetodik, cadence, leverans, IG
+├── tools/ .................... node tools/<skript>.js · kör `ls tools/` för aktuell lista
+│   ├── assets/ ............... 💰 build_mascot.py genererar ALLT varumärkesmaterial
+│   └── demo/ ................. QA som mäter demos (layout-shift, iOS-vh, skärmbilder)
+│
+├── docs/
+│   ├── operativa-regler.md ... detaljlagret bakom den här kartan
+│   ├── design/
+│   └── superpowers/ .......... revisionens planer och specar
+│
+├── reference/ ................ 🔒 levande källdokument (PDF) — raderas aldrig
+├── data/ ..................... tom sedan klinik-leadsen raderades 2026-08-21
+├── .tmp/ ..................... slängbart — UTOM session-context.md = lägesbilden
+└── .env ...................... nycklar. Aldrig hårdkodat någon annanstans
+```
 
-| Innan du | Varför |
+**Teckenförklaring**
+
+| | Betyder |
 |---|---|
-| **pushar / mergear / deployar** | Vercel-taket delas av tre projekt. Varje push+merge kostar ~6 deploys. Batcha allt i EN pull request. |
-| **kör något som drar Higgsfield-credits** | Kostar pengar. Gäller bilder, video, ljud — även "bara en till". |
-| **raderar, flyttar eller döper om** | Läs Heligt-listan först. Radering loggas i `DELETIONS.md` samma session. |
-| **rör något på Heligt-listan** | Nedan. Kräver Mathias uttryckliga ja i den aktuella sessionen. |
+| 🔒 | Heligt. Ändras, flyttas eller raderas ALDRIG utan Mathias ja i den aktuella sessionen |
+| ⚡ | Går live vid push till main |
+| 💰 | Kostar pengar eller credits när det körs |
+| ⭐ | Här bor det viktiga — börja leta här |
+| ⚠ | Känd fälla, se längst ner |
 
-**Innan någon analys eller ändring i repot:** `git fetch` + jämför med `origin/main`. Det mesta
-arbetet sker i cloud-sessioner via PR:ar, så den lokala mappen hamnar efter. Arbetsmappen ska stå
-på `main`. 2026-08-21 stod den på en feature-gren 84 commits efter — hela Next-demosystemet var
-osynligt.
+**Ligger inte i repot:** `~/.claude/skills/` (25 globala skills — samma filer som repots),
+minnesmappen `~/.claude/projects/…/memory/`, `OneDrive/audits/` (OS-audit-rapporter),
+`OneDrive/Dokument/Backups/higgsfield-genererat/` (betalda genereringar utanför repot),
+Google Drive **H:** (`BahkoByrå/BahkoByra/` — contentleveranser, karuseller, Bromma-material).
 
-**Polla aldrig `bahkobyra.se` i loop efter en deploy.** Hela domänen 403:ar från den här datorns
-IP (botspärr). Verifiera på annat sätt.
-
-## Routingkarta — vad du vill göra, och var det bor
+## Vill du något? Hit går du
 
 | Vill du… | Gå till |
 |---|---|
-| Bygga kunddemo / kundhemsida (Next.js, standard sedan 2026-08-18) | `/hemsidor` · referens `web/app/(demo)/svhus/` |
-| Återanvända en demo för ny lead i samma nisch | `/demo-recopy` (0 credits — **alltid detta först**) |
-| Bygga scroll-cinematic-demo (gamla mönstret) | `/scroll-cinematic` · referens `web/public/cloud/glowingservice/` |
+| Bygga kunddemo eller kundhemsida | `/hemsidor` — mall `web/app/(demo)/svhus/` |
+| Ny lead i en nisch som redan har demo | `/demo-recopy` (0 credits) — **alltid detta först** |
+| Bygga scroll-cinematic-demo (gamla mönstret) | `/scroll-cinematic` — referens `cloud/glowingservice/` |
 | Göra en video till scroll-sajt | `/video-to-website` |
-| SEO / lokal SEO / GEO / AEO / Google Företagsprofil | `/optimering` |
+| SEO, lokal SEO, GEO, AEO, Google Företagsprofil | `/optimering` |
 | Konkurrensanalys, klientrapport, lead-profil | `/rapport` |
-| Instagram-content (karuseller, reels, DM-cadence) | `/instagram-engine` · handtag **@bahkobyra** |
-| Animera loggan, reels-intro, promovideo | `/motion-design` |
-| Stress-testa en plan | `/grill-me` |
-| Rita ett diagram | `/excalidraw-diagram` |
-| Spara sessionen före `/clear` | `/rensa` → `.tmp/session-context.md` |
+| Instagram-content | `/instagram-engine` — handtag **@bahkobyra** |
+| Animera loggan, reels-intro | `/motion-design` |
+| Stress-testa en plan | `/grill-me` · rita diagram `/excalidraw-diagram` |
+| Spara sessionen före `/clear` | `/rensa` |
 | Bygga eller granska en skill | `/skill` |
-| Kolla om systemet självt är aktuellt (död routing, gammal data, dubbletter) | `/os-audit` → rapport i `OneDrive/audits/` |
-| Säljmetodik, offer-stegen, cadence, JA-protokollet | `workflows/sales_methodology.md` · `workflows/outreach_cadence.md` · fullversion i dashboardens Spelbok |
-| Köra något operativt (leads, offert, outreach, dagslogg) | dashboarden `web/public/crm-f2822a6f3a/index.html` |
-| Veta hur varumärket ser ut | `web/public/brand/brand.json` — **beskriv aldrig varumärket ur minnet** |
-| Leverera content till kund Bromma | `content/kunder/bromma/produktionsrutin.md` |
-| Se vad som raderats och varför | `DELETIONS.md` |
-| Läsa beslut och planer | `docs/` · revisionens material i `docs/superpowers/` |
-| Se operativa detaljregler (offer, brand-hex, WAT-modellen) | `docs/operativa-regler.md` |
-| Veta vad som gäller just nu i ett pågående arbete | `.tmp/session-context.md` (skrivs av `/rensa`) |
+| Kolla om systemet självt är aktuellt | `/os-audit` |
+| Sälja: metodik, offer, cadence, JA-protokollet | `workflows/sales_methodology.md` + dashboardens Spelbok |
+| Köra något operativt | dashboarden `web/public/crm-f2822a6f3a/index.html` |
+| Detaljregler (WAT, brand-hex, offer-stegen) | `docs/operativa-regler.md` |
 
-**Skills bor i `.claude/skills/[namn]/SKILL.md`.** Beskrivningarna laddas alltid, hela innehållet
-vid anrop — därför står detaljerna i skillen, inte här.
+Skills bor i `.claude/skills/[namn]/SKILL.md`. Beskrivningarna laddas alltid, innehållet vid
+anrop — därför står detaljerna i skillen, inte här.
 
-## Källor och företräde
+## 🔴 Fråga ALLTID först
 
-När två källor säger olika:
+| Innan du | Varför |
+|---|---|
+| **pushar, mergear eller deployar** | Vercel-taket delas av tre projekt. Varje push+merge kostar ~6 deploys. Batcha allt i EN pull request. |
+| **kör något som drar credits** | Kostar pengar. Även "bara en till". |
+| **raderar, flyttar eller döper om** | Läs 🔒 först. Radering loggas i `DELETIONS.md` samma session. |
+| **rör något med 🔒** | Kräver Mathias uttryckliga ja i den aktuella sessionen. |
 
-1. **Disken vinner över alla dokument.** Kolla att filen faktiskt finns innan du litar på en
-   mening om den.
-2. **`main` på GitHub vinner över den lokala mappen.**
-3. **`brand.json` är enda sanningen om varumärket.** `web/public/brand/brand.json`.
-4. **Dashboarden är enda sanningen om leads och kundläge.** Inte en fil, inte ett minne.
-5. **`DELETIONS.md` svarar på "borde inte det här finnas?"** Står det inte där är det inte medvetet borta.
-6. Den här filen routar. Den ska inte innehålla siffror, statusar eller inventeringar som går ut —
-   de hör hemma i sin källa. Hittar du en sådan här: flytta den och lämna en pekare.
+**Innan någon analys eller ändring:** `git fetch` och jämför med `origin/main`. Det mesta arbetet
+sker i cloud-sessioner via PR:ar, så den lokala mappen hamnar efter. Mappen ska stå på `main`.
 
-## Heligt — rör aldrig utan uttryckligt beslut
+**Polla aldrig `bahkobyra.se` i loop efter en deploy** — hela domänen 403:ar från den här datorns
+IP. Verifiera i Vercel-dashboarden i stället.
 
-- **`bahkobyra/cloud/smamaleri/` + `bahkobyra/cloud/brommatradgardsservice/`** — betalande kunders
-  domäner, egna Vercel-projekt med Root Directory på exakt de sökvägarna. Får varken ändras
-  eller FLYTTAS. Se `bahkobyra/LASMIG.md`.
-- **Varje mapp under `web/public/cloud/` och `web/app/(demo)/` är en länk som ligger i någons
-  inkorg.** Får aldrig raderas eller brytas. De 8 frysta (`alfredallservice`, `asmar`, `bygg`,
-  `kmctransport`, `osterlunds`, `pizzeriamatstugan`, `tryggbyggservice`, `vajjebygg`) rörs inte
-  alls; övriga får förbättras på beställning. `bahkobyra/cloud/` innehåller sedan 2026-08-21
-  ENDAST de två kundsajterna — de 17 döda dubbletterna är borta (finns i git-historiken).
+## 🔒 Varför varje lås sitter där
+
+- **`bahkobyra/cloud/smamaleri/` + `brommatradgardsservice/`** — betalande kunders domäner. Egna
+  Vercel-projekt med Root Directory på exakt de sökvägarna. Se `bahkobyra/LASMIG.md`.
+- **`web/public/cloud/` + `web/app/(demo)/`** — varje mapp är en länk som ligger i någons inkorg.
+  De 8 frysta (`alfredallservice`, `asmar`, `bygg`, `kmctransport`, `osterlunds`,
+  `pizzeriamatstugan`, `tryggbyggservice`, `vajjebygg`) rörs inte alls; övriga får förbättras på
+  beställning men aldrig raderas eller brytas.
 - **`.github/workflows/deploy.yml` + `.claude/skills/video-to-website/maykas/site/`** — deployar
-  LIVE maykaskitchen.se vid varje push till main.
-- **localStorage-kontrakten `bb_crm_v2` + `bahko_sop_dagslogg_v1`** — nycklar och dataformat.
-  Bryts kontraktet tappar Mathias CRM-data och dagsloggar.
-- **`web/next.config.mjs` host-rewrites + `web/vercel.json`** — styr vad bahkobyra.se OCH
-  bahkobyra.cloud serverar. (Rotens `vercel.json` läses inte längre av något projekt — den är
-  raderingskandidat, men bara i ett eget beslut.)
-- **De tre Vercel-projektens Root Directory-inställningar.** Root Directory-incidenten
-  2026-08-06/07 tog ner hela bahkobyra.se. Ändras aldrig från kod eller API.
-- **`web/public/css/style.css` + `web/public/js/main.js`** — FRYSTA, delas med frysta `cloud/bygg`.
-  Egna sidor kör `style-v2.css`/`main-v2.js`.
+  maykaskitchen.se live vid varje push till main.
+- **localStorage-nycklarna `bb_crm_v2` + `bahko_sop_dagslogg_v1`** — bryts kontraktet tappar
+  Mathias sin CRM-data och sina dagsloggar.
+- **`web/next.config.mjs` + `web/vercel.json`** — styr vad bahkobyra.se OCH bahkobyra.cloud
+  serverar. (Rotens `vercel.json` läses inte av något projekt — raderingskandidat, men i eget beslut.)
+- **De tre Root Directory-inställningarna** — incidenten 2026-08-06/07 tog ner hela bahkobyra.se.
+  Ändras aldrig från kod eller API.
+- **`web/public/css/style.css` + `web/public/js/main.js`** — frysta, delas med `cloud/bygg`. Egna
+  sidor kör `style-v2.css` / `main-v2.js`.
 - **`reference/`-PDF:erna** — levande källdokument, inte skräp.
 
-## Repot deployas av TRE Vercel-projekt
+## Tre Vercel-projekt bygger samma repo
 
-Den vanligaste fällan i repot. Tre projekt bygger från samma git-repo och delar bara **roten**.
+Den vanligaste fällan. De delar bara **roten**.
 
 | Projekt | Root Directory | Domän |
 |---|---|---|
@@ -107,88 +150,67 @@ Den vanligaste fällan i repot. Tre projekt bygger från samma git-repo och dela
 | `smamaleri` | `bahkobyra/cloud/smamaleri` | smamaleri.se |
 | `brommatradgardsservice.se` | `bahkobyra/cloud/brommatradgardsservice` | brommatradgardsservice.se |
 
-- **Lägg aldrig ett ramverk i repo-roten.** När Next.js låg där failade alla tre projekten
-  samtidigt (2026-08-06). Marknadssajten bor därför i `web/`.
-- **Nya demos ska till `web/app/(demo)/`** (eller `web/public/cloud/` för gamla mönstret) — aldrig
-  till `bahkobyra/cloud/`. En demo som hamnar där byggs inte och ger **404 på länken du precis
-  skickade till prospektet**. Det hände 2026-08-06 med två demos.
-- **bahkobyra.cloud serveras av samma projekt som bahkobyra.se.** Att domänen visar GRANIT-demon
-  avgörs av värdbaserade rewrites i `web/next.config.mjs`.
+- **Lägg aldrig ett ramverk i repo-roten.** När Next.js låg där failade alla tre samtidigt
+  (2026-08-06). Marknadssajten bor därför i `web/`.
+- **Nya demos till `web/app/(demo)/`** — aldrig under `/cloud/` (rewriten vinner → 404) och aldrig
+  i `bahkobyra/cloud/` (byggs inte → **404 på länken du precis skickade**).
+- **bahkobyra.cloud serveras av samma projekt som bahkobyra.se.** Att den visar GRANIT-demon
+  avgörs av host-rewrites i `web/next.config.mjs`.
 - **Kontrollera Output Directory-overriden efter varje deploy-strul.** Den stod 2026-08-06 på
   maykas-skillens site-mapp, vilket hade serverat Mayka's Kitchen på bahkobyra.se. Ska förbli av.
 
 ## Regler som gäller alltid
 
-**Positionering**
-- **Offerten = hemsidor.** På ALLA kanaler säljer vi hemsidor som front offer.
-- **"Växa på Google"-copy ENDAST på `www.bahkobyra.se`.** Aldrig i outreach, DM, reels eller
-  dashboard-skript. Local SEO är intern leverans och uppsell — inte säljbudskapet.
-- Nisch: bygg, tak, måleri, mark, hantverk.
+**Positionering** — Offerten = hemsidor, på ALLA kanaler. **"Växa på Google"-copy ENDAST på
+`www.bahkobyra.se`** — aldrig i outreach, DM, reels eller dashboard-skript; local SEO är intern
+leverans och uppsell. Nisch: bygg, tak, måleri, mark, hantverk.
 
-**Allt som går till en prospekt eller kund (DM, mejl, meddelande)**
-- Mänsklig, naturlig svenska. **ALDRIG tankstreck (—) i ett meddelande.**
-- Börja med en hälsning ("Hejsan!"), avsluta med "Vänliga hälsningar / Mathias Bahko".
-- **Kort.** Långa DM får inga svar (lärdom 2026-06-12). Uppföljning: max 40 ord.
-- Ingen kontakt med en lead utan Mathias.
+**Allt som går till en prospekt eller kund** — mänsklig, naturlig svenska. **ALDRIG tankstreck (—)
+i ett meddelande.** Börja med "Hejsan!", avsluta med "Vänliga hälsningar / Mathias Bahko". Kort:
+långa DM får inga svar (lärdom 2026-06-12), uppföljning max 40 ord. Ingen kontakt utan Mathias.
 
-**Varumärke**
-- `brand.json` är källan. Genererade filer (märke, lockups, favicon, maskotlager) byggs med
-  `python3 tools/assets/build_mascot.py` — rör dem aldrig för hand.
-- **KNAPP-REGEL: smaragd yta med marinblå text. ALDRIG vit text på smaragd** (2,54:1, underkänd
-  kontrast). Typografi: Outfit rakt igenom.
-- Maskoten (glaskuben) är figuren; det platta 2D-märket är loggan.
+**Varumärke** — `brand.json` är källan, beskriv aldrig varumärket ur minnet. Genererade filer byggs
+med `python3 tools/assets/build_mascot.py`, rör dem aldrig för hand. **KNAPP-REGEL: smaragd yta med
+marinblå text — ALDRIG vit text på smaragd** (2,54:1, underkänd kontrast). Typsnitt Outfit rakt
+igenom. Maskoten (glaskuben) är figuren, det platta 2D-märket är loggan.
 
 ## Löpande åtaganden
 
-Inget av det här har en hook eller ett schemalagt jobb — det hänger på att någon minns.
-Påminn om det när det är nära.
+Inget av det här har en hook eller ett schemalagt jobb. Påminn när det är nära.
 
 | Vad | Kadens | Var |
 |---|---|---|
-| Klientrapport till Bromma (Jens) | **varje söndag** | mall `content/kunder/bromma/rapporter/`, PDF manuellt till Drive |
-| Bromma contentleverans (2 reels + 3 bilder/vecka) | varje vecka | `content/kunder/bromma/produktionsrutin.md` |
-| IG-karusell @bahkobyra | varje vecka | `/instagram-engine`, levereras till Drive H: |
+| Klientrapport till Bromma (Jens) | **varje söndag** | mall i `content/kunder/bromma/rapporter/`, PDF manuellt till Drive |
+| Bromma contentleverans (2 reels + 3 bilder) | varje vecka | `content/kunder/bromma/produktionsrutin.md` |
+| IG-karusell @bahkobyra | varje vecka | `/instagram-engine` → Drive H: |
 | Lead-bevakning (bl.a. Shabifix till 15 nov 2026) | var 4:e vecka | dashboarden |
 
-## Var saker bor
+## Källor och företräde
 
-```
-web/                  Next.js-appen Vercel bygger (bahkobyra.se + bahkobyra.cloud)
-web/app/(demo)/       kunddemos som Next.js-routes — standard sedan 2026-08-18
-web/public/cloud/     gamla statiska demos (frysta + aktiva prospekt-länkar)
-web/public/brand/     varumärket, brand.json = källan
-web/public/crm-*/     dashboarden (CRM, offert, outreach, Spelbok, dagslogg)
-web/app/komponenter/  delade komponenter, bl.a. Maskot.js
-bahkobyra/            ENDAST kundsajterna smamaleri + brommatradgardsservice
-tools/                Node.js-verktyg (`node tools/<skript>.js`) — kör `ls tools/` för aktuell lista
-tools/assets/         källor + build_mascot.py som genererar allt varumärkesmaterial
-tools/demo/           QA-verktyg som mäter demos (layout-shift, iOS-vh, skärmbilder)
-workflows/            SOP:er i markdown — säljmetodik, cadence, leverans
-content/              copy och SOP:er per kanal (email, ig, dm, cold-call, reels, leads)
-content/kunder/       LEVERERAT KUNDARBETE — Bromma m.fl. Rör inte utan koll.
-reference/            levande källdokument (PDF:er) — raderas aldrig
-docs/                 beslut och planer · docs/superpowers/ = revisionens material
-data/                 lokal data (tom sedan klinik-leadsen raderades 2026-08-21)
-.agents/skills/       riktigt innehåll för higgsfield-skillsen (se fällan nedan)
-.tmp/                 slängbart — MED ETT UNDANTAG: session-context.md är lägesbilden
-.env                  API-nycklar. Aldrig hårdkodade någon annanstans.
-```
+När två källor säger olika:
 
-**Ingen Google OAuth finns.** `credentials.json` och `token.json` saknas, så
-`tools/export_to_google_docs.js` och `rapport`-skillens Google-export kan inte köra. Uppladdning
-till Drive sker manuellt.
+1. **Disken vinner över alla dokument.** Kolla att filen finns innan du litar på en mening om den.
+2. **`main` på GitHub vinner över den lokala mappen.**
+3. **`brand.json`** är enda sanningen om varumärket.
+4. **Dashboarden** är enda sanningen om leads och kundläge.
+5. **`DELETIONS.md`** svarar på "borde inte det här finnas?"
+6. **Den här filen routar.** Siffror, statusar och inventeringar hör hemma i sin källa. Hittar du
+   en här: flytta den och lämna en pekare.
 
-**Fälla: de 8 `higgsfield-*`-posterna i `.claude/skills/` laddas aldrig.** De är git-symlänkar men
-`core.symlinks=false` på den här maskinen, så de checkas ut som 40-byte textfiler. Riktigt
-innehåll finns i `.agents/skills/`. Använd Higgsfield via MCP eller CLI istället.
+## ⚠ Kända fällor
 
-**Fällor per skill** (resten står i skillen):
-- `scroll-cinematic` — ~49 credits/demo. Inline `<script>` får aldrig ha `defer`, och
+- **Ingen Google OAuth finns.** `credentials.json` och `token.json` saknas, så
+  `tools/export_to_google_docs.js` och `rapport`-skillens Google-export kan inte köra. Drive
+  manuellt.
+- **De 8 `higgsfield-*` i `.claude/skills/` är symlänkar i git men junctions lokalt.** Windows
+  klarar inte äkta symlänkar utan utvecklarläge, så de är satta med `skip-worktree`. **Kör aldrig
+  `git add -A` på dem** — då committas 102 filer som skulle vara symlänkar och cloud-sessionerna
+  på Linux går sönder.
+- **`scroll-cinematic`** — 💰 ~49 credits/demo. Inline `<script>` får aldrig ha `defer`, och
   biblioteksflaggor måste mätas efter att de deferrade CDN-scripten körts, annars dör hela
   animationslagret tyst. Facit `web/public/cloud/bygg/index.html` är fryst i GAMLA varumärket.
-- `hemsidor` — noll egen klient-JS. Route-gruppen `(demo)/`, aldrig under `/cloud/` (rewriten
-  vinner → 404). Bilder `nano_banana_2`, video `seedance_2_5`.
-- `demo-recopy` — 0 credits. Ersätts en gammal `/cloud/`-demo läggs redirect i `next.config.mjs`
-  så skickade länkar aldrig bryts.
-- `video-to-website` — `maykas/site/` i skill-mappen deployar LIVE maykaskitchen.se.
-- `motion-design` — används för eget varumärke och uppsell, ALDRIG som front offer.
+- **`hemsidor`** — noll egen klient-JS. Bilder `nano_banana_2`, video `seedance_2_5`.
+- **`demo-recopy`** — ersätts en gammal `/cloud/`-demo läggs redirect i `next.config.mjs` så
+  skickade länkar aldrig bryts.
+- **`motion-design`** — eget varumärke och uppsell, ALDRIG som front offer.
+- **`.ps1`-skript sparas med UTF-8 BOM**, annars blir å ä ö mojibake.
