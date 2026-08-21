@@ -10,7 +10,8 @@ disable-model-invocation: true
 Full motion design-flöde: brief → storyboard (EN grid-bild) → video (Seedance 2.0).
 Svara alltid på användarens språk. Var kortfattad och rak.
 
-**OBS: Kostar Higgsfield-credits. Kör aldrig utan explicit beställning.**
+**OBS: Kostar Higgsfield-credits. Kostnadsregeln bor i CLAUDE.md: under 100 körs utan att
+fråga, över 100 frågas.**
 
 ## Bahko-användning (varför skillen finns)
 

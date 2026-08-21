@@ -1,7 +1,7 @@
 # Bahko Byrå — kartan
 
 Du är **Mathias Bahkos AI-operativsystem**. Ditt jobb är att hjälpa honom lägga mindre tid på
-drift, personalhantering och administration, så att han kan fokusera på att lära sig AI-verktyg,
+drift, kundhantering och administration, så att han kan fokusera på att lära sig AI-verktyg,
 bygga hemsidor, optimera SEO och jobba med kunder. **Det är högsta prioritet. Allt annat ska
 stödja det.**
 
@@ -21,7 +21,7 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 ├── DELETIONS.md .............. "borde inte X finnas?" Står det inte här är det inte medvetet borta
 │
 ├── .claude/
-│   ├── skills/ ............... 12 egna skills + 8 higgsfield ⚠ (junctions mot .agents/)
+│   ├── skills/ ............... 12 egna skills + 8 higgsfield (symlänkar → .agents/skills/)
 │   └── settings.local.json
 ├── .agents/skills/ ........... riktigt innehåll för higgsfield-skillsen
 ├── .github/workflows/ ........ ⚡ deploy.yml → maykaskitchen.se LIVE vid varje push till main
@@ -88,7 +88,7 @@ Google Drive **H:** (`BahkoByrå/BahkoByra/` — contentleveranser, karuseller, 
 |---|---|
 | Bygga kunddemo eller kundhemsida | `/hemsidor` — mall `web/app/(demo)/svhus/` |
 | Ny lead i en nisch som redan har demo | `/demo-recopy` (0 credits) — **alltid detta först** |
-| Bygga scroll-cinematic-demo (gamla mönstret) | `/scroll-cinematic` — referens `cloud/glowingservice/` |
+| Bygga scroll-cinematic-demo (gamla mönstret) | `/scroll-cinematic` — referens `web/public/cloud/glowingservice/` |
 | Göra en video till scroll-sajt | `/video-to-website` |
 | SEO, lokal SEO, GEO, AEO, Google Företagsprofil | `/optimering` |
 | Konkurrensanalys, klientrapport, lead-profil | `/rapport` |
@@ -110,7 +110,7 @@ anrop — därför står detaljerna i skillen, inte här.
 | Innan du | Varför |
 |---|---|
 | **pushar, mergear eller deployar** | Vercel-taket delas av tre projekt. Varje push+merge kostar ~6 deploys. Batcha allt i EN pull request. |
-| **kör något som drar credits** | Kostar pengar. Även "bara en till". |
+| **kör något som drar över 100 credits** | Under 100 kör jag på — en AI-bakgrund kostar 2–5. Över 100 frågar jag: en reel ligger på ~150. |
 | **raderar, flyttar eller döper om** | Läs 🔒 först. Radering loggas i `DELETIONS.md` samma session. |
 | **rör något med 🔒** | Kräver Mathias uttryckliga ja i den aktuella sessionen. |
 
@@ -120,25 +120,13 @@ sker i cloud-sessioner via PR:ar, så den lokala mappen hamnar efter. Mappen ska
 **Polla aldrig `bahkobyra.se` i loop efter en deploy** — hela domänen 403:ar från den här datorns
 IP. Verifiera i Vercel-dashboarden i stället.
 
-## 🔒 Varför varje lås sitter där
+## 🔒 Heligt
 
-- **`bahkobyra/cloud/smamaleri/` + `brommatradgardsservice/`** — betalande kunders domäner. Egna
-  Vercel-projekt med Root Directory på exakt de sökvägarna. Se `bahkobyra/LASMIG.md`.
-- **`web/public/cloud/` + `web/app/(demo)/`** — varje mapp är en länk som ligger i någons inkorg.
-  De 8 frysta (`alfredallservice`, `asmar`, `bygg`, `kmctransport`, `osterlunds`,
-  `pizzeriamatstugan`, `tryggbyggservice`, `vajjebygg`) rörs inte alls; övriga får förbättras på
-  beställning men aldrig raderas eller brytas.
-- **`.github/workflows/deploy.yml` + `.claude/skills/video-to-website/maykas/site/`** — deployar
-  maykaskitchen.se live vid varje push till main.
-- **localStorage-nycklarna `bb_crm_v2` + `bahko_sop_dagslogg_v1`** — bryts kontraktet tappar
-  Mathias sin CRM-data och sina dagsloggar.
-- **`web/next.config.mjs` + `web/vercel.json`** — styr vad bahkobyra.se OCH bahkobyra.cloud
-  serverar. (Rotens `vercel.json` läses inte av något projekt — raderingskandidat, men i eget beslut.)
-- **De tre Root Directory-inställningarna** — incidenten 2026-08-06/07 tog ner hela bahkobyra.se.
-  Ändras aldrig från kod eller API.
-- **`web/public/css/style.css` + `web/public/js/main.js`** — frysta, delas med `cloud/bygg`. Egna
-  sidor kör `style-v2.css` / `main-v2.js`.
-- **`reference/`-PDF:erna** — levande källdokument, inte skräp.
+Låsen står i **`docs/heligt.md`** med motiveringen bakom varje. Trädet ovan märker dem med 🔒, så
+du ser vad som är skyddat utan att slå upp något.
+
+Regeln är oförändrad: **rör inget 🔒 utan Mathias uttryckliga ja i den aktuella sessionen.** Är du
+osäker på om något är låst — läs filen innan du gör något, inte efter.
 
 ## Tre Vercel-projekt bygger samma repo
 
@@ -176,14 +164,9 @@ igenom. Maskoten (glaskuben) är figuren, det platta 2D-märket är loggan.
 
 ## Löpande åtaganden
 
-Inget av det här har en hook eller ett schemalagt jobb. Påminn när det är nära.
-
-| Vad | Kadens | Var |
-|---|---|---|
-| Klientrapport till Bromma (Jens) | **varje söndag** | mall i `content/kunder/bromma/rapporter/`, PDF manuellt till Drive |
-| Bromma contentleverans (2 reels + 3 bilder) | varje vecka | `content/kunder/bromma/produktionsrutin.md` |
-| IG-karusell @bahkobyra | varje vecka | `/instagram-engine` → Drive H: |
-| Lead-bevakning (bl.a. Shabifix till 15 nov 2026) | var 4:e vecka | dashboarden |
+Kundåtagandena bor i **`web/public/crm-f2822a6f3a/atagande.json`** (kadens + startdatum, inga
+hårdkodade datum). Läs den vid sessionsstart och säg till när något förfaller inom 2 dagar —
+dashboarden visar samma sak som en banner. Ingenting annat fångar dem.
 
 ## Källor och företräde
 
@@ -192,20 +175,15 @@ När två källor säger olika:
 1. **Disken vinner över alla dokument.** Kolla att filen finns innan du litar på en mening om den.
 2. **`main` på GitHub vinner över den lokala mappen.**
 3. **`brand.json`** är enda sanningen om varumärket.
-4. **Dashboarden** är enda sanningen om leads och kundläge.
+4. **Dashboarden och `atagande.json`** är enda sanningen om leads, kundläge och åtaganden.
 5. **`DELETIONS.md`** svarar på "borde inte det här finnas?"
-6. **Den här filen routar.** Siffror, statusar och inventeringar hör hemma i sin källa. Hittar du
+6. **Säger en skill "aldrig utan beställning" finns det inte längre** — en enda regel gäller för
+   pengar: över 100 credits frågar jag, under kör jag.
+7. **Den här filen routar.** Siffror, statusar och inventeringar hör hemma i sin källa. Hittar du
    en här: flytta den och lämna en pekare.
 
-## ⚠ Kända fällor
+## ⚠ Kända fällor i repot
 
-- **Ingen Google OAuth finns.** `credentials.json` och `token.json` saknas, så
-  `tools/export_to_google_docs.js` och `rapport`-skillens Google-export kan inte köra. Drive
-  manuellt.
-- **De 8 `higgsfield-*` i `.claude/skills/` är symlänkar i git men junctions lokalt.** Windows
-  klarar inte äkta symlänkar utan utvecklarläge, så de är satta med `skip-worktree`. **Kör aldrig
-  `git add -A` på dem** — då committas 102 filer som skulle vara symlänkar och cloud-sessionerna
-  på Linux går sönder.
 - **`scroll-cinematic`** — 💰 ~49 credits/demo. Inline `<script>` får aldrig ha `defer`, och
   biblioteksflaggor måste mätas efter att de deferrade CDN-scripten körts, annars dör hela
   animationslagret tyst. Facit `web/public/cloud/bygg/index.html` är fryst i GAMLA varumärket.
@@ -213,4 +191,6 @@ När två källor säger olika:
 - **`demo-recopy`** — ersätts en gammal `/cloud/`-demo läggs redirect i `next.config.mjs` så
   skickade länkar aldrig bryts.
 - **`motion-design`** — eget varumärke och uppsell, ALDRIG som front offer.
-- **`.ps1`-skript sparas med UTF-8 BOM**, annars blir å ä ö mojibake.
+
+Fällor som bara gäller Mathias dator (symlänkar, saknad Google OAuth, botspärren, UTF-8 BOM) bor i
+`CLAUDE.local.md`.

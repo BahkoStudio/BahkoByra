@@ -34,3 +34,6 @@ server.log
 # (flyttat till OneDrive/Dokument/Backups/higgsfield-genererat/ 2026-08-21)
 bahkobyra/BahkoByrå asset för hemsidor/
 start-server.bat
+
+# Maskinspecifika instruktioner - bara denna dator
+CLAUDE.local.md

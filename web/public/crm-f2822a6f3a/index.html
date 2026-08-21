@@ -36,6 +36,17 @@ input,select,textarea{font:inherit;color:var(--ink)}
 :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 ::selection{background:var(--gold);color:var(--navy)}
 
+/* ── ÅTAGANDEN: banner, syns bara när något förfaller inom 2 dagar ── */
+#atagande{display:none;gap:.55rem;flex-direction:column;
+  background:var(--warn-bg);border-bottom:1px solid var(--warn);
+  padding:.75rem clamp(1rem,3vw,2rem)}
+#atagande.pa{display:flex}
+#atagande .rub{font-weight:700;color:var(--warn);font-size:.9rem;letter-spacing:.02em;text-transform:uppercase}
+#atagande ul{list-style:none;display:flex;flex-direction:column;gap:.25rem}
+#atagande li{font-size:.95rem;color:var(--ink-70)}
+#atagande li b{color:var(--ink)}
+#atagande li span{color:var(--ink-50);font-size:.88rem}
+
 /* ── HEADER ── */
 header{position:sticky;top:0;z-index:40;background:rgba(248,250,252,.94);backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line-2);padding:.85rem clamp(1rem,3vw,2rem);
@@ -254,6 +265,8 @@ body:not(.vy-varma) .bara-varm{display:none}
 </style>
 </head>
 <body>
+
+<div id="atagande" role="status" aria-live="polite"></div>
 
 <header>
   <div class="brand"><img src="/brand/mark.svg" alt="" onerror="this.remove()">Bahko <em>CRM</em><span class="tag">Bygg &amp; hantverk</span></div>
@@ -1464,6 +1477,67 @@ setVy((function(){
     return VYER[v]?v:'kalla';
   }catch(e){return 'kalla';}
 })());
+
+/* ── ÅTAGANDEN ────────────────────────────────────────────────────────────
+   Läser atagande.json ur samma mapp och visar en banner ENDAST när något
+   förfaller inom 2 dagar. Tyst annars. Rör ingen localStorage och inga
+   CRM-nycklar. Går filen inte att hämta (t.ex. sidan öppnad som file://)
+   renderas ingen banner och sidan fungerar precis som förut.
+
+   Datan har kadens + startdatum i stället för hårdkodade datum, så den
+   inte går ut på det sätt en datumlista gör. */
+(function(){
+  var VECKODAG={sondag:0,mandag:1,tisdag:2,onsdag:3,torsdag:4,fredag:5,lordag:6};
+  var DAG=86400000, INOM=2;
+
+  function midnatt(d){var n=new Date(d);n.setHours(0,0,0,0);return n;}
+
+  /* Nästa förfallodatum från och med idag. Har raden en veckodag styr den;
+     annars stegas startdatumet framåt med kadensen. */
+  function nasta(a,idag){
+    var start=midnatt(new Date(a.start+'T00:00:00'));
+    if(isNaN(+start))return null;
+    var vd=VECKODAG[a.veckodag];
+    if(vd!=null){
+      var d=midnatt(+start>+idag?start:idag);
+      while(d.getDay()!==vd)d=new Date(+d+DAG);
+      return d;
+    }
+    var steg=(a.kadens==='vecka'?1:(parseInt(a.kadens,10)||4))*7;
+    var t=start;
+    while(+t<+idag)t=new Date(+t+steg*DAG);
+    return t;
+  }
+
+  function rendera(rader){
+    var el=document.getElementById('atagande');
+    if(!el||!rader.length)return;
+    el.innerHTML='<div class="rub">Förfaller inom '+INOM+' dagar</div><ul>'+
+      rader.map(function(r){
+        var nar=r.dagar===0?'idag':(r.dagar===1?'i morgon':'om '+r.dagar+' dagar');
+        var datum=r.datum.toLocaleDateString('sv-SE',{weekday:'long',day:'numeric',month:'long'});
+        return '<li><b>'+esc(r.a.vad)+'</b> — '+nar+' ('+datum+')'+
+               (r.a.var?' <span>· '+esc(r.a.var)+'</span>':'')+'</li>';
+      }).join('')+'</ul>';
+    el.classList.add('pa');
+  }
+
+  fetch('atagande.json',{cache:'no-store'}).then(function(r){
+    if(!r.ok)throw new Error(r.status);
+    return r.json();
+  }).then(function(lista){
+    var idag=midnatt(new Date()), ut=[];
+    (lista||[]).forEach(function(a){
+      var d=nasta(a,idag);
+      if(!d)return;
+      if(a.slutdatum && +d>+midnatt(new Date(a.slutdatum+'T00:00:00')))return;
+      var dagar=Math.round((+d-+idag)/DAG);
+      if(dagar<=INOM)ut.push({a:a,datum:d,dagar:dagar});
+    });
+    ut.sort(function(x,y){return x.dagar-y.dagar;});
+    rendera(ut);
+  }).catch(function(){/* ingen fil, ingen banner — tyst med flit */});
+})();
 </script>
 </body>
 </html>
