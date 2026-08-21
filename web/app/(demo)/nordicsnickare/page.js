@@ -276,20 +276,19 @@ export default function NordicSnickareDemo() {
           <div className={styles.heroTxt}>
             <p className={styles.eyebrow}>Snickeri · Renovering · Gips</p>
             <h1 className={styles.h1}>
-              Färdigköpt passar inga snedtak.
-              <br />
-              <em>Vi bygger på plats.</em>
+              <span className={styles.h1Setup}>Färdigköpt passar inga snedtak.</span>
+              <em>Byggt på plats.</em>
             </h1>
             <p className={styles.heroLead}>
               Vi arbetar i Stockholm med omnejd. Vi mäter hemma hos dig, tillverkar efter dina
               mått och monterar i rummet det ska sitta i. Fast pris innan vi börjar, och samma person hela vägen.
             </p>
             <div className={styles.heroCta}>
-              <a className={styles.btn} href={TEL_HREF}>
-                Ring {TEL}
-              </a>
-              <a className={`${styles.btn} ${styles.btnGhost}`} href="#kontakt">
+              <a className={styles.btn} href="#kontakt">
                 Boka kostnadsfri mätning
+              </a>
+              <a className={`${styles.btn} ${styles.btnGhost}`} href={TEL_HREF}>
+                Ring {TEL}
               </a>
             </div>
           </div>
@@ -312,7 +311,6 @@ export default function NordicSnickareDemo() {
             >
               <source src="/nordicsnickare/media/video-garderoben-byggs.mp4" type="video/mp4" />
             </video>
-            <figcaption>Illustration — era egna bilder här</figcaption>
           </figure>
         </div>
       </section>
@@ -465,7 +463,6 @@ export default function NordicSnickareDemo() {
                   width={1200}
                   height={678}
                 />
-                <figcaption>Illustration — fogen mot snedtaket</figcaption>
               </figure>
 
               <a className={styles.btn} href="#kontakt">

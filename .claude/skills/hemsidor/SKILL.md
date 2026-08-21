@@ -24,6 +24,100 @@ copy-reglerna och QA:n är identiska:
 | **Lån** | Nischen finns i biblioteket men inte leadet | 0 |
 | **Nybygge** | Ingen bild i nischen finns | ~50, **kräver Mathias beställning** |
 
+## Den andra leveranstypen: säljdemon
+
+Allt ovan gäller **kundhemsidor** — en sida till en namngiven lead. Skillen
+äger också en helt annan sak: **säljdemon som visas live i mötet.**
+
+Referens: `web/public/salj/index.html`. Live: `bahkobyra.se/salj/`.
+
+Den är inte en kunds sida. Den är ett verktyg Mathias har uppe på skärmen när
+han sitter mittemot en hantverkare, och den spelar upp hantverkarens blivande
+slutkund som går **från nyfiken till bokat hembesök utan att någon lyfter en
+telefon**. Därför: en enda självständig fil, inga beroenden utom Google Fonts,
+ingen localStorage. Den ska öppna direkt även utan nät.
+
+### Arkitekturen är det viktigaste kravet
+
+**Två lager som aldrig blandas.**
+
+1. **Tokenlagret** — ett `THEMES`-objekt med kompletta teman. Varje tema har
+   `color`, `font`, `type`, `radius`, `space` och `rules`. Detta är **enda
+   stället i hela filen** där en hexkod eller ett rått px-tal får finnas.
+2. **Komponentlagret** — läser uteslutande tokens. Ingen komponent får en egen
+   färg eller ett eget mått.
+
+Bryggan är en funktion som skriver ut temat som CSS-variabler på `:root`.
+Komponent-CSS:en innehåller då bara `var()`.
+
+**Ett temabyte ska ändra karaktär, inte bara färg** — radie, typsnittsvikt och
+spacing måste alla röra sig. Byter bara färgen är temat inte ett tema.
+
+**`rules` styr beteende, inte utseende.** Reglerna läses i render-koden:
+- `buttonFill: false` → temat tillåter inga fyllda knappar alls;
+  primärknappen renderas som ramad text.
+- `icons: false` → inga ikoner renderas någonstans.
+- `labelIndicator: 'square'` → en kvadrat före varje etikett.
+- `accentSurfacesMax: 1` → högst en accentfärgad yta per skärm; render-koden
+  **räknar** och degraderar primärknappen till ramad när taket är nått.
+
+**Media queries kan inte läsa CSS-variabler.** Lösningen är att inte behöva
+dem: `repeat(auto-fit, minmax(var(--kol-min), 1fr))` bryter på innehållets
+mått i stället för på skärmbredd, och måttet kommer ur temat. Då påverkar
+temabytet även responsiviteten.
+
+### Flödet
+
+Start → quiz i fyra frågor → laddning → reveal → bokning → bekräftat.
+
+- **Start:** rubrik i display, en mening, en primärknapp, tre trust-rader.
+- **Quiz:** en fråga i taget, tunn framstegsindikator, automatisk gång vidare
+  vid val, tillbakalänk från fråga två.
+- **Laddning:** 2,5 sekunder, tre texter som byts.
+- **Reveal — den känslomässiga toppen.** Två saker samtidigt: ett stort
+  visualiseringsfält som skiftar färgton efter vald stil, och två tidigare
+  projekt som matchar valet, med avstånd i km, hur länge sedan, och ett
+  kundcitat.
+- **Bokning:** dag (fem vardagar framåt), tid, namn, telefon. Bekräfta-knappen
+  är låst tills dag och tid är valda.
+- **Bekräftat:** tilltal med förnamn, dag och tid, plus tre rader — sms
+  skickat, bokning i kalendern, ingen telefon lyftes.
+
+### Byråns kontrollrad
+
+En smal mörk rad högst upp: temaväxlare, ett fält för kundens företagsnamn som
+slår igenom i nav, footer och bekräftelse, och en "börja om"-knapp.
+
+Raden **byter aldrig karaktär med temat** — den har egna `--panel`-variabler
+utanför tokenlagret. Följer den temat ser den ut som en del av kundens sida,
+och då tappar den sin funktion som säljarens panel.
+
+### Hårda krav — kontrollera var och en före leverans
+
+1. Noll hexkoder utanför `THEMES` (kontrollradens egna undantagna).
+2. Noll px i komponentlagret som inte kommer ur `space` eller `radius`.
+3. Orden **pris, kostnad, kr, budget** förekommer inte i något kundvänt fält.
+   Hantverkare vill inte visa sina siffror för konkurrenter som surfar in.
+   Det är ett hårt krav, inte en preferens.
+4. Inga skuggor i något tema.
+5. Temat med `buttonFill: false` renderar ingen fylld knapp och ingen ikon.
+6. Temat med `labelIndicator: 'square'` renderar kvadraten före varje etikett.
+7. Temat med `accentSurfacesMax` överskrider aldrig sitt tak per skärm.
+8. Rubriker skalar med `clamp()` — inget bryter under 380 px bredd.
+9. Temabyte ändrar radie, typsnittsvikt och spacing, inte bara färg.
+
+Kraven är mätbara med avsikt: de går att kontrollera i ett skript, och ska
+kontrolleras i ett skript.
+
+### Vad som byts per bransch
+
+Innehållet är utbytbart och allt är på svenska. Byt **bransch, rum och stilar**
+efter vem som sitter i rummet. Nuvarande uppsättning är renoveringsspåret,
+eftersom det passar flest hantverkare: rum är badrum, kök, vardagsrum och
+uterum; stilar är skandinavisk, modern, klassisk och industriell.
+Referensprojekten får vara påhittade men ska vara trovärdiga — riktiga avstånd
+i km, rimliga tidsangivelser, korta citat som låter som svenska villaägare.
+
 ## Vad som INTE längre byggs
 
 Den gamla scroll-koreografin (fast videolager, cirkel-wipe, 520vh/620vh,
@@ -66,8 +160,12 @@ Ta den här först, för det är den som stoppar leveranser.
   publicerade siffror blir statsraden löftesbaserad: 0 kr för första steget,
   svar inom 24 h, fast pris, en kontaktperson. Registrets registreringsår är
   den enda historiksiffra som får användas, och bara om den är verifierad.
-- **Lånade och genererade bilder märks:** "Illustration — era projektfoton
-  läggs in här". Ingen sektion får heta Våra projekt eller Referenser.
+- **Lånade och genererade bilder märks — en gång per sida, inte per bild.**
+  En egen rad under före/efter-paret: "Illustrationsbilder — byts mot era egna
+  projektfoton." Bildtext på varje enskild bild ratades 2026-08-21: fyra
+  upprepningar av samma brasklapp drar blicken från arbetet och får sidan att
+  se osäker ut. Ärligheten kräver att det står, inte att det står överallt.
+  Ingen sektion får heta Våra projekt eller Referenser.
 - **Kontaktuppgifter:** bara verifierade. Annars platshållaren
   `070-123 45 67` och formulär-mailto till `mathias@bahkobyra.se` — aldrig en
   gissad kundadress. **Flagga platshållarna i både PR och leverans.**
@@ -227,7 +325,8 @@ aldrig tvärtom.
 | Auto-popup | CSS-animation med ~14 s `animation-delay`; stängning via checkbox (`input:checked ~ .popup { display:none }`) | Starta `opacity:0; visibility:hidden` så den är oklickbar före entrén. Vid `prefers-reduced-motion`: visa den **inte alls** — en ruta som dyker upp av sig själv ÄR rörelse. Lyft den ovanför Bahko-knappen på mobil. |
 | Tjänste-tejp | `translateX(-50%)`-loop, listan dubblerad för sömlöshet, kopian `aria-hidden` | Paus på hover, stopp vid `prefers-reduced-motion`. |
 | Exklusiv FAQ | `<details name="faq">` — webbläsaren stänger förra frågan själv | Äldre webbläsare ignorerar attributet (graceful: flera kan stå öppna). |
-| Hero-video | `autoplay muted loop playsinline preload="metadata"` + `poster` | Playwrights Chromium saknar H.264 — verifiera via poster och HTTP 200, **inte** `readyState`. Postern måste matcha bildruta 0. |
+| Hero | `min-height: 100svh` med innehållet centrerat | **Heron ska äga första vyn** — inget av nästa sektion får skymta (Mathias 2026-08-21). Använd `svh`, aldrig `vh`: `vh` räknar in iOS-adressfältet och gör heron längre än skärmen. |
+| Hero-video | `autoplay muted loop playsinline preload="metadata"` + `poster`, i en ratio-styrd ruta | Rutan, inte fullskärmsbakgrund: ett 16:9-klipp som täcker en hel telefonhero beskärs ~4× och visar en oanvändbar närbild. Playwrights Chromium saknar H.264 — verifiera via poster och HTTP 200, **inte** `readyState`. Postern måste matcha bildruta 0. |
 | Före/efter | Två stillbilder i ett par | Starkare och lättare än video här. Märk som illustration. |
 | Scroll-reveal | `animation-timeline: view()` bakom `@supports`, synligt utgångsläge | Sidan måste vara komplett utan stöd. |
 | Bildlådor | `next/image` med `width`/`height` | Varje lazy-bild måste ha styrd låda, annars hoppar innehållet när den laddar (iOS saknar Chromes scroll-förankring). Ska ration styras i CSS trots attributen: `height:auto` **före** `aspect-ratio`, annars vinner attributhöjden och ration ignoreras helt. |

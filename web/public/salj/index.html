@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Säljdemo — från nyfiken till bokat hembesök</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ===========================================================================
+   SÄLJDEMO — Bahko Byrå
+   Visas live för en hantverkare. Demot spelar upp hans blivande slutkund som
+   går från nyfiken till bokat hembesök utan att någon lyfter en telefon.
+
+   ARKITEKTUREN ÄR KRAVET: två lager som aldrig blandas.
+   1. Tokenlagret bor i THEMES längst ner i skriptet. Enda stället i hela
+      filen där en hexkod eller ett rått px-tal får finnas.
+   2. Komponentlagret är CSS:en härunder. Den innehåller uteslutande var()
+      och får aldrig en egen färg eller ett eget mått.
+   Temat skrivs ut som CSS-variabler på :root vid byte, så ett temabyte ändrar
+   radie, typsnittsvikt och spacing — inte bara färg.
+
+   rules styr BETEENDE, inte utseende: buttonFill:false betyder att temat inte
+   tillåter fyllda knappar alls (primärknappen blir ramad text), icons:false
+   betyder att inga ikoner renderas någonstans, labelIndicator:'square' lägger
+   en kvadrat före varje etikett. Reglerna läses i render-koden, inte i CSS.
+   =========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--c-canvas); }
+
+body {
+  background: var(--c-canvas);
+  color: var(--c-text);
+  font-family: var(--f-body);
+  font-weight: var(--f-body-w);
+  font-size: var(--t-body-s);
+  line-height: var(--t-body-lh);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ===== BYRÅNS KONTROLLRAD =================================================
+   Medvetet utanför tokenlagret i sin färgsättning: den ska INTE byta karaktär
+   med temat, för då ser den ut som en del av kundens sida. Den är säljarens
+   panel och håller sig mörk och neutral i alla tre teman. Därav de egna
+   --panel-variablerna, satta en gång på :root och aldrig temaberoende. */
+:root {
+  --panel-bg: #17191c;
+  --panel-line: #2c3036;
+  --panel-text: #e9eaec;
+  --panel-dim: #9aa0a8;
+  --panel-h: 44px;
+  --panel-gap: 10px;
+  --panel-pad: 14px;
+  --panel-radius: 3px;
+  --panel-type: 12px;
+}
+.panel {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--panel-bg);
+  border-bottom: 1px solid var(--panel-line);
+  min-height: var(--panel-h);
+  display: flex;
+  align-items: center;
+  gap: var(--panel-gap);
+  padding: calc(var(--panel-gap) - 2px) var(--panel-pad);
+  flex-wrap: wrap;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: var(--panel-type);
+}
+.panel-etikett {
+  color: var(--panel-dim);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-right: auto;
+}
+.panel-grupp { display: flex; align-items: center; gap: calc(var(--panel-gap) / 2); }
+.panel-knapp {
+  font: inherit;
+  color: var(--panel-dim);
+  background: none;
+  border: 1px solid var(--panel-line);
+  border-radius: var(--panel-radius);
+  padding: 6px 11px;
+  cursor: pointer;
+  min-height: 30px;
+  transition: color 0.18s, border-color 0.18s, background 0.18s;
+}
+.panel-knapp[aria-pressed="true"] { color: var(--panel-bg); background: var(--panel-text); border-color: var(--panel-text); }
+.panel-knapp:hover { color: var(--panel-text); }
+.panel-knapp[aria-pressed="true"]:hover { color: var(--panel-bg); }
+.panel-falt {
+  font: inherit;
+  color: var(--panel-text);
+  background: none;
+  border: 1px solid var(--panel-line);
+  border-radius: var(--panel-radius);
+  padding: 6px 10px;
+  min-height: 30px;
+  width: 168px;
+}
+.panel-falt::placeholder { color: var(--panel-dim); }
+.panel-falt:focus-visible { outline: 1px solid var(--panel-text); outline-offset: 1px; }
+
+/* ===== KUNDENS SIDA — enbart tokens härifrån och ner ==================== */
+
+.nav {
+  border-bottom: var(--r-hairline) solid var(--c-border-svag);
+  padding: var(--s-element) var(--s-gutter);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-element);
+}
+.nav-namn {
+  font-family: var(--f-display);
+  font-weight: var(--f-display-w);
+  font-size: var(--t-heading-s);
+  line-height: var(--t-heading-lh);
+  letter-spacing: var(--t-heading-ls);
+}
+.nav-ort { font-size: var(--t-label-s); letter-spacing: var(--t-label-ls); text-transform: uppercase; color: var(--c-text-svag); }
+
+.scen {
+  max-width: var(--s-max);
+  margin: 0 auto;
+  padding: var(--s-section) var(--s-gutter);
+}
+
+.display {
+  font-family: var(--f-display);
+  font-weight: var(--f-display-w);
+  font-size: var(--t-display-s);
+  line-height: var(--t-display-lh);
+  letter-spacing: var(--t-display-ls);
+  max-width: var(--s-textmax);
+}
+.rubrik-stor {
+  font-family: var(--f-display);
+  font-weight: var(--f-display-w);
+  font-size: var(--t-heading-lg-s);
+  line-height: var(--t-heading-lg-lh);
+  letter-spacing: var(--t-heading-lg-ls);
+  max-width: var(--s-textmax);
+}
+.rubrik {
+  font-family: var(--f-display);
+  font-weight: var(--f-display-w);
+  font-size: var(--t-heading-s);
+  line-height: var(--t-heading-lh);
+  letter-spacing: var(--t-heading-ls);
+}
+.lede {
+  font-size: var(--t-body-s);
+  line-height: var(--t-body-lh);
+  color: var(--c-text-svag);
+  max-width: var(--s-textmax);
+  margin-top: var(--s-element);
+}
+.liten { font-size: var(--t-body-sm-s); line-height: var(--t-body-sm-lh); letter-spacing: var(--t-body-sm-ls); color: var(--c-text-svag); }
+
+.etikett {
+  font-size: var(--t-label-s);
+  letter-spacing: var(--t-label-ls);
+  text-transform: uppercase;
+  color: var(--c-text-svag);
+  display: flex;
+  align-items: center;
+  gap: var(--s-indikator-gap);
+}
+/* Kvadraten före etiketten sätts av temats rules, inte av CSS:en själv:
+   render-koden lägger klassen bara när labelIndicator === 'square'. */
+.etikett-kvadrat::before {
+  content: '';
+  width: var(--s-indikator);
+  height: var(--s-indikator);
+  background: var(--c-accent);
+  flex: none;
+}
+
+.knapp {
+  font-family: var(--f-body);
+  font-weight: var(--f-knapp-w);
+  font-size: var(--t-body-sm-s);
+  letter-spacing: var(--t-knapp-ls);
+  border-radius: var(--r-knapp);
+  padding: var(--s-knapp-y) var(--s-knapp-x);
+  min-height: var(--s-traff);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-indikator-gap);
+}
+/* Fylld primärknapp — renderas bara när temat tillåter det (buttonFill). */
+.knapp-fylld { background: var(--c-accent); color: var(--c-accent-text); border: var(--r-hairline) solid var(--c-accent); }
+.knapp-fylld:hover { background: var(--c-accent-hover); border-color: var(--c-accent-hover); }
+/* Ramad primärknapp — Ashtons enda tillåtna form. */
+.knapp-ramad { background: none; color: var(--c-text); border: var(--r-hairline) solid var(--c-border); }
+.knapp-ramad:hover { background: var(--c-text); color: var(--c-canvas); }
+.knapp-tyst { background: none; border: none; color: var(--c-text-svag); padding-left: 0; padding-right: 0; text-decoration: underline; text-underline-offset: 0.28em; }
+.knapp-tyst:hover { color: var(--c-text); }
+.knapp:disabled { opacity: 0.38; cursor: not-allowed; }
+.knapp:focus-visible, .val:focus-visible, .falt:focus-visible { outline: var(--r-fokus) solid var(--c-accent); outline-offset: var(--s-fokus-offset); }
+
+.trust {
+  margin-top: var(--s-section);
+  padding-top: var(--s-element);
+  border-top: var(--r-hairline) solid var(--c-border-svag);
+  display: grid;
+  gap: var(--s-rad);
+  grid-template-columns: repeat(auto-fit, minmax(var(--s-kol-min), 1fr));
+}
+
+/* Framstegsindikator: tunn, fyra steg. */
+.steg {
+  display: flex;
+  gap: var(--s-rad);
+  margin-bottom: var(--s-section-halv);
+}
+.steg-del { height: var(--r-hairline); flex: 1; background: var(--c-border-svag); }
+.steg-del[data-klar="1"] { background: var(--c-accent); }
+
+.val-lista { display: grid; gap: var(--s-rad); margin-top: var(--s-block); }
+.val {
+  font: inherit;
+  color: var(--c-text);
+  text-align: left;
+  background: var(--c-surface);
+  border: var(--r-hairline) solid var(--c-border-svag);
+  border-radius: var(--r-kort);
+  padding: var(--s-kort-pad);
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-element);
+  transition: border-color 0.18s, background 0.18s;
+}
+.val:hover { border-color: var(--c-border); }
+.val[aria-pressed="true"] { border-color: var(--c-accent); }
+.val-namn { font-family: var(--f-display); font-weight: var(--f-display-w); font-size: var(--t-heading-s); line-height: var(--t-heading-lh); letter-spacing: var(--t-heading-ls); }
+.val-not { font-size: var(--t-body-sm-s); letter-spacing: var(--t-body-sm-ls); color: var(--c-text-svag); }
+
+/* Laddning */
+.laddar { min-height: var(--s-laddhojd); display: grid; align-content: center; gap: var(--s-block); }
+.laddar-linje { height: var(--r-hairline); background: var(--c-border-svag); overflow: hidden; }
+.laddar-linje > i { display: block; height: 100%; width: 100%; background: var(--c-accent); transform-origin: 0 50%; animation: fyll 2.5s linear forwards; }
+@keyframes fyll { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Reveal: visualiseringsfältet. Färgtonen kommer från stilens egna tokens,
+   satta som --v-1/--v-2 vid rendering — ingen bild, ingen extern fil. */
+.vy {
+  border-radius: var(--r-bild);
+  border: var(--r-hairline) solid var(--c-border-svag);
+  min-height: var(--s-vyhojd);
+  padding: var(--s-kort-pad);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--s-rad);
+  background:
+    linear-gradient(160deg, var(--v-1) 0%, var(--v-2) 100%);
+}
+.vy-namn { font-family: var(--f-display); font-weight: var(--f-display-w); font-size: var(--t-heading-lg-s); line-height: var(--t-heading-lg-lh); letter-spacing: var(--t-heading-lg-ls); color: var(--v-text); }
+.vy-taggar { display: flex; flex-wrap: wrap; gap: var(--s-rad); font-size: var(--t-label-s); letter-spacing: var(--t-label-ls); text-transform: uppercase; color: var(--v-text-svag); }
+
+.projekt-par { display: grid; gap: var(--s-rad); grid-template-columns: repeat(auto-fit, minmax(var(--s-kol-bred), 1fr)); margin-top: var(--s-block); }
+.projekt {
+  background: var(--c-surface);
+  border: var(--r-hairline) solid var(--c-border-svag);
+  border-radius: var(--r-kort);
+  padding: var(--s-kort-pad);
+  display: grid;
+  gap: var(--s-rad);
+}
+.projekt-meta { display: flex; flex-wrap: wrap; gap: var(--s-rad); font-size: var(--t-label-s); letter-spacing: var(--t-label-ls); text-transform: uppercase; color: var(--c-text-svag); }
+.projekt-citat { font-family: var(--f-display); font-weight: var(--f-display-w); font-size: var(--t-heading-s); line-height: var(--t-heading-lh); letter-spacing: var(--t-heading-ls); }
+
+/* Bokning */
+.rad-val { display: flex; flex-wrap: wrap; gap: var(--s-rad); margin-top: var(--s-block); }
+.chip {
+  font: inherit;
+  font-size: var(--t-body-sm-s);
+  letter-spacing: var(--t-body-sm-ls);
+  color: var(--c-text);
+  background: var(--c-surface);
+  border: var(--r-hairline) solid var(--c-border-svag);
+  border-radius: var(--r-knapp);
+  padding: var(--s-knapp-y) var(--s-knapp-x);
+  min-height: var(--s-traff);
+  cursor: pointer;
+  display: grid;
+  gap: var(--s-chip-gap);
+  text-align: left;
+  transition: border-color 0.18s, background 0.18s, color 0.18s;
+}
+.chip:hover { border-color: var(--c-border); }
+.chip[aria-pressed="true"] { background: var(--c-accent); color: var(--c-accent-text); border-color: var(--c-accent); }
+.chip b { font-weight: var(--f-knapp-w); }
+.chip span { font-size: var(--t-label-s); letter-spacing: var(--t-label-ls); text-transform: uppercase; opacity: 0.75; }
+
+.falt-par { display: grid; gap: var(--s-rad); grid-template-columns: repeat(auto-fit, minmax(var(--s-kol-min), 1fr)); margin-top: var(--s-block); }
+.falt-grupp { display: grid; gap: var(--s-chip-gap); }
+.falt {
+  font: inherit;
+  font-size: var(--t-body-s);
+  color: var(--c-text);
+  background: var(--c-surface);
+  border: var(--r-hairline) solid var(--c-border-svag);
+  border-radius: var(--r-knapp);
+  padding: var(--s-knapp-y) var(--s-knapp-x);
+  min-height: var(--s-traff);
+  width: 100%;
+}
+
+.klar-lista { display: grid; gap: var(--s-rad); margin-top: var(--s-block); }
+.klar-rad { display: flex; align-items: baseline; gap: var(--s-indikator-gap); padding-bottom: var(--s-rad); border-bottom: var(--r-hairline) solid var(--c-border-svag); }
+
+.fot {
+  border-top: var(--r-hairline) solid var(--c-border-svag);
+  padding: var(--s-element) var(--s-gutter);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-element);
+  justify-content: space-between;
+  font-size: var(--t-body-sm-s);
+  letter-spacing: var(--t-body-sm-ls);
+  color: var(--c-text-svag);
+}
+
+.knapp-rad { display: flex; flex-wrap: wrap; gap: var(--s-element); align-items: center; margin-top: var(--s-block); }
+
+/* Ikoner renderas bara när temats rules tillåter det. */
+.ikon { width: var(--s-ikon); height: var(--s-ikon); flex: none; stroke: currentColor; fill: none; stroke-width: var(--r-ikon-tjocklek); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="panel" role="group" aria-label="Byråns kontroller">
+  <span class="panel-etikett">Bahko Byrå · demoläge</span>
+  <div class="panel-grupp" id="temaval" role="group" aria-label="Tema"></div>
+  <div class="panel-grupp">
+    <label class="panel-etikett" for="foretag" style="margin:0">Kundens firma</label>
+    <input class="panel-falt" id="foretag" value="Nordic Snickare" aria-label="Kundens företagsnamn">
+  </div>
+  <button class="panel-knapp" id="borja-om">Börja om</button>
+</div>
+
+<main id="app"></main>
+
+<script>
+/* =========================================================================
+   TOKENLAGRET — enda stället i filen med hexkoder och råa mått.
+   Varje tema är komplett: color, font, type, radius, space, rules.
+   ========================================================================= */
+const THEMES = {
+  ashton: {
+    namn: 'Ashton',
+    beskrivning: 'redaktionellt hantverk',
+    color: {
+      canvas: '#e0ded8',
+      surface: '#ffffff',
+      text: '#262626',
+      textSvag: '#5c5a56',
+      border: '#262626',
+      borderSvag: '#c3c0b8',
+      accent: '#38141b',
+      accentHover: '#4d1c25',
+      accentText: '#ffffff',
+    },
+    font: {
+      display: "'Cormorant Garamond', 'Iowan Old Style', Georgia, serif",
+      body: "'Inter', system-ui, sans-serif",
+      displayWeight: 500,
+      bodyWeight: 400,
+      buttonWeight: 500,
+    },
+    type: {
+      display: { size: 60, lh: 1.1, ls: '0.031em' },
+      headingLg: { size: 46, lh: 1.1, ls: '0.022em' },
+      heading: { size: 32, lh: 1.1, ls: '0.017em' },
+      body: { size: 16, lh: 1.4, ls: '0em' },
+      bodySm: { size: 15, lh: 1.3, ls: '0.021em' },
+      label: { size: 12, ls: '0.16em' },
+      buttonLs: '0.08em',
+    },
+    radius: { card: 0, image: 0, button: 4, hairline: 1, focus: 2, ikonTjocklek: 1.5 },
+    space: {
+      section: 96, cardPadding: 32, element: 24,
+      block: 32, rad: 12, gutter: 32, max: 1100, textmax: 620,
+      knappY: 14, knappX: 26, traff: 44, indikator: 4, indikatorGap: 10,
+      chipGap: 6, fokusOffset: 3, ikon: 16, vyhojd: 360, laddhojd: 320,
+      kolMin: 260, kolBred: 320,
+    },
+    rules: { icons: false, shadow: false, buttonFill: false, labelIndicator: 'none', accentSurfacesMax: null },
+    /* Visualiseringsfältets färgton per stil — hör till tokenlagret. */
+    vy: {
+      skandinavisk: { a: '#efece4', b: '#cdc4b4', text: '#262626', textSvag: '#5c5a56' },
+      modern:       { a: '#3a3a38', b: '#1d1d1c', text: '#f2f1ee', textSvag: '#bdbbb5' },
+      klassisk:     { a: '#e8ddc8', b: '#b99a63', text: '#2b2318', textSvag: '#584a35' },
+      industriell:  { a: '#b9b7b3', b: '#6f6d6a', text: '#1b1b1a', textSvag: '#3d3c3a' },
+    },
+  },
+
+  t1: {
+    namn: 'T1',
+    beskrivning: 'teknisk precision',
+    color: {
+      canvas: '#0d0f12',
+      surface: '#15191f',
+      text: '#eceff2',
+      textSvag: '#98a1ac',
+      border: '#39414c',
+      borderSvag: '#262c34',
+      accent: '#d8f34a',
+      accentHover: '#e6ff6b',
+      accentText: '#0d0f12',
+    },
+    font: {
+      display: "'Space Grotesk', 'Inter', system-ui, sans-serif",
+      body: "'IBM Plex Mono', ui-monospace, monospace",
+      displayWeight: 700,
+      bodyWeight: 400,
+      buttonWeight: 500,
+    },
+    type: {
+      display: { size: 48, lh: 1.02, ls: '-0.02em' },
+      headingLg: { size: 34, lh: 1.06, ls: '-0.015em' },
+      heading: { size: 21, lh: 1.15, ls: '-0.008em' },
+      body: { size: 14, lh: 1.55, ls: '0em' },
+      bodySm: { size: 13, lh: 1.5, ls: '0.01em' },
+      label: { size: 11, ls: '0.2em' },
+      buttonLs: '0.12em',
+    },
+    radius: { card: 2, image: 2, button: 2, hairline: 1, focus: 2, ikonTjocklek: 1.5 },
+    space: {
+      section: 64, cardPadding: 20, element: 16,
+      block: 24, rad: 8, gutter: 22, max: 1020, textmax: 560,
+      knappY: 11, knappX: 18, traff: 44, indikator: 4, indikatorGap: 8,
+      chipGap: 4, fokusOffset: 2, ikon: 15, vyhojd: 300, laddhojd: 260,
+      kolMin: 210, kolBred: 280,
+    },
+    rules: { icons: true, shadow: false, buttonFill: true, labelIndicator: 'square', accentSurfacesMax: null },
+    vy: {
+      skandinavisk: { a: '#2b3138', b: '#171b21', text: '#eceff2', textSvag: '#98a1ac' },
+      modern:       { a: '#1b1f26', b: '#0b0d10', text: '#eceff2', textSvag: '#98a1ac' },
+      klassisk:     { a: '#34302a', b: '#191713', text: '#f0ebe2', textSvag: '#a89e8d' },
+      industriell:  { a: '#31363c', b: '#14171a', text: '#e7eaee', textSvag: '#949aa1' },
+    },
+  },
+
+  mercury: {
+    namn: 'Mercury',
+    beskrivning: 'modern och rymlig',
+    color: {
+      canvas: '#f5f7fa',
+      surface: '#ffffff',
+      text: '#0f1319',
+      textSvag: '#5a6472',
+      border: '#c2cad6',
+      borderSvag: '#e2e7ee',
+      accent: '#1b45d7',
+      accentHover: '#1637ae',
+      accentText: '#ffffff',
+    },
+    font: {
+      display: "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
+      body: "'Inter', system-ui, sans-serif",
+      displayWeight: 700,
+      bodyWeight: 400,
+      buttonWeight: 600,
+    },
+    type: {
+      display: { size: 56, lh: 1.06, ls: '-0.028em' },
+      headingLg: { size: 40, lh: 1.1, ls: '-0.02em' },
+      heading: { size: 24, lh: 1.25, ls: '-0.012em' },
+      body: { size: 17, lh: 1.6, ls: '0em' },
+      bodySm: { size: 15, lh: 1.5, ls: '0em' },
+      label: { size: 12, ls: '0.1em' },
+      buttonLs: '0em',
+    },
+    radius: { card: 16, image: 12, button: 999, hairline: 1, focus: 2, ikonTjocklek: 1.8 },
+    space: {
+      section: 112, cardPadding: 28, element: 20,
+      block: 36, rad: 12, gutter: 28, max: 1160, textmax: 660,
+      knappY: 15, knappX: 30, traff: 48, indikator: 4, indikatorGap: 10,
+      chipGap: 6, fokusOffset: 3, ikon: 18, vyhojd: 400, laddhojd: 340,
+      kolMin: 290, kolBred: 340,
+    },
+    /* accentSurfacesMax: högst en kobaltyta per skärm. Render-koden räknar. */
+    rules: { icons: true, shadow: false, buttonFill: true, labelIndicator: 'none', accentSurfacesMax: 1 },
+    vy: {
+      skandinavisk: { a: '#eef1f6', b: '#ccd5e2', text: '#0f1319', textSvag: '#5a6472' },
+      modern:       { a: '#2c333d', b: '#12161c', text: '#f3f5f8', textSvag: '#b7bfca' },
+      klassisk:     { a: '#f0e6d5', b: '#c8ab7c', text: '#241d12', textSvag: '#584a35' },
+      industriell:  { a: '#c3c8ce', b: '#7c838c', text: '#14171b', textSvag: '#363b41' },
+    },
+  },
+};
+
+/* =========================================================================
+   Tokens ut som CSS-variabler. Detta är bryggan mellan de två lagren, och
+   det enda stället som får sätta en färg eller ett mått på dokumentet.
+   ========================================================================= */
+function anvandTema(nyckel) {
+  const t = THEMES[nyckel];
+  const px = (n) => n + 'px';
+  const r = document.documentElement.style;
+
+  r.setProperty('--c-canvas', t.color.canvas);
+  r.setProperty('--c-surface', t.color.surface);
+  r.setProperty('--c-text', t.color.text);
+  r.setProperty('--c-text-svag', t.color.textSvag);
+  r.setProperty('--c-border', t.color.border);
+  r.setProperty('--c-border-svag', t.color.borderSvag);
+  r.setProperty('--c-accent', t.color.accent);
+  r.setProperty('--c-accent-hover', t.color.accentHover);
+  r.setProperty('--c-accent-text', t.color.accentText);
+
+  r.setProperty('--f-display', t.font.display);
+  r.setProperty('--f-body', t.font.body);
+  r.setProperty('--f-display-w', t.font.displayWeight);
+  r.setProperty('--f-body-w', t.font.bodyWeight);
+  r.setProperty('--f-knapp-w', t.font.buttonWeight);
+
+  /* Rubriker skalar med clamp() så inget bryter under 380px bredd. Golvet är
+     satt i förhållande till taket, inte som en lös siffra. */
+  const skala = (o, minAndel) =>
+    'clamp(' + px(Math.round(o.size * minAndel)) + ', ' +
+    (o.size / 10.2).toFixed(2) + 'vw + ' + px(Math.round(o.size * minAndel * 0.42)) + ', ' +
+    px(o.size) + ')';
+
+  r.setProperty('--t-display-s', skala(t.type.display, 0.5));
+  r.setProperty('--t-display-lh', t.type.display.lh);
+  r.setProperty('--t-display-ls', t.type.display.ls);
+  r.setProperty('--t-heading-lg-s', skala(t.type.headingLg, 0.56));
+  r.setProperty('--t-heading-lg-lh', t.type.headingLg.lh);
+  r.setProperty('--t-heading-lg-ls', t.type.headingLg.ls);
+  r.setProperty('--t-heading-s', skala(t.type.heading, 0.74));
+  r.setProperty('--t-heading-lh', t.type.heading.lh);
+  r.setProperty('--t-heading-ls', t.type.heading.ls);
+  r.setProperty('--t-body-s', px(t.type.body.size));
+  r.setProperty('--t-body-lh', t.type.body.lh);
+  r.setProperty('--t-body-sm-s', px(t.type.bodySm.size));
+  r.setProperty('--t-body-sm-lh', t.type.bodySm.lh);
+  r.setProperty('--t-body-sm-ls', t.type.bodySm.ls);
+  r.setProperty('--t-label-s', px(t.type.label.size));
+  r.setProperty('--t-label-ls', t.type.label.ls);
+  r.setProperty('--t-knapp-ls', t.type.buttonLs);
+
+  r.setProperty('--r-kort', px(t.radius.card));
+  r.setProperty('--r-bild', px(t.radius.image));
+  r.setProperty('--r-knapp', px(t.radius.button));
+  r.setProperty('--r-hairline', px(t.radius.hairline));
+  r.setProperty('--r-fokus', px(t.radius.focus));
+  r.setProperty('--r-ikon-tjocklek', t.radius.ikonTjocklek);
+
+  const s = t.space;
+  r.setProperty('--s-section', px(s.section));
+  r.setProperty('--s-section-halv', px(Math.round(s.section / 2)));
+  r.setProperty('--s-kort-pad', px(s.cardPadding));
+  r.setProperty('--s-element', px(s.element));
+  r.setProperty('--s-block', px(s.block));
+  r.setProperty('--s-rad', px(s.rad));
+  r.setProperty('--s-gutter', px(s.gutter));
+  r.setProperty('--s-max', px(s.max));
+  r.setProperty('--s-textmax', px(s.textmax));
+  r.setProperty('--s-knapp-y', px(s.knappY));
+  r.setProperty('--s-knapp-x', px(s.knappX));
+  r.setProperty('--s-traff', px(s.traff));
+  r.setProperty('--s-indikator', px(s.indikator));
+  r.setProperty('--s-indikator-gap', px(s.indikatorGap));
+  r.setProperty('--s-chip-gap', px(s.chipGap));
+  r.setProperty('--s-fokus-offset', px(s.fokusOffset));
+  r.setProperty('--s-ikon', px(s.ikon));
+  r.setProperty('--s-vyhojd', px(s.vyhojd));
+  r.setProperty('--s-laddhojd', px(s.laddhojd));
+  r.setProperty('--s-kol-min', px(s.kolMin));
+  r.setProperty('--s-kol-bred', px(s.kolBred));
+}
+
+/* =========================================================================
+   INNEHÅLL — renoveringsspåret, det som passar flest hantverkare i ett
+   säljmöte. Inga priser, ingen budget, någonstans: hantverkare vill inte
+   visa sina siffror för konkurrenter som råkar surfa in.
+   ========================================================================= */
+const RUM = [
+  { id: 'badrum', namn: 'Badrum', not: 'tätskikt, kakel, golvvärme' },
+  { id: 'kok', namn: 'Kök', not: 'stommar, fronter, bänkskiva' },
+  { id: 'vardagsrum', namn: 'Vardagsrum', not: 'golv, väggar, förvaring' },
+  { id: 'uterum', namn: 'Uterum', not: 'altan, glas, tak' },
+];
+
+const STILAR = [
+  { id: 'skandinavisk', namn: 'Skandinavisk', not: 'ljust och lugnt', taggar: ['ljust trä', 'vitt', 'få detaljer'] },
+  { id: 'modern', namn: 'Modern', not: 'mörkt och rakt', taggar: ['matt svart', 'raka linjer', 'dolt ljus'] },
+  { id: 'klassisk', namn: 'Klassisk', not: 'varmt och gedivet', taggar: ['lister', 'mässing', 'spegel'] },
+  { id: 'industriell', namn: 'Industriell', not: 'rått och ärligt', taggar: ['betong', 'svart stål', 'synligt'] },
+];
+
+const YTOR = [
+  { id: 'under5', namn: 'Under 5 m²', not: 'gästtoalett eller liten yta' },
+  { id: '5-10', namn: '5–10 m²', not: 'vanligast' },
+  { id: '10-20', namn: '10–20 m²', not: 'större rum' },
+  { id: 'over20', namn: 'Över 20 m²', not: 'flera rum eller öppen plan' },
+];
+
+const TIDER = [
+  { id: 'snarast', namn: 'Så snart det går', not: 'vi hör av oss först' },
+  { id: '3man', namn: 'Inom tre månader', not: 'vanligast' },
+  { id: 'host', namn: 'I höst', not: 'gott om tid att planera' },
+  { id: 'vet-ej', namn: 'Vet inte än', not: 'vi tittar och du bestämmer sen' },
+];
+
+/* Två referensprojekt per rum. Påhittade men trovärdiga: riktiga
+   Stockholmsavstånd, rimliga tidsangivelser, citat som låter som villaägare. */
+const PROJEKT = {
+  badrum: [
+    { plats: 'Bromma', km: '3,2 km', nar: 'för 6 veckor sedan', citat: 'De var klara en dag före utsatt tid.' },
+    { plats: 'Sundbyberg', km: '5,8 km', nar: 'i våras', citat: 'Vi bodde kvar hela tiden. Det gick.' },
+  ],
+  kok: [
+    { plats: 'Enskede', km: '4,1 km', nar: 'för två månader sedan', citat: 'Samma stommar, helt nytt kök att titta på.' },
+    { plats: 'Solna', km: '6,5 km', nar: 'i januari', citat: 'De städade varje kväll. Det märks.' },
+  ],
+  vardagsrum: [
+    { plats: 'Årsta', km: '2,7 km', nar: 'för tre veckor sedan', citat: 'Bokhyllan ser ut som en del av huset.' },
+    { plats: 'Danderyd', km: '9,4 km', nar: 'förra hösten', citat: 'Golvet blev rakt även där huset inte är.' },
+  ],
+  uterum: [
+    { plats: 'Nacka', km: '7,3 km', nar: 'i maj', citat: 'Vi sitter ute i oktober nu.' },
+    { plats: 'Täby', km: '11,2 km', nar: 'för ett år sedan', citat: 'Inte en glipa någonstans efter en vinter.' },
+  ],
+};
+
+const LADD_TEXTER = ['Läser dina svar', 'Söker projekt nära dig', 'Formar din vision'];
+
+/* ========================================================================= */
+
+let temaNyckel = 'ashton';
+let vy = 'start';
+let svar = { rum: null, stil: null, yta: null, tid: null };
+let bokning = { dag: null, tid: null, namn: '', telefon: '' };
+let foretag = 'Nordic Snickare';
+let laddIndex = 0;
+let timers = [];
+
+const T = () => THEMES[temaNyckel];
+const app = document.getElementById('app');
+
+function nollstallTimers() { timers.forEach(clearTimeout); timers = []; }
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+/* Ikoner respekterar rules.icons — inget renderas när temat säger nej. */
+function ikon(namn) {
+  if (!T().rules.icons) return '';
+  const banor = {
+    pil: '<path d="M4 10h12M11 5l5 5-5 5"/>',
+    check: '<path d="M4 10.5l4 4 8-9"/>',
+    plats: '<path d="M10 17s5-4.6 5-9a5 5 0 10-10 0c0 4.4 5 9 5 9z"/><circle cx="10" cy="8" r="1.8"/>',
+    klocka: '<circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/>',
+  };
+  return '<svg class="ikon" viewBox="0 0 20 20" aria-hidden="true">' + banor[namn] + '</svg>';
+}
+
+function etikettKlass() {
+  return 'etikett' + (T().rules.labelIndicator === 'square' ? ' etikett-kvadrat' : '');
+}
+
+/* Primärknappen: temat avgör FORMEN, inte anropet. Ashton tillåter ingen
+   fylld yta och får en ramad knapp i stället. */
+function primarKnapp(text, attr) {
+  const form = T().rules.buttonFill ? 'knapp-fylld' : 'knapp-ramad';
+  return '<button class="knapp ' + form + '" ' + (attr || '') + '>' + esc(text) + ikon('pil') + '</button>';
+}
+
+function nav() {
+  return '<div class="nav"><span class="nav-namn">' + esc(foretag) + '</span>' +
+    '<span class="nav-ort">Stockholm med omnejd</span></div>';
+}
+
+function fot() {
+  return '<div class="fot"><span>' + esc(foretag) + '</span>' +
+    '<span>Demo byggd av Bahko Byrå</span></div>';
+}
+
+function stegrad(steg) {
+  let ut = '<div class="steg" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="' + steg + '" aria-label="Fråga ' + steg + ' av 4">';
+  for (let i = 1; i <= 4; i++) ut += '<span class="steg-del" data-klar="' + (i <= steg ? 1 : 0) + '"></span>';
+  return ut + '</div>';
+}
+
+function valLista(poster, faltNamn) {
+  return '<div class="val-lista">' + poster.map((p) =>
+    '<button class="val" data-valj="' + faltNamn + '" data-id="' + p.id + '" aria-pressed="' +
+    (svar[faltNamn] === p.id) + '">' +
+    '<span class="val-namn">' + esc(p.namn) + '</span>' +
+    '<span class="val-not">' + esc(p.not) + '</span></button>'
+  ).join('') + '</div>';
+}
+
+function fraga(steg, etikettText, rubrikText, poster, faltNamn, kanBaka) {
+  return nav() + '<div class="scen">' + stegrad(steg) +
+    '<span class="' + etikettKlass() + '">' + esc(etikettText) + '</span>' +
+    '<h1 class="rubrik-stor" style="margin-top:var(--s-element)">' + esc(rubrikText) + '</h1>' +
+    valLista(poster, faltNamn) +
+    (kanBaka ? '<div class="knapp-rad"><button class="knapp knapp-tyst" data-baka="1">Tillbaka</button></div>' : '') +
+    '</div>' + fot();
+}
+
+function vardagar(antal) {
+  const ut = [];
+  const d = new Date();
+  const dagar = ['söndag', 'måndag', 'tisdag', 'onsdag', 'torsdag', 'fredag', 'lördag'];
+  const man = ['jan', 'feb', 'mars', 'april', 'maj', 'juni', 'juli', 'aug', 'sep', 'okt', 'nov', 'dec'];
+  while (ut.length < antal) {
+    d.setDate(d.getDate() + 1);
+    if (d.getDay() === 0 || d.getDay() === 6) continue;
+    ut.push({ id: d.toISOString().slice(0, 10), namn: dagar[d.getDay()], datum: d.getDate() + ' ' + man[d.getMonth()] });
+  }
+  return ut;
+}
+
+const KLOCKSLAG = [
+  { id: '08', namn: '08:00', not: 'före jobbet' },
+  { id: '12', namn: '12:00', not: 'lunchtid' },
+  { id: '16', namn: '16:00', not: 'efter jobbet' },
+];
+
+function rita() {
+  const t = T();
+
+  if (vy === 'start') {
+    app.innerHTML = nav() + '<div class="scen">' +
+      '<span class="' + etikettKlass() + '">Se det färdiga först</span>' +
+      '<h1 class="display" style="margin-top:var(--s-element)">Ditt nya rum, innan en spik är slagen.</h1>' +
+      '<p class="lede">Svara på fyra frågor. Du får se hur det kan bli, och kan boka ett hembesök direkt — utan att ringa.</p>' +
+      '<div class="knapp-rad">' + primarKnapp('Börja', 'data-till="rum"') + '</div>' +
+      '<div class="trust">' +
+        '<span class="liten">Vi mäter alltid på plats innan något bestäms.</span>' +
+        '<span class="liten">Samma hantverkare från första besök till sista dagen.</span>' +
+        '<span class="liten">Du får svar samma dag som du hör av dig.</span>' +
+      '</div></div>' + fot();
+    return;
+  }
+
+  if (vy === 'rum') { app.innerHTML = fraga(1, 'Fråga 1 av 4', 'Vilket rum handlar det om?', RUM, 'rum', false); return; }
+  if (vy === 'stil') { app.innerHTML = fraga(2, 'Fråga 2 av 4', 'Vilken känsla är du ute efter?', STILAR, 'stil', true); return; }
+  if (vy === 'yta') { app.innerHTML = fraga(3, 'Fråga 3 av 4', 'Hur stor är ytan?', YTOR, 'yta', true); return; }
+  if (vy === 'tid') { app.innerHTML = fraga(4, 'Fråga 4 av 4', 'När vill du komma igång?', TIDER, 'tid', true); return; }
+
+  if (vy === 'laddar') {
+    app.innerHTML = nav() + '<div class="scen"><div class="laddar">' +
+      '<span class="' + etikettKlass() + '">Ett ögonblick</span>' +
+      '<p class="rubrik-stor" id="ladd-text">' + esc(LADD_TEXTER[laddIndex]) + '</p>' +
+      '<div class="laddar-linje"><i></i></div></div></div>' + fot();
+    return;
+  }
+
+  if (vy === 'reveal') {
+    const stil = STILAR.find((s) => s.id === svar.stil);
+    const rum = RUM.find((r) => r.id === svar.rum);
+    const ton = t.vy[svar.stil];
+    const par = PROJEKT[svar.rum];
+    /* Visualiseringsfältet får sin färgton ur temats vy-tokens. */
+    const tonStil = '--v-1:' + ton.a + ';--v-2:' + ton.b + ';--v-text:' + ton.text + ';--v-text-svag:' + ton.textSvag;
+    app.innerHTML = nav() + '<div class="scen">' +
+      '<span class="' + etikettKlass() + '">Din riktning</span>' +
+      '<h1 class="rubrik-stor" style="margin-top:var(--s-element)">' + esc(rum.namn) + ' i ' + esc(stil.namn.toLowerCase()) + ' stil.</h1>' +
+      '<p class="lede">Så här brukar det landa. Vi visar det på riktigt när vi står i rummet.</p>' +
+      '<div class="vy" style="' + tonStil + ';margin-top:var(--s-block)">' +
+        '<span class="vy-namn">' + esc(stil.namn) + '</span>' +
+        '<span class="vy-taggar">' + stil.taggar.map((x) => '<span>' + esc(x) + '</span>').join('') + '</span>' +
+      '</div>' +
+      '<h2 class="rubrik" style="margin-top:var(--s-section-halv)">Två ' + esc(rum.namn.toLowerCase()) + ' vi gjort nära dig</h2>' +
+      '<div class="projekt-par">' + par.map((p) =>
+        '<article class="projekt">' +
+          '<span class="projekt-meta">' +
+            '<span>' + ikon('plats') + esc(p.plats) + ' · ' + esc(p.km) + '</span>' +
+            '<span>' + esc(p.nar) + '</span>' +
+          '</span>' +
+          '<p class="projekt-citat">”' + esc(p.citat) + '”</p>' +
+        '</article>'
+      ).join('') + '</div>' +
+      '<div class="knapp-rad">' + primarKnapp('Boka hembesök', 'data-till="bokning"') +
+      '<button class="knapp knapp-tyst" data-baka="1">Ändra svar</button></div>' +
+      '</div>' + fot();
+    return;
+  }
+
+  if (vy === 'bokning') {
+    const dagar = vardagar(5);
+    const klar = bokning.dag && bokning.tid;
+    /* Mercury tillåter en enda accentyta per skärm. Chipsen kan bli två
+       (en dag + en tid), så här renderas primärknappen ramad i stället —
+       regeln räknas, den är inte dekorativ. */
+    const accentYtor = (bokning.dag ? 1 : 0) + (bokning.tid ? 1 : 0);
+    const tak = t.rules.accentSurfacesMax;
+    const fyllPrimar = t.rules.buttonFill && !(tak !== null && accentYtor >= tak);
+    const primarForm = fyllPrimar ? 'knapp-fylld' : 'knapp-ramad';
+
+    app.innerHTML = nav() + '<div class="scen">' +
+      '<span class="' + etikettKlass() + '">Hembesök</span>' +
+      '<h1 class="rubrik-stor" style="margin-top:var(--s-element)">När passar det att vi kommer?</h1>' +
+      '<p class="lede">Besöket tar en halvtimme. Vi mäter, tittar på förutsättningarna och säger vad som går att göra.</p>' +
+
+      '<h2 class="rubrik" style="margin-top:var(--s-block)">Dag</h2>' +
+      '<div class="rad-val">' + dagar.map((d) =>
+        '<button class="chip" data-dag="' + d.id + '" data-namn="' + esc(d.namn) + '" data-datum="' + esc(d.datum) + '" aria-pressed="' +
+        (bokning.dag === d.id) + '"><b>' + esc(d.namn) + '</b><span>' + esc(d.datum) + '</span></button>'
+      ).join('') + '</div>' +
+
+      '<h2 class="rubrik" style="margin-top:var(--s-block)">Tid</h2>' +
+      '<div class="rad-val">' + KLOCKSLAG.map((k) =>
+        '<button class="chip" data-tid="' + k.id + '" data-namn="' + esc(k.namn) + '" aria-pressed="' +
+        (bokning.tid === k.id) + '"><b>' + ikon('klocka') + esc(k.namn) + '</b><span>' + esc(k.not) + '</span></button>'
+      ).join('') + '</div>' +
+
+      '<div class="falt-par">' +
+        '<label class="falt-grupp"><span class="' + etikettKlass() + '">Namn</span>' +
+          '<input class="falt" id="in-namn" value="' + esc(bokning.namn) + '" autocomplete="name"></label>' +
+        '<label class="falt-grupp"><span class="' + etikettKlass() + '">Telefon</span>' +
+          '<input class="falt" id="in-tel" type="tel" value="' + esc(bokning.telefon) + '" autocomplete="tel"></label>' +
+      '</div>' +
+
+      '<div class="knapp-rad">' +
+        '<button class="knapp ' + primarForm + '" data-boka="1"' + (klar ? '' : ' disabled') + '>Bekräfta hembesöket' + ikon('pil') + '</button>' +
+        '<button class="knapp knapp-tyst" data-baka="1">Tillbaka</button>' +
+      '</div>' +
+      (klar ? '' : '<p class="liten" style="margin-top:var(--s-rad)">Välj dag och tid, sedan går det att bekräfta.</p>') +
+      '</div>' + fot();
+    return;
+  }
+
+  if (vy === 'klar') {
+    const fornamn = (bokning.namn || '').trim().split(/\s+/)[0] || 'du';
+    const d = vardagar(5).find((x) => x.id === bokning.dag);
+    const k = KLOCKSLAG.find((x) => x.id === bokning.tid);
+    app.innerHTML = nav() + '<div class="scen">' +
+      '<span class="' + etikettKlass() + '">Bokat</span>' +
+      '<h1 class="display" style="margin-top:var(--s-element)">Tack ' + esc(fornamn) + '. Vi ses ' + esc(d.namn) + ' ' + esc(k.namn) + '.</h1>' +
+      '<p class="lede">' + esc(d.namn.charAt(0).toUpperCase() + d.namn.slice(1)) + ' den ' + esc(d.datum) +
+        '. Vi hör av oss om något oväntat kommer i vägen.</p>' +
+      '<div class="klar-lista">' +
+        '<span class="klar-rad">' + ikon('check') + '<span>Bekräftelse skickad med sms' +
+          (bokning.telefon ? ' till ' + esc(bokning.telefon) : '') + '.</span></span>' +
+        '<span class="klar-rad">' + ikon('check') + '<span>Besöket ligger i ' + esc(foretag) + 's kalender.</span></span>' +
+        '<span class="klar-rad">' + ikon('check') + '<span>Ingen telefon behövde lyftas.</span></span>' +
+      '</div>' +
+      '<div class="knapp-rad">' + primarKnapp('Visa igen', 'data-om="1"') + '</div>' +
+      '</div>' + fot();
+    return;
+  }
+}
+
+/* ===== Händelser — en enda delegerad lyssnare ============================ */
+document.addEventListener('click', (e) => {
+  const el = e.target.closest('[data-valj],[data-till],[data-baka],[data-dag],[data-tid],[data-boka],[data-om],[data-tema]');
+  if (!el) return;
+
+  if (el.dataset.tema) { temaNyckel = el.dataset.tema; anvandTema(temaNyckel); ritaTemaval(); rita(); return; }
+
+  if (el.dataset.valj) {
+    svar[el.dataset.valj] = el.dataset.id;
+    el.setAttribute('aria-pressed', 'true');
+    /* Automatisk gång vidare: kort fördröjning så markeringen hinner synas. */
+    nollstallTimers();
+    timers.push(setTimeout(() => {
+      const nasta = { rum: 'stil', stil: 'yta', yta: 'tid', tid: 'laddar' }[el.dataset.valj];
+      vy = nasta;
+      if (vy === 'laddar') startLaddning(); else rita();
+      window.scrollTo({ top: 0 });
+    }, 220));
+    return;
+  }
+
+  if (el.dataset.till) { vy = el.dataset.till; rita(); window.scrollTo({ top: 0 }); return; }
+
+  if (el.dataset.baka) {
+    const bak = { stil: 'rum', yta: 'stil', tid: 'yta', reveal: 'tid', bokning: 'reveal' };
+    vy = bak[vy] || 'start';
+    rita(); window.scrollTo({ top: 0 }); return;
+  }
+
+  if (el.dataset.dag) { bokning.dag = el.dataset.dag; sparaFalt(); rita(); return; }
+  if (el.dataset.tid) { bokning.tid = el.dataset.tid; sparaFalt(); rita(); return; }
+
+  if (el.dataset.boka) { sparaFalt(); vy = 'klar'; rita(); window.scrollTo({ top: 0 }); return; }
+  if (el.dataset.om) { borjaOm(); return; }
+});
+
+function sparaFalt() {
+  const n = document.getElementById('in-namn');
+  const t = document.getElementById('in-tel');
+  if (n) bokning.namn = n.value;
+  if (t) bokning.telefon = t.value;
+}
+
+function startLaddning() {
+  laddIndex = 0;
+  rita();
+  nollstallTimers();
+  /* 2,5 sekunder, tre texter. */
+  [1, 2].forEach((i) => timers.push(setTimeout(() => {
+    laddIndex = i;
+    const el = document.getElementById('ladd-text');
+    if (el) el.textContent = LADD_TEXTER[i];
+  }, i * 833)));
+  timers.push(setTimeout(() => { vy = 'reveal'; rita(); window.scrollTo({ top: 0 }); }, 2500));
+}
+
+function borjaOm() {
+  nollstallTimers();
+  vy = 'start';
+  svar = { rum: null, stil: null, yta: null, tid: null };
+  bokning = { dag: null, tid: null, namn: '', telefon: '' };
+  rita();
+  window.scrollTo({ top: 0 });
+}
+
+function ritaTemaval() {
+  document.getElementById('temaval').innerHTML = Object.keys(THEMES).map((k) =>
+    '<button class="panel-knapp" data-tema="' + k + '" aria-pressed="' + (k === temaNyckel) + '">' +
+    THEMES[k].namn + '</button>'
+  ).join('');
+}
+
+document.getElementById('foretag').addEventListener('input', (e) => {
+  foretag = e.target.value.trim() || 'Din firma';
+  rita();
+});
+document.getElementById('borja-om').addEventListener('click', borjaOm);
+
+anvandTema(temaNyckel);
+ritaTemaval();
+rita();
+</script>
+</body>
+</html>

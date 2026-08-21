@@ -137,7 +137,15 @@ html:has(.sida) {
   line-height: 1.02;
   letter-spacing: -0.025em;
   margin: 1.3rem 0 1.6rem;
-  max-width: 22ch;
+  max-width: 26ch;
+}
+/* Uppstallningen ar mindre an punchen. Da laser ogat rubriken som EN rost med
+   betoning i stallet for tva jambordiga, och raderna gar fran fem till tre. */
+.h1Setup {
+  display: block;
+  font-size: 0.62em;
+  line-height: 1.1;
+  letter-spacing: -0.012em;
 }
 
 .h2 {
@@ -200,7 +208,8 @@ html:has(.sida) {
 .btnGhost {
   background: transparent;
   color: var(--ljus);
-  box-shadow: inset 0 0 0 1px var(--linje);
+  outline: 1px solid var(--linje);
+  outline-offset: -1px;
 }
 @media (hover: hover) and (pointer: fine) {
   .btn:hover {
@@ -343,7 +352,8 @@ html:has(.sida) {
   min-height: 44px;
   padding: 0 1rem;
   border-radius: 2px;
-  box-shadow: inset 0 0 0 1px var(--linje);
+  outline: 1px solid var(--linje);
+  outline-offset: -1px;
   color: var(--ljus);
   font-size: var(--tx-s);
   font-weight: 600;
@@ -478,7 +488,16 @@ html:has(.sida) {
 .hero {
   position: relative;
   overflow: hidden;
-  padding: clamp(3.5rem, 9vw, 7.5rem) 0 clamp(3rem, 7vw, 6rem);
+  /* Hel skarm: heron ska aga forsta vyn, inte lata nasta sektion skymta.
+     svh i stallet for vh — vh raknar in adressfaltet pa iOS och gav en hero
+     som blev langre an skarmen. */
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  /* Mer luft under an over: innehallet ska ligga strax OVER geometrisk mitt.
+     Med lika padding och align-content:center hamnade det pa mitten och
+     hela ovre tredjedelen blev tom. */
+  padding: clamp(4.5rem, 8vh, 6.5rem) 0 clamp(7rem, 14vh, 10rem);
   background:
     radial-gradient(120% 90% at 85% 0%, rgba(217, 168, 104, 0.09), transparent 60%),
     var(--ink);
@@ -506,7 +525,7 @@ html:has(.sida) {
   margin: 0 auto;
   padding-inline: var(--gut);
   display: grid;
-  grid-template-columns: 1.04fr 0.96fr;
+  grid-template-columns: 1.18fr 0.82fr;
   gap: clamp(2rem, 4.5vw, 4.5rem);
   align-items: center;
 }
@@ -516,11 +535,14 @@ html:has(.sida) {
 
 /* Filmen: ren HTML-video, postern gör att ytan aldrig är tom */
 .heroFilm {
+  /* Toppad mot textkolumnen, inte centrerad: centrerad lamnade tom yta bade
+     over och under och overkanten motte ingen linje. */
+  align-self: start;
+  margin-top: 0.6rem;
   position: relative;
   border-radius: 4px;
   overflow: hidden;
   border: 1px solid var(--linje);
-  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.7);
 }
 .heroFilm video {
   display: block;
@@ -599,7 +621,7 @@ html:has(.sida) {
 .heroLead {
   font-size: clamp(1rem, 1.5vw, 1.14rem);
   color: var(--ljus-70);
-  max-width: 52ch;
+  max-width: 62ch;
   margin-bottom: 2.4rem;
 }
 .heroCta {
@@ -1180,13 +1202,18 @@ a.kontaktRad b {
   min-height: 46px;
   padding: 0 1.4rem;
   border-radius: 3px;
-  background: #10b981;
-  color: #0a1628;
+  /* Solid fallback forst: dar color-mix saknas blir ytan mork i stallet
+     for genomskinlig, sa texten aldrig hamnar pa bar bakgrund. */
+  background: var(--ink);
+  background: color-mix(in srgb, var(--ink) 86%, transparent);
+  color: #10b981;
+  border: 1px solid #10b981;
+  border-color: color-mix(in srgb, #10b981 42%, transparent);
+  backdrop-filter: blur(6px);
   font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.6);
 }
 
 .modalLager {
@@ -1416,7 +1443,6 @@ a.kontaktRad b {
   border-left: 3px solid var(--brass);
   border-radius: 4px;
   padding: 1.35rem 1.25rem 1.25rem;
-  box-shadow: 0 26px 60px -18px rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
