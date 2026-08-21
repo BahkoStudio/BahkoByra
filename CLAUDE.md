@@ -104,7 +104,7 @@ Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `web/p
 
 **Offer-stegen (en nisch: bygg & hantverk, alla kanaler):**
 
-| | Bygg & hantverk (Instagram @bahkostudio, cold email/call/IRL) |
+| | Bygg & hantverk (Instagram @bahkobyra, cold email/call/IRL) |
 |--|----------------------------------------------------------------|
 | Front (gratis) | Gratis hemsideförslag (utkast, ev. 2-min Loom) |
 | Core (betalt) | Hemsida engångs (12 000 kr ex moms) |
@@ -186,7 +186,6 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 | grill-me | `/grill-me` | "grill me", "stress-test planen", "intervjua mig om planen" |
 | motion-design | `/motion-design [varumärke + classic/hyper]` | "motion design", "animera loggan", "logo-animation", "promovideo", "reels-intro" |
 | optimering | `/optimering [kund]` | "optimera sajten", "SEO för [kund]", "GEO/AEO", "schema markup", "ranka på Google", "synas i AI-svar", "Google Business Profile" |
-| task-observer | (auto) | aktiveras vid varje flerstegssession — fångar lärdomar som ska bli skill-regler |
 | rensa | `/rensa` | "rensa chatten", "spara och rensa", "clear men behåll det viktiga", "rensa kontexten" |
 
 - **skill** — Guides building/auditing/optimizing skills. Runs Discovery Interview before creating. See `.claude/skills/skill/reference.md`.
@@ -195,12 +194,11 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 
 - **demo-recopy** — Återanvänder befintligt demo-media för en ny lead: noll ny generering, 0 credits. **Sedan 2026-08-18 byggs varje recopy som Next.js-route på SV Hus-mallen** (`hemsidor`-skillen äger mönstren; referens `web/app/(demo)/shabifix/`). Ersätts en gammal `/cloud/`-demo läggs redirect i `next.config.mjs` så skickade länkar aldrig bryts. **Regel: ny lead i en nisch som redan har demo → alltid demo-recopy först.**
 - **hemsidor** — Kundhemsidor/demos som server-renderade Next.js-routes med NOLL egen klient-JS (`:target`-modal, CSS-popup, rullande tjänste-tejp, `<details name>`-FAQ, hero-video). Referens: `web/app/(demo)/svhus/`. Route-gruppen `(demo)/` — aldrig under `/cloud/` (rewriten vinner, 404). Higgsfield i mallen: bilder `nano_banana_2` med kundreferens, video `seedance_2_5` (Mathias-beslut 2026-08-18). Kör aldrig credits utan beställning.
-- **task-observer** — Aktiveras vid start av varje flerstegssession (bygge, deploy, research): loggar mönster och korrigeringar till `.claude/observations.md`; lärdomar med tydligt hem skrivs direkt in i rätt skill som daterad regel (routing-tabell i skillen). Bahko-anpassad bearbetning av rebelytics original (CC BY 4.0, attribution behållen). Vid start av en arbets­session: invoka task-observer innan arbetet börjar.
 - **excalidraw-diagram** — Generates editable Excalidraw diagrams, saves `.excalidraw` files.
 - **rapport** — Genererar konkurrensanalys, klientrapporter och lead-profiler. Exporterar till Google Docs/Sheets. Kräver `credentials.json` för Google OAuth. Export-verktyg: `tools/export_to_google_docs.js`.
-- **instagram-engine** — Producerar content-batchar (reels/carouseller/DM-cadence) för bygg/hantverk-nischen (@bahkostudio). Speglas i dashboardens Instagram-motor. Se `.claude/skills/instagram-engine/templates.md`.
+- **instagram-engine** — Producerar content-batchar (reels/carouseller/DM-cadence) för bygg/hantverk-nischen (@bahkobyra). Speglas i dashboardens Instagram-motor. Se `.claude/skills/instagram-engine/templates.md`.
 - **grill-me** — Intervjuar dig relentlessly genom designträdet tills delad förståelse nås. Ger rekommenderat svar per fråga, frågar i rundor via AskUserQuestion.
-- **motion-design** — Higgsfield-flöde brief → storyboard (en grid-bild, gpt_image_2) → video (seedance_2_0). Används för reels-hooks (@bahkostudio), uppsell efter hemsideleverans och eget varumärke — ALDRIG som front offer. Kostar credits, körs aldrig utan beställning.
+- **motion-design** — Higgsfield-flöde brief → storyboard (en grid-bild, gpt_image_2) → video (seedance_2_0). Används för reels-hooks (@bahkobyra), uppsell efter hemsideleverans och eget varumärke — ALDRIG som front offer. Kostar credits, körs aldrig utan beställning.
 - **rensa** — Destillerar ENDAST det nödvändiga från sessionen till `.tmp/session-context.md` (överlever `/clear`), säger sedan åt dig att köra det inbyggda `/clear`. Skillnad mot session-handoff: skriver till fil istället för chatt, och tar bara med minsta möjliga (aktiv uppgift, låsta beslut, rörda filer, körande tillstånd, nästa steg). `/clear` kan inte köras av skillen själv.
 - **optimering** — SEO, lokal SEO, GEO och AEO för kundsajter. Kärnvärdet är att skilja **dokumenterat från branschmyt**: varje åtgärd märks med evidensgrad, och skillen har en svartlista över sånt som riskerar manuell åtgärd från Google (dolt innehåll, review-schema på egna omdömen). Blockerar alltid på grundfel först (egen domän, indexerbarhet, innehåll i rå HTML) innan finlir. Evidenstabell, schema-mallar och kända fällor i våra egna mallar: `.claude/skills/optimering/reference.md`.
 

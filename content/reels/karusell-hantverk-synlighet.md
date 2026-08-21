@@ -1,6 +1,6 @@
 # Karusell — "Ditt hantverk är 10/10. Din hemsida är ditt dyraste misstag."
 
-**Kanal:** @bahkostudio · **Nisch:** bygg/hantverk · **Mål:** DM:a SAJT → gratis hemsideförslag
+**Kanal:** @bahkobyra · **Nisch:** bygg/hantverk · **Mål:** DM:a SAJT → gratis hemsideförslag
 **Format:** 1:1 eller 4:5, 8 slides. On-screen text nedan = det som trycks på varje slide (kort, scanbart).
 
 ---

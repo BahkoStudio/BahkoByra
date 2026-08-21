@@ -17,7 +17,7 @@ Svara alltid på användarens språk. Var kortfattad och rak.
 Motion design är **ALDRIG front offer** — hemsidor är offerten (positioneringsregeln i CLAUDE.md).
 Den används för att attrahera och merförsälja:
 
-1. **Reels-hooks för @bahkostudio** (ihop med instagram-engine): 5s kinetiska intro-stings till
+1. **Reels-hooks för @bahkobyra** (ihop med instagram-engine): 5s kinetiska intro-stings till
    content-batcharna — högre stopp-effekt i flödet än statisk text. Format 9:16, highMD.
 2. **Uppsell-trappan ("Mer wizardry"):** logo-animation/promovideo som tilläggstjänst EFTER
    hemsideleveransen — kundens nya sajt + en animerad brand-video till deras IG. Prissätts separat.
