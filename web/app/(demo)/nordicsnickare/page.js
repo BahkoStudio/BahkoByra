@@ -80,10 +80,51 @@ const LANKAR = [
   { href: '#fragor', txt: 'Vanliga frågor' },
 ];
 
+/* Fyra måttsatta linjeritningar, en per tjänst. De ritar sig själva när kortet
+   kommer i vy (stroke-dashoffset + animation-timeline: view()), och står
+   färdigritade där stödet saknas — sidan ska vara komplett utan animationen.
+   vector-effect sitter på formerna, inte på svg:n: den ärvs inte, och utan den
+   blir linjerna hårfina när ritningen skalas ner. */
+const RITNINGAR = {
+  garderob: (
+    <>
+      <path d="M12 104V56L100 20l88 36v48" />
+      <path d="M12 104h176" />
+      <path d="M56 104V44M100 104V26M144 104V44" />
+      <path d="M12 78h176" />
+      <path d="M4 56v48M0 56h8M0 104h8" />
+    </>
+  ),
+  luckor: (
+    <>
+      <path d="M12 24h176v80H12z" />
+      <path d="M70 24v80M130 24v80" />
+      <path d="M58 60v10M82 60v10M118 60v10M142 60v10" />
+      <path d="M12 112h176" />
+    </>
+  ),
+  hyllor: (
+    <>
+      <path d="M24 16v96M176 16v96" />
+      <path d="M24 16h152M24 44h152M24 72h152M24 100h152" />
+      <path d="M96 44v28M140 72v28" />
+    </>
+  ),
+  lister: (
+    <>
+      <path d="M16 20v72h168" />
+      <path d="M16 92l14-14h154" />
+      <path d="M30 78V32" />
+      <path d="M16 104h168M16 100v8M184 100v8" />
+    </>
+  ),
+};
+
 /* Fyra kort, alla inom det verifierade: snickeri, renovering och gips. */
 const TJANSTER = [
   {
     nr: '01',
+    ritning: 'garderob',
     namn: 'Platsbyggda garderober',
     text:
       'Förvaring som följer rummets egna vinklar, även in i ett snedtak. Måttet tas hemma hos dig, inte i en katalog, och skåpen skruvas upp i rummet de ska sitta i.',
@@ -91,6 +132,7 @@ const TJANSTER = [
   },
   {
     nr: '02',
+    ritning: 'luckor',
     namn: 'Kök och luckor',
     text:
       'Sitter stommarna bra behöver du inget nytt kök. Nya luckor, fronter och bänkskiva ger samma känsla som ett köksbyte, till en helt annan nota.',
@@ -98,6 +140,7 @@ const TJANSTER = [
   },
   {
     nr: '03',
+    ritning: 'hyllor',
     namn: 'Hyllor och bokväggar',
     text:
       'Byggda in i rummet i stället för ställda mot det. En bokvägg som går vägg till vägg och tak till golv ser ut som en del av huset, för det är den.',
@@ -105,6 +148,7 @@ const TJANSTER = [
   },
   {
     nr: '04',
+    ritning: 'lister',
     namn: 'Gips, lister och renovering',
     text:
       'Väggarna som ska bli raka och listverket som avslutar rummet. Vi tar också renoveringen rum för rum när det är mer än snickeriet som ska göras.',
@@ -271,18 +315,46 @@ export default function NordicSnickareDemo() {
       </header>
 
       {/* ---------- hero ---------- */}
+      {/* ---------- hero ----------
+          FPV-dronarshot som glider genom rummet och landar pa det platsbyggda
+          skapet. Videon ager hela vyn och texten ligger over den: en enda
+          rubrik, for filmen visar redan vad som gors. */}
       <section className={styles.hero} id="top">
+        <figure className={styles.heroFilm}>
+          {/* Tva element i stallet for ett script som byter kalla: sidan ska
+              vara noll egen klient-JS, och <source media> fungerar inte for
+              video i Chrome. CSS visar ratt element per orientering, och
+              preload="metadata" gor att det som doljs bara kostar nagra kB. */}
+          <video
+            className={styles.heroLiggande}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/nordicsnickare/media/poster-dronare.jpg"
+          >
+            <source src="/nordicsnickare/media/video-dronare-genom-rummet.mp4" type="video/mp4" />
+          </video>
+          <video
+            className={styles.heroStaende}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/nordicsnickare/media/poster-dronare-mobil.jpg"
+          >
+            <source src="/nordicsnickare/media/video-dronare-genom-rummet-mobil.mp4" type="video/mp4" />
+          </video>
+        </figure>
+
         <div className={styles.heroIn}>
           <div className={styles.heroTxt}>
             <p className={styles.eyebrow}>Snickeri · Renovering · Gips</p>
             <h1 className={styles.h1}>
-              <span className={styles.h1Setup}>Färdigköpt passar inga snedtak.</span>
-              <em>Byggt på plats.</em>
+              Det finns <em>plats kvar</em> i ditt hem.
             </h1>
-            <p className={styles.heroLead}>
-              Vi arbetar i Stockholm med omnejd. Vi mäter hemma hos dig, tillverkar efter dina
-              mått och monterar i rummet det ska sitta i. Fast pris innan vi börjar, och samma person hela vägen.
-            </p>
             <div className={styles.heroCta}>
               <a className={styles.btn} href="#kontakt">
                 Boka kostnadsfri mätning
@@ -292,26 +364,6 @@ export default function NordicSnickareDemo() {
               </a>
             </div>
           </div>
-
-          {/* Videon är ren HTML (autoplay muted loop playsinline) — ingen
-              klient-JS, och postern gör att ytan aldrig är tom. Rutan är
-              ratio-styrd, så klippet fyller den i varje bredd och behöver
-              ingen egen mobilvariant. Illustration ur vårt demobibliotek,
-              inte kundens eget jobb: därav bildtexten. */}
-          <figure className={styles.heroFilm}>
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster="/nordicsnickare/media/poster-fore-tom-vagg.jpg"
-              width={1280}
-              height={720}
-            >
-              <source src="/nordicsnickare/media/video-garderoben-byggs.mp4" type="video/mp4" />
-            </video>
-          </figure>
         </div>
       </section>
 
@@ -346,10 +398,6 @@ export default function NordicSnickareDemo() {
             <h2 className={styles.h2}>
               Samma vägg. <em>Nu är den förvaring.</em>
             </h2>
-            <p className={styles.sekLead}>
-              Väggen på bilden har två takfall som möts i en topp. Ingen färdig möbel i någon
-              katalog är byggd för den formen — men ett skåp som skärs till på plats är det.
-            </p>
           </div>
 
           <div className={styles.forvandling}>
@@ -400,6 +448,9 @@ export default function NordicSnickareDemo() {
             {TJANSTER.map((t) => (
               <article className={styles.tjanst} key={t.nr}>
                 <span className={styles.tjanstNr}>{t.nr}</span>
+                <svg className={styles.ritning} viewBox="0 0 200 120" aria-hidden="true">
+                  {RITNINGAR[t.ritning]}
+                </svg>
                 <h3>{t.namn}</h3>
                 <p>{t.text}</p>
                 <ul>

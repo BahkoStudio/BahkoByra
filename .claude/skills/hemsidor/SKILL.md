@@ -24,100 +24,6 @@ copy-reglerna och QA:n är identiska:
 | **Lån** | Nischen finns i biblioteket men inte leadet | 0 |
 | **Nybygge** | Ingen bild i nischen finns | ~50, **kräver Mathias beställning** |
 
-## Den andra leveranstypen: säljdemon
-
-Allt ovan gäller **kundhemsidor** — en sida till en namngiven lead. Skillen
-äger också en helt annan sak: **säljdemon som visas live i mötet.**
-
-Referens: `web/public/salj/index.html`. Live: `bahkobyra.se/salj/`.
-
-Den är inte en kunds sida. Den är ett verktyg Mathias har uppe på skärmen när
-han sitter mittemot en hantverkare, och den spelar upp hantverkarens blivande
-slutkund som går **från nyfiken till bokat hembesök utan att någon lyfter en
-telefon**. Därför: en enda självständig fil, inga beroenden utom Google Fonts,
-ingen localStorage. Den ska öppna direkt även utan nät.
-
-### Arkitekturen är det viktigaste kravet
-
-**Två lager som aldrig blandas.**
-
-1. **Tokenlagret** — ett `THEMES`-objekt med kompletta teman. Varje tema har
-   `color`, `font`, `type`, `radius`, `space` och `rules`. Detta är **enda
-   stället i hela filen** där en hexkod eller ett rått px-tal får finnas.
-2. **Komponentlagret** — läser uteslutande tokens. Ingen komponent får en egen
-   färg eller ett eget mått.
-
-Bryggan är en funktion som skriver ut temat som CSS-variabler på `:root`.
-Komponent-CSS:en innehåller då bara `var()`.
-
-**Ett temabyte ska ändra karaktär, inte bara färg** — radie, typsnittsvikt och
-spacing måste alla röra sig. Byter bara färgen är temat inte ett tema.
-
-**`rules` styr beteende, inte utseende.** Reglerna läses i render-koden:
-- `buttonFill: false` → temat tillåter inga fyllda knappar alls;
-  primärknappen renderas som ramad text.
-- `icons: false` → inga ikoner renderas någonstans.
-- `labelIndicator: 'square'` → en kvadrat före varje etikett.
-- `accentSurfacesMax: 1` → högst en accentfärgad yta per skärm; render-koden
-  **räknar** och degraderar primärknappen till ramad när taket är nått.
-
-**Media queries kan inte läsa CSS-variabler.** Lösningen är att inte behöva
-dem: `repeat(auto-fit, minmax(var(--kol-min), 1fr))` bryter på innehållets
-mått i stället för på skärmbredd, och måttet kommer ur temat. Då påverkar
-temabytet även responsiviteten.
-
-### Flödet
-
-Start → quiz i fyra frågor → laddning → reveal → bokning → bekräftat.
-
-- **Start:** rubrik i display, en mening, en primärknapp, tre trust-rader.
-- **Quiz:** en fråga i taget, tunn framstegsindikator, automatisk gång vidare
-  vid val, tillbakalänk från fråga två.
-- **Laddning:** 2,5 sekunder, tre texter som byts.
-- **Reveal — den känslomässiga toppen.** Två saker samtidigt: ett stort
-  visualiseringsfält som skiftar färgton efter vald stil, och två tidigare
-  projekt som matchar valet, med avstånd i km, hur länge sedan, och ett
-  kundcitat.
-- **Bokning:** dag (fem vardagar framåt), tid, namn, telefon. Bekräfta-knappen
-  är låst tills dag och tid är valda.
-- **Bekräftat:** tilltal med förnamn, dag och tid, plus tre rader — sms
-  skickat, bokning i kalendern, ingen telefon lyftes.
-
-### Byråns kontrollrad
-
-En smal mörk rad högst upp: temaväxlare, ett fält för kundens företagsnamn som
-slår igenom i nav, footer och bekräftelse, och en "börja om"-knapp.
-
-Raden **byter aldrig karaktär med temat** — den har egna `--panel`-variabler
-utanför tokenlagret. Följer den temat ser den ut som en del av kundens sida,
-och då tappar den sin funktion som säljarens panel.
-
-### Hårda krav — kontrollera var och en före leverans
-
-1. Noll hexkoder utanför `THEMES` (kontrollradens egna undantagna).
-2. Noll px i komponentlagret som inte kommer ur `space` eller `radius`.
-3. Orden **pris, kostnad, kr, budget** förekommer inte i något kundvänt fält.
-   Hantverkare vill inte visa sina siffror för konkurrenter som surfar in.
-   Det är ett hårt krav, inte en preferens.
-4. Inga skuggor i något tema.
-5. Temat med `buttonFill: false` renderar ingen fylld knapp och ingen ikon.
-6. Temat med `labelIndicator: 'square'` renderar kvadraten före varje etikett.
-7. Temat med `accentSurfacesMax` överskrider aldrig sitt tak per skärm.
-8. Rubriker skalar med `clamp()` — inget bryter under 380 px bredd.
-9. Temabyte ändrar radie, typsnittsvikt och spacing, inte bara färg.
-
-Kraven är mätbara med avsikt: de går att kontrollera i ett skript, och ska
-kontrolleras i ett skript.
-
-### Vad som byts per bransch
-
-Innehållet är utbytbart och allt är på svenska. Byt **bransch, rum och stilar**
-efter vem som sitter i rummet. Nuvarande uppsättning är renoveringsspåret,
-eftersom det passar flest hantverkare: rum är badrum, kök, vardagsrum och
-uterum; stilar är skandinavisk, modern, klassisk och industriell.
-Referensprojekten får vara påhittade men ska vara trovärdiga — riktiga avstånd
-i km, rimliga tidsangivelser, korta citat som låter som svenska villaägare.
-
 ## Vad som INTE längre byggs
 
 Den gamla scroll-koreografin (fast videolager, cirkel-wipe, 520vh/620vh,
@@ -260,15 +166,10 @@ mutade) och lägg i `web/public/<kund>/media/` med beskrivande kebab-namn.
 
 ### Stående mobil
 
-**I bahkomallen är detta inget problem** — hero-videon ligger i en ratio-styrd
-ruta (`aspect-ratio: 1376/768; height: auto`) vid sidan av texten, inte som
-fullskärmsbakgrund. Ett 16:9-klipp fyller rutan snyggt i varje bredd, och ingen
-mobilvariant behövs.
-
-Receptet nedan gäller bara om en video någon gång ska täcka en hel yta: då
-beskärs ett 16:9-klipp ~4× på en telefon och visar en oanvändbar närbild. Fixa
-**utan ny generering** genom att rama om samma klipp till 9:16 med suddig
-utfyllnad, bildremsan från överkanten:
+Heron är fullskärmsvideo, så detta gäller **alltid**: ett 16:9-klipp med
+`object-fit: cover` beskärs ~4× på en telefon och visar en oanvändbar närbild.
+Fixa **utan ny generering** genom att rama om samma klipp till 9:16 med suddig
+utfyllnad:
 
 ```sh
 ffmpeg -i hero.mp4 -filter_complex "\
@@ -277,9 +178,16 @@ ffmpeg -i hero.mp4 -filter_complex "\
 -map "[ut]" -c:v libx264 -crf 26 -an -movflags +faststart hero-mobil.mp4
 ```
 
-Låt hero-gradienten mörkna genom remsans underkant, så övergången försvinner och
-rubriken får en solid textyta. **Postern måste vara den nya filens bildruta 0**
-— ta den ur den färdiga filen, inte ur källbilden.
+Skala **förgrunden till 1,5× ramens bredd och kapa i sidorna** (`scale=1080:-2,
+crop=720:608`): då täcker bildremsan 47 % av höjden i stället för 32 %. Med hela
+bilden inlagd blev remsan en tredjedel av skärmen och resten ett tomt fält.
+Motivet måste vara centrerat för att croppen bara ska ta väggarna.
+
+Låt hero-gradienten mörkna **genom remsans underkant** (en egen gradient i
+mobil-media-queryn), annars läses övergången mot utfyllnaden som en linje.
+Utfyllnaden ska vara dämpad, inte svart: `brightness=-0.17`, inte `-0.34`.
+**Postern måste vara den nya filens bildruta 0** — ta den ur den färdiga filen,
+inte ur källbilden.
 
 ## Steg 3 — Copyn
 
@@ -325,8 +233,11 @@ aldrig tvärtom.
 | Auto-popup | CSS-animation med ~14 s `animation-delay`; stängning via checkbox (`input:checked ~ .popup { display:none }`) | Starta `opacity:0; visibility:hidden` så den är oklickbar före entrén. Vid `prefers-reduced-motion`: visa den **inte alls** — en ruta som dyker upp av sig själv ÄR rörelse. Lyft den ovanför Bahko-knappen på mobil. |
 | Tjänste-tejp | `translateX(-50%)`-loop, listan dubblerad för sömlöshet, kopian `aria-hidden` | Paus på hover, stopp vid `prefers-reduced-motion`. |
 | Exklusiv FAQ | `<details name="faq">` — webbläsaren stänger förra frågan själv | Äldre webbläsare ignorerar attributet (graceful: flera kan stå öppna). |
-| Hero | `min-height: 100svh` med innehållet centrerat | **Heron ska äga första vyn** — inget av nästa sektion får skymta (Mathias 2026-08-21). Använd `svh`, aldrig `vh`: `vh` räknar in iOS-adressfältet och gör heron längre än skärmen. |
-| Hero-video | `autoplay muted loop playsinline preload="metadata"` + `poster`, i en ratio-styrd ruta | Rutan, inte fullskärmsbakgrund: ett 16:9-klipp som täcker en hel telefonhero beskärs ~4× och visar en oanvändbar närbild. Playwrights Chromium saknar H.264 — verifiera via poster och HTTP 200, **inte** `readyState`. Postern måste matcha bildruta 0. |
+| Hero | `min-height: 100svh`, videon som bakgrundslager, texten över den nedtill | **Videon äger hela vyn** (Mathias 2026-08-21). `svh`, aldrig `vh`: `vh` räknar in iOS-adressfältet och gör heron längre än skärmen. Lägg padding-bottom stort nog för rubrik OCH knappar — annars skärs CTA:n av vid vikkanten. |
+| Hero-text | **EN rubrik.** Ingen lede, ingen tagline | Filmen visar redan vad som görs; text som upprepar den är slop och ströks 2026-08-21. Etikett ovanför rubriken får stå — den säger vad firman gör, vilket en okänd firma behöver. |
+| Hero-video | `autoplay muted loop playsinline preload="metadata"` + `poster`, `object-fit: cover` över hela heron | **Drönarshot är standard** (Mathias 2026-08-21): en FPV-flygning som glider genom rummet och landar på arbetet visar både hemmet och hantverket. En locked-off-shot ratades. Gradient över videon för läsbarhet: nästan klar där förvandlingen sker, tät nedtill där rubriken står. Playwrights Chromium saknar H.264 — verifiera via poster och HTTP 200, **inte** `readyState`. Postern måste matcha bildruta 0; börjar klippet i en dålig vy, trimma bort de första sekunderna i stället för att välja en annan poster. |
+| Hero per orientering | Två `<video>`, ett liggande och ett stående, växlade med CSS | Inget script: `<source media>` fungerar inte för video i Chrome, och ett orientation-script bryter noll-klient-JS. Selektorerna behöver två klasser (se kaskad-lärdomen). Det dolda elementet kostar bara sin `preload="metadata"`. |
+| Tjänstekort | En måttsatt linjeritning per kort som ritar sig själv i vy | `stroke-dasharray` + `animation-timeline: view()` bakom `@supports`, med **färdigritat utgångsläge** — annars står korten tomma utan stöd. Ritningen är nischens eget språk och bär kortet utan att kosta en bild. `vector-effect: non-scaling-stroke` måste sitta på formen, inte på `svg`: den ärvs inte, och utan den blir linjen hårfin vid nedskalning. |
 | Före/efter | Två stillbilder i ett par | Starkare och lättare än video här. Märk som illustration. |
 | Scroll-reveal | `animation-timeline: view()` bakom `@supports`, synligt utgångsläge | Sidan måste vara komplett utan stöd. |
 | Bildlådor | `next/image` med `width`/`height` | Varje lazy-bild måste ha styrd låda, annars hoppar innehållet när den laddar (iOS saknar Chromes scroll-förankring). Ska ration styras i CSS trots attributen: `height:auto` **före** `aspect-ratio`, annars vinner attributhöjden och ration ignoreras helt. |
@@ -341,11 +252,17 @@ typografin, copyn, mediasökvägarna och modalens mailto-ärende.
   cyan (glowingservice), energigrön (nordiapartner), kalksten och mässing
   (svhus), timber-amber (vajjebygg), brun och créme (mugglagret), espresso och
   lönn (nordicsnickare).
-- **Kaskad-lärdomen** (kostade en hel rättningsrunda): basregeln för länkar ska
-  vara `.sida :where(a) { color: inherit }`. `:where()` nollar specificiteten så
-  komponentklasserna vinner på ordning. Skrivs den `.sida a` slår den ut varje
-  knappklass — uppmätt resultat var osynlig text (1,00:1) på telefon-CTA:n.
-  Aldrig `!important`.
+- **Kaskad-lärdomen, som slagit till två gånger.** Först på färg: basregeln
+  för länkar ska vara `.sida :where(a) { color: inherit }`. `:where()` nollar
+  specificiteten så komponentklasserna vinner på ordning. Skrivs den `.sida a`
+  slår den ut varje knappklass — uppmätt resultat var osynlig text (1,00:1) på
+  telefon-CTA:n. Aldrig `!important`.
+  Sedan på `display` (2026-08-21): `.heroFilm video { display: block }` har
+  specificitet (0,1,1) och slog ut `.heroStaende { display: none }` (0,1,0), så
+  **båda** hero-videorna renderades och 16:9-klippet låg överst på telefon.
+  Regeln: när du växlar element med `display`, ge selektorn **två klasser**
+  (`.heroFilm .heroStaende`) så den vinner över elementregeln. Och mät vilket
+  element som faktiskt renderas — det syns inte i koden, bara i webbläsaren.
 - Kontrast: ljus yta → mörk text, aldrig tvärtom. Bahko-element följer
   knappregeln: marinblå `#0A1628` på smaragd `#10B981` (7,1:1), aldrig vit text
   på smaragd (2,54:1).

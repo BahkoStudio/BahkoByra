@@ -133,7 +133,7 @@ html:has(.sida) {
 .h1 {
   font-family: var(--disp);
   font-weight: 300;
-  font-size: clamp(2.5rem, 7vw, 5.4rem);
+  font-size: clamp(2.3rem, 5.6vw, 4.6rem);
   line-height: 1.02;
   letter-spacing: -0.025em;
   margin: 1.3rem 0 1.6rem;
@@ -141,12 +141,6 @@ html:has(.sida) {
 }
 /* Uppstallningen ar mindre an punchen. Da laser ogat rubriken som EN rost med
    betoning i stallet for tva jambordiga, och raderna gar fran fem till tre. */
-.h1Setup {
-  display: block;
-  font-size: 0.62em;
-  line-height: 1.1;
-  letter-spacing: -0.012em;
-}
 
 .h2 {
   font-family: var(--disp);
@@ -488,19 +482,13 @@ html:has(.sida) {
 .hero {
   position: relative;
   overflow: hidden;
-  /* Hel skarm: heron ska aga forsta vyn, inte lata nasta sektion skymta.
-     svh i stallet for vh — vh raknar in adressfaltet pa iOS och gav en hero
-     som blev langre an skarmen. */
+  /* Videon ager hela vyn och texten ligger over den. svh, aldrig vh: vh
+     raknar in iOS-adressfaltet och gor heron langre an skarmen. */
   min-height: 100svh;
   display: grid;
-  align-content: center;
-  /* Mer luft under an over: innehallet ska ligga strax OVER geometrisk mitt.
-     Med lika padding och align-content:center hamnade det pa mitten och
-     hela ovre tredjedelen blev tom. */
-  padding: clamp(4.5rem, 8vh, 6.5rem) 0 clamp(7rem, 14vh, 10rem);
-  background:
-    radial-gradient(120% 90% at 85% 0%, rgba(217, 168, 104, 0.09), transparent 60%),
-    var(--ink);
+  align-content: end;
+  padding: clamp(6rem, 12vh, 9rem) 0 clamp(5rem, 12vh, 8.5rem);
+  background: var(--ink);
 }
 /* vector-effect ärvs inte — den måste sitta på formerna, annars blir
    linjerna hårfina när ritningen skalas ner och aliasar bort på 1x-skärmar. */
@@ -525,7 +513,8 @@ html:has(.sida) {
   margin: 0 auto;
   padding-inline: var(--gut);
   display: grid;
-  grid-template-columns: 1.18fr 0.82fr;
+  z-index: 1;
+  grid-template-columns: 1fr;
   gap: clamp(2rem, 4.5vw, 4.5rem);
   align-items: center;
 }
@@ -534,22 +523,47 @@ html:has(.sida) {
 }
 
 /* Filmen: ren HTML-video, postern gör att ytan aldrig är tom */
+/* Filmen ar hero-bakgrunden, inte en ruta vid sidan av texten. */
 .heroFilm {
-  /* Toppad mot textkolumnen, inte centrerad: centrerad lamnade tom yta bade
-     over och under och overkanten motte ingen linje. */
-  align-self: start;
-  margin-top: 0.6rem;
-  position: relative;
-  border-radius: 4px;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
   overflow: hidden;
-  border: 1px solid var(--linje);
 }
+/* Ett element per orientering. Ingen JS, och det som doljs slutar ladda.
+   Selektorerna MASTE ha tva klasser: .heroFilm video satter display:block med
+   specificitet (0,1,1), och en ensam .heroLiggande (0,1,0) forlorar da — bada
+   videorna renderades och 16:9-klippet lag overst pa telefon. Samma kaskadfalla
+   som .sida a mot .sida :where(a), nu pa display i stallet for color. */
+.heroFilm .heroStaende { display: none; }
+@media (orientation: portrait) {
+  .heroFilm .heroLiggande { display: none; }
+  .heroFilm .heroStaende { display: block; }
+}
+
 .heroFilm video {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 1376 / 768;
+  height: 100%;
   object-fit: cover;
+}
+/* Gradienten gor texten laesbar utan att svalja bilden: nastan klar dar
+   forvandlingen sker, tat nedtill dar rubriken star. */
+.heroFilm::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(23, 18, 14, 0.80) 0%,
+    rgba(23, 18, 14, 0.30) 20%,
+    rgba(23, 18, 14, 0.40) 50%,
+    rgba(23, 18, 14, 0.93) 87%,
+    var(--ink) 100%
+  );
 }
 .heroFilm figcaption {
   position: absolute;
@@ -617,12 +631,6 @@ html:has(.sida) {
   .forvandling {
     grid-template-columns: 1fr;
   }
-}
-.heroLead {
-  font-size: clamp(1rem, 1.5vw, 1.14rem);
-  color: var(--ljus-70);
-  max-width: 62ch;
-  margin-bottom: 2.4rem;
 }
 .heroCta {
   display: flex;
@@ -735,6 +743,49 @@ html:has(.sida) {
   font-size: var(--tx-l);
 }
 
+/* Ritningen i tjänstekortet: ritar sig själv när kortet kommer i vy.
+   Utgångsläget är FÄRDIGRITAT — animationen ligger bakom @supports och
+   sätter dashoffset först när den kan animera tillbaka den. Annars hade
+   korten stått tomma i webbläsare utan stöd. */
+.ritning {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin: 0 0 1.4rem;
+  overflow: visible;
+}
+.ritning path {
+  fill: none;
+  stroke: var(--brass);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* Ärvs inte — måste sitta på formen, annars blir linjen hårfin vid nedskalning. */
+  vector-effect: non-scaling-stroke;
+  opacity: 0.85;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .ritning path {
+      stroke-dasharray: 600;
+      animation: ritas linear both;
+      animation-timeline: view();
+      animation-range: entry 12% cover 38%;
+    }
+    /* Strecken kommer i ordning: ytterkontur först, mått sist. */
+    .ritning path:nth-child(2) { animation-delay: -0.05s; }
+    .ritning path:nth-child(3) { animation-range: entry 18% cover 44%; }
+    .ritning path:nth-child(4) { animation-range: entry 24% cover 50%; }
+    .ritning path:nth-child(5) { animation-range: entry 30% cover 56%; }
+  }
+}
+@keyframes ritas {
+  from { stroke-dashoffset: 600; }
+  to { stroke-dashoffset: 0; }
+}
+
+
 /* ---------- tjänster ---------- */
 .tjanster {
   display: grid;
@@ -845,6 +896,20 @@ html:has(.sida) {
   }
 }
 @media (max-width: 760px) {
+  /* Stående: bildremsan i 9:16-klippet slutar vid ca 32 % av höjden.
+     Gradienten mörknar genom den kanten, så övergången mot den suddiga
+     utfyllnaden inte läses som en linje. Remsan slutar vid 32 %. */
+  .heroFilm::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(23, 18, 14, 0.58) 0%,
+      rgba(23, 18, 14, 0.14) 12%,
+      rgba(23, 18, 14, 0.18) 25%,
+      rgba(23, 18, 14, 0.86) 37%,
+      var(--ink) 48%,
+      var(--ink) 100%
+    );
+  }
   .steg {
     grid-template-columns: repeat(2, 1fr);
   }
