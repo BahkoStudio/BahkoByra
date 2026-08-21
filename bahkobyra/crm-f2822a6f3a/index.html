@@ -206,6 +206,9 @@ footer a{color:var(--gold-dk)}
 /* Ringd-knappen är neutral tills man klickar, sedan smaragd med marinblå
    text — samma knappregel som resten av sajten. */
 .dbtn.ringd.pa,.q.ringd.pa{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:700}
+.ringgrupp{display:inline-flex;align-items:center;gap:.25rem}
+.ringlabel{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-50);margin-right:.15rem}
+.ringgrupp .dbtn{min-width:2.1rem;padding-left:.5rem;padding-right:.5rem;justify-content:center}
 .chip.ringd{background:rgba(16,185,129,.18);color:var(--gold-lt)}
 #f-ig-lank{margin-left:.45rem;font-size:.7rem;font-weight:600;color:var(--gold-dk);text-transform:none;letter-spacing:0}
 
@@ -747,7 +750,7 @@ function norm(l){return Object.assign({id:'',name:'',web:'',contact:'',phone:'',
 /* Warm leads bär arkets extrafält. Egen normaliserare så att kalla leads
    behåller exakt sin form i bb_crm_v2. */
 function normVarm(l){return Object.assign({id:'',name:'',ig:'',web:'',contact:'',phone:'',email:'',city:'',
-  tjanst:'',status:'Ny',notes:'',nextDate:'',svaratAt:'',ringdAt:'',forsok:0,igNamn:'',
+  tjanst:'',status:'Ny',notes:'',nextDate:'',svaratAt:'',ringdAt:'',ringd:{},forsok:0,igNamn:'',
   score:'',intresse:'',prio:'',sa:'',problem:'',invandning:'',vill:'',senastKontakt:'',
   updated:today},l);}
 function normalisera(l){return V().varm?normVarm(l):norm(l);}
@@ -856,10 +859,48 @@ mathias@bahkobyra.se`;
 /* Ringd-knappen: markerar att leadet är ringt i dag och räknar upp
    ringförsöken. Klick igen ångrar, så en felträff inte blir permanent.
    Försöken hålls inom SOP:ens tre. */
-function markeraRingd(l){
-  if(l.ringdAt===today){l.ringdAt='';l.forsok=Math.max(0,(l.forsok||0)-1);}
-  else{l.ringdAt=today;l.forsok=Math.min(3,(l.forsok||0)+1);}
+/* Ringkadensen: fyra försök — dag 1, 3, 5 och 7 efter första kontakten.
+   Varje steg markeras för sig och sparar dagen det gjordes. */
+const RINGSTEG=[1,3,5,7];
+
+/* Den första versionen hade en enda ringd-knapp. Har man redan hunnit
+   klicka den flyttas markeringen över till steg 1, så inget arbete tappas. */
+function ringKarta(l){
+  if(!l.ringd||typeof l.ringd!=='object')l.ringd={};
+  if(l.ringdAt&&!l.ringd['1']){l.ringd['1']=l.ringdAt;l.ringdAt='';}
+  return l.ringd;
+}
+
+/* Ett klick markerar steget som ringt i dag och flyttar nästa ringdatum
+   två dagar fram, till nästa steg i kadensen. Är dag 7 gjord är kadensen
+   klar och datumet rensas. Klick igen ångrar steget. */
+function markeraRingd(l,d){
+  const k=ringKarta(l),n=String(d);
+  if(k[n])delete k[n];
+  else{
+    k[n]=today;
+    const i=RINGSTEG.indexOf(d);
+    if(!CLOSED.includes(l.status))l.nextDate=i>-1&&i<RINGSTEG.length-1?addDays(today,2):'';
+  }
+  l.forsok=Object.keys(k).length;
   l.updated=today;save(leads);renderAll();
+}
+
+/* Knapparna. Kort form i ringlistan (bara siffran), lång i detaljvyn. */
+/* Sant om något steg i kadensen markerats i dag. */
+function ringtIdag(l){
+  const k=ringKarta(l);
+  return Object.keys(k).some(function(d){return k[d]===today});
+}
+
+function ringKnappar(l,klass,langt){
+  const k=ringKarta(l);
+  return '<span class="ringgrupp">'+(langt?'<span class="ringlabel">Ringt</span>':'')+RINGSTEG.map(function(d){
+    const gjord=!!k[String(d)];
+    const titel=gjord?'Ringd '+fmtDag(k[String(d)])+' — klicka för att ångra':'Markera dag '+d+' som ringd i dag';
+    return '<button class="'+klass+' ringd'+(gjord?' pa':'')+'" data-ringd="'+esc(l.id)+'" data-steg="'+d+'" title="'+titel+'">'+
+      (langt?'Dag '+d:d)+(gjord?' ✓':'')+'</button>';
+  }).join('')+'</span>';
 }
 
 function renderStats(){
@@ -894,6 +935,9 @@ function renderDue(){
   const box=document.getElementById('due-list');
   const rows=leads.filter(l=>{
     if(CLOSED.includes(l.status))return false;
+    /* Kvar i dagens lista när steget markerats i dag, så man ser sitt
+       eget arbete även efter att kadensen flyttat datumet framåt. */
+    if(ringtIdag(l))return true;
     if(l.nextDate&&l.nextDate<=today)return true;
     return h48(l)!==null;
   }).sort((a,b)=>(a.nextDate||'9999').localeCompare(b.nextDate||'9999'));
@@ -905,6 +949,7 @@ function renderDue(){
     if(h!==null)why=`<span class="why h48">${h<0?'DEMO FÖRSENAD':'demo inom '+h+' h'}</span>`;
     else if(l.status==='Demo skickad')why='<span class="why folj">följ upp demon</span>';
     else if(l.status==='Offert skickad')why='<span class="why folj">följ upp offerten</span>';
+    else if(V().varm&&ringtIdag(l))why=`<span class="why folj">ringd · nästa ${fmtDag(l.nextDate)}</span>`;
     else why=`<span class="why ring">ring · ${fmtDag(l.nextDate)}</span>`;
     return `<div class="due-row">
       <span class="nm" data-open="${esc(l.id)}">${esc(l.name)}</span>${why}
@@ -912,14 +957,14 @@ function renderDue(){
       <span class="spacer"></span>
       ${l.phone?`<a class="dbtn" href="tel:${esc(l.phone.replace(/[^\d+]/g,''))}">Ring</a>`:''}
       ${V().varm&&l.ig?`<a class="dbtn" href="${esc(l.ig)}" target="_blank" rel="noopener" title="${esc(l.igNamn)}">Insta ↗</a>`:''}
-      ${V().varm?`<button class="dbtn ringd${l.ringdAt===today?' pa':''}" data-ringd="${esc(l.id)}">${l.ringdAt===today?'✓ Ringd':'Ringd?'}</button>`:''}
+      ${V().varm?ringKnappar(l,'dbtn',false):''}
       <button class="dbtn" data-open="${esc(l.id)}">Öppna</button>
     </div>`;
   }).join('');
 }
 document.getElementById('due-list').addEventListener('click',e=>{
   const r=e.target.closest('[data-ringd]');
-  if(r){const l=leads.find(x=>x.id===r.dataset.ringd);if(l)markeraRingd(l);return;}
+  if(r){const l=leads.find(x=>x.id===r.dataset.ringd);if(l)markeraRingd(l,Number(r.dataset.steg));return;}
   const o=e.target.closest('[data-open]');if(o)openDrawer(o.dataset.open);
 });
 
@@ -934,7 +979,8 @@ function chips(l){
   if(l.forsok>0&&['Ny','Mejl tagen'].includes(l.status))out.push(`<span class="chip fors">${l.forsok}× ringt</span>`);
   if(l.status==='Kund')out.push('<span class="chip won">kund</span>');
   if(V().varm){
-    if(l.ringdAt===today)out.push('<span class="chip ringd">✓ ringd idag</span>');
+    const gjorda=Object.keys(ringKarta(l));
+    if(gjorda.length)out.push('<span class="chip ringd">✓ ringt dag '+gjorda.map(Number).sort(function(a,b){return a-b}).join(', ')+'</span>');
     if(l.prio)out.push(`<span class="chip prio-${l.prio==='Hög'?'hog':l.prio==='Medium'?'medium':'lag'}">${esc(l.prio.toLowerCase())} prio</span>`);
     if(l.score||l.intresse)out.push(`<span class="chip betyg">${esc(l.score||'–')}/${esc(l.intresse||'–')} lead·intr</span>`);
   }
@@ -1059,7 +1105,7 @@ function renderQuick(l){
   const q=[];
   /* Warm leads bor på Instagram — därför ligger profilen först. */
   if(V().varm&&l.ig)q.push('<a class="q" href="'+esc(l.ig)+'" target="_blank" rel="noopener">'+esc(l.igNamn||'Instagram')+' ↗</a>');
-  if(V().varm)q.push('<button class="q ringd'+(l.ringdAt===today?' pa':'')+'" data-ringd="1">'+(l.ringdAt===today?'✓ Ringd '+fmtDag(today):'Markera ringd idag')+'</button>');
+  if(V().varm)q.push(ringKnappar(l,'q',true));
   if(l.phone)q.push(`<a class="q" href="tel:${esc(l.phone.replace(/[^\d+]/g,''))}">📞 Ring</a>`);
   if(l.web)q.push(`<a class="q" href="${esc(l.web)}" target="_blank" rel="noopener">Öppna sajt ↗</a>`);
   if(l.email)q.push(`<a class="q" href="mailto:${esc(l.email)}">Mejla</a>`);
@@ -1072,7 +1118,7 @@ function renderQuick(l){
 document.getElementById('dr-quick').addEventListener('click',e=>{
   const r=e.target.closest('[data-ringd]');if(!r||!editId)return;
   const l=leads.find(x=>x.id===editId);if(!l)return;
-  markeraRingd(l);renderQuick(l);
+  markeraRingd(l,Number(r.dataset.steg));renderQuick(l);
 });
 document.getElementById('dr-quick').addEventListener('click',async e=>{
   const b=e.target.closest('[data-copy]');if(!b||!editId)return;
