@@ -11,9 +11,15 @@ En väg, inga alternativ: **server-renderad Next.js-route med noll egen
 klient-JS**. Modal, meny, popup och dragspel körs på `:target`, `<details>`
 och checkbox-mönstret. Inget script kan krascha, för det finns inget script.
 
-**Referens — KOPIERA DENNA:** `web/app/(demo)/svhus/` (`page.js` +
-`svhus.module.css`). Live: `bahkobyra.se/svhus/`. Mall-kanon 2026-08-18.
-Andra recopy att titta på: `web/app/(demo)/shabifix/`.
+**Referens — KOPIERA DENNA:** `web/app/(demo)/nordicsnickare/` (`page.js` +
+`nordicsnickare.module.css`). Mall-kanon 2026-08-21. Den har allt det nya:
+fullskärmsvideo med drönarshot, EN hero-rubrik, linjeritningar i tjänstekorten,
+klickbara steg utan JavaScript, och orienteringsväxling med två video-element.
+
+`web/app/(demo)/svhus/` är den **äldre** förlagan (mall-kanon 2026-08-18) och
+saknar allt ovan — kopiera den inte längre. Den och `shabifix/` har dessutom
+kvar två brister som rättats i nordicsnickare: sex CSS-regler under typgolvet
+11 px, och versalrader över 35 tecken.
 
 Skillen har **tre lägen som bara skiljer sig i mediakostnad** — strukturen,
 copy-reglerna och QA:n är identiska:
