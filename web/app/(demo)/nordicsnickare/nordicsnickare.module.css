@@ -244,11 +244,16 @@ html:has(.sida) {
   flex-shrink: 0;
 }
 .brandMark {
-  width: 34px;
-  height: 34px;
-  color: var(--brass);
   display: grid;
   place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  flex: none;
+  /* Inramat marke: ikonen blir en logotyp i stallet for losa
+     linjer som svavar vid ordmarket. */
+  border: 1px solid var(--brass);
+  border-radius: 3px;
+  color: var(--brass);
 }
 .brandMark svg {
   width: 100%;
@@ -785,6 +790,37 @@ html:has(.sida) {
   to { stroke-dashoffset: 0; }
 }
 
+
+/* Galleriet under fore/efter-paret. Kvadratisk ratio ar facit: 16/11 kandes
+   fortfarande for stort. height:auto MASTE sta fore aspect-ratio — img-taggarna
+   har height-attribut, och utan height:auto vinner attributet sa ration
+   ignoreras helt. Auto-fit i stallet for media query: bryter pa innehallets
+   matt och maattet kommer ur en variabel. */
+.galleri {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.6rem;
+}
+.galleri figure {
+  margin: 0;
+  border: 1px solid var(--linje);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--yta);
+}
+.galleri img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+.galleri figcaption {
+  padding: 0.7rem 0.85rem;
+  font-size: 0.82rem;
+  color: var(--ljus-70);
+}
 
 /* ---------- tjänster ---------- */
 .tjanster {
