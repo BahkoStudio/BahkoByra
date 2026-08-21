@@ -29,7 +29,7 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 ├── web/ ...................... 🔒 Vercel-projektet bahko-byra bygger HÄRIFRÅN
 │   ├── app/
 │   │   ├── (sajt)/ ........... marknadssajten www.bahkobyra.se
-│   │   ├── (demo)/ ........... ⭐ NYA kunddemos — svhus = mallen, + shabifix, glowingservice
+│   │   ├── (demo)/ ........... 🔒⭐ NYA kunddemos — svhus = mallen, + shabifix, glowingservice
 │   │   ├── demo/ ............. gamla kitet (_kit, _data, [kund]) — under avveckling
 │   │   └── komponenter/ ...... delat, bl.a. Maskot.js
 │   ├── public/
@@ -61,7 +61,7 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │   ├── design/
 │   └── superpowers/ .......... revisionens planer och specar
 │
-├── reference/ ................ 🔒 levande källdokument (PDF) — raderas aldrig
+├── reference/ ................ levande källdokument (3 PDF, säljmetodiken) — inte skräp
 ├── data/ ..................... tom sedan klinik-leadsen raderades 2026-08-21
 ├── .tmp/ ..................... slängbart — UTOM session-context.md = lägesbilden
 └── .env ...................... nycklar. Aldrig hårdkodat någon annanstans
