@@ -1,7 +1,7 @@
 /* ===========================================================================
-   SHABIFIX — palett och typografi
-   Egen distinkt palett: blåtonad natt med kobaltblå accent. Behållen från
-   den tidigare versionen — den är firmans identitet och länken är skickad. Ingen krock med
+   NORDIC SNICKARE — palett och typografi
+   Egen distinkt palett: espresso och ljus lönn. Lönnen är samma ton som
+   luckorna i hero-filmen, så sidan och bilden hänger ihop. Ingen krock med
    befintliga demos (smaragd, lera, kobolt, orange, solgul, cyan, energigrön,
    kalksten, timber-amber, brun/créme).
    Kontrastregeln följd överallt: ljus yta -> mörk text, aldrig tvärtom.
@@ -20,35 +20,35 @@
 html:has(.sida),
 body:has(.sida) {
   margin: 0;
-  background: #0B0E14;
+  background: #17120E;
 }
 html:has(.sida) {
   scroll-padding-top: 88px;
 }
 
 .sida {
-  --ink: #0B0E14;
-  --yta: #141924;
-  --yta-2: #1A2130;
-  --linje: #232B3A;
-  --ljus: #F2F4F8;
-  --ljus-70: rgba(242, 244, 248, 0.7);
+  --ink: #17120E;
+  --yta: #1F1913;
+  --yta-2: #2A211A;
+  --linje: #3A2E23;
+  --ljus: #F4EEE6;
+  --ljus-70: rgba(244, 238, 230, 0.7);
   /* 0.58 ger ca 5,4:1 mot --ink; 0.45 låg under AA och finns inte längre.
      Etiketter och punktlistor ligger på --ljus-70 (8,6:1). */
-  --ljus-58: rgba(242, 244, 248, 0.58);
-  --sten: #EEF2F8;
-  --brass: #5B8DEF;
-  --brass-lj: #93B7FA;
+  --ljus-58: rgba(244, 238, 230, 0.58);
+  --sten: #EFE7DA;
+  --brass: #D9A868;
+  --brass-lj: #EFCFA0;
   /* Mässing som klarar 4,5:1 mot --sten — för småtext på ljus yta. */
-  --brass-mork: #1E4288;
-  --ink-mjuk: #3E4552;
+  --brass-mork: #7A5320;
+  --ink-mjuk: #4A4038;
   /* 0.42 mot --sten ger ca 3,3:1 — linjerna i dragspelet är enda
      avgränsningen mellan frågorna och måste synas i dagsljus. */
-  --linje-ljus: rgba(11, 14, 20, 0.42);
+  --linje-ljus: rgba(23, 18, 14, 0.42);
 
-  --disp: var(--sh-display), system-ui, sans-serif;
-  --disp-kursiv: var(--sh-display-kursiv), var(--sh-display), system-ui, sans-serif;
-  --ui: var(--sh-ui), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --disp: var(--ns-display), 'Iowan Old Style', Georgia, serif;
+  --disp-kursiv: var(--ns-display-kursiv), var(--ns-display), 'Iowan Old Style', Georgia, serif;
+  --ui: var(--ns-ui), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   /* Typskala: fem steg i stället för 29 lösa värden. */
   --tx-xs: 0.72rem;
@@ -132,7 +132,7 @@ html:has(.sida) {
 /* ---------- typografi ---------- */
 .h1 {
   font-family: var(--disp);
-  font-weight: 500;
+  font-weight: 300;
   font-size: clamp(2.3rem, 5.6vw, 4.6rem);
   line-height: 1.02;
   letter-spacing: -0.025em;
@@ -144,7 +144,7 @@ html:has(.sida) {
 
 .h2 {
   font-family: var(--disp);
-  font-weight: 500;
+  font-weight: 300;
   font-size: clamp(1.9rem, 4vw, 3.1rem);
   line-height: 1.08;
   letter-spacing: -0.02em;
@@ -153,10 +153,8 @@ html:has(.sida) {
 /* Kursiven ligger i en egen fontinstans (preload: false) — därför egen family. */
 .h1 em,
 .h2 em {
-  /* Space Grotesk har ingen kursiv. Betoningen gors med vikt och farg
-     i stallet, sa em fortfarande laeser som en egen rost. */
-  font-weight: 700;
-  font-style: normal;
+  font-family: var(--disp-kursiv);
+  font-style: italic;
   color: var(--brass);
 }
 
@@ -198,7 +196,7 @@ html:has(.sida) {
 @media (hover: hover) and (pointer: fine) {
   /* Två klasser: måste vinna över .btn:hover längre ner. */
   .btn.btnMork:hover {
-    background: #1B2334;
+    background: #2E241B;
   }
 }
 .btnGhost {
@@ -225,7 +223,7 @@ html:has(.sida) {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(11, 14, 20, 0.86);
+  background: rgba(23, 18, 14, 0.86);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--linje);
 }
@@ -560,10 +558,10 @@ html:has(.sida) {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(11, 14, 20, 0.80) 0%,
-    rgba(11, 14, 20, 0.30) 20%,
-    rgba(11, 14, 20, 0.40) 50%,
-    rgba(11, 14, 20, 0.93) 87%,
+    rgba(23, 18, 14, 0.80) 0%,
+    rgba(23, 18, 14, 0.30) 20%,
+    rgba(23, 18, 14, 0.40) 50%,
+    rgba(23, 18, 14, 0.93) 87%,
     var(--ink) 100%
   );
 }
@@ -573,7 +571,7 @@ html:has(.sida) {
   bottom: 0.75rem;
   padding: 0.32rem 0.65rem;
   border-radius: 2px;
-  background: rgba(11, 14, 20, 0.72);
+  background: rgba(23, 18, 14, 0.72);
   backdrop-filter: blur(4px);
   font-size: 0.7rem;
   letter-spacing: 0.12em;
@@ -615,7 +613,7 @@ html:has(.sida) {
   display: inline-block;
   padding: 0.35rem 0.8rem;
   border-radius: 2px;
-  background: rgba(11, 14, 20, 0.78);
+  background: rgba(23, 18, 14, 0.78);
   backdrop-filter: blur(4px);
   font-size: 0.7rem;
   font-weight: 600;
@@ -729,7 +727,7 @@ html:has(.sida) {
   color: var(--brass-mork);
 }
 .sekLjus .h2 em {
-  color: #1E4288;
+  color: #7E551E;
 }
 .sekLjus .sekLead {
   color: var(--ink-mjuk);
@@ -866,10 +864,10 @@ html:has(.sida) {
   .heroFilm::after {
     background: linear-gradient(
       to bottom,
-      rgba(11, 14, 20, 0.58) 0%,
-      rgba(11, 14, 20, 0.14) 12%,
-      rgba(11, 14, 20, 0.18) 25%,
-      rgba(11, 14, 20, 0.86) 37%,
+      rgba(23, 18, 14, 0.58) 0%,
+      rgba(23, 18, 14, 0.14) 12%,
+      rgba(23, 18, 14, 0.18) 25%,
+      rgba(23, 18, 14, 0.86) 37%,
       var(--ink) 48%,
       var(--ink) 100%
     );
@@ -939,7 +937,7 @@ html:has(.sida) {
 .stegPanel h3 {
   color: var(--ljus);
   font-family: var(--disp);
-  font-weight: 500;
+  font-weight: 300;
   font-size: clamp(1.3rem, 2.4vw, 1.9rem);
   letter-spacing: -0.012em;
   margin-bottom: 0.6rem;
@@ -1155,7 +1153,7 @@ html:has(.sida) {
   padding: clamp(3.5rem, 8vw, 7rem) 0;
   scroll-margin-top: 88px;
   background:
-    radial-gradient(100% 80% at 15% 0%, rgba(91, 141, 239, 0.1), transparent 62%),
+    radial-gradient(100% 80% at 15% 0%, rgba(217, 168, 104, 0.1), transparent 62%),
     var(--ink);
 }
 .kontaktGrid {
@@ -1558,7 +1556,7 @@ a.kontaktRad b {
   bottom: 0.75rem;
   padding: 0.32rem 0.65rem;
   border-radius: 2px;
-  background: rgba(11, 14, 20, 0.72);
+  background: rgba(23, 18, 14, 0.72);
   backdrop-filter: blur(4px);
   font-size: 0.7rem;
   letter-spacing: 0.12em;
