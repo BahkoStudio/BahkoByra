@@ -28,7 +28,7 @@ copy-reglerna och QA:n är identiska:
 |---|---|---|
 | **Återbruk** | Leadet har redan en demo, eller en demo i samma nisch finns | 0 |
 | **Lån** | Nischen finns i biblioteket men inte leadet | 0 |
-| **Nybygge** | Ingen bild i nischen finns | ~50, **kräver Mathias beställning** |
+| **Nybygge** | Ingen bild i nischen finns | ~50 — **under 100 körs, över 100 frågas** (CLAUDE.md) |
 
 ## Vad som INTE längre byggs
 
@@ -108,7 +108,9 @@ stanna och flagga.
 2. **Lån ur biblioteket:** `ls web/public/cloud/*/media/`. Rikast är
    `cloud/bygg/media/` (före/efter-hus, villa, badrum, skiffertak), plus
    `nordiapartner`, `ekstromsbygg`, `galiano`, `alfredallservice`.
-3. **Ny generering** — kostar credits, kräver Mathias uttryckliga beställning.
+3. **Ny generering** — kostar credits. Kostnadsregeln bor i CLAUDE.md och gäller
+   före den här skillen: **under 100 credits körs, över 100 frågas.**
+   Formuleringen "aldrig utan beställning" gäller inte längre.
 
 **Kontrollera alltid lånade filer med `md5sum`.** Samma bild ligger under olika
 namn i olika demos: `galleri-platsbyggt-snickeri.jpg` (galiano) och
@@ -117,9 +119,10 @@ Två "olika" lånade bilder blev samma spegel i ett galleri 2026-08-21. Kör
 `md5sum` på hela mediamappen och jämför antalet unika hashar mot antalet filer
 innan du skriver bildtexter.
 
-### Generering (bara på beställning)
+### Generering
 
 Kostnadskolla varje modell före körning — priser ändras, hårdkoda dem inte här.
+Under 100 credits körs utan att fråga; över 100 frågas (CLAUDE.md).
 Bilder: `nano_banana_2` eller `seedream_v5_pro`. Video: `seedance_2_5`
 (mall-standard för Next.js-spåret, Mathias 2026-08-18), `--mode omni_reference`
 för start- och slutbild.
@@ -254,63 +257,7 @@ typografin, copyn, mediasökvägarna och modalens mailto-ärende.
 
 ## Steg 5 — Design
 
-<<<<<<< HEAD
 - **Egen distinkt palett per kund.** Upptaget: smaragd (grontoglanser), lera
-=======
-## Sanningsregeln (avgör om förslaget går att skicka)
-
-- **Bara verifierade kundfakta.** Skriv ett VERIFIERAT-block i sidfilens
-  toppkommentar med allt som får påstås, och en rad om vad som INTE är
-  verifierat (ledtider, antal, garantier, policyer, priser). Allt utanför
-  blocket är förbjudet — även "harmlösa" detaljer som "elva yrkesgrupper".
-- **Lånade/genererade bilder märks:** "Illustration — era projektfoton läggs
-  in här". Ingen sektion får heta Våra projekt eller Referenser.
-- **Formulärets utgång:** `mailto:` till mathias@bahkobyra.se med ärlig not,
-  tills kundens egen adress är verifierad. Gissa aldrig en kundadress.
-
-## Media-trappan (i kostnadsordning)
-
-1. **Återbruk = 0 cr.** Låna media från befintliga demos i samma nisch
-   (aldrig deras JS). Byggbiblioteket: `web/public/cloud/bygg/media/`
-   (GRANIT: före/efter-hus + videor, villa, badrum, skiffertak), även
-   `nordiapartner`, `ekstromsbygg` m.fl. Kopiera till `web/public/<kund>/media/`.
-2. **Higgsfield-generering** (via MCP `mcp__Higgsfield__*`; kostnadsregeln bor i
-   CLAUDE.md: under 100 credits körs, över 100 frågas. Kostnadskoll med
-   `get_cost: true` före varje modell):
-   - **Bilder: `nano_banana_2`** med kundens egen bild som referens
-     (uppmätt 1,5 cr/st; Mathias 2026-08-18: modellen är bra). Prompten låser
-     produkten: "Keep ... EXACTLY as in the reference, unchanged".
-   - **Video: `seedance_2_5`** (Mathias beslut 2026-08-18 — mall-standard för
-     Next.js-spåret, ersätter seedance_2_0_mini här; ca 52 cr enligt repots
-     pristabell, verifiera med kostnadskoll). `--mode omni_reference` för
-     start-/slutbild.
-   - Flödet: `media_upload` → curl PUT till presignerad URL → `media_confirm`
-     → `generate_image_batch`/`generate_video_batch` → `jobs_wait` → en
-     `show_generation_by_ids`. OBS: resultat-CDN:en kan vara blockerad av
-     containerns egress-policy — då levereras länkarna till Mathias som
-     hämtar filerna.
-   - ~15 % av jobben failar server-side utan debitering: kör om EN gång, och
-     kolla alltid jobblistan före omkörning (dubbel-debiteringsfall finns).
-
-## Verifieringsrutinen (obligatorisk före merge)
-
-1. `cd web && rm -rf .next && npx next build` — kör ALDRIG två byggen
-   parallellt mot samma `.next` (ger falska ENOENT-fel).
-2. `next start` på ledig port; Playwright med
-   `executablePath: '/opt/pw-browsers/chromium'`, `.cjs`-filer i `web/` som
-   raderas efteråt.
-3. **Mät, tro inte:** kontrast med WCAG-formeln på VARJE knapp (≥ 4,5:1),
-   `scrollWidth` exakt = viewport vid 390 px, borttagna texter grep:as bort ur
-   renderad HTML, noll pageerror (bortse från ERR_TUNNEL/ERR_CONNECTION_RESET
-   — sandlådans blockerade domäner), och att marknadssajtens `/`, `/om-oss/`
-   m.fl. fortfarande svarar 200 med header/footer/maskoter kvar.
-4. Tidsberoende copy (nedräkningar): testa med `page.clock` FÖRE och EFTER
-   gränsen samt en helg — copy som ljuger efter klockslag är skickstopp.
-
-## Design-ramar
-
-- Egen distinkt palett per kund. Upptagna: smaragd (grontoglanser), lera
->>>>>>> origin/main
   (galiano), kobolt (k9maleri), orange (golvresan), solgul (solpanelstjejen),
   cyan (glowingservice), energigrön (nordiapartner), kalksten och mässing
   (svhus), timber-amber (vajjebygg), brun och créme (mugglagret), espresso och
