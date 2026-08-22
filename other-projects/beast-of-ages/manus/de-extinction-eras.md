@@ -224,6 +224,11 @@ prompten den här gången.
 
 ---
 
+**Bild och ljud:** 106 Veo-prompter à åtta sekunder ligger i
+`de-extinction-eras-veo.md` i samma mapp. Genomgående musik plus sfx, ingen voiceover.
+
+---
+
 ## Del 2 — Manuset
 
 *1 956 ord. Snittmening 10,6 ord, längsta 24, noll meningar över 25, noll tankstreck,
@@ -342,6 +347,16 @@ In every world you walked through just now, you were the intruder. Wrong lungs, 
 Turn it around and it is the same story. Those pups do not belong here either. Their winter is gone. Their prey is gone. We pulled the world out from under them, and now we are building a fence and inviting them into ours.
 
 You lasted three weeks in the first of their worlds and eleven minutes in the last one. Three white pups now have to last in yours. They get fenced grass and no winter. Nobody can tell them what they were brought back for. You will be alive to see how that goes.
+
+So that's your scoreboard. Three weeks. Eleven days. Nine hours. Eleven minutes.
+
+And here's the strange part. Out of those four worlds, the one everybody is actually trying to rebuild right now is the nine-hour one. The mammoth steppe. That's the era with a company behind it, a plan, and a countdown.
+
+Except the mammoth they have made so far isn't a mammoth. It's a mouse. A living, breathing lab mouse with a handful of edited genes and thick golden fur, and it was announced to the world as a step toward the animal that used to walk that steppe.
+
+I spent a whole video on that mouse — what is actually in it, what isn't, and why the gap between that animal and a real mammoth is bigger than the headlines made it sound. If you want to know how close the nine-hour era really is, that's the one to watch next. It's the difference between an animal coming back and a photo of one.
+
+Watch the mammoth mouse video, then come back and tell me which of the four you'd survive.
 
 ---
 

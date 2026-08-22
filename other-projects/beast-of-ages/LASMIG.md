@@ -11,6 +11,7 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 | Fil | Vad |
 |---|---|
 | `manus/de-extinction-eras.md` | **Videon som är klar att spela in.** Paketet överst, manuset under |
+| `manus/de-extinction-eras-veo.md` | 106 Veo-prompter à 8 sekunder, stilbibeln, musikbädden |
 | `analys/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
 | `analys/konkurrenter.md` | Nio konkurrenter med kanal-ID, deras utliggare, vad de gör annorlunda |
 | `analys/panelens-beslut.md` | Kolla-over-panelens 15 beslut, tre videor att göra först, vad som skjuts upp |
