@@ -62,6 +62,8 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │   └── superpowers/ .......... revisionens planer och specar
 │
 ├── reference/ ................ levande källdokument (3 PDF, säljmetodiken) — inte skräp
+├── other-projects/ ........... allt som INTE är Bahko Byrå. Byggs av ingen Vercel
+│   └── beast-of-ages/ ........ YouTube-kanalen. Se dess LASMIG.md
 ├── data/ ..................... tom sedan klinik-leadsen raderades 2026-08-21
 ├── .tmp/ ..................... slängbart — UTOM session-context.md = lägesbilden
 └── .env ...................... nycklar. Aldrig hårdkodat någon annanstans
@@ -146,6 +148,33 @@ Den vanligaste fällan. De delar bara **roten**.
   avgörs av host-rewrites i `web/next.config.mjs`.
 - **Kontrollera Output Directory-overriden efter varje deploy-strul.** Den stod 2026-08-06 på
   maykas-skillens site-mapp, vilket hade serverat Mayka's Kitchen på bahkobyra.se. Ska förbli av.
+
+## other-projects/ — allt som inte är Bahko Byrå
+
+Egna projekt med egen publik och egna regler. **Byggs av inget Vercel-projekt** och ligger
+utanför deployflödet — en ändring där kan aldrig ta ner en kundsajt.
+
+**`other-projects/beast-of-ages/`** — YouTube-kanal, kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`.
+Engelskspråkig publik på ett svenskt konto: **manus skrivs på engelska**, samtal om arbetet
+förs på svenska. Full bakgrund i `other-projects/beast-of-ages/LASMIG.md`.
+
+Tre saker att veta innan något görs där:
+
+1. **Mät på median, aldrig på snitt.** 81,5 procent av kanalens livstidsvisningar sitter i
+   en enda nyhetsvåg (Colossals varghybrider, mars 2026). Snittet 6 890 visningar per video
+   beskriver vågen, inte kanalen. Medianen är ungefär 1 300. Samma fälla gäller
+   konkurrenterna — deras snitt mäter hur många videor de släppt, inte hur bra de är.
+2. **Publiceringstakt är den enda variabel som skiljer kanalen från konkurrenterna.**
+   De släpper 8–26 videor i månaden mot 4. Deras vanliga video går sämre än denna kanals
+   botten. De vinner på antal lotter, inte på kvalitet — gillningar per visning är 9–23 %
+   här mot 2,1 % på den största konkurrentvideon.
+3. **Påhittade djurfakta är oacceptabla.** Bitkraft, hastighet, livslängd, temperatur,
+   populationssiffror. Publiken är delvis barn, och det är i wildlife falska djurfakta
+   sprids snabbast och lever längst. Osäker: skriv om meningen så den inte behöver siffran.
+
+vidIQ är kopplat som MCP-server på användarnivå och läser kanalen direkt
+(`vidiq_channel_stats`, `vidiq_outliers`, `vidiq_video_transcript`, m.fl., 5 credits per anrop).
+Loopar som gäller projektet: `/manusloop` för manus, `/kolla-over` för genomlysning.
 
 ## Regler som gäller alltid
 
