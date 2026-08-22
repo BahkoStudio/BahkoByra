@@ -10,15 +10,14 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 
 | Fil | Vad |
 |---|---|
+| `manus/de-extinction-eras.md` | **Videon som är klar att spela in.** Paketet överst, manuset under |
 | `analys/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
 | `analys/konkurrenter.md` | Nio konkurrenter med kanal-ID, deras utliggare, vad de gör annorlunda |
 | `analys/panelens-beslut.md` | Kolla-over-panelens 15 beslut, tre videor att göra först, vad som skjuts upp |
-| `manus/forlaga-mekanismer.md` | Elva mekanismer uttagna ur Mathias två inklistrade förlagor |
-| `manus/bar-de-extinction-eras.md` | Ribban för de-extinction-manuset, tio kontrollerbara mekanismer |
-| `manus/de-extinction-eras-v1.md` | Manus, version 1. Underkänd av slutkritikern |
-| `manus/de-extinction-eras-v2.md` | Version 2. Åldersstegen bröts vid sista stoppet |
-| `manus/de-extinction-eras-v3.md` | **Version 3 — den som gäller.** 1 956 ord |
-| `paket/de-extinction-eras.md` | **Leveranspaketet.** Tio titlar, thumbnail-prompt, beskrivning, pinnad kommentar, CTA |
+
+**En fil per video.** Paketet och manuset bor tillsammans, för de dömdes mot varandra —
+en titel får bara lova vad manuset betalar. Mekanismerna de båda dömdes mot ligger i skillen
+(`~/.claude/skills/design-loop/references/`), inte här, så de gäller varje kommande manus.
 
 ## Det viktigaste att veta innan något görs
 
@@ -48,33 +47,13 @@ Manuset i `manus/` gör det tre gånger, till exempel om pungvargens bettkraft:
 
 ## Manusets status
 
-**Version 3 gäller.** 1 956 ord, snittmening 10,6 ord, längsta 24, noll tankstreck, noll
-AI-mönster. Tre av fyra kritiker godkände i runda 3 — fakta, hook och klarhet.
+**Klart att spela in.** 1 956 ord, snittmening 10,6 ord, längsta 24, noll meningar över 25,
+noll tankstreck, noll AI-mönster. Överlevnadstiderna faller monotont: tre veckor, elva
+dagar, nio timmar, elva minuter.
 
-Vad de tre rundorna faktiskt rättade, i ordning:
-
-1. **Runda 1:** alla tre delarna underkändes och skrevs om. Slutkritikern hittade sedan ett
-   fel ingen enskild del kunde se — direktvargen förekom två gånger, som egen era och som
-   final. Fyra djur utspridda på fem pinnar.
-2. **Runda 2:** dubbletter bort (varg, Perri 2021, La Brea, gåshud), och fem
-   gissningsreservationer på cirka 130 ord ersatta av en enda tidig rad.
-3. **Runda 3:** åldersstegen bröts vid sista stoppet — jag hade instruerat 1936 → 1662 →
-   20 000 → 13 000 år, alltså ett steg *framåt* i tiden. La Brea-eran omdaterad till
-   **fyrtiotusen år**, vilket ligger mitt i tjärgroparnas fångstintervall (ca 50 000–11 000
-   år). Generationskedjan räknades om från femhundra till femtonhundra.
-4. **Efter runda 3**, tre riktade fixar på det craft- och klarhetskritikerna pekade på:
-   de två efterhängda gissningstaggarna bort (paraplyvarningen täcker alla fyra ändå),
-   fossilräkningen omskriven så inget barn läser den som en huvudräkning på plats, och
-   femtonhundra mödrar fick en bild ögat rymmer.
-
-Överlevnadstiderna faller monotont: **tre veckor → elva dagar → nio timmar → elva minuter.**
-
-## Verktyg
-
-vidIQ är kopplat som MCP-server på användarnivå. Nyttiga anrop:
-`vidiq_channel_stats`, `vidiq_channel_videos`, `vidiq_outliers`, `vidiq_similar_channels`,
-`vidiq_video_transcript` (läs hur en konkurrents video faktiskt är skriven).
-De flesta kostar 5 krediter.
+Tre rundor manusloop och två rundor på paketet. Vad varje runda faktiskt rättade står i
+`manus/de-extinction-eras.md` längst ner — läs det innan nästa manus, för två av felen är
+sådana jag gjorde i instruktionen och inte i texten.
 
 ## Paketet skrivs före manuset
 
