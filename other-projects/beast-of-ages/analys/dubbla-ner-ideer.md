@@ -43,8 +43,8 @@ samma fråga som Colossal-materialet ställer, vad avel och gener faktiskt gör 
 
 ### 5. What Happens to Male Dairy Calves?
 Den renaste en-variabel-klonen: samma industri, samma könsekonomi, annat djur. Sant och
-dokumenterat. **Varning:** mörkast av de fem, och publiken är delvis barn — kräver samma
-varsamma ton som Knapp höll. Görs bara om 1–2 andra ur listan redan fungerat.
+dokumenterat. Mörkast av de fem, men publiken är vuxna män 45+ — barnvarningen som stod
+här tidigare är struken. Knapps varsamma ton behålls ändå, den är hantverk.
 
 ---
 
@@ -95,3 +95,23 @@ konkurrentformat**, alltså tester. Högst 1–3 försök per format innan vi g�
 
 Bildens regel gäller hela vägen: byt en variabel i taget, dubbla ner snabbt, var hänsynslös
 med att avbryta.
+
+---
+
+## Omranking 2026-08-24: publiken är uppmätt
+
+YouTube Studio visar 84 % män, 82 % över 35, största gruppen 65+. Det flyttar om listorna:
+
+**Knapp-formatet:** gårdsfrågorna kliver UPP. En man som är 55+ har ofta egna minnen av
+gårdar, mjölkbilar och hönshus — grismjölken, kalkonäggen och tjurkalvarna är hans
+barndomsvärld, inte exotiska frågor. Zebror och rävar som husdjur är barnets nyfikenhet
+och kliver ner. Ny ordning: **1. Pig Milk · 2. Male Dairy Calves · 3. Turkey Eggs ·
+4. Foxes (Belyajev är kalla kriget — det bär för 60+) · 5. Zebras.**
+
+**Apex-formatet:** örnarna kliver UPP till etta för amerikanska män 60+ — de levde genom
+DDT-krisen och örnens återkomst, det är deras egen livstids naturhistoria. Kaskeloten och
+jättebläckfisken (Jules Verne, gamla National Geographic) tvåa. Ny ordning:
+**1. Bald Eagles · 2. Sperm Whale/Giant Squid · 3. Sea Otters/kattlådan ·
+4. Elephants Botswana · 5. Sea Stars.**
+
+Tolvåringstestet på titlarna behålls — det mäter läsbarhet, inte ålder.

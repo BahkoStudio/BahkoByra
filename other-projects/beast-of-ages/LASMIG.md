@@ -48,7 +48,16 @@ Edmund Extinctions 673k-video. De som hittar videorna gillar dem mer.
 
 ## Hård regel för allt innehåll
 
-Wildlife till en publik som delvis är barn. **Påhittad bitkraft, hastighet, livslängd,
+**Publiken är vuxna män, inte barn** — vilket tidigare antogs här. Uppmätt i YouTube
+Studio 2026-08-24 (visningar, 28 dagar): 84 % män. Åldrarna: 35–44 år 22 %, 45–54 år 21 %,
+65+ **20,6 % och största enskilda gruppen**, 55–64 år 18 %, 25–34 år 17 %. Under 25: 1,3 %.
+
+Tolvåringstestet i manusloopen står kvar, men som läsbarhetsribba — enkelt språk vinner i
+alla åldrar. För ämnesval betyder publiken i stället: en man 45–70 med
+naturdokumentär-tradition, vetenskapshistoria (DDT och örnarna, kalla krigets experiment),
+gårdsminnen. Mer TV-skärm än mobil, längre tittarsessioner.
+
+**Påhittad bitkraft, hastighet, livslängd,
 temperatur, populationssiffra eller datum är oacceptabelt** — det är där falska djurfakta
 sprids snabbast och lever längst. Varje påstående ska gå att slå upp.
 
