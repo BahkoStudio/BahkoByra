@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>Rapport 4 · Bromma Trädgårdsservice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+@page{size:A4;margin:0}
+html,body{background:#FBFAF7}
+body{font-family:'Archivo','Segoe UI',Arial,sans-serif;color:#141613;font-size:9.8pt;line-height:1.5}
+.page{width:210mm;height:297mm;padding:14mm 16mm 12mm;position:relative;display:flex;flex-direction:column;overflow:hidden}
+.page1{page-break-after:always}
+
+.topbar{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid #141613;padding-bottom:3.5mm;margin-bottom:7mm}
+.wordmark{font-size:8pt;font-weight:800;letter-spacing:.3em;text-transform:uppercase}
+.repno{font-size:8pt;font-weight:700;letter-spacing:.06em;color:#3F8F3D}
+
+h1{font-size:20pt;line-height:1.12;font-weight:900;letter-spacing:-.015em;max-width:165mm;margin-bottom:4.5mm}
+h1 em{font-style:normal;color:#3F8F3D}
+.lede{font-size:10.2pt;color:#3d413c;max-width:162mm;margin-bottom:6mm}
+
+.seclabel{font-size:7.5pt;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:#3F8F3D;
+  border-left:4px solid #6BBF59;padding-left:8px;margin-bottom:3mm}
+.secsub{font-size:9pt;color:#6a6f68;margin:-2mm 0 3mm}
+
+.stats{display:flex;gap:4mm;margin-bottom:5mm}
+.stat{flex:1;background:#141613;color:#F2EFE9;border-radius:9px;padding:4.5mm 5mm 4mm}
+.stat .n{font-size:21pt;font-weight:900;line-height:1;color:#9FE08A}
+.stat .l{font-size:7.5pt;font-weight:800;letter-spacing:.2em;text-transform:uppercase;margin-top:2mm}
+.stat .d{font-size:8pt;color:rgba(242,239,233,.62);margin-top:.8mm}
+
+.topics{border:1.5px solid #dcd9d0;border-radius:9px;overflow:hidden;margin-bottom:4.5mm}
+.topic{display:flex;gap:4mm;padding:2.8mm 5mm;align-items:baseline;font-size:9.2pt}
+.topic+.topic{border-top:1.5px solid #dcd9d0}
+.topic .tag{font-size:7pt;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#3F8F3D;white-space:nowrap;width:23mm;flex-shrink:0}
+.topic .tt{font-weight:700}
+.topic .td{color:#4a4e48}
+
+p{margin-bottom:3mm}
+.body-max{max-width:165mm}
+
+.block{background:#F1EFE7;border-radius:9px;padding:5mm 6mm;margin-bottom:4mm}
+.block h3{font-size:10.8pt;font-weight:800;margin-bottom:2mm}
+.block p{font-size:9.4pt}
+.block p:last-child{margin-bottom:0}
+
+table{width:100%;border-collapse:collapse;margin-bottom:3.5mm}
+th{font-size:7pt;font-weight:800;letter-spacing:.16em;text-transform:uppercase;text-align:left;
+  color:#6a6f68;padding:0 3mm 2mm 0;border-bottom:2px solid #141613}
+td{padding:1.3mm 3mm 1.3mm 0;border-bottom:1px solid #dcd9d0;vertical-align:top;font-size:8.4pt;line-height:1.35}
+td.k{font-weight:700;width:44mm}
+td.s{width:33mm}
+.pill{display:inline-block;font-size:6.8pt;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+  padding:1mm 2.6mm;border-radius:100px;white-space:nowrap}
+.pill.ok{background:rgba(107,191,89,.18);color:#2e6e2c;border:1.5px solid #6BBF59}
+.pill.wait{background:rgba(20,22,19,.06);color:#4a4e48;border:1.5px solid #b9b6ac}
+.pill.you{background:rgba(224,164,55,.14);color:#8a5f10;border:1.5px solid #d9a83f}
+
+.teaser{display:flex;gap:4.5mm;margin-bottom:3.5mm;align-items:stretch}
+.teaser img{width:37mm;border-radius:9px;display:block;align-self:flex-start}
+.teaser .ttext{flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.5mm}
+.teaser .ttext p{font-size:8.5pt;color:#4a4e48;line-height:1.4;margin:0}
+.teaser .ttext p b{color:#141613}
+
+.need{display:flex;gap:4.5mm;margin-bottom:3.5mm}
+.need .card{flex:1;border:1.5px solid #dcd9d0;border-radius:9px;padding:3.2mm 4.5mm}
+.need h4{font-size:9.4pt;font-weight:800;margin-bottom:1.2mm}
+.need h4 .num{color:#3F8F3D;margin-right:1.5mm}
+.need p{font-size:8.2pt;color:#4a4e48;margin:0;line-height:1.4}
+
+.fine{font-size:8pt;color:#8a8e86;line-height:1.45;border-top:1px solid #dcd9d0;padding-top:2.5mm;max-width:165mm}
+
+.footer{margin-top:auto;padding-top:4mm;display:flex;justify-content:space-between;
+  font-size:7.5pt;color:#8a8e86;letter-spacing:.05em}
+</style>
+</head>
+<body>
+
+<!-- SIDA 1 -->
+<div class="page page1">
+  <div class="topbar">
+    <span class="wordmark">Bahko Byrå · Bromma Trädgårdsservice</span>
+    <span class="repno">Rapport 4 · söndag 23 augusti 2026</span>
+  </div>
+
+  <h1>Första månaden: <em>9 400 visningar</em> från ett vilande konto — och två saker som behöver lossna</h1>
+
+  <p class="lede">Den här rapporten täcker 17 till 23 augusti och summerar samtidigt hela första månaden,
+  25 juli till 23 augusti. Publiceringen har hållit planens takt varje vecka. Det som inte rör sig är
+  verifieringen hos Google — och två saker på er sida som vi tar upp längre ner. Onsdag 26 augusti kommer
+  mätrapporten som ställer fyra veckors siffror mot nollpunkten från 30 juli.</p>
+
+  <div class="seclabel">Veckans publicering · 17–23 augusti</div>
+  <p class="secsub">Fem inlägg ute — planens takt, tredje veckan i rad med löpande produktion</p>
+
+  <div class="stats">
+    <div class="stat"><div class="n">2</div><div class="l">Reels</div><div class="d">maskoten sår, och bästa såtiden</div></div>
+    <div class="stat"><div class="n">1</div><div class="l">Video</div><div class="d">septembers gräsmatta, rörligt</div></div>
+    <div class="stat"><div class="n">2</div><div class="l">Bilder</div><div class="d">rutavdraget och sista häckklippet</div></div>
+  </div>
+
+  <div class="topics">
+    <div class="topic"><span class="tag">Reel</span>
+      <span><span class="tt">Maskoten sår gräs</span> <span class="td">— robotklipparens första egna inlägg,
+      17 sekunder, brandad med er logga.</span></span></div>
+    <div class="topic"><span class="tag">Reel</span>
+      <span><span class="tt">Bästa tiden att så gräs</span> <span class="td">— 30 sekunder med ljud:
+      varför sensommaren slår våren, avslutat med kostnadsfritt hembesök.</span></span></div>
+    <div class="topic"><span class="tag">Video</span>
+      <span><span class="tt">Gräsmattans favoritmånad</span> <span class="td">— september som säljargument:
+      höstsådd slår vårsådd, och nu är rätt läge att boka skötsel.</span></span></div>
+    <div class="topic"><span class="tag">Bild</span>
+      <span><span class="tt">Rutavdraget på skötsel</span> <span class="td">— halva priset på klippning och
+      skötsel, och skillnaden mot det som inte ger avdrag.</span></span></div>
+    <div class="topic"><span class="tag">Bild</span>
+      <span><span class="tt">Sista häckklippet</span> <span class="td">— varför häcken ska tas nu innan
+      tillväxten stannar, med hembesöket som nästa steg.</span></span></div>
+  </div>
+
+  <p class="body-max" style="font-size:9.4pt"><b>Månaden i siffror:</b> 9 400 visningar och 57 nya följare
+  sedan 25 juli, och 15 inlägg sedan planstarten den 3 augusti. Siffrorna är räckvidd i byggfas — det vi
+  räknar mot målet är fortfarande offertförfrågningar, samtal och visningar av Google-profilen, inte följare.
+  Men riktningen är rätt: ett konto som stod stilla möter nu tusentals personer i månaden. Värt att säga
+  rakt ut: allt detta är byggt utan en enda sekund riktigt jobbmaterial — mappen för klipp och bilder från
+  er är fortfarande tom. Med äkta före/efter ovanpå den här räckvidden växlar det upp igen.</p>
+
+  <div class="block">
+    <h3>Google-arbetet: fjärde veckan hos Google för verifiering</h3>
+    <p>Läget är oförändrat. Företagsprofilen ligger kvar för verifiering, och så länge den inte är genomförd
+    kan vi inte gå vidare med rankingarbetet — ändringar i en overifierad profil riskerar att behöva göras om.
+    Det är inget du orsakat och inget vi kan skynda på; vi bevakar den dagligen, och allt som ska in ligger
+    färdigt att slås på samma dag profilen släpps igenom. Håll ögonen på posten, mejlen och telefonen:
+    hör Google av sig är samma dags svar det enda som kortar väntan.</p>
+  </div>
+
+  <div class="footer"><span>Bromma Trädgårdsservice · Rapport 4</span><span>Bahko Byrå · sida 1 av 2</span></div>
+</div>
+
+<!-- SIDA 2 -->
+<div class="page">
+  <div class="topbar">
+    <span class="wordmark">Bahko Byrå · Bromma Trädgårdsservice</span>
+    <span class="repno">Rapport 4 · söndag 23 augusti 2026</span>
+  </div>
+
+  <div class="seclabel">Veckan som kommer ligger redan klar</div>
+  <p class="secsub">Snöröjningskarusellen öppnar veckan — septemberskiftet är säljfönstret för både snöavtal och höstskötsel</p>
+
+  <div class="teaser">
+    <img src="teaser-r4-sno.jpg" alt="Karusellomslag: Snöröjningen avgörs inte i november. Den avgörs nu.">
+    <img src="teaser-r4-tips.jpg" alt="Tipsbild: snöavtal före oktober">
+    <div class="ttext">
+      <p><b>Snöröjningskarusellen</b> går ut måndag och talar direkt till BRF:er och fastighetsägare:
+      avtalen tecknas nu när styrelserna planerar, inte i november när snön redan fallit.
+      Vinterberedskap från 995 kr per månad, priset ordagrant från er sajt.</p>
+      <p><b>Resten av veckan:</b> snöavtalsbilden på tisdag, ett nytt omdömeskort på onsdag,
+      en ny reel om att boka höstskötseln på fredag och ett sista säsongstips på lördag.</p>
+      <p><b>Två saker vill vi ha med er i</b> — de står i tabellen nedan och är veckans viktigaste rader.</p>
+    </div>
+  </div>
+
+  <div class="seclabel">Läget punkt för punkt</div>
+  <table>
+    <tr><th>Punkt</th><th>Läge</th><th>Kommentar</th></tr>
+    <tr><td class="k">Verifieringen hos Google</td><td class="s"><span class="pill wait">Väntar på Google</span></td>
+        <td>Fjärde veckan; blockerar rankingarbetet, bevakas dagligen</td></tr>
+    <tr><td class="k">Content-produktionen</td><td class="s"><span class="pill ok">I full takt</span></td>
+        <td>5 inlägg i veckan sedan planstart — 15 totalt, plus premiärveckan</td></tr>
+    <tr><td class="k">Veckans content (24–30 aug)</td><td class="s"><span class="pill ok">Redan klart</span></td>
+        <td>Karusell, två bilder och omdömeskort färdiga; reelen produceras i veckan</td></tr>
+    <tr><td class="k">Klipp och bilder från er</td><td class="s"><span class="pill you">Väntar på dig</span></td>
+        <td>En månad — mappen är fortfarande tom. 20–30 sek mobilfilm räcker</td></tr>
+    <tr><td class="k">Svar på kommentarer och meddelanden</td><td class="s"><span class="pill you">Väntar på dig</span></td>
+        <td>Står obesvarade i dag. Förslag nedan — kräver bara ett ja</td></tr>
+    <tr><td class="k">Ämnen från er sida</td><td class="s"><span class="pill you">Väntar på dig</span></td>
+        <td>I dag kommer alla idéer från oss — ni ser saker vi inte ser</td></tr>
+    <tr><td class="k">BRF-nivåerna in i Google-profilen</td><td class="s"><span class="pill wait">Pausad</span></td>
+        <td>Väntar på verifieringen, ligger färdig att läggas in</td></tr>
+    <tr><td class="k">Länk från Södermalms · öppettiderna · omdömesrutinen</td><td class="s"><span class="pill you">Väntar på dig</span></td>
+        <td>Tre småpunkter från tidigare rapporter, sammanlagt tio minuter</td></tr>
+    <tr><td class="k">De extra listningarna i ert namn</td><td class="s"><span class="pill wait">Utreds av oss</span></td>
+        <td>Tre listningar kartlagda; rör dem inte själv</td></tr>
+  </table>
+
+  <div class="seclabel">Vad vi behöver från dig</div>
+  <div class="need">
+    <div class="card">
+      <h4><span class="num">1</span>Ett ja om kommentarerna</h4>
+      <p>Inlägg som får svar visas för fler, och en obesvarad fråga är en varm lead som kallnar.
+      Förslag: vi tar första svaret på kommentarer med färdiga svarsmallar, du tar meddelanden som
+      gäller offerter — eller ger oss åtkomst så sköter vi båda.</p></div>
+    <div class="card">
+      <h4><span class="num">2</span>Ett ämne eller ett klipp i veckan</h4>
+      <p>Alla idéer kommer i dag från oss. Du står i trädgårdarna och ser det vi inte ser — ett foto
+      och två meningar i WhatsApp räcker, vi gör resten. Och hör Google av sig om verifieringen:
+      skicka vidare samma dag.</p></div>
+  </div>
+
+  <div class="seclabel">Nästa steg</div>
+  <p class="body-max" style="font-size:9.2pt">Veckans content publiceras enligt planen med snöröjningskarusellen
+  först. Onsdag 26 augusti kommer mätrapporten som ställer fyra veckors siffror mot nollpunkten från 30 juli —
+  profilvisningar, interaktioner, klick, omdömen och indexerade sidor. Rapport 5 kommer söndag 30 augusti.</p>
+
+  <p class="fine">Till sist samma rad som förra veckan, för ordningens skull. Garantin i upplägget är knuten
+  till att profilens verifiering är genomförd — den är en förutsättning för det rankingarbete garantin bygger
+  på. Så länge verifieringen ligger hos Google gäller den därför inte. Det är inget du behöver göra något åt
+  just nu; vi lyfter frågan igen när profilen är släppt igenom.</p>
+
+  <div class="footer"><span>Bromma Trädgårdsservice · Rapport 4 · 23 augusti 2026</span><span>Bahko Byrå · sida 2 av 2</span></div>
+</div>
+
+</body>
+</html>

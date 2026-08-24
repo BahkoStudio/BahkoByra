@@ -252,7 +252,7 @@ aldrig tvärtom.
 | Hero per orientering | Två `<video>`, ett liggande och ett stående, växlade med CSS | Inget script: `<source media>` fungerar inte för video i Chrome, och ett orientation-script bryter noll-klient-JS. Selektorerna behöver två klasser (se kaskad-lärdomen). Det dolda elementet kostar bara sin `preload="metadata"`. |
 | Tjänstekort | En måttsatt linjeritning per kort som ritar sig själv i vy | `stroke-dasharray` + `animation-timeline: view()` bakom `@supports`, med **färdigritat utgångsläge** — annars står korten tomma utan stöd. Ritningen är nischens eget språk och bär kortet utan att kosta en bild. `vector-effect: non-scaling-stroke` måste sitta på formen, inte på `svg`: den ärvs inte, och utan den blir linjen hårfin vid nedskalning. **Inga ordningssiffror** (01, 02 …) — de ratades som AI-slop 2026-08-21. |
 | Klickbara steg | En dold `<input type="radio">` per steg som syskon FÖRE flikarna och kortet; `:checked ~` väljer aktiv flik och synlig panel | Radio i stället för en `div` med onClick ger piltangentsnavigering och rätt roll gratis, och håller sidan på noll klient-JS. Sätt fokusringen via `.stegRadio:focus-visible ~` — radion är dold, så ringen måste flyttas till labeln. Mät att exakt EN panel är synlig, i webbläsaren. |
-| Logotyp | Ordmärke plus ett **inramat** märke: ikonen i en egen ruta med accentram | Lösa linjer intill ordmärket läser som dekoration, inte som en logotyp (Mathias 2026-08-21). Kunden ska känna igen sitt eget märke i headern, mobilmenyn och footern. |
+| Logotyp | **Kundens egen logotyp**, hämtad ur deras egna kanaler och lagd i `web/public/<kund>/media/` | Inte ett märke vi ritar (Mathias 2026-08-21). Kunden ska känna igen SIN logotyp i headern, mobilmenyn och footern — ett eget ikonmärke är bara ett provisorium. Se avsnittet nedan. |
 | Galleri i förvandlingssektionen | Före/efter-paret stort, och **de övriga bilderna i ett kvadratiskt rutnät under** | Sektionen ska bära allt bildmaterial (Mathias 2026-08-21): två bilder räcker inte. `repeat(auto-fit, minmax(220px, 1fr))` i stället för media query. Kvadrat är facit — 16/11 kändes fortfarande för stort. `height: auto` **före** `aspect-ratio`, annars vinner img-taggens height-attribut och ration ignoreras. |
 | Före/efter | Två stillbilder i ett par | Starkare och lättare än video här. Märk som illustration. |
 | Scroll-reveal | `animation-timeline: view()` bakom `@supports`, synligt utgångsläge | Sidan måste vara komplett utan stöd. |
@@ -260,6 +260,32 @@ aldrig tvärtom.
 
 Rör inte mönstren vid en recopy. Byt bara VERIFIERAT-blocket, paletten,
 typografin, copyn, mediasökvägarna och modalens mailto-ärende.
+
+## Logotypen
+
+**Kundens egen logotyp ska ligga på deras demo.** Det är det första de tittar
+efter, och en sida med någon annans märke i headern läser som en mall.
+
+**Hämta den, i den här ordningen:**
+1. Kundens hemsida, om de har en (`/favicon`, `og:image`, headern).
+2. Instagram- eller Facebook-profilbilden. Ofta rund och beskuren, men
+   användbar.
+3. Fråga Mathias — han har ofta fått den i DM, eller kan begära den.
+
+Lägg filen i `web/public/<kund>/media/` och rendera den med `next/image` med
+`width`/`height`. Ligger den på en mörk canvas: kontrollera att den syns, och
+be om en variant för mörk bakgrund om originalet är svart.
+
+**Hitta aldrig på en logotyp.** Generera inte en med AI och rita inte en egen
+som utges för att vara deras. En logotyp är kundens varumärke — en påhittad
+logotyp är samma sorts fabrikation som ett påhittat projektantal, och den är
+värre, för den ser äkta ut.
+
+**Går den inte att få fram:** använd ett ordmärke i sidans display-typsnitt,
+och **flagga i leveransen att logotypen saknas.** Ett ikonmärke vid ordmärket
+är ett provisorium, inte en lösning. `nordicsnickare` och `shabifix` har ett
+sådant just nu och ska bytas när riktiga logotyper finns.
+
 
 ## Steg 5 — Design
 
