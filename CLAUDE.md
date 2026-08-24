@@ -158,7 +158,7 @@ utanför deployflödet — en ändring där kan aldrig ta ner en kundsajt.
 Engelskspråkig publik på ett svenskt konto: **manus skrivs på engelska**, samtal om arbetet
 förs på svenska. Full bakgrund i `other-projects/beast-of-ages/LASMIG.md`.
 
-Tre saker att veta innan något görs där:
+Fyra saker att veta innan något görs där:
 
 1. **Mät på median, aldrig på snitt.** 81,5 procent av kanalens livstidsvisningar sitter i
    en enda nyhetsvåg (Colossals varghybrider, mars 2026). Snittet 6 890 visningar per video
@@ -168,7 +168,12 @@ Tre saker att veta innan något görs där:
    De släpper 8–26 videor i månaden mot 4. Deras vanliga video går sämre än denna kanals
    botten. De vinner på antal lotter, inte på kvalitet — gillningar per visning är 9–23 %
    här mot 2,1 % på den största konkurrentvideon.
-3. **Påhittade djurfakta är oacceptabla.** Bitkraft, hastighet, livslängd, temperatur,
+3. **Testa eller dubbla ner är ett beslut, inte en känsla.** Utliggarribban är 3 000–5 000
+   visningar. Under den är varje ny video ett test av ett *nytt* format, och högst 1–3 videor
+   får läggas på samma format innan man går vidare. Över den identifieras formatet och man
+   dubblar ner en gång i taget och mäter — slår ingen nedslagning originalet, tillbaka till
+   att testa. Direktvargsspåret gick nio steg nedåt i rad och är slut.
+4. **Påhittade djurfakta är oacceptabla.** Bitkraft, hastighet, livslängd, temperatur,
    populationssiffror. Publiken är delvis barn, och det är i wildlife falska djurfakta
    sprids snabbast och lever längst. Osäker: skriv om meningen så den inte behöver siffran.
 
