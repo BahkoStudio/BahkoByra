@@ -13,7 +13,7 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 | `manus/de-extinction-eras.md` | **Videon som är klar att spela in.** Paketet överst, manuset under |
 | `manus/de-extinction-eras-veo.md` | 106 Veo-prompter à 8 sekunder, stilbibeln, musikbädden |
 | `analys/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
-| `analys/konkurrenter.md` | Nio konkurrenter med kanal-ID, deras utliggare, vad de gör annorlunda |
+| `analys/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
 | `analys/panelens-beslut.md` | Kolla-over-panelens 15 beslut, tre videor att göra först, vad som skjuts upp |
 
 **En fil per video.** Paketet och manuset bor tillsammans, för de dömdes mot varandra —
@@ -29,9 +29,18 @@ video beskriver den vågen, inte kanalen. Medianen är ungefär 1 300.
 **464k-videon går inte att upprepa.** Den låg på 816 visningar i 26 dagar innan vågen kom.
 Vågen är slut — augusti gav 69, 17, 81 och 56 visningar.
 
-**Publiceringstakt är den enda variabel som skiljer kanalen från konkurrenterna.**
-De släpper 8–26 videor i månaden. Beast of Ages släpper 4. Deras *vanliga* video går
-sämre än denna kanals botten. De vinner på antal lotter.
+**Vi kör långform, och den filtreringen avgör vem som ens är en konkurrent.** De fyra
+största siffrorna i Grow Channels-listan — Pulseoryx 15,5 miljoner visningar i månaden,
+Primalapse 20,9, SnowClaw 14,3, WildDna 10,6 — tillhör kanaler med **noll**
+långformsvideor. The Earth Realms två långformsvideor gjorde 346 och 120 visningar.
+Månadsvisningar är oanvändbart som jämförelsetal utan att formatet kollats först.
+
+**Publiceringstakt är en verklig skillnad, men inte den enda.** De format-matchade
+explainer-kanalerna släpper 8–26 videor i månaden mot 4, och deras *vanliga* video går
+sämre än denna kanals botten. Men Wild Origins har 77 900 prenumeranter och
+långformsvideor med sex miljoner visningar — det är en kanal som är genuint mycket större,
+i vårt format. Deras premiss är däremot fiktion (aliens, Medusa, King Kong) och går inte
+att kopiera här. Deras **titelmall** går: de kör en enda form över nästan alla videor.
 
 **Hantverket är inte problemet.** Gillningar per visning: 9–23 procent här, 2,1 procent på
 Edmund Extinctions 673k-video. De som hittar videorna gillar dem mer.
