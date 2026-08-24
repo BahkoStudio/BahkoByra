@@ -14,6 +14,7 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 | `manus/de-extinction-eras-veo.md` | 106 Veo-prompter à 8 sekunder, stilbibeln, musikbädden |
 | `analys/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
 | `analys/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
+| `analys/klarerade-ideer.md` | Fem unikhetskontrollerade idéer redo att välja bland, plus de dödade |
 | `analys/utliggare-att-modellera.md` | Tio utliggare värda att modellera, plus stopplistan |
 | `analys/panelens-beslut.md` | Kolla-over-panelens 15 beslut, tre videor att göra först, vad som skjuts upp |
 
