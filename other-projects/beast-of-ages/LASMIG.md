@@ -10,7 +10,8 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 
 | Fil | Vad |
 |---|---|
-| `manus/de-extinction-eras.md` | **Videon som är klar att spela in.** Paketet överst, manuset under |
+| `manus/de-extinction-eras.md` | **Video 1, klar att spela in.** Paketet överst, manuset under |
+| `manus/saiga-200000-antelope.md` | **Video 2, klar att spela in.** Apex-modellering, unikhetskontrollerad |
 | `manus/de-extinction-eras-veo.md` | 106 Veo-prompter à 8 sekunder, stilbibeln, musikbädden |
 | `analys/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
 | `analys/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
