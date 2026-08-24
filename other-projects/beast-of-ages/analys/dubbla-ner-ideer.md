@@ -132,3 +132,29 @@ av en video. Enligt testa/dubbla ner-reglerna körs EN av dem, mäts, och först
 över ribban görs nästa. Aldrig flera parallellt.
 
 Tolvåringstestet på titlarna behålls — det mäter läsbarhet, inte ålder.
+
+---
+
+## Unikhetsregeln, 2026-08-24 — och vad den redan fällt
+
+**Algoritmen pushar inte liknande idéer. Varje idé måste vara unik.** Formatet får lånas,
+idén måste vara ny. Därför görs en unikhetskontroll (`vidiq_youtube_search`, sorterad på
+visningar) INNAN någon loop startar. En färsk eller synlig video med samma idé dödar den.
+
+**Död: Pig Milk.** Knapp själv publicerade "Why Don't We Drink Pig Milk?" den 12 augusti
+2026 — 53 438 visningar på tolv dagar. Vårt manus hann byggas (1 325 ord, tre av fyra
+domar inne) innan krocken upptäcktes. Kontrollen skulle gjorts före loopen. Manuset ligger
+kvar i sessionens arbetsyta om ämnet någonsin blir ledigt igen.
+
+**Troligen död: Male Dairy Calves.** Frågan har redan två synliga svar: SaskDutch Kid
+485 118 och Kinder World 450 147. Kolla vinkeln noga innan den ens övervägs.
+
+**Varning: Zebras.** CGP Grey har en berömd video om zebradomesticering. Vinkeln
+"Why Don't We Ride" är inte identisk med hans, men kontrollera innan.
+
+**Klarerad: Saigan.** Kontrollerad 2026-08-24: största befintliga är en rysk 56-minuters
+dokumentär (14 266 visningar, fel språk och publik). Enda engelska långformen har 168
+visningar. Idén är orörd för vår publik. Loopen kör.
+
+**Kvar att kontrollera innan de väljs:** Turkey Eggs, Foxes/Belyajev, Bald Eagles,
+Sperm Whale-ärren, Sea Otters/kattlådan, Sea Stars.

@@ -98,6 +98,15 @@ leta utliggare att modellera (ju nyare desto bättre), gå sedan upp till **150 
 De två högsta talen i senaste körningen (243 och 232) var en filmtrailer och en riktig
 naturfilmsdokumentär. Kolla alltid format och genre innan en titel plockas.
 
+## Unikhetsregeln — före varje ny video
+
+**Algoritmen pushar inte liknande idéer: varje idé måste vara unik.** Innan en loop
+startar söks idéns exakta fråga med `vidiq_youtube_search` sorterad på visningar. En
+färsk eller synlig video med samma idé dödar idén — formatet får lånas, idén måste vara
+ny. Pig Milk-manuset byggdes färdigt innan kontrollen gjordes och fick kasseras: Knapp
+hade publicerat exakt samma fråga tolv dagar tidigare. Kontrollen är billig (5 krediter),
+misstaget kostade en hel loop.
+
 ## Testa eller dubbla ner — beslutet som styr vilken video som görs
 
 Ordningen är **fristående video → format → subnisch.** Enskilda videor testas för att hitta
