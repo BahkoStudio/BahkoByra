@@ -79,7 +79,11 @@ mallen lägger texten), alltid mörkt negativt utrymme upptill (rubriken bor dä
   karuseller enligt mall). Endast HELT NYA format kräver aktivt ja.
 - Ansvar: Jens svarar på kommentarer (hans röst, grundregeln); Mathias flaggar obesvarade
   kommentarer efter 24 h.
-- Maskot-dosering: max 1 maskotpost per vecka (brand-beslut 2026-08-17).
+- Maskoten är alltid med (Mathias 2026-08-24, ersätter max-1-regeln från 17/8):
+  robotklipparen är Brommas egen figur och ska som standard finnas på allt
+  producerat content — tipsbilder, karuseller och reels. Undantag: omdömeskorten
+  (rena citatkort, kundens ord ska stå ensamma) och äkta jobbmaterial från Jens
+  (grundregeln ovan gäller — AI spelar aldrig det riktiga jobbet).
 - Månadsmätning sista fredagen: räckvidd, följare, förfrågningar (fråga Jens) — 3 rader i V1.
 
 ## Manus
