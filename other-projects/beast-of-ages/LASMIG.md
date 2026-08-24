@@ -14,6 +14,7 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 | `manus/de-extinction-eras-veo.md` | 106 Veo-prompter à 8 sekunder, stilbibeln, musikbädden |
 | `analys/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
 | `analys/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
+| `analys/utliggare-att-modellera.md` | Tio utliggare värda att modellera, plus stopplistan |
 | `analys/panelens-beslut.md` | Kolla-over-panelens 15 beslut, tre videor att göra först, vad som skjuts upp |
 
 **En fil per video.** Paketet och manuset bor tillsammans, för de dömdes mot varandra —
@@ -74,6 +75,19 @@ gissa aldrig. Kopplingen ska vara ett ämne, inte en artighetsfras.
 
 **"Shocked" är brus, inte mekanism.** Midnight Zone har ett dussin titlar med ordet,
 spännvidd 107 till 1 005 832.
+
+## Så hittas nya utliggare
+
+Ordningen som gäller: ta konkurrentlistan, börja med alla **under 50 000 prenumeranter**,
+leta utliggare att modellera (ju nyare desto bättre), gå sedan upp till **150 000**.
+
+    vidiq_outliers({ channelIds: [...], contentType: 'long',
+                     maxSubscribers: 50000, publishedWithin: 'threeMonths',
+                     sort: 'breakoutScore' })
+
+**Breakout-talet mäter avvikelse från kanalens eget snitt, inte om videon går att kopiera.**
+De två högsta talen i senaste körningen (243 och 232) var en filmtrailer och en riktig
+naturfilmsdokumentär. Kolla alltid format och genre innan en titel plockas.
 
 ## Testa eller dubbla ner — beslutet som styr vilken video som görs
 
