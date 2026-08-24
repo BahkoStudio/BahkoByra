@@ -77,9 +77,20 @@ här** — nyhetsvågen lever fortfarande, och sjöstjärnan kan varenda barn ri
 cyanobakterie som växer på en invasiv vattenväxt, giftet vandrar upp genom bytesdjuren.
 USA-publikens nationalfågel som offer.
 
-*Reserv: saigaantiloperna — 200 000 döda på tre veckor 2015, och förövaren (Pasteurella)
-bodde redan i deras egna näsor. Starkaste vändningen av alla, men djuret är oritbart och
-okänt för en tolvåring, så den ligger utanför topp fem.*
+### Saiga — uteslöts först på fel grund, återinsatt
+
+200 000 döda på tre veckor 2015, omkring 60 procent av världsbeståndet. Löst (Science
+Advances 2018): bakterien Pasteurella multocida, som redan bodde i djurens näsor och
+svalg, blev dödlig när en extrem värme- och fuktvåg slog till. **Förövaren var inne i
+alla offren hela tiden.** Starkaste vändningen i hela materialet.
+
+Jag strök den först för att "en tolvåring inte kan rita en saiga". Det var fel använt
+test: ritbarhetstestet gäller **ordet i titeln**, inte artnamnet i videon. Titeln säger
+`Scientists Finally Found What Killed 200,000 Antelope in Three Weeks — It Was Inside
+Them All Along` — och *antelope* kan vem som helst rita. Saigans bisarra klumpnos blir
+i stället avslöjandets bonus: **nosen är den konstigaste i antilopvärlden, och det var
+exakt där mördaren bodde.** Djurets okändhet slutar vara en svaghet och blir gåtans
+poäng.
 
 ---
 
@@ -110,8 +121,14 @@ och kliver ner. Ny ordning: **1. Pig Milk · 2. Male Dairy Calves · 3. Turkey E
 
 **Apex-formatet:** örnarna kliver UPP till etta för amerikanska män 60+ — de levde genom
 DDT-krisen och örnens återkomst, det är deras egen livstids naturhistoria. Kaskeloten och
-jättebläckfisken (Jules Verne, gamla National Geographic) tvåa. Ny ordning:
+jättebläckfisken (Jules Verne, gamla National Geographic) tvåa. Saiga återinsatt som
+"200,000 Antelope" — se rättelsen ovan. Ny ordning:
 **1. Bald Eagles · 2. Sperm Whale/Giant Squid · 3. Sea Otters/kattlådan ·
-4. Elephants Botswana · 5. Sea Stars.**
+4. Saiga ("200,000 Antelope") · 5. Sea Stars.** Elefanterna till reserv.
+
+**Och en varning listan själv avslöjar:** örnarna, saigan, elefanterna och sjöstjärnorna
+är i själva verket SAMMA inre format — massdöd löst av mikrob eller gift. Fyra varianter
+av en video. Enligt testa/dubbla ner-reglerna körs EN av dem, mäts, och först om den går
+över ribban görs nästa. Aldrig flera parallellt.
 
 Tolvåringstestet på titlarna behålls — det mäter läsbarhet, inte ålder.
