@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 /* Avslöjar sektioner när de scrollas in i bild.
 
@@ -9,9 +10,16 @@ import { useEffect } from 'react';
    med ett skriptfel) visar allt som vanligt istället för ingenting alls.
 
    Varje element avslöjas en gång och slutar sedan bevakas — en sektion som
-   tonar in och ut när man scrollar fram och tillbaka blir bara stökig. */
+   tonar in och ut när man scrollar fram och tillbaka blir bara stökig.
+
+   Komponenten bor i layouten, och layouter återmonteras INTE vid klient-
+   navigering — därför måste effekten köras om per sökväg. Utan det står varje
+   sida efter den första med permanent osynliga sektioner (buggen 2026-08-21:
+   9 av 9 dolda på startsidan efter ett varv till Tjänster och tillbaka). */
 
 export default function Rorelse() {
+  const sokvag = usePathname();
+
   useEffect(() => {
     const rot = document.documentElement;
     rot.classList.add('js-rorelse');
@@ -49,7 +57,7 @@ export default function Rorelse() {
       window.clearTimeout(timer);
       window.removeEventListener('beforeprint', visaAllt);
     };
-  }, []);
+  }, [sokvag]);
 
   return null;
 }
