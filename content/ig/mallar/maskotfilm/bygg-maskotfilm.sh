@@ -84,7 +84,7 @@ ffmpeg -v error -y \
 [w2]adelay=20000:all=1[r2];\
 [14:a]volume=0.85,adelay=20500:all=1[chime];\
 [amus][q0][q1][q2][q3][q4][q5][r0][r1][r2][chime]amix=inputs=11:normalize=0:duration=longest,\
-alimiter=level_in=1:level_out=1:limit=0.92,loudnorm=I=-14:TP=-1.5:LRA=11,aformat=sample_rates=48000:channel_layouts=stereo[aout]" \
+alimiter=level_in=1:level_out=1:limit=0.92,loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=level_in=1:level_out=1:limit=0.84:attack=3:release=40,aformat=sample_rates=48000:channel_layouts=stereo[aout]" \
   -map "[vout]" -map "[aout]" -t 24.0 \
   -c:v libx264 -crf 19 -preset slow -pix_fmt yuv420p -r 24 \
   -c:a aac -b:a 192k -movflags +faststart \
