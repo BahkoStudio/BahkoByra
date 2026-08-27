@@ -195,8 +195,12 @@ table.t th{font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:
 table.t td{padding:.55rem .6rem;border-bottom:1px solid var(--linje);vertical-align:top}
 table.t tr:last-child td{border-bottom:0}
 table.t td b{font-weight:600;font-variant-numeric:tabular-nums}
-.t-rull{overflow-x:auto;max-width:100%}
-.t-rull table.t{min-width:560px}
+.t-rull{overflow-x:auto;max-width:100%;scrollbar-width:thin;scrollbar-color:var(--linje2) transparent}
+.t-rull::-webkit-scrollbar{height:6px}
+.t-rull::-webkit-scrollbar-thumb{background:var(--linje2);border-radius:var(--rp)}
+/* min-bredd ENDAST pa breda datatabeller (4+ kolumner). Prosa-listor i tva-tre
+   kolumner ska radbryta: en global min-width kapade dem tyst i smala kort. */
+.t-rull--vid table.t{min-width:560px}
 
 /* kpi */
 .kpi-mal{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
@@ -213,8 +217,13 @@ table.t td b{font-weight:600;font-variant-numeric:tabular-nums}
 .vecka{border:1px solid var(--linje);border-radius:12px;background:var(--bas);padding:.85rem 1rem;margin-top:.65rem}
 .vecka-huv{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
 .vecka-nr{font-size:.72rem;font-weight:700;color:var(--acc2);font-variant-numeric:tabular-nums;letter-spacing:.08em}
-.vecka-huv input{flex:1;min-width:200px;background:transparent;border-color:transparent;font-weight:600;padding:.2rem .4rem}
-.vecka-huv input:hover,.vecka-huv input:focus{border-color:var(--linje2);background:var(--bas)}
+/* Kapitelrubriken ar en textarea, inte en input: en enradig input kapade
+   rubriken tyst vid 390px (clientWidth 255 mot scrollWidth 418). */
+.vecka-huv textarea{
+  flex:1;min-width:180px;min-height:0;background:transparent;border-color:transparent;
+  font-weight:600;padding:.2rem .4rem;resize:none;overflow:hidden;line-height:1.35;
+}
+.vecka-huv textarea:hover,.vecka-huv textarea:focus{border-color:var(--linje2);background:var(--bas)}
 .vecka-status{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.22rem .7rem;border-radius:var(--rp);border:1px solid var(--linje2);color:var(--text2)}
 .vecka-status.postad{border-color:var(--ok);color:var(--ok)}
 .vecka-status.pagar{border-color:var(--varning);color:var(--varning)}
@@ -392,7 +401,7 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
     <h3 style="display:flex;align-items:center;gap:.6rem">Kanalmatrisen <span class="tagg tagg--las">Copy-lag</span></h3>
     <p class="notis" style="margin-bottom:.6rem">Vad får sägas var. Raden om Google är låst av CLAUDE.md:s
     kanalregel och kan inte redigeras bort.</p>
-    <div class="t-rull"><table class="t matris">
+    <div class="t-rull t-rull--vid"><table class="t matris">
       <thead><tr><th>Budskap</th><th>IG / DM / reels</th><th>Cold email / samtal</th><th>bahkobyra.se</th><th>Offert / möte</th></tr></thead>
       <tbody>
         <tr><td>Kostnadsfri prototyp inom 48 timmar</td><td class="ok-cell">Ja</td><td class="ok-cell">Ja</td><td class="ok-cell">Ja</td><td class="ok-cell">Ja</td></tr>
@@ -467,7 +476,7 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
 
   <div class="kort">
     <h3 style="display:flex;align-items:center;gap:.6rem">Veckocadence <span class="tagg tagg--acc">Beslut 2026-08-27</span></h3>
-    <div class="t-rull"><table class="t">
+    <div class="t-rull t-rull--vid"><table class="t">
       <thead><tr><th>Format</th><th>Antal/vecka</th><th>Produceras med</th><th>Pelare</th></tr></thead>
       <tbody>
         <tr><td>Maskotreel</td><td><b>2</b></td><td><span class="tagg">/bahko-reel</span> grafik som alfalager på färdigklippt video</td><td>Kundcase · Teardown</td></tr>
@@ -510,7 +519,7 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
 
   <div class="kort">
     <h3>Veckorytmen</h3>
-    <div class="t-rull"><table class="t">
+    <div class="t-rull t-rull--vid"><table class="t">
       <thead><tr><th>Dag</th><th>Format</th><th>Pelare</th><th>Därför</th></tr></thead>
       <tbody>
         <tr><td>Mån</td><td>Maskotreel</td><td>Kundcase</td><td>veckans starkaste bevis först, störst räckviddschans</td></tr>
@@ -533,8 +542,9 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
       <div><label for="ig-dm">DEMO-DM</label><input id="ig-dm" type="text" inputmode="numeric"></div>
       <button class="knapp" type="button" data-kpi-spara="instagram">Spara vecka</button>
     </div>
+    <p class="notis" style="margin-top:.7rem">Staplar: <b>DEMO-DM per vecka</b>, senaste tolv.</p>
     <div class="stapel" id="ig-stapel" aria-hidden="true"></div>
-    <div class="t-rull"><table class="t" id="ig-kpi-tabell" style="margin-top:.6rem"></table></div>
+    <div class="t-rull t-rull--vid"><table class="t" id="ig-kpi-tabell" style="margin-top:.6rem"></table></div>
   </div>
 
   <div class="kort">
@@ -602,8 +612,9 @@ Kapitel:
       <div><label for="yt-forf">Förfrågningar</label><input id="yt-forf" type="text" inputmode="numeric"></div>
       <button class="knapp" type="button" data-kpi-spara="youtube">Spara vecka</button>
     </div>
+    <p class="notis" style="margin-top:.7rem">Staplar: <b>förfrågningar per vecka</b>, senaste tolv.</p>
     <div class="stapel" id="yt-stapel" aria-hidden="true"></div>
-    <div class="t-rull"><table class="t" id="yt-kpi-tabell" style="margin-top:.6rem"></table></div>
+    <div class="t-rull t-rull--vid"><table class="t" id="yt-kpi-tabell" style="margin-top:.6rem"></table></div>
   </div>
 </section>
 
@@ -682,8 +693,9 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       <div><label for="li-svar">Svar</label><input id="li-svar" type="text" inputmode="numeric"></div>
       <button class="knapp" type="button" data-kpi-spara="linkedin">Spara vecka</button>
     </div>
+    <p class="notis" style="margin-top:.7rem">Staplar: <b>svar per vecka</b>, senaste tolv.</p>
     <div class="stapel" id="li-stapel" aria-hidden="true"></div>
-    <div class="t-rull"><table class="t" id="li-kpi-tabell" style="margin-top:.6rem"></table></div>
+    <div class="t-rull t-rull--vid"><table class="t" id="li-kpi-tabell" style="margin-top:.6rem"></table></div>
     <p class="notis" style="margin-top:.5rem">Mål: över 30 procent accepterade, över 10 procent svar av accepterade.</p>
   </div>
 </section>
@@ -694,8 +706,10 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     <span class="oga">Arsenalen</span>
     <h2>Manus</h2>
     <p>All kopierbar text bor här, plattformsflikarna länkar hit. Skrivreglerna gäller varje mall:
-    börja med Hejsan eller Hej, avsluta med Vänliga hälsningar, aldrig tankstreck, alltid
-    "kostnadsfri" i stället för "gratis", och kanalmatrisen avgör vilka löften som får användas.</p>
+    aldrig tankstreck, alltid "kostnadsfri" i stället för "gratis", och kanalmatrisen avgör vilka
+    löften som får användas. <b>Hälsning och avslutning:</b> första kontakten och alla mejl börjar
+    med Hejsan eller Hej och avslutas med Vänliga hälsningar / Mathias Bahko. Svar inne i en
+    pågående DM-tråd gör det inte, för då läser det som ett formbrev.</p>
   </div>
 
   <div class="kort">
@@ -846,7 +860,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
 
   <div class="kort">
     <h3>Kundsajterna</h3>
-    <div class="t-rull"><table class="t">
+    <div class="t-rull t-rull--vid"><table class="t">
       <thead><tr><th>Sajt</th><th>Status</th><th>Nästa steg</th></tr></thead>
       <tbody>
         <tr><td><a href="https://smamaleri.se" target="_blank" rel="noopener"><b>smamaleri.se</b></a></td><td>Live, betalande</td><td>uppsell: löpande optimering efter kanalmatrisen</td></tr>
@@ -877,7 +891,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
 
   <div class="kort">
     <h3>Kundmall-design, vilken mall när</h3>
-    <div class="t-rull"><table class="t">
+    <div class="t-rull t-rull--vid"><table class="t">
       <thead><tr><th>Kommando</th><th>När</th><th>Kostnad</th></tr></thead>
       <tbody>
         <tr><td><span class="tagg">/hemsidor</span></td><td>nybygge i Next.js på SV Hus-mallen, noll klient-JS, snabbast i drift</td><td>bilder nano_banana_2, video seedance 2.5, endast på beställning</td></tr>
@@ -969,6 +983,10 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       a.classList.toggle("on", a.getAttribute("data-till") === id);
     });
     document.title = "Bahko OS · " + (BLAD.filter(function (b) { return b.id === id; })[0] || { namn: "" }).namn;
+    /* Dolda textareas har scrollHeight 0, sa hojden maste satas om nar bladet
+       blir synligt. Samma sak med CRM-siffran: den ska vara farsk vid varje byte. */
+    if (typeof autosizeAlla === "function") autosizeAlla(document.getElementById("b-" + id));
+    if (typeof ritaCrm === "function") ritaCrm();
     window.scrollTo(0, 0);
   }
   function franHash() { visa((location.hash || "#bryggan").slice(1)); }
@@ -1109,7 +1127,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       return '<div class="vecka">' +
         '<div class="vecka-huv">' +
           '<span class="vecka-nr">V' + v.nr + "</span>" +
-          '<input value="' + esc(v.kapitel) + '" data-v-kapitel="' + i + '" aria-label="Kapitel vecka ' + v.nr + '">' +
+          '<textarea rows="1" data-v-kapitel="' + i + '" aria-label="Kapitel vecka ' + v.nr + '">' + esc(v.kapitel) + "</textarea>" +
           '<button class="vecka-status ' + v.status + '" data-v-status="' + i + '" type="button">' + STATUSNAMN[v.status] + "</button>" +
         "</div>" +
         '<div class="vinkl"><textarea data-v-vinklar="' + i + '" aria-label="Vinklar vecka ' + v.nr + '">' + esc(v.vinklar) + "</textarea></div>" +
@@ -1181,6 +1199,9 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     } catch (e) { due.textContent = "–"; status.textContent = "Kunde inte läsa CRM-datat (röres inte härifrån)."; }
   }
   window.addEventListener("storage", function (e) { if (e.key === "bb_crm_v2") ritaCrm(); });
+  /* Gar man till CRM:et och tillbaka i SAMMA flik hinner inget storage-event
+     fyra; darfor las om nar sidan blir synlig igen. */
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) ritaCrm(); });
 
   /* ================= KPI per kanal ================= */
   var KANALER = {
@@ -1264,6 +1285,21 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     if (!b) return;
     LOGG.idebank.splice(+b.getAttribute("data-ide-bort"), 1); sparaLogg(); ritaIdeer();
   });
+
+  /* ================= Autosize =================
+     En textarea med fast hojd kapar sitt innehall tyst: ingen ellips, ingen
+     wrap, ingen scroll-affordans, och sista raden skars mitt i glyfraden.
+     Hojden foljer darfor alltid scrollHeight. */
+  function autosize(el) {
+    if (!el || el.tagName !== "TEXTAREA") return;
+    el.style.height = "auto";
+    el.style.height = (el.scrollHeight + 2) + "px";
+  }
+  function autosizeAlla(rot) {
+    Array.prototype.forEach.call((rot || document).querySelectorAll("textarea"), autosize);
+  }
+  document.addEventListener("input", function (e) { autosize(e.target); });
+  window.addEventListener("resize", function () { autosizeAlla(document.querySelector(".blad.on")); });
 
   /* ================= Kopiera-knapparna ================= */
   function kopieraText(text, knapp) {
