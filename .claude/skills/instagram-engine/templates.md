@@ -1,6 +1,7 @@
 # Instagram-mallbibliotek (bygg & hantverk)
 
-Råmaterial för skillen `instagram-engine`. Kalender och pelare: `content/ig/kontentplan-bahkobyra.md`.
+Råmaterial för skillen `instagram-engine`. Byråns eget IG-material: `content/bahkobyra/ig/`.
+(Kontentplanen som stod här raderades 2026-08-26, se `instagram-engine/SKILL.md`.)
 Mätning: bladet **IG-logg** i Google Sheet-arket `V1` (Drive → BahkoByra → Leads), bladet IG-logg (fylls i fredagar). Färdigproducerat läggs i
 Drive-mappen `Planerat v[nr]/`.
 Ton: svensk, rakt, lokalt, ingen corporate-svenska. **Offerten = hemsidor.** CTA alltid →

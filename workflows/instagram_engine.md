@@ -35,7 +35,8 @@ payoff+mjuk CTA, jag-form, tolvårsspråk, 5 hookar → välj 1). Den gamla 7-st
 (Hook → Problem → Agitera → …) är pensionerad 2026-08-04 — den producerade byråröst och
 idé-hooks, precis det reel-skillen underkänner.
 Idé-generering: fråga "om jag drev ett [takföretag] och ville ha fler jobb — vad skulle jag
-undra över?" Ämnen och pelare: se `content/ig/kontentplan-bahkobyra.md`.
+undra över?" Byråns eget IG-material: `content/bahkobyra/ig/`. (Kontentplanen som stod här
+raderades 2026-08-26 på Mathias order.)
 
 CTA leder alltid till front-offern: **kostnadsfri demo** ("DM:a 'DEMO' så skickar jag ett utkast på er nya hemsida").
 
@@ -43,8 +44,8 @@ CTA leder alltid till front-offern: **kostnadsfri demo** ("DM:a 'DEMO' så skick
 
 ## Steg (kör skillen `instagram-engine`)
 
-1. Välj trade (bygg/tak/måleri/mark) + vecka. Ämnen kommer från kalendern i
-   `content/ig/kontentplan-bahkobyra.md` (pelare: kundcase / invändningen / teardown / sanningen / bygg-insikten).
+1. Välj trade (bygg/tak/måleri/mark) + vecka. Ämnen väljs mot veckans lösning (rotationen i
+   `ig-karusell`-skillen) — den gamla kalenderfilen finns inte längre.
 2. Generera 3 reel-script (via `reel`-skillen) + 2 carousell-outlines + story-idéer + DM-cadence.
 3. Granska FOR THEM/REAL/Financial Sense/Easy YES.
 4. Spara batch till `.tmp/ig_batch_*.md`. Färdigproducerat läggs i Drive: BahkoByra-mappen → `Planerat v[nr]/`.

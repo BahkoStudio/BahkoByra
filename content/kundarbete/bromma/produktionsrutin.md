@@ -42,7 +42,7 @@ grundregeln ovan. Jens äkta material förblir kravet för allt som visar riktig
 ```powershell
 & "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless --disable-gpu `
   --window-size=1080,1080 --hide-scrollbars --screenshot="ut.png" `
-  "file:///C:/Users/mathi/testar/BahkoByra/content/kunder/bromma/mallar/omdomeskort.html?q=CITAT&n=NAMN&j=TJÄNST · ORT"
+  "file:///C:/Users/mathi/testar/BahkoByra/content/kundarbete/bromma/mallar/omdomeskort.html?q=CITAT&n=NAMN&j=TJÄNST · ORT"
 ```
 Tipsgrafik: samma sak med `tipsgrafik.html`, `--window-size=1080,1350` och bg/t/b1-parametrarna.
 Å/ä/ö i parametrar: URL-koda (`%C3%A5` osv) eller redigera default-texterna i HTML-filen.

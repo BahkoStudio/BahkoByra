@@ -12,7 +12,11 @@ Mål: DM-konversationer → kostnadsfri demo (utkast) → sälj hemsida (engång
 **Offerten = hemsidor. "Växa på Google"-copy hör ENDAST hemma på bahkobyra.se — aldrig i reels/DM.**
 
 Full SOP: `workflows/instagram_engine.md`. Metodik/formler: `workflows/sales_methodology.md`.
-Content-kalender och pelare: `content/ig/kontentplan-bahkobyra.md`. Mätning: bladet **IG-logg**
+Byråns eget IG-material: `content/bahkobyra/ig/`. (Den gamla kontentplanen
+`content/ig/kontentplan-bahkobyra.md` RADERADES på Mathias order 2026-08-26 — med den föll
+reglerna "maskoten endast i intro/outro" och credit-taket 30/vecka. Veckans lösning roterar
+enligt `ig-karusell`-skillen; money-regeln över/under 100 credits är den enda budgetregeln.)
+Mätning: bladet **IG-logg**
 i Google Sheet-arket `V1` (Drive → BahkoByra → Leads), bladet IG-logg. Färdigproducerat: Drive-mappen `Planerat v[nr]/`.
 (Dashboardens gamla Instagram-sektion togs bort 2026-08-01 när dashboarden blev rent CRM.)
 
