@@ -198,7 +198,19 @@ input.saknas,input.saknas:hover{border-color:var(--fel)}
   font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   background:var(--bas);border:1px solid var(--linje2);color:var(--text2);
 }
-.tagg--acc{background:var(--acc);color:var(--bas);border-color:var(--acc)}
+/* Fylld smaragd pill ar RESERVERAD for .kopiera. En etikett i samma dräkt gor
+   att man klickar pa den och undrar varfor inget hander. Etiketten markerar
+   med ram och text i stallet, precis som --varning och --las redan gor. */
+.tagg--acc{background:var(--bas);color:var(--acc2);border-color:var(--acc)}
+/* En kvalificerare INUTI en lank: aldrig en pill, for pillen ar en etikett
+   och etiketter ska aldrig ga att klicka pa. */
+.lank-not{
+  font-size:.66rem;font-weight:600;letter-spacing:.04em;text-transform:none;
+  color:var(--text2);opacity:.9;margin-left:.15rem;
+}
+.lank-not::before{content:'· '}
+.lank-not--fel{color:var(--fel)}
+.lank-not--ok{color:var(--acc2)}
 .tagg--varning{border-color:var(--varning);color:var(--varning)}
 .tagg--las{border-color:var(--fel);color:var(--fel)}
 /* En installning ar varken etikett eller lank. Kraschvecka lag tidigare som
@@ -270,7 +282,13 @@ table.t td b{font-weight:600;font-variant-numeric:tabular-nums}
    En sidoscroll utan affordans GOMMER kolumner: "Nasta steg", "Kostnad" och
    sjalva DEMO-DM-siffran lag utanfor skarmen pa 390px utan att nagot visade
    att de fanns. Under 700px staplas darfor varje rad till etikett + varde. */
-@media(max-width:700px){
+/* Sokvagar och URL:er saknar mellanslag att bryta pa och tvingar tabellen
+   bredare an sin container aven ovanfor stacklaget. */
+code{overflow-wrap:anywhere}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* 900px, inte 700: mellan 701 och 795 rymdes inte de breda tabellerna i kortet
+   och sista kolumnen kaptes tyst bakom en scroll utan affordans. */
+@media(max-width:900px){
   .t-stack{overflow-x:visible}
   /* Hela tabellen blir block: annars raknar tabellayouten fortfarande pa sina
      kolumner och tvingar raden bredare an skarmen. */
@@ -439,9 +457,11 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
   /* Kraschvecka-omkopplaren andrar hela dagen och lag pa 20px. */
   .omkopplare{min-height:44px;padding:.5rem .9rem}
   .omkopplare input{width:20px;height:20px}
-  /* Sista cellen bar sitt eget ord: etiketten gav "TA BORT ta bort". */
-  .t-stack tbody td:last-child::before{display:none}
-  .t-stack tbody td:last-child{justify-content:flex-end}
+  /* Bara celler UTAN etikett saknar rubrik. :last-child var for brett och tog
+     rubriken fran varje sista kolumn, sa Kanalmatrisen slutade med ett naket
+     "Ja" utan att saga vilken kanal det gallde. */
+  .t-stack tbody td:not([data-etikett])::before{display:none}
+  .t-stack tbody td:not([data-etikett]){justify-content:flex-end}
   .nav a{min-height:44px}
   /* Flodet blir en kolumn: pilen pekade tidigare rakt ut i kortkanten pa
      sista rutan i varje rad, mot ingenting. */
@@ -489,8 +509,9 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
   <div class="blad-huv">
     <span class="oga">Start</span>
     <h2>Kommandobryggan</h2>
-    <p>Dagens uppdrag enligt <b>daglig rutin, 15 minuter, aldrig mer</b> (panelbeslut 2026-08-17).
-    Sväller rutinen, ryker den.</p>
+    <p>Dagens uppdrag: först publicera veckans inlägg, sedan <b>admin-rutinen på 15 minuter,
+    aldrig mer</b> (panelbeslut 2026-08-17). Sväller admin-rutinen, ryker den. Publiceringen är
+    inte admin, det är arbetet målet vilar på.</p>
     <p class="notis" id="brygg-kapitel" style="margin-top:.6rem"></p>
   </div>
 
@@ -720,10 +741,10 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
       <thead><tr><th>Dag</th><th>Format</th><th>Pelare</th><th>Därför</th></tr></thead>
       <tbody>
         <tr><td>Måndag</td><td data-etikett="Format">Maskotreel</td><td data-etikett="Pelare">Kundcase</td><td data-etikett="Därför">veckans starkaste bevis först, störst räckviddschans</td></tr>
-        <tr><td>Tisdag</td><td data-etikett="Format">Karusell</td><td data-etikett="Pelare">Invändningen</td><td data-etikett="Därför">spara- och dela-magnet, verkliga repliker ur loggen</td></tr>
+        <tr><td>Tisdag</td><td data-etikett="Format">Karusell + LinkedIn-textpost</td><td data-etikett="Pelare">Invändningen</td><td data-etikett="Därför">spara- och dela-magnet, verkliga repliker ur loggen. LinkedIn ligger tisdag för att B2B läses tidigt i veckan.</td></tr>
         <tr><td>Onsdag</td><td data-etikett="Format">Maskotreel</td><td data-etikett="Pelare">Teardown</td><td data-etikett="Därför">"jag googlade, testade, läste" är nyfikenhetskroken</td></tr>
         <tr><td>Torsdag</td><td data-etikett="Format">Karusell + bildkort</td><td data-etikett="Pelare">Sanningen</td><td data-etikett="Därför">kort, utbildande, lätt att hinna</td></tr>
-        <tr><td>Fredag</td><td data-etikett="Format">Ansiktspost</td><td data-etikett="Pelare">Bygg-insikten</td><td data-etikett="Därför">veckans kapitel med ansikte bygger mest förtroende</td></tr>
+        <tr><td>Fredag</td><td data-etikett="Format">Ansiktspost + YouTube-kapitelvideon</td><td data-etikett="Pelare">Bygg-insikten</td><td data-etikett="Därför">veckans kapitel med ansikte bygger mest förtroende. YouTube spelas in i samma tagning, bara längre, så det kostar nästan inget extra.</td></tr>
       </tbody>
     </table></div>
   </div>
@@ -765,7 +786,7 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
   <div class="blad-huv">
     <span class="oga">Kanal · Pilot säsong 1</span>
     <h2>YouTube</h2>
-    <p>Nytt territorium, aktivt vald pilot. Motorn kostar nästan inget extra: veckans kapitel blir
+    <p><b>Publiceras fredagar</b>, samma tagning som ansiktsposten. Nytt territorium, aktivt vald pilot. Motorn kostar nästan inget extra: veckans kapitel blir
     EN video, och Shorts är återbruk av veckans reels. Utvärderas efter säsong 1.</p>
   </div>
 
@@ -837,7 +858,7 @@ Kapitel:
   <div class="blad-huv">
     <span class="oga">Kanal · B2B</span>
     <h2>LinkedIn</h2>
-    <p>En innehållskanal, inget outreach-spår. Veckans kapitel blir en textpost mot firmaägare
+    <p><b>Publiceras tisdagar.</b> En innehållskanal, inget outreach-spår. Veckans kapitel blir en textpost mot firmaägare
     och fastighetsförvaltare. CTA:n är mejl eller ett meddelande här, aldrig "DM:a DEMO" som är
     Instagram-mekaniken.</p>
   </div>
@@ -984,13 +1005,11 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     </div>
     <div class="kort">
       <h3 style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">Veckovis<button class="kopiera" data-kop-rutin type="button" style="margin-left:auto">Kopiera</button></h3>
-      <div class="t-rull"><table class="t"><tbody>
-        <tr><td><b>Tor 10 min</b></td><td>Beställ veckans content av Claude: nästa veckas batch inklusive story-pack</td></tr>
-        <tr><td><b>Sön 30 min</b></td><td>Ögongranska och godkänn batchen, kolla åäö på varje slide</td></tr>
-        <tr><td><b>Fre 15:00</b></td><td>KPI-inmatning här i OS:et per kanal. Kolla credit-saldot: taket är ca 30 bildcredits per vecka för content. Nybyggesläget i <span class="tagg">/hemsidor</span> kostar ~50 credits och ligger utanför contentbudgeten.</td></tr>
-        <tr><td><b>Fre 45 min</b></td><td>Skriv nästa veckas kapitelmanus ur Säsongen</td></tr>
-        <tr><td><b>Tis + tors, 30 min</b></td><td>Ringpass: 10 samtal ur CRM:et med Ring-SOP:en, logga i dagsloggen. Utan den här raden finns ett samtalsmanus och en loggbok för ett arbete ingen rutin startar.</td></tr>
-      </tbody></table></div>
+      <p class="notis" style="margin-bottom:.5rem">Renderas ur samma veckoschema som Kommandobryggans
+      trigger-rad, så varje pass når den dag det tillhör.</p>
+      <div class="t-rull"><table class="t"><tbody id="sop-vecka"></tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">Credit-taket är ca 30 bildcredits per vecka för content.
+      Nybyggesläget i <span class="tagg">/hemsidor</span> kostar ~50 och ligger utanför contentbudgeten.</p>
     </div>
     <div class="kort">
       <h3 style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">Månadsvis<button class="kopiera" data-kop-rutin type="button" style="margin-left:auto">Kopiera</button></h3>
@@ -1062,9 +1081,9 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     <p class="notis">Riktiga kontaktuppgifter ligger på sidorna: org.nr, telefon, e-post, adress.
     De får skickas till sitt eget lead, aldrig visas i content, i ett möte eller för en annan kund.</p>
     <div class="lank-rad" style="margin-top:.5rem">
-      <a class="knapp knapp--ram las" href="https://www.bahkobyra.se/cloud/ekstromsbygg/" target="_blank" rel="noopener">ekstromsbygg<span class="tagg tagg--las">aktiv dialog</span></a>
-      <a class="knapp knapp--ram las" href="https://www.bahkobyra.se/cloud/k9maleri/" target="_blank" rel="noopener">k9maleri<span class="tagg tagg--las">mest exponerad</span></a>
-      <a class="knapp knapp--ram las" href="https://www.bahkobyra.se/svhus/" target="_blank" rel="noopener">svhus<span class="tagg tagg--las">org.nr + telefon</span></a>
+      <a class="knapp knapp--ram las" href="https://www.bahkobyra.se/cloud/ekstromsbygg/" target="_blank" rel="noopener">ekstromsbygg<span class="lank-not lank-not--fel">aktiv dialog</span></a>
+      <a class="knapp knapp--ram las" href="https://www.bahkobyra.se/cloud/k9maleri/" target="_blank" rel="noopener">k9maleri<span class="lank-not lank-not--fel">mest exponerad</span></a>
+      <a class="knapp knapp--ram las" href="https://www.bahkobyra.se/svhus/" target="_blank" rel="noopener">svhus<span class="lank-not lank-not--fel">org.nr + telefon</span></a>
     </div>
 
     <span class="falt-etikett">Skickad till ett äkta lead, länken får aldrig brytas</span>
@@ -1074,7 +1093,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
 
     <span class="falt-etikett">Äkta lead, byggd men inte bevisat skickad</span>
     <div class="lank-rad" style="margin-top:.5rem">
-      <a class="knapp knapp--ram" href="https://www.bahkobyra.se/nordicsnickare/" target="_blank" rel="noopener">nordicsnickare<span class="tagg tagg--acc">mallkanon</span></a>
+      <a class="knapp knapp--ram" href="https://www.bahkobyra.se/nordicsnickare/" target="_blank" rel="noopener">nordicsnickare<span class="lank-not lank-not--ok">mallkanon</span></a>
       <a class="knapp knapp--ram" href="https://www.bahkobyra.se/glowingservice/" target="_blank" rel="noopener">glowingservice</a>
       <a class="knapp knapp--ram" href="https://www.bahkobyra.se/cloud/alfredallservice/" target="_blank" rel="noopener">alfredallservice</a>
       <a class="knapp knapp--ram" href="https://www.bahkobyra.se/cloud/tryggbyggservice/" target="_blank" rel="noopener">tryggbyggservice</a>
@@ -1082,7 +1101,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
 
     <span class="falt-etikett">Säkrast att visa offentligt, redan publika</span>
     <div class="lank-rad" style="margin-top:.5rem">
-      <a class="knapp knapp--ram" href="https://www.bahkobyra.se/cloud/bygg/" target="_blank" rel="noopener">bygg<span class="tagg">flaggskepp</span></a>
+      <a class="knapp knapp--ram" href="https://www.bahkobyra.se/cloud/bygg/" target="_blank" rel="noopener">bygg<span class="lank-not">flaggskepp</span></a>
       <a class="knapp knapp--ram" href="https://www.bahkobyra.se/cloud/vajjebygg/" target="_blank" rel="noopener">vajjebygg</a>
       <a class="knapp knapp--ram" href="https://www.bahkobyra.se/cloud/asmar/" target="_blank" rel="noopener">asmar</a>
     </div>
@@ -1097,12 +1116,14 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       <a class="knapp knapp--ram" href="https://www.bahkobyra.se/cloud/osterlunds/" target="_blank" rel="noopener">osterlunds</a>
       <a class="knapp knapp--ram" href="https://www.bahkobyra.se/cloud/golvresan/" target="_blank" rel="noopener">golvresan</a>
       <a class="knapp knapp--ram" href="https://www.bahkobyra.se/cloud/solpanelstjejen/" target="_blank" rel="noopener">solpanelstjejen</a>
-      <a class="knapp knapp--ram" href="https://www.bahkobyra.se/cloud/mugglagret/" target="_blank" rel="noopener">mugglagret<span class="tagg">off-nisch</span></a>
-      <a class="knapp knapp--ram" href="https://www.bahkobyra.se/cloud/pizzeriamatstugan/" target="_blank" rel="noopener">pizzeriamatstugan<span class="tagg">off-nisch</span></a>
+      <a class="knapp knapp--ram" href="https://www.bahkobyra.se/cloud/mugglagret/" target="_blank" rel="noopener">mugglagret<span class="lank-not">off-nisch</span></a>
+      <a class="knapp knapp--ram" href="https://www.bahkobyra.se/cloud/pizzeriamatstugan/" target="_blank" rel="noopener">pizzeriamatstugan<span class="lank-not">off-nisch</span></a>
     </div>
-    <p class="notis" style="margin-top:.7rem"><b>Platshållarfällan:</b> numret 070-123 45 67 är
-    klickbart på bygg, golvresan, osterlunds och nordicsnickare. Byt det innan någon av dem visas
-    för en riktig prospekt.</p>
+    <p class="notis" style="margin-top:.7rem"><b>Platshållarfällan:</b> det klickbara numret
+    070-123 45 67 ligger på <b>åtta</b> demos: bygg, glowingservice, golvresan, kmctransport,
+    nordicsnickare, osterlunds, shabifix och solpanelstjejen. <span style="color:var(--fel)">shabifix
+    ligger redan ute hos ett äkta lead med numret kvar.</span> Byt det innan någon av de övriga visas
+    för en riktig prospekt. (Uppmätt 2026-08-27; registrets lista över fyra var inaktuell.)</p>
   </div>
 
   <div class="kort">
@@ -1434,23 +1455,53 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     { id: "pipeline", text: "Öppna CRM:ets dagens uppföljningar och gör EN touch", tid: "5 min",
       varfor: "En touch om dagen räcker för att inget lead ska tystna av sig självt." }
   ];
-  var MVL_ID = ["kommentarer", "demodm", "story"];
-  var TRIGGERS = { 4: "Torsdag, 10 min: beställ nästa veckas content av Claude, inklusive story-pack.",
-                   0: "Söndag, 30 min: ögongranska och godkänn veckans batch. Kolla åäö på varje slide.",
-                   5: "Fredag 15:00: skriv in veckans KPI-siffror under varje kanal här i OS:et, och kolla credit-saldot (ca 30 bildcredits/vecka för content; kunddemo med video ligger utanför)." };
+  var MVL_ID = ["publicera", "kommentarer", "demodm", "story"];
+
+  /* ================= Veckoschemat =================
+     EN kalla for vad varje veckodag innehaller. Bade dagens publiceringsrad,
+     trigger-raden och SOP:ens veckokort laser harifran.
+     Tidigare startade INGEN rutin veckans sex inlagg, trots att hela malet
+     vilar pa att de gar ut, och tre av fem veckopass nadde aldrig sin dag. */
+  var VECKOSCHEMA = {
+    1: { publicera: "Maskotreel ur veckans pack (Kundcase)", tid: "20 min", pass: [] },
+    2: { publicera: "Karusell (Invändningen) + LinkedIn-textposten ur veckans kapitel", tid: "20 min",
+         pass: ["Ringpass, 30 min: 10 samtal ur CRM:et med Ring-SOP:en, logga i dagsloggen."] },
+    3: { publicera: "Maskotreel (Teardown)", tid: "20 min", pass: [] },
+    4: { publicera: "Karusell + bildkort (Sanningen)", tid: "20 min",
+         pass: ["Beställ nästa veckas content av Claude, 10 min, inklusive story-pack.",
+                "Ringpass, 30 min: 10 samtal ur CRM:et med Ring-SOP:en."] },
+    5: { publicera: "Ansiktspost (Bygg-insikten) + YouTube-kapitelvideon, samma tagning", tid: "25 min",
+         pass: ["KPI-inmatning 15:00: alla tre kanaler här i OS:et, plus credit-saldot.",
+                "Skriv nästa veckas kapitelmanus ur Säsongen, 45 min."] },
+    6: { publicera: null, tid: "", pass: [] },
+    0: { publicera: null, tid: "", pass: ["Ögongranska och godkänn veckans batch, 30 min. Kolla åäö på varje slide."] }
+  };
+  function dagensSchema() { return VECKOSCHEMA[new Date().getDay()] || { publicera: null, tid: "", pass: [] }; }
 
   function ritaBryggan() {
     if (LOGG.dagsuppdrag.datum !== idag()) LOGG.dagsuppdrag = { datum: idag(), checks: {} };
     document.getElementById("brygg-datum").textContent = idag();
     document.getElementById("mvl").checked = !!LOGG.mvl;
     document.getElementById("mvl-notis").hidden = !LOGG.mvl;
-    var lista = LOGG.mvl ? FULLA.filter(function (u) { return MVL_ID.indexOf(u.id) > -1; }) : FULLA;
+    var schema = dagensSchema();
+    /* Publiceringen ar dagens forsta uppgift nar det finns nagot att publicera.
+       Utan den raden bokade Veckorytmen sex inlagg som ingen rutin skickade ut. */
+    var lista = (schema.publicera ? [{ id: "publicera", text: "Publicera dagens inlägg: " + schema.publicera + ". Fäst kommentaren.", tid: schema.tid }] : []);
+    lista = lista.concat(LOGG.mvl ? FULLA.filter(function (u) { return MVL_ID.indexOf(u.id) > -1; }) : FULLA);
     document.getElementById("dagens-check").innerHTML = lista.map(function (u) {
       var kl = LOGG.dagsuppdrag.checks[u.id] ? " checked" : "";
       return '<label><input type="checkbox" data-check="' + u.id + '"' + kl + "><span>" + esc(u.text) + '</span><span class="tid">' + u.tid + "</span></label>";
     }).join("");
-    var t = TRIGGERS[new Date().getDay()];
-    document.getElementById("dagens-trigger").innerHTML = t ? "<b>Dagens trigger:</b> " + t : "Inga extra triggers i dag. Rutinen är taket: 15 minuter, aldrig mer.";
+
+    /* Trigger-raden visar ALLA veckopass som hor till i dag, inte tva av fem.
+       "Inga extra triggers" far bara sta pa dagar som verkligen ar tomma. */
+    var trig = document.getElementById("dagens-trigger");
+    if (schema.pass.length) {
+      trig.innerHTML = "<b>" + (schema.pass.length === 1 ? "Dagens pass:" : "Dagens pass:") + "</b><br>" +
+        schema.pass.map(function (t) { return "· " + esc(t); }).join("<br>");
+    } else {
+      trig.innerHTML = "Inga bokade pass i dag utöver rutinen ovan.";
+    }
 
     /* Vilket kapitel ar det? Utan den har raden maste man rakna veckor fran
        startdatumet sjalv for att veta vad veckans content ska handla om. */
@@ -1478,11 +1529,31 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
      upprepning av uppgiftstexten. */
   function ritaSopDaglig() {
     var b = document.getElementById("sop-daglig");
-    if (!b) return;
-    b.innerHTML = FULLA.map(function (u) {
-      return "<tr><td><b>" + u.tid + "</b></td><td>" + esc(u.text) +
-        '<br><span class="notis">' + esc(u.varfor) + "</span></td></tr>";
-    }).join("");
+    if (b) {
+      b.innerHTML =
+        '<tr><td><b>först</b></td><td>Publicera dagens inlägg enligt veckoschemat, fäst kommentaren' +
+        '<br><span class="notis">Hela målet vilar på att veckans content går ut. Admin-rutinen nedan ' +
+        'plockar bara upp det som redan kommit in.</span></td></tr>' +
+        FULLA.map(function (u) {
+          return "<tr><td><b>" + u.tid + "</b></td><td>" + esc(u.text) +
+            '<br><span class="notis">' + esc(u.varfor) + "</span></td></tr>";
+        }).join("");
+    }
+    var v = document.getElementById("sop-vecka");
+    if (!v) return;
+    var DAGNAMN = { 1: "Mån", 2: "Tis", 3: "Ons", 4: "Tors", 5: "Fre", 6: "Lör", 0: "Sön" };
+    var rader = [];
+    [1, 2, 3, 4, 5, 6, 0].forEach(function (d) {
+      var s = VECKOSCHEMA[d];
+      var poster = [];
+      if (s.publicera) poster.push("Publicera: " + s.publicera + " (" + s.tid + ")");
+      s.pass.forEach(function (p) { poster.push(p); });
+      if (poster.length) {
+        rader.push("<tr><td><b>" + DAGNAMN[d] + "</b></td><td>" +
+          poster.map(esc).join('<br><span class="notis">·</span> ') + "</td></tr>");
+      }
+    });
+    v.innerHTML = rader.join("");
   }
   document.getElementById("dagens-check").addEventListener("change", function (e) {
     var id = e.target.getAttribute("data-check");
@@ -1547,11 +1618,11 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     } else {
       if (rull) rull.hidden = false;
       if (tom) tom.hidden = true;
-      tab.innerHTML = "<thead><tr>" + k.rubriker.map(function (r) { return "<th>" + r + "</th>"; }).join("") + "<th>Ta bort</th></tr></thead><tbody>" +
+      tab.innerHTML = "<thead><tr>" + k.rubriker.map(function (r) { return "<th>" + r + "</th>"; }).join("") + '<th><span class="sr">Ta bort</span></th></tr></thead><tbody>' +
         rader.map(function (r, i) {
           return "<tr><td><b>v" + esc(r.v) + "</b></td>" +
             r.tal.map(function (t, j) { return '<td data-etikett="' + esc(k.rubriker[j + 1]) + '"><b>' + esc(t) + "</b></td>"; }).join("") +
-            '<td data-etikett="Ta bort" style="text-align:right"><button class="bort notis" data-kpi-bort="' + kanal + ":" + i + '" type="button" aria-label="Ta bort vecka ' + esc(r.v) + '">ta bort</button></td></tr>';
+            '<td style="text-align:right"><button class="bort" data-kpi-bort="' + kanal + ":" + i + '" type="button" aria-label="Ta bort vecka ' + esc(r.v) + '">ta bort</button></td></tr>';
         }).join("") + "</tbody>";
     }
     var st = document.getElementById(k.stapel);
@@ -1625,7 +1696,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       if (bef) bef.tal = tal; else LOGG.kpi[kanal].push({ v: v, tal: tal });
       LOGG.kpi[kanal].sort(function (a, b) { return (+a.v || 0) - (+b.v || 0); });
       sparaLogg(); ritaKpi(kanal); ritaHud();
-      k.falt.forEach(function (id) { document.getElementById(id).value = ""; });
+      k.falt.forEach(function (id) { var f = document.getElementById(id); f.value = ""; delete f.dataset.auto; });
       forifyllVecka();
     }
     var bort = e.target.closest("[data-kpi-bort]");
@@ -1723,12 +1794,16 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
   /* Faltet ska sta pa den vecka man faktiskt ar i, sa siffran hamnar ratt. */
   function forifyllVecka() {
     /* Bara medan sasongen pagar. Efter vecka 13 skrev forifyllningen "13" varje
-       fredag, sa varje ny sparning skrev over rad 13 i stallet for att lagga en ny. */
-    if (!sasongPagar()) return;
-    var v = sasongslage().vecka;
+       fredag, sa varje ny sparning skrev over rad 13 i stallet for att lagga en ny.
+       Ett varde OS:et sjalv fyllt i tas ocksa bort igen nar sasongen tar slut,
+       annars ligger forra veckans siffra kvar och ser ifylld ut. */
+    var kor = sasongPagar(), v = sasongslage().vecka;
     Object.keys(KANALER).forEach(function (kanal) {
       var f = document.getElementById(KANALER[kanal].falt[0]);
-      if (f && !f.value.trim()) f.value = v;
+      if (!f) return;
+      if (!kor) { if (f.dataset.auto === "1") { f.value = ""; delete f.dataset.auto; } return; }
+      if (!f.value.trim()) { f.value = v; f.dataset.auto = "1"; }
+      else if (f.dataset.auto === "1" && f.value.trim() !== String(v)) { f.value = v; }
     });
   }
 
