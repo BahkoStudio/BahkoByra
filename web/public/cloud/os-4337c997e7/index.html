@@ -54,6 +54,7 @@ input,textarea,select{
 input:focus-visible,textarea:focus-visible,select:focus-visible,
 button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--acc2);outline-offset:2px}
 textarea{width:100%;min-height:72px;resize:vertical;line-height:1.5}
+::placeholder{color:var(--text2);opacity:1}
 
 /* ---------- topp ---------- */
 .topp{
@@ -63,26 +64,36 @@ textarea{width:100%;min-height:72px;resize:vertical;line-height:1.5}
   display:flex;align-items:center;gap:.8rem;padding:0 1rem;
 }
 .topp img{width:30px;height:30px}
-.topp-namn{font-weight:700;font-size:1.02rem;letter-spacing:-.01em;white-space:nowrap}
+.topp-namn{font-weight:700;font-size:1.02rem;letter-spacing:-.01em;white-space:nowrap;flex-shrink:0}
 .topp-namn span{color:var(--acc2)}
 .hud{
   display:flex;align-items:center;gap:.55rem;margin-left:auto;
   font-size:.76rem;color:var(--text2);white-space:nowrap;
+  min-width:0;overflow:hidden;
 }
 .hud-bar{width:110px;height:6px;border-radius:var(--rp);background:var(--yta);overflow:hidden}
 .hud-bar i{display:block;height:100%;background:linear-gradient(90deg,#34D399,#10B981);border-radius:var(--rp)}
 .hud b{color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
-.topp-knappar{display:flex;gap:.45rem;margin-left:.6rem}
+.topp-knappar{display:flex;gap:.45rem;margin-left:.6rem;flex-shrink:0}
 .mini-knapp{
   font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   padding:.36rem .8rem;border-radius:var(--rp);border:1px solid var(--linje2);color:var(--text2);
   transition:color .2s,border-color .2s;
 }
 .mini-knapp:hover{color:var(--text);border-color:var(--acc)}
-@media(max-width:760px){.hud-bar{display:none}.hud-etikett{display:none}}
+@media(max-width:760px){
+  .hud-bar{display:none}.hud-etikett{display:none}
+  /* Utskrift ar en skrivbordshandling. Under 760px far den vika sa toppraden
+     ryms i viewporten i stallet for att skjuta ut sidan. */
+  #skrivut{display:none}
+  .topp{padding:0 .7rem;gap:.5rem}
+  .topp img{width:26px;height:26px}
+}
 
 /* ---------- layout: navrail + innehall ---------- */
-.ram{display:grid;grid-template-columns:var(--nav-b) 1fr;min-height:calc(100vh - var(--topp-h))}
+/* minmax(0,...) overallt: utan det far grid items min-width:auto och en bred
+   tabell tvingar upp HELA sidan i stallet for att scrolla i sin egen container. */
+.ram{display:grid;grid-template-columns:minmax(0,var(--nav-b)) minmax(0,1fr);min-height:calc(100vh - var(--topp-h))}
 .nav{
   border-right:1px solid var(--linje);padding:1.1rem .8rem 2rem;
   position:sticky;top:var(--topp-h);height:calc(100vh - var(--topp-h));overflow-y:auto;
@@ -96,13 +107,16 @@ textarea{width:100%;min-height:72px;resize:vertical;line-height:1.5}
 .nav a:hover{color:var(--text);background:var(--yta)}
 .nav a.on{color:var(--text);background:var(--yta);box-shadow:inset 2px 0 0 var(--acc)}
 .nav a .pr{font-size:1rem;width:1.35rem;text-align:center;flex-shrink:0}
-.inneh{padding:1.6rem clamp(1rem,3vw,2.6rem) 4rem;max-width:1180px;width:100%}
+.inneh{padding:1.6rem clamp(1rem,3vw,2.6rem) 4rem;max-width:1180px;width:100%;min-width:0}
 @media(max-width:960px){
-  .ram{grid-template-columns:1fr}
+  .ram{grid-template-columns:minmax(0,1fr)}
   .nav{
     position:sticky;top:var(--topp-h);height:auto;border-right:0;border-bottom:1px solid var(--linje);
     display:flex;gap:.35rem;overflow-x:auto;padding:.55rem .8rem;background:rgba(10,22,40,.94);
     backdrop-filter:blur(12px);z-index:50;scrollbar-width:none;
+    /* min-width:0 gor att overflow-x faktiskt greppar: annars vaxer chipraden
+       till sin innehallsbredd och tar hela sidan med sig. */
+    min-width:0;max-width:100%;
   }
   .nav::-webkit-scrollbar{display:none}
   .nav-grupp{display:none}
@@ -120,11 +134,11 @@ textarea{width:100%;min-height:72px;resize:vertical;line-height:1.5}
 .blad-huv p{color:var(--text2);max-width:64ch;margin-top:.45rem}
 
 /* ---------- byggstenar ---------- */
-.kort{background:var(--yta);border:1px solid var(--linje);border-radius:var(--r);padding:1.1rem 1.2rem}
+.kort{background:var(--yta);border:1px solid var(--linje);border-radius:var(--r);padding:1.1rem 1.2rem;min-width:0}
 .kort + .kort{margin-top:.9rem}
 .kort h3{margin-bottom:.55rem}
 .kort-rad{display:grid;gap:.9rem}
-@media(min-width:820px){.kort-rad.k2{grid-template-columns:1fr 1fr}.kort-rad.k3{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:820px){.kort-rad.k2{grid-template-columns:repeat(2,minmax(0,1fr))}.kort-rad.k3{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .knapp{
   display:inline-flex;align-items:center;justify-content:center;gap:.45rem;
   min-height:42px;padding:.55rem 1.25rem;border-radius:var(--rp);
@@ -171,7 +185,9 @@ hr.delare{border:0;border-top:1px solid var(--linje);margin:1rem 0}
   padding:.3rem .7rem;border-radius:var(--rp);background:var(--acc);color:var(--bas);
 }
 .kopiera:hover{background:var(--acc2)}
-.kopiera.klar{background:var(--yta);color:var(--ok);border:1px solid var(--ok)}
+/* Bekraftelselaget behaller smaragd yta + marinbla text: knappregeln galler
+   aven har (vit/ljus text pa smaragd ar underkand kontrast). */
+.kopiera.klar{background:var(--acc2);color:var(--bas)}
 
 /* tabeller */
 table.t{width:100%;border-collapse:collapse;font-size:.88rem}
@@ -179,7 +195,7 @@ table.t th{font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:
 table.t td{padding:.55rem .6rem;border-bottom:1px solid var(--linje);vertical-align:top}
 table.t tr:last-child td{border-bottom:0}
 table.t td b{font-weight:600;font-variant-numeric:tabular-nums}
-.t-rull{overflow-x:auto}
+.t-rull{overflow-x:auto;max-width:100%}
 .t-rull table.t{min-width:560px}
 
 /* kpi */
@@ -630,6 +646,34 @@ Kapitel:
   </div>
 
   <div class="kort">
+    <h3>Mallarna</h3>
+    <div class="mall"><h4>Kontaktförfrågan A, neutral</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Hej [Förnamn]! Jobbar med hemsidor för svenska bygg- och hantverksfirmor. Kikade in på [Företag].se och fick några idéer. Hade velat höra din tanke om en grej.</p>
+      <p class="not">Max 300 tecken. Pitcha aldrig i själva förfrågan, det blockeras.</p></div>
+    <div class="mall"><h4>Kontaktförfrågan B, vid expansion</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Hej [Förnamn]! Såg att [Företag] öppnat i [stad], grattis! Jobbar med hemsidor för hantverkare och fick en idé som kan passa er just nu.</p></div>
+    <div class="mall"><h4>Uppföljning dag 4, efter accepterat</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Hej [Förnamn]! Tack för att du accepterade.
+
+Jag skickade ett mejl till info@[företag].se häromdagen med en demo på hur [Företag] skulle kunna se ut med en modernare sida och tydligare offertknapp.
+
+Får jag fråga, hur nöjd är du med er nuvarande hemsida? Får den in bokningar som den ska?</p></div>
+    <div class="mall"><h4>Sista meddelandet dag 7</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Hej [Förnamn]! Vill inte störa mer. Om ni någon gång tänker på hemsidan, hör gärna av dig. Lycka till med firman!</p></div>
+    <div class="mall"><h4>Textpost ur veckans kapitel</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>[Kroken: kapitlets tes i en mening.]
+
+[Berättelsen: tre till fem korta stycken. En hantverkare, ett problem, en vändning. Radbryt ofta.]
+
+[Poängen: vad läsaren ska göra annorlunda.]
+
+Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina hemsidor. Vill du se hur er sida kan se ut? Skicka ett meddelande så bygger jag en kostnadsfri prototyp inom 48 timmar.</p></div>
+    <div class="mall"><h4>Kommentarssvar</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Tack [Förnamn]! Nyfiken på en sak: ser du samma mönster hos firmorna du jobbar med?</p>
+      <p class="not">Alltid en motfråga. Det dubblar tråden och signalen.</p></div>
+  </div>
+
+  <div class="kort">
     <h3>KPI, fredagar</h3>
     <div class="kpi-in">
       <div><label for="li-v">Vecka</label><input id="li-v" type="text" inputmode="numeric" placeholder="36"></div>
@@ -715,24 +759,8 @@ Kapitel:
 
   <div class="kort">
     <h3>LinkedIn-mallarna</h3>
-    <div class="mall"><h4>Kontaktförfrågan A, neutral</h4><button class="kopiera" type="button">Kopiera</button>
-      <p>Hej [Förnamn]! Jobbar med hemsidor för svenska bygg- och hantverksfirmor. Kikade in på [Företag].se och fick några idéer. Hade velat höra din tanke om en grej.</p></div>
-    <div class="mall"><h4>Kontaktförfrågan B, vid expansion</h4><button class="kopiera" type="button">Kopiera</button>
-      <p>Hej [Förnamn]! Såg att [Företag] öppnat i [stad], grattis! Jobbar med hemsidor för hantverkare och fick en idé som kan passa er just nu.</p></div>
-    <div class="mall"><h4>Uppföljning dag 4</h4><button class="kopiera" type="button">Kopiera</button>
-      <p>Hej [Förnamn]! Tack för att du accepterade.
-
-Jag skickade ett mejl till info@[företag].se häromdagen med en demo på hur [Företag] skulle kunna se ut med en modernare sida och tydligare offertknapp.
-
-Får jag fråga, hur nöjd är du med er nuvarande hemsida? Får den in bokningar som den ska?</p></div>
-    <div class="mall"><h4>Textpost ur veckans kapitel</h4><button class="kopiera" type="button">Kopiera</button>
-      <p>[Kroken: kapitlets tes i en mening.]
-
-[Berättelsen: 3 till 5 korta stycken. En hantverkare, ett problem, en vändning. Radbryt ofta.]
-
-[Poängen: vad läsaren ska göra annorlunda.]
-
-Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina hemsidor. Vill du se hur er sida kan se ut? Skicka ett meddelande så bygger jag en kostnadsfri prototyp inom 48 timmar.</p></div>
+    <p class="notis">Plattformsspecifik copy bor på sin egen flik, så den aldrig hamnar i två versioner.</p>
+    <div class="lank-rad" style="margin-top:.6rem"><a class="knapp knapp--ram" href="#linkedin" data-till="linkedin">Kontaktförfrågan, uppföljning och textpost på LinkedIn-fliken</a></div>
   </div>
 
   <div class="kort">
