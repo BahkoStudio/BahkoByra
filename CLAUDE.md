@@ -94,8 +94,12 @@ Stay pragmatic. Stay reliable. Keep learning.
 
 Fundamentet för all försäljning. Full playbook: `workflows/sales_methodology.md`. Leverans:
 `workflows/local_seo_delivery.md`. Cadence: `workflows/outreach_cadence.md`. IG: `workflows/instagram_engine.md`.
-Källdokument i `reference/`. **Allt operativt körs från dashboarden:** `web/public/crm-f2822a6f3a/index.html`
-(CRM med cadence, offert-väljare, outreach-skript, Instagram-motor, Spelbok).
+Källdokument i `reference/`. **Allt operativt körs från tre ytor:**
+**Bahko OS** `web/public/cloud/os-4337c997e7/index.html` (kommandocentralen: spelvärld/varumärkesstrategi,
+90-dagarssäsong, kanal-dashboards IG/YouTube/LinkedIn med KPI, manus, SOP:er, kundverkstan —
+SOP: `workflows/bahko_os.md`), **CRM:et** `web/public/crm-f2822a6f3a/index.html` (ren lead-kanban
+med statusautomatik och mejlmallar i lead-panelen) och **Ring-SOP:en** `web/public/cloud/sop-ringa/`
+(spelboken för samtal + den frysta dagsloggen).
 
 **POSITIONERING (viktigt):**
 - **Offerten = hemsidor.** På ALLA kanaler (Instagram, cold email/call/IRL, DM) säljer vi hemsidor som front offer.
@@ -128,7 +132,7 @@ Följande får ALDRIG ändras, flyttas eller raderas utan Mathias uttryckliga be
 - **De 8 frysta demosajterna i `web/public/cloud/`** — `alfredallservice`, `asmar`, `bygg`, `kmctransport`, `osterlunds`, `pizzeriamatstugan`, `tryggbyggservice`, `vajjebygg`. URL:erna lever i prospekts inkorgar. (Kopiorna i gamla `bahkobyra/cloud/` är döda dubbletter som inte serveras — de får städas i separat beslut, inte i förbifarten.)
 - **Aktiva leaddemos i `web/public/cloud/`** (grontoglanser, galiano, k9maleri, golvresan, solpanelstjejen, glowingservice m.fl.) — INTE frysta: de får förbättras på beställning, men länkarna är skickade till prospekt och får aldrig raderas eller brytas.
 - **`.github/workflows/deploy.yml` + `.claude/skills/video-to-website/maykas/site/`** — deployar LIVE maykaskitchen.se vid varje push till main.
-- **localStorage-kontrakten `bb_crm_v2` + `bahko_sop_dagslogg_v1`** — nycklar och dataformat. Bryts kontraktet tappar Mathias CRM-data och dagsloggar.
+- **localStorage-kontrakten `bb_crm_v2` + `bahko_sop_dagslogg_v1` + `bb_os_v1` + `bb_os_logg_v1`** — nycklar och dataformat. Bryts kontraktet tappar Mathias CRM-data, dagsloggar, spelvärlden/säsongen och KPI-loggen. OS:et läser `bb_crm_v2` men skriver ALDRIG till den.
 - **`web/next.config.mjs` host-rewrites + `web/vercel.json`** — styr vad bahkobyra.se OCH bahkobyra.cloud serverar. (Ersätter gamla "alla routes i vercel.json": rotens `vercel.json` läses inte längre av något projekt sedan bahko-byra bygger från `web/` — rotfilen är raderingskandidat, men radera den bara i ett eget beslut.)
 - **De tre Vercel-projektens Root Directory-inställningar** (`bahko-byra` = `web/`, kundsajterna = sina mappar) — Root Directory-incidenten 2026-08-06/07 tog ner hela bahkobyra.se. Ändras aldrig från kod eller API utan uttryckligt beslut.
 - **`web/public/css/style.css` + `web/public/js/main.js`** — FRYSTA, delas med frysta `cloud/bygg`. Egna sidor kör `style-v2.css`/`main-v2.js`.
@@ -188,6 +192,9 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 | optimering | `/optimering [kund]` | "optimera sajten", "SEO för [kund]", "GEO/AEO", "schema markup", "ranka på Google", "synas i AI-svar", "Google Business Profile" |
 | task-observer | (auto) | aktiveras vid varje flerstegssession — fångar lärdomar som ska bli skill-regler |
 | rensa | `/rensa` | "rensa chatten", "spara och rensa", "clear men behåll det viktiga", "rensa kontexten" |
+| design-loop | `/design-loop [vad + ribban]` | "design-loop", "kör kritikerna", "stress-testa designen", verifiera bygge mot designsystem |
+| famous-reel-editor | `/famous-reel-editor` | "edit this reel", "klipp min reel", ansiktspost, talking-head till färdig 9:16 med motion-grafik |
+| bahko-reel | `/bahko-reel` | "lägg grafik på klippet", "animera min video", maskotreel för @bahkostudio |
 
 - **skill** — Guides building/auditing/optimizing skills. Runs Discovery Interview before creating. See `.claude/skills/skill/reference.md`.
 - **video-to-website** — Converts a video into a scroll-driven animated website (FFmpeg + GSAP + Lenis + canvas). OBS: `maykas/site/` i skill-mappen deployar LIVE maykaskitchen.se (se Heligt-listan).
@@ -202,6 +209,9 @@ Skills live in `.claude/skills/[skill-name]/SKILL.md`. Descriptions are always l
 - **grill-me** — Intervjuar dig relentlessly genom designträdet tills delad förståelse nås. Ger rekommenderat svar per fråga, frågar i rundor via AskUserQuestion.
 - **motion-design** — Higgsfield-flöde brief → storyboard (en grid-bild, gpt_image_2) → video (seedance_2_0). Används för reels-hooks (@bahkostudio), uppsell efter hemsideleverans och eget varumärke — ALDRIG som front offer. Kostar credits, körs aldrig utan beställning.
 - **rensa** — Destillerar ENDAST det nödvändiga från sessionen till `.tmp/session-context.md` (överlever `/clear`), säger sedan åt dig att köra det inbyggda `/clear`. Skillnad mot session-handoff: skriver till fil istället för chatt, och tar bara med minsta möjliga (aktiv uppgift, låsta beslut, rörda filer, körande tillstånd, nästa steg). `/clear` kan inte köras av skillen själv.
+- **design-loop** — Builder + tre färska kritiker (brief/system/craft) per bit, binära domar, tills allt är grönt. Kritiker dömer RENDERAT utfall via Playwright, aldrig kod; mäter hover, fyllda tillstånd, flera bredder. Metoden bakom Mugglagret-omklädnaden och Bahko OS.
+- **famous-reel-editor** — Rå talking-head-klipp till färdig 9:16-reel: transkribering, EDL-klipp, GSAP-motion-grafik-kort, karaoke-ettordstextning, Higgsfield-B-roll, compose. Driver OS:ets ansiktspost. ElevenLabs-nyckel i skillens .env (fallback Groq/lokal Whisper).
+- **bahko-reel** — Bahko-varianten: färdigklippt video i hela ramen, grafik som alfalager, maskot vid sidan, SFX. Driver maskotreelsen. Mathias filmar/klipper själv, panelernas tider sätts i sekunder.
 - **optimering** — SEO, lokal SEO, GEO och AEO för kundsajter. Kärnvärdet är att skilja **dokumenterat från branschmyt**: varje åtgärd märks med evidensgrad, och skillen har en svartlista över sånt som riskerar manuell åtgärd från Google (dolt innehåll, review-schema på egna omdömen). Blockerar alltid på grundfel först (egen domän, indexerbarhet, innehåll i rå HTML) innan finlir. Evidenstabell, schema-mallar och kända fällor i våra egna mallar: `.claude/skills/optimering/reference.md`.
 
 New skills go in `.claude/skills/[skill-name]/SKILL.md`. API keys go in `.env`, never hardcoded.

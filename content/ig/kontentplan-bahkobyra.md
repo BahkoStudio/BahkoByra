@@ -3,9 +3,11 @@
 **Kontots enda jobb:** DEMO-DM-konversationer. Inte följare, inte likes.
 **KPI:** DEMO-DM:ar per vecka. Baslinje: nära noll (V1-loggen visar att nästan alla DM-dialoger
 startats av oss, inte inkommande). Mål efter 4 veckor: **3 inkommande/vecka.**
-**Volym (sänkt till bevisat hållbar nivå, panelbeslut 2026-08-17):** 2 cinematiska karuseller +
-1 AI-maskot-reel + 1 bildkort per vecka + stories ur förproducerat pack. Inspelade reels = bonus,
-aldrig krav. Veckans reel är stående serien **"Maskoten undersöker"**: fast titelkort, maskoten
+**Volym (höjd 2026-08-27, Mathias beslut i Bahko OS-bygget):** 2 maskotreels (`/bahko-reel`) +
+2 cinematiska karuseller + 1 bildkort + 1 ansiktspost (`/famous-reel-editor`, inspelad
+talking-head med motion-grafik) per vecka + stories ur förproducerat pack.
+Gamla nivån (panelbeslut 2026-08-17: 2 karuseller + 1 maskotreel + 1 bildkort) är fallback
+om nya volymen spricker två veckor i rad — trappa då ner i stället för att hoppa över veckor. Veckans reel är stående serien **"Maskoten undersöker"**: fast titelkort, maskoten
 ENDAST i intro/outro, innehållet = riktiga (anonymiserade) hantverkarsajter i skärminspelning.
 **Proof-of-craft-regeln:** minst hälften av veckans innehåll visar riktiga sajtskärmar/före-efter;
 cinematiskt maskotläge används för räckviddspelare, ALDRIG för bevispelare (kundcase, omdömen).
@@ -15,8 +17,8 @@ cinematiskt maskotläge används för räckviddspelare, ALDRIG för bevispelare 
 dag, (2) 1 karusell, (3) story minst 3 dagar. Allt annat väntar utan dåligt samvete.
 
 **Triggers:** TORSDAG 10 min = beställ "veckans content v[N+1]" av Claude (inkl. story-pack med
-7 underlag + förifylld IG-logg). SÖNDAG 30 min = ögongranska och godkänn. FREDAG 15:00 = 3 siffror
-i IG-loggen. **Credit-budget:** tak 300/månad, ~30/vecka (saldo: `higgsfield workspace list`).
+7 underlag). SÖNDAG 30 min = ögongranska och godkänn. FREDAG 15:00 = 3 siffror i Bahko OS
+(`/cloud/os-4337c997e7/`, fliken Instagram — ersätter IG-loggen i V1 sedan 2026-08-27). **Credit-budget:** tak 300/månad, ~30/vecka (saldo: `higgsfield workspace list`).
 **Fästad kommentar på varje post:** "Vill du se hur det här skulle se ut för din firma? DM:a DEMO."
 Daglig rutin: `workflows/daglig_rutin.md`. (Gamla volymen 5 inlägg/vecka sprack redan v34 — skala
 upp först efter två raka levererade veckor.)

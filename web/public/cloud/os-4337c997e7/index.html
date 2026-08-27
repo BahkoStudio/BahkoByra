@@ -1,0 +1,1294 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bahko OS</title>
+<link rel="icon" href="/brand/mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+/* Vardvakt: /cloud/ serveras aven pa bahkobyra.cloud, men localStorage ar
+   per origin. All data (bb_os_v1, bb_crm_v2) bor pa www.bahkobyra.se. */
+(function(){
+  if (/bahkobyra\.cloud$/.test(location.hostname)) {
+    location.replace('https://www.bahkobyra.se' + location.pathname + location.hash);
+  }
+})();
+</script>
+<style>
+/* ============================================================
+   BAHKO OS - kommandocentralen. Varumarke v2 ur brand.json:
+   bas #0A1628, yta #13233F, smaragd #10B981/#34D399, Outfit.
+   KNAPP-REGELN: smaragd yta + marinbla text, aldrig vit pa smaragd.
+   ============================================================ */
+:root{
+  --bas:#0A1628; --yta:#13233F; --linje:rgba(255,255,255,.08); --linje2:rgba(255,255,255,.16);
+  --text:#FFFFFF; --text2:#94A7BF;
+  --acc:#10B981; --acc2:#34D399; --acc-ljus-text:#047857;
+  --ok:#34D399; --varning:#F59E0B; --fel:#F87171;
+  --ljus:#F8FAFC;
+  --r:14px; --rp:999px;
+  --nav-b:236px; --topp-h:58px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--bas);color:var(--text);
+  font-family:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:15.5px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+h1,h2,h3{line-height:1.15;font-weight:600}
+h2{font-size:1.5rem;letter-spacing:-.01em}
+h3{font-size:1.02rem}
+input,textarea,select{
+  font:inherit;color:var(--text);background:var(--bas);
+  border:1px solid var(--linje2);border-radius:8px;padding:.5rem .7rem;
+}
+input:focus-visible,textarea:focus-visible,select:focus-visible,
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--acc2);outline-offset:2px}
+textarea{width:100%;min-height:72px;resize:vertical;line-height:1.5}
+
+/* ---------- topp ---------- */
+.topp{
+  position:sticky;top:0;z-index:60;height:var(--topp-h);
+  background:rgba(10,22,40,.94);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--linje);
+  display:flex;align-items:center;gap:.8rem;padding:0 1rem;
+}
+.topp img{width:30px;height:30px}
+.topp-namn{font-weight:700;font-size:1.02rem;letter-spacing:-.01em;white-space:nowrap}
+.topp-namn span{color:var(--acc2)}
+.hud{
+  display:flex;align-items:center;gap:.55rem;margin-left:auto;
+  font-size:.76rem;color:var(--text2);white-space:nowrap;
+}
+.hud-bar{width:110px;height:6px;border-radius:var(--rp);background:var(--yta);overflow:hidden}
+.hud-bar i{display:block;height:100%;background:linear-gradient(90deg,#34D399,#10B981);border-radius:var(--rp)}
+.hud b{color:var(--text);font-weight:600;font-variant-numeric:tabular-nums}
+.topp-knappar{display:flex;gap:.45rem;margin-left:.6rem}
+.mini-knapp{
+  font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  padding:.36rem .8rem;border-radius:var(--rp);border:1px solid var(--linje2);color:var(--text2);
+  transition:color .2s,border-color .2s;
+}
+.mini-knapp:hover{color:var(--text);border-color:var(--acc)}
+@media(max-width:760px){.hud-bar{display:none}.hud-etikett{display:none}}
+
+/* ---------- layout: navrail + innehall ---------- */
+.ram{display:grid;grid-template-columns:var(--nav-b) 1fr;min-height:calc(100vh - var(--topp-h))}
+.nav{
+  border-right:1px solid var(--linje);padding:1.1rem .8rem 2rem;
+  position:sticky;top:var(--topp-h);height:calc(100vh - var(--topp-h));overflow-y:auto;
+}
+.nav-grupp{font-size:.64rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text2);margin:1.15rem .5rem .45rem}
+.nav-grupp:first-child{margin-top:0}
+.nav a{
+  display:flex;align-items:center;gap:.55rem;padding:.5rem .65rem;border-radius:10px;
+  font-size:.92rem;color:var(--text2);transition:background .2s,color .2s;
+}
+.nav a:hover{color:var(--text);background:var(--yta)}
+.nav a.on{color:var(--text);background:var(--yta);box-shadow:inset 2px 0 0 var(--acc)}
+.nav a .pr{font-size:1rem;width:1.35rem;text-align:center;flex-shrink:0}
+.inneh{padding:1.6rem clamp(1rem,3vw,2.6rem) 4rem;max-width:1180px;width:100%}
+@media(max-width:960px){
+  .ram{grid-template-columns:1fr}
+  .nav{
+    position:sticky;top:var(--topp-h);height:auto;border-right:0;border-bottom:1px solid var(--linje);
+    display:flex;gap:.35rem;overflow-x:auto;padding:.55rem .8rem;background:rgba(10,22,40,.94);
+    backdrop-filter:blur(12px);z-index:50;scrollbar-width:none;
+  }
+  .nav::-webkit-scrollbar{display:none}
+  .nav-grupp{display:none}
+  .nav a{white-space:nowrap;padding:.42rem .7rem;border:1px solid var(--linje);flex-shrink:0}
+  .nav a.on{box-shadow:none;border-color:var(--acc)}
+}
+
+/* ---------- blad ---------- */
+.blad{display:none}
+.blad.on{display:block;animation:bladIn .25s ease}
+@keyframes bladIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.blad.on{animation:none}}
+.blad-huv{margin-bottom:1.5rem}
+.oga{font-size:.68rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--acc2);display:block;margin-bottom:.4rem}
+.blad-huv p{color:var(--text2);max-width:64ch;margin-top:.45rem}
+
+/* ---------- byggstenar ---------- */
+.kort{background:var(--yta);border:1px solid var(--linje);border-radius:var(--r);padding:1.1rem 1.2rem}
+.kort + .kort{margin-top:.9rem}
+.kort h3{margin-bottom:.55rem}
+.kort-rad{display:grid;gap:.9rem}
+@media(min-width:820px){.kort-rad.k2{grid-template-columns:1fr 1fr}.kort-rad.k3{grid-template-columns:repeat(3,1fr)}}
+.knapp{
+  display:inline-flex;align-items:center;justify-content:center;gap:.45rem;
+  min-height:42px;padding:.55rem 1.25rem;border-radius:var(--rp);
+  background:var(--acc);color:var(--bas);font-weight:600;font-size:.85rem;
+  transition:background .2s,transform .15s;
+}
+.knapp:hover{background:var(--acc2)}
+.knapp:active{transform:scale(.98)}
+.knapp--ram{background:transparent;color:var(--text);border:1px solid var(--linje2)}
+.knapp--ram:hover{background:var(--yta);border-color:var(--acc)}
+.tagg{
+  display:inline-flex;align-items:center;gap:.35rem;padding:.14rem .6rem;border-radius:var(--rp);
+  font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--bas);border:1px solid var(--linje2);color:var(--text2);
+}
+.tagg--acc{background:var(--acc);color:var(--bas);border-color:var(--acc)}
+.tagg--varning{border-color:var(--varning);color:var(--varning)}
+.tagg--las{border-color:var(--fel);color:var(--fel)}
+.notis{font-size:.8rem;color:var(--text2)}
+.notis b{color:var(--text);font-weight:600}
+.siffra{font-weight:600;font-variant-numeric:tabular-nums}
+hr.delare{border:0;border-top:1px solid var(--linje);margin:1rem 0}
+
+/* checklista */
+.check{display:flex;flex-direction:column;gap:.3rem}
+.check label{
+  display:flex;align-items:flex-start;gap:.65rem;padding:.55rem .65rem;border-radius:10px;
+  cursor:pointer;transition:background .2s;font-size:.94rem;
+}
+.check label:hover{background:var(--bas)}
+.check input{width:19px;height:19px;accent-color:var(--acc);margin-top:.18rem;flex-shrink:0}
+.check .tid{margin-left:auto;font-size:.72rem;color:var(--text2);white-space:nowrap;padding-top:.2rem}
+.check input:checked ~ span{color:var(--text2);text-decoration:line-through;text-decoration-color:var(--acc)}
+
+/* mallar med kopiera-knapp (sop-ringa-konventionen) */
+.mall{background:var(--bas);border:1px solid var(--linje);border-radius:12px;padding:.9rem 1rem;position:relative;margin-top:.7rem}
+.mall h4{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--acc2);margin-bottom:.45rem;padding-right:5.5rem}
+.mall p{font-size:.9rem;color:var(--text);white-space:pre-wrap}
+.mall p + p{margin-top:.55rem}
+.mall .not{font-size:.76rem;color:var(--text2);margin-top:.5rem;white-space:normal}
+.kopiera{
+  position:absolute;top:.6rem;right:.6rem;
+  font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  padding:.3rem .7rem;border-radius:var(--rp);background:var(--acc);color:var(--bas);
+}
+.kopiera:hover{background:var(--acc2)}
+.kopiera.klar{background:var(--yta);color:var(--ok);border:1px solid var(--ok)}
+
+/* tabeller */
+table.t{width:100%;border-collapse:collapse;font-size:.88rem}
+table.t th{font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--linje2)}
+table.t td{padding:.55rem .6rem;border-bottom:1px solid var(--linje);vertical-align:top}
+table.t tr:last-child td{border-bottom:0}
+table.t td b{font-weight:600;font-variant-numeric:tabular-nums}
+.t-rull{overflow-x:auto}
+.t-rull table.t{min-width:560px}
+
+/* kpi */
+.kpi-mal{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.kpi-mal .stor{font-size:2.1rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--acc2)}
+.kpi-in{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:.5rem;margin-top:.7rem;align-items:end}
+.kpi-in label{font-size:.68rem;color:var(--text2);display:block;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.25rem}
+.kpi-in input{width:100%;font-variant-numeric:tabular-nums}
+@media(max-width:700px){.kpi-in{grid-template-columns:1fr 1fr;gap:.55rem}.kpi-in .knapp{grid-column:1/-1}}
+.stapel{display:flex;align-items:flex-end;gap:4px;height:56px;margin-top:.8rem}
+.stapel i{flex:1;background:var(--acc);border-radius:3px 3px 0 0;min-height:3px;opacity:.85}
+.stapel i.tom{background:var(--linje2)}
+
+/* sasongen */
+.vecka{border:1px solid var(--linje);border-radius:12px;background:var(--bas);padding:.85rem 1rem;margin-top:.65rem}
+.vecka-huv{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.vecka-nr{font-size:.72rem;font-weight:700;color:var(--acc2);font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.vecka-huv input{flex:1;min-width:200px;background:transparent;border-color:transparent;font-weight:600;padding:.2rem .4rem}
+.vecka-huv input:hover,.vecka-huv input:focus{border-color:var(--linje2);background:var(--bas)}
+.vecka-status{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.22rem .7rem;border-radius:var(--rp);border:1px solid var(--linje2);color:var(--text2)}
+.vecka-status.postad{border-color:var(--ok);color:var(--ok)}
+.vecka-status.pagar{border-color:var(--varning);color:var(--varning)}
+.vecka .vinkl{margin-top:.5rem}
+.vecka .vinkl textarea{min-height:52px;font-size:.86rem}
+
+/* spelvarlden */
+.falt-etikett{font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text2);display:block;margin:.9rem 0 .3rem}
+.falt-etikett:first-child{margin-top:0}
+.spel-namn input{font-size:1.15rem;font-weight:700;width:100%}
+.matris td:first-child{font-weight:600}
+.ok-cell{color:var(--ok);font-weight:700}
+.nej-cell{color:var(--fel);font-weight:700}
+
+/* lankkort + flode */
+.lank-rad{display:flex;gap:.6rem;flex-wrap:wrap}
+.flode{display:flex;align-items:stretch;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
+.flode .steg{
+  flex:1;min-width:120px;background:var(--bas);border:1px solid var(--linje);border-radius:10px;
+  padding:.6rem .7rem;font-size:.8rem;color:var(--text2);position:relative;
+}
+.flode .steg b{display:block;color:var(--text);font-size:.86rem;margin-bottom:.15rem}
+.flode .steg::after{content:'\2192';position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:var(--acc2);font-size:1rem;z-index:1}
+.flode .steg:last-child::after{content:''}
+details.ihop{border:1px solid var(--linje);border-radius:12px;background:var(--bas);margin-top:.6rem}
+details.ihop summary{cursor:pointer;padding:.7rem .9rem;font-weight:600;font-size:.92rem;list-style:none;display:flex;align-items:center;gap:.5rem}
+details.ihop summary::before{content:'+';color:var(--acc2);font-weight:700;width:1rem}
+details.ihop[open] summary::before{content:'\2212'}
+details.ihop .ihop-in{padding:0 .9rem .9rem}
+
+/* idebank */
+.ide-rad{display:flex;gap:.5rem;margin-top:.6rem}
+.ide-rad input{flex:1}
+.ide-lista li{display:flex;align-items:flex-start;gap:.6rem;padding:.5rem .2rem;border-bottom:1px solid var(--linje);font-size:.92rem}
+.ide-lista li:last-child{border-bottom:0}
+.ide-lista .bort{color:var(--text2);font-size:.8rem;margin-left:auto;flex-shrink:0}
+.ide-lista .bort:hover{color:var(--fel)}
+
+/* print: spelvarld/sasong som dokument */
+@media print{
+  .topp,.nav,.kopiera,.knapp,.mini-knapp,.ide-rad,.kpi-in{display:none!important}
+  body{background:#fff;color:#111}
+  .ram{display:block}
+  .blad{display:block!important;page-break-after:always}
+  .blad::before{content:attr(data-print);display:block;font-size:16pt;font-weight:700;margin:0 0 12pt}
+  .kort,.mall,.vecka,details.ihop{border-color:#ccc;background:#fff;color:#111}
+  .kort h3,.mall p,.vecka-huv input,textarea{color:#111}
+}
+</style>
+</head>
+<body>
+
+<header class="topp">
+  <img src="/brand/mark.svg" alt="" onerror="this.remove()">
+  <span class="topp-namn">Bahko <span>OS</span></span>
+  <div class="hud">
+    <span class="hud-etikett">Säsong 1</span>
+    <span class="hud-bar" aria-hidden="true"><i id="hud-fyll" style="width:0%"></i></span>
+    <span>v. <b id="hud-vecka">1</b>/13</span>
+    <span>·</span>
+    <span>DEMO-DM <b id="hud-xp">0</b>/3</span>
+  </div>
+  <div class="topp-knappar">
+    <button class="mini-knapp" id="exportera" type="button">Export</button>
+    <button class="mini-knapp" id="skrivut" type="button">Skriv ut</button>
+  </div>
+</header>
+
+<div class="ram">
+<nav class="nav" id="nav" aria-label="Moduler"></nav>
+<main class="inneh" id="inneh">
+
+<!-- ============ 1. KOMMANDOBRYGGAN ============ -->
+<section class="blad" id="b-bryggan" data-print="Kommandobryggan">
+  <div class="blad-huv">
+    <span class="oga">Start</span>
+    <h2>Kommandobryggan</h2>
+    <p>Dagens uppdrag enligt <b>daglig rutin, 15 minuter, aldrig mer</b> (panelbeslut 2026-08-17).
+    Sväller rutinen, ryker den.</p>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort">
+      <h3 style="display:flex;align-items:center;gap:.6rem">Dagens uppdrag
+        <span class="tagg" id="brygg-datum"></span>
+        <label class="tagg" style="margin-left:auto;cursor:pointer;gap:.4rem">
+          <input type="checkbox" id="mvl" style="accent-color:var(--varning);width:14px;height:14px">
+          Kraschvecka
+        </label>
+      </h3>
+      <div class="check" id="dagens-check"></div>
+      <p class="notis" id="mvl-notis" hidden>Kraschvecka aktiv: tre saker överlever, resten väntar utan
+      dåligt samvete. (1) DM och kommentarer varje dag, (2) en karusell den här veckan, (3) story minst tre dagar.</p>
+      <hr class="delare">
+      <p class="notis" id="dagens-trigger"></p>
+    </div>
+
+    <div class="kort">
+      <h3>Pipeline just nu</h3>
+      <div class="kpi-mal">
+        <span class="stor" id="crm-due">–</span>
+        <span class="notis">uppföljningar väntar i CRM:et<br>(nästa åtgärd är i dag eller tidigare)</span>
+      </div>
+      <p class="notis" id="crm-status" style="margin-top:.4rem"></p>
+      <hr class="delare">
+      <h3 style="margin-bottom:.4rem">Veckans XP: inkommande DEMO-DM</h3>
+      <div class="kpi-mal"><span class="stor" id="xp-tal">0</span><span class="notis">av målet <b>3 per vecka</b>.
+      Kontots enda jobb är DEMO-DM-konversationer, inte följare.</span></div>
+      <hr class="delare">
+      <div class="lank-rad">
+        <a class="knapp knapp--ram" href="/crm-f2822a6f3a/" target="_blank" rel="noopener">CRM</a>
+        <a class="knapp knapp--ram" href="/cloud/sop-ringa/" target="_blank" rel="noopener">Ring-SOP</a>
+        <a class="knapp knapp--ram" href="/cloud/prismotor/" target="_blank" rel="noopener">PrisMotor</a>
+        <a class="knapp knapp--ram" href="https://www.bahkobyra.se" target="_blank" rel="noopener">Sajten</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="kort">
+    <h3>Fästad kommentar vid varje publicering</h3>
+    <div class="mall"><h4>Fäst från @bahkostudio</h4>
+      <button class="kopiera" type="button">Kopiera</button>
+      <p>Vill du se hur det här skulle se ut för din firma? DM:a DEMO.</p>
+      <p class="not">Säljet bor i kommentarsfältet. Flödets 8-av-10-regel bryts inte.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. SPELVÄRLDEN ============ -->
+<section class="blad" id="b-spelvarld" data-print="Spelvärlden — varumärkesstrategin">
+  <div class="blad-huv">
+    <span class="oga">Världen</span>
+    <h2>Spelvärlden</h2>
+    <p>Varumärket som spel: publiken är huvudpersonen, ert content är questlinjen som tar dem
+    från fienden till förvandlingen. Det här dokumentet är <b>filtret för allt content på alla
+    plattformar</b>. Redigera fritt, allt sparas lokalt.</p>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort">
+      <span class="falt-etikett">Fienden, namnges i allt content</span>
+      <div class="spel-namn"><input id="sv-fiende" value=""></div>
+      <textarea id="sv-fiende-besk" aria-label="Beskrivning av fienden"></textarea>
+      <span class="falt-etikett">Huvudpersonen, den publiken blir</span>
+      <div class="spel-namn"><input id="sv-hjalte" value=""></div>
+      <textarea id="sv-hjalte-besk" aria-label="Beskrivning av huvudpersonen"></textarea>
+      <span class="falt-etikett">Missionen, det som står på spel</span>
+      <div class="spel-namn"><input id="sv-mission" value=""></div>
+      <textarea id="sv-mission-besk" aria-label="Beskrivning av missionen"></textarea>
+    </div>
+    <div class="kort">
+      <span class="falt-etikett">Metoden, ert namngivna sätt</span>
+      <div class="spel-namn"><input id="sv-metod" value=""></div>
+      <textarea id="sv-metod-besk" aria-label="Beskrivning av metoden"></textarea>
+      <span class="falt-etikett">Anti-visionen, där publiken är nu</span>
+      <textarea id="sv-antivision"></textarea>
+      <span class="falt-etikett">Visionen, dit questlinjen leder</span>
+      <textarea id="sv-vision"></textarea>
+    </div>
+  </div>
+
+  <div class="kort">
+    <h3>Vokabulären, spelets egna ord</h3>
+    <p class="notis">Namngivna begrepp gör världen omöjlig att kopiera. Ett begrepp per rad.</p>
+    <textarea id="sv-vokabular" style="min-height:110px"></textarea>
+  </div>
+
+  <div class="kort">
+    <h3>Pelarna, det innehållet består av</h3>
+    <p class="notis">Ur kontentplanen. En pelare per rad. Veckorytmen bor under Instagram-modulen.</p>
+    <textarea id="sv-pelare" style="min-height:96px"></textarea>
+  </div>
+
+  <div class="kort">
+    <h3 style="display:flex;align-items:center;gap:.6rem">Kanalmatrisen <span class="tagg tagg--las">Copy-lag</span></h3>
+    <p class="notis" style="margin-bottom:.6rem">Vad får sägas var. Raden om Google är låst av CLAUDE.md:s
+    kanalregel och kan inte redigeras bort.</p>
+    <div class="t-rull"><table class="t matris">
+      <thead><tr><th>Budskap</th><th>IG / DM / reels</th><th>Cold email / samtal</th><th>bahkobyra.se</th><th>Offert / möte</th></tr></thead>
+      <tbody>
+        <tr><td>Kostnadsfri prototyp inom 48 timmar</td><td class="ok-cell">Ja</td><td class="ok-cell">Ja</td><td class="ok-cell">Ja</td><td class="ok-cell">Ja</td></tr>
+        <tr><td>90 dagars tillväxtgaranti, minst 10 % fler förfrågningar</td><td class="nej-cell">Nej</td><td class="nej-cell">Nej</td><td class="ok-cell">Ja</td><td class="ok-cell">Ja</td></tr>
+        <tr><td>"Hamna första sidan på Google" / Växa på Google</td><td class="nej-cell">Aldrig</td><td class="nej-cell">Aldrig</td><td class="ok-cell">Endast här</td><td class="ok-cell">Ja</td></tr>
+        <tr><td>Pris (12 000 kr ex moms)</td><td class="nej-cell">Aldrig</td><td class="nej-cell">Nej</td><td class="nej-cell">Nej</td><td class="ok-cell">Ja</td></tr>
+        <tr><td>CTA "DM:a DEMO"</td><td class="ok-cell">Ja</td><td class="nej-cell">Nej</td><td class="nej-cell">Nej</td><td class="nej-cell">Nej</td></tr>
+        <tr><td>Lokal SEO / optimering</td><td class="nej-cell">Nej</td><td class="nej-cell">Nej</td><td class="nej-cell">Nej</td><td class="ok-cell">Uppsell efter leverans</td></tr>
+      </tbody>
+    </table></div>
+    <p class="notis" style="margin-top:.6rem">Grundregeln bakom raderna: offerten är <b>hemsidor</b> på alla
+    kanaler. Google-ranking är intern leverans och uppsell, aldrig säljbudskapet.</p>
+  </div>
+
+  <div class="kort" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+    <div style="flex:1;min-width:240px">
+      <h3>Mata AI:n med världen</h3>
+      <p class="notis">Kopierar hela spelvärlden som markdown. Klistra in i en Claude-session så
+      filtreras idéer, manus och kampanjer genom strategin i stället för gissningar.</p>
+    </div>
+    <button class="knapp" id="ai-kontext" type="button">Kopiera som AI-kontext</button>
+  </div>
+</section>
+
+<!-- ============ 3. SÄSONGEN ============ -->
+<section class="blad" id="b-sasong" data-print="Säsongen — 90 dagar">
+  <div class="blad-huv">
+    <span class="oga">Världen</span>
+    <h2>Säsongen</h2>
+    <p>90 dagar är en säsong med ett tema, som i ett spel. Varje vecka är ett kapitel:
+    kapitlet blir veckans kärncontent (YouTube-video, LinkedIn-post), citaten ur kapitlet blir
+    veckans korta poster. Binge-logiken: allt hänger ihop, så publiken stannar i världen.</p>
+  </div>
+
+  <div class="kort">
+    <span class="falt-etikett">Säsongens tema</span>
+    <div class="spel-namn"><input id="sa-tema" value=""></div>
+    <div style="display:flex;gap:1rem;align-items:end;flex-wrap:wrap;margin-top:.7rem">
+      <div><span class="falt-etikett" style="margin-top:0">Startdatum</span>
+      <input type="date" id="sa-start"></div>
+      <p class="notis" style="flex:1;min-width:220px">Veckonumret i HUD:en räknas från startdatumet.
+      Efter vecka 13: arkivera säsongen med Export-knappen och skriv nästa tema.</p>
+    </div>
+  </div>
+
+  <div class="kort">
+    <h3>Kapitlen</h3>
+    <p class="notis">Rubrik och vinklar är redigerbara. Statusknappen växlar planerad, pågår, postad.</p>
+    <div id="sa-veckor"></div>
+  </div>
+</section>
+
+<!-- ============ 4. INSTAGRAM ============ -->
+<section class="blad" id="b-instagram" data-print="Instagram-dashboard">
+  <div class="blad-huv">
+    <span class="oga">Kanal · @bahkostudio</span>
+    <h2>Instagram</h2>
+    <p>Kontots enda jobb: inkommande DEMO-DM-konversationer. Inte följare, inte likes.
+    Mål efter fyra veckor: <b>3 inkommande per vecka</b>.</p>
+  </div>
+
+  <div class="kort">
+    <h3>Viral-loopen, från inlägg till affär</h3>
+    <div class="flode">
+      <div class="steg"><b>Inlägget</b>fienden namnges, kroken ur veckans kapitel</div>
+      <div class="steg"><b>Kommentaren</b>fäst CTA: "DM:a DEMO"</div>
+      <div class="steg"><b>DM:et</b>en binär fråga, JA-protokollet</div>
+      <div class="steg"><b>CRM:et</b>lead loggas, källa = post</div>
+      <div class="steg"><b>Prototypen</b>kostnadsfri, inom 48 timmar</div>
+    </div>
+  </div>
+
+  <div class="kort">
+    <h3 style="display:flex;align-items:center;gap:.6rem">Veckocadence <span class="tagg tagg--acc">Beslut 2026-08-27</span></h3>
+    <div class="t-rull"><table class="t">
+      <thead><tr><th>Format</th><th>Antal/vecka</th><th>Produceras med</th><th>Pelare</th></tr></thead>
+      <tbody>
+        <tr><td>Maskotreel</td><td><b>2</b></td><td><span class="tagg">/bahko-reel</span> grafik som alfalager på färdigklippt video</td><td>Kundcase · Teardown</td></tr>
+        <tr><td>Karusell</td><td><b>2</b></td><td><span class="tagg">/instagram-engine</span> sista sliden alltid DEMO-CTA</td><td>Invändningen · Sanningen</td></tr>
+        <tr><td>Bildkort</td><td><b>1</b></td><td>Edge-malltekniken, varumärke v2</td><td>Sanningen</td></tr>
+        <tr><td>Ansiktspost</td><td><b>1</b></td><td><span class="tagg">/famous-reel-editor</span> se pipelinen nedan</td><td>Bygg-insikten</td></tr>
+        <tr><td>Story</td><td>dagligen</td><td>förproducerat pack, 2 min</td><td>Poll · BTS · repost + DEMO-CTA</td></tr>
+      </tbody>
+    </table></div>
+    <p class="notis" style="margin-top:.6rem">Proof-of-craft-regeln: minst hälften av veckans innehåll
+    visar riktiga sajtskärmar eller före/efter. Maskotläget används för räckviddspelare, aldrig för
+    bevispelare. AI-bilder är illustration, aldrig "kunders riktiga jobb".</p>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort">
+      <h3>Ansiktsrels-pipelinen</h3>
+      <p class="notis" style="margin-bottom:.5rem">En post i veckan med Mathias ansikte, byggd på veckans kapitel.</p>
+      <div class="t-rull"><table class="t">
+        <tbody>
+          <tr><td><b>1</b></td><td>Manus skrivs ur veckans kapitel i Säsongen, fyra loopar, jag-form</td></tr>
+          <tr><td><b>2</b></td><td>Spela in dig själv, mobil räcker, prata till EN person</td></tr>
+          <tr><td><b>3</b></td><td>Ladda upp råfilen och kör <span class="tagg">/famous-reel-editor</span>: klipp, motion-grafik, karaoke-text, B-roll</td></tr>
+          <tr><td><b>4</b></td><td>Granska att första och sista ordet inte klipps, publicera, fäst kommentaren</td></tr>
+        </tbody>
+      </table></div>
+      <p class="notis" style="margin-top:.5rem">Transkribering: ElevenLabs kräver nyckel i skillens .env.
+      Utan nyckel funkar Groq eller lokal Whisper med samma kommandon.</p>
+    </div>
+    <div class="kort">
+      <h3 style="display:flex;align-items:center;gap:.6rem">Soul ID <span class="tagg tagg--varning">Kostar credits</span></h3>
+      <p class="notis">Higgsfields soul-id tränar en karaktär på ditt ansikte en gång, och kan sedan
+      generera identitetstrogna bilder och videor med dig i. Användning: omslagsbilder,
+      B-roll med dig i miljöer ni aldrig filmat, varianter av ansiktsposten.</p>
+      <p class="notis" style="margin-top:.5rem"><b>Körs aldrig utan uttrycklig beställning.</b>
+      Beställ i en Claude-session: "träna soul-id på mina referensbilder" med 5 till 10 foton.
+      Efter träningen används referens-id:t i higgsfield-generate.</p>
+    </div>
+  </div>
+
+  <div class="kort">
+    <h3>Veckorytmen</h3>
+    <div class="t-rull"><table class="t">
+      <thead><tr><th>Dag</th><th>Format</th><th>Pelare</th><th>Därför</th></tr></thead>
+      <tbody>
+        <tr><td>Mån</td><td>Maskotreel</td><td>Kundcase</td><td>veckans starkaste bevis först, störst räckviddschans</td></tr>
+        <tr><td>Tis</td><td>Karusell</td><td>Invändningen</td><td>spara- och dela-magnet, verkliga repliker ur loggen</td></tr>
+        <tr><td>Ons</td><td>Maskotreel</td><td>Teardown</td><td>"jag googlade, testade, läste" är nyfikenhetskroken</td></tr>
+        <tr><td>Tor</td><td>Karusell + bildkort</td><td>Sanningen</td><td>kort, utbildande, lätt att hinna</td></tr>
+        <tr><td>Fre</td><td>Ansiktspost</td><td>Bygg-insikten</td><td>veckans kapitel med ansikte bygger mest förtroende</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="kort">
+    <h3>KPI, fredagar 15:00</h3>
+    <p class="notis">Ersätter IG-loggen i Google Sheet V1. IG-appen, professionell instrumentpanel,
+    innehåll du har delat. Tre siffror per vecka. DEMO-DM-fältet driver XP-mätaren i HUD:en.</p>
+    <div class="kpi-in">
+      <div><label for="ig-v">Vecka</label><input id="ig-v" type="text" inputmode="numeric" placeholder="36"></div>
+      <div><label for="ig-rack">Räckvidd</label><input id="ig-rack" type="text" inputmode="numeric"></div>
+      <div><label for="ig-spar">Sparningar</label><input id="ig-spar" type="text" inputmode="numeric"></div>
+      <div><label for="ig-dm">DEMO-DM</label><input id="ig-dm" type="text" inputmode="numeric"></div>
+      <button class="knapp" type="button" data-kpi-spara="instagram">Spara vecka</button>
+    </div>
+    <div class="stapel" id="ig-stapel" aria-hidden="true"></div>
+    <div class="t-rull"><table class="t" id="ig-kpi-tabell" style="margin-top:.6rem"></table></div>
+  </div>
+
+  <div class="kort">
+    <h3>Manus för Instagram</h3>
+    <p class="notis">Alla kopierbara texter bor i Manus-modulen, ett ställe, ingen drift.</p>
+    <div class="lank-rad" style="margin-top:.6rem">
+      <a class="knapp knapp--ram" href="#manus" data-till="manus">DM-serien och inbound-svaret</a>
+      <a class="knapp knapp--ram" href="#manus" data-till="manus">Hookar och karusellfrön</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. YOUTUBE ============ -->
+<section class="blad" id="b-youtube" data-print="YouTube-dashboard">
+  <div class="blad-huv">
+    <span class="oga">Kanal · Pilot säsong 1</span>
+    <h2>YouTube</h2>
+    <p>Nytt territorium, aktivt vald pilot. Motorn kostar nästan inget extra: veckans kapitel blir
+    EN video, och Shorts är återbruk av veckans reels. Utvärderas efter säsong 1.</p>
+  </div>
+
+  <div class="kort">
+    <h3>Kapitelvideon, en per vecka</h3>
+    <div class="flode">
+      <div class="steg"><b>Kapitlet</b>hämtas ur Säsongen, samma tes som veckans poster</div>
+      <div class="steg"><b>Manuset</b>skrivs som ansiktsreelens fast längre, 4 till 7 min</div>
+      <div class="steg"><b>Inspelningen</b>samma tagning som ansiktsposten, förläng den</div>
+      <div class="steg"><b>Klippet</b>famous-reel-editor-stacken, landskapsläge</div>
+      <div class="steg"><b>Shorts</b>veckans två reels läggs upp som Shorts, noll extra jobb</div>
+    </div>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort">
+      <h3>Titelformler</h3>
+      <div class="mall"><h4>Fiendetiteln</h4><button class="kopiera" type="button">Kopiera</button>
+        <p>Osynligheten kostar svenska hantverkare jobb varje vecka. Så ser du om den drabbat din firma.</p></div>
+      <div class="mall"><h4>Experimenttiteln</h4><button class="kopiera" type="button">Kopiera</button>
+        <p>Jag googlade 10 byggfirmor i Göteborg. Bara 2 gick att anlita från mobilen.</p></div>
+      <div class="mall"><h4>Förvandlingstiteln</h4><button class="kopiera" type="button">Kopiera</button>
+        <p>Från osynlig till Förstavalet: så väljer kunden hantverkare 2026.</p></div>
+      <p class="notis" style="margin-top:.5rem">Regeln: titeln lovar det videon bevisar. Ingen clickbait
+      som innehållet inte täcker, det straffar retention.</p>
+    </div>
+    <div class="kort">
+      <h3>Beskrivningsmall</h3>
+      <div class="mall"><h4>Under varje video</h4><button class="kopiera" type="button">Kopiera</button>
+        <p>Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på grund av sina hemsidor.
+
+Vill du se hur din firmas sida skulle kunna se ut? Jag bygger en kostnadsfri prototyp inom 48 timmar. Skriv DEMO till @bahkostudio på Instagram eller mejla mathias@bahkobyra.se.
+
+Kapitel:
+00:00 Kroken
+</p>
+        <p class="not">Google-löftet hör inte hemma här, kanalmatrisen gäller även YouTube.</p></div>
+    </div>
+  </div>
+
+  <div class="kort">
+    <h3>KPI, fredagar</h3>
+    <div class="kpi-in">
+      <div><label for="yt-v">Vecka</label><input id="yt-v" type="text" inputmode="numeric" placeholder="36"></div>
+      <div><label for="yt-pren">Prenumeranter</label><input id="yt-pren" type="text" inputmode="numeric"></div>
+      <div><label for="yt-vis">Visningar</label><input id="yt-vis" type="text" inputmode="numeric"></div>
+      <div><label for="yt-forf">Förfrågningar</label><input id="yt-forf" type="text" inputmode="numeric"></div>
+      <button class="knapp" type="button" data-kpi-spara="youtube">Spara vecka</button>
+    </div>
+    <div class="stapel" id="yt-stapel" aria-hidden="true"></div>
+    <div class="t-rull"><table class="t" id="yt-kpi-tabell" style="margin-top:.6rem"></table></div>
+  </div>
+</section>
+
+<!-- ============ 6. LINKEDIN ============ -->
+<section class="blad" id="b-linkedin" data-print="LinkedIn-dashboard">
+  <div class="blad-huv">
+    <span class="oga">Kanal · B2B</span>
+    <h2>LinkedIn</h2>
+    <p>Två spår som förstärker varandra: <b>innehåll</b> (veckans kapitel som textpost) och
+    <b>outreach</b> (kontaktförfrågningar mot firmaägare som redan fått mejlserien, kombinationen
+    ger runt 40 procent högre engagemang).</p>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort">
+      <h3>Innehållsspåret</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>1</b></td><td>Ta veckans kapitel ur Säsongen och skriv det som textpost, 120 till 200 ord, radbrytningar som andrum</td></tr>
+        <tr><td><b>2</b></td><td>Gör bildpost av veckans bästa citat i varumärkesmallen, samma kort som IG:s bildkort</td></tr>
+        <tr><td><b>3</b></td><td>Svara varje kommentar med en motfråga inom 24 timmar</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">Postmallen ligger i Manus. CTA:n på LinkedIn är mejl eller
+      DM här, aldrig "DM:a DEMO" som är Instagram-mekaniken.</p>
+      <div class="lank-rad" style="margin-top:.6rem"><a class="knapp knapp--ram" href="#manus" data-till="manus">LinkedIn-mallarna i Manus</a></div>
+    </div>
+    <div class="kort">
+      <h3>Outreach-spåret</h3>
+      <div class="t-rull"><table class="t">
+        <thead><tr><th>Dag</th><th>Steg</th></tr></thead>
+        <tbody>
+          <tr><td><b>0</b></td><td>Steg 1-mejlet går ut (mejlserien äger takten)</td></tr>
+          <tr><td><b>1</b></td><td>Hitta ägaren, skicka kontaktförfrågan, max 300 tecken</td></tr>
+          <tr><td><b>4</b></td><td>Uppföljning om accepterat: fråga hur nöjda de är med sajten</td></tr>
+          <tr><td><b>7</b></td><td>Sista meddelandet, lämna demolänken och önska lycka till</td></tr>
+        </tbody>
+      </table></div>
+      <p class="notis" style="margin-top:.5rem">5 till 10 förfrågningar per dag, LinkedIns tak är runt 100
+      per vecka. Pitcha aldrig i själva förfrågan. Anteckna varje touch i CRM:et.</p>
+    </div>
+  </div>
+
+  <div class="kort">
+    <h3>KPI, fredagar</h3>
+    <div class="kpi-in">
+      <div><label for="li-v">Vecka</label><input id="li-v" type="text" inputmode="numeric" placeholder="36"></div>
+      <div><label for="li-skick">Förfrågningar</label><input id="li-skick" type="text" inputmode="numeric"></div>
+      <div><label for="li-acc">Accepterade</label><input id="li-acc" type="text" inputmode="numeric"></div>
+      <div><label for="li-svar">Svar</label><input id="li-svar" type="text" inputmode="numeric"></div>
+      <button class="knapp" type="button" data-kpi-spara="linkedin">Spara vecka</button>
+    </div>
+    <div class="stapel" id="li-stapel" aria-hidden="true"></div>
+    <div class="t-rull"><table class="t" id="li-kpi-tabell" style="margin-top:.6rem"></table></div>
+    <p class="notis" style="margin-top:.5rem">Mål: över 30 procent accepterade, över 10 procent svar av accepterade.</p>
+  </div>
+</section>
+
+<!-- ============ 7. MANUS ============ -->
+<section class="blad" id="b-manus" data-print="Manus — alla skript">
+  <div class="blad-huv">
+    <span class="oga">Arsenalen</span>
+    <h2>Manus</h2>
+    <p>All kopierbar text bor här, plattformsflikarna länkar hit. Skrivreglerna gäller varje mall:
+    börja med Hejsan eller Hej, avsluta med Vänliga hälsningar, aldrig tankstreck, alltid
+    "kostnadsfri" i stället för "gratis", och kanalmatrisen avgör vilka löften som får användas.</p>
+  </div>
+
+  <div class="kort">
+    <h3>DM-serien, skriven-first dag 1, 3, 5, 7</h3>
+    <p class="notis">Kort vinner. Långa DM får inga svar, lärdom 2026-06-12.</p>
+    <div class="mall"><h4>Dag 1, komplimang + fråga</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Hej [Namn]! Riktigt snyggt jobb på [specifikt projekt ni postat] 🙌 Snabb fråga, vem byggde er hemsida?</p></div>
+    <div class="mall"><h4>Dag 3, konkret läcka + erbjudande</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Kikade på er sajt och såg ett par saker som nog kostar er jobb, till exempel svårt att få offert via mobilen. Vill du att jag skickar ett utkast på hur den kan se ut?</p></div>
+    <div class="mall"><h4>Dag 5, påminnelsen</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Hann du kika? Kostar inget, bara ett konkret förslag på en sajt som drar in fler offertförfrågningar.</p></div>
+    <div class="mall"><h4>Dag 7, sista pingen</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Sista pingen 🙂 Om en ny sajt inte är prio nu säg bara till.</p></div>
+  </div>
+
+  <div class="kort">
+    <h3>Inbound-DEMO, svar inom 24 timmar</h3>
+    <div class="mall"><h4>Förstasvaret, en binär fråga</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Tack! Kul att du hörde av dig. Bara så jag bygger rätt: är det [gissad bransch utifrån profilen] ni jobbar med, eller nåt annat?</p></div>
+    <div class="mall"><h4>Vid svar</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Perfekt. Jag bygger en kostnadsfri demo av er nya hemsida inom 48 timmar och skickar länken här. Inga krav.</p></div>
+    <div class="mall"><h4>Vid leverans</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Kika i mobilen, tar en minut. Vill du ha en kort genomgång på 15 minuter går det också bra.</p>
+      <p class="not">Logga leadet i CRM:et direkt, källa = post.</p></div>
+  </div>
+
+  <div class="kort">
+    <h3>JA-protokollet, när prospektet säger ja till demo</h3>
+    <p class="notis">Endast tre saker, i ordning, lugn och mänsklig ton. Aldrig pitch, hype eller call-push.
+    Demolänken levereras alltid.</p>
+    <div class="mall"><h4>1. Instruktionen</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Kika på [plats] och se hur [friktion] visar sig.</p></div>
+    <div class="mall"><h4>2. Kvalificeringen, binär och låg friktion</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Bara så jag förstår, ser du samma sak på din sida idag?</p></div>
+    <div class="mall"><h4>3. Optionaliteten</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Om det stämmer när du kollat kan jag visa nästa steg. Helt upp till dig.</p></div>
+  </div>
+
+  <div class="kort">
+    <h3>Uppföljning del 2 vid tystnad, max 40 ord</h3>
+    <div class="mall"><h4>Formatet är fast</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Tjena! Vet inte om du hann se demon: [demolänk] Den visar exakt varför kunden ska välja just er. Kika i mobilen, tar en minut.</p>
+      <p class="not">Påminn + länken IGEN + värdelöftet i en mening + låg friktion. Ingen omtagning av pitchen.</p></div>
+  </div>
+
+  <div class="kort">
+    <h3>Reel-hookar per pelare, skriv 5 och välj 1</h3>
+    <p class="notis">Jag-form, tolvårsspråk, max tolv ord per rad. Ämnesfrön, inte färdiga manus:
+    manuset skrivs alltid i fyra loopar (krok + kontext, djupare, konsekvens, payoff + mjuk CTA).</p>
+    <div class="mall"><h4>Kundcase</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>En målare i Jönköping delade namn med ett bolag med 42 anställda. Googlar man honom fanns han inte. Nu gör han det.</p></div>
+    <div class="mall"><h4>Teardown</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Jag googlade 10 byggfirmor i Göteborg. Hur många gick att begära offert av i mobilen utan att leta?</p></div>
+    <div class="mall"><h4>Invändningen</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>"Min svåger fixade vår hemsida." Här är vad det svaret faktiskt kostar er varje månad.</p></div>
+    <div class="mall"><h4>Sanningen</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Bästa hantverkaren vinner inte. Den som ser ut som proffset vinner.</p></div>
+    <div class="mall"><h4>Bygg-insikten</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Kunden googlar dig efter offerten. Vad hittar de?</p></div>
+  </div>
+
+  <div class="kort">
+    <h3>LinkedIn-mallarna</h3>
+    <div class="mall"><h4>Kontaktförfrågan A, neutral</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Hej [Förnamn]! Jobbar med hemsidor för svenska bygg- och hantverksfirmor. Kikade in på [Företag].se och fick några idéer. Hade velat höra din tanke om en grej.</p></div>
+    <div class="mall"><h4>Kontaktförfrågan B, vid expansion</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Hej [Förnamn]! Såg att [Företag] öppnat i [stad], grattis! Jobbar med hemsidor för hantverkare och fick en idé som kan passa er just nu.</p></div>
+    <div class="mall"><h4>Uppföljning dag 4</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>Hej [Förnamn]! Tack för att du accepterade.
+
+Jag skickade ett mejl till info@[företag].se häromdagen med en demo på hur [Företag] skulle kunna se ut med en modernare sida och tydligare offertknapp.
+
+Får jag fråga, hur nöjd är du med er nuvarande hemsida? Får den in bokningar som den ska?</p></div>
+    <div class="mall"><h4>Textpost ur veckans kapitel</h4><button class="kopiera" type="button">Kopiera</button>
+      <p>[Kroken: kapitlets tes i en mening.]
+
+[Berättelsen: 3 till 5 korta stycken. En hantverkare, ett problem, en vändning. Radbryt ofta.]
+
+[Poängen: vad läsaren ska göra annorlunda.]
+
+Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina hemsidor. Vill du se hur er sida kan se ut? Skicka ett meddelande så bygger jag en kostnadsfri prototyp inom 48 timmar.</p></div>
+  </div>
+
+  <div class="kort">
+    <h3>Cold call och offert</h3>
+    <p class="notis">Hela samtalsmanuset med invändningar bor i Ring-SOP:en, det dubbleras inte här.</p>
+    <div class="lank-rad" style="margin-top:.6rem">
+      <a class="knapp knapp--ram" href="/cloud/sop-ringa/" target="_blank" rel="noopener">Öppna Ring-SOP:en</a>
+      <a class="knapp knapp--ram" href="/crm-f2822a6f3a/" target="_blank" rel="noopener">Offertmallen finns i CRM:ets lead-panel</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. SOP:ER ============ -->
+<section class="blad" id="b-sop" data-print="SOP:er — rutinerna">
+  <div class="blad-huv">
+    <span class="oga">Arsenalen</span>
+    <h2>SOP:er</h2>
+    <p>Rutinerna som gör systemet deterministiskt. Dagens checklista bor i Kommandobryggan,
+    här står varför varje steg finns.</p>
+  </div>
+
+  <div class="kort-rad k3">
+    <div class="kort">
+      <h3>Dagligen, 08:00, 15 min</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>2 min</b></td><td>Svara ALLA kommentarer på gårdagens inlägg, alltid med motfråga</td></tr>
+        <tr><td><b>5 min</b></td><td>Sök DEMO i DM-inkorgen, kör förstasvaret, logga lead i CRM</td></tr>
+        <tr><td><b>3 min</b></td><td>Posta dagens story ur veckans pack</td></tr>
+        <tr><td><b>5 min</b></td><td>CRM:ets dagens uppföljningar, gör EN touch</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">Kommentarssvar inom timmar är Instagrams starkaste signal,
+      och kedjan kommentar, DM, demo är hela affärens konvertering.</p>
+    </div>
+    <div class="kort">
+      <h3>Veckovis</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>Tor 10 min</b></td><td>Beställ veckans content av Claude: nästa veckas batch inklusive story-pack</td></tr>
+        <tr><td><b>Sön 30 min</b></td><td>Ögongranska och godkänn batchen, kolla åäö på varje slide</td></tr>
+        <tr><td><b>Fre 15:00</b></td><td>KPI-inmatning här i OS:et per kanal, kolla credit-saldot, tak 30 per vecka</td></tr>
+        <tr><td><b>Fre</b></td><td>Skriv nästa veckas kapitelmanus ur Säsongen</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="kort">
+      <h3>Månadsvis</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>1:a</b></td><td>Nyhetsbrevet ur content/email, värde först, en CTA</td></tr>
+        <tr><td><b>Var 4:e v</b></td><td>Utvärdera vinnande vinklar ur KPI-raderna, uppdatera Spelvärldens pelare</td></tr>
+        <tr><td><b>Säsongsslut</b></td><td>Exportera, arkivera, skriv nästa säsongs tema</td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+
+  <div class="kort">
+    <h3>QA-grinden före ALLT utskick</h3>
+    <div class="t-rull"><table class="t">
+      <thead><tr><th>Grind</th><th>Frågan</th></tr></thead>
+      <tbody>
+        <tr><td><b>FOR THEM</b></td><td>Handlar det om deras firma och deras jobb, inte om oss?</td></tr>
+        <tr><td><b>REAL</b></td><td>Är observationen verklig och specifik för just dem?</td></tr>
+        <tr><td><b>FINANCIAL SENSE</b></td><td>Är det uppenbart att det här kan betala sig?</td></tr>
+        <tr><td><b>EASY YES</b></td><td>Är nästa steg litet, riskfritt och lätt att säga ja till?</td></tr>
+      </tbody>
+    </table></div>
+    <p class="notis" style="margin-top:.5rem">Offer-regeln bakom grinden: resultat + mekanism +
+    riskreversering + villkor. Front-offern bevisar att vi kan, den ska inte tjäna pengar.</p>
+  </div>
+
+  <div class="kort">
+    <h3>Dagsloggen för ringpassen</h3>
+    <p class="notis">Dagsloggen bor i Ring-SOP:en och har ett fryst kontrakt. OS:et skriver aldrig dit.</p>
+    <div class="lank-rad" style="margin-top:.6rem"><a class="knapp knapp--ram" href="/cloud/sop-ringa/#dagslogg" target="_blank" rel="noopener">Öppna dagsloggen</a></div>
+  </div>
+</section>
+
+<!-- ============ 9. KUNDVERKSTAN ============ -->
+<section class="blad" id="b-verkstan" data-print="Kundverkstan — leverans och tillväxt">
+  <div class="blad-huv">
+    <span class="oga">Arsenalen</span>
+    <h2>Kundverkstan</h2>
+    <p>Det interna arbetet: kundsajterna, mallarna som bygger dem, optimeringsleveransen och
+    idéerna som växer verksamheten.</p>
+  </div>
+
+  <div class="kort">
+    <h3>Kundsajterna</h3>
+    <div class="t-rull"><table class="t">
+      <thead><tr><th>Sajt</th><th>Status</th><th>Nästa steg</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://smamaleri.se" target="_blank" rel="noopener"><b>smamaleri.se</b></a></td><td>Live, betalande</td><td>uppsell: löpande optimering efter kanalmatrisen</td></tr>
+        <tr><td><a href="https://brommatradgardsservice.se" target="_blank" rel="noopener"><b>brommatradgardsservice.se</b></a></td><td>Live, betalande</td><td>uppsell: löpande optimering</td></tr>
+        <tr><td><a href="https://maykaskitchen.se" target="_blank" rel="noopener"><b>maykaskitchen.se</b></a></td><td>Live, deployas vid push till main</td><td>underhåll vid behov</td></tr>
+      </tbody>
+    </table></div>
+    <p class="notis" style="margin-top:.5rem">Kundmapparna under bahkobyra/cloud/ är heliga: egna
+    Vercel-projekt pekar på exakt de sökvägarna. Flyttas eller ändras aldrig utan uttryckligt beslut.</p>
+  </div>
+
+  <div class="kort">
+    <h3>Aktiva leaddemos, länkarna är skickade och får aldrig brytas</h3>
+    <div class="lank-rad">
+      <a class="tagg" href="https://www.bahkobyra.se/svhus/" target="_blank" rel="noopener">svhus</a>
+      <a class="tagg" href="https://www.bahkobyra.se/shabifix/" target="_blank" rel="noopener">shabifix</a>
+      <a class="tagg" href="https://www.bahkobyra.se/glowingservice/" target="_blank" rel="noopener">glowingservice</a>
+      <a class="tagg" href="https://www.bahkobyra.se/cloud/mugglagret/" target="_blank" rel="noopener">mugglagret</a>
+      <a class="tagg" href="https://www.bahkobyra.se/cloud/grontoglanser/" target="_blank" rel="noopener">grontoglanser</a>
+      <a class="tagg" href="https://www.bahkobyra.se/cloud/galiano/" target="_blank" rel="noopener">galiano</a>
+      <a class="tagg" href="https://www.bahkobyra.se/cloud/k9maleri/" target="_blank" rel="noopener">k9maleri</a>
+      <a class="tagg" href="https://www.bahkobyra.se/cloud/golvresan/" target="_blank" rel="noopener">golvresan</a>
+      <a class="tagg" href="https://www.bahkobyra.se/cloud/solpanelstjejen/" target="_blank" rel="noopener">solpanelstjejen</a>
+    </div>
+    <p class="notis" style="margin-top:.6rem">Åtta frysta demosajter därtill (alfredallservice, asmar,
+    bygg, kmctransport, osterlunds, pizzeriamatstugan, tryggbyggservice, vajjebygg) rörs aldrig.</p>
+  </div>
+
+  <div class="kort">
+    <h3>Kundmall-design, vilken mall när</h3>
+    <div class="t-rull"><table class="t">
+      <thead><tr><th>Kommando</th><th>När</th><th>Kostnad</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tagg">/hemsidor</span></td><td>nybygge i Next.js på SV Hus-mallen, noll klient-JS, snabbast i drift</td><td>bilder nano_banana_2, video seedance 2.5, endast på beställning</td></tr>
+        <tr><td><span class="tagg">/demo-recopy</span></td><td>ny lead i nisch som redan har demo, ALLTID första valet då</td><td><b>0 credits</b>, återanvänt media</td></tr>
+        <tr><td><span class="tagg">/scroll-cinematic</span></td><td>video-driven förvandlingsdemo, tyngsta intrycket</td><td>~49 credits, aldrig utan beställning</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="kort">
+    <h3>Optimeringsleveransen, SEO, AEO och GEO utan branschmyt</h3>
+    <p class="notis">Kärnvärdet i optimering-skillen: varje åtgärd har en evidensgrad. Uppsell EFTER
+    levererad sajt, aldrig säljbudskapet.</p>
+    <details class="ihop"><summary>Grundfel först, alltid i den här ordningen</summary><div class="ihop-in">
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>1</b></td><td>Egen domän, inte underdomän hos en sajtbyggare</td></tr>
+        <tr><td><b>2</b></td><td>Indexerbarhet: ingen noindex i rå HTML. Står den där kan Google hoppa över renderingen helt, JS som tar bort taggen hjälper inte. Har hänt en skarp kundsajt.</td></tr>
+        <tr><td><b>3</b></td><td>Innehållet i rå HTML: AI-crawlers kör inte JavaScript (Vercel/MERJ, 500M+ crawls). Google är enda undantaget.</td></tr>
+        <tr><td><b>4</b></td><td>Först därefter finlir: schema, områdessidor, GBP-optimering</td></tr>
+      </tbody></table></div>
+    </div></details>
+    <details class="ihop"><summary>Dokumenterat, säkert att luta sig mot</summary><div class="ihop-in">
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td>Primärkategorin styr local pack</td><td class="notis">Googles egen dokumentation</td></tr>
+        <tr><td>Recensioner påverkar lokal ranking</td><td class="notis">GBP-faktor</td></tr>
+        <tr><td>AI Overviews är Google Search, inte en egen motor</td><td class="notis">samma index och ranking, AEO/GEO hos Google är SEO</td></tr>
+        <tr><td>Innehåll kan gå bra utan uttalat SEO-arbete</td><td class="notis">Googles guide säger det uttryckligen</td></tr>
+      </tbody></table></div>
+    </div></details>
+    <details class="ihop"><summary>Svartlistan, riskerar manuell åtgärd eller är myt</summary><div class="ihop-in">
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td class="nej-cell">Dolt innehåll</td><td class="notis">spam-policy</td></tr>
+        <tr><td class="nej-cell">Review-schema på egna omdömen</td><td class="notis">otillåtet sedan 2019</td></tr>
+        <tr><td class="nej-cell">llms.txt som citeringsknep</td><td class="notis">Google stödjer det inte, försumbar crawler-trafik</td></tr>
+        <tr><td class="nej-cell">"Schema ger fler AI-citeringar"</td><td class="notis">Ahrefs maj 2026: ingen positiv effekt</td></tr>
+        <tr><td class="nej-cell">En sida per sökvariant</td><td class="notis">Google avvisar det, ger tunna dubbletter</td></tr>
+      </tbody></table></div>
+    </div></details>
+    <p class="notis" style="margin-top:.6rem">Hela evidenstabellen med källkarta:
+    <b>.claude/skills/optimering/reference.md</b>. Kör <span class="tagg">/optimering [kund]</span> i Claude.</p>
+  </div>
+
+  <div class="kort">
+    <h3>Idébanken</h3>
+    <p class="notis">Fånga idén när den kommer, utveckla den i en Claude-session när det passar.</p>
+    <div class="ide-rad">
+      <input id="ide-in" type="text" placeholder="Ny idé, ett projekt, en förbättring, en vinkel" aria-label="Ny idé">
+      <button class="knapp" id="ide-lagg" type="button">Spara</button>
+    </div>
+    <ul class="ide-lista" id="ide-lista" style="margin-top:.5rem"></ul>
+  </div>
+</section>
+
+</main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ================= Router (sop-ringa-mönstret) ================= */
+  var BLAD = [
+    { g: "Start" },
+    { id: "bryggan",   namn: "Kommandobryggan", pr: "⚑" },
+    { g: "Världen" },
+    { id: "spelvarld", namn: "Spelvärlden",     pr: "♛" },
+    { id: "sasong",    namn: "Säsongen",        pr: "◷" },
+    { g: "Kanaler" },
+    { id: "instagram", namn: "Instagram",       pr: "▣" },
+    { id: "youtube",   namn: "YouTube",         pr: "▷" },
+    { id: "linkedin",  namn: "LinkedIn",        pr: "▤" },
+    { g: "Arsenalen" },
+    { id: "manus",     namn: "Manus",           pr: "✎" },
+    { id: "sop",       namn: "SOP:er",          pr: "✓" },
+    { id: "verkstan",  namn: "Kundverkstan",    pr: "⚒" }
+  ];
+  var nav = document.getElementById("nav");
+  nav.innerHTML = BLAD.map(function (b) {
+    if (b.g) return '<div class="nav-grupp">' + b.g + "</div>";
+    return '<a href="#' + b.id + '" data-till="' + b.id + '"><span class="pr" aria-hidden="true">' + b.pr + "</span>" + b.namn + "</a>";
+  }).join("");
+
+  function visa(id) {
+    if (!document.getElementById("b-" + id)) id = "bryggan";
+    Array.prototype.forEach.call(document.querySelectorAll(".blad"), function (s) {
+      s.classList.toggle("on", s.id === "b-" + id);
+    });
+    Array.prototype.forEach.call(nav.querySelectorAll("a"), function (a) {
+      a.classList.toggle("on", a.getAttribute("data-till") === id);
+    });
+    document.title = "Bahko OS · " + (BLAD.filter(function (b) { return b.id === id; })[0] || { namn: "" }).namn;
+    window.scrollTo(0, 0);
+  }
+  function franHash() { visa((location.hash || "#bryggan").slice(1)); }
+  window.addEventListener("hashchange", franHash);
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-till]");
+    if (t) { location.hash = t.getAttribute("data-till"); }
+  });
+
+  /* ================= Lagring: två nycklar, korruptionsskydd =================
+     bb_-prefixet gör att båda åker med i CRM:ets befintliga backup.
+     bb_os_v1      = spelvärld + säsong (lågfrekvent, dyrt att förlora)
+     bb_os_logg_v1 = kpi + dagsuppdrag + idéer (högfrekvent, billigt att så om)
+     OS:et läser bb_crm_v2 men skriver ALDRIG till den (heligt kontrakt). */
+  var K_VARLD = "bb_os_v1", K_LOGG = "bb_os_logg_v1";
+
+  function defaultVarld() {
+    return {
+      version: 1,
+      spelvarld: {
+        fiende: "Osynligheten",
+        fiendeBesk: "Hantverkaren som bygger bäst i stan men förlorar jobben till sämre firmor som syns. Osynligheten märks inte: telefonen ringer bara lite mer sällan för varje år. Dess vanligaste förklädnad är Svågersajten, sidan någons svåger byggde 2014.",
+        hjalte: "Förstavalet",
+        hjalteBesk: "Hantverkaren kunden väljer innan de ens ringt runt. Jobben kommer till hen, kalendern fylls av rätt kunder, och priset behöver aldrig försvaras med rabatt.",
+        mission: "Inga fler förlorade jobb",
+        missionBesk: "Sveriges skickligaste hantverkare ska inte förlora jobb på grund av sina hemsidor. Det är missionen, och därför är den nischen: vi nischar på uppdraget, inte på en målgrupp.",
+        metod: "48-timmarsprototypen",
+        metodBesk: "Kostnadsfri skräddarsydd prototyp inom 48 timmar. Kunden ser sin nya sajt innan den kostar något. Efter leverans: 90 dagars tillväxtgaranti på minst 10 procent fler kundförfrågningar. Garantins Google-del lever enbart på bahkobyra.se och i offert, se kanalmatrisen.",
+        antivision: "Fem förfrågningar i månaden fast jobben håller toppklass. Kunden googlar efter offerten och hittar en sida som inte gått att uppdatera sedan 2014, utan bilder, utan omdömen, omöjlig i mobilen. Konkurrenten som gjorde läxan tar jobbet.",
+        vision: "Kunden har redan bestämt sig när de ringer. Sajten visar jobben, svarar på frågorna och gör offerten till ett klick i mobilen. Firman väljer sina jobb i stället för att jaga dem.",
+        vokabular: "Osynligheten: fienden, tystnaden som kostar jobb\nFörstavalet: identiteten publiken blir\n48-timmarsprototypen: metoden, se sajten innan den kostar\nSvågersajten: fiendens vanligaste förklädnad\nMobiltestet: kan kunden begära offert i mobilen utan att leta?\nDagens packning: rutinen som håller motorn igång",
+        pelare: "Kundcase: verkliga förvandlingar, alltid riktiga skärmar\nInvändningen: verkliga repliker ur loggen och vad de betyder\nTeardown: jag googlade, testade, räknade\nSanningen: korta utbildande käftsmällar\nBygg-insikten: insikten bygget avslöjar, aldrig verktyget"
+      },
+      sasong: {
+        tema: "Säsong 1: Från Osynligheten till Förstavalet",
+        start: "2026-08-31",
+        veckor: [
+          { nr: 1,  kapitel: "Manifestet: Osynligheten finns och den kostar dig jobb", vinklar: "IG: fienden namnges i alla fem format. YT: manifestvideon. LI: kapitlet som textpost.", status: "planerad", ant: "" },
+          { nr: 2,  kapitel: "Kunden googlar dig efter offerten", vinklar: "Sanningskortet som karusell, mobilskärm i reel.", status: "planerad", ant: "" },
+          { nr: 3,  kapitel: "Svågersajten: därför räcker det inte att ha en hemsida", vinklar: "Invändningskarusellen (bevisat format), svåger-hooken i reel.", status: "planerad", ant: "" },
+          { nr: 4,  kapitel: "48-timmarsprototypen: se sajten innan den kostar", vinklar: "Metodveckan. Visa en riktig prototypresa, DM-flödet i story.", status: "planerad", ant: "" },
+          { nr: 5,  kapitel: "Mobiltestet: klarar din sajt tre tummar-test?", vinklar: "Teardown: 10 firmor googlas, skärminspelning.", status: "planerad", ant: "" },
+          { nr: 6,  kapitel: "Före och efter: bevisveckan", vinklar: "Endast riktiga skärmar. Proof-of-craft, ingen maskot i bevis.", status: "planerad", ant: "" },
+          { nr: 7,  kapitel: "Förtroendekedjan: det som får kunden att våga ringa", vinklar: "Bilder, omdömen, org.nr, svarstid. Checklista som karusell.", status: "planerad", ant: "" },
+          { nr: 8,  kapitel: "Den som ser ut som proffset vinner", vinklar: "Citatkortets tes som helt kapitel. Ansiktspost bär veckan.", status: "planerad", ant: "" },
+          { nr: 9,  kapitel: "Inte prio just nu: vad väntan kostar", vinklar: "Invändningen del 2, räkneexempel märkt som exempel.", status: "planerad", ant: "" },
+          { nr: 10, kapitel: "Grannen-effekten: konkurrenten som gjorde läxan", vinklar: "Lokal vinkel, anonymiserade exempel ur nischen.", status: "planerad", ant: "" },
+          { nr: 11, kapitel: "Förstavalets anatomi: vad de bokade firmorna gör", vinklar: "Mönstren från kundsajterna, utan påhittade siffror.", status: "planerad", ant: "" },
+          { nr: 12, kapitel: "Resan: ett kundcase från osynlig till Förstavalet", vinklar: "Säsongens starkaste berättelse, endast verkligt material.", status: "planerad", ant: "" },
+          { nr: 13, kapitel: "Säsongsfinal: summeringen och nästa säsongs krok", vinklar: "Recap-video, tacka publiken, teasa säsong 2.", status: "planerad", ant: "" }
+        ]
+      }
+    };
+  }
+  function defaultLogg() {
+    return { version: 1, kpi: { instagram: [], youtube: [], linkedin: [] }, dagsuppdrag: { datum: "", checks: {} }, mvl: false, idebank: [] };
+  }
+
+  function las(nyckel, fallback) {
+    var rad = null;
+    try { rad = localStorage.getItem(nyckel); } catch (e) { return fallback(); }
+    if (!rad) return fallback();
+    try {
+      var d = JSON.parse(rad);
+      if (!d || typeof d !== "object") throw new Error("fel form");
+      return d;
+    } catch (e) {
+      /* CRM-mönstret: stasha originalet, skriv defaulten över nyckeln direkt
+         så nästa läsning inte snubblar på samma skräp. */
+      try { localStorage.setItem(nyckel + "_korrupt_" + Date.now(), rad); } catch (e2) {}
+      var ny = fallback();
+      try { localStorage.setItem(nyckel, JSON.stringify(ny)); } catch (e3) {}
+      alert("Datat i " + nyckel + " gick inte att läsa. En kopia är undanlagd och standarddata laddades.");
+      return ny;
+    }
+  }
+  var VARLD = las(K_VARLD, defaultVarld);
+  var LOGG = las(K_LOGG, defaultLogg);
+  function sparaVarld() { try { localStorage.setItem(K_VARLD, JSON.stringify(VARLD)); } catch (e) {} }
+  function sparaLogg() { try { localStorage.setItem(K_LOGG, JSON.stringify(LOGG)); } catch (e) {} }
+
+  function idag() {
+    var d = new Date(), p = function (n) { return (n < 10 ? "0" : "") + n; };
+    return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
+  }
+
+  /* ================= Spelvärlden: bind fälten ================= */
+  var SV = [
+    ["sv-fiende", "fiende"], ["sv-fiende-besk", "fiendeBesk"],
+    ["sv-hjalte", "hjalte"], ["sv-hjalte-besk", "hjalteBesk"],
+    ["sv-mission", "mission"], ["sv-mission-besk", "missionBesk"],
+    ["sv-metod", "metod"], ["sv-metod-besk", "metodBesk"],
+    ["sv-antivision", "antivision"], ["sv-vision", "vision"],
+    ["sv-vokabular", "vokabular"], ["sv-pelare", "pelare"]
+  ];
+  SV.forEach(function (par) {
+    var el = document.getElementById(par[0]);
+    el.value = VARLD.spelvarld[par[1]] || "";
+    el.addEventListener("input", function () { VARLD.spelvarld[par[1]] = el.value; sparaVarld(); });
+  });
+
+  document.getElementById("ai-kontext").addEventListener("click", function () {
+    var s = VARLD.spelvarld, sa = VARLD.sasong;
+    var md = "# Bahko Byrå: spelvärlden (varumärkesstrategi)\n\n" +
+      "Det här dokumentet är filtret för allt content och alla kampanjer.\n\n" +
+      "## Fienden: " + s.fiende + "\n" + s.fiendeBesk + "\n\n" +
+      "## Huvudpersonen: " + s.hjalte + "\n" + s.hjalteBesk + "\n\n" +
+      "## Missionen: " + s.mission + "\n" + s.missionBesk + "\n\n" +
+      "## Metoden: " + s.metod + "\n" + s.metodBesk + "\n\n" +
+      "## Anti-visionen (där publiken är nu)\n" + s.antivision + "\n\n" +
+      "## Visionen (dit questlinjen leder)\n" + s.vision + "\n\n" +
+      "## Vokabulären\n" + s.vokabular + "\n\n" +
+      "## Pelarna\n" + s.pelare + "\n\n" +
+      "## Kanalmatrisen (copy-lag)\n" +
+      "- Kostnadsfri prototyp inom 48 timmar: alla kanaler\n" +
+      "- 90 dagars tillväxtgaranti (minst 10 % fler förfrågningar): endast bahkobyra.se och offert/möte\n" +
+      "- Google-löften (första sidan, växa på Google): ENDAST bahkobyra.se och offert/möte, ALDRIG i outreach, DM, reels eller poster\n" +
+      "- Pris: endast i offert/möte\n" +
+      "- CTA \"DM:a DEMO\": endast Instagram\n" +
+      "- Lokal SEO/optimering: intern leverans och uppsell efter levererad sajt, aldrig säljbudskap\n\n" +
+      "## Pågående säsong\n" + sa.tema + " (start " + sa.start + ")\n" +
+      sa.veckor.map(function (v) { return "- Vecka " + v.nr + ": " + v.kapitel; }).join("\n") +
+      "\n\nSkrivregler: mänsklig svenska, aldrig tankstreck i meddelanden, \"kostnadsfri\" aldrig \"gratis\", en CTA per inlägg, aldrig pris i content.";
+    kopieraText(md, this);
+  });
+
+  /* ================= Säsongen ================= */
+  var saTema = document.getElementById("sa-tema"), saStart = document.getElementById("sa-start");
+  saTema.value = VARLD.sasong.tema; saStart.value = VARLD.sasong.start;
+  saTema.addEventListener("input", function () { VARLD.sasong.tema = saTema.value; sparaVarld(); });
+  saStart.addEventListener("change", function () { VARLD.sasong.start = saStart.value; sparaVarld(); ritaHud(); });
+
+  var STATUSAR = ["planerad", "pagar", "postad"];
+  var STATUSNAMN = { planerad: "Planerad", pagar: "Pågår", postad: "Postad" };
+  function ritaVeckor() {
+    var w = document.getElementById("sa-veckor");
+    w.innerHTML = VARLD.sasong.veckor.map(function (v, i) {
+      return '<div class="vecka">' +
+        '<div class="vecka-huv">' +
+          '<span class="vecka-nr">V' + v.nr + "</span>" +
+          '<input value="' + esc(v.kapitel) + '" data-v-kapitel="' + i + '" aria-label="Kapitel vecka ' + v.nr + '">' +
+          '<button class="vecka-status ' + v.status + '" data-v-status="' + i + '" type="button">' + STATUSNAMN[v.status] + "</button>" +
+        "</div>" +
+        '<div class="vinkl"><textarea data-v-vinklar="' + i + '" aria-label="Vinklar vecka ' + v.nr + '">' + esc(v.vinklar) + "</textarea></div>" +
+      "</div>";
+    }).join("");
+  }
+  document.getElementById("sa-veckor").addEventListener("input", function (e) {
+    var k = e.target.getAttribute("data-v-kapitel"), vi = e.target.getAttribute("data-v-vinklar");
+    if (k !== null) VARLD.sasong.veckor[+k].kapitel = e.target.value;
+    if (vi !== null) VARLD.sasong.veckor[+vi].vinklar = e.target.value;
+    sparaVarld();
+  });
+  document.getElementById("sa-veckor").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-v-status]");
+    if (!b) return;
+    var i = +b.getAttribute("data-v-status");
+    var v = VARLD.sasong.veckor[i];
+    v.status = STATUSAR[(STATUSAR.indexOf(v.status) + 1) % STATUSAR.length];
+    sparaVarld(); ritaVeckor(); ritaHud();
+  });
+
+  /* ================= Kommandobryggan ================= */
+  var FULLA = [
+    { id: "kommentarer", text: "Svara ALLA kommentarer på gårdagens inlägg, alltid med motfråga", tid: "2 min" },
+    { id: "demodm", text: "Sök DEMO i DM-inkorgen, kör förstasvaret, logga lead i CRM:et", tid: "5 min" },
+    { id: "story", text: "Posta dagens story ur veckans pack", tid: "3 min" },
+    { id: "pipeline", text: "Öppna CRM:ets dagens uppföljningar och gör EN touch", tid: "5 min" }
+  ];
+  var MVL_ID = ["kommentarer", "demodm", "story"];
+  var TRIGGERS = { 4: "Torsdag, 10 min: beställ nästa veckas content av Claude, inklusive story-pack.",
+                   0: "Söndag, 30 min: ögongranska och godkänn veckans batch. Kolla åäö på varje slide.",
+                   5: "Fredag 15:00: skriv in veckans KPI-siffror under varje kanal här i OS:et, och kolla credit-saldot (tak 30 per vecka)." };
+
+  function ritaBryggan() {
+    if (LOGG.dagsuppdrag.datum !== idag()) LOGG.dagsuppdrag = { datum: idag(), checks: {} };
+    document.getElementById("brygg-datum").textContent = idag();
+    document.getElementById("mvl").checked = !!LOGG.mvl;
+    document.getElementById("mvl-notis").hidden = !LOGG.mvl;
+    var lista = LOGG.mvl ? FULLA.filter(function (u) { return MVL_ID.indexOf(u.id) > -1; }) : FULLA;
+    document.getElementById("dagens-check").innerHTML = lista.map(function (u) {
+      var kl = LOGG.dagsuppdrag.checks[u.id] ? " checked" : "";
+      return '<label><input type="checkbox" data-check="' + u.id + '"' + kl + "><span>" + u.text + '</span><span class="tid">' + u.tid + "</span></label>";
+    }).join("");
+    var t = TRIGGERS[new Date().getDay()];
+    document.getElementById("dagens-trigger").innerHTML = t ? "<b>Dagens trigger:</b> " + t : "Inga extra triggers i dag. Rutinen är taket: 15 minuter, aldrig mer.";
+  }
+  document.getElementById("dagens-check").addEventListener("change", function (e) {
+    var id = e.target.getAttribute("data-check");
+    if (!id) return;
+    LOGG.dagsuppdrag.checks[id] = e.target.checked; sparaLogg();
+  });
+  document.getElementById("mvl").addEventListener("change", function (e) {
+    LOGG.mvl = e.target.checked; sparaLogg(); ritaBryggan();
+  });
+
+  /* CRM read-only: dagens uppföljningar. Skriver ALDRIG. */
+  function ritaCrm() {
+    var due = document.getElementById("crm-due"), status = document.getElementById("crm-status");
+    var rad = null;
+    try { rad = localStorage.getItem("bb_crm_v2"); } catch (e) {}
+    if (!rad) { due.textContent = "–"; status.textContent = "CRM-datat bor på www.bahkobyra.se. Öppna CRM:et en gång i den här webbläsaren så syns siffran."; return; }
+    try {
+      var leads = JSON.parse(rad);
+      if (!Array.isArray(leads)) throw new Error("fel form");
+      var i = idag(), stangda = ["Kund", "Nej tack"];
+      var n = leads.filter(function (l) { return l && l.nextDate && l.nextDate <= i && stangda.indexOf(l.status) < 0; }).length;
+      due.textContent = n;
+      status.textContent = leads.length + " leads totalt i CRM:et. OS:et läser bara, all redigering sker i CRM:et.";
+    } catch (e) { due.textContent = "–"; status.textContent = "Kunde inte läsa CRM-datat (röres inte härifrån)."; }
+  }
+  window.addEventListener("storage", function (e) { if (e.key === "bb_crm_v2") ritaCrm(); });
+
+  /* ================= KPI per kanal ================= */
+  var KANALER = {
+    instagram: { falt: ["ig-v", "ig-rack", "ig-spar", "ig-dm"], rubriker: ["Vecka", "Räckvidd", "Sparningar", "DEMO-DM"], tabell: "ig-kpi-tabell", stapel: "ig-stapel", huvud: 3 },
+    youtube:   { falt: ["yt-v", "yt-pren", "yt-vis", "yt-forf"], rubriker: ["Vecka", "Prenumeranter", "Visningar", "Förfrågningar"], tabell: "yt-kpi-tabell", stapel: "yt-stapel", huvud: 3 },
+    linkedin:  { falt: ["li-v", "li-skick", "li-acc", "li-svar"], rubriker: ["Vecka", "Förfrågningar", "Accepterade", "Svar"], tabell: "li-kpi-tabell", stapel: "li-stapel", huvud: 3 }
+  };
+  function ritaKpi(kanal) {
+    var k = KANALER[kanal], rader = LOGG.kpi[kanal];
+    var tab = document.getElementById(k.tabell);
+    if (!rader.length) { tab.innerHTML = '<tbody><tr><td class="notis">Inga veckor loggade ännu. Första raden skrivs på fredag.</td></tr></tbody>'; }
+    else {
+      tab.innerHTML = "<thead><tr>" + k.rubriker.map(function (r) { return "<th>" + r + "</th>"; }).join("") + "<th></th></tr></thead><tbody>" +
+        rader.map(function (r, i) {
+          return "<tr><td><b>v" + esc(r.v) + "</b></td>" + r.tal.map(function (t) { return "<td><b>" + esc(t) + "</b></td>"; }).join("") +
+            '<td style="text-align:right"><button class="bort notis" data-kpi-bort="' + kanal + ":" + i + '" type="button" aria-label="Ta bort vecka ' + esc(r.v) + '">ta bort</button></td></tr>';
+        }).join("") + "</tbody>";
+    }
+    var st = document.getElementById(k.stapel);
+    var varden = rader.map(function (r) { return +String(r.tal[k.huvud - 1]).replace(/\D/g, "") || 0; });
+    var max = Math.max.apply(null, varden.concat([1]));
+    var senaste = rader.slice(-12);
+    st.innerHTML = senaste.length
+      ? senaste.map(function (r) {
+          var v = +String(r.tal[k.huvud - 1]).replace(/\D/g, "") || 0;
+          return '<i style="height:' + Math.max(5, Math.round(v / max * 100)) + '%" title="v' + esc(r.v) + ": " + v + '"></i>';
+        }).join("")
+      : '<i class="tom" style="height:20%"></i><i class="tom" style="height:45%"></i><i class="tom" style="height:70%"></i>';
+  }
+  document.addEventListener("click", function (e) {
+    var spara = e.target.closest("[data-kpi-spara]");
+    if (spara) {
+      var kanal = spara.getAttribute("data-kpi-spara"), k = KANALER[kanal];
+      var v = document.getElementById(k.falt[0]).value.trim();
+      if (!v) { document.getElementById(k.falt[0]).focus(); return; }
+      var tal = k.falt.slice(1).map(function (id) { return document.getElementById(id).value.trim() || "0"; });
+      var bef = LOGG.kpi[kanal].filter(function (r) { return r.v === v; })[0];
+      if (bef) bef.tal = tal; else LOGG.kpi[kanal].push({ v: v, tal: tal });
+      sparaLogg(); ritaKpi(kanal); ritaHud();
+      k.falt.forEach(function (id) { document.getElementById(id).value = ""; });
+    }
+    var bort = e.target.closest("[data-kpi-bort]");
+    if (bort) {
+      var del = bort.getAttribute("data-kpi-bort").split(":");
+      LOGG.kpi[del[0]].splice(+del[1], 1);
+      sparaLogg(); ritaKpi(del[0]); ritaHud();
+    }
+  });
+
+  /* ================= HUD ================= */
+  function ritaHud() {
+    var start = new Date(VARLD.sasong.start + "T00:00:00");
+    var vecka = 1;
+    if (!isNaN(start)) vecka = Math.min(13, Math.max(1, Math.floor((Date.now() - start.getTime()) / 6048e5) + 1));
+    document.getElementById("hud-vecka").textContent = vecka;
+    document.getElementById("hud-fyll").style.width = Math.round(vecka / 13 * 100) + "%";
+    var ig = LOGG.kpi.instagram, sen = ig.length ? +String(ig[ig.length - 1].tal[2]).replace(/\D/g, "") || 0 : 0;
+    document.getElementById("hud-xp").textContent = sen;
+    document.getElementById("xp-tal").textContent = sen;
+  }
+
+  /* ================= Idébanken ================= */
+  function ritaIdeer() {
+    var ul = document.getElementById("ide-lista");
+    ul.innerHTML = LOGG.idebank.length
+      ? LOGG.idebank.map(function (t, i) {
+          return "<li><span>" + esc(t) + '</span><button class="bort" data-ide-bort="' + i + '" type="button">ta bort</button></li>';
+        }).join("")
+      : '<li class="notis">Tomt. Bra idéer försvinner om de inte fångas.</li>';
+  }
+  document.getElementById("ide-lagg").addEventListener("click", function () {
+    var f = document.getElementById("ide-in"), t = f.value.trim();
+    if (!t) { f.focus(); return; }
+    LOGG.idebank.push(t); f.value = ""; sparaLogg(); ritaIdeer();
+  });
+  document.getElementById("ide-in").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") document.getElementById("ide-lagg").click();
+  });
+  document.getElementById("ide-lista").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-ide-bort]");
+    if (!b) return;
+    LOGG.idebank.splice(+b.getAttribute("data-ide-bort"), 1); sparaLogg(); ritaIdeer();
+  });
+
+  /* ================= Kopiera-knapparna ================= */
+  function kopieraText(text, knapp) {
+    var klar = function () {
+      if (!knapp) return;
+      var gammal = knapp.textContent;
+      knapp.textContent = "Kopierad ✓"; knapp.classList.add("klar");
+      clearTimeout(knapp._t);
+      knapp._t = setTimeout(function () { knapp.textContent = gammal; knapp.classList.remove("klar"); }, 2200);
+    };
+    var reserv = function () {
+      try {
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.setAttribute("readonly", "");
+        ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        document.execCommand("copy"); document.body.removeChild(ta); klar();
+      } catch (e) { alert("Kunde inte kopiera. Markera texten manuellt."); }
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(klar, reserv);
+    else reserv();
+  }
+  document.addEventListener("click", function (e) {
+    var k = e.target.closest(".kopiera");
+    if (!k) return;
+    var mall = k.closest(".mall");
+    if (!mall) return;
+    var text = Array.prototype.map.call(mall.querySelectorAll("p:not(.not)"), function (p) { return p.innerText; }).join("\n\n");
+    kopieraText(text, k);
+  });
+
+  /* ================= Export + utskrift ================= */
+  document.getElementById("exportera").addEventListener("click", function () {
+    var blob = new Blob([JSON.stringify({ exporterad: idag(), bb_os_v1: VARLD, bb_os_logg_v1: LOGG }, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "bahko-os-" + idag() + ".json";
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+  });
+  document.getElementById("skrivut").addEventListener("click", function () { window.print(); });
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  /* ================= Start ================= */
+  ritaVeckor(); ritaBryggan(); ritaCrm();
+  Object.keys(KANALER).forEach(ritaKpi);
+  ritaIdeer(); ritaHud(); franHash();
+})();
+</script>
+</body>
+</html>
