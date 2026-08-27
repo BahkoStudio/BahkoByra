@@ -136,8 +136,11 @@ textarea{width:100%;min-height:72px;resize:vertical;line-height:1.5}
 /* ---------- byggstenar ---------- */
 .kort{background:var(--yta);border:1px solid var(--linje);border-radius:var(--r);padding:1.1rem 1.2rem;min-width:0}
 .kort + .kort{margin-top:.9rem}
+/* ...men INTE nar korten star sida vid sida i en grid: da blev det andra kortet
+   14,4px lagre an det forsta. */
+.kort-rad > .kort + .kort{margin-top:0}
 .kort h3{margin-bottom:.55rem}
-.kort-rad{display:grid;gap:.9rem}
+.kort-rad{display:grid;gap:.9rem;align-items:start}
 @media(min-width:820px){.kort-rad.k2{grid-template-columns:repeat(2,minmax(0,1fr))}.kort-rad.k3{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .knapp{
   display:inline-flex;align-items:center;justify-content:center;gap:.45rem;
@@ -151,6 +154,9 @@ textarea{width:100%;min-height:72px;resize:vertical;line-height:1.5}
 .knapp--ram:hover{background:var(--yta);border-color:var(--acc)}
 .tagg{
   display:inline-flex;align-items:center;gap:.35rem;padding:.14rem .6rem;border-radius:var(--rp);
+  /* Datum och korta etiketter far ALDRIG brytas: "2026-08-27" blev tre
+     radhojder pa 390px och tryckte rubriken till tva rader. */
+  white-space:nowrap;flex-shrink:0;
   font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   background:var(--bas);border:1px solid var(--linje2);color:var(--text2);
 }
@@ -208,10 +214,17 @@ table.t td b{font-weight:600;font-variant-numeric:tabular-nums}
 .kpi-in{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:.5rem;margin-top:.7rem;align-items:end}
 .kpi-in label{font-size:.68rem;color:var(--text2);display:block;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.25rem}
 .kpi-in input{width:100%;font-variant-numeric:tabular-nums}
+/* KPI-loggens siffror ar matvarden: samma mattstil som HUD:en. */
+#ig-kpi-tabell td,#yt-kpi-tabell td,#li-kpi-tabell td{font-variant-numeric:tabular-nums}
 @media(max-width:700px){.kpi-in{grid-template-columns:1fr 1fr;gap:.55rem}.kpi-in .knapp{grid-column:1/-1}}
-.stapel{display:flex;align-items:flex-end;gap:4px;height:56px;margin-top:.8rem}
-.stapel i{flex:1;background:var(--acc);border-radius:3px 3px 0 0;min-height:3px;opacity:.85}
-.stapel i.tom{background:var(--linje2)}
+/* Riktigt diagram: fast stapelbredd (en vecka blir en stapel, inte en platta
+   tvars over kortet), synliga veckoetiketter och varden, ingen aria-hidden. */
+.stapel{display:flex;align-items:flex-end;justify-content:flex-start;gap:6px;margin-top:.5rem;padding-top:1.1rem}
+.stapel .kol{display:flex;flex-direction:column;align-items:center;gap:.25rem;flex:0 0 clamp(26px,5%,48px);position:relative}
+.stapel .stang{width:100%;height:56px;display:flex;align-items:flex-end}
+.stapel .stang i{display:block;width:100%;background:var(--acc);border-radius:3px 3px 0 0;min-height:3px}
+.stapel .varde{position:absolute;top:0;font-size:.66rem;font-weight:500;font-variant-numeric:tabular-nums;color:var(--text)}
+.stapel .vlabel{font-size:.62rem;color:var(--text2);font-variant-numeric:tabular-nums;letter-spacing:.02em}
 
 /* sasongen */
 .vecka{border:1px solid var(--linje);border-radius:12px;background:var(--bas);padding:.85rem 1rem;margin-top:.65rem}
@@ -307,7 +320,7 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
 
   <div class="kort-rad k2">
     <div class="kort">
-      <h3 style="display:flex;align-items:center;gap:.6rem">Dagens uppdrag
+      <h3 style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">Dagens uppdrag
         <span class="tagg" id="brygg-datum"></span>
         <label class="tagg" style="margin-left:auto;cursor:pointer;gap:.4rem">
           <input type="checkbox" id="mvl" style="accent-color:var(--varning);width:14px;height:14px">
@@ -542,8 +555,7 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
       <div><label for="ig-dm">DEMO-DM</label><input id="ig-dm" type="text" inputmode="numeric"></div>
       <button class="knapp" type="button" data-kpi-spara="instagram">Spara vecka</button>
     </div>
-    <p class="notis" style="margin-top:.7rem">Staplar: <b>DEMO-DM per vecka</b>, senaste tolv.</p>
-    <div class="stapel" id="ig-stapel" aria-hidden="true"></div>
+    <div class="stapel" id="ig-stapel" role="list" aria-label="DEMO-DM per vecka"></div>
     <div class="t-rull t-rull--vid"><table class="t" id="ig-kpi-tabell" style="margin-top:.6rem"></table></div>
   </div>
 
@@ -612,8 +624,7 @@ Kapitel:
       <div><label for="yt-forf">Förfrågningar</label><input id="yt-forf" type="text" inputmode="numeric"></div>
       <button class="knapp" type="button" data-kpi-spara="youtube">Spara vecka</button>
     </div>
-    <p class="notis" style="margin-top:.7rem">Staplar: <b>förfrågningar per vecka</b>, senaste tolv.</p>
-    <div class="stapel" id="yt-stapel" aria-hidden="true"></div>
+    <div class="stapel" id="yt-stapel" role="list" aria-label="Förfrågningar per vecka"></div>
     <div class="t-rull t-rull--vid"><table class="t" id="yt-kpi-tabell" style="margin-top:.6rem"></table></div>
   </div>
 </section>
@@ -693,8 +704,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       <div><label for="li-svar">Svar</label><input id="li-svar" type="text" inputmode="numeric"></div>
       <button class="knapp" type="button" data-kpi-spara="linkedin">Spara vecka</button>
     </div>
-    <p class="notis" style="margin-top:.7rem">Staplar: <b>svar per vecka</b>, senaste tolv.</p>
-    <div class="stapel" id="li-stapel" aria-hidden="true"></div>
+    <div class="stapel" id="li-stapel" role="list" aria-label="Svar per vecka"></div>
     <div class="t-rull t-rull--vid"><table class="t" id="li-kpi-tabell" style="margin-top:.6rem"></table></div>
     <p class="notis" style="margin-top:.5rem">Mål: över 30 procent accepterade, över 10 procent svar av accepterade.</p>
   </div>
@@ -798,7 +808,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
 
   <div class="kort-rad k3">
     <div class="kort">
-      <h3>Dagligen, 08:00, 15 min</h3>
+      <h3 style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">Dagligen, 08:00, 15 min<button class="mini-knapp" data-kop-rutin type="button" style="margin-left:auto">Kopiera</button></h3>
       <div class="t-rull"><table class="t"><tbody>
         <tr><td><b>2 min</b></td><td>Svara ALLA kommentarer på gårdagens inlägg, alltid med motfråga</td></tr>
         <tr><td><b>5 min</b></td><td>Sök DEMO i DM-inkorgen, kör förstasvaret, logga lead i CRM</td></tr>
@@ -809,7 +819,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       och kedjan kommentar, DM, demo är hela affärens konvertering.</p>
     </div>
     <div class="kort">
-      <h3>Veckovis</h3>
+      <h3 style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">Veckovis<button class="mini-knapp" data-kop-rutin type="button" style="margin-left:auto">Kopiera</button></h3>
       <div class="t-rull"><table class="t"><tbody>
         <tr><td><b>Tor 10 min</b></td><td>Beställ veckans content av Claude: nästa veckas batch inklusive story-pack</td></tr>
         <tr><td><b>Sön 30 min</b></td><td>Ögongranska och godkänn batchen, kolla åäö på varje slide</td></tr>
@@ -818,7 +828,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       </tbody></table></div>
     </div>
     <div class="kort">
-      <h3>Månadsvis</h3>
+      <h3 style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">Månadsvis<button class="mini-knapp" data-kop-rutin type="button" style="margin-left:auto">Kopiera</button></h3>
       <div class="t-rull"><table class="t"><tbody>
         <tr><td><b>1:a</b></td><td>Nyhetsbrevet ur content/email, värde först, en CTA</td></tr>
         <tr><td><b>Var 4:e v</b></td><td>Utvärdera vinnande vinklar ur KPI-raderna, uppdatera Spelvärldens pelare</td></tr>
@@ -828,16 +838,17 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
   </div>
 
   <div class="kort">
-    <h3>QA-grinden före ALLT utskick</h3>
-    <div class="t-rull"><table class="t">
-      <thead><tr><th>Grind</th><th>Frågan</th></tr></thead>
-      <tbody>
-        <tr><td><b>FOR THEM</b></td><td>Handlar det om deras firma och deras jobb, inte om oss?</td></tr>
-        <tr><td><b>REAL</b></td><td>Är observationen verklig och specifik för just dem?</td></tr>
-        <tr><td><b>FINANCIAL SENSE</b></td><td>Är det uppenbart att det här kan betala sig?</td></tr>
-        <tr><td><b>EASY YES</b></td><td>Är nästa steg litet, riskfritt och lätt att säga ja till?</td></tr>
-      </tbody>
-    </table></div>
+    <h3 style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">QA-grinden före ALLT utskick
+      <span class="tagg" id="grind-status">0/4</span>
+      <button class="mini-knapp" id="grind-noll" type="button" style="margin-left:auto">Nollställ</button>
+    </h3>
+    <p class="notis">Kryssa av innan du skickar. Fastnar något: skriv om, skicka inte.</p>
+    <div class="check" id="grind-check">
+      <label><input type="checkbox" data-grind="forthem"><span><b>FOR THEM.</b> Handlar det om deras firma och deras jobb, inte om oss?</span></label>
+      <label><input type="checkbox" data-grind="real"><span><b>REAL.</b> Är observationen verklig och specifik för just dem?</span></label>
+      <label><input type="checkbox" data-grind="financial"><span><b>FINANCIAL SENSE.</b> Är det uppenbart att det här kan betala sig?</span></label>
+      <label><input type="checkbox" data-grind="easyyes"><span><b>EASY YES.</b> Är nästa steg litet, riskfritt och lätt att säga ja till?</span></label>
+    </div>
     <p class="notis" style="margin-top:.5rem">Offer-regeln bakom grinden: resultat + mekanism +
     riskreversering + villkor. Front-offern bevisar att vi kan, den ska inte tjäna pengar.</p>
   </div>
@@ -1221,15 +1232,22 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
         }).join("") + "</tbody>";
     }
     var st = document.getElementById(k.stapel);
-    var varden = rader.map(function (r) { return +String(r.tal[k.huvud - 1]).replace(/\D/g, "") || 0; });
-    var max = Math.max.apply(null, varden.concat([1]));
     var senaste = rader.slice(-12);
+    var varden = senaste.map(function (r) { return +String(r.tal[k.huvud - 1]).replace(/\D/g, "") || 0; });
+    var max = Math.max.apply(null, varden.concat([1]));
+    /* Tomt lage visar INGET diagram: fejkstaplar bredvid texten "inga veckor
+       loggade" ar ett UI som visar data som inte finns. */
     st.innerHTML = senaste.length
-      ? senaste.map(function (r) {
-          var v = +String(r.tal[k.huvud - 1]).replace(/\D/g, "") || 0;
-          return '<i style="height:' + Math.max(5, Math.round(v / max * 100)) + '%" title="v' + esc(r.v) + ": " + v + '"></i>';
+      ? senaste.map(function (r, i) {
+          var v = varden[i];
+          return '<span class="kol" role="listitem">' +
+                   '<span class="varde">' + v + "</span>" +
+                   '<span class="stang"><i style="height:' + Math.max(4, Math.round(v / max * 100)) + '%"></i></span>' +
+                   '<span class="vlabel">v' + esc(r.v) + "</span>" +
+                 "</span>";
         }).join("")
-      : '<i class="tom" style="height:20%"></i><i class="tom" style="height:45%"></i><i class="tom" style="height:70%"></i>';
+      : "";
+    st.hidden = !senaste.length;
   }
   document.addEventListener("click", function (e) {
     var spara = e.target.closest("[data-kpi-spara]");
@@ -1262,6 +1280,44 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     document.getElementById("hud-xp").textContent = sen;
     document.getElementById("xp-tal").textContent = sen;
   }
+
+  /* ================= QA-grinden =================
+     Modulen hade noll kontroller: en grind man inte kan kryssa ar bara text.
+     Tillstandet ar hogfrekvent och bor darfor i logg-nyckeln. */
+  if (!LOGG.grind) LOGG.grind = {};
+  function ritaGrind() {
+    var n = 0;
+    Array.prototype.forEach.call(document.querySelectorAll("[data-grind]"), function (i) {
+      i.checked = !!LOGG.grind[i.getAttribute("data-grind")];
+      if (i.checked) n++;
+    });
+    var s = document.getElementById("grind-status");
+    s.textContent = n + "/4";
+    s.classList.toggle("tagg--acc", n === 4);
+  }
+  document.getElementById("grind-check").addEventListener("change", function (e) {
+    var g = e.target.getAttribute("data-grind");
+    if (!g) return;
+    LOGG.grind[g] = e.target.checked; sparaLogg(); ritaGrind();
+  });
+  document.getElementById("grind-noll").addEventListener("click", function () {
+    LOGG.grind = {}; sparaLogg(); ritaGrind();
+  });
+
+  /* Rutinkorten kopieras som markdown-checklista, samma mekanik som mallarna. */
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-kop-rutin]");
+    if (!b) return;
+    var kort = b.closest(".kort");
+    var rubrik = kort.querySelector("h3").textContent.replace("Kopiera", "").trim();
+    var rader = Array.prototype.map.call(kort.querySelectorAll("table.t tbody tr"), function (tr) {
+      var c = tr.querySelectorAll("td");
+      var tid = (c[0] ? c[0].innerText.trim() : "");
+      var txt = (c[1] ? c[1].innerText.trim() : "");
+      return "- [ ] " + txt + (tid ? "  (" + tid + ")" : "");
+    });
+    kopieraText("## " + rubrik + "\n" + rader.join("\n"), b);
+  });
 
   /* ================= Idébanken ================= */
   function ritaIdeer() {
@@ -1349,7 +1405,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
   }
 
   /* ================= Start ================= */
-  ritaVeckor(); ritaBryggan(); ritaCrm();
+  ritaVeckor(); ritaBryggan(); ritaCrm(); ritaGrind();
   Object.keys(KANALER).forEach(ritaKpi);
   ritaIdeer(); ritaHud(); franHash();
 })();
