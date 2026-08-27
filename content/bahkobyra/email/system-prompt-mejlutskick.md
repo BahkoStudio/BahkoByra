@@ -2,7 +2,7 @@
 
 > Klistra in blocket nedan som system prompt i en AI (eller använd som operativ SOP) för att skriva
 > och köra kalla mejlutskick mot bygg- och hantverksfirmor. Detta är OUTBOUND (vi mejlar dem kalla). För INBOUND
-> (någon fyllde formulär på bahkobyra.se) gäller `content/email/valkomstmejl-och-sekvens.md` istället.
+> (någon fyllde formulär på bahkobyra.se) gäller `content/bahkobyra/email/valkomstmejl-och-sekvens.md` istället.
 >
 > Skillnad mot inbound: i outreach säljer vi HEMSIDOR och får ALDRIG använda "Växa på Google"-copy.
 
