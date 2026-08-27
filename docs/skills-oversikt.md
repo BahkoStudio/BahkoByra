@@ -24,7 +24,7 @@ färsk kontext, runda efter runda tills alla tre godkänner.
 | `copyloop` | Copyloop: rubrik/brödtext/erbjudande/bevis/CTA, noll påhittade fakta. |
 | `kundloop` | Loopar en hantverkarsajt tills den vinner kunden över konkurrenten. |
 | `kvalitetsloop` | Tillgänglighet, robusthet utan JS, noll påhittade påståenden. |
-| `manusloop` | Långa narrationsmanus för YouTube-kanalen Beast of Ages, se `docs/../Skrivbord/youtube/youtube.md`. |
+| `manusloop` | Långa narrationsmanus för YouTube-kanalen Beast of Ages, se `other-projects/beast-of-ages/youtube.md`. |
 | `strukturloop` | Navigation, sektionsordning, rubrikhierarki. |
 
 ## Higgsfield-familjen

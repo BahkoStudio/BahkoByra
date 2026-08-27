@@ -22,7 +22,7 @@ jobs:
       - name: Build Maykas site
         run: |
           mkdir -p dist-maykas
-          cp -r .claude/skills/video-to-website/maykas/site/. dist-maykas/
+          cp -r bahkobyra/cloud/maykaskitchen/. dist-maykas/
           echo "maykaskitchen.se" > dist-maykas/CNAME
 
       - name: Deploy to BahkoStudio/MaykaKitchen gh-pages
