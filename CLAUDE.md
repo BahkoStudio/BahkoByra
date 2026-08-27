@@ -68,7 +68,7 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │
 ├── reference/ ................ levande källdokument (3 PDF, säljmetodiken) — inte skräp
 ├── other-projects/ ........... allt som INTE är Bahko Byrå. Byggs av ingen Vercel
-│   └── beast-of-ages/ ........ YouTube-kanalen. Se dess LASMIG.md
+│   └── beast-of-ages/ ........ YouTube-kanalen. Se dess youtube.md
 ├── data/ ..................... tom sedan klinik-leadsen raderades 2026-08-21
 ├── .tmp/ ..................... slängbart — UTOM session-context.md = lägesbilden
 └── .env ...................... nycklar. Aldrig hårdkodat någon annanstans
@@ -167,7 +167,7 @@ utanför deployflödet — en ändring där kan aldrig ta ner en kundsajt.
 
 **`other-projects/beast-of-ages/`** — YouTube-kanal, kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`.
 Engelskspråkig publik på ett svenskt konto: **manus skrivs på engelska**, samtal om arbetet
-förs på svenska. Full bakgrund i `other-projects/beast-of-ages/LASMIG.md`.
+förs på svenska. Full bakgrund och alla regler i `other-projects/beast-of-ages/youtube.md`.
 
 Fem saker att veta innan något görs där:
 

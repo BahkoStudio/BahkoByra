@@ -151,3 +151,27 @@ efter första försöket. Skillnaden spelar roll: förbudet hade kostat oss varj
 formats andra och tredje video.
 
 Loopar som gäller det här projektet: `/manusloop` för manus, `/kolla-over` för genomlysning.
+
+## Äldre arbetsmapp på skrivbordet — två lösta konflikter
+
+`OneDrive/Skrivbord/youtube/` innehåller kanalens material från hösten 2025 och januari
+2026: fem manus med titel- och thumbnailpaket (giant dogs, brown hyena, early humans,
+porcupine vs komodo) plus mallen `SCRIPT_TEMPLATE_UPDATED.txt`. Renderade filer ligger i
+`OneDrive/Skrivbord/Short Djur/`.
+
+Materialet är sju månader äldre än reglerna ovan och motsäger dem på två punkter. **Det
+här dokumentet vinner:**
+
+1. **Ordgränsen.** Den gamla mallen säger 1 500 ord och 170 ord i minuten. Gäller inte —
+   hård gräns är 2 000 ord, ungefär 13 minuter i 150 ord i minuten (beslut 2026-08-24).
+2. **Tonen.** De gamla manusen är skrivna som komplott och tillskriver utdöda djur vilja
+   ("de valde stolthet framför överlevnad"). Det bryter mot faktaregeln ovan: ett djur har
+   ingen avsikt, och spänningen ska komma från överlevnadsodds, tidspress eller en strid
+   som inte går att vinna med styrka.
+
+Den gamla mallens tidsindelning (hook 0:00–0:20, setup till 1:00, huvuddel till 9:00 i
+tre till fem underdelar med varsin liten payoff, höjdpunkt, avrundning, CTA) motsäger
+ingenting och går att använda som stöd.
+
+`mansa_musa_script.md` i samma mapp handlar om Mansa Musas rikedom, inte om djur, och
+`Day_15_SITREP.md` är en personlig checklista. Ingen av dem hör till kanalens regler.
