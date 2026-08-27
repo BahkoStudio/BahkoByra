@@ -32,8 +32,11 @@ Tre saker överlever, resten väntar utan dåligt samvete:
 ## Fredag 15:00 (5 min) — mätningen
 
 IG-appen → Professionell instrumentpanel → "Innehåll du har delat".
-Skriv in 3 siffror per inlägg i bladet **IG-logg** i `V1` (Google Sheet,
-Drive → BahkoByra → Leads): **Räckvidd, Sparningar, DEMO-DM.**
-Claude har förifyllt datum/format/ämne/hook/maskot på batchdagen.
-Målmåttet är inkommande DEMO-DM per vecka (mål: 3/vecka efter 4 veckor).
+Skriv in veckans 3 siffror i **Bahko OS** (`/cloud/os-4337c997e7/`, fliken
+Instagram): **Räckvidd, Sparningar, DEMO-DM.** OS:et ersätter IG-loggen i
+Google Sheet V1 sedan 2026-08-27 (Mathias beslut — en sanningskälla);
+V1-historiken kopieras in manuellt en gång och sheetet pensioneras för IG.
+Samma pass: YouTube- och LinkedIn-siffrorna under sina flikar.
+Målmåttet är inkommande DEMO-DM per vecka (mål: 3/vecka efter 4 veckor) —
+OS:ets XP-mätare visar det direkt.
 Kolla även credit-saldot: `higgsfield workspace list` (tak ~30/vecka, 300/månad).
