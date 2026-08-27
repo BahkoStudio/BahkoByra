@@ -25,7 +25,7 @@ Det styr hur sajten är skriven:
   som skiljer entiteterna åt.
 - **`identifier` i schemat är org.nr.** Gör åtskillnaden maskinläsbar.
 - Google Företagsprofil är viktigare här än vanligt, den knyter namnet till Jönköping.
-  Underlag: `content/kunder/smamaleri-google-foretagsprofil.md` i huvudrepot.
+  Underlag: `content/kundarbete/smamaleri/seo-geo-aeo.md` i huvudrepot.
 
 ## Deploy
 
@@ -189,7 +189,7 @@ gången och 60 sekunder de två följande. Räknaren (`smamaleri_pop_count` i
       CloudFront och är Higgsfield-genererade. De får aldrig påstås vara utförda arbeten
 - [ ] Bekräfta ortlistan med kunden. Bankeryd och Vaggeryd står i chipsen men nämns
       ingenstans i copyn. "Hela Småland" är borttaget, ett överbrett område skadar aktivt
-- [ ] Google Företagsprofil, se underlaget i `content/kunder/`
+- [ ] Google Företagsprofil, se underlaget i `content/kundarbete/smamaleri/seo-geo-aeo.md`
 - [ ] Komplettera schema med `openingHoursSpecification` och `geo` när kunden bekräftat
       öppettider. `identifier` är klart
 - [ ] Bing Places och Bing Webmaster Tools

@@ -41,15 +41,20 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │   ├── next.config.mjs ....... 🔒 host-rewrites: styr vad .se och .cloud visar
 │   └── vercel.json ........... 🔒
 │
-├── bahkobyra/ ................ 🔒 ENDAST två kundsajter, egna Vercel-projekt
-│   └── cloud/
-│       ├── smamaleri/ ................ 🔒 smamaleri.se — får aldrig flyttas
+├── bahkobyra/ ................ 🔒 ENDAST kundernas LIVE sajtkod, egna Vercel-projekt
+│   └── cloud/                    ⚠ Inte att förväxla med content/bahkobyra/ nedan (byråns
+│       ├── smamaleri/ ................ 🔒 smamaleri.se — får aldrig flyttas    EGET arbete)
 │       └── brommatradgardsservice/ ... 🔒 brommatradgardsservice.se — får aldrig flyttas
 │
-├── content/ .................. copy och SOP per kanal
-│   ├── kunder/ ............... ⭐ LEVERERAT KUNDARBETE (Bromma m.fl.) — rör inte utan koll
-│   ├── ig/ dm/ email/ cold-call/ reels/ leads/
-│   └── apps-script/ .......... Google Apps Script bakom dagsloggen
+├── content/ .................. copy, SOP och kundarbete per kanal
+│   ├── kundarbete/ ............ ⭐ LEVERERAT KUNDARBETE, en mapp per kund (bromma/, smamaleri/,
+│   │                              maykaskitchen/), vardera med hemsida.md · struktur.md ·
+│   │                              drive.md · seo-geo-aeo.md. `_mall/` = facit för nästa kund.
+│   │                              Rör inte utan koll. Filerna PEKAR på 🔒-sajtkoden ovan,
+│   │                              flyttar den aldrig.
+│   ├── leads/ ................. lead-research + demolankar.md (index över ALLA demosajter)
+│   └── bahkobyra/ .............. byråns EGET arbete: ig/ dm/ email/ cold-call/ reels/
+│                                  apps-script/ guider/ — inte samma sak som toppnivå-bahkobyra/
 │
 ├── workflows/ ................ SOP:er — säljmetodik, cadence, leverans, IG
 ├── tools/ .................... node tools/<skript>.js · kör `ls tools/` för aktuell lista
@@ -77,10 +82,12 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 | ⭐ | Här bor det viktiga — börja leta här |
 | ⚠ | Känd fälla, se längst ner |
 
-**Ligger inte i repot:** `~/.claude/skills/` (25 globala skills — samma filer som repots),
-minnesmappen `~/.claude/projects/…/memory/`, `OneDrive/audits/` (OS-audit-rapporter),
-`OneDrive/Dokument/Backups/higgsfield-genererat/` (betalda genereringar utanför repot),
-Google Drive **H:** (`BahkoByrå/BahkoByra/` — contentleveranser, karuseller, Bromma-material).
+**Ligger inte i repot:** `~/.claude/skills/` (33 globala skills — se `docs/skills-oversikt.md`
+för hela listan, samma filer som repots), minnesmappen `~/.claude/projects/…/memory/`,
+`OneDrive/audits/` (OS-audit-rapporter), `OneDrive/Dokument/Backups/higgsfield-genererat/`
+(betalda genereringar utanför repot), Google Drive **H:** (`BahkoByrå/BahkoByra/` —
+contentleveranser, karuseller, Bromma-material), `OneDrive/Skrivbord/youtube/youtube.md`
+(Beast of Ages-regler — Mathias eget YouTube-projekt, skiljt från Bahko Byrå-kunderna).
 
 ## Vill du något? Hit går du
 
@@ -98,6 +105,10 @@ Google Drive **H:** (`BahkoByrå/BahkoByra/` — contentleveranser, karuseller, 
 | Spara sessionen före `/clear` | `/rensa` |
 | Bygga eller granska en skill | `/skill` |
 | Kolla om systemet självt är aktuellt | `/os-audit` |
+| Hitta en kunds hemsida/struktur/Drive/SEO-underlag | `content/kundarbete/<kund>/` — mall i `_mall/README.md` |
+| Hitta en demolänk att skicka | `content/leads/demolankar.md` |
+| Se vilka skills som finns | `docs/skills-oversikt.md` |
+| Skriva manus för Beast of Ages (YouTube) | `/manusloop` — regler i `OneDrive/Skrivbord/youtube/youtube.md` |
 | Sälja: metodik, offer, cadence, JA-protokollet | `workflows/sales_methodology.md` + dashboardens Spelbok |
 | Köra något operativt | dashboarden `web/public/crm-f2822a6f3a/index.html` |
 | Detaljregler (WAT, brand-hex, offer-stegen) | `docs/operativa-regler.md` |

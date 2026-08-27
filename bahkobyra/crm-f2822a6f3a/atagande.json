@@ -4,7 +4,7 @@
     "kadens": "vecka",
     "veckodag": "sondag",
     "start": "2026-08-02",
-    "var": "content/kunder/bromma/rapporter/",
+    "var": "content/kundarbete/bromma/rapporter/",
     "kund": "Bromma Trädgårdsservice"
   },
   {
@@ -12,7 +12,7 @@
     "kadens": "vecka",
     "veckodag": "mandag",
     "start": "2026-08-03",
-    "var": "content/kunder/bromma/produktionsrutin.md",
+    "var": "content/kundarbete/bromma/produktionsrutin.md",
     "kund": "Bromma Trädgårdsservice"
   },
   {
