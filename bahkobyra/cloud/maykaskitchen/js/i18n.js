@@ -28,7 +28,7 @@
       'recipes.title': 'Populära recept',
       'recipes.desc':  'Autentiska assyriska och syrianska rätter kombinerade med moderna smaker – enkla tillagningsmetoder och djupa, äkta smaker som hela familjen älskar.',
       'recipes.all':   'Se alla recept',
-      'recipes.count': '13+ autentiska recept från Mayka',
+      'recipes.count': '14+ autentiska recept från Mayka',
       /* SHARED RECIPE UI */
       'badge.popular': 'Populärt',
       'recipe.view':   'Visa recept →',
@@ -43,6 +43,9 @@
       'tag.under60':       'Under 60 min',
       'tag.kott':          'Kött',
       'tag.syrianskt':     'Syrianskt',
+      'tag.kyckling':      'Kyckling',
+      'tag.friterat':      'Friterat',
+      'tag.fredagsmys':    'Fredagsmys',
       /* RECIPE CARDS */
       'rc1.name':     'Qrimyothe – Mormors munkar 🍩',
       'rc1.desc':     'Mamma berättar om mormors kärlek i varje tugga. Mer än bara ett recept – ett stycke historia.',
@@ -62,6 +65,9 @@
       'rc6.name':     'Köfta bil Sanieh 🍅',
       'rc6.desc':     'Syrisk ugnsrätt med kryddig köttfärs, potatis och padron paprika i mustig tomatsås.',
       'rc6.portions': '8 portioner',
+      'rc7.name':     'Friterad kyckling med BBQ-glaze 😍🔥',
+      'rc7.desc':     'Krispig friterad kyckling med kladdig BBQ- och ketchupglaze och en snabb vitlöksmajonnäs. Perfekt fredagsmiddag!',
+      'rc7.portions': '4 portioner',
       /* CTA */
       'cta.label':       'Kontakt &amp; Samarbeten',
       'cta.heading':     'Låt oss skapa<br>tillsammans',
@@ -124,7 +130,7 @@
       'recipes.title': 'Popular recipes',
       'recipes.desc':  'Authentic Assyrian and Syriac dishes combined with modern flavours – simple methods and deep, genuine tastes the whole family will love.',
       'recipes.all':   'See all recipes',
-      'recipes.count': '13+ authentic recipes by Mayka',
+      'recipes.count': '14+ authentic recipes by Mayka',
       /* SHARED RECIPE UI */
       'badge.popular': 'Popular',
       'recipe.view':   'View recipe →',
@@ -139,6 +145,9 @@
       'tag.under60':       'Under 60 min',
       'tag.kott':          'Meat',
       'tag.syrianskt':     'Syriac',
+      'tag.kyckling':      'Chicken',
+      'tag.friterat':      'Deep-fried',
+      'tag.fredagsmys':    'Friday night',
       /* RECIPE CARDS */
       'rc1.name':     "Qrimyothe – Grandma's doughnuts 🍩",
       'rc1.desc':     "Mum tells of grandma's love in every bite. More than just a recipe – a piece of history.",
@@ -158,6 +167,9 @@
       'rc6.name':     'Köfta bil Sanieh 🍅',
       'rc6.desc':     'Syrian oven dish with spiced minced meat, potatoes and padron peppers in a rich tomato sauce.',
       'rc6.portions': '8 servings',
+      'rc7.name':     'Fried chicken with BBQ glaze 😍🔥',
+      'rc7.desc':     'Crispy fried chicken with a sticky BBQ and ketchup glaze and a quick garlic mayo. The perfect Friday dinner!',
+      'rc7.portions': '4 servings',
       /* CTA */
       'cta.label':       'Contact &amp; Collaborations',
       'cta.heading':     "Let's create<br>together",
