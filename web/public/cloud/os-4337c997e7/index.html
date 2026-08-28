@@ -350,7 +350,10 @@ code{overflow-wrap:anywhere}
    diagrammet ett hal mellan Spara vecka och tomtexten. */
 .stapel[hidden]{display:none}
 .stapel .kol{display:flex;flex-direction:column;align-items:center;gap:.25rem;flex:1 1 0;min-width:14px;max-width:48px;position:relative}
-.stapel .stang{width:100%;height:56px;display:flex;align-items:flex-end}
+/* Tva staplar i samma spar: den bleka ar veckans TOTAL over alla tre kanaler
+   (den som mats mot malet), den fyllda ar den har kanalens bidrag. */
+.stapel .stang{width:100%;height:56px;display:flex;align-items:flex-end;position:relative}
+.stapel .stang i.summa{position:absolute;left:0;right:0;bottom:0;background:rgba(52,211,153,.22);border-radius:3px 3px 0 0}
 .stapel{position:relative}
 .stapel .stang i{display:block;width:100%;background:var(--text2);border-radius:3px 3px 0 0;min-height:3px}
 /* En vecka som nadde malet ska ga att se pa formen, inte bara pa siffran. */
@@ -369,11 +372,14 @@ code{overflow-wrap:anywhere}
 .vecka-nr{font-size:.72rem;font-weight:700;color:var(--acc2);font-variant-numeric:tabular-nums;letter-spacing:.08em}
 /* Kapitelrubriken ar en textarea, inte en input: en enradig input kapade
    rubriken tyst vid 390px (clientWidth 255 mot scrollWidth 418). */
+/* Faltet hade ingen ram och ingen egen yta i vila (1,00:1) och ramen tandes
+   forst vid hover, som inte finns pa mobil. Ar rubriken tom syntes ingenting
+   alls, bara ett hal mellan V1 och statusknappen. */
 .vecka-huv textarea{
-  flex:1;min-width:180px;min-height:0;background:transparent;border-color:transparent;
-  font-weight:600;padding:.2rem .4rem;resize:none;overflow:hidden;line-height:1.35;
+  flex:1;min-width:180px;min-height:0;background:var(--bas);border:1px solid var(--falt-ram);
+  font-weight:600;padding:.3rem .5rem;resize:none;overflow:hidden;line-height:1.35;
 }
-.vecka-huv textarea:hover,.vecka-huv textarea:focus{border-color:var(--linje2);background:var(--bas)}
+.vecka-huv textarea:hover,.vecka-huv textarea:focus{border-color:var(--acc2)}
 /* Statusknappen ar en KNAPP, inte en etikett: den sag ut som ett piller och
    ar det enda som byter kapitlets lage. Egen yta + knapphojd skiljer den. */
 .vecka-status{
@@ -486,13 +492,29 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
 
 /* print: spelvarld/sasong som dokument */
 @media print{
-  .topp,.nav,.kopiera,.knapp,.mini-knapp,.ide-rad,.kpi-in{display:none!important}
+  /* Fargtoken i stallet for selektor per selektor. Tidigare malades bara
+     h3, mall-stycken och textareas om, sa 21 fetstilta stycken blev vit text
+     pa vitt papper och forsvann sparlost - daribland sjalva malet och
+     varningen om kundsajternas sokvagar. */
+  :root{
+    --text:#111; --text2:#4A5568; --acc:#047857; --acc2:#047857;
+    --bas:#fff; --yta:#fff; --linje:#ddd; --linje2:#bbb; --falt-ram:#bbb;
+    --fel:#B91C1C; --ok:#047857; --varning:#92400E;
+  }
+  .topp,.nav,.kopiera,.knapp,.mini-knapp,.bort,.ide-rad,.kpi-in,.omkopplare,.vecka-status{display:none!important}
   body{background:#fff;color:#111}
   .ram{display:block}
   .blad{display:block!important;page-break-after:always}
   .blad::before{content:attr(data-print);display:block;font-size:16pt;font-weight:700;margin:0 0 12pt}
   .kort,.mall,.vecka,details.ihop{border-color:#ccc;background:#fff;color:#111}
-  .kort h3,.mall p,.vecka-huv input,textarea{color:#111}
+  .kort h3,.mall p,textarea,.notis,.notis b,.kort b,td,th,p,span,li{color:#111}
+  .notis,.notis b{color:#333}
+  .tagg,.tagg--acc,.falt-etikett,.oga,.mall h4{color:#047857}
+  /* Lankar ar innehall pa papper: adressen ska med, annars ar registret tomt. */
+  details.ihop{page-break-inside:avoid}
+  details.ihop:not([open]) .ihop-in{display:block}
+  .lank-rad a::after{content:' (' attr(href) ')';font-size:8pt;color:#555;font-weight:400}
+  .lank-rad a{display:inline;border:0;padding:0;min-height:0;color:#111;font-weight:600}
 }
 </style>
 </head>
@@ -547,7 +569,7 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
 
     <div class="kort">
       <h3>Pipeline just nu</h3>
-      <div class="kpi-mal">
+      <div class="kpi-mal" id="crm-mal">
         <span class="stor" id="crm-due">–</span>
         <span class="notis">uppföljningar väntar i CRM:et<br>(nästa åtgärd är i dag eller tidigare)</span>
       </div>
@@ -779,6 +801,7 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
     </div>
     <p class="notis" data-kpi-fel="instagram" hidden style="color:var(--fel);margin-top:.45rem"></p>
     <div class="stapel" id="ig-stapel" role="list" aria-label="DEMO-DM per vecka"></div>
+    <p class="notis stapel-nyckel">Bleka stapeln är veckans <b>totalsumma</b> över alla tre kanaler, den som mäts mot målet. Fyllda stapeln är den här kanalens del.</p>
     <p class="notis" data-kpi-tom="instagram" style="margin-top:.6rem"></p>
     <div class="t-rull t-rull--vid t-stack" data-kpi-rull="instagram"><table class="t" id="ig-kpi-tabell" style="margin-top:.6rem"></table></div>
     <p class="notis" data-kpi-rad="instagram" style="margin-top:.6rem"></p>
@@ -864,6 +887,7 @@ Kapitel:
     </div>
     <p class="notis" data-kpi-fel="youtube" hidden style="color:var(--fel);margin-top:.45rem"></p>
     <div class="stapel" id="yt-stapel" role="list" aria-label="DEMO-förfrågningar per vecka"></div>
+    <p class="notis stapel-nyckel">Bleka stapeln är veckans <b>totalsumma</b> över alla tre kanaler, den som mäts mot målet. Fyllda stapeln är den här kanalens del.</p>
     <p class="notis" data-kpi-tom="youtube" style="margin-top:.6rem"></p>
     <div class="t-rull t-rull--vid t-stack" data-kpi-rull="youtube"><table class="t" id="yt-kpi-tabell" style="margin-top:.6rem"></table></div>
     <p class="notis" data-kpi-rad="youtube" style="margin-top:.6rem"></p>
@@ -922,6 +946,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     </div>
     <p class="notis" data-kpi-fel="linkedin" hidden style="color:var(--fel);margin-top:.45rem"></p>
     <div class="stapel" id="li-stapel" role="list" aria-label="DEMO-förfrågningar per vecka"></div>
+    <p class="notis stapel-nyckel">Bleka stapeln är veckans <b>totalsumma</b> över alla tre kanaler, den som mäts mot målet. Fyllda stapeln är den här kanalens del.</p>
     <p class="notis" data-kpi-tom="linkedin" style="margin-top:.6rem"></p>
     <div class="t-rull t-rull--vid t-stack" data-kpi-rull="linkedin"><table class="t" id="li-kpi-tabell" style="margin-top:.6rem"></table></div>
     <p class="notis" data-kpi-rad="linkedin" style="margin-top:.6rem"></p>
@@ -1099,12 +1124,15 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       <tbody>
         <tr><td><a href="https://smamaleri.se" target="_blank" rel="noopener"><b>smamaleri.se</b></a></td><td data-etikett="Status">Live, betalande</td><td data-etikett="Ligger i"><code>bahkobyra/cloud/smamaleri</code></td><td data-etikett="Nästa steg">uppsell: löpande optimering efter kanalmatrisen</td></tr>
         <tr><td><a href="https://brommatradgardsservice.se" target="_blank" rel="noopener"><b>brommatradgardsservice.se</b></a></td><td data-etikett="Status">Live + <b>löpande contentuppdrag</b></td><td data-etikett="Ligger i"><code>bahkobyra/cloud/brommatradgardsservice</code></td><td data-etikett="Nästa steg"><b>2 reels + 3 bilder i veckan</b>, veckorapport till Jens på söndag. Rutin i <code>content/kundarbete/bromma/produktionsrutin.md</code>. AI får aldrig spela Jens riktiga jobb.</td></tr>
-        <tr><td><a href="https://maykaskitchen.se" target="_blank" rel="noopener"><b>maykaskitchen.se</b></a></td><td data-etikett="Status">Live, deployas vid push till main</td><td data-etikett="Ligger i"><code>.claude/skills/video-to-website/maykas/site</code></td><td data-etikett="Nästa steg">underhåll vid behov</td></tr>
+        <tr><td><a href="https://maykaskitchen.se" target="_blank" rel="noopener"><b>maykaskitchen.se</b></a></td><td data-etikett="Status">Live, deployas vid push till main</td><td data-etikett="Ligger i"><code>bahkobyra/cloud/maykaskitchen</code></td><td data-etikett="Nästa steg">underhåll vid behov</td></tr>
       </tbody>
     </table></div>
-    <p class="notis" style="margin-top:.5rem">Alla tre sökvägar är heliga: egna Vercel-projekt eller en
-    GitHub Action pekar på exakt dem. <b>Maykas ligger inte bland kundmapparna utan inne i en skill-mapp</b>
-    och är därför den som lättast råkar städas bort. Flyttas eller ändras aldrig utan uttryckligt beslut.</p>
+    <p class="notis" style="margin-top:.5rem">Alla tre kundsajter ligger samlade i
+    <code>bahkobyra/cloud/</code>. Sökvägarna är heliga: smamaleri och bromma har varsitt Vercel-projekt
+    som pekar på exakt sin mapp, och maykaskitchen deployas av GitHub-actionen
+    <code>.github/workflows/deploy.yml</code> vid varje push till main. Flyttas en mapp går kundens sajt
+    ner tills sökvägen ändras på det stället. Ändras aldrig utan uttryckligt beslut.
+    <b>(Uppmätt 2026-08-28. Maykas låg tidigare i en skill-mapp och flyttades hit 2026-08-27.)</b></p>
   </div>
 
   <div class="kort">
@@ -1520,10 +1548,23 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     document.getElementById("brygg-datum").textContent = idag();
     document.getElementById("mvl").checked = !!LOGG.mvl;
     document.getElementById("mvl-notis").hidden = !LOGG.mvl;
-    var schema = dagensSchema();
+    var schema = dagensSchema(), lageNu = sasongslage().lage;
     /* Publiceringen ar dagens forsta uppgift nar det finns nagot att publicera.
-       Utan den raden bokade Veckorytmen sex inlagg som ingen rutin skickade ut. */
-    var lista = (schema.publicera ? [{ id: "publicera", text: "Publicera dagens inlägg: " + schema.publicera + ". Fäst kommentaren.", tid: schema.tid }] : []);
+       Utan den raden bokade Veckorytmen sex inlagg som ingen rutin skickade ut.
+       Men den far bara sta dar nar sasongen faktiskt pagar: fore start beordrade
+       den publicering av en kapitelvideo som inte finns, samtidigt som raden
+       ovanfor sa "forbered kapitel 1". */
+    var lista = [];
+    if (lageNu === "pagar" && schema.publicera) {
+      lista.push({ id: "publicera", text: "Publicera dagens inlägg: " + schema.publicera + ". Fäst kommentaren.", tid: schema.tid });
+    } else if (lageNu === "fore") {
+      lista.push({ id: "forbered1", text: "Förbered kapitel 1: skriv manuset ur Säsongen", tid: "45 min" });
+      lista.push({ id: "forbered2", text: "Spela in fredagens tagning, den blir både ansiktspost och YouTube-video", tid: "30 min" });
+      lista.push({ id: "forbered3", text: "Beställ vecka 1:s content av Claude, inklusive story-pack", tid: "10 min" });
+    } else if (lageNu === "slut") {
+      lista.push({ id: "arkiv1", text: "Arkivera säsongen: tryck EXPORT uppe till höger och spara filen", tid: "5 min" });
+      lista.push({ id: "arkiv2", text: "Skriv säsong 2:s tema och startdatum i Säsongen", tid: "30 min" });
+    }
     lista = lista.concat(LOGG.mvl ? FULLA.filter(function (u) { return MVL_ID.indexOf(u.id) > -1; }) : FULLA);
     document.getElementById("dagens-check").innerHTML = lista.map(function (u) {
       var kl = LOGG.dagsuppdrag.checks[u.id] ? " checked" : "";
@@ -1533,7 +1574,15 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     /* Trigger-raden visar ALLA veckopass som hor till i dag, inte tva av fem.
        "Inga extra triggers" far bara sta pa dagar som verkligen ar tomma. */
     var trig = document.getElementById("dagens-trigger");
-    if (schema.pass.length) {
+    if (lageNu !== "pagar") {
+      /* Veckopassen hor till en pagaende sasong. Fore start beordrade de
+         "skriv nasta veckas kapitelmanus" i en sasong som inte borjat. */
+      trig.innerHTML = lageNu === "fore"
+        ? "Veckopassen startar när säsongen gör det. Fram tills dess gäller förberedelserna ovan."
+        : lageNu === "slut"
+          ? "Veckopassen vilar tills säsong 2 har ett startdatum."
+          : "Sätt ett startdatum i Säsongen så vet OS:et vilka pass som gäller.";
+    } else if (schema.pass.length) {
       trig.innerHTML = "<b>" + (schema.pass.length === 1 ? "Dagens pass:" : "Dagens pass:") + "</b><br>" +
         schema.pass.map(function (t) { return "· " + esc(t); }).join("<br>");
     } else {
@@ -1629,7 +1678,10 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     try { rad = localStorage.getItem("bb_crm_v2"); } catch (e) {}
     /* Ett stort gront streck dar siffran ska sta ser ut som en trasig linje,
        inte som "ingen data". Alla andra tomma lagen i OS:et ar en gra mening. */
-    var visa = function (n) { due.textContent = n; due.hidden = n === null; };
+    /* Att dolja bara siffran lamnade en halv mening som borjar med liten
+       bokstav: "uppfoljningar vantar i CRM:et". Hela raden gar bort i stallet. */
+    var mal = document.getElementById("crm-mal");
+    var visa = function (n) { due.textContent = n === null ? "" : n; if (mal) mal.hidden = n === null; };
     if (!rad) { visa(null); status.textContent = "CRM-datat bor på www.bahkobyra.se. Öppna CRM:et en gång i den här webbläsaren så syns siffran."; return; }
     try {
       var leads = JSON.parse(rad);
@@ -1695,17 +1747,32 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
        1 demo i veckan ritades i FULL hojd och sag ut som toppresultat, medan
        en sasong med 3-5 ritades lagre. Golvet ar nu 4, sa en stapel betyder
        samma sak varje vecka, och mallinjen vid 3 visar vad som raknas. */
+    /* Malet 3 galler de TRE kanalerna tillsammans, inte var for sig. En linje
+       vid 3 pa varje kanalflik gjorde att en vecka da malet faktiskt nadds sag
+       ut som ett misslyckande pa alla tre. Diagrammet visar darfor kanalens
+       eget bidrag, och mallinjen ritas pa summan i stallet. */
     var MALET = 3, GOLV = 4;
-    var max = Math.max.apply(null, varden.concat([GOLV]));
+    var summaPerVecka = senaste.map(function (r) {
+      var t = 0;
+      Object.keys(KANALER).forEach(function (kk) {
+        var x = demoIVecka(kk, r.v);
+        if (x !== null) t += x;
+      });
+      return t;
+    });
+    var max = Math.max.apply(null, varden.concat(summaPerVecka).concat([GOLV]));
     /* Tomt lage visar INGET diagram: fejkstaplar bredvid texten "inga veckor
        loggade" ar ett UI som visar data som inte finns. */
     st.innerHTML = senaste.length
-      ? '<span class="mallinje" style="bottom:calc(' + (MALET / max * 100) + '% * 56 / 100 + 1.05rem)" aria-hidden="true"><i>mål ' + MALET + '</i></span>' +
+      ? '<span class="mallinje" style="bottom:calc(' + (MALET / max * 56) + 'px + 1.05rem)" aria-hidden="true"><i>mål ' + MALET + ' totalt</i></span>' +
         senaste.map(function (r, i) {
-          var v = varden[i];
-          return '<span class="kol' + (v >= MALET ? " nadd" : "") + '" role="listitem">' +
+          var v = varden[i], sum = summaPerVecka[i];
+          return '<span class="kol' + (sum >= MALET ? " nadd" : "") + '" role="listitem">' +
                    '<span class="varde">' + v + "</span>" +
-                   '<span class="stang"><i style="height:' + Math.max(4, Math.round(v / max * 100)) + '%"></i></span>' +
+                   '<span class="stang">' +
+                     '<i class="summa" style="height:' + Math.max(4, Math.round(sum / max * 100)) + '%"></i>' +
+                     '<i style="height:' + Math.max(4, Math.round(v / max * 100)) + '%"></i>' +
+                   "</span>" +
                    '<span class="vlabel">v' + esc(r.v) + "</span>" +
                  "</span>";
         }).join("")
