@@ -37,6 +37,10 @@
   --nav-b:236px; --topp-h:58px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+/* Varje display-regel i filen slar ut webblasarens [hidden]. Det traffade
+   .stapel forst och sedan .kpi-mal, som lamnade en huvudlos halv mening
+   ("uppfoljningar vantar i CRM:et") pa morgonskarmen. En regel for alla. */
+[hidden]{display:none!important}
 html{scroll-behavior:smooth}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{
@@ -302,9 +306,12 @@ code{overflow-wrap:anywhere}
     border-radius:10px;padding:.6rem .75rem;
   }
   .t-stack tbody tr + tr{margin-top:.5rem}
+  /* space-between med gap slet isar en mening i losryckta block: "0 credits"
+     drogs at vanster och ", ateranvant media" at hoger med 203px hal emellan,
+     och rader borjade med ett hangande skiljetecken. Vardet ar EN bit nu. */
   .t-stack tbody td{
-    display:flex;gap:.9rem;align-items:baseline;justify-content:space-between;
-    padding:.32rem 0;border-bottom:1px solid var(--linje);text-align:right;
+    display:flex;gap:.9rem;align-items:baseline;justify-content:flex-start;
+    padding:.32rem 0;border-bottom:1px solid var(--linje);text-align:left;
     /* Sokvagar och URL:er har inga mellanslag att bryta pa och sprangde raden. */
     overflow-wrap:anywhere;min-width:0;
   }
@@ -319,8 +326,11 @@ code{overflow-wrap:anywhere}
   /* Radens namn ar ofta en lank: den ska ga att traffa med tummen. */
   .t-stack tbody td:first-child a{display:inline-flex;align-items:center;min-height:44px}
   .t-stack tbody tr td:last-child{border-bottom:0;padding-bottom:0}
+  /* Etiketten pa egen rad ovanfor vardet: da kan varken en fras eller ett
+     skiljetecken hamna pa fel sida av ett tomrum. */
+  .t-stack tbody td{display:block}
   .t-stack tbody td::before{
-    content:attr(data-etikett);flex:0 0 auto;text-align:left;
+    content:attr(data-etikett);display:block;margin-bottom:.15rem;
     font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);
   }
   /* Forsta cellen ar radens namn, inte ett varde: den far vara rubrik. */
@@ -350,14 +360,20 @@ code{overflow-wrap:anywhere}
    diagrammet ett hal mellan Spara vecka och tomtexten. */
 .stapel[hidden]{display:none}
 .stapel .kol{display:flex;flex-direction:column;align-items:center;gap:.25rem;flex:1 1 0;min-width:14px;max-width:48px;position:relative}
-/* Tva staplar i samma spar: den bleka ar veckans TOTAL over alla tre kanaler
-   (den som mats mot malet), den fyllda ar den har kanalens bidrag. */
-.stapel .stang{width:100%;height:56px;display:flex;align-items:flex-end;position:relative}
-.stapel .stang i.summa{position:absolute;left:0;right:0;bottom:0;background:rgba(52,211,153,.22);border-radius:3px 3px 0 0}
+/* EN stapel per vecka = veckans TOTAL over alla tre kanaler, alltsa identisk
+   pa alla tre flikarna. Den morkare delen langst ner ar den har kanalens
+   andel. Tva fristaende staplar smalte ihop sa fort de var lika hoga, och lat
+   de tre flikarna saga olika saker om samma vecka. */
 .stapel{position:relative}
-.stapel .stang i{display:block;width:100%;background:var(--text2);border-radius:3px 3px 0 0;min-height:3px}
+.stapel .stang{width:100%;height:56px;display:flex;align-items:flex-end}
+.stapel .stang i.total{
+  display:block;width:100%;min-height:3px;border-radius:3px 3px 0 0;
+  background:rgba(148,167,191,.32);position:relative;overflow:hidden;
+}
+.stapel .stang i.total b.del{position:absolute;left:0;right:0;bottom:0;display:block;background:var(--text2)}
 /* En vecka som nadde malet ska ga att se pa formen, inte bara pa siffran. */
-.stapel .kol.nadd .stang i{background:var(--acc)}
+.stapel .kol.nadd .stang i.total{background:rgba(52,211,153,.3)}
+.stapel .kol.nadd .stang i.total b.del{background:var(--acc)}
 .stapel .mallinje{position:absolute;left:0;right:0;height:0;border-top:1px dashed var(--acc2);opacity:.65;pointer-events:none}
 .stapel .mallinje i{position:absolute;right:0;top:-1.05em;font-size:.6rem;font-style:normal;color:var(--acc2);letter-spacing:.04em}
 /* Vardet lag ovanpa den hogsta stapeln i vit text pa smaragd: 2,54:1, och det
@@ -561,8 +577,10 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
         </label>
       </h3>
       <div class="check" id="dagens-check"></div>
-      <p class="notis" id="mvl-notis" hidden>Kraschvecka aktiv: tre saker överlever, resten väntar utan
-      dåligt samvete. (1) DM och kommentarer varje dag, (2) en karusell den här veckan, (3) story minst tre dagar.</p>
+      <p class="notis" id="mvl-notis" hidden><b>Kraschvecka aktiv.</b> Tre saker överlever, resten väntar
+      utan dåligt samvete: (1) DM och kommentarer varje dag, (2) en karusell den här veckan, den ligger på
+      tisdag, (3) story minst tre dagar. Veckans övriga fyra publiceringar är borttagna ur listan,
+      inte uppskjutna. CRM-touchen vilar också.</p>
       <hr class="delare">
       <p class="notis" id="dagens-trigger"></p>
     </div>
@@ -650,7 +668,7 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
   </div>
 
   <div class="kort">
-    <h3 style="display:flex;align-items:center;gap:.6rem">Kanalmatrisen <span class="tagg tagg--las">Copy-lag</span></h3>
+    <h3 id="sv-matris" style="display:flex;align-items:center;gap:.6rem">Kanalmatrisen <span class="tagg tagg--las">Copy-lag</span></h3>
     <p class="notis" style="margin-bottom:.6rem">Vad får sägas var. Matrisen är fast och redigeras inte
     härifrån: Google-löften får aldrig lämna bahkobyra.se och offert.</p>
     <div class="t-rull t-rull--vid t-stack"><table class="t matris">
@@ -801,7 +819,7 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
     </div>
     <p class="notis" data-kpi-fel="instagram" hidden style="color:var(--fel);margin-top:.45rem"></p>
     <div class="stapel" id="ig-stapel" role="list" aria-label="DEMO-DM per vecka"></div>
-    <p class="notis stapel-nyckel">Bleka stapeln är veckans <b>totalsumma</b> över alla tre kanaler, den som mäts mot målet. Fyllda stapeln är den här kanalens del.</p>
+    <p class="notis stapel-nyckel">Stapeln är veckans <b>totalsumma</b> över alla tre kanaler, alltså samma bild på alla tre flikarna. Den mörkare delen längst ner är den här kanalens andel.</p>
     <p class="notis" data-kpi-tom="instagram" style="margin-top:.6rem"></p>
     <div class="t-rull t-rull--vid t-stack" data-kpi-rull="instagram"><table class="t" id="ig-kpi-tabell" style="margin-top:.6rem"></table></div>
     <p class="notis" data-kpi-rad="instagram" style="margin-top:.6rem"></p>
@@ -887,7 +905,7 @@ Kapitel:
     </div>
     <p class="notis" data-kpi-fel="youtube" hidden style="color:var(--fel);margin-top:.45rem"></p>
     <div class="stapel" id="yt-stapel" role="list" aria-label="DEMO-förfrågningar per vecka"></div>
-    <p class="notis stapel-nyckel">Bleka stapeln är veckans <b>totalsumma</b> över alla tre kanaler, den som mäts mot målet. Fyllda stapeln är den här kanalens del.</p>
+    <p class="notis stapel-nyckel">Stapeln är veckans <b>totalsumma</b> över alla tre kanaler, alltså samma bild på alla tre flikarna. Den mörkare delen längst ner är den här kanalens andel.</p>
     <p class="notis" data-kpi-tom="youtube" style="margin-top:.6rem"></p>
     <div class="t-rull t-rull--vid t-stack" data-kpi-rull="youtube"><table class="t" id="yt-kpi-tabell" style="margin-top:.6rem"></table></div>
     <p class="notis" data-kpi-rad="youtube" style="margin-top:.6rem"></p>
@@ -916,7 +934,7 @@ Kapitel:
     som leder någonstans i CRM:et.</p>
   </div>
 
-  <div class="kort">
+  <div class="kort" id="li-mallar">
     <h3>Mallarna</h3>
     <div class="mall"><h4>Textpost ur veckans kapitel</h4><button class="kopiera" type="button">Kopiera</button>
       <p>[Kroken: kapitlets tes i en mening.]
@@ -946,7 +964,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     </div>
     <p class="notis" data-kpi-fel="linkedin" hidden style="color:var(--fel);margin-top:.45rem"></p>
     <div class="stapel" id="li-stapel" role="list" aria-label="DEMO-förfrågningar per vecka"></div>
-    <p class="notis stapel-nyckel">Bleka stapeln är veckans <b>totalsumma</b> över alla tre kanaler, den som mäts mot målet. Fyllda stapeln är den här kanalens del.</p>
+    <p class="notis stapel-nyckel">Stapeln är veckans <b>totalsumma</b> över alla tre kanaler, alltså samma bild på alla tre flikarna. Den mörkare delen längst ner är den här kanalens andel.</p>
     <p class="notis" data-kpi-tom="linkedin" style="margin-top:.6rem"></p>
     <div class="t-rull t-rull--vid t-stack" data-kpi-rull="linkedin"><table class="t" id="li-kpi-tabell" style="margin-top:.6rem"></table></div>
     <p class="notis" data-kpi-rad="linkedin" style="margin-top:.6rem"></p>
@@ -966,7 +984,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     pågående DM-tråd gör det inte, för då läser det som ett formbrev.</p>
     <p class="notis" style="margin-top:.6rem">Systemet är <b>inbound</b>: content drar in samtalen, och
     mallarna här tar hand om dem som hör av sig. Det finns med flit ingen utgående DM-serie.
-    <a class="knapp knapp--ram" href="#spelvarld" data-till="spelvarld" style="margin-left:.5rem">Se kanalmatrisen</a></p>
+    <a class="knapp knapp--ram" href="#spelvarld" data-till="spelvarld" data-mal="sv-matris" style="margin-left:.5rem">Se kanalmatrisen</a></p>
   </div>
 
   <div class="kort">
@@ -1034,7 +1052,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
   <div class="kort">
     <h3>LinkedIn-mallarna</h3>
     <p class="notis">Plattformsspecifik copy bor på sin egen flik, så den aldrig hamnar i två versioner.</p>
-    <div class="lank-rad" style="margin-top:.6rem"><a class="knapp knapp--ram" href="#linkedin" data-till="linkedin">Textpost och kommentarssvar på LinkedIn-fliken</a></div>
+    <div class="lank-rad" style="margin-top:.6rem"><a class="knapp knapp--ram" href="#linkedin" data-till="linkedin" data-mal="li-mallar">Textpost och kommentarssvar på LinkedIn-fliken</a></div>
   </div>
 
   <div class="kort">
@@ -1556,7 +1574,15 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
        ovanfor sa "forbered kapitel 1". */
     var lista = [];
     if (lageNu === "pagar" && schema.publicera) {
-      lista.push({ id: "publicera", text: "Publicera dagens inlägg: " + schema.publicera + ". Fäst kommentaren.", tid: schema.tid });
+      /* Kraschveckan lovade "tre saker overlever, en karusell den har veckan"
+         men listan kravde full publicering fem dagar i veckan. Knappen tog
+         bort exakt EN post pa 5 minuter av 35. Nu overlever bara tisdagens
+         karusell, precis som notisen sager. */
+      if (!LOGG.mvl) {
+        lista.push({ id: "publicera", text: "Publicera dagens inlägg: " + schema.publicera + ". Fäst kommentaren.", tid: schema.tid });
+      } else if (new Date().getDay() === 2) {
+        lista.push({ id: "publicera", text: "Publicera veckans enda inlägg: karusellen (Invändningen). Fäst kommentaren.", tid: "20 min" });
+      }
     } else if (lageNu === "fore") {
       lista.push({ id: "forbered1", text: "Förbered kapitel 1: skriv manuset ur Säsongen", tid: "45 min" });
       lista.push({ id: "forbered2", text: "Spela in fredagens tagning, den blir både ansiktspost och YouTube-video", tid: "30 min" });
@@ -1767,11 +1793,16 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       ? '<span class="mallinje" style="bottom:calc(' + (MALET / max * 56) + 'px + 1.05rem)" aria-hidden="true"><i>mål ' + MALET + ' totalt</i></span>' +
         senaste.map(function (r, i) {
           var v = varden[i], sum = summaPerVecka[i];
+          /* Stapeln ar veckans TOTAL over alla tre kanaler, identisk pa alla
+             tre flikarna. Den morkare delen inuti ar den har kanalens andel.
+             Tva fristaende staplar smalte ihop sa fort de var lika hoga och
+             lat de tre flikarna saga olika saker om samma vecka. */
           return '<span class="kol' + (sum >= MALET ? " nadd" : "") + '" role="listitem">' +
-                   '<span class="varde">' + v + "</span>" +
+                   '<span class="varde">' + sum + "</span>" +
                    '<span class="stang">' +
-                     '<i class="summa" style="height:' + Math.max(4, Math.round(sum / max * 100)) + '%"></i>' +
-                     '<i style="height:' + Math.max(4, Math.round(v / max * 100)) + '%"></i>' +
+                     '<i class="total" style="height:' + Math.max(4, Math.round(sum / max * 100)) + '%">' +
+                       '<b class="del" style="height:' + (sum ? Math.round(v / sum * 100) : 0) + '%"></b>' +
+                     "</i>" +
                    "</span>" +
                    '<span class="vlabel">v' + esc(r.v) + "</span>" +
                  "</span>";
@@ -1788,6 +1819,9 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       else rd.innerHTML = "Vecka " + lage.vecka + ": <b>" + d + "</b> av kanalens bidrag till målet 3 DEMO.";
     }
   }
+  /* Totalsumman hanger annars kvar pa gamla siffror i de tva andra flikarna
+     tills sidan laddas om. */
+  function ritaAllaKpi() { Object.keys(KANALER).forEach(ritaKpi); }
   function kpiFel(kanal, text) {
     var p = document.querySelector('[data-kpi-fel="' + kanal + '"]');
     if (!p) return;
@@ -1831,7 +1865,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       var bef = LOGG.kpi[kanal].filter(function (r) { return r.v === v; })[0];
       if (bef) bef.tal = tal; else LOGG.kpi[kanal].push({ v: v, tal: tal });
       LOGG.kpi[kanal].sort(function (a, b) { return (+a.v || 0) - (+b.v || 0); });
-      sparaLogg(); ritaKpi(kanal); ritaHud();
+      sparaLogg(); ritaAllaKpi(); ritaHud();
       k.falt.forEach(function (id) { var f = document.getElementById(id); f.value = ""; delete f.dataset.auto; });
       forifyllVecka();
     }
@@ -1842,7 +1876,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       /* Raderingen gick inte att angra och skedde utan fraga. */
       if (rd && !confirm("Ta bort vecka " + rd.v + " ur " + del[0] + "? Det går inte att ångra.")) return;
       LOGG.kpi[del[0]].splice(+del[1], 1);
-      sparaLogg(); ritaKpi(del[0]); ritaHud();
+      sparaLogg(); ritaAllaKpi(); ritaHud();
     }
   });
 
