@@ -375,7 +375,15 @@ code{overflow-wrap:anywhere}
 .stapel .kol.nadd .stang i.total{background:rgba(52,211,153,.3)}
 .stapel .kol.nadd .stang i.total b.del{background:var(--acc)}
 .stapel .mallinje{position:absolute;left:0;right:0;height:0;border-top:1px dashed var(--acc2);opacity:.65;pointer-events:none}
-.stapel .mallinje i{position:absolute;right:0;top:-1.05em;font-size:.6rem;font-style:normal;color:var(--acc2);letter-spacing:.04em}
+/* Etiketten laa pa top:-1.05em, vilket racker for boxen men inte for
+   glyfernas egen linjehojd - texten skar igenom strecket och sag
+   overstruken ut. bottom i stallet lyfter HELA texten ovanfor linjen,
+   plus en bakgrundsplatta som skydd om nagot annat andras. */
+.stapel .mallinje i{
+  position:absolute;right:0;bottom:.15rem;
+  font-size:.6rem;font-style:normal;color:var(--acc2);letter-spacing:.04em;
+  background:var(--yta);padding:0 .25rem;line-height:1.4;
+}
 /* Vardet lag ovanpa den hogsta stapeln i vit text pa smaragd: 2,54:1, och det
    drabbade alltid basta veckan. Det sitter nu OVANFOR stapeltoppen. */
 .stapel .varde{position:absolute;bottom:100%;margin-bottom:2px;font-size:.66rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--text)}
@@ -517,7 +525,10 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
     --bas:#fff; --yta:#fff; --linje:#ddd; --linje2:#bbb; --falt-ram:#bbb;
     --fel:#B91C1C; --ok:#047857; --varning:#92400E;
   }
-  .topp,.nav,.kopiera,.knapp,.mini-knapp,.bort,.ide-rad,.kpi-in,.omkopplare,.vecka-status{display:none!important}
+  /* .knapp gomde ALLA knappformade element, aven .knapp--ram som ar riktiga
+     lankar (demoregistret, "Oppna kapitlet", Ring-SOP m.fl.) - de forsvann
+     sparlost och lamnade tomma rubriker och meningar utan innehall. */
+  .topp,.nav,.kopiera,.knapp:not(.knapp--ram),.mini-knapp,.bort,.ide-rad,.kpi-in,.omkopplare,.vecka-status{display:none!important}
   body{background:#fff;color:#111}
   .ram{display:block}
   .blad{display:block!important;page-break-after:always}
@@ -529,8 +540,10 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
   /* Lankar ar innehall pa papper: adressen ska med, annars ar registret tomt. */
   details.ihop{page-break-inside:avoid}
   details.ihop:not([open]) .ihop-in{display:block}
-  .lank-rad a::after{content:' (' attr(href) ')';font-size:8pt;color:#555;font-weight:400}
-  .lank-rad a{display:inline;border:0;padding:0;min-height:0;color:#111;font-weight:600}
+  /* Generellt for VARJE .knapp--ram, inte bara de som rakar sta i en
+     .lank-rad: annars stod korten med bara rubrik och en mening kvar. */
+  .knapp--ram::after{content:' (' attr(href) ')';font-size:8pt;color:#555;font-weight:400}
+  .knapp--ram{display:inline;border:0;padding:0;min-height:0;color:#111;font-weight:600}
 }
 </style>
 </head>
@@ -1106,9 +1119,9 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       <button class="mini-knapp" id="grind-noll" type="button" style="margin-left:auto">Nollställ</button>
     </h3>
     <p class="notis">Kryssa av innan du skickar. Fastnar något: skriv om, skicka inte.
-    Grinden nollställs automatiskt varje ny dag, så nästa utskick alltid börjar på 0/4.</p>
+    Grinden nollställs av sig själv efter varje avklarat utskick, så nästa alltid börjar på 0/4.</p>
     <p class="notis" id="grind-klar" hidden style="color:var(--ok);margin-top:.4rem"><b>Godkänt. Skicka nu.</b>
-    Tryck Nollställ när du är klar, så är grinden redo för nästa utskick.</p>
+    Grinden nollställs om någon sekund, redo för nästa utskick.</p>
     <div class="check" id="grind-check">
       <label><input type="checkbox" data-grind="forthem"><span><b>FOR THEM.</b> Handlar det om deras firma och deras jobb, inte om oss?</span></label>
       <label><input type="checkbox" data-grind="real"><span><b>REAL.</b> Är observationen verklig och specifik för just dem?</span></label>
@@ -1608,8 +1621,16 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
         : lageNu === "slut"
           ? "Veckopassen vilar tills säsong 2 har ett startdatum."
           : "Sätt ett startdatum i Säsongen så vet OS:et vilka pass som gäller.";
+    } else if (LOGG.mvl) {
+      /* Kraschveckan strippade publiceringen men lamnade ringpass, manuspass
+         och batchgranskning kvar har - tva motstridiga besked pa samma kort
+         den vecka det behovs som minst. Bara betalt kundarbete star kvar,
+         for det ar det enda som inte gar att skjuta upp en vecka. */
+      var kvarPass = schema.pass.filter(function (t) { return /^KUNDLEVERANS/.test(t); });
+      trig.innerHTML = "<b>Kraschvecka: bara betalt kundarbete kvar, resten väntar.</b>" +
+        (kvarPass.length ? "<br>" + kvarPass.map(function (t) { return "· " + esc(t); }).join("<br>") : "");
     } else if (schema.pass.length) {
-      trig.innerHTML = "<b>" + (schema.pass.length === 1 ? "Dagens pass:" : "Dagens pass:") + "</b><br>" +
+      trig.innerHTML = "<b>Dagens pass:</b><br>" +
         schema.pass.map(function (t) { return "· " + esc(t); }).join("<br>");
     } else {
       trig.innerHTML = "Inga bokade pass i dag utöver rutinen ovan.";
@@ -1765,10 +1786,19 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
         }).join("") + "</tbody>";
     }
     var st = document.getElementById(k.stapel);
-    /* 13, inte 12: sasongen ar 13 veckor och vecka 1 forsvann tyst ur bilden
-       sa fort vecka 13 loggades, medan tabellen under visade alla. */
-    var senaste = rader.slice(-13);
-    var varden = senaste.map(function (r) { return +String(r.tal[k.huvud - 1]).replace(/\D/g, "") || 0; });
+    /* Bygg veckoaxeln fran UNIONEN av veckor som loggats i NAGON av de tre
+       kanalerna, inte bara den har kanalens egna rader. rader.slice(-13) gav
+       tre olika bilder pa tre flikar - en malvecka kunde vara osynlig just
+       dar man stod, trots att texten under diagrammet lovar samma bild
+       overallt. Tabellen under paverkas inte: den visar fortfarande bara
+       den har kanalens egna loggade veckor. */
+    var allaVeckor = {};
+    Object.keys(KANALER).forEach(function (kk) {
+      LOGG.kpi[kk].forEach(function (r) { allaVeckor[r.v] = true; });
+    });
+    var veckoNr = Object.keys(allaVeckor).map(Number).filter(function (n) { return n > 0; })
+      .sort(function (a, b) { return a - b; }).slice(-13);
+    var varden = veckoNr.map(function (v) { return demoIVecka(kanal, v) || 0; });
     /* Skalan matte mot den egna basta veckan, aldrig mot malet: en sasong med
        1 demo i veckan ritades i FULL hojd och sag ut som toppresultat, medan
        en sasong med 3-5 ritades lagre. Golvet ar nu 4, sa en stapel betyder
@@ -1778,10 +1808,10 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
        ut som ett misslyckande pa alla tre. Diagrammet visar darfor kanalens
        eget bidrag, och mallinjen ritas pa summan i stallet. */
     var MALET = 3, GOLV = 4;
-    var summaPerVecka = senaste.map(function (r) {
+    var summaPerVecka = veckoNr.map(function (v) {
       var t = 0;
       Object.keys(KANALER).forEach(function (kk) {
-        var x = demoIVecka(kk, r.v);
+        var x = demoIVecka(kk, v);
         if (x !== null) t += x;
       });
       return t;
@@ -1789,10 +1819,10 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     var max = Math.max.apply(null, varden.concat(summaPerVecka).concat([GOLV]));
     /* Tomt lage visar INGET diagram: fejkstaplar bredvid texten "inga veckor
        loggade" ar ett UI som visar data som inte finns. */
-    st.innerHTML = senaste.length
+    st.innerHTML = veckoNr.length
       ? '<span class="mallinje" style="bottom:calc(' + (MALET / max * 56) + 'px + 1.05rem)" aria-hidden="true"><i>mål ' + MALET + ' totalt</i></span>' +
-        senaste.map(function (r, i) {
-          var v = varden[i], sum = summaPerVecka[i];
+        veckoNr.map(function (v, i) {
+          var val = varden[i], sum = summaPerVecka[i];
           /* Stapeln ar veckans TOTAL over alla tre kanaler, identisk pa alla
              tre flikarna. Den morkare delen inuti ar den har kanalens andel.
              Tva fristaende staplar smalte ihop sa fort de var lika hoga och
@@ -1801,14 +1831,14 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
                    '<span class="varde">' + sum + "</span>" +
                    '<span class="stang">' +
                      '<i class="total" style="height:' + Math.max(4, Math.round(sum / max * 100)) + '%">' +
-                       '<b class="del" style="height:' + (sum ? Math.round(v / sum * 100) : 0) + '%"></b>' +
+                       '<b class="del" style="height:' + (sum ? Math.round(val / sum * 100) : 0) + '%"></b>' +
                      "</i>" +
                    "</span>" +
-                   '<span class="vlabel">v' + esc(r.v) + "</span>" +
+                   '<span class="vlabel">v' + esc(v) + "</span>" +
                  "</span>";
         }).join("")
       : "";
-    st.hidden = !senaste.length;
+    st.hidden = !veckoNr.length;
 
     /* Vad siffran betyder just nu, i klartext under tabellen. */
     var rd = document.querySelector('[data-kpi-rad="' + kanal + '"]');
@@ -1999,10 +2029,18 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     var klar = document.getElementById("grind-klar");
     if (klar) klar.hidden = n !== 4;
   }
+  var grindTimer = null;
   document.getElementById("grind-check").addEventListener("change", function (e) {
     var g = e.target.getAttribute("data-grind");
     if (!g) return;
     LOGG.grind[g] = e.target.checked; sparaLogg(); ritaGrind();
+    /* Grinden ska galla EN gang, inte hela dagen: fylld i for dagens forsta
+       DM stod den kvar pa 4/4 resten av dygnet, och nasta utskick sags redan
+       kontrollerat fast det inte var det. Fylls alla fyra: visa "godkant" en
+       stund, nollstall sedan automatiskt sa den ar redo for nasta utskick. */
+    var alla4 = Array.prototype.every.call(document.querySelectorAll("[data-grind]"), function (i) { return i.checked; });
+    clearTimeout(grindTimer);
+    if (alla4) grindTimer = setTimeout(function () { LOGG.grind = {}; sparaLogg(); ritaGrind(); }, 2600);
   });
   document.getElementById("grind-noll").addEventListener("click", function () {
     LOGG.grind = {}; LOGG.grindDatum = idag(); sparaLogg(); ritaGrind();
