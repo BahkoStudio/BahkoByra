@@ -24,7 +24,7 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │   ├── skills/ ............... 23 skills. FULL LISTA: docs/skills-oversikt.md
 │   └── settings.local.json
 ├── .agents/skills/ ........... riktigt innehåll för higgsfield-skillsen
-├── .github/workflows/ ........ ⚡ deploy.yml → maykaskitchen.se LIVE vid varje push till main
+├── .github/workflows/ ........ ⚡ deploy.yml synkar maykaskitchen.se till MaykaKitchen-repot
 │
 ├── web/ ...................... 🔒 Vercel-projektet bahko-byra bygger HÄRIFRÅN
 │   ├── app/
@@ -45,10 +45,12 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 ├── bahkobyra/cloud/ .......... 🔒 ALLA kundsajters KÄLLKOD, en mapp per kund
 │   ├── brommatradgardsservice/ ... 🔒 brommatradgardsservice.se · eget Vercel-projekt
 │   ├── smamaleri/ ................ 🔒 smamaleri.se · eget Vercel-projekt
-│   └── maykaskitchen/ ............ ⚡ maykaskitchen.se · GitHub Pages via deploy.yml
-│   ⚠ SÖKVÄGARNA ÄR INSTÄLLDA I VERCEL. Flyttas en mapp går kundens sajt NER tills
-│     Root Directory ändras i Vercel-dashboarden. Resten av bahkobyra/ (brand, css,
-│     img, index.html) är den GAMLA webbroten — den nya bor i web/public/.
+│   └── maykaskitchen/ ............ ⚡ maykaskitchen.se · REDIGERINGSKÄLLA, byggs INTE härifrån
+│                                     (deploy.yml synkar den till repot MaykaKitchen, som
+│                                     Vercel-projektet `mayka` bygger — se avsnittet nedan)
+│   ⚠ SÖKVÄGARNA ÄR INSTÄLLDA I VERCEL. Flyttas smamaleri eller brommatradgardsservice går
+│     kundens sajt NER tills Root Directory ändras i Vercel-dashboarden. Resten av
+│     bahkobyra/ (brand, css, img, index.html) är den GAMLA webbroten — nya bor i web/public/.
 │
 │                          ═══ ARBETET KRING KUNDERNA ═══
 ├── content/kundarbete/ ....... ⭐ EN MAPP PER KUND — samma tre kunder som ovan
@@ -157,15 +159,25 @@ du ser vad som är skyddat utan att slå upp något.
 Regeln är oförändrad: **rör inget 🔒 utan Mathias uttryckliga ja i den aktuella sessionen.** Är du
 osäker på om något är låst — läs filen innan du gör något, inte efter.
 
-## Tre Vercel-projekt bygger samma repo
+## Vercel-projekten (kontrollerat mot Vercel 2026-08-28)
 
-Den vanligaste fällan. De delar bara **roten**.
+Den vanligaste fällan. Tre av dem bygger DET HÄR repot och delar bara **roten**:
 
-| Projekt | Root Directory | Domän |
-|---|---|---|
-| `bahko-byra` | `web/` | www.bahkobyra.se + bahkobyra.cloud |
-| `smamaleri` | `bahkobyra/cloud/smamaleri` | smamaleri.se |
-| `brommatradgardsservice.se` | `bahkobyra/cloud/brommatradgardsservice` | brommatradgardsservice.se |
+| Projekt | Repo | Root / Output | Domän |
+|---|---|---|---|
+| `bahko-byra` | BahkoByra | `web/` | www.bahkobyra.se + bahkobyra.cloud |
+| `smamaleri` | BahkoByra | `bahkobyra/cloud/smamaleri` | smamaleri.se |
+| `brommatradgardsservice.se` | BahkoByra | `bahkobyra/cloud/brommatradgardsservice` | brommatradgardsservice.se |
+| **`mayka`** | **MaykaKitchen** | `.claude/skills/video-to-website/maykas/site` | **maykaskitchen.se** |
+| `website-ttcv` | MaykaKitchen | — | (ingen egen domän, verkar oanvänt) |
+| `dashbord` | KlinikCRM | — | (annat projekt) |
+
+⚠ **maykaskitchen.se byggs INTE ur det här repot.** Den ligger i ett eget repo
+(`BahkoStudio/MaykaKitchen`, gren `main`) och Vercel hämtar filerna ur
+`.claude/skills/video-to-website/maykas/site` via `vercel.json` (outputDirectory).
+Vår `bahkobyra/cloud/maykaskitchen/` är REDIGERINGSKÄLLAN — `deploy.yml` synkar den dit
+vid push till main. Upptäckt 2026-08-28: dessförinnan skrev workflowen till en
+`gh-pages`-gren som ingenting serverar, så sajten stod stilla trots grön deploy.
 
 - **Lägg aldrig ett ramverk i repo-roten.** När Next.js låg där failade alla tre samtidigt
   (2026-08-06). Marknadssajten bor därför i `web/`.

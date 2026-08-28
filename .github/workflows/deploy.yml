@@ -1,35 +1,72 @@
-# OBS: bahkobyra.se + bahkobyra.cloud deployas via Vercel (vercel.json, outputDirectory: bahkobyra/).
-# Denna workflow deployar endast Maykas-sajten (maykaskitchen.se) som ligger kvar på GitHub Pages.
+# Synkar maykaskitchen.se till det repo som Vercel faktiskt bygger ifrån.
+#
+# Kedjan (kontrollerad 2026-08-28):
+#   Redigeringskälla:  bahkobyra/cloud/maykaskitchen/   (det här repot)
+#        │  denna workflow kopierar
+#        ▼
+#   BahkoStudio/MaykaKitchen, gren main
+#        .claude/skills/video-to-website/maykas/site/
+#        │  Vercel-projektet "mayka" bygger harifran (vercel.json -> outputDirectory)
+#        ▼
+#   https://maykaskitchen.se
+#
+# TIDIGARE FEL: workflowen publicerade till en gh-pages-gren i MaykaKitchen. Ingenting
+# serverar den grenen - DNS pekar pa Vercel, inte GitHub Pages - sa sajten stod stilla
+# fran (minst) 2026-08-06 till 2026-08-28 trots att varje korning blev gron.
+#
+# Skriver ENDAST i site-mappen. Rester av repot ror den aldrig.
 
-name: Deploy to GitHub Pages
+name: Synka maykaskitchen.se
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'bahkobyra/cloud/maykaskitchen/**'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  deploy-maykas:
+  sync-maykas:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Hamta kallan
         uses: actions/checkout@v4
-
-      - name: Build Maykas site
-        run: |
-          mkdir -p dist-maykas
-          cp -r bahkobyra/cloud/maykaskitchen/. dist-maykas/
-          echo "maykaskitchen.se" > dist-maykas/CNAME
-
-      - name: Deploy to BahkoStudio/MaykaKitchen gh-pages
-        uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.DEMO_REPO_TOKEN }}
-          external_repository: BahkoStudio/MaykaKitchen
-          publish_dir: ./dist-maykas
-          publish_branch: gh-pages
-          force_orphan: true
+          path: kalla
+
+      - name: Hamta malrepot
+        uses: actions/checkout@v4
+        with:
+          repository: BahkoStudio/MaykaKitchen
+          ref: main
+          token: ${{ secrets.DEMO_REPO_TOKEN }}
+          path: mal
+
+      - name: Kopiera sajten
+        run: |
+          set -euo pipefail
+          SITE="mal/.claude/skills/video-to-website/maykas/site"
+          test -d "$SITE" || { echo "FEL: $SITE finns inte i malrepot. Har strukturen andrats?"; exit 1; }
+          rsync -a --delete kalla/bahkobyra/cloud/maykaskitchen/ "$SITE/"
+          echo "Filer i site-mappen efter kopiering:"
+          find "$SITE" -type f | wc -l
+
+      - name: Committa och pusha om nagot andrats
+        run: |
+          set -euo pipefail
+          cd mal
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "Inget att synka - sajten ar redan i fas."
+            exit 0
+          fi
+          git add .claude/skills/video-to-website/maykas/site
+          git commit -m "Synk fran BahkoByra@${GITHUB_SHA::7}"
+          git push origin main
+          echo "Pushat. Vercel bygger om maykaskitchen.se automatiskt."

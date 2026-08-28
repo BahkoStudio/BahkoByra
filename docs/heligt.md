@@ -32,11 +32,14 @@ vad. Kundsajternas egna varning bor i `bahkobyra/LASMIG.md`.
 
 ## Avlyft 2026-08-21 (Mathias beslut)
 
-- **`.github/workflows/deploy.yml` + `bahkobyra/cloud/maykaskitchen/`.** Deployen är fortfarande LIVE —
-  varje push till main bygger om maykaskitchen.se från de 132 filerna i
-  `bahkobyra/cloud/maykaskitchen/` och skriver över gh-pages i
-  `BahkoStudio/MaykaKitchen`. Faktumet står kvar med ⚡ i trädet i `CLAUDE.md`, men det krävs
-  inget ja längre innan man rör filerna.
+- **`.github/workflows/deploy.yml` + `bahkobyra/cloud/maykaskitchen/`.** Deployen är LIVE —
+  en push till main som rör `bahkobyra/cloud/maykaskitchen/` synkar filerna till
+  `BahkoStudio/MaykaKitchen` (gren `main`, mappen `.claude/skills/video-to-website/maykas/site`),
+  och Vercel-projektet `mayka` bygger om maykaskitchen.se därifrån. Faktumet står kvar med ⚡
+  i trädet i `CLAUDE.md`, men det krävs inget ja längre innan man rör filerna.
+  **Rättat 2026-08-28:** tidigare stod här att deployen skriver till `gh-pages`. Det gjorde den,
+  men ingenting serverar den grenen — DNS pekar på Vercel, inte GitHub Pages. Sajten stod därför
+  stilla i tre veckor trots gröna körningar. Workflowen skriver nu till rätt gren.
 - **`reference/`-PDF:erna.** Alla tre är spårade i git och går att återställa ur historiken. Ett
   lås som skyddar mot något återställbart är inte ett lås. De står kvar i trädet som levande
   källdokument.
