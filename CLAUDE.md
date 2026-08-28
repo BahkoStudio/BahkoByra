@@ -21,7 +21,7 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 ├── DELETIONS.md .............. "borde inte X finnas?" Står det inte här är det inte medvetet borta
 │
 ├── .claude/
-│   ├── skills/ ............... 12 egna skills + 8 higgsfield (symlänkar → .agents/skills/)
+│   ├── skills/ ............... 23 skills. FULL LISTA: docs/skills-oversikt.md
 │   └── settings.local.json
 ├── .agents/skills/ ........... riktigt innehåll för higgsfield-skillsen
 ├── .github/workflows/ ........ ⚡ deploy.yml → maykaskitchen.se LIVE vid varje push till main
@@ -33,7 +33,7 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │   │   ├── demo/ ............. gamla kitet (_kit, _data, [kund]) — under avveckling
 │   │   └── komponenter/ ...... delat, bl.a. Maskot.js
 │   ├── public/
-│   │   ├── cloud/ ............ 🔒 21 gamla statiska demos — varje mapp = en länk i någons inkorg
+│   │   ├── cloud/ ............ 🔒 22 statiska demos — varje mapp = en länk i någons inkorg
 │   │   ├── crm-f2822a6f3a/ ... ⭐ DASHBOARDEN. Allt operativt körs härifrån
 │   │   ├── brand/ ............ brand.json = enda sanningen om varumärket
 │   │   ├── css/ + js/ ........ 🔒 style.css och main.js FRYSTA (delas med cloud/bygg)
@@ -41,20 +41,29 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │   ├── next.config.mjs ....... 🔒 host-rewrites: styr vad .se och .cloud visar
 │   └── vercel.json ........... 🔒
 │
-├── bahkobyra/ ................ 🔒 ENDAST kundernas LIVE sajtkod, egna Vercel-projekt
-│   └── cloud/                    ⚠ Inte att förväxla med content/bahkobyra/ nedan (byråns
-│       ├── smamaleri/ ................ 🔒 smamaleri.se — får aldrig flyttas    EGET arbete)
-│       └── brommatradgardsservice/ ... 🔒 brommatradgardsservice.se — får aldrig flyttas
+│                          ═══ KUNDERNAS SAJTER ═══
+├── bahkobyra/cloud/ .......... 🔒 ALLA kundsajters KÄLLKOD, en mapp per kund
+│   ├── brommatradgardsservice/ ... 🔒 brommatradgardsservice.se · eget Vercel-projekt
+│   ├── smamaleri/ ................ 🔒 smamaleri.se · eget Vercel-projekt
+│   └── maykaskitchen/ ............ ⚡ maykaskitchen.se · GitHub Pages via deploy.yml
+│   ⚠ SÖKVÄGARNA ÄR INSTÄLLDA I VERCEL. Flyttas en mapp går kundens sajt NER tills
+│     Root Directory ändras i Vercel-dashboarden. Resten av bahkobyra/ (brand, css,
+│     img, index.html) är den GAMLA webbroten — den nya bor i web/public/.
 │
-├── content/ .................. copy, SOP och kundarbete per kanal
-│   ├── kundarbete/ ............ ⭐ LEVERERAT KUNDARBETE, en mapp per kund (bromma/, smamaleri/,
-│   │                              maykaskitchen/), vardera med hemsida.md · struktur.md ·
-│   │                              drive.md · seo-geo-aeo.md. `_mall/` = facit för nästa kund.
-│   │                              Rör inte utan koll. Filerna PEKAR på 🔒-sajtkoden ovan,
-│   │                              flyttar den aldrig.
-│   ├── leads/ ................. lead-research + demolankar.md (index över ALLA demosajter)
-│   └── bahkobyra/ .............. byråns EGET arbete: ig/ dm/ email/ cold-call/ reels/
-│                                  apps-script/ guider/ — inte samma sak som toppnivå-bahkobyra/
+│                          ═══ ARBETET KRING KUNDERNA ═══
+├── content/kundarbete/ ....... ⭐ EN MAPP PER KUND — samma tre kunder som ovan
+│   ├── bromma/ ............... hemsida.md · struktur.md · drive.md · seo-geo-aeo.md
+│   │                            + inlagg/ mallar/ media/ rapporter/
+│   ├── smamaleri/ ............ samma fyra filer
+│   ├── maykaskitchen/ ........ samma fyra filer
+│   └── _mall/README.md ....... facit när en ny kund tillkommer
+│   ⚠ Filerna PEKAR på sajtkoden ovan. De flyttar den aldrig.
+│
+│                          ═══ BAHKO BYRÅS EGET ═══
+├── content/bahkobyra/ ........ byråns EGET arbete, en mapp per uppgift:
+│   │                            ig/ dm/ email/ cold-call/ reels/ apps-script/ guider/
+│   └─ ⚠ Inte samma sak som bahkobyra/ högst upp (som är kundernas sajtkod)
+├── content/leads/ ............ lead-research + demolankar.md (index över ALLA demosajter)
 │
 ├── workflows/ ................ SOP:er — säljmetodik, cadence, leverans, IG
 ├── tools/ .................... node tools/<skript>.js · kör `ls tools/` för aktuell lista
@@ -67,8 +76,13 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │   └── superpowers/ .......... revisionens planer och specar
 │
 ├── reference/ ................ levande källdokument (3 PDF, säljmetodiken) — inte skräp
+│
+│                          ═══ YOUTUBE (inte Bahko Byrå) ═══
 ├── other-projects/ ........... allt som INTE är Bahko Byrå. Byggs av ingen Vercel
-│   └── beast-of-ages/ ........ YouTube-kanalen. Se dess youtube.md
+│   └── beast-of-ages/ ........ YouTube-kanalen, eget projekt
+│       ├── youtube.md ........ ⭐ ALLA regler + kanalens nuläge. Läs den först
+│       ├── manus/ ............ tre färdiga manus, paket och manus i samma fil
+│       └── analys/ ........... kanalen, konkurrenter, klarerade idéer, utliggare
 ├── data/ ..................... tom sedan klinik-leadsen raderades 2026-08-21
 ├── .tmp/ ..................... slängbart — UTOM session-context.md = lägesbilden
 └── .env ...................... nycklar. Aldrig hårdkodat någon annanstans
@@ -88,8 +102,9 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 för hela listan, samma filer som repots), minnesmappen `~/.claude/projects/…/memory/`,
 `OneDrive/audits/` (OS-audit-rapporter), `OneDrive/Dokument/Backups/higgsfield-genererat/`
 (betalda genereringar utanför repot), Google Drive **H:** (`BahkoByrå/BahkoByra/` —
-contentleveranser, karuseller, Bromma-material), `OneDrive/Skrivbord/youtube/youtube.md`
-(Beast of Ages-regler — Mathias eget YouTube-projekt, skiljt från Bahko Byrå-kunderna).
+contentleveranser, karuseller, Bromma-material). Beast of Ages äldre arbetsmapp
+`OneDrive/Skrivbord/youtube/` (manus från 2025/jan 2026 — reglerna där är ERSATTA, se
+`other-projects/beast-of-ages/youtube.md`).
 
 ## Vill du något? Hit går du
 
@@ -110,7 +125,8 @@ contentleveranser, karuseller, Bromma-material), `OneDrive/Skrivbord/youtube/you
 | Hitta en kunds hemsida/struktur/Drive/SEO-underlag | `content/kundarbete/<kund>/` — mall i `_mall/README.md` |
 | Hitta en demolänk att skicka | `content/leads/demolankar.md` |
 | Se vilka skills som finns | `docs/skills-oversikt.md` |
-| Skriva manus för Beast of Ages (YouTube) | `/manusloop` — regler i `OneDrive/Skrivbord/youtube/youtube.md` |
+| Skriva manus för Beast of Ages (YouTube) | `/manusloop` — regler i `other-projects/beast-of-ages/youtube.md` |
+| Hitta en kundsajts källkod | `bahkobyra/cloud/<kund>/` — ⚠ flytta aldrig, Vercel pekar dit |
 | Sälja: metodik, offer, cadence, JA-protokollet | `workflows/sales_methodology.md` + dashboardens Spelbok |
 | Köra något operativt | dashboarden `web/public/crm-f2822a6f3a/index.html` |
 | Detaljregler (WAT, brand-hex, offer-stegen) | `docs/operativa-regler.md` |

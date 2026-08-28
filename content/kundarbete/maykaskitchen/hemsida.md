@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Live-URL | https://maykaskitchen.se |
-| Källkod (i detta repo) | `.claude/skills/video-to-website/maykas/site/` |
+| Källkod (i detta repo) | `bahkobyra/cloud/maykaskitchen/` |
 | Deploy | `.github/workflows/deploy.yml` — publicerar LIVE vid varje push till `main` (delar pipeline med bahkobyra.se, se bifynd nedan) |
 | Kund sedan | **TODO — inget datum dokumenterat** |
 | Status | Avlyft från 🔒 2026-08-21 (se `docs/heligt.md`, avsnitt "Avlyft") |

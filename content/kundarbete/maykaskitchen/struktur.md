@@ -1,6 +1,6 @@
 # Mayka's Kitchen — sajtstruktur
 
-Byggd ur sidtitlarna i `.claude/skills/video-to-website/maykas/site/` (2026-08-26).
+Byggd ur sidtitlarna i `bahkobyra/cloud/maykaskitchen/` (2026-08-26).
 
 | Sida | Fil | Titel |
 |---|---|---|

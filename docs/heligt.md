@@ -32,9 +32,9 @@ vad. Kundsajternas egna varning bor i `bahkobyra/LASMIG.md`.
 
 ## Avlyft 2026-08-21 (Mathias beslut)
 
-- **`.github/workflows/deploy.yml` + maykas-mappen i skillen.** Deployen är fortfarande LIVE —
+- **`.github/workflows/deploy.yml` + `bahkobyra/cloud/maykaskitchen/`.** Deployen är fortfarande LIVE —
   varje push till main bygger om maykaskitchen.se från de 132 filerna i
-  `.claude/skills/video-to-website/maykas/site/` och skriver över gh-pages i
+  `bahkobyra/cloud/maykaskitchen/` och skriver över gh-pages i
   `BahkoStudio/MaykaKitchen`. Faktumet står kvar med ⚡ i trädet i `CLAUDE.md`, men det krävs
   inget ja längre innan man rör filerna.
 - **`reference/`-PDF:erna.** Alla tre är spårade i git och går att återställa ur historiken. Ett
