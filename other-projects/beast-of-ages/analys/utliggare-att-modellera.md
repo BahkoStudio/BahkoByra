@@ -168,6 +168,73 @@ eller ämne blir självkannibalisering, inte en ny idé. Kontrollera alltid egen
 (`vidiq_channel_videos`) innan konkurrenter — det är billigare och den luckan är lättast
 att missa eftersom unikhetsregeln annars bara letar utåt.
 
+## Runda 2026-08-29 (2): bred sweep efter grönlandshaj-avbrottet
+
+*Kört med `vidiq_outliers`, sökord "extinct animal", "de-extinction", "wild animal
+biology", "prehistoric predator", långform, under 50 000 prenumeranter, tre månader,
+sorterat på breakout. Egen katalog (48 videor) genomgången först för att utesluta
+redan täckta ämnen — dire wolf, mammut/woolly mouse, thylacin, moa/ägg, tänder,
+djuråldrande, T. rex, megalodon, smilodon, stora kattdjur, "vs territory"-serien,
+Arctodus, hästskokrabba, permkatastrofen, Dallas-biobanken, starkaste primaten, och
+DNA-läsningsmisslyckandet är alla redan gjorda.*
+
+### Ett mönster som körs live just nu: "[Art] försvinner i [plats] — [oväntad förövare]"
+
+Två oberoende kanaler fick massiva utliggare på EXAKT samma mall inom loppet av veckor:
+
+**Spotted Lanternflies Are Vanishing in Pennsylvania — The Real Predator Was Unexpected**
+Video: https://www.youtube.com/watch?v=TFF-pusvwM4
+**Past Wilds · 410 prenumeranter · 178 863 visningar · 10:58 · breakout 3125(!)**
+Amerikansk sköldlus dör ut regionalt av en svamp (Batkoa major / Beauveria bassiana),
+inte av bekämpningsprogrammen. 435x kanalens egen bas.
+
+**Feral Hogs Are Vanishing in Louisiana — Then a Drone Caught the Culprit!**
+Video: https://www.youtube.com/watch?v=32WupVHd6FM
+**The Invasive Files · 1 580 prenumeranter · 171 891 visningar · 21:17 · breakout 141**
+Samma mönster: en art som minskar av en oväntad, verifierbar orsak, avslöjad med
+konkreta bevis (drönarfilm). 109x kanalens bas.
+
+**Varför det passar oss:** mallen kräver exakt det vi redan gör bäst — en sann,
+belagd förklaring som slår hål på det uppenbara antagandet, byggd runt EN art. Byt bara
+"invasiv art som minskar" mot "utdöd/nästan utdöd art vars spår dyker upp där ingen
+väntar sig det" (matchar tonen i fyndet nedan om coywolves).
+
+### Something Extinct Is Hiding Inside American Coyotes — And No One Can Explain Why
+
+Video: https://www.youtube.com/watch?v=5Xs91oiyyVk
+Kanal: https://www.youtube.com/channel/UCD37nFVMVsXwVcfoGkCC40A
+**Spoor Files · 2 970 prenumeranter · 66 216 visningar · 12:45 · breakout 40**
+
+**Närmast vår identitet av allt i den här rundan.** Röd varg-DNA (en nästan utdöd art)
+lever kvar inuti vanliga amerikanska coyoter i sydöstra USA — bekräftat genetiskt, en
+riktig de-extinction-adjacent vinkel utan att vara ännu en Colossal-video. Titelmallen
+`Something Extinct Is Hiding Inside [vanlig art] — And No One Can Explain Why` är
+direkt återanvändbar.
+
+### The Only Animal That Hunts King Cobras
+
+Video: https://www.youtube.com/watch?v=lzfYFIxNRFA
+Kanal: https://www.youtube.com/channel/UCKk9t0K5pGswit_J1_cBeAQ
+**Planet Earth Archives · 2 700 prenumeranter · 178 306 visningar · 10:53 · breakout 838**
+
+Mallen `The Only Animal That [gör X mot ett djur alla fruktar]` — en ensam-i-sitt-slag-
+vinkel (mungon). Extremt hög breakout för en liten kanal, värd att notera som mall även
+om djuret självt inte passar vår nisch.
+
+### Bekräftelse på ett redan känt mönster
+
+**The Strangest "Hooved" Mammals of All Time** (Oddball Paleoartist, 3 050 prenumeranter,
+76 467 visningar, breakout 48, 7:25) och **The Animal No Scientist Has Ever Seen Alive |
+Asia's Vanishing Unicorn in Laos** (Animal Earth Documentary, 7 750 prenumeranter,
+19 667 visningar, breakout 25, 32:47 — saolan) bekräftar att udda/sällan-sedda verkliga
+djur fortfarande drar, men ingen av dem slår de fyra ovan.
+
+### Inget nytt av: "de-extinction" och "wild animal biology" som sökord
+
+Båda dominerades av spel-genomspelningar respektive barn-djurljud-videor — noll
+relevanta träffar. Sök på det faktiska ämnet (art, plats, fenomen), aldrig på vår egen
+kategorietikett.
+
 ## Kanallänkar samlat
 
 | Kanal | Prenumeranter | Länk |
