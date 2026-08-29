@@ -18,6 +18,7 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 | `analys/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
 | `analys/klarerade-ideer.md` | Fem unikhetskontrollerade idéer redo att välja bland, plus de dödade |
 | `analys/utliggare-att-modellera.md` | Tio utliggare värda att modellera, plus stopplistan |
+| `analys/modelleringsguide.md` | ⭐ **Reglerna före varje ny video** + Mathias elva godkända referenser |
 | `analys/panelens-beslut.md` | Kolla-over-panelens 15 beslut, tre videor att göra först, vad som skjuts upp |
 
 **En fil per video.** Paketet och manuset bor tillsammans, för de dömdes mot varandra —
