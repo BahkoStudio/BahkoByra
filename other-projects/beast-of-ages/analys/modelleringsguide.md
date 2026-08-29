@@ -179,13 +179,73 @@ månaden och kan inte vinna det loppet.
 
 ---
 
-## Del 3 — Ordningen som gäller
+## Del 3 — Grinden: kollas ALLTID på en vald idé, före allt annat
 
-1. **Egen katalog.** `vidiq_channel_videos` på `UCWxSYqJuIrRX92qZTEm2XwA`. Har vi gjort det?
-2. **Unikhetskontroll utåt.** Tre formuleringar, `vidiq_youtube_search`, sorterat på visningar.
-3. **Jämförbar kanal?** Har någon i vår storleksklass lyckats med det de senaste sex månaderna?
-4. **Djurvalet.** Stort, farligt, ritbart. Byt djur innan du byter mall.
-5. **Betalar vi titelns löfte?** Särskilt för mall A.
-6. **Först då:** paketet, sedan `/manusloop`.
+**Den här körs när en idé är vald och innan en enda rad skrivs.** Inte på idélistan, inte
+på ett ämnesområde — på den faktiska idén. Grinden kostar 15 credits. En kasserad
+manusloop kostar nio rundor kritiker.
 
-Steg 1–3 kostar 15 credits tillsammans. En kasserad manusloop kostar långt mer.
+### Steg 1 — Har vi redan gjort den?
+
+    vidiq_channel_videos({ channelId: 'UCWxSYqJuIrRX92qZTEm2XwA',
+                           videoFormat: 'long', popular: false })
+
+Läs igenom **hela** listan, inte bara titlarna som liknar idén. Grönlandshajsidén dog här:
+studien låg inbakad i `15 Mindblowing Facts About Animals That Don't Age` utan att synas i
+titeln.
+
+**Dödar idén:** ämnet finns i en egen video, även som ett avsnitt inuti en listvideo.
+
+### Steg 2 — Har någon annan gjort den?
+
+    vidiq_youtube_search({ query: '<formulering>', type: ['video'], order: 'viewCount' })
+
+**Tre olika formuleringar, aldrig en.** En formulering missade att Knapp publicerat exakt
+samma fråga tolv dagar tidigare, och Pig Milk-manuset fick kasseras färdigskrivet.
+
+Sök på **art, plats eller fenomen** — aldrig på vår egen kategorietikett. "de-extinction"
+och "wild animal biology" gav spelgenomspelningar och barn-djurljud. "extinct animal" och
+"prehistoric predator" gav riktiga träffar.
+
+**Dödar idén:** en färsk eller synlig video med samma idé i engelsk långform.
+**Dödar inte:** efterfrågan bevisad i Shorts eller på andra språk medan engelsk långform
+står tom — *det är exakt gapet kanalen kan äga.*
+
+### Steg 3 — Har en JÄMFÖRBAR kanal nyss lyckats?
+
+Filtrera träffarna från steg 2 på kanalstorlek och datum.
+
+| Vad du hittar | Vad det betyder |
+|---|---|
+| Stor kanal (100k+) har täckt ämnet | Varning. Vinkeln måste vara tydligt annorlunda |
+| Kanal i vår storleksklass, äldre än sex månader | Gå vidare, men läs vad de gjorde |
+| **Kanal i vår storleksklass, lyckad, senaste sex månaderna** | **Stopp. Idén är död.** |
+
+Chronic wasting disease dog här: Pack Vibes, 18 500 prenumeranter, 738 822 visningar,
+tre månader gammal, nästan exakt konceptet.
+
+### Steg 4 — Är förpackningen vår egen?
+
+Håll den planerade titeln och miniatyren mot referensen.
+
+1. Går titeln att lägga bredvid referensens utan att man ser att de är släkt?
+2. Delar miniatyren komposition, färgspråk eller textplacering med referensen?
+
+Ett nej på ettan eller ett ja på tvåan betyder kopiering — bygg om förpackningen.
+Se `reference/modellering-vs-kopiering.md`.
+
+### Steg 5 — Bär djuret och betalar titeln?
+
+- **Djurvalet:** stort, farligt, ritbart. Byt djur innan du byter mall. Hippo 529 653 mot
+  duva 60 095 på identisk mall.
+- **Titelns löfte:** lovar den ett fynd måste videon leverera ett. Gäller särskilt mall A.
+
+### Först när alla fem är gröna
+
+Paketet skrivs, sedan `/manusloop`.
+
+### Dokumentera utfallet
+
+Dödad idé läggs i tabellen "Dödade av kontrollen" i `klarerade-ideer.md` med skälet och
+siffran. Fem idéer har redan dött i den här grinden — de står där så ingen föreslår dem
+igen.
