@@ -81,16 +81,57 @@ Frågeformen fångar sökbeteendet hos den äldre publiken och lovar bara ett sv
 
 ### Thumbnail
 
-**Text i bild:** `NO PREDATOR. NO WOUNDS.`
+*Omarbetad 2026-08-29 mot `reference/thumbnail-reglerna.md`. Den tidigare versionen står
+längst ner med skälet till bytet.*
+
+**Motivet kommer ur manusets höjdpunkt** (regel 16): *"The killer was not an invader. It
+was a passenger. It was inside them all along"* — bakterien bodde i djurets egen nos.
+Nosen är alltså både det som ger klicket och mordvapnet. Miniatyren ska visa nosen, inte
+ett porträtt som råkar innehålla den.
+
+**Frågan vi vill väcka:** hur kan en nos döda 200 000 djur på tre veckor?
+**Känslan:** obehag inför något som ser fel ut och bär på något man inte kan se.
+
+**Text i bild — översta tredjedelen, vänsterställd.** A/B-testa dessa fyra:
+
+| Variant | Ord | Kommentar |
+|---|---|---|
+| A | `IT WAS INSIDE THEM` | Manusets egen rad. Väcker frågan utan att avslöja svaret |
+| B | `NO PREDATOR. NO WOUNDS.` | Den gamla. Två meningar, tar mer plats i övre tredjedelen |
+| C | `200,000 IN 3 WEEKS` | Siffran bär ensam. Ingen fråga, bara skala |
+| D | `THE KILLER WAS THE NOSE` | Tydligast koppling till bilden, men avslöjar mest |
 
 **Prompt:**
 
 ```
-Photorealistic close-up wildlife portrait of a saiga antelope, head and upper neck only, three-quarter view facing slightly left, its large drooping bulbous trunk-like nose clearly visible and dominating the face, pale sandy summer fur with fine visible texture, one dark glossy round eye catching the light, two ringed translucent amber horns rising out of frame, calm alert expression, healthy living animal, crisp professional wildlife photography, tack-sharp focus on the nose and eye, hard clean cutout against a solid deep teal background that fills the entire frame, one single saturated background color, strong soft key light from the upper left, subtle warm rim light separating the fur from the background, no text, no letters, no other animals, no landscape, no ground, 8k detail
-
----
-Motivering (svenska, ingår inte i prompten): Saigans huvud i närbild valdes framför stäppvidden. Kanalens vinnarform är ett enda huvudmotiv hårt urklippt mot en mättad färg, och saigans nos är en gåta i sig: ett djur som ser fel ut får klicket av sig själv, precis som titeln lovar något som inte stämmer. Stäppvidden med vita former läser inte i mobilstorlek och drar dessutom mot kadaverfrosseri, vilket ribban förbjuder. Teal som bakgrund kompletterar den sandfärgade pälsen så motivet lyfter. Ett levande, friskt djur i bild gör också kontrasten mot titelns 200 000 döda till själva spänningen.
+Photorealistic extreme close-up of a living saiga antelope's head, filling the right two-thirds of the frame, turned in three-quarter view facing left, its huge drooping bulbous trunk-like nose the unmistakable subject and running from the top of the frame down through the centre, pale sandy summer fur with fine visible texture, one dark glossy round eye catching the light in the upper right, faint warm breath vapour drifting from the nostrils into cool air, healthy alert living animal, crisp professional wildlife photography, tack-sharp focus on the nostrils and the eye, hard clean cutout against a solid deep teal background that fills the entire frame, one single saturated background colour, clear empty background space in the upper left third reserved for text, strong soft key light from the upper left, subtle warm rim light separating the fur from the background, no text, no letters, no other animals, no landscape, no ground, no carcasses, 8k detail
 ```
+
+**50-procentstestet:** täcker man nedre halvan syns fortfarande texten uppe till vänster,
+nosens övre del och ögat. Kompositionen är byggd för det — publiken är 45–70 och tittar
+på TV, där bara övre delen visas innan man trycker ned.
+
+**Motivering (svenska, ingår inte i prompten):** Kanalens vinnarform behålls — ett enda
+huvudmotiv, hårt urklippt, mättad enfärgad bakgrund, levande friskt djur. Tre saker är
+ändrade. Motivet är nu **nosen** i stället för ett huvudporträtt, eftersom nosen är
+manusets höjdpunkt och inte bara en udda detalj i ansiktet. **Andedräkten** lades till
+för att den kopplar det ritbara till mekanismen: det var luftfuktigheten som utlöste
+bakterien, och ånga ur nosborrarna antyder det utan att påstå något manuset inte betalar.
+**Övre vänstra tredjedelen hålls tom** för texten, vilket den gamla prompten inte
+specificerade alls. Teal kompletterar fortfarande den sandfärgade pälsen. Stäppvidden med
+vita former är fortsatt utesluten: den läser inte i miniatyrstorlek och drar mot
+kadaverfrosseri, vilket ribban förbjuder.
+
+<details>
+<summary>Tidigare version (före 2026-08-29)</summary>
+
+Text i bild: `NO PREDATOR. NO WOUNDS.` Prompt: helhuvudporträtt i trekvartsvy, lugnt
+alert uttryck, horn ut ur bild, teal bakgrund. Motiveringen valde huvudet framför
+stäppvidden med rätt argument om vinnarformen, men motivet var valt på **relevans** mot
+titeln i stället för på fråga och känsla, textplaceringen var ospecificerad, och motivet
+härleddes inte ur manusets höjdpunkt. Alla tre är brott mot
+`reference/thumbnail-reglerna.md`.
+</details>
 
 ### Beskrivning
 
