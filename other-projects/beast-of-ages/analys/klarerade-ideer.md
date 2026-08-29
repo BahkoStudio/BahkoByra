@@ -69,6 +69,9 @@ vara ÄLGEN och historien, aldrig "reglerna för domesticering".
 | Varför gamar inte blir sjuka | MinuteEarth 5,75M, Today I Found Out 268k |
 | Betlösa elefanter (Gorongosa) | Vox 597k, Terra Mater 276k |
 | Grönlandshaj/392-årsstudien (allt "djur som knappt åldras") | **Egen kanal** — redan täckt i "15 Mindblowing Facts About Animals That Don't Age" (2026-08-02) |
+| Chytridsvampen/globalt groddjursdöd | National Geographic (flera), Seeker 5M-kanal, SciShow 8,4M-kanal (420k), Deep Look/KQED 1,1M, Smithsonian — genomtröskat sedan över ett decennium |
+| White-nose syndrome/fladdermössdöden | Living Moves (4 670 prenum.) gjorde nästan ordagrant samma video 2026-07-08. Plus VICE, HBO, PBS Wild Hope (flera), Smithsonian, AP |
+| Chronic wasting disease/"zombie deer" | Pack Vibes (18 500 prenum.) 738 822 visningar 2026-05-31 — nästan exakt samma koncept, jämförbar kanalstorlek, tre månader gammalt. Plus TIME, HuffPost 1,9M, Joe Rogan-klipp 1,25M, viral short 51M |
 
 Mönstret: idéer som KÄNNS färska är ofta redan tagna av just den anledningen — de är bra.
 De fem klarerade överlevde för att efterfrågan bara bevisats i Shorts eller på andra språk,
