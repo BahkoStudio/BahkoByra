@@ -62,6 +62,17 @@ Den här säger vad vi gör med det.
     grizzly). Vi betalar löftet eller använder inte mallen. Det var precis därför
     titelkritikern strök La Brea-varianten.
 
+15. **Modellering, aldrig kopiering.** Samma ämne som en referens är tillåtet. Samma
+    titelformulering plus samma miniatyrkomposition är kopiering, och det straffas hårt:
+    en kanal tog Economics Explaineds titel ordagrant och byggde om miniatyren element
+    för element med ett ord utbytt — **5,1 miljoner visningar mot 2 500**. Källa och
+    bevisbilder: `reference/modellering-vs-kopiering.md`.
+
+    Kontrollfrågan före publicering: går titeln att lägga bredvid referensens utan att
+    man ser att de är släkt, och delar miniatyren komposition, färgspråk eller
+    textplacering med den? **Mallarna nedan är element att bygga om, inte formulär att
+    fylla i.**
+
 **Ingen utförbarhets- eller nischspärr.** Referenserna nedan är godkända av Mathias och
 gäller även när formatet ligger utanför kanalens vanliga. Vad som går att låna ur var och
 en står i kolumnen "Att låna".
