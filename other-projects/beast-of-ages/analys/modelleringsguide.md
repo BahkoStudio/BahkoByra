@@ -21,6 +21,7 @@ Den här säger vad vi gör med det.
    inte en publikbeskrivning.
 4. **Utliggarribban är 3 000–5 000 visningar.** Kanalen står i testläge, inte
    dubbla ner-läge. Direktvargsspåret är slut.
+   Källdokumentet ordagrant med fallstudie: `reference/testa-vs-dubbla-ner.md`.
 5. **Inga påhittade djurfakta.** Osäker siffra betyder att meningen skrivs om så den
    inte behöver siffran.
 6. **Unikhetsregeln:** tre olika formuleringar via `vidiq_youtube_search` innan en loop
