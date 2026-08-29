@@ -73,6 +73,22 @@ Den här säger vad vi gör med det.
     textplacering med den? **Mallarna nedan är element att bygga om, inte formulär att
     fylla i.**
 
+16. **Miniatyrmotivet väljs ur manusets höjdpunkt**, inte ur titeln och inte ur en
+    generisk bild av djuret. Vanligtvis mekanik 6 (den mörkare mittvändningen) eller
+    mekanik 8 (den obekväma sanningen). Fyra hårda krav, fulla reglerna i
+    `reference/thumbnail-reglerna.md`:
+
+    - **50-procentstestet.** Täck nedre halvan — finns nog kvar för att någon ska vilja
+      trycka ned på fjärrkontrollen? Text i **översta tredjedelen**. Publiken är 45–70
+      och tittar på TV, så det här är kanalens viktigaste miniatyrregel.
+    - **Fråga och känsla före relevans.** Börja inte med "vad ska jag visa" utan med
+      "vad ska tittaren undra och känna". *Questions and emotions trump relevance every
+      time.*
+    - **10–15 referenser före varje miniatyr**, från fem håll: egna utliggare, andras
+      utliggare, modellkanaler, bokmärken, utanför plattformen. Låna **mekanismen**
+      (hur den väcker frågan), aldrig kompositionen.
+    - **Textvarianter.** Fem minuter på alternativa ord varje gång text sätts i bild.
+
 **Ingen utförbarhets- eller nischspärr.** Referenserna nedan är godkända av Mathias och
 gäller även när formatet ligger utanför kanalens vanliga. Vad som går att låna ur var och
 en står i kolumnen "Att låna".
@@ -239,6 +255,8 @@ Se `reference/modellering-vs-kopiering.md`.
 - **Djurvalet:** stort, farligt, ritbart. Byt djur innan du byter mall. Hippo 529 653 mot
   duva 60 095 på identisk mall.
 - **Titelns löfte:** lovar den ett fynd måste videon leverera ett. Gäller särskilt mall A.
+- **Miniatyren:** motivet hämtat ur manusets höjdpunkt, klarar 50-procentstestet, väcker
+  en fråga eller en känsla. Regel 16 och `reference/thumbnail-reglerna.md`.
 
 ### Först när alla fem är gröna
 

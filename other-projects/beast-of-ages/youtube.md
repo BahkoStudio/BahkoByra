@@ -21,6 +21,7 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 | `analys/modelleringsguide.md` | ⭐ **Reglerna före varje ny video** + Mathias elva godkända referenser |
 | `reference/testa-vs-dubbla-ner.md` | Källdokumentet bakom testa/dubbla ner-ramverket, med Vintage Vehicles-fallstudien |
 | `reference/modellering-vs-kopiering.md` | Var gränsen går mellan att låna och att stjäla, med bevisbilder |
+| `reference/thumbnail-reglerna.md` | 50-procentstestet, fråga före relevans, referensinsamling |
 | `analys/panelens-beslut.md` | Kolla-over-panelens 15 beslut, tre videor att göra först, vad som skjuts upp |
 
 **En fil per video.** Paketet och manuset bor tillsammans, för de dömdes mot varandra —
@@ -90,6 +91,10 @@ gissa aldrig. Kopplingen ska vara ett ämne, inte en artighetsfras.
 
 **"Shocked" är brus, inte mekanism.** Midnight Zone har ett dussin titlar med ordet,
 spännvidd 107 till 1 005 832.
+
+**Miniatyrmotivet hämtas ur manusets höjdpunkt**, inte ur titeln. Texten ligger i översta
+tredjedelen och bilden ska klara 50-procentstestet — publiken tittar på TV, där bara övre
+delen syns innan man trycker ned. Fulla reglerna: `reference/thumbnail-reglerna.md`.
 
 ## Så hittas nya utliggare
 
