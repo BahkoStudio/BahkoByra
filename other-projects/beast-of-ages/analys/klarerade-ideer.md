@@ -68,6 +68,7 @@ vara ÄLGEN och historien, aldrig "reglerna för domesticering".
 | Ålarnas gåta | Smart Nonsense 29M, Thoughty2 3,3M, TED-Ed 2,7M, Auralis 46-min 1,5M |
 | Varför gamar inte blir sjuka | MinuteEarth 5,75M, Today I Found Out 268k |
 | Betlösa elefanter (Gorongosa) | Vox 597k, Terra Mater 276k |
+| Grönlandshaj/392-årsstudien (allt "djur som knappt åldras") | **Egen kanal** — redan täckt i "15 Mindblowing Facts About Animals That Don't Age" (2026-08-02) |
 
 Mönstret: idéer som KÄNNS färska är ofta redan tagna av just den anledningen — de är bra.
 De fem klarerade överlevde för att efterfrågan bara bevisats i Shorts eller på andra språk,

@@ -144,6 +144,30 @@ Channels-listan lyfter fram har noll långformsvideor — deras siffror är Shor
 
 ---
 
+## Runda 2026-08-29: djurlängd/"varför lever vissa djur i århundraden"
+
+*Sökt via `vidiq_youtube_search` (tre formuleringar) efter research på en artikel om
+grönlandshajens 392-årsstudie. Ingen ny modellerbar kanal hittades — mönstret från
+50k–150k-svepet upprepar sig: ämnet ägs antingen av stora etablerade kanaler eller
+ren Shorts, inget hantverksskikt däremellan.*
+
+| Kanal | Prenumeranter | Video | Format |
+|---|---|---|---|
+| Real Science | 2 090 000 | The Insane Biology of: The Greenland Shark (1,9M) | För stor att jämföra |
+| Animalogic | 2 150 000 | Greenland Shark: 500 Years Old, Blind, and Pregnant for 18 Years (1M) | För stor att jämföra |
+| Astrum Earth | 456 000 | 5 Animals That Broke the Rules of Death (2,8M) | Strukturellt intressant — en regel, fem djur som fallstudier, 32 min. För stor för direkt jämförelse men formen är värd att notera |
+| Exsayne | 1 290 | Every Animals That Live Extremely Long Explained (93 visningar) | Vårt format, vår storlek, men ingen breakout — inget att lära |
+| Creature Scope | 120 | 10 Animals That Can Live for CENTURIES! (1 107) | Shorts, fel format |
+
+**Viktigaste fyndet är inte en konkurrent — det är vår egen kanal.** `15 Mindblowing
+Facts About Animals That Don't Age` (publicerad 2026-08-02, `oxfdffExWCM`) täcker redan
+exakt grönlandshaj-studien (Nielsen 2016, 392 år, spannet 272–512, könsmognad ~150 år)
+plus hela resten av fältet: odödliga maneten, nakna mullvadsråttan, musslan Ming och
+"clamgate", Pando-aspen, tuataran, sköldpaddan Jonathan. En ny video om samma artikel
+eller ämne blir självkannibalisering, inte en ny idé. Kontrollera alltid egen katalog
+(`vidiq_channel_videos`) innan konkurrenter — det är billigare och den luckan är lättast
+att missa eftersom unikhetsregeln annars bara letar utåt.
+
 ## Kanallänkar samlat
 
 | Kanal | Prenumeranter | Länk |
