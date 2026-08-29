@@ -83,8 +83,10 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 ├── other-projects/ ........... allt som INTE är Bahko Byrå. Byggs av ingen Vercel
 │   └── beast-of-ages/ ........ YouTube-kanalen, eget projekt
 │       ├── youtube.md ........ ⭐ ALLA regler + kanalens nuläge. Läs den först
-│       ├── manus/ ............ tre färdiga manus, paket och manus i samma fil
-│       └── analys/ ........... kanalen, konkurrenter, klarerade idéer, utliggare
+│       ├── manus/ ............ fyra färdiga manus, paket och manus i samma fil
+│       ├── analys/ ........... kanalen, konkurrenter, klarerade idéer, utliggare
+│       │   └── modelleringsguide.md  ⭐ reglerna + GRINDEN före varje ny video
+│       └── reference/ ........ källdokumenten bakom reglerna, med bevisbilder
 ├── data/ ..................... tom sedan klinik-leadsen raderades 2026-08-21
 ├── .tmp/ ..................... slängbart — UTOM session-context.md = lägesbilden
 └── .env ...................... nycklar. Aldrig hårdkodat någon annanstans
@@ -128,6 +130,7 @@ contentleveranser, karuseller, Bromma-material). Beast of Ages äldre arbetsmapp
 | Hitta en demolänk att skicka | `content/leads/demolankar.md` |
 | Se vilka skills som finns | `docs/skills-oversikt.md` |
 | Skriva manus för Beast of Ages (YouTube) | `/manusloop` — regler i `other-projects/beast-of-ages/youtube.md` |
+| Välja eller kontrollera en videoidé (Beast of Ages) | `other-projects/beast-of-ages/analys/modelleringsguide.md` — grinden i del 3 körs ALLTID först |
 | Hitta en kundsajts källkod | `bahkobyra/cloud/<kund>/` — ⚠ flytta aldrig, Vercel pekar dit |
 | Sälja: metodik, offer, cadence, JA-protokollet | `workflows/sales_methodology.md` + dashboardens Spelbok |
 | Köra något operativt | dashboarden `web/public/crm-f2822a6f3a/index.html` |
@@ -197,7 +200,7 @@ utanför deployflödet — en ändring där kan aldrig ta ner en kundsajt.
 Engelskspråkig publik på ett svenskt konto: **manus skrivs på engelska**, samtal om arbetet
 förs på svenska. Full bakgrund och alla regler i `other-projects/beast-of-ages/youtube.md`.
 
-Fem saker att veta innan något görs där:
+Sex saker att veta innan något görs där:
 
 1. **Mät på median, aldrig på snitt.** 81,5 procent av kanalens livstidsvisningar sitter i
    en enda nyhetsvåg (Colossals varghybrider, mars 2026). Snittet 6 890 visningar per video
@@ -221,6 +224,14 @@ Fem saker att veta innan något görs där:
 5. **Påhittade djurfakta är oacceptabla.** Bitkraft, hastighet, livslängd, temperatur,
    populationssiffror. Det är i wildlife falska djurfakta
    sprids snabbast och lever längst. Osäker: skriv om meningen så den inte behöver siffran.
+6. **En vald idé går genom GRINDEN innan en rad skrivs.** Fem steg i
+   `analys/modelleringsguide.md`, del 3: har vi redan gjort den, har någon annan gjort
+   den (tre formuleringar, aldrig en), har en jämförbar kanal nyss lyckats, är
+   förpackningen vår egen, bär djuret. **Grinden kostar 15 credits. En kasserad
+   manusloop kostar nio rundor kritiker.** Fem idéer har redan dött där — de står i
+   `analys/klarerade-ideer.md` så ingen föreslår dem igen. Modellera aldrig genom att
+   kopiera: samma ämne är tillåtet, samma titel plus samma miniatyr är det inte
+   (`reference/modellering-vs-kopiering.md`).
 
 vidIQ är kopplat som MCP-server på användarnivå och läser kanalen direkt
 (`vidiq_channel_stats`, `vidiq_outliers`, `vidiq_video_transcript`, m.fl., 5 credits per anrop).
