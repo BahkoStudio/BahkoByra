@@ -4,7 +4,7 @@
 visningar. Klarerad = ingen synlig eller färsk video med samma idé i engelsk långform.
 Publiken: män, 82 % över 35, största gruppen 65+.*
 
-## 1. Why Do Deer Freeze in Headlights?
+## 1. Why Do Deer Freeze in Headlights? ✅ SKRIVEN — se `manus/deer-freeze-headlights.md`
 
 **Format:** Knapp-vardagsfråga. **Läget:** långformen är TOM — största träffen är 2:32
 från 2018 med 15 324 visningar. Efterfrågan bevisad brutalt: en 16-sekunders Short har
