@@ -62,7 +62,7 @@
       'recipes.title': 'Populära recept',
       'recipes.desc':  'Autentiska assyriska och syrianska rätter kombinerade med moderna smaker – enkla tillagningsmetoder och djupa, äkta smaker som hela familjen älskar.',
       'recipes.all':   'Se alla recept',
-      'recipes.count': '16+ autentiska recept från Mayka',
+      'recipes.count': '17+ autentiska recept från Mayka',
       /* SHARED RECIPE UI */
       'badge.popular': 'Populärt',
       'recipe.view':   'Visa recept →',
@@ -83,6 +83,7 @@
       'tag.gryta':         'Gryta',
       'tag.meze':          'Meze',
       'tag.nyhetsmorgon':  'Nyhetsmorgon',
+      'tag.brod':          'Bröd',
       /* RECIPE CARDS */
       'rc1.name':     'Qrimyothe – Mormors munkar 🍩',
       'rc1.desc':     'Mamma berättar om mormors kärlek i varje tugga. Mer än bara ett recept – ett stycke historia.',
@@ -111,6 +112,8 @@
       'rc9.name':     'Hummus x 3',
       'rc9.desc':     'Grundreceptet plus två smaksättningar – krämig, syrlig och supergod.',
       'rc9.portions': '4–6 portioner',
+      'rc10.name':    'Lahmo do bayto',
+      'rc10.desc':    'Husets bröd – mjuk deg som gräddas till gyllene, fluffiga bröd.',
       /* CTA */
       'cta.label':       'Kontakt &amp; Samarbeten',
       'cta.heading':     'Låt oss skapa<br>tillsammans',
@@ -207,7 +210,7 @@
       'recipes.title': 'Popular recipes',
       'recipes.desc':  'Authentic Assyrian and Syriac dishes combined with modern flavours – simple methods and deep, genuine tastes the whole family will love.',
       'recipes.all':   'See all recipes',
-      'recipes.count': '16+ authentic recipes by Mayka',
+      'recipes.count': '17+ authentic recipes by Mayka',
       /* SHARED RECIPE UI */
       'badge.popular': 'Popular',
       'recipe.view':   'View recipe →',
@@ -228,6 +231,7 @@
       'tag.gryta':         'Stew',
       'tag.meze':          'Meze',
       'tag.nyhetsmorgon':  'Morning TV',
+      'tag.brod':          'Bread',
       /* RECIPE CARDS */
       'rc1.name':     "Qrimyothe – Grandma's doughnuts 🍩",
       'rc1.desc':     "Mum tells of grandma's love in every bite. More than just a recipe – a piece of history.",
@@ -256,6 +260,8 @@
       'rc9.name':     'Hummus x 3',
       'rc9.desc':     'The base recipe plus two variations – creamy, tangy and delicious.',
       'rc9.portions': '4–6 servings',
+      'rc10.name':    'Lahmo do Bayto',
+      'rc10.desc':    'The bread of the house – a soft dough baked into golden, fluffy loaves.',
       /* CTA */
       'cta.label':       'Contact &amp; Collaborations',
       'cta.heading':     "Let's create<br>together",

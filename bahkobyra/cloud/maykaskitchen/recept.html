@@ -420,6 +420,31 @@ const RECIPES = {
     ],
     tips: ['Gör grundreceptet först och dela sedan upp det om du vill göra flera smaker'],
     tips_en: ['Make the base first, then divide it if you want to make several flavours']
+  },
+  'lahmo-do-bayto': {
+    title: 'Lahmo do bayto',
+    title_en: 'Lahmo do Bayto',
+    description: 'Mjukt hembakat bröd – assyriskt/syrianskt husets bröd. Mjuk, smidig deg som gräddas till gyllene, fluffiga bröd.',
+    description_en: 'Soft home-baked bread – Assyrian/Syriac house bread. A soft, supple dough baked into golden, fluffy loaves.',
+    image: 'img/lahmo-do-bayto.jpg',
+    badges: ['Assyriskt','Syrianskt','Bröd','Bakverk'],
+    personalStory: 'Lahmo do bayto betyder husets bröd. Hemligheten sitter i degen: den ska vara mjuk, smidig och gärna lite klibbig. Fresta inte att arbeta in för mycket mjöl – det är där brödet blir torrt.',
+    personalStory_en: 'Lahmo do bayto means the bread of the house. The secret is in the dough: it should be soft, supple and even a little sticky. Resist working in too much flour – that is where the bread turns dry.',
+    ingredients: [
+      {section:'Deg',section_en:'Dough',
+        items:['50 g färsk jäst','8 dl fingervarmt vatten','1 msk salt','¾ dl rapsolja','Ca 17–18 dl vetemjöl'],
+        items_en:['50 g fresh yeast','8 dl lukewarm water','1 tbsp salt','¾ dl rapeseed oil','About 17–18 dl plain flour']}
+    ],
+    instructions: [
+      {section:'Gör degen',section_en:'Make the dough',
+        steps:['Smula jästen i en stor bunke och lös upp den i det fingervarma vattnet.','Tillsätt salt och rapsolja.','Arbeta in mjölet lite i taget. Börja med cirka 16 dl och tillsätt mer vid behov. Degen ska vara mjuk, smidig och gärna lite klibbig – undvik att tillsätta för mycket mjöl.','Knåda degen ordentligt och låt den jäsa övertäckt tills den har ungefär dubblat sin storlek.'],
+        steps_en:['Crumble the yeast into a large bowl and dissolve it in the lukewarm water.','Add salt and rapeseed oil.','Work in the flour a little at a time. Start with about 16 dl and add more if needed. The dough should be soft, supple and even slightly sticky – avoid adding too much flour.','Knead the dough thoroughly and leave it covered to rise until roughly doubled in size.']},
+      {section:'Forma och grädda',section_en:'Shape and bake',
+        steps:['Dela degen i lika stora bitar och forma dem till runda bröd. Ha lite olja på händerna och platta försiktigt till bröden.','Lägg bröden på en plåt med bakplåtspapper och låt jäsa ytterligare 30 minuter.','Grädda i 220°C varmluft i cirka 20 minuter, eller tills bröden har fått en fin gyllene färg.'],
+        steps_en:['Divide the dough into equal pieces and shape them into round loaves. Put a little oil on your hands and gently flatten them.','Place the loaves on a baking tray lined with baking paper and leave to rise for another 30 minutes.','Bake at 220°C fan for about 20 minutes, or until the loaves have taken on a nice golden colour.']}
+    ],
+    tips: ['Degen ska vara lite klibbig – för mycket mjöl ger torrt bröd','Olja på händerna gör det lätt att forma bröden','Gräddas i 220°C varmluft, cirka 20 minuter'],
+    tips_en: ['The dough should be slightly sticky – too much flour makes the bread dry','Oil on your hands makes the loaves easy to shape','Baked at 220°C fan for about 20 minutes']
   }
 };
 
@@ -469,14 +494,14 @@ function render() {
         <h1 class="recipe-title">${title}</h1>
         <p class="recipe-desc">${description}</p>
         <div class="recipe-meta">
-          <span class="recipe-meta-item">
+          ${r.time ? `<span class="recipe-meta-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
             <strong>${r.time} ${getT('r.min')}</strong>
-          </span>
-          <span class="recipe-meta-item">
+          </span>` : ''}
+          ${r.portions ? `<span class="recipe-meta-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             <strong>${r.portions} ${getT('r.portions')}</strong>
-          </span>
+          </span>` : ''}
         </div>
       </div>
     </div>
