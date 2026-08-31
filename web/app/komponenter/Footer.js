@@ -90,7 +90,7 @@ export default function Footer() {
 
         <div className={styles.botten}>
           <span>© {new Date().getFullYear()} Bahko Byrå</span>
-          <span>Org.nr 980923-8877 · Godkänd för F-skatt</span>
+          <span>Org.nr 650816-7738 · Godkänd för F-skatt</span>
           <span>bahkobyra.se</span>
         </div>
       </div>
