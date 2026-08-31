@@ -551,7 +551,7 @@ kbd{
   </div>
   <div class="mal">
     <div class="t">Samtalets enda mål</div>
-    <b>Klarhet och ett beslut.</b> Ja: nästa steg. Nej: stäng snyggt. Nu, senare eller aldrig.
+    <b>Klarhet och ett beslut.</b> Ja = mejl in och svar på testmejlet. Nej = stäng snyggt.
   </div>
 </aside>
 
@@ -572,10 +572,12 @@ kbd{
       <div class="s">Klarhet och ett beslut.</div>
       <p>Inte sälja. Inte övertala. <b>Ja → nästa steg. Nej → diskvalificera och stäng snyggt.</b>
       Varje samtal slutar i ett av tre lägen: nu, senare eller aldrig — och alla tre är bra svar,
-      för alla tre går att agera på.</p>
+      för alla tre går att agera på. Säger de ja är kvittot konkret: <b>en mejladress in, och ett
+      svar på testmejlet tillbaka.</b></p>
       <div class="flode">
-        <span>Förbered</span><i>→</i><span>Vilket läge?</span><i>→</i><span class="hl">Dagens manus</span><i>→</i>
-        <span class="hl">Beslut</span><i>→</i><span>Möte</span><i>→</i><span>Erbjudande</span><i>→</i><span>Kund</span>
+        <span>Förbered</span><i>→</i><span>Läge</span><i>→</i><span class="hl">Dagens manus</span><i>→</i>
+        <span class="hl">Mejl in</span><i>→</i><span class="hl">Svar</span><i>→</i><span>Demo</span><i>→</i>
+        <span>Möte</span><i>→</i><span>Erbjudande</span><i>→</i><span>Kund</span>
       </div>
     </div>
 
@@ -680,9 +682,11 @@ kbd{
         <button class="ms-chip" data-hopp="ms-lage"><b>?</b><span>Läget</span></button>
         <button class="ms-chip" data-hopp="ms-d1"><b>1</b><span>Dag 1</span></button>
         <button class="ms-chip" data-hopp="ms-ig"><b>IG</b><span>Instagram</span></button>
-        <button class="ms-chip" data-hopp="ms-d3"><b>3</b><span>Dag 3</span></button>
-        <button class="ms-chip" data-hopp="ms-d5"><b>5</b><span>Dag 5</span></button>
-        <button class="ms-chip" data-hopp="ms-d7"><b>7</b><span>Dag 7</span></button>
+        <button class="ms-chip" data-hopp="ms-kropp"><b>2</b><span>Kroppen</span></button>
+        <button class="ms-chip" data-hopp="ms-avslut"><b>3</b><span>Avslutet</span></button>
+        <button class="ms-chip" data-hopp="ms-d3"><b>d3</b><span>Dag 3</span></button>
+        <button class="ms-chip" data-hopp="ms-d5"><b>d5</b><span>Dag 5</span></button>
+        <button class="ms-chip" data-hopp="ms-d7"><b>d7</b><span>Dag 7</span></button>
         <button class="ms-chip" data-hopp="ms-gk"><b>G</b><span>Gatekeeper</span></button>
         <button class="ms-chip" data-hopp="ms-tyst"><b>✆</b><span>Ingen svarar</span></button>
         <button class="ms-chip" data-hopp="ms-inv"><b>!</b><span>Invändning</span></button>
@@ -738,8 +742,7 @@ kbd{
         </div>
         <div class="gor">
           <div class="h">Vad du gör</div>
-          <p><b>"Ja"</b> → kör tvåminutersversionen direkt: smärtan, vad den kostar, och frågan om ett
-          15-minuterssamtal. Boka med två tider att välja på.</p>
+          <p><b>"Ja"</b> → kör Kroppen nedan direkt: smärtan, beviset och gratisförslaget.</p>
           <p><b>"Nej"</b> → tacka vänligt, logga, klart. Ett rent nej är ett bra utfall.</p>
           <p><b>"Vem är du?" / tveksam</b> → en mening: "vi bygger hemsidor åt bygg- och hantverksfirmor,
           och jag ringer bara när jag sett något konkret." Sen tillbaka till frågan.</p>
@@ -758,20 +761,73 @@ kbd{
         <div class="m-namn">Öppningen · leadet kom från Instagram</div>
         <div class="sag">
           <div class="h">Du säger</div>
-          <p>"Hej <span class="var">[NAMN]</span>! <span class="var">[Ditt förnamn]</span> heter jag —
-          vi hörde av oss till er på Instagram häromdagen om er hemsida. Jag ringer för att jag inte
-          ville att det skulle drunkna i meddelanden: det jag såg var att <span class="var">[SMÄRTA]</span>.</p>
-          <p><b>Är det värt två minuter för att se om det är relevant för er, eller ska jag släppa det?</b>"</p>
+          <p>"Hej <span class="var">[NAMN]</span>! <span class="var">[Ditt förnamn]</span> heter jag.
+          Jag kontaktade er på Instagram efter att jag sökt efter hantverkare och märkt att
+          <span class="var">[SMÄRTA]</span> var lite konstig och otydlig — det är därför jag ringer.</p>
+          <p><b>Är jag helt orelevant, eller är det värt ett två minuters samtal för att se om det är
+          relevant för er?</b>"</p>
         </div>
         <div class="gor">
           <div class="h">Vad du gör</div>
-          <p>Samma vägar som Google-öppningen. Skillnaden är bara att du <b>knyter an till meddelandet</b>
-          — det gör samtalet väntat i stället för kallt.</p>
+          <p><b>"Ja"</b> → Kroppen nedan, precis som Google-spåret.</p>
+          <p><b>"Nej"</b> → tacka vänligt, logga, klart. Ett rent nej är ett bra utfall.</p>
         </div>
         <div class="regel">
           <div class="h">Villkoret</div>
           <p>Den här öppningen används <b>bara</b> när ett Instagram-meddelande faktiskt är skickat och
           loggat i CRM:et. Hitta aldrig på en kontakt som inte hänt.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-steg" id="ms-kropp">
+      <div class="m-nr">2</div>
+      <div>
+        <div class="m-namn">Kroppen · efter ja till två minuter</div>
+        <div class="sag">
+          <div class="h">Du säger</div>
+          <p>"Jag ska vara snabb. <span class="var">[SMÄRTA]</span> är en sån grej som gör att folk
+          ringer nästa firma istället — fast ni antagligen gör ett bättre jobb.</p>
+          <p>Vi har haft kunder med en sida som liknar er, där små justeringar gett <b>tolv procent
+          fler kundförfrågningar</b>.</p>
+          <p>Vi bygger hemsidor för just bygg- och hantverksfirmor. Det jag vill göra är att ta fram
+          en helt skräddarsydd ny hemsida för <span class="var">[FÖRETAG]</span>, <b>helt gratis</b>.
+          Ni får den inom 48 timmar, ni kikar, och sen bestämmer ni själva om det är intressant."</p>
+        </div>
+        <div class="gor">
+          <div class="h">Vad du gör</div>
+          <p>Tolv procent är ett <b>kundcase, inte ett löfte</b> — säg "vi har haft kunder där",
+          aldrig "ni får". Sen direkt vidare till Avslutet.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-steg" id="ms-avslut">
+      <div class="m-nr">3</div>
+      <div>
+        <div class="m-namn">Avslutet · mejlen, testmejlet och återkomsten</div>
+        <div class="sag">
+          <div class="h">Du säger</div>
+          <p>"Jag skickar över den på mejl. <b>Vad har ni för mejladress?</b>"</p>
+          <p><span class="var">[läs upp adressen]</span> — "stämmer det?"</p>
+          <p>"Toppen. Då gör vi så här: jag skickar ett kort mejl till dig nu direkt. Svara kort på
+          det, ett ok räcker, så vet jag att det kommit fram till rätt adress.</p>
+          <p>Vi gör så för att se vilka som är med på riktigt, så vi inte lägger tid på att bygga en
+          sida som sen aldrig öppnas. Så fort du svarat sätter vi igång, och inom 48 timmar har du
+          den nya hemsidan i inkorgen.</p>
+          <p><b>Och går det bra om jag ringer tillbaka om 2–3 dagar — säg onsdag eller torsdag,
+          runt 14 eller 15?</b> Perfekt — ha en bra dag!"</p>
+        </div>
+        <div class="gor">
+          <div class="h">Vad du gör</div>
+          <p>Efter mejlfrågan: <b>var tyst.</b> Den som pratar först efter frågan förlorar.
+          Skriv ner adressen och <b>läs upp den tecken för tecken</b> — en feltagen adress är ett
+          bortkastat samtal. Skicka testmejlet medan ni fortfarande pratar, eller inom fem minuter.
+          Mallen ligger under Verktyg.</p>
+        </div>
+        <div class="regel">
+          <div class="h">Aldrig undantag</div>
+          <p><b>Inget svar på testmejlet = ingen sida byggs.</b> Hur trevligt samtalet än var.</p>
         </div>
       </div>
     </div>
@@ -884,25 +940,24 @@ kbd{
     <div class="inv">
       <h3>"Vad kostar det?"</h3>
       <div class="sag">
-        <p>"Bra fråga, och den förtjänar ett riktigt svar. Priset beror på vad ni faktiskt behöver, och
-        det vet varken du eller jag än. Det är det de femton minuterna är till för: förstår vi problemet
-        först kan jag ge dig en exakt siffra i stället för en gissning."</p>
+        <p>"Förslaget kostar ingenting, det är på riktigt gratis. Gillar du det och vill att vi gör den
+        skarp går jag igenom priset då, inga överraskningar. Men titta på sidan först — det är den som
+        avgör om det ens är intressant."</p>
       </div>
       <div class="regel">
         <div class="h">Aldrig undantag</div>
-        <p><b>Säg aldrig priset i kalla samtalet.</b> Priset hör hemma i mötet, efter diagnosen,
-        tillsammans med värdet. Pressar de: <i>"det börjar från sex tusen, och exakt var det landar
-        beror på omfattningen — det får du svart på vitt i samtalet."</i> Stå fast, vänligt.</p>
+        <p><b>Säg aldrig en exakt siffra i kalla samtalet.</b> Priset hör hemma i mötet, efter
+        diagnosen, tillsammans med värdet. Pressar de: <i>"det börjar från sex tusen och sätts efter
+        omfattning och leveranstid — exakt siffra får du när du sett sidan."</i> Stå fast, vänligt.</p>
       </div>
     </div>
 
     <div class="inv">
-      <h3>"Skicka ett mejl istället"</h3>
+      <h3>"Skicka ett mejl istället" / "jag hinner inte prata"</h3>
       <div class="sag">
-        <p>"Absolut, det kan jag göra. Men säg först: <b>är det ett artigt nej, eller vill du faktiskt
-        titta på det?</b> Båda är helt okej — jag vill bara inte skicka mejl som ingen väntar på."</p>
+        <p>"Det är exakt det jag föreslår. <b>Vad är bästa adressen?</b>"</p>
       </div>
-      <p class="ater">→ Tvinga fram beslutet: nu, senare eller inte alls</p>
+      <p class="ater">→ Tillbaka till mejladressen</p>
     </div>
 
     <div class="inv">
@@ -946,9 +1001,11 @@ kbd{
       <tbody>
         <tr><td><b>Inte nådd</b></td><td>Ligger kvar i <b>Ny</b> · öka ringförsöken · sätt nästa dag i cadencen (dag 3, 5, 7) som "Ring tillbaka"-datum</td></tr>
         <tr><td><b>Gatekeeper, fick annat namn</b></td><td>Skriv namnet i Kontaktperson + sätt ringdatum på tiden du fick</td></tr>
-        <tr><td><b>Ja till två minuter → möte bokat</b></td><td>Dra till <b>Möte bokat</b> + sätt datumet</td></tr>
+        <tr><td><b>Mejl tagen, testmejl skickat</b></td><td>Dra till <b>Mejl tagen</b> · fyll i e-posten · testmejlet under Verktyg · sätt ringdatum på dagen ni sa (2–3 dagar fram)</td></tr>
+        <tr><td><b>Svar på testmejlet</b></td><td>Dra till <b>Svarat</b> — 48-timmarsklockan startar. <b>Säg till Mathias samma dag</b></td></tr>
+        <tr><td><b>Demo levererad</b></td><td>Dra till <b>Demo skickad</b> · JA-protokollet under Verktyg · uppföljning dag 1–2</td></tr>
+        <tr><td><b>15-minuterssamtal bokat</b></td><td>Dra till <b>Möte bokat</b> + sätt datumet</td></tr>
         <tr><td><b>Ja, men senare</b></td><td>Sätt "Ring tillbaka"-datum på dagen ni sa · en rad i anteckningarna om vad som sas</td></tr>
-        <tr><td><b>Demo ska byggas/skickas</b></td><td>Dra till <b>Mejl tagen</b> · fyll i e-posten · testmejlet under Verktyg</td></tr>
         <tr><td><b>Dag 7 utan svar, eller nej</b></td><td>Dra till <b>Nej tack</b> + en rad om varför · leadet vilar 6 månader</td></tr>
         <tr><td><b>Betald faktura</b></td><td>Dra till <b>Kund</b> 🎉</td></tr>
       </tbody>
@@ -1352,7 +1409,7 @@ kbd{
       <p><b>Ämne:</b> Ny hemsida till <span class="var">[FÖRETAG]</span></p>
       <p>Hejsan <span class="var">[NAMN]</span>!</p>
       <p>Tack för snacket nyss. Svara kort på det här mejlet, så vet jag att det kom fram till rätt adress.
-      Sen hör vi av oss precis som vi sa.</p>
+      Sen bygger vi och du har den nya hemsidan här inom 48 timmar.</p>
       <p>Vänliga hälsningar<br><span class="var">[Ditt förnamn]</span>, Bahko Byrå</p>
     </div>
     <details class="varfor"><summary>Varför ren text utan länkar?</summary>
@@ -1406,8 +1463,8 @@ kbd{
 
     <div class="matt">
       <div><div class="v">10–20</div><div class="k">samtal per dag</div></div>
-      <div><div class="v">2 / 10</div><div class="k">ja till två minuter, per nådda</div></div>
-      <div><div class="v">1 / 2</div><div class="k">möte per tvåminutare</div></div>
+      <div><div class="v">2 / 10</div><div class="k">mejladresser per nådda</div></div>
+      <div><div class="v">1 / 2</div><div class="k">svar per taget mejl</div></div>
     </div>
 
     <p>Fyll i löpande under dagen. Allt sparas automatiskt i din webbläsare på den här datorn.</p>
@@ -1530,8 +1587,9 @@ kbd{
       <div class="lista">
         <dl>
           <div><dt>Få nådda</dt><dd>→ ringtiderna</dd></div>
-          <div><dt>Många nådda men få ja till två minuter</dt><dd>→ öppningen eller smärtan</dd></div>
-          <div><dt>Många tvåminutare men få möten</dt><dd>→ tvåminutersversionen: kostnaden landar inte</dd></div>
+          <div><dt>Många nådda men få mejl</dt><dd>→ öppningen eller smärtan</dd></div>
+          <div><dt>Många mejl men få svar</dt><dd>→ testmejlets formulering, eller fel adresser</dd></div>
+          <div><dt>Många demos men få möten</dt><dd>→ uppföljningen eller JA-protokollet</dd></div>
           <div><dt>Många möten men få kunder</dt><dd>→ diagnosen eller erbjudandet: priset kom före värdet</dd></div>
         </dl>
       </div>
