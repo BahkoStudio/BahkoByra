@@ -118,13 +118,17 @@ function initPopup() {
     popup.classList.remove('visible');
     overlay.classList.remove('visible');
     document.body.style.overflow = '';
-    // Reopen after 90 seconds
     clearTimeout(popupTimer);
-    popupTimer = setTimeout(openPopup, 90_000);
+    // Kom ihag att besokaren stangt den. Utan detta poppar den upp igen
+    // vid varje omladdning och vid varje 90-sekundersintervall.
+    try { localStorage.setItem('mk-nl-dismissed', String(Date.now())); } catch (_) {}
   }
 
   closeBtn.addEventListener('click', closePopup);
   overlay.addEventListener('click', closePopup);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && popup.classList.contains('visible')) closePopup();
+  });
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -138,8 +142,36 @@ function initPopup() {
     setTimeout(closePopup, 2500);
   });
 
-  // Visa popup efter 2 sekunder vid sidladdning
-  popupTimer = setTimeout(openPopup, 2000);
+  // Popupen far ALDRIG ligga over biljettknappen. Den tandes forst nar
+  // besokaren scrollat forbi eventsektionen, eller efter 45 s om sidan star still.
+  // Har den stangts under de senaste 14 dagarna visas den inte alls.
+  const AVFARDAD_DAGAR = 14;
+  let avfardad = false;
+  try {
+    const t = parseInt(localStorage.getItem('mk-nl-dismissed') || '0', 10);
+    avfardad = t > 0 && (Date.now() - t) < AVFARDAD_DAGAR * 864e5;
+  } catch (_) {}
+
+  if (!avfardad) {
+    const event = document.getElementById('event');
+    let visad = false;
+    const visaEnGang = () => {
+      if (visad) return;
+      visad = true;
+      clearTimeout(popupTimer);
+      openPopup();
+    };
+    if (event && 'IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(poster => {
+        // tands forst nar eventsektionen passerat ur bild uppat
+        for (const p of poster) {
+          if (!p.isIntersecting && p.boundingClientRect.bottom < 0) { obs.disconnect(); visaEnGang(); }
+        }
+      }, { threshold: 0 });
+      obs.observe(event);
+    }
+    popupTimer = setTimeout(visaEnGang, 45_000);
+  }
 }
 
 /* ── FOOTER NEWSLETTER ───────────────────────────────────── */

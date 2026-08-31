@@ -1212,3 +1212,42 @@ body.scene-active { background: var(--dark); }
 .social-card-name { font-size: 0.9rem; font-weight: 500; }
 .social-card-handle { font-size: 0.78rem; color: var(--mid); }
 @media (max-width: 600px) { .social-section { padding: 4.5rem 5vw; } }
+
+/* Eventbild — visar saken innan sidan ber om något */
+.event-img {
+  border-radius: 16px; overflow: hidden; margin: 0 auto 2rem;
+  max-width: 720px; aspect-ratio: 3/2;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+.event-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ticket-note { font-size: 0.74rem; line-height: 1.5; color: rgba(245,240,229,0.5); margin-top: 0.5rem; }
+@media (max-width: 600px) {
+  .social-grid { grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .social-card { padding: 1.3rem 0.7rem; gap: 0.45rem; }
+  .social-card-handle { font-size: 0.72rem; }
+}
+
+/* Tryckytor: 44x44 ar minimum for fingrar (Apple/Google) */
+.nl-popup-close {
+  min-width: 44px; min-height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+}
+.cta-email { min-height: 48px; display: inline-flex; align-items: center; }
+/* Samarbetssektionen: mejlet ar handlingen, boken ar sekundar */
+.cta-card--book .btn-primary {
+  background: none; border: 1px solid rgba(140,26,38,0.35);
+  color: var(--crimson); box-shadow: none;
+}
+.cta-card--book .btn-primary:hover { background: rgba(140,26,38,0.06); opacity: 1; }
+.cta-email {
+  background: linear-gradient(135deg, var(--crimson), var(--purple));
+  color: var(--ivory); border-color: transparent;
+}
+/* Instagram ar huvudkanalen - de ovriga ar sekundara */
+@media (min-width: 601px) { .social-card--primary { grid-column: span 2; } }
+.social-card--primary { border-color: var(--beige-md); background: linear-gradient(180deg, var(--white), #FBF7EF); }
+.social-card--primary .social-card-icon { width: 56px; height: 56px; }
+.social-card--primary .social-card-name { font-size: 1rem; font-weight: 600; }
+.ticket-note--intro { margin: 0.1rem 0 0.2rem; color: rgba(245,240,229,0.62); }
+.nl-popup-close { width: 48px; height: 48px; padding: 0; }
