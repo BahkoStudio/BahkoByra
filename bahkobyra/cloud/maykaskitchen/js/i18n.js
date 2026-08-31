@@ -10,6 +10,7 @@
       'event.title':    'Maykas Kitchen <em>Live</em> – Malmö',
       'event.date':     '25 oktober 2026',
       'event.place':    'Kitchen 961, Malmö',
+      'event.vem':      'Mayka är kokboksförfattare till <em>Maykas gröna kök – Kutle, hummus och kärlek</em> och lagar mat med assyriska och syrianska rötter.',
       'event.lead':     'En unik eftermiddag där mat, smaker och inspiration står i centrum. Mayka bjuder på en personlig matupplevelse med berättelser, matlagning, frågor och svar – och självklart möjlighet att smaka på maten.',
       'event.currency': 'kr',
       'event.std.name': 'Standard',
@@ -27,6 +28,8 @@
       'social.label': 'Följ mig',
       'social.title': 'Följ <em>Maykas Kitchen</em>',
       'social.sub':   'Välj den kanal du gillar bäst.',
+      'social.ig':    'Följ på Instagram',
+      'social.aven':  'Finns även på',
       /* SAMARBETE */
       'collab.i1':  'Kampanjer',
       'collab.i2':  'Receptutveckling',
@@ -141,6 +144,7 @@
       'event.title':    'Maykas Kitchen <em>Live</em> – Malmö',
       'event.date':     '25 October 2026',
       'event.place':    'Kitchen 961, Malmö',
+      'event.vem':      'Mayka is the author of the cookbook <em>Maykas gröna kök – Kutle, hummus och kärlek</em> and cooks with Assyrian and Syriac roots.',
       'event.lead':     'A unique afternoon where food, flavours and inspiration take centre stage. Mayka hosts a personal food experience with stories, cooking, questions and answers – and of course the chance to taste the food.',
       'event.currency': 'SEK',
       'event.std.name': 'Standard',
@@ -158,6 +162,8 @@
       'social.label': 'Follow me',
       'social.title': 'Follow <em>Maykas Kitchen</em>',
       'social.sub':   'Pick the channel you like best.',
+      'social.ig':    'Follow on Instagram',
+      'social.aven':  'Also on',
       /* COLLABORATIONS */
       'collab.i1':  'Campaigns',
       'collab.i2':  'Recipe development',
