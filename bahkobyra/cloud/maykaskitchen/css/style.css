@@ -1288,3 +1288,18 @@ body.scene-active { background: var(--dark); }
   padding: 0.7rem 0.3rem; min-height: 44px; display: inline-flex; align-items: center;
 }
 .social-ovriga a:hover { color: var(--crimson); }
+
+/* Management bakom samarbeten */
+.management {
+  display: flex; flex-direction: column; gap: 0.15rem;
+  padding: 0.9rem 1rem; margin: 0.3rem 0 0.9rem;
+  border-left: 2px solid var(--gold); background: rgba(201,149,42,0.06);
+  border-radius: 0 10px 10px 0;
+}
+.management-namn { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; color: var(--charcoal); }
+.management-roll { font-size: 0.78rem; color: var(--mid); line-height: 1.45; }
+.management-lank {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-size: 0.82rem; color: var(--mid); text-decoration: none; margin-top: 0.5rem;
+}
+.management-lank:hover { color: var(--crimson); }
