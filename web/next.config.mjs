@@ -57,6 +57,12 @@ const nextConfig = {
       // aldrig: redirects körs före filsystemet.
       { source: '/cloud/glowingservice', destination: '/glowingservice/', permanent: true },
       { source: '/cloud/glowingservice/:path*', destination: '/glowingservice/', permanent: true },
+      // Österlunds Jordbyggnad byggdes om som Next.js-route 2026-08-31. Den
+      // gamla statiska demon sålde villamark (husgrund, dränering, infart) och
+      // låg fel mot firmans egen beskrivning (schakt, infra, sprängning,
+      // transport, lowbed). Länken kan vara skickad och pekas om hit.
+      { source: '/cloud/osterlunds', destination: '/osterlunds/', permanent: true },
+      { source: '/cloud/osterlunds/:path*', destination: '/osterlunds/', permanent: true },
       // Raderad förpivot-artefakt.
       { source: '/pitchdeck.html', destination: '/', permanent: true },
     ];

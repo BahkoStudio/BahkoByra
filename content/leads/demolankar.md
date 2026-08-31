@@ -30,7 +30,7 @@ Två tekniska nivåer, båda serveras av `web`-appen (`next start`, se
 | k9maleri | Måleri inne/ute (Göteborg) | `web/public/cloud/k9maleri/` | Generisk mall, äkta kontaktuppgifter i texten | | Telefon, e-post, adress, org.nr på sidan — mest exponerad, visa INTE offentligt |
 | kmctransport | Kranbil/transport/bud | `web/public/cloud/kmctransport/` | Generisk | 🔒 | |
 | nordiapartner | Taktvätt | `web/public/cloud/nordiapartner/` | Generisk | | |
-| osterlunds | Markarbeten/grund/dränering | `web/public/cloud/osterlunds/` | Generisk | 🔒 | |
+| osterlunds | Jordbyggnad, infra, sprängning, maskintransport (Oravais, FINLAND) | `web/app/(demo)/osterlunds/` | Äkta lead (IG @osterlundsjordbyggnad) | | Byggd om 2026-08-31 på nya mallen. Gamla `/cloud/osterlunds` 301:ar hit — får aldrig brytas. Den gamla demon sålde villamark och låg fel mot nischen |
 | pizzeriamatstugan | Restaurang | `web/public/cloud/pizzeriamatstugan/` | Off-nisch | 🔒 | |
 | solpanelstjejen | Solcellsbesiktning (Värmland) | `web/public/cloud/solpanelstjejen/` | Generisk | | |
 | mugglagret | E-handel, keramikmuggar | `web/public/cloud/mugglagret/` | Off-nisch | | |
@@ -44,5 +44,5 @@ inte här som "demo" eftersom de redan är levererat kundarbete.
 
 ## Platshållarfälla (bifynd 2026-08-26)
 `070-123 45 67` är ett klickbart platshållarnummer på flera demos (bygg,
-golvresan, osterlunds, nordicsnickare). Städa bort/byt till ett tydligt
+golvresan, nordicsnickare; nya osterlunds anvander 040 123 4567 i finskt format). Städa bort/byt till ett tydligt
 "exempel"-nummer innan en demo visas för en riktig prospekt.

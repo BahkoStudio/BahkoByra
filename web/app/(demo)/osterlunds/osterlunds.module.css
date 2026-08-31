@@ -1,0 +1,1717 @@
+/* ===========================================================================
+   ÖSTERLUNDS JORDBYGGNAD — palett och typografi
+   Egen distinkt palett: skiffer och terrakotta. Skiffern är tonen i den
+   överskyade himlen och det våta berget i hero-filmen, terrakottan är samma
+   röd som husen i Oravais hamn — sidan och bilden hänger ihop. Ingen krock med
+   befintliga demos (smaragd, lera, kobolt, orange, solgul, cyan, energigrön,
+   kalksten, timber-amber, brun/créme, espresso/lönn).
+   Typsnittet är en slab: ritningens bokstav, inte inredningens.
+   Kontrastregeln följd överallt: ljus yta -> mörk text, aldrig tvärtom.
+   Uppmätt: --rost på --ink 6,9:1 · --ink på --rost 6,9:1 (primärknappen) ·
+   --rost-mork på --sten 5,5:1 · --ljus-58 på --ink 5,9:1 · --ljus-70 8,1:1.
+   Bahkos smaragd/marinblå i demo-knappen och modalen är ORÖRDA — de följer
+   knappregeln och hör till vårt varumärke, inte kundens.
+   =========================================================================== */
+
+/* Sidan är nästan svart, och webbläsarens standard body{margin:8px} + vit
+   canvas skulle rama in den med en vit list (och ge vitt overscroll på iOS).
+   Modulen äger därför de raderna själv — ingen delad globals.css behövs.
+   scroll-padding-top hör hit av samma skäl: headern är klistrad och 72 px hög,
+   så varje ankarhopp måste landa under den.
+   :has(.sida) i stället för :global(html): CSS-moduler kräver att varje
+   selektor innehåller en lokal klass, och regeln ska inte läcka till andra
+   sidor i appen. */
+html:has(.sida),
+body:has(.sida) {
+  margin: 0;
+  background: #10161B;
+}
+html:has(.sida) {
+  scroll-padding-top: 88px;
+}
+
+.sida {
+  --ink: #10161B;
+  --yta: #161E25;
+  --yta-2: #1F2A33;
+  --linje: #2C3A45;
+  --ljus: #E9EFF2;
+  --ljus-70: rgba(233, 239, 242, 0.7);
+  /* 0.58 ger ca 5,4:1 mot --ink; 0.45 låg under AA och finns inte längre.
+     Etiketter och punktlistor ligger på --ljus-70 (8,6:1). */
+  --ljus-58: rgba(233, 239, 242, 0.58);
+  --sten: #E3E8EB;
+  --rost: #E0885B;
+  --rost-lj: #EFB495;
+  /* Mässing som klarar 4,5:1 mot --sten — för småtext på ljus yta. */
+  --rost-mork: #8C4A22;
+  --ink-mjuk: #3B454D;
+  /* 0.42 mot --sten ger ca 3,3:1 — linjerna i dragspelet är enda
+     avgränsningen mellan frågorna och måste synas i dagsljus. */
+  --linje-ljus: rgba(16, 22, 27, 0.42);
+
+  --disp: var(--os-display), Rockwell, Georgia, serif;
+  --disp-kursiv: var(--os-display-kursiv), var(--os-display), Rockwell, Georgia, serif;
+  --ui: var(--os-ui), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Typskala: fem steg i stället för 29 lösa värden. */
+  --tx-xs: 0.72rem;
+  --tx-s: 0.82rem;
+  --tx-m: 0.95rem;
+  --tx-l: 1.05rem;
+  --tx-xl: clamp(1.1rem, 1.6vw, 1.25rem);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --gut: clamp(1.15rem, 4vw, 3.5rem);
+  --max: 1240px;
+
+  background: var(--ink);
+  color: var(--ljus);
+  color-scheme: dark;
+  font-family: var(--ui);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+/* Bälte och hängslen: där :has inte stöds täcker det här lagret webbläsarens
+   vita canvas ändå, så sidan aldrig ramas in av en ljus list. */
+.sida::before {
+  content: '';
+  position: fixed;
+  inset: -12px;
+  background: var(--ink);
+  z-index: -1;
+  pointer-events: none;
+}
+.sekLjus {
+  color-scheme: light;
+}
+
+/* En gemensam fokusmarkering för allt som går att nå med tangentbord. */
+.sida a:focus-visible,
+.sida button:focus-visible,
+.sida summary:focus-visible {
+  outline: 2px solid var(--rost);
+  outline-offset: 3px;
+}
+/* Ljusa kontroller får mörk ring, annars syns den inte. */
+.btn:focus-visible,
+.hdrTel:focus-visible,
+.demoKnapp:focus-visible,
+.sekLjus a:focus-visible,
+.sekLjus summary:focus-visible {
+  outline-color: var(--ink);
+}
+
+.sida *,
+.sida *::before,
+.sida *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* KASKADEN: den här regeln är basen för alla länkar som inte har egen färg
+   (loggan, footerkolumnen, kontaktraderna). Den skrevs tidigare .sida a, alltså
+   0,1,1 — och slog då ut VARJE komponentklass på 0,1,0: .btn, .btnMork,
+   .demoKnapp, .modalCta och .hdrTel fick color: inherit i stället för sin egen
+   färg. Resultatet var ljus text på mässing (1,60:1) och ink på ink (1,00:1) i
+   FAQ-kortet, alltså osynlig text.
+   :where() nollar specificiteten på a, så regeln väger 0,1,0 och ligger FÖRST
+   i filet: varje komponentklass längre ner vinner på ordning i stället för att
+   behöva !important eller uppskruvad selektor. Länkar utan egen färg ärver
+   fortfarande som förut. */
+.sida :where(a) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: var(--gut);
+}
+
+/* ---------- typografi ---------- */
+.h1 {
+  font-family: var(--disp);
+  /* 400, inte 300: slaben laddas i 400 och 600, och 300 hade blivit en
+     syntetisk vikt som ser tunnare ut an typsnittet faktiskt ar. */
+  font-weight: 400;
+  font-size: clamp(2.3rem, 5.6vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin: 1.3rem 0 1.6rem;
+  max-width: 26ch;
+  /* Utan balance foll sista ordet ensamt pa rad tva pa 1440. */
+  text-wrap: balance;
+}
+/* Uppstallningen ar mindre an punchen. Da laser ogat rubriken som EN rost med
+   betoning i stallet for tva jambordiga, och raderna gar fran fem till tre. */
+
+.h2 {
+  font-family: var(--disp);
+  font-weight: 300;
+  font-size: clamp(1.9rem, 4vw, 3.1rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-top: 0.9rem;
+}
+/* Kursiven ligger i en egen fontinstans (preload: false) — därför egen family. */
+.h1 em,
+.h2 em {
+  font-family: var(--disp-kursiv);
+  font-style: italic;
+  color: var(--rost);
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rost);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 1.7rem;
+  /* Klassen sitter både på <a> och på formulärets <button type="submit"> —
+     appearance nollar UA-knappen så de två ser identiska ut. */
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  border-radius: 2px;
+  background: var(--rost);
+  color: var(--ink);
+  font-family: var(--ui);
+  font-size: 0.79rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), transform 0.2s var(--ease);
+}
+ /* På ljus yta: mörk yta med ljus text (mässing mot kalksten är för svagt). */
+.btnMork {
+  background: var(--ink);
+  color: var(--ljus);
+}
+@media (hover: hover) and (pointer: fine) {
+  /* Två klasser: måste vinna över .btn:hover längre ner. */
+  .btn.btnMork:hover {
+    background: #1D2830;
+  }
+}
+.btnGhost {
+  background: transparent;
+  color: var(--ljus);
+  outline: 1px solid var(--linje);
+  outline-offset: -1px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    background: var(--rost-lj);
+  }
+  .btnGhost:hover {
+    background: var(--yta-2);
+    color: var(--ljus);
+  }
+}
+.btn:active {
+  transform: scale(0.985);
+}
+
+/* ---------- header ---------- */
+.hdr {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(16, 22, 27, 0.86);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--linje);
+}
+.hdrIn {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: var(--gut);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-shrink: 0;
+}
+.brandMark {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  flex: none;
+  /* Inramat marke: ikonen blir en logotyp i stallet for losa
+     linjer som svavar vid ordmarket. */
+  border: 1px solid var(--rost);
+  border-radius: 3px;
+  color: var(--rost);
+}
+.brandMark svg {
+  width: 100%;
+  height: 100%;
+}
+.brandTxt {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.brandTxt b {
+  font-family: var(--disp);
+  font-size: 1.22rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.brandTxt i {
+  font-style: normal;
+  font-size: 0.7rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ljus-58);
+  margin-top: 0.16rem;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+.nav a {
+  font-size: var(--tx-s);
+  color: var(--ljus-70);
+  position: relative;
+  padding-block: 0.4rem;
+  transition: color 0.25s var(--ease);
+}
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--rost);
+  transition: width 0.35s var(--ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav a:hover {
+    color: var(--ljus);
+  }
+  .nav a:hover::after {
+    width: 100%;
+  }
+}
+
+.hdrTel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 44px;
+  padding: 0 1.05rem;
+  border-radius: 2px;
+  background: var(--rost);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.3s var(--ease);
+}
+.hdrTel svg {
+  width: 16px;
+  height: 16px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hdrTel:hover {
+    background: var(--rost-lj);
+  }
+}
+
+.hdrTelKort {
+  display: none;
+}
+
+/* ---------- mobilmeny: :target-panel, ingen klient-JS ----------
+   Var tidigare <details>: den låg kvar utfälld över innehållet när besökaren
+   valde en länk, eftersom [open] inte påverkas av en hashnavigering. Nu ligger
+   panelen i ett fixed lager med id="meny" som visas på :target — hoppar hashen
+   till #tjanster slutar panelen vara target och fälls in av sig själv. Fixed
+   betyder också att webbläsaren inte behöver skrolla för att nå målet, så
+   skrollpositionen står still. */
+.mobilNavKnapp {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0 1rem;
+  border-radius: 2px;
+  outline: 1px solid var(--linje);
+  outline-offset: -1px;
+  color: var(--ljus);
+  font-size: var(--tx-s);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.mobilNavIkon {
+  position: relative;
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+.mobilNavIkon::before,
+.mobilNavIkon::after {
+  content: '';
+  position: absolute;
+  background: var(--rost);
+  transition: opacity 0.25s var(--ease);
+}
+.mobilNavIkon::before {
+  left: 0;
+  top: 6px;
+  width: 13px;
+  height: 1.5px;
+}
+.mobilNavIkon::after {
+  left: 6px;
+  top: 0;
+  width: 1.5px;
+  height: 13px;
+}
+.mobilMenyLager {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  /* Stängd panel ska inte kosta något under skroll. */
+  content-visibility: hidden;
+  transition: opacity 0.25s var(--ease), visibility 0.25s;
+}
+.mobilMenyLager:target {
+  opacity: 1;
+  visibility: visible;
+  content-visibility: visible;
+}
+.mobilMenySkugga {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 12, 15, 0.72);
+}
+.mobilMenyPanel {
+  position: relative;
+  z-index: 1;
+  /* Panelen börjar under den 72 px höga headern, som förblir synlig. */
+  margin-top: 72px;
+  max-height: calc(100dvh - 72px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0.3rem var(--gut) 0.9rem;
+  background: var(--yta);
+  border-block: 1px solid var(--linje);
+}
+.mobilMenyPanel a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  font-size: var(--tx-m);
+  color: var(--ljus);
+  border-bottom: 1px solid var(--linje);
+}
+.mobilMenyStang {
+  color: var(--ljus-70);
+  font-size: var(--tx-s);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .nav {
+    display: none;
+  }
+  .mobilNavKnapp {
+    display: inline-flex;
+  }
+}
+/* Ovanför brytpunkten finns ingen öppnare — då ska lagret inte heller kunna
+   nås av en gammal #meny-länk i adressfältet. */
+@media (min-width: 901px) {
+  .mobilMenyLager {
+    display: none;
+  }
+}
+
+/* Riktigt smala skärmar: loggans ortsrad och hela telefonnumret får inte
+   trycka ut varandra ur headern (sidan har overflow-x: clip och skulle
+   klippa numret tyst). */
+@media (max-width: 480px) {
+  .brand {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .hdr .brandTxt i {
+    display: none;
+  }
+  .hdrTelNr {
+    display: none;
+  }
+  .hdrTelKort {
+    display: inline;
+  }
+  .hdrTel {
+    padding: 0 0.9rem;
+  }
+  /* Tre element i headern på 360 px: luften och knapparnas sidopadding krymper
+     hellre än att något klipps av sidans overflow-x: clip. */
+  .hdrIn {
+    gap: 0.55rem;
+  }
+  .mobilNavKnapp {
+    padding: 0 0.75rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  /* Videon ager hela vyn och texten ligger over den. svh, aldrig vh: vh
+     raknar in iOS-adressfaltet och gor heron langre an skarmen. */
+  min-height: 100svh;
+  display: grid;
+  align-content: end;
+  padding: clamp(6rem, 12vh, 9rem) 0 clamp(5rem, 12vh, 8.5rem);
+  background: var(--ink);
+}
+/* vector-effect ärvs inte — den måste sitta på formerna, annars blir
+   linjerna hårfina när ritningen skalas ner och aliasar bort på 1x-skärmar. */
+.planritning path,
+.planritning circle {
+  vector-effect: non-scaling-stroke;
+}
+/* Samma linjespråk återkommer i #varfor: en sektion genom vägg. */
+.planritning {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  margin-top: 2.2rem;
+  color: var(--rost);
+  opacity: 0.34;
+}
+.heroIn {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: var(--gut);
+  display: grid;
+  z-index: 1;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4.5vw, 4.5rem);
+  align-items: center;
+}
+.heroTxt {
+  min-width: 0;
+}
+
+/* Filmen: ren HTML-video, postern gör att ytan aldrig är tom */
+/* Filmen ar hero-bakgrunden, inte en ruta vid sidan av texten. */
+.heroFilm {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  overflow: hidden;
+}
+/* Ett element per orientering. Ingen JS, och det som doljs slutar ladda.
+   Selektorerna MASTE ha tva klasser: .heroFilm video satter display:block med
+   specificitet (0,1,1), och en ensam .heroLiggande (0,1,0) forlorar da — bada
+   videorna renderades och 16:9-klippet lag overst pa telefon. Samma kaskadfalla
+   som .sida a mot .sida :where(a), nu pa display i stallet for color. */
+.heroFilm .heroStaende { display: none; }
+@media (orientation: portrait) {
+  .heroFilm .heroLiggande { display: none; }
+  .heroFilm .heroStaende { display: block; }
+}
+
+/* Hero-etiketten ligger over ROERLIG video, inte over en fast yta, och maste
+   halla kontrasten pa klippets ljusaste bildruta — inte bara pa bildruta 0.
+   Uppmatt over hela klippet gav den morkare terrakottan 4,29:1 pa mobil nar
+   dronaren sankte sig och vattnet ljusnade. Den ljusare tonen ligger over 6:1
+   i varje mattpunkt. Mat om det har nar hero-videon byts. */
+.heroTxt .eyebrow {
+  color: var(--rost-lj);
+}
+
+.heroFilm video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Gradienten gor texten laesbar utan att svalja bilden: nastan klar dar
+   byn syns, tat nedtill dar rubriken star. Mellanstoppet ar 0.52, inte
+   mallens 0.40: uppmatt bakgrund bakom hero-etiketten gav da 4,54:1 mot
+   terrakottan, precis over gransen och for tunn marginal for ett foto som
+   ror sig. Mat om det har talet om hero-videon byts. */
+.heroFilm::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(16, 22, 27, 0.80) 0%,
+    rgba(16, 22, 27, 0.30) 20%,
+    rgba(16, 22, 27, 0.52) 50%,
+    rgba(16, 22, 27, 0.93) 87%,
+    var(--ink) 100%
+  );
+}
+.heroFilm figcaption {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  padding: 0.32rem 0.65rem;
+  border-radius: 2px;
+  background: rgba(16, 22, 27, 0.72);
+  backdrop-filter: blur(4px);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ljus-70);
+}
+@media (max-width: 900px) {
+  .heroIn {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ---------- före / efter ---------- */
+.forvandling {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.8rem, 2vw, 1.4rem);
+}
+.forvandling figure {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--linje);
+}
+.forvandling img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1376 / 768;
+  object-fit: cover;
+}
+.forvandling figcaption {
+  position: absolute;
+  left: 0.85rem;
+  top: 0.85rem;
+}
+.forvandling figcaption b {
+  display: inline-block;
+  padding: 0.35rem 0.8rem;
+  border-radius: 2px;
+  background: rgba(16, 22, 27, 0.78);
+  backdrop-filter: blur(4px);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rost-lj);
+}
+.forvandlingNot {
+  margin-top: 0.9rem;
+  font-size: var(--tx-xs);
+  letter-spacing: 0.08em;
+  color: var(--ljus-58);
+}
+@media (max-width: 640px) {
+  .forvandling {
+    grid-template-columns: 1fr;
+  }
+}
+.heroCta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.heroMikro {
+  margin-top: 1.5rem;
+  font-size: var(--tx-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ljus-58);
+}
+/* I mellanspannet ligger ritningen annars rakt bakom rubriken — den flyttas
+   längre ut i högerkanten i stället. */
+@media (min-width: 781px) and (max-width: 1100px) {
+  .ritning {
+    right: -18%;
+    width: 62%;
+  }
+}
+@media (max-width: 780px) {
+  /* Ritningen får inte konkurrera med brödtexten på en liten skärm: den
+     sjunker ner under CTA-blocket i stället för att ligga bakom texten. */
+  .ritning {
+    top: auto;
+    bottom: -4%;
+    right: -22%;
+    translate: none;
+    width: 128%;
+    opacity: 0.12;
+  }
+  .heroIn {
+    padding-bottom: 4.5rem;
+  }
+  .h1 {
+    max-width: none;
+  }
+  .heroCta .btn {
+    width: 100%;
+  }
+}
+
+/* ---------- förtroenderemsa ---------- */
+.remsa {
+  border-block: 1px solid var(--linje);
+  background: var(--yta);
+}
+/* Punkterna radbryts i ALLA bredder. Tidigare blev raden en sidoscroll med
+   gömd rullningslist under 900px, vilket dolde de sista punkterna helt och
+   gjorde dem onåbara med tangentbord. Fem korta punkter får plats på två
+   rader — det är enklare och ärligare än en dold scroll. */
+.remsaIn {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.05rem var(--gut);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 2.1rem;
+}
+.remsaIn span {
+  font-size: var(--tx-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ljus-70);
+  position: relative;
+  padding-left: 1rem;
+}
+.remsaIn span::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  translate: 0 -50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--rost);
+}
+
+/* ---------- sektioner ---------- */
+.sek {
+  padding: clamp(3.5rem, 8vw, 7rem) 0;
+  /* Headern är klistrad: ankarhoppen ska landa under den, inte bakom den. */
+  scroll-margin-top: 88px;
+}
+.sekLjus {
+  background: var(--sten);
+  color: var(--ink);
+}
+/* Mässingen på ljus yta: småtext får den mörka tonen (4,5:1 mot --sten),
+   de stora kursiva orden klarar sig med den ljusare. */
+.sekLjus .eyebrow {
+  color: var(--rost-mork);
+}
+.sekLjus .h2 em {
+  color: #8C4A22;
+}
+.sekLjus .sekLead {
+  color: var(--ink-mjuk);
+}
+
+.sekHuvud {
+  max-width: 62ch;
+  margin-bottom: clamp(2.2rem, 4vw, 3.4rem);
+}
+.sekLead {
+  margin-top: 1.1rem;
+  color: var(--ljus-70);
+  font-size: var(--tx-l);
+}
+
+/* Ritningen i tjänstekortet: ritar sig själv när kortet kommer i vy.
+   Utgångsläget är FÄRDIGRITAT — animationen ligger bakom @supports och
+   sätter dashoffset först när den kan animera tillbaka den. Annars hade
+   korten stått tomma i webbläsare utan stöd. */
+.ritning {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin: 0 0 1.4rem;
+  overflow: visible;
+}
+.ritning path {
+  fill: none;
+  stroke: var(--rost);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* Ärvs inte — måste sitta på formen, annars blir linjen hårfin vid nedskalning. */
+  vector-effect: non-scaling-stroke;
+  opacity: 0.85;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .ritning path {
+      stroke-dasharray: 600;
+      animation: ritas linear both;
+      animation-timeline: view();
+      animation-range: entry 12% cover 38%;
+    }
+    /* Strecken kommer i ordning: ytterkontur först, mått sist. */
+    .ritning path:nth-child(2) { animation-delay: -0.05s; }
+    .ritning path:nth-child(3) { animation-range: entry 18% cover 44%; }
+    .ritning path:nth-child(4) { animation-range: entry 24% cover 50%; }
+    .ritning path:nth-child(5) { animation-range: entry 30% cover 56%; }
+  }
+}
+@keyframes ritas {
+  from { stroke-dashoffset: 600; }
+  to { stroke-dashoffset: 0; }
+}
+
+
+/* Galleriet under fore/efter-paret. Kvadratisk ratio ar facit: 16/11 kandes
+   fortfarande for stort. height:auto MASTE sta fore aspect-ratio — img-taggarna
+   har height-attribut, och utan height:auto vinner attributet sa ration
+   ignoreras helt. Auto-fit i stallet for media query: bryter pa innehallets
+   matt och maattet kommer ur en variabel. */
+.galleri {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.6rem;
+}
+/* Under 560 px faller auto-fit till EN kolumn (354 px yta ryms inte tva
+   gInger 220), och fyra fullbreddsbilder blir fyra skarmhojder. Tva kolumner
+   ar regel: rutnatet sags explicit har i stallet for att sanka minmax, som
+   hade gett atta sma rutor pa desktop. */
+@media (max-width: 560px) {
+  .galleri {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+}
+.galleri figure {
+  margin: 0;
+  border: 1px solid var(--linje);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--yta);
+}
+.galleri img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+.galleri figcaption {
+  padding: 0.7rem 0.85rem;
+  font-size: 0.82rem;
+  color: var(--ljus-70);
+}
+
+/* ---------- tjänster ---------- */
+.tjanster {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--linje);
+  border: 1px solid var(--linje);
+}
+.tjanst {
+  background: var(--ink);
+  padding: clamp(1.5rem, 2.4vw, 2.1rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: background 0.35s var(--ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .tjanst:hover {
+    background: var(--yta);
+  }
+}
+.tjanst h3 {
+  font-family: var(--disp);
+  font-size: 1.42rem;
+  font-weight: 400;
+  line-height: 1.15;
+}
+.tjanst p {
+  font-size: var(--tx-m);
+  color: var(--ljus-70);
+}
+.tjanst ul {
+  list-style: none;
+  margin-top: auto;
+  padding-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.tjanst li {
+  font-size: var(--tx-s);
+  letter-spacing: 0.04em;
+  color: var(--ljus-70);
+  padding-left: 0.95rem;
+  position: relative;
+}
+.tjanst li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 1px;
+  background: var(--rost);
+}
+@media (max-width: 1000px) {
+  .tjanster {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 620px) {
+  .tjanster {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- process ---------- */
+/* Fem steg i två kolumner ger ett tomt fack på sista raden. Tre kolumner
+   ger 3+2, vilket läser som en avslutad sektion. */
+@media (max-width: 1000px) {
+}
+@media (max-width: 760px) {
+  /* Stående hero. Bildremsan i 9:16-klippet löper från 9 % till 66 % av
+     höjden (720x729 inlagd på y=110 i en 1280-hög ram), och byn ligger i
+     remsans övre halva. Gradienten hålls därför klar genom byn och mörknar
+     från 36 % — alltså genom remsans vattenhalva, där etiketten och rubriken
+     står: terrakotta på ljust vatten höll inte kontrasten. Den mörknar sedan
+     GENOM remsans underkant vid 66 %, så övergången mot den suddiga
+     utfyllnaden inte läses som en linje.
+     Mallens stopp var räknade för en remsa som slutade vid 32 % och lade
+     solid ink mitt över bilden. Ändras remsan måste de här talen ändras med. */
+  .heroFilm::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(16, 22, 27, 0.55) 0%,
+      rgba(16, 22, 27, 0.14) 12%,
+      rgba(16, 22, 27, 0.20) 36%,
+      rgba(16, 22, 27, 0.88) 54%,
+      var(--ink) 66%,
+      var(--ink) 100%
+    );
+  }
+  .stegItem:last-child {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 560px) {
+}
+
+/* ---------- så går det till: klickbara steg, noll JavaScript ----------
+   En dold radioknapp per steg ligger som syskon före flikarna och kortet.
+   :checked väljer både aktiv flik och synlig panel. Radio i stället för
+   en div med onClick ger piltangentsnavigering och rätt roll gratis. */
+.stegBlock {
+  position: relative;
+  display: grid;
+  gap: 1.4rem;
+}
+.stegRadio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.stegVal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+/* Flikarna star pa den LJUSA sektionsytan: mork text, aldrig ljus.
+   Ljus text pa ljus botten gjorde de inaktiva flikarna naestan osynliga. */
+.stegKnapp {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border: 1px solid var(--linje-ljus);
+  border-radius: 3px;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-mjuk);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.stegKnapp:hover {
+  color: var(--ink);
+  border-color: var(--rost-mork);
+}
+.stegKort {
+  border: 1px solid var(--linje);
+  border-radius: 4px;
+  background: var(--ink);
+  /* Mork yta i en ljus sektion — fargen maste vandas explicit har, annars
+     arvs sektionens morka text och rubriken blir mork pa morkt. */
+  color: var(--ljus);
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+}
+.stegPanel {
+  display: none;
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+.stegPanel h3 {
+  color: var(--ljus);
+  font-family: var(--disp);
+  font-weight: 300;
+  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+  letter-spacing: -0.012em;
+  margin-bottom: 0.6rem;
+}
+.stegPanel p {
+  color: var(--ljus-70);
+  max-width: 54ch;
+}
+.stegRitning {
+  display: block;
+  width: clamp(120px, 18vw, 190px);
+  height: auto;
+  overflow: visible;
+}
+.stegRitning path {
+  fill: none;
+  stroke: var(--rost);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.85;
+}
+
+/* Aktiv flik och synlig panel. Fem par, ett per steg. */
+.stegRadio:nth-of-type(1):checked ~ .stegVal .stegKnapp:nth-child(1),
+.stegRadio:nth-of-type(2):checked ~ .stegVal .stegKnapp:nth-child(2),
+.stegRadio:nth-of-type(3):checked ~ .stegVal .stegKnapp:nth-child(3),
+.stegRadio:nth-of-type(4):checked ~ .stegVal .stegKnapp:nth-child(4),
+.stegRadio:nth-of-type(5):checked ~ .stegVal .stegKnapp:nth-child(5) {
+  background: var(--rost);
+  border-color: var(--rost);
+  color: var(--ink);
+}
+.stegRadio:nth-of-type(1):checked ~ .stegKort .stegPanel:nth-child(1),
+.stegRadio:nth-of-type(2):checked ~ .stegKort .stegPanel:nth-child(2),
+.stegRadio:nth-of-type(3):checked ~ .stegKort .stegPanel:nth-child(3),
+.stegRadio:nth-of-type(4):checked ~ .stegKort .stegPanel:nth-child(4),
+.stegRadio:nth-of-type(5):checked ~ .stegKort .stegPanel:nth-child(5) {
+  display: grid;
+}
+/* Tangentbordsfokus måste synas på flikarna — radion är dold, så ringen
+   sätts på labeln via :focus-visible på inputen. */
+.stegRadio:focus-visible ~ .stegVal .stegKnapp {
+  outline: 2px solid var(--rost);
+  outline-offset: 2px;
+}
+
+/* Panelen glider in när man byter steg. Rörelsen bär inget innehåll, så den
+   stängs av helt vid prefers-reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .stegRadio:checked ~ .stegKort .stegPanel {
+    animation: stegIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .stegRadio:checked ~ .stegKort .stegPanel .stegRitning path {
+    stroke-dasharray: 500;
+    animation: ritas 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+@keyframes stegIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 700px) {
+  .stegPanel { grid-template-columns: 1fr; }
+  .stegRitning { width: 130px; }
+}
+
+
+/* ---------- varför ---------- */
+.varforGrid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.varforText .btn {
+  margin-top: 2rem;
+}
+.skal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--linje);
+  border: 1px solid var(--linje);
+}
+.skalItem {
+  background: var(--yta);
+  padding: clamp(1.3rem, 2.2vw, 1.9rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.skalItem h3 {
+  font-family: var(--disp);
+  font-size: var(--tx-xl);
+  font-weight: 400;
+  color: var(--rost-lj);
+}
+.skalItem p {
+  font-size: var(--tx-m);
+  color: var(--ljus-70);
+}
+@media (max-width: 900px) {
+  .varforGrid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .skal {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- frågor ---------- */
+/* Dragspelet ligger i vänsterspalten, kontaktkortet i höger — annars stod
+   en tredjedel av den ljusa ytan tom. */
+.fragorGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+.fragor {
+  border-top: 1px solid var(--linje-ljus);
+}
+.fraga {
+  border-bottom: 1px solid var(--linje-ljus);
+}
+.fragaKort {
+  border: 1px solid var(--linje-ljus);
+  padding: clamp(1.4rem, 2.4vw, 1.9rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  position: sticky;
+  top: 100px;
+}
+.fragaKort h3 {
+  font-family: var(--disp);
+  font-size: 1.42rem;
+  font-weight: 400;
+  color: var(--ink);
+}
+.fragaKort p {
+  font-size: var(--tx-m);
+  color: var(--ink-mjuk);
+}
+.fragaKort .btn {
+  margin-top: 0.4rem;
+}
+@media (max-width: 900px) {
+  .fragorGrid {
+    grid-template-columns: 1fr;
+  }
+  .fragaKort {
+    position: static;
+  }
+}
+.fraga summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--disp);
+  font-size: clamp(1.05rem, 1.8vw, 1.32rem);
+  font-weight: 400;
+}
+.fraga summary::-webkit-details-marker {
+  display: none;
+}
+.fragaIkon {
+  position: relative;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+.fragaIkon::before,
+.fragaIkon::after {
+  content: '';
+  position: absolute;
+  background: var(--rost-mork);
+  transition: opacity 0.25s var(--ease), rotate 0.3s var(--ease);
+}
+.fragaIkon::before {
+  left: 0;
+  top: 7px;
+  width: 15px;
+  height: 1.5px;
+}
+.fragaIkon::after {
+  left: 7px;
+  top: 0;
+  width: 1.5px;
+  height: 15px;
+}
+.fraga[open] .fragaIkon::after {
+  opacity: 0;
+}
+.fraga p {
+  padding-bottom: 1.4rem;
+  max-width: 68ch;
+  font-size: var(--tx-m);
+  color: var(--ink-mjuk);
+}
+
+/* ---------- kontakt ---------- */
+.kontakt {
+  padding: clamp(3.5rem, 8vw, 7rem) 0;
+  scroll-margin-top: 88px;
+  background:
+    radial-gradient(100% 80% at 15% 0%, rgba(217, 168, 104, 0.1), transparent 62%),
+    var(--ink);
+}
+.kontaktGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.kontaktRader {
+  margin-top: 2.2rem;
+  border-top: 1px solid var(--linje);
+}
+.kontaktRad {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--linje);
+}
+.kontaktRad span {
+  font-size: var(--tx-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ljus-58);
+}
+.kontaktRad b {
+  font-family: var(--disp);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--ljus);
+}
+a.kontaktRad b {
+  color: var(--rost);
+}
+
+.form {
+  background: var(--yta);
+  border: 1px solid var(--linje);
+  padding: clamp(1.4rem, 2.6vw, 2.1rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: var(--tx-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ljus-70);
+}
+.form input,
+.form select,
+.form textarea {
+  font-family: var(--ui);
+  font-size: var(--tx-m);
+  color: var(--ljus);
+  background: var(--ink);
+  border: 1px solid var(--linje);
+  border-radius: 2px;
+  padding: 0.8rem 0.9rem;
+  min-height: 46px;
+  width: 100%;
+  text-transform: none;
+  letter-spacing: normal;
+}
+.form textarea {
+  resize: vertical;
+}
+/* Selecten ska se ut som de andra fälten: egen pil i mässing, ingen
+   systemritad kontroll i ljust läge mot ett mörkt formulär. */
+.form select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.4rem;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--rost) 50%),
+    linear-gradient(135deg, var(--rost) 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.15rem) calc(50% - 2px),
+    calc(100% - 0.85rem) calc(50% - 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+.form input:focus-visible,
+.form select:focus-visible,
+.form textarea:focus-visible {
+  outline: 2px solid var(--rost);
+  outline-offset: 1px;
+}
+.form .btn {
+  margin-top: 0.35rem;
+}
+.formNot {
+  font-size: var(--tx-s);
+  line-height: 1.55;
+  color: var(--ljus-58);
+}
+@media (max-width: 860px) {
+  .kontaktGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- footer ---------- */
+.ftr {
+  border-top: 1px solid var(--linje);
+  background: var(--yta);
+  padding: clamp(2.4rem, 5vw, 3.6rem) 0 1.6rem;
+}
+.ftrGrid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2rem;
+  padding-bottom: 2.2rem;
+}
+.ftrText {
+  margin-top: 1rem;
+  font-size: var(--tx-m);
+  color: var(--ljus-70);
+  max-width: 46ch;
+}
+.ftrLankar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  font-size: var(--tx-m);
+  color: var(--ljus-70);
+}
+/* Footern är enda navigationen längst ner — länkarna får full träffyta. */
+.ftrLankar a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ftrLankar a:hover {
+    color: var(--rost);
+  }
+}
+.ftrBar {
+  border-top: 1px solid var(--linje);
+  padding-top: 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.7rem;
+  font-size: var(--tx-s);
+  color: var(--ljus-58);
+}
+.ftrBar a {
+  color: var(--rost);
+}
+@media (max-width: 700px) {
+  .ftrGrid {
+    grid-template-columns: 1fr;
+  }
+  /* Plats för den fasta Bahko-knappen, som annars ligger på footerlänkarna. */
+  .ftr {
+    padding-bottom: 5.5rem;
+  }
+}
+
+/* ---------- Bahko: demo-knapp och modal, helt utan JS ---------- */
+/* Modalen stängs genom att hoppa hit. Ankaret är fast i vyn, alltså behöver
+   webbläsaren inte skrolla någonstans för att nå det — skrollpositionen står
+   kvar där besökaren var. */
+.stangdAnkare {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.demoKnapp {
+  position: fixed;
+  right: 1.5rem;
+  bottom: max(1.5rem, env(safe-area-inset-bottom));
+  z-index: 70;
+  display: inline-flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 0 1.4rem;
+  border-radius: 3px;
+  /* Solid fallback forst: dar color-mix saknas blir ytan mork i stallet
+     for genomskinlig, sa texten aldrig hamnar pa bar bakgrund. */
+  background: var(--ink);
+  background: color-mix(in srgb, var(--ink) 86%, transparent);
+  color: #10b981;
+  border: 1px solid #10b981;
+  border-color: color-mix(in srgb, #10b981 42%, transparent);
+  backdrop-filter: blur(6px);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.modalLager {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  opacity: 0;
+  visibility: hidden;
+  /* Stängd modal ska inte kosta något under skroll. */
+  content-visibility: hidden;
+  transition: opacity 0.3s var(--ease), visibility 0.3s;
+}
+/* :target-tricket — modalen öppnas av länken, inte av ett script */
+.modalLager:target {
+  opacity: 1;
+  visibility: visible;
+  content-visibility: visible;
+}
+.modalSkugga {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 12, 15, 0.78);
+}
+/* Filtret läggs på först när modalen är öppen — annars ligger ett
+   helskärmslager och kompositeras i onödan. */
+.modalLager:target .modalSkugga {
+  backdrop-filter: blur(3px);
+}
+.modal {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 460px);
+  background: var(--yta);
+  border: 1px solid var(--linje);
+  border-radius: 4px;
+  padding: clamp(1.6rem, 3vw, 2.3rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  text-align: left;
+}
+.modalX {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.4rem;
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  color: var(--ljus-58);
+  line-height: 1;
+}
+.modalBadge {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #0a1628;
+  background: #10b981;
+  padding: 0.4rem 0.7rem;
+  border-radius: 2px;
+}
+.modal h3 {
+  font-family: var(--disp);
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.modal p {
+  font-size: var(--tx-m);
+  color: var(--ljus-70);
+}
+.modalCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  background: #10b981;
+  color: #0a1628;
+  border-radius: 3px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+.modalAlt {
+  font-size: var(--tx-m);
+  color: var(--rost);
+  text-align: center;
+}
+.modalFot {
+  border-top: 1px solid var(--linje);
+  padding-top: 0.9rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ljus-58);
+}
+
+/* ---------- rörelse: scroll-driven CSS, noll JS ----------
+   Utgångsläget är SYNLIGT. Animationen läggs bara på där
+   animation-timeline stöds, så sidan aldrig kan bli tom. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .sekHuvud,
+    .tjanst,
+    .stegItem,
+    .skalItem,
+    .varforText,
+    .form,
+    .kontaktRader {
+      animation: stigUpp linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 26%;
+    }
+  }
+}
+@keyframes stigUpp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- tjänste-tejpen ---------- */
+.tejp {
+  border-block: 1px solid var(--linje);
+  background: var(--yta);
+  overflow: hidden;
+}
+.tejpSpar {
+  display: flex;
+  width: max-content;
+  animation: tejpRull 34s linear infinite;
+}
+.tejpIn {
+  display: flex;
+  flex-shrink: 0;
+  padding-block: 1.05rem;
+}
+.tejpIn span {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ljus-70);
+  white-space: nowrap;
+  position: relative;
+  padding-left: 1rem;
+  margin-right: 2.4rem;
+}
+.tejpIn span::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  translate: 0 -50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--rost);
+}
+@keyframes tejpRull {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (hover: hover) {
+  .tejp:hover .tejpSpar { animation-play-state: paused; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tejpSpar { animation: none; }
+}
+
+/* ---------- varför-bilden ---------- */
+.varforBild {
+  position: relative;
+  margin: 1.9rem 0 2rem;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--linje);
+}
+.varforBild img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 780;
+  object-fit: cover;
+}
+.varforBild figcaption {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  padding: 0.32rem 0.65rem;
+  border-radius: 2px;
+  background: rgba(16, 22, 27, 0.72);
+  backdrop-filter: blur(4px);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ljus-70);
+}
+
+/* ---------- kontakt-popup (ren CSS) ---------- */
+.popupBort {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.popup {
+  position: fixed;
+  left: 1.2rem;
+  bottom: max(1.2rem, env(safe-area-inset-bottom));
+  z-index: 90;
+  width: min(88vw, 330px);
+  background: var(--yta);
+  border: 1px solid var(--linje);
+  border-left: 3px solid var(--rost);
+  border-radius: 4px;
+  padding: 1.35rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  /* Osynlig och oklickbar tills entré-animationen fäller in den efter 14 s */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  animation: popupIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 14s both;
+}
+@keyframes popupIn {
+  from { opacity: 0; visibility: hidden; transform: translateY(16px); }
+  to   { opacity: 1; visibility: visible; transform: translateY(0); }
+}
+/* Checkbox-mönstret: kryssrutan ligger före popupen i DOM */
+.popupBort:checked ~ .popup {
+  display: none;
+}
+.popupX {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--ljus-58);
+  font-size: 0.95rem;
+  line-height: 1;
+}
+.popupX:hover { color: var(--ljus); }
+.popupEyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rost);
+  padding-right: 2.2rem;
+}
+.popupTxt {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ljus-70);
+}
+.popupCta { width: 100%; }
+.popupAlt {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--rost);
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+}
+@media (max-width: 480px) {
+  /* Delar underkant med demo-knappen — popupen lyfts ovanför den på mobil */
+  .popup { bottom: max(4.6rem, calc(env(safe-area-inset-bottom) + 3.9rem)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .popup { animation: none; }
+}
