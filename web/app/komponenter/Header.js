@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Maskot from './Maskot';
 import styles from './Header.module.css';
 
 // Case ligger kvar som sida men inte i menyn: de tva gratiserbjudandena
@@ -36,8 +37,12 @@ export default function Header() {
   // Ingen bakgrundsscroll bakom öppen mobilmeny.
   useEffect(() => {
     document.body.style.overflow = oppen ? 'hidden' : '';
+    // Bokningsraden läser data-lager och gömmer sig medan menyn är öppen
+    if (oppen) document.body.setAttribute('data-lager', 'meny');
+    else document.body.removeAttribute('data-lager');
     return () => {
       document.body.style.overflow = '';
+      document.body.removeAttribute('data-lager');
     };
   }, [oppen]);
 
@@ -67,6 +72,9 @@ export default function Header() {
         </nav>
 
         <div className={styles.hoger}>
+          <span className={styles.headerMaskot}>
+            <Maskot pose="vinkar" stil="mini" alt="" />
+          </span>
           <Link href="/kontakt/" className={`btn btn-primar ${styles.headerKnapp}`}>
             Kostnadsfritt förslag
           </Link>

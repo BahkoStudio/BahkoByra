@@ -226,3 +226,53 @@
   }
   .maskot:hover { transform: none; }
 }
+
+/* ── Nya gester 2026-08-15 (bahkobyra.se "Bygget live") ─────────────── */
+
+/* Kikar: glider upp bakom ett kort och lutar sig fram. Kortet som bär honom
+   lyfter figuren vid hover (Portfolj.module.css), vilolaget är nästan gömt. */
+@keyframes bahkoKikar {
+  0%, 100% { transform: translateY(14px) rotate(10deg); }
+  50%      { transform: translateY(4px) rotate(14deg); }
+}
+.kikar .figur       { animation: bahkoKikar 3.2s ease-in-out infinite; }
+.kikar .armVanster  { animation: armVila 3.8s ease-in-out infinite; }
+.kikar .armHoger    { animation: armVilaSpegel 3.8s ease-in-out infinite; }
+
+/* Vilar: lutar sig mot sidfoten och andas långsamt. Sista intrycket är lugnt. */
+@keyframes bahkoVilar {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50%      { transform: translateY(-5px) rotate(-6deg); }
+}
+.vilar .figur       { animation: bahkoVilar 5.2s ease-in-out infinite; }
+.vilar .armVanster  { animation: armVila 5.2s ease-in-out infinite; }
+.vilar .armHoger    { animation: armVilaSpegel 5.2s ease-in-out infinite; }
+
+/* Rycker på axlarna (404): båda armarna upp, en liten studs i kroppen. */
+@keyframes bahkoRycker {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  40%      { transform: translateY(-10px) rotate(-3deg); }
+  60%      { transform: translateY(-10px) rotate(3deg); }
+}
+@keyframes armRyckerVanster {
+  0%, 20%, 100% { transform: rotate(6deg); }
+  40%, 70%      { transform: rotate(44deg); }
+}
+@keyframes armRyckerHoger {
+  0%, 20%, 100% { transform: rotate(-6deg); }
+  40%, 70%      { transform: rotate(-44deg); }
+}
+.rycker .figur      { animation: bahkoRycker 2.4s ease-in-out infinite; }
+.rycker .armVanster { animation: armRyckerVanster 2.4s ease-in-out infinite; }
+.rycker .armHoger   { animation: armRyckerHoger 2.4s ease-in-out infinite; }
+
+/* Mini: headern och bokningsraden */
+.mini { width: 34px; height: 34px; vertical-align: middle; }
+
+@media (prefers-reduced-motion: reduce) {
+  .kikar .figur, .kikar .armVanster, .kikar .armHoger,
+  .vilar .figur, .vilar .armVanster, .vilar .armHoger,
+  .rycker .figur, .rycker .armVanster, .rycker .armHoger {
+    animation: none;
+  }
+}

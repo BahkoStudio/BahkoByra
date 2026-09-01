@@ -5,6 +5,7 @@ import Header from '../komponenter/Header';
 import Footer from '../komponenter/Footer';
 import Rorelse from '../komponenter/Rorelse';
 import Popup from '../komponenter/Popup';
+import StickyBokning from '../komponenter/StickyBokning';
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -105,6 +106,7 @@ export default function RootLayout({ children }) {
         <main id="innehall">{children}</main>
         <Footer />
         <Popup />
+        <StickyBokning />
         {/* GA4 med samtyckesbanner — samma fil som de statiska leadsidorna
             laddar, så mätningen bor på ett enda ställe. */}
         <Script src="/js/analytics.js" strategy="afterInteractive" />

@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import HeroBygge from '../komponenter/HeroBygge';
 import HeroVideo from '../komponenter/HeroVideo';
 import Maskot from '../komponenter/Maskot';
+import Rakna from '../komponenter/Rakna';
+import Portfolj from '../komponenter/Portfolj';
 import SynlighetsPanel from '../komponenter/SynlighetsPanel';
 import ProcessRail from '../komponenter/ProcessRail';
 import TjanstIkon from '../komponenter/TjanstIkon';
@@ -20,60 +23,73 @@ const PIL = (
   </svg>
 );
 
+const SPELA = (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M8 5v14l11-7z" fill="currentColor" />
+  </svg>
+);
+
+/* Bevisremsan: kundsajternas domäner varvade med löftena */
 const MARQUEE = [
-  'Fler bokningar',
-  'Google Ads',
-  'Hemsidor som konverterar',
-  'SEO som rankar',
-  'Demo inom 48 timmar',
+  'smamaleri.se',
+  'Förslag inom 48 timmar',
+  'brommatradgardsservice.se',
+  'Ni äger sidan',
+  'maykaskitchen.se',
   'Synlighet som säljer',
 ];
 
+/* Räknarna tickar upp när kortet är i bild; slutvärdet står i markupen. */
 const SIFFROR = [
-  { v: '3', e: 'Leveranser i drift' },
-  { v: '48h', e: 'Till färdigt förslag' },
-  { v: '24h', e: 'Svar på kostnadsfri analys' },
-  { v: '12%', e: 'Fler kundförfrågningar, kundcase' },
-];
-
-const CASE = [
-  { namn: 'Smålands Måleri', bransch: 'Måleri · Jönköping', url: 'https://smamaleri.se/', bild: '/img/demo-smalands-maleri.webp' },
-  { namn: 'Bromma Trädgård', bransch: 'Trädgårdsskötsel · Stockholm', url: 'https://brommatradgardsservice.se/', bild: '/img/demo-bromma-tradgard.webp' },
-  { namn: "Mayka's Kitchen", bransch: 'Restaurang & catering', url: 'https://maykaskitchen.se', bild: '/img/maykaskitchen.jpg' },
+  { v: <Rakna till={3} />, e: 'Leveranser i drift' },
+  { v: <Rakna till={48} suffix="h" />, e: 'Till färdigt förslag' },
+  { v: <Rakna till={24} suffix="h" />, e: 'Svar på kostnadsfri analys' },
+  { v: <Rakna till={12} suffix="%" />, e: 'Fler kundförfrågningar, kundcase' },
 ];
 
 export default function Start() {
   return (
     <>
-      {/* ── HERO: rubrik → video → CTA, som på nuvarande sajt ── */}
-      <section className={`mork ${styles.hero}`} id="top">
-        <div className={`wrap ${styles.heroInner}`} data-trapp>
-          <span className={styles.badge}>
-            <i /> För lokala företag i Sverige
-          </span>
-          <h1>
-            Hemsidor som ger hantverksfirmor <span className="accent">fler förfrågningar.</span>
-          </h1>
-          <p className={styles.heroLede}>
-            Syns ni inte på Google går jobben till någon annan. Videon visar varför, och vad
-            vi gör åt det. Två minuter, rakt på sak.
-          </p>
+      {/* ── HERO "Bygget live": text vänster, maskoten bygger till höger.
+             Sektionen är pinnad över 220 vh på desktop; scrollen styr bygget. ── */}
+      <section className={`mork ${styles.heroBygge}`} id="top">
+        <div className={styles.heroPin}>
+          <div className={`wrap ${styles.heroGrid}`}>
+            <div className={styles.heroText} data-trapp>
+              <span className="eyebrow">Byrån för bygg &amp; hantverk</span>
+              <h1>
+                Hemsidor som ger hantverkare <span className="accent">fler jobb.</span>
+              </h1>
+              <p className={styles.heroLede}>
+                Ni får ett färdigt förslag på er nya sida inom 48 timmar och ser den innan ni
+                bestämmer er. Det kostar ingenting att titta.
+              </p>
+              <div className={styles.heroKnappar}>
+                <Link href="/kontakt/" className="btn btn-primar">
+                  Se er sida gratis {PIL}
+                </Link>
+                <a href="#video" className={`btn btn-sekundar ${styles.videoKnapp}`}>
+                  {SPELA} Se videon · 2 min
+                </a>
+              </div>
+              <div className={styles.heroSiffror}>
+                <div>
+                  <strong>48h</strong>
+                  <span>Till färdigt förslag</span>
+                </div>
+                <div>
+                  <strong>0 kr</strong>
+                  <span>Tills ni säger ja</span>
+                </div>
+                <div>
+                  <strong>1</strong>
+                  <span>Kontaktperson, hela vägen</span>
+                </div>
+              </div>
+            </div>
 
-          <HeroVideo />
-
-          <div className={styles.heroKnappar}>
-            <a href="/foretag/gratis-granskning.html" className="btn btn-primar">
-              Få kostnadsfri analys {PIL}
-            </a>
+            <HeroBygge />
           </div>
-          <p className={styles.heroMikro}>
-            Kostnadsfri analys av er hemsida · Svar inom 24 timmar · Inga förpliktelser
-          </p>
-        </div>
-
-        <div className={styles.scrollcue}>
-          <span />
-          Scrolla
         </div>
       </section>
 
@@ -110,7 +126,18 @@ export default function Start() {
         </div>
       </section>
 
-      {/* ── SEKTION 2: synlighetspanelen ── */}
+      {/* ── VIDEON: två minuter, rakt på sak ── */}
+      <section className={`mork ${styles.videoYta}`} id="video">
+        <div className={`wrap ${styles.videoInner}`} data-trapp>
+          <span className="eyebrow">Två minuter, rakt på sak</span>
+          <h2>
+            Därför syns inte <span className="accent">ditt företag på Google.</span>
+          </h2>
+          <HeroVideo />
+        </div>
+      </section>
+
+      {/* ── SYNLIGHETSPANELEN ── */}
       <section className={`mork ${styles.panelYta}`} id="synlighet">
         <div className={`wrap ${styles.panelInner}`} data-trapp>
           <div>
@@ -151,15 +178,9 @@ export default function Start() {
                 Hemsidan är grunden. Resten bygger vi på när den står och fungerar.
               </p>
             </div>
-            <video
-              className={styles.tjanstFilm}
-              src="/brand/maskot/bahko-bygger-loop.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-label="Bahko-maskoten bygger en hemsida, panel för panel"
-            />
+            <div className={styles.tjanstMaskot}>
+              <Maskot pose="dansar" stil="stor" alt="Bahko-maskoten dansar vid tjänsterna" />
+            </div>
           </div>
 
           <div className={styles.tjanstNat} data-trapp>
@@ -178,7 +199,7 @@ export default function Start() {
         </div>
       </section>
 
-      {/* ── PROCESS: horisontellt spår med scroll-knappar ── */}
+      {/* ── PROCESS: horisontellt spår styrt av scrollen ── */}
       <section className={`mork ${styles.process}`} id="process">
         <div className="wrap">
           <span className="eyebrow">Hur vi jobbar</span>
@@ -199,36 +220,26 @@ export default function Start() {
             </div>
             <Maskot pose="pekar" stil="flyt" alt="Bahko-maskoten pekar på knappen för kostnadsfri demo" />
             <Link href="/kontakt/" className="btn btn-primar">
-              Se er kostnadsfria demo {PIL}
+              Se er sida gratis {PIL}
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ── CASE ── */}
+      {/* ── PORTFÖLJEN: riktiga sajter och demos i ett rutnät ── */}
       <section id="case">
         <div className="wrap">
-          <span className="eyebrow">Leveranser i drift</span>
-          <h2>
-            Riktiga sajter, <span className="accent">riktiga firmor.</span>
-          </h2>
-
-          <div className={styles.caseNat} data-trapp>
-            {CASE.map((c) => (
-              <a key={c.namn} href={c.url} target="_blank" rel="noopener" className={styles.caseKort}>
-                <span className={styles.caseBild}>
-                  <img src={c.bild} alt={`Förhandsvisning av ${c.namn}`} loading="lazy" />
-                </span>
-                <span className={styles.caseMeta}>
-                  <span>
-                    <strong>{c.namn}</strong>
-                    <em>{c.bransch}</em>
-                  </span>
-                  <span className={styles.tjanstPil}>{PIL}</span>
-                </span>
-              </a>
-            ))}
+          <div data-trapp>
+            <span className="eyebrow">Leveranser i drift</span>
+            <h2>
+              Riktiga sajter. <span className="accent">Riktiga firmor.</span>
+            </h2>
+            <p className="lede" style={{ marginTop: '1rem' }}>
+              Klicka in. Det här är inga mockuper, det är sidor som tar emot kunder varje dag.
+            </p>
           </div>
+
+          <Portfolj />
 
           <div className={styles.caseMer}>
             <Link href="/case/" className="btn btn-sekundar">

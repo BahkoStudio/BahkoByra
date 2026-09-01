@@ -35,7 +35,12 @@ export default function Popup() {
     };
     document.addEventListener('keydown', vidTangent);
     kortRef.current?.focus();
-    return () => document.removeEventListener('keydown', vidTangent);
+    // Bokningsraden läser data-lager och gömmer sig medan popupen är öppen
+    document.body.setAttribute('data-lager', 'popup');
+    return () => {
+      document.removeEventListener('keydown', vidTangent);
+      document.body.removeAttribute('data-lager');
+    };
   }, [oppen, stang]);
 
   if (!oppen) return null;

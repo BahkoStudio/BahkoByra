@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Maskot from '../../komponenter/Maskot';
 import styles from './om.module.css';
 
 export const metadata = {
@@ -40,6 +41,7 @@ export default function OmOss() {
         <div className="wrap">
           <span className="eyebrow">Om byrån</span>
           <h1>
+            <Maskot pose="vinkar" stil="liten" alt="Bahko-maskoten hälsar" />{' '}
             Vi bygger sidor för folk som <span className="accent">jobbar med händerna.</span>
           </h1>
           <p className="lede" style={{ marginTop: '1.1rem' }}>

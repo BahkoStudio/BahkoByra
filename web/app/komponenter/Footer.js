@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { TJANSTER } from '../data';
 import { NISCHER } from '../nischer';
+import Maskot from './Maskot';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -14,6 +15,9 @@ export default function Footer() {
               <span>Bahko Byrå</span>
             </Link>
             <p className={styles.tagline}>Synlighet som säljer.</p>
+            <span className={styles.maskot}>
+              <Maskot pose="vilar" stil="rund" alt="Bahko-maskoten vilar" />
+            </span>
           </div>
 
           <nav aria-label="Tjänster">
