@@ -18,7 +18,9 @@ export const PORTFOLJ = [
     typ: 'kund',
     url: 'https://brommatradgardsservice.se/',
     bild: '/img/demo-bromma-tradgard.webp',
-    rad: 'Numret synligt på varje skärm och RUT-beskedet per tjänst.',
+    // Verifierat 2026-08-15 (skärmdumpar i content/kundarbete/bromma/bevis/): plats 1 i
+    // Googles lokala resultat och först i ChatGPT:s svar på 'trädgårdsservice i Stockholm'.
+    rad: 'Plats 1 på Google och först i ChatGPT:s svar på "trädgårdsservice i Stockholm".',
   },
   {
     namn: "Mayka's Kitchen",
