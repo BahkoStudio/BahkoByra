@@ -125,14 +125,33 @@ header{position:sticky;top:0;z-index:40;background:rgba(248,250,252,.94);backdro
 .fchip.on{background:var(--navy);color:#FFFFFF;border-color:var(--navy)}
 
 /* ── BOARD ── */
-.board{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(224px,1fr);gap:.8rem;
-  overflow-x:auto;padding-bottom:1rem;scroll-snap-type:x proximity}
-/* Under panorering ska handen visa att brädan greppas, och kolumnsnapet
-   stängas av så dragningen inte drar emot. */
-.board.panorerar{cursor:grabbing;scroll-snap-type:none}
+/* Inget kolumnsnap: med tio kolumner drog snapet emot hjulet och kändes
+   som att brädan fastnade. Rullningslisten är alltid synlig så man ser
+   var i pipelinen man är. */
+.board{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(232px,1fr);gap:.8rem;
+  overflow-x:auto;padding-bottom:1rem;overscroll-behavior-x:contain;cursor:grab;
+  scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+.board::-webkit-scrollbar{height:10px}
+.board::-webkit-scrollbar-track{background:transparent}
+.board::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:100px;border:2px solid var(--cream)}
+.board::-webkit-scrollbar-thumb:hover{background:var(--ink-50)}
+/* Under panorering ska handen visa att brädan greppas. */
+.board.panorerar{cursor:grabbing}
 .col{background:var(--cream-2);border:1px solid var(--line);border-radius:14px;padding:.7rem;
-  display:flex;flex-direction:column;gap:.55rem;min-height:300px;scroll-snap-align:start;
+  display:flex;flex-direction:column;gap:.55rem;min-height:300px;
   border-top:5px solid var(--accent,var(--line-2));transition:background .2s}
+/* Strukturrutan ovanför varma pipelinen — uppfällbar, stängd som standard. */
+details.struktur{background:var(--white);border:1px solid var(--line);border-radius:14px;margin:0 0 1rem}
+details.struktur summary{cursor:pointer;padding:.75rem 1rem;font-weight:700;font-size:.92rem;list-style:none;display:flex;align-items:center;gap:.6rem;min-height:44px}
+details.struktur summary::-webkit-details-marker{display:none}
+details.struktur summary::before{content:'';width:0;height:0;border-left:6px solid var(--gold-dk);border-top:5px solid transparent;border-bottom:5px solid transparent;transition:transform .2s}
+details.struktur[open] summary::before{transform:rotate(90deg)}
+details.struktur .d{padding:0 1rem 1rem;font-size:.9rem;color:var(--ink-70)}
+details.struktur .flode{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin:.2rem 0 .8rem}
+details.struktur .flode span{padding:.25rem .65rem;border-radius:100px;background:var(--cream-2);border:1px solid var(--line);font-size:.8rem;white-space:nowrap;color:var(--ink)}
+details.struktur .flode i{color:var(--ink-30);font-style:normal}
+details.struktur ol{margin:0 0 0 1.1rem;display:grid;gap:.25rem}
+details.struktur b{color:var(--ink)}
 .col.over{background:#D1FAE5}
 .col-h{display:flex;align-items:center;gap:.5rem;padding:.15rem .3rem}
 .col-h .t{font-family:var(--disp);font-size:1rem;font-weight:700}
@@ -249,6 +268,8 @@ footer a{color:var(--gold-dk)}
 .dr-varm{display:none}
 body.vy-varma .dr-varm{display:block}
 body:not(.vy-varma) .bara-varm{display:none}
+/* Varma vyn kör endast pipeline: "Att göra idag" göms där (Mathias 2026-08-31). */
+body.vy-varma .due{display:none}
 
 /* Prioritet och betyg på warm-korten */
 .chip.prio-hog{background:var(--danger-bg);color:var(--danger)}
@@ -312,7 +333,26 @@ body:not(.vy-varma) .bara-varm{display:none}
     <div id="due-list"></div>
   </div>
 
-  <div class="kick fallbar" data-fall="pipeline">Pipeline <span class="hint">dra kort mellan kolumner · klicka för detaljer</span></div>
+  <div class="kick fallbar" data-fall="pipeline">Pipeline <span class="hint">dra kort mellan kolumner · klicka för detaljer · scrolla i sidled med hjulet</span></div>
+  <details class="struktur bara-varm" id="struktur">
+    <summary>Så funkar pipelinen — samtalsmotorn i tio kolumner</summary>
+    <div class="d">
+      <div class="flode">
+        <span>Att ringa</span><i>→</i><span>Dag 1</span><i>→</i><span>Dag 3</span><i>→</i><span>Dag 5</span><i>→</i><span>Dag 7</span>
+        <i>→</i><span>Ej svar</span><i>·</i><span>Framtiden</span><i>·</i><span>Ej intresserade</span><i>·</i><span>Demo skickad</span><i>·</i><span>Kund</span>
+      </div>
+      <ol>
+        <li><b>Kontaktad på Instagram / Att ringa</b> — alla här har fått DM. Ring med IG-öppningen i Ring-SOP:en.</li>
+        <li><b>Cold call dag 1, 3, 5, 7</b> — ett samtalsförsök varannan dag. Klicka dagens knapp på kortet, så flyttas det hit automatiskt och nästa ringdatum sätts två dagar fram.</li>
+        <li><b>Ej svar</b> — fyra försök utan svar. Vila 6 månader.</li>
+        <li><b>Kontakta i framtiden</b> — sa "senare". Sätt ett datum, annars är det ett nej.</li>
+        <li><b>Ej intresserade</b> — ett rent nej. Loggat, vila 6 månader.</li>
+        <li><b>Demo skickad</b> — demon är ute via DM. Följ upp dag 1–2, boka 15 minuter.</li>
+        <li><b>Kund</b> — faktura betald.</li>
+      </ol>
+      <p style="margin:.7rem 0 0">Manuset per dag: <a href="/cloud/sop-ringa/#manuset" target="_blank" rel="noopener">Ring-SOP:en → Manuset</a></p>
+    </div>
+  </details>
   <div class="filters" id="filters">
     <button class="fchip on" data-f="alla">Alla</button>
     <button class="fchip" data-f="noweb">Utan hemsida</button>
@@ -412,18 +452,24 @@ const COLDEF_KALL={
    samtalsförsök → antingen demo/kund eller tyst/nej. Bara åtta kolumner —
    de gamla tio (Ny, Ignorerar, Går ej att dma, Svarat, Möte bokat) bakas in
    via migreringen i normVarm, ingen lead tappas. */
-const STATUSES_VARM=['Kontaktad på Instagram','Cold call dag 1','Cold call dag 2','Cold call dag 3',
-                     'Ej svarat','Demo skickad','Ej intresserad','Kund'];
+const STATUSES_VARM=['Kontaktad på Instagram / Att ringa','Cold call dag 1','Cold call dag 3',
+                     'Cold call dag 5','Cold call dag 7','Ej svar','Kontakta i framtiden',
+                     'Ej intresserade','Demo skickad','Kund'];
 const COLDEF_VARM={
- 'Kontaktad på Instagram':{c:'#7C3AED', sub:'DM skickat, inte ringd än. Ring — IG-öppningen i SOP:en.'},
- 'Cold call dag 1':{c:'#0369A1', sub:'Första samtalet gjort. Inget svar: ring i morgon.'},
- 'Cold call dag 2':{c:'#0E7490', sub:'Två försök. Inget svar: ring en sista gång i morgon.'},
- 'Cold call dag 3':{c:'#B45309', sub:'Tredje försöket. Svar: agera. Tyst: dra till Ej svarat.'},
- 'Ej svarat':      {c:'#9A3412', sub:'Tre samtal utan svar. Vila — nästa varv enligt SOP:en.'},
- 'Demo skickad':   {c:'#D97706', sub:'Demo skickad via DM. Följ upp dag 1–2, boka 15 min.'},
- 'Ej intresserad': {c:'#64748B', sub:'Loggat. Vila 6 månader.'},
- 'Kund':           {c:'#047857', sub:'Faktura betald. Bygg skarpt inom 7 dagar.'}
+ 'Kontaktad på Instagram / Att ringa':{c:'#7C3AED', sub:'DM skickat, inte ringd än. Ring — IG-öppningen i SOP:en.'},
+ 'Cold call dag 1':    {c:'#0369A1', sub:'Första samtalet. Inget svar: ring igen om två dagar.'},
+ 'Cold call dag 3':    {c:'#0E7490', sub:'Andra försöket: kännas vid, avsikt, riktning.'},
+ 'Cold call dag 5':    {c:'#B45309', sub:'Tredje försöket: ett klart ja eller nej.'},
+ 'Cold call dag 7':    {c:'#9A3412', sub:'Sista försöket: stäng loopen. Tyst: dra till Ej svar.'},
+ 'Ej svar':            {c:'#78716C', sub:'Fyra samtal utan svar. Vila 6 månader.'},
+ 'Kontakta i framtiden':{c:'#4F46E5', sub:'Sa "senare". Sätt ett datum — odaterat senare är ett nej.'},
+ 'Ej intresserade':    {c:'#64748B', sub:'Loggat. Vila 6 månader.'},
+ 'Demo skickad':       {c:'#D97706', sub:'Demo skickad via DM. Följ upp dag 1–2, boka 15 min.'},
+ 'Kund':               {c:'#047857', sub:'Faktura betald. Bygg skarpt inom 7 dagar.'}
 };
+/* De steg som ligger FÖRE demo/beslut — används av migreringen och av
+   ringknapparna, så kort bara flyttas framåt inom samtalsdelen. */
+const FORE_DEMO=['Kontaktad på Instagram / Att ringa','Cold call dag 1','Cold call dag 3','Cold call dag 5','Cold call dag 7','Ej svar'];
 /* Demos som redan är byggda och skickade via DM — nyckel: lead-id i seeden.
    Läggs på i migreringen: länken skrivs in i anteckningarna, och står leadet
    kvar före demo-steget flyttas det till Demo skickad. Finns länken redan i
@@ -758,7 +804,7 @@ const SEED_VARM=[
 const VYER={
   kalla:{key:'bb_crm_v2',        statuses:STATUSES_KALL, closed:['Kund','Nej tack'],
          coldef:COLDEF_KALL, varm:false, namn:'Kalla leads'},
-  varma:{key:'bb_crm_warm_v1',   statuses:STATUSES_VARM, closed:['Kund','Ej intresserad'],
+  varma:{key:'bb_crm_warm_v1',   statuses:STATUSES_VARM, closed:['Kund','Ej intresserade'],
          coldef:COLDEF_VARM, varm:true,  namn:'Warm leads'}
 };
 let vy='kalla';
@@ -796,7 +842,7 @@ function norm(l){return Object.assign({id:'',name:'',web:'',contact:'',phone:'',
    behåller exakt sin form i bb_crm_v2. */
 function normVarm(l){
   const n=Object.assign({id:'',name:'',ig:'',web:'',contact:'',phone:'',email:'',city:'',
-  tjanst:'',status:'Kontaktad på Instagram',notes:'',nextDate:'',svaratAt:'',ringdAt:'',ringd:{},forsok:0,igNamn:'',
+  tjanst:'',status:'Kontaktad på Instagram / Att ringa',notes:'',nextDate:'',svaratAt:'',ringdAt:'',ringd:{},forsok:0,igNamn:'',
   score:'',intresse:'',prio:'',sa:'',problem:'',invandning:'',vill:'',senastKontakt:'',
   updated:today},l);
   return migreraVarm(n);
@@ -810,30 +856,32 @@ function migreraVarm(l){
   const tagga=t=>{if(!(l.notes||'').includes(t))l.notes=(l.notes?l.notes+' | ':'')+t;};
   /* Gamla "Ej svarat" betydde tyst på DM — ingen är ringd än. Nya "Ej svarat"
      betyder tre samtal utan svar. Utan ringförsök hör leadet hemma i IG-kolumnen. */
+  const IG='Kontaktad på Instagram / Att ringa';
   const ringda=Object.keys(l.ringd&&typeof l.ringd==='object'?l.ringd:{}).length;
   if(l.status==='Ej svarat'&&ringda===0&&!(l.notes||'').includes('[migrerad:')){
-    tagga('[migrerad: Ej svarat på DM]');l.status='Kontaktad på Instagram';
+    tagga('[migrerad: Ej svarat på DM]');l.status=IG;
   }
+  /* Namnbyten från åttakolumnersversionen (2026-08-31, tidigare samma dag). */
+  if(l.status==='Kontaktad på Instagram')l.status=IG;
+  else if(l.status==='Cold call dag 2'){l.status='Cold call dag 3';tagga('[migrerad: andra försöket]');}
+  else if(l.status==='Ej svarat')l.status='Ej svar';
+  else if(l.status==='Ej intresserad')l.status='Ej intresserade';
   if(!STATUSES_VARM.includes(l.status)){
     const gammal=l.status;
-    if(gammal==='Demo skickad')l.status='Demo skickad';
-    else if(gammal==='Möte bokat'){l.status='Demo skickad';tagga('[MÖTE BOKAT – kolumnen togs bort 2026-08-31]');}
-    else if(gammal==='Kund')l.status='Kund';
-    else if(gammal==='Ej intresserad')l.status='Ej intresserad';
+    if(gammal==='Möte bokat'){l.status='Demo skickad';tagga('[MÖTE BOKAT – kolumnen togs bort 2026-08-31]');}
     else{
       /* Ny, Kontaktad, Svarat, Ignorerar, Går ej att dma → allt före första samtalet. */
       if(gammal==='Svarat')tagga('[SVARADE på DM – het, ring först]');
       else if(gammal==='Ignorerar')tagga('[migrerad: Ignorerar]');
       else if(gammal==='Går ej att dma')tagga('[DM gick ej fram – ring direkt]');
-      l.status='Kontaktad på Instagram';
+      l.status=IG;
     }
   }
   /* Skickade demos: länk in i anteckningarna, kortet fram till Demo skickad. */
   const demo=DEMOS_DM[l.id];
   if(demo&&!(l.notes||'').includes(demo)){
     tagga('Demo: '+demo);
-    if(['Kontaktad på Instagram','Cold call dag 1','Cold call dag 2','Cold call dag 3','Ej svarat'].includes(l.status))
-      l.status='Demo skickad';
+    if(FORE_DEMO.includes(l.status))l.status='Demo skickad';
   }
   return l;
 }
@@ -943,11 +991,10 @@ mathias@bahkobyra.se`;
 /* Ringd-knappen: markerar att leadet är ringt i dag och räknar upp
    ringförsöken. Klick igen ångrar, så en felträff inte blir permanent.
    Försöken hålls inom SOP:ens tre. */
-/* Ringkadensen: tre försök — dag 1, 2 och 3 (samtalsmotorn 2026-08-31).
-   Varje steg markeras för sig och sparar dagen det gjordes. Gamla
-   markeringar på steg 5 och 7 ligger kvar i datan och visas som gjorda
-   dagar i chipen, men kadensen framåt är tre steg. */
-const RINGSTEG=[1,2,3];
+/* Ringkadensen: fyra försök — dag 1, 3, 5 och 7, exakt som Ring-SOP:ens
+   samtalsmotor och pipelinens kolumner. Varje steg markeras för sig och
+   sparar dagen det gjordes. */
+const RINGSTEG=[1,3,5,7];
 
 /* Den första versionen hade en enda ringd-knapp. Har man redan hunnit
    klicka den flyttas markeringen över till steg 1, så inget arbete tappas. */
@@ -969,11 +1016,12 @@ function markeraRingd(l,d){
     k[n]=today;
     const i=RINGSTEG.indexOf(d);
     if(!CLOSED.includes(l.status)){
-      l.nextDate=i>-1&&i<RINGSTEG.length-1?addDays(today,1):'';
-      /* Kortet följer med i pipelinen — men bara framåt, och aldrig förbi
-         demo-steget: står kortet redan i Demo skickad rör vi det inte. */
+      l.nextDate=i>-1&&i<RINGSTEG.length-1?addDays(today,2):'';
+      /* Kortet följer med i pipelinen — men bara framåt inom samtalsstegen,
+         och aldrig förbi demo/beslut: står kortet i Demo skickad eller
+         Kontakta i framtiden rör vi det inte. */
       const kolumn='Cold call dag '+d;
-      const fore=['Kontaktad på Instagram','Cold call dag 1','Cold call dag 2','Cold call dag 3'];
+      const fore=FORE_DEMO.slice(0,5);
       if(STATUSES.includes(kolumn)&&fore.includes(l.status)&&fore.indexOf(kolumn)>fore.indexOf(l.status))
         l.status=kolumn;
     }
@@ -1151,7 +1199,11 @@ boardEl.addEventListener('wheel',e=>{
   if(e.ctrlKey)return;
   const max=boardEl.scrollWidth-boardEl.clientWidth;
   if(max<=1)return;
-  const steg=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;
+  const sidled=Math.abs(e.deltaX)>Math.abs(e.deltaY);
+  /* Ett vanligt hjulhack är ~100 px. Med tio kolumner på 230 px tog det
+     20+ hack att korsa brädan — därför växlas lodräta hack upp. Riktiga
+     sidledssvep (styrplatta) lämnas i sin naturliga skala. */
+  const steg=sidled?e.deltaX:e.deltaY*2.2;
   if(!steg)return;
   if(steg<0&&boardEl.scrollLeft<=0)return;
   if(steg>0&&boardEl.scrollLeft>=max-1)return;
@@ -1423,17 +1475,18 @@ const IMPORTKARTA=[
 /* Arkets statusord kan skilja sig i stavning och blanksteg — en tolerant matchning. */
 function statusFranArket(v){
   const t=String(v||'').trim().toLowerCase();
-  if(!t)return 'Kontaktad på Instagram';
+  if(!t)return 'Kontaktad på Instagram / Att ringa';
   const träff=STATUSES_VARM.find(s=>s.toLowerCase()===t);
   if(träff)return träff;
   /* Arkets gamla statusord landar i samtalsmotorns kolumner: allt före
-     första samtalet är "Kontaktad på Instagram" — det är ju IG-listan. */
-  if(t.startsWith('ej intress')||t.startsWith('inte intress'))return 'Ej intresserad';
+     första samtalet är "Att ringa" — det är ju IG-listan. */
+  if(t.startsWith('ej intress')||t.startsWith('inte intress'))return 'Ej intresserade';
   if(t.startsWith('demo'))return 'Demo skickad';
   if(t.includes('möte')||t.includes('mote'))return 'Demo skickad';
   if(t.startsWith('kund'))return 'Kund';
+  if(t.includes('framtid')||t.startsWith('senare'))return 'Kontakta i framtiden';
   if(t.startsWith('ringd')||t.startsWith('cold call'))return 'Cold call dag 1';
-  return 'Kontaktad på Instagram';
+  return 'Kontaktad på Instagram / Att ringa';
 }
 const isoDatum=v=>{
   const t=String(v||'').trim();
