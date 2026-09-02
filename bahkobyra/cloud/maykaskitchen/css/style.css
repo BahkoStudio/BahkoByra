@@ -1291,11 +1291,13 @@ body.scene-active { background: var(--dark); }
 
 /* Management bakom samarbeten */
 .management {
-  display: flex; flex-direction: column; gap: 0.15rem;
+  display: flex; align-items: center; gap: 0.85rem;
   padding: 0.9rem 1rem; margin: 0.3rem 0 0.9rem;
   border-left: 2px solid var(--gold); background: rgba(201,149,42,0.06);
   border-radius: 0 10px 10px 0;
 }
+.management-logo { width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0; }
+.management-text { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
 .management-namn { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; color: var(--charcoal); }
 .management-roll { font-size: 0.78rem; color: var(--mid); line-height: 1.45; }
 .management-lank {
