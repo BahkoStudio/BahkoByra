@@ -20,7 +20,7 @@ export const PORTFOLJ = [
     bild: '/img/demo-bromma-tradgard.webp',
     // Verifierat 2026-08-15 (skärmdumpar i content/kundarbete/bromma/bevis/): plats 1 i
     // Googles lokala resultat och först i ChatGPT:s svar på 'trädgårdsservice i Stockholm'.
-    rad: 'Plats 1 på Google och först i ChatGPT:s svar på "trädgårdsservice i Stockholm".',
+    rad: 'Plats 1 på Google och först i ChatGPT:s svar. Inom två veckor.',
   },
   {
     namn: "Mayka's Kitchen",
