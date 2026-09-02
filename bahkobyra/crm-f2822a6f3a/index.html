@@ -333,7 +333,7 @@ body.vy-varma .due{display:none}
     <div id="due-list"></div>
   </div>
 
-  <div class="kick fallbar" data-fall="pipeline">Pipeline <span class="hint">dra kort mellan kolumner · klicka för detaljer · scrolla i sidled med hjulet</span></div>
+  <div class="kick fallbar" data-fall="pipeline">Pipeline <span class="hint">dra kort mellan kolumner · klicka för detaljer · håll in musen på tom yta och dra för att flytta brädan i sidled</span></div>
   <details class="struktur bara-varm" id="struktur">
     <summary>Så funkar pipelinen — samtalsmotorn i tio kolumner</summary>
     <div class="d">
@@ -1191,25 +1191,10 @@ function setAutoScroll(clientX){
   if(scrollDir&&!scrollRaf)scrollRaf=requestAnimationFrame(autoScroll);
 }
 function stopAutoScroll(){scrollDir=0;}
-/* Mushjulet flyttar brädan i sidled. I ändläget släpps rullningen vidare
-   till sidan, annars känns det som att skrollen fastnat mot kanten.
-   Ctrl lämnas ifred så webbläsarens zoom fungerar som vanligt, och en
-   mus eller styrplatta som redan skickar horisontella svep får styra. */
-boardEl.addEventListener('wheel',e=>{
-  if(e.ctrlKey)return;
-  const max=boardEl.scrollWidth-boardEl.clientWidth;
-  if(max<=1)return;
-  const sidled=Math.abs(e.deltaX)>Math.abs(e.deltaY);
-  /* Ett vanligt hjulhack är ~100 px. Med tio kolumner på 230 px tog det
-     20+ hack att korsa brädan — därför växlas lodräta hack upp. Riktiga
-     sidledssvep (styrplatta) lämnas i sin naturliga skala. */
-  const steg=sidled?e.deltaX:e.deltaY*2.2;
-  if(!steg)return;
-  if(steg<0&&boardEl.scrollLeft<=0)return;
-  if(steg>0&&boardEl.scrollLeft>=max-1)return;
-  boardEl.scrollLeft+=steg;
-  e.preventDefault();
-},{passive:false});
+/* Mushjulet rör INTE brädan i sidled (Mathias 2026-09-02): hjulet ska
+   scrolla sidan upp och ner som vanligt, och sidled sker genom att hålla in
+   musen och dra. Två effekter på samma hjul blev bara rörigt. Styrplattans
+   egna sidledssvep fungerar ändå — det är webbläsarens standard. */
 
 /* greppa tom yta på brädan och dra för att panorera */
 let panX=null,panStart=0;
