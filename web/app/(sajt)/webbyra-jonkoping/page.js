@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Faq from '../../komponenter/Faq';
+import Maskot from '../../komponenter/Maskot';
 import styles from './jonkoping.module.css';
 
 export const metadata = {
@@ -76,7 +77,10 @@ export default function Jonkoping() {
             <span aria-hidden="true">/</span>
             <span>Webbyrå i Jönköping</span>
           </nav>
-          <h1>Webbyrå i Jönköping</h1>
+          <h1>
+            <Maskot pose="vinkar" stil="liten" alt="Bahko-maskoten hälsar" />{' '}
+            Webbyrå i Jönköping
+          </h1>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
             Bahko Byrå är en webbyrå med kontor i Jönköping som bygger hemsidor för bygg- och
             hantverksfirmor. Färdigt förslag inom 48 timmar, live inom sju dagar, och en kund

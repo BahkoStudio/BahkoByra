@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Faq from '../../komponenter/Faq';
+import Maskot from '../../komponenter/Maskot';
 import styles from './prisguide.module.css';
 
 export const metadata = {
@@ -90,7 +91,10 @@ export default function Prisguide() {
             <span aria-hidden="true">/</span>
             <span>Vad kostar en hemsida?</span>
           </nav>
-          <h1>Vad kostar en hemsida?</h1>
+          <h1>
+            <Maskot pose="vinkar" stil="liten" alt="Bahko-maskoten hälsar" />{' '}
+            Vad kostar en hemsida?
+          </h1>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
             Ärligt svar: det beror på fyra saker, och den som säger en siffra innan de sett er
             firma gissar. Här är vad som avgör priset, vilka fällor ni ska se upp med, och hur

@@ -94,3 +94,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Maskoten vilar under taglinen, sista intrycket på varje sida */
+.maskot {
+  display: block;
+  margin-top: 1.4rem;
+}
