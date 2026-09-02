@@ -129,24 +129,38 @@
         <div class="event-meta">
           <span class="event-meta-item">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-            <span data-i18n="event.date">25 oktober 2026</span>
+            <span data-i18n="event.date">Söndag 25 oktober 2026</span>
           </span>
-          <span class="event-meta-item">
+          <a class="event-meta-item event-meta-link" href="https://maps.google.com/?q=Pilgatan+3,+212+12+Malm%C3%B6" target="_blank" rel="noopener noreferrer">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span data-i18n="event.place">Kitchen 961, Malmö</span>
-          </span>
+            <span data-i18n="event.place">Kitchen 961, Pilgatan 3, Malmö</span>
+          </a>
         </div>
-
       </div>
 
       <div class="event-img">
-        <img src="img/event-mayka.jpg" alt="Mayka lägger upp mat på ett fat" loading="lazy" width="1456" height="975">
+        <img src="img/event-mayka.jpg" alt="Mayka Gulo" loading="lazy" width="1456" height="1092">
+      </div>
+      <p class="event-fotokredit" data-i18n="event.foto">Foto: Rickard L Eriksson</p>
+
+      <div class="event-head event-head--text">
+        <p class="event-vem" data-i18n="event.vem">Mayka är kokboksförfattare till <em>Maykas gröna kök – Kutle, hummus och kärlek</em> och lagar mat med assyriska och syrianska rötter.</p>
+        <p class="event-lead" data-i18n="event.lead">En eftermiddag med buffé fylld av smaker från Mellanöstern, inspirationsföreläsning med Mayka, frågestund och mingel. Dryck ingår i priset.</p>
+        <p class="event-platser">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span data-i18n="event.platser">Begränsat till 150 gäster</span>
+        </p>
       </div>
 
-      <div class="event-head" style="margin-bottom:2.2rem">
-        <p class="event-vem" data-i18n="event.vem">Mayka är kokboksförfattare till <em>Maykas gröna kök – Kutle, hummus och kärlek</em> och lagar mat med assyriska och syrianska rötter.</p>
-
-        <p class="event-lead" data-i18n="event.lead">En unik eftermiddag där mat, smaker och inspiration står i centrum. Mayka bjuder på en personlig matupplevelse med berättelser, matlagning, frågor och svar – och självklart möjlighet att smaka på maten.</p>
+      <div class="program">
+        <div class="program-rad program-rad--vip">
+          <span class="program-tid">14:00–15:00</span>
+          <span class="program-text"><strong data-i18n="event.prog1">VIP-timme</strong> <span data-i18n="event.prog1b">· endast VIP-biljett</span></span>
+        </div>
+        <div class="program-rad">
+          <span class="program-tid">15:00–18:00</span>
+          <span class="program-text"><strong data-i18n="event.prog2">Huvudevent</strong> <span data-i18n="event.prog2b">· alla gäster</span></span>
+        </div>
       </div>
 
       <div class="ticket-grid">
@@ -154,21 +168,27 @@
         <div class="ticket">
           <span class="ticket-name" data-i18n="event.std.name">Standard</span>
           <span class="ticket-price">299 <span data-i18n="event.currency">kr</span></span>
+          <p class="ticket-note ticket-note--intro" data-i18n="event.std.intro">Huvudeventet 15:00–18:00</p>
           <ul class="ticket-list">
-            <li data-i18n="event.std.b1">Inträde till eventet</li>
-            <li data-i18n="event.std.b2">Matlagning, berättelser och frågestund</li>
-            <li data-i18n="event.std.b3">Möjlighet att smaka på maten</li>
+            <li data-i18n="event.std.b1">Buffé med smaker från Mellanöstern, dryck ingår</li>
+            <li data-i18n="event.std.b2">Inspirationsföreläsning med Mayka</li>
+            <li data-i18n="event.std.b3">Frågestund</li>
+            <li data-i18n="event.std.b4">Mingel och nätverkande</li>
+            <li data-i18n="event.std.b5">Överraskningar under eftermiddagen</li>
+            <li data-i18n="event.std.b6">Möjlighet att träffa Mayka</li>
           </ul>
         </div>
 
         <div class="ticket ticket--vip">
           <span class="ticket-name" data-i18n="event.vip.name">VIP</span>
           <span class="ticket-price">599 <span data-i18n="event.currency">kr</span></span>
-          <p class="ticket-note ticket-note--intro" data-i18n="event.vip.note">Allt i Standard, plus:</p>
+          <p class="ticket-note ticket-note--intro" data-i18n="event.vip.note">Allt i Standard, plus VIP-timmen 14:00–15:00:</p>
           <ul class="ticket-list">
-                        <li data-i18n="event.vip.b2">Signerad kokbok</li>
-            <li data-i18n="event.vip.b3">Prioriterad sittplats</li>
-            <li data-i18n="event.vip.b4">Möjlighet att träffa Mayka och ta bilder</li>
+            <li data-i18n="event.vip.b1">Insläpp redan kl. 14:00</li>
+            <li data-i18n="event.vip.b2">Välkomstdryck</li>
+            <li data-i18n="event.vip.b3">Meet &amp; Greet med Mayka</li>
+            <li data-i18n="event.vip.b4">Fotografering</li>
+            <li data-i18n="event.vip.b5">Signerad kokbok</li>
           </ul>
         </div>
 
@@ -176,7 +196,7 @@
 
       <div class="event-actions">
         <a class="btn-ticket" href="https://billetto.se/e/maykas-kitchen-live-biljetter-1976316" target="_blank" rel="noopener noreferrer" data-i18n="event.btn">Köp biljett →</a>
-        <span class="event-note" data-i18n="event.note">Biljetter säljs via Billetto</span>
+        <span class="event-note" data-i18n="event.note">Biljetter säljs via Billetto · 150 platser totalt</span>
       </div>
 
     </div>
