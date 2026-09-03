@@ -183,6 +183,14 @@
   transform: translateY(-9px) scale(1.06);
 }
 
+/* Stilla tills pekaren är över: armarna och kroppen fryser i sitt startläge */
+.stilla:not(:hover),
+.stilla:not(:hover) .figur,
+.stilla:not(:hover) .armVanster,
+.stilla:not(:hover) .armHoger {
+  animation-play-state: paused;
+}
+
 /* ── Storlekar ────────────────────────────────────────────────────────── */
 
 .rund  { width: 220px; height: 220px; }

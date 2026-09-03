@@ -102,55 +102,6 @@
   background: var(--linje-mork);
 }
 
-/* ── MARQUEE ── */
-.marquee {
-  background: var(--sektion);
-  border-block: 1px solid var(--linje-mork);
-  overflow: hidden;
-  padding: 0.95rem 0;
-}
-
-.marqueeSpar {
-  display: flex;
-  width: max-content;
-  animation: rulla 38s linear infinite;
-}
-
-.marqueeSet {
-  display: flex;
-  align-items: center;
-  gap: 2.6rem;
-  padding-right: 2.6rem;
-}
-
-.marqueeSet span {
-  display: inline-flex;
-  align-items: center;
-  gap: 2.6rem;
-  white-space: nowrap;
-  font-size: clamp(1rem, 1.6vw, 1.3rem);
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.86);
-}
-
-.marqueeSet i {
-  color: var(--em-lt);
-  font-style: normal;
-  font-size: 0.8em;
-}
-
-@keyframes rulla {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marqueeSpar {
-    animation: none;
-  }
-}
-
 /* ── SIFFROR ── */
 .siffrorYta {
   padding-top: clamp(2.4rem, 5vw, 3.4rem);
@@ -175,6 +126,8 @@
 
 .siffror strong {
   display: block;
+  contain: layout;
+  font-variant-numeric: tabular-nums;
   font-size: clamp(2.1rem, 4.4vw, 3.1rem);
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -182,7 +135,7 @@
   line-height: 1;
 }
 
-.siffror span {
+.siffror > div > span {
   display: block;
   margin-top: 0.6rem;
   font-size: 0.72rem;
@@ -370,6 +323,13 @@
   font-size: 0.95rem;
 }
 
+.processScen {
+  display: block;
+  width: clamp(150px, 15vw, 210px);
+  height: auto;
+  margin: -3.2rem 0 -2.4rem;
+}
+
 /* ── CASE ── */
 .caseNat {
   display: grid;
@@ -439,6 +399,10 @@
 
 .caseMer {
   margin-top: 1.8rem;
+}
+
+.caseYta {
+  background: var(--sektion);
 }
 
 /* ── FAQ ── */
@@ -562,13 +526,16 @@
   position: relative;
 }
 
-.panelMaskot {
+.panelFigur {
   display: block;
-  margin: 1.6rem 0 0 -18px;
+  width: clamp(200px, 22vw, 300px);
+  height: auto;
+  margin: 1.6rem 0 0 -10px;
 }
 
 @media (max-width: 900px) {
-  .panelMaskot {
+  .panelFigur {
+    width: 180px;
     margin-left: 0;
   }
 }
@@ -585,9 +552,12 @@
   flex: 1;
 }
 
-.siffrorMaskot {
-  flex-shrink: 0;
+.siffrorScen {
+  order: -1;
+  flex: none;
   display: block;
+  width: clamp(180px, 20vw, 280px);
+  height: auto;
 }
 
 .gratisMaskot {
@@ -601,7 +571,7 @@
 }
 
 @media (max-width: 900px) {
-  .siffrorMaskot {
+  .siffrorScen {
     display: none;
   }
 }
@@ -627,6 +597,13 @@
   align-items: center;
 }
 
+.gratisScen {
+  display: block;
+  width: clamp(170px, 19vw, 260px);
+  height: auto;
+  flex: none;
+}
+
 @media (max-width: 900px) {
   .tjanstIntro {
     grid-template-columns: 1fr;
@@ -634,35 +611,31 @@
 }
 
 /* ── HERO "Bygget live" ─────────────────────────────────────────────
-   Sektionen är 220 vh hög på desktop och det inre lagret pinnas under
-   headern, så scrollen genom sektionen styr hur långt maskoten byggt
-   (HeroBygge). Under 900 px är den en vanlig sektion. */
+   Höjden kommer ur innehållet. Text och siffror står i vänsterspalten,
+   scenen spänner över båda raderna och centreras mot dem. Under 900 px
+   staplas det: text → knappar → scen → siffror. */
 .heroBygge {
-  padding: 0;
-  position: relative;
-}
-
-.heroPin {
-  position: sticky;
-  top: var(--header-h);
-  min-height: calc(100svh - var(--header-h));
-  display: flex;
-  align-items: center;
-  padding: clamp(2rem, 4vw, 3rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+  padding: clamp(2.4rem, 5vw, 4rem) 0 clamp(2.6rem, 5vw, 4.2rem);
 }
 
 .heroGrid {
   display: grid;
   grid-template-columns: 1.05fr 1fr;
-  gap: clamp(2rem, 5vw, 4.5rem);
+  grid-template-areas:
+    'text scen'
+    'siffror scen';
+  column-gap: clamp(2rem, 5vw, 4.5rem);
+  row-gap: 1.6rem;
   align-items: center;
 }
 
 .heroText {
+  grid-area: text;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1.1rem;
+  align-self: end;
 }
 
 .heroText > * {
@@ -671,6 +644,7 @@
 
 .heroText .heroLede {
   margin: 0;
+  max-width: 34ch;
 }
 
 .heroText .heroKnappar {
@@ -683,13 +657,25 @@
   height: 14px;
 }
 
+.heroScen {
+  grid-area: scen;
+  min-width: 0;
+}
+
+/* Siffertrion: tre lika kolumner, siffrorna toppjusterade så de står på
+   samma höjd oavsett hur många rader etiketten tar. */
 .heroSiffror {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.6rem 2.2rem;
-  margin-top: 0.6rem;
+  grid-area: siffror;
+  align-self: start;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem 1.2rem;
   padding-top: 1.4rem;
   border-top: 1px solid var(--linje-mork);
+}
+
+.heroSiffror > div {
+  min-width: 0;
 }
 
 .heroSiffror strong {
@@ -699,6 +685,7 @@
   letter-spacing: -0.03em;
   line-height: 1;
   color: var(--em);
+  font-variant-numeric: tabular-nums;
 }
 
 .heroSiffror span {
@@ -709,21 +696,39 @@
   letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--text-lag);
-}
-
-@media (min-width: 900px) {
-  .heroBygge {
-    min-height: 220vh;
-  }
+  text-wrap: balance;
 }
 
 @media (max-width: 899px) {
-  .heroPin {
-    position: static;
-    min-height: 0;
-  }
   .heroGrid {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      'text'
+      'scen'
+      'siffror';
+    row-gap: 1.8rem;
+  }
+  .heroText {
+    align-self: auto;
+  }
+  .heroSiffror {
+    gap: 0.8rem 0.6rem;
+    padding-top: 1.2rem;
+  }
+  .heroSiffror span {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+/* Smal mobil: knapparna i full bredd */
+@media (max-width: 480px) {
+  .heroText .heroKnappar,
+  .heroText .heroKnappar a {
+    width: 100%;
+  }
+  .heroText .heroKnappar a {
+    justify-content: center;
   }
 }
 
@@ -752,4 +757,22 @@
 .tjanstMaskot {
   display: flex;
   justify-content: center;
+}
+
+.tjanstMaskot img {
+  display: block;
+  width: clamp(220px, 24vw, 320px);
+  height: auto;
+}
+
+/* Maskoten byter sida hela vagen ner (bar.md 4): heron hoger, siffrorna vanster,
+   panelen hoger (texten star till hoger om panelen), tjansterna vanster,
+   erbjudandena hoger. Under 900 px staplas allt i normal ordning. */
+@media (min-width: 901px) {
+  .panelInner > div:first-child {
+    order: 2;
+  }
+  .tjanstMaskot {
+    order: -1;
+  }
 }

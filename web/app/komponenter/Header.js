@@ -73,7 +73,7 @@ export default function Header() {
 
         <div className={styles.hoger}>
           <span className={styles.headerMaskot}>
-            <Maskot pose="vinkar" stil="mini" alt="" />
+            <Maskot pose="vinkar" stil="mini" alt="" stilla />
           </span>
           <Link href="/kontakt/" className={`btn btn-primar ${styles.headerKnapp}`}>
             Kostnadsfritt förslag

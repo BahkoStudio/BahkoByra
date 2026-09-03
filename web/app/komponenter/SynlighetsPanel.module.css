@@ -32,23 +32,36 @@
 }
 
 .status i {
+  position: relative;
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--em);
-  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.55);
+}
+
+/* Pulsen ritas av en ring som växer och tonar: bara transform och opacity,
+   så den aldrig tvingar fram ommålning av raden runt omkring. */
+.status i::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.5);
   animation: puls 2.4s ease-out infinite;
 }
 
 @keyframes puls {
   0% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+    transform: scale(1);
+    opacity: 1;
   }
   70% {
-    box-shadow: 0 0 0 9px rgba(16, 185, 129, 0);
+    transform: scale(3.25);
+    opacity: 0;
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    transform: scale(3.25);
+    opacity: 0;
   }
 }
 
