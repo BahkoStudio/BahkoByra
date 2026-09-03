@@ -30,7 +30,10 @@ const LAGER = {
 
 const GESTER = ['master', 'vinkar', 'pekar', 'undersoker', 'dansar', 'gar', 'kikar', 'vilar', 'rycker'];
 
-export default function Maskot({ pose = 'master', stil = 'rund', alt = 'Bahko-maskoten' }) {
+/* `stilla`: gesten spelas bara medan pekaren är över figuren. Används i
+   headern, där en figur som guppar hela tiden blev en andra kontinuerlig
+   rörelse på första skärmen (design-loopen, runda 2). */
+export default function Maskot({ pose = 'master', stil = 'rund', alt = 'Bahko-maskoten', stilla = false }) {
   const gest = GESTER.includes(pose) ? pose : 'master';
 
   /* Går-gesten är en engångspromenad. Utan grind spelas den vid sidladdning,
@@ -62,6 +65,7 @@ export default function Maskot({ pose = 'master', stil = 'rund', alt = 'Bahko-ma
 
   const klasser = [styles.maskot, styles[stil], styles[gest]];
   if (!igang) klasser.push(styles.pausad);
+  if (stilla) klasser.push(styles.stilla);
 
   return (
     <span ref={rotRef} className={klasser.join(' ')} role="img" aria-label={alt}>

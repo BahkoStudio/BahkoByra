@@ -1,5 +1,5 @@
-/* Heron "Bygget live": scenen där maskoten bygger, med byggstreck och bubbla.
-   Rutorna ritas på canvasen; första rutan ligger under som bild och fallback. */
+/* Heron "Bygget live": scenen där maskoten bygger, med etikett och bubbla.
+   Filmen ligger över första rutan (bild) och tonas in när den spelar. */
 
 .rot {
   position: relative;
@@ -25,10 +25,10 @@
   overflow: hidden;
   background: var(--sektion);
   border: 2px solid var(--linje-mork);
+  contain: layout paint;
 }
 
 .bild,
-.canvas,
 .video {
   position: absolute;
   inset: 0;
@@ -38,70 +38,87 @@
   display: block;
 }
 
-/* Canvasen ligger över bilden och visas först när den ritar */
-.canvas {
+/* Filmen syns först när den faktiskt spelar: ingen svart ruta, inget blink */
+.video {
   opacity: 0;
   transition: opacity 0.35s var(--ease);
 }
 
-.canvas .canvas,
-.rot.canvas .canvas {
+.spelar .video {
   opacity: 1;
 }
 
-.video .bild {
-  opacity: 0;
-}
-
-/* Fyra byggstreck: ett per panel som B sätter upp */
-.streck {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.5rem;
-}
-
-.streck span {
-  display: block;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--linje-mork);
-  overflow: hidden;
-}
-
-.streck i {
-  display: block;
-  height: 100%;
-  background: var(--em);
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-}
-
-/* Video- och stillbildslägena har inga streck att fylla */
-.video .streck,
-.stilla .streck {
-  display: none;
-}
-
+/* Bubblan: uppe till höger, utanför maskotens hand och öga. Den kommer in
+   nerifrån med studsen (samma håll som texten) när första rutan är laddad,
+   aldrig i en tom ruta. */
 .bubbla {
   position: absolute;
-  left: 1rem;
-  bottom: 4.2rem;
+  top: 1rem;
+  right: 1rem;
   max-width: 240px;
   margin: 0;
   padding: 0.8rem 1rem;
   background: var(--vit);
-  color: var(--ink);
-  border-radius: 16px 16px 16px 4px;
+  color: var(--bas);
+  border-radius: 16px 16px 4px 16px;
   font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.35;
   box-shadow: 0 4px 0 var(--em-deep);
+  opacity: 0;
+  transform: translateY(16px);
 }
 
+.redo .bubbla {
+  animation: bubblaIn 0.6s var(--studs) 0.45s both;
+}
+
+@keyframes bubblaIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smal desktop: scenen är smalare, bubblan får krympa så den slutar ovanför ögat */
+@media (min-width: 900px) and (max-width: 1150px) {
+  .bubbla {
+    max-width: 200px;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobil: bubblan lämnar scenen och står i full bredd direkt under den,
+   så den varken täcker maskoten eller klipps av kanten. */
 @media (max-width: 899px) {
   .bubbla {
     position: static;
+    width: 100%;
     max-width: none;
-    margin-top: 0.2rem;
+    box-sizing: border-box;
+    margin-top: -0.2rem;
+    border-radius: 4px 16px 16px 16px;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubbla,
+  .redo .bubbla {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Bubblan ar en ljus yta i en mork sektion: den globala regeln .mork p
+   satter dampad ljus text, sa har kravs hogre specificitet (design-system:
+   ljus yta, mork text). */
+.mork p.bubbla,
+p.bubbla {
+  color: #0a1628;
 }

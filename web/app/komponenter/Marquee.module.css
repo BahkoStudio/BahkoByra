@@ -1,0 +1,53 @@
+.marquee {
+  background: var(--sektion);
+  border-block: 1px solid var(--linje-mork);
+  overflow: hidden;
+  padding: 0.95rem 0;
+}
+
+.spar {
+  display: flex;
+  width: max-content;
+  animation: rulla 38s linear infinite;
+  animation-play-state: paused;
+}
+
+.igang .spar {
+  animation-play-state: running;
+}
+
+.set {
+  display: flex;
+  align-items: center;
+  gap: 2.6rem;
+  padding-right: 2.6rem;
+}
+
+.set span {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.6rem;
+  white-space: nowrap;
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.set i {
+  color: var(--em-lt);
+  font-style: normal;
+  font-size: 0.8em;
+}
+
+@keyframes rulla {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spar,
+  .igang .spar {
+    animation: none;
+  }
+}

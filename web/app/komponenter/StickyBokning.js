@@ -18,8 +18,13 @@ export default function StickyBokning() {
 
     const uppdatera = () => setSynlig(forbiHero && !footerSyns && !lager);
 
+    /* Raden kommer först när besökaren lämnat videon (design-loopen runda 3):
+       innan dess låg den över spelknappen. Saknas videosektionen gäller heron. */
+    const video = document.getElementById('video');
     const vidScroll = () => {
-      forbiHero = window.scrollY > window.innerHeight * 0.9;
+      forbiHero = video
+        ? video.getBoundingClientRect().bottom < window.innerHeight * 0.5
+        : window.scrollY > window.innerHeight * 0.9;
       uppdatera();
     };
     vidScroll();
@@ -56,7 +61,7 @@ export default function StickyBokning() {
     <div className={`${styles.rad} ${synlig ? styles.synlig : ''}`} aria-hidden={!synlig}>
       <div className={styles.inner}>
         <span className={styles.figur}>
-          <Maskot pose="master" stil="mini" alt="" />
+          <Maskot pose="master" stil="mini" alt="" stilla />
         </span>
         <span className={styles.text}>Se er nya hemsida innan ni bestämmer er.</span>
         <a href="tel:+46762540951" className={styles.ring} aria-label="Ring Bahko Byrå, 076-254 09 51">
@@ -65,7 +70,7 @@ export default function StickyBokning() {
           </svg>
         </a>
         <Link href="/kontakt/" className={`btn btn-primar ${styles.knapp}`} tabIndex={synlig ? 0 : -1}>
-          Se er sida gratis
+          Se er sida kostnadsfritt
         </Link>
       </div>
     </div>

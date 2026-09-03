@@ -2,6 +2,7 @@ import Link from 'next/link';
 import HeroBygge from '../komponenter/HeroBygge';
 import HeroVideo from '../komponenter/HeroVideo';
 import Maskot from '../komponenter/Maskot';
+import Marquee from '../komponenter/Marquee';
 import Rakna from '../komponenter/Rakna';
 import Portfolj from '../komponenter/Portfolj';
 import SynlighetsPanel from '../komponenter/SynlighetsPanel';
@@ -29,15 +30,6 @@ const SPELA = (
   </svg>
 );
 
-/* Bevisremsan: kundsajternas domäner varvade med löftena */
-const MARQUEE = [
-  'smamaleri.se',
-  'Förslag inom 48 timmar',
-  'brommatradgardsservice.se',
-  'Ni äger sidan',
-  'maykaskitchen.se',
-  'Synlighet som säljer',
-];
 
 /* Räknarna tickar upp när kortet är i bild; slutvärdet står i markupen. */
 const SIFFROR = [
@@ -51,63 +43,52 @@ export default function Start() {
   return (
     <>
       {/* ── HERO "Bygget live": text vänster, maskoten bygger till höger.
-             Sektionen är pinnad över 220 vh på desktop; scrollen styr bygget. ── */}
+             Höjden kommer ur innehållet; filmen spelar på alla skärmar.
+             Mobil: text → knappar → scen → siffror. ── */}
       <section className={`mork ${styles.heroBygge}`} id="top">
-        <div className={styles.heroPin}>
-          <div className={`wrap ${styles.heroGrid}`}>
-            <div className={styles.heroText} data-trapp>
-              <span className="eyebrow">Byrån för bygg &amp; hantverk</span>
-              <h1>
-                Hemsidor som ger hantverkare <span className="accent">fler jobb.</span>
-              </h1>
-              <p className={styles.heroLede}>
-                Ni får ett färdigt förslag på er nya sida inom 48 timmar och ser den innan ni
-                bestämmer er. Det kostar ingenting att titta.
-              </p>
-              <div className={styles.heroKnappar}>
-                <Link href="/kontakt/" className="btn btn-primar">
-                  Se er sida gratis {PIL}
-                </Link>
-                <a href="#video" className={`btn btn-sekundar ${styles.videoKnapp}`}>
-                  {SPELA} Se videon · 2 min
-                </a>
-              </div>
-              <div className={styles.heroSiffror}>
-                <div>
-                  <strong>48h</strong>
-                  <span>Till färdigt förslag</span>
-                </div>
-                <div>
-                  <strong>0 kr</strong>
-                  <span>Tills ni säger ja</span>
-                </div>
-                <div>
-                  <strong>1</strong>
-                  <span>Kontaktperson, hela vägen</span>
-                </div>
-              </div>
+        <div className={`wrap ${styles.heroGrid}`}>
+          <div className={styles.heroText} data-trapp>
+            <span className="eyebrow">Byrån för bygg &amp; hantverk</span>
+            <h1>
+              Hemsidor som ger hantverkare <span className="accent">fler jobb.</span>
+            </h1>
+            <p className={styles.heroLede}>
+              Färdigt förslag på 48 timmar. Ni tittar först och bestämmer sen.
+              Det kostar ingenting.
+            </p>
+            <div className={styles.heroKnappar}>
+              <Link href="/kontakt/" className="btn btn-primar">
+                Se er sida kostnadsfritt {PIL}
+              </Link>
+              <a href="#video" className={`btn btn-sekundar ${styles.videoKnapp}`}>
+                {SPELA} Se videon · 2 min
+              </a>
             </div>
+          </div>
 
+          <div className={styles.heroScen}>
             <HeroBygge />
+          </div>
+
+          <div className={styles.heroSiffror} data-trapp>
+            <div>
+              <strong>48h</strong>
+              <span>Till färdigt förslag</span>
+            </div>
+            <div>
+              <strong>0 kr</strong>
+              <span>Tills ni säger ja</span>
+            </div>
+            <div>
+              <strong>1</strong>
+              <span>Kontaktperson, hela vägen</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── MARQUEE ── */}
-      <div className={styles.marquee} aria-hidden="true">
-        <div className={styles.marqueeSpar}>
-          {[0, 1].map((k) => (
-            <div key={k} className={styles.marqueeSet}>
-              {MARQUEE.map((m) => (
-                <span key={m}>
-                  {m}
-                  <i>✦</i>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* ── BEVISREMSAN: står still tills man scrollat ── */}
+      <Marquee />
 
       {/* ── SIFFROR ── */}
       <section className={`mork ${styles.siffrorYta}`}>
@@ -120,9 +101,15 @@ export default function Start() {
               </div>
             ))}
           </div>
-          <span className={styles.siffrorMaskot}>
-            <Maskot pose="pekar" stil="rund" alt="Bahko-maskoten pekar på siffrorna" />
-          </span>
+          <img
+            className={styles.siffrorScen}
+            src="/img/maskot-scener/pekar-stoppur.webp"
+            alt="Bahko-maskoten i bygghjälm pekar på siffrorna med ett stoppur i handen"
+            width="640"
+            height="800"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </section>
 
@@ -131,7 +118,7 @@ export default function Start() {
         <div className={`wrap ${styles.videoInner}`} data-trapp>
           <span className="eyebrow">Två minuter, rakt på sak</span>
           <h2>
-            Därför syns inte <span className="accent">ditt företag på Google.</span>
+            Därför syns inte <span className="accent">ert företag på Google.</span>
           </h2>
           <HeroVideo />
         </div>
@@ -146,18 +133,23 @@ export default function Start() {
               Från osedd till <span className="accent">hittad.</span>
             </h2>
             <p className="lede" style={{ marginTop: '1.1rem' }}>
-              De flesta hantverkssajter tappar kunden på tre ställen: numret syns inte i mobilen,
-              det saknas ett enkelt sätt att begära offert, och sidan laddar för långsamt.
-              Vi bygger bort alla tre.
+              Numret syns inte i mobilen. Offertknappen saknas. Sidan laddar för långsamt.
+              Tre läckor som kostar jobb. Vi täpper alla tre.
             </p>
             <div className={styles.panelKnapp}>
               <Link href="/tjanster/hemsidor/" className="btn btn-sekundar">
                 Så bygger vi {PIL}
               </Link>
             </div>
-            <span className={styles.panelMaskot}>
-              <Maskot pose="undersoker" stil="stor" alt="Bahko-maskoten undersöker vad som läcker kunder" />
-            </span>
+            <img
+              className={styles.panelFigur}
+              src="/img/maskot-scener/forstoringsglas.webp"
+              alt="Bahko-maskoten granskar en mobil med ett förstoringsglas"
+              width="640"
+              height="800"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <div className={styles.panelScen}>
             <SynlighetsPanel />
@@ -175,11 +167,18 @@ export default function Start() {
                 Allt som får kunden <span className="accent">att höra av sig.</span>
               </h2>
               <p className="lede" style={{ marginTop: '1rem' }}>
-                Hemsidan är grunden. Resten bygger vi på när den står och fungerar.
+                Hemsidan först. Resten bygger vi på när den står och ringer.
               </p>
             </div>
             <div className={styles.tjanstMaskot}>
-              <Maskot pose="dansar" stil="stor" alt="Bahko-maskoten dansar vid tjänsterna" />
+              <img
+                src="/img/maskot-scener/ringer.webp"
+                alt="Bahko-maskoten i bygghjälm håller upp en mobil som ringer"
+                width="640"
+                height="800"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
 
@@ -218,16 +217,24 @@ export default function Start() {
               <h3>Se er nya hemsida innan ni bestämmer er.</h3>
               <p>Komplett förslag inom 48 timmar. Det kostar ingenting att titta.</p>
             </div>
-            <Maskot pose="pekar" stil="flyt" alt="Bahko-maskoten pekar på knappen för kostnadsfri demo" />
+            <img
+              className={styles.processScen}
+              src="/img/maskot-scener/visar-sajten.webp"
+              alt="Bahko-maskoten visar upp ett hemsideförslag på en surfplatta"
+              width="640"
+              height="800"
+              loading="lazy"
+              decoding="async"
+            />
             <Link href="/kontakt/" className="btn btn-primar">
-              Se er sida gratis {PIL}
+              Se er sida kostnadsfritt {PIL}
             </Link>
           </div>
         </div>
       </section>
 
       {/* ── PORTFÖLJEN: riktiga sajter och demos i ett rutnät ── */}
-      <section id="case">
+      <section className={`mork ${styles.caseYta}`} id="case">
         <div className="wrap">
           <div data-trapp>
             <span className="eyebrow">Leveranser i drift</span>
@@ -235,7 +242,8 @@ export default function Start() {
               Riktiga sajter. <span className="accent">Riktiga firmor.</span>
             </h2>
             <p className="lede" style={{ marginTop: '1rem' }}>
-              Klicka in. Det här är inga mockuper, det är sidor som tar emot kunder varje dag.
+              Tre kunder som tar emot jobb varje dag, och tre demos som väntar på sin firma.
+              Klicka in, allt är på riktigt.
             </p>
           </div>
 
@@ -258,7 +266,15 @@ export default function Start() {
           </h2>
           <p className={styles.gratisMaskot}>
             <span>Båda är kostnadsfria. Ni behöver inte bestämma något idag.</span>
-            <Maskot pose="vinkar" stil="rund" alt="Bahko-maskoten vinkar vid de kostnadsfria erbjudandena" />
+            <img
+              className={styles.gratisScen}
+              src="/img/maskot-scener/fikar.webp"
+              alt="Bahko-maskoten sitter på en hög plankor och fikar"
+              width="640"
+              height="800"
+              loading="lazy"
+              decoding="async"
+            />
           </p>
 
           <div className={styles.gratisNat} data-trapp>
