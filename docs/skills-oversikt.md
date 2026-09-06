@@ -45,7 +45,7 @@ Bild/video/3D/ljud-generering via Higgsfield AI.
 ## Sajtbygge
 | Skill | Vad den gör |
 |---|---|
-| `hemsidor` | Bygger Bahko Byrås kunddemosajter på "bahkomallen" (SV Hus-mallen), Next.js, sanningsregler. |
+| `hemsidor` | Bygger Bahko Byrås kunddemosajter på bahkomallen, Next.js, noll klient-JS, sanningsregler. Sedan 2026-09-06 fyra obligatoriska moduler: lager-hero (logotyp + två tjänster + ort, film vid skroll), Varför oss som 5 s film, Google-recensioner (bara riktiga, annars tomt läge), Sociala. |
 | `video-to-website` | Gör om en video till en premium scroll-driven animerad sajt. |
 | `excalidraw-diagram` | Redigerbara Excalidraw-diagram. |
 | `demo-recopy` | **Pensionerad 2026-08-21** — pekar nu till `hemsidor`s återbruksläge. |
