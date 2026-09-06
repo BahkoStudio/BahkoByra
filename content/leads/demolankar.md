@@ -13,7 +13,8 @@ Två tekniska nivåer, båda serveras av `web`-appen (`next start`, se
 
 | Demo | Nisch | Källa | Äkta lead / generisk | 🔒 | Notis |
 |---|---|---|---|---|---|
-| nordicsnickare | Snickeri, renovering, gips (Stockholm) | `web/app/(demo)/nordicsnickare/` | Äkta lead (IG @nordicsnickare) | | Mallkanon 2026-08-21, kopiera denna för nya demos |
+| nordicsnickare | Snickeri, renovering, gips (Stockholm) | `web/app/(demo)/nordicsnickare/` | Äkta lead (IG @nordicsnickare) | | Mallkanon 2026-08-21 → ersatt av golvvision 2026-09-06 (saknar modulerna) |
+| golvvision | Golvavjämning, mattläggning, plattsättning, parkett (Älvsjö, Stockholm) | `web/app/(demo)/golvvision/` | Äkta lead (IG @golvvisionstockholm, golvvision.se) | | **Ny mall-kanon 2026-09-06** — första demon med modulerna (lager-hero, Varför oss-film, omdömen, sociala). Riktigt telefonnummer och e-post på sidan (från deras sajt) — visa INTE offentligt. `content/leads/golvvision.md` |
 | shabifix | Bygg + snickeri + måleri (Göteborg) | `web/app/(demo)/shabifix/` | Äkta lead, demo skickad | | `/cloud/shabifix` 301:ar hit — får aldrig brytas |
 | glowingservice | Måleri | `web/app/(demo)/glowingservice/` | Äkta lead | | Ingen ort på sidan, medvetet |
 | svhus | Nybyggnation/totalentreprenad (Österåker) | `web/app/(demo)/svhus/` | Äkta företag, verifierat | | Äldre mall — kopiera INTE längre. Org.nr + riktigt telefonnr på sidan |
