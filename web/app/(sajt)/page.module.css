@@ -526,11 +526,12 @@
   position: relative;
 }
 
+/* Filmen är kvadratisk med luft runt figuren (1:1-klipp), därför bredare än de andra */
 .panelFigur {
   display: block;
-  width: clamp(200px, 22vw, 300px);
+  width: clamp(250px, 27vw, 370px);
   height: auto;
-  margin: 1.6rem 0 0 -10px;
+  margin: 1.2rem 0 0 -16px;
 }
 
 @media (max-width: 900px) {
@@ -759,7 +760,7 @@
   justify-content: center;
 }
 
-.tjanstMaskot img {
+.tjanstMaskot :global(.maskot-scen) {
   display: block;
   width: clamp(220px, 24vw, 320px);
   height: auto;

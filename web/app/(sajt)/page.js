@@ -2,6 +2,7 @@ import Link from 'next/link';
 import HeroBygge from '../komponenter/HeroBygge';
 import HeroVideo from '../komponenter/HeroVideo';
 import Maskot from '../komponenter/Maskot';
+import MaskotFilm from '../komponenter/MaskotFilm';
 import Marquee from '../komponenter/Marquee';
 import Rakna from '../komponenter/Rakna';
 import Portfolj from '../komponenter/Portfolj';
@@ -101,14 +102,12 @@ export default function Start() {
               </div>
             ))}
           </div>
-          <img
+          {/* Riktig film (Seedance 2.5 → ark med alfa): andas, blinkar, pekar */}
+          <MaskotFilm
             className={styles.siffrorScen}
-            src="/img/maskot-scener/pekar-stoppur.webp"
+            still="/img/maskot-film/pekar-stoppur-still.webp"
+            ark={{ src: '/img/maskot-film/pekar-stoppur.webp', fps: 10, ramar: 50, kolumner: 9, bredd: 300, hojd: 403 }}
             alt="Bahko-maskoten i bygghjälm pekar på siffrorna med ett stoppur i handen"
-            width="640"
-            height="800"
-            loading="lazy"
-            decoding="async"
           />
         </div>
       </section>
@@ -141,14 +140,11 @@ export default function Start() {
                 Så bygger vi {PIL}
               </Link>
             </div>
-            <img
+            <MaskotFilm
               className={styles.panelFigur}
-              src="/img/maskot-scener/forstoringsglas.webp"
+              still="/img/maskot-film/forstoringsglas-still.webp"
+              ark={{ src: '/img/maskot-film/forstoringsglas.webp', fps: 10, ramar: 50, kolumner: 8, bredd: 300, hojd: 300 }}
               alt="Bahko-maskoten granskar en mobil med ett förstoringsglas"
-              width="640"
-              height="800"
-              loading="lazy"
-              decoding="async"
             />
           </div>
           <div className={styles.panelScen}>
@@ -171,13 +167,10 @@ export default function Start() {
               </p>
             </div>
             <div className={styles.tjanstMaskot}>
-              <img
-                src="/img/maskot-scener/ringer.webp"
+              <MaskotFilm
+                still="/img/maskot-film/ringer-still.webp"
+                ark={{ src: '/img/maskot-film/ringer.webp', fps: 10, ramar: 50, kolumner: 9, bredd: 300, hojd: 403 }}
                 alt="Bahko-maskoten i bygghjälm håller upp en mobil som ringer"
-                width="640"
-                height="800"
-                loading="lazy"
-                decoding="async"
               />
             </div>
           </div>
@@ -217,14 +210,11 @@ export default function Start() {
               <h3>Se er nya hemsida innan ni bestämmer er.</h3>
               <p>Komplett förslag inom 48 timmar. Det kostar ingenting att titta.</p>
             </div>
-            <img
+            <MaskotFilm
               className={styles.processScen}
-              src="/img/maskot-scener/visar-sajten.webp"
+              still="/img/maskot-film/visar-sajten-still.webp"
+              ark={{ src: '/img/maskot-film/visar-sajten.webp', fps: 10, ramar: 50, kolumner: 9, bredd: 300, hojd: 403 }}
               alt="Bahko-maskoten visar upp ett hemsideförslag på en surfplatta"
-              width="640"
-              height="800"
-              loading="lazy"
-              decoding="async"
             />
             <Link href="/kontakt/" className="btn btn-primar">
               Se er sida kostnadsfritt {PIL}
@@ -266,14 +256,11 @@ export default function Start() {
           </h2>
           <p className={styles.gratisMaskot}>
             <span>Båda är kostnadsfria. Ni behöver inte bestämma något idag.</span>
-            <img
+            <MaskotFilm
               className={styles.gratisScen}
-              src="/img/maskot-scener/fikar.webp"
+              still="/img/maskot-film/fikar-still.webp"
+              ark={{ src: '/img/maskot-film/fikar.webp', fps: 10, ramar: 50, kolumner: 9, bredd: 300, hojd: 403 }}
               alt="Bahko-maskoten sitter på en hög plankor och fikar"
-              width="640"
-              height="800"
-              loading="lazy"
-              decoding="async"
             />
           </p>
 

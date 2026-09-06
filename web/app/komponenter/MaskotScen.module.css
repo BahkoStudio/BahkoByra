@@ -1,0 +1,57 @@
+/* Maskotscen med levande öga. Roten bär idle-studsen (globals.css .maskot-scen),
+   ögat ligger absolut över renderns öga och följer med i studsen. */
+
+.rot {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.rot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.oga {
+  position: absolute;
+  pointer-events: none;
+  overflow: visible;
+  transform-origin: 50% 50%;
+  transition: transform 0.22s cubic-bezier(0.34, 1.6, 0.64, 1);
+}
+
+/* Spärrar upp ögat när scrollen går fort */
+.stor .oga {
+  transform: scale(1.16);
+}
+
+/* Pupillen flyttas av skriptet (translate i SVG-enheter) */
+.pupill {
+  transform-origin: 50px 50px;
+  will-change: transform;
+}
+
+/* Ögonlocket: ligger ovanför ögat (translateY -104) och fälls ner på 90 ms,
+   ligger stängt 80 ms, upp igen. Varje figur har egen takt och fördröjning
+   så de inte blinkar i kör. */
+.lock {
+  transform: translateY(-104px);
+  animation: blink var(--blink-tid, 4.8s) ease-in-out var(--blink-delay, 0s) infinite;
+}
+
+@keyframes blink {
+  0%, 88%   { transform: translateY(-104px); }
+  90%       { transform: translateY(-2px); }
+  92.5%     { transform: translateY(-2px); }
+  95%, 100% { transform: translateY(-104px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lock {
+    animation: none;
+  }
+  .stor .oga {
+    transform: none;
+  }
+}
