@@ -11,14 +11,15 @@ En väg, inga alternativ: **server-renderad Next.js-route med noll egen
 klient-JS**. Modal, meny, popup och dragspel körs på `:target`, `<details>`
 och checkbox-mönstret. Inget script kan krascha, för det finns inget script.
 
-**Referens — KOPIERA DENNA:** `web/app/(demo)/nordicsnickare/` (`page.js` +
-`nordicsnickare.module.css`). Mall-kanon 2026-08-21: fullskärmsvideo med
-drönarshot, linjeritningar i tjänstekorten, klickbara steg utan JavaScript,
-och orienteringsväxling med två video-element. **Den saknar de fyra modulerna
-från 2026-09-06** (lager-hero, Varför oss-film, Google-recensioner, Sociala) —
-bygg dem efter avsnittet Modulerna nedan. `osterlunds` (2026-08-31) är nyare
-och har tre mallbuggar rättade (mobilgradientens stopp, galleriets kolumner
-under 560 px, h1-vikten) — kopiera CSS-fixarna därifrån.
+**Referens — KOPIERA DENNA:** `web/app/(demo)/golvvision/` (`page.js` +
+`golvvision.module.css`). **Mall-kanon 2026-09-06**: första demon med alla
+fyra modulerna (lager-hero med skroll-reveal, Varför oss-film, omdömen,
+sociala), plus allt från förra kanon (drönar-/FPV-hero, linjeritningar,
+klickbara steg utan JavaScript, två video-element per orientering) och de
+tre mallbuggarna rättade (mobilgradientens stopp, galleriets kolumner under
+560 px, h1-vikten). Modulernas CSS ligger sist i filen under en egen rubrik.
+`nordicsnickare` (2026-08-21) och `osterlunds` (2026-08-31) saknar modulerna
+— kopiera dem inte längre.
 
 `web/app/(demo)/svhus/` är den **äldre** förlagan (mall-kanon 2026-08-18) och
 saknar allt ovan — kopiera den inte längre. Den och `shabifix/` har dessutom
@@ -51,9 +52,8 @@ scroll()` bakom `@supports`, med ett komplett utgångsläge där stödet saknas.
 **Sanningsregeln gäller oförändrad i alla fyra** — modulerna ändrar formen,
 inte vad som får påstås.
 
-`nordicsnickare` och `osterlunds` saknar modulerna (byggda före specen). Den
-första demon som byggs med dem blir ny mall-kanon; tills dess byggs de efter
-det här avsnittet.
+`golvvision` (2026-09-06) är första demon med modulerna och därmed kanon.
+`nordicsnickare` och `osterlunds` saknar dem.
 
 ### 1. Hero — lagret först, filmen sedan
 
@@ -127,9 +127,18 @@ fabricerad. Därför:
   finns kvar men leder till Googles sida för att skapa/hitta profilen. Inga
   påhittade citat, inga påhittade siffror, inte ens "4,9". Det tomma läget är
   ett säljargument i sig: det visar var betyget kommer att stå.
+- **Leta först på kundens egen hemsida.** Golvvision hade inga Google-
+  recensioner men tre riktiga omdömen under "Nöjda kunder" på sin sajt — de
+  är verifierade (kundens egen publicering), citeras ordagrant med namn och ort
+  som de står, och källan skrivs ut under korten: "Omdömen från golvvision.se".
+  Stjärnor per omdöme följer sajtens egen presentation.
+- **Exempel när riktiga saknas helt** (Mathias 2026-09-06: "sätt ett exempel
+  bara"): tillåtet, men varje exempelkort bär ordet **Exempel** synligt, och
+  noten under säger "Exempel — byts mot era riktiga omdömen". Aldrig ett
+  samlat betyg eller antal, inte ens som exempel.
 - Hitta aldrig på "verifierad kund"-märken eller Google-loggor som antyder
   integration som inte finns. Stjärnorna är ren SVG.
-- Flagga i leveransen om sektionen är i tomt läge.
+- Flagga i leveransen om sektionen är i tomt läge eller exempelläge.
 
 ### 4. Sociala medier — följ arbetet
 
@@ -421,7 +430,8 @@ sådant just nu och ska bytas när riktiga logotyper finns.
   (galiano), kobolt (k9maleri), orange (golvresan), solgul (solpanelstjejen),
   cyan (glowingservice), energigrön (nordiapartner), kalksten och mässing
   (svhus), timber-amber (vajjebygg), brun och créme (mugglagret), espresso och
-  lönn (nordicsnickare).
+  lönn (nordicsnickare), skiffer och terrakotta (osterlunds), kol och ljus
+  stålblå (golvvision).
 - **Kaskad-lärdomen, som slagit till två gånger.** Först på färg: basregeln
   för länkar ska vara `.sida :where(a) { color: inherit }`. `:where()` nollar
   specificiteten så komponentklasserna vinner på ordning. Skrivs den `.sida a`
@@ -433,6 +443,13 @@ sådant just nu och ska bytas när riktiga logotyper finns.
   Regeln: när du växlar element med `display`, ge selektorn **två klasser**
   (`.heroFilm .heroStaende`) så den vinner över elementregeln. Och mät vilket
   element som faktiskt renderas — det syns inte i koden, bara i webbläsaren.
+- **Tredje gången (2026-09-06), på modulerna:** omdömeskorten är mörka i en
+  ljus sektion och ärvde sektionens mörka text — citaten var osynliga. Och
+  noten under dem, satt i `--ljus-58`, var osynlig på den ljusa ytan. Varje ny
+  yta i en sektion med motsatt ton sätter `color` explicit, båda riktningarna.
+  Samma dag: mallens `.hero` har padding och `align-content: end` för den
+  gamla text-nedtill-layouten, vilket tryckte lager-heron under vikkanten
+  (knappbotten 900+ på en 900 px hög vy) — nollas i modul-CSS:en.
 - Kontrast: ljus yta → mörk text, aldrig tvärtom. Bahko-element följer
   knappregeln: marinblå `#0A1628` på smaragd `#10B981` (7,1:1), aldrig vit text
 - **En mörk yta inuti en ljus sektion måste vända textfärgen explicit.** Ärver
