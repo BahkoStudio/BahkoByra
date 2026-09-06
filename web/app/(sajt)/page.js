@@ -106,7 +106,7 @@ export default function Start() {
           <MaskotFilm
             className={styles.siffrorScen}
             still="/img/maskot-film/pekar-stoppur-still.webp"
-            ark={{ src: '/img/maskot-film/pekar-stoppur.webp', fps: 10, ramar: 50, kolumner: 9, bredd: 300, hojd: 403 }}
+            ark={{ src: '/img/maskot-film/pekar-stoppur.webp', fps: 24, ramar: 121, kolumner: 13, bredd: 300, hojd: 403 }}
             alt="Bahko-maskoten i bygghjälm pekar på siffrorna med ett stoppur i handen"
           />
         </div>
@@ -143,7 +143,7 @@ export default function Start() {
             <MaskotFilm
               className={styles.panelFigur}
               still="/img/maskot-film/forstoringsglas-still.webp"
-              ark={{ src: '/img/maskot-film/forstoringsglas.webp', fps: 10, ramar: 50, kolumner: 8, bredd: 300, hojd: 300 }}
+              ark={{ src: '/img/maskot-film/forstoringsglas.webp', fps: 24, ramar: 121, kolumner: 11, bredd: 300, hojd: 300 }}
               alt="Bahko-maskoten granskar en mobil med ett förstoringsglas"
             />
           </div>
@@ -169,7 +169,7 @@ export default function Start() {
             <div className={styles.tjanstMaskot}>
               <MaskotFilm
                 still="/img/maskot-film/ringer-still.webp"
-                ark={{ src: '/img/maskot-film/ringer.webp', fps: 10, ramar: 50, kolumner: 9, bredd: 300, hojd: 403 }}
+                ark={{ src: '/img/maskot-film/ringer.webp', fps: 24, ramar: 121, kolumner: 13, bredd: 300, hojd: 403 }}
                 alt="Bahko-maskoten i bygghjälm håller upp en mobil som ringer"
               />
             </div>
@@ -213,7 +213,7 @@ export default function Start() {
             <MaskotFilm
               className={styles.processScen}
               still="/img/maskot-film/visar-sajten-still.webp"
-              ark={{ src: '/img/maskot-film/visar-sajten.webp', fps: 10, ramar: 50, kolumner: 9, bredd: 300, hojd: 403 }}
+              ark={{ src: '/img/maskot-film/visar-sajten.webp', fps: 24, ramar: 121, kolumner: 13, bredd: 300, hojd: 403 }}
               alt="Bahko-maskoten visar upp ett hemsideförslag på en surfplatta"
             />
             <Link href="/kontakt/" className="btn btn-primar">
@@ -259,7 +259,7 @@ export default function Start() {
             <MaskotFilm
               className={styles.gratisScen}
               still="/img/maskot-film/fikar-still.webp"
-              ark={{ src: '/img/maskot-film/fikar.webp', fps: 10, ramar: 50, kolumner: 9, bredd: 300, hojd: 403 }}
+              ark={{ src: '/img/maskot-film/fikar.webp', fps: 24, ramar: 121, kolumner: 13, bredd: 300, hojd: 403 }}
               alt="Bahko-maskoten sitter på en hög plankor och fikar"
             />
           </p>
