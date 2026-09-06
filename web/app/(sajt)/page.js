@@ -3,6 +3,7 @@ import HeroBygge from '../komponenter/HeroBygge';
 import HeroVideo from '../komponenter/HeroVideo';
 import Maskot from '../komponenter/Maskot';
 import MaskotScen from '../komponenter/MaskotScen';
+import MaskotFilm from '../komponenter/MaskotFilm';
 import Marquee from '../komponenter/Marquee';
 import Rakna from '../komponenter/Rakna';
 import Portfolj from '../komponenter/Portfolj';
@@ -102,12 +103,12 @@ export default function Start() {
               </div>
             ))}
           </div>
-          <MaskotScen
+          {/* Riktig film (Seedance 2.5 → ark med alfa): andas, blinkar, pekar */}
+          <MaskotFilm
             className={styles.siffrorScen}
-            src="/img/maskot-scener/pekar-stoppur.webp"
+            still="/img/maskot-film/pekar-stoppur-still.webp"
+            ark={{ src: '/img/maskot-film/pekar-stoppur.webp', fps: 10, ramar: 50, kolumner: 9, bredd: 300, hojd: 403 }}
             alt="Bahko-maskoten i bygghjälm pekar på siffrorna med ett stoppur i handen"
-            oga={{ x: 74.8, y: 43.9, rx: 6.0, ry: 4.8, gron: 'rgb(22,114,77)' }}
-            index={0}
           />
         </div>
       </section>

@@ -411,6 +411,21 @@ h4 {
   animation: scenHopp 0.55s cubic-bezier(0.34, 1.6, 0.64, 1) both;
 }
 
+/* Filmscener (MaskotFilm) andas och blinkar i själva filmen: bara pop-in
+   och hover, ingen CSS-studs ovanpå. */
+.maskot-scen.maskot-film {
+  animation: none;
+}
+
+.js-rorelse .synlig .maskot-scen.maskot-film,
+.js-rorelse [data-trapp].synlig .maskot-scen.maskot-film {
+  animation: scenPop 0.7s cubic-bezier(0.34, 1.8, 0.5, 1) both;
+}
+
+.maskot-scen.maskot-film:hover {
+  animation: scenHopp 0.55s cubic-bezier(0.34, 1.6, 0.64, 1) both;
+}
+
 @keyframes scenPop {
   0%   { transform: translateY(24px) scale(0.72, 0.72) rotate(-8deg); opacity: 0; }
   55%  { transform: translateY(-8px) scale(1.06, 1.06) rotate(2deg); opacity: 1; }

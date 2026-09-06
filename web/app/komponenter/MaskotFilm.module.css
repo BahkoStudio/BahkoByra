@@ -1,0 +1,28 @@
+/* Maskotscen som film: första ramen som bild i botten, canvasen ovanpå
+   när ramarna spelar. Roten bär pop-in och hover från globals (.maskot-scen),
+   men inte idle-studsen — figuren andas redan i filmen. */
+
+.rot {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.rot img,
+.canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.igang .canvas {
+  opacity: 1;
+}
