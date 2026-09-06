@@ -2,7 +2,7 @@ import Link from 'next/link';
 import HeroBygge from '../komponenter/HeroBygge';
 import HeroVideo from '../komponenter/HeroVideo';
 import Maskot from '../komponenter/Maskot';
-import MaskotFilm from '../komponenter/MaskotFilm';
+import MaskotScen from '../komponenter/MaskotScen';
 import Marquee from '../komponenter/Marquee';
 import Rakna from '../komponenter/Rakna';
 import Portfolj from '../komponenter/Portfolj';
@@ -102,12 +102,12 @@ export default function Start() {
               </div>
             ))}
           </div>
-          {/* Riktig film (Seedance 2.5 → ark med alfa): andas, blinkar, pekar */}
-          <MaskotFilm
+          <MaskotScen
             className={styles.siffrorScen}
-            still="/img/maskot-film/pekar-stoppur-still.webp"
-            ark={{ src: '/img/maskot-film/pekar-stoppur.webp', fps: 24, ramar: 121, kolumner: 13, bredd: 300, hojd: 403 }}
+            src="/img/maskot-scener/pekar-stoppur.webp"
             alt="Bahko-maskoten i bygghjälm pekar på siffrorna med ett stoppur i handen"
+            oga={{ x: 74.8, y: 43.9, rx: 6.0, ry: 4.8, gron: 'rgb(22,114,77)' }}
+            index={0}
           />
         </div>
       </section>
@@ -140,11 +140,12 @@ export default function Start() {
                 Så bygger vi {PIL}
               </Link>
             </div>
-            <MaskotFilm
+            {/* Ögat sitter bakom luppen — Mathias egen render, som den är */}
+            <MaskotScen
               className={styles.panelFigur}
-              still="/img/maskot-film/forstoringsglas-still.webp"
-              ark={{ src: '/img/maskot-film/forstoringsglas.webp', fps: 24, ramar: 121, kolumner: 11, bredd: 300, hojd: 300 }}
+              src="/img/maskot-scener/forstoringsglas.webp"
               alt="Bahko-maskoten granskar en mobil med ett förstoringsglas"
+              index={1}
             />
           </div>
           <div className={styles.panelScen}>
@@ -167,10 +168,11 @@ export default function Start() {
               </p>
             </div>
             <div className={styles.tjanstMaskot}>
-              <MaskotFilm
-                still="/img/maskot-film/ringer-still.webp"
-                ark={{ src: '/img/maskot-film/ringer.webp', fps: 24, ramar: 121, kolumner: 13, bredd: 300, hojd: 403 }}
+              <MaskotScen
+                src="/img/maskot-scener/ringer.webp"
                 alt="Bahko-maskoten i bygghjälm håller upp en mobil som ringer"
+                oga={{ x: 65.9, y: 38.4, rx: 4.7, ry: 3.7, gron: 'rgb(33,127,94)' }}
+                index={2}
               />
             </div>
           </div>
@@ -210,11 +212,12 @@ export default function Start() {
               <h3>Se er nya hemsida innan ni bestämmer er.</h3>
               <p>Komplett förslag inom 48 timmar. Det kostar ingenting att titta.</p>
             </div>
-            <MaskotFilm
+            <MaskotScen
               className={styles.processScen}
-              still="/img/maskot-film/visar-sajten-still.webp"
-              ark={{ src: '/img/maskot-film/visar-sajten.webp', fps: 24, ramar: 121, kolumner: 13, bredd: 300, hojd: 403 }}
+              src="/img/maskot-scener/visar-sajten.webp"
               alt="Bahko-maskoten visar upp ett hemsideförslag på en surfplatta"
+              oga={{ x: 73.3, y: 38.9, rx: 6.45, ry: 5.0, gron: 'rgb(20,112,75)' }}
+              index={3}
             />
             <Link href="/kontakt/" className="btn btn-primar">
               Se er sida kostnadsfritt {PIL}
@@ -256,11 +259,12 @@ export default function Start() {
           </h2>
           <p className={styles.gratisMaskot}>
             <span>Båda är kostnadsfria. Ni behöver inte bestämma något idag.</span>
-            <MaskotFilm
+            <MaskotScen
               className={styles.gratisScen}
-              still="/img/maskot-film/fikar-still.webp"
-              ark={{ src: '/img/maskot-film/fikar.webp', fps: 24, ramar: 121, kolumner: 13, bredd: 300, hojd: 403 }}
+              src="/img/maskot-scener/fikar.webp"
               alt="Bahko-maskoten sitter på en hög plankor och fikar"
+              oga={{ x: 72.7, y: 40.1, rx: 3.85, ry: 3.5, gron: 'rgb(28,147,96)' }}
+              index={4}
             />
           </p>
 
