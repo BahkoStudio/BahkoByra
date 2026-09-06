@@ -391,22 +391,23 @@ h4 {
    plattas till, hoppar, landar och sätter sig), en pop-in med överskjutning
    när sektionen kommer i bild, och ett hopp när pekaren är över. Allt på
    transform. Ingen rörelse alls vid prefers-reduced-motion. */
-img[src^="/img/maskot-scener/"] {
+/* .maskot-scen sätts av komponenten MaskotScen (bild + öga i samma ram) */
+.maskot-scen {
   transform-origin: 50% 100%;
   animation: scenIdle 5.2s ease-in-out 1.1s infinite;
   will-change: transform;
 }
 
 /* Pop-in: startar när avslöjningen släppt sektionen, sedan idle */
-.js-rorelse .synlig img[src^="/img/maskot-scener/"],
-.js-rorelse [data-trapp].synlig img[src^="/img/maskot-scener/"] {
+.js-rorelse .synlig .maskot-scen,
+.js-rorelse [data-trapp].synlig .maskot-scen {
   animation:
     scenPop 0.7s cubic-bezier(0.34, 1.8, 0.5, 1) both,
     scenIdle 5.2s ease-in-out 1.1s infinite;
 }
 
 /* Hover: ett glatt hopp, sedan tillbaka till idle */
-img[src^="/img/maskot-scener/"]:hover {
+.maskot-scen:hover {
   animation: scenHopp 0.55s cubic-bezier(0.34, 1.6, 0.64, 1) both;
 }
 
@@ -439,9 +440,9 @@ img[src^="/img/maskot-scener/"]:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  img[src^="/img/maskot-scener/"],
-  .js-rorelse .synlig img[src^="/img/maskot-scener/"],
-  img[src^="/img/maskot-scener/"]:hover {
+  .maskot-scen,
+  .js-rorelse .synlig .maskot-scen,
+  .maskot-scen:hover {
     animation: none;
   }
 }

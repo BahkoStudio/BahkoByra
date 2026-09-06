@@ -2,6 +2,7 @@ import Link from 'next/link';
 import HeroBygge from '../komponenter/HeroBygge';
 import HeroVideo from '../komponenter/HeroVideo';
 import Maskot from '../komponenter/Maskot';
+import MaskotScen from '../komponenter/MaskotScen';
 import Marquee from '../komponenter/Marquee';
 import Rakna from '../komponenter/Rakna';
 import Portfolj from '../komponenter/Portfolj';
@@ -101,14 +102,12 @@ export default function Start() {
               </div>
             ))}
           </div>
-          <img
+          <MaskotScen
             className={styles.siffrorScen}
             src="/img/maskot-scener/pekar-stoppur.webp"
             alt="Bahko-maskoten i bygghjälm pekar på siffrorna med ett stoppur i handen"
-            width="640"
-            height="800"
-            loading="lazy"
-            decoding="async"
+            oga={{ x: 74.8, y: 43.9, rx: 6.0, ry: 4.8, gron: 'rgb(22,114,77)' }}
+            index={0}
           />
         </div>
       </section>
@@ -141,14 +140,12 @@ export default function Start() {
                 Så bygger vi {PIL}
               </Link>
             </div>
-            <img
+            {/* Ögat sitter bakom luppen — rendern får vara som den är */}
+            <MaskotScen
               className={styles.panelFigur}
               src="/img/maskot-scener/forstoringsglas.webp"
               alt="Bahko-maskoten granskar en mobil med ett förstoringsglas"
-              width="640"
-              height="800"
-              loading="lazy"
-              decoding="async"
+              index={1}
             />
           </div>
           <div className={styles.panelScen}>
@@ -171,13 +168,11 @@ export default function Start() {
               </p>
             </div>
             <div className={styles.tjanstMaskot}>
-              <img
+              <MaskotScen
                 src="/img/maskot-scener/ringer.webp"
                 alt="Bahko-maskoten i bygghjälm håller upp en mobil som ringer"
-                width="640"
-                height="800"
-                loading="lazy"
-                decoding="async"
+                oga={{ x: 65.9, y: 38.4, rx: 4.7, ry: 3.7, gron: 'rgb(33,127,94)' }}
+                index={2}
               />
             </div>
           </div>
@@ -217,14 +212,12 @@ export default function Start() {
               <h3>Se er nya hemsida innan ni bestämmer er.</h3>
               <p>Komplett förslag inom 48 timmar. Det kostar ingenting att titta.</p>
             </div>
-            <img
+            <MaskotScen
               className={styles.processScen}
               src="/img/maskot-scener/visar-sajten.webp"
               alt="Bahko-maskoten visar upp ett hemsideförslag på en surfplatta"
-              width="640"
-              height="800"
-              loading="lazy"
-              decoding="async"
+              oga={{ x: 73.3, y: 38.9, rx: 6.45, ry: 5.0, gron: 'rgb(20,112,75)' }}
+              index={3}
             />
             <Link href="/kontakt/" className="btn btn-primar">
               Se er sida kostnadsfritt {PIL}
@@ -266,14 +259,12 @@ export default function Start() {
           </h2>
           <p className={styles.gratisMaskot}>
             <span>Båda är kostnadsfria. Ni behöver inte bestämma något idag.</span>
-            <img
+            <MaskotScen
               className={styles.gratisScen}
               src="/img/maskot-scener/fikar.webp"
               alt="Bahko-maskoten sitter på en hög plankor och fikar"
-              width="640"
-              height="800"
-              loading="lazy"
-              decoding="async"
+              oga={{ x: 72.7, y: 40.1, rx: 3.85, ry: 3.5, gron: 'rgb(28,147,96)' }}
+              index={4}
             />
           </p>
 
