@@ -1,6 +1,6 @@
 ---
 name: hemsidor
-description: Bygger kundhemsidor och demoförslag för Bahko Byrå på bahkomallen (SV Hus) — server-renderad Next.js-route med noll egen klient-JS. Enda spåret sedan 2026-08-21; ersätter scroll-cinematic (statiska GRANIT-demos) och demo-recopy (återbruk), som nu är lägen i den här skillen. Trigger på "bygg hemsidan för [kund]", "kunddemo", "demo enligt bahkomallen", "demo som SV Hus", "hemsida i Next.js", "nytt förslag till [lead]", "återanvänd demon", "byt copy på demon", "ny lead samma nisch", "gör om demon", "modda demon till". INTE för bahkobyra.se själv (marknadssajten bor i (sajt)/), inte för reels (bahko-reel) och inte för enstaka bild eller video (higgsfield-generate).
+description: Bygger kundhemsidor och demoförslag för Bahko Byrå på bahkomallen (SV Hus) — server-renderad Next.js-route med noll egen klient-JS. Enda spåret sedan 2026-08-21; ersätter scroll-cinematic (statiska GRANIT-demos) och demo-recopy (återbruk), som nu är lägen i den här skillen. Trigger på "bygg hemsidan för [kund]", "kunddemo", "demo enligt bahkomallen", "demo som SV Hus", "hemsida i Next.js", "nytt förslag till [lead]", "återanvänd demon", "byt copy på demon", "ny lead samma nisch", "gör om demon", "modda demon till", "lägg till modulerna", "recensionssektion", "sociala-sektion". INTE för bahkobyra.se själv (marknadssajten bor i (sajt)/), inte för reels (bahko-reel) och inte för enstaka bild eller video (higgsfield-generate).
 argument-hint: [företag + nisch/ort, t.ex. "Nordic Snickare snickeri Stockholm"]
 disable-model-invocation: true
 ---
@@ -12,9 +12,13 @@ klient-JS**. Modal, meny, popup och dragspel körs på `:target`, `<details>`
 och checkbox-mönstret. Inget script kan krascha, för det finns inget script.
 
 **Referens — KOPIERA DENNA:** `web/app/(demo)/nordicsnickare/` (`page.js` +
-`nordicsnickare.module.css`). Mall-kanon 2026-08-21. Den har allt det nya:
-fullskärmsvideo med drönarshot, EN hero-rubrik, linjeritningar i tjänstekorten,
-klickbara steg utan JavaScript, och orienteringsväxling med två video-element.
+`nordicsnickare.module.css`). Mall-kanon 2026-08-21: fullskärmsvideo med
+drönarshot, linjeritningar i tjänstekorten, klickbara steg utan JavaScript,
+och orienteringsväxling med två video-element. **Den saknar de fyra modulerna
+från 2026-09-06** (lager-hero, Varför oss-film, Google-recensioner, Sociala) —
+bygg dem efter avsnittet Modulerna nedan. `osterlunds` (2026-08-31) är nyare
+och har tre mallbuggar rättade (mobilgradientens stopp, galleriets kolumner
+under 560 px, h1-vikten) — kopiera CSS-fixarna därifrån.
 
 `web/app/(demo)/svhus/` är den **äldre** förlagan (mall-kanon 2026-08-18) och
 saknar allt ovan — kopiera den inte längre. Den och `shabifix/` har dessutom
@@ -28,7 +32,7 @@ copy-reglerna och QA:n är identiska:
 |---|---|---|
 | **Återbruk** | Leadet har redan en demo, eller en demo i samma nisch finns | 0 |
 | **Lån** | Nischen finns i biblioteket men inte leadet | 0 |
-| **Nybygge** | Ingen bild i nischen finns | ~50 — **under 100 körs, över 100 frågas** (CLAUDE.md) |
+| **Nybygge** | Ingen bild i nischen finns | ~95 med två klipp (hero + Varför oss, 5 s 1080p à ~45) + bilder à 2 — **under 100 körs, över 100 frågas** (CLAUDE.md). 4k eller längre klipp går över gränsen: fråga. |
 
 ## Vad som INTE längre byggs
 
@@ -37,6 +41,121 @@ GSAP, Lenis, progress-fönster) är **avskaffad 2026-08-21**. Den gav
 återkommande klagomål: för mycket film, suddig text, mobilen rusade.
 Förvandlingen lever kvar där den hör hemma — som hero-video och som
 före/efter-par. Bygg aldrig nya demos under `web/public/cloud/`.
+
+## Modulerna — fyra sektioner varje demo ska ha (Mathias 2026-09-06)
+
+Mathias spec, i hans ordning. Formuleringen var skriven för Webflow/Framer;
+här är den översatt till skillens spår: server-renderad route, noll egen
+klient-JS. Allt som "dyker upp med scroll" körs på `animation-timeline:
+scroll()` bakom `@supports`, med ett komplett utgångsläge där stödet saknas.
+**Sanningsregeln gäller oförändrad i alla fyra** — modulerna ändrar formen,
+inte vad som får påstås.
+
+`nordicsnickare` och `osterlunds` saknar modulerna (byggda före specen). Den
+första demon som byggs med dem blir ny mall-kanon; tills dess byggs de efter
+det här avsnittet.
+
+### 1. Hero — lagret först, filmen sedan
+
+Heron är ett **lager i lagerform** över videon. Lagret innehåller exakt fyra
+saker, uppifrån och ned, centrerade:
+
+1. **Kundens logotyp.** Finns ingen: ordmärket i display-typsnittet, och det
+   flaggas (se Logotypen). Aldrig ett påhittat märke.
+2. **Två tjänster** — firmans två viktigaste, i firmans egna ord
+   (t.ex. "Jordbyggnad · Sprängning").
+3. **Ort/område** (t.ex. "Oravais").
+4. **Knapparna som de är** (primär handling + `tel:`). De ändras inte.
+
+**Inga extra texter, inga slogans, ingen rubrik.** Det ersätter den tidigare
+regeln "EN rubrik" från 2026-08-21. Bärande idén flyttar till första
+sektionen under heron — den försvinner inte, den slutar bara konkurrera med
+logotypen.
+
+- **h1 är kundnamnet.** Sidan måste ha exakt en h1 och heron har ingen
+  rubrik längre, så `<h1>` omsluter logotypen (`alt` = firmanamnet, eller
+  ordmärket som text). Tjänster och ort är ett `<p>`, inte rubriker.
+- **Filmen visas inte förrän besökaren börjar skrolla.** Utgångsläget är
+  lagret på mörk canvas (`--ink`); videon ligger bakom med `opacity: 0` och
+  tonas in mjukt som en **reveal** när skrollen börjar:
+  `animation-timeline: scroll(root)` med `animation-range: 0 40vh` (mät —
+  siffran ska kännas, inte räknas). Bakom `@supports (animation-timeline:
+  scroll())`. **Utan stöd, och vid `prefers-reduced-motion`: videon syns
+  direkt.** Ett lager som aldrig släpper fram filmen är en trasig sida, inte
+  en enkel.
+- Videon `autoplay muted loop playsinline` som förut — den spelar bakom
+  lagret från start, så det finns ingen "start" att vänta på; reveal:en är
+  bara opacitet. Postern = bildruta 0, oförändrat.
+- Drönarshot är fortfarande standard. Två `<video>` per orientering,
+  oförändrat.
+- Kontrast: lagrets text mäts mot **klippets ljusaste bildruta** (mät över
+  fem tidpunkter, se Steg 6), inte mot den mörka canvasen den startar på —
+  efter reveal:en ligger den på film.
+
+### 2. Varför oss — 5 sekunders film, 3–4 punkter
+
+Hela sektionen byts ut. Inga skäl-kort, ingen brödtext.
+
+- **En 5-sekundersvideo, Seedance 2.5**, genererad som bevis på arbetet:
+  samma subjekt som heron eller nischens metafor (se Generering), med en
+  fysisk process i bild — aldrig en crossfade. **Ingen musik** — loopar är
+  alltid mutade (`-an`). Weboptimeras och postras som heron.
+- **Max 3–4 korta punkter** bredvid eller under filmen. Varje punkt inom
+  VERIFIERAT-blocket. Riskreverseringen (den mening som avstår försäljning)
+  får bo här. Ingen rubrik längre än en rad.
+- Fokus är visuell trovärdighet, inte copy. Kan punkterna inte skrivas utan
+  att påstå något overifierat: färre punkter, inte vagare.
+- Kostnad: `generate cost` först, som alltid. Två klipp per demo (hero +
+  varför oss) ligger nära 100-gränsen i 1080p — se kostnadstabellen.
+
+### 3. Google-recensioner — bara riktiga
+
+En ren sektion: **stjärnor**, **3–5 korta recensioner**, en knapp
+**"Se alla recensioner"** som går till firmans Google-profil.
+
+**Det här är den modul som lättast blir en lögn.** Ett betyg och recensioner
+med namn är historik åt en riktig kund, och sanningsregeln säger: aldrig
+fabricerad. Därför:
+
+- **Betyg, antal och recensioner hämtas ur firmans faktiska Google
+  Företagsprofil**, och bara därifrån. Recensionerna citeras ordagrant eller
+  kortas utan att ändra innebörd; namn som de står (förnamn + initial räcker).
+  Skriv källan och datumet i VERIFIERAT-blocket.
+- **Finns ingen profil, eller inga recensioner:** sektionen byggs ändå men i
+  **tomt läge** — samma layout, stjärnorna omarkerade, tre tomma
+  recensionskort, och en enda rad: "Här visas era Google-recensioner." Knappen
+  finns kvar men leder till Googles sida för att skapa/hitta profilen. Inga
+  påhittade citat, inga påhittade siffror, inte ens "4,9". Det tomma läget är
+  ett säljargument i sig: det visar var betyget kommer att stå.
+- Hitta aldrig på "verifierad kund"-märken eller Google-loggor som antyder
+  integration som inte finns. Stjärnorna är ren SVG.
+- Flagga i leveransen om sektionen är i tomt läge.
+
+### 4. Sociala medier — följ arbetet
+
+En modul, superminimalistisk:
+
+- **Ikoner för Instagram och Facebook** — länkade **bara** till verifierade
+  konton. Instagram är nästan alltid verifierat (det är där leadet hittades).
+  Facebook läggs bara till om en profil faktiskt hittats; annars utelämnas
+  ikonen — en ikon utan länk, eller till en gissad URL, är samma fel som en
+  gissad mailadress.
+- **En kort text:** "Följ vårt arbete i vardagen". Inget mer.
+- **Rutnät med 3–6 bilder**, kvadratiska, samma rutnätsregler som galleriet
+  (två kolumner på mobil, aldrig en). Platshållare är tillåtna här — men de
+  räknas som bilder i `media/`: varje fil används exakt en gång, `md5sum`
+  mot resten av mappen, och brasklappen "Illustrationsbilder — byts mot era
+  egna" står en gång under rutnätet om bilderna inte är kundens.
+- Bilderna länkar inte till påhittade inlägg. Antingen till kontot, eller
+  inte alls.
+
+### Sektionsordning med modulerna
+
+Hero (lager) → Förvandlingen (före/efter + galleri) → Vad vi gör (kort) →
+Så går det till (steg) → **Varför oss (film + punkter)** → **Google-
+recensioner** → **Sociala medier** → Vanliga frågor → Kontakt → Footer.
+Bärande idén bär rubriken i Förvandlingen, eftersom heron inte längre har
+någon.
 
 ## Arkitektur
 
@@ -72,6 +191,9 @@ Ta den här först, för det är den som stoppar leveranser.
   publicerade siffror blir statsraden löftesbaserad: 0 kr för första steget,
   svar inom 24 h, fast pris, en kontaktperson. Registrets registreringsår är
   den enda historiksiffra som får användas, och bara om den är verifierad.
+- **Recensioner och betyg är historik.** Google-sektionen (Modulerna, 3)
+  visar bara det som står i firmans faktiska Google-profil, annars tomt läge.
+  Ett påhittat "4,9" är samma fabrikation som ett påhittat projektantal.
 - **Varje bild i `media/` ska användas exakt en gång.** Samma bild på två
   ställen läser som att materialet är tunt; en oanvänd fil är betald och
   bortglömd. Räkna förekomsterna i ett skript före leverans, och städa bort det
@@ -130,6 +252,10 @@ Under 100 credits körs utan att fråga; över 100 frågas (CLAUDE.md).
 Bilder: `nano_banana_2` eller `seedream_v5_pro`. Video: `seedance_2_5`
 (mall-standard för Next.js-spåret, Mathias 2026-08-18), `--mode omni_reference`
 för start- och slutbild.
+
+**Två klipp per demo sedan 2026-09-06:** heron (drönarshot) och Varför
+oss-filmen (5 s, Seedance 2.5, arbetet i bild). Kostnadskolla båda innan
+något körs — tillsammans ligger de nära 100-gränsen.
 
 **Förvandlingen är kedjan A → B → C**, i den ordningen, för konsistensen ÄR
 konceptet:
@@ -222,10 +348,12 @@ aldrig tvärtom.
   CTA-sektion och kontaktkort. Aldrig synonymvariation (Begär offert /
   Kontakta oss / Läs mer). Välj nischens lägsta åtagande: mätning < takkoll <
   offert < köp. Mobilens flytknapp får vara `tel:` — hantverkskunder ringer.
-- **Hero: noll slutledning.** Tvådelad rubrik, `.setup` (liten uppställning) +
-  `.punch` (2–3 ord). Kräver budskapet två tankesteg är det fel budskap. Finns
-  en verifierad siffra som bär smärtan, sätt den i heron. Ingen siffra: led med
-  kundens rädsla, rakt på.
+- **Heron har ingen rubrik längre** (Modulerna, 1). Bärande idén sätts som
+  rubrik i Förvandlingen, direkt under heron, med samma krav som förut: noll
+  slutledning, tvådelad (`.setup` liten uppställning + `.punch` 2–3 ord).
+  Kräver budskapet två tankesteg är det fel budskap. Finns en verifierad
+  siffra som bär smärtan, sätt den där. Ingen siffra: led med kundens rädsla,
+  rakt på.
 - **Punchen får aldrig vara ordvits — spegelfraser räknas som ordvits**
   ("Golvet gör rummet / Vi gör golvet" ratades: kiasmen är fyndig, inte tydlig).
 - **Rytm.** Hero och punchar hålls korta, men brödtext skrivs i människoton med
@@ -246,9 +374,9 @@ aldrig tvärtom.
 | Auto-popup | CSS-animation med ~14 s `animation-delay`; stängning via checkbox (`input:checked ~ .popup { display:none }`) | Starta `opacity:0; visibility:hidden` så den är oklickbar före entrén. Vid `prefers-reduced-motion`: visa den **inte alls** — en ruta som dyker upp av sig själv ÄR rörelse. Lyft den ovanför Bahko-knappen på mobil. |
 | Tjänste-tejp | `translateX(-50%)`-loop, listan dubblerad för sömlöshet, kopian `aria-hidden` | Paus på hover, stopp vid `prefers-reduced-motion`. |
 | Exklusiv FAQ | `<details name="faq">` — webbläsaren stänger förra frågan själv | Äldre webbläsare ignorerar attributet (graceful: flera kan stå öppna). |
-| Hero | `min-height: 100svh`, videon som bakgrundslager, texten över den nedtill | **Videon äger hela vyn** (Mathias 2026-08-21). `svh`, aldrig `vh`: `vh` räknar in iOS-adressfältet och gör heron längre än skärmen. Lägg padding-bottom stort nog för rubrik OCH knappar — annars skärs CTA:n av vid vikkanten. |
-| Hero-text | **EN rubrik.** Ingen lede, ingen tagline | Filmen visar redan vad som görs; text som upprepar den är slop och ströks 2026-08-21. Etikett ovanför rubriken får stå — den säger vad firman gör, vilket en okänd firma behöver. |
-| Hero-video | `autoplay muted loop playsinline preload="metadata"` + `poster`, `object-fit: cover` över hela heron | **Drönarshot är standard** (Mathias 2026-08-21): en FPV-flygning som glider genom rummet och landar på arbetet visar både hemmet och hantverket. En locked-off-shot ratades. Gradient över videon för läsbarhet: nästan klar där förvandlingen sker, tät nedtill där rubriken står. Playwrights Chromium saknar H.264 — verifiera via poster och HTTP 200, **inte** `readyState`. Postern måste matcha bildruta 0; börjar klippet i en dålig vy, trimma bort de första sekunderna i stället för att välja en annan poster. |
+| Hero | `min-height: 100svh`, videon som bakgrundslager bakom ett centrerat lager, filmen tonas in först vid skroll (`animation-timeline: scroll()` bakom `@supports`) — se Modulerna, 1 | **Videon äger hela vyn** (Mathias 2026-08-21). `svh`, aldrig `vh`: `vh` räknar in iOS-adressfältet och gör heron längre än skärmen. Lägg padding-bottom stort nog för rubrik OCH knappar — annars skärs CTA:n av vid vikkanten. |
+| Hero-text | **Ingen rubrik** (2026-09-06, ersätter "EN rubrik" från 2026-08-21). Lagret bär logotyp, två tjänster, ort och knapparna — se Modulerna, 1 | Slogans och ledtexter ströks redan 2026-08-21 som slop; nu går även rubriken. h1 är kundnamnet runt logotypen, annars saknar sidan h1. Bärande idén flyttar till Förvandlingens rubrik. |
+| Hero-video | `autoplay muted loop playsinline preload="metadata"` + `poster`, `object-fit: cover` över hela heron | **Drönarshot är standard** (Mathias 2026-08-21): en FPV-flygning som glider genom rummet och landar på arbetet visar både hemmet och hantverket. En locked-off-shot ratades. Gradient över videon för läsbarhet: nästan klar där förvandlingen sker, tät där lagrets text står efter reveal:en. Playwrights Chromium saknar H.264 — verifiera via poster och HTTP 200, **inte** `readyState`. Postern måste matcha bildruta 0; börjar klippet i en dålig vy, trimma bort de första sekunderna i stället för att välja en annan poster. |
 | Hero per orientering | Två `<video>`, ett liggande och ett stående, växlade med CSS | Inget script: `<source media>` fungerar inte för video i Chrome, och ett orientation-script bryter noll-klient-JS. Selektorerna behöver två klasser (se kaskad-lärdomen). Det dolda elementet kostar bara sin `preload="metadata"`. |
 | Tjänstekort | En måttsatt linjeritning per kort som ritar sig själv i vy | `stroke-dasharray` + `animation-timeline: view()` bakom `@supports`, med **färdigritat utgångsläge** — annars står korten tomma utan stöd. Ritningen är nischens eget språk och bär kortet utan att kosta en bild. `vector-effect: non-scaling-stroke` måste sitta på formen, inte på `svg`: den ärvs inte, och utan den blir linjen hårfin vid nedskalning. **Inga ordningssiffror** (01, 02 …) — de ratades som AI-slop 2026-08-21. |
 | Klickbara steg | En dold `<input type="radio">` per steg som syskon FÖRE flikarna och kortet; `:checked ~` väljer aktiv flik och synlig panel | Radio i stället för en `div` med onClick ger piltangentsnavigering och rätt roll gratis, och håller sidan på noll klient-JS. Sätt fokusringen via `.stegRadio:focus-visible ~` — radion är dold, så ringen måste flyttas till labeln. Mät att exakt EN panel är synlig, i webbläsaren. |
@@ -348,6 +476,21 @@ sådant just nu och ska bytas när riktiga logotyper finns.
 10. **Titta på sidan.** Screenshot hero, galleri och kontakt i både 1440 och
     390 px. Headless virtual-time-bilder kan inte användas för att bedöma
     pågående CSS-transitioner — verifiera rörelse i CSS-värden, inte i pixlar.
+11. **Text över rörlig video mäts över flera bildrutor.** Pausa videon, sätt
+    `currentTime` till 0, 1, 2, 3, 4 s, dölj texten (`visibility: hidden`),
+    fotografera dess ruta och räkna kontrasten mot den ytan. Ta det sämsta
+    värdet. Fångade 2026-08-31 en etikett som klarade bildruta 0 men föll till
+    4,29:1 när drönaren sänkte sig och vattnet ljusnade. Med lager-heron gäller
+    det lagrets alla texter efter reveal:en.
+12. **Hero-reveal:en:** utan `animation-timeline`-stöd och vid
+    `prefers-reduced-motion` ska videon vara synlig direkt (`opacity: 1`
+    uppmätt). Med stöd: `opacity: 0` vid skroll 0, `1` efter reveal-rangen.
+13. **Exakt en h1**, och den är kundnamnet.
+14. **Google-sektionen:** grep:a den renderade HTML:en efter siffror med
+    komma följt av stjärna eller ordet "recensioner" — allt som hittas ska
+    stå i VERIFIERAT-blocket. I tomt läge: noll siffror i sektionen.
+15. **Sociala:** varje ikon har en `href` till ett verifierat konto, annars
+    finns ikonen inte. Rutnätets bilder: unika hashar, två kolumner på mobil.
 
 ## Steg 7 — Leverans
 
