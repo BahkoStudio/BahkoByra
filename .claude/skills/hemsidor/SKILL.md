@@ -13,7 +13,7 @@ och checkbox-mönstret. Inget script kan krascha, för det finns inget script.
 
 **Referens — KOPIERA DENNA:** `web/app/(demo)/golvvision/` (`page.js` +
 `golvvision.module.css`). **Mall-kanon 2026-09-06**: första demon med alla
-fyra modulerna (lager-hero med skroll-reveal, Varför oss-film, omdömen,
+fyra modulerna (lager-hero med genomskinlig header, Varför oss-film, omdömen,
 sociala), plus allt från förra kanon (drönar-/FPV-hero, linjeritningar,
 klickbara steg utan JavaScript, två video-element per orientering) och de
 tre mallbuggarna rättade (mobilgradientens stopp, galleriets kolumner under
@@ -75,22 +75,22 @@ logotypen.
 - **h1 är kundnamnet.** Sidan måste ha exakt en h1 och heron har ingen
   rubrik längre, så `<h1>` omsluter logotypen (`alt` = firmanamnet, eller
   ordmärket som text). Tjänster och ort är ett `<p>`, inte rubriker.
-- **Filmen visas inte förrän besökaren börjar skrolla.** Utgångsläget är
-  lagret på mörk canvas (`--ink`); videon ligger bakom med `opacity: 0` och
-  tonas in mjukt som en **reveal** när skrollen börjar:
-  `animation-timeline: scroll(root)` med `animation-range: 0 40vh` (mät —
-  siffran ska kännas, inte räknas). Bakom `@supports (animation-timeline:
-  scroll())`. **Utan stöd, och vid `prefers-reduced-motion`: videon syns
-  direkt.** Ett lager som aldrig släpper fram filmen är en trasig sida, inte
-  en enkel.
-- Videon `autoplay muted loop playsinline` som förut — den spelar bakom
-  lagret från start, så det finns ingen "start" att vänta på; reveal:en är
-  bara opacitet. Postern = bildruta 0, oförändrat.
+- **Filmen spelar från start.** `autoplay muted loop playsinline` bakom
+  lagret, postern = bildruta 0, oförändrat. (Första tolkningen 2026-09-06
+  var att filmen skulle vänta på skrollen — fel, rättat av Mathias samma dag.)
+- **Headern är genomskinlig när sidan öppnas och får sin bakgrund först
+  när besökaren börjar skrolla.** Det är vad "bakgrunden syns inte förrän
+  man skrollar" betyder. `.sida .hdr` (två klasser, vinner över `.hdr`)
+  börjar på `rgba(…, 0)` och tonar in bakgrund och underkantslinje över
+  `animation-range: 0 120px` på `animation-timeline: scroll(root)`, bakom
+  `@supports`. **Utan stöd, och vid `prefers-reduced-motion`: den vanliga
+  täckta headern.** En header som aldrig får bakgrund är oläslig över
+  innehållet.
 - Drönarshot är fortfarande standard. Två `<video>` per orientering,
   oförändrat.
 - Kontrast: lagrets text mäts mot **klippets ljusaste bildruta** (mät över
-  fem tidpunkter, se Steg 6), inte mot den mörka canvasen den startar på —
-  efter reveal:en ligger den på film.
+  fem tidpunkter, se Steg 6). Headertexten likaså: headern är genomskinlig
+  överst och ligger direkt på filmen.
 
 ### 2. Varför oss — 5 sekunders film, 3–4 punkter
 
@@ -136,8 +136,12 @@ fabricerad. Därför:
   bara"): tillåtet, men varje exempelkort bär ordet **Exempel** synligt, och
   noten under säger "Exempel — byts mot era riktiga omdömen". Aldrig ett
   samlat betyg eller antal, inte ens som exempel.
-- Hitta aldrig på "verifierad kund"-märken eller Google-loggor som antyder
-  integration som inte finns. Stjärnorna är ren SVG.
+- **Google-stil på presentationen** (Mathias 2026-09-06): G-märket i
+  sektionens huvud, gula stjärnor (#FBBC04), vita rundade kort med
+  initial-avatar, namn och ort — så det läses som Google-recensioner. Det är
+  form, inte påstående: G-märket säger var betyget kommer att stå, inte att
+  det redan finns där. Aldrig ett "verifierad"-märke, aldrig påhittade
+  siffror. Stjärnorna är ren SVG.
 - Flagga i leveransen om sektionen är i tomt läge eller exempelläge.
 
 ### 4. Sociala medier — följ arbetet
@@ -383,9 +387,9 @@ aldrig tvärtom.
 | Auto-popup | CSS-animation med ~14 s `animation-delay`; stängning via checkbox (`input:checked ~ .popup { display:none }`) | Starta `opacity:0; visibility:hidden` så den är oklickbar före entrén. Vid `prefers-reduced-motion`: visa den **inte alls** — en ruta som dyker upp av sig själv ÄR rörelse. Lyft den ovanför Bahko-knappen på mobil. |
 | Tjänste-tejp | `translateX(-50%)`-loop, listan dubblerad för sömlöshet, kopian `aria-hidden` | Paus på hover, stopp vid `prefers-reduced-motion`. |
 | Exklusiv FAQ | `<details name="faq">` — webbläsaren stänger förra frågan själv | Äldre webbläsare ignorerar attributet (graceful: flera kan stå öppna). |
-| Hero | `min-height: 100svh`, videon som bakgrundslager bakom ett centrerat lager, filmen tonas in först vid skroll (`animation-timeline: scroll()` bakom `@supports`) — se Modulerna, 1 | **Videon äger hela vyn** (Mathias 2026-08-21). `svh`, aldrig `vh`: `vh` räknar in iOS-adressfältet och gör heron längre än skärmen. Lägg padding-bottom stort nog för rubrik OCH knappar — annars skärs CTA:n av vid vikkanten. |
+| Hero | `min-height: 100svh`, videon som bakgrundslager bakom ett centrerat lager, headern genomskinlig överst och tonar in vid skroll (`animation-timeline: scroll()` bakom `@supports`) — se Modulerna, 1 | **Videon äger hela vyn** (Mathias 2026-08-21). `svh`, aldrig `vh`: `vh` räknar in iOS-adressfältet och gör heron längre än skärmen. Lägg padding-bottom stort nog för rubrik OCH knappar — annars skärs CTA:n av vid vikkanten. |
 | Hero-text | **Ingen rubrik** (2026-09-06, ersätter "EN rubrik" från 2026-08-21). Lagret bär logotyp, två tjänster, ort och knapparna — se Modulerna, 1 | Slogans och ledtexter ströks redan 2026-08-21 som slop; nu går även rubriken. h1 är kundnamnet runt logotypen, annars saknar sidan h1. Bärande idén flyttar till Förvandlingens rubrik. |
-| Hero-video | `autoplay muted loop playsinline preload="metadata"` + `poster`, `object-fit: cover` över hela heron | **Drönarshot är standard** (Mathias 2026-08-21): en FPV-flygning som glider genom rummet och landar på arbetet visar både hemmet och hantverket. En locked-off-shot ratades. Gradient över videon för läsbarhet: nästan klar där förvandlingen sker, tät där lagrets text står efter reveal:en. Playwrights Chromium saknar H.264 — verifiera via poster och HTTP 200, **inte** `readyState`. Postern måste matcha bildruta 0; börjar klippet i en dålig vy, trimma bort de första sekunderna i stället för att välja en annan poster. |
+| Hero-video | `autoplay muted loop playsinline preload="metadata"` + `poster`, `object-fit: cover` över hela heron | **Drönarshot är standard** (Mathias 2026-08-21): en FPV-flygning som glider genom rummet och landar på arbetet visar både hemmet och hantverket. En locked-off-shot ratades. Gradient över videon för läsbarhet: nästan klar där förvandlingen sker, tät där lagrets text står. Playwrights Chromium saknar H.264 — verifiera via poster och HTTP 200, **inte** `readyState`. Postern måste matcha bildruta 0; börjar klippet i en dålig vy, trimma bort de första sekunderna i stället för att välja en annan poster. |
 | Hero per orientering | Två `<video>`, ett liggande och ett stående, växlade med CSS | Inget script: `<source media>` fungerar inte för video i Chrome, och ett orientation-script bryter noll-klient-JS. Selektorerna behöver två klasser (se kaskad-lärdomen). Det dolda elementet kostar bara sin `preload="metadata"`. |
 | Tjänstekort | En måttsatt linjeritning per kort som ritar sig själv i vy | `stroke-dasharray` + `animation-timeline: view()` bakom `@supports`, med **färdigritat utgångsläge** — annars står korten tomma utan stöd. Ritningen är nischens eget språk och bär kortet utan att kosta en bild. `vector-effect: non-scaling-stroke` måste sitta på formen, inte på `svg`: den ärvs inte, och utan den blir linjen hårfin vid nedskalning. **Inga ordningssiffror** (01, 02 …) — de ratades som AI-slop 2026-08-21. |
 | Klickbara steg | En dold `<input type="radio">` per steg som syskon FÖRE flikarna och kortet; `:checked ~` väljer aktiv flik och synlig panel | Radio i stället för en `div` med onClick ger piltangentsnavigering och rätt roll gratis, och håller sidan på noll klient-JS. Sätt fokusringen via `.stegRadio:focus-visible ~` — radion är dold, så ringen måste flyttas till labeln. Mät att exakt EN panel är synlig, i webbläsaren. |
@@ -498,10 +502,11 @@ sådant just nu och ska bytas när riktiga logotyper finns.
     fotografera dess ruta och räkna kontrasten mot den ytan. Ta det sämsta
     värdet. Fångade 2026-08-31 en etikett som klarade bildruta 0 men föll till
     4,29:1 när drönaren sänkte sig och vattnet ljusnade. Med lager-heron gäller
-    det lagrets alla texter efter reveal:en.
-12. **Hero-reveal:en:** utan `animation-timeline`-stöd och vid
-    `prefers-reduced-motion` ska videon vara synlig direkt (`opacity: 1`
-    uppmätt). Med stöd: `opacity: 0` vid skroll 0, `1` efter reveal-rangen.
+    det lagrets alla texter, och headertexten som ligger på filmen överst.
+12. **Headern:** med stöd ska headerns `background-color` ha alpha 0 vid
+    skroll 0 och full täckning efter 120 px; utan stöd och vid
+    `prefers-reduced-motion` ska den vara täckt från start. Hero-videon ska
+    ha `opacity: 1` vid skroll 0 i alla lägen.
 13. **Exakt en h1**, och den är kundnamnet.
 14. **Google-sektionen:** grep:a den renderade HTML:en efter siffror med
     komma följt av stjärna eller ordet "recensioner" — allt som hittas ska

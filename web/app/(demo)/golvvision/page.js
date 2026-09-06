@@ -8,7 +8,8 @@ import styles from './golvvision.module.css';
    (golvvision.se, WordPress) — förslaget är en förbättring, inte en första sida.
 
    FÖRSTA DEMON PÅ MODULERNA (Mathias spec 2026-09-06): lager-hero utan
-   rubrik, Varför oss som film + punkter, recensioner, sociala. Ny mall-kanon.
+   rubrik med genomskinlig header som tonar in vid skroll, Varför oss som
+   film + punkter, recensioner, sociala. Ny mall-kanon.
 
    Bärande idé: golvet blir aldrig bättre än det som ligger under. Firmans egen
    sajt säger "från underarbete till färdigt ytskikt" och "vikten av noggrant
@@ -31,10 +32,12 @@ import styles from './golvvision.module.css';
    (ram-wordmark, hämtad från golvvision.se, inverterad till vit för mörk
    canvas — samma märke, bara vit).
 
-   INTE verifierat, och finns därför inte på sidan: org.nr, grundat år
-   (fältet på sajten är tomt), antal anställda (tomt), antal projekt, omsättning,
-   garantier, ledtider, priser, Google-betyg (Mathias: inga Google-recensioner
-   finns). Sajten länkar till Instagram-handlet golvvisionsthlm, skärmdumpen
+   Siffrorna i statsraden — grundat 2020, +3300 avslutade projekt, +15
+   anställda, +23 MSEK — står på golvvision.se (Mathias skärmdump 2026-09-06;
+   textläsningen såg fälten tomma eftersom de animeras med JS där).
+
+   INTE verifierat, och finns därför inte på sidan: org.nr, garantier,
+   ledtider, priser, Google-betyg (Mathias: inga Google-recensioner finns). Sajten länkar till Instagram-handlet golvvisionsthlm, skärmdumpen
    visar golvvisionstockholm — vi använder det Mathias verifierat och flaggar.
 
    RECENSIONSMODULEN: Mathias bad om ett exempel eftersom Google-recensioner
@@ -266,6 +269,16 @@ const STEG = [
   },
 ];
 
+/* Statsraden. Alla fyra star pa golvvision.se, verifierade via Mathias
+   skarmdump 2026-09-06 (textlasningen sag dem tomma: de animeras med JS dar).
+   Prefixet ar deras eget. */
+const STATS = [
+  { tal: 2020, prefix: '', etikett: 'Grundat' },
+  { tal: 3300, prefix: '+', etikett: 'Avslutade projekt' },
+  { tal: 15, prefix: '+', etikett: 'Anställda' },
+  { tal: 23, prefix: '+', etikett: 'MSEK' },
+];
+
 /* Varför oss: max fyra punkter, alla inom det verifierade. Riskreverseringen
    (att avstå försäljning) bor här. */
 const VARFOR = [
@@ -341,6 +354,18 @@ const Stjarnor = () => (
   </span>
 );
 
+/* Googles G i fyra farger — presentationen ska lasas som Google-recensioner
+   (Mathias 2026-09-06). Markt sager var betyget kommer att sta, inte att det
+   redan finns dar: inget samlat betyg, inget antal. */
+const GoogleG = ({ className }) => (
+  <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
+    <path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.3l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z" />
+    <path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 2.9-2.2 5.4-4.7 7.1l7.6 5.9c4.4-4.1 6.9-10.1 6.9-17z" />
+    <path fill="#FBBC04" d="M10.5 28.6c-.5-1.5-.8-3-.8-4.6s.3-3.1.8-4.6l-7.9-6.1C.9 16.6 0 20.2 0 24s.9 7.4 2.6 10.7l7.9-6.1z" />
+    <path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.9l-7.9 6.1C6.5 42.6 14.6 48 24 48z" />
+  </svg>
+);
+
 export default function GolvvisionDemo() {
   return (
     <div className={`${display.variable} ${displayKursiv.variable} ${ui.variable} ${styles.sida}`}>
@@ -390,8 +415,8 @@ export default function GolvvisionDemo() {
       {/* ---------- 1. lager-hero ----------
           Lagret ar sidans forsta vy: logotyp, tva tjanster, ort, knapparna.
           Ingen rubrik, ingen slogan. Filmen (FPV genom en fardig lokal) ligger
-          bakom och tonas in forst nar skrollen borjar — utan stod, och vid
-          reduced motion, ligger den framme fran start. */}
+          bakom lagret fran start. Headern ar genomskinlig nar sidan oppnas och
+          far sin bakgrund forst nar besokaren borjar skrolla (CSS, se .hdr). */}
       <section className={styles.hero} id="top">
         <figure className={styles.heroFilm}>
           <video
@@ -457,6 +482,26 @@ export default function GolvvisionDemo() {
               <span>Parkett och golvläggning</span>
               <span>Golvslipning</span>
               <span>Stockholm med omnejd</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ---------- statsrad ----------
+          Siffrorna star pa golvvision.se (verifierat via Mathias skarmdump
+          2026-09-06; var textlasning sag dem tomma eftersom de animeras med
+          JS dar). Har raknas de upp vid skroll med ren CSS; utan stod visas
+          den statiska siffran. */}
+      <div className={styles.wrap}>
+        <div className={styles.stats} role="list" aria-label="Golvvision i siffror">
+          {STATS.map((s) => (
+            <div className={styles.stat} role="listitem" key={s.etikett}>
+              <b>
+                {s.prefix}
+                <span className={styles.statTal} style={{ '--mal': s.tal }} aria-hidden="true" />
+                <span className={styles.statStatisk}>{s.tal}</span>
+              </b>
+              <span>{s.etikett}</span>
             </div>
           ))}
         </div>
@@ -667,15 +712,26 @@ export default function GolvvisionDemo() {
           <div className={styles.sekHuvud}>
             <p className={styles.eyebrow}>Omdömen</p>
             <h2 className={styles.h2}>Vad kunderna säger</h2>
+            <p className={styles.googleRad}>
+              <GoogleG className={styles.googleG} />
+              <span>Google-recensioner</span>
+            </p>
           </div>
           <div className={styles.recensioner}>
             {OMDOMEN.map((o) => (
               <figure className={styles.recension} key={o.namn}>
+                <div className={styles.recensionHuvud}>
+                  <span className={styles.avatar} aria-hidden="true">
+                    {o.namn[0]}
+                  </span>
+                  <figcaption>
+                    <b>{o.namn}</b>
+                    <span>{o.ort}</span>
+                  </figcaption>
+                  <GoogleG className={styles.recensionG} />
+                </div>
                 <Stjarnor />
                 <blockquote>{o.text}</blockquote>
-                <figcaption>
-                  <b>{o.namn}</b>, {o.ort}
-                </figcaption>
               </figure>
             ))}
           </div>
