@@ -143,7 +143,7 @@ export default function Start() {
             <MaskotFilm
               className={styles.panelFigur}
               still="/img/maskot-film/forstoringsglas-still.webp"
-              ark={{ src: '/img/maskot-film/forstoringsglas.webp', fps: 10, ramar: 50, kolumner: 9, bredd: 300, hojd: 403 }}
+              ark={{ src: '/img/maskot-film/forstoringsglas.webp', fps: 10, ramar: 50, kolumner: 8, bredd: 300, hojd: 300 }}
               alt="Bahko-maskoten granskar en mobil med ett förstoringsglas"
             />
           </div>
