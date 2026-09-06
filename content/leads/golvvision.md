@@ -21,6 +21,7 @@
 | Instagram | 147 inlägg, 802 följare, profilnamn "GOLVVISION STOCKHOLM AB", bio "Mattläggning/Plattsättning/Golvavjämning/Parkett · Baserade i Älvsjö…" (Mathias skärmdump) |
 | Logotyp | deras egen ram-wordmark, hämtad från golvvision.se; inverterad till vit för mörk canvas |
 | Google-recensioner | inga (Mathias 2026-09-06) |
+| Siffror på sajten | grundat 2020, +3300 avslutade projekt, +15 anställda, +23 MSEK — Mathias skärmdump 2026-09-06 (JS-animerade, syns inte i textläsning) |
 
 ## INTE verifierat — får inte påstås
 
