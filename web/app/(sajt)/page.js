@@ -2,7 +2,6 @@ import Link from 'next/link';
 import HeroBygge from '../komponenter/HeroBygge';
 import HeroVideo from '../komponenter/HeroVideo';
 import Maskot from '../komponenter/Maskot';
-import MaskotScen from '../komponenter/MaskotScen';
 import MaskotFilm from '../komponenter/MaskotFilm';
 import Marquee from '../komponenter/Marquee';
 import Rakna from '../komponenter/Rakna';
@@ -141,13 +140,11 @@ export default function Start() {
                 Så bygger vi {PIL}
               </Link>
             </div>
-            {/* Luppscenen: stillbild med CSS-rörelse tills det finns ett klipp där
-                figuren håller sig inom bild (första klippet lutade sig ut ur ramen) */}
-            <MaskotScen
+            <MaskotFilm
               className={styles.panelFigur}
-              src="/img/maskot-scener/forstoringsglas.webp"
+              still="/img/maskot-film/forstoringsglas-still.webp"
+              ark={{ src: '/img/maskot-film/forstoringsglas.webp', fps: 10, ramar: 50, kolumner: 9, bredd: 300, hojd: 403 }}
               alt="Bahko-maskoten granskar en mobil med ett förstoringsglas"
-              index={1}
             />
           </div>
           <div className={styles.panelScen}>
