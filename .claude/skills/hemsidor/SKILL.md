@@ -432,6 +432,11 @@ EE-märke på svart rundad kvadrat) nyckla bort plattan så bara märket ligger
 på filmen — Mathias tog bort den samma dag. Samma regel som för den vita
 plattan: ingen ruta bakom märket i lagret, oavsett om rutan är vår eller
 filens egen.
+**Är märket en badge med egen skiva** (hd 2026-09-07: vit rund skiva med
+röd ring och svart text) räknas skivan som platta och tas bort — kvar blir
+ringen, tecknet och texten. Mörka delar vänds till vita (samma märke, bara
+vänt), färgade delar behålls. Mathias tog bort skivan samma dag: "loggans
+bakgrund hamnade på hero-videon och det vill vi ju inte".
 **Är originalet litet** (266 px): skala upp
 (bytedance upscale, 2 credits), nyckla bort bakgrunden, och be om vektorfilen.
 
