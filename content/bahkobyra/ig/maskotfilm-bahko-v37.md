@@ -13,10 +13,14 @@ och gör att låten kan bytas utan ombygge.
 
 | Segment | Längd | Bild | Textbeat |
 |---|---|---|---|
-| Klipp 1 | 8,0 s | Vardagsrum på kvällen, maskoten i soffan scrollar mobilen, ögat vidgas | "Jag scrollade förbi deras golv." → "Men det syntes bara här." |
-| Fryst ruta | 5,5 s | Långsam inzoom | "Ingen bad om det. Jag byggde ändå." → "Två dygn." |
-| Klipp 2 | 8,0 s | Ljus golvverkstad, maskoten pekar stolt på en surfplatta med sajten, glädjehopp | "Logotyp. Två tjänster. En knapp." → "Utan att firman lyft ett finger." |
+| Klipp 1 | 8,0 s | Vardagsrum på kvällen, maskoten i soffan scrollar mobilen, ögat vidgas | "Snygga golv i flödet." → "Men ingen hemsida som visar dem." |
+| Fryst ruta | 5,5 s | Långsam inzoom | "Jag byggde en sajt åt dem. Utan att fråga." → "Två dygn senare." |
+| Klipp 2 | 8,0 s | Ljus golvverkstad, maskoten pekar stolt på en surfplatta med sajten, glädjehopp | "Deras logga. Deras jobb. En ringknapp." → "Så här ser det ut. Innan de sagt ja." |
 | Outro | 3,8 s | DM:a DEMO-kortet med maskoten på marinblått | (kortet bär texten) |
+
+Första versionen av måndagens texter ("Jag scrollade förbi deras golv" osv) var för
+kryptisk, Mathias 2026-09-07. Omskriven till rak berättelse i tolvårsspråk, samma modell som
+onsdagens som han gillade.
 
 ## Film 2 · Onsdag · Teardown · "Tumtestet"
 
@@ -40,7 +44,9 @@ Vattenmärke: vita loggan uppe till vänster till och med outron.
   Presetförslaget "IN THE DARK" avböjs med `declined_preset_id`, annars skickas inget jobb.
 - **Textkort:** `mallar/maskotfilm-v37/overlay.html`, renderat med Chromium headless
   (`--default-background-color=00000000`, 1080 × 1920). Outfit hämtas lokalt via curl,
-  Chromium når inte Google Fonts genom proxyn. `?f=1|2&i=0..5` ger beats, `?wm=1` loggan,
+  Chromium når inte Google Fonts genom proxyn. Fälla: url() i den nedladdade css-filen ska
+  peka på filnamnet, inte `fonts/filnamn`, annars ritas korten tyst i ett reservtypsnitt
+  (hände i första bygget 2026-09-07, båda filmerna byggdes om). `?f=1|2&i=0..5` ger beats, `?wm=1` loggan,
   `?bg=1` outro-bakgrunden (maskoten + smaragdknapp med marinblå text + loggan).
 - **Montering:** `mallar/maskotfilm-v37/bygg-maskotfilm-sandlada.sh` körs i Higgsfields
   sandlåda (`sandbox_exec`), inte lokalt. Molncontainern får inte hämta från Higgsfields
