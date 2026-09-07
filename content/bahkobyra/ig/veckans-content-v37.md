@@ -11,8 +11,9 @@ Fortsätter kalendern i `content/ig/kontentplan-bahkobyra.md` (v33 till v36). In
 `/cloud/os-4337c997e7/`, fliken Instagram.
 **Utvärderingen efter v36** (vilken pelare gav flest DEMO-DM och sparningar) är inte gjord.
 Den skjuts till efter v40. Pelarmixen är därför oförändrad.
-**Credits:** veckan kräver noll Higgsfield-credits. Reels byggs med `/bahko-reel` som lägger
-grafik över Mathias egna klipp. `media/bahko-sting-9x16.mp4` är i gamla varumärket och används inte.
+**Credits:** måndagens och onsdagens reels är AI-genererade maskotfilmer (Mathias beställning
+2026-09-07, se `maskotfilm-bahko-v37.md`). Resten av veckan kräver inga credits.
+`media/bahko-sting-9x16.mp4` är i gamla varumärket och används inte.
 
 `/reel` och `/ig-karusell` är globala skills på Mathias dator. Den här filen levererar därför
 manus och karuseller på frönivå: hookar, loopar och slide-roller. Slutbygget körs lokalt.
@@ -69,7 +70,8 @@ inte ett levererat jobb. Säg det i reelen.
 - **Payoff + mjuk CTA (24 till 30 s):** "Så här långt kommer man på två dygn. Utan att firman
   lyft ett finger. Vill du se din? DM:a DEMO."
 
-**Paneler för `/bahko-reel` (sekunder):**
+**Producerad som maskotfilm** (24 s, textbeats i stället för voiceover), se
+`maskotfilm-bahko-v37.md`. Vill Mathias hellre göra den som `/bahko-reel` över eget klipp:
 - 0,0 till 3,0: titelkort "Kundcase · Golv i Stockholm", maskoten vinkar bredvid Mathias
 - 5,0 till 9,0: "Logotyp. Två tjänster. Orten. En knapp."
 - 14,0 till 18,0: "Omdömena de redan hade"
@@ -128,7 +130,8 @@ rekommendationer kollar upp er innan de ringer?" Ingen DEMO-CTA på LinkedIn.
 - **Payoff + mjuk CTA (22 till 28 s):** Skärm: demo med ringknapp högst upp. "En knapp. Högst
   upp. Som ringer. Vill du se hur din sajt klarar tumtestet? DM:a DEMO."
 
-**Paneler för `/bahko-reel` (sekunder):**
+**Producerad som maskotfilm** (24 s), se `maskotfilm-bahko-v37.md`. Alternativ som
+`/bahko-reel` över eget klipp:
 - 0,0 till 3,0: titelkort "Tumtestet", maskoten undersöker med luppen
 - 5,0 till 9,0: "Sidfoten. Bilden. Menyn."
 - 14,0 till 18,0: "Tre sekunder. Sedan nästa firma."

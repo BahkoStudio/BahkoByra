@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="sv"><head><meta charset="utf-8">
+<title>Maskotfilm overlay v37</title>
+<!-- I molnet: Outfit hamtas med curl till fonts/outfit-local.css (Chromium nar inte Google Fonts genom proxyn). Pa Mathias dator racker Google Fonts-lanken. -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent}
+body{font-family:'Outfit',sans-serif;position:relative}
+.blob{position:absolute;left:60px;right:60px;bottom:290px;background:rgba(10,22,40,.80);border-radius:28px;padding:42px 46px;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.kick{font-weight:800;font-size:34px;letter-spacing:.16em;color:#34D399;text-transform:uppercase;margin-bottom:18px}
+.t{font-weight:800;font-size:76px;line-height:1.12;color:#FFF}
+.t em{font-style:normal;color:#34D399}
+.t span{display:block;white-space:nowrap}
+.blob.punch{text-align:center;padding:60px 46px}
+.blob.punch .t{font-size:150px;line-height:1}
+.outro{position:absolute;left:60px;right:60px;bottom:150px;text-align:center;font-weight:700;font-size:40px;color:rgba(255,255,255,.88);text-shadow:0 2px 18px rgba(0,0,0,.8)}
+.wm{position:absolute;top:64px;left:60px}
+.wm img{height:74px;display:block;filter:drop-shadow(0 4px 18px rgba(0,0,0,.65))}
+/* Outro-bakgrund: helbild, marinblå, maskoten + knappen (smaragd yta, marinblå text) */
+.bg{position:absolute;inset:0;background:#0A1628;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:56px}
+.bg img.m{width:560px;height:auto;filter:drop-shadow(0 30px 60px rgba(0,0,0,.5))}
+.btn{background:#10B981;color:#0A1628;font-weight:800;font-size:96px;letter-spacing:.02em;padding:36px 84px;border-radius:40px;box-shadow:0 20px 60px rgba(16,185,129,.35)}
+.sub{color:#94A7BF;font-weight:700;font-size:38px;text-align:center;max-width:860px;line-height:1.3}
+.bg .logo{position:absolute;bottom:120px;left:50%;transform:translateX(-50%);height:74px}
+</style></head><body>
+<script>
+const F={
+ 1:[
+  {k:'Flödet',        t:'Jag scrollade förbi<br><em>deras golv</em>.'},
+  {k:'Snyggt',        t:'Men det syntes<br>bara <em>här</em>.'},
+  {k:'Så jag byggde', t:'Ingen bad om det.<br>Jag byggde <em>ändå</em>.'},
+  {k:'',              t:'<em>Två dygn.</em>', punch:true},
+  {k:'Sajten',        t:'Logotyp. Två tjänster.<br><em>En knapp.</em>'},
+  {k:'Kundcase',      t:'Utan att firman<br>lyft <em>ett finger</em>.'}
+ ],
+ 2:[
+  {k:'Parkeringen',   t:'Kunden står<br>på en <em>parkering</em>.'},
+  {k:'Bråttom',       t:'Behöver ringa dig.<br><em>Nu.</em>'},
+  {k:'Numret?',       t:'I sidfoten. I en bild.<br>Bakom en <em>meny</em>.'},
+  {k:'',              t:'<em>Tre sekunder.</em>', punch:true},
+  {k:'Sedan',         t:'Sedan ringer de<br><em>nästa firma</em>.'},
+  {k:'Lösningen',     t:'En knapp. Högst upp.<br>Som <em>ringer</em>.'}
+ ]
+};
+const q=new URLSearchParams(location.search);
+if(q.get('wm')==='1'){
+  document.write('<div class="wm"><img src="logo-dark.svg" alt="Bahko Byrå"></div>');
+}else if(q.get('o')==='1'){
+  document.write('<div class="outro">Kostnadsfri demo av er nya hemsida.</div>');
+}else if(q.get('bg')==='1'){
+  document.write('<div class="bg"><img class="m" src="bahko-master.webp" alt=""><div class="btn">DM:a DEMO</div><div class="sub">så bygger vi en kostnadsfri demo av er nya hemsida</div><img class="logo" src="logo-dark.svg" alt=""></div>');
+}else{
+  const f=parseInt(q.get('f')||'1',10), i=parseInt(q.get('i')||'0',10), b=F[f][i];
+  const rows=b.t.split('<br>').map(r=>'<span>'+r+'</span>').join('');
+  document.write('<div class="blob'+(b.punch?' punch':'')+'">'+(b.k?'<div class="kick">'+b.k+'</div>':'')+'<div class="t" id="t">'+rows+'</div></div>');
+  const t=document.getElementById('t'); const sp=[...t.querySelectorAll('span')];
+  let px=b.punch?150:76; t.style.fontSize=px+'px';
+  while(px>48 && sp.some(r=>r.scrollWidth>t.clientWidth)){px-=2;t.style.fontSize=px+'px';}
+}
+</script>
+</body></html>
