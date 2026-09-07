@@ -86,7 +86,15 @@ logotypen.
   `@supports`. **Utan stöd, och vid `prefers-reduced-motion`: den vanliga
   täckta headern.** En header som aldrig får bakgrund är oläslig över
   innehållet.
-- Drönarshot är fortfarande standard. Två `<video>` per orientering,
+- **Hero-filmen är en före/efter-effekt** (Mathias 2026-09-07, ersätter
+  drönarshot som standard). Klippet börjar i före-läget och slutar i
+  efter-läget, med förvandlingen som ett fysiskt arbete i bild — samma
+  kamera, en tagning. Seedance 2.5 i `--mode omni_reference` tar både
+  `--start-image <A>` och `--end-image <B>`: A och B är kedjans egna bilder,
+  så filmen landar exakt i efterbilden. Prompten beskriver processen (panel
+  bräda för bräda, avjämningsmassan som flyter, taket som läggs) och
+  förbjuder crossfade och morf som förut. Drönar-/FPV-shot får användas när
+  nischen saknar synlig förvandling. Två `<video>` per orientering,
   oförändrat.
 - Kontrast: lagrets text mäts mot **klippets ljusaste bildruta** (mät över
   fem tidpunkter, se Steg 6). Headertexten likaså: headern är genomskinlig
