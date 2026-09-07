@@ -25,8 +25,7 @@
 
 ## INTE verifierat — får inte påstås
 
-Org.nr, grundat år (sajtens fält är tomt), antal anställda (tomt), antal projekt,
-omsättning, garantier, ledtider, priser, Google-betyg.
+Org.nr, garantier, ledtider, priser, Google-betyg.
 
 **Handle-avvikelse:** sajten länkar till `instagram.com/golvvisionsthlm`, skärmdumpen
 visar `golvvisionstockholm`. Demon använder det Mathias verifierat. Fråga vilket som gäller.
