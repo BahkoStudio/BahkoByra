@@ -1759,12 +1759,8 @@ a.kontaktRad b {
   width: clamp(220px, 36vw, 360px);
   height: auto;
   display: block;
-  /* Kundens marke ar morkblatt med rod kontur och drunknade mot filmen.
-     Vit platta som pa deras bildekaler — markets farger rors inte. */
-  background: #fff;
-  padding: clamp(0.8rem, 1.6vw, 1.2rem) clamp(1.2rem, 2.4vw, 1.8rem);
-  border-radius: 10px;
-  box-sizing: border-box;
+  /* Ingen platta bakom market (Mathias 2026-09-07) — det ligger direkt pa
+     filmen; den roda konturen bar det. */
 }
 .heroTjanster {
   margin: 0.4rem 0 0;
