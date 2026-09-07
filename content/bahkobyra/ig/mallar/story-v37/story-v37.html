@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="sv"><head><meta charset="utf-8"><title>Story v37</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0A1628}
+body{font-family:'Outfit',sans-serif;position:relative;color:#fff}
+.glow{position:absolute;width:1100px;height:1100px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,.16) 0%,transparent 62%);top:-380px;right:-380px}
+.glow2{position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,.08) 0%,transparent 62%);bottom:-300px;left:-380px}
+.top{position:absolute;left:90px;right:90px;top:250px;display:flex;align-items:center;gap:22px}
+.mark{width:72px;height:72px;border-radius:18px;background:#10B981;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:44px;color:#fff}
+.handle{font-weight:700;font-size:34px;color:#34D399}
+.kick{position:absolute;left:90px;top:520px;font-weight:800;font-size:32px;letter-spacing:.18em;color:#34D399;text-transform:uppercase}
+.t{position:absolute;left:90px;right:90px;top:590px;font-weight:800;font-size:104px;line-height:1.08}
+.t em{font-style:normal;color:#34D399}
+.sub{position:absolute;left:90px;right:90px;top:1080px;font-weight:500;font-size:40px;line-height:1.35;color:#94A7BF}
+.zone{position:absolute;left:90px;right:90px;top:1180px;height:420px;border:4px dashed rgba(148,167,191,.22);border-radius:36px}
+.btn{position:absolute;left:90px;top:1180px;background:#10B981;color:#0A1628;font-weight:800;font-size:60px;padding:36px 64px;border-radius:24px}
+.foot{position:absolute;left:90px;right:90px;bottom:200px;display:flex;justify-content:space-between;align-items:flex-end}
+.rule{width:120px;height:8px;background:#10B981;border-radius:4px}
+.logo{height:70px}
+</style></head><body>
+<div class="glow"></div><div class="glow2"></div>
+<div class="top"><div class="mark">B</div><div class="handle">@bahkobyra</div></div>
+<div class="kick" id="k"></div>
+<div class="t" id="t"></div>
+<div class="sub" id="s"></div>
+<div class="zone" id="z"></div>
+<div class="btn" id="b" hidden></div>
+<div class="foot"><div class="rule"></div><img class="logo" src="../../../../../web/public/brand/logo-dark.svg" alt="Bahko Byrå"></div>
+<script>
+const S={
+ s2:{k:'Snabb fråga',t:'Hur får ni de <em>flesta</em> jobben?',s:'Svara i pollen.'},
+ s3:{k:'Tumtestet',t:'Hittar man ert <em>nummer</em> med en tumme?',s:'Öppna er egen sajt i mobilen. Räkna sekunderna.'},
+ s4:{k:'Torsdagens karusell',t:'Vad <em>saknar</em> din sajt?',s:'Skriv det i rutan. Jag svarar på alla.'},
+ s7:{k:'Ärligt',t:'Har du kollat din egen sajt i <em>mobilen</em> den här månaden?',s:'Ja eller nej. Ingen dömer.'},
+ cta:{k:'Kostnadsfri demo',t:'Vill du se hur det här skulle se ut för <em>din</em> firma?',s:'Skriv DEMO så bygger jag en demo av er nya hemsida inom 48 timmar.',b:'DM:a DEMO'}
+};
+const i=new URLSearchParams(location.search).get('i')||'s2', d=S[i];
+k.textContent=d.k; t.innerHTML=d.t; s.textContent=d.s;
+if(d.b){b.textContent=d.b;b.hidden=false;z.hidden=true;}
+</script>
+</body></html>
+<!-- Rendera (Edge/Chromium): --headless=new --hide-scrollbars --window-size=1080,1920 --screenshot=story-s2.png "file:///.../story-v37.html?i=s2"
+     i = s2 | s3 | s4 | s7 | cta. Den streckade rutan är platsen för IG:s poll- eller frågesticker, den syns
+     inte i slutresultatet när stickern ligger ovanpå. Varumärke v2: #0A1628, #10B981, #34D399, Outfit 800.
+     Knappregeln: smaragd yta med marinblå text. -->

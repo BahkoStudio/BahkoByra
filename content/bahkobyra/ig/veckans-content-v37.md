@@ -237,12 +237,12 @@ Logga leadet i CRM:et direkt, källa = post. Ingen kontakt utan Mathias.
 **Batchdag: söndag 6/9 eller måndag morgon.** Veckan är redan igång, så måndagens reel får gå
 ut på kvällen om det behövs. Bättre en dag sen än en vecka hoppad.
 
-1. Spela in måndagens och onsdagens klipp, kör `/bahko-reel` med panelerna ovan
+1. Måndagens och onsdagens reels är producerade som maskotfilmer (se `maskotfilm-bahko-v37.md`). Ögongranska i Higgsfield
 2. Karusellerna är byggda med `/ig-karusell` (Cinematiskt läge, sex slides, se `mallar/karusell-v37/LASMIG.md`). Ögongranska åäö och maskoten på slide 1 och 6
-3. Rendera bildkortet med Edge-mallen
+3. Bildkortet är renderat (`mallar/bildkort/bildkort-v37-leta.html`)
 4. Spela in fredagens talking-head, kör `/famous-reel-editor`
 5. Allt till Drive `BahkoByra/Planerat v37/`, publicering enligt kalendern
-6. Stories 2 minuter om dagen ur packet ovan
+6. Stories 2 minuter om dagen ur packet ovan. Fem färdiga bakgrunder finns i `mallar/story-v37/` (se `LASMIG.md` där för vilken sticker som läggs på vilket kort)
 7. Fredag 15:00: tre siffror i Bahko OS
 
 **MVL, kraschvecka:** svara DM och kommentarer varje dag, en karusell (tisdagens), story minst
