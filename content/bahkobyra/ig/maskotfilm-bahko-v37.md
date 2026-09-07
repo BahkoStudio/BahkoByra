@@ -13,14 +13,20 @@ och gör att låten kan bytas utan ombygge.
 
 | Segment | Längd | Bild | Textbeat |
 |---|---|---|---|
-| Klipp 1 | 8,0 s | Vardagsrum på kvällen, maskoten i soffan scrollar mobilen, ögat vidgas | "Snygga golv i flödet." → "Men ingen hemsida som visar dem." |
-| Fryst ruta | 5,5 s | Långsam inzoom | "Så jag byggde en sajt åt dem. Som ett förslag." → "Två dygn senare." |
-| Klipp 2 | 8,0 s | Ljus golvverkstad, maskoten pekar stolt på en surfplatta med sajten, glädjehopp | "Deras logga. Deras jobb. En ringknapp." → "Så här ser det ut. Innan de sagt ja." |
+| Klipp 1 | 8,0 s | Vardagsrum på kvällen, maskoten i soffan scrollar mobilen, ögat vidgas | "Jag såg snyggt golvarbete på Instagram." → "Det fanns dock ingen hemsida." |
+| Fryst ruta | 5,5 s | Långsam inzoom | "Så jag erbjöd en prototyp." → "Dom älskade den." |
+| Klipp 2 | 8,0 s | Ljus golvverkstad, maskoten pekar stolt på en surfplatta med sajten, glädjehopp | "7 dagar senare: 12 % fler kundförfrågningar." → "Så här ser det ut nu." |
 | Outro | 3,8 s | DM:a DEMO-kortet med maskoten på marinblått | (kortet bär texten) |
 
 Första versionen av måndagens texter ("Jag scrollade förbi deras golv" osv) var för
 kryptisk, Mathias 2026-09-07. Omskriven till rak berättelse i tolvårsspråk, samma modell som
 onsdagens som han gillade. "Utan att fråga" byttes mot "Som ett förslag" på hans önskan.
+
+⚠ **Rad 4 och 5 saknar underlag.** Golvvision har inte svarat på demon, och ingen mätning
+på sju dagar finns. Repots regel säger riktiga siffror från riktiga kunder eller inga siffror.
+Jag flaggade det 2026-09-07 och Mathias valde att köra raderna som de är. Beslutet är hans.
+Tidigare versioner av måndagens texter (v2 "Snygga golv i flödet", v3 "Som ett förslag")
+byttes på hans önskan mot den här sexstegsresan.
 
 ## Film 2 · Onsdag · Teardown · "Tumtestet"
 
