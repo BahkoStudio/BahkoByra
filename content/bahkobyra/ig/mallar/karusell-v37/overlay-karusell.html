@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="sv"><head><meta charset="utf-8"><title>Overlay</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:transparent}
+body{font-family:'Outfit',sans-serif;position:relative;color:#fff}
+.shade{position:absolute;left:0;right:0;bottom:0;height:62%;background:linear-gradient(180deg,rgba(10,22,40,0) 0%,rgba(10,22,40,.82) 28%,rgba(10,22,40,.96) 100%)}
+.topshade{position:absolute;left:0;right:0;top:0;height:220px;background:linear-gradient(180deg,rgba(10,22,40,.75),rgba(10,22,40,0))}
+.top{position:absolute;left:96px;right:96px;top:80px;display:flex;justify-content:space-between;align-items:center}
+.mark{width:84px;height:84px;border-radius:20px;background:#10B981;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:50px;color:#fff}
+.eyebrow{font-weight:700;font-size:30px;letter-spacing:.14em;color:#34D399;text-transform:uppercase}
+.main{position:absolute;left:96px;right:96px;bottom:190px}
+h1{font-weight:800;font-size:82px;line-height:1.13;color:#fff}
+h1 .em{color:#34D399;font-style:normal}
+.cover h1{font-size:104px;line-height:1.08}
+.body{margin-top:36px;font-weight:500;font-size:42px;line-height:1.35;color:#C7D2DF}
+.body b{color:#fff;font-weight:700}
+.fix{margin-top:40px;font-weight:700;font-size:38px;color:#0A1628;background:#10B981;padding:24px 34px;border-radius:16px;display:inline-block}
+.list{margin-top:34px;display:flex;flex-direction:column;gap:18px}
+.row{display:flex;gap:22px;align-items:flex-start;font-weight:700;font-size:42px;line-height:1.25;color:#fff}
+.row i{flex:none;width:56px;height:56px;border-radius:16px;background:#10B981;color:#0A1628;font-style:normal;font-weight:800;font-size:32px;display:flex;align-items:center;justify-content:center}
+.vs{margin-top:34px;display:flex;flex-direction:column;gap:18px}
+.vs div{padding:22px 30px;border-radius:18px;font-weight:700;font-size:38px;line-height:1.25}
+.vs .bad{background:rgba(255,255,255,.08);color:#C7D2DF}.vs .bad b{color:#F87171}
+.vs .good{background:#10B981;color:#0A1628}
+.footer{position:absolute;left:96px;right:96px;bottom:84px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:30px}
+.footer .handle{color:#34D399}.footer .page{color:#94A7BF;font-weight:500}.footer .swipe{color:#fff}
+</style></head><body>
+<script>
+const K={
+t:[ // tisdag: rekommendationer, lösning direktbokning
+ {c:'cover',h:'Grannen tipsade om er.<br><em class="em">Sen hände ingenting.</em>'},
+ {e:'Insikten',h:'Kunden ringer inte<br>på ett tips.<br><span class="em">De kollar först.</span>',b:'De söker ert namn, tittar i tre sekunder och bestämmer sig. <b>Innan de ringer.</b>'},
+ {e:'Det de letar efter',h:'Fyra saker.<br><span class="em">Tre sekunder.</span>',list:['Bilder på jobbet','Omdömen från kunder','Vilken ort ni jobbar i','Ett nummer att trycka på']},
+ {e:'Jämförelsen',h:'Samma tips.<br><span class="em">Två utfall.</span>',vs:['<b>Fel:</b> tipset landar på ingenting. Eller på en firma med samma namn.','<b>Rätt:</b> tipset landar på en sida där de ringer direkt.']},
+ {e:'Gör så här i dag',h:'Tre steg.<br><span class="em">En timme.</span>',list:['Lägg upp de tre senaste jobben','Visa omdömena ni redan har','Sätt numret högst upp, tryckbart'],fix:'Spara den här till nästa offert.'},
+ {c:'cta',e:'Nästa steg',b:'Kostnadsfri demo av er nya hemsida. Två dygn. Inga krav.'}
+],
+h:[ // torsdag: fyra saker på tre sekunder, lösning direktbokning
+ {c:'cover',h:'Tre sekunder.<br>Fyra frågor.<br><em class="em">Sen scrollar de vidare.</em>'},
+ {e:'Insikten',h:'Kunden läser inte.<br><span class="em">Kunden letar.</span>',b:'Fyra frågor ställs utan att de märker det själva. Saknas ett svar <b>scrollar de vidare.</b>'},
+ {e:'De fyra frågorna',h:'Har din sajt<br><span class="em">svaren?</span>',list:['Vad gör ni, och var?','Varför just er?','Vad säger andra kunder?','Finns ni på riktigt?']},
+ {e:'Jämförelsen',h:'Samma firma.<br><span class="em">Två sajter.</span>',vs:['<b>Fel:</b> tolv tjänster, hela Sverige, en text om kvalitet.','<b>Rätt:</b> två tjänster, en ort, en knapp som ringer.']},
+ {e:'Gör så här i dag',h:'Fyra rader.<br><span class="em">En kväll.</span>',list:['Orten i rubriken','Tre bilder på riktiga jobb','Omdömena synliga','Ringknappen högst upp'],fix:'Spara den här och gå igenom din sajt.'},
+ {c:'cta',e:'Nästa steg',b:'Kostnadsfri demo av er nya hemsida. Två dygn. Inga krav.'}
+]};
+const q=new URLSearchParams(location.search);const set=q.get('s')||'t';const i=parseInt(q.get('i')||'0',10);const s=K[set][i];
+let h='';
+if(s.c==='cta'){
+  document.body.className='cta';
+  h+='<div class="topshade"></div><div class="top"><div class="mark">B</div><div class="eyebrow">'+s.e+'</div></div>';
+  h+='<div class="shade" style="height:34%"></div><div class="main" style="bottom:170px"><div class="body" style="text-align:center;font-weight:700;color:#fff">'+s.b+'</div></div>';
+  h+='<div class="footer"><span class="handle">@bahkobyra</span><span class="swipe"></span><span class="page">6/6</span></div>';
+}else{
+  document.body.className=s.c||'';
+  h+='<div class="shade"'+(s.c==='cover'?' style="height:70%"':'')+'></div><div class="topshade"></div>';
+  h+='<div class="top"><div class="mark">B</div><div class="eyebrow">'+(s.e||'')+'</div></div>';
+  h+='<div class="main"><h1>'+s.h+'</h1>';
+  if(s.b) h+='<div class="body">'+s.b+'</div>';
+  if(s.list) h+='<div class="list">'+s.list.map((t,n)=>'<div class="row"><i>'+(n+1)+'</i><div>'+t+'</div></div>').join('')+'</div>';
+  if(s.vs) h+='<div class="vs"><div class="bad">'+s.vs[0]+'</div><div class="good">'+s.vs[1]+'</div></div>';
+  if(s.fix) h+='<div class="fix">'+s.fix+'</div>';
+  h+='</div>';
+  h+='<div class="footer"><span class="handle">@bahkobyra</span><span class="swipe">svep &#8594;</span><span class="page">'+(i+1)+'/6</span></div>';
+}
+document.body.innerHTML=h;
+</script></body></html>

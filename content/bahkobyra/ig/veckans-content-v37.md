@@ -238,7 +238,7 @@ Logga leadet i CRM:et direkt, källa = post. Ingen kontakt utan Mathias.
 ut på kvällen om det behövs. Bättre en dag sen än en vecka hoppad.
 
 1. Spela in måndagens och onsdagens klipp, kör `/bahko-reel` med panelerna ovan
-2. Kör `/ig-karusell` på tisdagens och torsdagens tabeller, ögongranska åäö på varje slide
+2. Karusellerna är byggda med `/ig-karusell` (Cinematiskt läge, sex slides, se `mallar/karusell-v37/LASMIG.md`). Ögongranska åäö och maskoten på slide 1 och 6
 3. Rendera bildkortet med Edge-mallen
 4. Spela in fredagens talking-head, kör `/famous-reel-editor`
 5. Allt till Drive `BahkoByra/Planerat v37/`, publicering enligt kalendern
