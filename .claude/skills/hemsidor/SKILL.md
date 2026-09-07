@@ -417,8 +417,9 @@ Lägg filen i `web/public/<kund>/media/` och rendera den med `next/image` med
 `width`/`height`. Ligger den på en mörk canvas: kontrollera att den syns, och
 be om en variant för mörk bakgrund om originalet är svart.
 **Är märket flerfärgat och mörkt** (samflytt 2026-09-07: mörkblått med röd
-kontur) invertera inte — lägg det på en vit rundad platta i lagret, som en
-bildekal. Märkets färger rörs inte. **Är originalet litet** (266 px): skala upp
+kontur) invertera inte, och lägg ingen platta bakom det — Mathias tog bort
+den vita plattan samma dag. Märket ligger direkt på filmen; en kontur eller
+en ljus detalj i märket får bära det. Märkets färger rörs inte. **Är originalet litet** (266 px): skala upp
 (bytedance upscale, 2 credits), nyckla bort bakgrunden, och be om vektorfilen.
 
 **Hitta aldrig på en logotyp.** Generera inte en med AI och rita inte en egen
