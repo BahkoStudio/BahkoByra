@@ -419,7 +419,12 @@ be om en variant för mörk bakgrund om originalet är svart.
 **Är märket flerfärgat och mörkt** (samflytt 2026-09-07: mörkblått med röd
 kontur) invertera inte, och lägg ingen platta bakom det — Mathias tog bort
 den vita plattan samma dag. Märket ligger direkt på filmen; en kontur eller
-en ljus detalj i märket får bära det. Märkets färger rörs inte. **Är originalet litet** (266 px): skala upp
+en ljus detalj i märket får bära det. Märkets färger rörs inte. **Är filen en favicon eller app-ikon med inbakad platta** (elvionel 2026-09-07:
+EE-märke på svart rundad kvadrat) nyckla bort plattan så bara märket ligger
+på filmen — Mathias tog bort den samma dag. Samma regel som för den vita
+plattan: ingen ruta bakom märket i lagret, oavsett om rutan är vår eller
+filens egen.
+**Är originalet litet** (266 px): skala upp
 (bytedance upscale, 2 credits), nyckla bort bakgrunden, och be om vektorfilen.
 
 **Hitta aldrig på en logotyp.** Generera inte en med AI och rita inte en egen
