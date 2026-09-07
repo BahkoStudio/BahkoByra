@@ -14,13 +14,13 @@ och gör att låten kan bytas utan ombygge.
 | Segment | Längd | Bild | Textbeat |
 |---|---|---|---|
 | Klipp 1 | 8,0 s | Vardagsrum på kvällen, maskoten i soffan scrollar mobilen, ögat vidgas | "Snygga golv i flödet." → "Men ingen hemsida som visar dem." |
-| Fryst ruta | 5,5 s | Långsam inzoom | "Jag byggde en sajt åt dem. Utan att fråga." → "Två dygn senare." |
+| Fryst ruta | 5,5 s | Långsam inzoom | "Så jag byggde en sajt åt dem. Som ett förslag." → "Två dygn senare." |
 | Klipp 2 | 8,0 s | Ljus golvverkstad, maskoten pekar stolt på en surfplatta med sajten, glädjehopp | "Deras logga. Deras jobb. En ringknapp." → "Så här ser det ut. Innan de sagt ja." |
 | Outro | 3,8 s | DM:a DEMO-kortet med maskoten på marinblått | (kortet bär texten) |
 
 Första versionen av måndagens texter ("Jag scrollade förbi deras golv" osv) var för
 kryptisk, Mathias 2026-09-07. Omskriven till rak berättelse i tolvårsspråk, samma modell som
-onsdagens som han gillade.
+onsdagens som han gillade. "Utan att fråga" byttes mot "Som ett förslag" på hans önskan.
 
 ## Film 2 · Onsdag · Teardown · "Tumtestet"
 
