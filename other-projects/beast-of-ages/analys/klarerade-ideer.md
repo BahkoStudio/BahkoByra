@@ -58,6 +58,19 @@ liter. Svaret på "varför red vi aldrig älg" är samma domesticeringsbiologi s
 **Varning:** CGP Grey äger den breda domesticeringsfrågan (25,8 miljoner). Vinkeln måste
 vara ÄLGEN och historien, aldrig "reglerna för domesticering".
 
+## 6. Why Don't We Eat Horse Meat? ✅ SKRIVEN — se `manus/why-dont-we-eat-horse-meat.md`
+
+**Format:** Knapp-vardagsfråga, mall B (`Why Don't We Eat X?`). **Läget:** engelsk
+långform TOM för en producerad förklaring — Joe Rogan-klippet med exakt frågan har
+1 175 925 visningar (JRE Clips, 2018) plus återuppladdningar på 158 000 och 62 500;
+Mr. Beats bredare *Why Don't We Eat Cats, Dogs, and Horses?* (110 792, 2020) täcker inte
+samma vinkel. Grinden körd 2026-09-09, alla fem steg gröna.
+**Svaret:** ett brev från påven Gregorius III år 732 kopplade hästkött till hednisk
+offerkult; engelskan fick aldrig ett bordsord för hästkött (jämför beef/pork/mutton);
+slakten flyttades över gränsen till Mexiko och Kanada 2007 i stället för att försvinna.
+Bevis för mallen: Bright Psychos hippo 529 653 mot Quirks duva 60 095 på identisk mall
+(regel 12, djuret avgör).
+
 ---
 
 ## Dödade av kontrollen — se varför innan nästa idégenerering
