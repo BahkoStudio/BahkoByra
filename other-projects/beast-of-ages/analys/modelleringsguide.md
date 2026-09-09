@@ -50,17 +50,23 @@ Den här säger vad vi gör med det.
 12. **Djuret är hela skillnaden, inte mallen.** Identisk Knapp-matfråga:
     hippo **529 653** visningar, duva **60 095**. Välj det stora, farliga, ritbara djuret.
     Samma insikt som Species Decoder gav: megalodon 54 190, stegosaurus 154.
+    Renaste beviset hittills (2026-09-09): Wilder America körde `Scientists Found the
+    "Extinct" [X]` två gånger på tretton timmar — Atlaslejon **127 377**, kaspisk tiger
+    **6 515**. Se mall A.
 
 13. **Ett djur plus en konkret siffra slår flera djur plus ett begrepp.**
     Cheetah-videon (en kejsare försökte 9 000 gånger, ett djur) **997 601** visningar.
     Konvergent evolution över fyra djur, samma längd, samma kanalklass: **33 971**.
-    Skillnaden är 29 gånger.
+    Skillnaden är 29 gånger. Wilder Americas största video någonsin är samma sak i
+    stor skala: Nilgai i Texas, tolv djur blev trettiotusen, **1 045 376** visningar.
+    Deras hybridvideo med sex djur ligger på nionde plats hos dem själva.
 
 14. **Mall A får bara användas när videon faktiskt avslöjar något.**
     `Biologists Finally Know What's Hunting [X] in [plats]` lovar ett fynd.
     Yellowstone-videon betalar det (grizzlyns största naturliga fiende är en annan
     grizzly). Vi betalar löftet eller använder inte mallen. Det var precis därför
-    titelkritikern strök La Brea-varianten.
+    titelkritikern strök La Brea-varianten. Kaspisk tiger-videon (6 515) är
+    motexemplet i skarpt läge: "found the extinct" var en utsättning, inte ett fynd.
 
 15. **Modellering, aldrig kopiering.** Samma ämne som en referens är tillåtet. Samma
     titelformulering plus samma miniatyrkomposition är kopiering, och det straffas hårt:
@@ -72,6 +78,10 @@ Den här säger vad vi gör med det.
     man ser att de är släkt, och delar miniatyren komposition, färgspråk eller
     textplacering med den? **Mallarna nedan är element att bygga om, inte formulär att
     fylla i.**
+
+    Konkret 2026-09-09: `— And It Shouldn't Be Possible` och `— And No One Can Explain
+    Why` sitter på ett tjugotal Wilder America-videor. De är nu deras signatur, inte en
+    fri mall. Se mall A.
 
 16. **Miniatyrmotivet väljs ur manusets höjdpunkt**, inte ur titeln och inte ur en
     generisk bild av djuret. Vanligtvis mekanik 6 (den mörkare mittvändningen) eller
@@ -97,7 +107,8 @@ en står i kolumnen "Att låna".
 
 ## Del 2 — Mathias godkända referenser
 
-*Elva videor, inlämnade 2026-08-29. Sorterade efter visningar.*
+*Femton videor. Elva inlämnade 2026-08-29, fyra 2026-09-09 (markerade ★). Sorterade
+efter visningar. Siffrorna för de fyra nya och Yellowstone är hämtade 2026-09-09.*
 
 | Visningar | Titel | Kanal | Längd |
 |---|---|---|---|
@@ -106,12 +117,16 @@ en står i kolumnen "Att låna".
 | 997 601 | Why Cheetahs Are Friendly (But Never Domesticated) | Pack Vibes (18 400) | 15:59 |
 | 644 310 | DARKEST things ancient humans did to Survive the cold | Oddlyhuman | 8:35 |
 | 529 653 | Why We Don't Eat Hippo meat? | Bright Psycho | 16:41 |
-| 288 753 | Biologists Finally Know What's Hunting the Grizzlies in Yellowstone | Wilder America | 24:41 |
+| 442 948 | Biologists Finally Know What's Hunting the Grizzlies in Yellowstone (var 288 753 den 29 aug) | Wilder America (19 500) | 24:41 |
 | 227 408 | 15 of the World's Rarest and Most Endangered Animals | Before It Happened (5 470) | 33:15 |
 | 155 925 | Do Wild Animals Think Humans Are Weak? | Thalvor | 8:35 |
+| ★ 153 988 | Hybrid Animals Are Taking Over America — And It's Already Too Late to Stop Them | Wilder America (19 500) | 21:11 |
+| ★ 127 377 | Scientists Found the "Extinct" Atlas Lion — And It Shouldn't Be Possible | Wilder America (19 500) | 21:25 |
 | 126 080 | Biologists Finally Know What's Hunting Grizzly Bears In Montreal | Wild Uncover | 11:25 |
+| ★ 76 833 | Horse Evolution Explained | Curious Cabinet (13 400) | 18:53 |
 | 60 095 | Why Do We Eat Chickens But NOT Pigeons? | Quirk | 10:01 |
 | 33 971 | Why Evolution Keeps Turning Animals Into Cats | Amazon Archives | 15:20 |
+| ★ 26 439 | How One Egg Helped Life Conquer Land | Colossal Biosciences (766 000) | 14:43 |
 
 ### Mall A — "Biologists Finally Know What's Hunting [X] in [plats]"
 
@@ -126,6 +141,55 @@ födan kollapsat. Montreal sträcker sig längre, mot kryptozoologi och obekräf
 observationer — den vinkeln tar vi inte, faktaregeln stoppar den.
 
 *Regel som gäller:* nummer 14. Vi måste ha ett verkligt fynd att leverera.
+
+**Tillägg 2026-09-09 — Wilder America är en mallmaskin, och det ändrar hur mall A får
+användas.** Kanalen skapades 2026-05-05. Fyra månader senare: 19 500 prenumeranter,
+61 videor, 3 056 689 visningar, och Yellowstone-videon har gått från 288 753 till
+**442 948**. Publiceringstakten är cirka 40 videor i månaden, senaste veckan över två
+om dagen. Alla 20–28 minuter. Mathias lämnade in två till härifrån: **Atlaslejonet**
+(127 377, 21:25) och **hybriddjuren** (153 988, 21:11).
+
+Hela katalogen körs på fem-sex titelmallar med bytt djur och plats:
+
+| Mall | Bäst | Sämst |
+|---|---|---|
+| `Scientists Finally Found What's Hunting/Killing [X] in [plats] — And It Shouldn't Be Possible` | Pytonormar Everglades 416 244 | Älg Maine 10 900 |
+| `Scientists Found the "Extinct" [X] — And It Shouldn't Be Possible` | Atlaslejon 127 377 | Kaspisk tiger 6 515 |
+| `[Rovdjur] in [plats] Are Growing Far Bigger Than They Should — And No One Can Explain Why` | Prärievargar nordöst 228 096 | Lodjur nordöst 23 588 |
+| `N Predators in [plats] That Grow Far Bigger Than They Should` | 11 Appalacherna 136 007 | 7 Alaska 1 034 |
+| `[Exotiskt djur] Are Spreading in [plats] — And They're More Dangerous Than You Think` | **Nilgai Texas 1 045 376** | Aoudad Texas 9 447 |
+
+*Vad paret Atlaslejon/kaspisk tiger bevisar:* samma mall, samma kanal, publicerade
+tretton timmar isär (7 och 8 september), **tjugo gångers skillnad**. Lejonet är ett djur
+alla känner, och titelns löfte betalas: 700 år gammalt skall-DNA från Towern kopplat till
+den marockanska kungablodlinjen. Tigern är en underart få känner, och "found the extinct"
+är i själva verket en utsättning i Kazakstan den 31 juli. Regel 12 och regel 14 i ett
+enda dygn.
+
+*Vad Nilgai bevisar:* deras största video någonsin är ett djur, en plats och en siffra —
+tolv djur släppta på King Ranch för hundra år sedan, trettiotusen i dag, bärare av
+boskapsfebersfästingen. Regel 13. Hybridvideon Mathias lämnade in har sex djur och ligger
+på nionde plats i deras egen katalog. Låna ramen ("naturens svar på luckorna människan
+lämnade"), inte listformen.
+
+*Att låna:* fortfarande strukturen — spår först, förövare sist, ett verkligt fynd.
+**Att INTE låna:** suffixen. `— And It Shouldn't Be Possible` och `— And No One Can
+Explain Why` står på ett tjugotal av deras videor och är nu deras signatur. Ordagrant
+återanvända faller de på Grindens steg 4 (regel 15). **Saiga-paketets titel 3 använder
+det första — byt före publicering.**
+
+*Volymvarningen:* deras träffprocent är kanske en av tre (7 Alaska 1 034, 10 Ridges 2 265,
+7 Texas 2 722, kaninerna 3 928, kaspisk tiger 6 515). De sprayar mallen över varje djur
+och plats och låter algoritmen välja. Vi släpper fyra i månaden och måste träffa djuret
+första gången. Det är därför Grinden finns.
+
+*Grindens steg 3 — spår Wilder America ockuperat sedan mitten av augusti 2026:* thylacin
+(171 782), hybrider/grolar/coywolf (153 988), "utdöd art återfunnen" (Atlaslejon, kaspisk
+tiger, `9 Animals Science Says Are Extinct That Keep Being Caught on Camera` 189 867,
+jaguarundi, "ranger broke his silence"), Yellowstone-grizzly (442 948), pytonormar
+(416 244), prärievarg och rödvarg-DNA (228 096 och `Big Cat That Shouldn't Exist in
+North America`). En jämförbar kanal som nyss lyckats är ett stopp. Pizzly-idén som dog i
+Grinden 2026-08-29 dog rätt.
 
 ### Mall B — Knapp-matfrågan, "Why do/don't we eat X?"
 
@@ -158,6 +222,16 @@ Mekanismen är ett fysiskt experiment på film: han beställer 10 strutsägg, 20
 ungefär åttio gånger ett hönsäggs volym; den siffran finns redan faktagranskad i
 äggmanuset.
 
+**Tillägg 2026-09-09 — Colossals eget äggmanus.** `How One Egg Helped Life Conquer
+Land` (26 439, 14:43, publicerad 2026-09-01) är källan bakom vårt moa-ägg. Som
+prestationsreferens är den svag: 26 439 på 766 000 prenumeranter är en bottenvideo för
+dem. Det som går att låna är ryggraden: en uråldrig uppfinning (fostersäcksägget, 300
+miljoner år) → hur den fungerar → de konstigaste levande exemplen → nu bygger vi om
+uppfinningen själv. Det är mall G:s kedjeförklaring flyttad till biologi.
+*Varning:* Colossal är källan till nyheterna, inte en konkurrent (`konkurrenter.md`).
+Att modellera deras egna videor drar kanalen tillbaka mot det Colossal-beroende
+panelen satte tak på (30 procent, `panelens-beslut.md` punkt 4).
+
 ### Mall E — listformatet
 
 **15 of the World's Rarest and Most Endangered Animals** (227 408, 33:15, 5 470 prenumeranter).
@@ -166,6 +240,11 @@ Samma format kanalen redan kör med `15 Mindblowing Facts`. Bekräftar att forma
 en liten kanal och att 33 minuter fungerar.
 
 *Att låna:* längden. Kanalens listvideor ligger på 10–11 minuter.
+
+**Tillägg 2026-09-09.** Wilder Americas hybridvideo (153 988, sex djur) är mid-tier i
+deras egen katalog — deras endjursvideor slår den. Samma bild på vår kanal, se del 2b:
+`15 Mindblowing Facts About De-Extinct Dire-Wolf Pups` 61 965 mot `15 De-Extinct
+Mammoth Facts` 5 972 på identiskt format. Listformatet bär, men djuret bär mer.
 
 ### Mall F — människan i naturen
 
@@ -192,6 +271,93 @@ har.
 
 *Varning:* nyhetsdriven publicering kräver att man är först. Kanalen släpper 4 videor i
 månaden och kan inte vinna det loppet.
+
+### Mall H — "[Känt djur] Evolution Explained" (ny 2026-09-09)
+
+**Curious Cabinet.** 13 400 prenumeranter, tjugo videor, 1 976 494 visningar, skapad
+2025-02-26. Mathias lämnade in **Horse Evolution Explained** (76 833, 18:53, publicerad
+2026-08-31).
+
+Mallen är repeterbar hos dem och har noll klickbete: Häst 76 833 · Uggla 84 068 · Panda
+62 199. Tre av tre över 60 000. Släktmallen `How [djur] Evolved [drag]` är svagare och
+spretigare: sköldpaddans skal 68 440, apornas svans 17 923, lysande ögon 12 092, ormens
+ben 6 132.
+
+Deras två största är Knapp-frågor: `Where Are All The Flightless Bats?` (344 908 —
+flyglöshet har uppstått gång på gång hos öfåglar men aldrig hos fladdermöss; frågan är
+äkta och svaret finns) och den nyhetsdrivna `Science Has Found a Whole New Kingdom of
+Life` (1 210 657, 6:47).
+
+*Vad det bevisar:* det kända djuret vinner även med platt titel — häst, uggla, panda över
+60 000; vattenlevande sengångare 4 599, näbbmöss 7 177, oxhackare 4 370. Regel 12 igen.
+Hästvideons beskrivning öppnar med myt-dödandet ("often portrayed as a straight line —
+the truth is far more complex", mekanik 3) och listar femton primärkällor (Nature,
+Science, PNAS). Thalvor-nivå på bevisen.
+
+*Att låna:* den platta titeln som test. `panelens-beslut.md` punkt 4 pekade ut spåret
+"djuret du tror att du känner, och vad DNA:t säger" med hund/varg och häst/przewalskihäst.
+Curious Cabinet har nu bevisat spåret med titeln rakt av. **Hästen är tagen** (steg 3:
+jämförbar kanal, nio dagar sedan). **Hunden är inte det** — deras katalog saknar den.
+
+*Varning:* deras publik är essäpublik, spekulativ evolution och paleontologi. Vår är
+45–70 på TV. Titelmekaniken är publikoberoende; tonen är det inte. Testa en gång och mät.
+
+---
+
+## Del 2b — Mathias egna utliggare (inlämnade 2026-09-09)
+
+*Tre egna videor att modellera. Siffror via `vidiq_channel_videos` och
+`vidiq_video_stats` 2026-09-09. Kanalen: 2 630 prenumeranter, 125 videor, 862 773
+visningar.*
+
+| Visningar | Titel | Publicerad | Längd | VPH nu |
+|---|---|---|---|---|
+| 61 965 | 15 Mindblowing Facts About De-Extinct Dire-Wolf Pups | 2026-05-23 | 11:54 | **28,54** |
+| 23 314 | The Thylacine Is Coming Back… But Something's Wrong | 2026-06-20 | 13:02 | 3,97 |
+| 9 516 | The Artificial Egg Built to Hatch a Moa | 2026-07-12 | 11:10 | 7,01 |
+
+### Direwolf-fakta: kanalens motor just nu, inte 464k-videon
+
+Den har högst VPH på hela kanalen. 464k-videon ligger på 10,94; den här på 28,54.
+Kurvan 15 augusti till 8 september: 45 709 → 60 963, plus 15 254 på 24 dagar, ungefär
+640 om dagen. Och den accelererade: VPH låg på 8–20 i mitten av augusti, hoppade till 47
+(24 aug), 84 (28 aug), 94 (29 aug) och har sedan legat 22–62. Något tände den igen i
+slutet av augusti. Vad, säger inte vidIQ.
+
+**Formatet har nu klarat utliggarribban två gånger.** `15 De-Extinct Mammoth Facts`
+(2026-07-10) gjorde 5 972. Enligt `reference/testa-vs-dubbla-ner.md` är det signalen:
+dubbla ner på formatet **en gång** och mät. Tio gångers skillnad mellan varg och mammut
+säger samtidigt att formatet inte bär av sig självt — vargen hade nyhetsvågen och
+berömmelsen, mammuten bara berömmelsen. Regel 12 gäller listor också.
+
+### Thylacinen: samma djur, samma vinkel, sju gånger mindre
+
+Vår video (23 314, 13:02) och Wilder Americas `Thylacines Are Reappearing in Tasmania —
+And They Shouldn't Be This Big` (171 782, 20:38, 2026-08-18) är båda observationsvideor.
+Skillnaden sitter i titeln. Deras har en konkret, kontrollerbar paradox: vittnen
+beskriver ett vargstort djur, skelettskanningar visar att den riktiga thylacinen var
+hälften så stor. Vår säger "something's wrong" — en menande paus utan innehåll. Mekanik 4
+(en detalj bär svaret) i titeln slog vår oprecisa olyckskänsla.
+
+Ellipsis-suffixen (`…But Something's Wrong`, `…That's the Problem`, `…Everything
+Changes`) är kanalens husstil och sitter på alla sex största (467 826, 83 615, 23 314,
+19 280, 14 416, 10 640). Men alla sex är Colossal-videor. Suffixet har aldrig burit ett
+ämne utanför nyhetsvågen. Och thylacin-spåret är nu ockuperat (steg 3).
+
+### Moa-ägget: den platta titeln som bär
+
+Näst högst VPH på kanalen (7,01) med en titel utan suffix, utan siffra, utan fråga.
+Kanalens två levande dragare just nu är alltså en räknad lista och en rak beskrivande
+titel — ingen av dem använder husstilens ellipsis. Colossals egen version av samma ämne
+(mall D, tillägget) gjorde 26 439 på 766 000 prenumeranter, så äggets allmänna dragkraft
+är måttlig; våra 9 516 kom sannolikt av moa-kläckningen i maj som nyhetskrok.
+
+### Referenspunkt för de två nya manusen
+
+Saiga (`cZuFauecu-0`, publicerad 2026-08-29): 330 visningar efter elva dagar. Hjort
+(`hCvJVQGYypg`, publicerad 2026-09-01 som *Why Deer Freeze When They See Headlights*):
+260 efter åtta dagar. För tidigt att döma — 464k-videon låg på 816 efter 26 dagar. Mät
+igen dag 30. Siffrorna står här så att jämförelsen går att göra.
 
 ---
 
@@ -239,6 +405,12 @@ Filtrera träffarna från steg 2 på kanalstorlek och datum.
 
 Chronic wasting disease dog här: Pack Vibes, 18 500 prenumeranter, 738 822 visningar,
 tre månader gammal, nästan exakt konceptet.
+
+Wilder America (19 500 prenumeranter, fyra månader gammal, cirka 40 videor i månaden)
+ockuperar sedan augusti 2026 thylacin, hybrider, "utdöd art återfunnen",
+Yellowstone-grizzly, pytonormar och prärievarg/rödvarg. Listan med siffror står under
+mall A. Kolla deras senaste 50 (`vidiq_channel_videos`, `popular: false`) innan varje
+ny idé — de publicerar två om dagen.
 
 ### Steg 4 — Är förpackningen vår egen?
 

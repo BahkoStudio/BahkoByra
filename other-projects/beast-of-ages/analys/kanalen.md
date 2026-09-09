@@ -64,3 +64,33 @@ Måste fixas i YouTube Studio; vidIQ-verktygen läser metadata men skriver inte 
 Augustivideorna har 9–23 procent gillningar per visning. Edmund Extinctions 673k-video
 har 2,1 procent. De som hittar videorna gillar dem **mer** än konkurrenternas.
 Hantverket är inte problemet. Paketeringen och volymen är det.
+
+## Uppdatering 2026-09-09
+
+| | 2026-08-22 | 2026-09-09 |
+|---|---|---|
+| Prenumeranter | 2 550 | 2 630 |
+| Visningar totalt | 826 829 | 862 773 |
+| Videor | 120 | 125 |
+
+Rörelse i topplistan sedan augusti: *Pups Are Learning* 74 041 → 83 615, *15 Mindblowing
+Facts About De-Extinct Dire-Wolf Pups* 47 576 → 61 965, thylacin 20 749 → 23 314,
+464k-videon 464 165 → 467 826.
+
+**VPH-topplistan just nu** (visningar per timme, `vidiq_channel_videos`):
+
+| VPH | Titel | Visningar |
+|---|---|---|
+| 28,54 | 15 Mindblowing Facts About De-Extinct Dire-Wolf Pups | 61 965 |
+| 10,94 | Three Direwolf Pups Survived… and Scientists Are Terrified | 467 826 |
+| 7,02 | We Finally Know What They're Bringing Back Next | 17 506 |
+| 7,01 | The Artificial Egg Built to Hatch a Moa | 9 516 |
+| 5,15 | When Dire Wolves Breed With Other Wolves… Everything Changes | 14 416 |
+| 3,97 | The Thylacine Is Coming Back… But Something's Wrong | 23 314 |
+
+Direwolf-fakta-videon är kanalens motor, inte 464k-videon: 45 709 den 15 augusti,
+60 963 den 8 september, ungefär 640 om dagen och accelererande i slutet av augusti.
+Analysen och vad det betyder står i `modelleringsguide.md`, del 2b.
+
+De två nya modellerade manusen: saiga 330 efter elva dagar, hjort 260 efter åtta. Mät
+igen dag 30 — 464k-videon låg på 816 efter 26 dagar.

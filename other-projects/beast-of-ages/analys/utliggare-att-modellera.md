@@ -235,6 +235,62 @@ Båda dominerades av spel-genomspelningar respektive barn-djurljud-videor — no
 relevanta träffar. Sök på det faktiska ämnet (art, plats, fenomen), aldrig på vår egen
 kategorietikett.
 
+## Runda 2026-09-09: Mathias fyra nya referenser, och kanalerna bakom dem
+
+*Inte ett `vidiq_outliers`-svep — Mathias lämnade in fyra videor och tre egna. Analysen
+och vad vi gör med den står i `modelleringsguide.md` (mall A-tillägget, mall D, mall E,
+ny mall H, ny del 2b). Här står det som hör hemma i "vad som finns där ute".*
+
+### Wilder America — 61 videor på fyra månader, fem mallar
+
+Skapad 2026-05-05. 19 500 prenumeranter, 3 056 689 visningar, cirka 40 videor i
+månaden, senaste veckan över två om dagen. Alla 20–28 minuter. Hämtat med
+`vidiq_channel_videos`, populära och senaste.
+
+| Mall | Antal | Bäst | Sämst |
+|---|---|---|---|
+| Scientists Finally Found What's Hunting/Killing [X] in [plats] — And It Shouldn't Be Possible | 5 | Pytonormar Everglades 416 244 | Älg Maine 10 900 |
+| Scientists Found the "Extinct" [X] — And It Shouldn't Be Possible | 2 | Atlaslejon 127 377 | Kaspisk tiger 6 515 |
+| [Rovdjur] in [plats] Are Growing Far Bigger Than They Should — And No One Can Explain Why | 4 | Prärievargar nordöst 228 096 | Lodjur nordöst 23 588 |
+| N Predators in [plats] That Grow Far Bigger Than They Should | 9 | 11 Appalacherna 136 007 | 7 Alaska 1 034 |
+| [Exotiskt djur] Are Spreading/Multiplying in [plats] — More Dangerous Than You Think | 5 | Nilgai Texas 1 045 376 | Aoudad Texas 9 447 |
+| N Invasive/Extinct/Hybrid Animals … | 4 | 9 Extinct on camera 189 867 | 10 Invasive 10 208 |
+
+Övriga stora: Yellowstone-grizzly 442 948 (Mathias mall A-referens, var 288 753 den
+29 augusti), thylacin 171 782, vildsvin Louisiana drönare 173 743, zebror Kalifornien
+190 873, svartbjörn Appalacherna 131 782, puma Appalacherna 133 681, jaguar Arizona
+102 918.
+
+Missarna på samma mallar: 7 Alaska 1 034, 10 Ridges 2 265, 7 Texas 2 722, kaniner
+3 928, Maine-skogen 2 250, prärievargar utsläppta med flit 2 570. Träffprocenten är
+kanske en av tre. Volymen gör att det inte spelar någon roll för dem — det gör det för oss.
+
+### Curious Cabinet — tjugo videor, platta titlar
+
+Skapad 2025-02-26. 13 400 prenumeranter, 1 976 494 visningar. Brittisk essäkanal,
+biologi och paleontologi, femton primärkällor per beskrivning.
+
+| Titel | Visningar | Längd | Publicerad |
+|---|---|---|---|
+| Science Has Found a Whole New Kingdom of Life | 1 210 657 | 6:47 | 2026-02-06 |
+| Where Are All The Flightless Bats? | 344 908 | 10:57 | 2025-11-19 |
+| Medieval Science was Baffled by Birds | 116 547 | 14:55 | 2025-03-20 |
+| Owl Evolution Explained | 84 068 | 11:56 | 2026-06-27 |
+| **Horse Evolution Explained** (Mathias referens) | 76 833 | 18:53 | 2026-08-31 |
+| How Turtles Evolved a Shell | 68 440 | 16:43 | 2025-02-27 |
+| Panda Evolution Explained | 62 199 | 14:46 | 2025-10-24 |
+| Why birds never grew to the size of dinosaurs | 22 024 | 16:10 | 2026-05-11 |
+| How Mammals Evolved Eyes that Glow in the Dark | 12 092 | 10:31 | 2025-05-26 |
+
+`[Djur] Evolution Explained` är tre av tre över 60 000. Ögon-som-lyser-videon är
+hjortmanusets mekanism (tapetum lucidum) berättad som djuptid; 12 092 på en kanal med
+median kring 7 000. Annan vinkel än vår, inget hot mot hjortvideon.
+
+### Colossal Biosciences — 766 000 prenumeranter nu (var 689 000)
+
+`How One Egg Helped Life Conquer Land` (26 439, 14:43, 2026-09-01) — källan till vårt
+moa-ägg, bottenvideo för dem. Står under mall D i guiden.
+
 ## Kanallänkar samlat
 
 | Kanal | Prenumeranter | Länk |
@@ -246,6 +302,8 @@ kategorietikett.
 | Savage Instinct | 1 550 | https://www.youtube.com/channel/UCawLnAk0Ulk8wOSVzdJtREA |
 | Species Decoder | 1 770 | https://www.youtube.com/channel/UCz1VqL56pwIczFJsJa8_apA |
 | The Sage Tiger | 53 500 | https://www.youtube.com/channel/UC6L9mSbR5zOlYK04rpGfmhA |
+| Wilder America | 19 500 | https://www.youtube.com/channel/UC8kg65y2jBFwDdCOJK332qg |
+| Curious Cabinet | 13 400 | https://www.youtube.com/channel/UCHcSHyZJH-EkwPzFHMzHi1g |
 
 **En osäkerhet på sista raden.** Grow Channels-listan anger The Sage Tiger som
 `@thesagetiger1` med 49 800 prenumeranter. Utliggarsökningen gav kanal-ID
@@ -259,4 +317,4 @@ De tre andra långformskanalerna ur Grow Channels-listan, för fullständigheten
 | Wild Origins | 77 900 | https://www.youtube.com/channel/UC0OOKthuZKlNfC9qvcqucrg |
 | Wild Us | 48 800 | https://www.youtube.com/channel/UCZydGyRSqyflVj8L4x15aEg |
 | WILD HAWK | 13 300 | https://www.youtube.com/channel/UCQR4RIT6IUW2Sf8x0poqRRw |
-| Colossal Biosciences | 689 000 | https://www.youtube.com/@colossal |
+| Colossal Biosciences | 766 000 (2026-09-09) | https://www.youtube.com/@colossal |

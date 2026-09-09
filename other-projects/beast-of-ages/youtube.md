@@ -19,7 +19,7 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 | `analys/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
 | `analys/klarerade-ideer.md` | Fem unikhetskontrollerade idéer redo att välja bland, plus de dödade |
 | `analys/utliggare-att-modellera.md` | Tio utliggare värda att modellera, plus stopplistan |
-| `analys/modelleringsguide.md` | ⭐ **Reglerna före varje ny video** + Mathias elva godkända referenser |
+| `analys/modelleringsguide.md` | ⭐ **Reglerna före varje ny video** + Mathias femton godkända referenser + egna utliggare (del 2b) |
 | `reference/testa-vs-dubbla-ner.md` | Källdokumentet bakom testa/dubbla ner-ramverket, med Vintage Vehicles-fallstudien |
 | `reference/modellering-vs-kopiering.md` | Var gränsen går mellan att låna och att stjäla, med bevisbilder |
 | `reference/thumbnail-reglerna.md` | 50-procentstestet, fråga före relevans, referensinsamling |
