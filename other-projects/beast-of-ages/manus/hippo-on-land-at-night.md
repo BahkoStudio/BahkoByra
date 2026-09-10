@@ -2,14 +2,16 @@
 
 Beast of Ages. Manus och leveranspaket i samma fil — paketet överst.
 
-**Status: klart att spela in.** 1 169 ord, cirka åtta minuter. Tre rundor manusloop (taket
-är tre, satt av Mathias 2026-09-09). Hook godkändes i alla tre rundor, craft i runda 3.
-Fakta och klarhet föll i runda 3 på tre meningsfixar som kritikerna själva specificerade
-ordagrant — "after dark" generaliserades felaktigt till alla tre incidenterna (pojken vid
-Lake Edward togs mitt på dagen), ett kvarvarande "negate, sedan reveal"-omslag i
-statistikstycket, och ett "national" som inte hörde hemma — och de gjordes direkt utan en
-fjärde AI-körning, enligt taket. Formatet är andraperson-scenario (mall F), nytt för
-kanalen; den kortare längden är formatets, inte en brist kritikerna anmärkte på.
+**Status: klart att spela in.** 1 619 ord, cirka elva minuter. Två loopar. Första
+versionen (1 169 ord) gick tre rundor manusloop och godkändes 2026-09-10. Mathias bedömde
+den som för kort, och orsaken var min: för lite research, och kritikrundorna tar bara bort
+text. Manuset utökades därför 2026-09-10 med fyra nya belagda sektioner (Paul Templers
+attack 1996, revirbeteendet i vattnet som kontrast till stigen, Escobars flodhästar i
+Colombia, kalvarna) plus viktspannet, och den utökade versionen gick en egen loop på tre
+rundor (taket, satt av Mathias 2026-09-09). I sista rundan godkände alla fyra kritiker;
+fakta lämnade en ettordsskärpning ("will walk" → "can walk", ett tak är inte en regel) som
+gjordes direkt utan fjärde körning. Formatet är andraperson-scenario (mall F), nytt för
+kanalen.
 
 **Grinden körd 2026-09-09, alla fem steg gröna.**
 Steg 1 (egen katalog, `vidiq_channel_videos`): ingen flodhästvideo. Steg 2 (fem
@@ -57,7 +59,8 @@ Täcker faktablocket (simmar inte, släkt med valen, blodsvetten) men tappar sce
 #### 6. Why Hippos Are Deadliest on Land, Not in the Water
 
 **Mall:** Kontrast-titel. **Bevis:** vidIQ **93/100**. Obs: "X, not Y" i titel är
-tillåtet, i manuset bara en gång.
+tillåtet, i manuset bara en gång. Betalas nu extra av revirstycket (vattnet har regler
+och förvarning, stigen har ingetdera).
 
 #### 7. The One Place You Never Want to Meet a Hippo
 
@@ -93,7 +96,7 @@ går runt dig. Tittaren ska stå där, med ficklampan, och se att vägen hem är
 |---|---|---|
 | A | `DON'T RUN` | Rådet inverterat, väcker frågan |
 | B | `ON LAND. AT NIGHT.` | Matchar titel 1 |
-| C | `3 TONS. 19 MPH.` | Två siffror som motsäger bilden av det tröga djuret |
+| C | `1.5 TONS. 19 MPH.` | Två siffror som motsäger bilden av det tröga djuret (manusets typvikt) |
 | D | `STEP SIDEWAYS` | Slutrådet, för den som redan vet |
 
 **Prompt:**
@@ -107,26 +110,30 @@ och flodhästens huvud och de två lysande ögonen. Publiken är 45–70 och TV-
 
 **Motivering (svenska, ingår inte i prompten):** Inget gap i vattnet, inget attackfoto.
 Gapande flodhäst i vatten är genrens standardbild och säger "farlig i floden", vilket är
-tvärtom mot manusets poäng. En stängd mun, stilla, på land, i en ficklampas kon är
-öppningsbilden (stycke 1) och slutbilden (sista stycket) i en enda ruta, och den väcker
-frågan utan att svara. Alternativ, om Mathias vill ha vattnet med: samma stig, men med
-månljus på en flodyta långt bak till höger, så tittaren ser att djuret står mellan
-kameran och vattnet. Svårare att läsa på TV.
+tvärtom mot manusets poäng (och manuset förklarar nu gapet som hotgest mellan tjurar).
+En stängd mun, stilla, på land, i en ficklampas kon är öppningsbilden (stycke 1) och
+slutbilden (sista stycket) i en enda ruta, och den väcker frågan utan att svara.
+Alternativ, om Mathias vill ha vattnet med: samma stig, men med månljus på en flodyta
+långt bak till höger, så tittaren ser att djuret står mellan kameran och vattnet.
+Svårare att läsa på TV.
 
 ### Beskrivning
 
 ```
 You are walking back to camp in the dark, and something the size of a small car is standing on the path between you and home. It is a hippo, it is on land, and almost everything you assumed about it is wrong.
 
-Hippos leave the water every night and walk up to five kilometers inland to graze, along the same paths, year after year. A hippo cut off from its route back to the water does not go around what is in its way. This video explains why that one situation is so dangerous, what the weapons actually are, who really gets hurt, and why the famous figure of five hundred deaths a year is shakier than it sounds. Also: the animal cannot swim, its closest living relative is the whale, and its skin makes its own sunscreen.
+Hippos leave the water every night and walk inland to graze, along the same paths, year after year. A hippo cut off from its route back to the water does not go around what is in its way. This video explains why that one situation is so dangerous, what happened to the river guide whose story most people have heard, why hippo aggression in the water follows rules that the path at night does not, who really gets hurt, and why the famous figure of five hundred deaths a year is shakier than it sounds. Also: the four hippos a drug lord left behind in Colombia, an animal that cannot swim, a closest living relative that is a whale, and skin that makes its own sunscreen.
 
 Chapters:
 00:00 Something on the Path
 00:00 Thirty Kilometers an Hour
 00:00 Five Kilometers Inland
 00:00 The Blocked Route
+00:00 The Zambezi, 1996
+00:00 Why the Yawn Is a Threat
 00:00 The Weapons
 00:00 Who Actually Gets Hurt
+00:00 Escobar's Hippos
 00:00 Eyes, Ears, Nostrils
 00:00 It Never Swims
 00:00 Related to the Whale
@@ -158,24 +165,30 @@ There is another video on this channel about an animal whose entire existence ha
 
 ## Del 2 — Manuset
 
-*1 169 ord, cirka åtta minuter. Snittmening 21,4 ord, längsta 47, noll tankstreck.
+*1 619 ord, cirka elva minuter. Snittmening 18,6 ord, längsta 47, noll tankstreck.
 Skrivs och läses på engelska. CTA:n ovan ingår som sista rad.*
 
 ---
 
 You are walking back to camp on a dirt path in the dark, and something the size of a small car is standing between you and home. It doesn't move. It doesn't make a sound. You are looking at one of the most dangerous animals in Africa, and almost nothing you assumed about it turns out to be true.
 
-Start with the assumption almost everyone brings to this moment: hippos are slow, sluggish animals that spend their lives floating in a river, barely moving all day. On land, a hippo can cover ground at around 30 kilometers an hour, close to 19 miles per hour, faster than a person can jog back to camp over rough ground in the dark. That speed belongs to the same animal that spent the entire afternoon submerged to its eyes, apparently doing nothing at all. It was waiting out the heat of the day before the one activity that actually matters to it: getting to food.
+Start with the assumption almost everyone brings to this moment: hippos are slow, sluggish animals that spend their lives floating in a river, barely moving all day. An adult usually weighs between 1,300 and 1,500 kilograms, and a large male can pass 3,000. On land, that animal can cover ground at around 30 kilometers an hour, close to 19 miles per hour, faster than a person can jog back to camp over rough ground in the dark. That speed belongs to the same animal that spent the entire afternoon submerged to its eyes, apparently doing nothing at all. It was waiting out the heat of the day before the one activity that actually matters to it: getting to food.
 
-Here's the part almost nobody expects: hippos don't stay near water. Every night, at sunset, they climb out and walk inland to graze, sometimes five kilometers in a single direction, occasionally covering ten kilometers round trip once the grass close to home is gone. They graze alone, calves aside, working through roughly forty kilograms of grass over four to six hours, then walk back before sunrise and enter the water at the exact same spot they left from. Night after night, a hippo tends to use the same branching, well-worn paths through the bush, tracks its own weight has carved into the ground over years. The path under your feet right now might be one of them.
+Here's the part almost nobody expects: hippos don't stay near water. Every night, at sunset, they climb out and walk inland to graze. Usually the grass they want is within about three kilometers of the water. Once that is eaten down, a hippo can walk five kilometers out and five back. They graze alone, calves aside, working through roughly forty kilograms of grass over four to six hours, then walk back before sunrise and enter the water at the exact same spot they left from. A hippo tends to use the same branching, well-worn paths through the bush, tracks its own weight has carved into the ground over years. The path under your feet right now might be one of them.
 
 That detail is the whole answer to why this particular moment is so dangerous. A hippo cut off from its specific route, blocked between the grazing ground it just left and the water it's heading back to, will not go around you. It will go through you. CNN's guide to surviving hippo attacks, built around river guide Paul Templer's account of being attacked on the Zambezi River, identifies exactly this as one of the most dangerous situations you can be in. Think of a person trying to reach the one working exit in a burning building.
 
-If it decides you're the obstacle, the tools are serious. A hippo's bite lands somewhere between 1,800 and 2,000 pounds per square inch, more than double a lion's bite and stronger than a polar bear's. Its lower canine teeth, the "tusks" people picture on a hippo skull, typically grow to 40 to 50 centimeters and have been recorded at up to 71 centimeters in exceptional animals. Hippos graze grass with their broad, muscular lips. The teeth are for fighting other hippos, mostly males contesting a stretch of river and the females in it. A person on the wrong path at night gets caught by weaponry built for those contests.
+The attack Templer survived made international news, and it happened on the water. On March 9, 1996, he was leading a canoe trip on the Zambezi with six tourists and three apprentice guides when a hippo hit the last canoe and threw an apprentice, Evans Namasango, into the river. Templer paddled back for him. The hippo took Templer, pulled him waist-deep into its mouth, let go, and came back for him a second time before another apprentice, Mike, got him out. He was left with around forty puncture wounds and lost his left arm. Namasango drowned. Two years later Templer went back and led a three-month descent of the river, more than 2,500 kilometers of it.
+
+The hippo that hit Templer's canoes was almost certainly doing a job. In the water, hippo aggression has a structure. A dominant bull holds a stretch of shoreline and the herd inside it, sometimes thirty animals: females, calves and younger males. He defends that stretch against other bulls. The famous yawn is part of that job. An adult can open its mouth to around 150 degrees, some bulls close to 180, and the gape is a threat display, a way to show a rival its teeth and back him down without a fight. Bulls spray dung to mark the territory, flicking the short tail to scatter it. Most disputes end with jaw-to-jaw sparring and gaping contests. Serious fighting is reserved for the territory itself. The path at night works differently. The animal is walking home and has no rival to warn. Block that route and there may be no warning at all before the charge.
+
+If it decides you're the obstacle, the tools are serious. A hippo's bite lands somewhere between 1,800 and 2,000 pounds per square inch, more than double a lion's bite and stronger than a polar bear's. Its lower canine teeth, the "tusks" people picture on a hippo skull, typically grow to 40 to 50 centimeters and have been recorded at up to 71 centimeters in exceptional animals. Hippos graze grass with their broad, muscular lips. The teeth are for fighting other hippos. A person on the wrong path at night gets caught by weaponry built for those contests.
 
 The people who actually get hurt this way are rarely the ones you'd picture. Hippos are often described as Africa's deadliest large land animal, and a figure of around 500 human deaths a year gets repeated constantly online and in travel guides. That number is shakier than it sounds. Its origin is difficult to trace back to any single source. A six-year record from one region of Zambia, 2002 to 2008, counted 65 deaths there, nowhere near what the widely repeated figure would suggest, and a continent-wide peer-reviewed study of human-hippo conflict published in 2022 found the same pattern: the popular numbers don't hold up to scrutiny. The individual incident reports are much more consistent about where attacks happen. A man killed walking home from a shop near Kilimambogo, Kenya, well away from any river. A toddler grabbed near Lake Edward in Uganda, saved only when a bystander threw stones until the hippo let go. Guests at unfenced lodges on Lake Naivasha charged while walking between their room and the dining tent. Ordinary moments, on ground a hippo also uses.
 
-Even in water, the body is built for something stranger than it looks. A hippo's eyes, ears, and nostrils sit raised in a single line on top of the skull, which lets it keep watch, listen, and breathe while the rest of the three-ton body stays completely hidden below the surface. It can hold its breath for roughly five minutes at a time. From the shore, all you see is a pair of eyes and two nostrils, motionless, giving no hint of how much animal is underneath.
+The fastest version of that story is in Colombia, where hippos moved in next to people who had never lived with them. In the 1980s, Pablo Escobar imported four hippos for the private zoo at his estate, Hacienda Nápoles. When he was killed in 1993, the zebras, giraffes and rhinos died or were moved to zoos. The four hippos stayed in the lakes and did what hippos do. By 2026 there were around 200 of them, and Colombia's environment ministry expects more than 500 by 2030 if nothing is done. In April 2026 the government approved putting down about eighty. The press calls them the cocaine hippos, and roughly 200 tourists a month come to the area to see them. The animals compete with native manatees, and the ministry's own warning is about the danger to villagers who run into them.
+
+Even in water, the body is built for something stranger than it looks. A hippo's eyes, ears, and nostrils sit raised in a single line on top of the skull, which lets it keep watch, listen, and breathe while the rest of the one-and-a-half-ton body stays completely hidden below the surface. It can hold its breath for roughly five minutes at a time. From the shore, all you see is a pair of eyes and two nostrils, motionless, giving no hint of how much animal is underneath. Calves are usually born down there and have to paddle up for their first breath. They nurse underwater too, closing nostrils and ears to do it.
 
 What's happening under there changes how you should picture a hippo in water: it never actually swims. Being too dense to float, it walks, or bounds in a kind of slow-motion gallop along the riverbed, pushing off the bottom with its legs and rising just far enough to breathe before sinking again.
 
@@ -183,7 +196,7 @@ The family tree turns out to be just as strange. Genetic sequencing has settled 
 
 A hippo's skin does something else worth knowing. It secretes a fluid that begins clear and turns red, then brown, as it's exposed to air. The folk name for it is blood sweat, but the real substance is a pair of natural pigments, hipposudoric acid and norhipposudoric acid, working as sunscreen, moisturizer, and antibiotic all at once. Even submerged, a hippo's eyes, ears, and nostrils sit in the sun for hours, on an animal with no fur to block it and no way to keep every inch of skin underwater for long.
 
-None of this is really about aggression for its own sake. A hippo on that path at night has exactly one place on the planet that keeps it alive, and it has walked the same route to reach it more times than you could count. What happens next comes down to what a three-ton animal with nowhere else to go does when it finds something standing in the only doorway it has.
+None of this is really about aggression for its own sake. A hippo on that path at night has exactly one place on the planet that keeps it alive, and it has walked the same route to reach it more times than you could count. What happens next comes down to what a fifteen-hundred-kilo animal with nowhere else to go does when it finds something standing in the only doorway it has.
 
 So if you ever find yourself back on that path, in the dark, with something the size of a small car in front of you: the mistake is running the way you came, straight down the same corridor the hippo needs. Step sideways, out of the line between the animal and the water, and let it have the one thing it actually came for.
 
@@ -193,52 +206,59 @@ There is another video on this channel about an animal whose entire existence ha
 
 ## Vad rundorna rättade
 
-Tre rundor totalt, taket satt av Mathias. Ribban (`bar-hippo.md` i sessionens
-scratchpad) skrevs först med tio verbatim-belagda fakta och en dramaturgi anpassad från
-Knapp-mekanikerna till andraperson: scenario, myten (trög, vattenbunden), detaljen som bär
-allt (samma stig varje natt), vardagsanalogin (utgången i det brinnande huset), mörk
-mittvändning (vilka som faktiskt dör), faktablocket, lärdomen, rådet som återkopplar.
+Två loopar. Ribban (`bar-hippo.md` i sessionens scratchpad) skrevs först med tio
+verbatim-belagda fakta och en dramaturgi anpassad från Knapp-mekanikerna till andraperson.
 
-1. **Runda 1 → 2, fakta (3 fel):** "faster than almost anyone can sprint" gick längre än
-   källorna (jämför bara med joggning). "The best fossil candidate for that ancestor"
-   gjorde Indohyus till själva anfadern — nu "a link to that ancestor". Naivasha-meningen
-   hade två påhittade precisioner ("a few dozen meters", "an hour earlier") — strukna.
-2. **Runda 1 → 2, klarhet (9 fel):** sex "negate, sedan reveal"-konstruktioner utöver den
+**Loop 1 (1 169 ord, tre rundor):**
+
+1. **Runda 1 → 2, fakta (3):** "faster than almost anyone can sprint" gick längre än
+   källorna (jämför bara med joggning). Indohyus gjordes till själva anfadern — nu "a link
+   to that ancestor". Naivasha-meningen hade två påhittade precisioner — strukna.
+2. **Runda 1 → 2, klarhet (9):** sex "negate, sedan reveal"-konstruktioner utöver den
    enda tillåtna ("will not go around you. It will go through you.") — alla omskrivna. En
-   tredje fraktal styckesavslutning (brinnande huset, med "doorway" dubblerat mot slutet).
-   Tre vaga attributioner ("multiple independent studies", Zambia-räkningen, 2022-
-   genomgången) — omskrivna till rena påståenden utan påhittad källa.
-3. **Runda 2 → 3, fakta (3 fel):** blodsvettstycket sa att djuret "spends its days baking
-   in equatorial sun with no way to get out of the light", vilket motsade stycke 2 där det
-   ligger under vattnet hela eftermiddagen för att slippa värmen — nu avgränsat till
-   ögon, öron och näsborrar ovanför ytan. Pronomenet i Indohyus-meningen ("its modern
-   descendants") pekade på fel djur — nu "modern hippos or whales". "Within minutes of
-   exertion or stress" var obelagt — struket.
-4. **Runda 2 → 3, klarhet (5) och craft (5):** två nya "negate, sedan reveal"-träffar
-   ("The danger was never about X. It's about Y", "neither blood nor true sweat. The real
-   substance is") och en tredje halvdold ("None of that dentition evolved for eating…
-   teeth exist for fighting") — alla omskrivna. Stycke 4 upprepade den blockerade stigen
-   tre gånger — nu en gång. Stycke 8 öppnade och stängde på samma påstående — slutet
-   struket. "One more thing about that skin" pekade på ett ämne som aldrig introducerats —
-   ersatt. Två "Here's…"-öppnare — en kvar. Kritikerna är instabila mellan rundor på
-   parallellism-regeln: två av träffarna i runda 2 var mina egna runda 1-rättningar.
-5. **Runda 3 (sista):** hook och craft godkända. Fakta hittade att "Ordinary errands,
-   after dark, on a path a hippo also uses" generaliserade tid och plats till alla tre
-   incidenterna, fast pojken vid Lake Edward togs omkring klockan tre på eftermiddagen
-   när han lekte hemma — nu "Ordinary moments, on ground a hippo also uses". "National"
-   struket (500-siffran är kontinentvid). Klarhet hittade ett sista "negate, sedan
-   reveal" ("don't hold up to scrutiny. What the actual incident reports do show…") — nu
-   "The individual incident reports are much more consistent about where attacks happen".
-   Craft pekade ut numerusbytet "it never actually swims. … they walk" och "one of the
-   single most" — båda rättade. Alla fixar var meningsnivå och specificerade av
-   kritikerna; ingen fjärde körning.
+   tredje fraktal styckesavslutning. Tre vaga attributioner — omskrivna.
+3. **Runda 2 → 3, fakta (3):** blodsvettstycket motsade stycke 2 om var djuret tillbringar
+   dagen — avgränsat till ögon, öron, näsborrar ovanför ytan. Pronomenet i Indohyus-
+   meningen pekade fel. "Within minutes of exertion or stress" obelagt — struket.
+4. **Runda 2 → 3, klarhet (5) och craft (5):** två nya "negate, sedan reveal", ett stycke
+   som upprepade sin premiss tre gånger, ett stycke som öppnade och stängde på samma
+   påstående, en hängande "that skin"-referens — alla åtgärdade.
+5. **Runda 3:** hook och craft godkända. Fakta: "after dark" generaliserades till tre
+   incidenter fast pojken vid Lake Edward togs mitt på dagen — nu "Ordinary moments, on
+   ground a hippo also uses". Klarhet: ett sista "negate, sedan reveal" i statistikstycket.
+   Gjordes direkt, ingen fjärde körning. CTA-raden lades till efteråt (kanalregel, ingen
+   kritiker flaggade det).
 
-**Tillagt efter rundorna, utanför kritiken:** CTA-raden. Kanalregeln säger att varje
-manus slutar med en peknig mot senaste videon; manuset saknade den och ingen kritiker
-flaggade det (pufferfiskens craft-kritiker gjorde det för sitt manus, och samma regel
-gäller här).
+**Utökningen (2026-09-10):** Mathias bedömde 1 169 ord som för kort. Orsak: för lite
+research i förstautkastet; loopen tar bara bort. Ny research gav fyra belagda sektioner:
+Templers attack 9 mars 1996 (Washington Post, CNN, CBC), revirbeteendet i vattnet (Toronto
+Zoo, Animal Diversity Web, Africa Geographic), Escobars flodhästar (NBC, Al Jazeera
+2026-04-13, CBS), kalvarna (San Diego Zoo, Hippoworlds), plus viktspannet 1 300–1 500 kg
+med hanar över 3 000.
 
-**Kvarstående, medvetet inte åtgärdade anmärkningar:** "actually/actual" förekommer fem
-gånger (klarhet, valfri putsning); "None of this is really about aggression for its own
-sake" är en mjuk negation-först-öppning på ett sanktionerat stycke (craft, "kan strykas
-utan förlust", behållen för att den bär lärdomen).
+**Loop 2 (1 619 ord, tre rundor):**
+
+6. **Runda 1:** sessionstaket slog till; bara klarhet svarade (4 blockerande): Templer-
+   stycket slutade i en "negate, sedan reveal" som dessutom upprepade CNN-regeln — nu en
+   konkret slutrad (nedfärden två år senare). Colombia-stycket slutade i en tredje fraktal
+   summering — struken. Revirstycket slutade i ett retoriskt trikolon — delat. De två
+   "three-ton" motsade det nya viktspannet — nu "one-and-a-half-ton" och "fifteen-hundred-
+   kilo". Plus fem småputsar (dubblerad betesförklaring, "tusks" före introduktionen,
+   kalvmeningens placering).
+7. **Runda 2:** fakta godkänd med tre skärpningar (tjuren i attacken är "a hippo" som i
+   källan, "more than 2,500 kilometers", "Block that route and there may be no warning at
+   all before the charge" i stället för en absolut regel). Hook: Colombia-stycket lovade
+   "the clearest picture" och levererade siffror — löftet sänkt, turistraden flyttad,
+   stycket slutar på byborna. Klarhet: tre avståndsuppgifter i följd (5, 10, 3 km) var
+   obegripliga — nu normen först, ytterligheten sedan; flocklistan hade blivit ett
+   trikolon — nu kolonlista. Craft: Templer- och revirstyckena hängde inte ihop — en
+   bryggmening ("The hippo that hit Templer's canoes was almost certainly doing a job.",
+   hedgad eftersom källan bara säger "a hippo").
+8. **Runda 3 (sista):** alla fyra godkända. Fakta: "will walk five kilometers" gjorde ett
+   tak till en regel — nu "can walk". Gjordes direkt, ingen fjärde körning.
+
+**Kvarstående, medvetet inte åtgärdade anmärkningar:** "None of this is really about
+aggression for its own sake" kommer direkt efter hudstycket, så "this" vobblar en
+halvsekund innan nästa mening reparerar det (craft, "under tröskeln"); turistraden mitt i
+Colombia-stycket är en liten tempobula (hook, "warrants no further round"); "canoes" i
+plural där källan bekräftar en träffad kanot (fakta, "försvarbar").
