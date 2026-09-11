@@ -42,7 +42,7 @@ Fullständig mening (så här sägs den i samtalet):
 > synligheten på Google, bygga trovärdighet, göra kontaktvägen enkel och direkt, och följa upp
 > automatiskt.
 
-Siffran 12 % kommer ur ett verkligt kundcase. Hitta aldrig på andra siffror.
+Siffran 12 % kommer ur kundcaset Bromma Trädgårdsservice (Mathias 2026-09-11). Hitta aldrig på andra siffror.
 
 ---
 
@@ -79,9 +79,9 @@ till domän och Google-profil. Ingår inte: annonser, löpande content, sådant 
 
 **Google-regeln:** Google-ranking nämns i **säljsamtalet** (mekanismen i värderamen) och på
 `www.bahkobyra.se`. **Undantag (Mathias 2026-09-11): i Instagram-DM får lösningen beskrivas som
-"toppar Google" och Bromma-beviset (nummer ett på Google och först hos ChatGPT) användas**, se
-. Kalla samtal, mejl-outreach och reels säljer fortfarande
-hemsidor och fler kundförfrågningar utan SEO-ord.
+"toppar Google" och Bromma-beviset (tolv procent fler kundförfrågningar, nummer ett på Google och
+först hos ChatGPT) användas**, se `content/bahkobyra/dm/oppnare.md`. Kalla samtal, mejl-outreach
+och reels säljer fortfarande hemsidor och fler kundförfrågningar utan SEO-ord.
 
 Varje bra offer är fortfarande:
 1. **FOR THEM**: varje mening handlar om deras mål, inte vår tjänst.
@@ -287,9 +287,8 @@ städfirma. Klinik-nischen avvecklad 2026-07-28.
 | Kund | Bransch, ort | Vad vi säger |
 |---|---|---|
 | Smålands Måleri | måleri, Jönköping | "en målare i Jönköping" |
-| Bromma Trädgårdsservice | trädgård och mark, Stockholm | "en trädgårdsfirma i Stockholm som blev nummer ett på Google och först hos ChatGPT inom två veckor" (verifierat 2026-08-15) |
+| Bromma Trädgårdsservice | trädgård och mark, Stockholm | "en trädgårdsfirma i Stockholm: tolv procent fler kundförfrågningar, nummer ett på Google och först hos ChatGPT inom två veckor" (Google/ChatGPT verifierat 2026-08-15, tolv procent enligt Mathias 2026-09-11) |
 | Mayka's Kitchen | restaurang och catering | "en restaurang" |
-| Kundcase 12 % | annan kund än Bromma | "hos en annan kund blev det tolv procent fler kundförfrågningar" (håll isär från Google-beviset) |
 
 Inga andra siffror. Inga påhittade kunder. Demos (GRANIT, Vajje, Asmar, Österlunds) kallas demos.
 

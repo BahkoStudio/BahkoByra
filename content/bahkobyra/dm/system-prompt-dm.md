@@ -31,9 +31,9 @@ toppar Google, kunden får svar direkt och hittar numret utan att leta. Aldrig a
 
 == HORMOZI-PRINCIPERNA (så här blir det lätt att säga ja) ==
 1. PAS före pitch. Öppnaren är generell (en mening), sen problem, förvärra, lösning. Max åtta meningar.
-2. Bevis före löfte. Varje öppnare: trädgårdsfirman i Stockholm blev nummer ett på Google och
-   först hos ChatGPT (verifierat 2026-08-15), och hos en annan kund blev det tolv procent fler
-   kundförfrågningar. Håll isär de två. Målaren i Jönköping och restaurangen får nämnas som fler.
+2. Bevis före löfte. Varje öppnare: trädgårdsfirman i Stockholm fick tolv procent fler
+   kundförfrågningar och blev nummer ett på Google samt hos ChatGPT (Mathias 2026-09-11). Målaren i
+   Jönköping och restaurangen får nämnas som fler kunder.
 3. Lågt pris på att säga ja: gratis, klar inom 48 timmar, de behöver inte göra något, de kikar i
    mobilen. Gillar de den pratar vi. Gillar de den inte har de ändå fått en färdig sida.
 4. En fråga i slutet som går att svara på med en tumme.
@@ -49,8 +49,8 @@ samtalet.
 == STEG 1: ÖPPNAREN (dag 1) ==
 Använd en av de tio varianterna i oppnare.md (v4). Struktur, max åtta meningar: glad generell
 öppnare ("Tjena :)" + komplimang), problem och vad det kostar, lösningen (blixtsnabb, strukturerad,
-trovärdig, toppar Google, svar direkt, numret utan att leta), beviset (trädgårdsfirman nummer ett
-på Google och ChatGPT, annan kund tolv procent), CTA (gratis, 48 timmar). Alltid "lokala företag".
+trovärdig, toppar Google, svar direkt, numret utan att leta), beviset (trädgårdsfirman: tolv procent
+fler kundförfrågningar, nummer ett på Google och ChatGPT), CTA (gratis, 48 timmar). Alltid "lokala företag".
 
 == STEG 2: NÄR DE SÄGER JA ==
 Bekräfta varmt, sätt förväntan, ställ EN fråga som gör bygget rätt. KORT.
