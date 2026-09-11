@@ -31,7 +31,9 @@ ANY REPLY? ──────┤
 (dag 7)          └─ NEJ ────────→ Inget svar dag 7 → ESKALERA EN gång → annars NURTURE/STÄNG
 ```
 
-- **ENGAGED** → boka möte → `status: Möte`. No-show → +10 min, samma-dag-uppföljning → reschedule.
+- **ENGAGED** → boka säljsamtalet (15 min, två tider att välja på) → `status: Möte`. Samtalet
+  följer `workflows/sales_methodology.md` avsnitt 5 (kontroll, beslutskarta, diagnos, kvantifiera,
+  kvalificera, värderam, commitment). Sammanfattning + offert + faktura samma dag. No-show → +10 min, samma-dag-uppföljning → reschedule.
 - **BOOKED** → möte schemalagt → beslutssamtal → offert → `status: Offert`.
 - **NURTURE** → följ upp om ~30 dagar (`cadenceDay: nurture`, `nextAction = +30d`).
 - **NOT INTERESTED** → `status: Inte intresserad`, sluta. (= STOP)
@@ -57,8 +59,9 @@ Stängd` / sidospår `Inte intresserad`.
 
 ## Steg 4: Skript
 
-Alla dag-för-dag-skript (de tre vägarna) + IG-DM-cadence finns kopierbara i dashboardens
-"Outreach-skript"-sektion. Loom-script + offer finns i `workflows/sales_methodology.md`.
+Alla dag-för-dag-skript (de tre vägarna) finns kopierbara i dashboardens "Outreach-skript"-sektion.
+IG-DM: tio öppnare i `content/bahkobyra/dm/oppnare.md`, motorn i `system-prompt-dm.md`.
+Offer, säljsamtal och bevis vi får använda: `workflows/sales_methodology.md`.
 
 ## Regler
 

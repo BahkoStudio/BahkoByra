@@ -3,8 +3,9 @@
 **För vem:** ny säljare på Bahko Byrå som ringer kalla samtal.
 **Vad vi säljer:** hemsidor. Ingenting annat nämns i samtalet. Inte SEO, inte Google-ranking,
 inte annonser. Det är intern leverans och uppsell långt senare, aldrig säljbudskap.
-**Nisch:** bygg och hantverk. Byggfirmor, målare, takläggare, markarbeten, rör, el, snickare.
-Ring aldrig utanför nischen.
+**Nisch:** lokala företag. Kärnan är bygg och hantverk (byggfirmor, målare, takläggare, mark, rör,
+el, snickare), men städ, flytt och restaurang ingår när Mathias godkänt listan. Säg alltid deras
+egen bransch i samtalet, aldrig "hantverksföretag" till en städfirma.
 **Erbjudandet i samtalet:** en helt skräddarsydd ny hemsida för deras firma, gratis, levererad
 på mejl inom 48 timmar. Kärnprodukten (hemsida 15 000 kr, engångs) säljs i 15-minuterssamtalet som bokas
 EFTER att de sett demon, aldrig i det kalla samtalet.
@@ -74,9 +75,9 @@ deras egen. Skillnaden du ser är exakt det du ska kunna beskriva i telefon.
 
 ### [LÖSNING]
 Beviset som sägs direkt efter smärtan. Standardraden (enda siffran du får använda):
-**"Vi har haft kunder med en sida som liknar er, där små justeringar gett tolv procent fler
-kundförfrågningar."** Sägs lugnt, i förbifarten — erfarenhet, inte löfte. Finns en närmare
-kundhistoria (målaren i Jönköping för en målare), använd den i stället. Hitta aldrig på siffror.
+**"Vi har byggt åt en målare i Jönköping, en trädgårdsfirma i Stockholm och en restaurang. Hos
+en av dem blev det tolv procent fler kundförfrågningar."** Sägs lugnt, i förbifarten, erfarenhet
+inte löfte. Flera kunder nämns alltid, det är beviset. Hitta aldrig på siffror eller kunder.
 
 ---
 
@@ -253,28 +254,44 @@ när vi ses". Stå fast, vänligt.)*
 
 ---
 
-## 5. 15-minuterssamtalet — här stängs affären
+## 5. 15-minuterssamtalet: här stängs affären
 
-Kunden har sett demon och svarat positivt → boka 15 min (två tider att välja på).
-**Enda stället där priset nämns.** Mål: ja + faktura skickad samma dag.
+Kunden har sett demon och svarat positivt. Boka 15 minuter (två tider att välja på).
+**Enda stället där priset nämns.** Mål: ja + sammanfattning och faktura samma dag.
+Samtalet följer Mathias säljstruktur (`workflows/sales_methodology.md`, avsnitt 5). Kortversion:
 
-Upplägg 3+5+4+3 minuter:
-1. **Öppna i deras demo:** "Vad fastnade du för själv?" Låt dem prata — det de lyfter säljer du på.
-2. **Vad ni får:** utkastet görs skarpt — era bilder/texter/kontaktuppgifter, egen domän, mejl,
-   snabb i mobilen, offertknapp på varje skärm. [LÖSNING]-raden igen (tolv procent).
-3. **Hur:** ja idag → faktura direkt efter samtalet → betald faktura → vi bygger klart, ni
-   godkänner → **live inom 7 dagar**. Ni äger allt.
-4. **Priset:** "15 000 kronor. En gång. Ingen bindning, inga månadsavgifter." Räkneexemplet:
-   ett enda jobb betalar sidan. Sen: "Ska vi köra? Då mejlar jag fakturan när vi lagt på."
+1. **Kontrollera samtalet (1 min):** "Vi har 15 minuter, låter det bra? Jag ställer några frågor
+   för att förstå er situation och vad den kostar er. Passar det berättar jag exakt vad jag
+   rekommenderar och vi bestämmer nästa steg tillsammans. Är det inte rätt för er säger jag det
+   direkt. Låter det rimligt?" En personlig fråga ("hur kom det sig att du valde måleri?").
+2. **Beslutskarta (1 min):** "Om vi går vidare, vem godkänner det? Behöver det gå vidare
+   någonstans? Vad brukar stoppa sånt här?"
+3. **Diagnos (4 min):** öppna i deras demo, "vad fastnade du för själv?" Sen: vad funkar inte i
+   dag, var tappar ni kunden (sidan, Google-profilen, annat), vad kostar det er per månad, vad
+   har ni provat, varför är det viktigt nu. Fördjupa med "berätta mer" och "ge mig ett exempel".
+4. **Kvantifiera och kvalificera (2 min):** summera symptom, brytpunkt, kostnad. "Om ni låg på
+   första sidan och hade en modern sida, hur många fler jobb per månad?" "Hur viktigt är det att
+   börja få fler förfrågningar just nu, direkt eller vänta?"
+5. **Värderam (3 min):** "Det riktiga problemet är X, kostnaden är Y. Målet inom 90 dagar är
+   12 % fler kundförfrågningar och första sidan på Google. Vi bygger en SEO-driven hemsida på
+   nyckelord, struktur, trovärdighet och design." Ingår: auto-mejl med direkt svar och kopia till
+   er, blixtsnabb hemsida, optimerad för första sidan på Google. Leverans: testversion inom 2
+   dagar, dag 2 till 4 jämför vi mot konkurrenterna, live inom 7 dagar. Ni äger allt.
+6. **Priset (1 min):** "15 000 kronor. En gång. Ingen bindning, inga månadsavgifter." Räkneexemplet:
+   ett enda jobb betalar sidan. Riskreverseringen: når vi inte målet jobbar vi vidare utan extra kostnad.
+7. **Commitment (2 min):** "Nästa steg blir att sätta upp hemsidan och optimera er Google-profil
+   direkt, för att minska risken. När resultaten kommer in tar vi beslut om att expandera. Låter
+   det rimligt? Toppen. Då skickar jag en sammanfattning av vad vi pratat om, vad som ingår,
+   leveransen och tidsplanen. Sedan kommer fakturan."
+8. **Uppföljning samma dag (1 min efter):** mejl med beslut, siffror, nästa steg, datum, tid och
+   ansvar. Offertmallen i CRM:et ("Kopiera offert") → status **Offert skickad** → betald →
+   **Kund** → bygg, live inom 7 dagar.
 
-Efter ja: faktura inom en timme (offertmall finns i CRM:et, knappen "Kopiera offert") →
-status **Offert skickad** → betald → **Kund** → bygg, live inom 7 dagar.
-Pristvekan: skilj "mer än väntat" (räkneexemplet) från "mer än värt" (tillbaka till det de
-själva gillade i demon). Vi prutar aldrig — samma pris för alla.
-
-Invändningsskolan (kort): en invändning är ett kvitto på ett steg du hoppade över.
-Pressa aldrig (tryck studsar) · ytskälet är sällan riktiga skälet · folk bestämmer med magen.
-Full diagnostabell + spök-/avslutsmejl: webbversionen, avsnitt 4.
+**Invändningar i samtalet:** klargör ("mer än väntat eller mer än det är värt?"), isolera ("är det
+det enda?"), reframe (tillbaka till det de själva gillade i demon och sa i diagnosen), få bekräftelse
+("löser vi det, kör vi då?"). Vi prutar aldrig, samma pris för alla. En invändning är ett kvitto
+på ett steg du hoppade över. **Exit:** är caset svagt (ingen prioritet, ingen beslutsrätt), diska
+det rent och håll pipelinen ren.
 
 ## 6. Dina verktyg: CRM och mejlkontot
 

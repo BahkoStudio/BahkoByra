@@ -73,8 +73,10 @@ Produceras med Edge-headless-malltekniken (samma som Brommas omdömeskort), i va
 
 Inga tankstreck i meddelanden (repo-regel). Kort: långa DM får inga svar (lärdom 2026-06-12).
 
-- **Dag 1:** "Hej [Namn]! Riktigt snyggt jobb på [specifikt projekt ni postat] 🙌 Snabb fråga, vem byggde er hemsida?"
-- **Dag 3:** "Kikade på er sajt och såg ett par saker som nog kostar er jobb, till exempel svårt att få offert via mobilen. Vill du att jag skickar ett utkast på hur den kan se ut?"
+Tio färdiga öppnare (v2, med kundbevis och [bransch]-lucka): `content/bahkobyra/dm/oppnare.md`.
+
+- **Dag 1:** en av de tio öppnarna. Mönster: [konkret du såg] + "jag bygger hemsidor åt [bransch] och lokala företag, senast en målare i Jönköping, en trädgårdsfirma i Stockholm och en restaurang, hos en av dem blev det tolv procent fler kundförfrågningar" + "vill du att jag bygger ett förslag åt er? Kostar inget, klart inom 48 timmar."
+- **Dag 3:** "Hejsan! Vet inte om meddelandet drunknade. Såg en konkret grej till på er sida som kostar förfrågningar. Vill du att jag bygger förslaget? Kostar inget."
 - **Dag 5:** "Hann du kika? Kostar inget, bara ett konkret förslag på en sajt som drar in fler offertförfrågningar."
 - **Dag 7:** "Sista pingen 🙂 Om en ny sajt inte är prio nu säg bara till."
 
