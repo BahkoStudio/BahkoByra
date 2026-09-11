@@ -142,36 +142,15 @@ function initPopup() {
     setTimeout(closePopup, 2500);
   });
 
-  // Popupen far ALDRIG ligga over biljettknappen. Den tandes forst nar
-  // besokaren scrollat forbi eventsektionen, eller efter 45 s om sidan star still.
-  // Har den stangts under de senaste 14 dagarna visas den inte alls.
+  // Popupen tands efter 45 s. Har den stangts under de senaste 14 dagarna
+  // visas den inte alls.
   const AVFARDAD_DAGAR = 14;
   let avfardad = false;
   try {
     const t = parseInt(localStorage.getItem('mk-nl-dismissed') || '0', 10);
     avfardad = t > 0 && (Date.now() - t) < AVFARDAD_DAGAR * 864e5;
   } catch (_) {}
-
-  if (!avfardad) {
-    const event = document.getElementById('event');
-    let visad = false;
-    const visaEnGang = () => {
-      if (visad) return;
-      visad = true;
-      clearTimeout(popupTimer);
-      openPopup();
-    };
-    if (event && 'IntersectionObserver' in window) {
-      const obs = new IntersectionObserver(poster => {
-        // tands forst nar eventsektionen passerat ur bild uppat
-        for (const p of poster) {
-          if (!p.isIntersecting && p.boundingClientRect.bottom < 0) { obs.disconnect(); visaEnGang(); }
-        }
-      }, { threshold: 0 });
-      obs.observe(event);
-    }
-    popupTimer = setTimeout(visaEnGang, 45_000);
-  }
+  if (!avfardad) popupTimer = setTimeout(openPopup, 45_000);
 }
 
 /* ── FOOTER NEWSLETTER ───────────────────────────────────── */
