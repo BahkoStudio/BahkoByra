@@ -78,9 +78,10 @@ till domän och Google-profil. Ingår inte: annonser, löpande content, sådant 
 > funkar för att konkurrenterna har sega och gamla hemsidor.
 
 **Google-regeln:** Google-ranking nämns i **säljsamtalet** (mekanismen i värderamen) och på
-`www.bahkobyra.se`. **Aldrig i DM, kalla samtal, mejl-outreach eller reels.** Där säljer vi
-hemsidor och fler kundförfrågningar, punkt. Regeln finns för att SEO-ord i outreach låter som
-alla andra byråer och dödar svaret.
+`www.bahkobyra.se`. **Undantag (Mathias 2026-09-11): i Instagram-DM får lösningen beskrivas som
+"toppar Google" och Bromma-beviset (nummer ett på Google och först hos ChatGPT) användas**, se
+. Kalla samtal, mejl-outreach och reels säljer fortfarande
+hemsidor och fler kundförfrågningar utan SEO-ord.
 
 Varje bra offer är fortfarande:
 1. **FOR THEM**: varje mening handlar om deras mål, inte vår tjänst.
@@ -286,9 +287,9 @@ städfirma. Klinik-nischen avvecklad 2026-07-28.
 | Kund | Bransch, ort | Vad vi säger |
 |---|---|---|
 | Smålands Måleri | måleri, Jönköping | "en målare i Jönköping" |
-| Bromma Trädgårdsservice | trädgård och mark, Stockholm | "en trädgårdsfirma i Stockholm" (plats 1 på Google inom två veckor, verifierat 2026-08-15, sägs bara i säljsamtalet) |
+| Bromma Trädgårdsservice | trädgård och mark, Stockholm | "en trädgårdsfirma i Stockholm som blev nummer ett på Google och först hos ChatGPT inom två veckor" (verifierat 2026-08-15) |
 | Mayka's Kitchen | restaurang och catering | "en restaurang" |
-| Kundcase 12 % | | "hos en av dem blev det tolv procent fler kundförfrågningar" |
+| Kundcase 12 % | annan kund än Bromma | "hos en annan kund blev det tolv procent fler kundförfrågningar" (håll isär från Google-beviset) |
 
 Inga andra siffror. Inga påhittade kunder. Demos (GRANIT, Vajje, Asmar, Österlunds) kallas demos.
 

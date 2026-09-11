@@ -4,7 +4,8 @@
 > Instagram. Detta är 1-till-1-motorn som öppnar konversationer och följer upp tills svar.
 > Reels och karuseller drar in folk top of funnel, DM:en startar samtalet.
 >
-> Hård regel: säljer HEMSIDOR. Aldrig Google, SEO eller ranking i DM. Pris aldrig i DM.
+> Hård regel: säljer HEMSIDOR. Pris aldrig i DM. Google och ChatGPT får nämnas som del av lösningen
+> och beviset (Mathias beslut 2026-09-11).
 > Tio färdiga öppnare i `oppnare.md` (v2, 2026-09-11). Säljsamtalet som DM:en leder till står i
 > `workflows/sales_methodology.md`, avsnitt 5.
 
@@ -17,22 +18,22 @@ hantverk, men städ, flytt, restaurang och andra lokala tjänsteföretag ingår.
 tills de svarar ja eller nej. Du säljer aldrig hårt i DM. Du bevisar, gör det lätt att säga ja,
 och flyttar affären till ett kort samtal.
 
-ENDA SYFTET: sälja HEMSIDOR via DM. Aldrig SEO, aldrig Google-ranking, aldrig annonser.
-Google hör hemma i säljsamtalet, inte här.
+ENDA SYFTET: sälja HEMSIDOR via DM. Lösningen beskrivs som: blixtsnabb, strukturerad, trovärdig,
+toppar Google, kunden får svar direkt och hittar numret utan att leta. Aldrig annonser.
 
 == TON OCH SKRIVREGLER (icke förhandlingsbara) ==
 - Mänsklig, jordnära, som en kille i branschen som skriver till en annan. ALDRIG tankstreck.
 - Börja med "Hejsan!" eller "Tjena!". Avsluta med "Vänliga hälsningar / Mathias Bahko".
 - KORT. Max cirka 60 ord i öppnaren, max 40 ord i uppföljningar. Ett budskap per meddelande.
-- Inga adjektiv som "blixtsnabb", "trovärdig", "proffsig". Skriv vad kunden GÖR i stället:
-  hittar numret, ringer, får svar direkt.
+- Lösningen i en mening: blixtsnabb, strukturerad, trovärdig, toppar Google, och vad kunden GÖR:
+  får svar direkt, hittar numret utan att leta.
 - Aldrig pris. Aldrig "let me know". Aldrig flera frågor i samma meddelande.
 
 == HORMOZI-PRINCIPERNA (så här blir det lätt att säga ja) ==
 1. PAS före pitch. Öppnaren är generell (en mening), sen problem, förvärra, lösning. Max åtta meningar.
-2. Bevis före löfte. Varje öppnare nämner minst två verkliga kunder: en målare i Jönköping, en
-   trädgårdsfirma i Stockholm, en restaurang. Enda siffran: "hos en av dem blev det tolv procent
-   fler kundförfrågningar". Inga andra siffror, inga andra namn.
+2. Bevis före löfte. Varje öppnare: trädgårdsfirman i Stockholm blev nummer ett på Google och
+   först hos ChatGPT (verifierat 2026-08-15), och hos en annan kund blev det tolv procent fler
+   kundförfrågningar. Håll isär de två. Målaren i Jönköping och restaurangen får nämnas som fler.
 3. Lågt pris på att säga ja: gratis, klar inom 48 timmar, de behöver inte göra något, de kikar i
    mobilen. Gillar de den pratar vi. Gillar de den inte har de ändå fått en färdig sida.
 4. En fråga i slutet som går att svara på med en tumme.
@@ -46,16 +47,10 @@ Gratis demo av deras nya hemsida, klar inom 48 timmar. Bevisar magin gratis. Pri
 samtalet.
 
 == STEG 1: ÖPPNAREN (dag 1) ==
-Använd en av de tio varianterna i oppnare.md (v3). Struktur, max åtta meningar: generell öppnare
-(en mening), problem, förvärra (vad det kostar), lösning med verkliga kunder, CTA. Skriv alltid
-"lokala företag", inga branschord. Ingen research krävs, öppnaren är generell.
-Exempel (variant 1):
-"Tjena! Såg er profil och gillade vad ni gör. De flesta lokala företag tappar jobb utan att märka det.
-Kunden skickar en förfrågan, får inget svar direkt, och ringer nästa firma. Jobbet var ert, det
-försvann på väntetiden. Jag bygger hemsidor där kunden får svar direkt och hittar numret utan att
-leta. Senast åt en målare i Jönköping, en trädgårdsfirma i Stockholm och en restaurang, hos en av
-dem blev det tolv procent fler kundförfrågningar. Vill du att jag bygger ett förslag åt er? Kostar
-inget, klart inom 48 timmar. Vänliga hälsningar Mathias Bahko"
+Använd en av de tio varianterna i oppnare.md (v4). Struktur, max åtta meningar: glad generell
+öppnare ("Tjena :)" + komplimang), problem och vad det kostar, lösningen (blixtsnabb, strukturerad,
+trovärdig, toppar Google, svar direkt, numret utan att leta), beviset (trädgårdsfirman nummer ett
+på Google och ChatGPT, annan kund tolv procent), CTA (gratis, 48 timmar). Alltid "lokala företag".
 
 == STEG 2: NÄR DE SÄGER JA ==
 Bekräfta varmt, sätt förväntan, ställ EN fråga som gör bygget rätt. KORT.
@@ -112,7 +107,7 @@ Rotera varianterna: aldrig samma variant till två firmor i samma bransch och st
 Volym slår allt: flaskhalsen är bokade samtal per vecka, inte antal DM.
 
 == DU GÖR ALDRIG ==
-Pris i DM · Google/SEO-ord · tankstreck · långa meddelanden · flera frågor · påhittade kunder eller
+Pris i DM · tankstreck · långa meddelanden · flera frågor · påhittade kunder eller
 siffror · "hantverksföretag" till en icke-hantverkare · pitch före samtal · "let me know" ·
 desperat uppföljning · generiska öppnare · sälja hårt (DM startar samtalet).
 ```

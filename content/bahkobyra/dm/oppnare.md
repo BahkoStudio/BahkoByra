@@ -1,39 +1,40 @@
-# DM-öppnare v3 (2026-09-11) · tio varianter, generella, till lokala företag
+# DM-öppnare v4 (2026-09-11) · tio varianter i Mathias stil
 
-Struktur i varje DM, **max åtta meningar**:
+Struktur i varje DM, **max åtta meningar** plus hälsning och avslut:
 
-1. **Öppnare** (1 mening, generell, funkar utan research)
-2. **Problem** (1 mening)
-3. **Förvärra** (1 till 2 meningar, vad det kostar)
-4. **Lösning** (1 till 2 meningar, vad vi gör + verkliga kunder)
-5. **CTA** (1 mening, en fråga som går att svara ja på)
+1. **Öppnare**, glad och generell (Tjena :) + en komplimang)
+2. **Problem + vad det kostar** (två till tre meningar)
+3. **Lösningen**: hemsida som är blixtsnabb, strukturerad, trovärdig och toppar Google, där kunden får svar direkt och hittar numret utan att leta
+4. **Beviset**: trädgårdsfirman i Stockholm blev nummer ett på Google och först hos ChatGPT inom två veckor. Hos en annan kund blev det tolv procent fler kundförfrågningar. Målaren i Jönköping och restaurangen får nämnas som fler kunder.
+5. **CTA**: "Vill du att jag bygger ett förslag åt er? Kostar inget, klart inom 48 timmar."
 
-## Regler som gäller alla tio
+## Regler
 
-- Vi skriver **"lokala företag"** i alla DM (Mathias beslut 2026-09-11). Aldrig "hantverksföretag",
-  aldrig branschord, samma text funkar för bygg, städ, flytt och restaurang.
-- **Bevis i varje DM.** Bara verkliga kunder: en målare i Jönköping, en trädgårdsfirma i
-  Stockholm, en restaurang. Enda siffran: "hos en av dem blev det tolv procent fler
-  kundförfrågningar". Inga andra siffror, inga andra namn.
-- **Aldrig Google, SEO eller ranking i DM.** Vi säljer hemsidor och fler förfrågningar.
-- **Aldrig pris.** Frågar de: "Härligt! Tar vi ett snabbt samtal så går jag igenom det. Passar
+- Alltid **"lokala företag"**, inga branschord (Mathias 2026-09-11).
+- **Google och ChatGPT får nämnas i DM** som del av lösningen och beviset (Mathias beslut
+  2026-09-11, ersätter den gamla regeln att Google bara sägs på sajten och i samtalet).
+- Beviset håller isär: **nummer ett på Google och ChatGPT = trädgårdsfirman i Stockholm**
+  (verifierat 2026-08-15). **Tolv procent fler kundförfrågningar = ett annat kundcase.** Skriv
+  aldrig att samma kund fick båda. Inga andra siffror, inga påhittade kunder.
+- Aldrig pris. Frågar de: "Härligt! Tar vi ett snabbt samtal så går jag igenom det? Passar
   tisdag eller torsdag bäst?"
-- Inga tankstreck. Hälsning först, "Vänliga hälsningar / Mathias Bahko" sist (räknas inte som meningar).
+- Inga tankstreck. "Tjena :)" eller "Hejsan :)" först, "Vänliga hälsningar / Mathias Bahko" sist.
 
 ---
 
 ## 1 · Den som svarar först
 
-Tjena!
+Tjena :)
 
-Såg er profil och gillade vad ni gör.
+Såg er profil och gillade vad ni gör, helt fantastiskt!
 
-De flesta lokala företag tappar jobb utan att märka det. Kunden skickar en förfrågan, får inget svar
-direkt, och ringer nästa firma. Jobbet var ert, det försvann på väntetiden.
+De flesta lokala företag tappar jobb utan att märka det. Kunden skickar en förfrågan, får inget
+svar direkt, och ringer nästa firma. Jobbet var deras, det försvann på väntetiden.
 
-Jag bygger hemsidor där kunden får svar direkt och hittar numret utan att leta. Senast åt en
-målare i Jönköping, en trädgårdsfirma i Stockholm och en restaurang, hos en av dem blev det tolv
-procent fler kundförfrågningar.
+Jag bygger hemsidor som är blixtsnabba, strukturerade, trovärdiga och toppar rankingen på Google,
+där kunden får svar direkt och hittar numret utan att leta. Senast åt en trädgårdsfirma i
+Stockholm som hamnade som nummer ett på Google och först hos ChatGPT, och hos en annan kund blev
+det tolv procent fler kundförfrågningar.
 
 Vill du att jag bygger ett förslag åt er? Kostar inget, klart inom 48 timmar.
 
@@ -42,103 +43,112 @@ Mathias Bahko
 
 ## 2 · Kunden i soffan
 
-Hejsan!
+Hejsan :)
 
-Snyggt jobb i flödet.
+Riktigt snyggt jobb i flödet, det syns att ni kan er grej!
 
-Kunden sitter i soffan med mobilen och tre firmor öppna. Den som är lättast att ringa vinner,
-inte den som gör bäst jobb. Är numret gömt bakom en meny går jobbet till någon annan.
+Kunden sitter i soffan med mobilen och tre firmor öppna. Den som är lättast att hitta och ringa
+vinner, inte den som gör bäst jobb. Ligger ni på sida två på Google eller har numret gömt bakom
+en meny går jobbet till någon annan.
 
-Jag bygger sidor som gör lokala företag till den firman som är lättast att ringa. Bland annat åt
-en målare i Jönköping, en trädgårdsfirma i Stockholm och en restaurang.
+Jag bygger hemsidor som toppar Google, laddar blixtsnabbt och gör att kunden ringer med ett tryck.
+En trädgårdsfirma i Stockholm blev nummer ett på Google och först hos ChatGPT inom två veckor, och
+hos en annan kund blev det tolv procent fler kundförfrågningar.
 
-Vill du se hur er skulle se ut? Jag bygger den gratis.
+Vill du se hur er skulle se ut? Jag bygger den gratis, klar inom 48 timmar.
 
 Vänliga hälsningar
 Mathias Bahko
 
 ## 3 · Sidan visar inte jobbet
 
-Tjena!
+Tjena :)
 
-Fastnade för era jobb, riktigt bra hantverk.
+Fastnade för era jobb, grymt hantverk!
 
-Problemet är att de flesta lokala företag har en hemsida som inte visar det. Kunden ser en gammal sida
-och drar slutsatsen att firman är gammal också. Sen väljer de den som ser mest proffsig ut.
+Problemet många lokala företag har är en hemsida som inte visar det. Kunden ser en gammal, seg
+sida och drar slutsatsen att firman är likadan. Sen väljer de den som ser mest proffsig ut, inte
+den som är bäst.
 
-Jag bygger sidor där jobben syns direkt och kunden kan ringa med ett tryck. Så gjorde vi för en
-målare i Jönköping och en trädgårdsfirma i Stockholm, hos en av dem blev det tolv procent fler
-förfrågningar.
+Jag bygger hemsidor som är blixtsnabba, trovärdiga och toppar Google, där jobben syns direkt och
+kunden kan ringa med ett tryck. Så gjorde vi för en trädgårdsfirma i Stockholm som nu ligger
+först på Google och hos ChatGPT, och en annan kund fick tolv procent fler förfrågningar.
 
-Ska jag bygga ett förslag åt er? Kostar inget.
+Ska jag bygga ett förslag åt er? Kostar inget, klart inom 48 timmar.
 
 Vänliga hälsningar
 Mathias Bahko
 
 ## 4 · Rekommendationen dör
 
-Hejsan!
+Hejsan :)
 
-Gillar det ni lägger upp.
+Gillar verkligen det ni lägger upp!
 
-Många lokala företag får jobben via rekommendationer och tänker att sidan inte spelar roll. Men kunden
-googlar er innan de ringer. Hittar de ingenting, eller en sida som känns död, dör tipset där.
+Många lokala företag får jobben via rekommendationer och tänker att hemsidan inte spelar roll. Men
+kunden googlar er innan de ringer. Hittar de ingenting, eller en sida som känns död, dör tipset
+där.
 
-Jag bygger sidor som gör rekommendationens jobb en gång till, senast åt en målare i Jönköping, en
-trädgårdsfirma i Stockholm och en restaurang.
+Jag bygger hemsidor som toppar Google och gör rekommendationens jobb en gång till, snabba,
+strukturerade och trovärdiga. En trädgårdsfirma i Stockholm blev nummer ett på Google och först
+hos ChatGPT, och hos en annan kund blev det tolv procent fler kundförfrågningar.
 
-Vill du se vad kunden hittar om ni hade en sån? Jag bygger den gratis inom 48 timmar.
+Vill du se vad kunden hittar om ni hade en sån? Gratis, klar inom 48 timmar.
 
 Vänliga hälsningar
 Mathias Bahko
 
 ## 5 · Tumtestet
 
-Tjena!
+Tjena :)
 
-Snyggt flöde.
+Snyggt flöde, riktigt bra jobb!
 
-Testa en sak: öppna er egen hemsida i mobilen och hitta telefonnumret med en tumme. Tar det mer
-än tre sekunder gör kunden det inte, de ringer nästa firma i listan. Det händer varje vecka utan
-att ni ser det.
+Testa en sak: öppna er hemsida i mobilen och hitta telefonnumret med en tumme. Tar det mer än
+tre sekunder gör kunden det inte, de ringer nästa firma i listan. Det händer varje vecka utan att
+ni ser det.
 
-Jag bygger sidor som klarar testet, åt lokala företag som en målare i Jönköping, en trädgårdsfirma
-i Stockholm och en restaurang.
+Jag bygger hemsidor som klarar testet: blixtsnabba, strukturerade, trovärdiga och överst på
+Google. En trädgårdsfirma i Stockholm hamnade som nummer ett på Google och först hos ChatGPT, och
+hos en annan kund blev det tolv procent fler kundförfrågningar.
 
-Vill du se er version? Gratis, klar på 48 timmar.
+Vill du se er version? Kostar inget, klar inom 48 timmar.
 
 Vänliga hälsningar
 Mathias Bahko
 
 ## 6 · Pappersarbetet
 
-Hejsan!
+Hejsan :)
 
-Ser att ni har fullt upp, det är bra.
+Ser att ni har fullt upp, härligt att se!
 
-Det som äter tiden för lokala företag är oftast inte jobbet utan förfrågningarna: svara, återkomma,
-jaga. Varje förfrågan som blir liggande är en affär som går till någon som svarade snabbare.
+Det som äter tiden för lokala företag är sällan jobbet utan förfrågningarna: svara, återkomma,
+jaga. Varje förfrågan som blir liggande är en affär som går till den som svarade snabbare.
 
-Jag bygger sidor som svarar kunden direkt och skickar er en kopia, så ni kan vara ute på jobb.
-Senast åt en målare i Jönköping, en trädgårdsfirma i Stockholm och en restaurang.
+Jag bygger hemsidor som svarar kunden direkt och skickar er en kopia, blixtsnabba, trovärdiga och
+överst på Google, så ni kan vara ute på jobb. Senast åt en trädgårdsfirma i Stockholm som blev
+nummer ett på Google och hos ChatGPT, och hos en annan kund blev det tolv procent fler
+kundförfrågningar.
 
-Vill du att jag visar hur det skulle se ut för er? Kostar inget.
+Vill du att jag bygger ett förslag åt er? Kostar inget, klart inom 48 timmar.
 
 Vänliga hälsningar
 Mathias Bahko
 
 ## 7 · Bilderna försvinner
 
-Tjena!
+Tjena :)
 
-Era bilder är bättre än de flesta hemsidor i branschen.
+Era bilder är bättre än de flesta hemsidor i branschen, helt ärligt!
 
-Synd bara att de ligger här och försvinner i flödet efter en dag. Kunden som letar efter en firma i
-kväll ser dem aldrig, de ser bara den firma som har en sida som visar jobben.
+Synd bara att de ligger här och försvinner i flödet efter en dag. Kunden som letar efter en firma
+i kväll ser dem aldrig, de ser bara den som ligger först på Google och har en sida som visar
+jobben.
 
-Jag bygger sidor där bilderna gör jobbet dygnet runt, senast åt en målare i Jönköping, en
-trädgårdsfirma i Stockholm och en restaurang. Hos en av dem blev det tolv procent fler
-kundförfrågningar.
+Jag bygger hemsidor där bilderna gör jobbet dygnet runt, blixtsnabba, strukturerade och överst på
+Google. En trädgårdsfirma i Stockholm blev nummer ett på Google och först hos ChatGPT, och hos en
+annan kund blev det tolv procent fler kundförfrågningar.
 
 Ska jag bygga ett förslag åt er? Gratis, klart inom 48 timmar.
 
@@ -147,34 +157,36 @@ Mathias Bahko
 
 ## 8 · Snabbhet är kompetens
 
-Hejsan!
+Hejsan :)
 
-Gillar hur ni jobbar.
+Gillar hur ni jobbar, ser riktigt proffsigt ut!
 
-I kundens ögon är snabbhet lika med kompetens. Svarar sidan långsamt eller kräver att man letar
-efter kontaktvägen framstår firman som oorganiserad, fast ni antagligen gör ett bättre jobb än
-den som fick uppdraget.
+I kundens ögon är snabbhet lika med kompetens. En seg sida eller en kontaktväg man måste leta
+efter får firman att framstå som oorganiserad, fast ni antagligen gör ett bättre jobb än den som
+fick uppdraget.
 
-Jag bygger sidor åt lokala företag där kunden hittar allt på tre sekunder och får svar direkt.
-Bland annat åt en målare i Jönköping, en trädgårdsfirma i Stockholm och en restaurang.
+Jag bygger hemsidor som laddar blixtsnabbt, känns trovärdiga och toppar Google, där kunden hittar
+allt på tre sekunder och får svar direkt. En trädgårdsfirma i Stockholm blev nummer ett på Google
+och först hos ChatGPT, och hos en annan kund blev det tolv procent fler kundförfrågningar.
 
-Vill du se hur er skulle se ut? Jag bygger den gratis.
+Vill du se hur er skulle se ut? Kostar inget, klar inom 48 timmar.
 
 Vänliga hälsningar
 Mathias Bahko
 
 ## 9 · Ingen risk
 
-Tjena!
+Tjena :)
 
-Snyggt jobb.
+Snyggt jobb, kul att se!
 
-De flesta lokala företag vet att sidan borde göras om men skjuter på det, för det känns som pengar
-och tid. Under tiden går förfrågningarna till firman som redan fixat sin.
+De flesta lokala företag vet att hemsidan borde göras om men skjuter på det, för det känns som
+pengar och tid. Under tiden går förfrågningarna till firman som redan ligger först på Google.
 
-Så här gör jag: ni skickar ingenting och betalar ingenting, jag bygger en ny sida åt er inom 48
-timmar och ni kikar i mobilen. Senaste tre jag byggt åt är en målare i Jönköping, en trädgårdsfirma
-i Stockholm och en restaurang.
+Så här gör jag: ni skickar ingenting och betalar ingenting, jag bygger en blixtsnabb, trovärdig
+sida åt er inom 48 timmar och ni kikar i mobilen. Senast gjorde jag det åt en trädgårdsfirma i
+Stockholm som blev nummer ett på Google och hos ChatGPT, och en annan kund fick tolv procent fler
+kundförfrågningar.
 
 Vill du ha er?
 
@@ -183,18 +195,19 @@ Mathias Bahko
 
 ## 10 · Frågan
 
-Hejsan!
+Hejsan :)
 
-Gillar det ni gör.
+Gillar det ni gör, riktigt fint!
 
-Snabb fråga: hur många förfrågningar kom in via er hemsida förra månaden? De flesta lokala företag vet
-inte, och det är oftast för att sidan inte ger några. Kunden hittar den, hittar inte numret, och
-går vidare.
+Snabb fråga: hur många förfrågningar kom in via er hemsida förra månaden? De flesta lokala företag
+vet inte, och det är oftast för att sidan inte ger några. Kunden hittar er inte på Google, eller
+hittar inte numret, och går vidare.
 
-Jag bygger sidor som faktiskt ger förfrågningar, senast åt en målare i Jönköping, en
-trädgårdsfirma i Stockholm och en restaurang, hos en av dem blev det tolv procent fler.
+Jag bygger hemsidor som faktiskt ger förfrågningar: blixtsnabba, strukturerade, trovärdiga och
+överst på Google. En trädgårdsfirma i Stockholm blev nummer ett på Google och först hos ChatGPT,
+och hos en annan kund blev det tolv procent fler kundförfrågningar.
 
-Vill du att jag bygger ett förslag åt er? Kostar inget.
+Vill du att jag bygger ett förslag åt er? Kostar inget, klart inom 48 timmar.
 
 Vänliga hälsningar
 Mathias Bahko
@@ -209,9 +222,9 @@ nya i samma struktur.
 
 ## Uppföljning (om tyst)
 
-- **Dag 3:** "Hejsan! Vet inte om meddelandet drunknade. Står erbjudandet kvar: jag bygger ett
-  förslag på er nya sida, gratis, inom 48 timmar. Vill du det?"
-- **Dag 5 (om demo skickad):** "Tjena! Vet inte om du hann se demon. Den visar exakt varför kunden
-  ska välja just er: [länk]. Kika i mobilen, tar en minut."
-- **Dag 7:** "Hejsan! Stänger ärendet om timingen inte stämmer just nu. Hör av dig när det passar
-  bättre, jag finns här."
+- **Dag 3:** "Hejsan :) Vet inte om meddelandet drunknade. Erbjudandet står kvar: jag bygger ett
+  förslag på er nya hemsida, gratis, inom 48 timmar. Vill du det?"
+- **Dag 5 (om demo skickad):** "Tjena :) Vet inte om du hann se demon. Den visar exakt varför
+  kunden ska välja just er: [länk]. Kika i mobilen, tar en minut."
+- **Dag 7:** "Hejsan :) Stänger ärendet om timingen inte stämmer just nu. Hör av dig när det
+  passar bättre, jag finns här."
