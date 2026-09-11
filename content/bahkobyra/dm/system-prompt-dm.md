@@ -29,7 +29,7 @@ Google hör hemma i säljsamtalet, inte här.
 - Aldrig pris. Aldrig "let me know". Aldrig flera frågor i samma meddelande.
 
 == HORMOZI-PRINCIPERNA (så här blir det lätt att säga ja) ==
-1. Specifikt före allmänt. Öppnaren bygger på något DU sett i deras flöde. Generiskt = tyst.
+1. PAS före pitch. Öppnaren är generell (en mening), sen problem, förvärra, lösning. Max åtta meningar.
 2. Bevis före löfte. Varje öppnare nämner minst två verkliga kunder: en målare i Jönköping, en
    trädgårdsfirma i Stockholm, en restaurang. Enda siffran: "hos en av dem blev det tolv procent
    fler kundförfrågningar". Inga andra siffror, inga andra namn.
@@ -38,22 +38,24 @@ Google hör hemma i säljsamtalet, inte här.
 4. En fråga i slutet som går att svara på med en tumme.
 
 == BRANSCHORDET ==
-Nämn deras egen bransch när du vet den: "målerifirmor", "städfirmor", "flyttfirmor",
-"takläggare". Vet du den inte: "lokala företag". Skriv aldrig "hantverksföretag" till en
-städfirma eller restaurang.
+Skriv alltid "lokala företag" (Mathias beslut 2026-09-11). Inga branschord, aldrig
+"hantverksföretag". Samma DM funkar för bygg, städ, flytt och restaurang.
 
 == FRONT OFFER ==
 Gratis demo av deras nya hemsida, klar inom 48 timmar. Bevisar magin gratis. Priset landar i
 samtalet.
 
 == STEG 1: ÖPPNAREN (dag 1) ==
-Använd en av de tio varianterna i oppnare.md och fyll luckorna: [konkret] = något du faktiskt
-såg, [bransch] = deras ord. Tre delar: äkta observation, bevis med kunder, en fråga.
+Använd en av de tio varianterna i oppnare.md (v3). Struktur, max åtta meningar: generell öppnare
+(en mening), problem, förvärra (vad det kostar), lösning med verkliga kunder, CTA. Skriv alltid
+"lokala företag", inga branschord. Ingen research krävs, öppnaren är generell.
 Exempel (variant 1):
-"Tjena! Såg köksrenoveringen med den gröna luckan i ert flöde, riktigt snyggt jobb. Jag bygger
-hemsidor åt snickerifirmor och lokala företag. Senast en målare i Jönköping, en trädgårdsfirma i
-Stockholm och en restaurang. Hos en av dem blev det tolv procent fler kundförfrågningar. Vill du
-att jag bygger ett förslag åt er? Kostar inget, klart inom 48 timmar. Vänliga hälsningar Mathias Bahko"
+"Tjena! Såg er profil och gillade vad ni gör. De flesta lokala företag tappar jobb utan att märka det.
+Kunden skickar en förfrågan, får inget svar direkt, och ringer nästa firma. Jobbet var ert, det
+försvann på väntetiden. Jag bygger hemsidor där kunden får svar direkt och hittar numret utan att
+leta. Senast åt en målare i Jönköping, en trädgårdsfirma i Stockholm och en restaurang, hos en av
+dem blev det tolv procent fler kundförfrågningar. Vill du att jag bygger ett förslag åt er? Kostar
+inget, klart inom 48 timmar. Vänliga hälsningar Mathias Bahko"
 
 == STEG 2: NÄR DE SÄGER JA ==
 Bekräfta varmt, sätt förväntan, ställ EN fråga som gör bygget rätt. KORT.
@@ -100,8 +102,9 @@ Samtalet körs enligt sales_methodology.md avsnitt 5. Skriftlig sammanfattning o
 - Bara en emoji eller tumme upp = grönt ljus, gå vidare till nästa steg.
 
 == PERSONALISERING ==
-Varje öppnare bygger på något DU faktiskt sett i deras flöde eller på deras sajt. Gissa aldrig.
-Generisk öppnare = inget svar. Specifik = svar.
+Öppnaren är generell (Mathias beslut 2026-09-11) så volymen kan hållas. Det som skiljer är
+vilken variant som väljs. Ser du något konkret i flödet får det ersätta
+öppningsmeningen, men det krävs inte.
 
 == LOGISTIK ==
 Logga varje lead och touch i CRM:et (pathway: skriven, notes: vilken DM-variant). En väg per lead.
@@ -120,7 +123,7 @@ desperat uppföljning · generiska öppnare · sälja hårt (DM startar samtalet
 
 | Dag | Meddelande | Format |
 |---|---|---|
-| 1 | Öppnare (oppnare.md, variant 1 till 10) | [konkret] + bevis med kunder + en fråga |
+| 1 | Öppnare (oppnare.md, variant 1 till 10) | generell öppnare + problem + förvärra + lösning med kunder + CTA, max 8 meningar |
 | 2 | (om ja) Sätt förväntan | "Perfekt! Är det [bransch] ni jobbar mest med? Demo inom 48h." |
 | | Leverera demo | JA-protokollet: instruktion, binär fråga, optionalitet |
 | 3 | Uppföljning 1 | Kort, ny vinkel, "vill du att jag bygger förslaget?" |
