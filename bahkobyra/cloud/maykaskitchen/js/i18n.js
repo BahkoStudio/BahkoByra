@@ -49,7 +49,6 @@
       'collab.i4':  'Receptsamarbeten',
       'collab.i5':  'Events',
       'collab.i6':  'Långsiktiga partnerskap',
-      'collab.mgmt':'Management &amp; Partnerships för Maykas Kitchen',
       /* NAV */
       'nav.home':    'Hem',
       'nav.recipes': 'Recept',
@@ -131,7 +130,7 @@
       'cta.heading':     'Låt oss skapa<br>tillsammans',
       'cta.sub':         'Matlagning, recept och berättelser som engagerar – redo för nästa projekt.',
       'cta.card1.title': 'Samarbeten',
-      'cta.card1.body':  'Samarbeten hanteras av J&amp;J Management. Vi arbetar bland annat med:',
+      'cta.card1.body':  'Vill du samarbeta med Maykas Kitchen? Vi arbetar bland annat med:',
       'cta.card2.title': 'Min bok',
       'cta.card2.body':  '<em>Maykas gröna kök – Kutle, hummus och kärlek.</em> En resa genom smak, traditioner och kärlek.',
       'cta.card2.btn':   'Köp boken på Bokus →',
@@ -209,7 +208,6 @@
       'collab.i4':  'Recipe collaborations',
       'collab.i5':  'Events',
       'collab.i6':  'Long-term partnerships',
-      'collab.mgmt':'Management &amp; Partnerships for Maykas Kitchen',
       /* NAV */
       'nav.home':    'Home',
       'nav.recipes': 'Recipes',
@@ -291,7 +289,7 @@
       'cta.heading':     "Let's create<br>together",
       'cta.sub':         'Cooking, recipes and stories that engage – ready for the next project.',
       'cta.card1.title': 'Collaborations',
-      'cta.card1.body':  'Collaborations are handled by J&amp;J Management. We work with, among other things:',
+      'cta.card1.body':  'Want to work with Maykas Kitchen? We work with, among other things:',
       'cta.card2.title': 'My book',
       'cta.card2.body':  "<em>Mayka's green kitchen – Kutle, hummus and love.</em> A journey through flavour, traditions and love.",
       'cta.card2.btn':   'Buy the book on Bokus →',
