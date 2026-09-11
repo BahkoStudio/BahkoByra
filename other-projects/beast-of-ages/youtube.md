@@ -16,8 +16,8 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 | `manus/deer-freeze-headlights.md` | **Klar att spela in (Mathias godkänd efter runda 11).** Knapp-modellering, `Why Don't We Eat Male Chickens?` |
 | `manus/why-dont-we-eat-horse-meat.md` | Knapp-modellering (mall B), Grinden grön 2026-09-09, tre rundor manusloop, paketet överst |
 | `manus/moa-15-facts.md` | Mall E (kanalens egen "15 De-Extinct X Facts"), Grinden grön 2026-09-09, tre rundor manusloop, paketet överst |
-| `manus/hippo-on-land-at-night.md` | Mall F (andraperson-scenario), Grinden grön 2026-09-09, tre rundor manusloop, paketet överst |
-| `manus/pufferfish-seafloor-circles.md` | Apex-gåta (spåret först, förövaren sist), klarerad 2026-08-24 och omkontrollerad 2026-09-09, paketet överst |
+| `manus/hippo-on-land-at-night.md` | Mall F (andraperson-scenario), Grinden grön 2026-09-09, tre loopar à tre rundor (utökad till 2 254 ord 2026-09-11), paketet överst |
+| `manus/pufferfish-seafloor-circles.md` | Apex-gåta (spåret först, förövaren sist), klarerad 2026-08-24 och omkontrollerad 2026-09-09, tre loopar à tre rundor (utökad till 1 992 ord 2026-09-11), paketet överst |
 | `manus/de-extinction-eras-veo.md` | 106 Veo-prompter à 8 sekunder, stilbibeln, musikbädden |
 | `analys/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
 | `analys/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |

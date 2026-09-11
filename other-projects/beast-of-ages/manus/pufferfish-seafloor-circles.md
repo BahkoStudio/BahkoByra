@@ -2,17 +2,16 @@
 
 Beast of Ages. Manus och leveranspaket i samma fil — paketet överst.
 
-**Status: klart att spela in.** 1 300 ord, cirka nio minuter. Två loopar. Första versionen
-(884 ord) gick tre rundor manusloop och godkändes 2026-09-10. Mathias bedömde den som för
-kort, och orsaken var min: för lite research, och kritikrundorna tar bara bort text.
-Manuset utökades därför 2026-09-10 med sex nya belagda sektioner (bygget dag för dag ur
-Fishes 2017, den uppmätta strömreduktionen ur 2013-studien, ciklidjämförelsen från
-Malawisjön, kläckningstidslinjen och halvmåncykeln, Matsuuras artbeskrivning, Osaka-teamets
-tvåzonsanalys) plus ett helt nytt stycke om Australienfyndet på 129–137 meters djup, och
-den utökade versionen gick en egen loop på tre rundor (taket, satt av Mathias 2026-09-09)
-och godkändes av alla fyra kritiker i runda 3.
-Förlagan är Apex-gåtan (spåret först, förövaren sist). Längden är vad det belagda
-materialet bär; resten hade blivit utfyllnad.
+**Status: klart att spela in.** 1 992 ord, cirka tretton minuter. Tre loopar. Första
+versionen (884 ord) godkändes 2026-09-10; Mathias bedömde den som för kort och den
+utökades till 1 300 ord med en egen loop. Mathias satte sedan golvet till minst 1 800 ord,
+så manuset utökades en gång till 2026-09-11 med ny belagd research: hela leksekvensen och
+äggvården ur Kawase m.fl. 2015 (Bulletin of Marine Science), vattenflödet genom dalarna ur
+Geosciences-studien, lövsalsfåglarna som jämförelse, det japanska namnet och Top 10 New
+Species 2015, samt ett fylligare Australienstycke med Todd Bond. Den versionen gick en
+tredje loop på tre rundor (taket, satt av Mathias 2026-09-09), där craft-kritikerns
+omordning av mittpartiet genomfördes i runda 1, och godkändes av alla fyra kritiker i
+runda 3 utan anmärkning. Förlagan är Apex-gåtan (spåret först, förövaren sist).
 
 **Klarerad 2026-08-24, omkontrollerad 2026-09-09, alla fem steg gröna.**
 Steg 1 (egen katalog): inget. Steg 2 (fyra formuleringar, `vidiq_youtube_search`,
@@ -124,7 +123,7 @@ bara halva cirkeln i bild, text `2 METERS WIDE`. Sämre på gåtan, bättre på 
 ```
 In 1995 divers off Amami-Oshima, Japan, found a perfect geometric circle two meters across carved into the seafloor. Ridges like spokes, fine sand in the center, shell fragments on every peak. Nobody had built it, nobody could explain it, and the circles kept coming back every summer for sixteen years before anyone saw who made them.
 
-The builder is a male pufferfish the length of a pen. This video follows the whole thing: the day-by-day construction schedule that a 2017 study caught from the first dent in the sand, the 2013 study that measured what the ridges do to the water, the sand-castle-building cichlids of Lake Malawi that play the same game, the fluid dynamics research that found the shell fragments are structural reinforcement, why the male never uses a nest twice, the year the fish finally got a scientific name, the 2018 simulation that reproduced the pattern from three simple rules, and the twenty-one circles found in 2018 at 130 meters off Western Australia, where nobody has yet seen the builder.
+The builder is a male pufferfish the length of a pen. This video follows the whole thing: the day-by-day construction schedule that a 2017 study caught from the first dent in the sand, the 2013 study that measured what the ridges do to the water, the shell fragments that turn out to be structural reinforcement, the one-second spawning that a 2015 study filmed and the female who came back forty-three times in thirty-eight minutes, why the male never uses a nest twice, the sand-castle cichlids of Lake Malawi and the bowerbirds of New Guinea that play the same game, the year the fish finally got a name and made the top ten new species list, the 2018 simulation that reproduced the pattern from three simple rules, and the twenty-one circles found in 2018 at 130 meters off Western Australia, where nobody has yet seen the builder.
 
 Chapters:
 00:00 A Circle That Should Not Exist
@@ -132,11 +131,15 @@ Chapters:
 00:00 The Builder
 00:00 Nine Days, Fins Only
 00:00 What the Ridges Are For
-00:00 What She Is Judging
-00:00 The Cichlids of Lake Malawi
 00:00 Reinforcement
+00:00 What She Is Judging
+00:00 One Second
+00:00 The Nest Is His Alone
 00:00 Never Used Twice
+00:00 The Cichlids of Lake Malawi
+00:00 The Bowerbirds
 00:00 A Fish Without a Name
+00:00 Top Ten New Species
 00:00 Three Simple Rules
 00:00 The Circles Off Australia
 00:00 Nature's Greatest Artist
@@ -166,8 +169,8 @@ There is another video on this channel about an animal doing enormous work at a 
 
 ## Del 2 — Manuset
 
-*1 300 ord, cirka nio minuter. Snittmening 20,6 ord, längsta 53, noll tankstreck. Skrivs
-och läses på engelska. CTA:n ovan ingår som sista rad.*
+*1 992 ord, cirka 13 minuter. Snittmening 19,3 ord, längsta 53, noll tankstreck.
+Skrivs och läses på engelska. CTA:n ovan ingår som sista rad.*
 
 ---
 
@@ -177,25 +180,35 @@ The circles kept appearing in the same waters off Amami-Oshima, always between A
 
 In May 2011, underwater photographer Yoji Okata finally caught the artist in the act, and the answer only deepened the sixteen-year mystery. The builder was a fish small enough to rest in one hand: a male pufferfish, roughly the length of a pen, working completely alone.
 
-For seven to nine days without a break, using nothing but his fins, that fish dug and shaped a structure fifteen to twenty times his own body length. How does a fish the length of a pen lay out a two-meter wheel? In 2017, a study in the journal Fishes found a circle on the first day it was being built and logged the schedule. It begins as dozens of irregular dents in the sand, made by the male pressing his body against the bottom and beating his pectoral and tail fins. By the second day the dents have become a rough ring of radial valleys around a central hollow. Through day four the valleys multiply and the ring stays small. From day five to day eight the whole structure widens and the difference in height between peaks and valleys grows. He cuts each valley by swimming straight toward the center from one direction after another, throwing sand up into ridges on either side as he goes. Last, he works the center, flapping his anal fin against the bottom until the flat middle carries a fine maze of shallow grooves.
+For seven to nine days without a break, using nothing but his fins, that fish dug and shaped a structure fifteen to twenty times his own body length. How does a fish the length of a pen lay out a two-meter wheel? In 2017, a study in the journal Fishes found a circle on the first day it was being built and logged the schedule. It begins as dozens of irregular dents in the sand, made by the male pressing his body against the bottom and beating his side fins and tail. By the second day the dents have become a rough ring of radial valleys around a central hollow. Through day four the valleys multiply and the ring stays small. From day five to day eight the whole structure widens and the difference in height between peaks and valleys grows. He cuts each valley by swimming straight toward the center from one direction after another, throwing sand up into ridges on either side as he goes. Each valley is about as wide as he is. Last, he works the center, flapping his anal fin against the bottom until the flat middle carries a fine maze of shallow grooves.
 
-The shape does a job. The ridges funnel the finest grains of sand toward the center of the circle, filtering out coarser material the way a sieve does, and water moving across the center slows by close to a quarter. That was the finding of a 2013 study in Scientific Reports led by Hiroshi Kawase, a museum curator in Chiba. Okata, who had quit an office job to shoot the sea full time, was a co-author. Females judge that fine sand closely when choosing a mate. Why they care about grain size hasn't been proven. The team's best guess is practical: slower water and finer sand likely cushion the eggs and hold them in place once they're laid.
+The shape does a job. The ridges funnel the finest grains of sand toward the center of the circle, filtering out coarser material the way a sieve does, and water moving across the center slows by close to a quarter. That was the finding of a 2013 study in Scientific Reports led by Hiroshi Kawase, a museum curator in Chiba. Okata, the photographer who had filmed the builder, was a co-author. Females judge that fine sand closely when choosing a mate. Why they care about grain size hasn't been proven. The team's best guess is practical: slower water and finer sand likely cushion the eggs and hold them in place once they're laid.
+
+The male also decorates the peaks of his ridges with fragments of shell and coral. A study of how water moves around the nest, published in the journal Geosciences, found the fragments make the ridge harder to wash away exactly where the current pushes hardest, so the nest keeps its shape until the eggs hatch. The fragments are reinforcement.
+
+The same study modeled the water itself. Whichever way the current runs, it enters through the valleys on one side, slows over the center, as Kawase had measured, and leaves through the valleys on the other. Behind each ridge the water curls into a small eddy that stirs oxygen down to the eggs, and the ridges soften the current, so the eggs sit in calmer water than they would on the bare seabed.
 
 Once a male finishes, a female will swim low over the structure, tracing the valleys and testing the sand he's disturbed before deciding whether to stay. Wider spacing between the ridges may come from larger males, since a bigger fish can displace more sand with each pass of its fins. Researchers still haven't confirmed what a female is actually judging in that inspection: the male himself, or the safety of the nest.
 
-The pufferfish has company in this. In Lake Malawi, in East Africa, male cichlids build sand structures and are judged on them: some species dig pits, others pile up small volcano-shaped castles. Females pick by size, and the bigger a male's castle, the more females he tends to win. A 2015 study of those fish found that the castle-builders live in clear, shallow water where the structure can be seen, while species living deeper dig simpler pits and make up the difference with more courtship displays.
+When she does stay, things move fast. Kawase's team filmed the sequence and published it in the Bulletin of Marine Science in 2015. The male notices her and starts stirring up the fine sand in the center. If she enters, he rushes at her and backs off, again and again. A willing female sinks to the floor of the center, and he comes alongside. Partly buried in sand, the two vibrate together, and in about one second the eggs and sperm are out. While it happens, he lightly bites the back corner of her mouth. Then she leaves, and often comes straight back for more. The team watched one female mate forty-three times in thirty-eight minutes. Another mated three times before a second female chased her off and took her place. Several females may use one nest, and a male may spawn with more than one in a single day. The paper called it a mating system never before recorded in a marine pufferfish. The male keeps to his nest, and the females come and go as they please.
 
-Male pufferfish decorate the peaks of their ridges with fragments of shell and coral. A fluid dynamics study published in the journal Geosciences found the fragments make the ridge harder to wash away exactly where the current pushes hardest, so the nest keeps its shape until the eggs hatch. The fragments are reinforcement.
+When the last female has gone, the male stays five or six more days, until the eggs hatch. The nest is his alone now. He fans his fins over the eggs, picks out debris that drifts in, and chases off any fish that comes too close. The clutches Kawase's team watched in July hatched in five days, each time around sunset, and he was fanning as they broke out.
 
-After all of that, the eggs are laid, and the female leaves. The male stays five or six more days, until they hatch. Then he never uses that nest again, and Kawase's team found a likely reason: a nest that's already been used has its fine sand scattered and depleted, no longer good enough to attract a second mate or protect a second clutch. Through a breeding season a male does this again and again, on a roughly two-week cycle set by the moon. A 2022 paper in the journal Scientific Data recorded what that looks like from above: six finished circles at two sites off the village of Katetsu, all found on a single day in June 2016.
+He never returns to that nest, and Kawase's team found a likely reason: a nest that's already been used has its fine sand scattered and depleted, no longer good enough to attract a second mate or protect a second clutch. Through a breeding season a male does this again and again, on a roughly two-week cycle set by the moon. A 2022 paper in the journal Scientific Data recorded how busy that stretch of seabed gets: six finished circles at two sites off the village of Katetsu, all found on a single day in June 2016.
 
-And the whole job was being done by an animal that science hadn't even gotten around to naming, and wouldn't for another three years. It wasn't formally described as a species until 2014, when ichthyologist Keiichi Matsuura classified it as Torquigener albomaculosus, the white-spotted pufferfish. He worked from two specimens collected at fifteen and eighteen meters off Amami's south coast. The description reads like an inventory of a fish built to be overlooked: about ten centimeters long, fine brown netting and white spots across the back, silvery white below, a thin yellow rim along the top of the eye, and a count of fin rays and vertebrae that separates it from every relative.
+The pufferfish is not the only animal judged on what it builds. In Lake Malawi, in East Africa, male cichlids, a family of small, colorful fish, build sand structures and are judged on them: some species dig pits, others pile up small volcano-shaped castles. Females pick by size, and the bigger a male's castle, the more females he tends to win. A 2015 study in the journal Frontiers in Ecology and Evolution found that the castle-builders live in clear, shallow water where the structure can be seen, while species living deeper dig simpler pits and make up the difference with more courtship displays.
 
-None of this required intelligence in the way people usually mean the word. In 2018, a team at Osaka University led by Ryo Mizuuchi and Shigeru Kondo recorded and mapped the fish's movements in detail. They split the circle into two zones: an outer ring of deep, radial valleys and a central area of shallow, maze-like grooves. For the outer ring they extracted three rules: the fish digs from the outside in, starts each cut where the sand is lowest, and moves in straight lines. A simulation built on those rules alone reproduced the outer ring. The pattern isn't proof of a plan. It's proof of how far instinct alone can go when the only thing riding on it is whether anyone chooses to stay.
+Birds play the same game on land, and one family plays it hardest. Male bowerbirds in Australia and New Guinea build structures that are never used as nests. The satin bowerbird builds an avenue of sticks and decorates it with anything blue he can find: feathers, berries, bottle caps, clothes pegs. The Vogelkop bowerbird builds a hut of sticks on the forest floor and lays out a lawn in front of it, with flowers, fruit, fungi and beetle shells sorted into piles by color. A female tours the neighborhood and compares. The pufferfish does the same job with sand, and then has to raise his young in it.
 
-Then the mystery started again somewhere else. A 2018 survey of oil-field equipment on the North West Shelf off Western Australia, run with underwater robots and published in the Journal of Fish Biology in 2020, recorded twenty-one circular structures on the seabed. They had the same dimensions and the same layout as the ones at Amami. They sat at 129 to 137 meters, more than four times deeper than any circle in Japan and far below where a diver can work. One of the robots photographed a Torquigener pufferfish beside them. That builder has not been filmed at work.
+And the whole job was being done by an animal that science hadn't even gotten around to naming, and wouldn't until three years after Okata's photographs. It wasn't formally described as a species until 2014, when fish specialist Keiichi Matsuura classified it as Torquigener albomaculosus, the white-spotted pufferfish. He worked from two specimens collected at fifteen and eighteen meters off Amami's south coast. The description reads like an inventory of a fish built to be overlooked. About ten centimeters long, fine brown netting and white spots across the back, silvery white below, a thin yellow rim along the top of the eye. What separates it from every relative is a count of the bony rods in its fins and the bones in its spine. In Japanese it is Amami hoshizora fugu, the Amami starry-sky pufferfish, for those spots.
 
-When the BBC profiled the fish in 2014, David Attenborough summed it up in one line: the pufferfish is dull, almost to the point of invisibility, but to compensate, he is probably nature's greatest artist.
+The name brought a little fame with it. In May 2015, the International Institute for Species Exploration, based at the State University of New York's forestry college in Syracuse, put the fish on its list of the top ten new species of the year. The ten were chosen from roughly 18,000 species named the year before. The citation was about the nest. It praised a structure used only once and built to draw a female in, made by an animal nobody had yet described. The pufferfish shared the list with a spider from Morocco that cartwheels away from danger and a feathered dinosaur from North America that the press called the chicken from hell.
+
+Building the circle itself required no intelligence in the way people usually mean the word. In 2018, a team at Osaka University led by Ryo Mizuuchi and Shigeru Kondo recorded and mapped the fish's movements in detail. They split the circle into two zones: an outer ring of deep, radial valleys and a central area of shallow, maze-like grooves. For the outer ring they extracted three rules: the fish digs from the outside in, starts each cut where the sand is lowest, and moves in straight lines. A simulation built on those rules alone reproduced the outer ring. The pattern isn't proof of a plan. It's proof of how far instinct alone can go when the only thing riding on it is whether anyone chooses to stay.
+
+Then the mystery started again somewhere else. In September 2018, Todd Bond, a marine ecologist at the University of Western Australia, was reviewing footage from an underwater robot. It had been inspecting oil-field equipment on the North West Shelf, off the country's coast, and in the sand beneath it he saw a ring. The survey, published in the Journal of Fish Biology in 2020, eventually counted twenty-one of them. They were about the size of the ones at Amami and had close to the same number of ridges, and they sat 5,500 kilometers from the only other place on Earth a circle had ever been recorded. They lay at 129 to 137 meters, more than four times deeper than any circle in Japan and far below where a diver can work. When colleagues lowered a camera directly over one, it caught a small pufferfish darting away, in footage too poor to tell which species it was. Bond thinks it may be one nobody has named yet. He has said it is humbling to know how much is out there that we don't know. The depth is the puzzle. A nest is built to be seen, and very little light reaches 130 meters. That builder has not been filmed at work.
+
+The one at Amami has, many times, and when the BBC profiled him in 2014, David Attenborough summed him up in one line: the pufferfish is dull, almost to the point of invisibility, but to compensate, he is probably nature's greatest artist.
 
 Somewhere off Amami tonight, in the dark, a fish the length of a pen may well be doing it again: fanning sand into ridges nobody asked him to build, for a mate who hasn't arrived yet, on a stretch of ocean floor that a diver might swim straight over without ever looking down.
 
@@ -268,8 +281,47 @@ Osaka-teamets tvåzonsanalys (Mizuuchi 2018), Australienfyndet (Bond 2020).
    science hadn't"; craft: "until the eggs hatch" två gånger på tre meningar — andra
    blev "until they hatch".
 
+**Utökningen till minst 1 800 ord (2026-09-11):** Mathias satte golvet till 1 800. Ny
+research gav: leksekvensen (Kawase, Okata, Ito & Ida 2015, Bull. Mar. Sci.: sanduppvirvling,
+rusning och reträtt, en sekund, bettet i mungipan, 43 parningar på 38 minuter, flera honor
+per bo, "male-territory-visiting polygamy"); äggvården och kläckningen vid solnedgången;
+vattenflödet, virvlarna och skjuvspänningen ur Shameem m.fl. 2021 (Geosciences);
+lövsalsfåglarna (satäng- och Vogelkop-lövsalsfågeln); Top 10 New Species 2015 (IISE vid
+SUNY-ESF, ~18 000 arter, spindeln och "chicken from hell"); Amami hoshizora fugu;
+Australien med Todd Bond, september 2018, 5 500 km, den flyende fisken och djupgåtan.
+Utkastet landade på 1 925 ord.
+
+**Loop 3 (1 992 ord, tre rundor):**
+
+7. **Runda 1:** alla fyra underkände, ingen begärde strykningar. Alla fyra: äggen lades
+   två gånger (nytt parningsstycke, sedan gammalt "After all of that, the eggs are
+   laid") — crafts Plan A genomförd: bygge → funktion → förstärkning → vattenflöde
+   (eget stycke) → inspektion → lek → äggvård → återanvändning → ciklider → lövsalsfåglar
+   → namn → Top 10 → Osaka → Australien. Fakta: "exactly as wide" — "about as wide";
+   "same dimensions" — "about the size"; "gas-field" obelagt — "oil-field"; "Half
+   buried" — "Partly buried"; Bond-parafrasen framställd som citat — omformulerad.
+   Hook: Bond-raden punkterade Australienkroken — flyttad upp, stycket slutar på "That
+   builder has not been filmed at work."; Linnaeus-meningen var trivia utan fisk —
+   ersatt med vad motiveringen handlade om. Klarhet: fyra–fem utzoomade slut mot taket
+   två — lövsalsfågelns och Australiens slut omskrivna; lekstyckets slut var trikolon
+   nummer tre — delat; två meningar över 40 ord — delade; "If she … If she", "Females ×
+   3", "a small celebrity", "the whole thing" — putsade. Craft: "None of this required
+   intelligence" pekade nu på prislistan — "Building the circle itself required no
+   intelligence"; ciklidöppningen och lövsalsfågelns slutrad omskrivna.
+8. **Runda 2:** fakta godkänd (två valfria noter: Okatas kontorsjobb obelagt — nu "the
+   photographer who had filmed the builder"; SUNY-ESF preciserat). Hook, klarhet, craft:
+   omflyttningen lämnade "wouldn't for another three years" utan ankare — "until three
+   years after Okata's photographs"; artbeskrivningen 53 ord — delad i tre med "the bony
+   rods in its fins and the bones in its spine"; motiveringsmeningen var ett nytt
+   trikolon — delad; Katetsu-meningens "that" pekade fel — "how busy that stretch of
+   seabed gets"; glossar för ciklider, iktyolog, fluid dynamics, "drag"; 2015-studien
+   attribuerad (Frontiers in Ecology and Evolution); dekorationsstycket fick bindeord;
+   Australien → Attenborough fick bryggan "The one at Amami has, many times".
+9. **Runda 3 (sista):** alla fyra godkända, noll problem vardera. Klarhet noterade
+   valfritt "pectoral" — nu "side fins and tail", gjort direkt utan fjärde körning.
+
 **Kvarstående, medvetet inte åtgärdade anmärkningar:** fyrslaget "always … always …
-always … always" i stycke 2 (hook: "inte ett fel"); "tonight, in the dark" i slutbilden
-saknar källa för nattbygge (observationerna gjordes på dagdyk) men är garderat med "may
-well" (fakta: "notering utan poängavdrag"); fem stycken öppnar en mening med "In [år],"
-vilket är inom regeln men hörs (klarhet: "the builder should know").
+always … always" i stycke 2 (hook: "inte ett fel"; klarhet runda 2: valfritt); "tonight,
+in the dark" i slutbilden saknar källa för nattbygge men är garderat med "may well"
+(fakta, tidigare: "notering utan poängavdrag"); årtalet 2014 sägs två gånger i
+namnstycket, andra gången bär Matsuura (craft: "motiverad").
