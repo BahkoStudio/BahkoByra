@@ -273,10 +273,10 @@ Passar tisdag eller torsdag bäst?" Samtalet följer `workflows/sales_methodolog
 
 1. Måndagens och onsdagens reels som maskotfilmer (`maskotfilm-bahko-v37.md` visar hur, cirka
    250 till 300 credits för båda). Kolla saldot i Higgsfield först.
-2. Karusellerna med `/ig-karusell` (Cinematiskt läge, sex till åtta slides). Ögongranska åäö och
-   maskoten på omslag och CTA-slide. Kontrollera att textlagret täcker hela höjden (v37 hade en
-   rand längst ner).
-3. Bildkortet ur reel-stilmallen från v37, byt citatet.
+2. Karusellerna är KLARA (2026-09-13): /ig-karusell Cinematiskt läge, GPT Image 2.5 sunburst,
+   medium, 1k. Ligger i Drive Planerat v38, karusell 1 och 2, med captions. Mallar i
+   `mallar/karusell-v38/`. Ögongranskade: åäö rätt, maskoten ett öga, textlagret i full höjd.
+3. Bildkortet är KLART (samma modell, maskoten med mobilen), Drive Planerat v38/bildkort torsdag.
 4. Onsdag: gör soffmätningen på riktigt, skriv in siffran. Fredag: spela in ansiktsposten.
 5. Allt till Drive `BahkoByra/Planerat v38/`.
 6. Stories två minuter om dagen.
