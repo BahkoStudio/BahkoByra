@@ -271,8 +271,9 @@ Passar tisdag eller torsdag bäst?" Samtalet följer `workflows/sales_methodolog
 
 **Batchdag: söndag 13/9 eller måndag morgon.**
 
-1. Måndagens och onsdagens reels som maskotfilmer (`maskotfilm-bahko-v37.md` visar hur, cirka
-   250 till 300 credits för båda). Kolla saldot i Higgsfield först.
+1. Måndagens och onsdagens reels är KLARA (2026-09-13): maskotfilmer som v37, GPT Image 2.5 för
+   stillbilderna, Seedance 2.5 för klippen, 292 credits. Drive Planerat v38/reel 1.mp4 och reel 2.mp4
+   med captionfiler. Mallar i `mallar/maskotfilm-v38/`.
 2. Karusellerna är KLARA (2026-09-13): /ig-karusell Cinematiskt läge, GPT Image 2.5 sunburst,
    medium, 1k. Ligger i Drive Planerat v38, karusell 1 och 2, med captions. Mallar i
    `mallar/karusell-v38/`. Ögongranskade: åäö rätt, maskoten ett öga, textlagret i full höjd.
