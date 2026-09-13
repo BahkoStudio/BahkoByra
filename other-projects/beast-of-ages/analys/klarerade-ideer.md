@@ -102,3 +102,94 @@ Bevis för mallen: Bright Psychos hippo 529 653 mot Quirks duva 60 095 på ident
 Mönstret: idéer som KÄNNS färska är ofta redan tagna av just den anledningen — de är bra.
 De fem klarerade överlevde för att efterfrågan bara bevisats i Shorts eller på andra språk,
 medan engelsk långform står tom. **Det är exakt gapet kanalen kan äga.**
+
+## Förslag 2026-09-12: paradox-mallen (Pack Vibes) + Mall E — LÄTT KONTROLL, inte full Grind
+
+Förlaga: Pack Vibes, *Why Cheetahs Are Friendly (But Never Domesticated)* (nXQD3nPaO-k,
+2026-08-25, 16 min, 1,96 M visningar, breakout 56 på en kanal som normalt gör 10–200 k).
+Mallen: titel med paradox i parentes; struktur = paradoxen → vad domesticering är →
+ett historiskt ankare med siffra (Akbar, 9 000 geparder) → Diamonds checklista →
+Beljajevs rävar → genetiken → nutid. OBS: domesticeringsvågen är levande (dödade höns
+och zebra 2026-09-09) och gepard-videon kopierades inom två veckor (Film en Resumen
+13,7 k, Once Ancient, Wild Realm). Modellera formen på djur vågen inte nått, och var snabb.
+Varje idé: EN sökning i `vidiq_youtube_search` + vidIQ-titelpoäng. Full Grind återstår.
+
+| # | Titel (vidIQ) | Kontroll | Status |
+|---|---|---|---|
+| 1 | Why Honeybees Live in Our Boxes (But Were Never Tamed) (95) | bara Shorts + DW:s annan vinkel (vilda bin) | ✅ SKRIVEN 2026-09-12 — se `manus/honeybees-never-tamed.md` |
+| 2 | Why Reindeer Are Only Half Domesticated (And Won't Go Further) (94) | ingen långform på vinkeln; en liten "Why Don't We Eat Reindeer" 330 visn. | klar |
+| 3 | Why Falcons Hunt for Kings (But Were Never Domesticated) (92) | noll långform, bara falkenerar-Shorts | klar |
+| 4 | Why Ancient Egypt Kept Hyenas (But Never Domesticated Them) (91) | ingen egen video, bara nämnd i listvideor | klar |
+| 5 | Why Elephants Work for Humans (But Were Never Domesticated) (90) | två små kopior (Shubham HOK 38 visn. jun, Deep Human 23 visn. aug) — vågen är på väg hit | klar men brådskande |
+| 6 | 15 Facts About the De-Extinct Dodo That Make No Sense (91) | Colossals egna 1,6 M/1,1 M, ingen listvideo | klar (Mall E) |
+| 7 | 15 Facts About the Last Two Northern White Rhinos That Make No Sense (91) | bara nyhetsklipp | klar (Mall E) |
+| 8 | 15 Facts About the Passenger Pigeon Comeback That Make No Sense (85) | TIFO 280 k (2017, utdöendet), ingen lista | klar (Mall E) |
+| 9 | 15 Facts About the De-Extinct Thylacine That Make No Sense (83) | Galante 506 k, GroovyGavin 2,4 M, ingen lista; kanalen har redan thylacine-publik (23 k) | klar (Mall E) |
+| 10 | 15 Cheetah Facts That Make No Sense (79) | Lindsay Nikole 1,5 M (2023, flaskhalsen), vågen bildas nu | rid-vågen-spel, bara om snabbt |
+
+Dödade i samma kontroll: **katter** ("domesticated themselves": PBS Eons 13,6 M, Anton
+Petrov 787 k dec 2025, Thought Vortex 331 k maj 2026, Primal Glitch 107 k jun 2026);
+**älg/Kostroma** (fem "Why Don't People Eat Moose" 30 aug–9 sep, alla med Kostroma — levande våg).
+
+## Förslag 2026-09-12: "X Is Coming Back… But Something's Wrong"-formen — LÄTT KONTROLL
+
+Förlaga: kanalens egen *The Thylacine Is Coming Back… But Something's Wrong* (iw7NGEFeh9M,
+2026-06-20, 13 min, 23 495 visningar, kanalens näst bästa juni-video). Formen: ett
+återkomstprojekt som låter som en seger, och vändningen i andra halvan av titeln. Varje
+idé: en sökning + vidIQ-titelpoäng. Full Grind återstår.
+
+| # | Titel (vidIQ) | Kontroll | Status |
+|---|---|---|---|
+| 1 | The Dodo Is Coming Back… But It Will Hatch From a Chicken (97) | Colossals egna 1,6 M/1,1 M (PR), ExtinctEchoes 17 min 327 visn. — ingen har vändningen i titeln | klar |
+| 2 | The Northern White Rhino Is Coming Back… But Both of Them Are Female (94) | bara nyhetsklipp (NBC, Global) | klar |
+| 3 | The Ibex Came Back From Extinction… For Seven Minutes (90) | välkänd faktoid i Shorts; längsta långform 17 min / 201 visn. (Kindred Creatures) | klar |
+| 4 | Cheetahs Are Back in India… But They Keep Dying (89) | indiska nyhetsklipp 2023, NDTV 3 min 2026; ingen dokumentär | klar |
+| 5 | They Saved the Tasmanian Devil… Then It Ate 3,000 Penguins (88) | två minikanaler (17 och 163 visn., jul/aug 2026) | klar |
+| alt | The Quagga Is Coming Back… But It's Just a Zebra (98) | neo 230 k (2018, 3 M prenumeranter) — gammal men synlig | risk |
+| alt | The Aurochs Is Coming Back… But It Already Failed Once (94) | Ben G Thomas 1,22 M (2020, Heck-boskapen) + två långa Danny Draws History aug/sep 2026 | risk |
+
+## Förslag 2026-09-12: fem thylacine-videor (utöver junivideon) — LÄTT KONTROLL
+
+Kanalen har thylacine-publik (junivideon 23 495 visningar). Dessa fem undviker Colossal-
+återkomsten som junivideon täcker. En sökning + vidIQ-poäng vardera. Full Grind återstår.
+
+| # | Titel (vidIQ) | Kärnfakta (verifierade) | Kontroll | Status |
+|---|---|---|---|---|
+| 1 | The Last Thylacine Was Lost for 85 Years. It Was in a Cupboard. (97) | Dog 7 sep 1936, 59 dagar efter fridlysningen; hona, inte "Benjamin"; Paddle & Medlock hittade skinn och skelett i TMAG:s utbildningsskåp dec 2022 | ABC 2 min 2022; Predator Country 21 min 3 789 visn. (2 000 pren., 14 aug 2026) på exakt vinkeln + två mindre i sep — liten våg | risk, gör snabbt eller vänta |
+| 2 | Someone Painted a Thylacine 2,000 Years After It Went Extinct (95) | Griffith University (Taçon) daterade Arnhem Land-målningar till ~1 000 år, mars 2026; fastlandsutdöendet ~3 000 år (White 2018: El Niño, inte dingon) | bara Yahoo-Shorts och en 72-pren-kanal | klar, färsk nyhet |
+| 3 | Tasmania Paid to Kill 2,184 Thylacines for a Crime They Couldn't Commit (92) | 2 184 statliga skottpengar 1888–1909; Attard 2011 (CT-krocktest): käkarna klarade byten på ~5 kg, ett får väger 90 | två mikro-Shorts | klar |
+| 4 | Scientists Ran 1,237 Thylacine Sightings Through a Model. It Died in the 1990s. (91) | Brook m.fl. 2023, Science of the Total Environment: troligast utdöd sent 1980-tal–tidigt 2000-tal, under 1 % chans att den lever | Discovery Vault 29 min 916 visn. (maj 2026) och Ancient Aussie History 15 min 4 320 visn. (391 pren., aug 2026) täcker vinkeln bland mycket annat | klar med not |
+| 5 | A Kangaroo Relative Grew a Wolf's Skull Without Ever Meeting a Wolf (82) | 160 miljoner år isär; Feigin 2018/2019: likheten sitter i reglerande DNA, inte generna; Newton 2021: konvergensen syns från födseln; gomöppningarna avslöjar pungdjuret | Shorts + en 14-minutare om flera djur (692 visn.) | klar, titeln behöver jobb |
+
+## Prioriterad kö 2026-09-12 (alla 20 idéer från 11–12 sep, rankade efter förväntat resultat)
+
+Rankningsgrund: kanalens egna bevis (de-extinction-drama bär: dire wolf-listan 63 k,
+"The Dire Wolf Pups Are Learning.. That's the Problem" 84 k, thylacine 23 k), sedan
+titelpoäng, konkurrens och färskhet. Paradox-mallen har 1,96 M hos Pack Vibes men är
+obevisad hos vår publik, därför hamnar den under kanalens egna former.
+
+| Rank | Titel | vidIQ | Form | Skäl |
+|---|---|---|---|---|
+| 1 | The Dodo Is Coming Back… But It Will Hatch From a Chicken | 97 | Coming back-formen | Mest kända utdöda djuret, kanalens bevisade form, konkret vändning, ingen har den |
+| 2 | Someone Painted a Thylacine 2,000 Years After It Went Extinct | 95 | Apex-gåta | Färsk nyhet (mars 2026), kanalens bästa djur, noll konkurrens |
+| 3 | 15 Facts About the De-Extinct Dodo That Make No Sense | 91 | Mall E | Kanalens bästa format på kanalens största ämne; kan följa på rank 1 |
+| 4 | 15 Facts About the De-Extinct Thylacine That Make No Sense | 83 | Mall E | Befintlig thylacine-publik; titeln behöver höjas |
+| 5 | The Last Thylacine Was Lost for 85 Years. It Was in a Cupboard. | 97 | Apex-gåta | Bästa berättelsen, men en liten våg (3 videor på en månad); gör snabbt eller vänta |
+| 6 | Why Honeybees Live in Our Boxes (But Were Never Tamed) | 95 | Paradox | I produktion; kanalens bästa chans till ny publik, men utanför kärnnischen |
+| 7 | The Northern White Rhino Is Coming Back… But Both of Them Are Female | 94 | Coming back-formen | Stark känsla, ingen långform; välj denna ELLER rank 12 |
+| 8 | Tasmania Paid to Kill 2,184 Thylacines for a Crime They Couldn't Commit | 92 | Knapp/paradox | Ren vinkel, bara Shorts |
+| 9 | They Saved the Tasmanian Devil… Then It Ate 3,000 Penguins | 88 | Coming back-formen | Australiskt pungdjur nära thylacine-publiken, två minikanaler |
+| 10 | Why Elephants Work for Humans (But Were Never Domesticated) | 90 | Paradox | Uppenbar uppföljare till geparden, vågen är på väg — brådskande |
+| 11 | Cheetahs Are Back in India… But They Keep Dying | 89 | Coming back-formen | Rider gepardvågen med annan form |
+| 12 | Why Falcons Hunt for Kings (But Were Never Domesticated) | 92 | Paradox | Närmast geparden i form, noll långform |
+| 13 | 15 Facts About the Last Two Northern White Rhinos That Make No Sense | 91 | Mall E | Överlappar rank 7 |
+| 14 | Why Reindeer Are Only Half Domesticated (And Won't Go Further) | 94 | Paradox | Bra titel, smalare djur för en amerikansk publik |
+| 15 | Scientists Ran 1,237 Thylacine Sightings Through a Model. It Died in the 1990s. | 91 | Apex-gåta | Två små kanaler täcker det redan delvis |
+| 16 | The Ibex Came Back From Extinction… For Seven Minutes | 90 | Coming back-formen | Välkänd faktoid, kort historia |
+| 17 | 15 Facts About the Passenger Pigeon Comeback That Make No Sense | 85 | Mall E | Mindre känt projekt |
+| 18 | Why Ancient Egypt Kept Hyenas (But Never Domesticated Them) | 91 | Paradox | Tunt källmaterial, risk för kort manus |
+| 19 | A Kangaroo Relative Grew a Wolf's Skull Without Ever Meeting a Wolf | 82 | Apex-gåta | Bra biologi, svag titel |
+| 20 | 15 Cheetah Facts That Make No Sense | 79 | Mall E | Bara om den görs inom en vecka |
+
+Reserv (risk): The Quagga Is Coming Back… But It's Just a Zebra (98, neo 230 k 2018);
+The Aurochs Is Coming Back… But It Already Failed Once (94, Ben G Thomas 1,22 M 2020).

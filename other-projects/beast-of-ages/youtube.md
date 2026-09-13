@@ -18,6 +18,7 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 | `manus/moa-15-facts.md` | Mall E (kanalens egen "15 De-Extinct X Facts"), Grinden grön 2026-09-09, tre rundor manusloop, paketet överst |
 | `manus/hippo-on-land-at-night.md` | Mall F (andraperson-scenario), Grinden grön 2026-09-09, tre loopar à tre rundor (utökad till 2 254 ord 2026-09-11), paketet överst |
 | `manus/pufferfish-seafloor-circles.md` | Apex-gåta (spåret först, förövaren sist), klarerad 2026-08-24 och omkontrollerad 2026-09-09, tre loopar à tre rundor (utökad till 1 992 ord 2026-09-11), paketet överst |
+| `manus/honeybees-never-tamed.md` | Paradox-mallen (Pack Vibes "Why X … (But Never Y)"), Grinden grön 2026-09-12, tre rundor manusloop, paketet överst |
 | `manus/de-extinction-eras-veo.md` | 106 Veo-prompter à 8 sekunder, stilbibeln, musikbädden |
 | `analys/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
 | `analys/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
@@ -177,6 +178,10 @@ här dokumentet vinner:**
 
 1. **Ordgränsen.** Den gamla mallen säger 1 500 ord och 170 ord i minuten. Gäller inte —
    hård gräns är 2 000 ord, ungefär 13 minuter i 150 ord i minuten (beslut 2026-08-24).
+   **Tillägg 2026-09-11:** Mathias satte ett golv på **minst 1 800 ord** efter att två
+   manus (1 169 och 884 ord) underkänts som för korta. Orsaken var för lite research
+   före skrivandet, inte loopen. Sikta på 1 800–2 000; hamnar det strax över taket för
+   att materialet bär (flodhästen 2 254) är det godkänt, under golvet är det inte.
 2. **Tonen.** De gamla manusen är skrivna som komplott och tillskriver utdöda djur vilja
    ("de valde stolthet framför överlevnad"). Det bryter mot faktaregeln ovan: ett djur har
    ingen avsikt, och spänningen ska komma från överlevnadsodds, tidspress eller en strid
