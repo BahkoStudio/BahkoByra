@@ -55,3 +55,9 @@ Elsäkerhetsverkets register när org.nr/bolagsnamn finns.
 - Ingen Instagram-ikon på sidan förrän ett konto är bekräftat. Bara Facebook.
 - Statsraden är löftesbaserad (5 orter, 0 kr, 24 h, 1 kontakt) — inga historiksiffror finns.
 - Fråga om bolagsnamn/org.nr för att kunna kontrollera auktorisationen.
+
+## ⚠️ Rättelse 2026-09-14
+
+Kontot @reel_innovations som ledde hit är **Valora**, en företagsförmedling — inte Elvion El. Mathias riktade om förslaget till Valora själva: se `content/leads/valora.md` och `bahkobyra.se/valora/`.
+
+Den här demon ligger kvar och är sann om Elvion El, men den kom aldrig från deras eget konto. Vill du skicka den måste du hitta en egen kontaktväg till firman först.
