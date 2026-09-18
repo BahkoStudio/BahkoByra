@@ -128,3 +128,7 @@ Mathias, Bahko Byrå
 **Instagram-DM**
 
 Hej Alexander! Snygga jobb ni lägger upp, poolrummet särskilt. Gick in på goldring.se och tänkte att sajten inte gör hantverket rättvisa, så jag byggde ett förslag med era egna bilder: [demolänk]. Kika i mobilen, tar en minut. Säg till om du vill att jag visar nästa steg.
+
+## 2026-09-18: omklädd till demomallen v3
+
+Guldpalett ur loggan, mörk loggvariant för ljusa ytor. Förvandlingsfilmen (altan) slutar med loggan, som blir mjuk av uppskalningen från 178 px, så be om vektorfil. Deras tre egna IG-foton i Instagram-sektionen. Mallen har ljus design, glaspiller-meny med loggan i mitten, sidflik, popup och minst tre CTA. 0 Higgsfield-credits.

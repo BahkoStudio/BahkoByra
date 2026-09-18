@@ -118,3 +118,7 @@ mjuk i desktopläge. Be om originalet.
 ## Utkast första kontakt (DM, uppföljning på deras ja)
 
 Här kommer prototypen, byggd för att ni ska ranka högre på Google, få fler följare från sajten och bygga trovärdighet med era riktiga jobb i stället för tre sidor text. Formuläret ingår och är automatiserat, så den som hör av sig får svar direkt, och allt tillsammans gör att kunden väljer just er.
+
+## 2026-09-18: omklädd till demomallen v3
+
+VARM, prototyp utlovad inom 48 h. Blå palett, mörk loggvariant för ljusa ytor. Förvandlingsfilmen (badrum, delas med hd) slutar med loggan. Deras tre egna IG-foton i Instagram-sektionen (små original). Mallen har ljus design, glaspiller-meny med loggan i mitten, sidflik, popup och minst tre CTA. 0 Higgsfield-credits.

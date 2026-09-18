@@ -31,3 +31,7 @@ Bara IG-profilen: namnet, kategorin, bio-meningen ovan, två inlägg (maskin på
 - Ingen kontaktväg utom Instagram. Knapparna går till formuläret och IG. Fråga efter telefon, mejl och ort.
 - Ordmärke i stället för logotyp (profilbilden är 100 px). Be om logofilen.
 - Omdömen i exempelläge. Allt bildmaterial är illustrationer, märkt.
+
+## 2026-09-18: omklädd till demomallen v3
+
+Förvandlingsfilmen slutar med ordmärket HG MASKINENTREPRENAD (ingen logotypfil). Röd palett ur badgen. Alla bilder är illustrationer, och banden har få bilder, så de upprepas. Ingen Instagram-sektion (två inlägg, gick inte att läsa ut). Mallen har ljus design, glaspiller-meny med loggan i mitten, sidflik, popup och minst tre CTA. 0 Higgsfield-credits.
