@@ -28,6 +28,12 @@ import DemoSida from '../_mall/DemoSida';
    FLAGGOR: formuläret går till mathias@bahkobyra.se; hero-filmen är deras eget
    foto i långsam rörelse (ffmpeg, 0 credits); förvandlingsfilmen är en
    illustration och märkt så på sidan; alla stillbilder är deras egna foton.
+   2026-09-19 (Mathias feedback): heron är logotyp + ort + två tjänster,
+   tjänsteband under heron, stegen är en resa utan siffror. Filmerna har
+   bytt plats: FÖRVANDLINGEN (genererad illustration) är hero-film, och den
+   lugna filmen ur ett foto ligger i Varför med logotypen på slutet.
+   Illustrationsnoten under filmen är struken på Mathias begäran — att
+   hero-filmen är en illustration står bara här och i leadfilen.
    =========================================================================== */
 
 export const metadata = {
@@ -68,15 +74,14 @@ const data = {
   formAction: 'mailto:mathias@bahkobyra.se?subject=Swedcro%20-%20offertf%C3%B6rfr%C3%A5gan',
 
   hero: {
-    marke: 'Eskilstuna med omnejd',
-    h1: ['Swedcro', { txt: 'Måleri & Fasad', liten: true }],
-    ingress: 'Din fasad är husets ansikte utåt. Vi putsar, målar och tapetserar, och kommer hem till dig från första besiktning till sista penseldrag.',
-    video: `${M}/video-hero-huset.mp4`,
-    videoMobil: `${M}/video-hero-huset-mobil.mp4`,
+    ort: 'Eskilstuna',
+    tjanster: ['Måleri', 'Fasad'],
+    video: `${M}/video-hero-fore-efter-fasad.mp4`,
+    videoMobil: `${M}/video-hero-fore-efter-fasad-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
-    bevis: ['F-skatt och försäkrade', 'Fri offert', 'Betala när du är nöjd'],
   },
+  tejp: ['Fasadrenovering', 'Akrylputs', 'Sockelputs', 'Måleri', 'Tapetsering', 'Fönstermålning', 'Renovering', 'Eskilstuna'],
 
   tjanster: {
     eyebrow: 'Vad vi gör',
@@ -126,10 +131,9 @@ const data = {
       { rubrik: 'Betala när du är nöjd', text: 'Vi går igenom resultatet tillsammans. Du betalar när du är 100 procent nöjd.' },
       { rubrik: 'Ärliga råd', text: 'Räcker det att måla om sockeln säger vi det, även när en hel fasad hade gett oss mer betalt.' },
     ],
-    video: `${M}/video-varfor-forvandling.mp4`,
+    video: `${M}/video-varfor-huset.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'En villa med sprucken puts och fläckig sockel får ny akrylputs och mosaiksockel. Filmen slutar med Swedcros logotyp.',
-    not: 'Filmen är en illustration av ett fasadjobb: sprucken puts blir ny akrylputs med mosaiksockel.',
+    videoAlt: 'Långsam inzoomning mot ett nymålat vitt tvåplanshus i sol. Filmen slutar med Swedcros logotyp.',
   },
 
   om: {

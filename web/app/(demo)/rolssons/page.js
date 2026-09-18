@@ -45,6 +45,12 @@ import DemoSida from '../_mall/DemoSida';
    IG-sektionen visar deras egna jobbilder i Instagram-ram — byt till
    riktiga inlägg (koder) när de går att hämta. Loggans sista "S" är
    avklippt i deras egen fil — be om originalet.
+   2026-09-19 (Mathias feedback): heron är logotyp + ort + två tjänster,
+   tjänsteband under heron, stegen är en resa utan siffror. Filmerna har
+   bytt plats: FÖRVANDLINGEN (genererad illustration) är hero-film, och den
+   lugna filmen ur ett foto ligger i Varför med logotypen på slutet.
+   Illustrationsnoten under filmen är struken på Mathias begäran — att
+   hero-filmen är en illustration står bara här och i leadfilen.
    =========================================================================== */
 
 export const metadata = {
@@ -85,15 +91,14 @@ const data = {
   formAction: 'mailto:mathias@bahkobyra.se?subject=R.%20Olssons%20M%C3%A5leri%20-%20offertf%C3%B6rfr%C3%A5gan',
 
   hero: {
-    marke: 'Kristinehamn · Karlskoga · Karlstad',
-    h1: ['R. Olssons', { txt: 'Måleri AB', liten: true }],
-    ingress: 'Du får tid, vi förnyar. Allt inom måleri, invändigt och utvändigt, med stort fokus på kvalitet.',
-    video: `${M}/video-hero-trapphus.mp4`,
-    videoMobil: `${M}/video-hero-trapphus-mobil.mp4`,
+    ort: 'Kristinehamn',
+    tjanster: ['Måleri', 'Tapetsering'],
+    video: `${M}/video-hero-fore-efter-trapphus.mp4`,
+    videoMobil: `${M}/video-hero-fore-efter-trapphus-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
-    bevis: ['Kostnadsfri offert', 'Nöjd kundgaranti', 'Ansvarsförsäkrade'],
   },
+  tejp: ['Inomhusmålning', 'Fasadmålning', 'Tapetsering', 'Trapphus', 'Mikrocement', 'Kristinehamn', 'Karlskoga', 'Karlstad'],
 
   tjanster: {
     eyebrow: 'Vad vi gör',
@@ -138,10 +143,9 @@ const data = {
       { rubrik: 'Färg och tapet av kvalitet', text: 'Nära samarbete med ledande leverantörer, för bättre val, pris och garanti.' },
       { rubrik: 'Ärliga råd', text: 'Räcker det att bättringsmåla säger vi det, även när en ommålning hade gett oss mer betalt.' },
     ],
-    video: `${M}/video-varfor-forvandling.mp4`,
+    video: `${M}/video-varfor-trapphus.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Ett slitet trapphus med märken på väggarna målas om till ljust och fräscht. Filmen slutar med R. Olssons logotyp.',
-    not: 'Filmen är en illustration av ett trapphusjobb.',
+    videoAlt: 'Långsam inzoomning i ett nymålat trapphus med trädörrar och ledstång. Filmen slutar med R. Olssons logotyp.',
   },
 
   om: {

@@ -51,6 +51,12 @@ import DemoSida from '../_mall/DemoSida';
    bekräftas. Logotypen kommer ur en skärmdump — be om vektorfil. Omdömen i
    exempelläge. Instagram-inlägg gick inte att läsa ut 2026-09-18 —
    IG-sektionen visar deras egna IG-foton i Instagram-ram (små original).
+   2026-09-19 (Mathias feedback): heron är logotyp + ort + två tjänster,
+   tjänsteband under heron, stegen är en resa utan siffror. Filmerna har
+   bytt plats: FÖRVANDLINGEN (genererad illustration) är hero-film, och den
+   lugna filmen ur ett foto ligger i Varför med logotypen på slutet.
+   Illustrationsnoten under filmen är struken på Mathias begäran — att
+   hero-filmen är en illustration står bara här och i leadfilen.
    =========================================================================== */
 
 export const metadata = {
@@ -91,15 +97,14 @@ const data = {
   formAction: 'mailto:mathias@bahkobyra.se?subject=Trestad%20Bygg%20-%20hembes%C3%B6k',
 
   hero: {
-    marke: 'Vänersborg · Trollhättan · Uddevalla',
-    h1: ['Trestad', { txt: 'Bygg AB', liten: true }],
-    ingress: 'Det som avgör ett bygge syns aldrig. Kvalitetssäkrat enligt ISO 9001, med bas i Trestad och uppdrag i hela Västra Götaland.',
-    video: `${M}/video-hero-badrum.mp4`,
-    videoMobil: `${M}/video-hero-badrum-mobil.mp4`,
+    ort: 'Vänersborg',
+    tjanster: ['Bygg', 'Renovering'],
+    video: `${M}/video-hero-fore-efter-badrum.mp4`,
+    videoMobil: `${M}/video-hero-fore-efter-badrum-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
-    bevis: ['Certifierade enligt ISO 9001', 'Kostnadsfritt hembesök', 'Hela Västra Götaland'],
   },
+  tejp: ['Badrum', 'Kök', 'Renovering', 'Tillbyggnad', 'Uterum', 'Altan', 'ISO 9001', 'Västra Götaland'],
 
   tjanster: {
     eyebrow: 'Vad vi gör',
@@ -139,10 +144,9 @@ const data = {
       { rubrik: 'Ett nummer', text: 'Hantverk och projektledning i samma bolag. Vi håller ihop resten.' },
       { rubrik: 'Ärliga råd', text: 'Räcker det att renovera det som redan sitter säger vi det, även när ett helt byte hade gett oss mer betalt.' },
     ],
-    video: `${M}/video-varfor-forvandling.mp4`,
+    video: `${M}/video-varfor-badrum.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Ett slitet badrum från 80-talet blir ett nytt, kaklat badrum. Filmen slutar med Trestad Byggs logotyp.',
-    not: 'Filmen är en illustration av en badrumsrenovering.',
+    videoAlt: 'Långsam inzoomning i ett nyrenoverat, kaklat badrum. Filmen slutar med Trestad Byggs logotyp.',
   },
 
   om: {

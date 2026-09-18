@@ -56,6 +56,17 @@ const Klocka = () => (<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><c
 const IgIkon = () => (<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.8" /><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" /><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" /></svg>);
 const FbIkon = () => (<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h2.500V4.500H14c-2.200 0-3.500 1.500-3.500 3.600V10H8v3.300h2.500V21h3.400v-7.700h2.600l.5-3.300h-3.100V8.500c0-.3.2-.5.6-.5z" fill="currentColor" /></svg>);
 const GoogleG = ({ className }) => (<svg className={className} viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.400-.2-2H12v3.900h5.400a4.600 4.600 0 01-2 3v2.500h3.200c1.900-1.700 3-4.300 3-7.400z" /><path fill="#34A853" d="M12 22c2.700 0 5-.9 6.600-2.400l-3.200-2.500c-.9.6-2 1-3.400 1-2.600 0-4.800-1.800-5.600-4.100H3.100v2.600A10 10 0 0012 22z" /><path fill="#FBBC04" d="M6.400 14a6 6 0 010-3.800V7.600H3.100a10 10 0 000 9l3.300-2.600z" /><path fill="#EA4335" d="M12 6c1.500 0 2.800.5 3.800 1.500l2.900-2.900A10 10 0 003.100 7.600L6.400 10c.8-2.300 3-4 5.600-4z" /></svg>);
+// Resans hållplatser. Ett steg väljer ikon med `ikon`, annars efter plats: kontakt, besök, offert, arbete, plan — och sist alltid klart.
+const RESEIKONER = {
+  kontakt: <path d="M8 11h32v21H23l-9 7v-7H8z" />,
+  besok: <><path d="M7 24L24 9l17 15" /><path d="M12 21v18h24V21" /><path d="M20 39V29h8v10" /></>,
+  offert: <><path d="M13 6h15l8 8v28H13z" /><path d="M28 6v8h8" /><path d="M18 23h12M18 29h12M18 35h7" /></>,
+  arbete: <><path d="M9 39l17-17" /><path d="M23 13l9-5 8 8-5 9-7-2-3-3z" /></>,
+  plan: <><rect x="8" y="10" width="32" height="30" rx="3" /><path d="M8 19h32M16 6v8M32 6v8" /><path d="M16 28l5 5 10-10" /></>,
+  klart: <path d="M12 25l8 8 16-18" />,
+};
+const RESESTANDARD = ['kontakt', 'besok', 'offert', 'arbete', 'plan'];
+
 const STJARNA = 'M12 2.500l2.900 6.100 6.600.8-4.900 4.600 1.300 6.500L12 17.300l-5.900 3.200 1.300-6.500L2.500 9.400l6.600-.8z';
 const Stjarnor = ({ tomma, etikett }) => (<span className={`${s.stjarnor} ${tomma ? s.stjarnorTomma : ''}`} role="img" aria-label={etikett}>{[0, 1, 2, 3, 4].map((i) => (<svg viewBox="0 0 24 24" aria-hidden="true" key={i}><path d={STJARNA} /></svg>))}</span>);
 
@@ -99,8 +110,11 @@ export default function DemoSida({ data: d }) {
   const harTel = Boolean(k.tel);
   const logoKlass = d.logo ? (d.logo.topp === 'bricka' ? s.logoBricka : d.logo.topp === 'vit' ? s.logoVit : '') : '';
   const lankar = [...d.nav.vanster, ...d.nav.hoger];
-  // Längsta H1-raden, räknad i stora tecken (en liten rad är 0,62 av höjden) — styr H1-storleken i CSS.
-  const h1Tecken = Math.max(...d.hero.h1.map((rad) => (rad.txt ? rad.txt.length * (rad.liten ? 0.62 : 1) : rad.length))).toFixed(1);
+  // Utan logotyp är h1 firmanamnet i text. Längsta raden i stora tecken (en liten rad är 0,62 av höjden) styr storleken i CSS.
+  const h1Rader = d.hero.h1 || [d.namn];
+  const h1Tecken = Math.max(...h1Rader.map((rad) => (rad.txt ? rad.txt.length * (rad.liten ? 0.62 : 1) : rad.length))).toFixed(1);
+  // Bandet under heron: egna ord i d.tejp, annars tjänsternas namn och punkter.
+  const tejp = d.tejp || [...new Set(d.tjanster.kort.flatMap((tj) => [tj.namn, ...(tj.punkter || [])]))].slice(0, 10);
   const tema = {
     '--mork': d.tema.mork,
     '--accent': d.tema.accent,
@@ -143,17 +157,31 @@ export default function DemoSida({ data: d }) {
           </figure>
           <div className={s.wrap}>
             <div className={s.heroIn}>
-              {d.hero.marke ? <p className={s.heroMarke}>{d.hero.marke}</p> : null}
-              <h1 className={s.h1} style={{ '--h1-tecken': h1Tecken }}>{d.hero.h1.map((rad, i) => <span className={rad.liten ? s.h1Liten : undefined} key={i}>{rad.txt || rad}</span>)}</h1>
-              <p className={s.heroIngress}>{d.hero.ingress}</p>
+              <h1 className={s.h1} style={{ '--h1-tecken': h1Tecken }}>
+                {d.logo
+                  ? <Image className={d.logo.ljus ? undefined : d.logo.topp === 'vit' ? s.heroLogoVit : d.logo.topp === 'bricka' ? s.heroLogoSken : undefined} src={d.logo.ljus || d.logo.src} alt={d.namn} width={d.logo.w} height={d.logo.h} style={{ '--logo-ar': (d.logo.w / d.logo.h).toFixed(3) }} priority sizes="460px" />
+                  : h1Rader.map((rad, i) => <span className={rad.liten ? s.h1Liten : undefined} key={i}>{rad.txt || rad}</span>)}
+              </h1>
+              {d.hero.ort ? <p className={s.heroOrt}>{d.hero.ort}</p> : null}
+              <p className={s.heroTjanster}>{d.hero.tjanster[0]} &amp; {d.hero.tjanster[1]}.</p>
               <div className={s.heroCta}>
                 <a className={s.btn} href="#kontakt">{d.cta.txt}</a>
                 <a className={`${s.btn} ${s.btnKontur}`} href={andraVag.href} {...(andraVag.ny ? { target: '_blank', rel: 'noopener' } : {})}>{andraVag.ikon}{andraVag.txt}</a>
               </div>
-              {d.hero.bevis?.length ? <ul className={s.heroBevis}>{d.hero.bevis.map((b) => <li key={b}><Bock />{b}</li>)}</ul> : null}
             </div>
           </div>
         </section>
+
+        {/* Tjänstebandet: rullar åt vänster */}
+        <div className={s.tejp} role="group" aria-label={t.tjanster}>
+          <div className={s.tejpSpar}>
+            {[false, true].map((kopia) => (
+              <div className={`${s.tejpGrupp} ${kopia ? s.tejpKopia : ''}`} aria-hidden={kopia || undefined} key={kopia ? 'b' : 'a'}>
+                {[...tejp, ...(tejp.length % 2 ? tejp : [])].map((ord, i) => <span key={`${ord}-${i}`}>{ord}</span>)}
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* 2. Tjänster: kort med bild */}
         <section className={`${s.sek} ${s.sekMjuk}`} id="tjanster">
@@ -207,7 +235,6 @@ export default function DemoSida({ data: d }) {
                 <figure className={s.varforFilm}>
                   <video autoPlay muted loop playsInline preload="metadata" poster={d.varfor.poster} aria-label={d.varfor.videoAlt}><source src={d.varfor.video} type="video/mp4" /></video>
                 </figure>
-                {d.varfor.not ? <p className={s.varforNot}>{d.varfor.not}</p> : null}
               </div>
             </div>
           </div>
@@ -237,7 +264,15 @@ export default function DemoSida({ data: d }) {
           <section className={s.sek} id="process">
             <div className={s.wrap}>
               <Rubrik r={d.steg} />
-              <ol className={s.steg}>{d.steg.lista.map((st) => <li className={s.stegItem} key={st.namn}><h3>{st.namn}</h3><p>{st.text}</p></li>)}</ol>
+              <ol className={s.resa} style={{ '--n': d.steg.lista.length }}>
+                {d.steg.lista.map((st, i) => (
+                  <li className={s.resaSteg} key={st.namn}>
+                    <span className={s.resaNod} aria-hidden="true"><svg viewBox="0 0 48 48">{RESEIKONER[st.ikon || (i === d.steg.lista.length - 1 ? 'klart' : RESESTANDARD[i] || 'arbete')]}</svg></span>
+                    <h3>{st.namn}</h3>
+                    <p>{st.text}</p>
+                  </li>
+                ))}
+              </ol>
               <div className={s.stegFot}><a className={s.btn} href="#kontakt">{d.cta.txt}</a></div>
             </div>
           </section>

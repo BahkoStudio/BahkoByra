@@ -35,3 +35,7 @@ Bara IG-profilen: namnet, kategorin, bio-meningen ovan, två inlägg (maskin på
 ## 2026-09-18: omklädd till demomallen v3
 
 Förvandlingsfilmen slutar med ordmärket HG MASKINENTREPRENAD (ingen logotypfil). Röd palett ur badgen. Alla bilder är illustrationer, och banden har få bilder, så de upprepas. Ingen Instagram-sektion (två inlägg, gick inte att läsa ut). Mallen har ljus design, glaspiller-meny med loggan i mitten, sidflik, popup och minst tre CTA. 0 Higgsfield-credits.
+
+## 2026-09-19: justerad efter Mathias feedback
+
+Heron är nu logotyp, ort och två tjänster (som Axels Landscaping), med ett rullande tjänsteband under. Förvandlingsfilmen är hero-film och den lugna filmen ligger i Varför med loggan på slutet. Stegen är en resa med ikoner, utan siffror. Noten "Filmen är en illustration" är struken på Mathias begäran, så att hero-filmen är en illustration står bara här och i sidans kodkommentar.
