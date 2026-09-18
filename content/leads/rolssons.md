@@ -42,3 +42,7 @@ Grundat år, antal anställda, priser, Google-betyg. Sajtens ROT-belopp nämns i
 - Riktigt telefon och mejl på sidan — visa inte offentligt. Formuläret går till mathias@bahkobyra.se.
 - **Logotypen**: deras egen bildfil är beskuren så att sista S:et i "OLSSONS" är avkapat. Be om originalfilen.
 - Ett riktigt omdöme + två märkta exempel.
+
+## 2026-09-18: omklädd till demomallen v3
+
+Den dåliga Varför-filmen (panorering över tapeten) är borta. Förvandlingsfilmen är nu det gamla trapphusklippet med loggan på slutet. Ny hero av deras eget trapphusfoto (namnskyltarna suddade). Grön palett. Instagram-sektionen visar deras egna bilder i IG-ram, eftersom Instagram blockerade hämtningen av inlägg. Mallen har ljus design, glaspiller-meny med loggan i mitten, sidflik, popup och minst tre CTA. 0 Higgsfield-credits.

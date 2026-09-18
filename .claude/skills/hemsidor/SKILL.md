@@ -1,563 +1,440 @@
 ---
 name: hemsidor
-description: Bygger kundhemsidor och demoförslag för Bahko Byrå på bahkomallen (SV Hus) — server-renderad Next.js-route med noll egen klient-JS. Enda spåret sedan 2026-08-21; ersätter scroll-cinematic (statiska GRANIT-demos) och demo-recopy (återbruk), som nu är lägen i den här skillen. Trigger på "bygg hemsidan för [kund]", "kunddemo", "demo enligt bahkomallen", "demo som SV Hus", "hemsida i Next.js", "nytt förslag till [lead]", "återanvänd demon", "byt copy på demon", "ny lead samma nisch", "gör om demon", "modda demon till", "lägg till modulerna", "recensionssektion", "sociala-sektion". INTE för bahkobyra.se själv (marknadssajten bor i (sajt)/), inte för reels (bahko-reel) och inte för enstaka bild eller video (higgsfield-generate).
-argument-hint: [företag + nisch/ort, t.ex. "Nordic Snickare snickeri Stockholm"]
+description: Bygger kundhemsidor och demoförslag för Bahko Byrå på demomallen v3 (ljus design, delad mall i web/app/(demo)/_mall/) — server-renderad Next.js-route med noll egen klient-JS. Enda spåret. Trigger på "bygg hemsidan för [kund]", "kunddemo", "ny lead", "nytt förslag till [lead]", "demo enligt mallen", "gör om demon", "klä om demon till nya designen", "byt copy på demon", "ny lead samma nisch". INTE för bahkobyra.se själv (marknadssajten bor i (sajt)/), inte för reels (bahko-reel) och inte för enstaka bild eller video (higgsfield-generate).
+argument-hint: [företag + nisch/ort, eller Instagram-länk, t.ex. "https://www.instagram.com/swedcromaleri"]
 disable-model-invocation: true
 ---
 
-# Hemsidor — kunddemo på bahkomallen
+# Hemsidor — kunddemo på demomallen v3
 
-En väg, inga alternativ: **server-renderad Next.js-route med noll egen
-klient-JS**. Modal, meny, popup och dragspel körs på `:target`, `<details>`
-och checkbox-mönstret. Inget script kan krascha, för det finns inget script.
+En väg, inga alternativ: **en delad mall, och en datafil per kund.**
 
-**Referens — KOPIERA DENNA:** `web/app/(demo)/golvvision/` (`page.js` +
-`golvvision.module.css`). **Mall-kanon 2026-09-06**: första demon med alla
-fyra modulerna (lager-hero med genomskinlig header, Varför oss-film, omdömen,
-sociala), plus allt från förra kanon (drönar-/FPV-hero, linjeritningar,
-klickbara steg utan JavaScript, två video-element per orientering) och de
-tre mallbuggarna rättade (mobilgradientens stopp, galleriets kolumner under
-560 px, h1-vikten). Modulernas CSS ligger sist i filen under en egen rubrik.
-`nordicsnickare` (2026-08-21) och `osterlunds` (2026-08-31) saknar modulerna
-— kopiera dem inte längre.
+- Mallen: `web/app/(demo)/_mall/` — `DemoSida.js` (serverkomponent),
+  `mall.module.css` (all design), `fonter.js` (de fyra typsnitten).
+  Understrecket gör mappen osynlig för routern.
+- Kunden: `web/app/(demo)/<kund>/page.js` exporterar `metadata` och skickar ett
+  `data`-objekt till `<DemoSida />`. **Ingen egen CSS-fil per kund.**
+- **Kanon — KOPIERA DENNA:** `web/app/(demo)/swedcro/page.js` (2026-09-18).
+- Noll egen klient-JS. Meny och modal på `:target`, popup på kryssruta, frågor
+  på `<details name>`, rörelse på scroll-driven CSS. Inget script kan krascha,
+  för det finns inget script.
 
-`web/app/(demo)/svhus/` är den **äldre** förlagan (mall-kanon 2026-08-18) och
-saknar allt ovan — kopiera den inte längre. Den och `shabifix/` har dessutom
-kvar två brister som rättats i nordicsnickare: sex CSS-regler under typgolvet
-11 px, och versalrader över 35 tecken.
+**Designen bestämdes av Mathias 2026-09-18** utifrån två referenssajter
+(P.N Byggentreprenad och Axel's Landscaping). En ändring av designen görs i
+mallen och slår igenom på alla demos samtidigt — ändra aldrig utseendet i en
+enskild kunds fil.
 
-Skillen har **tre lägen som bara skiljer sig i mediakostnad** — strukturen,
-copy-reglerna och QA:n är identiska:
+## Utdött — byggs aldrig mer
+
+Allt nedan är borttaget ur mallen. Hittar du det i en äldre demo är den demon
+inte omklädd än (se läget Omklädnad).
+
+- **Mörk kol-sida** (golvvision-kanon 2026-09-06 och alla kopior av den). Sidan
+  är ljus nu.
+- **Lager-heron** med logotypen som h1 mitt i bild. Heron har rubrik igen.
+- **Siffer-raden** (uppräknande tal under heron). Mathias 2026-09-18: "den
+  delen ska bort, har ingen påverkan alls." Gäller även löftessiffror.
+- **Tjänste-tejpen**, **Förvandlingen** (före/efter-par + kvadratiskt galleri),
+  **klickbara steg**, **sociala rutnätet med platshållare**, **en CSS-fil per
+  kund**, **en egen palett av tio variabler per kund**.
+- Scroll-koreografin från augusti (fast videolager, GSAP, Lenis) och allt
+  under `web/public/cloud/`. Avskaffat 2026-08-21.
+
+## Sidan, uppifrån och ned
+
+Ordningen är fast och ligger i `DemoSida.js`. QA:n kontrollerar den.
+
+| # | Sektion | Vad den är |
+|---|---|---|
+| — | **Header** | Fast. Mitten: glaspiller med två länkar · **kundens logotyp** · två länkar. Vänster: telefonnumret. Höger: rund accentknapp. Genomskinlig med vit text över filmen, vitt glas med mörk text efter 120 px skroll. Mobil: logotyp, Ring-knapp, Meny. |
+| 1 | **Hero** | Helskärmsfilm. Vänsterställt: ort-märke, **firmanamnet i Bebas Neue som h1**, EN mening, fylld knapp + konturknapp "Ring …", tre verifierade bevisord med bock. |
+| 2 | **Tjänster** | Kort med **bild** överst, linjeritningen som liten ikon på bildkanten, rubrik, text, tre punkter, länk till formuläret. Hela kortet klickbart. |
+| 3 | **Våra jobb** | **Två band som rullar åt var sitt håll** — första åt vänster, andra åt höger. Paus vid hover. Knapp efter banden. |
+| 4 | **Varför oss** | **Mörk sektion.** Vänster: rubrik, fyra punkter i kort, två knappar. Höger: **förvandlingsfilm som slutar med kundens logotyp**. |
+| 5 | **Om oss** | Krämvit. Vänster: **logotypen** på vitt kort. Höger: historien i två stycken, tre bevisord (ord, inte räknare), länk. |
+| 6 | **Så går det till** | Numrerade kort (01–05), knapp. *Valfri — utelämna `steg` i data så försvinner den.* |
+| 7 | **Omdömen** | Google-stil: betygsbricka (bara verifierat betyg), vita kort med färgad initial, G-märke på Google-omdömen, gula stjärnor. Två knappar. |
+| 8 | **Instagram** | Profilrad i Instagram-stil med logotypen i gradientring + följ-knappar, och **tre riktiga inlägg inbäddade** med bildtext, gilla och kommentarer. |
+| 9 | **Frågor** | Krämvit. Vänster: rubrik + kort med Ring-knapp (klistrat). Höger: dragspel, en öppen åt gången. |
+| 10 | **Kontakt** | **Vårt formulär på vitt kort över en suddig film.** Vänster: rubrik, tre bockar, kontaktrutor. |
+| 11 | **Footer** | Ljus. **Logotypen stor**, kort text, sociala ikoner, tre kolumner (Sidan, Tjänster, Kontaktuppgifter), org.nr i bottenraden när det är verifierat. |
+| — | **Sidflik** | Stående "RING 07x-…" i högerkanten, accentfärg. Dold på mobil, där headern bär Ring-knappen. |
+| — | **Popup** | Nere till höger, ovanför Bahko-knappen, efter 14 s. Stängs med kryssruta. |
+| — | **Bahko** | Demo-knappen nere till höger + modalen. Smaragd `#10B981` på marin `#0A1628`. **Rörs aldrig.** |
+
+**Uppmaningar:** minst tre knappar till formuläret i innehållet (mallen ger fem:
+hero, jobb, varför, steg, omdömen) plus header, tjänstekortens länkar,
+frågekortet, popupen och sidfliken. Alla bär **samma verb**.
+
+## Designen — det som gör sidan proffsig
+
+**Typsnitt (samma för alla kunder, ligger i `fonter.js`):**
+
+| Roll | Typsnitt | Var |
+|---|---|---|
+| Firmanamnet | **Bebas Neue** 400, versaler, spärrat 0,035em | Bara h1 och stegnumren |
+| Rubriker, meny, knappar | **Outfit** 500–800, rubriker 800 med −0,025em | h2, h3, nav, btn |
+| Den bärande frasen | **Fraunces kursiv** 600 i accentfärg | `<em>` i varje h2 |
+| Brödtext | **Inter** 400–600 | allt annat |
+
+Tvåtonsrubriken är mallens signatur: `rubrik: ['Allt under', 'samma tak']` —
+första delen rak och mörk, andra delen kursiv serif i märkets färg. Den
+kursiva delen ska vara **poängen**, inte ett utfyllnadsord.
+
+**Färg: vitt, och EN mättad accent ur kundens logotyp.** Ytor som växlar: vit
+`#fff` · mjuk `#F5F7FA` · kräm `#F7F4EE`. Text `#0F172A` och `#475569`. Mörkt
+bara på tre ställen: Varför-sektionen, kontaktsektionen och heron.
+
+Kunden sätter exakt sex värden i `tema`:
+
+| Fält | Vad | Krav (mät!) |
+|---|---|---|
+| `mork` | Märkets mörka ton. Slöjan över filmen, Varför, Kontakt | Luminans under 0,06 |
+| `accent` | Knappfärgen, rakt ur logotypen | Vit (eller `paAccent`) text ≥ 4,5:1 |
+| `accentHover` | Ett steg mörkare | — |
+| `accentText` | Accenten som **text på ljus yta** | ≥ 4,5:1 mot kräm `#F7F4EE` — den strängaste ytan |
+| `accentLjus` | Accenten som **text på mörk yta** | ≥ 4,5:1 mot `mork` |
+| `paAccent` | Textfärg på knappen. `#fff`, eller `#0F172A` om accenten är ljus (gul, lime) | ≥ 4,5:1 |
+
+Är logotypen svartvit: välj en mättad accent ur nischen (gräsgrön, signalorange,
+kobolt) — aldrig grått. **Aldrig pastell som knappfärg, aldrig två accenter.**
+Swedcro: `#0B132B` · `#D92525` · `#B91C1C` · `#B91C1C` · `#FF8A7E` · `#fff`.
+
+**Typskala:** sex steg som variabler (`--tx-xs` 12 · `--tx-s` 14 · `--tx-m` 16 ·
+`--tx-l` 18 · `--tx-xl` 22 · `--tx-2xl` 24 px, och `--tx-siffra` 32 px bara för
+betygstalet), plus egna `clamp()` för h1, h2 och ingress. Knapptext minst 16 px. **Brödtext är aldrig under 16 px**; 12 och 14 är för etiketter, noter och
+bildtexter. Inga lösa rem-värden — design-loopen räknade till tjugo närliggande
+storlekar innan skalan fanns.
+
+**Form:** alla kortytor 18 px radie (kort, frågor, betygsbricka, popup, meny, filmer),
+knappar och fält 12 px, formulärkortet 24 px, piller 999. Inga andra radier. Neutrala höjdskuggor,
+aldrig färgat glöd runt kort. Knappen får en mjuk skugga i sin egen färg —
+det är det enda undantaget. Luft: sektioner `clamp(4,5rem, 9vw, 7,5rem)`.
+
+## Lägen — skiljer sig bara i mediakostnad
 
 | Läge | När | Credits |
 |---|---|---|
-| **Återbruk** | Leadet har redan en demo, eller en demo i samma nisch finns | 0 |
-| **Lån** | Nischen finns i biblioteket men inte leadet | 0 |
-| **Nybygge** | Ingen bild i nischen finns | ~95 med två klipp (hero + Varför oss, 5 s 1080p à ~45) + bilder à 2 — **under 100 körs, över 100 frågas** (CLAUDE.md). 4k eller längre klipp går över gränsen: fråga. |
+| **Omklädnad** | En äldre demo (mörk kol-design) ska till v3 | **0** — se nedan |
+| **Återbruk / lån** | Nischen finns redan i `web/public/*/media/` | 0 |
+| **Nybygge** | Inget i nischen finns | **~35–50** — se Media |
 
-## Vad som INTE längre byggs
+Saldot är litet (Mathias 2026-09-14). Under 100 credits körs, över 100 frågas
+(CLAUDE.md) — men sikta på under 50.
 
-Den gamla scroll-koreografin (fast videolager, cirkel-wipe, 520vh/620vh,
-GSAP, Lenis, progress-fönster) är **avskaffad 2026-08-21**. Den gav
-återkommande klagomål: för mycket film, suddig text, mobilen rusade.
-Förvandlingen lever kvar där den hör hemma — som hero-video och som
-före/efter-par. Bygg aldrig nya demos under `web/public/cloud/`.
+### Omklädnad: gammal demo → v3, utan credits
 
-## Modulerna — fyra sektioner varje demo ska ha (Mathias 2026-09-06)
-
-Mathias spec, i hans ordning. Formuleringen var skriven för Webflow/Framer;
-här är den översatt till skillens spår: server-renderad route, noll egen
-klient-JS. Allt som "dyker upp med scroll" körs på `animation-timeline:
-scroll()` bakom `@supports`, med ett komplett utgångsläge där stödet saknas.
-**Sanningsregeln gäller oförändrad i alla fyra** — modulerna ändrar formen,
-inte vad som får påstås.
-
-`golvvision` (2026-09-06) är första demon med modulerna och därmed kanon.
-`nordicsnickare` och `osterlunds` saknar dem.
-
-### 1. Hero — lagret först, filmen sedan
-
-Heron är ett **lager i lagerform** över videon. Lagret innehåller exakt fyra
-saker, uppifrån och ned, centrerade:
-
-1. **Kundens logotyp.** Finns ingen: ordmärket i display-typsnittet, och det
-   flaggas (se Logotypen). Aldrig ett påhittat märke.
-2. **Två tjänster** — firmans två viktigaste, i firmans egna ord
-   (t.ex. "Jordbyggnad · Sprängning").
-3. **Ort/område** (t.ex. "Oravais").
-4. **Knapparna som de är** (primär handling + `tel:`). De ändras inte.
-
-**Inga extra texter, inga slogans, ingen rubrik.** Det ersätter den tidigare
-regeln "EN rubrik" från 2026-08-21. Bärande idén flyttar till första
-sektionen under heron — den försvinner inte, den slutar bara konkurrera med
-logotypen.
-
-- **h1 är kundnamnet.** Sidan måste ha exakt en h1 och heron har ingen
-  rubrik längre, så `<h1>` omsluter logotypen (`alt` = firmanamnet, eller
-  ordmärket som text). Tjänster och ort är ett `<p>`, inte rubriker.
-- **Filmen spelar från start.** `autoplay muted loop playsinline` bakom
-  lagret, postern = bildruta 0, oförändrat. (Första tolkningen 2026-09-06
-  var att filmen skulle vänta på skrollen — fel, rättat av Mathias samma dag.)
-- **Headern är genomskinlig när sidan öppnas och får sin bakgrund först
-  när besökaren börjar skrolla.** Det är vad "bakgrunden syns inte förrän
-  man skrollar" betyder. `.sida .hdr` (två klasser, vinner över `.hdr`)
-  börjar på `rgba(…, 0)` och tonar in bakgrund och underkantslinje över
-  `animation-range: 0 120px` på `animation-timeline: scroll(root)`, bakom
-  `@supports`. **Utan stöd, och vid `prefers-reduced-motion`: den vanliga
-  täckta headern.** En header som aldrig får bakgrund är oläslig över
-  innehållet.
-- **Hero-filmen är en före/efter-effekt** (Mathias 2026-09-07, ersätter
-  drönarshot som standard). Klippet börjar i före-läget och slutar i
-  efter-läget, med förvandlingen som ett fysiskt arbete i bild — samma
-  kamera, en tagning. Seedance 2.5 i `--mode omni_reference` tar både
-  `--start-image <A>` och `--end-image <B>`: A och B är kedjans egna bilder,
-  så filmen landar exakt i efterbilden. Prompten beskriver processen (panel
-  bräda för bräda, avjämningsmassan som flyter, taket som läggs) och
-  förbjuder crossfade och morf som förut. Drönar-/FPV-shot får användas när
-  nischen saknar synlig förvandling. Två `<video>` per orientering,
-  oförändrat.
-- Kontrast: lagrets text mäts mot **klippets ljusaste bildruta** (mät över
-  fem tidpunkter, se Steg 6). Headertexten likaså: headern är genomskinlig
-  överst och ligger direkt på filmen.
-
-### 2. Varför oss — 5 sekunders film, 3–4 punkter
-
-Hela sektionen byts ut. Inga skäl-kort, ingen brödtext.
-
-- **En 5-sekundersvideo, Seedance 2.5**, genererad som bevis på arbetet:
-  samma subjekt som heron eller nischens metafor (se Generering), med en
-  fysisk process i bild — aldrig en crossfade. **Ingen musik** — loopar är
-  alltid mutade (`-an`). Weboptimeras och postras som heron.
-- **Max 3–4 korta punkter** bredvid eller under filmen. Varje punkt inom
-  VERIFIERAT-blocket. Riskreverseringen (den mening som avstår försäljning)
-  får bo här. Ingen rubrik längre än en rad.
-- Fokus är visuell trovärdighet, inte copy. Kan punkterna inte skrivas utan
-  att påstå något overifierat: färre punkter, inte vagare.
-- Kostnad: `generate cost` först, som alltid. Två klipp per demo (hero +
-  varför oss) ligger nära 100-gränsen i 1080p — se kostnadstabellen.
-
-### 3. Google-recensioner — bara riktiga
-
-En ren sektion: **stjärnor**, **3–5 korta recensioner**, en knapp
-**"Se alla recensioner"** som går till firmans Google-profil.
-
-**Det här är den modul som lättast blir en lögn.** Ett betyg och recensioner
-med namn är historik åt en riktig kund, och sanningsregeln säger: aldrig
-fabricerad. Därför:
-
-- **Betyg, antal och recensioner hämtas ur firmans faktiska Google
-  Företagsprofil**, och bara därifrån. Recensionerna citeras ordagrant eller
-  kortas utan att ändra innebörd; namn som de står (förnamn + initial räcker).
-  Skriv källan och datumet i VERIFIERAT-blocket.
-- **Finns ingen profil, eller inga recensioner:** sektionen byggs ändå men i
-  **tomt läge** — samma layout, stjärnorna omarkerade, tre tomma
-  recensionskort, och en enda rad: "Här visas era Google-recensioner." Knappen
-  finns kvar men leder till Googles sida för att skapa/hitta profilen. Inga
-  påhittade citat, inga påhittade siffror, inte ens "4,9". Det tomma läget är
-  ett säljargument i sig: det visar var betyget kommer att stå.
-- **Leta först på kundens egen hemsida.** Golvvision hade inga Google-
-  recensioner men tre riktiga omdömen under "Nöjda kunder" på sin sajt — de
-  är verifierade (kundens egen publicering), citeras ordagrant med namn och ort
-  som de står, och källan skrivs ut under korten: "Omdömen från golvvision.se".
-  Stjärnor per omdöme följer sajtens egen presentation.
-- **Exempel när riktiga saknas helt** (Mathias 2026-09-06: "sätt ett exempel
-  bara"): tillåtet, men varje exempelkort bär ordet **Exempel** synligt, och
-  noten under säger "Exempel — byts mot era riktiga omdömen". Aldrig ett
-  samlat betyg eller antal, inte ens som exempel.
-- **Google-stil på presentationen** (Mathias 2026-09-06): G-märket i
-  sektionens huvud, gula stjärnor (#FBBC04), vita rundade kort med
-  initial-avatar, namn och ort — så det läses som Google-recensioner. Det är
-  form, inte påstående: G-märket säger var betyget kommer att stå, inte att
-  det redan finns där. Aldrig ett "verifierad"-märke, aldrig påhittade
-  siffror. Stjärnorna är ren SVG.
-- Flagga i leveransen om sektionen är i tomt läge eller exempelläge.
-
-### 4. Sociala medier — följ arbetet
-
-En modul, superminimalistisk:
-
-- **Ikoner för Instagram och Facebook** — länkade **bara** till verifierade
-  konton. Instagram är nästan alltid verifierat (det är där leadet hittades).
-  Facebook läggs bara till om en profil faktiskt hittats; annars utelämnas
-  ikonen — en ikon utan länk, eller till en gissad URL, är samma fel som en
-  gissad mailadress.
-- **En kort text:** "Följ vårt arbete i vardagen". Inget mer.
-- **Rutnät med 3–6 bilder**, kvadratiska, samma rutnätsregler som galleriet
-  (två kolumner på mobil, aldrig en). Platshållare är tillåtna här — men de
-  räknas som bilder i `media/`: varje fil används exakt en gång, `md5sum`
-  mot resten av mappen, och brasklappen "Illustrationsbilder — byts mot era
-  egna" står en gång under rutnätet om bilderna inte är kundens.
-- Bilderna länkar inte till påhittade inlägg. Antingen till kontot, eller
-  inte alls.
-
-### Sektionsordning med modulerna
-
-Hero (lager) → Förvandlingen (före/efter + galleri) → Vad vi gör (kort) →
-Så går det till (steg) → **Varför oss (film + punkter)** → **Google-
-recensioner** → **Sociala medier** → Vanliga frågor → Kontakt → Footer.
-Bärande idén bär rubriken i Förvandlingen, eftersom heron inte längre har
-någon.
-
-## Arkitektur
-
-- Routen läggs som `web/app/(demo)/<kund>/page.js` + `<kund>.module.css`.
-  Route-gruppen `(demo)/` har egen rot-layout utan Bahkos header och footer.
-  Marknadssajten bor i `(sajt)/`. URL blir `bahkobyra.se/<kund>/`.
-- **Lägg ALDRIG routen under `/cloud/`.** Catch-all-rewriten i heliga
-  `next.config.mjs` (`/cloud/:path*` → `index.html`) vinner över app-routen
-  och ger 404. Dokumenterad incident 2026-08-18.
-- Media i `web/public/<kund>/media/`. Bilder genom `next/image` med
-  `width`/`height` (ger WebP/AVIF och responsivt gratis). Video som ren
-  `<video>`.
-- **Transkodning:** `ffmpeg` finns på Mathias maskin men **inte i
-  container-sessioner**. Kontrollera med `command -v ffmpeg` innan du planerar
-  in ett videosteg; saknas det, leverera filen som den är.
-- Fonter via `next/font`. Kursiv display-vikt i EGEN instans med
-  `preload: false` — den används i enstaka rubrikord och ska inte belasta
-  första renderingen.
-- Mörk canvas: `html:has(.sida), body:has(.sida) { margin:0; background:… }`
-  plus ett fixed `::before`-lager som hängslen där `:has` saknas.
-  `scroll-padding-top` = headerhöjd + marginal, annars landar ankarhopp under
-  den klistrade headern.
+1. Läs den gamla `page.js`. **VERIFIERAT-blocket, kontaktuppgifterna, copyn,
+   frågorna och omdömena följer med oförändrade** — de är redan granskade.
+2. Gamla hero-filmen (före/efter, genererad) **blir förvandlingsfilmen** i
+   Varför: skala till 1280×720 och sätt logokortet på slutet (recept nedan).
+3. Ny hero: långsam rörelse över kundens bästa egna foto, eller det gamla
+   Varför-klippet som ping-pong. Recept nedan.
+4. Kontaktfilmen: samma klipp som heron, nedskalat och suddat.
+5. Tjänstebilder och jobbband: kundens egna foton först, sedan demons gamla
+   galleri- och socialbilder. **Räcker de inte till två band om minst fem
+   bilder vardera: låna ur biblioteket och märk det i `jobb.not`** (se
+   Sanningsregeln). Generera inte.
+6. Ta bort den gamla `<kund>.module.css` och mediafiler som inte längre används.
+7. Siffer-radens innehåll kastas inte: de verifierade orden flyttar till
+   `hero.bevis` och `om.bevis` — som ord, utan räknare.
 
 ## Sanningsregeln — avgör om förslaget går att skicka
 
-Ta den här först, för det är den som stoppar leveranser.
+- **VERIFIERAT-block** i `page.js` toppkommentar: allt som får påstås, källa
+  och datum, och en rad om vad som INTE är verifierat (ledtider, antal,
+  garantier, priser). Allt utanför blocket är förbjudet.
+- **Aldrig fabricerad historik åt en riktig kund.** Inga projektantal, inga
+  årtal, inga betyg som inte står i deras egna kanaler eller i registret.
+- **Omdömen:** riktiga först — Google-profilen, sedan kundens egen sajt
+  (Offerta, Reco räknas). Ordagrant eller kortat utan ändrad innebörd, källan i
+  `kalla`. `google: true` bara på omdömen som faktiskt står på Google.
+  **`betyg` sätts bara när värde och antal är verifierade.** Saknas riktiga:
+  exempelkort med `exempel: true` — mallen ger dem **tomma stjärnor** och
+  taggen "Exempel", och `not` säger "Exempel — byts mot era riktiga omdömen".
+  Aldrig ett samlat betyg i exempelläge.
+- **Instagram:** bara kundens egna, riktiga inlägg. Går inga koder att få fram:
+  `kort`-läget med deras egna bilder i Instagram-ram — **utan gilla-siffror och
+  utan påhittade kommentarer.** Facebook-knappen bara med verifierad sida.
+- **Varje bildfil används exakt en gång** och ligger i en enda sektion.
+  `md5sum` på mappen före leverans: antal unika hashar = antal filer.
+- **Lånade och genererade bilder märks, en gång per sektion:** `jobb.not`
+  ("Illustrationsbilder — byts mot era egna projektfoton") och `varfor.not`
+  ("Filmen är en illustration av …"). Är bilderna kundens egna säger noten det.
+- **Kontaktuppgifter:** bara verifierade. Saknas telefon: utelämna `tel` —
+  mallen byter då själv Ring-knapparna mot Instagram och formuläret. Aldrig ett
+  gissat nummer. Formuläret går alltid till `mathias@bahkobyra.se` i demon.
+- **Demos med riktiga kontaktuppgifter visas inte publikt** (Mathias). De är
+  `robots: noindex` och länkas bara i DM till kunden.
+- Firmanamnet är en uppgift. Läst ur ett Instagram-handle: säg det och be
+  Mathias bekräfta stavningen. **Namnfällor** har slagit till tre gånger
+  (alltfix.se var en städfirma, A.D. Valora AB var ett annat bolag) — ett
+  registerträff på namnet räcker inte, orten och nischen ska stämma.
 
-- **Skriv ett VERIFIERAT-block** i sidfilens toppkommentar: allt som får
-  påstås, och en rad om vad som INTE är verifierat (ledtider, antal,
-  garantier, policyer, priser). Allt utanför blocket är förbjudet — även
-  "harmlösa" detaljer som "elva yrkesgrupper".
-- **Aldrig fabricerad historik åt en riktig kund.** Har firman inga
-  publicerade siffror blir statsraden löftesbaserad: 0 kr för första steget,
-  svar inom 24 h, fast pris, en kontaktperson. Registrets registreringsår är
-  den enda historiksiffra som får användas, och bara om den är verifierad.
-- **Recensioner och betyg är historik.** Google-sektionen (Modulerna, 3)
-  visar bara det som står i firmans faktiska Google-profil, annars tomt läge.
-  Ett påhittat "4,9" är samma fabrikation som ett påhittat projektantal.
-- **Varje bild i `media/` ska användas exakt en gång.** Samma bild på två
-  ställen läser som att materialet är tunt; en oanvänd fil är betald och
-  bortglömd. Räkna förekomsterna i ett skript före leverans, och städa bort det
-  som hörde till en tidigare arkitektur (bakgrundsloopar, gamla postrar).
-- **Lånade och genererade bilder märks — en gång per sida, inte per bild.**
-  En egen rad under före/efter-paret: "Illustrationsbilder — byts mot era egna
-  projektfoton." Bildtext på varje enskild bild ratades 2026-08-21: fyra
-  upprepningar av samma brasklapp drar blicken från arbetet och får sidan att
-  se osäker ut. Ärligheten kräver att det står, inte att det står överallt.
-  Ingen sektion får heta Våra projekt eller Referenser.
-- **Kontaktuppgifter:** bara verifierade. Annars platshållaren
-  `070-123 45 67` och formulär-mailto till `mathias@bahkobyra.se` — aldrig en
-  gissad kundadress. **Flagga platshållarna i både PR och leverans.**
-- Firmanamnet räknas som en uppgift. Är det läst ur ett Instagram-handle, säg
-  det och be Mathias bekräfta stavningen.
+## Steg 1 — Verifiera nischen
 
-## Steg 1 — Verifiera nischen (obligatoriskt)
+Gissa aldrig bransch från firmanamnet. Ordning: kundens hemsida → Instagram →
+bolagsregister (allabolag/merinfo via WebSearch, `r.jina.ai` när sidan
+blockerar). Profilnamn och bio i en skärmbild Mathias klistrar in räknas som
+verifiering. Går nischen inte att verifiera: säg det och fråga.
 
-Gissa **aldrig** bransch från firmanamnet. Verifierade fällor: ett IG-namn
-krockade med ett orelaterat USA-bolag; ett register spretade åt tre håll och
-krävde Mathias blick på kundens Instagram.
+**Norska leads byggs på norska** (`sprak: 'nb'` i data — mallens egna texter
+finns översatta) och verifieras mot brreg.no/proff.no.
 
-Ordning: kundens hemsida → Instagram → bolagsregister (allabolag/merinfo via
-WebSearch, `r.jina.ai`-proxy när sidan blockerar). Instagram är oftast
-inloggningsspärrad — **profilnamnet i en DM-tråd Mathias klistrar in räknas som
-verifiering**, det är firmans egen självbeskrivning.
+**Instagram-koderna hämtas utan inloggning:**
 
-Går nischen inte att verifiera: säg det och fråga. Bygg aldrig på tyst
-gissning. Vid mismatch mellan media och nisch (kranlyft säljer inte måleri):
-stanna och flagga.
+```sh
+curl -sL -A "Mozilla/5.0" "https://www.instagram.com/<handle>/embed/" -o ig.html
+grep -o '\\"shortcode\\":\\"[A-Za-z0-9_-]*\\"' ig.html | sort -u
+```
+
+Välj tre inlägg som visar **arbete** (inte en logotyp eller en helgdagshälsning)
+— öppna `https://www.instagram.com/p/<kod>/embed/captioned/` och titta. Mallen
+bäddar in dem med `<iframe>`; ingen embed.js, så noll-JS-regeln håller.
 
 ## Steg 2 — Media
 
-**Trappan, i kostnadsordning. Gå aldrig vidare utan att ha uttömt steget före.**
+**Trappan, i kostnadsordning:** kundens egna foton (sajtens galleri, Instagram)
+→ demons gamla bilder → lån ur `web/public/*/media/` (`md5sum` mot dubbletter)
+→ generering.
 
-1. **Leadets egen demo** (vid "gör om demon"): flytta mappen till
-   `web/public/<kund>/media/`.
-2. **Lån ur biblioteket:** `ls web/public/cloud/*/media/`. Rikast är
-   `cloud/bygg/media/` (före/efter-hus, villa, badrum, skiffertak), plus
-   `nordiapartner`, `ekstromsbygg`, `galiano`, `alfredallservice`.
-3. **Ny generering** — kostar credits. Kostnadsregeln bor i CLAUDE.md och gäller
-   före den här skillen: **under 100 credits körs, över 100 frågas.**
-   Formuleringen "aldrig utan beställning" gäller inte längre.
+Varje demo behöver: hero-film liggande + stående, två postrar, förvandlingsfilm
+med logokort, poster, kontaktfilm + poster, en bild per tjänst (4:3), och
+**10–14 jobbilder (4:3, 960×720) till två band**, logotypen.
 
-**Kontrollera alltid lånade filer med `md5sum`.** Samma bild ligger under olika
-namn i olika demos: `galleri-platsbyggt-snickeri.jpg` (galiano) och
-`mattbestalld-frast-spegel-bjorkplywood.jpg` (tryggbyggservice) är identiska.
-Två "olika" lånade bilder blev samma spegel i ett galleri 2026-08-21. Kör
-`md5sum` på hela mediamappen och jämför antalet unika hashar mot antalet filer
-innan du skriver bildtexter.
+### Var credits läggs (och inte)
 
-### Generering
+Den enda filmen som **måste** genereras är förvandlingen i Varför — och den
+visas i halv bredd, så **720p räcker** (5 s ≈ 32 credits; 4 s ≈ 26).
+Heron, kontaktfilmen och slutkortet byggs lokalt med ffmpeg för 0 credits.
 
-Kostnadskolla varje modell före körning — priser ändras, hårdkoda dem inte här.
-Under 100 credits körs utan att fråga; över 100 frågas (CLAUDE.md).
-Bilder: `nano_banana_2` eller `seedream_v5_pro`. Video: `seedance_2_5`
-(mall-standard för Next.js-spåret, Mathias 2026-08-18), `--mode omni_reference`
-för start- och slutbild.
-
-**Två klipp per demo sedan 2026-09-06:** heron (drönarshot) och Varför
-oss-filmen (5 s, Seedance 2.5, arbetet i bild). Kostnadskolla båda innan
-något körs — tillsammans ligger de nära 100-gränsen.
-
-**Förvandlingen är kedjan A → B → C**, i den ordningen, för konsistensen ÄR
-konceptet:
-
-- **A — utgångsläget.** Fotorealistiskt, subjektet centrerat, naturlig vy.
-  Alltid `"documentary contractor photography, natural muted colors, no HDR"`
-  — blank AI-finish har ratats. Alltid `"no people, no text, no logos"`.
-- **B — resultatet.** `--image <A>`, prompten börjar "Use the reference image
-  as the exact same …" och slutar "Keep the … geometry, position and
-  perspective IDENTICAL to the reference." Räkna upp varje objekt som ska vara
-  kvar: "no new panels, nothing added or removed anywhere else".
-- **C — beviset.** `--image <B>`, makro på detaljen som visar hantverket
-  (fogen, snittet, ådringen, klämman).
-
-**Granska B mot A punkt för punkt innan något klipp genereras.** Interiör:
-blandare, väggar, luckor, fönsterbräda, golv. Exteriör: takpannornas profil
-(**materialprofil räknas som geometri**), panelantal, skorsten, hängrännor,
-bakgrundshus. En insmugen stänkpanel kostade 104 credits.
-
-Metaforer per nisch: bygg → förfallet hus → drömhus · mark → sönderkörd tomt →
-färdig infart · rör → korroderat rör → rent badrum · fasadtvätt → påväxt → ren
-fasad · interiör (måleri, golv, städ, snickeri) → slitet rum → nyklart, makro på
-detaljen · tjänst utan synlig förvandling → **förvandlingen är avståndet**:
-helhet → närmare → detaljen experten ser.
-
-**Förvandlingsklippet ska se ut som ARBETE, aldrig som en crossfade.** Global
-uttoning läses som AI-morf och har ratats. Låt en fysisk process röra sig över
-subjektet — högtrycksstrålen rad för rad, stommarna som reses sektion för
-sektion. Prompta explicit `"NO glowing lines, NO light effects, no lens flares,
-no crossfade, no morphing"`: första svepförsöket blev en sci-fi-glödlinje och
-kastades.
-
-**Diagnostisera klippet med bildrutor före leverans** — `generate get` visar
-inte morf eller geometridrift:
+Förvandlingen är kedjan **A → B**: A = slitet utgångsläge
+(`"documentary contractor photography, natural muted colors, no HDR, no
+people, no text, no logos"`), B = samma bild färdig (`--image <A>`, "Keep the
+geometry, position and perspective IDENTICAL to the reference, nothing added
+or removed anywhere else"). **Granska B mot A punkt för punkt** innan klippet
+körs — en insmugen detalj kostade 104 credits. Klippet:
 
 ```sh
-ffmpeg -i klipp.mp4 -vf "select='eq(n\,0)+eq(n\,48)+eq(n\,96)+eq(n\,144)',scale=1100:-2,tile=1x4" -frames:v 1 check.jpg
+higgsfield generate create seedance_2_5 --mode omni_reference \
+  --start-image A.jpg --end-image B.jpg --duration 5 --resolution 720p \
+  --aspect-ratio 16:9 --generate-audio false --prompt "<det fysiska arbetet, steg för steg>. \
+  NO glowing lines, NO light effects, no crossfade, no morphing, locked camera."
 ```
 
-Skriv kommandot till en fil och kör filen — backslasharna i `select` kollapsar
-annars i skalet. **Granska bilden**, lita inte på att jobbet gick igenom.
+`higgsfield generate cost` först, alltid. Saldo: `higgsfield account status`.
+Förvandlingen ska se ut som **arbete**, aldrig som en uttoning. Granska med
+bildrutor (`select` + `tile`) innan den används. Ladda ner direkt — Higgsfields
+CDN raderar efter ~30 dagar.
 
-**Hämta ner allt omedelbart.** Hotlinka aldrig Higgsfields CDN: assets raderas
-efter ~30 dagar och sajten tappar dem tyst. Weboptimera (bilder JPG max 1920 px
-`-q:v 3`; video H.264 CRF 26 `-an -movflags +faststart` — loopar är alltid
-mutade) och lägg i `web/public/<kund>/media/` med beskrivande kebab-namn.
+### Recepten (ffmpeg, 0 credits)
 
-### Stående mobil
-
-Heron är fullskärmsvideo, så detta gäller **alltid**: ett 16:9-klipp med
-`object-fit: cover` beskärs ~4× på en telefon och visar en oanvändbar närbild.
-Fixa **utan ny generering** genom att rama om samma klipp till 9:16 med suddig
-utfyllnad:
+**Logokortet på slutet av förvandlingsfilmen** — Mathias krav: loggan kommer
+upp i slutet. Vit bakgrund för mörka logotyper, `mork`-färgen för ljusa.
 
 ```sh
-ffmpeg -i hero.mp4 -filter_complex "\
-[0:v]scale=720:1280:force_original_aspect_ratio=increase,crop=720:1280,boxblur=44:3,eq=brightness=-0.34:saturation=0.55[bg];\
-[0:v]scale=720:-2[fg];[bg][fg]overlay=(W-w)/2:0[ut]" \
--map "[ut]" -c:v libx264 -crf 26 -an -movflags +faststart hero-mobil.mp4
+ffmpeg -y -f lavfi -i "color=c=white:s=1280x720:d=2.2:r=24" -loop 1 -framerate 24 -t 2.2 -i logo.png \
+  -filter_complex "[1]scale=900:-1,format=rgba,fade=t=in:st=0.25:d=0.6:alpha=1[l];[0][l]overlay=(W-w)/2:(H-h)/2:format=auto:shortest=1,format=yuv420p[v]" \
+  -map "[v]" -an -c:v libx264 -crf 20 slutkort.mp4
+ffmpeg -y -i forvandling-720.mp4 -i slutkort.mp4 -filter_complex \
+  "[0:v]fps=24,scale=1280:720,format=yuv420p,settb=1/24[a];[1:v]fps=24,format=yuv420p,settb=1/24[b];[a][b]xfade=transition=fade:duration=0.6:offset=<klipplängd − 0.6>[v]" \
+  -map "[v]" -an -c:v libx264 -crf 26 -movflags +faststart video-varfor-forvandling.mp4
 ```
 
-Skala **förgrunden till 1,5× ramens bredd och kapa i sidorna** (`scale=1080:-2,
-crop=720:608`): då täcker bildremsan 47 % av höjden i stället för 32 %. Med hela
-bilden inlagd blev remsan en tredjedel av skärmen och resten ett tomt fält.
-Motivet måste vara centrerat för att croppen bara ska ta väggarna.
+`-loop 1 -framerate 24 -t` på logotypen är nödvändigt — utan dem blir kortet
+vitt och tomt (hände 2026-09-18). `settb=1/24` på båda ingångarna, annars
+vägrar `xfade` ("timebase do not match"). Loggan ska fylla **~70 % av
+bredden** — 43 % såg ut som ett misstag. **Titta på sista bildrutan.**
 
-Låt hero-gradienten mörkna **genom remsans underkant** (en egen gradient i
-mobil-media-queryn), annars läses övergången mot utfyllnaden som en linje.
-Utfyllnaden ska vara dämpad, inte svart: `brightness=-0.17`, inte `-0.34`.
-**Postern måste vara den nya filens bildruta 0** — ta den ur den färdiga filen,
-inte ur källbilden.
+**Hero ur ett eget foto** (långsam inzoomning, ping-pong så loopen aldrig
+hoppar). Välj kundens ljusaste, gladaste exteriör — blå himmel slår grå puts.
+Motivet till höger, texten står till vänster.
+
+```sh
+ffmpeg -y -loop 1 -i foto.jpg -vf "crop=<16:9-ruta>,scale=7680:-2:flags=lanczos,zoompan=z='1+0.08*on/216':x='(iw-iw/zoom)*0.6':y='(ih-ih/zoom)*0.25':d=216:s=1920x1080:fps=24" \
+  -frames:v 216 -an -c:v libx264 -crf 20 in.mp4
+ffmpeg -y -i in.mp4 -filter_complex "[0]split[a][b];[b]reverse[r];[a][r]concat=n=2:v=1[v]" \
+  -map "[v]" -an -c:v libx264 -crf 29 -preset slow -movflags +faststart video-hero.mp4
+```
+
+Uppskalningen till 7680 före `zoompan` tar bort darret. Stående: samma sak med
+`crop` till 9:16 runt motivet och `s=720x1280`. Håll liggande under ~3 MB.
+Finns inget eget foto som håller: ett 720p-klipp uppskalat med
+`scale=1920:-2:flags=lanczos` duger under slöjan.
+
+**Kontaktfilmen:** hero-filmen igen, nedskalad och **lätt** suddad:
+`-vf "scale=960:540,boxblur=3:1" -crf 30` (~250 KB). Mallen lägger 4 px
+CSS-oskärpa ovanpå och en slöja som bara är tät bakom texten till vänster.
+Motivet ska gå att känna igen som en film i en stillbild — en närbild av en
+slät vägg blev en platt grå toning och underkändes av design-loopen 2026-09-18.
+
+**Postrar** är alltid den färdiga filens bildruta 0:
+`ffmpeg -i fil.mp4 -frames:v 1 -update 1 -q:v 3 poster.jpg`.
 
 ## Steg 3 — Copyn
 
-**Bärande idé först.** Innan en rubrik skrivs: formulera EN mening som är (a)
-sann för kunden, (b) särskiljande i nischen och (c) samma sak som bilden visar.
-Exempel som burit hela sidor: *"Det billigaste taket är det du redan har."* ·
-*"Ingen färdigköpt garderob passar ett snedtak."* Hela sidan argumenterar sedan
-för den meningen. En sida som följer varje formregel men saknar idé blir en
-staccato-formel — det har ratats med "hela copyn är värdelös" samma dag som
-alla formregler var uppfyllda.
+**Bärande idé först.** EN mening som är (a) sann för kunden, (b) särskiljande i
+nischen och (c) det filmen i Varför visar. Den står som `varfor.lead` och ekar
+i `hero.ingress`. En sida som följer varje formregel men saknar idé har ratats
+med "hela copyn är värdelös".
 
-Formeln **smärta → mekanism → riskreversering** är verktyget som bär idén,
-aldrig tvärtom.
+- **Heron: firmanamnet + EN mening.** `h1` är namnet, delat på två rader när
+  det är långt: `['Swedcro', { txt: 'Måleri & Fasad', liten: true }]`. Mallen
+  räknar själv ut storleken så namnet fyller bredden på mobil utan att brytas.
+  Ingressen är en mening, högst två, med kundens egna ord. Ingen slogan till.
+- **Ärlighet som positionering.** Minst en mening som avstår försäljning
+  ("Räcker det att måla om sockeln säger vi det"). Den bor i Varför-punkterna.
+- **EN handling per sida.** `cta.txt` (lång), `cta.kort` (header, sidflik utan
+  telefon), `cta.lank` (kortlänkar) — samma verb i alla tre. Nischens lägsta
+  åtagande: hembesök < mätning < offert < köp.
+- **Varför-punkterna** är `{ rubrik, text }`: tre–fyra ord i rubriken, en
+  mening i texten, allt inom VERIFIERAT.
+- **Om oss** är deras historia med deras ord. Två stycken. `om.bevis` är tre
+  **ord** ("15+ år", "F-skatt", "24 timmar") med en förklarande rad — aldrig
+  räknare, aldrig påhittat.
+- **Jobbandens bildtexter** (`txt`) säger vad som gjordes, 2–4 ord. `alt`
+  beskriver bilden. Skriv aldrig "håll muspekaren över" — mobilen har ingen.
+- Rytm: brödtext i människoton med varierad meningslängd. Kolon hellre än
+  tankstreck. Knapptext = handling, aldrig "Läs mer" eller "Skicka".
+- Svenska, du-tilltal, inga klyschor. Personligt varumärke → jag-form.
 
-- **Ärlighet som positionering.** Den starkaste riskreverseringen är att avstå
-  försäljning: *"Räcker det med en tvätt säger vi det. Även när ett byte hade
-  gett oss mer betalt."* Minst en sådan mening per demo.
-- **EN handling per sida.** Samma verb och objekt i header, mobilmeny, popup,
-  CTA-sektion och kontaktkort. Aldrig synonymvariation (Begär offert /
-  Kontakta oss / Läs mer). Välj nischens lägsta åtagande: mätning < takkoll <
-  offert < köp. Mobilens flytknapp får vara `tel:` — hantverkskunder ringer.
-- **Heron har ingen rubrik längre** (Modulerna, 1). Bärande idén sätts som
-  rubrik i Förvandlingen, direkt under heron, med samma krav som förut: noll
-  slutledning, tvådelad (`.setup` liten uppställning + `.punch` 2–3 ord).
-  Kräver budskapet två tankesteg är det fel budskap. Finns en verifierad
-  siffra som bär smärtan, sätt den där. Ingen siffra: led med kundens rädsla,
-  rakt på.
-- **Punchen får aldrig vara ordvits — spegelfraser räknas som ordvits**
-  ("Golvet gör rummet / Vi gör golvet" ratades: kiasmen är fyndig, inte tydlig).
-- **Rytm.** Hero och punchar hålls korta, men brödtext skrivs i människoton med
-  varierad meningslängd. Varje mening 3–5 ord läses som reklamrobot. Kolon
-  hellre än tankstreck.
-- Knapptext = handling ("Ring 070-…", "Boka mätning"), aldrig "Läs mer" eller
-  "Skicka". CTA-rubriken är en fråga kunden svarar ja på i huvudet; knappen är
-  svaret.
-- Svenska, du-tilltal, inga klyschor. Personligt varumärke → jag-form. Aldrig
-  "Växa på Google"-copy.
+## Steg 4 — Datafilen
 
-## Steg 4 — Mönstren och deras fallgropar
+Kopiera `swedcro/page.js` och byt innehållet. Fälten:
 
-| Mönster | Så | Fallgrop |
-|---|---|---|
-| Modal | `:target`-lager, stängkryss först i tab-ordningen | Stäng mot ett fast `#stangd`-ankare, INTE `#top` — annars hoppar skrollpositionen. Sätt ALDRIG `aria-modal` eller `role="dialog"`: utan JS finns ingen Escape och ingen fokusfälla, och markeringen får inte lova det. Använd `<section aria-labelledby>`. |
-| Mobilmeny | `:target`-panel i fixed lager UTANFÖR headern | Headerns `backdrop-filter` blir annars containing block för fixed. Panelen självstänger när hashen byter till valet. |
-| Auto-popup | CSS-animation med ~14 s `animation-delay`; stängning via checkbox (`input:checked ~ .popup { display:none }`) | Starta `opacity:0; visibility:hidden` så den är oklickbar före entrén. Vid `prefers-reduced-motion`: visa den **inte alls** — en ruta som dyker upp av sig själv ÄR rörelse. Lyft den ovanför Bahko-knappen på mobil. |
-| Tjänste-tejp | `translateX(-50%)`-loop, listan dubblerad för sömlöshet, kopian `aria-hidden` | Paus på hover, stopp vid `prefers-reduced-motion`. |
-| Exklusiv FAQ | `<details name="faq">` — webbläsaren stänger förra frågan själv | Äldre webbläsare ignorerar attributet (graceful: flera kan stå öppna). |
-| Hero | `min-height: 100svh`, videon som bakgrundslager bakom ett centrerat lager, headern genomskinlig överst och tonar in vid skroll (`animation-timeline: scroll()` bakom `@supports`) — se Modulerna, 1 | **Videon äger hela vyn** (Mathias 2026-08-21). `svh`, aldrig `vh`: `vh` räknar in iOS-adressfältet och gör heron längre än skärmen. Lägg padding-bottom stort nog för rubrik OCH knappar — annars skärs CTA:n av vid vikkanten. |
-| Hero-text | **Ingen rubrik** (2026-09-06, ersätter "EN rubrik" från 2026-08-21). Lagret bär logotyp, två tjänster, ort och knapparna — se Modulerna, 1 | Slogans och ledtexter ströks redan 2026-08-21 som slop; nu går även rubriken. h1 är kundnamnet runt logotypen, annars saknar sidan h1. Bärande idén flyttar till Förvandlingens rubrik. |
-| Hero-video | `autoplay muted loop playsinline preload="metadata"` + `poster`, `object-fit: cover` över hela heron | **Drönarshot är standard** (Mathias 2026-08-21): en FPV-flygning som glider genom rummet och landar på arbetet visar både hemmet och hantverket. En locked-off-shot ratades. Gradient över videon för läsbarhet: nästan klar där förvandlingen sker, tät där lagrets text står. Playwrights Chromium saknar H.264 — verifiera via poster och HTTP 200, **inte** `readyState`. Postern måste matcha bildruta 0; börjar klippet i en dålig vy, trimma bort de första sekunderna i stället för att välja en annan poster. |
-| Hero per orientering | Två `<video>`, ett liggande och ett stående, växlade med CSS | Inget script: `<source media>` fungerar inte för video i Chrome, och ett orientation-script bryter noll-klient-JS. Selektorerna behöver två klasser (se kaskad-lärdomen). Det dolda elementet kostar bara sin `preload="metadata"`. |
-| Tjänstekort | En måttsatt linjeritning per kort som ritar sig själv i vy | `stroke-dasharray` + `animation-timeline: view()` bakom `@supports`, med **färdigritat utgångsläge** — annars står korten tomma utan stöd. Ritningen är nischens eget språk och bär kortet utan att kosta en bild. `vector-effect: non-scaling-stroke` måste sitta på formen, inte på `svg`: den ärvs inte, och utan den blir linjen hårfin vid nedskalning. **Inga ordningssiffror** (01, 02 …) — de ratades som AI-slop 2026-08-21. |
-| Klickbara steg | En dold `<input type="radio">` per steg som syskon FÖRE flikarna och kortet; `:checked ~` väljer aktiv flik och synlig panel | Radio i stället för en `div` med onClick ger piltangentsnavigering och rätt roll gratis, och håller sidan på noll klient-JS. Sätt fokusringen via `.stegRadio:focus-visible ~` — radion är dold, så ringen måste flyttas till labeln. Mät att exakt EN panel är synlig, i webbläsaren. |
-| Logotyp | **Kundens egen logotyp**, hämtad ur deras egna kanaler och lagd i `web/public/<kund>/media/` | Inte ett märke vi ritar (Mathias 2026-08-21). Kunden ska känna igen SIN logotyp i headern, mobilmenyn och footern — ett eget ikonmärke är bara ett provisorium. Se avsnittet nedan. |
-| Galleri i förvandlingssektionen | Före/efter-paret stort, och **de övriga bilderna i ett kvadratiskt rutnät under** | Sektionen ska bära allt bildmaterial (Mathias 2026-08-21): två bilder räcker inte. `repeat(auto-fit, minmax(220px, 1fr))` i stället för media query. Kvadrat är facit — 16/11 kändes fortfarande för stort. `height: auto` **före** `aspect-ratio`, annars vinner img-taggens height-attribut och ration ignoreras. |
-| Före/efter | Två stillbilder i ett par | Starkare och lättare än video här. Märk som illustration. |
-| Scroll-reveal | `animation-timeline: view()` bakom `@supports`, synligt utgångsläge | Sidan måste vara komplett utan stöd. |
-| Bildlådor | `next/image` med `width`/`height` | Varje lazy-bild måste ha styrd låda, annars hoppar innehållet när den laddar (iOS saknar Chromes scroll-förankring). Ska ration styras i CSS trots attributen: `height:auto` **före** `aspect-ratio`, annars vinner attributhöjden och ration ignoreras helt. |
+| Fält | Innehåll |
+|---|---|
+| `namn`, `sprak` | Firmanamnet. `sprak: 'nb'` för norska |
+| `tema` | De sex färgerna (se Designen) |
+| `logo` | `{ src, w, h, alt, topp }` — eller utelämna och sätt `ordmarke: 'Namn'` |
+| `kontakt` | `tel`, `telHref`, `epost`, `adress`, `oppet`, `ig`, `igHandle`, `fb`, `orgnr` — bara verifierade, resten utelämnas |
+| `cta` | `txt`, `kort`, `lank` |
+| `nav` | `vanster` och `hoger`, två länkar var (logotypen hamnar emellan) |
+| `formAction` | `mailto:mathias@bahkobyra.se?subject=<Kund>%20-%20…` |
+| `hero` | `marke`, `h1`, `ingress`, `video`, `videoMobil`, `poster`, `posterMobil`, `bevis` (tre ord) |
+| `tjanster` | `eyebrow`, `rubrik`, `lead`, `kort[]`: `id`, `namn`, `bild`, `alt`, `text`, `punkter`, `ritning` (JSX-paths, viewBox 200×120) |
+| `jobb` | rubrikfält + `rad1[]`, `rad2[]`: `src`, `alt`, `txt` · `not` · `tid` (varvtid, ~10 s per bild) |
+| `varfor` | rubrikfält + `punkter[]`, `video`, `poster`, `videoAlt`, `not` |
+| `om` | `eyebrow`, `rubrik`, `kortRad` (orten under logotypen), `stycken[]`, `bevis[]` |
+| `steg` | rubrikfält + `lista[]`: `namn`, `text`. **Utelämna för att ta bort sektionen** |
+| `omdomen` | rubrikfält + `betyg` (bara verifierat), `lista[]`, `not`, `lank` |
+| `instagram` | rubrikfält + `bio`, och `koder[]` **eller** `kort[]`. Utelämna helt om kontot saknas |
+| `fragor` | rubrikfält + `kort` (rubrik, text), `lista[]` (q, a) — 6–8 frågor, pengar och risk först |
+| `kontaktSektion` | `eyebrow`, `rubrik`, `lead`, `checkar` (tre), `video`, `poster`, `formRubrik`, `placeholder`, `formNot` |
+| `popup`, `footer`, `modal` | `rubrik` + `text` · `text` · `rubrik` + `text` |
 
-Rör inte mönstren vid en recopy. Byt bara VERIFIERAT-blocket, paletten,
-typografin, copyn, mediasökvägarna och modalens mailto-ärende.
+"Rubrikfält" = `eyebrow`, `rubrik: ['rak del', 'kursiv del']`, `lead`.
+
+**Linjeritningarna** lever kvar som ikoner: enkla `<path>` i 200×120, nischens
+eget språk (husgavel, panel, tapetvåd). Håll dem grova — de visas i 60 px.
 
 ## Logotypen
 
-**Kundens egen logotyp ska ligga på deras demo.** Det är det första de tittar
-efter, och en sida med någon annans märke i headern läser som en mall.
+**Kundens egen logotyp** — i headerns mitt, på Om oss-kortet, i
+Instagram-ringen, i footern och på filmens slutkort. Det är det första de
+tittar efter. Hämta den ur deras egna kanaler (sajtens header, `og:image`,
+profilbilden), eller fråga Mathias.
 
-**Hämta den, i den här ordningen:**
-1. Kundens hemsida, om de har en (`/favicon`, `og:image`, headern).
-2. Instagram- eller Facebook-profilbilden. Ofta rund och beskuren, men
-   användbar.
-3. Fråga Mathias — han har ofta fått den i DM, eller kan begära den.
+- **Frilägg den.** Nyckla bort bakgrundsplattan så filen har alfa. Halo efter
+  nycklingen tas bort med erosion. Är originalet litet: skala upp och be om
+  vektorfilen. Är loggans egen fil avklippt (R. Olssons slogan): beskär bort
+  det trasiga och flagga det.
+- **`topp` styr hur den syns över filmen**, innan headern blivit vit:
+  `'vit'` = vit siluett som tonar till egna färger vid skroll (mörka
+  logotyper med tydlig form) · `'bricka'` = liten vit bricka bakom
+  (flerfärgade, detaljrika eller redan ljusa märken som blir en klump som
+  siluett) · utelämnat = som den är (ljusa logotyper). **Titta på siluetten
+  i 1x** — går firmanamnet inte att läsa är det `'bricka'`. Tredimensionella,
+  flerfärgade märken med text i (Swedcro) blir nästan alltid en klump; de är
+  `'bricka'` från början.
+- **Hitta aldrig på en logotyp.** Går den inte att få fram: `ordmarke`, och
+  flagga i leveransen att logotypen saknas. Slutkortet får då ordmärket satt
+  med ffmpeg `drawtext` i Outfit.
 
-Lägg filen i `web/public/<kund>/media/` och rendera den med `next/image` med
-`width`/`height`. Ligger den på en mörk canvas: kontrollera att den syns, och
-be om en variant för mörk bakgrund om originalet är svart.
-**Är märket flerfärgat och mörkt** (samflytt 2026-09-07: mörkblått med röd
-kontur) invertera inte, och lägg ingen platta bakom det — Mathias tog bort
-den vita plattan samma dag. Märket ligger direkt på filmen; en kontur eller
-en ljus detalj i märket får bära det. Märkets färger rörs inte. **Är filen en favicon eller app-ikon med inbakad platta** (elvionel 2026-09-07:
-EE-märke på svart rundad kvadrat) nyckla bort plattan så bara märket ligger
-på filmen — Mathias tog bort den samma dag. Samma regel som för den vita
-plattan: ingen ruta bakom märket i lagret, oavsett om rutan är vår eller
-filens egen.
-**Är märket en badge med egen skiva** (hd 2026-09-07: vit rund skiva med
-röd ring och svart text) räknas skivan som platta och tas bort — kvar blir
-ringen, tecknet och texten. Mörka delar vänds till vita (samma märke, bara
-vänt), färgade delar behålls. Mathias tog bort skivan samma dag: "loggans
-bakgrund hamnade på hero-videon och det vill vi ju inte".
-**Är originalet litet** (266 px): skala upp
-(bytedance upscale, 2 credits), nyckla bort bakgrunden, och be om vektorfilen.
+## Mallens mönster och deras fallgropar
 
-**Hitta aldrig på en logotyp.** Generera inte en med AI och rita inte en egen
-som utges för att vara deras. En logotyp är kundens varumärke — en påhittad
-logotyp är samma sorts fabrikation som ett påhittat projektantal, och den är
-värre, för den ser äkta ut.
+Rör dem inte i en kunds fil. Ändras de, ändras de i `_mall/` — och då körs QA
+på **kanon och minst en demo till**.
 
-**Går den inte att få fram:** använd ett ordmärke i sidans display-typsnitt,
-och **flagga i leveransen att logotypen saknas.** Ett ikonmärke vid ordmärket
-är ett provisorium, inte en lösning. `nordicsnickare` och `shabifix` har ett
-sådant just nu och ska bytas när riktiga logotyper finns.
+| Mönster | Så | Fallgrop |
+|---|---|---|
+| Header-toning | `@property --bahko-hdr-t` (0→1) animerad på `scroll(root)`, `animation-range: 0 120px`. Färg, glas, pillerfärg och loggans filter räknas ur den med `color-mix`/`calc` | Utan stöd för scroll-tidslinjer står värdet på 1 = vit header från start, aldrig en oläslig. **Pillret är MÖRKT glas högst upp** — ljust glas över ljus film gav oläsliga länkar. |
+| H1-storlek | `--h1-tecken` räknas i `DemoSida.js` ur längsta raden; CSS delar bredden med den | Raden får aldrig brytas eller spilla. QA mäter `scrollWidth`. |
+| Band | Spår med två grupper, kopian `aria-hidden` med tomma `alt`, `translateX(-50%)`, band två `animation-direction: reverse` | Vid minskad rörelse: stilla, sidledsskroll, kopian dold. |
+| Tjänstekort | Länkens `::before` täcker kortet | Nästla aldrig länkar. Ikonen sticker ut under bilden — `overflow` sitter på den inre bildlådan, inte på bildytan. |
+| Mobilmeny, modal | `:target`-lager utanför headern, stängs mot `#stangd` | Aldrig `aria-modal`/`role="dialog"` — utan JS finns ingen fokusfälla att lova. Stäng aldrig mot `#top`, då hoppar sidan. |
+| Popup | 14 s fördröjd CSS-animation, kryssruta stänger. Nere till **höger**, ovanför Bahko-knappen | Till vänster täckte den herons primärknapp (design-loopen 2026-09-18). Startar `visibility: hidden` så den är oklickbar före entrén. Vid minskad rörelse visas den **inte alls** — en ruta som dyker upp av sig själv ÄR rörelse. |
+| Frågor | `<details name="faq">` | Äldre webbläsare: flera kan stå öppna. Godtagbart. |
+| Hero-film | Två `<video>`, liggande och stående, växlade med CSS | `<source media>` fungerar inte för video i Chrome. `svh`, aldrig `vh`. Mobilen har egen slöja uppifrån och ned, eftersom texten går över hela bredden. |
+| Instagram | `<iframe …/embed/captioned/>`, `loading="lazy"`, 940 px hög (860 på mobil) | Ingen embed.js. Knappens gradient är mörkare än Instagrams egen så vit text klarar 4,5:1. |
+| Länkfärg | `.sida :where(a) { color: inherit }` | Skrivs den `.sida a` slår den ut varje knappklass (uppmätt 1,00:1). Aldrig `!important`. |
+| Rutnät | Fasta kolumnsteg (4 → 2 → 1 för tjänster), flex med centrerad sista rad för stegen | `auto-fit` lämnade ensamma kort vid 1100 och 768 px. |
+| Kontakt på mobil | Vänsterspalten blir `display: contents`; formuläret läggs direkt efter bockarna, kontaktrutorna sist | Annars låg formuläret en hel skärm under där CTA:n landar. |
+| Varför-filmen | `position: sticky` i högerspalten, sektionen har `overflow: clip` | `overflow: hidden` gör sektionen till skrollbehållare och sticky fastnar aldrig — lämnade 390 px tomt mörker under filmen. |
+| Slöjan över heron | Tre varianter: dator (vänster→höger), surfplatta 761–1180 px (tätare och längre åt höger), mobil (uppifrån och ned) | Surfplattan föll till 4,2:1 på bevisraden när bara dator och mobil var mätta. QA:n mäter nu 768 och 1100 också. Text över film mäts med texten genomskinlig, inte dold — annars räknas inte brickans eget glas. |
+| Formulärfält | Ram `#7C8BA1` (3:1 mot vitt), platshållare `#475569` | Webbläsarens grå platshållare och `#64748B` låg under 4,5:1 på den mjuka fältytan. |
+| Fokusring | Dubbel: `outline 3px #0F172A` + `box-shadow 0 0 0 2px #fff`, offset 2 px | En ring i accentfärg gav 2,4:1 över herofilmen. Den dubbla syns mot allt. |
+| Knapptext | Minst 16 px överallt, även mobilens Ring-knapp och sidfliken | |
+| Motsatt ton | Varje yta i en sektion med motsatt ton sätter `color` explicit | Vitt formulärkort i mörk sektion, mörka kort i ljus — har slagit till tre gånger. |
 
+## Steg 5 — Verifiering (obligatorisk före merge)
 
-## Steg 5 — Design
+**Mät, tro inte.**
 
-- **Egen distinkt palett per kund.** Upptaget: smaragd (grontoglanser), lera
-  (galiano), kobolt (k9maleri), orange (golvresan), solgul (solpanelstjejen),
-  cyan (glowingservice), energigrön (nordiapartner), kalksten och mässing
-  (svhus), timber-amber (vajjebygg), brun och créme (mugglagret), espresso och
-  lönn (nordicsnickare), skiffer och terrakotta (osterlunds), kol och ljus
-  stålblå (golvvision).
-- **Kaskad-lärdomen, som slagit till två gånger.** Först på färg: basregeln
-  för länkar ska vara `.sida :where(a) { color: inherit }`. `:where()` nollar
-  specificiteten så komponentklasserna vinner på ordning. Skrivs den `.sida a`
-  slår den ut varje knappklass — uppmätt resultat var osynlig text (1,00:1) på
-  telefon-CTA:n. Aldrig `!important`.
-  Sedan på `display` (2026-08-21): `.heroFilm video { display: block }` har
-  specificitet (0,1,1) och slog ut `.heroStaende { display: none }` (0,1,0), så
-  **båda** hero-videorna renderades och 16:9-klippet låg överst på telefon.
-  Regeln: när du växlar element med `display`, ge selektorn **två klasser**
-  (`.heroFilm .heroStaende`) så den vinner över elementregeln. Och mät vilket
-  element som faktiskt renderas — det syns inte i koden, bara i webbläsaren.
-- **Tredje gången (2026-09-06), på modulerna:** omdömeskorten är mörka i en
-  ljus sektion och ärvde sektionens mörka text — citaten var osynliga. Och
-  noten under dem, satt i `--ljus-58`, var osynlig på den ljusa ytan. Varje ny
-  yta i en sektion med motsatt ton sätter `color` explicit, båda riktningarna.
-  Samma dag: mallens `.hero` har padding och `align-content: end` för den
-  gamla text-nedtill-layouten, vilket tryckte lager-heron under vikkanten
-  (knappbotten 900+ på en 900 px hög vy) — nollas i modul-CSS:en.
-- Kontrast: ljus yta → mörk text, aldrig tvärtom. Bahko-element följer
-  knappregeln: marinblå `#0A1628` på smaragd `#10B981` (7,1:1), aldrig vit text
-- **En mörk yta inuti en ljus sektion måste vända textfärgen explicit.** Ärver
-  den sektionens färg blir rubriken mörk på mörkt. Hände i processkortet
-  2026-08-21: både de inaktiva flikarna (ljus text på ljus yta) och
-  panelrubriken (mörk på mörk) föll samtidigt. Mät varje ny yta, båda
-  riktningarna.
-  på smaragd (2,54:1).
-- Typskala i fem steg som CSS-variabler, inte lösa värden. Inget under 11 px.
-- **Inga versaler på rader över ~35 tecken** — ordformen försvinner. Räkna
-  tecknen i varje element som har `text-transform: uppercase`, inklusive
-  statsetiketter och hero-setup.
-- Rörelse i lager (hero-video, tejp, scroll-reveal, popup), allt avstängbart via
-  `prefers-reduced-motion`, och inget av det får bära innehåll ensamt.
-- Skuggor: neutrala höjdskuggor, aldrig färgade glöd-halos. Slop gömmer sig i
-  `filter: drop-shadow` lika ofta som i `box-shadow` — sök på båda.
+1. `cd web && rm -rf .next && npx next build`. (`readlink EINVAL` på
+   `.next` = rensa mappen och bygg om. Aldrig två byggen samtidigt.)
+2. `npx next start -p <port>` och kör QA-skriptet, som bor i skillens mapp:
 
-## Steg 6 — Verifiering (obligatorisk före merge)
+   ```sh
+   cp .claude/skills/hemsidor/qa.mjs web/qa.mjs && cd web
+   node qa.mjs <route> <port> "<början på firmanamnet>" "<förra leadets namn|lorem>" <betyg ja|nej> <inbaddat|kort|ingen>
+   ```
 
-**Mät, tro inte.** Varje punkt nedan har fångat en riktig bugg.
+   **Ta bort `web/qa.mjs` före commit.** Skriptet kontrollerar på 1440 och
+   390 px: sektionsordning, exakt en h1 i Bebas Neue som ryms på raden, att
+   siffer-raden är borta, headerns toning, logotypen mitt i pillret, kontrast
+   över filmen i fem bildrutor (h1, ingress, bevisrad, header, kontaktrubrik),
+   **kontrast på all övrig text**, minst tre formulärknappar + popup + sidflik,
+   tjänstekortens bilder, att banden rör sig åt var sitt håll, mörk
+   Varför-sektion, filmens längd och ljusa slutbild, logotypen i Om oss och
+   footer, omdömesreglerna, Instagram-inbäddningarna (HTTP 200), frågorna,
+   formuläret, att all media laddar och att ingen bild står i två sektioner,
+   versalrader, sidledsskroll, tryckytor ≥ 44 px, minskad rörelse.
+3. **`color-mix()` svarar `color(srgb 1 1 1)`**, inte `rgb(…)`. Ett
+   mätskript som läser det som rgb ser vitt som svart — det gav ett falskt
+   underkänt 2026-09-18 och en onödigt mörk slöja. Skriptet hanterar det;
+   egna mätningar måste också.
+4. **Titta på bilderna** i `.tmp/<route>/qa/`: hero, varje sektion, footer, i
+   båda bredderna — och `*-varfor-slutbild.png`, där logotypen ska synas.
+5. `md5sum web/public/<kund>/media/*` — unika hashar = antal filer. Och ingen
+   fil i mappen som sidan inte använder.
+6. Färgerna i `tema` mätta mot kraven i tabellen ovan.
 
-1. `cd web && rm -rf .next && npx next build`. Kör aldrig två byggen parallellt
-   mot samma `.next` (ger falska ENOENT-fel).
-2. `next start` på ledig port, sedan Playwright. I container:
-   `executablePath: '/opt/pw-browsers/chromium'`. Testfiler raderas efteråt.
-3. **Fyra lägen, alla med noll pageerror:** normal, `prefers-reduced-motion`,
-   utan externa script, och 390 px mobil. Bortse från ERR_TUNNEL och
-   ERR_CONNECTION_RESET (sandlådans blockerade domäner).
-4. Kontrast med WCAG-formeln på **varje** knapp (≥ 4,5:1). Räkna aldrig
-   pixelhinkar — bakgrund som skiner genom en knapps rundade hörn har
-   feldiagnostiserats som vit text på smaragd.
-5. `scrollWidth` exakt = viewport vid 390 px.
-6. Galleri och bildrutnät: kvadratisk ratio, max ~2,5 skärmhöjder på mobil, två
-   kolumner (**aldrig en** — sex fullbreddsbilder blir sex skärmhöjder).
-7. Vid recopy: grep:a förra leadets namn ur den **renderade** HTML:en, noll
-   träffar.
-8. Marknadssajten oskadd: `/`, `/om-oss/` med flera svarar 200 med header,
-   footer och maskotar kvar.
-9. Tidsberoende copy (nedräkningar): testa med `page.clock` före och efter
-   gränsen samt en helg. Copy som ljuger efter ett klockslag är skickstopp.
-10. **Titta på sidan.** Screenshot hero, galleri och kontakt i både 1440 och
-    390 px. Headless virtual-time-bilder kan inte användas för att bedöma
-    pågående CSS-transitioner — verifiera rörelse i CSS-värden, inte i pixlar.
-11. **Text över rörlig video mäts över flera bildrutor.** Pausa videon, sätt
-    `currentTime` till 0, 1, 2, 3, 4 s, dölj texten (`visibility: hidden`),
-    fotografera dess ruta och räkna kontrasten mot den ytan. Ta det sämsta
-    värdet. Fångade 2026-08-31 en etikett som klarade bildruta 0 men föll till
-    4,29:1 när drönaren sänkte sig och vattnet ljusnade. Med lager-heron gäller
-    det lagrets alla texter, och headertexten som ligger på filmen överst.
-12. **Headern:** med stöd ska headerns `background-color` ha alpha 0 vid
-    skroll 0 och full täckning efter 120 px; utan stöd och vid
-    `prefers-reduced-motion` ska den vara täckt från start. Hero-videon ska
-    ha `opacity: 1` vid skroll 0 i alla lägen.
-13. **Exakt en h1**, och den är kundnamnet.
-14. **Google-sektionen:** grep:a den renderade HTML:en efter siffror med
-    komma följt av stjärna eller ordet "recensioner" — allt som hittas ska
-    stå i VERIFIERAT-blocket. I tomt läge: noll siffror i sektionen.
-15. **Sociala:** varje ikon har en `href` till ett verifierat konto, annars
-    finns ikonen inte. Rutnätets bilder: unika hashar, två kolumner på mobil.
+## Steg 6 — Leverans
 
-## Steg 7 — Leverans
-
-- Ersätter demon en befintlig länk under `/cloud/<kund>/` är den länken redan
-  skickad och får aldrig brytas: lägg en redirect i `next.config.mjs` (mönstret
-  finns — sök på shabifix). Filen är helig: exakt de två raderna, och motivera i
-  commiten.
-- Gren från aktuell `origin/main` (arbetskopian kan ligga efter — `git fetch`
-  först). Commit, push, PR. **Ingen merge utan Mathias klartecken.**
-- **Batcha i EN pull request.** Varje push och merge kostar deploys, och taket
-  delas med kundsajterna. Fråga innan deploy.
-- Efter merge: verifiera `bahkobyra.se/<kund>/` HTTP 200 (deployen tar ~1 min,
-  404 direkt efter merge är normalt) och att kundsajterna är oskadda. **Polla
-  aldrig bahkobyra.se i loop** — hela domänen 403:ar från Mathias IP.
-- Mathias ögongranskar förvandlingsklippet (samma subjekt hela vägen) innan
-  demon skickas till kund.
-- Flagga i leveransen: platshållar-kontakt, obekräftat firmanamn, och varje
-  kontroll du **inte** kunde köra. Påstå aldrig att ett verktyg kördes när det
-  inte är installerat.
+- Leadfilen `content/leads/<kund>.md` (vad som är verifierat, flaggor, DM-utkast)
+  och en rad i `content/leads/demolankar.md`.
+- Gren från färsk `origin/main` (`git fetch` först). Lägg bara till demons
+  egna sökvägar — **aldrig `git add -A`** (junctions i `.claude/skills/`, och
+  Brommas filer hör inte hit). Commit-meddelanden med citattecken skrivs till
+  fil: `git commit -F`, `gh pr create --body-file`.
+- **Ingen merge utan att Mathias skriver "merga".** Batcha flera demos i EN
+  pull request — varje push och merge kostar deploys, och taket delas med
+  kundsajterna.
+- Efter merge: kontrollera deployen via Vercel (`list_deployments`) eller
+  `gh api repos/BahkoStudio/BahkoByra/commits/<sha>/status`. **Polla aldrig
+  bahkobyra.se** — hela domänen 403:ar från Mathias IP.
+- Ersätter demon en redan skickad länk under `/cloud/<kund>/`: redirect i
+  `next.config.mjs` (mönstret finns — sök på shabifix). Filen är helig.
+- Flagga i leveransen: saknad logotyp, obekräftat firmanamn, exempelomdömen,
+  lånade eller genererade bilder, och varje kontroll du inte kunde köra.
+- Varje leverans följs av en färdig mejl-/DM-text på högst två meningar.
+- **Ändras arbetssättet ska det in i den här filen**, och den globala kopian
+  `~/.claude/skills/hemsidor/` synkas (SKILL.md + qa.mjs) — en skill som bara
+  låg i repot var en gång osynlig och kostade ett helt demobygge.
 
 ## Varför skillen finns
 
 En lead ska kunna få ett förslag samma dag, byggt på sanningen om just den
-kunden, utan att kosta credits när nischen redan finns i biblioteket. Mallen är
-färdig — det enda nya är kunden.
+kunden, som ser ut som något ett stort bolag har betalt för. Mallen är färdig
+— det enda nya är kunden.
