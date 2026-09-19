@@ -20,7 +20,10 @@ En väg, inga alternativ: **en delad mall, och en datafil per kund.**
   för det finns inget script.
 
 **Designen bestämdes av Mathias 2026-09-18** utifrån två referenssajter
-(P.N Byggentreprenad och Axel's Landscaping). En ändring av designen görs i
+(P.N Byggentreprenad och Axel's Landscaping), **och justerades 2026-09-19**:
+heron blev logotyp + ort + två tjänster (som Axel's), tjänstebandet kom
+tillbaka, filmerna bytte plats, illustrationsnoten under filmen ströks och
+stegen blev en resa utan siffror. En ändring av designen görs i
 mallen och slår igenom på alla demos samtidigt — ändra aldrig utseendet i en
 enskild kunds fil.
 
@@ -31,10 +34,16 @@ inte omklädd än (se läget Omklädnad).
 
 - **Mörk kol-sida** (golvvision-kanon 2026-09-06 och alla kopior av den). Sidan
   är ljus nu.
-- **Lager-heron** med logotypen som h1 mitt i bild. Heron har rubrik igen.
+- **Hero med rubrik, ingress och bevisrad** (första v3-utkastet 2026-09-18).
+  Mathias 2026-09-19: "dessa texter är onödiga". Heron bär bara logotyp, ort,
+  två tjänster och knapparna.
+- **Ordningssiffror i stegen** (01, 02 …). Ratade som AI-slop 2026-08-21 och
+  igen 2026-09-19. Stegen är en resa med ikoner.
+- **Illustrationsnot under filmen** ("Filmen är en illustration av …").
+  Struken av Mathias 2026-09-19.
 - **Siffer-raden** (uppräknande tal under heron). Mathias 2026-09-18: "den
   delen ska bort, har ingen påverkan alls." Gäller även löftessiffror.
-- **Tjänste-tejpen**, **Förvandlingen** (före/efter-par + kvadratiskt galleri),
+- **Förvandlingen** (före/efter-par + kvadratiskt galleri),
   **klickbara steg**, **sociala rutnätet med platshållare**, **en CSS-fil per
   kund**, **en egen palett av tio variabler per kund**.
 - Scroll-koreografin från augusti (fast videolager, GSAP, Lenis) och allt
@@ -47,12 +56,13 @@ Ordningen är fast och ligger i `DemoSida.js`. QA:n kontrollerar den.
 | # | Sektion | Vad den är |
 |---|---|---|
 | — | **Header** | Fast. Mitten: glaspiller med två länkar · **kundens logotyp** · två länkar. Vänster: telefonnumret. Höger: rund accentknapp. Genomskinlig med vit text över filmen, vitt glas med mörk text efter 120 px skroll. Mobil: logotyp, Ring-knapp, Meny. |
-| 1 | **Hero** | Helskärmsfilm. Vänsterställt: ort-märke, **firmanamnet i Bebas Neue som h1**, EN mening, fylld knapp + konturknapp "Ring …", tre verifierade bevisord med bock. |
+| 1 | **Hero** | Helskärmsfilm: **förvandlingen** (före → efter, utan slutkort). Centrerat, som Axel's: **kundens logotyp (= h1)**, **orten** i Bebas Neue, **två tjänster** i kursiv accent ("Måleri & Fasad."), fylld knapp + konturknapp "Ring …". **Inget mer** — ingen ingress, ingen slogan, ingen bevisrad. |
+| — | **Tjänstebandet** | Direkt under heron: mörkt band med accentlinjer, tjänsterna i tunga versaler som **rullar åt vänster**, vartannat ord fyllt och vartannat bara kontur. Paus vid hover. |
 | 2 | **Tjänster** | Kort med **bild** överst, linjeritningen som liten ikon på bildkanten, rubrik, text, tre punkter, länk till formuläret. Hela kortet klickbart. |
 | 3 | **Våra jobb** | **Två band som rullar åt var sitt håll** — första åt vänster, andra åt höger. Paus vid hover. Knapp efter banden. |
-| 4 | **Varför oss** | **Mörk sektion.** Vänster: rubrik, fyra punkter i kort, två knappar. Höger: **förvandlingsfilm som slutar med kundens logotyp**. |
+| 4 | **Varför oss** | **Mörk sektion.** Vänster: rubrik, fyra punkter i kort, två knappar. Höger (klistrad): **den lugna filmen** — långsam rörelse över kundens bästa foto — **som slutar med kundens logotyp**. Ingen not under. |
 | 5 | **Om oss** | Krämvit. Vänster: **logotypen** på vitt kort. Höger: historien i två stycken, tre bevisord (ord, inte räknare), länk. |
-| 6 | **Så går det till** | Numrerade kort (01–05), knapp. *Valfri — utelämna `steg` i data så försvinner den.* |
+| 6 | **Så går det till** | **Resan:** en linje som ritar sig själv medan man skrollar, med en ikon per hållplats och den sista fylld. Lodrät på mobil. **Inga siffror.** Knapp under. *Valfri — utelämna `steg` i data så försvinner den.* |
 | 7 | **Omdömen** | Google-stil: betygsbricka (bara verifierat betyg), vita kort med färgad initial, G-märke på Google-omdömen, gula stjärnor. Två knappar. |
 | 8 | **Instagram** | Profilrad i Instagram-stil med logotypen i gradientring + följ-knappar, och **tre riktiga inlägg inbäddade** med bildtext, gilla och kommentarer. |
 | 9 | **Frågor** | Krämvit. Vänster: rubrik + kort med Ring-knapp (klistrat). Höger: dragspel, en öppen åt gången. |
@@ -72,7 +82,7 @@ frågekortet, popupen och sidfliken. Alla bär **samma verb**.
 
 | Roll | Typsnitt | Var |
 |---|---|---|
-| Firmanamnet | **Bebas Neue** 400, versaler, spärrat 0,035em | Bara h1 och stegnumren |
+| Orten i heron (och firmanamnet när logotyp saknas) | **Bebas Neue** 400, versaler, spärrat | Bara heron |
 | Rubriker, meny, knappar | **Outfit** 500–800, rubriker 800 med −0,025em | h2, h3, nav, btn |
 | Den bärande frasen | **Fraunces kursiv** 600 i accentfärg | `<em>` i varje h2 |
 | Brödtext | **Inter** 400–600 | allt annat |
@@ -126,11 +136,12 @@ Saldot är litet (Mathias 2026-09-14). Under 100 credits körs, över 100 fråga
 
 1. Läs den gamla `page.js`. **VERIFIERAT-blocket, kontaktuppgifterna, copyn,
    frågorna och omdömena följer med oförändrade** — de är redan granskade.
-2. Gamla hero-filmen (före/efter, genererad) **blir förvandlingsfilmen** i
-   Varför: skala till 1280×720 och sätt logokortet på slutet (recept nedan).
-3. Ny hero: långsam rörelse över kundens bästa egna foto, eller det gamla
-   Varför-klippet som ping-pong. Recept nedan.
-4. Kontaktfilmen: samma klipp som heron, nedskalat och suddat.
+2. Gamla hero-filmen (före/efter, genererad) **är kvar som hero-film**, som
+   den är, med sina postrar. Inget slutkort på den — logotypen står redan i
+   heron.
+3. Varför-filmen: långsam rörelse över kundens bästa egna foto (recept nedan),
+   sex sekunder, **med logokortet på slutet**.
+4. Kontaktfilmen: samma lugna klipp, nedskalat och lätt suddat.
 5. Tjänstebilder och jobbband: kundens egna foton först, sedan demons gamla
    galleri- och socialbilder. **Räcker de inte till två band om minst fem
    bilder vardera: låna ur biblioteket och märk det i `jobb.not`** (se
@@ -158,9 +169,11 @@ Saldot är litet (Mathias 2026-09-14). Under 100 credits körs, över 100 fråga
   utan påhittade kommentarer.** Facebook-knappen bara med verifierad sida.
 - **Varje bildfil används exakt en gång** och ligger i en enda sektion.
   `md5sum` på mappen före leverans: antal unika hashar = antal filer.
-- **Lånade och genererade bilder märks, en gång per sektion:** `jobb.not`
-  ("Illustrationsbilder — byts mot era egna projektfoton") och `varfor.not`
-  ("Filmen är en illustration av …"). Är bilderna kundens egna säger noten det.
+- **Lånade och genererade bilder märks en gång, under jobbanden:** `jobb.not`
+  ("Illustrationsbilder — byts mot era egna projektfoton"). Är bilderna
+  kundens egna säger noten det. **Filmerna får ingen not på sidan** (Mathias
+  2026-09-19) — att förvandlingen är en illustration står i `page.js`
+  FLAGGOR, i leadfilen och sägs i leveransen till Mathias.
 - **Kontaktuppgifter:** bara verifierade. Saknas telefon: utelämna `tel` —
   mallen byter då själv Ring-knapparna mot Instagram och formuläret. Aldrig ett
   gissat nummer. Formuläret går alltid till `mathias@bahkobyra.se` i demon.
@@ -198,15 +211,18 @@ bäddar in dem med `<iframe>`; ingen embed.js, så noll-JS-regeln håller.
 → demons gamla bilder → lån ur `web/public/*/media/` (`md5sum` mot dubbletter)
 → generering.
 
-Varje demo behöver: hero-film liggande + stående, två postrar, förvandlingsfilm
-med logokort, poster, kontaktfilm + poster, en bild per tjänst (4:3), och
-**10–14 jobbilder (4:3, 960×720) till två band**, logotypen.
+Varje demo behöver: hero-film (förvandlingen) liggande + stående, två postrar,
+Varför-film (lugn, med logokort) + poster, kontaktfilm + poster, en bild per
+tjänst (4:3), **10–14 jobbilder (4:3, 960×720) till två band**, logotypen —
+och en ljus variant av den om den är mörk och flerfärgad.
 
 ### Var credits läggs (och inte)
 
-Den enda filmen som **måste** genereras är förvandlingen i Varför — och den
-visas i halv bredd, så **720p räcker** (5 s ≈ 32 credits; 4 s ≈ 26).
-Heron, kontaktfilmen och slutkortet byggs lokalt med ffmpeg för 0 credits.
+Den enda filmen som **måste** genereras är förvandlingen, som är hero-film.
+**720p räcker** (5 s ≈ 32 credits; 4 s ≈ 26): skala upp lokalt med
+`scale=1920:-2:flags=lanczos`, slöjan över heron döljer skillnaden.
+Varför-filmen, kontaktfilmen och slutkortet byggs lokalt med ffmpeg för
+0 credits. Stående mobilversion av heron: rama om samma klipp till 9:16.
 
 Förvandlingen är kedjan **A → B**: A = slitet utgångsläge
 (`"documentary contractor photography, natural muted colors, no HDR, no
@@ -229,8 +245,8 @@ CDN raderar efter ~30 dagar.
 
 ### Recepten (ffmpeg, 0 credits)
 
-**Logokortet på slutet av förvandlingsfilmen** — Mathias krav: loggan kommer
-upp i slutet. Vit bakgrund för mörka logotyper, `mork`-färgen för ljusa.
+**Logokortet på slutet av Varför-filmen** — Mathias krav: loggan kommer upp
+i slutet, och det är i Varför-sektionen den gör det (inte i heron). Vit bakgrund för mörka logotyper, `mork`-färgen för ljusa.
 
 ```sh
 ffmpeg -y -f lavfi -i "color=c=white:s=1280x720:d=2.2:r=24" -loop 1 -framerate 24 -t 2.2 -i logo.png \
@@ -246,9 +262,10 @@ vitt och tomt (hände 2026-09-18). `settb=1/24` på båda ingångarna, annars
 vägrar `xfade` ("timebase do not match"). Loggan ska fylla **~70 % av
 bredden** — 43 % såg ut som ett misstag. **Titta på sista bildrutan.**
 
-**Hero ur ett eget foto** (långsam inzoomning, ping-pong så loopen aldrig
-hoppar). Välj kundens ljusaste, gladaste exteriör — blå himmel slår grå puts.
-Motivet till höger, texten står till vänster.
+**Den lugna filmen ur ett eget foto** (långsam inzoomning) — till Varför och,
+suddad, till kontaktsektionen. Välj kundens ljusaste, gladaste bild — blå
+himmel slår grå puts. Till Varför används de första sex sekunderna (bara
+inzoomningen) följt av logokortet; ping-pong-versionen är till kontaktfilmen.
 
 ```sh
 ffmpeg -y -loop 1 -i foto.jpg -vf "crop=<16:9-ruta>,scale=7680:-2:flags=lanczos,zoompan=z='1+0.08*on/216':x='(iw-iw/zoom)*0.6':y='(ih-ih/zoom)*0.25':d=216:s=1920x1080:fps=24" \
@@ -278,10 +295,13 @@ nischen och (c) det filmen i Varför visar. Den står som `varfor.lead` och ekar
 i `hero.ingress`. En sida som följer varje formregel men saknar idé har ratats
 med "hela copyn är värdelös".
 
-- **Heron: firmanamnet + EN mening.** `h1` är namnet, delat på två rader när
-  det är långt: `['Swedcro', { txt: 'Måleri & Fasad', liten: true }]`. Mallen
-  räknar själv ut storleken så namnet fyller bredden på mobil utan att brytas.
-  Ingressen är en mening, högst två, med kundens egna ord. Ingen slogan till.
+- **Heron har ingen copy.** Logotypen, `hero.ort` (en ort eller ett område,
+  som firman själv skriver det — utelämnas om ingen är verifierad) och
+  `hero.tjanster`: firmans **två** viktigaste tjänster, ett ord var
+  (`['Måleri', 'Fasad']`). Mallen sätter "&" emellan och punkt efter. Bärande
+  idén bor i Varför-sektionens rubrik och ingress, inte här.
+- **Tjänstebandet** (`tejp`): åtta korta ord, tjänster och gärna orter, ett
+  eller två ord var. Utelämnas fältet tar mallen tjänsternas namn och punkter.
 - **Ärlighet som positionering.** Minst en mening som avstår försäljning
   ("Räcker det att måla om sockeln säger vi det"). Den bor i Varför-punkterna.
 - **EN handling per sida.** `cta.txt` (lång), `cta.kort` (header, sidflik utan
@@ -306,17 +326,18 @@ Kopiera `swedcro/page.js` och byt innehållet. Fälten:
 |---|---|
 | `namn`, `sprak` | Firmanamnet. `sprak: 'nb'` för norska |
 | `tema` | De sex färgerna (se Designen) |
-| `logo` | `{ src, w, h, alt, topp }` — eller utelämna och sätt `ordmarke: 'Namn'` |
+| `logo` | `{ src, w, h, alt, topp, ljus }` — `ljus` är en ljus variant för heron (valfri). Eller utelämna `logo` och sätt `ordmarke: 'Namn'` |
 | `kontakt` | `tel`, `telHref`, `epost`, `adress`, `oppet`, `ig`, `igHandle`, `fb`, `orgnr` — bara verifierade, resten utelämnas |
 | `cta` | `txt`, `kort`, `lank` |
 | `nav` | `vanster` och `hoger`, två länkar var (logotypen hamnar emellan) |
 | `formAction` | `mailto:mathias@bahkobyra.se?subject=<Kund>%20-%20…` |
-| `hero` | `marke`, `h1`, `ingress`, `video`, `videoMobil`, `poster`, `posterMobil`, `bevis` (tre ord) |
+| `hero` | `ort`, `tjanster: ['Ett', 'Två']`, `video`, `videoMobil`, `poster`, `posterMobil` — och `h1` (rader) bara när logotyp saknas |
+| `tejp` | Åtta korta ord till bandet under heron (valfri) |
 | `tjanster` | `eyebrow`, `rubrik`, `lead`, `kort[]`: `id`, `namn`, `bild`, `alt`, `text`, `punkter`, `ritning` (JSX-paths, viewBox 200×120) |
 | `jobb` | rubrikfält + `rad1[]`, `rad2[]`: `src`, `alt`, `txt` · `not` · `tid` (varvtid, ~10 s per bild) |
-| `varfor` | rubrikfält + `punkter[]`, `video`, `poster`, `videoAlt`, `not` |
+| `varfor` | rubrikfält + `punkter[]`, `video`, `poster`, `videoAlt` |
 | `om` | `eyebrow`, `rubrik`, `kortRad` (orten under logotypen), `stycken[]`, `bevis[]` |
-| `steg` | rubrikfält + `lista[]`: `namn`, `text`. **Utelämna för att ta bort sektionen** |
+| `steg` | rubrikfält + `lista[]`: `namn`, `text`, valfri `ikon` (`kontakt`, `besok`, `offert`, `arbete`, `plan`, `klart`). **Utelämna för att ta bort sektionen** |
 | `omdomen` | rubrikfält + `betyg` (bara verifierat), `lista[]`, `not`, `lank` |
 | `instagram` | rubrikfält + `bio`, och `koder[]` **eller** `kort[]`. Utelämna helt om kontot saknas |
 | `fragor` | rubrikfält + `kort` (rubrik, text), `lista[]` (q, a) — 6–8 frågor, pengar och risk först |
@@ -359,7 +380,9 @@ på **kanon och minst en demo till**.
 | Mönster | Så | Fallgrop |
 |---|---|---|
 | Header-toning | `@property --bahko-hdr-t` (0→1) animerad på `scroll(root)`, `animation-range: 0 120px`. Färg, glas, pillerfärg och loggans filter räknas ur den med `color-mix`/`calc` | Utan stöd för scroll-tidslinjer står värdet på 1 = vit header från start, aldrig en oläslig. **Pillret är MÖRKT glas högst upp** — ljust glas över ljus film gav oläsliga länkar. |
-| H1-storlek | `--h1-tecken` räknas i `DemoSida.js` ur längsta raden; CSS delar bredden med den | Raden får aldrig brytas eller spilla. QA mäter `scrollWidth`. |
+| Hero-logotypen | h1 omsluter loggan (`alt` = firmanamnet). Bredden räknas ur `--logo-ar` så en bred och en hög logga får samma optiska höjd, och en liten fil skalas upp | Över filmen: `ljus`-varianten om den finns · annars `topp: 'vit'` → vit siluett · `topp: 'bricka'` → loggan i egna färger med ett mjukt ljussken bakom (ingen platta med kant). Utan logotyp: firmanamnet i Bebas Neue, storleken räknad ur `--h1-tecken`. |
+| Tjänstebandet | Samma `rulla`-loop som jobbanden, kopian `aria-hidden` | Konturorden har fyllning i bandets egen färg och `paint-order: stroke fill` — med genomskinlig fyllning syns typsnittets överlappande konturer inne i bokstäverna. |
+| Resan | `::after`-linjen skalas 0→1 på `animation-timeline: view()`; `--n` = antal steg | Utan stöd står hela linjen ritad. Ikonerna är mallens egna (sex stycken) — rita inga nya per kund. |
 | Band | Spår med två grupper, kopian `aria-hidden` med tomma `alt`, `translateX(-50%)`, band två `animation-direction: reverse` | Vid minskad rörelse: stilla, sidledsskroll, kopian dold. |
 | Tjänstekort | Länkens `::before` täcker kortet | Nästla aldrig länkar. Ikonen sticker ut under bilden — `overflow` sitter på den inre bildlådan, inte på bildytan. |
 | Mobilmeny, modal | `:target`-lager utanför headern, stängs mot `#stangd` | Aldrig `aria-modal`/`role="dialog"` — utan JS finns ingen fokusfälla att lova. Stäng aldrig mot `#top`, då hoppar sidan. |
@@ -392,8 +415,11 @@ på **kanon och minst en demo till**.
 
    **Ta bort `web/qa.mjs` före commit.** Skriptet kontrollerar på 1440 och
    390 px: sektionsordning, exakt en h1 i Bebas Neue som ryms på raden, att
-   siffer-raden är borta, headerns toning, logotypen mitt i pillret, kontrast
-   över filmen i fem bildrutor (h1, ingress, bevisrad, header, kontaktrubrik),
+   siffer-raden är borta, att heron är ren (logotyp, ort, två tjänster, två
+   knappar, centrerad), tjänstebandet åt vänster, resan utan siffror, ingen
+   not under filmen, headerns toning, logotypen mitt i pillret, kontrast över
+   filmen i fem bildrutor (ort, tjänsterad, header, kontaktrubrik; stor text
+   kräver 3:1),
    **kontrast på all övrig text**, minst tre formulärknappar + popup + sidflik,
    tjänstekortens bilder, att banden rör sig åt var sitt håll, mörk
    Varför-sektion, filmens längd och ljusa slutbild, logotypen i Om oss och

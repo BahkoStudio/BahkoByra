@@ -132,3 +132,7 @@ Hej Alexander! Snygga jobb ni lägger upp, poolrummet särskilt. Gick in på gol
 ## 2026-09-18: omklädd till demomallen v3
 
 Guldpalett ur loggan, mörk loggvariant för ljusa ytor. Förvandlingsfilmen (altan) slutar med loggan, som blir mjuk av uppskalningen från 178 px, så be om vektorfil. Deras tre egna IG-foton i Instagram-sektionen. Mallen har ljus design, glaspiller-meny med loggan i mitten, sidflik, popup och minst tre CTA. 0 Higgsfield-credits.
+
+## 2026-09-19: justerad efter Mathias feedback
+
+Heron är nu logotyp, ort och två tjänster (som Axels Landscaping), med ett rullande tjänsteband under. Förvandlingsfilmen är hero-film och den lugna filmen ligger i Varför med loggan på slutet. Stegen är en resa med ikoner, utan siffror. Noten "Filmen är en illustration" är struken på Mathias begäran, så att hero-filmen är en illustration står bara här och i sidans kodkommentar.

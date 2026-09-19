@@ -44,6 +44,12 @@ import DemoSida from '../_mall/DemoSida';
    vektorfil (slutkortet i filmen blir mjukt av uppskalningen). Omdömen i
    exempelläge. Instagram-inlägg gick inte att läsa ut 2026-09-18 —
    IG-sektionen visar deras egna IG-foton i Instagram-ram.
+   2026-09-19 (Mathias feedback): heron är logotyp + ort + två tjänster,
+   tjänsteband under heron, stegen är en resa utan siffror. Filmerna har
+   bytt plats: FÖRVANDLINGEN (genererad illustration) är hero-film, och den
+   lugna filmen ur ett foto ligger i Varför med logotypen på slutet.
+   Illustrationsnoten under filmen är struken på Mathias begäran — att
+   hero-filmen är en illustration står bara här och i leadfilen.
    =========================================================================== */
 
 export const metadata = {
@@ -65,7 +71,7 @@ const data = {
     accentLjus: '#E0B45A',
     paAccent: '#0F172A',
   },
-  logo: { src: `${M}/logo-goldring.png`, w: 178, h: 197, alt: 'Goldring Bygg & Entreprenad AB', topp: 'vit' },
+  logo: { src: `${M}/logo-goldring.png`, ljus: `${M}/logo-goldring-vit.png`, w: 178, h: 197, alt: 'Goldring Bygg & Entreprenad AB', topp: 'vit' },
   kontakt: {
     tel: '070-719 84 44',
     telHref: 'tel:+46707198444',
@@ -84,15 +90,14 @@ const data = {
   formAction: 'mailto:mathias@bahkobyra.se?subject=Goldring%20Bygg%20-%20hembes%C3%B6k',
 
   hero: {
-    marke: 'Byggfirma i nordvästra Skåne',
-    h1: ['Goldring', { txt: 'Bygg & Entreprenad', liten: true }],
-    ingress: 'Ett bygge är många yrken. Ett nummer räcker. Vi gör snickeriet själva och projektleder resten, från altanen till tillbyggnaden.',
-    video: `${M}/video-hero-altan.mp4`,
-    videoMobil: `${M}/video-hero-altan-mobil.mp4`,
+    ort: 'Nordvästra Skåne',
+    tjanster: ['Bygg', 'Entreprenad'],
+    video: `${M}/video-hero-fore-efter-altan.mp4`,
+    videoMobil: `${M}/video-hero-fore-efter-altan-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
-    bevis: ['Kostnadsfritt hembesök', 'En kontakt hela vägen', 'Byggfirma sedan 2021'],
   },
+  tejp: ['Uterum', 'Altan', 'Takbyte', 'Kök', 'Badrum', 'Tillbyggnad', 'Nybyggnation', 'Snickeri'],
 
   tjanster: {
     eyebrow: 'Vad vi gör',
@@ -133,10 +138,9 @@ const data = {
       { rubrik: 'Tydligt pris först', text: 'Du ser vad som ingår och vad det kostar innan vi börjar.' },
       { rubrik: 'Ärliga råd', text: 'Är det ett jobb för en ensam snickare säger vi det. Då betalar du inte för projektledning du inte behöver.' },
     ],
-    video: `${M}/video-varfor-forvandling.mp4`,
+    video: `${M}/video-varfor-altan.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'En sliten grå altan byts bräda för bräda mot en ny i furu. Filmen slutar med Goldrings logotyp.',
-    not: 'Filmen är en illustration av ett altanbygge.',
+    videoAlt: 'Långsam inzoomning över en nybyggd altan i furu. Filmen slutar med Goldrings logotyp.',
   },
 
   om: {

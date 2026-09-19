@@ -464,13 +464,15 @@ html:has(.sida) {
   border-bottom: 0;
 }
 
-/* ---------- 1. hero ---------- */
+/* ---------- 1. hero ----------
+   Mathias 2026-09-19, efter Axels Landscaping: bara LOGOTYPEN, ORTEN och TVÅ TJÄNSTER, centrerat,
+   plus de två knapparna. Ingen ingress, ingen bevisrad. Filmen bakom är förvandlingen (före till efter). */
 .hero {
   position: relative;
   display: grid;
   align-items: center;
   min-height: 100svh;
-  padding: 128px 0 clamp(3rem, 7vh, 5.5rem);
+  padding: 120px 0 clamp(4rem, 9vh, 6rem);
   background: var(--mork);
   color: #fff;
   overflow: hidden;
@@ -491,102 +493,84 @@ html:has(.sida) {
   .heroLiggande { display: none; }
   .heroStaende { display: block; }
 }
-/* Slöjan: mörkast till vänster där texten står, öppen till höger så filmen syns. */
+/* Slöjan: jämn över hela bilden (texten står i mitten), tätare upptill för headern och nedtill mot nästa sektion. */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--mork) 82%, transparent) 0%, color-mix(in srgb, var(--mork) 52%, transparent) 40%, color-mix(in srgb, var(--mork) 6%, transparent) 78%, transparent 100%),
-    linear-gradient(180deg, color-mix(in srgb, var(--mork) 50%, transparent) 0%, color-mix(in srgb, var(--mork) 18%, transparent) 14%, transparent 30%, transparent 72%, color-mix(in srgb, var(--mork) 45%, transparent) 100%);
+    radial-gradient(ellipse 70% 60% at 50% 56%, color-mix(in srgb, var(--mork) 76%, transparent) 0%, color-mix(in srgb, var(--mork) 44%, transparent) 100%),
+    linear-gradient(180deg, color-mix(in srgb, var(--mork) 55%, transparent) 0%, transparent 26%, transparent 72%, color-mix(in srgb, var(--mork) 55%, transparent) 100%);
 }
-/* Surfplatta: texten tar större del av bredden, så slöjan måste bära längre åt höger och nedtill.
-   768 px gav 4,2:1 på bevisraden över den ljusa fasaden (design-loopen 2026-09-18). */
-@media (min-width: 761px) and (max-width: 1180px) {
-  .hero::before {
-    background:
-      linear-gradient(90deg, color-mix(in srgb, var(--mork) 86%, transparent) 0%, color-mix(in srgb, var(--mork) 66%, transparent) 55%, color-mix(in srgb, var(--mork) 20%, transparent) 100%),
-      linear-gradient(180deg, color-mix(in srgb, var(--mork) 50%, transparent) 0%, transparent 26%, transparent 50%, color-mix(in srgb, var(--mork) 62%, transparent) 100%);
-  }
+.heroIn {
+  display: grid;
+  justify-items: center;
+  max-width: 60rem;
+  margin-inline: auto;
+  text-align: center;
 }
-/* På mobil går texten över hela bredden, så slöjan ligger uppifrån och ned i stället. */
-@media (max-width: 760px) {
-  .hero::before {
-    background: linear-gradient(180deg, color-mix(in srgb, var(--mork) 66%, transparent) 0%, color-mix(in srgb, var(--mork) 26%, transparent) 20%, color-mix(in srgb, var(--mork) 58%, transparent) 46%, color-mix(in srgb, var(--mork) 80%, transparent) 100%);
-  }
-}
-.heroIn { max-width: 56rem; }
-.heroMarke {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 1.4rem;
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  /* Mörkt glas: ljust glas över en vit fasad gav 3,8:1 på mobil (design-loopen 2026-09-18). */
-  background: rgba(8, 12, 24, 0.68);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  font-family: var(--f-rubrik);
-  font-size: var(--tx-s);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-}
-.heroMarke::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent-ljus);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-ljus) 30%, transparent);
-}
+/* h1 ÄR logotypen (alt = firmanamnet). Utan logotyp: firmanamnet i Bebas Neue. */
 .h1 {
   font-family: var(--f-hero);
-  /* Storleken räknas ur namnets längd (--h1-tecken sätts av DemoSida), så att
-     firmanamnet fyller bredden på mobil utan att någonsin brytas eller spilla. */
-  font-size: clamp(2.4rem, calc((100vw - 2 * var(--gut)) / (var(--h1-tecken, 9) * 0.47)), 8.2rem);
+  font-size: clamp(2.4rem, calc((100vw - 2 * var(--gut)) / (var(--h1-tecken, 9) * 0.47)), 7rem);
   font-weight: 400;
   line-height: 0.92;
   letter-spacing: 0.035em;
   text-transform: uppercase;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 .h1 span { display: block; }
-/* Långa firmanamn: andra raden får vara mindre hellre än att brytas mitt i. */
 .h1Liten { font-size: 0.62em; letter-spacing: 0.05em; margin-top: 0.12em; }
-.heroIngress {
-  max-width: 38rem;
-  margin-top: 1.6rem;
-  font-family: var(--f-rubrik);
-  font-size: clamp(1.08rem, 1.55vw, 1.32rem);
-  font-weight: 400;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.94);
-  text-wrap: pretty;
+.h1 img {
+  /* Bredden räknas ur loggans proportioner (--logo-ar sätts av DemoSida): samma optiska höjd för en
+     bred och en hög logga, och en liten fil (178 px) skalas upp i stället för att bli ett frimärke. */
+  --hojd: clamp(130px, 26vh, 230px);
+  width: min(78vw, 460px, calc(var(--hojd) * var(--logo-ar, 2)));
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.45));
+}
+/* Flerfärgad mörk logotyp (topp: 'bricka') utan ljus variant: ett mjukt ljussken bakom, ingen platta med kant. */
+.h1:has(img.heroLogoSken) { position: relative; isolation: isolate; }
+.h1:has(img.heroLogoSken)::before {
+  content: '';
+  position: absolute;
+  inset: -18% -14%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.82) 55%, rgba(255, 255, 255, 0) 100%);
+}
+.h1 img.heroLogoSken { filter: none; }
+/* Mörk enfärgad logotyp utan ljus variant: visas som vit siluett över filmen. */
+.h1 img.heroLogoVit { filter: brightness(0) invert(1) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.45)); }
+.heroOrt {
+  margin-top: clamp(1.2rem, 3vh, 2rem);
+  font-family: var(--f-hero);
+  font-size: clamp(2.6rem, 6.4vw, 5rem);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+.heroTjanster {
+  margin-top: 0.5rem;
+  font-family: var(--f-kursiv);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+  line-height: 1.2;
+  color: var(--accent-ljus);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
 }
 .heroCta {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.9rem;
-  margin-top: 2.2rem;
+  margin-top: clamp(1.6rem, 4vh, 2.4rem);
 }
 .heroCta .btn { min-height: 58px; padding-inline: 2rem; font-size: var(--tx-l); }
-.heroBevis {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem 1.6rem;
-  margin-top: 2rem;
-  font-size: var(--tx-m);
-  color: #fff;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
-}
-.heroBevis li {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
 .bock {
   flex: none;
   width: 20px;
@@ -599,11 +583,62 @@ html:has(.sida) {
   .stegFot .btn,
   .recensionerKnappar,
   .recensionerKnappar .btn { width: 100%; }
-}
-@media (max-width: 560px) {
-  /* Nedtill: luft åt Bahkos demo-knapp, som annars lägger sig över bevisraden. */
-  .hero { padding-top: 104px; padding-bottom: 5.5rem; align-items: end; }
+  /* Nedtill: luft åt Bahkos demo-knapp. */
+  .hero { padding-top: 96px; padding-bottom: 5.5rem; }
+  .heroCta { width: 100%; }
   .heroCta .btn { width: 100%; }
+}
+
+/* ---------- tjänstebandet under heron ----------
+   Mathias 2026-09-19, efter Axels: mörkt band med tjänsterna i tunga versaler som rullar åt VÄNSTER,
+   vartannat ord fyllt och vartannat bara kontur i accentfärg. */
+.tejp {
+  overflow: hidden;
+  background: var(--mork);
+  border-block: 2px solid var(--accent);
+  padding-block: clamp(1rem, 2.2vw, 1.6rem);
+}
+.tejpSpar {
+  display: flex;
+  width: max-content;
+  animation: rulla var(--tejptid, 45s) linear infinite;
+}
+.tejp:hover .tejpSpar { animation-play-state: paused; }
+.tejpGrupp {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.tejpGrupp span {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--f-rubrik);
+  font-size: clamp(1.6rem, 3.6vw, 2.9rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #fff;
+}
+.tejpGrupp span::after {
+  content: '';
+  width: 0.22em;
+  height: 0.22em;
+  margin-inline: clamp(1.4rem, 3vw, 2.6rem);
+  border-radius: 50%;
+  background: var(--accent-ljus);
+}
+.tejpGrupp span:nth-child(even) {
+  /* Fyllningen i bandets egen färg målas ÖVER konturens insida (paint-order). Med genomskinlig
+     fyllning syns typsnittets överlappande konturer inne i bokstäverna. */
+  color: var(--mork);
+  -webkit-text-stroke: 3px var(--accent-ljus);
+  paint-order: stroke fill;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tejpSpar { animation: none; }
+  .tejp { overflow-x: auto; }
+  .tejpKopia { display: none; }
 }
 
 /* ---------- 2. tjänster: kort med bild ---------- */
@@ -844,11 +879,6 @@ html:has(.sida) {
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
-.varforNot {
-  margin-top: 0.9rem;
-  font-size: var(--tx-s);
-  color: rgba(255, 255, 255, 0.7);
-}
 @media (max-width: 900px) {
   .varforGrid { grid-template-columns: 1fr; }
   .varforMedia { order: -1; position: static; margin-top: 0; }
@@ -930,44 +960,114 @@ html:has(.sida) {
   .omKort { min-height: 0; }
 }
 
-/* ---------- 6. så går det till ---------- */
-.steg {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.2rem;
-  counter-reset: steg;
-}
-/* Flex i stället för grid: en udda sista rad centreras i stället för att lämna ett hål. */
-.steg > li { flex: 1 1 200px; max-width: calc((100% - 2.4rem) / 3); }
-@media (min-width: 1100px) { .steg > li { max-width: none; flex: 1 1 0; min-width: 0; } }
-@media (max-width: 620px) { .steg > li { max-width: none; flex-basis: 100%; } }
-.stegItem {
+/* ---------- 6. så går det till: resan ----------
+   Inga ordningssiffror (01, 02 …): ratade som AI-slop 2026-08-21 och igen 2026-09-19. I stället en
+   linje som ritar sig själv från första kontakten till färdigt jobb, med en ikon per hållplats. */
+.resa {
+  --nod: 76px;
   position: relative;
-  padding: 1.6rem 1.4rem;
-  border-radius: var(--r);
-  background: var(--mjuk);
-  border: 1px solid var(--linje);
-  counter-increment: steg;
+  display: grid;
+  grid-template-columns: repeat(var(--n, 5), minmax(0, 1fr));
+  gap: 1.2rem;
 }
-.stegItem::before {
-  content: counter(steg, decimal-leading-zero);
-  display: block;
-  margin-bottom: 1rem;
-  font-family: var(--f-hero);
-  font-size: 2.6rem;
-  line-height: 1;
-  letter-spacing: 0.03em;
+.resa::before,
+.resa::after {
+  content: '';
+  position: absolute;
+  top: calc(var(--nod) / 2 - 2px);
+  left: calc(100% / var(--n, 5) / 2);
+  right: calc(100% / var(--n, 5) / 2);
+  height: 4px;
+  border-radius: 4px;
+}
+.resa::before { background: repeating-linear-gradient(90deg, #CBD5E1 0 10px, transparent 10px 20px); }
+.resa::after { background: var(--accent); transform-origin: left center; }
+.resaSteg {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.5rem;
+  text-align: center;
+}
+.resaNod {
+  display: grid;
+  place-items: center;
+  width: var(--nod);
+  height: var(--nod);
+  margin-bottom: 0.7rem;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--accent);
   color: var(--accent-text);
+  box-shadow: 0 0 0 8px #fff, var(--skugga);
+  transition: transform 0.3s var(--ease), background 0.3s, color 0.3s;
 }
-.stegItem h3 {
+.resaNod svg {
+  width: 42px;
+  height: 42px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.resaSteg:hover .resaNod { transform: translateY(-4px) scale(1.05); }
+/* Målet: sista hållplatsen är fylld. */
+.resaSteg:last-child .resaNod { background: var(--accent); color: var(--pa-accent); }
+.resaSteg h3 {
   font-family: var(--f-rubrik);
   font-size: var(--tx-l);
   font-weight: 700;
   letter-spacing: -0.01em;
+  line-height: 1.25;
 }
-.stegItem p { margin-top: 0.45rem; font-size: var(--tx-m); color: var(--text-2); }
-.stegFot { margin-top: 2.2rem; display: flex; justify-content: center; }
+.resaSteg p { max-width: 17rem; font-size: var(--tx-m); color: var(--text-2); }
+.stegFot { margin-top: 2.6rem; display: flex; justify-content: center; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .resa::after {
+      animation: resaRitas linear both;
+      animation-timeline: view();
+      animation-range: entry 35% cover 55%;
+    }
+  }
+}
+@keyframes resaRitas {
+  from { transform: scale(0, 1); }
+  to   { transform: scale(1, 1); }
+}
+/* Smalare skärmar: resan går uppifrån och ned, linjen till vänster. */
+@media (max-width: 900px) {
+  .resa { --nod: 60px; grid-template-columns: 1fr; gap: 1.8rem; }
+  .resa::before,
+  .resa::after {
+    top: calc(var(--nod) / 2);
+    bottom: calc(var(--nod) / 2);
+    left: calc(var(--nod) / 2 - 2px);
+    right: auto;
+    width: 4px;
+    height: auto;
+  }
+  .resa::before { background: repeating-linear-gradient(180deg, #CBD5E1 0 10px, transparent 10px 20px); }
+  .resa::after { transform-origin: center top; animation-name: resaRitasNed; }
+  .resaSteg {
+    grid-template-columns: var(--nod) 1fr;
+    justify-items: start;
+    column-gap: 1.1rem;
+    row-gap: 0.2rem;
+    text-align: left;
+  }
+  .resaNod { grid-row: 1 / span 2; margin-bottom: 0; box-shadow: 0 0 0 6px #fff; }
+  .resaNod svg { width: 32px; height: 32px; }
+  .resaSteg h3 { align-self: end; }
+  .resaSteg p { max-width: none; }
+}
+@keyframes resaRitasNed {
+  from { transform: scale(1, 0); }
+  to   { transform: scale(1, 1); }
+}
 
 /* ---------- 7. omdömen i Google-stil ---------- */
 .omdHuvud {
@@ -1678,7 +1778,7 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
     .varforFilm,
     .omKort,
     .omBevis,
-    .stegItem,
+    .resaSteg,
     .recension,
     .igInlagg,
     .fraga,
@@ -1695,15 +1795,13 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
 }
 /* Hero-entré: tidsstyrd, körs en gång. */
 @media (prefers-reduced-motion: no-preference) {
-  .heroMarke,
   .h1,
-  .heroIngress,
-  .heroCta,
-  .heroBevis {
+  .heroOrt,
+  .heroTjanster,
+  .heroCta {
     animation: stigUpp 0.9s var(--ease) both;
   }
-  .h1 { animation-delay: 0.08s; }
-  .heroIngress { animation-delay: 0.18s; }
-  .heroCta { animation-delay: 0.28s; }
-  .heroBevis { animation-delay: 0.38s; }
+  .heroOrt { animation-delay: 0.1s; }
+  .heroTjanster { animation-delay: 0.2s; }
+  .heroCta { animation-delay: 0.32s; }
 }

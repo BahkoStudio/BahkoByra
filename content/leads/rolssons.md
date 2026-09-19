@@ -46,3 +46,7 @@ Grundat år, antal anställda, priser, Google-betyg. Sajtens ROT-belopp nämns i
 ## 2026-09-18: omklädd till demomallen v3
 
 Den dåliga Varför-filmen (panorering över tapeten) är borta. Förvandlingsfilmen är nu det gamla trapphusklippet med loggan på slutet. Ny hero av deras eget trapphusfoto (namnskyltarna suddade). Grön palett. Instagram-sektionen visar deras egna bilder i IG-ram, eftersom Instagram blockerade hämtningen av inlägg. Mallen har ljus design, glaspiller-meny med loggan i mitten, sidflik, popup och minst tre CTA. 0 Higgsfield-credits.
+
+## 2026-09-19: justerad efter Mathias feedback
+
+Heron är nu logotyp, ort och två tjänster (som Axels Landscaping), med ett rullande tjänsteband under. Förvandlingsfilmen är hero-film och den lugna filmen ligger i Varför med loggan på slutet. Stegen är en resa med ikoner, utan siffror. Noten "Filmen är en illustration" är struken på Mathias begäran, så att hero-filmen är en illustration står bara här och i sidans kodkommentar.

@@ -122,3 +122,7 @@ Här kommer prototypen, byggd för att ni ska ranka högre på Google, få fler 
 ## 2026-09-18: omklädd till demomallen v3
 
 VARM, prototyp utlovad inom 48 h. Blå palett, mörk loggvariant för ljusa ytor. Förvandlingsfilmen (badrum, delas med hd) slutar med loggan. Deras tre egna IG-foton i Instagram-sektionen (små original). Mallen har ljus design, glaspiller-meny med loggan i mitten, sidflik, popup och minst tre CTA. 0 Higgsfield-credits.
+
+## 2026-09-19: justerad efter Mathias feedback
+
+Heron är nu logotyp, ort och två tjänster (som Axels Landscaping), med ett rullande tjänsteband under. Förvandlingsfilmen är hero-film och den lugna filmen ligger i Varför med loggan på slutet. Stegen är en resa med ikoner, utan siffror. Noten "Filmen är en illustration" är struken på Mathias begäran, så att hero-filmen är en illustration står bara här och i sidans kodkommentar.

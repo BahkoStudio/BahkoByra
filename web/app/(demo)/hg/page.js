@@ -30,6 +30,12 @@ import DemoSida from '../_mall/DemoSida';
    ordmärket i Bebas Neue med märkets röda. Omdömen i exempelläge. ALLA
    bilder och filmer är illustrationer (märkt). Ingen Instagram-sektion:
    kontot har två inlägg och gick inte att läsa ut 2026-09-18.
+   2026-09-19 (Mathias feedback): heron är logotyp + ort + två tjänster,
+   tjänsteband under heron, stegen är en resa utan siffror. Filmerna har
+   bytt plats: FÖRVANDLINGEN (genererad illustration) är hero-film, och den
+   lugna filmen ur ett foto ligger i Varför med logotypen på slutet.
+   Illustrationsnoten under filmen är struken på Mathias begäran — att
+   hero-filmen är en illustration står bara här och i leadfilen.
    =========================================================================== */
 
 export const metadata = {
@@ -64,15 +70,15 @@ const data = {
   formAction: 'mailto:mathias@bahkobyra.se?subject=HG%20Maskinentreprenad%20-%20f%C3%B6rfr%C3%A5gan',
 
   hero: {
-    marke: 'Maskinkörning för företag',
+    // Ingen ort är verifierad, så raden utelämnas. Ingen logotypfil heller: h1 blir firmanamnet i text.
     h1: ['HG', { txt: 'Maskinentreprenad', liten: true }],
-    ingress: 'Maskinkörning och övriga entreprenad- och markjobb, främst åt företagskunder. Ni beställer en dag som blir klar, inte bara timmar.',
-    video: `${M}/video-hero-gryning.mp4`,
-    videoMobil: `${M}/video-hero-gryning-mobil.mp4`,
+    tjanster: ['Maskinkörning', 'Markjobb'],
+    video: `${M}/video-hero-fore-efter-plan.mp4`,
+    videoMobil: `${M}/video-hero-fore-efter-plan-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
-    bevis: ['Maskin med förare', 'Mark och entreprenad', 'Främst åt företag'],
   },
+  tejp: ['Maskinkörning', 'Schakt', 'Grusplaner', 'Dränering', 'Tillfartsvägar', 'Underentreprenad', 'Packning', 'Markjobb'],
 
   tjanster: {
     eyebrow: 'Vad vi gör',
@@ -113,10 +119,9 @@ const data = {
       { rubrik: 'Offert och tidplan först', text: 'Ni får pris och plan innan start, och besked direkt om något ändras.' },
       { rubrik: 'Ärliga råd', text: 'Räcker en mindre maskin för jobbet säger vi det, även när en större hade gett oss mer betalt.' },
     ],
-    video: `${M}/video-varfor-forvandling.mp4`,
+    video: `${M}/video-varfor-gryning.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'En obruten tomt vid skogskanten planas till en packad grusplan. Filmen slutar med HG Maskinentreprenads namn.',
-    not: 'Filmen är en illustration av ett markjobb.',
+    videoAlt: 'En hjullastare med tända lyktor på en grusplan i gryningen. Filmen slutar med HG Maskinentreprenads namn.',
   },
 
   om: {

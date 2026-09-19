@@ -46,3 +46,7 @@ Org.nr (enskild firma), antal projekt, garantier utöver "betala när du är nö
 ## 2026-09-18: omklädd till demomallen v3
 
 Kanon för demomallen v3. Ny hero av deras eget foto (vita tvåplanshuset i sol), förvandlingsfilmen med Swedcro-loggan på slutet, två jobbband med arton egna foton, tre riktiga Instagram-inlägg inbäddade. Siffer-raden borttagen. Design-loop 5 rundor. Mallen har ljus design, glaspiller-meny med loggan i mitten, sidflik, popup och minst tre CTA. 0 Higgsfield-credits.
+
+## 2026-09-19: justerad efter Mathias feedback
+
+Heron är nu logotyp, ort och två tjänster (som Axels Landscaping), med ett rullande tjänsteband under. Förvandlingsfilmen är hero-film och den lugna filmen ligger i Varför med loggan på slutet. Stegen är en resa med ikoner, utan siffror. Noten "Filmen är en illustration" är struken på Mathias begäran, så att hero-filmen är en illustration står bara här och i sidans kodkommentar.
