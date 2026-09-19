@@ -1,0 +1,16 @@
+{
+  "name": "extern-rolssons",
+  "private": true,
+  "scripts": {
+    "prebuild": "node kopiera.mjs",
+    "build": "next build",
+    "predev": "node kopiera.mjs",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^15.5.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
