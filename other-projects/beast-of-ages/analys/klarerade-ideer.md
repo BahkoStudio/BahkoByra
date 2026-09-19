@@ -193,3 +193,43 @@ obevisad hos vår publik, därför hamnar den under kanalens egna former.
 
 Reserv (risk): The Quagga Is Coming Back… But It's Just a Zebra (98, neo 230 k 2018);
 The Aurochs Is Coming Back… But It Already Failed Once (94, Ben G Thomas 1,22 M 2020).
+
+## Lätt kontroll 2026-09-18: tio djur för framtida de-extinction (Mathias lista)
+
+Mathias lista "10 animals for future de-extinction" prövad som EN samlingsvideo och
+som TIO enskilda videor. Samlingsvideon är död: formen "X animals scientists could/are
+trying to bring back" är extremt mättad just nu (Brave Wilderness 21,8 M prenumeranter
+aug 2026, Forrest Galante flera gånger, en 15 900-prenumerantskanal fick 1,4 M visningar
+på exakt vinkeln sex veckor sedan). De enskilda djuren kontrollerade var för sig, en
+sökning + vidIQ-titelpoäng, i Knapp-stil ("Why did X go extinct/exist?").
+
+| # | Djur | Föreslagen titel (vidIQ) | Läge | Status |
+|---|---|---|---|---|
+| 1 | Falklandsvarg | Why Did an Island's Only Land Mammal Go Extinct in 8 Years? (97) | bara mikrokanaler (under 6 000 pren.), inget på engelska i vårt format | klar |
+| 2 | Baiji (Yangtzeflodsdelfin) | Why Did the Yangtze's Only Dolphin Vanish in 20 Years? (97) | NHM 2013 (352 k) och Ben G Thomas 2018 (82 k) finns, men ingen ny långform | klar |
+| 3 | Kinesisk svärdstör | The Largest Freshwater Fish on Earth Went Extinct and Nobody Noticed (93) | bara nyhetsklipp 2020/2022 (CBS m.fl.), ingen berättande dokumentär | klar |
+| 4 | Guldpadda | Why Did an Entire Species Vanish in a Single Year? (96) | RISK — minst fem småkanaler (under 12 000 pren.) gjorde egna 8–45-minuters versioner 2025, en uppenbart AI-genererad; återkommande litet-kanals-ämne | risk, vänta eller gör snabbt |
+| 5 | Toolache-känguru | Why Did the Best Jumper in Australia Go Extinct First? (96) | NOLL träffar på engelska | klar, starkast |
+| 6 | Havsmink | Why Was There Only Ever One Sea-Going Mink? (90) | i praktiken noll riktade träffar | klar |
+| 7 | Stäppbison | Why Did the Bison That Outlived the Mammoth Still Go Extinct? (88) | täckt som "frusen mumie"-listpunkt (Blue Babe) i flera stora listor, men ingen gör själva utdöendeberättelsen | klar med not |
+| 8 | Lena-häst | Why Is There a Perfectly Preserved Ice Age Foal in a Freezer? (93) | samma sak — nämns i permafrost-listor (Origins Explained 830 k), aldrig egen video | klar med not |
+| 9 | Megalania | Why Did the Largest Lizard That Ever Lived Disappear? (93) | RISK — Ben G Thomas 1,6 M (2018) och ExtinctZoo 9,7 M (2024) samt två färska småkanalsversioner 2025/2026 | risk |
+| 10 | Skrattuggla | Why Did an Owl That Laughed Go Extinct? (94) | bara Shorts och klipp under en minut, ingen långform | klar |
+
+**Bedömning:** åtta av tio är klara för full Grind, två (guldpadda, Megalania) har
+konkurrens som gör dem till en risk snarare än en säker vinst. Toolache-kängurun är
+starkast (noll konkurrens, högst titelpoäng bland de säkra). Ingen full Grind eller
+manus byggt än — detta är enbart den lätta kontrollen Mathias bad om.
+
+## Ombedömning 2026-09-19: The Dodo Is Coming Back… But It Will Hatch From a Chicken
+
+Steg 1 (egen katalog) missades den 12:e: kanalen publicerade redan 12 juli "The Artificial
+Egg Built to Hatch a Moa" (9 528 visningar). Mekanismerna skiljer sig (moa: mekaniskt
+konstgjort äggskal i titan/silikon för en för stor ägg-volym; dodo: genredigerade
+Nicobar-duv-könsceller injicerade i en vanlig kycklingembryo) men temat "fågel + ägg +
+de-extinction" är samma. Steg 2 uppdaterad: Yahoo News Australia (3 210 pren., 18 sep
+2025, 37 sek) och Kindred Creatures (397 pren., 30 dec 2025, 20 min) har båda använt
+"kyckling-surrogat"-vinkeln specifikt. Colossals egna videor (1,6 M okt 2025, 3,8 M PR-
+klipp) täcker genombrottet men inte titelns vändning. Ingen kanal i vår storleksklass
+eller större har gjort den. **Bedömning: fortsatt grön, men inte obevakad — flagga i
+manuset att vinkeln synts i mindre kanaler.** Full Grind + manus startad 2026-09-19.
