@@ -1,0 +1,5 @@
+node_modules/
+.next/
+app/_mall/
+app/_sida/
+public/
