@@ -193,3 +193,13 @@ obevisad hos vår publik, därför hamnar den under kanalens egna former.
 
 Reserv (risk): The Quagga Is Coming Back… But It's Just a Zebra (98, neo 230 k 2018);
 The Aurochs Is Coming Back… But It Already Failed Once (94, Ben G Thomas 1,22 M 2020).
+
+## Förslag 2026-09-20: Why Don't We Drink Camel Milk in the West? ✅ SKRIVEN — se `manus/why-dont-we-drink-camel-milk.md`
+
+**Format:** Mall B (vardagsfråga), Mathias idé. **Grinden:** villkorlig grön. En jämförbar
+kanal, Murph (9 660 pren.), gjorde EXAKT samma fråga en månad tidigare ("...If It Stays
+Fresh Longer Than Cow Milk") och floppade — 3 234 visningar, ungefär en tredjedel av
+prenumerantantalet, inget stopp enligt steg 3. Manuset byggdes medvetet på en annan
+mekanism (kaseinkemi + Rom + US Camel Corps) än Murphs (hållbarhet), enligt regel 15.
+Tre rundor manusloop (taket). Lärdom värd att spara: en flopp på EXAKT samma fråga från en
+jämförbar kanal är inte automatiskt en dödare — bara ett krav på en annan mekanism.

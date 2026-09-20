@@ -19,6 +19,7 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 | `manus/hippo-on-land-at-night.md` | Mall F (andraperson-scenario), Grinden grön 2026-09-09, tre loopar à tre rundor (utökad till 2 254 ord 2026-09-11), paketet överst |
 | `manus/pufferfish-seafloor-circles.md` | Apex-gåta (spåret först, förövaren sist), klarerad 2026-08-24 och omkontrollerad 2026-09-09, tre loopar à tre rundor (utökad till 1 992 ord 2026-09-11), paketet överst |
 | `manus/honeybees-never-tamed.md` | Paradox-mallen (Pack Vibes "Why X … (But Never Y)"), Grinden grön 2026-09-12, tre rundor manusloop, paketet överst |
+| `manus/why-dont-we-drink-camel-milk.md` | Mall B (vardagsfråga), Grinden villkorlig grön 2026-09-20 (jämförbar kanal floppade på exakt frågan, annan mekanism vald), tre rundor manusloop (taket), paketet överst |
 | `manus/de-extinction-eras-veo.md` | 106 Veo-prompter à 8 sekunder, stilbibeln, musikbädden |
 | `analys/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
 | `analys/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
