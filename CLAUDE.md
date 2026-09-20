@@ -85,11 +85,13 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │                          ═══ YOUTUBE (inte Bahko Byrå) ═══
 ├── other-projects/ ........... allt som INTE är Bahko Byrå. Byggs av ingen Vercel
 │   └── beast-of-ages/ ........ YouTube-kanalen, eget projekt
-│       ├── youtube.md ........ ⭐ ALLA regler + kanalens nuläge. Läs den först
-│       ├── manus/ ............ fyra färdiga manus, paket och manus i samma fil
-│       ├── analys/ ........... kanalen, konkurrenter, klarerade idéer, utliggare
+│       ├── youtube.md ........ ⭐ ALLA regler + kanalens nuläge + INDEX över varje fil. Läs den först
+│       ├── manus/ ............ en fil per video: paketet överst, manuset under, status i youtube.md
+│       ├── analys/ ........... kanalen, konkurrenter, klarerade idéer, utliggare, panelens beslut,
+│       │   │                    dubbla ner-idéer
 │       │   └── modelleringsguide.md  ⭐ reglerna + GRINDEN före varje ny video
-│       └── reference/ ........ källdokumenten bakom reglerna, med bevisbilder
+│       └── reference/ ........ källdokumenten bakom reglerna (modellering vs kopiering, testa vs
+│                                dubbla ner, thumbnail-reglerna), med bevisbilder
 ├── data/ ..................... tom sedan klinik-leadsen raderades 2026-08-21
 ├── .tmp/ ..................... slängbart — UTOM session-context.md = lägesbilden
 └── .env ...................... nycklar. Aldrig hårdkodat någon annanstans
@@ -112,6 +114,17 @@ för hela listan, samma filer som repots), minnesmappen `~/.claude/projects/…/
 contentleveranser, karuseller, Bromma-material). Beast of Ages äldre arbetsmapp
 `OneDrive/Skrivbord/youtube/` (manus från 2025/jan 2026 — reglerna där är ERSATTA, se
 `other-projects/beast-of-ages/youtube.md`).
+
+**Andra egna projekt som ligger på skrivbordet, utanför repot** (inget av dem byggs av
+någon Vercel; flyttas något in i repot hamnar det under `other-projects/`):
+
+| Mapp (`OneDrive/Skrivbord/`) | Vad |
+|---|---|
+| `rtf/` | YouTube-verktyg (aug 2026): tidsstämplar varje ord i en video och rankar ögonblicken som förtjänar en grafik. README + SKILL.md i mappen; `rtf-claude-design/` är en körning av det |
+| `Short Djur/` | Kortformat-djurvideor från 2025 (Shorts-material) — inte Beast of Ages långform |
+| `avatar/` + `viktigt prompt med mera/` | Avatarbilder och de gamla prompterna (avatar, sälj, youtube) från 2025 |
+| `Företag/`, `Bodens/`, `shirdell/` | Äldre kund- och BahkoStudio-material från 2024–2025, före rebranden |
+| `Bob/` | Utbildningsmaterial (Proctor, Napoleon Hill), inget projekt |
 
 ## Vill du något? Hit går du
 
