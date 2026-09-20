@@ -193,3 +193,19 @@ obevisad hos vår publik, därför hamnar den under kanalens egna former.
 
 Reserv (risk): The Quagga Is Coming Back… But It's Just a Zebra (98, neo 230 k 2018);
 The Aurochs Is Coming Back… But It Already Failed Once (94, Ben G Thomas 1,22 M 2020).
+
+
+## Skriven 2026-09-20: Why Do Wild Animals Avoid Cities? (Mathias idé)
+
+✅ SKRIVEN — se `manus/why-do-wild-animals-avoid-cities.md`. Knapp-mallen (mall B). Grinden
+körd med yt-dlp och webbsök eftersom vidIQ-servern låg nere: egen katalog (90 videor) tom
+på ämnet; exakta frågan saknar engelsk långform (bara kompilationer: BRAIN TIME 8,4 M,
+WOW TV 779 k, och PBS 22 k från 2021).
+
+**Varning för nästa idé i närheten:** grannvinkeln *"why are animals afraid of humans"* är
+MÄTTAD av kanaler i vår storleksklass de senaste tre månaderna — Myrk 356 734 på 3 780
+pren. (juni 2026), Quark 571 935, Mack 501 567, BraincientGuy 232 360, plus ett dussin
+småkanaler med samma titel. Den vinkeln är död som egen video. Manuset använder rädslan
+som två stycken (Kruger, Darimont) och bygger ryggraden på staden som säker mark och
+vilka djur som flyttat in. Professor Primal (5 140 pren.) gjorde "hide near humans from
+bigger predators" i juli 2026 och fick 3 988 — human shield-vinkeln bär inte ensam.
