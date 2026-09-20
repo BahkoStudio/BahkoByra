@@ -21,25 +21,28 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 ├── DELETIONS.md .............. "borde inte X finnas?" Står det inte här är det inte medvetet borta
 │
 ├── .claude/
-│   ├── skills/ ............... 23 skills. FULL LISTA: docs/skills-oversikt.md
+│   ├── skills/ ............... repots skills. FULL LISTA + vad som är avvecklat: docs/skills-oversikt.md
 │   └── settings.local.json
 ├── .agents/skills/ ........... riktigt innehåll för higgsfield-skillsen
 ├── .github/workflows/ ........ ⚡ deploy.yml synkar maykaskitchen.se till MaykaKitchen-repot
 │
 ├── web/ ...................... 🔒 Vercel-projektet bahko-byra bygger HÄRIFRÅN
 │   ├── app/
-│   │   ├── (sajt)/ ........... marknadssajten www.bahkobyra.se
-│   │   ├── (demo)/ ........... 🔒⭐ NYA kunddemos — svhus = mallen, + shabifix, glowingservice
-│   │   ├── demo/ ............. gamla kitet (_kit, _data, [kund]) — under avveckling
-│   │   └── komponenter/ ...... delat, bl.a. Maskot.js
+│   │   ├── (sajt)/ ........... marknadssajten www.bahkobyra.se — "Bygget live"-heron, portföljen,
+│   │   │                        sticky bokningsraden, maskotens 404 ([...saknas] → not-found.js)
+│   │   ├── (demo)/ ........... 🔒⭐ ALLA kunddemos — mallen v3 i _mall/DemoSida.js, en mapp per kund
+│   │   └── komponenter/ ...... delat: Maskot.js (gesterna), MaskotScen.js (ögat), HeroBygge.js,
+│   │                            Portfolj.js, StickyBokning.js, Rorelse.js (avslöjningarna)
 │   ├── public/
-│   │   ├── cloud/ ............ 🔒 22 statiska demos — varje mapp = en länk i någons inkorg
+│   │   ├── cloud/ ............ 🔒 de statiska demoerna (gamla mönstret) — varje mapp = en länk i någons inkorg
 │   │   ├── crm-f2822a6f3a/ ... ⭐ DASHBOARDEN. Allt operativt körs härifrån
-│   │   ├── brand/ ............ brand.json = enda sanningen om varumärket
+│   │   ├── brand/ ............ brand.json = enda sanningen om varumärket · maskot/ = figurens lager + heron-rutorna
 │   │   ├── css/ + js/ ........ 🔒 style.css och main.js FRYSTA (delas med cloud/bygg)
-│   │   └── svhus/ shabifix/ glowingservice/ ... media till Next-demoserna
+│   │   └── <kund>/ ........... media till Next-demoserna, samma mappnamn som i (demo)/
 │   ├── next.config.mjs ....... 🔒 host-rewrites: styr vad .se och .cloud visar
 │   └── vercel.json ........... 🔒
+├── extern/ ................... hg/ rolssons/ = demos på EGNA vercel.app-adresser (undantag, extern/README.md)
+│                                Ingen egen kopia: kopiera.mjs hämtar mall + sida + media ur web/ vid bygget
 │
 │                          ═══ KUNDERNAS SAJTER ═══
 ├── bahkobyra/cloud/ .......... 🔒 ALLA kundsajters KÄLLKOD, en mapp per kund
@@ -74,7 +77,7 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │
 ├── docs/
 │   ├── operativa-regler.md ... detaljlagret bakom den här kartan
-│   ├── design/
+│   ├── design/ ............... bar.md = ribban som design-loop dömer mot (+ bar-siterabbits.md, design-system.md)
 │   └── superpowers/ .......... revisionens planer och specar
 │
 ├── reference/ ................ levande källdokument (3 PDF, säljmetodiken) — inte skräp
@@ -82,11 +85,13 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │                          ═══ YOUTUBE (inte Bahko Byrå) ═══
 ├── other-projects/ ........... allt som INTE är Bahko Byrå. Byggs av ingen Vercel
 │   └── beast-of-ages/ ........ YouTube-kanalen, eget projekt
-│       ├── youtube.md ........ ⭐ ALLA regler + kanalens nuläge. Läs den först
-│       ├── manus/ ............ fyra färdiga manus, paket och manus i samma fil
-│       ├── analys/ ........... kanalen, konkurrenter, klarerade idéer, utliggare
+│       ├── youtube.md ........ ⭐ ALLA regler + kanalens nuläge + INDEX över varje fil. Läs den först
+│       ├── manus/ ............ en fil per video: paketet överst, manuset under, status i youtube.md
+│       ├── analys/ ........... kanalen, konkurrenter, klarerade idéer, utliggare, panelens beslut,
+│       │   │                    dubbla ner-idéer
 │       │   └── modelleringsguide.md  ⭐ reglerna + GRINDEN före varje ny video
-│       └── reference/ ........ källdokumenten bakom reglerna, med bevisbilder
+│       └── reference/ ........ källdokumenten bakom reglerna (modellering vs kopiering, testa vs
+│                                dubbla ner, thumbnail-reglerna), med bevisbilder
 ├── data/ ..................... tom sedan klinik-leadsen raderades 2026-08-21
 ├── .tmp/ ..................... slängbart — UTOM session-context.md = lägesbilden
 └── .env ...................... nycklar. Aldrig hårdkodat någon annanstans
@@ -102,7 +107,7 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 | ⭐ | Här bor det viktiga — börja leta här |
 | ⚠ | Känd fälla, se längst ner |
 
-**Ligger inte i repot:** `~/.claude/skills/` (33 globala skills — se `docs/skills-oversikt.md`
+**Ligger inte i repot:** `~/.claude/skills/` (de globala skillsen, däribland task-observer — se `docs/skills-oversikt.md`
 för hela listan, samma filer som repots), minnesmappen `~/.claude/projects/…/memory/`,
 `OneDrive/audits/` (OS-audit-rapporter), `OneDrive/Dokument/Backups/higgsfield-genererat/`
 (betalda genereringar utanför repot), Google Drive **H:** (`BahkoByrå/BahkoByra/` —
@@ -110,13 +115,24 @@ contentleveranser, karuseller, Bromma-material). Beast of Ages äldre arbetsmapp
 `OneDrive/Skrivbord/youtube/` (manus från 2025/jan 2026 — reglerna där är ERSATTA, se
 `other-projects/beast-of-ages/youtube.md`).
 
+**Andra egna projekt som ligger på skrivbordet, utanför repot** (inget av dem byggs av
+någon Vercel; flyttas något in i repot hamnar det under `other-projects/`):
+
+| Mapp (`OneDrive/Skrivbord/`) | Vad |
+|---|---|
+| `rtf/` | YouTube-verktyg (aug 2026): tidsstämplar varje ord i en video och rankar ögonblicken som förtjänar en grafik. README + SKILL.md i mappen; `rtf-claude-design/` är en körning av det |
+| `Short Djur/` | Kortformat-djurvideor från 2025 (Shorts-material) — inte Beast of Ages långform |
+| `avatar/` + `viktigt prompt med mera/` | Avatarbilder och de gamla prompterna (avatar, sälj, youtube) från 2025 |
+| `Företag/`, `Bodens/`, `shirdell/` | Äldre kund- och BahkoStudio-material från 2024–2025, före rebranden |
+| `Bob/` | Utbildningsmaterial (Proctor, Napoleon Hill), inget projekt |
+
 ## Vill du något? Hit går du
 
 | Vill du… | Gå till |
 |---|---|
-| Bygga kunddemo eller kundhemsida | `/hemsidor` — mall `web/app/(demo)/svhus/` |
+| Bygga kunddemo eller kundhemsida | `/hemsidor` — mallen v3 `web/app/(demo)/_mall/DemoSida.js` |
 | Ny lead i en nisch som redan har demo | `/demo-recopy` (0 credits) — **alltid detta först** |
-| Bygga scroll-cinematic-demo (gamla mönstret) | `/scroll-cinematic` — referens `web/public/cloud/glowingservice/` |
+| Kvalitetsgranska en sida, demo eller dashboard mot ribban | `/design-loop` — ribban i `docs/design/bar.md` |
 | Göra en video till scroll-sajt | `/video-to-website` |
 | SEO, lokal SEO, GEO, AEO, Google Företagsprofil | `/optimering` |
 | Konkurrensanalys, klientrapport, lead-profil | `/rapport` |
@@ -128,6 +144,8 @@ contentleveranser, karuseller, Bromma-material). Beast of Ages äldre arbetsmapp
 | Kolla om systemet självt är aktuellt | `/os-audit` |
 | Hitta en kunds hemsida/struktur/Drive/SEO-underlag | `content/kundarbete/<kund>/` — mall i `_mall/README.md` |
 | Hitta en demolänk att skicka | `content/leads/demolankar.md` |
+| Visa bevis på resultat i sälj (Google + ChatGPT) | `content/kundarbete/bromma/bevis/` — bara verifierade skärmdumpar, aldrig ur minnet |
+| Fånga en lärdom under arbetet | task-observer (global skill) → `.claude/observations.md`; regeln skrivs in i rätt skill |
 | Se vilka skills som finns | `docs/skills-oversikt.md` |
 | Skriva manus för Beast of Ages (YouTube) | `/manusloop` — regler i `other-projects/beast-of-ages/youtube.md` |
 | Välja eller kontrollera en videoidé (Beast of Ages) | `other-projects/beast-of-ages/analys/modelleringsguide.md` — grinden i del 3 körs ALLTID först |
@@ -143,7 +161,7 @@ anrop — därför står detaljerna i skillen, inte här.
 
 | Innan du | Varför |
 |---|---|
-| **pushar, mergear eller deployar** | Vercel-taket delas av tre projekt. Varje push+merge kostar ~6 deploys. Batcha allt i EN pull request. |
+| **pushar, mergear eller deployar** | Vercel-taket delas av fem projekt på det här repot (två av dem bygger bara när deras egen demo ändrats). Varje push+merge kostar flera deploys. Batcha allt i EN pull request. |
 | **kör något som drar över 100 credits** | Under 100 kör jag på — en AI-bakgrund kostar 2–5. Över 100 frågar jag: en reel ligger på ~150. |
 | **raderar, flyttar eller döper om** | Läs 🔒 först. Radering loggas i `DELETIONS.md` samma session. |
 | **rör något med 🔒** | Kräver Mathias uttryckliga ja i den aktuella sessionen. |
@@ -151,8 +169,8 @@ anrop — därför står detaljerna i skillen, inte här.
 **Innan någon analys eller ändring:** `git fetch` och jämför med `origin/main`. Det mesta arbetet
 sker i cloud-sessioner via PR:ar, så den lokala mappen hamnar efter. Mappen ska stå på `main`.
 
-**Polla aldrig `bahkobyra.se` i loop efter en deploy** — hela domänen 403:ar från den här datorns
-IP. Verifiera i Vercel-dashboarden i stället.
+**Efter en deploy: verifiera med ETT anrop per sida eller i Vercel-dashboarden, aldrig i loop** —
+domänen har bot-spärrat den här datorns IP förut (maskinfällorna bor i `CLAUDE.local.md`).
 
 ## 🔒 Heligt
 
@@ -164,13 +182,15 @@ osäker på om något är låst — läs filen innan du gör något, inte efter.
 
 ## Vercel-projekten (kontrollerat mot Vercel 2026-08-28)
 
-Den vanligaste fällan. Tre av dem bygger DET HÄR repot och delar bara **roten**:
+Den vanligaste fällan. Fem av dem bygger DET HÄR repot och delar bara **roten**:
 
 | Projekt | Repo | Root / Output | Domän |
 |---|---|---|---|
 | `bahko-byra` | BahkoByra | `web/` | www.bahkobyra.se + bahkobyra.cloud |
 | `smamaleri` | BahkoByra | `bahkobyra/cloud/smamaleri` | smamaleri.se |
 | `brommatradgardsservice.se` | BahkoByra | `bahkobyra/cloud/brommatradgardsservice` | brommatradgardsservice.se |
+| `hg-maskinentreprenad` | BahkoByra | `extern/hg` (kopierar ur `web/`) | egen `*.vercel.app` (undantag) |
+| `rolssons-maleri` | BahkoByra | `extern/rolssons` (kopierar ur `web/`) | egen `*.vercel.app` (undantag) |
 | **`mayka`** | **MaykaKitchen** | `.claude/skills/video-to-website/maykas/site` | **maykaskitchen.se** |
 | `website-ttcv` | MaykaKitchen | — | (ingen egen domän, verkar oanvänt) |
 | `dashbord` | KlinikCRM | — | (annat projekt) |
@@ -274,10 +294,16 @@ När två källor säger olika:
 
 ## ⚠ Kända fällor i repot
 
-- **`scroll-cinematic`** — 💰 ~49 credits/demo. Inline `<script>` får aldrig ha `defer`, och
-  biblioteksflaggor måste mätas efter att de deferrade CDN-scripten körts, annars dör hela
-  animationslagret tyst. Facit `web/public/cloud/bygg/index.html` är fryst i GAMLA varumärket.
-- **`hemsidor`** — noll egen klient-JS. Bilder `nano_banana_2`, video `seedance_2_5`.
+- **`scroll-cinematic`** — AVVECKLAD 2026-08-21; skillen är bara ett stubbkort som pekar på
+  `hemsidor`. De statiska demoerna i `web/public/cloud/` lever kvar (🔒). Rör du en av dem:
+  inline `<script>` får aldrig ha `defer`, och biblioteksflaggor måste mätas efter att de
+  deferrade CDN-scripten körts, annars dör animationslagret tyst. `cloud/bygg` = GAMLA varumärket.
+- **`hemsidor`** — noll egen klient-JS, mallen v3 (ljus) i `_mall/`. Ändra ALDRIG mallen inne i
+  en kunds fil — ändras den, ändras den i `_mall/` och QA:n körs om. Video `seedance_2_5`.
+- **Marknadssajtens hero** — servern renderar första bildrutan, klienten väljer läge (canvas,
+  video eller stillbild) först efter laddning. Första skärmen får aldrig byta markup eller höjd
+  mellan server och klient — det var hoppet Mathias såg 2026-09-02. På första skärmen rör sig
+  bara filmen (bevisremsan står still tills man scrollat).
 - **`demo-recopy`** — ersätts en gammal `/cloud/`-demo läggs redirect i `next.config.mjs` så
   skickade länkar aldrig bryts.
 - **`motion-design`** — eget varumärke och uppsell, ALDRIG som front offer.
