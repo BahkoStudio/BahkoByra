@@ -41,13 +41,13 @@ const RUM = [
   { id:'bed3',    namn:'Bedroom 3',   v:1, x0:4.4, x1:8.2, z0:3.3, z1:7.1, golv:'matta',
     text:'A third bedroom, equally suited as a study or nursery.' },
 ];
-const TRADGARD = { id:'garden', namn:'Garden', v:0, x0:0, x1:8.2, z0:7.1, z1:11.8, golv:'gras',
+const TRADGARD = { id:'garden', namn:'Garden', v:0, x0:0, x1:8.2, z0:9.3, z1:11.8, golv:'gras', ytaHela:38.5,
   text:'A private landscaped garden with a paved terrace directly off the living room.' };
 
 const HUS = { x0:0, x1:8.2, z0:0, z1:7.1 };
 const MITT = new THREE.Vector3((HUS.x0+HUS.x1)/2, 0, (HUS.z0+HUS.z1)/2);
 
-const area  = r => (r.x1-r.x0) * (r.z1-r.z0);
+const area  = r => r.ytaHela ?? (r.x1-r.x0) * (r.z1-r.z0);
 const centrum = (r, y=0) => new THREE.Vector3((r.x0+r.x1)/2, y, (r.z0+r.z1)/2);
 const YTA_TOT = RUM.reduce((s,r) => s + area(r), 0);
 
@@ -431,8 +431,8 @@ byggVaning(1);
 const utegrupp = new THREE.Group();
 {
   const t = TRADGARD;
-  const gras = new THREE.Mesh(new THREE.BoxGeometry(t.x1-t.x0, 0.06, t.z1-t.z0), M.gras.clone());
-  gras.position.set((t.x0+t.x1)/2, -0.03, (t.z0+t.z1)/2);
+  const gras = new THREE.Mesh(new THREE.BoxGeometry(t.x1-t.x0, 0.06, 4.7), M.gras.clone());
+  gras.position.set((t.x0+t.x1)/2, -0.03, 9.45);
   gras.receiveShadow = true;
   gras.userData.rum = t;
   gras.userData.grund = gras.material.color.clone();
@@ -482,12 +482,14 @@ scen.add(utegrupp);
 /* ---------- ljus ---------- */
 const himmel   = new THREE.HemisphereLight(0xdfe8f2, 0x4a4238, 1.0);
 const sol      = new THREE.DirectionalLight(0xfff2dc, 2.4);
-sol.position.set(9, 16, 4);
+sol.position.set(8.5, 15, 1.5);   // hogt och fran sidan: lyser in i rummen OCH kastar skugga
 sol.castShadow = true;
 sol.shadow.mapSize.set(1024, 1024);
-sol.shadow.camera.left = -14; sol.shadow.camera.right = 16;
-sol.shadow.camera.top = 18;   sol.shadow.camera.bottom = -6;
-sol.shadow.camera.far = 46;
+sol.target.position.set(4.1, 0, 4.85);   // tomtens mitt, inte origo
+scen.add(sol.target);
+sol.shadow.camera.left = -11; sol.shadow.camera.right = 11;
+sol.shadow.camera.top = 11;   sol.shadow.camera.bottom = -11;
+sol.shadow.camera.near = 1;   sol.shadow.camera.far = 52;
 sol.shadow.bias = -0.0015;
 scen.add(himmel, sol);
 
@@ -749,8 +751,8 @@ function sattVy(nyVy) {
     /* Rakt uppifran ar up-vektorn tvetydig och Three valjer en
        godtycklig rotation — ritningen hamnade snedstalld 45 grader.
        Nord uppat ger en axelriktad ritning, som en ritning ska vara. */
-    kamera.up.set(0, 0, -1);
-    kontroller.object.up.set(0, 0, -1);
+    kamera.up.set(-1, 0, 0);   // kvarts varv: tomten ar djupare an den ar bred
+    kontroller.object.up.set(-1, 0, 0);
     const c = new THREE.Vector3(TOMT_MITT.x, 0, TOMT_MITT.z);
     const v = ramaIn(c, new THREE.Vector3(0, 1, 0));
     flytta(v.pos, v.mal);
@@ -766,11 +768,12 @@ function sattVy(nyVy) {
 function sattLjus(l) {
   ljuslage = l;
   const natt = l === 'natt';
-  himmel.intensity = natt ? 0.16 : 1.0;
+  himmel.intensity = natt ? 0.20 : 1.15;
   himmel.color.setHex(natt ? 0x2a3550 : 0xdfe8f2);
   sol.intensity = natt ? 0.22 : 2.4;
   sol.color.setHex(natt ? 0x8fa8d8 : 0xfff2dc);
-  sol.position.set(natt ? -8 : 9, natt ? 12 : 16, natt ? -6 : 4);
+  sol.position.set(natt ? -7 : 8.5, natt ? 13 : 15, natt ? 12 : 1.5);
+  sol.shadow.camera.updateProjectionMatrix();
   scen.background = new THREE.Color(natt ? 0x0d0f14 : 0x181818);
   M.gras.color.setHex(natt ? 0x24331d : 0x4a6b3a);
   /* Ta UT lamporna ur scenen i dagslage. Att bara nollstalla dem
@@ -808,6 +811,7 @@ renderare.domElement.addEventListener('pointerup', e => {
 
 /* ---------- chips och knappar ---------- */
 const CHIPS = ['living','kitchen','dining','bed1','bath','garden'];
+/* bed1 och bath bor pa ovanvaningen — chipet byter vaning at anvandaren. */
 const chipsEl = document.getElementById('chips');
 for (const id of CHIPS) {
   const r = rumById(id);

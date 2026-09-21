@@ -69,7 +69,7 @@ canvas{display:block;touch-action:none}
 /* ---------- vanster: listning ---------- */
 .listning{top:8.5rem;left:2rem;width:270px}
 .ort{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text2)}
-.listning h1{
+.listning h1{font-variant-numeric:lining-nums;
   font-family:'Cormorant Garamond',serif;font-weight:300;
   font-size:2.7rem;line-height:1.08;margin:.7rem 0 1.1rem;
 }
@@ -99,12 +99,12 @@ canvas{display:block;touch-action:none}
   overflow:hidden;
 }
 .rumspanel-topp{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem;border-bottom:1px solid var(--linje)}
-.rumspanel-topp h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.15rem}
+.rumspanel-topp h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.15rem;font-variant-numeric:lining-nums}
 .stang{width:26px;height:26px;display:grid;place-items:center;color:var(--text2);font-size:1.1rem;line-height:1}
 .stang:hover{color:var(--text)}
 .rums-bild{width:100%;aspect-ratio:4/3;display:block;background:var(--yta2);object-fit:cover}
 .rumspanel-kropp{padding:1rem}
-.rumspanel-kropp h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.3rem;margin-bottom:.5rem}
+.rumspanel-kropp h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.3rem;margin-bottom:.5rem;font-variant-numeric:lining-nums}
 .matt{font-variant-numeric:lining-nums tabular-nums;display:flex;gap:1.2rem;font-size:.78rem;color:var(--text2);margin-bottom:.8rem}
 .rumspanel-kropp p{font-size:.8rem;color:var(--text2);line-height:1.65}
 
@@ -117,7 +117,7 @@ canvas{display:block;touch-action:none}
 .botten{left:0;right:0;bottom:0;display:flex;align-items:flex-end;gap:1.5rem;padding:1.5rem 2rem}
 @media (min-width:861px){ .botten{padding-right:17.5rem} }  /* Total Area-rutan lag over Reset View */
 
-.lagen{display:flex;border:1px solid var(--linje);border-radius:var(--r);overflow:hidden;flex-shrink:0;background:rgba(24,24,24,.7)}
+.lagen{display:flex;border:1px solid var(--linje);border-radius:var(--r);overflow:hidden;flex-shrink:0;background:#1d1d1d}
 .lage{display:flex;flex-direction:column;align-items:center;gap:.45rem;padding:.8rem 1.05rem;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);transition:color var(--snabb),background var(--snabb);position:relative}
 .lage svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.3}
 .lage[aria-pressed="true"]{color:var(--text);background:var(--yta)}
@@ -127,7 +127,7 @@ canvas{display:block;touch-action:none}
 .chips{display:flex;gap:.55rem;flex-wrap:wrap;justify-content:center;flex:1}
 .chip{
   padding:.62rem 1.15rem;font-size:.76rem;border:1px solid var(--linje);border-radius:var(--r);
-  background:rgba(24,24,24,.7);white-space:nowrap;
+  background:#1d1d1d;white-space:nowrap;
   transition:border-color var(--snabb),color var(--snabb),background var(--snabb);
 }
 .chip:hover{border-color:var(--linje2)}
@@ -136,14 +136,14 @@ canvas{display:block;touch-action:none}
 .aterstall{
   display:flex;align-items:center;gap:.6rem;flex-shrink:0;
   padding:.62rem 1.15rem;font-size:.76rem;border:1px solid var(--linje);border-radius:999px;
-  background:rgba(24,24,24,.7);color:var(--text2);
+  background:#1d1d1d;color:var(--text2);
   transition:color var(--snabb),border-color var(--snabb);
 }
 .aterstall:hover{color:var(--text);border-color:var(--linje2)}
 .aterstall svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5}
 
 /* dag/natt */
-.ljus{top:8.5rem;right:2rem;display:flex;border:1px solid var(--linje);border-radius:999px;overflow:hidden;background:rgba(24,24,24,.7)}
+.ljus{top:8.5rem;right:2rem;display:flex;border:1px solid var(--linje);border-radius:999px;overflow:hidden;background:#1d1d1d}
 @media (min-width:861px){ .ljus.flyttad{top:calc(8.5rem - 3.6rem)} }
 .ljus button{display:flex;align-items:center;gap:.5rem;padding:.55rem 1.05rem;font-size:.74rem;color:var(--text2);transition:color var(--snabb),background var(--snabb)}
 .ljus button[aria-pressed="true"]{color:var(--text);background:var(--yta)}
@@ -188,9 +188,19 @@ canvas{display:block;touch-action:none}
 }
 @media (max-width:860px){
   body{overflow-y:auto;overflow-x:hidden}
-  #scen{position:relative;height:52vh;min-height:320px}
-  #etiketter{position:absolute;height:52vh;min-height:320px}
+  /* Modellen overst, kontrollerna direkt under den. Innan detta lag
+     rumsknapparna over tusen pixlar under modellen: man tryckte pa ett
+     rum utan att se vare sig kameraflytten eller resultatet.
+     Etikettlagret ligger absolut och ar darmed ur flodet, sa det
+     paverkas inte av ordningen nedan. */
+  body{position:relative}
+  #scen{position:relative;height:46vh;min-height:280px;order:-3}
+  #etiketter{position:absolute;top:0;left:0;right:0;height:46vh;min-height:280px;z-index:6}
   .chrome{position:static;padding:0}
+  /* height:100% fran grundstilen + flex-kolumn klamde ihop alla
+     element till en skarmhojd: rumspanelen blev 2 px hog. */
+  body{display:flex;flex-direction:column;height:auto;min-height:100%}
+  .chrome,.rumspanel,.total{flex:0 0 auto}
   .topp{display:flex;padding:1rem 1.2rem;gap:1rem}
   .meny,.topp-slut{display:none}
   .listning{width:auto;padding:0 1.2rem 1rem}
@@ -206,8 +216,11 @@ canvas{display:block;touch-action:none}
   .ljus,.ljus.flyttad{position:absolute;top:1rem!important;bottom:auto;right:1rem;
                       left:auto;height:auto;z-index:11}
   .ljus.flyttad{top:1rem}
-  .rumspanel{width:auto;margin:0 1.2rem 1rem}
-  .botten{flex-direction:column;align-items:stretch;padding:0 1.2rem 1.2rem;gap:1rem}
+  .rumspanel{width:auto;margin:.8rem 1.2rem;order:-1}
+  .botten{
+    flex-direction:column;align-items:stretch;padding:.9rem 1.2rem;gap:.8rem;
+    border-bottom:1px solid var(--linje);order:-2;
+  }
   .lagen{align-self:flex-start}
   .chips{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:.3rem;scrollbar-width:none}
   .chips::-webkit-scrollbar{display:none}
