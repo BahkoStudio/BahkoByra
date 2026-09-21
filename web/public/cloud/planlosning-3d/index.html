@@ -49,6 +49,11 @@ canvas{display:block;touch-action:none}
 .skarm{position:fixed;top:0;bottom:0;width:360px;z-index:1;pointer-events:none}
 .skarm-v{left:0;background:linear-gradient(90deg,rgba(24,24,24,.92) 0%,rgba(24,24,24,.72) 48%,transparent 100%)}
 .skarm-h{right:0;background:linear-gradient(270deg,rgba(24,24,24,.88) 0%,rgba(24,24,24,.6) 45%,transparent 100%)}
+/* I rumsvyn far resten av huset ga utanfor bilden (mekanism 5), och da
+   stiger modellen upp bakom toppraden. Uppmatt: i tradgardsvyn nar den
+   y=0, alltsa rakt bakom krediten. Tonigen haller texten lasbar. */
+.skarm-topp{left:0;right:0;width:auto;bottom:auto;height:9.5rem;
+  background:linear-gradient(180deg,rgba(24,24,24,.9) 0%,rgba(24,24,24,.55) 55%,transparent 100%)}
 @media (max-width:860px){.skarm{display:none}}
 
 /* ---------- toppen ---------- */
@@ -86,6 +91,8 @@ canvas{display:block;touch-action:none}
 .fakta{font-variant-numeric:lining-nums tabular-nums;display:flex;flex-wrap:wrap;gap:.5rem .8rem;font-size:.76rem;color:var(--text2);margin-bottom:1rem}
 .fakta span:not(:last-child)::after{content:'|';margin-left:.8rem;opacity:.4}
 .listning p.beskrivning{font-size:.82rem;color:var(--text2);line-height:1.7}
+.pris-etikett{display:block;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--text2);margin-bottom:.1rem}
 .pris{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin:1.3rem 0;font-variant-numeric:lining-nums tabular-nums}
 .knapp-visning{
   display:flex;align-items:center;justify-content:space-between;gap:1.5rem;width:100%;
@@ -171,6 +178,20 @@ canvas{display:block;touch-action:none}
 .etikett:hover{border-color:var(--linje2)}
 .etikett[data-vald="1"]{border-color:var(--accent)}
 
+/* ---------- skalstock och norrpil ----------
+   Bada mats ur kameran i app.js, inte ritade pa fri hand. */
+.planskala{position:absolute;left:1.5rem;bottom:6.5rem;display:flex;align-items:flex-end;
+  gap:1.6rem;pointer-events:none;color:var(--text2)}
+.norr{display:flex;flex-direction:column;align-items:center;gap:.2rem}
+.norr svg{width:18px;height:18px;fill:currentColor;transform-origin:50% 50%}
+.norr span{font-size:.58rem;letter-spacing:.14em}
+.skalstock{display:flex;flex-direction:column;gap:.35rem;font-size:.64rem;letter-spacing:.1em;
+  font-variant-numeric:lining-nums tabular-nums}
+.skalstock-strek{display:block;height:1px;background:var(--linje2);position:relative;min-width:20px}
+.skalstock-strek::before,.skalstock-strek::after{content:'';position:absolute;bottom:0;width:1px;height:6px;background:var(--linje2)}
+.skalstock-strek::before{left:0}
+.skalstock-strek::after{right:0}
+
 /* ---------- total-ruta ---------- */
 .total{
   position:fixed;right:2rem;bottom:1.5rem;z-index:10;
@@ -235,6 +256,7 @@ canvas{display:block;touch-action:none}
   .ljus,.ljus.flyttad{position:absolute;top:1rem!important;bottom:auto;right:1rem;
                       left:auto;height:auto;z-index:11}
   .ljus.flyttad{top:1rem}
+  .planskala{left:1rem;bottom:1rem;gap:1.1rem}
   .rumspanel{width:auto;margin:.8rem 1.2rem;order:-1}
   .botten{
     flex-direction:column;align-items:stretch;padding:.9rem 1.2rem;gap:.8rem;
@@ -273,27 +295,39 @@ canvas{display:block;touch-action:none}
 <div id="scen"></div>
 <div class="skarm skarm-v"></div>
 <div class="skarm skarm-h"></div>
-<div id="etiketter"></div>
+<div class="skarm skarm-topp"></div>
+<div id="etiketter">
+  <div class="planskala" id="planskala" hidden>
+    <div class="norr">
+      <svg id="norrpil" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l5 16-5-4-5 4z"/></svg>
+      <span>N</span>
+    </div>
+    <div class="skalstock">
+      <span class="skalstock-strek" id="skalstock-strek"></span>
+      <span id="skalstock-text">1 m</span>
+    </div>
+  </div>
+</div>
 
 <header class="chrome topp">
   <div class="marke">
     <div class="marke-h">H</div>
     <div>
       <div class="marke-namn">HEMVIST</div>
-      <div class="marke-under">Hem för en ljusare morgondag</div>
+      <div class="marke-under">Mäklare i Stockholm</div>
     </div>
   </div>
   <nav class="meny">
-    <button type="button">Fastigheter</button>
+    <button type="button">Till salu</button>
     <button type="button">Köpa</button>
     <button type="button">Hyra</button>
     <button type="button">Om oss</button>
     <button type="button">Kontakt</button>
   </nav>
-  <div class="topp-slut"><span class="topp-strek"></span>Mer än bostäder</div>
+  <div class="topp-slut"><span class="topp-strek"></span>Södermalm · Årsta · Enskede</div>
   <a class="skapad" href="https://bahkobyra.se" target="_blank" rel="noopener">
     <span>Skapad av</span>
-    <img src="/brand/logo-dark.svg" alt="Bahko Byrå" width="378" height="100">
+    <img src="./logga-bahko.svg" alt="Bahko Byrå" width="378" height="100">
   </a>
 </header>
 
@@ -301,10 +335,10 @@ canvas{display:block;touch-action:none}
   <div class="ort">Stockholm, Årsta</div>
   <h1>Radhus vid<br>Årstaviken</h1>
   <div class="fakta">
-    <span>3 sovrum</span><span>2 badrum</span><span>Trädgård</span><span id="fakta-yta">—</span>
+    <span>5 rum och kök</span><span>3 sovrum</span><span>Trädgård</span><span id="fakta-yta">—</span>
   </div>
   <p class="beskrivning">Ett modernt radhus med öppen planlösning och egen trädgård, ett stenkast från vattnet.</p>
-  <div class="pris">8 950 000 kr</div>
+  <div class="pris"><span class="pris-etikett">Utgångspris</span>8 950 000 kr</div>
   <button class="knapp-visning" type="button">Boka visning <span aria-hidden="true">&rarr;</span></button>
 
   <div class="vaningar" role="group" aria-label="Våning">
@@ -348,11 +382,11 @@ canvas{display:block;touch-action:none}
 </div>
 
 <div class="total">
-  <div class="total-etikett">Total yta</div>
+  <div class="total-etikett">Boarea</div>
   <div class="total-tal" id="total-yta">—</div>
   <ul>
     <li><svg viewBox="0 0 24 24"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 18h18M6 10V7h12v3"/></svg>3 sovrum</li>
-    <li><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4z"/><path d="M7 12V6a2 2 0 014 0"/></svg>2 badrum</li>
+    <li><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4z"/><path d="M7 12V6a2 2 0 014 0"/></svg>Badrum och gäst-wc</li>
     <li><svg viewBox="0 0 24 24"><path d="M12 21V9M12 9a5 5 0 015-5 5 5 0 01-5 5zM12 12a5 5 0 00-5-5 5 5 0 005 5z"/></svg>Egen trädgård</li>
   </ul>
 </div>

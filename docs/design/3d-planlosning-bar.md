@@ -58,9 +58,44 @@ Rummet färgas inom 150 ms vid klick. Kameran tar sina 700–1100. Den snabba
 Bakgrunden under 12 % ljushet. Ingen dekorativ färg utanför modellen: allt som har färg
 är material i huset (trä, grönska, textil). Accenten används högst två gånger per skärm.
 
+**Undantag: byråns kreditrad.** Logotypens gröna märke är det enda färgade utanför
+modellen. Det är en kredit från ett annat företag, inte en del av mäklarens palett,
+och hålls nere genom att ordbilden är enfärgat grå och märket litet.
+
+**8. Ingen yta får vara mörkare än bakgrunden.**
+Gäller båda ljuslägena. En yta som ligger under bakgrundens ljushet läser inte som
+mörk — den läser som ett **hål i bilden**, och det som stod där försvinner.
+
+*Varför regeln finns (runda 6):* i nattläget mätte gräsmattan 0,0,0 mot bakgrundens
+29,29,29. Hela tomten föll ur bilden: fyra träd, uteplatsen och gräset. Etiketten
+"Trädgård" svävade över tomrum och raden "Egen trädgård" i faktarutan blev ett
+obevisat påstående. En tredjedel av produkten fanns bara i det ena av två lägen.
+
+*Fällan under felet:* gräsmattan använder en **klon** av gräsmaterialet, eftersom
+varje rumsyta behöver eget material för att kunna markeras vid klick. Första
+åtgärden satte det delade materialet och tände häcken och trädkronorna men aldrig
+själva mattan. Ett delat material och en klon ser likadana ut i koden. Mät på
+pixeln, inte på raden som ändrades.
+
 ---
 
 ## Prestandagolv
 
-**≥30 bildrutor per sekund med processorn strypt 4×**, mätt med CDP och rAF-sampling,
-aldrig gissat. Mätriggen bevisas på runda 1 innan någon siffra rapporteras.
+**Bildfrekvens går inte att mäta i den här riggen och ska inte rapporteras.**
+SwiftShader gav 6,7 bilder/s både med och utan 4× processorstrypning — identiska
+siffror, vilket bevisar att talet mäter programrenderaren och inte bygget. Det
+tidigare golvet "≥30 bildrutor per sekund" stod kvar här efter att mätningen
+underkänts; det är struket.
+
+Det som mäts i stället är hårdvaruoberoende:
+
+- **Noll nya shaderprogram efter laddskärmen.** Varje program som byggs mitt i
+  demon är en hackning på en telefon. Mäts genom att räkna `linkProgram` och gå
+  igenom natt, planritning, 3D, dag, våningsbyte och rumsval i båda ljuslägena.
+  *Runda 6:* första rumsklicket i **mörker** byggde två nya program, 11 → 13.
+  Uppvärmningen hade bara körts i dagsläge, och förhandsbilden renderas till ett
+  eget rendermål som bygger egna program.
+- **Släckta ljus lämnar scengrafen**, de nollas inte. Ett ljus med intensitet 0
+  kostar ändå per bildpunkt.
+- **Noll ritanrop i vila.** Sidan står still tills någon rör den.
+- **Överförd vikt mäts komprimerad**, per begäran, aldrig ur en filstorlek.
