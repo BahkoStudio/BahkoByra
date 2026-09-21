@@ -20,33 +20,34 @@ const TJOCK     = 0.12;   // vaggtjocklek
 const RUM = [
   // bottenvaning
   { id:'wc',      namn:'WC',          v:0, x0:0,   x1:1.8, z0:0,   z1:3.3, golv:'kakelvat',
-    text:'A practical ground-floor cloakroom just off the hall.' },
+    text:'Gäst-wc i direkt anslutning till hallen.' },
   { id:'hall',    namn:'Hall',        v:0, x0:1.8, x1:4.6, z0:0,   z1:3.3, golv:'stenljus',
-    text:'The entrance hall, with stairs rising to the first floor.' },
-  { id:'dining',  namn:'Dining',      v:0, x0:4.6, x1:8.2, z0:0,   z1:3.3, golv:'tra',
-    text:'A dining area that opens onto the living space, with a window to the street.' },
-  { id:'kitchen', namn:'Kitchen',     v:0, x0:0,   x1:4.0, z0:3.3, z1:7.1, golv:'kakel',
-    text:'An open kitchen with an island, fitted units and a view over the garden.' },
-  { id:'living',  namn:'Living Room', v:0, x0:4.0, x1:8.2, z0:3.3, z1:7.1, golv:'tra',
-    text:'A bright and spacious living area with floor-to-ceiling doors opening onto the garden.' },
+    text:'Entréhall med trappa upp till övervåningen.' },
+  { id:'dining',  namn:'Matplats',    v:0, x0:4.6, x1:8.2, z0:0,   z1:3.3, golv:'tra',
+    text:'Matplats i öppen förbindelse med vardagsrummet, fönster mot gatan.' },
+  { id:'kitchen', namn:'Kök',         v:0, x0:0,   x1:4.0, z0:3.3, z1:7.1, golv:'kakel',
+    text:'Öppet kök med köksö, fast inredning och utsikt över trädgården.' },
+  { id:'living',  namn:'Vardagsrum',  v:0, x0:4.0, x1:8.2, z0:3.3, z1:7.1, golv:'tra',
+    text:'Ljust vardagsrum med golvdjupa partier ut mot trädgården.' },
   // overvaning
-  { id:'bed2',    namn:'Bedroom 2',   v:1, x0:0,   x1:3.4, z0:0,   z1:3.3, golv:'matta',
-    text:'A double bedroom overlooking the street, with built-in storage.' },
-  { id:'landing', namn:'Landing',     v:1, x0:3.4, x1:5.4, z0:0,   z1:3.3, golv:'stenljus',
-    text:'The first-floor landing, connecting all three bedrooms and the bathroom.' },
-  { id:'bath',    namn:'Bathroom',    v:1, x0:5.4, x1:8.2, z0:0,   z1:3.3, golv:'kakelvat',
-    text:'The family bathroom, with a bath, walk-in shower and heated floor.' },
-  { id:'bed1',    namn:'Bedroom 1',   v:1, x0:0,   x1:4.4, z0:3.3, z1:7.1, golv:'matta',
-    text:'The principal bedroom, running the full width of the garden side of the house.' },
-  { id:'bed3',    namn:'Bedroom 3',   v:1, x0:4.4, x1:8.2, z0:3.3, z1:7.1, golv:'matta',
-    text:'A third bedroom, equally suited as a study or nursery.' },
+  { id:'bed2',    namn:'Sovrum 2',    v:1, x0:0,   x1:3.4, z0:0,   z1:3.3, golv:'matta',
+    text:'Sovrum mot gatan, med inbyggd förvaring.' },
+  { id:'landing', namn:'Trapphall',   v:1, x0:3.4, x1:5.4, z0:0,   z1:3.3, golv:'stenljus',
+    text:'Trapphall som binder ihop de tre sovrummen och badrummet.' },
+  { id:'bath',    namn:'Badrum',      v:1, x0:5.4, x1:8.2, z0:0,   z1:3.3, golv:'kakelvat',
+    text:'Familjebadrum med badkar, dusch och golvvärme.' },
+  { id:'bed1',    namn:'Sovrum 1',    v:1, x0:0,   x1:4.4, z0:3.3, z1:7.1, golv:'matta',
+    text:'Huvudsovrum i husets hela bredd mot trädgårdssidan.' },
+  { id:'bed3',    namn:'Sovrum 3',    v:1, x0:4.4, x1:8.2, z0:3.3, z1:7.1, golv:'matta',
+    text:'Tredje sovrum, fungerar lika bra som arbetsrum.' },
 ];
-const TRADGARD = { id:'garden', namn:'Garden', v:0, x0:0, x1:8.2, z0:9.3, z1:11.8, golv:'gras', ytaHela:38.5,
-  text:'A private landscaped garden with a paved terrace directly off the living room.' };
+const TRADGARD = { id:'garden', namn:'Trädgård', v:0, x0:0, x1:8.2, z0:9.3, z1:11.8, golv:'gras', ytaHela:38.5,
+  text:'Egen anlagd trädgård med stenlagd altan direkt utanför vardagsrummet.' };
 
 const HUS = { x0:0, x1:8.2, z0:0, z1:7.1 };
 const MITT = new THREE.Vector3((HUS.x0+HUS.x1)/2, 0, (HUS.z0+HUS.z1)/2);
 
+const dec   = v => v.toFixed(1).replace('.', ',');   // svenskt decimaltecken
 const area  = r => r.ytaHela ?? (r.x1-r.x0) * (r.z1-r.z0);
 const centrum = (r, y=0) => new THREE.Vector3((r.x0+r.x1)/2, y, (r.z0+r.z1)/2);
 const YTA_TOT = RUM.reduce((s,r) => s + area(r), 0);
@@ -611,8 +612,8 @@ function visaPanel(r) {
   document.getElementById('panel-titel').textContent = r.namn;
   document.getElementById('panel-namn').textContent = r.namn;
   document.getElementById('panel-matt').textContent =
-    `${(r.x1-r.x0).toFixed(1)} m × ${(r.z1-r.z0).toFixed(1)} m`;
-  document.getElementById('panel-area').textContent = `${area(r).toFixed(1)} m²`;
+    `${dec(r.x1-r.x0)} m × ${dec(r.z1-r.z0)} m`;
+  document.getElementById('panel-area').textContent = `${dec(area(r))} m²`;
   document.getElementById('panel-text').textContent = r.text;
   ritaForhandsbild(r);
   panel.hidden = false;
@@ -833,9 +834,8 @@ for (const b of document.querySelectorAll('.ljus button'))
 
 /* ---------- listningssiffror, raknade ur geometrin ---------- */
 const kvm = YTA_TOT;
-const sqft = Math.round(kvm * 10.7639);
-document.getElementById('total-yta').textContent = `${sqft.toLocaleString('en-GB')} sq ft (${Math.round(kvm)} m²)`;
-document.getElementById('fakta-yta').textContent = `${sqft.toLocaleString('en-GB')} sq ft`;
+document.getElementById('total-yta').textContent = `${Math.round(kvm)} m²`;
+document.getElementById('fakta-yta').textContent = `${Math.round(kvm)} m²`;
 
 /* ---------- storlek ---------- */
 function passa() {
