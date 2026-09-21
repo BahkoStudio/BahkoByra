@@ -584,14 +584,26 @@ function rumById(id) { return id === 'garden' ? TRADGARD : RUM.find(r => r.id ==
 /* Rumsvyn siktar om mot rummet men behaller HELA huset i bild.
    Fokus skapas genom att dampa ovriga rum, inte genom att zooma in
    tills huset skar ut genom alla fyra bildkanter. */
+const RAKT_UPP = new THREE.Vector3(0, 1, 0);
 function rumsKamera(r) {
   const c = centrum(r, r.v * VH);
   const ute = r.id === 'garden';
-  const m = ute ? 0.8 : 1.6;            // sa mycket granne som foljer med
+  /* I planritningen ska ett rumsval panorera och zooma i TOPPVYN. Forut
+     anvandes alltid 3D-riktningen, sa ett klick i ritningen slangde
+     kameran ner i en lutande perspektivbild medan knappen PLANRITNING,
+     norrpilen och skalstocken stod kvar. Stocken pastod da "2 m = 131 px"
+     over en bild utan enhetlig skala — en falsk uppgift, inte bara en
+     ful. Modellen korde dessutom rakt in i listningsspalten. */
+  const plan = vy === 'plan';
+  /* Planvyn behover mer granne an 3D-vyn: med 1,1 m blev ett rumsval en
+     narbild dar resten av huset la sig over listningsspalten i stallet
+     for att lasa som en ritning av ett hus. */
+  const m = plan ? 2.6 : (ute ? 0.8 : 1.6);   // sa mycket granne som foljer med
   const horn = hornForLada(
     r.x0 - m, r.v * VH - 0.2, r.z0 - m,
-    r.x1 + m, r.v * VH + (ute ? 2.2 : VH + 0.3), r.z1 + m
+    r.x1 + m, r.v * VH + (plan ? 0.2 : ute ? 2.2 : VH + 0.3), r.z1 + m
   );
+  if (plan) return ramaIn(c.clone().setY(0), RAKT_UPP, horn);
   return ramaIn(c.clone().setY(c.y + (ute ? 0.2 : 0.8)), RIKT, horn);
 }
 /* Vaningsbyte ska landa i en HELVY av den vaningen, inte i ett rumslage. */
@@ -627,8 +639,14 @@ function visaPanel(r) {
     `${dec(r.x1-r.x0)} m × ${dec(r.z1-r.z0)} m`;
   document.getElementById('panel-area').textContent = `${dec(area(r))} m²`;
   document.getElementById('panel-text').textContent = r.text;
-  ritaForhandsbild(r);
+  /* Panelen visades FORST efter att forhandsbilden renderats. Den
+     renderingen ar en extra scenritning plus en hemhamtning av pixlar,
+     och den kostade uppmatt 820-1 310 ms innan panelen syntes — en hel
+     kameraflytt av dod tid efter att kameran redan landat. Panelen
+     kommer nu nar kameran landar, precis som mekanism 2 sager, och
+     bilden fylls i direkt efteron. */
   panel.hidden = false;
+  ritaForhandsbild(r);
   panelRekt = panel.getBoundingClientRect();
   document.getElementById('ljus').classList.add('flyttad');
 }
@@ -652,7 +670,12 @@ function aterstallVy() {
   valdtRum = null;
   markera(null);
   doljPanel();
-  const v = aktuellVaning === 1 ? vaningsKamera(1) : ramaIn(TOMT_MITT.clone());
+  /* Aterstall vy gav 3D-posen aven nar man stod i planritningen: lagets
+     knapp sa PLANRITNING men bilden var inte langre uppifran, och det
+     gick inte att ta sig tillbaka. */
+  const v = vy === 'plan'
+    ? ramaIn(new THREE.Vector3(TOMT_MITT.x, 0, TOMT_MITT.z), RAKT_UPP)
+    : aktuellVaning === 1 ? vaningsKamera(1) : ramaIn(TOMT_MITT.clone());
   flytta(v.pos, v.mal);
 }
 
@@ -692,7 +715,12 @@ function ritaForhandsbild(r) {
      ar scenens bakgrund. I helbilden ska den vara nastan svart; i en
      bild tagen INNE i ett rum ska den lasa som ett tak. */
   const varBak = scen.background;
-  scen.background = new THREE.Color(ute ? 0x2f4460 : 0x8a8175);
+  /* Himlen i tradgardens forhandsbild var morkbla aven i dagslage:
+     uppmatt 11,18,30 mot sidbakgrundens 24, alltsa morkare an sidan
+     bakom den, i den enda bild som saljer "Egen tradgard". */
+  const morkt = ljuslage === 'natt';
+  scen.background = new THREE.Color(
+    ute ? (morkt ? 0x2f4460 : 0x9fc2e0) : (morkt ? 0x4a4038 : 0x8a8175));
   const varExp = renderare.toneMappingExposure;
   const varHim = himmel.intensity;
   const varHimFarg = himmel.color.getHex();
@@ -834,11 +862,17 @@ function sattLjus(l) {
     nattGlod.clear();
     if (natt) nattGlod.set('garden', 0x26392c);
   }
+  /* Aven i dagslage lag tomtens framkant under bakgrunden: ett
+     sammanhangande band pa ~35 px matte ljushet 9 mot bakgrundens 24.
+     Mekanism 8 galler bada lagena. Ett forsok att satta egenglodet i
+     materialets konstruktor gav inget — raderna harunder skriver over
+     det vid varje ljusbyte, sa provet var ogiltigt, inte hypotesen.
+     Dagsvardena satts darfor har, pa samma stalle. */
   M.gras.emissive.setHex(natt ? 0x26392c : 0x000000);
-  M.hack.emissive.setHex(natt ? 0x223a28 : 0x000000);
-  M.gron.emissive.setHex(natt ? 0x24402a : 0x000000);
-  M.stam.emissive.setHex(natt ? 0x2a211a : 0x000000);
-  M.sten.emissive.setHex(natt ? 0x3a3f49 : 0x000000);
+  M.hack.emissive.setHex(natt ? 0x223a28 : 0x0c1109);
+  M.gron.emissive.setHex(natt ? 0x24402a : 0x0c1309);
+  M.stam.emissive.setHex(natt ? 0x2a211a : 0x241c15);
+  M.sten.emissive.setHex(natt ? 0x3a3f49 : 0x0e0f12);
   /* Forsta atgarden tande tomten men inte HUSET. Uppmatt i natt:
      fasaden 0,0,0 mot bakgrundens 13,15,20 — 18,7 % av modellytan lag
      under den angransande bakgrunden. Resultatet var ett upplyst
@@ -956,8 +990,18 @@ function passa() {
   const b = el.clientWidth, h = el.clientHeight;
   kamera.aspect = b / h;
   kamera.updateProjectionMatrix();
-  renderare.setSize(b, h, false);
+  /* setSize(..., false) later bli att satta dukens CSS-storlek. Da
+     lagger elementet ut sig pa sina ATTRIBUTPIXLAR, alltsa CSS-matten
+     gangat med bildpunktsforhallandet. Pa en skarm med DPR 2 blev duken
+     2800x1750 CSS-px i en ruta pa 1600x1000: halva huset hamnade utanfor
+     bild, och pa mobil vaxte vyn till 682 px sa hela sidan zoomade ut.
+     Det gallde varje retinaskarm och varje telefon — precis den publik
+     en delad prototyp far. All matning i de tre kritikrundorna gjordes i
+     DPR 1 och sag darfor aldrig felet.
+     Bildpunktsforhallandet satts forst: setPixelRatio kallar setSize
+     internt med de vanden den redan har. */
   renderare.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+  renderare.setSize(b, h, false);
   raknaHelvy();   // inramningen beror pa bildens proportion
   matCanvas();
   ritaNu();
@@ -1000,7 +1044,10 @@ function placeraEtiketter() {
     /* "Tradgard" hamnade ovanpa chipen "Matplats" i ovanvaningsvyn.
        Etiketter som nar ner i knappradens omrade doljs. */
     const iKnappraden = y > r.top + r.height - 86;
-    const dold = bakom || under || iKnappraden || (smal && litet && valdtRum !== rum.id);
+    /* Samma sak at vanster: i planvyn hamnade "Tradgard" ovanpa rubriken
+       "Radhus vid Arstaviken". Listningsspalten ar 340 px pa bred skarm. */
+    const iSpalten = r.width > 860 && x < r.left + 340;
+    const dold = bakom || under || iKnappraden || iSpalten || (smal && litet && valdtRum !== rum.id);
     el.style.opacity = dold ? '0' : '1';
     el.style.pointerEvents = dold ? 'none' : 'auto';
     el.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0) translate(-50%, -50%)`;

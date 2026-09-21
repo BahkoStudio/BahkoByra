@@ -36,6 +36,10 @@ body{
 }
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 canvas{display:block;touch-action:none}
+/* Duken far sin storlek harifran. app.js kallar setSize(..., false) och
+   ror darfor inte elementets CSS-matt; utan de har raderna lagger den ut
+   sig pa sina attributpixlar och blir DPR ganger for stor. */
+#scen canvas{width:100%;height:100%}
 [hidden]{display:none!important}
 
 /* ---------- scenen fyller allt, chromet ligger ovanpa ---------- */
