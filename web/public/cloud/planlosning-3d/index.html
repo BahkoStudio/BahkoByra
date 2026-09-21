@@ -121,7 +121,6 @@ canvas{display:block;touch-action:none}
 .stang:hover{color:var(--text)}
 .rums-bild{width:100%;aspect-ratio:4/3;display:block;background:var(--yta2);object-fit:cover}
 .rumspanel-kropp{padding:1rem}
-.rumspanel-kropp h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.3rem;margin-bottom:.5rem;font-variant-numeric:lining-nums}
 .matt{font-variant-numeric:lining-nums tabular-nums;display:flex;gap:1.2rem;font-size:.78rem;color:var(--text2);margin-bottom:.8rem}
 .rumspanel-kropp p{font-size:.8rem;color:var(--text2);line-height:1.65}
 
@@ -182,9 +181,9 @@ canvas{display:block;touch-action:none}
    Bada mats ur kameran i app.js, inte ritade pa fri hand. */
 .planskala{position:absolute;left:1.5rem;bottom:6.5rem;display:flex;align-items:flex-end;
   gap:1.6rem;pointer-events:none;color:var(--text2)}
-.norr{display:flex;flex-direction:column;align-items:center;gap:.2rem}
+.norr{position:relative;width:34px;height:34px;display:grid;place-items:center}
 .norr svg{width:18px;height:18px;fill:currentColor;transform-origin:50% 50%}
-.norr span{font-size:.58rem;letter-spacing:.14em}
+.norr span{position:absolute;font-size:.58rem;letter-spacing:.14em;line-height:1}
 .skalstock{display:flex;flex-direction:column;gap:.35rem;font-size:.64rem;letter-spacing:.1em;
   font-variant-numeric:lining-nums tabular-nums}
 .skalstock-strek{display:block;height:1px;background:var(--linje2);position:relative;min-width:20px}
@@ -241,7 +240,13 @@ canvas{display:block;touch-action:none}
   /* HEMVIST ar tva tecken langre an referensens HAVEN: market plus
      loggan spillde 4 px ut ur 390 px. Bada kortas har. */
   .marke-namn{font-size:1.2rem;letter-spacing:.3em}
-  .skapad{margin-left:auto}
+  /* Pa mobil forsvann "SKAPAD AV" och loggan hamnade pa HEMVISTs egen
+     logorad — den last da som ett medvarumarke i stallet for en kredit.
+     Egen rad under headern i stallet, med texten kvar. */
+  .topp{flex-wrap:wrap}
+  .skapad{flex:0 0 100%;margin-left:0;padding:.7rem 0 0;
+          border-left:0;border-top:1px solid var(--linje)}
+  .skapad span{display:inline}
   .skapad img{width:88px}
   .listning{width:auto;padding:0 1.2rem 1rem}
   .listning h1{font-size:2.1rem}
@@ -263,7 +268,13 @@ canvas{display:block;touch-action:none}
     border-bottom:1px solid var(--linje);order:-2;
   }
   .lagen{align-self:flex-start}
-  .chips{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:.3rem;scrollbar-width:none}
+  /* Raden GAR att scrolla (uppmatt scrollWidth 566 mot 352), men inget
+     visade det: sista chipen kapades tvart och last som trasig layout.
+     En kantmask talar om att det finns mer at hoger. */
+  .chips{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:.3rem;
+         scrollbar-width:none;
+         -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 34px),transparent 100%);
+         mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 34px),transparent 100%)}
   .chips::-webkit-scrollbar{display:none}
   .aterstall{align-self:flex-start}
   .total{position:static;width:auto;margin:0 1.2rem 2rem}
@@ -280,6 +291,7 @@ canvas{display:block;touch-action:none}
   .marke-under{display:none}
   .marke-namn{font-size:1.05rem;letter-spacing:.22em}
   .skapad img{width:78px}
+  .skapad{padding-top:.6rem}
 }
 @media (max-width:340px){ .marke-h{display:none} }
 /* Pekskarm: tryckytor minst 44px oavsett bredd. */
@@ -300,7 +312,7 @@ canvas{display:block;touch-action:none}
   <div class="planskala" id="planskala" hidden>
     <div class="norr">
       <svg id="norrpil" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l5 16-5-4-5 4z"/></svg>
-      <span>N</span>
+      <span id="norr-n">N</span>
     </div>
     <div class="skalstock">
       <span class="skalstock-strek" id="skalstock-strek"></span>
@@ -361,7 +373,6 @@ canvas{display:block;touch-action:none}
   </div>
   <canvas class="rums-bild" id="panel-bild" width="400" height="300"></canvas>
   <div class="rumspanel-kropp">
-    <h3 id="panel-namn">Rum</h3>
     <div class="matt"><span id="panel-matt">—</span><span id="panel-area">—</span></div>
     <p id="panel-text"></p>
   </div>

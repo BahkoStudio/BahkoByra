@@ -41,7 +41,12 @@ const RUM = [
   { id:'bed3',    namn:'Sovrum 3',    v:1, x0:4.4, x1:8.2, z0:3.3, z1:7.1, golv:'matta',
     text:'Tredje sovrum, fungerar lika bra som arbetsrum.' },
 ];
-const TRADGARD = { id:'garden', namn:'Trädgård', v:0, x0:0, x1:8.2, z0:9.3, z1:11.8, golv:'gras', ytaHela:38.5,
+/* Rutan sa 8,2 x 2,5 m men arean 38,5 m². 8,2 x 2,5 = 20,5. Alla tio
+   ovriga rum stamde pa decimalen. Grasmattans mesh gar i sjalva verket
+   fran z=7,1 till z=11,8, alltsa 4,7 m djup, och 8,2 x 4,7 = 38,54.
+   Ratt ar att lata rutan beskriva tomten som den faktiskt ar byggd, sa
+   forsvinner ocksa undantaget ytaHela. */
+const TRADGARD = { id:'garden', namn:'Trädgård', v:0, x0:0, x1:8.2, z0:7.1, z1:11.8, golv:'gras',
   text:'Egen anlagd trädgård med stenlagd uteplats direkt utanför vardagsrummet.' };
 
 const HUS = { x0:0, x1:8.2, z0:0, z1:7.1 };
@@ -618,7 +623,6 @@ function markera(id) {
 const panel = document.getElementById('rumspanel');
 function visaPanel(r) {
   document.getElementById('panel-titel').textContent = r.namn;
-  document.getElementById('panel-namn').textContent = r.namn;
   document.getElementById('panel-matt').textContent =
     `${dec(r.x1-r.x0)} m × ${dec(r.z1-r.z0)} m`;
   document.getElementById('panel-area').textContent = `${dec(area(r))} m²`;
@@ -699,10 +703,22 @@ function ritaForhandsbild(r) {
   himmel.color.setHex(0xffffff);
   renderare.toneMappingExposure = 1.0;
 
+  /* Skuggkartan ritas inte om varje bildruta (autoUpdate = false); den
+     ritas nar nagon satt needsUpdate, och da av NASTA rendering. Nasta
+     rendering var ibland den har — med innervaggarna uppresta till full
+     hojd. Da backades en skuggkarta av fel geometri in, och den blev
+     kvar pa skarmen tills nagot annat begarde en ny.
+     Uppmatt: efter bara sattLjus('dag') pa en orord sida andrades 968
+     pixlar, maxavvikelse 93 av 255 — vaggskuggorna pa golvet kropp ihop.
+     Samma fel gav 1 380 andrade pixlar efter en natt/dag-vanda.
+     Forhandsbilden ror darfor inte skuggkartan alls. */
+  const varSkuggBehov = renderare.shadowMap.needsUpdate;
+  renderare.shadowMap.needsUpdate = false;
   renderare.setRenderTarget(mal);
   renderare.render(scen, forhandsKamera);
   renderare.readRenderTargetPixels(mal, 0, 0, 400, 300, pixlar);
   renderare.setRenderTarget(null);
+  renderare.shadowMap.needsUpdate = varSkuggBehov;
 
   himmel.intensity = varHim;
   himmel.color.setHex(varHimFarg);
@@ -823,6 +839,13 @@ function sattLjus(l) {
   M.gron.emissive.setHex(natt ? 0x24402a : 0x000000);
   M.stam.emissive.setHex(natt ? 0x2a211a : 0x000000);
   M.sten.emissive.setHex(natt ? 0x3a3f49 : 0x000000);
+  /* Forsta atgarden tande tomten men inte HUSET. Uppmatt i natt:
+     fasaden 0,0,0 mot bakgrundens 13,15,20 — 18,7 % av modellytan lag
+     under den angransande bakgrunden. Resultatet var ett upplyst
+     innanmate som svavade utan skal. Samma mekanism, samma atgard. */
+  M.vaggYtt.emissive.setHex(natt ? 0x232833 : 0x000000);
+  M.vagg.emissive.setHex(natt ? 0x1c2028 : 0x000000);
+  M.ram.emissive.setHex(natt ? 0x191c22 : 0x000000);
   /* Ta UT lamporna ur scenen i dagslage. Att bara nollstalla dem
      tar inte bort kostnaden — de ligger kvar i ritprogrammet. */
   for (const p of nattljus) {
@@ -899,6 +922,14 @@ function uppdateraPlanskala() {
   const lager = document.getElementById('planskala');
   if (!lager) return;
   if (vy !== 'plan') { lager.hidden = true; return; }
+  /* Stocken valjer ett jamnt metertal (1, 2, 5, 10) som far plats pa
+     150 px. Mitt i en kameraflytt passerar skalan grannvardet och
+     stocken HOPPAR: uppmatt 142 px "2 m" vid t=0,45 och 77 px "1 m"
+     vid t=0,50, alltsa 65 px borta i ett steg medan hela planen glider.
+     Tva saker ror sig, och det som hoppar drar blicken fran det som
+     glider. Stocken raknas darfor bara nar kameran star stilla, och
+     dyker upp nar flytten landat — samma regel som rumspanelen. */
+  if (tween) return;
   const a = skarmPunkt(TOMT_MITT.x, TOMT_MITT.z);
   const b = skarmPunkt(TOMT_MITT.x + 1, TOMT_MITT.z);
   const pxPerMeter = Math.hypot(b.x - a.x, b.y - a.y);
@@ -911,6 +942,11 @@ function uppdateraPlanskala() {
   // pilen pekar rakt upp vid rotation 0, alltsa mot minskande skarm-y
   const vinkel = Math.atan2(n.x - a.x, -(n.y - a.y));
   document.getElementById('norrpil').style.transform = `rotate(${vinkel.toFixed(4)}rad)`;
+  /* Bokstaven ska folja pilspetsen men sjalv sta upp. Den flyttas alltsa
+     till spetsen utan att roteras — tidigare satt den still under
+     stjarten, och pilen last som en pappersflygplansikon. */
+  document.getElementById('norr-n').style.transform =
+    `translate(${(Math.sin(vinkel)*17).toFixed(1)}px, ${(-Math.cos(vinkel)*17).toFixed(1)}px)`;
   lager.hidden = false;
 }
 
@@ -961,7 +997,10 @@ function placeraEtiketter() {
     const under = pr && x > pr.left - 70 && y > pr.top - 20 && y < pr.bottom + 20;
     const smal = r.width < 700;
     const litet = area(rum) < 10 && rum.id !== 'garden';
-    const dold = bakom || under || (smal && litet && valdtRum !== rum.id);
+    /* "Tradgard" hamnade ovanpa chipen "Matplats" i ovanvaningsvyn.
+       Etiketter som nar ner i knappradens omrade doljs. */
+    const iKnappraden = y > r.top + r.height - 86;
+    const dold = bakom || under || iKnappraden || (smal && litet && valdtRum !== rum.id);
     el.style.opacity = dold ? '0' : '1';
     el.style.pointerEvents = dold ? 'none' : 'auto';
     el.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0) translate(-50%, -50%)`;
@@ -1007,9 +1046,27 @@ raknaHelvy();
      dagslage. Uppmatt: forsta rumsklicket i MORKER kompilerade tva nya
      program mitt i demot, 11 -> 13. Bada ljuslagena varms nu, och
      engangskostnaden for rendermalet tas har bakom laddskarmen. */
-  ritaForhandsbild(RUM[0]);              // natt
+  ritaForhandsbild(RUM[0]);              // natt + 3d
+  sattVy('plan');    ritaForhandsbild(RUM[0]);   // natt + plan
+  sattLjus('dag');   ritaForhandsbild(RUM[0]);   // dag + plan
+  sattVy('3d');      ritaForhandsbild(RUM[0]);   // dag + 3d
+
+  /* Overvaningens geometrier laddades upp till GPU:n forst nar man
+     bytte vaning: compile() gar bara igenom SYNLIGA objekt, sa vaning 1
+     betalade sin uppladdning mitt i demot (11 -> 16 geometrier).
+     Bada vaningarna visas darfor en gang har, bakom laddskarmen. */
+  const varVaning = aktuellVaning;
+  byggVy(1);
+  renderare.compile(scen, kamera);
+  /* En RIKTIG rendering, inte bara compile(): skuggkartan backas forst
+     nar nagot renderas. Utan den skilde sig laddlaget fran det lage man
+     kom tillbaka till efter ett vaningsbyte med 1 341 pixlar. */
+  renderare.render(scen, kamera);
+  ritaForhandsbild(RUM.find(r => r.v === 1));
+  byggVy(varVaning);
+  renderare.render(scen, kamera);
+
   sattVy(varVy); sattLjus(varLjus);
-  ritaForhandsbild(RUM[0]);              // dag
 
   tween = null;
   const s2 = ramaIn(TOMT_MITT.clone());
@@ -1075,12 +1132,11 @@ window.__demo = {
     });
   },
   ljusIScenen() { let n = 0; scen.traverse(o => { if (o.isLight) n++; }); return n; },
-  /* Ren JS-kostnad per bildruta, utan GPU: matbar aven har. */
-  jsKostnad(varv = 60) {
-    const t0 = performance.now();
-    for (let i = 0; i < varv; i++) { uppdateraTween(performance.now()); kontroller.update(); placeraEtiketter(); }
-    return +((performance.now() - t0) / varv).toFixed(3);   // ms per bildruta
-  },
+  /* jsKostnad() ar struken. Den gjorde noll ritanrop och spretade 5x
+     mellan korningar pa samma sida — brus, inte en matning, och den
+     rapporterades anda som "0,04 ms per bildruta". En siffra som ingen
+     kan reproducera hor inte hemma i en matkrok. */
+  jsKostnad() { return { ogiltig: true, skal: 'renderar inte — matte brus, struken' }; },
   lage() {
     return { vy, vaning: aktuellVaning, ljus: ljuslage, valdtRum,
              panelSynlig: !panel.hidden, tweenAktiv: !!tween,
