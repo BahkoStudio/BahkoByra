@@ -42,16 +42,25 @@ Full playbook: `workflows/sales_methodology.md`. Leverans: `workflows/local_seo_
 Cadence: `workflows/outreach_cadence.md`. IG: `workflows/instagram_engine.md`. Källdokument i
 `reference/`. Färdiga mallar och fullversioner: dashboardens Spelbok.
 
-### Offer-stegen (en nisch: bygg & hantverk, alla kanaler)
+### Offer-stegen (lokala företag, kärnan bygg & hantverk, alla kanaler)
 
-| | Bygg & hantverk (Instagram @bahkobyra, cold email/call/IRL) |
+| | Lokala företag (Instagram @bahkobyra, cold email/call/LinkedIn/IRL) |
 |--|----------------------------------------------------------------|
 | Front (gratis) | Gratis hemsideförslag (utkast, ev. 2-min Loom) |
 | Core (betalt) | Hemsida engångs (12 000 kr ex moms) |
 | Uppsell | Löpande optimering / motion design efter levererad sajt |
 
-- **Offer-regel:** resultat + mekanism + riskreversering + villkor. FOR THEM / REAL /
+- **Offer-regel (struktur v2, 2026-09-11):** Outcome (12 % fler kundförfrågningar inom 90 dagar,
+  mätt i kontaktformulär) + Mechanism + Boundaries (ingår, ingår inte, kundens bidrag, leverans:
+  testversion 2 dagar, live 7 dagar) + pris (varierar, bara i säljsamtalet). FOR THEM / REAL /
   Financial Sense / Easy YES.
+- **Säljsamtalet** följer tolv steg i `workflows/sales_methodology.md` avsnitt 5: kontrollera,
+  beslutskarta, diagnos, kvantifiera, kvalificera, värderam, utmana, förebygg invändningar,
+  hantera invändningar, commitment, uppföljning samma dag, exit.
+- **Bevis i outreach:** minst två verkliga kunder i varje öppnare (målaren i Jönköping,
+  trädgårdsfirman i Stockholm, restaurangen) och siffran tolv procent. Inga andra.
+- **Branschordet:** deras egen bransch, annars "lokala företag". Aldrig "hantverksföretag" till
+  städ, flytt eller restaurang.
 - **Front-offer = bevisa "the wizard"**, inte tjäna pengar. Uppsell kommer sen.
 - **Outreach-copy:** kort, personlig, mänsklig, hjälpsam. En konkret observation om DERAS sajt
   plus en tydlig CTA.

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="sv"><head><meta charset="utf-8"><title>Overlay v38</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Textlager för karusellerna v38. Renderas transparent 1080 x 1350 i full höjd (v37 hade en rand
+   längst ner för att lagret var 70 px för kort). ?s=t|h&i=0.. */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:transparent}
+body{font-family:'Outfit',sans-serif;position:relative;color:#fff}
+.shade{position:absolute;left:0;right:0;bottom:0;height:64%;background:linear-gradient(180deg,rgba(10,22,40,0) 0%,rgba(10,22,40,.84) 28%,rgba(10,22,40,.97) 100%)}
+.topshade{position:absolute;left:0;right:0;top:0;height:230px;background:linear-gradient(180deg,rgba(10,22,40,.78),rgba(10,22,40,0))}
+.top{position:absolute;left:96px;right:96px;top:80px;display:flex;justify-content:space-between;align-items:center}
+.mark{width:84px;height:84px;border-radius:20px;background:#10B981;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:50px;color:#fff}
+.eyebrow{font-weight:700;font-size:30px;letter-spacing:.14em;color:#34D399;text-transform:uppercase}
+.main{position:absolute;left:96px;right:96px;bottom:190px}
+h1{font-weight:800;font-size:82px;line-height:1.13;color:#fff}
+h1 .em{color:#34D399;font-style:normal}
+.cover h1{font-size:104px;line-height:1.08}
+.body{margin-top:36px;font-weight:500;font-size:42px;line-height:1.35;color:#C7D2DF}
+.body b{color:#fff;font-weight:700}
+.fix{margin-top:40px;font-weight:700;font-size:38px;color:#0A1628;background:#10B981;padding:24px 34px;border-radius:16px;display:inline-block}
+.list{margin-top:34px;display:flex;flex-direction:column;gap:18px}
+.row{display:flex;gap:22px;align-items:flex-start;font-weight:700;font-size:42px;line-height:1.25;color:#fff}
+.row i{flex:none;width:56px;height:56px;border-radius:16px;background:#10B981;color:#0A1628;font-style:normal;font-weight:800;font-size:32px;display:flex;align-items:center;justify-content:center}
+.footer{position:absolute;left:96px;right:96px;bottom:84px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:30px}
+.footer .handle{color:#34D399}.footer .page{color:#94A7BF;font-weight:500}.footer .swipe{color:#fff}
+</style></head><body>
+<script>
+const K={
+t:[ // tisdag: "Vi har fullt upp ändå", 6 slides
+ {c:'cover',h:'Vi har fullt upp ändå.<br><em class="em">Bra. Men vem ringer i november?</em>'},
+ {e:'Problemet',h:'Jobben du gör nu<br>bokades i våras.',b:'Jobben i november bokas nu. <b>Av någon.</b>'},
+ {e:'Sanningen',h:'Fullt upp är inte<br><span class="em">fullbokad.</span>',b:'Om tre månader är telefonen tyst om ingen hittar dig i dag.'},
+ {e:'Så funkar det',h:'En hemsida jobbar<br><span class="em">när du inte hinner.</span>',b:'Kunden hittar dig på kvällen. Skickar en förfrågan. <b>Du svarar när du har tid.</b>'},
+ {e:'Gör i dag',h:'Tre saker som<br><span class="em">fyller november.</span>',list:['Ett nummer att trycka på','Tre bilder på jobb du gjort','En förfrågan på 20 sekunder'],fix:'Spara den här till det blir tyst.'},
+ {c:'cta',e:'Nästa steg',b:'Skriv DEMO så bygger jag ett förslag på er nya hemsida. Kostar inget. Klart på två dygn.'}
+],
+h:[ // torsdag: "Den som svarar först får jobbet", 8 slides
+ {c:'cover',h:'Den som svarar först<br>får jobbet.<br><em class="em">Inte den som är bäst.</em>'},
+ {e:'Problemet',h:'Kunden kan inte se<br>vem som är bäst.',b:'Hon ser <b>vem som svarar.</b>'},
+ {e:'Sanningen',h:'Snabbt svar känns<br><span class="em">som ordning.</span>',b:'Långsamt svar känns som en firma utan koll. <b>Fast du gör bättre jobb.</b>'},
+ {e:'Sak 1',h:'Ett nummer som går<br><span class="em">att trycka på.</span>',b:'Högst upp. Utan att leta.'},
+ {e:'Sak 2',h:'Ett formulär<br><span class="em">på tre fält.</span>',b:'Namn, telefon, vad du vill ha gjort. <b>Tjugo sekunder.</b>'},
+ {e:'Sak 3',h:'En bekräftelse<br><span class="em">direkt på skärmen.</span>',b:'"Tack, vi ringer i morgon." <b>Då ringer hon ingen annan.</b>'},
+ {e:'Poängen',h:'Du behöver inte<br>svara snabbare.',b:'<b>Hemsidan gör det åt dig.</b>'},
+ {c:'cta',e:'Nästa steg',b:'Skriv DEMO så bygger jag ett förslag på er nya hemsida. Kostar inget. Klart på två dygn.'}
+]};
+const q=new URLSearchParams(location.search);const set=q.get('s')||'t';const i=parseInt(q.get('i')||'0',10);const S=K[set];const s=S[i];const N=S.length;
+let h='';
+if(s.c==='cta'){
+  document.body.className='cta';
+  h+='<div class="topshade"></div><div class="top"><div class="mark">B</div><div class="eyebrow">'+s.e+'</div></div>';
+  h+='<div class="shade" style="height:36%"></div><div class="main" style="bottom:170px"><div class="body" style="text-align:center;font-weight:700;color:#fff">'+s.b+'</div></div>';
+  h+='<div class="footer"><span class="handle">@bahkobyra</span><span class="swipe"></span><span class="page">'+N+'/'+N+'</span></div>';
+}else{
+  document.body.className=s.c||'';
+  h+='<div class="shade"'+(s.c==='cover'?' style="height:72%"':'')+'></div><div class="topshade"></div>';
+  h+='<div class="top"><div class="mark">B</div><div class="eyebrow">'+(s.e||'')+'</div></div>';
+  h+='<div class="main"><h1>'+s.h+'</h1>';
+  if(s.b) h+='<div class="body">'+s.b+'</div>';
+  if(s.list) h+='<div class="list">'+s.list.map((t,n)=>'<div class="row"><i>'+(n+1)+'</i><div>'+t+'</div></div>').join('')+'</div>';
+  if(s.fix) h+='<div class="fix">'+s.fix+'</div>';
+  h+='</div>';
+  h+='<div class="footer"><span class="handle">@bahkobyra</span><span class="swipe">svep &#8594;</span><span class="page">'+(i+1)+'/'+N+'</span></div>';
+}
+document.body.innerHTML=h;
+</script></body></html>

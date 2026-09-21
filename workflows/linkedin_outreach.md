@@ -34,17 +34,17 @@ Skicka UTAN meddelande om du inte har något konkret att säga. Annars — välj
 
 ### Mall A — Neutral (passar alltid)
 ```
-Hej [Förnamn]! Jobbar med hemsidor för svenska bygg- och hantverksfirmor. Kikade in på [Företag].se och fick några idéer. Hade velat höra din tanke om en grej.
+Hej [Förnamn]! Bygger hemsidor åt lokala företag, senast en målare i Jönköping och en trädgårdsfirma i Stockholm. Kikade in på [Företag].se och fick en idé. Får jag visa den?
 ```
 
 ### Mall B — Om de nyligen öppnat/expanderat
 ```
-Hej [Förnamn]! Såg att [Företag] öppnat/expanderat i [stad] — grattis! Jobbar med hemsidor för hantverkare och fick en idé som kan passa er just nu.
+Hej [Förnamn]! Såg att [Företag] öppnat i [stad], grattis! Bygger hemsidor åt lokala företag som [bransch] och fick en idé som passar er just nu. Får jag visa?
 ```
 
 ### Mall C — Om de har en tydlig svag punkt (långsam sida, dålig mobil)
 ```
-Hej [Förnamn]! Testade [företag].se på mobil och lade märke till något. Jobbar med hemsidor för hantverkare — kan dela det gratis om du är nyfiken.
+Hej [Förnamn]! Testade [företag].se i mobilen och såg en grej som kostar er förfrågningar. Bygger hemsidor åt lokala företag, kan visa den gratis om du är nyfiken.
 ```
 
 ## Steg 3 — Uppföljning (dag 4, efter accepterat)
@@ -54,13 +54,15 @@ Hej [Förnamn]! Tack för att du accepterade.
 
 Jag skickade ett mejl till info@[företag].se häromdagen med ett demo på hur [Företag] skulle kunna se ut med en modernare sida och tydligare offertknapp.
 
-Får jag fråga — hur nöjd är du med er nuvarande hemsida? Får den in bokningar som den ska?
+Får jag fråga: hur nöjd är du med er hemsida i dag? Får den in förfrågningar som den ska?
+
+Vi byggde nyss åt en målare i Jönköping och en trädgårdsfirma i Stockholm. Hos en av dem blev det tolv procent fler kundförfrågningar.
 ```
 
 ## Steg 4 — Sista meddelande (dag 7, om inget svar)
 
 ```
-Hej [Förnamn]! Vill inte störa mer. Om ni någon gång tänker på hemsidan — hör gärna av dig. Demot finns kvar på bahkobyra.se/cloud/bygg/.
+Hej [Förnamn]! Vill inte störa mer. Om ni någon gång tänker på hemsidan, hör gärna av dig. Demot finns kvar på bahkobyra.se/cloud/bygg/.
 
 Lycka till med firman!
 ```
@@ -79,6 +81,12 @@ LinkedIn dag [X]: kontaktförfrågan skickad
 LinkedIn dag [X]: accepterat
 LinkedIn dag [X]: uppföljning skickad
 ```
+
+## Regler
+
+- Inga tankstreck i meddelanden. Aldrig pris. Aldrig Google eller SEO, vi säljer hemsidor.
+- Nämn alltid minst två verkliga kunder som bevis (målaren i Jönköping, trädgårdsfirman i Stockholm, restaurangen).
+- Skriv deras egen bransch, annars "lokala företag". Aldrig "hantverkare" till en städfirma.
 
 ## Tips
 
