@@ -33,9 +33,22 @@ användaren gör något. Ingenting tonar, pulserar eller svävar av sig självt.
 Kameran åker aldrig förbi målet och tillbaka. Ingen studs, ingen overshoot, ingen
 fjäder som svänger in sig.
 
-**5. Modellen tar ~50 % av bildbredden i helvy.**
+**5. Inramning — två fall, inte ett.**
+
+*Helvy:* modellen tar ~50 % av bildbredden och nuddar aldrig ramens kant.
 Uppmätt för hand på Matterports dollhouse: modellen spänner x=100→845 i en 1440 px
-bred ram = 52 %. Marginal runt om; modellen nuddar aldrig ramens kant.
+bred ram = 52 %.
+
+*Rumsvy:* det VALDA RUMMET plus en bit grannskap ramas in fritt från panelen,
+listningsspalten och knappraden. Resten av huset får gå utanför bilden.
+
+**Varför mekanismen delades (runda 4→5):** den var först skriven som en enda regel
+för hela modellen. Tillämpad bokstavligt på rumsvyn tvingade den fram motsatsen till
+vad ett rumsval finns för: när panelen öppnades krympte den fria ytan, och kameran
+backade för att få plats med hela huset. Rörelsekritikern mätte det — modellen gick
+från 767 till 659 px bredd vid klick, alltså 13 % LÄNGRE BORT efter en rörelse som
+ska föra besökaren närmare. Regeln var motsägelsefull, inte bygget. Den är delad
+här i stället för att tyst kringgås.
 
 **6. Snabb markering, långsam kamera.**
 Rummet färgas inom 150 ms vid klick. Kameran tar sina 700–1100. Den snabba

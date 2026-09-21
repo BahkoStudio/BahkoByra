@@ -10,7 +10,8 @@ import { OrbitControls } from './vendor/OrbitControls.js';
 
 const KAMERA_MS = 900;    // mekanism 1: golv 700, tak 1100
 const INTRO_MS  = 1200;   // mekanism 3: en enda rorelse vid laddning
-const VH        = 2.5;    // vagghojd
+const VH        = 2.5;    // ytterväggshojd
+const VH_INRE   = 1.05;   // innervagg, kapad sa man ser NER i varje rum
 const TJOCK     = 0.12;   // vaggtjocklek
 
 /* ---------- rummen ----------
@@ -111,6 +112,7 @@ const _box = new THREE.Box3();
 const _horn = Array.from({ length: 8 }, () => new THREE.Vector3());
 
 function synligLada() {
+  scen.updateMatrixWorld(true);   // annars mats en foraldrad lada
   _box.makeEmpty();
   for (const g of vaningar) if (g.visible) _box.expandByObject(g);
   if (utegrupp.visible) _box.expandByObject(utegrupp);
@@ -129,15 +131,15 @@ function friYta() {
   const bred = b > 860;
   const panelPa = !panel.hidden;
   return {
-    x0: bred ? 340 : 10,
-    x1: b - (bred ? (panelPa ? 330 : 40) : 10),
-    y0: bred ? 95 : 10,
-    y1: h - (bred ? 125 : 60),
+    x0: bred ? 352 : 22,
+    x1: b - (bred ? (panelPa ? 372 : 48) : 22),
+    y0: bred ? 108 : 16,
+    y1: h - (bred ? 138 : 64),
   };
 }
 
-function passaAvstand(mal, riktning) {
-  const horn = synligLada();
+function passaAvstand(mal, riktning, egnaHorn) {
+  const horn = egnaHorn || synligLada();
   const y = friYta();
   const el = renderare.domElement;
   const b = el.clientWidth, h = el.clientHeight;
@@ -168,9 +170,16 @@ function passaAvstand(mal, riktning) {
   return hi;
 }
 /* Ger ett kameralage som garanterat ryms i den fria ytan. */
-function ramaIn(mal, riktning = RIKT) {
-  const d = passaAvstand(mal, riktning);
+function ramaIn(mal, riktning = RIKT, egnaHorn = null) {
+  const d = passaAvstand(mal, riktning, egnaHorn);
   return { pos: mal.clone().add(riktning.clone().multiplyScalar(d)), mal: mal.clone() };
+}
+/* Hornen for EN lada i varlden, med marginal runt. */
+function hornForLada(x0, y0, z0, x1, y1, z1) {
+  const ut = [];
+  for (const x of [x0, x1]) for (const y of [y0, y1]) for (const z of [z0, z1])
+    ut.push(new THREE.Vector3(x, y, z));
+  return ut;
 }
 
 /* ---------- material ----------
@@ -210,7 +219,7 @@ const box = (m, w,h,d, x,y,z) => {
    En vagg ar en linje fran A till B. Oppningar anges som stracka
    langs vaggen. Doerr gar till golvet, fonster har brostning och
    overstycke. Enklare an CSG och tillrackligt for en dollhouse. */
-function vagg(grupp, ax, az, bx, bz, oppningar = [], ytter = false) {
+function vagg(grupp, ax, az, bx, bz, oppningar = [], ytter = false, hojd = VH) {
   const dx = bx-ax, dz = bz-az;
   const lang = Math.hypot(dx, dz);
   const vinkel = Math.atan2(dz, dx);
@@ -227,24 +236,27 @@ function vagg(grupp, ax, az, bx, bz, oppningar = [], ytter = false) {
     h.add(box(mat, t1-t0, y1-y0, TJOCK, (t0+t1)/2, (y0+y1)/2, 0));
   };
   for (const o of sorterade) {
-    bit(t, o.t0, 0, VH);                       // vaggen fore oppningen
-    if (o.y0 > 0) bit(o.t0, o.t1, 0, o.y0);    // brostning under fonster
-    if (o.y1 < VH) bit(o.t0, o.t1, o.y1, VH);  // overstycke
+    bit(t, o.t0, 0, hojd);                          // vaggen fore oppningen
+    const oy0 = Math.min(o.y0, hojd), oy1 = Math.min(o.y1, hojd);
+    if (oy0 > 0) bit(o.t0, o.t1, 0, oy0);           // brostning under fonster
+    if (oy1 < hojd) bit(o.t0, o.t1, oy1, hojd);     // overstycke
     // glas och karm
     const g = new THREE.Mesh(BOX, M.glas);
-    g.scale.set(o.t1-o.t0, o.y1-o.y0, 0.04);
-    g.position.set((o.t0+o.t1)/2, (o.y0+o.y1)/2, 0);
-    if (!o.dorr) h.add(g);
+    g.scale.set(o.t1-o.t0, Math.max(0.02, oy1-oy0), 0.04);
+    g.position.set((o.t0+o.t1)/2, (oy0+oy1)/2, 0);
+    if (!o.dorr && oy1 > oy0 + 0.05) h.add(g);
     if (o.dorr) {
-      h.add(box(M.ram, 0.06, o.y1-o.y0, TJOCK*1.1, o.t0+0.03, (o.y0+o.y1)/2, 0));
-      h.add(box(M.ram, 0.06, o.y1-o.y0, TJOCK*1.1, o.t1-0.03, (o.y0+o.y1)/2, 0));
+      if (oy1 > 0.1) {
+        h.add(box(M.ram, 0.06, oy1-oy0, TJOCK*1.1, o.t0+0.03, (oy0+oy1)/2, 0));
+        h.add(box(M.ram, 0.06, oy1-oy0, TJOCK*1.1, o.t1-0.03, (oy0+oy1)/2, 0));
+      }
     } else {
-      h.add(box(M.ram, o.t1-o.t0, 0.05, TJOCK*1.05, (o.t0+o.t1)/2, o.y0, 0));
-      h.add(box(M.ram, o.t1-o.t0, 0.05, TJOCK*1.05, (o.t0+o.t1)/2, o.y1, 0));
+      h.add(box(M.ram, o.t1-o.t0, 0.05, TJOCK*1.05, (o.t0+o.t1)/2, oy0, 0));
+      if (oy1 < hojd - 0.02) h.add(box(M.ram, o.t1-o.t0, 0.05, TJOCK*1.05, (o.t0+o.t1)/2, oy1, 0));
     }
     t = o.t1;
   }
-  bit(t, lang, 0, VH);
+  bit(t, lang, 0, hojd);
   grupp.add(h);
 }
 const DORR   = (t0,t1) => ({ t0, t1, y0:0,    y1:2.05, dorr:true });
@@ -396,19 +408,19 @@ function byggVaning(vi) {
     vagg(g, HUS.x1, HUS.z1, HUS.x0, HUS.z1, [GOLVDORR(0.9,3.6), FONST(5.4,7.0)], true);
     vagg(g, HUS.x0, HUS.z1, HUS.x0, HUS.z0, [FONST(1.2,2.6)], true);
     // innervaggar botten
-    vagg(g, 1.8, 0,   1.8, 3.3, [DORR(1.2,2.1)]);
-    vagg(g, 4.6, 0,   4.6, 3.3, [DORR(0.7,2.5)]);
+    vagg(g, 1.8, 0, 1.8, 3.3, [DORR(1.2,2.1)], false, VH_INRE);
+    vagg(g, 4.6, 0, 4.6, 3.3, [DORR(0.7,2.5)], false, VH_INRE);
     vagg(g, 0,   3.3, 8.2, 3.3, [DORR(1.9,2.8), DORR(5.0,6.8)]);
-    vagg(g, 4.0, 3.3, 4.0, 7.1, [DORR(0.8,2.4)]);
+    vagg(g, 4.0, 3.3, 4.0, 7.1, [DORR(0.8,2.4)], false, VH_INRE);
   } else {
     vagg(g, HUS.x0, HUS.z0, HUS.x1, HUS.z0, [FONST(0.8,2.4), FONST(6.0,7.4)], true);
     vagg(g, HUS.x1, HUS.z0, HUS.x1, HUS.z1, [FONST(1.2,2.4), FONST(4.6,6.0)], true);
     vagg(g, HUS.x1, HUS.z1, HUS.x0, HUS.z1, [FONST(1.0,2.6), FONST(5.0,6.8)], true);
     vagg(g, HUS.x0, HUS.z1, HUS.x0, HUS.z0, [FONST(2.0,3.4)], true);
-    vagg(g, 3.4, 0,   3.4, 3.3, [DORR(1.1,2.0)]);
-    vagg(g, 5.4, 0,   5.4, 3.3, [DORR(1.1,2.0)]);
+    vagg(g, 3.4, 0, 3.4, 3.3, [DORR(1.1,2.0)], false, VH_INRE);
+    vagg(g, 5.4, 0, 5.4, 3.3, [DORR(1.1,2.0)], false, VH_INRE);
     vagg(g, 0,   3.3, 8.2, 3.3, [DORR(1.0,1.9), DORR(5.6,6.5)]);
-    vagg(g, 4.4, 3.3, 4.4, 7.1, []);
+    vagg(g, 4.4, 3.3, 4.4, 7.1, [], false, VH_INRE);
   }
   scen.add(g);
 }
@@ -562,7 +574,13 @@ function rumById(id) { return id === 'garden' ? TRADGARD : RUM.find(r => r.id ==
    tills huset skar ut genom alla fyra bildkanter. */
 function rumsKamera(r) {
   const c = centrum(r, r.v * VH);
-  return ramaIn(c.clone().setY(c.y + 0.4));
+  const ute = r.id === 'garden';
+  const m = ute ? 0.8 : 1.6;            // sa mycket granne som foljer med
+  const horn = hornForLada(
+    r.x0 - m, r.v * VH - 0.2, r.z0 - m,
+    r.x1 + m, r.v * VH + (ute ? 2.2 : VH + 0.3), r.z1 + m
+  );
+  return ramaIn(c.clone().setY(c.y + (ute ? 0.2 : 0.8)), RIKT, horn);
 }
 /* Vaningsbyte ska landa i en HELVY av den vaningen, inte i ett rumslage. */
 function vaningsKamera(v) {
@@ -714,24 +732,38 @@ function sattVy(nyVy) {
   for (const b of document.querySelectorAll('.lage'))
     b.setAttribute('aria-pressed', String(b.dataset.vy === nyVy));
 
+  /* En ritning utan mobler ar sex farglagda rektanglar. Rakt uppifran
+     laser mobelladorna som siluetter — soffa, sang, koksbank — vilket
+     ar precis vad en planritning ska visa. Vaggarna behaller sin hojd:
+     uppifran blir de linjer, alltsa ritningens vaggar. */
   for (const g of vaningar)
     for (const c of g.children) {
-      if (c.userData.arMobel) c.visible = !plan;
-      if (c.userData.arVagg)  c.scale.y = plan ? 0.16 : 1;
+      if (c.userData.arMobel) c.visible = true;
+      if (c.userData.arVagg)  c.scale.y = 1;
     }
   utegrupp.visible = true;   // tradgarden hor till fastigheten aven pa ritningen
   tak.visible = false;
   sol.castShadow = !plan;   // skuggor syns inte i en ritning uppifran, men kostar
+  if (!plan) uppdateraSkuggor();
   uppdateraSkuggor();
   kontroller.enableRotate = !plan;   // en ritning ska inte gå att vicka på
 
   if (plan) {
+    /* Rakt uppifran ar up-vektorn tvetydig och Three valjer en
+       godtycklig rotation — ritningen hamnade snedstalld 45 grader.
+       Nord uppat ger en axelriktad ritning, som en ritning ska vara. */
+    kamera.up.set(0, 0, -1);
+    kontroller.object.up.set(0, 0, -1);
     const c = new THREE.Vector3(TOMT_MITT.x, 0, TOMT_MITT.z);
-    const upp = new THREE.Vector3(0.0001, 1, 0.0001).normalize();
-    const v = ramaIn(c, upp);
+    const v = ramaIn(c, new THREE.Vector3(0, 1, 0));
     flytta(v.pos, v.mal);
   }
-  else { const v = ramaIn(TOMT_MITT.clone()); flytta(v.pos, v.mal); }
+  else {
+    kamera.up.set(0, 1, 0);
+    kontroller.object.up.set(0, 1, 0);
+    const v = ramaIn(TOMT_MITT.clone());
+    flytta(v.pos, v.mal);
+  }
 }
 
 function sattLjus(l) {
@@ -848,7 +880,9 @@ function placeraEtiketter() {
     const y = r.top  + (-tmp.y*0.5+0.5) * r.height;
     const bakom = tmp.z > 1;
     const under = pr && x > pr.left - 70 && y > pr.top - 20 && y < pr.bottom + 20;
-    const dold = bakom || under;
+    const smal = r.width < 700;
+    const litet = area(rum) < 10 && rum.id !== 'garden';
+    const dold = bakom || under || (smal && litet && valdtRum !== rum.id);
     el.style.opacity = dold ? '0' : '1';
     el.style.pointerEvents = dold ? 'none' : 'auto';
     el.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0) translate(-50%, -50%)`;
