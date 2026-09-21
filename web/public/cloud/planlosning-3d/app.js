@@ -648,10 +648,9 @@ const mal = new THREE.WebGLRenderTarget(400, 300);
 const forhandsKamera = new THREE.PerspectiveCamera(55, 400/300, 0.1, 100);
 const pixlar = new Uint8Array(400*300*4);
 /* Inomhus finns inget studsljus i Three.js: solen blockeras av
-   vaggarna och rummet blir nastan svart, sarskilt i nattlage. En
-   fyllnadslampa vid kameran tands bara under sjalva forhandsrenderingen. */
-const fyllnad = new THREE.PointLight(0xfff0dd, 0, 14, 1.6);
-// Laggs INTE i scenen: den behovs bara under forhandsrenderingen.
+   vaggarna och rummet blir nastan svart. Forhandsbilden lyfts darfor
+   med himmelsljuset under sjalva renderingen — inte med en extra
+   lampa i scenen, for en sadan kompileras in i ALLA ritprogram. */
 
 function ritaForhandsbild(r) {
   const halvX = (r.x1 - r.x0) / 2, halvZ = (r.z1 - r.z0) / 2;
@@ -673,7 +672,6 @@ function ritaForhandsbild(r) {
   /* En stark punktlampa vid kameran brande ut narmaste vaggen till rent
      vitt medan resten forblev mork. Ett mjukt, riktningslost fyllnadsljus
      lyfter hela rummet jamnt i stallet. */
-  fyllnad.intensity = 0;
   himmel.intensity = 1.5;
   himmel.color.setHex(0xffffff);
   renderare.toneMappingExposure = 1.0;
@@ -714,7 +712,6 @@ function byggVy(v) {
   // ovanvaningen en hog lada dar bottenplanet skymde tradgarden.
   vaningar[0].visible = (v === 0);
   vaningar[1].visible = (v === 1);
-  vaningar[0].traverse(o => { if (o.isMesh) o.material.opacity ??= 1; });
   for (const b of document.querySelectorAll('.vaning'))
     b.setAttribute('aria-pressed', String(+b.dataset.vaning === v));
   for (const { el, rum } of etiketter)
@@ -910,19 +907,26 @@ kamera.position.set(MITT.x + 20, 24, MITT.z + 26);
 kontroller.target.copy(HELVY.mal);
 requestAnimationFrame(slinga);
 raknaHelvy();
-const start = ramaIn(TOMT_MITT.clone());
-flytta(start.pos, start.mal, INTRO_MS);
 /* Forsta trycket pa Night byggde tva nya ritprogram mitt i demot.
    De byggs har i stallet, medan laddskarmen anda star kvar. */
 (function varmUpp() {
+  /* Uppvarmningen byggde tidigare program med en extra punktlampa i
+     scenen — alltsa program som aldrig anvands. Night byggde da anda
+     tva nya program mitt i demot. Nu varms de fyra kombinationer som
+     faktiskt forekommer, med exakt de ljus som kors. */
   const varLjus = ljuslage, varVy = vy;
-  scen.add(fyllnad); fyllnad.intensity = 0.001;
-  renderare.compile(scen, kamera);
-  sattLjus('natt'); renderare.compile(scen, kamera);
-  sattVy('plan');   renderare.compile(scen, kamera);
-  sattVy(varVy);    sattLjus(varLjus);
-  scen.remove(fyllnad);
-  tween = null;                       // uppvarmningen ska inte flytta kameran
+  renderare.compile(scen, kamera);                      // dag + 3d
+  sattVy('plan');    renderare.compile(scen, kamera);   // dag + plan
+  sattLjus('natt');  renderare.compile(scen, kamera);   // natt + plan
+  sattVy('3d');      renderare.compile(scen, kamera);   // natt + 3d
+  sattVy(varVy); sattLjus(varLjus);
+
+  /* Forsta forhandsbilden skapar render-malet och gor sin forsta
+     hemhamtning av pixlar. Den engangskostnaden tas har, bakom
+     laddskarmen, i stallet for vid forsta rumsklicket. */
+  ritaForhandsbild(RUM[0]);
+
+  tween = null;
   const s2 = ramaIn(TOMT_MITT.clone());
   kamera.position.set(MITT.x + 22, 26, MITT.z + 28);
   kontroller.target.copy(s2.mal);
