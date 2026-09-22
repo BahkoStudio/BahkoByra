@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './valora.module.css';
-import { formProps, DoldaFalt } from '../../formular';
 
 /* ===========================================================================
    VALORA — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -261,8 +260,7 @@ export default function ValoraDemo() {
                 <div className={styles.kontaktRad}><span>Sekretess</span><b>Allt stannar mellan oss</b></div>
               </div>
             </div>
-            <form className={styles.form} {...formProps({ mailto: FORM_ACTION })} aria-describedby="form-not">
-              <DoldaFalt amne="Valora - förfrågan" fran="Bahko-demo" />
+            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
               <label>Namn<input type="text" name="namn" autoComplete="name" required /></label>
               <label>E-post<input type="email" name="epost" autoComplete="email" required /></label>
               <label>Telefon (valfritt)<input type="tel" name="telefon" autoComplete="tel" /></label>

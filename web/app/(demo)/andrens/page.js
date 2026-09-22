@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './andrens.module.css';
-import { formProps, DoldaFalt } from '../../formular';
 
 /* ===========================================================================
    ANDRÉNS BYGG & FASTIGHETER AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -369,8 +368,7 @@ export default function AndrensDemo() {
                 <a className={styles.kontaktRad} href={IG} target="_blank" rel="noopener"><span>Instagram</span><b>@andrensbygg</b></a>
               </div>
             </div>
-            <form className={styles.form} {...formProps({ mailto: FORM_ACTION })} aria-describedby="form-not">
-              <DoldaFalt amne="Andréns Bygg - offertförfrågan" fran="Bahko-demo" />
+            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
               <label>Namn<input type="text" name="namn" autoComplete="name" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valfritt)<input type="email" name="epost" autoComplete="email" /></label>

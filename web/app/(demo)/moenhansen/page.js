@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './moenhansen.module.css';
-import { formProps, DoldaFalt } from '../../formular';
 
 /* ===========================================================================
    MOEN HANSENS BYGG OG HÅNDVERKSTJENESTER — gratis nettsideforslag fra Bahko
@@ -249,8 +248,7 @@ export default function MoenHansenDemo() {
                 <div className={styles.kontaktRad}><span>Område</span><b>Horten og omegn</b></div>
               </div>
             </div>
-            <form className={styles.form} {...formProps({ mailto: FORM_ACTION })} aria-describedby="form-not">
-              <DoldaFalt amne="Moen Hansens Bygg - forespørsel" fran="Bahko-demo" />
+            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
               <label>Navn<input type="text" name="navn" autoComplete="name" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valgfritt)<input type="email" name="epost" autoComplete="email" /></label>

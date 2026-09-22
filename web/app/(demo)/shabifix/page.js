@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Archivo, Space_Grotesk } from 'next/font/google';
 import styles from './shabifix.module.css';
-import { formProps, DoldaFalt } from '../../formular';
 
 /* ===========================================================================
    SHABIFIX — kostnadsfritt hemsideförslag från Bahko Byrå

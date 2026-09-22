@@ -13,7 +13,7 @@ formuläret slutar då fungera.
 
 | Var | Fil | Vad som ska in |
 |---|---|---|
-| Next-sajten och alla demos | `web/app/formular.js`, konstanten `NYCKEL` | Bahkos egen nyckel |
+| Kontaktsidan | `web/app/formular.js`, konstanten `NYCKEL` | nyckeln för Kontakt |
 | Kostnadsfri analys | `web/public/foretag/gratis-granskning.html` | ersätt `BAHKO_WEB3FORMS_NYCKEL` |
 | Kostnadsfri guide | `web/public/foretag/gratis-guide.html` | ersätt `BAHKO_WEB3FORMS_NYCKEL` |
 
@@ -31,12 +31,15 @@ i synk ändå, så de inte pekar åt olika håll om någon råkar öppna dem.
 Skräppostskyddet är Web3Forms honungsfälla: ett kryssfält som heter `botcheck` och är dolt.
 Robotar fyller i det, människor ser det inte.
 
-## Ny kund
+## Demosidorna kopplas inte
 
-Kunden skapar en nyckel på web3forms.com med **sin egen** mejladress. Skicka in den som
-`web3nyckel` i demons data (mallen `_mall/DemoSida.js` skickar vidare den till formuläret),
-så landar förfrågningarna direkt hos kunden i stället för hos oss. Utan `web3nyckel` används
-Bahkos nyckel, vilket är rätt så länge sajten är ett förslag.
+**Beslut (Mathias, 2026-09-22): bara vår egen sajt och riktiga kunder kopplas till Web3Forms.**
+Demosidorna behåller sitt `mailto:`-formulär. En demo är ett förslag, inte en sajt i drift, och
+ett förslag ska inte skicka riktiga förfrågningar någonstans.
+
+Först när en demo blir en skarp kundsajt kopplas formuläret in, och då med **kundens egen**
+nyckel (web3forms.com, kundens mejladress) så att förfrågningarna landar hos dem, precis som
+för Smålands Måleri och Bromma Trädgårdsservice.
 
 ## Autosvar
 

@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './elvionel.module.css';
-import { formProps, DoldaFalt } from '../../formular';
 
 /* ===========================================================================
    ELVION EL — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -548,8 +547,7 @@ export default function ElvionElDemo() {
                 <div className={styles.kontaktRad}><span>Område</span><b>Sollentuna, Solna, Täby, Danderyd, Upplands Väsby</b></div>
               </div>
             </div>
-            <form className={styles.form} {...formProps({ mailto: FORM_ACTION })} aria-describedby="form-not">
-              <DoldaFalt amne="Elvion El - förfrågan" fran="Bahko-demo" />
+            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
               <label>Namn<input type="text" name="namn" autoComplete="name" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valfritt)<input type="email" name="epost" autoComplete="email" /></label>

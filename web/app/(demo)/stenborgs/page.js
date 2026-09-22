@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './stenborgs.module.css';
-import { formProps, DoldaFalt } from '../../formular';
 
 /* ===========================================================================
    STENBORGS MEDIA AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -259,8 +258,7 @@ export default function StenborgsDemo() {
                 <a className={styles.kontaktRad} href={IG} target="_blank" rel="noopener"><span>Instagram</span><b>@stenborgs.media</b></a>
               </div>
             </div>
-            <form className={styles.form} {...formProps({ mailto: FORM_ACTION })} aria-describedby="form-not">
-              <DoldaFalt amne="Stenborgs Media - förfrågan" fran="Bahko-demo" />
+            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
               <label>Företagsnamn<input type="text" name="foretag" autoComplete="organization" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post<input type="email" name="epost" autoComplete="email" required /></label>

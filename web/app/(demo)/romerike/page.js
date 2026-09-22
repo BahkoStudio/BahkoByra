@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './romerike.module.css';
-import { formProps, DoldaFalt } from '../../formular';
 
 /* ===========================================================================
    ROMERIKE SERVICE & UTLEIE AS — gratis nettsideforslag fra Bahko Byrå
@@ -258,8 +257,7 @@ export default function RomerikeDemo() {
                 <div className={styles.kontaktRad}><span>Område</span><b>Romerike</b></div>
               </div>
             </div>
-            <form className={styles.form} {...formProps({ mailto: FORM_ACTION })} aria-describedby="form-not">
-              <DoldaFalt amne="Romerike Service & Utleie - forespørsel" fran="Bahko-demo" />
+            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
               <label>Navn<input type="text" name="navn" autoComplete="name" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valgfritt)<input type="email" name="epost" autoComplete="email" /></label>

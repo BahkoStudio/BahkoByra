@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './proffsmaskiner.module.css';
-import { formProps, DoldaFalt } from '../../formular';
 
 /* ===========================================================================
    PROFFSMASKINER SVERIGE AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -265,8 +264,7 @@ export default function ProffsmaskinerDemo() {
                 <a className={styles.kontaktRad} href={IG} target="_blank" rel="noopener"><span>Instagram</span><b>@proffsmaskinerab</b></a>
               </div>
             </div>
-            <form className={styles.form} {...formProps({ mailto: FORM_ACTION })} aria-describedby="form-not">
-              <DoldaFalt amne="Proffsmaskiner - hyresförfrågan" fran="Bahko-demo" />
+            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
               <label>Företag<input type="text" name="foretag" autoComplete="organization" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valfritt)<input type="email" name="epost" autoComplete="email" /></label>
