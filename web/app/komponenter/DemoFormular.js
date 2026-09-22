@@ -26,9 +26,15 @@ export default function DemoFormular({ className, amne, children, nyckel = DEMO_
     setLage('skickar');
     try {
       const data = new FormData(form);
-      data.append('access_key', nyckel);
-      data.append('subject', amne);
-      data.append('from_name', fran);
+      // set, inte append: de dolda fälten finns redan i formuläret för besökare utan
+      // JavaScript. Dubbletter gör anropet ogiltigt.
+      data.set('access_key', nyckel);
+      data.set('subject', amne);
+      data.set('from_name', fran);
+      // Web3Forms svarar 303 med Location när redirect finns med, och då kan
+      // webbläsaren inte läsa svaret: inskicket gick fram men sidan visade fel.
+      // Reservläget utan JavaScript behöver fältet, det här anropet gör inte det.
+      data.delete('redirect');
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: data,
