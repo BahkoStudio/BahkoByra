@@ -162,3 +162,10 @@
   font-size: 0.98rem;
   color: var(--text-lag);
 }
+
+/* Kvittensen efter ett skickat formulär, visas i formulärets eget kort. */
+.kvittensRubrik {
+  font-weight: 800;
+  font-size: 1.25rem;
+  margin-bottom: 0.6rem;
+}

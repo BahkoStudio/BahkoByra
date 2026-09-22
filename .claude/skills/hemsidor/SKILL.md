@@ -176,7 +176,30 @@ Saldot är litet (Mathias 2026-09-14). Under 100 credits körs, över 100 fråga
   FLAGGOR, i leadfilen och sägs i leveransen till Mathias.
 - **Kontaktuppgifter:** bara verifierade. Saknas telefon: utelämna `tel` —
   mallen byter då själv Ring-knapparna mot Instagram och formuläret. Aldrig ett
-  gissat nummer. Formuläret går alltid till `mathias@bahkobyra.se` i demon.
+  gissat nummer.
+
+### Formuläret (Web3Forms, sedan 2026-09-22)
+
+Mallen sköter det. `DemoSida` renderar `DemoFormular` (`web/app/komponenter/DemoFormular.js`),
+som postar till Web3Forms med demonyckeln i `web/app/formular.js`. **Skriv inget `formAction`
+och inget `mailto` i demons data.** Fältet är borttaget.
+
+- Förfrågan landar hos **mathias@bahkobyra.se** med firmans namn i ämnesraden.
+- Kvittensen visas **på plats i sidan**. Besökaren lämnar aldrig förslaget. En omdirigering till
+  bahkobyra.se avslöjar att det inte är firmans egen sajt.
+- Går anropet inte igenom visas ett fel. Kvittensen påstår aldrig att något skickats.
+- Autosvar är **av** på demonyckeln. Ett autosvar signerat Bahko Byrå i en sida som utger sig för
+  att vara kundens skulle avslöja upplägget.
+- Skriv **ingen** not om att knappen öppnar e-postprogrammet. Den stämmer inte längre.
+- Web3Forms tar bara emot från en webbläsare, aldrig från en server. Därför är formuläret en
+  klientkomponent. Automatiska testinskick blockeras av deras botskydd: testa i en riktig
+  webbläsare, inte med qa-skriptet.
+
+**Vid leverans till kund:** kunden skapar en egen nyckel på web3forms.com med sin egen
+mejladress. Skicka in den som `nyckel` till `DemoFormular`, slå på autosvar i deras röst, klart.
+Förfrågningarna går då direkt till kunden och aldrig via oss. Bakgrunden står i
+`docs/formular-web3forms.md`.
+
 - **Demos med riktiga kontaktuppgifter visas inte publikt** (Mathias). De är
   `robots: noindex` och länkas bara i DM till kunden.
 - Firmanamnet är en uppgift. Läst ur ett Instagram-handle: säg det och be
@@ -330,7 +353,6 @@ Kopiera `swedcro/page.js` och byt innehållet. Fälten:
 | `kontakt` | `tel`, `telHref`, `epost`, `adress`, `oppet`, `ig`, `igHandle`, `fb`, `orgnr` — bara verifierade, resten utelämnas |
 | `cta` | `txt`, `kort`, `lank` |
 | `nav` | `vanster` och `hoger`, två länkar var (logotypen hamnar emellan) |
-| `formAction` | `mailto:mathias@bahkobyra.se?subject=<Kund>%20-%20…` |
 | `hero` | `ort`, `tjanster: ['Ett', 'Två']`, `video`, `videoMobil`, `poster`, `posterMobil` — och `h1` (rader) bara när logotyp saknas |
 | `tejp` | Åtta korta ord till bandet under heron (valfri) |
 | `tjanster` | `eyebrow`, `rubrik`, `lead`, `kort[]`: `id`, `namn`, `bild`, `alt`, `text`, `punkter`, `ritning` (JSX-paths, viewBox 200×120) |

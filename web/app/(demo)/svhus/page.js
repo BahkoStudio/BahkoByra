@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Newsreader, Inter } from 'next/font/google';
 import styles from './svhus.module.css';
+import DemoFormular from '../../komponenter/DemoFormular';
 
 /* ===========================================================================
    SV HUS AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -75,7 +76,6 @@ const TEL_HREF = 'tel:+46704485928';
    knappen säger rakt ut vart det går och vad som ändras i den skarpa sajten.
    Vi har ingen verifierad e-postadress till SV Hus — därför står vår egen här,
    inte en gissad adress hos kunden. */
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=SV%20Hus%20-%20projektf%C3%B6rfr%C3%A5gan';
 
 /* En källa för navigationen: header, mobilmeny och footer läser samma lista. */
 const LANKAR = [
@@ -551,13 +551,7 @@ export default function SvHusDemo() {
                 text via mailto, alltså utan backend och utan klient-JS. I den
                 skarpa sajten byts action mot SV Hus egen inkorg — det står
                 också i noten under knappen, så ingen tror något annat. */}
-            <form
-              className={styles.form}
-              action={FORM_ACTION}
-              method="post"
-              encType="text/plain"
-              aria-describedby="form-not"
-            >
+            <DemoFormular className={styles.form} amne="SV Hus - projektförfrågan">
               <label>
                 Namn
                 <input type="text" name="namn" autoComplete="name" required />
@@ -594,11 +588,10 @@ export default function SvHusDemo() {
                 svar direkt i första samtalet. Inga massutskick, ingen säljlista.
               </p>
               <p className={styles.formNot}>
-                Obs: i det här förslaget öppnar knappen ert e-postprogram och skickar
                 raderna till Bahko Byrå. I den skarpa sajten kopplas formuläret in och
                 landar direkt i er egen inkorg.
               </p>
-            </form>
+            </DemoFormular>
           </div>
         </div>
       </section>

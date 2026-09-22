@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './johns.module.css';
+import DemoFormular from '../../komponenter/DemoFormular';
 
 /* ===========================================================================
    JOHNS REKLAM AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -58,7 +59,6 @@ const EPOST = 'info@johnsreklam.se';
 const ADRESS = 'Finspångsvägen 63, 602 13 Norrköping';
 const IG = 'https://www.instagram.com/johnsreklam/';
 const FB = 'https://www.facebook.com/johnsreklam';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Johns%20Reklam%20-%20offertf%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },
@@ -265,7 +265,7 @@ export default function JohnsDemo() {
                 <div className={styles.kontaktRad}><span>Öppettider</span><b>Mån–fre 09–18:30, lör 11–17</b></div>
               </div>
             </div>
-            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
+            <DemoFormular className={styles.form} amne="Johns Reklam - offertförfrågan">
               <label>Namn<input type="text" name="namn" autoComplete="name" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valfritt)<input type="email" name="epost" autoComplete="email" /></label>
@@ -274,8 +274,7 @@ export default function JohnsDemo() {
               <button className={styles.btn} type="submit">Få skiss och pris</button>
               <a className={`${styles.btn} ${styles.btnGhost}`} href={TEL_HREF}>Eller ring {TEL}</a>
               <p className={styles.formNot} id="form-not">Skriv kort om jobbet — då kan vi ge ett vettigt svar redan i första samtalet. Inga massutskick, ingen säljlista.</p>
-              <p className={styles.formNot}>Obs: i det här förslaget öppnar knappen ditt e-postprogram och skickar raderna till Bahko Byrå. I den skarpa sajten kopplas formuläret in och landar direkt i er egen inkorg.</p>
-            </form>
+            </DemoFormular>
           </div>
         </div>
       </section>

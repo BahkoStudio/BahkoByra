@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Zilla_Slab, Inter } from 'next/font/google';
 import styles from './osterlunds.module.css';
+import DemoFormular from '../../komponenter/DemoFormular';
 
 /* ===========================================================================
    ÖSTERLUNDS JORDBYGGNAD — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -85,8 +86,6 @@ const TEL_HREF = 'tel:+358401234567';
    verifierad e-postadress till kunden, så vår egen står här — aldrig en gissad.
    Den gamla demon gissade info@osterlundsjordbyggnad.se, med svensk domän på
    ett finskt bolag. */
-const FORM_ACTION =
-  'mailto:mathias@bahkobyra.se?subject=%C3%96sterlunds%20Jordbyggnad%20-%20f%C3%B6rfr%C3%A5gan';
 
 /* En källa för navigationen: header, mobilmeny och footer läser samma lista. */
 const LANKAR = [
@@ -748,13 +747,7 @@ export default function OsterlundsDemo() {
                 text via mailto, alltså utan backend och utan klient-JS. I den
                 skarpa sajten byts action mot kundens egen inkorg — det står
                 också i noten under knappen, så ingen tror något annat. */}
-            <form
-              className={styles.form}
-              action={FORM_ACTION}
-              method="post"
-              encType="text/plain"
-              aria-describedby="form-not"
-            >
+            <DemoFormular className={styles.form} amne="Österlunds Jordbyggnad - förfrågan">
               <label>
                 Namn
                 <input type="text" name="namn" autoComplete="name" required />
@@ -797,11 +790,10 @@ export default function OsterlundsDemo() {
                 första samtalet. Inga massutskick, ingen säljlista.
               </p>
               <p className={styles.formNot}>
-                Obs: i det här förslaget öppnar knappen ditt e-postprogram och skickar raderna
                 till Bahko Byrå. I den skarpa sajten kopplas formuläret in och landar direkt i er
                 egen inkorg.
               </p>
-            </form>
+            </DemoFormular>
           </div>
         </div>
       </section>

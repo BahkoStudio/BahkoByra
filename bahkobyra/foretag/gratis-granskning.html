@@ -307,7 +307,11 @@ footer a:hover{color:var(--em-deep)}
     <h2 class="form-title">Få er <em>gratis</em> rapport</h2>
     <p class="form-sub">Vi skickar en personlig webbplatsanalys till er e-post inom 24 timmar. Helt gratis, inga krav.</p>
 
-    <form id="audit-form" action="https://formspree.io/f/mgonrnep" method="POST">
+    <form id="audit-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="e298adde-586d-4396-bd9a-354eb29be0f6">
+      <input type="hidden" name="subject" value="Kostnadsfri 10-punktsanalys: ny förfrågan">
+      <input type="hidden" name="from_name" value="bahkobyra.se">
+      <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="display:none">
       <div class="field-row">
         <div class="field">
           <label for="namn">Ditt namn</label>
@@ -369,6 +373,18 @@ function hideErr() { formErr.hidden = true; }
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   hideErr();
+  // Nyckeln inte ifylld än: skicka inget till Web3Forms, öppna mejlen i stället.
+  const nyckelFalt = form.querySelector('[name="access_key"]');
+  if (!nyckelFalt || !nyckelFalt.value || nyckelFalt.value.indexOf('BAHKO_') === 0) {
+    const rader = [];
+    new FormData(form).forEach(function (v, k) {
+      if (['access_key', 'subject', 'from_name', 'redirect', 'botcheck'].indexOf(k) === -1) rader.push(k + ': ' + v);
+    });
+    window.location.href = 'mailto:mathias@bahkobyra.se?subject=' +
+      encodeURIComponent(form.querySelector('[name="subject"]').value) +
+      '&body=' + encodeURIComponent(rader.join('\n'));
+    return;
+  }
   btn.disabled = true;
   btn.textContent = 'Skickar...';
 

@@ -1,4 +1,6 @@
 import Maskot from '../../komponenter/Maskot';
+import DemoFormular from '../../komponenter/DemoFormular';
+import { NYCKEL_KONTAKT } from '../../formular';
 import styles from './kontakt.module.css';
 
 export const metadata = {
@@ -7,6 +9,10 @@ export const metadata = {
     'Berätta kort om er firma så bygger vi ett förslag på er nya hemsida och skickar det inom 48 timmar. Kostnadsfritt och utan krav.',
   alternates: { canonical: '/kontakt/' },
 };
+
+const AMNE = 'Ny förfrågan om kostnadsfritt hemsideförslag';
+const MAILTO =
+  'mailto:mathias@bahkobyra.se?subject=' + encodeURIComponent(AMNE);
 
 const LOFTEN = [
   'Förslaget är kostnadsfritt och binder er inte vid något',
@@ -48,7 +54,20 @@ export default function Kontakt() {
         </div>
 
         <div className={styles.formYta} data-avsloja="upp">
-          <form action="https://formspree.io/f/mgonrnep" method="POST" className={styles.form}>
+          <DemoFormular
+            className={styles.form}
+            amne={AMNE}
+            nyckel={NYCKEL_KONTAKT}
+            fran="bahkobyra.se"
+            tack
+            kvittens={
+              <>
+                <p className={styles.kvittensRubrik}>Tack! Nu är det hos oss.</p>
+                <p>Vi läser varje förfrågan själva och hör av oss inom 24 timmar. Ert förslag är klart inom 48.</p>
+                <p className={styles.finstilt}>Har ni bråttom går det bra att ringa eller mejla mathias@bahkobyra.se direkt.</p>
+              </>
+            }
+          >
             <div className={styles.rad}>
               <label>
                 Namn
@@ -72,16 +91,6 @@ export default function Kontakt() {
               <textarea name="meddelande" rows="4" placeholder="Berätta kort om vad ni gör och var ni jobbar." />
             </label>
 
-            {/* Honeypot mot skräppost. Syns inte för människor. */}
-            <input
-              type="text"
-              name="_gotcha"
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-              className={styles.gotcha}
-            />
-            <input type="hidden" name="_subject" value="Ny förfrågan om kostnadsfritt hemsideförslag" />
 
             <button type="submit" className="btn btn-primar">
               Skicka förfrågan
@@ -90,7 +99,7 @@ export default function Kontakt() {
               Vi använder uppgifterna för att kontakta er om förslaget. Inget nyhetsbrev, ingen
               vidareförsäljning.
             </p>
-          </form>
+          </DemoFormular>
         </div>
       </div>
     </section>

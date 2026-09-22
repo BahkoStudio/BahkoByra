@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './samflytt.module.css';
+import DemoFormular from '../../komponenter/DemoFormular';
 
 /* ===========================================================================
    SAM FLYTT OCH STÄD AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -87,8 +88,6 @@ const IG = 'https://www.instagram.com/sam_flytt_och_stad_/';
 const FB = 'https://www.facebook.com/profile.php?id=100083084452666';
 const GOOGLE = 'https://maps.app.goo.gl/NLpH8nVyAfZxZc3i8';
 
-const FORM_ACTION =
-  'mailto:mathias@bahkobyra.se?subject=Sam%20Flytt%20och%20St%C3%A4d%20-%20offertf%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },
@@ -828,13 +827,7 @@ export default function SamflyttDemo() {
                 </div>
               </div>
             </div>
-            <form
-              className={styles.form}
-              action={FORM_ACTION}
-              method="post"
-              encType="text/plain"
-              aria-describedby="form-not"
-            >
+            <DemoFormular className={styles.form} amne="Sam Flytt och Städ - offertförfrågan">
               <label>
                 Namn
                 <input type="text" name="namn" autoComplete="name" required />
@@ -877,11 +870,10 @@ export default function SamflyttDemo() {
                 massutskick, ingen säljlista.
               </p>
               <p className={styles.formNot}>
-                Obs: i det här förslaget öppnar knappen ditt e-postprogram och skickar raderna
                 till Bahko Byrå. I den skarpa sajten kopplas formuläret in och landar direkt i er
                 egen inkorg.
               </p>
-            </form>
+            </DemoFormular>
           </div>
         </div>
       </section>

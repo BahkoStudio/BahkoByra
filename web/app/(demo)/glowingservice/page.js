@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './glowingservice.module.css';
+import DemoFormular from '../../komponenter/DemoFormular';
 
 /* ===========================================================================
    GLOWING SERVICE AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -47,7 +48,6 @@ export const metadata = {
 const TEL = '070-123 45 67';
 const TEL_HREF = 'tel:0701234567';
 const IG = 'https://www.instagram.com/glowingserviceab/';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Glowing%20Service%20-%20offertf%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi målar' },
@@ -254,7 +254,7 @@ export default function GlowingServiceDemo() {
                 <a className={styles.kontaktRad} href={IG} target="_blank" rel="noopener"><span>Instagram</span><b>@glowingserviceab</b></a>
               </div>
             </div>
-            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
+            <DemoFormular className={styles.form} amne="Glowing Service - offertförfrågan">
               <label>Namn<input type="text" name="namn" autoComplete="name" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valfritt)<input type="email" name="epost" autoComplete="email" /></label>
@@ -263,8 +263,7 @@ export default function GlowingServiceDemo() {
               <button className={styles.btn} type="submit">Få fast pris</button>
               <a className={`${styles.btn} ${styles.btnGhost}`} href={TEL_HREF}>Eller ring {TEL}</a>
               <p className={styles.formNot} id="form-not">Skriv kort om jobbet — då kan vi ge ett vettigt svar redan i första samtalet. Inga massutskick, ingen säljlista.</p>
-              <p className={styles.formNot}>Obs: i det här förslaget öppnar knappen ditt e-postprogram och skickar raderna till Bahko Byrå. I den skarpa sajten kopplas formuläret in och landar direkt i er egen inkorg.</p>
-            </form>
+            </DemoFormular>
           </div>
         </div>
       </section>

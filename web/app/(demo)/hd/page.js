@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './hd.module.css';
+import DemoFormular from '../../komponenter/DemoFormular';
 
 /* ===========================================================================
    HD BYGGSERVICE AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -62,7 +63,6 @@ const EPOST = 'hdbyggservice.hannes@gmail.com';
 const EPOST2 = 'hdbyggservice.jesper@gmail.com';
 const IG = 'https://www.instagram.com/hdbyggserviceab/';
 const FB = 'https://www.facebook.com/profile.php?id=61588482044000';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=HD%20Byggservice%20-%20bed%C3%B6mning';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },
@@ -271,7 +271,7 @@ export default function HdDemo() {
                 <div className={styles.kontaktRad}><span>Område</span><b>Norrort och Stockholms innerstad</b></div>
               </div>
             </div>
-            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
+            <DemoFormular className={styles.form} amne="HD Byggservice - bedömning">
               <label>Namn<input type="text" name="namn" autoComplete="name" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valfritt)<input type="email" name="epost" autoComplete="email" /></label>
@@ -280,8 +280,7 @@ export default function HdDemo() {
               <button className={styles.btn} type="submit">Begär kostnadsfri bedömning</button>
               <a className={`${styles.btn} ${styles.btnGhost}`} href={`mailto:${EPOST}`}>Eller mejla Hannes direkt</a>
               <p className={styles.formNot} id="form-not">Skriv kort och bifoga bilder — då kan vi ge en vettig bedömning redan i första svaret. Inga massutskick, ingen säljlista.</p>
-              <p className={styles.formNot}>Obs: i det här förslaget öppnar knappen ditt e-postprogram och skickar raderna till Bahko Byrå. I den skarpa sajten kopplas formuläret in och landar direkt i er egen inkorg.</p>
-            </form>
+            </DemoFormular>
           </div>
         </div>
       </section>

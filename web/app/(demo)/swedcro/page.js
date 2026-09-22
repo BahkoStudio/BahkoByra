@@ -71,7 +71,6 @@ const data = {
     vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#jobb', txt: 'Våra jobb' }],
     hoger: [{ href: '#om', txt: 'Om oss' }, { href: '#omdomen', txt: 'Omdömen' }],
   },
-  formAction: 'mailto:mathias@bahkobyra.se?subject=Swedcro%20-%20offertf%C3%B6rfr%C3%A5gan',
 
   hero: {
     ort: 'Eskilstuna',

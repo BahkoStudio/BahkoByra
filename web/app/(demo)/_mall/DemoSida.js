@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { fontKlasser } from './fonter';
 import s from './mall.module.css';
+import DemoFormular from '../../komponenter/DemoFormular';
 
 /* ===========================================================================
    DEMOMALLEN v3 — en serverkomponent, noll eget klient-JS.
@@ -23,7 +24,6 @@ const T = {
     folj: 'Följ på Instagram', foljFb: 'Följ på Facebook', inlagg: 'Instagram-inlägg från',
     namn: 'Namn', telefon: 'Telefon', epost: 'E-post (valfritt)', typ: 'Vad gäller det?', annat: 'Något annat',
     meddelande: 'Kort om jobbet', ellerRing: 'Eller ring',
-    formDemo: 'Obs: i det här förslaget öppnar knappen ditt e-postprogram och skickar raderna till Bahko Byrå. I den skarpa sajten landar formuläret direkt i er egen inkorg.',
     telRad: 'Telefon', epostRad: 'E-post', oppetRad: 'Öppettider', igRad: 'Instagram', adressRad: 'Adress',
     sidan: 'Sidan', tjanster: 'Tjänster', kontaktuppg: 'Kontaktuppgifter',
     byggd: 'Förslag byggt av', omForslaget: 'Om det här förslaget', stangKort: 'Stäng',
@@ -36,7 +36,6 @@ const T = {
     folj: 'Følg på Instagram', foljFb: 'Følg på Facebook', inlagg: 'Instagram-innlegg fra',
     namn: 'Navn', telefon: 'Telefon', epost: 'E-post (valgfritt)', typ: 'Hva gjelder det?', annat: 'Noe annet',
     meddelande: 'Kort om jobben', ellerRing: 'Eller ring',
-    formDemo: 'Obs: i dette forslaget åpner knappen e-postprogrammet ditt og sender linjene til Bahko Byrå. På den ferdige siden havner skjemaet rett i deres egen innboks.',
     telRad: 'Telefon', epostRad: 'E-post', oppetRad: 'Åpningstider', igRad: 'Instagram', adressRad: 'Adresse',
     sidan: 'Siden', tjanster: 'Tjenester', kontaktuppg: 'Kontaktinformasjon',
     byggd: 'Forslag laget av', omForslaget: 'Om dette forslaget', stangKort: 'Lukk',
@@ -392,7 +391,7 @@ export default function DemoSida({ data: d }) {
                   {k.ig ? <a className={s.kontaktRad} href={k.ig} target="_blank" rel="noopener"><span>{t.igRad}</span><b>{k.igHandle}</b></a> : null}
                 </div>
               </div>
-              <form className={s.form} action={d.formAction} method="post" encType="text/plain" aria-describedby="form-not">
+              <DemoFormular className={s.form} amne={`${d.namn}: ny förfrågan från förslaget`}>
                 <p className={s.formRubrik}>{d.kontaktSektion.formRubrik}</p>
                 <div className={s.formRad}>
                   <label>{t.namn}<input type="text" name="namn" autoComplete="name" required /></label>
@@ -404,8 +403,7 @@ export default function DemoSida({ data: d }) {
                 <button className={s.btn} type="submit">{d.cta.txt}</button>
                 {harTel ? <a className={`${s.btn} ${s.btnLjus}`} href={k.telHref}><Tel />{t.ellerRing} {k.tel}</a> : null}
                 <p className={s.formNot} id="form-not">{d.kontaktSektion.formNot}</p>
-                <p className={s.formNot}>{t.formDemo}</p>
-              </form>
+              </DemoFormular>
             </div>
           </div>
         </section>

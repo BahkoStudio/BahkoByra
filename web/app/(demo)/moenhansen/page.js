@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './moenhansen.module.css';
+import DemoFormular from '../../komponenter/DemoFormular';
 
 /* ===========================================================================
    MOEN HANSENS BYGG OG HÅNDVERKSTJENESTER — gratis nettsideforslag fra Bahko
@@ -45,7 +46,6 @@ const TEL = '900 00 000';
 const TEL_HREF = 'tel:+4790000000';
 const ADRESSE = 'Fogdeveien 37, 3184 Borre';
 const IG = 'https://www.instagram.com/moenhansensbygg/';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Moen%20Hansens%20Bygg%20-%20foresp%C3%B8rsel';
 
 const LANKAR = [
   { href: '#tjenester', txt: 'Det vi gjør' },
@@ -248,7 +248,7 @@ export default function MoenHansenDemo() {
                 <div className={styles.kontaktRad}><span>Område</span><b>Horten og omegn</b></div>
               </div>
             </div>
-            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
+            <DemoFormular className={styles.form} amne="Moen Hansens Bygg - forespørsel">
               <label>Navn<input type="text" name="navn" autoComplete="name" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valgfritt)<input type="email" name="epost" autoComplete="email" /></label>
@@ -257,8 +257,7 @@ export default function MoenHansenDemo() {
               <button className={styles.btn} type="submit">Bestill gratis befaring</button>
               <a className={`${styles.btn} ${styles.btnGhost}`} href={TEL_HREF}>Eller ring {TEL}</a>
               <p className={styles.formNot} id="form-not">Skriv kort om jobben — da kan vi gi et fornuftig svar allerede i første samtale. Ingen masseutsendelser, ingen salgsliste.</p>
-              <p className={styles.formNot}>Obs: i dette forslaget åpner knappen e-postprogrammet ditt og sender linjene til Bahko Byrå. På den ferdige nettsiden kobles skjemaet til deres egen innboks.</p>
-            </form>
+            </DemoFormular>
           </div>
         </div>
       </section>
