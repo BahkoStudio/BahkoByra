@@ -77,6 +77,43 @@ varje rumsyta behöver eget material för att kunna markeras vid klick. Första
 själva mattan. Ett delat material och en klon ser likadana ut i koden. Mät på
 pixeln, inte på raden som ändrades.
 
+**9. Ytorna ska ha struktur, och den räknas ur världskoordinaten.**
+Golv och väggar får mönster: brädor, fog, korn. Det som gör att man läser ett hem
+i stället för en volymstudie.
+
+*Varför inte texturbilder:* `box()` delar EN enda boxgeometri mellan alla lådor, så
+samma UV 0–1 sitter på en 0,12 m tjock vägg och på ett 4 m golv. Ett plankmönster
+skulle sträckas olika i varje rum. Mönstret räknas därför ur världskoordinaten i
+shadern: samma skala på varje yta oavsett hur lådan är skalad, noll byte över nätet,
+noll texturuppladdningar.
+
+*Kostnaden, mätt:* första försöket gav varje mönstertyp en egen programnyckel och
+programantalet gick 17 → 62. Typen skickas nu som en uniform i stället, så alla
+strukturerade ytor delar ETT program: 25 totalt, noll nya under demot.
+
+---
+
+## Två fällor som kostat mest i det här bygget
+
+**Mät i DPR 2, aldrig bara i DPR 1.**
+Duken låg utlagd på sina attributpixlar, så på en skärm med bildpunktsförhållande 2
+blev den 2800×1750 i en ruta på 1600×1000: halva huset utanför bild. På mobil växte
+vyn till 682 px och hela sidan zoomade ut. Tre fulla kritikrundor kördes i DPR 1 och
+såg det aldrig — vi mätte noggrant på en konfiguration nästan ingen besökare har.
+
+**Ett delat material och en klon ser likadana ut i koden.**
+`Material.clone()` tar varken med `onBeforeCompile` eller ändringar gjorda på
+originalet efteråt. Gräsmattan och varje rumsgolv är kloner, för att kunna markeras
+var för sig. Två separata fel kom ur det: nattens månsken nådde häcken men inte
+mattan, och ytstrukturen nådde väggarna men inte golven. Båda såg ut som rätt
+kodrad. Mät på pixeln.
+
+**Mät text först när typsnittet har laddat.**
+Etiketternas bredd cachades vid första layouten, innan Inter hunnit fram, så
+"Vardagsrum" mättes till 42 halvpixlar i stället för 44. Det visade sig som en
+mystisk "drift på 1 341 pixlar efter ett våningsbyte" som kostade två rundor att
+jaga — och ingenting i 3D-scenen var inblandat. `document.fonts.ready` löser det.
+
 ---
 
 ## Prestandagolv

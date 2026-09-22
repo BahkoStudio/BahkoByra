@@ -136,11 +136,15 @@ function friYta() {
   const b = el.clientWidth, h = el.clientHeight;
   const bred = b > 860;
   const panelPa = !panel.hidden;
+  /* Pa smal skarm ligger knappraden och panelen UNDER modellrutan, inte
+     ovanpa den, sa de marginalerna ska inte reserveras har. Med 64 px
+     kvar i nederkant hamnade modellen hogt med ~90 px dod svart yta
+     under sig. Kvar uppe ar bara plats for Dag/Natt-kapseln. */
   return {
-    x0: bred ? 352 : 22,
-    x1: b - (bred ? (panelPa ? 372 : 48) : 22),
-    y0: bred ? 108 : 16,
-    y1: h - (bred ? 138 : 64),
+    x0: bred ? 352 : 16,
+    x1: b - (bred ? (panelPa ? 372 : 48) : 16),
+    y0: bred ? 108 : 62,
+    y1: h - (bred ? 138 : 14),
   };
 }
 
@@ -213,7 +217,96 @@ const M = {
   gron:    new THREE.MeshStandardMaterial({ color:0x3f6b34, roughness:1.0 }),
   stam:    new THREE.MeshStandardMaterial({ color:0x5a4634, roughness:1.0 }),
 };
+
 const BOX = new THREE.BoxGeometry(1,1,1);      // ateranvands till allt lador-aktigt
+/* ---------- ytstruktur ----------
+   Invandningen mot enfargade ytor stod i tre kritikrundor. Den vanliga
+   losningen, en texturbild med UV:er, gar inte att anvanda har: box()
+   delar EN enda boxgeometri mellan alla lador, sa samma UV 0-1 sitter pa
+   en 0,12 m tjock vagg och pa ett 4 m golv. Ett plankmonster skulle
+   strackas olika i varje rum.
+
+   Monstret raknas darfor ur VARLDSKOORDINATEN i shadern i stallet.
+   Skalan blir densamma pa varje yta oavsett hur ladan ar skalad, och det
+   kraver varken UV-arbete eller en enda bildfil: noll byte over natet,
+   noll texturuppladdningar.
+
+   Forsta forsoket gav varje monstertyp en egen programnyckel och
+   programantalet gick fran 17 till 62. Alla byggs visserligen bakom
+   laddskarmen, men de kostar kompileringstid pa en telefon och minne pa
+   GPU:n. Typen skickas darfor som en uniform, sa alla strukturerade ytor
+   delar ETT program. */
+const TYPER = { plank: 1, kakel: 2, kakelvat: 3, sten: 4, matta: 5, vagg: 6, gras: 7 };
+const STRUKTUR_GLSL = [
+  '  float m = 1.0;',
+  '  if (uTyp == 1) {',                       // parkett, 19 cm brador langs Z
+  '    float p = vVarld.z * 5.26;',
+  '    float kant = abs(fract(p) - 0.5) * 2.0;',
+  '    m *= 1.0 - 0.20 * smoothstep(0.80, 1.0, kant);',
+  '    m *= 0.93 + 0.13 * fract(sin(floor(p) * 12.9898) * 43758.5453);',
+  '    m *= 0.975 + 0.025 * sin(vVarld.x * 31.0 + floor(p));',
+  '  } else if (uTyp == 2) {',                // klinker, 30 cm platta
+  '    vec2 k = vVarld.xz * 3.33;',
+  '    vec2 e = abs(fract(k) - 0.5) * 2.0;',
+  '    m *= 1.0 - 0.16 * smoothstep(0.87, 1.0, max(e.x, e.y));',
+  '    m *= 0.97 + 0.03 * fract(sin(dot(floor(k), vec2(12.9898, 78.233))) * 43758.5453);',
+  '  } else if (uTyp == 3) {',                // vatrum, mindre platta, tydligare fog
+  '    vec2 k = vVarld.xz * 4.0;',
+  '    vec2 e = abs(fract(k) - 0.5) * 2.0;',
+  '    m *= 1.0 - 0.22 * smoothstep(0.84, 1.0, max(e.x, e.y));',
+  '  } else if (uTyp == 4) {',                // natursten, stora plattor
+  '    vec2 k = vVarld.xz * 2.2;',
+  '    vec2 e = abs(fract(k) - 0.5) * 2.0;',
+  '    m *= 1.0 - 0.14 * smoothstep(0.88, 1.0, max(e.x, e.y));',
+  '    m *= 0.92 + 0.16 * fract(sin(dot(floor(k), vec2(39.3468, 11.135))) * 24634.6345);',
+  '  } else if (uTyp == 5) {',                // matta, fint korn utan riktning
+  '    m *= 0.94 + 0.12 * fract(sin(dot(floor(vVarld.xz * 90.0), vec2(12.9898, 78.233))) * 43758.5453);',
+  '  } else if (uTyp == 6) {',                // vagg, morkare mot golvsockeln
+  '    m *= 0.90 + 0.10 * smoothstep(0.0, 0.30, fract(vVarld.y / 2.5));',
+  '    m *= 0.985 + 0.015 * fract(sin(dot(floor(vVarld.xy * 55.0), vec2(12.9898, 78.233))) * 43758.5453);',
+  '  } else if (uTyp == 7) {',                // grasmatta, grovre flackighet
+  '    m *= 0.90 + 0.18 * fract(sin(dot(floor(vVarld.xz * 19.0), vec2(12.9898, 78.233))) * 43758.5453);',
+  '    m *= 0.95 + 0.10 * fract(sin(dot(floor(vVarld.xz * 4.5), vec2(39.3468, 11.135))) * 24634.6345);',
+  '  }',
+  '  diffuseColor.rgb *= m;',
+].join('\n');
+
+function strukturera(mat, typ) {
+  const n = TYPER[typ];
+  if (!n) return mat;
+  mat.userData.struktur = typ;
+  mat.customProgramCacheKey = () => 'struktur';   // EN nyckel for alla typer
+  mat.onBeforeCompile = sh => {
+    sh.uniforms.uTyp = { value: n };
+    sh.vertexShader = sh.vertexShader
+      .replace('#include <common>',
+               '#include <common>\nvarying vec3 vVarld;')
+      .replace('#include <begin_vertex>',
+               '#include <begin_vertex>\n  vVarld = (modelMatrix * vec4(transformed, 1.0)).xyz;');
+    sh.fragmentShader = sh.fragmentShader
+      .replace('#include <common>',
+               '#include <common>\nvarying vec3 vVarld;\nuniform int uTyp;')
+      .replace('#include <map_fragment>',
+               '#include <map_fragment>\n{\n' + STRUKTUR_GLSL + '\n}');
+  };
+  return mat;
+}
+
+/* Material.clone() tar INTE med onBeforeCompile. Rumsgolven klonas for att
+   kunna markeras var for sig, sa strukturen maste sattas om pa klonen. */
+function klonaYta(nyckel) {
+  const k = M[nyckel].clone();
+  return strukturera(k, M[nyckel].userData.struktur);
+}
+
+/* Vilken yta far vilket monster. Golv och vaggar bar intrycket; mobler,
+   glas och karmar lamnas rena sa de laser som foremal och inte som yta. */
+for (const [nyckel, typ] of [
+  ['tra', 'plank'], ['kakel', 'kakel'], ['kakelvat', 'kakelvat'],
+  ['stenljus', 'sten'], ['sten', 'sten'], ['matta', 'matta'],
+  ['vagg', 'vagg'], ['vaggYtt', 'vagg'], ['gras', 'gras'],
+]) strukturera(M[nyckel], typ);
+
 const box = (m, w,h,d, x,y,z) => {
   const o = new THREE.Mesh(BOX, m);
   o.scale.set(w,h,d); o.position.set(x,y,z);
@@ -396,7 +489,7 @@ function byggVaning(vi) {
     // golv, ett plan per rum sa varje rum kan ha eget material och markeras
     const golv = new THREE.Mesh(
       new THREE.BoxGeometry(r.x1-r.x0, 0.08, r.z1-r.z0),
-      M[r.golv].clone()
+      klonaYta(r.golv)
     );
     golv.position.set((r.x0+r.x1)/2, -0.04, (r.z0+r.z1)/2);
     golv.receiveShadow = true;
@@ -441,7 +534,7 @@ byggVaning(1);
 const utegrupp = new THREE.Group();
 {
   const t = TRADGARD;
-  const gras = new THREE.Mesh(new THREE.BoxGeometry(t.x1-t.x0, 0.06, 4.7), M.gras.clone());
+  const gras = new THREE.Mesh(new THREE.BoxGeometry(t.x1-t.x0, 0.06, 4.7), klonaYta('gras'));
   gras.position.set((t.x0+t.x1)/2, -0.03, 9.45);
   gras.receiveShadow = true;
   gras.userData.rum = t;
@@ -1016,7 +1109,35 @@ const tmp = new THREE.Vector3();
 let canvasRekt = null;
 let etikettLagePlan = false;
 let panelRekt = null;
-function matCanvas() { canvasRekt = renderare.domElement.getBoundingClientRect(); }
+function matCanvas() { canvasRekt = renderare.domElement.getBoundingClientRect(); matEtiketter(); }
+
+/* Etiketternas halva bredd och hojd, i HELA pixlar.
+   Forut centrerades de med CSS translate(-50%, -50%). Den procenten
+   raknas pa elementets faktiska bredd, som inte ar ett helt antal
+   pixlar, och nar en etikett doljs och visas igen — vilket sker vid
+   varje vaningsbyte — landar textrenderingen en halv pixel fran forra
+   gangen. Det var hela forklaringen till de 1 341 pixlar som skilde
+   laddlaget fran det stabila laget: ingenting i 3D-scenen andrades, bara
+   fem etikettrutor som flyttade sig en halv pixel. */
+/* Forsta matningen sker innan webbtypsnittet hunnit laddas, sa
+   etiketterna far bredder ur reservtypsnittet: "Vardagsrum" matte 42
+   halvpixlar i stallet for 44. Nar Inter sedan landar ritas texten om
+   men det cachade vardet star kvar, och etiketten ligger nagra pixlar
+   fel anda tills nagot rakar mata om. Det var det som visade sig som
+   "driften efter ett vaningsbyte": ingenting i 3D-scenen andrades, bara
+   fem etikettrutor som hoppade pa plats. */
+if (document.fonts && document.fonts.ready)
+  document.fonts.ready.then(() => { matEtiketter(); ritaNu(); });
+
+function matEtiketter() {
+  for (const { el } of etiketter) {
+    const var_ = el.style.display;
+    el.style.display = '';
+    el.dataset.hw = String(Math.round(el.offsetWidth / 2));
+    el.dataset.hh = String(Math.round(el.offsetHeight / 2));
+    el.style.display = var_;
+  }
+}
 function placeraEtiketter() {
   const r = canvasRekt || (canvasRekt = renderare.domElement.getBoundingClientRect());
   // Etiketter som hamnar under panelen kapades mitt i ordet ("...ining").
@@ -1028,9 +1149,11 @@ function placeraEtiketter() {
   if (vy === 'plan' && !etikettLagePlan) {
     for (const { el, rum } of etiketter) el.innerHTML = `${rum.namn}<br><span style="opacity:.6">${dec(area(rum))} m²</span>`;
     etikettLagePlan = true;
+    matEtiketter();
   } else if (vy !== 'plan' && etikettLagePlan) {
     for (const { el, rum } of etiketter) el.textContent = rum.namn;
     etikettLagePlan = false;
+    matEtiketter();
   }
   for (const { el, rum } of etiketter) {
     if (el.style.display === 'none') continue;
@@ -1040,17 +1163,23 @@ function placeraEtiketter() {
     const bakom = tmp.z > 1;
     const under = pr && x > pr.left - 70 && y > pr.top - 20 && y < pr.bottom + 20;
     const smal = r.width < 700;
-    const litet = area(rum) < 10 && rum.id !== 'garden';
+    /* Pa mobil last etiketterna som en klunga: fyra rutor a 44 px over en
+       modell pa 295x212 px tacker en femtedel av den och overlappar
+       varandra. Pa smal skarm visas darfor bara det valda rummets
+       etikett — chipsraden ligger direkt under modellen och bar
+       navigeringen dar. */
+    const klunga = smal && rum.id !== valdtRum;
     /* "Tradgard" hamnade ovanpa chipen "Matplats" i ovanvaningsvyn.
        Etiketter som nar ner i knappradens omrade doljs. */
     const iKnappraden = y > r.top + r.height - 86;
     /* Samma sak at vanster: i planvyn hamnade "Tradgard" ovanpa rubriken
        "Radhus vid Arstaviken". Listningsspalten ar 340 px pa bred skarm. */
     const iSpalten = r.width > 860 && x < r.left + 340;
-    const dold = bakom || under || iKnappraden || iSpalten || (smal && litet && valdtRum !== rum.id);
+    const dold = bakom || under || iKnappraden || iSpalten || klunga;
     el.style.opacity = dold ? '0' : '1';
     el.style.pointerEvents = dold ? 'none' : 'auto';
-    el.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0) translate(-50%, -50%)`;
+    el.style.transform =
+      `translate3d(${Math.round(x) - (+el.dataset.hw || 0)}px, ${Math.round(y) - (+el.dataset.hh || 0)}px, 0)`;
   }
 }
 
