@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './golvvision.module.css';
+import DemoFormular from '../../komponenter/DemoFormular';
 
 /* ===========================================================================
    GOLVVISION STOCKHOLM AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -873,13 +874,7 @@ export default function GolvvisionDemo() {
               </div>
             </div>
 
-            <form
-              className={styles.form}
-              action={FORM_ACTION}
-              method="post"
-              encType="text/plain"
-              aria-describedby="form-not"
-            >
+            <DemoFormular className={styles.form} amne="Golvvision Stockholm - förfrågan">
               <label>
                 Namn
                 <input type="text" name="namn" autoComplete="name" required />
@@ -922,11 +917,10 @@ export default function GolvvisionDemo() {
                 redan i första samtalet. Inga massutskick, ingen säljlista.
               </p>
               <p className={styles.formNot}>
-                Obs: i det här förslaget öppnar knappen ditt e-postprogram och skickar raderna
                 till Bahko Byrå. I den skarpa sajten kopplas formuläret in och landar direkt i er
                 egen inkorg.
               </p>
-            </form>
+            </DemoFormular>
           </div>
         </div>
       </section>

@@ -31,15 +31,35 @@ i synk ändå, så de inte pekar åt olika håll om någon råkar öppna dem.
 Skräppostskyddet är Web3Forms honungsfälla: ett kryssfält som heter `botcheck` och är dolt.
 Robotar fyller i det, människor ser det inte.
 
-## Demosidorna kopplas inte
+## Demosidorna (hemsideförslagen)
 
-**Beslut (Mathias, 2026-09-22): bara vår egen sajt och riktiga kunder kopplas till Web3Forms.**
-Demosidorna behåller sitt `mailto:`-formulär. En demo är ett förslag, inte en sajt i drift, och
-ett förslag ska inte skicka riktiga förfrågningar någonstans.
+**Beslut (Mathias, 2026-09-22): förslagen kopplas in, men mot vår egen inkorg.**
+Alla tjugo förslag delar nyckeln `DEMO_NYCKEL` i `web/app/formular.js` och landar hos
+mathias@bahkobyra.se med firmans namn i ämnesraden. Autosvar är AV på den nyckeln: ett förslag
+ser ut som kundens egen sajt, och ett autosvar signerat Bahko Byrå avslöjar upplägget.
 
-Först när en demo blir en skarp kundsajt kopplas formuläret in, och då med **kundens egen**
-nyckel (web3forms.com, kundens mejladress) så att förfrågningarna landar hos dem, precis som
-för Smålands Måleri och Bromma Trädgårdsservice.
+Formuläret är klientkomponenten `web/app/komponenter/DemoFormular.js`. Den skickar med fetch
+och visar kvittensen **på plats**. Besökaren lämnar aldrig sidan, för en omdirigering till
+bahkobyra.se eller till Web3Forms egen sida skulle avslöja att det inte är firmans sajt.
+Går anropet inte igenom visas ett fel. Kvittensen påstår aldrig att något skickats när det inte
+gjorde det.
+
+Den gamla texten under formuläret ("knappen öppnar ditt e-postprogram") är borttagen på alla
+sidor, eftersom den inte längre stämmer.
+
+**Blir förslaget en kund:** kunden skapar en egen nyckel med sin egen mejladress. Byt nyckeln på
+just den sidan (skicka in den som prop till `DemoFormular`), slå på autosvar i deras röst, klart.
+
+## Web3Forms kräver en webbläsare
+
+Anrop från en server nekas på gratisplanen: *"This method is not allowed. Use our API in client
+side"*. Därför är formuläret en klientkomponent och inte ett serveranrop.
+
+Deras API ligger dessutom bakom Cloudflares botskydd. Ett automatiserat testinskick från en
+headless webbläsare på den här datorn får därför `Failed to fetch`, precis som bahkobyra.se
+403:ar härifrån (se minnesnoten om botspärren). Nyckeln i sig är verifierad: ett inskick med
+vanliga webbläsarheaders gick igenom med `success: true` den 2026-09-22. Sista kontrollen i en
+riktig webbläsare måste göras av Mathias, lokalt eller efter deploy.
 
 ## Autosvar
 

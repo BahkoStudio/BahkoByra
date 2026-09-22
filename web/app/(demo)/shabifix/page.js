@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Archivo, Space_Grotesk } from 'next/font/google';
 import styles from './shabifix.module.css';
+import DemoFormular from '../../komponenter/DemoFormular';
 
 /* ===========================================================================
    SHABIFIX — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -656,13 +657,7 @@ export default function ShabifixDemo() {
             {/* Formuläret har en riktig utgång: submit postar fälten som ren
                 text via mailto, alltså utan backend och utan klient-JS. I den
                 skarpa sajten byts action mot kundens egen inkorg. */}
-            <form
-              className={styles.form}
-              action={FORM_ACTION}
-              method="post"
-              encType="text/plain"
-              aria-describedby="form-not"
-            >
+            <DemoFormular className={styles.form} amne="Shabifix - förfrågan">
               <label>
                 Namn
                 <input type="text" name="namn" autoComplete="name" required />
@@ -704,11 +699,10 @@ export default function ShabifixDemo() {
                 samtalet. Inga massutskick, ingen säljlista.
               </p>
               <p className={styles.formNot}>
-                Obs: i det här förslaget öppnar knappen ditt e-postprogram och skickar raderna till
                 Bahko Byrå. I den skarpa sajten kopplas formuläret in och landar direkt i er egen
                 inkorg.
               </p>
-            </form>
+            </DemoFormular>
           </div>
         </div>
       </section>

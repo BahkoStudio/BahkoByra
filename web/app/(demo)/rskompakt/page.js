@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './rskompakt.module.css';
+import DemoFormular from '../../komponenter/DemoFormular';
 
 /* ===========================================================================
    RS KOMPAKT AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -261,7 +262,7 @@ export default function RsKompaktDemo() {
                 <a className={styles.kontaktRad} href={IG} target="_blank" rel="noopener"><span>Instagram</span><b>@rs_kompakt_ab</b></a>
               </div>
             </div>
-            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
+            <DemoFormular className={styles.form} amne="RS Kompakt - offertförfrågan">
               <label>Namn<input type="text" name="namn" autoComplete="name" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valfritt)<input type="email" name="epost" autoComplete="email" /></label>
@@ -270,8 +271,7 @@ export default function RsKompaktDemo() {
               <button className={styles.btn} type="submit">Boka gratis hembesök</button>
               <a className={`${styles.btn} ${styles.btnGhost}`} href={TEL_HREF}>Eller ring {TEL}</a>
               <p className={styles.formNot} id="form-not">Skriv kort om projektet — då kan vi ge ett vettigt svar redan i första samtalet. Inga massutskick, ingen säljlista.</p>
-              <p className={styles.formNot}>Obs: i det här förslaget öppnar knappen ditt e-postprogram och skickar raderna till Bahko Byrå. I den skarpa sajten kopplas formuläret in och landar direkt i er egen inkorg.</p>
-            </form>
+            </DemoFormular>
           </div>
         </div>
       </section>

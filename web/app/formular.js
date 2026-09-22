@@ -12,6 +12,13 @@
 
 export const NYCKEL = '';
 
+/* Nyckeln för hemsideförslagen. Alla förslag delar den och landar hos oss, med
+   firmans namn i ämnesraden. Blir ett förslag en skarp sajt får kunden en egen
+   nyckel och byter ut den på sin sida. Autosvar är AV på den här i dashboarden:
+   ett förslag ser ut som kundens egen sajt, och ett autosvar signerat Bahko Byrå
+   avslöjar upplägget. (Skapad av Mathias 2026-09-22, mottagare mathias@bahkobyra.se.) */
+export const DEMO_NYCKEL = '38db5da0-8af0-4b31-bcdc-a840e84e5764';
+
 const URL = 'https://api.web3forms.com/submit';
 export const TACK = 'https://www.bahkobyra.se/tack/';
 

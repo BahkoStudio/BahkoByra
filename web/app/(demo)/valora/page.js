@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './valora.module.css';
+import DemoFormular from '../../komponenter/DemoFormular';
 
 /* ===========================================================================
    VALORA — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -260,7 +261,7 @@ export default function ValoraDemo() {
                 <div className={styles.kontaktRad}><span>Sekretess</span><b>Allt stannar mellan oss</b></div>
               </div>
             </div>
-            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
+            <DemoFormular className={styles.form} amne="Valora - förfrågan">
               <label>Namn<input type="text" name="namn" autoComplete="name" required /></label>
               <label>E-post<input type="email" name="epost" autoComplete="email" required /></label>
               <label>Telefon (valfritt)<input type="tel" name="telefon" autoComplete="tel" /></label>
@@ -269,8 +270,7 @@ export default function ValoraDemo() {
               <button className={styles.btn} type="submit">Boka ett samtal</button>
               <a className={`${styles.btn} ${styles.btnGhost}`} href={IG} target="_blank" rel="noopener">Eller skriv på Instagram</a>
               <p className={styles.formNot} id="form-not">Skriv kort om bolaget — då kan vi säga något vettigt redan i första samtalet. Inga massutskick, ingen säljlista.</p>
-              <p className={styles.formNot}>Obs: i det här förslaget öppnar knappen ditt e-postprogram och skickar raderna till Bahko Byrå. I den skarpa sajten kopplas formuläret in och landar direkt i er egen inkorg.</p>
-            </form>
+            </DemoFormular>
           </div>
         </div>
       </section>
