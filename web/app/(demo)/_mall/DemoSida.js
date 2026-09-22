@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { formProps, DoldaFalt } from '../../formular';
 import { fontKlasser } from './fonter';
 import s from './mall.module.css';
 
@@ -392,7 +393,8 @@ export default function DemoSida({ data: d }) {
                   {k.ig ? <a className={s.kontaktRad} href={k.ig} target="_blank" rel="noopener"><span>{t.igRad}</span><b>{k.igHandle}</b></a> : null}
                 </div>
               </div>
-              <form className={s.form} action={d.formAction} method="post" encType="text/plain" aria-describedby="form-not">
+              <form className={s.form} {...formProps({ mailto: d.formAction, nyckel: d.web3nyckel })} aria-describedby="form-not">
+                <DoldaFalt amne={`${d.namn}: ny förfrågan från hemsidan`} fran={d.namn} nyckel={d.web3nyckel} />
                 <p className={s.formRubrik}>{d.kontaktSektion.formRubrik}</p>
                 <div className={s.formRad}>
                   <label>{t.namn}<input type="text" name="namn" autoComplete="name" required /></label>

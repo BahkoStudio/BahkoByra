@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './hd.module.css';
+import { formProps, DoldaFalt } from '../../formular';
 
 /* ===========================================================================
    HD BYGGSERVICE AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -271,7 +272,8 @@ export default function HdDemo() {
                 <div className={styles.kontaktRad}><span>Område</span><b>Norrort och Stockholms innerstad</b></div>
               </div>
             </div>
-            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
+            <form className={styles.form} {...formProps({ mailto: FORM_ACTION })} aria-describedby="form-not">
+              <DoldaFalt amne="HD Byggservice - bedömning" fran="Bahko-demo" />
               <label>Namn<input type="text" name="namn" autoComplete="name" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valfritt)<input type="email" name="epost" autoComplete="email" /></label>

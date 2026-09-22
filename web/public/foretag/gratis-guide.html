@@ -149,7 +149,11 @@
 
     <!-- OPT-IN: capture via Formspree, reveal guide+video on success -->
     <div class="optin" id="optin">
-      <form id="guide-form" action="https://formspree.io/f/mgonrnep" method="POST">
+      <form id="guide-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="BAHKO_WEB3FORMS_NYCKEL">
+      <input type="hidden" name="subject" value="Kostnadsfri guide: ny nedladdning">
+      <input type="hidden" name="from_name" value="bahkobyra.se">
+      <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="display:none">
         <h3>Få guiden + videon direkt 👇</h3>
         <p class="sub">Skriv in din e-post så låser vi upp guiden och videon på direkten.</p>
         <div class="field">
@@ -274,6 +278,18 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     gErr.hidden = true;
+    // Nyckeln inte ifylld än: skicka inget till Web3Forms, öppna mejlen i stället.
+    const nyckelFalt = form.querySelector('[name="access_key"]');
+    if (!nyckelFalt || !nyckelFalt.value || nyckelFalt.value.indexOf('BAHKO_') === 0) {
+      const rader = [];
+      new FormData(form).forEach(function (v, k) {
+        if (['access_key', 'subject', 'from_name', 'redirect', 'botcheck'].indexOf(k) === -1) rader.push(k + ': ' + v);
+      });
+      window.location.href = 'mailto:mathias@bahkobyra.se?subject=' +
+        encodeURIComponent(form.querySelector('[name="subject"]').value) +
+        '&body=' + encodeURIComponent(rader.join('\n'));
+      return;
+    }
     btn.disabled = true;
     btn.querySelector('span').textContent = 'Låser upp...';
     try {

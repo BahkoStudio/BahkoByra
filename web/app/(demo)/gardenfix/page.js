@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './gardenfix.module.css';
+import { formProps, DoldaFalt } from '../../formular';
 
 /* ===========================================================================
    GARDEN FIX STOCKHOLM — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -260,7 +261,8 @@ export default function GardenFixDemo() {
                 <a className={styles.kontaktRad} href={IG} target="_blank" rel="noopener"><span>Instagram</span><b>@gardenfixstockholm</b></a>
               </div>
             </div>
-            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
+            <form className={styles.form} {...formProps({ mailto: FORM_ACTION })} aria-describedby="form-not">
+              <DoldaFalt amne="Garden Fix - offertförfrågan" fran="Bahko-demo" />
               <label>Namn<input type="text" name="namn" autoComplete="name" required /></label>
               <label>E-post<input type="email" name="epost" autoComplete="email" required /></label>
               <label>Telefon (valfritt)<input type="tel" name="telefon" autoComplete="tel" /></label>

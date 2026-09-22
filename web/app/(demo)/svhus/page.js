@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Newsreader, Inter } from 'next/font/google';
 import styles from './svhus.module.css';
+import { formProps, DoldaFalt } from '../../formular';
 
 /* ===========================================================================
    SV HUS AB — kostnadsfritt hemsideförslag från Bahko Byrå

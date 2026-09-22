@@ -1,4 +1,5 @@
 import Maskot from '../../komponenter/Maskot';
+import { formProps, DoldaFalt } from '../../formular';
 import styles from './kontakt.module.css';
 
 export const metadata = {
@@ -7,6 +8,10 @@ export const metadata = {
     'Berätta kort om er firma så bygger vi ett förslag på er nya hemsida och skickar det inom 48 timmar. Kostnadsfritt och utan krav.',
   alternates: { canonical: '/kontakt/' },
 };
+
+const AMNE = 'Ny förfrågan om kostnadsfritt hemsideförslag';
+const MAILTO =
+  'mailto:mathias@bahkobyra.se?subject=' + encodeURIComponent(AMNE);
 
 const LOFTEN = [
   'Förslaget är kostnadsfritt och binder er inte vid något',
@@ -48,7 +53,11 @@ export default function Kontakt() {
         </div>
 
         <div className={styles.formYta} data-avsloja="upp">
-          <form action="https://formspree.io/f/mgonrnep" method="POST" className={styles.form}>
+          <form
+            {...formProps({ mailto: MAILTO })}
+            className={styles.form}
+          >
+            <DoldaFalt amne={AMNE} fran="bahkobyra.se/kontakt" />
             <div className={styles.rad}>
               <label>
                 Namn
@@ -72,16 +81,6 @@ export default function Kontakt() {
               <textarea name="meddelande" rows="4" placeholder="Berätta kort om vad ni gör och var ni jobbar." />
             </label>
 
-            {/* Honeypot mot skräppost. Syns inte för människor. */}
-            <input
-              type="text"
-              name="_gotcha"
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-              className={styles.gotcha}
-            />
-            <input type="hidden" name="_subject" value="Ny förfrågan om kostnadsfritt hemsideförslag" />
 
             <button type="submit" className="btn btn-primar">
               Skicka förfrågan

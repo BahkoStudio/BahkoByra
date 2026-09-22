@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Archivo, Inter } from 'next/font/google';
 import styles from './rskompakt.module.css';
+import { formProps, DoldaFalt } from '../../formular';
 
 /* ===========================================================================
    RS KOMPAKT AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -261,7 +262,8 @@ export default function RsKompaktDemo() {
                 <a className={styles.kontaktRad} href={IG} target="_blank" rel="noopener"><span>Instagram</span><b>@rs_kompakt_ab</b></a>
               </div>
             </div>
-            <form className={styles.form} action={FORM_ACTION} method="post" encType="text/plain" aria-describedby="form-not">
+            <form className={styles.form} {...formProps({ mailto: FORM_ACTION })} aria-describedby="form-not">
+              <DoldaFalt amne="RS Kompakt - offertförfrågan" fran="Bahko-demo" />
               <label>Namn<input type="text" name="namn" autoComplete="name" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valfritt)<input type="email" name="epost" autoComplete="email" /></label>
