@@ -38,9 +38,19 @@ Kunden skapar en nyckel på web3forms.com med **sin egen** mejladress. Skicka in
 så landar förfrågningarna direkt hos kunden i stället för hos oss. Utan `web3nyckel` används
 Bahkos nyckel, vilket är rätt så länge sajten är ett förslag.
 
-## Det här löser inte autosvaret
+## Autosvar
 
-Automatiskt svarsmejl till den som fyllt i är en betald funktion hos Web3Forms (Pro).
-Vill vi hålla löftet om "svar direkt" behöver vi bygga det själva: ett eget anrop på Vercel
-plus en mejltjänst, till exempel Resend, som både svarar kunden, kopierar oss och sparar
-förfrågan. Inte gjort än.
+Autosvar till den som fyllt i är påslaget i Web3Forms dashboard på alla tre formulären
+(Mathias, 2026-09-22). Skrivna i hans röst: "Hejsan!", vad som händer härnäst, telefonnumret,
+"Vänliga hälsningar / Mathias Bahko", loggan överst, inga tankstreck. Kontakt och granskning
+skickar med en kopia av det kunden fyllde i. Guidens autosvar innehåller en länk som låser upp
+guiden direkt, även på en annan enhet.
+
+Autosvaret sätts alltså i Web3Forms, inte i koden. En tidigare version av den här filen påstod
+att funktionen krävde Pro. Det stämde inte.
+
+## Tre nycklar, inte en
+
+Dashboarden har ett formulär per sida, alla till mathias@bahkobyra.se med eget ämne i inkorgen:
+Kontakt (hemsideförslag), Gratis guide och Gratis granskning. Varje sida använder alltså sin
+egen nyckel. Demosidorna delar Bahkos kontaktnyckel tills en kund får en egen.
