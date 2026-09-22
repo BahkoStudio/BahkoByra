@@ -76,7 +76,6 @@ const TEL_HREF = 'tel:+46704485928';
    knappen säger rakt ut vart det går och vad som ändras i den skarpa sajten.
    Vi har ingen verifierad e-postadress till SV Hus — därför står vår egen här,
    inte en gissad adress hos kunden. */
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=SV%20Hus%20-%20projektf%C3%B6rfr%C3%A5gan';
 
 /* En källa för navigationen: header, mobilmeny och footer läser samma lista. */
 const LANKAR = [

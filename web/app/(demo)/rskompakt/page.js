@@ -54,7 +54,6 @@ const ADRESS = 'Havrevägen 15, 145 68 Norsborg';
 const IG = 'https://www.instagram.com/rs_kompakt_ab/';
 const FB = 'https://www.facebook.com/share/1BNc4Lpwjb/';
 const OFFERTA = 'https://offerta.se/foretag/rs-kompakt-ab';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=RS%20Kompakt%20-%20offertf%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },

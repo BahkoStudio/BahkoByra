@@ -86,8 +86,6 @@ const TEL_HREF = 'tel:+358401234567';
    verifierad e-postadress till kunden, så vår egen står här — aldrig en gissad.
    Den gamla demon gissade info@osterlundsjordbyggnad.se, med svensk domän på
    ett finskt bolag. */
-const FORM_ACTION =
-  'mailto:mathias@bahkobyra.se?subject=%C3%96sterlunds%20Jordbyggnad%20-%20f%C3%B6rfr%C3%A5gan';
 
 /* En källa för navigationen: header, mobilmeny och footer läser samma lista. */
 const LANKAR = [

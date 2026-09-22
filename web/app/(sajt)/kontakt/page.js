@@ -1,5 +1,6 @@
 import Maskot from '../../komponenter/Maskot';
-import { formProps, DoldaFalt } from '../../formular';
+import DemoFormular from '../../komponenter/DemoFormular';
+import { NYCKEL_KONTAKT } from '../../formular';
 import styles from './kontakt.module.css';
 
 export const metadata = {
@@ -53,11 +54,20 @@ export default function Kontakt() {
         </div>
 
         <div className={styles.formYta} data-avsloja="upp">
-          <form
-            {...formProps({ mailto: MAILTO })}
+          <DemoFormular
             className={styles.form}
+            amne={AMNE}
+            nyckel={NYCKEL_KONTAKT}
+            fran="bahkobyra.se"
+            tack
+            kvittens={
+              <>
+                <p className={styles.kvittensRubrik}>Tack! Nu är det hos oss.</p>
+                <p>Vi läser varje förfrågan själva och hör av oss inom 24 timmar. Ert förslag är klart inom 48.</p>
+                <p className={styles.finstilt}>Har ni bråttom går det bra att ringa eller mejla mathias@bahkobyra.se direkt.</p>
+              </>
+            }
           >
-            <DoldaFalt amne={AMNE} fran="bahkobyra.se/kontakt" />
             <div className={styles.rad}>
               <label>
                 Namn
@@ -89,7 +99,7 @@ export default function Kontakt() {
               Vi använder uppgifterna för att kontakta er om förslaget. Inget nyhetsbrev, ingen
               vidareförsäljning.
             </p>
-          </form>
+          </DemoFormular>
         </div>
       </div>
     </section>

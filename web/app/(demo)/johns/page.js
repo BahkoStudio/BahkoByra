@@ -59,7 +59,6 @@ const EPOST = 'info@johnsreklam.se';
 const ADRESS = 'Finspångsvägen 63, 602 13 Norrköping';
 const IG = 'https://www.instagram.com/johnsreklam/';
 const FB = 'https://www.facebook.com/johnsreklam';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Johns%20Reklam%20-%20offertf%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },

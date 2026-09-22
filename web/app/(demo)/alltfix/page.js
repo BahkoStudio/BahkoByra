@@ -60,7 +60,6 @@ const EPOST = 'support@alltfix.com';
 const ADRESS = 'Vintervägen 16, 177 60 Järfälla';
 const IG = 'https://www.instagram.com/alltfixstockholm/';
 const OFFERTA = 'https://offerta.se/foretag/alltfix-stockholm-ab';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Alltfix%20-%20offertf%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },

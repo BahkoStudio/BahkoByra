@@ -51,7 +51,6 @@ export const metadata = {
 };
 
 const IG = 'https://www.instagram.com/reel_innovations/';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Valora%20-%20f%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },

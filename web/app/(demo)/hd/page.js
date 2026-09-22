@@ -63,7 +63,6 @@ const EPOST = 'hdbyggservice.hannes@gmail.com';
 const EPOST2 = 'hdbyggservice.jesper@gmail.com';
 const IG = 'https://www.instagram.com/hdbyggserviceab/';
 const FB = 'https://www.facebook.com/profile.php?id=61588482044000';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=HD%20Byggservice%20-%20bed%C3%B6mning';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },

@@ -53,7 +53,6 @@ const TEL = '076-050 29 89';
 const TEL_HREF = 'tel:+46760502989';
 const ADRESS = 'Södra Centralgatan 15, 802 51 Gävle';
 const IG = 'https://www.instagram.com/stenborgs.media/';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Stenborgs%20Media%20-%20f%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },

@@ -61,7 +61,6 @@ const TEL_HREF = 'tel:+46852513393';
 const EPOST = 'info@elvionel.se';
 const ADRESS = 'Edsviksvägen 32, 191 45 Sollentuna';
 const FB = 'https://www.facebook.com/profile.php?id=61588261401239';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Elvion%20El%20-%20f%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },

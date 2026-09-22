@@ -87,7 +87,6 @@ const data = {
     vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#jobb', txt: 'Projekt' }],
     hoger: [{ href: '#om', txt: 'Om oss' }, { href: '#fragor', txt: 'Frågor' }],
   },
-  formAction: 'mailto:mathias@bahkobyra.se?subject=Goldring%20Bygg%20-%20hembes%C3%B6k',
 
   hero: {
     ort: 'Nordvästra Skåne',

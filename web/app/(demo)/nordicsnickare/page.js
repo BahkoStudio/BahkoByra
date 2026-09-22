@@ -70,8 +70,6 @@ const TEL_HREF = 'tel:+46701234567';
 /* Ingen backend i förslaget: submit postar fälten som ren text via mailto till
    Bahko Byrå. Noten under knappen säger rakt ut vart det går. Vi har ingen
    verifierad e-postadress till kunden, så vår egen står här — aldrig en gissad. */
-const FORM_ACTION =
-  'mailto:mathias@bahkobyra.se?subject=Nordic%20Snickare%20-%20f%C3%B6rfr%C3%A5gan';
 
 /* En källa för navigationen: header, mobilmeny och footer läser samma lista. */
 const LANKAR = [

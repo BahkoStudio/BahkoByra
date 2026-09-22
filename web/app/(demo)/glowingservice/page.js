@@ -48,7 +48,6 @@ export const metadata = {
 const TEL = '070-123 45 67';
 const TEL_HREF = 'tel:0701234567';
 const IG = 'https://www.instagram.com/glowingserviceab/';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Glowing%20Service%20-%20offertf%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi målar' },

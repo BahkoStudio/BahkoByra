@@ -59,7 +59,6 @@ const TEL_HREF = 'tel:+46854589990';
 const EPOST = 'info@proffsmaskiner.se';
 const ADRESS = 'Bäckvägen 20, 192 54 Sollentuna';
 const IG = 'https://www.instagram.com/proffsmaskinerab/';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Proffsmaskiner%20-%20hyresf%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Maskiner' },

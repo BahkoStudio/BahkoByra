@@ -55,7 +55,6 @@ const EPOST = 'info@andrensbygg.com';
 const ADRESS = 'Göteborgsvägen 90, 463 33 Lilla Edet';
 const IG = 'https://www.instagram.com/andrensbygg/';
 const FB = 'https://www.facebook.com/profile.php?id=61584340842923';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Andr%C3%A9ns%20Bygg%20-%20offertf%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },

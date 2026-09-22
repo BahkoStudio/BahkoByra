@@ -53,7 +53,6 @@ export const metadata = {
 
 const EPOST = 'gardenfixstockholm@gmail.com';
 const IG = 'https://www.instagram.com/gardenfixstockholm/';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Garden%20Fix%20-%20offertf%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },

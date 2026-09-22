@@ -88,8 +88,6 @@ const IG = 'https://www.instagram.com/sam_flytt_och_stad_/';
 const FB = 'https://www.facebook.com/profile.php?id=100083084452666';
 const GOOGLE = 'https://maps.app.goo.gl/NLpH8nVyAfZxZc3i8';
 
-const FORM_ACTION =
-  'mailto:mathias@bahkobyra.se?subject=Sam%20Flytt%20och%20St%C3%A4d%20-%20offertf%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },

@@ -10,7 +10,15 @@
    Ny kund: ge kunden en egen nyckel (web3forms.com, deras egen mejladress) och skicka
    in den som `nyckel` i formProps, så landar förfrågningarna hos dem i stället för hos oss. */
 
-export const NYCKEL = '';
+/* Våra egna formulär på bahkobyra.se. Ett formulär per sida i Web3Forms dashboard,
+   alla till mathias@bahkobyra.se, alla med autosvar påslaget i Mathias röst.
+   Tomma tills nycklarna är inklistrade: då faller formuläret tillbaka på mailto. */
+export const NYCKEL_KONTAKT = '';
+export const NYCKEL_GRANSKNING = '';
+export const NYCKEL_GUIDE = '';
+
+/** Bakåtkompatibelt namn, används av formProps nedan. */
+export const NYCKEL = NYCKEL_KONTAKT;
 
 /* Nyckeln för hemsideförslagen. Alla förslag delar den och landar hos oss, med
    firmans namn i ämnesraden. Blir ett förslag en skarp sajt får kunden en egen

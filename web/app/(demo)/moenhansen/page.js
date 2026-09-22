@@ -46,7 +46,6 @@ const TEL = '900 00 000';
 const TEL_HREF = 'tel:+4790000000';
 const ADRESSE = 'Fogdeveien 37, 3184 Borre';
 const IG = 'https://www.instagram.com/moenhansensbygg/';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Moen%20Hansens%20Bygg%20-%20foresp%C3%B8rsel';
 
 const LANKAR = [
   { href: '#tjenester', txt: 'Det vi gjør' },

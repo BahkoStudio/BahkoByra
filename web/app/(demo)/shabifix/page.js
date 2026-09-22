@@ -61,7 +61,6 @@ const TEL_HREF = 'tel:0701234567';
 
 /* Ingen backend i förslaget: submit postar fälten som ren text via mailto till
    Bahko Byrå. Noten under knappen säger rakt ut vart det går. */
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Shabifix%20-%20f%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },

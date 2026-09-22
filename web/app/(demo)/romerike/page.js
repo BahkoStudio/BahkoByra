@@ -54,7 +54,6 @@ const TEL = '400 00 000';
 const TEL_HREF = 'tel:+4740000000';
 const ADRESSE = 'Bogstadvegen 36, 2040 Kløfta';
 const IG = 'https://www.instagram.com/romerike.service.utleie/';
-const FORM_ACTION = 'mailto:mathias@bahkobyra.se?subject=Romerike%20Service%20%26%20Utleie%20-%20foresp%C3%B8rsel';
 
 const LANKAR = [
   { href: '#tjenester', txt: 'Det vi gjør' },

@@ -67,7 +67,6 @@ const data = {
     vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#jobb', txt: 'Jobb' }],
     hoger: [{ href: '#varfor', txt: 'Varför oss' }, { href: '#fragor', txt: 'Frågor' }],
   },
-  formAction: 'mailto:mathias@bahkobyra.se?subject=HG%20Maskinentreprenad%20-%20f%C3%B6rfr%C3%A5gan',
 
   hero: {
     // Ingen ort är verifierad, så raden utelämnas. Ingen logotypfil heller: h1 blir firmanamnet i text.

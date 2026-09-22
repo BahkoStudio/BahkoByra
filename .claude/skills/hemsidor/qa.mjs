@@ -233,8 +233,14 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   // --- frågor och formulär ---
   const faq = await page.locator('#fragor details').evaluateAll((els) => els.map((e) => e.getAttribute('name')));
   ok(faq.length >= 5 && new Set(faq).size === 1 && faq[0], `frågor: ${faq.length} st, ett öppet åt gången`);
-  const form = await page.locator('#kontakt form').evaluate((f) => ({ action: f.action, kravs: f.querySelectorAll('[required]').length }));
-  ok(/^mailto:mathias@bahkobyra\.se/.test(form.action) && form.kravs >= 2, 'formuläret går till Mathias, namn och telefon krävs');
+  // Formuläret postar via DemoFormular till Web3Forms (klientkomponent, ingen action i DOM:en).
+  // Inget testinskick skickas: Web3Forms botskydd nekar automatiserade webblasare. Testa for hand.
+  const form = await page.locator('#kontakt form').evaluate((f) => ({
+    action: f.getAttribute('action'),
+    kravs: f.querySelectorAll('[required]').length,
+    honung: !!f.querySelector('input[name="botcheck"]'),
+  }));
+  ok(!form.action && form.honung && form.kravs >= 2, 'formuläret går via Web3Forms, honungsfälla finns, namn och telefon krävs');
   ok((await page.locator('#kontakt video').count()) === 1, 'suddig film bakom formuläret');
 
   // --- media: allt laddar, och ingen bild används i två sektioner ---

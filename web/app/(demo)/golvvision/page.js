@@ -99,8 +99,6 @@ const IG = 'https://www.instagram.com/golvvisionstockholm/';
 /* Demoformuläret postar till Bahko Byrå. Kundens adress är verifierad och
    visas i kontaktkortet — men ett demoformulär ska inte landa hos dem oanmält.
    I den skarpa sajten byts action mot info@golvvision.se. */
-const FORM_ACTION =
-  'mailto:mathias@bahkobyra.se?subject=Golvvision%20Stockholm%20-%20f%C3%B6rfr%C3%A5gan';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Vad vi gör' },
