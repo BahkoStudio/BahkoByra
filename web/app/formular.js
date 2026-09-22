@@ -13,9 +13,9 @@
 /* Våra egna formulär på bahkobyra.se. Ett formulär per sida i Web3Forms dashboard,
    alla till mathias@bahkobyra.se, alla med autosvar påslaget i Mathias röst.
    Tomma tills nycklarna är inklistrade: då faller formuläret tillbaka på mailto. */
-export const NYCKEL_KONTAKT = '';
-export const NYCKEL_GRANSKNING = '';
-export const NYCKEL_GUIDE = '';
+export const NYCKEL_KONTAKT = '23a421cc-59d7-45b7-988a-0fd294715ed3';
+export const NYCKEL_GRANSKNING = 'e298adde-586d-4396-bd9a-354eb29be0f6';
+export const NYCKEL_GUIDE = '46c81217-6498-4880-a329-602e6884c017';
 
 /** Bakåtkompatibelt namn, används av formProps nedan. */
 export const NYCKEL = NYCKEL_KONTAKT;
