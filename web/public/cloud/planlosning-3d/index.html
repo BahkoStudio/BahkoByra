@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Haven — Riverside Townhouse</title>
+<title>Hemvist — Radhus vid Årstaviken</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   HAVEN — interaktiv 3D-planlosning.
-   Pahittad maklare, demo av vad vi bygger at kunder.
+   HEMVIST — interaktiv 3D-planlosning.
+   Pahittad svensk maklare, demo av vad vi bygger at kunder.
    Mekanismerna som styr utseendet bor i bar.md bredvid.
    ============================================================ */
 :root{
@@ -36,6 +36,10 @@ body{
 }
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 canvas{display:block;touch-action:none}
+/* Duken far sin storlek harifran. app.js kallar setSize(..., false) och
+   ror darfor inte elementets CSS-matt; utan de har raderna lagger den ut
+   sig pa sina attributpixlar och blir DPR ganger for stor. */
+#scen canvas{width:100%;height:100%}
 [hidden]{display:none!important}
 
 /* ---------- scenen fyller allt, chromet ligger ovanpa ---------- */
@@ -49,6 +53,11 @@ canvas{display:block;touch-action:none}
 .skarm{position:fixed;top:0;bottom:0;width:360px;z-index:1;pointer-events:none}
 .skarm-v{left:0;background:linear-gradient(90deg,rgba(24,24,24,.92) 0%,rgba(24,24,24,.72) 48%,transparent 100%)}
 .skarm-h{right:0;background:linear-gradient(270deg,rgba(24,24,24,.88) 0%,rgba(24,24,24,.6) 45%,transparent 100%)}
+/* I rumsvyn far resten av huset ga utanfor bilden (mekanism 5), och da
+   stiger modellen upp bakom toppraden. Uppmatt: i tradgardsvyn nar den
+   y=0, alltsa rakt bakom krediten. Tonigen haller texten lasbar. */
+.skarm-topp{left:0;right:0;width:auto;bottom:auto;height:9.5rem;
+  background:linear-gradient(180deg,rgba(24,24,24,.9) 0%,rgba(24,24,24,.55) 55%,transparent 100%)}
 @media (max-width:860px){.skarm{display:none}}
 
 /* ---------- toppen ---------- */
@@ -65,6 +74,16 @@ canvas{display:block;touch-action:none}
 .meny button:hover{color:var(--text)}
 .topp-slut{margin-left:auto;display:flex;align-items:center;gap:1.1rem;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text2)}
 .topp-strek{width:52px;height:1px;background:var(--linje2)}
+/* Krediten. Ligger i toppraden i stallet for i vanster spalt: spalten
+   vaxer nedat och skulle krocka med bottenraden pa laga skarmar. */
+.skapad{
+  display:flex;align-items:center;gap:.75rem;flex-shrink:0;text-decoration:none;
+  padding-left:1.6rem;border-left:1px solid var(--linje);
+  opacity:.72;transition:opacity var(--snabb);
+}
+.skapad:hover{opacity:1}
+.skapad span{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text2);white-space:nowrap}
+.skapad img{width:112px;height:auto;display:block}
 
 /* ---------- vanster: listning ---------- */
 .listning{top:8.5rem;left:2rem;width:270px}
@@ -76,6 +95,8 @@ canvas{display:block;touch-action:none}
 .fakta{font-variant-numeric:lining-nums tabular-nums;display:flex;flex-wrap:wrap;gap:.5rem .8rem;font-size:.76rem;color:var(--text2);margin-bottom:1rem}
 .fakta span:not(:last-child)::after{content:'|';margin-left:.8rem;opacity:.4}
 .listning p.beskrivning{font-size:.82rem;color:var(--text2);line-height:1.7}
+.pris-etikett{display:block;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--text2);margin-bottom:.1rem}
 .pris{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin:1.3rem 0;font-variant-numeric:lining-nums tabular-nums}
 .knapp-visning{
   display:flex;align-items:center;justify-content:space-between;gap:1.5rem;width:100%;
@@ -104,7 +125,6 @@ canvas{display:block;touch-action:none}
 .stang:hover{color:var(--text)}
 .rums-bild{width:100%;aspect-ratio:4/3;display:block;background:var(--yta2);object-fit:cover}
 .rumspanel-kropp{padding:1rem}
-.rumspanel-kropp h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.3rem;margin-bottom:.5rem;font-variant-numeric:lining-nums}
 .matt{font-variant-numeric:lining-nums tabular-nums;display:flex;gap:1.2rem;font-size:.78rem;color:var(--text2);margin-bottom:.8rem}
 .rumspanel-kropp p{font-size:.8rem;color:var(--text2);line-height:1.65}
 
@@ -161,6 +181,20 @@ canvas{display:block;touch-action:none}
 .etikett:hover{border-color:var(--linje2)}
 .etikett[data-vald="1"]{border-color:var(--accent)}
 
+/* ---------- skalstock och norrpil ----------
+   Bada mats ur kameran i app.js, inte ritade pa fri hand. */
+.planskala{position:absolute;left:1.5rem;bottom:6.5rem;display:flex;align-items:flex-end;
+  gap:1.6rem;pointer-events:none;color:var(--text2)}
+.norr{position:relative;width:34px;height:34px;display:grid;place-items:center}
+.norr svg{width:18px;height:18px;fill:currentColor;transform-origin:50% 50%}
+.norr span{position:absolute;font-size:.58rem;letter-spacing:.14em;line-height:1}
+.skalstock{display:flex;flex-direction:column;gap:.35rem;font-size:.64rem;letter-spacing:.1em;
+  font-variant-numeric:lining-nums tabular-nums}
+.skalstock-strek{display:block;height:1px;background:var(--linje2);position:relative;min-width:20px}
+.skalstock-strek::before,.skalstock-strek::after{content:'';position:absolute;bottom:0;width:1px;height:6px;background:var(--linje2)}
+.skalstock-strek::before{left:0}
+.skalstock-strek::after{right:0}
+
 /* ---------- total-ruta ---------- */
 .total{
   position:fixed;right:2rem;bottom:1.5rem;z-index:10;
@@ -182,6 +216,10 @@ canvas{display:block;touch-action:none}
    Panelerna blir lador under scenen i stallet for att ligga ovanpa den:
    pa 390px tacker de annars hela modellen. */
 @media (max-width:1180px){
+  /* "Mer an bostader" ar dekor och far vika for krediten nar det trangs */
+  .topp-slut{display:none}
+  .skapad span{display:none}
+  .skapad{padding-left:0;border-left:0}
   .listning{width:230px}
   .rumspanel{width:240px}
   .total{width:190px}
@@ -203,6 +241,17 @@ canvas{display:block;touch-action:none}
   .chrome,.rumspanel,.total{flex:0 0 auto}
   .topp{display:flex;padding:1rem 1.2rem;gap:1rem}
   .meny,.topp-slut{display:none}
+  /* HEMVIST ar tva tecken langre an referensens HAVEN: market plus
+     loggan spillde 4 px ut ur 390 px. Bada kortas har. */
+  .marke-namn{font-size:1.2rem;letter-spacing:.3em}
+  /* Pa mobil forsvann "SKAPAD AV" och loggan hamnade pa HEMVISTs egen
+     logorad — den last da som ett medvarumarke i stallet for en kredit.
+     Egen rad under headern i stallet, med texten kvar. */
+  .topp{flex-wrap:wrap}
+  .skapad{flex:0 0 100%;margin-left:0;padding:.7rem 0 0;
+          border-left:0;border-top:1px solid var(--linje)}
+  .skapad span{display:inline}
+  .skapad img{width:88px}
   .listning{width:auto;padding:0 1.2rem 1rem}
   .listning h1{font-size:2.1rem}
   .vaningar{flex-direction:row;gap:1.4rem;margin-top:1.4rem}
@@ -216,17 +265,39 @@ canvas{display:block;touch-action:none}
   .ljus,.ljus.flyttad{position:absolute;top:1rem!important;bottom:auto;right:1rem;
                       left:auto;height:auto;z-index:11}
   .ljus.flyttad{top:1rem}
+  .planskala{left:1rem;bottom:1rem;gap:1.1rem}
   .rumspanel{width:auto;margin:.8rem 1.2rem;order:-1}
   .botten{
     flex-direction:column;align-items:stretch;padding:.9rem 1.2rem;gap:.8rem;
     border-bottom:1px solid var(--linje);order:-2;
   }
   .lagen{align-self:flex-start}
-  .chips{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:.3rem;scrollbar-width:none}
+  /* Raden GAR att scrolla (uppmatt scrollWidth 566 mot 352), men inget
+     visade det: sista chipen kapades tvart och last som trasig layout.
+     En kantmask talar om att det finns mer at hoger. */
+  .chips{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:.3rem;
+         scrollbar-width:none;
+         -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 34px),transparent 100%);
+         mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 34px),transparent 100%)}
   .chips::-webkit-scrollbar{display:none}
   .aterstall{align-self:flex-start}
   .total{position:static;width:auto;margin:0 1.2rem 2rem}
 }
+/* Smala telefoner (360px och nedat): market plus krediten far plats
+   forst nar bada kortas. Mattt, inte gissat: vid 1,2rem lag toppraden
+   26px utanfor sidan pa 360px. */
+@media (max-width:400px){
+  .topp{gap:.75rem;padding:1rem}
+  .marke{gap:.6rem}
+  /* Det var undertexten som satte bredden, inte namnet: .marke har
+     flex-shrink:0, sa raden "Hem for en ljusare morgondag" tvingade
+     market till 258px hur mycket namnet an kroktes. */
+  .marke-under{display:none}
+  .marke-namn{font-size:1.05rem;letter-spacing:.22em}
+  .skapad img{width:78px}
+  .skapad{padding-top:.6rem}
+}
+@media (max-width:340px){ .marke-h{display:none} }
 /* Pekskarm: tryckytor minst 44px oavsett bredd. */
 @media (pointer:coarse){
   .chip,.aterstall,.ljus button,.lage,.vaning,.etikett{min-height:44px}
@@ -240,87 +311,102 @@ canvas{display:block;touch-action:none}
 <div id="scen"></div>
 <div class="skarm skarm-v"></div>
 <div class="skarm skarm-h"></div>
-<div id="etiketter"></div>
+<div class="skarm skarm-topp"></div>
+<div id="etiketter">
+  <div class="planskala" id="planskala" hidden>
+    <div class="norr">
+      <svg id="norrpil" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l5 16-5-4-5 4z"/></svg>
+      <span id="norr-n">N</span>
+    </div>
+    <div class="skalstock">
+      <span class="skalstock-strek" id="skalstock-strek"></span>
+      <span id="skalstock-text">1 m</span>
+    </div>
+  </div>
+</div>
 
 <header class="chrome topp">
   <div class="marke">
     <div class="marke-h">H</div>
     <div>
-      <div class="marke-namn">HAVEN</div>
-      <div class="marke-under">Homes for a brighter tomorrow</div>
+      <div class="marke-namn">HEMVIST</div>
+      <div class="marke-under">Mäklare i Stockholm</div>
     </div>
   </div>
   <nav class="meny">
-    <button type="button">Properties</button>
-    <button type="button">Buy</button>
-    <button type="button">Rent</button>
-    <button type="button">About</button>
-    <button type="button">Contact</button>
+    <button type="button">Till salu</button>
+    <button type="button">Köpa</button>
+    <button type="button">Hyra</button>
+    <button type="button">Om oss</button>
+    <button type="button">Kontakt</button>
   </nav>
-  <div class="topp-slut"><span class="topp-strek"></span>More than properties</div>
+  <div class="topp-slut"><span class="topp-strek"></span>Södermalm · Årsta · Enskede</div>
+  <a class="skapad" href="https://bahkobyra.se" target="_blank" rel="noopener">
+    <span>Skapad av</span>
+    <img src="./logga-bahko.svg" alt="Bahko Byrå" width="378" height="100">
+  </a>
 </header>
 
 <section class="chrome listning">
-  <div class="ort">London, SW6</div>
-  <h1>Riverside<br>Townhouse</h1>
+  <div class="ort">Stockholm, Årsta</div>
+  <h1>Radhus vid<br>Årstaviken</h1>
   <div class="fakta">
-    <span>3 Bed</span><span>2 Bath</span><span>Garden</span><span id="fakta-yta">—</span>
+    <span>5 rum och kök</span><span>3 sovrum</span><span>Trädgård</span><span id="fakta-yta">—</span>
   </div>
-  <p class="beskrivning">A modern townhouse with open living spaces and a private garden, perfectly located near the river.</p>
-  <div class="pris">&pound;1,250,000</div>
-  <button class="knapp-visning" type="button">Arrange a Viewing <span aria-hidden="true">&rarr;</span></button>
+  <p class="beskrivning">Ett modernt radhus med öppen planlösning och egen trädgård, ett stenkast från vattnet.</p>
+  <div class="pris"><span class="pris-etikett">Utgångspris</span>8 950 000 kr</div>
+  <button class="knapp-visning" type="button">Boka visning <span aria-hidden="true">&rarr;</span></button>
 
-  <div class="vaningar" role="group" aria-label="Floor">
-    <button class="vaning" type="button" data-vaning="0" aria-pressed="true"><span class="prick"></span>Ground Floor</button>
-    <button class="vaning" type="button" data-vaning="1" aria-pressed="false"><span class="prick"></span>First Floor</button>
+  <div class="vaningar" role="group" aria-label="Våning">
+    <button class="vaning" type="button" data-vaning="0" aria-pressed="true"><span class="prick"></span>Bottenvåning</button>
+    <button class="vaning" type="button" data-vaning="1" aria-pressed="false"><span class="prick"></span>Övervåning</button>
   </div>
 </section>
 
-<div class="chrome ljus" id="ljus" role="group" aria-label="Lighting">
+<div class="chrome ljus" id="ljus" role="group" aria-label="Ljussättning">
   <button type="button" data-ljus="dag" aria-pressed="true">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>Day</button>
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>Dag</button>
   <button type="button" data-ljus="natt" aria-pressed="false">
-    <svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></svg>Night</button>
+    <svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></svg>Natt</button>
 </div>
 
 <aside class="chrome rumspanel" id="rumspanel" hidden>
   <div class="rumspanel-topp">
-    <h2 id="panel-titel">Room</h2>
-    <button class="stang" id="panel-stang" type="button" aria-label="Close">&times;</button>
+    <h2 id="panel-titel">Rum</h2>
+    <button class="stang" id="panel-stang" type="button" aria-label="Stäng">&times;</button>
   </div>
   <canvas class="rums-bild" id="panel-bild" width="400" height="300"></canvas>
   <div class="rumspanel-kropp">
-    <h3 id="panel-namn">Room</h3>
     <div class="matt"><span id="panel-matt">—</span><span id="panel-area">—</span></div>
     <p id="panel-text"></p>
   </div>
 </aside>
 
 <div class="chrome botten">
-  <div class="lagen" role="group" aria-label="View mode">
+  <div class="lagen" role="group" aria-label="Visningsläge">
     <button class="lage" type="button" data-vy="3d" aria-pressed="true">
-      <svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>3D View</button>
+      <svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>3D-vy</button>
     <button class="lage" type="button" data-vy="plan" aria-pressed="false">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/><path d="M3 10h18M10 3v18"/></svg>Floor Plan</button>
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/><path d="M3 10h18M10 3v18"/></svg>Planritning</button>
   </div>
 
-  <div class="chips" id="chips" role="group" aria-label="Rooms"></div>
+  <div class="chips" id="chips" role="group" aria-label="Rum"></div>
 
   <button class="aterstall" id="aterstall" type="button">
-    <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 109-9"/><path d="M3 4v5h5"/></svg>Reset View</button>
+    <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 109-9"/><path d="M3 4v5h5"/></svg>Återställ vy</button>
 </div>
 
 <div class="total">
-  <div class="total-etikett">Total Area</div>
+  <div class="total-etikett">Boarea</div>
   <div class="total-tal" id="total-yta">—</div>
   <ul>
-    <li><svg viewBox="0 0 24 24"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 18h18M6 10V7h12v3"/></svg>3 Bedrooms</li>
-    <li><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4z"/><path d="M7 12V6a2 2 0 014 0"/></svg>2 Bathrooms</li>
-    <li><svg viewBox="0 0 24 24"><path d="M12 21V9M12 9a5 5 0 015-5 5 5 0 01-5 5zM12 12a5 5 0 00-5-5 5 5 0 005 5z"/></svg>Private Garden</li>
+    <li><svg viewBox="0 0 24 24"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6M3 18h18M6 10V7h12v3"/></svg>3 sovrum</li>
+    <li><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4z"/><path d="M7 12V6a2 2 0 014 0"/></svg>Badrum och gäst-wc</li>
+    <li><svg viewBox="0 0 24 24"><path d="M12 21V9M12 9a5 5 0 015-5 5 5 0 01-5 5zM12 12a5 5 0 00-5-5 5 5 0 005 5z"/></svg>Egen trädgård</li>
   </ul>
 </div>
 
-<div id="laddar"><div>Loading</div></div>
+<div id="laddar"><div>Laddar</div></div>
 
 <link rel="modulepreload" href="./vendor/three.module.min.js">
 <script type="importmap">

@@ -20,33 +20,39 @@ const TJOCK     = 0.12;   // vaggtjocklek
 const RUM = [
   // bottenvaning
   { id:'wc',      namn:'WC',          v:0, x0:0,   x1:1.8, z0:0,   z1:3.3, golv:'kakelvat',
-    text:'A practical ground-floor cloakroom just off the hall.' },
+    text:'Gäst-wc i direkt anslutning till hallen.' },
   { id:'hall',    namn:'Hall',        v:0, x0:1.8, x1:4.6, z0:0,   z1:3.3, golv:'stenljus',
-    text:'The entrance hall, with stairs rising to the first floor.' },
-  { id:'dining',  namn:'Dining',      v:0, x0:4.6, x1:8.2, z0:0,   z1:3.3, golv:'tra',
-    text:'A dining area that opens onto the living space, with a window to the street.' },
-  { id:'kitchen', namn:'Kitchen',     v:0, x0:0,   x1:4.0, z0:3.3, z1:7.1, golv:'kakel',
-    text:'An open kitchen with an island, fitted units and a view over the garden.' },
-  { id:'living',  namn:'Living Room', v:0, x0:4.0, x1:8.2, z0:3.3, z1:7.1, golv:'tra',
-    text:'A bright and spacious living area with floor-to-ceiling doors opening onto the garden.' },
+    text:'Entréhall med trappa upp till övervåningen.' },
+  { id:'dining',  namn:'Matplats',    v:0, x0:4.6, x1:8.2, z0:0,   z1:3.3, golv:'tra',
+    text:'Matplats i öppen förbindelse med vardagsrummet, fönster mot gatan.' },
+  { id:'kitchen', namn:'Kök',         v:0, x0:0,   x1:4.0, z0:3.3, z1:7.1, golv:'kakel',
+    text:'Öppet kök med köksö, fast inredning och utsikt över trädgården.' },
+  { id:'living',  namn:'Vardagsrum',  v:0, x0:4.0, x1:8.2, z0:3.3, z1:7.1, golv:'tra',
+    text:'Ljust vardagsrum med skjutpartier i full höjd ut mot trädgården.' },
   // overvaning
-  { id:'bed2',    namn:'Bedroom 2',   v:1, x0:0,   x1:3.4, z0:0,   z1:3.3, golv:'matta',
-    text:'A double bedroom overlooking the street, with built-in storage.' },
-  { id:'landing', namn:'Landing',     v:1, x0:3.4, x1:5.4, z0:0,   z1:3.3, golv:'stenljus',
-    text:'The first-floor landing, connecting all three bedrooms and the bathroom.' },
-  { id:'bath',    namn:'Bathroom',    v:1, x0:5.4, x1:8.2, z0:0,   z1:3.3, golv:'kakelvat',
-    text:'The family bathroom, with a bath, walk-in shower and heated floor.' },
-  { id:'bed1',    namn:'Bedroom 1',   v:1, x0:0,   x1:4.4, z0:3.3, z1:7.1, golv:'matta',
-    text:'The principal bedroom, running the full width of the garden side of the house.' },
-  { id:'bed3',    namn:'Bedroom 3',   v:1, x0:4.4, x1:8.2, z0:3.3, z1:7.1, golv:'matta',
-    text:'A third bedroom, equally suited as a study or nursery.' },
+  { id:'bed2',    namn:'Sovrum 2',    v:1, x0:0,   x1:3.4, z0:0,   z1:3.3, golv:'matta',
+    text:'Sovrum mot gatan, med inbyggd förvaring.' },
+  { id:'landing', namn:'Övre hall',   v:1, x0:3.4, x1:5.4, z0:0,   z1:3.3, golv:'stenljus',
+    text:'Övre hall som binder ihop de tre sovrummen och badrummet.' },
+  { id:'bath',    namn:'Badrum',      v:1, x0:5.4, x1:8.2, z0:0,   z1:3.3, golv:'kakelvat',
+    text:'Familjebadrum med badkar, dusch och golvvärme.' },
+  { id:'bed1',    namn:'Sovrum 1',    v:1, x0:0,   x1:4.4, z0:3.3, z1:7.1, golv:'matta',
+    text:'Huvudsovrum som går i husets fulla bredd mot trädgårdssidan.' },
+  { id:'bed3',    namn:'Sovrum 3',    v:1, x0:4.4, x1:8.2, z0:3.3, z1:7.1, golv:'matta',
+    text:'Tredje sovrum, fungerar lika bra som arbetsrum.' },
 ];
-const TRADGARD = { id:'garden', namn:'Garden', v:0, x0:0, x1:8.2, z0:9.3, z1:11.8, golv:'gras', ytaHela:38.5,
-  text:'A private landscaped garden with a paved terrace directly off the living room.' };
+/* Rutan sa 8,2 x 2,5 m men arean 38,5 m². 8,2 x 2,5 = 20,5. Alla tio
+   ovriga rum stamde pa decimalen. Grasmattans mesh gar i sjalva verket
+   fran z=7,1 till z=11,8, alltsa 4,7 m djup, och 8,2 x 4,7 = 38,54.
+   Ratt ar att lata rutan beskriva tomten som den faktiskt ar byggd, sa
+   forsvinner ocksa undantaget ytaHela. */
+const TRADGARD = { id:'garden', namn:'Trädgård', v:0, x0:0, x1:8.2, z0:7.1, z1:11.8, golv:'gras',
+  text:'Egen anlagd trädgård med stenlagd uteplats direkt utanför vardagsrummet.' };
 
 const HUS = { x0:0, x1:8.2, z0:0, z1:7.1 };
 const MITT = new THREE.Vector3((HUS.x0+HUS.x1)/2, 0, (HUS.z0+HUS.z1)/2);
 
+const dec   = v => v.toFixed(1).replace('.', ',');   // svenskt decimaltecken
 const area  = r => r.ytaHela ?? (r.x1-r.x0) * (r.z1-r.z0);
 const centrum = (r, y=0) => new THREE.Vector3((r.x0+r.x1)/2, y, (r.z0+r.z1)/2);
 const YTA_TOT = RUM.reduce((s,r) => s + area(r), 0);
@@ -130,11 +136,15 @@ function friYta() {
   const b = el.clientWidth, h = el.clientHeight;
   const bred = b > 860;
   const panelPa = !panel.hidden;
+  /* Pa smal skarm ligger knappraden och panelen UNDER modellrutan, inte
+     ovanpa den, sa de marginalerna ska inte reserveras har. Med 64 px
+     kvar i nederkant hamnade modellen hogt med ~90 px dod svart yta
+     under sig. Kvar uppe ar bara plats for Dag/Natt-kapseln. */
   return {
-    x0: bred ? 352 : 22,
-    x1: b - (bred ? (panelPa ? 372 : 48) : 22),
-    y0: bred ? 108 : 16,
-    y1: h - (bred ? 138 : 64),
+    x0: bred ? 352 : 16,
+    x1: b - (bred ? (panelPa ? 372 : 48) : 16),
+    y0: bred ? 108 : 62,
+    y1: h - (bred ? 138 : 14),
   };
 }
 
@@ -207,7 +217,96 @@ const M = {
   gron:    new THREE.MeshStandardMaterial({ color:0x3f6b34, roughness:1.0 }),
   stam:    new THREE.MeshStandardMaterial({ color:0x5a4634, roughness:1.0 }),
 };
+
 const BOX = new THREE.BoxGeometry(1,1,1);      // ateranvands till allt lador-aktigt
+/* ---------- ytstruktur ----------
+   Invandningen mot enfargade ytor stod i tre kritikrundor. Den vanliga
+   losningen, en texturbild med UV:er, gar inte att anvanda har: box()
+   delar EN enda boxgeometri mellan alla lador, sa samma UV 0-1 sitter pa
+   en 0,12 m tjock vagg och pa ett 4 m golv. Ett plankmonster skulle
+   strackas olika i varje rum.
+
+   Monstret raknas darfor ur VARLDSKOORDINATEN i shadern i stallet.
+   Skalan blir densamma pa varje yta oavsett hur ladan ar skalad, och det
+   kraver varken UV-arbete eller en enda bildfil: noll byte over natet,
+   noll texturuppladdningar.
+
+   Forsta forsoket gav varje monstertyp en egen programnyckel och
+   programantalet gick fran 17 till 62. Alla byggs visserligen bakom
+   laddskarmen, men de kostar kompileringstid pa en telefon och minne pa
+   GPU:n. Typen skickas darfor som en uniform, sa alla strukturerade ytor
+   delar ETT program. */
+const TYPER = { plank: 1, kakel: 2, kakelvat: 3, sten: 4, matta: 5, vagg: 6, gras: 7 };
+const STRUKTUR_GLSL = [
+  '  float m = 1.0;',
+  '  if (uTyp == 1) {',                       // parkett, 19 cm brador langs Z
+  '    float p = vVarld.z * 5.26;',
+  '    float kant = abs(fract(p) - 0.5) * 2.0;',
+  '    m *= 1.0 - 0.20 * smoothstep(0.80, 1.0, kant);',
+  '    m *= 0.93 + 0.13 * fract(sin(floor(p) * 12.9898) * 43758.5453);',
+  '    m *= 0.975 + 0.025 * sin(vVarld.x * 31.0 + floor(p));',
+  '  } else if (uTyp == 2) {',                // klinker, 30 cm platta
+  '    vec2 k = vVarld.xz * 3.33;',
+  '    vec2 e = abs(fract(k) - 0.5) * 2.0;',
+  '    m *= 1.0 - 0.16 * smoothstep(0.87, 1.0, max(e.x, e.y));',
+  '    m *= 0.97 + 0.03 * fract(sin(dot(floor(k), vec2(12.9898, 78.233))) * 43758.5453);',
+  '  } else if (uTyp == 3) {',                // vatrum, mindre platta, tydligare fog
+  '    vec2 k = vVarld.xz * 4.0;',
+  '    vec2 e = abs(fract(k) - 0.5) * 2.0;',
+  '    m *= 1.0 - 0.22 * smoothstep(0.84, 1.0, max(e.x, e.y));',
+  '  } else if (uTyp == 4) {',                // natursten, stora plattor
+  '    vec2 k = vVarld.xz * 2.2;',
+  '    vec2 e = abs(fract(k) - 0.5) * 2.0;',
+  '    m *= 1.0 - 0.14 * smoothstep(0.88, 1.0, max(e.x, e.y));',
+  '    m *= 0.92 + 0.16 * fract(sin(dot(floor(k), vec2(39.3468, 11.135))) * 24634.6345);',
+  '  } else if (uTyp == 5) {',                // matta, fint korn utan riktning
+  '    m *= 0.94 + 0.12 * fract(sin(dot(floor(vVarld.xz * 90.0), vec2(12.9898, 78.233))) * 43758.5453);',
+  '  } else if (uTyp == 6) {',                // vagg, morkare mot golvsockeln
+  '    m *= 0.90 + 0.10 * smoothstep(0.0, 0.30, fract(vVarld.y / 2.5));',
+  '    m *= 0.985 + 0.015 * fract(sin(dot(floor(vVarld.xy * 55.0), vec2(12.9898, 78.233))) * 43758.5453);',
+  '  } else if (uTyp == 7) {',                // grasmatta, grovre flackighet
+  '    m *= 0.90 + 0.18 * fract(sin(dot(floor(vVarld.xz * 19.0), vec2(12.9898, 78.233))) * 43758.5453);',
+  '    m *= 0.95 + 0.10 * fract(sin(dot(floor(vVarld.xz * 4.5), vec2(39.3468, 11.135))) * 24634.6345);',
+  '  }',
+  '  diffuseColor.rgb *= m;',
+].join('\n');
+
+function strukturera(mat, typ) {
+  const n = TYPER[typ];
+  if (!n) return mat;
+  mat.userData.struktur = typ;
+  mat.customProgramCacheKey = () => 'struktur';   // EN nyckel for alla typer
+  mat.onBeforeCompile = sh => {
+    sh.uniforms.uTyp = { value: n };
+    sh.vertexShader = sh.vertexShader
+      .replace('#include <common>',
+               '#include <common>\nvarying vec3 vVarld;')
+      .replace('#include <begin_vertex>',
+               '#include <begin_vertex>\n  vVarld = (modelMatrix * vec4(transformed, 1.0)).xyz;');
+    sh.fragmentShader = sh.fragmentShader
+      .replace('#include <common>',
+               '#include <common>\nvarying vec3 vVarld;\nuniform int uTyp;')
+      .replace('#include <map_fragment>',
+               '#include <map_fragment>\n{\n' + STRUKTUR_GLSL + '\n}');
+  };
+  return mat;
+}
+
+/* Material.clone() tar INTE med onBeforeCompile. Rumsgolven klonas for att
+   kunna markeras var for sig, sa strukturen maste sattas om pa klonen. */
+function klonaYta(nyckel) {
+  const k = M[nyckel].clone();
+  return strukturera(k, M[nyckel].userData.struktur);
+}
+
+/* Vilken yta far vilket monster. Golv och vaggar bar intrycket; mobler,
+   glas och karmar lamnas rena sa de laser som foremal och inte som yta. */
+for (const [nyckel, typ] of [
+  ['tra', 'plank'], ['kakel', 'kakel'], ['kakelvat', 'kakelvat'],
+  ['stenljus', 'sten'], ['sten', 'sten'], ['matta', 'matta'],
+  ['vagg', 'vagg'], ['vaggYtt', 'vagg'], ['gras', 'gras'],
+]) strukturera(M[nyckel], typ);
+
 const box = (m, w,h,d, x,y,z) => {
   const o = new THREE.Mesh(BOX, m);
   o.scale.set(w,h,d); o.position.set(x,y,z);
@@ -219,6 +318,9 @@ const box = (m, w,h,d, x,y,z) => {
    En vagg ar en linje fran A till B. Oppningar anges som stracka
    langs vaggen. Doerr gar till golvet, fonster har brostning och
    overstycke. Enklare an CSG och tillrackligt for en dollhouse. */
+/* Innervaggarna ar kapade till 1,05 m for dollhouse-vyn. Samlade har
+   sa forhandsbilden kan resa dem till full hojd under sin rendering. */
+const innerVaggar = [];
 function vagg(grupp, ax, az, bx, bz, oppningar = [], ytter = false, hojd = VH) {
   const dx = bx-ax, dz = bz-az;
   const lang = Math.hypot(dx, dz);
@@ -228,6 +330,7 @@ function vagg(grupp, ax, az, bx, bz, oppningar = [], ytter = false, hojd = VH) {
   h.position.set(ax, 0, az);
   h.rotation.y = -vinkel;
   h.userData.arVagg = true;   // taggas har, inte gissas i efterhand
+  if (hojd === VH_INRE) innerVaggar.push(h);
 
   const sorterade = [...oppningar].sort((a,b) => a.t0-b.t0);
   let t = 0;
@@ -386,7 +489,7 @@ function byggVaning(vi) {
     // golv, ett plan per rum sa varje rum kan ha eget material och markeras
     const golv = new THREE.Mesh(
       new THREE.BoxGeometry(r.x1-r.x0, 0.08, r.z1-r.z0),
-      M[r.golv].clone()
+      klonaYta(r.golv)
     );
     golv.position.set((r.x0+r.x1)/2, -0.04, (r.z0+r.z1)/2);
     golv.receiveShadow = true;
@@ -431,7 +534,7 @@ byggVaning(1);
 const utegrupp = new THREE.Group();
 {
   const t = TRADGARD;
-  const gras = new THREE.Mesh(new THREE.BoxGeometry(t.x1-t.x0, 0.06, 4.7), M.gras.clone());
+  const gras = new THREE.Mesh(new THREE.BoxGeometry(t.x1-t.x0, 0.06, 4.7), klonaYta('gras'));
   gras.position.set((t.x0+t.x1)/2, -0.03, 9.45);
   gras.receiveShadow = true;
   gras.userData.rum = t;
@@ -574,14 +677,26 @@ function rumById(id) { return id === 'garden' ? TRADGARD : RUM.find(r => r.id ==
 /* Rumsvyn siktar om mot rummet men behaller HELA huset i bild.
    Fokus skapas genom att dampa ovriga rum, inte genom att zooma in
    tills huset skar ut genom alla fyra bildkanter. */
+const RAKT_UPP = new THREE.Vector3(0, 1, 0);
 function rumsKamera(r) {
   const c = centrum(r, r.v * VH);
   const ute = r.id === 'garden';
-  const m = ute ? 0.8 : 1.6;            // sa mycket granne som foljer med
+  /* I planritningen ska ett rumsval panorera och zooma i TOPPVYN. Forut
+     anvandes alltid 3D-riktningen, sa ett klick i ritningen slangde
+     kameran ner i en lutande perspektivbild medan knappen PLANRITNING,
+     norrpilen och skalstocken stod kvar. Stocken pastod da "2 m = 131 px"
+     over en bild utan enhetlig skala — en falsk uppgift, inte bara en
+     ful. Modellen korde dessutom rakt in i listningsspalten. */
+  const plan = vy === 'plan';
+  /* Planvyn behover mer granne an 3D-vyn: med 1,1 m blev ett rumsval en
+     narbild dar resten av huset la sig over listningsspalten i stallet
+     for att lasa som en ritning av ett hus. */
+  const m = plan ? 2.6 : (ute ? 0.8 : 1.6);   // sa mycket granne som foljer med
   const horn = hornForLada(
     r.x0 - m, r.v * VH - 0.2, r.z0 - m,
-    r.x1 + m, r.v * VH + (ute ? 2.2 : VH + 0.3), r.z1 + m
+    r.x1 + m, r.v * VH + (plan ? 0.2 : ute ? 2.2 : VH + 0.3), r.z1 + m
   );
+  if (plan) return ramaIn(c.clone().setY(0), RAKT_UPP, horn);
   return ramaIn(c.clone().setY(c.y + (ute ? 0.2 : 0.8)), RIKT, horn);
 }
 /* Vaningsbyte ska landa i en HELVY av den vaningen, inte i ett rumslage. */
@@ -590,6 +705,10 @@ function vaningsKamera(v) {
 }
 
 const SVART = new THREE.Color(0x0d0d0d);
+/* Rumsytor som ska glo aven nar de INTE ar valda. Grasmattan i natt
+   ar den enda posten idag. Utan den nollstallde markera() glodet vid
+   varje klick. */
+const nattGlod = new Map();
 function markera(id) {
   for (const [rid, mesh] of rumsYtor) {
     const pa = rid === id;
@@ -598,7 +717,7 @@ function markera(id) {
     // vilket i en bostadsannons laser som dod grasmatta.
     mesh.material.color.copy(mesh.userData.grund);
     if (!pa && id) mesh.material.color.lerp(SVART, 0.5);
-    mesh.material.emissive.setHex(pa ? 0x3a2c0a : 0x000000);
+    mesh.material.emissive.setHex(pa ? 0x3a2c0a : (nattGlod.get(rid) ?? 0x000000));
   }
   ritaNu();
   for (const { el, rum } of etiketter) el.dataset.vald = rum.id === id ? '1' : '0';
@@ -609,13 +728,18 @@ function markera(id) {
 const panel = document.getElementById('rumspanel');
 function visaPanel(r) {
   document.getElementById('panel-titel').textContent = r.namn;
-  document.getElementById('panel-namn').textContent = r.namn;
   document.getElementById('panel-matt').textContent =
-    `${(r.x1-r.x0).toFixed(1)} m × ${(r.z1-r.z0).toFixed(1)} m`;
-  document.getElementById('panel-area').textContent = `${area(r).toFixed(1)} m²`;
+    `${dec(r.x1-r.x0)} m × ${dec(r.z1-r.z0)} m`;
+  document.getElementById('panel-area').textContent = `${dec(area(r))} m²`;
   document.getElementById('panel-text').textContent = r.text;
-  ritaForhandsbild(r);
+  /* Panelen visades FORST efter att forhandsbilden renderats. Den
+     renderingen ar en extra scenritning plus en hemhamtning av pixlar,
+     och den kostade uppmatt 820-1 310 ms innan panelen syntes — en hel
+     kameraflytt av dod tid efter att kameran redan landat. Panelen
+     kommer nu nar kameran landar, precis som mekanism 2 sager, och
+     bilden fylls i direkt efteron. */
   panel.hidden = false;
+  ritaForhandsbild(r);
   panelRekt = panel.getBoundingClientRect();
   document.getElementById('ljus').classList.add('flyttad');
 }
@@ -639,7 +763,12 @@ function aterstallVy() {
   valdtRum = null;
   markera(null);
   doljPanel();
-  const v = aktuellVaning === 1 ? vaningsKamera(1) : ramaIn(TOMT_MITT.clone());
+  /* Aterstall vy gav 3D-posen aven nar man stod i planritningen: lagets
+     knapp sa PLANRITNING men bilden var inte langre uppifran, och det
+     gick inte att ta sig tillbaka. */
+  const v = vy === 'plan'
+    ? ramaIn(new THREE.Vector3(TOMT_MITT.x, 0, TOMT_MITT.z), RAKT_UPP)
+    : aktuellVaning === 1 ? vaningsKamera(1) : ramaIn(TOMT_MITT.clone());
   flytta(v.pos, v.mal);
 }
 
@@ -668,6 +797,23 @@ function ritaForhandsbild(r) {
   forhandsKamera.updateProjectionMatrix();
 
   const varTaket = tak.visible; tak.visible = false;
+  /* Innervaggarna slutar pa 1,05 m. Fran kamerahojd inne i rummet
+     betyder det att allt ovanfor dem ar bakgrund: forhandsbilden fick
+     en svart remsa overst, uppmatt till medelljus 1-11 pa de forsta
+     30 raderna. Vaggarna stalls upp i full hojd bara under den har
+     renderingen, sa bilden visar ett rum och inte en modell. */
+  const inreSkala = ute ? 1 : VH / VH_INRE;
+  if (inreSkala !== 1) for (const h of innerVaggar) h.scale.y = inreSkala;
+  /* Rummet har inget tak i dollhouse-vyn, sa strimman ovanfor vaggarna
+     ar scenens bakgrund. I helbilden ska den vara nastan svart; i en
+     bild tagen INNE i ett rum ska den lasa som ett tak. */
+  const varBak = scen.background;
+  /* Himlen i tradgardens forhandsbild var morkbla aven i dagslage:
+     uppmatt 11,18,30 mot sidbakgrundens 24, alltsa morkare an sidan
+     bakom den, i den enda bild som saljer "Egen tradgard". */
+  const morkt = ljuslage === 'natt';
+  scen.background = new THREE.Color(
+    ute ? (morkt ? 0x2f4460 : 0x9fc2e0) : (morkt ? 0x4a4038 : 0x8a8175));
   const varExp = renderare.toneMappingExposure;
   const varHim = himmel.intensity;
   const varHimFarg = himmel.color.getHex();
@@ -678,15 +824,29 @@ function ritaForhandsbild(r) {
   himmel.color.setHex(0xffffff);
   renderare.toneMappingExposure = 1.0;
 
+  /* Skuggkartan ritas inte om varje bildruta (autoUpdate = false); den
+     ritas nar nagon satt needsUpdate, och da av NASTA rendering. Nasta
+     rendering var ibland den har — med innervaggarna uppresta till full
+     hojd. Da backades en skuggkarta av fel geometri in, och den blev
+     kvar pa skarmen tills nagot annat begarde en ny.
+     Uppmatt: efter bara sattLjus('dag') pa en orord sida andrades 968
+     pixlar, maxavvikelse 93 av 255 — vaggskuggorna pa golvet kropp ihop.
+     Samma fel gav 1 380 andrade pixlar efter en natt/dag-vanda.
+     Forhandsbilden ror darfor inte skuggkartan alls. */
+  const varSkuggBehov = renderare.shadowMap.needsUpdate;
+  renderare.shadowMap.needsUpdate = false;
   renderare.setRenderTarget(mal);
   renderare.render(scen, forhandsKamera);
   renderare.readRenderTargetPixels(mal, 0, 0, 400, 300, pixlar);
   renderare.setRenderTarget(null);
+  renderare.shadowMap.needsUpdate = varSkuggBehov;
 
   himmel.intensity = varHim;
   himmel.color.setHex(varHimFarg);
   renderare.toneMappingExposure = varExp;
   tak.visible = varTaket;
+  scen.background = varBak;
+  if (inreSkala !== 1) for (const h of innerVaggar) h.scale.y = 1;
 
   const cv = document.getElementById('panel-bild');
   const ctx = cv.getContext('2d');
@@ -776,6 +936,43 @@ function sattLjus(l) {
   sol.shadow.camera.updateProjectionMatrix();
   scen.background = new THREE.Color(natt ? 0x0d0f14 : 0x181818);
   M.gras.color.setHex(natt ? 0x24331d : 0x4a6b3a);
+  /* Uppmatt: grasets pixlar lag pa 0,0,0 i natt medan bakgrunden lag
+     pa 29,29,29. Marken var alltsa morkare an himlen och tradgarden
+     last som ett hal i bilden — en tredjedel av produkten forsvann i
+     det ena av tva lagen. Ett svagt manskensvarde i materialens
+     egenglod ger tomten tillbaka sin siluett. Egenglod och inte ett
+     nytt ljus: varje ljus i scenen kostar per bildpunkt och bygger
+     fler shaderprogram. */
+  /* Grasmattan anvander en KLON av M.gras: varje rumsyta har eget
+     material for att kunna markeras. Att satta M.gras raknade darfor
+     aldrig for sjalva mattan — hacken och tradkronorna tandes i natt
+     medan mattan lag kvar pa 0,0,0, vilket ar precis det hal i bilden
+     som skulle atgardas. Klonen satts separat har. */
+  const grasYta = rumsYtor.get('garden');
+  if (grasYta) {
+    grasYta.userData.grund.setHex(natt ? 0x25341e : 0x4a6b3a);
+    grasYta.material.color.copy(grasYta.userData.grund);
+    nattGlod.clear();
+    if (natt) nattGlod.set('garden', 0x26392c);
+  }
+  /* Aven i dagslage lag tomtens framkant under bakgrunden: ett
+     sammanhangande band pa ~35 px matte ljushet 9 mot bakgrundens 24.
+     Mekanism 8 galler bada lagena. Ett forsok att satta egenglodet i
+     materialets konstruktor gav inget — raderna harunder skriver over
+     det vid varje ljusbyte, sa provet var ogiltigt, inte hypotesen.
+     Dagsvardena satts darfor har, pa samma stalle. */
+  M.gras.emissive.setHex(natt ? 0x26392c : 0x000000);
+  M.hack.emissive.setHex(natt ? 0x223a28 : 0x0c1109);
+  M.gron.emissive.setHex(natt ? 0x24402a : 0x0c1309);
+  M.stam.emissive.setHex(natt ? 0x2a211a : 0x241c15);
+  M.sten.emissive.setHex(natt ? 0x3a3f49 : 0x0e0f12);
+  /* Forsta atgarden tande tomten men inte HUSET. Uppmatt i natt:
+     fasaden 0,0,0 mot bakgrundens 13,15,20 — 18,7 % av modellytan lag
+     under den angransande bakgrunden. Resultatet var ett upplyst
+     innanmate som svavade utan skal. Samma mekanism, samma atgard. */
+  M.vaggYtt.emissive.setHex(natt ? 0x232833 : 0x000000);
+  M.vagg.emissive.setHex(natt ? 0x1c2028 : 0x000000);
+  M.ram.emissive.setHex(natt ? 0x191c22 : 0x000000);
   /* Ta UT lamporna ur scenen i dagslage. Att bara nollstalla dem
      tar inte bort kostnaden — de ligger kvar i ritprogrammet. */
   for (const p of nattljus) {
@@ -786,6 +983,7 @@ function sattLjus(l) {
   }
   renderare.toneMappingExposure = natt ? 1.25 : 1.05;
   uppdateraSkuggor();
+  markera(valdtRum);   // skriver in nattGlod pa ytorna
   for (const b of document.querySelectorAll('.ljus button'))
     b.setAttribute('aria-pressed', String(b.dataset.ljus === l));
 }
@@ -833,9 +1031,51 @@ for (const b of document.querySelectorAll('.ljus button'))
 
 /* ---------- listningssiffror, raknade ur geometrin ---------- */
 const kvm = YTA_TOT;
-const sqft = Math.round(kvm * 10.7639);
-document.getElementById('total-yta').textContent = `${sqft.toLocaleString('en-GB')} sq ft (${Math.round(kvm)} m²)`;
-document.getElementById('fakta-yta').textContent = `${sqft.toLocaleString('en-GB')} sq ft`;
+document.getElementById('total-yta').textContent = `${Math.round(kvm)} m²`;
+document.getElementById('fakta-yta').textContent = `${Math.round(kvm)} m²`;
+
+/* ---------- skalstock och norrpil ----------
+   En ritning utan skala gar inte att lasa mattet ur, och utan norrpil
+   vet man inte at vilket hall huset ligger. Bada mats ur kameran i
+   stallet for att ritas pa fri hand, sa de stammer aven efter zoom.
+   Norr ar definierat som -Z, alltsa mot gatan. */
+const NORR = new THREE.Vector3(0, 0, -1);
+const _sp = new THREE.Vector3();
+function skarmPunkt(x, z) {
+  _sp.set(x, 0, z).project(kamera);
+  return { x: (_sp.x + 1) / 2 * innerWidth, y: (1 - _sp.y) / 2 * innerHeight };
+}
+function uppdateraPlanskala() {
+  const lager = document.getElementById('planskala');
+  if (!lager) return;
+  if (vy !== 'plan') { lager.hidden = true; return; }
+  /* Stocken valjer ett jamnt metertal (1, 2, 5, 10) som far plats pa
+     150 px. Mitt i en kameraflytt passerar skalan grannvardet och
+     stocken HOPPAR: uppmatt 142 px "2 m" vid t=0,45 och 77 px "1 m"
+     vid t=0,50, alltsa 65 px borta i ett steg medan hela planen glider.
+     Tva saker ror sig, och det som hoppar drar blicken fran det som
+     glider. Stocken raknas darfor bara nar kameran star stilla, och
+     dyker upp nar flytten landat — samma regel som rumspanelen. */
+  if (tween) return;
+  const a = skarmPunkt(TOMT_MITT.x, TOMT_MITT.z);
+  const b = skarmPunkt(TOMT_MITT.x + 1, TOMT_MITT.z);
+  const pxPerMeter = Math.hypot(b.x - a.x, b.y - a.y);
+  if (!pxPerMeter || !isFinite(pxPerMeter)) return;
+  let m = 1;
+  for (const k of [1, 2, 5, 10]) if (k * pxPerMeter <= 150) m = k;
+  document.getElementById('skalstock-strek').style.width = Math.round(m * pxPerMeter) + 'px';
+  document.getElementById('skalstock-text').textContent = m + ' m';
+  const n = skarmPunkt(TOMT_MITT.x + NORR.x, TOMT_MITT.z + NORR.z);
+  // pilen pekar rakt upp vid rotation 0, alltsa mot minskande skarm-y
+  const vinkel = Math.atan2(n.x - a.x, -(n.y - a.y));
+  document.getElementById('norrpil').style.transform = `rotate(${vinkel.toFixed(4)}rad)`;
+  /* Bokstaven ska folja pilspetsen men sjalv sta upp. Den flyttas alltsa
+     till spetsen utan att roteras — tidigare satt den still under
+     stjarten, och pilen last som en pappersflygplansikon. */
+  document.getElementById('norr-n').style.transform =
+    `translate(${(Math.sin(vinkel)*17).toFixed(1)}px, ${(-Math.cos(vinkel)*17).toFixed(1)}px)`;
+  lager.hidden = false;
+}
 
 /* ---------- storlek ---------- */
 function passa() {
@@ -843,8 +1083,18 @@ function passa() {
   const b = el.clientWidth, h = el.clientHeight;
   kamera.aspect = b / h;
   kamera.updateProjectionMatrix();
-  renderare.setSize(b, h, false);
+  /* setSize(..., false) later bli att satta dukens CSS-storlek. Da
+     lagger elementet ut sig pa sina ATTRIBUTPIXLAR, alltsa CSS-matten
+     gangat med bildpunktsforhallandet. Pa en skarm med DPR 2 blev duken
+     2800x1750 CSS-px i en ruta pa 1600x1000: halva huset hamnade utanfor
+     bild, och pa mobil vaxte vyn till 682 px sa hela sidan zoomade ut.
+     Det gallde varje retinaskarm och varje telefon — precis den publik
+     en delad prototyp far. All matning i de tre kritikrundorna gjordes i
+     DPR 1 och sag darfor aldrig felet.
+     Bildpunktsforhallandet satts forst: setPixelRatio kallar setSize
+     internt med de vanden den redan har. */
   renderare.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+  renderare.setSize(b, h, false);
   raknaHelvy();   // inramningen beror pa bildens proportion
   matCanvas();
   ritaNu();
@@ -859,20 +1109,51 @@ const tmp = new THREE.Vector3();
 let canvasRekt = null;
 let etikettLagePlan = false;
 let panelRekt = null;
-function matCanvas() { canvasRekt = renderare.domElement.getBoundingClientRect(); }
+function matCanvas() { canvasRekt = renderare.domElement.getBoundingClientRect(); matEtiketter(); }
+
+/* Etiketternas halva bredd och hojd, i HELA pixlar.
+   Forut centrerades de med CSS translate(-50%, -50%). Den procenten
+   raknas pa elementets faktiska bredd, som inte ar ett helt antal
+   pixlar, och nar en etikett doljs och visas igen — vilket sker vid
+   varje vaningsbyte — landar textrenderingen en halv pixel fran forra
+   gangen. Det var hela forklaringen till de 1 341 pixlar som skilde
+   laddlaget fran det stabila laget: ingenting i 3D-scenen andrades, bara
+   fem etikettrutor som flyttade sig en halv pixel. */
+/* Forsta matningen sker innan webbtypsnittet hunnit laddas, sa
+   etiketterna far bredder ur reservtypsnittet: "Vardagsrum" matte 42
+   halvpixlar i stallet for 44. Nar Inter sedan landar ritas texten om
+   men det cachade vardet star kvar, och etiketten ligger nagra pixlar
+   fel anda tills nagot rakar mata om. Det var det som visade sig som
+   "driften efter ett vaningsbyte": ingenting i 3D-scenen andrades, bara
+   fem etikettrutor som hoppade pa plats. */
+if (document.fonts && document.fonts.ready)
+  document.fonts.ready.then(() => { matEtiketter(); ritaNu(); });
+
+function matEtiketter() {
+  for (const { el } of etiketter) {
+    const var_ = el.style.display;
+    el.style.display = '';
+    el.dataset.hw = String(Math.round(el.offsetWidth / 2));
+    el.dataset.hh = String(Math.round(el.offsetHeight / 2));
+    el.style.display = var_;
+  }
+}
 function placeraEtiketter() {
   const r = canvasRekt || (canvasRekt = renderare.domElement.getBoundingClientRect());
   // Etiketter som hamnar under panelen kapades mitt i ordet ("...ining").
   // De doljs i stallet — panelen sager redan vilket rum det galler.
   const pr = panel.hidden ? null : panelRekt;
+  uppdateraPlanskala();   // maste kallas i BADA lagen, annars doljs den aldrig
   // I planvyn far etiketten med kvadratmetern — det ar den siffran
   // en planritning finns for att svara pa.
   if (vy === 'plan' && !etikettLagePlan) {
-    for (const { el, rum } of etiketter) el.innerHTML = `${rum.namn}<br><span style="opacity:.6">${area(rum).toFixed(1)} m²</span>`;
+    for (const { el, rum } of etiketter) el.innerHTML = `${rum.namn}<br><span style="opacity:.6">${dec(area(rum))} m²</span>`;
     etikettLagePlan = true;
+    matEtiketter();
   } else if (vy !== 'plan' && etikettLagePlan) {
     for (const { el, rum } of etiketter) el.textContent = rum.namn;
     etikettLagePlan = false;
+    matEtiketter();
   }
   for (const { el, rum } of etiketter) {
     if (el.style.display === 'none') continue;
@@ -882,11 +1163,23 @@ function placeraEtiketter() {
     const bakom = tmp.z > 1;
     const under = pr && x > pr.left - 70 && y > pr.top - 20 && y < pr.bottom + 20;
     const smal = r.width < 700;
-    const litet = area(rum) < 10 && rum.id !== 'garden';
-    const dold = bakom || under || (smal && litet && valdtRum !== rum.id);
+    /* Pa mobil last etiketterna som en klunga: fyra rutor a 44 px over en
+       modell pa 295x212 px tacker en femtedel av den och overlappar
+       varandra. Pa smal skarm visas darfor bara det valda rummets
+       etikett — chipsraden ligger direkt under modellen och bar
+       navigeringen dar. */
+    const klunga = smal && rum.id !== valdtRum;
+    /* "Tradgard" hamnade ovanpa chipen "Matplats" i ovanvaningsvyn.
+       Etiketter som nar ner i knappradens omrade doljs. */
+    const iKnappraden = y > r.top + r.height - 86;
+    /* Samma sak at vanster: i planvyn hamnade "Tradgard" ovanpa rubriken
+       "Radhus vid Arstaviken". Listningsspalten ar 340 px pa bred skarm. */
+    const iSpalten = r.width > 860 && x < r.left + 340;
+    const dold = bakom || under || iKnappraden || iSpalten || klunga;
     el.style.opacity = dold ? '0' : '1';
     el.style.pointerEvents = dold ? 'none' : 'auto';
-    el.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0) translate(-50%, -50%)`;
+    el.style.transform =
+      `translate3d(${Math.round(x) - (+el.dataset.hw || 0)}px, ${Math.round(y) - (+el.dataset.hh || 0)}px, 0)`;
   }
 }
 
@@ -923,12 +1216,33 @@ raknaHelvy();
   sattVy('plan');    renderare.compile(scen, kamera);   // dag + plan
   sattLjus('natt');  renderare.compile(scen, kamera);   // natt + plan
   sattVy('3d');      renderare.compile(scen, kamera);   // natt + 3d
-  sattVy(varVy); sattLjus(varLjus);
 
-  /* Forsta forhandsbilden skapar render-malet och gor sin forsta
-     hemhamtning av pixlar. Den engangskostnaden tas har, bakom
-     laddskarmen, i stallet for vid forsta rumsklicket. */
-  ritaForhandsbild(RUM[0]);
+  /* Forhandsbilden renderas till ett WebGLRenderTarget, och ett
+     rendermal bygger EGNA shaderprogram. Den varmdes tidigare bara i
+     dagslage. Uppmatt: forsta rumsklicket i MORKER kompilerade tva nya
+     program mitt i demot, 11 -> 13. Bada ljuslagena varms nu, och
+     engangskostnaden for rendermalet tas har bakom laddskarmen. */
+  ritaForhandsbild(RUM[0]);              // natt + 3d
+  sattVy('plan');    ritaForhandsbild(RUM[0]);   // natt + plan
+  sattLjus('dag');   ritaForhandsbild(RUM[0]);   // dag + plan
+  sattVy('3d');      ritaForhandsbild(RUM[0]);   // dag + 3d
+
+  /* Overvaningens geometrier laddades upp till GPU:n forst nar man
+     bytte vaning: compile() gar bara igenom SYNLIGA objekt, sa vaning 1
+     betalade sin uppladdning mitt i demot (11 -> 16 geometrier).
+     Bada vaningarna visas darfor en gang har, bakom laddskarmen. */
+  const varVaning = aktuellVaning;
+  byggVy(1);
+  renderare.compile(scen, kamera);
+  /* En RIKTIG rendering, inte bara compile(): skuggkartan backas forst
+     nar nagot renderas. Utan den skilde sig laddlaget fran det lage man
+     kom tillbaka till efter ett vaningsbyte med 1 341 pixlar. */
+  renderare.render(scen, kamera);
+  ritaForhandsbild(RUM.find(r => r.v === 1));
+  byggVy(varVaning);
+  renderare.render(scen, kamera);
+
+  sattVy(varVy); sattLjus(varLjus);
 
   tween = null;
   const s2 = ramaIn(TOMT_MITT.clone());
@@ -994,12 +1308,11 @@ window.__demo = {
     });
   },
   ljusIScenen() { let n = 0; scen.traverse(o => { if (o.isLight) n++; }); return n; },
-  /* Ren JS-kostnad per bildruta, utan GPU: matbar aven har. */
-  jsKostnad(varv = 60) {
-    const t0 = performance.now();
-    for (let i = 0; i < varv; i++) { uppdateraTween(performance.now()); kontroller.update(); placeraEtiketter(); }
-    return +((performance.now() - t0) / varv).toFixed(3);   // ms per bildruta
-  },
+  /* jsKostnad() ar struken. Den gjorde noll ritanrop och spretade 5x
+     mellan korningar pa samma sida — brus, inte en matning, och den
+     rapporterades anda som "0,04 ms per bildruta". En siffra som ingen
+     kan reproducera hor inte hemma i en matkrok. */
+  jsKostnad() { return { ogiltig: true, skal: 'renderar inte — matte brus, struken' }; },
   lage() {
     return { vy, vaning: aktuellVaning, ljus: ljuslage, valdtRum,
              panelSynlig: !panel.hidden, tweenAktiv: !!tween,
