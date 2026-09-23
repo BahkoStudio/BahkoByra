@@ -38,13 +38,13 @@ const REGLAGE = [
   },
   {
     id: 'okning',
-    etikett: 'Fler förfrågningar med en sida som säljer',
+    etikett: 'Fler kunder med ny hemsida',
     min: 5,
     max: 30,
     steg: 1,
     start: 12,
-    visa: (v) => `${v} %`,
-    not: 'En av våra kunder fick 12 %. Dra ner om du vill räkna försiktigt.',
+    visa: (v) => `+${v} %`,
+    not: 'Välj själv. En av våra kunder fick 12 % fler förfrågningar med sin nya hemsida.',
   },
 ];
 
@@ -89,23 +89,23 @@ export default function RoiKalkyl() {
         ))}
       </div>
 
-      {/* Ett svar, två tal: hur många jobb, och vad de är värda. Året först,
-          för det är där det blir kännbart. Ingen jargong, ingen "konkurrent". */}
+      {/* Svaret i pengar: månad och år bredvid varandra. Jobben i en mening under,
+          som ett konkret exempel. Inga gissningar som besökaren måste tolka. */}
       <div className={styles.resultat} aria-live="polite">
-        <p className={styles.resEtikett}>Det här missar ni varje år</p>
+        <p className={styles.resEtikett}>Så mycket missar ni i dag</p>
         <div className={styles.resGrid}>
           <div>
-            <strong className={styles.resTal}>{jobbAr > 0 ? jobbAr : 'Under 1'}</strong>
-            <span className={styles.resUnder}>jobb som går till en annan firma</span>
+            <strong className={styles.resTal}>{kr.format(manad)} kr</strong>
+            <span className={styles.resUnder}>i månaden</span>
           </div>
           <div>
             <strong className={styles.resTal}>{kr.format(ar)} kr</strong>
-            <span className={styles.resUnder}>som ni kunde ha tjänat</span>
+            <span className={styles.resUnder}>om året</span>
           </div>
         </div>
         <p className={styles.resAr}>
-          Kunden letade efter någon som er, men hittade inte er, eller hörde aldrig av sig.
-          Med en sida som säljer kan de jobben bli era.
+          Det är {jobbAr > 0 ? jobbAr : 'under 1'} jobb om året som går till en annan firma i dag.
+          Med en ny hemsida kan de bli era.
         </p>
       </div>
 
