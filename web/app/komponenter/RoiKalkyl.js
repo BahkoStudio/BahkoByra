@@ -20,16 +20,16 @@ const kr = new Intl.NumberFormat('sv-SE', { maximumFractionDigits: 0 });
 const REGLAGE = [
   {
     id: 'jobb',
-    etikett: 'Jobb ni får i månaden i dag',
+    etikett: '1. I dag får ni',
     min: 1,
     max: 40,
     steg: 1,
     start: 8,
-    visa: (v) => `${v} st`,
+    visa: (v) => `${v} jobb i månaden`,
   },
   {
     id: 'varde',
-    etikett: 'Vad ett jobb är värt i snitt',
+    etikett: '2. Ett jobb är värt i snitt',
     min: 2000,
     max: 150000,
     steg: 1000,
@@ -38,13 +38,12 @@ const REGLAGE = [
   },
   {
     id: 'okning',
-    etikett: 'Fler kunder med ny hemsida',
+    etikett: '3. Med ny hemsida får ni',
     min: 5,
     max: 30,
     steg: 1,
     start: 12,
-    visa: (v) => `+${v} %`,
-    not: 'Välj själv. En av våra kunder fick 12 % fler förfrågningar med sin nya hemsida.',
+    visa: (v) => `${v} % fler kunder`,
   },
 ];
 
@@ -56,13 +55,12 @@ export default function RoiKalkyl() {
   const extraJobb = (v.jobb * v.okning) / 100;
   const manad = extraJobb * v.varde;
   const ar = manad * 12;
-  const jobbAr = Math.round(extraJobb * 12);
 
   return (
     <div className={styles.kort}>
       <p className={styles.eyebrow}>Räkna själv</p>
       <h2 className={styles.rubrik}>
-        Hur många jobb <span className={styles.accent}>missar ni?</span>
+        Vad kan en ny hemsida <span className={styles.accent}>ge er?</span>
       </h2>
 
       <div className={styles.reglage}>
@@ -89,24 +87,20 @@ export default function RoiKalkyl() {
         ))}
       </div>
 
-      {/* Svaret i pengar: månad och år bredvid varandra. Jobben i en mening under,
-          som ett konkret exempel. Inga gissningar som besökaren måste tolka. */}
+      {/* Svaret: vad steg 1 till 3 ger i kronor, per månad och per år. */}
       <div className={styles.resultat} aria-live="polite">
-        <p className={styles.resEtikett}>Så mycket missar ni i dag</p>
+        <p className={styles.resEtikett}>Så mycket mer kan ni tjäna</p>
         <div className={styles.resGrid}>
           <div>
-            <strong className={styles.resTal}>{kr.format(manad)} kr</strong>
-            <span className={styles.resUnder}>i månaden</span>
+            <strong className={styles.resTal}>+{kr.format(manad)} kr</strong>
+            <span className={styles.resUnder}>mer i månaden</span>
           </div>
           <div>
-            <strong className={styles.resTal}>{kr.format(ar)} kr</strong>
-            <span className={styles.resUnder}>om året</span>
+            <strong className={styles.resTal}>+{kr.format(ar)} kr</strong>
+            <span className={styles.resUnder}>mer om året</span>
           </div>
         </div>
-        <p className={styles.resAr}>
-          Det är {jobbAr > 0 ? jobbAr : 'under 1'} jobb om året som går till en annan firma i dag.
-          Med en ny hemsida kan de bli era.
-        </p>
+        <p className={styles.resAr}>Pengar som i dag går till en annan firma.</p>
       </div>
 
       <div className={styles.fot}>
