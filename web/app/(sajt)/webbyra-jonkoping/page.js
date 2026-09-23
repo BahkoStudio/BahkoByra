@@ -24,7 +24,7 @@ const PIL = (
 const LOKALT = [
   {
     h: 'Kontor i Huskvarna',
-    p: 'Bahko Byrå sitter på Kungsängsvägen 27 i Huskvarna, strax öster om centrala Jönköping. Telefonen är öppen alla dagar 9 till 18, och det går utmärkt att boka ett möte där, före ett beslut eller mitt i ett bygge. Ring 076-254 09 51 innan så står kaffet framme.',
+    p: 'Bahko Byrå sitter på Kungsängsvägen 27 i Huskvarna, strax öster om centrala Jönköping. Vi svarar alla dagar 8 till 22, och det går utmärkt att boka ett möte där, före ett beslut eller mitt i ett bygge. Ring 076-254 09 51 innan så står kaffet framme.',
   },
   {
     h: 'Kund i stan, i drift',
@@ -43,7 +43,7 @@ const LOKALT = [
 const RESULTAT = [
   { tal: '1', etikett: 'Plats på Google', text: 'Bromma Trädgårdsservice i Stockholm låg först av sex firmor i Googles Platser-flik för trädgårdsservice i Stockholm den 30 juli 2026.' },
   { tal: '1', etikett: 'Först i ChatGPT', text: 'Samma firma kom först i ChatGPT:s svar på frågan om trädgårdsservice i Stockholm.' },
-  { tal: '20+', etikett: 'Förfrågningar via sidan', text: 'Över 20 offertförfrågningar kom in via formuläret på sidan mellan 27 juli och 22 september. Ett kundcase, inget löfte.' },
+  { tal: '25+', etikett: 'Förfrågningar via sidan', text: '25 offertförfrågningar kom in via formuläret på sidan mellan 27 juli och 22 september. Ett kundcase, inget löfte.' },
 ];
 
 /* Vad en sida från Bahko Byrå innehåller. Samma moduler som varje demo byggs med. */
@@ -58,7 +58,7 @@ const INGAR = [
 
 const BESOK = {
   adress: ['Kungsängsvägen 27', '561 51 Huskvarna'],
-  tider: 'Alla dagar 9–18',
+  tider: 'Alla dagar 8–22',
   tel: '076-254 09 51',
   telHref: 'tel:+46762540951',
   karta: 'https://maps.google.com/?q=Kungs%C3%A4ngsv%C3%A4gen+27,+561+51+Huskvarna',

@@ -39,7 +39,7 @@ export default function Integritet() {
         <p>
           Formulären skickas via tjänsten Web3Forms, som tar emot inskicket och vidarebefordrar det
           till vår e-post. Uppgifterna sparas i vår e-post så länge vi har kontakt. Blir det inget
-          samarbete raderar vi dem senast två år efter sista kontakten, eller tidigare om ni ber om
+          samarbete raderar vi dem senast tolv månader efter sista kontakten, eller tidigare om ni ber om
           det.
         </p>
 

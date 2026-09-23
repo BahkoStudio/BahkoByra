@@ -5,12 +5,13 @@ import styles from './BevisBromma.module.css';
      "trädgårdsservice i Stockholm". Skärmbilderna är från rapport 1, 30 juli 2026
      (original i content/kundarbete/bromma/bevis/).
    - Förfrågningarna räknade i kundens Web3Forms-inkorg: 27 inskick 27 juli till
-     22 september, minus Mathias egna tester. Därför "över 20", inte en procentsats. */
+     22 september, minus Mathias två egna tester: 25 (Mathias beslut 2026-09-23: "25+").
+     Ingen procentsats, det finns ingen mätning av läget före. */
 
 export const BEVIS = [
   { tal: '1:a', text: 'på Google, före fem andra trädgårdsfirmor' },
   { tal: '1:a', text: 'i ChatGPT:s svar på samma fråga' },
-  { tal: '20+', text: 'förfrågningar via hemsidan sedan 27 juli' },
+  { tal: '25+', text: 'förfrågningar via hemsidan sedan 27 juli' },
 ];
 
 export function BevisSiffror({ className }) {

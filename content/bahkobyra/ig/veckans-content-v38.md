@@ -33,7 +33,7 @@ svarar först. Inte den som är bäst. Det är sant, det gör ont, och vi har l�
   förfrågan från soffan", "jobbet ligger i inkorgen på morgonen".
 - Aldrig "gratis". Alltid "kostnadsfri" eller "det kostar inget".
 - Aldrig pris. Aldrig tankstreck. Loggan alltid med. Maskoten bara i intro och outro.
-- Siffror bara om du själv mätt dem. Enda färdiga beviset: **trädgårdsfirman i Stockholm hamnade först på Google och hos ChatGPT, och har fått över 20 förfrågningar via hemsidan på åtta veckor.** (Google och
+- Siffror bara om du själv mätt dem. Enda färdiga beviset: **trädgårdsfirman i Stockholm hamnade först på Google och hos ChatGPT, och har fått 25 förfrågningar via hemsidan på åtta veckor.** (Google och
   ChatGPT sägs i DM och i captions, inte i reel-manusen, där pratar vi bara hemsida.)
 - En CTA på allt: **"Vill du se hur din hemsida skulle se ut? Skriv DEMO så bygger jag den. Det
   kostar inget."**
@@ -254,7 +254,7 @@ Uppföljning dag 3 (kort, ny vinkel) och dag 5 (demolänken igen, "tar en minut"
 **Väck sommarens tysta leads** (status Ignorerar och Ej svarat i CRM:et, kontaktade juni till
 augusti). Ett meddelande:
 
-> Tjena :) Sedan vi hördes har en trädgårdsfirma i Stockholm hamnat först på Google och hos ChatGPT med sidan jag byggde, och fått över 20 förfrågningar via hemsidan på åtta veckor. Står
+> Tjena :) Sedan vi hördes har en trädgårdsfirma i Stockholm hamnat först på Google och hos ChatGPT med sidan jag byggde, och fått 25 förfrågningar via hemsidan på åtta veckor. Står
 > erbjudandet kvar om du vill? Jag bygger ett förslag åt er, det kostar inget.
 
 **Fråga Jens på Bromma om en rekommendation**, en mening i söndagsmejlet: "Om du känner någon

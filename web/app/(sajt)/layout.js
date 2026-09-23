@@ -72,8 +72,8 @@ const organisationsSchema = {
       'Saturday',
       'Sunday',
     ],
-    opens: '09:00',
-    closes: '18:00',
+    opens: '08:00',
+    closes: '22:00',
   },
   description:
     'Digital byrå som bygger hemsidor för bygg- och hantverksfirmor i Sverige.',

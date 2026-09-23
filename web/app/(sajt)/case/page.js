@@ -30,7 +30,7 @@ const KUNDER = [
     bransch: 'Trädgårdsskötsel · Stockholm',
     url: 'https://brommatradgardsservice.se/',
     bild: '/img/demo-bromma-tradgard.webp',
-    lang: 'Bromma Trädgårdsservice sköter trädgårdar i västra Stockholm. Bahko Byrå byggde brommatradgardsservice.se med telefonnumret synligt på varje skärm, egna sidor för häckklippning och trädgårdsskötsel för villaägare och bostadsrättsföreningar, och RUT-beskedet utskrivet per tjänst. För trädgård och hantverk är samtalet det som blir en affär, så hela sidan är byggd runt ringknappen. Den 30 juli 2026 låg Bromma Trädgårdsservice på plats 1 av 6 i Googles Platser-flik för trädgårdsservice i Stockholm, före en konkurrent med 117 omdömen, och nämndes först när ChatGPT fick samma fråga. Från 27 juli till 22 september kom över 20 offertförfrågningar in via formuläret på sajten.',
+    lang: 'Bromma Trädgårdsservice sköter trädgårdar i västra Stockholm. Bahko Byrå byggde brommatradgardsservice.se med telefonnumret synligt på varje skärm, egna sidor för häckklippning och trädgårdsskötsel för villaägare och bostadsrättsföreningar, och RUT-beskedet utskrivet per tjänst. För trädgård och hantverk är samtalet det som blir en affär, så hela sidan är byggd runt ringknappen. Den 30 juli 2026 låg Bromma Trädgårdsservice på plats 1 av 6 i Googles Platser-flik för trädgårdsservice i Stockholm, före en konkurrent med 117 omdömen, och nämndes först när ChatGPT fick samma fråga. Från 27 juli till 22 september kom 25 offertförfrågningar in via formuläret på sajten.',
   },
   {
     namn: "Mayka's Kitchen",
