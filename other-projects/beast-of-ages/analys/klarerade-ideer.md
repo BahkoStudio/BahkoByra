@@ -233,3 +233,22 @@ de-extinction" är samma. Steg 2 uppdaterad: Yahoo News Australia (3 210 pren., 
 klipp) täcker genombrottet men inte titelns vändning. Ingen kanal i vår storleksklass
 eller större har gjort den. **Bedömning: fortsatt grön, men inte obevakad — flagga i
 manuset att vinkeln synts i mindre kanaler.** Full Grind + manus startad 2026-09-19.
+
+## Trendrunda 2026-09-23 (vidIQ outliers + trending + sök, 40-tal anrop)
+
+Signaler: **Colossal-nyheter** (GroovyGavins mammutbesök 281 k på ett dygn, 22 sep; TIME 24 aug: mammutdatumet glider),
+**"utdöda djur som lever"** (Mavora 1,3–1,57 M på fem listor sedan mars, Mystic Evidence 968 k på en 1 760-kanal, Doctor NOS 759 k,
+Forrest Galante 786 k, Psychopoly 251 k), **genetik-nyheter i "Scientists Just Found…"-form** (Species Decoder 2 910 prenumeranter:
+röd varg 338 856, ny kattart 30 982, kör färska artiklar inom två veckor). Verifierat i källa: TIME 2026-08-24 (mammut: graviditet 2027 och födsel 2028 var
+målet, Lamm säger nu "early 2030s", redigeringar ~60 → ~150 gener); Cell Genomics publicerade dire wolf-genomet online 2026-07-27
+(två tredjedelar från en varg/prärievarg-anfader, en tredjedel från en gammal släkt besläktad med sydamerikanska hunddjur).
+
+| # | Titel (vidIQ) | Kontroll | Status |
+|---|---|---|---|
+| 1 | The Woolly Mammoth Is Coming Back… But Not by 2028 (90) | noll träffar på förseningen i YouTube-sökning efter 20 aug; listvideor (Psychopoly m.fl.) säger fortfarande "2028" | klar, tidskritisk (nyhetsvåg ~2 veckor). Full Grind återstår |
+| 2 | Why Do So Many "Extinct" Animals Turn Up Alive? (95) | efterfrågan bevisad (1 M+ på små kanaler) men fältet är kryptid-spekulation; Galante 786 k "5 more found in 15 years" | gul, full Grind (steg 2–3) före bygge. Bygger på Lazarus-taxa och tröskeln för utdöendedatum, samma logik som thylacine-manuset |
+| 3 | The Dire Wolf Genome Is Finally Peer-Reviewed. It Says the Dire Wolf Wasn't Really a Wolf. (91) | bara The Real Odds (30 visn.) och en indonesisk kanal (37 k) | klar, uppföljare till "If They're Not Dire Wolves… Then What Are They?" (19 982) |
+| 4 | A Dog Found the Last Black-Footed Ferrets. Then Scientists Cloned One From 1988. (92) | ingen engelsk långform på klonen (bara Shorts och en 3-minutare); Ze Franks pestvideo 467 k täcker en annan vinkel | klar, faktakontroll av årtal vid bygge |
+
+Dödade eller nedprioriterade: **röd varg/"ghost alleles"** (Species Decoder 338 856, 8 sep, och kanalen har redan sin egen röda varg-video), **bluebuck** (Colossals egna film 1,8 M / 25-minutare 264 k, Coyote Peterson 52 k),
+**ny kattart Tilcayo** (nyhetsklipp, utanför nischen), **beardog** (8–48 k, men kanalens förhistoriska rovdjursvideor gav 150–180), **"Why Don't We Eat X"** (mättat: hippo 1,02 M på NEXPSY, Knapp har hippo och känguru, kanalens hästvideo fick 460).
