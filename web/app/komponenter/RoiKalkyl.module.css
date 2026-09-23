@@ -101,21 +101,40 @@
   color: var(--text-lag);
 }
 
+.resGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.9rem;
+}
+
+.resGrid > div {
+  padding-right: 0.5rem;
+}
+
 .kort .resTal {
-  margin: 0.45rem 0 0;
+  display: block;
   font-variant-numeric: tabular-nums;
-  font-size: clamp(2.2rem, 5.2vw, 3.2rem);
+  font-size: clamp(2rem, 4.6vw, 2.9rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1;
   color: var(--em-lt);
 }
 
-.kort .resTal span {
-  font-size: 0.4em;
-  font-weight: 700;
-  letter-spacing: 0;
+.kort .resUnder {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.35;
   color: var(--text);
+}
+
+@media (max-width: 480px) {
+  .resGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .kort .resAr {

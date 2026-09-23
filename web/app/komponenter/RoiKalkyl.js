@@ -56,12 +56,13 @@ export default function RoiKalkyl() {
   const extraJobb = (v.jobb * v.okning) / 100;
   const manad = extraJobb * v.varde;
   const ar = manad * 12;
+  const jobbAr = Math.round(extraJobb * 12);
 
   return (
     <div className={styles.kort}>
       <p className={styles.eyebrow}>Räkna själv</p>
       <h2 className={styles.rubrik}>
-        Så mycket tappar ni <span className={styles.accent}>varje månad.</span>
+        Hur många jobb <span className={styles.accent}>missar ni?</span>
       </h2>
 
       <div className={styles.reglage}>
@@ -88,14 +89,23 @@ export default function RoiKalkyl() {
         ))}
       </div>
 
+      {/* Ett svar, två tal: hur många jobb, och vad de är värda. Året först,
+          för det är där det blir kännbart. Ingen jargong, ingen "konkurrent". */}
       <div className={styles.resultat} aria-live="polite">
-        <p className={styles.resEtikett}>Det här går till konkurrenten i dag</p>
-        <p className={styles.resTal}>
-          {kr.format(manad)} <span>kr i månaden</span>
-        </p>
+        <p className={styles.resEtikett}>Det här missar ni varje år</p>
+        <div className={styles.resGrid}>
+          <div>
+            <strong className={styles.resTal}>{jobbAr > 0 ? jobbAr : 'Under 1'}</strong>
+            <span className={styles.resUnder}>jobb som går till en annan firma</span>
+          </div>
+          <div>
+            <strong className={styles.resTal}>{kr.format(ar)} kr</strong>
+            <span className={styles.resUnder}>som ni kunde ha tjänat</span>
+          </div>
+        </div>
         <p className={styles.resAr}>
-          Det blir <strong>{kr.format(ar)} kr</strong> på ett år, eller ungefär{' '}
-          <strong>{kr.format(extraJobb * 12)}</strong> jobb som hamnar hos någon annan.
+          Kunden letade efter någon som er, men hittade inte er, eller hörde aldrig av sig.
+          Med en sida som säljer kan de jobben bli era.
         </p>
       </div>
 
@@ -104,8 +114,7 @@ export default function RoiKalkyl() {
           Se er sida kostnadsfritt
         </Link>
         <p className={styles.finstilt}>
-          Räkneexempel med era egna siffror, inget löfte. Ert utfall beror på bransch, ort och
-          hur många som redan hittar er.
+          Räkneexempel med era egna siffror, inget löfte.
         </p>
       </div>
     </div>
