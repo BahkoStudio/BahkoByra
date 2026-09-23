@@ -42,12 +42,14 @@ export default function Start() {
         <div className={`wrap ${styles.heroGrid}`}>
           <div className={styles.heroText} data-trapp>
             <span className="eyebrow">Byrån för bygg &amp; hantverk</span>
+            {/* Rubriken talar till firman, inte om oss (Mathias 2026-09-23). Sökorden
+                "hemsidor" och "hantverkare" bär undertexten och sidans title i stället. */}
             <h1>
-              Hemsidor som ger hantverkare <span className="accent">fler jobb.</span>
+              Ni gör ett fantastiskt jobb.<br /> <span className="accent">Nu ska fler få veta det.</span>
             </h1>
             <p className={styles.heroLede}>
-              Färdigt förslag på 48 timmar. Ni tittar först och bestämmer sen.
-              Det kostar ingenting.
+              Vi bygger hemsidor åt hantverkare och lokala företag, så att fler kunder ringer.
+              Färdigt förslag på 48 timmar, ni tittar först och bestämmer sen.
             </p>
             <div className={styles.heroKnappar}>
               <Link href="/kontakt/" className="btn btn-primar">
