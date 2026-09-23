@@ -121,3 +121,73 @@
     width: 100%;
   }
 }
+
+/* Resultat: tre kort med stora tal, samma språk som startsidans siffror. */
+.resultatNat {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.resultatKort {
+  background: var(--yta);
+  border: 2px solid var(--linje-mork);
+  border-radius: var(--r-lg);
+  padding: 1.5rem;
+}
+
+.resultatKort strong {
+  display: block;
+  font-size: clamp(2.2rem, 4.4vw, 3rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--em-lt);
+}
+
+.resultatKort span {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.mork .resultatKort p {
+  margin: 0.8rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-lag);
+}
+
+.ingar {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem 2rem;
+  margin: 2rem 0 0;
+  padding: 0;
+}
+
+.ingar li {
+  display: flex;
+  gap: 0.7rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.ingar li span {
+  flex: none;
+  font-weight: 800;
+  color: var(--em-deep);
+}
+
+@media (max-width: 760px) {
+  .resultatNat,
+  .ingar {
+    grid-template-columns: 1fr;
+  }
+}

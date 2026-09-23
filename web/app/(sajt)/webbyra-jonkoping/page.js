@@ -36,6 +36,25 @@ const LOKALT = [
   },
 ];
 
+/* Bevis: bara verifierat. Plats 1 på Google och först i ChatGPT kontrollerades
+   2026-08-15 (skärmdumpar i content/kundarbete/bromma/bevis/). Tolv procent är
+   Mathias egen uppgift om samma kund (2026-09-11). Inga andra siffror. */
+const RESULTAT = [
+  { tal: '1', etikett: 'Plats på Google', text: 'Bromma Trädgårdsservice i Stockholm låg först i Googles lokala resultat inom två veckor efter att sidan gick live.' },
+  { tal: '1', etikett: 'Först i ChatGPT', text: 'Samma firma kom först i ChatGPT:s svar på frågan om trädgårdsservice i Stockholm.' },
+  { tal: '12 %', etikett: 'Fler förfrågningar', text: 'Firman fick tolv procent fler kundförfrågningar med den nya sidan. Ett kundcase, inget löfte.' },
+];
+
+/* Vad en sida från Bahko Byrå innehåller. Samma moduler som varje demo byggs med. */
+const INGAR = [
+  'Telefonnumret syns direkt i mobilen och går att trycka på, utan att öppna någon meny.',
+  'Ett formulär på tre fält som tar tjugo sekunder att fylla i, med bekräftelse direkt på skärmen.',
+  'Bilder på era riktiga jobb, inte stockfoton, så kunden ser vad ni faktiskt gör.',
+  'Era omdömen synliga där kunden letar, inte bara på Google eller en offertplattform.',
+  'Byggd för att synas på Google i er ort: rätt rubriker, snabb laddning och er adress på samma sätt överallt.',
+  'Er egen domän. Ni äger sidan och domänen, och det finns ingen bindningstid.',
+];
+
 const BESOK = {
   adress: ['Kungsängsvägen 27', '561 51 Huskvarna'],
   tider: 'Alla dagar 9–18',
@@ -143,6 +162,44 @@ export default function Jonkoping() {
               </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="mork">
+        <div className="wrap">
+          <span className="eyebrow">Resultat</span>
+          <h2>Vad en sida från Bahko Byrå kan göra</h2>
+          <p className="lede" style={{ marginTop: '1rem' }}>
+            Ett kundcase från Bahko Byrå, med siffror som går att kontrollera.
+          </p>
+          <div className={styles.resultatNat}>
+            {RESULTAT.map((r) => (
+              <div key={r.etikett} className={styles.resultatKort}>
+                <strong>{r.tal}</strong>
+                <span>{r.etikett}</span>
+                <p>{r.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="wrap">
+          <span className="eyebrow">Det här ingår</span>
+          <h2>Vad en hemsida från Bahko Byrå innehåller</h2>
+          <ul className={styles.ingar}>
+            {INGAR.map((t) => (
+              <li key={t}>
+                <span aria-hidden="true">✓</span>
+                {t}
+              </li>
+            ))}
+          </ul>
+          <p className={styles.brodtext} style={{ marginTop: '1.4rem' }}>
+            Vill ni räkna på vad en bättre sida är värd för just er firma? Kalkylen på{' '}
+            <Link href="/#rakna">startsidan</Link> räknar ut det med era egna siffror.
+          </p>
         </div>
       </section>
 
