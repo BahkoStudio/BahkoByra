@@ -1,16 +1,19 @@
-/* Textreglerna har .kort framför sig: den globala regeln `.mork p` färgar annars
-   all text i den mörka sektionen dämpad, och då blev det stora talet grått. */
-
-/* Kalkylkortet i den mörka sektionen på startsidan. Samma kortspråk som den
-   gamla sifferraden: ram i linje-mork, stora smaragdgröna tal. */
+/* Kalkylen som en resa. Alla textregler har .kort framför sig: den globala regeln
+   `.mork p` färgar annars all text i den mörka sektionen dämpad. */
 
 .kort {
+  position: relative;
   flex: 1;
-  background: var(--yta);
+  overflow: hidden;
+  background:
+    radial-gradient(120% 70% at 100% 0%, rgba(16, 185, 129, 0.16), transparent 60%),
+    radial-gradient(90% 60% at 0% 100%, rgba(52, 211, 153, 0.08), transparent 60%),
+    var(--yta);
   border: 2px solid var(--linje-mork);
-  border-radius: var(--r-lg);
+  border-radius: 22px;
   padding: clamp(1.4rem, 3.5vw, 2.4rem);
   color: var(--text);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
 }
 
 .kort .eyebrow {
@@ -23,9 +26,9 @@
 }
 
 .kort .rubrik {
-  margin: 0.5rem 0 0;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  line-height: 1.15;
+  margin: 0;
+  font-size: clamp(1.6rem, 3.2vw, 2.15rem);
+  line-height: 1.12;
   letter-spacing: -0.02em;
   color: var(--text);
 }
@@ -34,62 +37,205 @@
   color: var(--em-lt);
 }
 
-.reglage {
+/* ── Resan: stationer längs en linje ── */
+.resa {
+  --nod: 44px;
+  position: relative;
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
   display: grid;
-  gap: 1.4rem;
-  margin-top: 1.8rem;
+  gap: 1.7rem;
 }
 
-.rad {
+/* Linjen: svag i botten, grön fyllning ovanpå som ritas när resan startar */
+.resa::before,
+.resa::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--nod) / 2 - 1.5px);
+  top: calc(var(--nod) / 2);
+  width: 3px;
+  bottom: 2.4rem;
+  border-radius: 3px;
+}
+
+.resa::before {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.resa::after {
+  background: linear-gradient(to bottom, var(--em-lt), var(--em));
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.55);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+.igang .resa::after {
+  transform: scaleY(1);
+}
+
+.station {
+  position: relative;
   display: grid;
-  gap: 0.55rem;
+  grid-template-columns: var(--nod) 1fr;
+  gap: 1rem;
+  align-items: start;
+  opacity: 0.35;
+  transform: translateY(10px);
+  transition:
+    opacity 0.5s var(--ease) calc(var(--i) * 0.32s + 0.2s),
+    transform 0.6s var(--studs, var(--ease)) calc(var(--i) * 0.32s + 0.2s);
+}
+
+.igang .station {
+  opacity: 1;
+  transform: none;
+}
+
+.nod {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: var(--nod);
+  height: var(--nod);
+  border-radius: 50%;
+  background: var(--bas);
+  border: 3px solid rgba(255, 255, 255, 0.16);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-lag);
+  transition:
+    border-color 0.4s var(--ease) calc(var(--i) * 0.32s + 0.25s),
+    color 0.4s var(--ease) calc(var(--i) * 0.32s + 0.25s),
+    box-shadow 0.3s var(--ease),
+    transform 0.25s var(--ease);
+}
+
+.igang .nod {
+  border-color: var(--em);
+  color: var(--em-lt);
+  box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.1);
+}
+
+/* Stationen man drar i lyser upp */
+.aktiv .nod {
+  transform: scale(1.1);
+  background: var(--em);
+  color: var(--bas);
+  box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.22), 0 0 24px rgba(16, 185, 129, 0.6);
+}
+
+.malNod svg {
+  width: 20px;
+  height: 20px;
+}
+
+.igang .malNod {
+  background: var(--em);
+  color: var(--bas);
+  box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.16), 0 0 28px rgba(16, 185, 129, 0.55);
+}
+
+.innehall {
+  padding-top: 0.55rem;
+  min-width: 0;
 }
 
 .etikett {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 1rem;
-  font-size: 0.98rem;
+  flex-wrap: wrap;
+  gap: 0.2rem 1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text);
 }
 
 .varde {
-  flex: none;
   font-variant-numeric: tabular-nums;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--em-lt);
 }
 
-/* Reglaget: stor träffyta för tummen, smaragd fyllning. */
+/* ── Reglaget: tjock bana med grön fyllning och ett stort handtag ── */
 .range {
+  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
-  height: 28px;
-  margin: 0;
-  accent-color: var(--em);
+  height: 30px;
+  margin: 0.55rem 0 0;
+  background: transparent;
   cursor: pointer;
 }
 
+.range::-webkit-slider-runnable-track {
+  height: 10px;
+  border-radius: 99px;
+  background: linear-gradient(to right, var(--em) var(--fyll), rgba(255, 255, 255, 0.12) var(--fyll));
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  margin-top: -9px;
+  border-radius: 50%;
+  background: #fff;
+  border: 5px solid var(--em);
+  box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.18), 0 6px 14px rgba(0, 0, 0, 0.45);
+  transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease);
+}
+
+.range:hover::-webkit-slider-thumb,
+.range:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 10px rgba(16, 185, 129, 0.22), 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+.range::-moz-range-track {
+  height: 10px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.range::-moz-range-progress {
+  height: 10px;
+  border-radius: 99px;
+  background: var(--em);
+}
+
+.range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 5px solid var(--em);
+  box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.18), 0 6px 14px rgba(0, 0, 0, 0.45);
+}
+
 .range:focus-visible {
-  outline: 3px solid var(--em-lt);
-  outline-offset: 4px;
-  border-radius: 6px;
+  outline: none;
 }
 
-.kort .not {
-  margin: 0;
-  font-size: 0.84rem;
-  color: var(--text-lag);
+.range:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px var(--bas), 0 0 0 7px var(--em-lt);
 }
 
+/* ── Målet ── */
 .resultat {
-  margin-top: 1.9rem;
-  padding: 1.4rem 1.5rem;
-  background: var(--bas);
-  border: 2px solid rgba(16, 185, 129, 0.45);
-  border-radius: var(--r-lg);
+  min-width: 0;
+  padding: 1.4rem 1.5rem 1.5rem;
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgba(16, 185, 129, 0.2), transparent 55%),
+    var(--bas);
+  border: 2px solid rgba(16, 185, 129, 0.5);
+  border-radius: 18px;
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.12);
 }
 
 .kort .resEtikett {
@@ -98,6 +244,76 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: var(--em-lt);
+}
+
+/* I dag bredvid med ny hemsida: skillnaden syns som en lysande bit i slutet. */
+.staplar {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.stapel {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr auto;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.stapelNamn {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-lag);
+}
+
+.bana {
+  height: 14px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+}
+
+.bana i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: rgba(148, 167, 191, 0.55);
+  transition: width 0.45s var(--ease);
+}
+
+.bana .nyBana {
+  position: relative;
+  background: var(--em-deep);
+}
+
+.nyBana em {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 0 99px 99px 0;
+  background: linear-gradient(to right, var(--em), var(--em-lt));
+  box-shadow: 0 0 14px rgba(52, 211, 153, 0.8);
+  transition: width 0.45s var(--ease);
+}
+
+.stapelTal {
+  min-width: 7.5rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-lag);
+}
+
+.stapelNy {
+  color: var(--text);
+}
+
+.kort .stapelFot {
+  margin: -0.2rem 0 0;
+  text-align: right;
+  font-size: 0.74rem;
   color: var(--text-lag);
 }
 
@@ -105,21 +321,20 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin-top: 0.9rem;
-}
-
-.resGrid > div {
-  padding-right: 0.5rem;
+  margin-top: 1.3rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--linje-mork);
 }
 
 .kort .resTal {
   display: block;
   font-variant-numeric: tabular-nums;
-  font-size: clamp(2rem, 4.6vw, 2.9rem);
+  font-size: clamp(1.9rem, 4.4vw, 2.8rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1;
   color: var(--em-lt);
+  text-shadow: 0 0 30px rgba(52, 211, 153, 0.35);
 }
 
 .kort .resUnder {
@@ -127,26 +342,14 @@
   margin-top: 0.45rem;
   font-size: 0.98rem;
   font-weight: 600;
-  line-height: 1.35;
   color: var(--text);
-}
-
-@media (max-width: 480px) {
-  .resGrid {
-    grid-template-columns: 1fr;
-  }
 }
 
 .kort .resAr {
-  margin: 0.8rem 0 0;
+  margin: 0.9rem 0 0;
   font-size: 1rem;
   line-height: 1.45;
   color: var(--text-lag);
-}
-
-.kort .resAr strong {
-  color: var(--text);
-  font-variant-numeric: tabular-nums;
 }
 
 .fot {
@@ -154,13 +357,63 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 1rem 1.4rem;
-  margin-top: 1.5rem;
+  margin-top: 1.6rem;
+  padding-left: calc(44px + 1rem);
 }
 
 .kort .finstilt {
-  flex: 1 1 240px;
+  flex: 1 1 200px;
   margin: 0;
   font-size: 0.8rem;
   line-height: 1.45;
   color: var(--text-lag);
+}
+
+@media (max-width: 560px) {
+  .resa {
+    --nod: 36px;
+  }
+  /* Mobil: namn och belopp på en rad, stapeln i full bredd under. */
+  .stapel {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "namn tal" "bana bana";
+    row-gap: 0.4rem;
+  }
+  .stapelNamn {
+    grid-area: namn;
+    white-space: nowrap;
+  }
+  .bana {
+    grid-area: bana;
+  }
+  .stapelTal {
+    grid-area: tal;
+    min-width: 0;
+  }
+  .resultat {
+    padding: 1.1rem 1.1rem 1.2rem;
+  }
+  .resGrid {
+    grid-template-columns: 1fr;
+  }
+  .fot {
+    padding-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resa::after,
+  .station,
+  .nod,
+  .bana i,
+  .nyBana em {
+    transition: none;
+  }
+  .resa::after {
+    transform: scaleY(1);
+  }
+  .station {
+    opacity: 1;
+    transform: none;
+  }
 }
