@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="sv"><head><meta charset="utf-8"><title>Bromma-case</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Kundcase-karusell Bromma, brand-läge (0 credits). Skärmbilderna är riktiga utklipp ur
+   rapport 1 (30 juli 2026), aldrig AI. ?i=0..5 */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden}
+body{font-family:'Outfit',sans-serif;background:#0A1628;color:#fff;position:relative}
+.glow{position:absolute;width:1000px;height:1000px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,.16) 0%,transparent 62%);top:-380px;right:-380px}
+.glow2{position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(52,211,153,.07) 0%,transparent 62%);bottom:-420px;left:-380px}
+.top{position:absolute;left:96px;right:96px;top:80px;display:flex;justify-content:space-between;align-items:center;z-index:3}
+.mark{width:84px;height:84px;border-radius:20px;background:#10B981;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:50px;color:#fff}
+.eyebrow{font-weight:700;font-size:30px;letter-spacing:.14em;color:#34D399;text-transform:uppercase}
+.main{position:absolute;left:96px;right:96px;bottom:190px;z-index:3}
+h1{font-weight:800;font-size:82px;line-height:1.1;letter-spacing:-.01em}
+h1 .em{color:#34D399}
+.cover h1{font-size:118px;line-height:1.02;letter-spacing:-.02em}
+.body{margin-top:30px;font-weight:500;font-size:42px;line-height:1.35;color:#C7D2DF}
+.body b{color:#fff;font-weight:700}
+.list{margin-top:36px;display:flex;flex-direction:column;gap:20px}
+.row{display:flex;gap:24px;align-items:center;font-weight:700;font-size:41px;line-height:1.22}
+.row i{flex:none;width:60px;height:60px;border-radius:16px;background:#10B981;color:#0A1628;font-style:normal;font-weight:800;font-size:32px;display:flex;align-items:center;justify-content:center}
+.fore .row{color:#C7D2DF;font-weight:500}
+.fore .row i{background:#13233F;color:#94A7BF;border:2px solid #2A3B57}
+.fix{margin-top:44px;font-weight:700;font-size:38px;color:#0A1628;background:#10B981;padding:24px 34px;border-radius:16px;display:inline-block}
+.footer{position:absolute;left:96px;right:96px;bottom:84px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:30px;z-index:3}
+.footer .handle{color:#34D399}.footer .page{color:#94A7BF;font-weight:500}.footer .swipe{color:#fff}
+
+/* Omslaget: maskoten granskar uppe till höger */
+.maskot{position:absolute;right:40px;top:150px;width:560px;z-index:2;filter:drop-shadow(0 30px 60px rgba(0,0,0,.45))}
+
+/* Skärmbildskort: riktiga utklipp i en mörk ram, som en mobilskärm */
+.kort{position:absolute;left:96px;right:96px;border-radius:28px;overflow:hidden;background:#1F1F1F;border:2px solid rgba(255,255,255,.1);box-shadow:0 40px 90px rgba(0,0,0,.5);z-index:2}
+.kort img{display:block;width:100%}
+.markera{position:absolute;border:5px solid #34D399;border-radius:20px;box-shadow:0 0 0 8px rgba(52,211,153,.18),0 0 40px rgba(52,211,153,.45)}
+.bricka{position:absolute;z-index:4;background:#10B981;color:#0A1628;font-weight:800;font-size:34px;padding:12px 24px;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.bricka.gra{background:#13233F;color:#C7D2DF;border:2px solid #2A3B57}
+.kalla{position:absolute;left:96px;right:96px;z-index:3;font-weight:500;font-size:32px;color:#94A7BF}
+
+/* ChatGPT: frågan i en bubbla, svaret under */
+.chat{position:absolute;left:96px;right:96px;top:200px;z-index:2;border-radius:28px;background:#000;border:2px solid rgba(255,255,255,.1);box-shadow:0 40px 90px rgba(0,0,0,.5);padding:34px 0 10px;overflow:hidden}
+.chat .fraga{display:block;width:62%;margin:0 28px 18px auto;border-radius:22px}
+.chat .svar{display:block;width:100%}
+.stor{font-weight:800;font-size:150px;line-height:.9;letter-spacing:-.03em;color:#34D399}
+
+/* Före: ett stort tonat ord fyller toppen. Efter: den riktiga nya sajten i en webbläsarram */
+.ord{position:absolute;left:80px;top:190px;font-weight:800;font-size:300px;line-height:1;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:3px rgba(148,167,191,.28);z-index:1}
+.webb{position:absolute;left:96px;right:96px;top:196px;border-radius:22px;overflow:hidden;border:2px solid rgba(255,255,255,.12);box-shadow:0 40px 90px rgba(0,0,0,.5);z-index:2;background:#13233F}
+.krom{display:flex;align-items:center;gap:10px;padding:14px 18px;background:#13233F}
+.krom i{width:14px;height:14px;border-radius:50%;background:#2A3B57}
+.krom span{margin-left:12px;flex:1;background:#0A1628;border-radius:10px;padding:8px 16px;font-size:22px;font-weight:500;color:#94A7BF}
+.webb img{display:block;width:100%;height:215px;object-fit:cover;object-position:top}
+
+/* CTA: färdiga maskotbilden i full bild */
+.cta-bild{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.shade{position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(180deg,rgba(10,22,40,0) 0%,rgba(10,22,40,.9) 40%,rgba(10,22,40,.98) 100%);z-index:1}
+</style></head><body>
+<script>
+const P='/'; // bilderna ligger bredvid filen
+const N=6;
+const fot=(i,svep=true)=>'<div class="footer"><span class="handle">@bahkobyra</span><span class="swipe">'+(svep?'svep &#8594;':'')+'</span><span class="page">'+(i+1)+'/'+N+'</span></div>';
+const topp=(e)=>'<div class="top"><div class="mark">B</div><div class="eyebrow">'+(e||'')+'</div></div>';
+const S=[
+ // 1. Omslag
+ ()=>{document.body.className='cover';return '<div class="glow"></div><div class="glow2"></div>'+topp('Kundcase')+
+   '<img class="maskot" src="forstoringsglas.webp" alt="">'+
+   '<div class="main"><h1>10 omdömen<br>slog <span class="em">117.</span></h1>'+
+   '<div class="body">Så hamnade en trädgårdsfirma i Stockholm <b>först på Google.</b></div></div>'+fot(0)},
+ // 2. Före
+ ()=>'<div class="glow"></div><div class="ord">FÖRE</div>'+topp('Utgångsläget')+
+   '<div class="main fore" style="bottom:230px"><h1>Så såg det ut<br><span class="em">när vi började.</span></h1>'+
+   '<div class="list">'+
+   ['En gammal mallsajt','Google-profilen: fyra tjänster på engelska, inga priser','Tio omdömen. Inget besvarat.'].map((t,n)=>'<div class="row"><i>'+(n+1)+'</i><div>'+t+'</div></div>').join('')+
+   '</div><div class="body" style="margin-top:44px">Bra firma. Men på nätet syntes det inte.</div></div>'+fot(1),
+ // 3. Det vi gjorde
+ ()=>'<div class="glow"></div>'+topp('Det vi gjorde')+
+   '<div class="webb"><div class="krom"><i></i><i></i><i></i><span>brommatradgardsservice.se</span></div><img src="ny-sajt.jpg" alt=""></div>'+
+   '<div class="main" style="bottom:190px"><h1>Fyra saker.<br><span class="em">Inget trolleri.</span></h1>'+
+   '<div class="list">'+
+   ['Ny hemsida, en sida per tjänst','Elva tjänster på svenska, med priser','Alla tio omdömen besvarade','Samma uppgifter överallt på nätet'].map((t,n)=>'<div class="row"><i>'+(n+1)+'</i><div>'+t+'</div></div>').join('')+
+   '</div><div class="fix">Nummer 2 och 3 kan du göra i kväll.</div></div>'+fot(2),
+ // 4. Google
+ ()=>'<div class="glow"></div>'+topp('Google, 30 juli')+
+   '<div class="kort" style="top:200px"><img src="g-topp.png" alt=""><div class="markera" style="left:10px;right:10px;top:338px;height:156px"></div></div>'+
+   '<div class="bricka" style="right:130px;top:452px">1:a</div>'+
+   '<div class="kort" style="top:735px;opacity:.9"><img src="g-veravi.png" alt=""></div>'+
+   '<div class="bricka gra" style="right:130px;top:711px">5:a · 117 omdömen</div>'+
+   '<div class="main" style="bottom:170px"><h1>Plats 1 av 6<br><span class="em">på Google.</span></h1></div>'+fot(3),
+ // 5. ChatGPT + förfrågningar
+ ()=>'<div class="glow"></div>'+topp('ChatGPT, 30 juli')+
+   '<div class="kalla" style="top:204px">Frågan: <b style="color:#fff">&quot;Trädgårdsservice i Stockholm&quot;</b></div>'+
+   '<div class="chat" style="top:262px;padding:10px 0 0"><img class="svar" src="c-svar.png" alt=""><div class="markera" style="left:12px;right:12px;top:432px;height:78px"></div></div>'+
+   '<div class="bricka" style="right:130px;top:626px">1:a</div>'+
+   '<div class="main" style="bottom:170px"><h1>Först i <span class="em">ChatGPT.</span></h1>'+
+   '<div style="display:flex;align-items:flex-end;gap:28px;margin-top:34px"><div class="stor">25+</div><div class="body" style="margin:0 0 6px">förfrågningar via hemsidan<br><b>inom två månader.</b></div></div></div>'+fot(4),
+ // 6. CTA
+ ()=>'<img class="cta-bild" src="bahko-cta-dma-demo.png" alt="">'+topp('Nästa steg')+'<div class="shade"></div>'+
+   '<div class="main" style="bottom:160px"><div class="body" style="text-align:center;font-weight:700;color:#fff">Vill du se hur din firma skulle se ut? Skriv DEMO så bygger jag ett förslag. Kostar inget. Klart på två dygn.</div></div>'+fot(5,false),
+];
+const i=parseInt(new URLSearchParams(location.search).get('i')||'0',10);
+document.body.innerHTML=S[i]();
+</script></body></html>

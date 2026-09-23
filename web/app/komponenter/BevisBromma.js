@@ -11,7 +11,7 @@ import styles from './BevisBromma.module.css';
 export const BEVIS = [
   { tal: '1:a', text: 'på Google, före fem andra trädgårdsfirmor' },
   { tal: '1:a', text: 'i ChatGPT:s svar på samma fråga' },
-  { tal: '25+', text: 'förfrågningar via hemsidan sedan 27 juli' },
+  { tal: '25+', text: 'förfrågningar via hemsidan inom två månader' },
 ];
 
 export function BevisSiffror({ className }) {

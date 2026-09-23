@@ -42,7 +42,7 @@ Fullständig mening (så här sägs den i samtalet):
 > synligheten på Google, bygga trovärdighet, göra kontaktvägen enkel och direkt, och följa upp
 > automatiskt.
 
-12 % är ett MÅL i erbjudandet, inte ett resultat. Det får aldrig sägas som bevis (rättat av Mathias 2026-09-23): Brommas belagda bevis är plats 1 på Google och först i ChatGPT (rapport 1, 30 juli 2026) och 25 förfrågningar via hemsidan på åtta veckor. Hitta aldrig på andra siffror.
+12 % är ett MÅL i erbjudandet, inte ett resultat. Det får aldrig sägas som bevis (rättat av Mathias 2026-09-23): Brommas belagda bevis är plats 1 på Google och först i ChatGPT (rapport 1, 30 juli 2026) och 25+ förfrågningar via hemsidan inom två månader. Hitta aldrig på andra siffror.
 
 ---
 
@@ -79,7 +79,7 @@ till domän och Google-profil. Ingår inte: annonser, löpande content, sådant 
 
 **Google-regeln:** Google-ranking nämns i **säljsamtalet** (mekanismen i värderamen) och på
 `www.bahkobyra.se`. **Undantag (Mathias 2026-09-11): i Instagram-DM får lösningen beskrivas som
-"toppar Google" och Bromma-beviset (nummer ett på Google och först hos ChatGPT, 25 förfrågningar via hemsidan på åtta veckor) användas**, se `content/bahkobyra/dm/oppnare.md`. Kalla samtal, mejl-outreach
+"toppar Google" och Bromma-beviset (nummer ett på Google och först hos ChatGPT, 25+ förfrågningar via hemsidan inom två månader) användas**, se `content/bahkobyra/dm/oppnare.md`. Kalla samtal, mejl-outreach
 och reels säljer fortfarande hemsidor och fler kundförfrågningar utan SEO-ord.
 
 Varje bra offer är fortfarande:
@@ -286,7 +286,7 @@ städfirma. Klinik-nischen avvecklad 2026-07-28.
 | Kund | Bransch, ort | Vad vi säger |
 |---|---|---|
 | Smålands Måleri | måleri, Jönköping | "en målare i Jönköping" |
-| Bromma Trädgårdsservice | trädgård och mark, Stockholm | "en trädgårdsfirma i Stockholm: nummer ett på Google och först hos ChatGPT, och 25 förfrågningar via hemsidan på åtta veckor" (Google/ChatGPT: skärmbilder i rapport 1, 30 juli 2026; förfrågningarna räknade i kundens formulärinkorg 27 juli till 22 september, Mathias egna tester borträknade. Tolv procent är INGET bevis, rättat 2026-09-23) |
+| Bromma Trädgårdsservice | trädgård och mark, Stockholm | "en trädgårdsfirma i Stockholm: nummer ett på Google och först hos ChatGPT, och 25+ förfrågningar via hemsidan inom två månader" (Google/ChatGPT: skärmbilder i rapport 1, 30 juli 2026; förfrågningarna räknade i kundens formulärinkorg 27 juli till 22 september, Mathias egna tester borträknade. Tolv procent är INGET bevis, rättat 2026-09-23) |
 | Mayka's Kitchen | restaurang och catering | "en restaurang" |
 
 Inga andra siffror. Inga påhittade kunder. Demos (GRANIT, Vajje, Asmar, Österlunds) kallas demos.
