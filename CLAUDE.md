@@ -262,7 +262,7 @@ Loopar som gäller projektet: `/manusloop` för manus, `/kolla-over` för genoml
 **Positionering** — Offerten = hemsidor, på ALLA kanaler. **"Växa på Google"-copy ENDAST på
 `www.bahkobyra.se`** — aldrig i outreach, DM, reels eller dashboard-skript; local SEO är intern
 leverans och uppsell. Undantag 2026-09-11: i IG-DM får "toppar Google" och Bromma-beviset (nummer ett
-på Google och ChatGPT, 25 förfrågningar via hemsidan på åtta veckor) nämnas, se `content/bahkobyra/dm/oppnare.md`.
+på Google och ChatGPT, 25+ förfrågningar via hemsidan inom två månader) nämnas, se `content/bahkobyra/dm/oppnare.md`.
 Nisch: lokala företag, kärnan bygg, tak, måleri, mark, hantverk; städ, flytt, restaurang ingår.
 I outreach: deras egen bransch, annars "lokala företag", aldrig "hantverksföretag" till en städfirma.
 Bevis i varje öppnare: minst två verkliga kunder och Brommas belagda bevis, aldrig "tolv procent" (bevistabell i
