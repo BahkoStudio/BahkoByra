@@ -88,6 +88,13 @@ export default function Footer() {
                   Instagram
                 </a>
               </li>
+              <li>
+                {/* Google Företagsprofilen, recensionsläget. Recensioner på Google är den
+                    enskilt största lokala rankingfaktorn vi själva kan påverka. */}
+                <a href="https://g.page/r/CY8e778hr3z7EAE/review" target="_blank" rel="noopener">
+                  Lämna en recension på Google
+                </a>
+              </li>
             </ul>
           </div>
         </div>

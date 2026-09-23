@@ -84,6 +84,7 @@ const organisationsSchema = {
     { '@type': 'Country', name: 'Sverige' },
   ],
   sameAs: [
+    'https://g.page/r/CY8e778hr3z7EAE',
     'https://www.instagram.com/bahkobyra1/',
     'https://www.instagram.com/bahkostudio/',
   ],
