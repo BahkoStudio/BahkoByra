@@ -18,6 +18,7 @@ const STATISKA = [
   { stig: '/vad-kostar-en-hemsida/', prio: 0.8 },
   { stig: '/foretag/gratis-granskning.html', prio: 0.9 },
   { stig: '/foretag/gratis-guide.html', prio: 0.8 },
+  { stig: '/integritet/', prio: 0.2 },
 ];
 
 export default function sitemap() {

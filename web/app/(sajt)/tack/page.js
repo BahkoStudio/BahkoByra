@@ -30,11 +30,14 @@ export default function Tack() {
         </p>
 
         <div className={styles.knappar}>
-          <a className="btn btn-primar" href="mailto:mathias@bahkobyra.se">
+          <a className="btn btn-primar" href="tel:+46762540951">
+            Ring 076-254 09 51
+          </a>
+          <a className="btn btn-sekundar" href="mailto:mathias@bahkobyra.se">
             Mejla mathias@bahkobyra.se
           </a>
-          <Link className="btn btn-sekundar" href="/">
-            Tillbaka till startsidan
+          <Link className="btn btn-sekundar" href="/case/">
+            Se våra kunder medan ni väntar
           </Link>
         </div>
       </div>

@@ -109,7 +109,7 @@ export const NISCHER = [
       ort: 'Bromma, Stockholm',
       url: 'https://brommatradgardsservice.se/',
       bild: '/img/demo-bromma-tradgard.webp',
-      text: 'Bromma Trädgårdsservice i västra Stockholm fick en sida med telefonnumret synligt på varje skärm, egna sidor för häckklippning, trädgårdsskötsel och skötsel för bostadsrättsföreningar, och RUT-beskedet utskrivet per tjänst. Sidan är i drift och tar emot förfrågningar varje vecka.',
+      text: 'Bromma Trädgårdsservice i västra Stockholm fick en sida med telefonnumret synligt på varje skärm, egna sidor för häckklippning, trädgårdsskötsel och skötsel för bostadsrättsföreningar, och RUT-beskedet utskrivet per tjänst. Den 30 juli 2026 låg firman först av sex i Googles Platser-flik för trädgårdsservice i Stockholm och nämndes först i ChatGPT:s svar. Från 27 juli till 22 september kom över 20 offertförfrågningar in via sidan.',
     },
     fragor: [
       {

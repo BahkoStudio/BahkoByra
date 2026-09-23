@@ -49,7 +49,7 @@ export default function Footer() {
             <h2 className={styles.kolrubrik}>Byrån</h2>
             <ul>
               <li>
-                <Link href="/case/">Case</Link>
+                <Link href="/case/">Kunder</Link>
               </li>
               <li>
                 <Link href="/om-oss/">Om oss</Link>
@@ -102,7 +102,9 @@ export default function Footer() {
         <div className={styles.botten}>
           <span>© {new Date().getFullYear()} Bahko Byrå</span>
           <span>Org.nr 650816-7738 · Godkänd för F-skatt</span>
-          <span>bahkobyra.se</span>
+          <span>
+            <Link href="/integritet/">Integritet</Link> · <a href="#cookieval">Cookieinställningar</a>
+          </span>
         </div>
       </div>
     </footer>

@@ -929,7 +929,7 @@ export default function OsterlundsDemo() {
             target="_blank"
             rel="noopener"
           >
-            Boka 15 min gratis samtal →
+            Boka 15 min kostnadsfritt samtal →
           </a>
           <a
             className={styles.modalAlt}

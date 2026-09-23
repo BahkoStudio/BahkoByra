@@ -18,7 +18,7 @@ export const TJANSTER = [
       },
       {
         h: 'Laddningshastighet',
-        p: 'Varje extra sekund tappas 7% av besökarna. Hur snabbt laddar er sida?',
+        p: 'En sida som laddar långsamt tappar besökare innan de ser numret. Hur snabbt laddar er?',
       },
       {
         h: 'Lokal SEO & Google Maps',
@@ -30,19 +30,19 @@ export const TJANSTER = [
       },
       {
         h: 'Trustsignaler',
-        p: 'Certifikat, betyg och riktiga bilder på ert arbete — syns de tydligt? Förtroende avgör valet.',
+        p: 'Certifikat, betyg och riktiga bilder på ert arbete. Syns de tydligt? Förtroende avgör valet.',
       },
       {
         h: 'Sociala bevis',
-        p: 'Recensioner, genomförda uppdrag, nöjda kunder — visas det på er sajt?',
+        p: 'Recensioner, genomförda uppdrag, nöjda kunder. Visas det på er sajt?',
       },
       {
         h: 'SEO-grundstruktur',
-        p: 'Titlar, meta-beskrivningar och URL-struktur — är de optimerade för Google?',
+        p: 'Titlar, meta-beskrivningar och URL-struktur. Är de optimerade för Google?',
       },
       {
         h: 'Prissättning & erbjudanden',
-        p: 'Är priser lätta att hitta? Otydlig prissättning skrämmer bort 43% av besökarna.',
+        p: 'Är priserna lätta att förstå? Otydliga priser får kunden att ringa någon annan.',
       },
       {
         h: 'Design & varumärke',

@@ -252,3 +252,32 @@
     display: none;
   }
 }
+
+/* Vad sidan gör, och om det är en kund eller en demo */
+.rad {
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: var(--text-lag);
+}
+
+.markKund,
+.markDemo {
+  align-self: flex-start;
+  margin-top: 0.35rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 99px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.markKund {
+  background: rgba(16, 185, 129, 0.16);
+  color: var(--em-lt);
+}
+
+.markDemo {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-lag);
+}

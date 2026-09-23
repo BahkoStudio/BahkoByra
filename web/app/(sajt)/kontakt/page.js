@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Maskot from '../../komponenter/Maskot';
 import DemoFormular from '../../komponenter/DemoFormular';
 import { NYCKEL_KONTAKT } from '../../formular';
@@ -58,6 +59,7 @@ export default function Kontakt() {
             className={styles.form}
             amne={AMNE}
             nyckel={NYCKEL_KONTAKT}
+            tel="076-254 09 51"
             fran="bahkobyra.se"
             tack
             kvittens={
@@ -97,7 +99,7 @@ export default function Kontakt() {
             </button>
             <p className={styles.finstilt}>
               Vi använder uppgifterna för att kontakta er om förslaget. Inget nyhetsbrev, ingen
-              vidareförsäljning.
+              vidareförsäljning. <Link href="/integritet/">Så hanterar vi uppgifterna</Link>.
             </p>
           </DemoFormular>
         </div>

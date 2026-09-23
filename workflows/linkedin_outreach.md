@@ -56,7 +56,7 @@ Jag skickade ett mejl till info@[företag].se häromdagen med ett demo på hur [
 
 Får jag fråga: hur nöjd är du med er hemsida i dag? Får den in förfrågningar som den ska?
 
-Vi byggde nyss åt en målare i Jönköping och en trädgårdsfirma i Stockholm. Hos en av dem blev det tolv procent fler kundförfrågningar.
+Vi byggde nyss åt en målare i Jönköping och en trädgårdsfirma i Stockholm. Trädgårdsfirman hamnade först på Google och fick över 20 förfrågningar via hemsidan på åtta veckor.
 ```
 
 ## Steg 4 — Sista meddelande (dag 7, om inget svar)

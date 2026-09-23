@@ -624,7 +624,7 @@ export default function ElvionElDemo() {
           <span className={styles.modalBadge}>Förslag av Bahko Byrå</span>
           <h3 id="bahko-rubrik">Så här kan Elvion El se ut på nätet</h3>
           <p>Det här är ett kostnadsfritt förslag, byggt på det ni själva visar på elvionel.se. Ingen beställning, inget åtagande. Vill ni se den skarpt med era egna bilder, riktiga omdömen och ett formulär som landar i inkorgen? Boka ett kostnadsfritt 15-minuterssamtal med Mathias.</p>
-          <a className={styles.modalCta} href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener">Boka 15 min gratis samtal →</a>
+          <a className={styles.modalCta} href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener">Boka 15 min kostnadsfritt samtal →</a>
           <a className={styles.modalAlt} href="mailto:mathias@bahkobyra.se?subject=Elvion%20El%20-%20f%C3%B6rslag%20p%C3%A5%20hemsida">Eller mejla → mathias@bahkobyra.se</a>
           <span className={styles.modalFot}>Bahko Byrå · Synlighet som säljer.</span>
         </section>
