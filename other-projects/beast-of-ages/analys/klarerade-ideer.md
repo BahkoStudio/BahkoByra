@@ -252,3 +252,17 @@ målet, Lamm säger nu "early 2030s", redigeringar ~60 → ~150 gener); Cell Gen
 
 Dödade eller nedprioriterade: **röd varg/"ghost alleles"** (Species Decoder 338 856, 8 sep, och kanalen har redan sin egen röda varg-video), **bluebuck** (Colossals egna film 1,8 M / 25-minutare 264 k, Coyote Peterson 52 k),
 **ny kattart Tilcayo** (nyhetsklipp, utanför nischen), **beardog** (8–48 k, men kanalens förhistoriska rovdjursvideor gav 150–180), **"Why Don't We Eat X"** (mättat: hippo 1,02 M på NEXPSY, Knapp har hippo och känguru, kanalens hästvideo fick 460).
+
+## Modelleringsrunda 2026-09-23 — fem idéer med störst viral potential
+
+Utliggare hämtade med `vidiq_outliers` (långform, under 50 000 prenumeranter, tre månader, sorterat på breakout). Varje idé modellerar en form som redan slagit på en liten kanal; ämnet är vårt.
+
+| # | Titel (vidIQ) | Förlaga (form) | Kontroll | Status |
+|---|---|---|---|---|
+| 1 | 5 Billion Sea Stars Melted Off the Pacific Coast. Scientists Finally Found the Killer. (97) | Past Wilds (568 pren.) *Spotted Lanternflies Are Vanishing in Pennsylvania — The Real Predator Was Unexpected* 380 592, breakout 5 484; Blackwater America (3 040) *…What's Hunting Alligators in the Mississippi* 230 254 | Bara nyhetsklipp och mikrokanaler på "killern hittad". Keystone Atlas (5 370) har 109 k på urchin-uppföljningen (annan vinkel). Prentice m.fl. 2025, Nature Ecol. Evol.: *Vibrio pectenicida*; 2026 kommentar i samma tidskrift ifrågasätter beviset — ärlighetsvändning | gul-grön, full Grind |
+| 2 | Scientists Lowered a Camera Under Antarctica's Ice. Something Was Already Living There. (91) | Explorer Vault (6 170) *Scientists Lowered a Camera to the Bottom of Crater Lake…* 1 504 909; kamera-shorts om Antarktis 64 M (IFLScience) och 28 M (Cleo Abram) | Ingen långform. Fakta: WISSARD jan 2015, 740 m is, 850 km från öppet hav, genomskinliga ~20 cm fiskar, amfipoder, maneter; sydligaste fisk någonsin | grön, full Grind |
+| 3 | Every Animal in North America Had a Deadlier Ice Age Version (95) | Drowned Earth (1 070) *Every Ocean Apex Predator Had A Worse Version* 282 721; Curious Fing (12 900) *10 Prehistoric Ocean Monsters…* 1,41 M | GUL: ExtinctZoo (1,53 M) *Ice Age America Was Basically Africa On Steroids* 1,0 M (maj 2026) har samma djur. Skillnaden måste vara parformen (bäver/jättebäver, puma/amerikanskt lejon, grizzly/kortnosbjörn, kondor/Teratornis) | gul, avgörs i Grind |
+| 4 | The Woolly Mammoth Is Coming Back… But Not by 2028 (90) | Kanalens egen coming-back-form; GroovyGavin (3,08 M) mammutbesök 281 k på ett dygn 22 sep | Noll långform på förseningen. TIME 2026-08-24 verifierad | grön, tidskritisk |
+| 5 | Why Do So Many "Extinct" Animals Turn Up Alive? (95) | Mavora (53 000) fem listor à 1,3–1,57 M; Mystic Evidence (1 760) 968 584 | Fältet är kryptid-listor. Vår vinkel: Lazarus-taxa och varför utdöendedatum är gissningar (samma logik som thylacine-manuset) | gul, full Grind |
+
+Dödade i rundan: *What Hunted the First Americans?* (ExtinctZoo 2,8 M och NORTH 02 672 k på samma innehåll); dire wolf-genomet (kanalens egen regel: dire wolf-spåret är slut).
