@@ -4,7 +4,7 @@ import styles from './case.module.css';
 export const metadata = {
   title: 'Case och demos',
   description:
-    'Riktiga sajter vi byggt för bygg-, hantverks- och tjänsteföretag, plus demos du kan klicka runt i.',
+    'Riktiga sajter vi byggt åt hantverkare och lokala företag, plus demos ni kan klicka runt i.',
   alternates: { canonical: '/case/' },
 };
 
@@ -30,7 +30,7 @@ const KUNDER = [
     bransch: 'Trädgårdsskötsel · Stockholm',
     url: 'https://brommatradgardsservice.se/',
     bild: '/img/demo-bromma-tradgard.webp',
-    lang: 'Bromma Trädgårdsservice sköter trädgårdar i västra Stockholm. Bahko Byrå byggde brommatradgardsservice.se med telefonnumret synligt på varje skärm, egna sidor för häckklippning och trädgårdsskötsel för villaägare och bostadsrättsföreningar, och RUT-beskedet utskrivet per tjänst. För trädgård och hantverk är samtalet det som blir en affär, så hela sidan är byggd runt ringknappen. Två veckor in i samarbetet, augusti 2026, ligger Bromma Trädgårdsservice på plats 1 i Googles lokala resultat för trädgårdsservice i Stockholm, och nämns först när ChatGPT får samma fråga.',
+    lang: 'Bromma Trädgårdsservice sköter trädgårdar i västra Stockholm. Bahko Byrå byggde brommatradgardsservice.se med telefonnumret synligt på varje skärm, egna sidor för häckklippning och trädgårdsskötsel för villaägare och bostadsrättsföreningar, och RUT-beskedet utskrivet per tjänst. För trädgård och hantverk är samtalet det som blir en affär, så hela sidan är byggd runt ringknappen. Den 30 juli 2026 låg Bromma Trädgårdsservice på plats 1 av 6 i Googles Platser-flik för trädgårdsservice i Stockholm, före en konkurrent med 117 omdömen, och nämndes först när ChatGPT fick samma fråga. Från 27 juli till 22 september kom 25 offertförfrågningar in via formuläret på sajten.',
   },
   {
     namn: "Mayka's Kitchen",
@@ -42,7 +42,6 @@ const KUNDER = [
 ];
 
 const DEMOS = [
-  { namn: 'Vajje Bygg', bransch: 'Nybyggnation & renovering', url: '/cloud/vajjebygg/', bild: '/img/demo-vajjebygg.webp' },
   { namn: 'GRANIT Bygg', bransch: 'Bygg & entreprenad', url: '/cloud/bygg/', bild: '/img/demo-granit-bygg.webp' },
   { namn: 'Asmar Relining', bransch: 'Relining & VVS', url: '/cloud/asmar/', bild: '/img/demo-asmar-relining.webp' },
 ];
@@ -57,8 +56,7 @@ export default function Case() {
             Riktiga sajter, <span className="accent">riktiga firmor.</span>
           </h1>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
-            Klicka in i sajterna. Det här är inga mockuper, det är sidor som står och tar emot
-            kunder varje dag.
+            Klicka in i sajterna. Det här är inga mockuper, det är sidor i drift.
           </p>
         </div>
       </section>
@@ -90,8 +88,8 @@ export default function Case() {
           <span className="eyebrow">Demos</span>
           <h2>Byggda för att visa, inte för att sälja</h2>
           <p className="lede" style={{ marginTop: '1rem' }}>
-            Så här ser ett förslag ut när det landar hos er. Firmorna är påhittade, sidorna är
-            byggda på riktigt.
+            Så här ser ett förslag ut när det landar hos er. Sidorna är byggda på riktigt, klicka
+            runt i dem.
           </p>
           <div className={styles.nat}>
             {DEMOS.map((d) => (

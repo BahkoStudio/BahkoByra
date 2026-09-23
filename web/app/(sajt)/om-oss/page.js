@@ -71,7 +71,7 @@ export default function OmOss() {
           <div className={styles.cta}>
             <div>
               <h2>Nyfiken på hur er sida skulle se ut?</h2>
-              <p>Förslaget är gratis och kommer inom 48 timmar.</p>
+              <p>Förslaget är kostnadsfritt och kommer inom 48 timmar.</p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">
               Få kostnadsfritt förslag {PIL}

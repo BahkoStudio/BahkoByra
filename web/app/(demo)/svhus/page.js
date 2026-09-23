@@ -705,7 +705,7 @@ export default function SvHusDemo() {
             med Mathias.
           </p>
           <a className={styles.modalCta} href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener">
-            Boka 15 min gratis samtal →
+            Boka 15 min kostnadsfritt samtal →
           </a>
           <a
             className={styles.modalAlt}

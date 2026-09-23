@@ -6,7 +6,7 @@ import MaskotScen from '../komponenter/MaskotScen';
 import Marquee from '../komponenter/Marquee';
 import RoiKalkyl from '../komponenter/RoiKalkyl';
 import Portfolj from '../komponenter/Portfolj';
-import SynlighetsPanel from '../komponenter/SynlighetsPanel';
+import BevisBromma, { BevisSiffror } from '../komponenter/BevisBromma';
 import ProcessRail from '../komponenter/ProcessRail';
 import TjanstIkon from '../komponenter/TjanstIkon';
 import Faq from '../komponenter/Faq';
@@ -82,8 +82,66 @@ export default function Start() {
         </div>
       </section>
 
+      {/* ── BEVISET: Brommas skärmbilder från 30 juli, direkt efter heron.
+             Ersätter synlighetspanelen, vars graf var en illustration. ── */}
+      <section className={`mork ${styles.panelYta}`} id="bevis">
+        <div className={`wrap ${styles.panelInner}`} data-trapp>
+          <div>
+            <span className="eyebrow">Ett riktigt kundcase</span>
+            <h2>
+              Plats 1 på Google. <span className="accent">Först i ChatGPT.</span>
+            </h2>
+            <p className="lede" style={{ marginTop: '1.1rem' }}>
+              Bromma Trädgårdsservice i Stockholm fick ny hemsida av oss. Den 30 juli låg firman
+              överst på Google för &quot;trädgårdsservice i Stockholm&quot;, före en konkurrent med
+              117 omdömen. ChatGPT nämnde dem först.
+            </p>
+            <BevisSiffror />
+            <div className={styles.panelKnapp}>
+              <Link href="/case/" className="btn btn-sekundar">
+                Se kunderna {PIL}
+              </Link>
+            </div>
+            {/* Ögat sitter bakom luppen — Mathias egen render, som den är */}
+            <MaskotScen
+              className={styles.panelFigur}
+              src="/img/maskot-scener/forstoringsglas.webp"
+              alt="Bahko-maskoten granskar en mobil med ett förstoringsglas"
+              index={1}
+            />
+          </div>
+          <div className={styles.panelScen}>
+            <BevisBromma />
+          </div>
+        </div>
+      </section>
+
       {/* ── BEVISREMSAN: står still tills man scrollat ── */}
       <Marquee />
+
+      {/* ── PORTFÖLJEN: riktiga sajter och demos i ett rutnät ── */}
+      <section className={`mork ${styles.caseYta}`} id="case">
+        <div className="wrap">
+          <div data-trapp>
+            <span className="eyebrow">Leveranser i drift</span>
+            <h2>
+              Riktiga sajter. <span className="accent">Riktiga firmor.</span>
+            </h2>
+            <p className="lede" style={{ marginTop: '1rem' }}>
+              Tre kunder med sajter i drift, och två demos som visar hur ett förslag ser ut.
+              Klicka in och syna dem.
+            </p>
+          </div>
+
+          <Portfolj />
+
+          <div className={styles.caseMer}>
+            <Link href="/case/" className="btn btn-sekundar">
+              Se fler leveranser och demos
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* ── ROI-KALKYLEN: maskoten pekar på kalkylen, besökaren räknar på sina egna siffror ── */}
       <section className={`mork ${styles.siffrorYta}`} id="rakna">
@@ -109,37 +167,6 @@ export default function Start() {
             Därför syns inte <span className="accent">ert företag på Google.</span>
           </h2>
           <HeroVideo />
-        </div>
-      </section>
-
-      {/* ── SYNLIGHETSPANELEN ── */}
-      <section className={`mork ${styles.panelYta}`} id="synlighet">
-        <div className={`wrap ${styles.panelInner}`} data-trapp>
-          <div>
-            <span className="eyebrow">Vad som händer</span>
-            <h2>
-              Från osedd till <span className="accent">hittad.</span>
-            </h2>
-            <p className="lede" style={{ marginTop: '1.1rem' }}>
-              Numret syns inte i mobilen. Offertknappen saknas. Sidan laddar för långsamt.
-              Tre läckor som kostar jobb. Vi täpper alla tre.
-            </p>
-            <div className={styles.panelKnapp}>
-              <Link href="/tjanster/hemsidor/" className="btn btn-sekundar">
-                Så bygger vi {PIL}
-              </Link>
-            </div>
-            {/* Ögat sitter bakom luppen — Mathias egen render, som den är */}
-            <MaskotScen
-              className={styles.panelFigur}
-              src="/img/maskot-scener/forstoringsglas.webp"
-              alt="Bahko-maskoten granskar en mobil med ett förstoringsglas"
-              index={1}
-            />
-          </div>
-          <div className={styles.panelScen}>
-            <SynlighetsPanel />
-          </div>
         </div>
       </section>
 
@@ -210,30 +237,6 @@ export default function Start() {
             />
             <Link href="/kontakt/" className="btn btn-primar">
               Se er sida kostnadsfritt {PIL}
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── PORTFÖLJEN: riktiga sajter och demos i ett rutnät ── */}
-      <section className={`mork ${styles.caseYta}`} id="case">
-        <div className="wrap">
-          <div data-trapp>
-            <span className="eyebrow">Leveranser i drift</span>
-            <h2>
-              Riktiga sajter. <span className="accent">Riktiga firmor.</span>
-            </h2>
-            <p className="lede" style={{ marginTop: '1rem' }}>
-              Tre kunder som tar emot jobb varje dag, och tre demos som väntar på sin firma.
-              Klicka in, allt är på riktigt.
-            </p>
-          </div>
-
-          <Portfolj />
-
-          <div className={styles.caseMer}>
-            <Link href="/case/" className="btn btn-sekundar">
-              Se fler leveranser och demos
             </Link>
           </div>
         </div>

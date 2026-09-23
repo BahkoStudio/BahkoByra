@@ -4,7 +4,8 @@ import styles from './Portfolj.module.css';
 /* Kundsektionen (siterabbits-mönstret): kolumner med riktiga sidtoppar som
    rullar av sig själva, varje kort en liten webbläsare.
 
-   Två kolumner med tre sajter var (kunder till vänster, demos till höger),
+   Två kolumner: kunder till vänster, demos till höger. Varje kort säger
+   om det är en kund eller en demo, och vad sidan gör (k.rad).
    åt varsitt håll. Referensen har tre kolumner, men sex sajter räcker inte
    till tre utan att samma firma står i bild två gånger samtidigt (design-
    loopen, runda 2). Tillbaka till tre när det finns tolv sajter.
@@ -43,6 +44,10 @@ function Kort({ k, dubblett }) {
             <span className={styles.kortTagg}>{k.kort}</span>
           </span>
           <strong>{k.namn}</strong>
+          <span className={styles.rad}>{k.rad}</span>
+          <span className={k.typ === 'kund' ? styles.markKund : styles.markDemo}>
+            {k.typ === 'kund' ? 'Kund i drift' : 'Demo'}
+          </span>
         </span>
       </a>
     </li>

@@ -17,11 +17,11 @@ const outfit = Outfit({
 export const metadata = {
   metadataBase: new URL('https://www.bahkobyra.se'),
   title: {
-    default: 'Bahko Byrå — hemsidor som ger bygg- och hantverksfirmor fler jobb',
+    default: 'Hemsidor för hantverkare och lokala företag | Bahko Byrå, Jönköping',
     template: '%s | Bahko Byrå',
   },
   description:
-    'Vi bygger hemsidor för bygg- och hantverksfirmor i Sverige. Du får ett färdigt förslag inom 48 timmar och ser sidan innan du bestämmer dig.',
+    'Vi bygger hemsidor åt hantverkare och lokala företag i Sverige. Ni får ett färdigt förslag inom 48 timmar och ser sidan innan ni bestämmer er.',
   openGraph: {
     type: 'website',
     locale: 'sv_SE',
@@ -72,8 +72,8 @@ const organisationsSchema = {
       'Saturday',
       'Sunday',
     ],
-    opens: '09:00',
-    closes: '18:00',
+    opens: '08:00',
+    closes: '22:00',
   },
   description:
     'Digital byrå som bygger hemsidor för bygg- och hantverksfirmor i Sverige.',

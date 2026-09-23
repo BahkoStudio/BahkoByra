@@ -1,31 +1,53 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import styles from './Popup.module.css';
 import Maskot from './Maskot';
 
-// Sekunder innan popupen visas, och innan den kommer tillbaka efter en stängning.
-const INTERVALL = 30;
+// Sekunder innan popupen visas. Den visas högst en gång per besök, aldrig på
+// sidorna där besökaren redan är på väg att höra av sig, och aldrig mitt i ett formulär.
+const FORDROJNING = 30;
+const NYCKEL = 'bb_popup_sedd';
+const TYST = /^[/](kontakt|tack|integritet)/;
+
+function sedd() {
+  try {
+    return sessionStorage.getItem(NYCKEL) === '1';
+  } catch {
+    return false;
+  }
+}
+
+function markeraSedd() {
+  try {
+    sessionStorage.setItem(NYCKEL, '1');
+  } catch {}
+}
 
 export default function Popup() {
+  const sokvag = usePathname() || '';
   const [oppen, setOppen] = useState(false);
   const kortRef = useRef(null);
   const timer = useRef(null);
 
-  const schemalagg = useCallback(() => {
-    clearTimeout(timer.current);
-    timer.current = setTimeout(() => setOppen(true), INTERVALL * 1000);
-  }, []);
-
   useEffect(() => {
-    schemalagg();
+    if (TYST.test(sokvag) || sedd()) return;
+    const forsok = () => {
+      // Skriver besökaren i ett formulär väntar vi tio sekunder till.
+      if (document.activeElement?.closest?.('form')) {
+        timer.current = setTimeout(forsok, 10000);
+        return;
+      }
+      if (sedd()) return;
+      markeraSedd();
+      setOppen(true);
+    };
+    timer.current = setTimeout(forsok, FORDROJNING * 1000);
     return () => clearTimeout(timer.current);
-  }, [schemalagg]);
+  }, [sokvag]);
 
-  const stang = useCallback(() => {
-    setOppen(false);
-    schemalagg();
-  }, [schemalagg]);
+  const stang = useCallback(() => setOppen(false), []);
 
   // Escape stänger, och fokus flyttas in i kortet när det öppnas.
   useEffect(() => {
@@ -43,7 +65,7 @@ export default function Popup() {
     };
   }, [oppen, stang]);
 
-  if (!oppen) return null;
+  if (!oppen || TYST.test(sokvag)) return null;
 
   return (
     <div className={styles.lager}>
@@ -64,15 +86,15 @@ export default function Popup() {
 
         <Maskot pose="pekar" stil="popup" alt="Bahko-maskoten pekar på erbjudandet" />
 
-        <span className={styles.tagg}>Kostnadsfri demo</span>
+        <span className={styles.tagg}>Kostnadsfritt förslag</span>
         <h2 id="popup-rubrik">Se er nya hemsida innan ni bestämmer er.</h2>
         <p>
-          Vi bygger en demo av er nya hemsida inom 48 timmar. Ni ser exakt vad ni får,
+          Vi bygger ett förslag på er nya hemsida inom 48 timmar. Ni ser exakt vad ni får,
           innan ni bestämmer något. Kostar inget.
         </p>
 
         <a href="/kontakt/" className="btn btn-primar">
-          Se er kostnadsfria demo
+          Se er sida kostnadsfritt
         </a>
         <button className={styles.senare} onClick={stang}>
           Inte nu

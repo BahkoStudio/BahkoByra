@@ -217,3 +217,27 @@
     display: none;
   }
 }
+
+/* Ringknappen bredvid hamburgaren, bara på mobil */
+.ringa {
+  display: none;
+  width: 44px;
+  height: 44px;
+  margin-right: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--em);
+  color: var(--bas);
+}
+
+.ringa svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 860px) {
+  .ringa {
+    display: inline-flex;
+  }
+}

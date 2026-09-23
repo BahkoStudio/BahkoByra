@@ -6,7 +6,7 @@ import styles from './jonkoping.module.css';
 export const metadata = {
   title: 'Webbyrå i Jönköping',
   description:
-    'Bahko Byrå är en webbyrå med kontor i Jönköping. Vi bygger hemsidor för bygg- och hantverksfirmor: färdigt förslag inom 48 timmar, live inom sju dagar. Välkommen förbi kontoret.',
+    'Bahko Byrå är en webbyrå med kontor i Huskvarna, Jönköping. Vi bygger hemsidor för bygg- och hantverksfirmor: färdigt förslag inom 48 timmar, live inom sju dagar. Boka gärna ett möte på kontoret.',
   alternates: { canonical: '/webbyra-jonkoping/' },
 };
 
@@ -24,7 +24,7 @@ const PIL = (
 const LOKALT = [
   {
     h: 'Kontor i Huskvarna',
-    p: 'Bahko Byrå sitter på Kungsängsvägen 27 i Huskvarna, strax öster om centrala Jönköping. Öppet alla dagar 9 till 18, och det går utmärkt att ses där, före ett beslut eller mitt i ett bygge. Ring 076-254 09 51 innan så står kaffet framme.',
+    p: 'Bahko Byrå sitter på Kungsängsvägen 27 i Huskvarna, strax öster om centrala Jönköping. Vi svarar alla dagar 8 till 22, och det går utmärkt att boka ett möte där, före ett beslut eller mitt i ett bygge. Ring 076-254 09 51 innan så står kaffet framme.',
   },
   {
     h: 'Kund i stan, i drift',
@@ -36,13 +36,14 @@ const LOKALT = [
   },
 ];
 
-/* Bevis: bara verifierat. Plats 1 på Google och först i ChatGPT kontrollerades
-   2026-08-15 (skärmdumpar i content/kundarbete/bromma/bevis/). Tolv procent är
-   Mathias egen uppgift om samma kund (2026-09-11). Inga andra siffror. */
+/* Bevis: bara verifierat. Plats 1 på Google och först i ChatGPT är skärmbilderna i
+   rapport 1, 30 juli 2026 (content/kundarbete/bromma/bevis/). Förfrågningarna är
+   räknade i kundens formulärinkorg 27 juli till 22 september. Ingen procentsats:
+   det finns ingen mätning av läget före (Mathias 2026-09-23). */
 const RESULTAT = [
-  { tal: '1', etikett: 'Plats på Google', text: 'Bromma Trädgårdsservice i Stockholm låg först i Googles lokala resultat inom två veckor efter att sidan gick live.' },
+  { tal: '1', etikett: 'Plats på Google', text: 'Bromma Trädgårdsservice i Stockholm låg först av sex firmor i Googles Platser-flik för trädgårdsservice i Stockholm den 30 juli 2026.' },
   { tal: '1', etikett: 'Först i ChatGPT', text: 'Samma firma kom först i ChatGPT:s svar på frågan om trädgårdsservice i Stockholm.' },
-  { tal: '12 %', etikett: 'Fler förfrågningar', text: 'Firman fick tolv procent fler kundförfrågningar med den nya sidan. Ett kundcase, inget löfte.' },
+  { tal: '25+', etikett: 'Förfrågningar via sidan', text: '25 offertförfrågningar kom in via formuläret på sidan mellan 27 juli och 22 september. Ett kundcase, inget löfte.' },
 ];
 
 /* Vad en sida från Bahko Byrå innehåller. Samma moduler som varje demo byggs med. */
@@ -57,7 +58,7 @@ const INGAR = [
 
 const BESOK = {
   adress: ['Kungsängsvägen 27', '561 51 Huskvarna'],
-  tider: 'Alla dagar 9–18',
+  tider: 'Alla dagar 8–22',
   tel: '076-254 09 51',
   telHref: 'tel:+46762540951',
   karta: 'https://maps.google.com/?q=Kungs%C3%A4ngsv%C3%A4gen+27,+561+51+Huskvarna',
@@ -101,7 +102,7 @@ export default function Jonkoping() {
             Webbyrå i Jönköping
           </h1>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
-            Bahko Byrå är en webbyrå med kontor i Jönköping som bygger hemsidor för bygg- och
+            Bahko Byrå är en webbyrå med kontor i Huskvarna, Jönköping, som bygger hemsidor för bygg- och
             hantverksfirmor. Färdigt förslag inom 48 timmar, live inom sju dagar, och en kund
             här i stan vars sajt ni kan syna innan ni hör av er.
           </p>
@@ -170,7 +171,7 @@ export default function Jonkoping() {
           <span className="eyebrow">Resultat</span>
           <h2>Vad en sida från Bahko Byrå kan göra</h2>
           <p className="lede" style={{ marginTop: '1rem' }}>
-            Ett kundcase från Bahko Byrå, med siffror som går att kontrollera.
+            Ett kundcase från Bahko Byrå. Placeringen är skärmbilder från 30 juli 2026.
           </p>
           <div className={styles.resultatNat}>
             {RESULTAT.map((r) => (

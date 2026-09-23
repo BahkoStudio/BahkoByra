@@ -58,7 +58,8 @@ Cadence: `workflows/outreach_cadence.md`. IG: `workflows/instagram_engine.md`. K
   beslutskarta, diagnos, kvantifiera, kvalificera, värderam, utmana, förebygg invändningar,
   hantera invändningar, commitment, uppföljning samma dag, exit.
 - **Bevis i outreach:** minst två verkliga kunder i varje öppnare (målaren i Jönköping,
-  trädgårdsfirman i Stockholm, restaurangen) och siffran tolv procent. Inga andra.
+  trädgårdsfirman i Stockholm, restaurangen) och Brommas belagda bevis: plats 1 på Google och i
+  ChatGPT, 25 förfrågningar via hemsidan på åtta veckor. Tolv procent är ett mål i erbjudandet, aldrig ett bevis (2026-09-23).
 - **Branschordet:** deras egen bransch, annars "lokala företag". Aldrig "hantverksföretag" till
   städ, flytt eller restaurang.
 - **Front-offer = bevisa "the wizard"**, inte tjäna pengar. Uppsell kommer sen.

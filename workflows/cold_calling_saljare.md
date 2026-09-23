@@ -75,8 +75,8 @@ deras egen. Skillnaden du ser är exakt det du ska kunna beskriva i telefon.
 
 ### [LÖSNING]
 Beviset som sägs direkt efter smärtan. Standardraden (enda siffran du får använda):
-**"Vi har byggt åt en målare i Jönköping, en trädgårdsfirma i Stockholm och en restaurang. Hos
-en av dem blev det tolv procent fler kundförfrågningar."** Sägs lugnt, i förbifarten, erfarenhet
+**"Vi har byggt åt en målare i Jönköping, en trädgårdsfirma i Stockholm och en restaurang. Trädgårdsfirman
+hamnade först på Google och fick 25 förfrågningar via hemsidan på åtta veckor."** Sägs lugnt, i förbifarten, erfarenhet
 inte löfte. Flera kunder nämns alltid, det är beviset. Hitta aldrig på siffror eller kunder.
 
 ---

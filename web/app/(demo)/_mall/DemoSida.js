@@ -27,7 +27,7 @@ const T = {
     telRad: 'Telefon', epostRad: 'E-post', oppetRad: 'Öppettider', igRad: 'Instagram', adressRad: 'Adress',
     sidan: 'Sidan', tjanster: 'Tjänster', kontaktuppg: 'Kontaktuppgifter',
     byggd: 'Förslag byggt av', omForslaget: 'Om det här förslaget', stangKort: 'Stäng',
-    modalBadge: 'Förslag av Bahko Byrå', modalCta: 'Boka 15 min gratis samtal →', modalAlt: 'Eller mejla → mathias@bahkobyra.se',
+    modalBadge: 'Förslag av Bahko Byrå', modalCta: 'Boka 15 min kostnadsfritt samtal →', modalAlt: 'Eller mejla → mathias@bahkobyra.se',
     modalFot: 'Bahko Byrå · Synlighet som säljer.', ellerSkriv: 'Eller skriv några rader →', orgnr: 'Org.nr',
   },
   nb: {

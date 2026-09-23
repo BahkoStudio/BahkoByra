@@ -1,4 +1,5 @@
-/** Portföljen på startsidan: tre kundsajter i drift och tre demos.
+/** Portföljen på startsidan: tre kundsajter i drift och två demos.
+    Vajje Bygg togs bort 2026-09-23: en riktig firma som tackat nej ska inte stå som portfölj.
     Korttexterna är en rad var och säger vad sidan GÖR för firman, inte hur
     den ser ut. Inga siffror som inte är verifierade — case-sidan bär den
     längre berättelsen.
@@ -26,9 +27,9 @@ export const PORTFOLJ = [
     typ: 'kund',
     url: 'https://brommatradgardsservice.se/',
     bild: '/img/portfolj/bromma.jpg',
-    // Verifierat 2026-08-15 (skärmdumpar i content/kundarbete/bromma/bevis/): plats 1 i
-    // Googles lokala resultat och först i ChatGPT:s svar på 'trädgårdsservice i Stockholm'.
-    rad: 'Plats 1 på Google och först i ChatGPT:s svar. Inom två veckor.',
+    // Rapport 1, 30 juli 2026 (skärmbilder i content/kundarbete/bromma/bevis/): plats 1 i
+    // Googles Platser-flik och först i ChatGPT:s svar på 'trädgårdsservice i Stockholm'.
+    rad: 'Plats 1 på Google och först i ChatGPT:s svar, 30 juli 2026.',
   },
   {
     namn: "Mayka's Kitchen",
@@ -39,16 +40,6 @@ export const PORTFOLJ = [
     url: 'https://maykaskitchen.se',
     bild: '/img/portfolj/maykaskitchen.jpg',
     rad: 'Meny, video och recept på två språk som får gästerna att komma tillbaka.',
-  },
-  {
-    namn: 'Vajje Bygg',
-    kategori: 'Nybyggnation & renovering',
-    kort: 'Bygg',
-    adress: 'bahkobyra.se/cloud/vajjebygg',
-    typ: 'demo',
-    url: '/cloud/vajjebygg/',
-    bild: '/img/portfolj/vajjebygg.jpg',
-    rad: 'Så här ser ett förslag ut när det landar hos er.',
   },
   {
     namn: 'GRANIT Bygg',

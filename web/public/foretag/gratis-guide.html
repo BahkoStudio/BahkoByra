@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gratis guide + video: 3 sätt att ranka högre på Google | Bahko Byrå</title>
-<meta name="description" content="Få Bahko Byrås gratisguide + en kort video som visar exakt hur ditt lokala företag rankar högre på Google och Google Maps — utan att betala för annonser. Direkt, gratis.">
+<title>Kostnadsfri guide: 3 sätt att ranka högre på Google | Bahko Byrå</title>
+<meta name="description" content="Få Bahko Byrås kostnadsfria guide och en kort video som visar hur ett lokalt företag klättrar på Google och i Google Maps, utan annonser.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#F8FAFC">
 <link rel="canonical" href="https://www.bahkobyra.se/foretag/gratis-guide.html">
@@ -12,8 +12,8 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.bahkobyra.se/foretag/gratis-guide.html">
-<meta property="og:title" content="Gratis guide + video: 3 sätt att ranka högre på Google">
-<meta property="og:description" content="Få guiden + en kort video som visar exakt hur du tar ditt företag till topp 3 på Google. Gratis.">
+<meta property="og:title" content="Kostnadsfri guide: 3 sätt att ranka högre på Google">
+<meta property="og:description" content="Guiden och en kort video som visar hur ett lokalt företag klättrar på Google och i Maps. Kostnadsfri.">
 <meta property="og:image" content="https://www.bahkobyra.se/brand/logo-raster-16x9.png">
 <meta property="og:locale" content="sv_SE">
 
@@ -142,18 +142,20 @@
 <!-- HERO + OPT-IN -->
 <section class="hero">
   <div class="inner wrap">
-    <span class="eyebrow">Gratis guide + video</span>
-    <h1>3 sätt att ranka <em>högre</em> på Google — utan att betala för annonser</h1>
-    <p class="lede">Få vår gratisguide plus en kort video som visar <strong style="color:var(--ink)">exakt</strong> hur du tar ditt lokala företag till topp 3 på Google och Google Maps. Inga tekniska kunskaper behövs.</p>
+    <span class="eyebrow">Kostnadsfri guide + video</span>
+    <h1>3 sätt att ranka <em>högre</em> på Google, utan annonser</h1>
+    <p class="lede">Få vår kostnadsfria guide plus en kort video som visar hur ett lokalt företag klättrar på Google och i Google Maps. Inga tekniska kunskaper behövs.</p>
     <div class="vid-hint"><span class="pl">▶</span> Guide i text + ~4 min video</div>
 
-    <!-- OPT-IN: capture via Formspree, reveal guide+video on success -->
+    <!-- OPT-IN: skickas via Web3Forms, guiden och videon låses upp när svaret är success -->
     <div class="optin" id="optin">
       <form id="guide-form" action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="46c81217-6498-4880-a329-602e6884c017">
       <input type="hidden" name="subject" value="Kostnadsfri guide: ny nedladdning">
       <input type="hidden" name="from_name" value="bahkobyra.se">
       <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="display:none">
+      <!-- Bara för besökare utan JavaScript. Skriptet tar bort fältet, annars svarar Web3Forms 303. -->
+      <input type="hidden" name="redirect" value="https://www.bahkobyra.se/tack/">
         <h3>Få guiden + videon direkt 👇</h3>
         <p class="sub">Skriv in din e-post så låser vi upp guiden och videon på direkten.</p>
         <div class="field">
@@ -164,19 +166,17 @@
           <label for="g-epost">E-post</label>
           <input type="email" id="g-epost" name="email" placeholder="du@dittforetag.se" required autocomplete="email">
         </div>
-        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
-        <input type="hidden" name="_subject" value="Ny guide-nedladdning – lead magnet (gratis-guide)">
         <button class="btn" type="submit" id="g-btn"><span>Lås upp guiden + videon</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-        <p class="form-err" id="g-err" role="alert" hidden>Något gick fel. Försök igen eller mejla oss på mathias@bahkobyra.se</p>
-        <p class="fine">Ingen bindning. Vi spammar inte. Avregistrera när du vill.</p>
+        <p class="form-err" id="g-err" role="alert" hidden>Något gick fel. Försök igen, ring <a href="tel:+46762540951">076-254 09 51</a> eller mejla mathias@bahkobyra.se</p>
+        <p class="fine">Vi använder e-posten bara för att skicka guiden. Inget nyhetsbrev. <a href="/integritet/">Integritet</a>.</p>
       </form>
     </div>
 
     <!-- visible teasers (bygger lust + SEO) -->
     <div class="teasers">
-      <div class="teaser"><span class="n">1</span><div><b>Google Företagsprofil (GMB)</b> — den största lokala rankingfaktorn, som de flesta bara fyller i till hälften.</div></div>
-      <div class="teaser"><span class="n">2</span><div><b>On-page SEO</b> — rätt ord på rätt plats på din hemsida, så Google förstår vad du gör och var.</div></div>
-      <div class="teaser"><span class="n">3</span><div><b>Citations</b> — samma företagsuppgifter överallt på nätet. Konsekvens = förtroende hos Google.</div></div>
+      <div class="teaser"><span class="n">1</span><div><b>Google Företagsprofil (GMB)</b>: den största lokala rankingfaktorn, som de flesta bara fyller i till hälften.</div></div>
+      <div class="teaser"><span class="n">2</span><div><b>On-page SEO</b>: rätt ord på rätt plats på din hemsida, så Google förstår vad du gör och var.</div></div>
+      <div class="teaser"><span class="n">3</span><div><b>Citations</b>: samma företagsuppgifter överallt på nätet. Konsekvens = förtroende hos Google.</div></div>
     </div>
   </div>
 </section>
@@ -187,7 +187,7 @@
 <section id="guide-content">
   <div class="wrap">
     <div class="reveal-head">
-      <span class="badge">✓ Upplåst — här är din guide + video</span>
+      <span class="badge">✓ Upplåst, här är din guide + video</span>
       <h2>Så rankar du <em>högre</em> på Google</h2>
       <p>Titta på videon först, läs sedan stegen. Börja med steg 1 redan idag.</p>
     </div>
@@ -195,20 +195,20 @@
     <!-- VIDEO -->
     <div class="video-wrap">
       <div class="video-frame">
-        <iframe src="https://www.youtube-nocookie.com/embed/dKu5JzmaGRU" title="3 sätt att ranka högre på Google — Bahko Byrå" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/dKu5JzmaGRU" title="3 sätt att ranka högre på Google, Bahko Byrå" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </div>
 
     <!-- STEG 1: GMB -->
     <article class="tip">
       <div class="tip-n">Steg 1 · GMB-profil</div>
-      <h3>Gör din Google Företagsprofil komplett — och välj rätt kategori</h3>
+      <h3>Gör din Google Företagsprofil komplett, och välj rätt kategori</h3>
       <p>Profilen som visas i kartan är den enskilt största faktorn för var du hamnar lokalt. De flesta fyller i den till hälften och undrar sedan varför de ligger lågt.</p>
       <ul>
         <li>Logga in via <strong style="color:var(--ink)">google.com/business</strong> (eller sök ditt företagsnamn → "Hantera").</li>
-        <li>Sätt <strong style="color:var(--ink)">exakt rätt huvudkategori</strong> — den mest specifika för det ni gör, inte den breda. Lägg till 1–2 relevanta till — sedan stopp.</li>
+        <li>Sätt <strong style="color:var(--ink)">exakt rätt huvudkategori</strong>, den mest specifika för det ni gör, inte den breda. Lägg till 1–2 relevanta till, sedan stopp.</li>
         <li>Fyll i <strong style="color:var(--ink)">allt</strong>: öppettider, tjänster med beskrivningar, attribut, boknings-/offertlänk och en beskrivning med din ort i.</li>
-        <li>Ladda upp minst 10 riktiga foton (lokal, team, era jobb och resultat) — och posta något litet varje vecka.</li>
+        <li>Ladda upp minst 10 riktiga foton (lokal, team, era jobb och resultat), och posta något litet varje vecka.</li>
       </ul>
       <p class="win">Snabb vinst: en halvtom profil som blir 100 % ifylld rör sig ofta uppåt inom ett par veckor.</p>
     </article>
@@ -216,36 +216,36 @@
     <!-- STEG 2: ON-PAGE SEO -->
     <article class="tip">
       <div class="tip-n">Steg 2 · On-page SEO</div>
-      <h3>Rätt ord på rätt plats — på din egen hemsida</h3>
-      <p>Google läser din sajt för att förstå <em>vad</em> du gör och <em>var</em>. Står det inte tydligt — på rätt ställen — förlorar du mot konkurrenten där det gör det.</p>
+      <h3>Rätt ord på rätt plats på din egen hemsida</h3>
+      <p>Google läser din sajt för att förstå <em>vad</em> du gör och <em>var</em>. Står det inte tydligt, på rätt ställen, förlorar du mot konkurrenten där det gör det.</p>
       <ul>
-        <li>Sätt <strong style="color:var(--ink)">tjänst + ort i sidtiteln och huvudrubriken (H1)</strong>: t.ex. "[Din tjänst] i [Din stad] – [Företagsnamn]".</li>
-        <li>Ge <strong style="color:var(--ink)">varje huvudtjänst en egen sida</strong> med egen titel och rubrik — en sida kan inte ranka för allt.</li>
+        <li>Sätt <strong style="color:var(--ink)">tjänst + ort i sidtiteln och huvudrubriken (H1)</strong>: t.ex. "[Din tjänst] i [Din stad], [Företagsnamn]".</li>
+        <li>Ge <strong style="color:var(--ink)">varje huvudtjänst en egen sida</strong> med egen titel och rubrik. En sida kan inte ranka för allt.</li>
         <li>Skriv en meta-beskrivning som säljer klicket: vad ni gör, var, och varför man ska välja er.</li>
         <li>Snabb och mobilanpassad sajt + en inbäddad Google-karta på kontaktsidan.</li>
       </ul>
-      <p class="win">Snabb vinst: uppdatera startsidans titel och H1 med tjänst + ort — gjort på tio minuter.</p>
+      <p class="win">Snabb vinst: uppdatera startsidans titel och H1 med tjänst + ort, gjort på tio minuter.</p>
     </article>
 
     <!-- STEG 3: CITATIONS -->
     <article class="tip">
       <div class="tip-n">Steg 3 · Citations</div>
-      <h3>Samma uppgifter överallt — bygg dina citations</h3>
+      <h3>Samma uppgifter överallt: bygg dina citations</h3>
       <p>En citation är varje plats på nätet där ditt företagsnamn, adress och telefon (<em>NAP</em>) nämns. Ju fler och ju mer konsekventa, desto mer litar Google på att du är den du säger.</p>
       <ul>
         <li><strong style="color:var(--ink)">NAP ska se exakt likadan ut överallt</strong>: hemsidan, Google, Hitta, Eniro, Facebook. Minsta avvikelse förvirrar Google.</li>
-        <li>Lägg upp företaget med samma uppgifter på <strong style="color:var(--ink)">Bing Places och Apple Business Connect</strong> — gratis och snabbt.</li>
+        <li>Lägg upp företaget med samma uppgifter på <strong style="color:var(--ink)">Bing Places och Apple Business Connect</strong>. Kostnadsfritt och snabbt.</li>
         <li>Lägg till branschkataloger och lokala företagsregister som är relevanta för just din bransch och ort.</li>
         <li>Hitta gamla felaktiga uppgifter (gammalt nummer, gammal adress) och rätta dem.</li>
       </ul>
-      <p class="win">Snabb vinst: rätta NAP så den är identisk på de fem viktigaste ställena — gjort på en timme.</p>
+      <p class="win">Snabb vinst: rätta NAP så den är identisk på de fem viktigaste ställena, gjort på en timme.</p>
     </article>
 
     <!-- END CTA -->
     <div class="endcta">
-      <h2>Vill du veta exakt var <em>du</em> ligger?</h2>
-      <p>Vi gör en gratis synlighetskoll: din position på kartan idag, vilka som ligger över dig och de tre sakerna vi skulle fixa först för just ditt företag.</p>
-      <a href="/#kontakt" class="btn"><span>Boka gratis samtal</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <h2>Vill du slippa göra det <em>själv</em>?</h2>
+      <p>Vi bygger ett förslag på din nya hemsida inom 48 timmar, kostnadsfritt. Du ser sidan innan du bestämmer dig. Hellre prata? Ring <a href="tel:+46762540951">076-254 09 51</a>.</p>
+      <a href="/kontakt/" class="btn"><span>Få ett kostnadsfritt förslag</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
 </section>
@@ -254,7 +254,7 @@
 <footer>
   <div class="wrap">
     <span>© 2026 Bahko Byrå · Synlighet som säljer.</span>
-    <span><a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a></span>
+    <span>Kungsängsvägen 27, 561 51 Huskvarna · <a href="tel:+46762540951">076-254 09 51</a> · <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a> · <a href="/integritet/">Integritet</a></span>
   </div>
 </footer>
 
@@ -295,10 +295,12 @@
     try {
       const res = await fetch(form.action, {
         method: 'POST',
-        body: new FormData(form),
+        body: (function () { const fd = new FormData(form); fd.delete('redirect'); return fd; })(),
         headers: { 'Accept': 'application/json' }
       });
-      if (!res.ok) throw new Error('bad response');
+      const svar = await res.json().catch(function () { return {}; });
+      if (!res.ok || svar.success === false) throw new Error('bad response');
+      window.dispatchEvent(new CustomEvent('bb:skickat', { detail: 'guide' }));
       try { localStorage.setItem(UNLOCK_KEY, '1'); } catch {}
       unlock(true);
     } catch {

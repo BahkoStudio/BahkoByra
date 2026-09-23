@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Maskot from './Maskot';
 import styles from './StickyBokning.module.css';
 
@@ -9,6 +10,7 @@ import styles from './StickyBokning.module.css';
    lämnats, göms när footern är i bild och när något lager (popup, mobilmeny)
    låst scrollen — body[data-lager] sätts av de komponenterna. */
 export default function StickyBokning() {
+  const sokvag = usePathname() || '';
   const [synlig, setSynlig] = useState(false);
 
   useEffect(() => {
@@ -56,6 +58,9 @@ export default function StickyBokning() {
       mo.disconnect();
     };
   }, []);
+
+  // På kontakt- och tacksidan leder knappen bara till sidan man redan står på.
+  if (/^[/](kontakt|tack)/.test(sokvag)) return null;
 
   return (
     <div className={`${styles.rad} ${synlig ? styles.synlig : ''}`} aria-hidden={!synlig}>

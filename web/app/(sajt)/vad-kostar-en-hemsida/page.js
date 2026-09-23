@@ -49,8 +49,8 @@ const FALLOR = [
     p: 'Registrerar leverantören domänen i sitt namn sitter de på er adress den dag ni vill byta. Domänen ska stå på er firma. Alltid, oavsett vem som bygger.',
   },
   {
-    h: 'Gratis tills det inte är det',
-    p: 'Gratisverktygen tar betalt i annat: reklam på er sida, en adress ni inte äger och timmarna ni själva lägger. För en firma som lever på förfrågningar är en sida som inte hittas dyrast av allt.',
+    h: 'Kostnadsfritt tills det inte är det',
+    p: 'De kostnadsfria verktygen tar betalt i annat: reklam på er sida, en adress ni inte äger och timmarna ni själva lägger. För en firma som lever på förfrågningar är en sida som inte hittas dyrast av allt.',
   },
   {
     h: 'Priset utan innehåll',

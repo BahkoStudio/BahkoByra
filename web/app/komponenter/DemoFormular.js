@@ -15,7 +15,7 @@ import { DEMO_NYCKEL, TACK } from '../formular';
    Går anropet inte igenom påstår kvittensen aldrig att något skickats. Då visas
    felet och besökaren får försöka igen eller ringa. Samma regel som på kundsajterna. */
 
-export default function DemoFormular({ className, amne, children, nyckel = DEMO_NYCKEL, fran = 'Bahko-förslag', tack, kvittens, reserv = 'mailto:mathias@bahkobyra.se' }) {
+export default function DemoFormular({ className, amne, children, nyckel = DEMO_NYCKEL, fran = 'Bahko-förslag', tack, kvittens, reserv = 'mailto:mathias@bahkobyra.se', tel }) {
   const [lage, setLage] = useState('redo');
 
   async function skicka(e) {
@@ -41,7 +41,10 @@ export default function DemoFormular({ className, amne, children, nyckel = DEMO_
         headers: { Accept: 'application/json' },
       });
       const svar = await res.json().catch(() => ({}));
-      setLage(res.ok && svar.success !== false ? 'klar' : 'fel');
+      const ok = res.ok && svar.success !== false;
+      // analytics.js räknar det här som generate_lead, bara när inskicket gick fram.
+      if (ok) window.dispatchEvent(new CustomEvent('bb:skickat', { detail: amne }));
+      setLage(ok ? 'klar' : 'fel');
     } catch (err) {
       setLage('fel');
     }
@@ -87,7 +90,13 @@ export default function DemoFormular({ className, amne, children, nyckel = DEMO_
       {lage === 'skickar' ? <p role="status" aria-live="polite">Skickar...</p> : null}
       {lage === 'fel' ? (
         <p role="alert" style={{ fontWeight: 600 }}>
-          Något gick fel och förfrågan skickades inte. Försök igen, eller ring oss direkt.
+          Något gick fel och förfrågan skickades inte. Försök igen, eller ring oss direkt
+          {tel ? (
+            <>
+              {' '}på <a href={`tel:${tel.replace(/[^+d]/g, '')}`}>{tel}</a>
+            </>
+          ) : null}
+          .
         </p>
       ) : null}
     </form>

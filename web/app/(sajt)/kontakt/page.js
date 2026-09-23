@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Maskot from '../../komponenter/Maskot';
 import DemoFormular from '../../komponenter/DemoFormular';
 import { NYCKEL_KONTAKT } from '../../formular';
@@ -48,8 +49,8 @@ export default function Kontakt() {
 
           <p className={styles.direkt}>
             Hellre prata direkt? Ring <a href="tel:+46762540951">076-254 09 51</a> eller mejla{' '}
-            <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a>. Kontoret på
-            Kungsängsvägen 27 i Huskvarna har öppet alla dagar 9–18.
+            <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a>. Vi svarar alla dagar 8–22,
+            och möten på kontoret på Kungsängsvägen 27 i Huskvarna bokar vi gärna.
           </p>
         </div>
 
@@ -58,6 +59,7 @@ export default function Kontakt() {
             className={styles.form}
             amne={AMNE}
             nyckel={NYCKEL_KONTAKT}
+            tel="076-254 09 51"
             fran="bahkobyra.se"
             tack
             kvittens={
@@ -97,7 +99,7 @@ export default function Kontakt() {
             </button>
             <p className={styles.finstilt}>
               Vi använder uppgifterna för att kontakta er om förslaget. Inget nyhetsbrev, ingen
-              vidareförsäljning.
+              vidareförsäljning. <Link href="/integritet/">Så hanterar vi uppgifterna</Link>.
             </p>
           </DemoFormular>
         </div>
