@@ -4,7 +4,7 @@ import HeroVideo from '../komponenter/HeroVideo';
 import Maskot from '../komponenter/Maskot';
 import MaskotScen from '../komponenter/MaskotScen';
 import Marquee from '../komponenter/Marquee';
-import Rakna from '../komponenter/Rakna';
+import RoiKalkyl from '../komponenter/RoiKalkyl';
 import Portfolj from '../komponenter/Portfolj';
 import SynlighetsPanel from '../komponenter/SynlighetsPanel';
 import ProcessRail from '../komponenter/ProcessRail';
@@ -31,14 +31,6 @@ const SPELA = (
   </svg>
 );
 
-
-/* Räknarna tickar upp när kortet är i bild; slutvärdet står i markupen. */
-const SIFFROR = [
-  { v: <Rakna till={3} />, e: 'Leveranser i drift' },
-  { v: <Rakna till={48} suffix="h" />, e: 'Till färdigt förslag' },
-  { v: <Rakna till={24} suffix="h" />, e: 'Svar på kostnadsfri analys' },
-  { v: <Rakna till={12} suffix="%" />, e: 'Fler kundförfrågningar, kundcase' },
-];
 
 export default function Start() {
   return (
@@ -91,24 +83,19 @@ export default function Start() {
       {/* ── BEVISREMSAN: står still tills man scrollat ── */}
       <Marquee />
 
-      {/* ── SIFFROR ── */}
-      <section className={`mork ${styles.siffrorYta}`}>
+      {/* ── ROI-KALKYLEN: maskoten pekar på kalkylen, besökaren räknar på sina egna siffror ── */}
+      <section className={`mork ${styles.siffrorYta}`} id="rakna">
         <div className={`wrap ${styles.siffrorRad}`}>
-          <div className={styles.siffror} data-trapp>
-            {SIFFROR.map((s) => (
-              <div key={s.e}>
-                <strong>{s.v}</strong>
-                <span>{s.e}</span>
-              </div>
-            ))}
-          </div>
           <MaskotScen
             className={styles.siffrorScen}
             src="/img/maskot-scener/pekar-stoppur.webp"
-            alt="Bahko-maskoten i bygghjälm pekar på siffrorna med ett stoppur i handen"
+            alt="Bahko-maskoten i bygghjälm pekar på kalkylen med ett stoppur i handen"
             oga={{ x: 74.8, y: 43.9, rx: 6.0, ry: 4.8, gron: 'rgb(22,114,77)' }}
             index={0}
           />
+          <div className={styles.kalkylKolumn} data-trapp>
+            <RoiKalkyl />
+          </div>
         </div>
       </section>
 
