@@ -40,7 +40,7 @@ export const viewport = {
    Geo är geokodat från gatuadressen (Nominatim 2026-08-08). */
 const organisationsSchema = {
   '@context': 'https://schema.org',
-  '@type': ['Organization', 'LocalBusiness'],
+  '@type': ['Organization', 'ProfessionalService'],
   '@id': 'https://www.bahkobyra.se/#organization',
   name: 'Bahko Byrå',
   url: 'https://www.bahkobyra.se',
@@ -78,8 +78,13 @@ const organisationsSchema = {
   description:
     'Digital byrå som bygger hemsidor för bygg- och hantverksfirmor i Sverige.',
   slogan: 'Synlighet som säljer.',
-  areaServed: 'SE',
+  areaServed: [
+    { '@type': 'City', name: 'Jönköping' },
+    { '@type': 'City', name: 'Huskvarna' },
+    { '@type': 'Country', name: 'Sverige' },
+  ],
   sameAs: [
+    'https://g.page/r/CY8e778hr3z7EAE',
     'https://www.instagram.com/bahkobyra1/',
     'https://www.instagram.com/bahkostudio/',
   ],

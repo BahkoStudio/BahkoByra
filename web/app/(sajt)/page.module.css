@@ -553,11 +553,19 @@
   flex: 1;
 }
 
+/* ROI-kalkylen tar sifferradens plats: maskoten till vänster pekar på kortet. */
+.kalkylKolumn {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Maskoten pekar åt vänster i bilden, så den står till höger och pekar in på kortet.
+   Spegla aldrig bilden: då blir B:et bakvänt. */
 .siffrorScen {
-  order: -1;
+  order: 1;
   flex: none;
   display: block;
-  width: clamp(180px, 20vw, 280px);
+  width: clamp(200px, 24vw, 320px);
   height: auto;
 }
 
@@ -571,9 +579,20 @@
   color: var(--ink-3);
 }
 
+/* Mobil: maskoten står kvar, liten, ovanför kalkylen i stället för att försvinna. */
 @media (max-width: 900px) {
+  .siffrorRad {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+  }
   .siffrorScen {
-    display: none;
+    order: -1;
+    width: 150px;
+    align-self: flex-end;
+  }
+  .kalkylKolumn {
+    width: 100%;
   }
 }
 
