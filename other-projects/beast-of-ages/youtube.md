@@ -26,6 +26,7 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 | `manus/cheetahs-india-keep-dying.md` | "Coming back... but"-mallen, nyhetsankare Gauravs död 2026-09-21 och KGP12:s kull 2026-09-18, 2 044 ord, tre rundor manusloop, alla fyra godkände i runda 3, paketet överst |
 | `manus/two-extinct-animals-easy-rat-sea-mink.md` | Paradoxmallen (Maclear's rat + havsmink), nyhetsankare GBE jan 2026 och IUCN okt 2025, 2 098 ord, tre rundor manusloop, alla fyra godkände i runda 3, paketet överst |
 | `manus/tasmania-last-thylacine-1936.md` | Djuptidsformatet (samma som mammutplatsen), 90 år sedan 7 sept 1936, Weisbecker 2026 och Pask 2036 som krokar, 2 126 ord, tre rundor manusloop, alla fyra godkände i runda 3, paketet överst |
+| `manus/liquid-blood-foal-clone.md` | Nyhetsdjupdykning om Batagaika-fölet (flytande blod 2019, misslyckad kloning, Lena-hästen, Kurt som kontrast), nyhetsankare 5/10, 2 055 ord, tre rundor manusloop, alla fyra godkände i runda 3; paketet är inte visat för Mathias än |
 | `manus/de-extinction-eras-veo.md` | 106 Veo-prompter à 8 sekunder, stilbibeln, musikbädden |
 | `analys/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
 | `analys/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
