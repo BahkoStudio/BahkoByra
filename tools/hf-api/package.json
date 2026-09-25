@@ -1,0 +1,13 @@
+{
+  "name": "bahko-hf-api",
+  "private": true,
+  "type": "module",
+  "description": "Higgsfield API för demomedia (bilder och film) — betalt per generering",
+  "scripts": {
+    "test": "node hf.mjs test"
+  },
+  "dependencies": {
+    "@higgsfield/client": "^0.2.6",
+    "dotenv": "^18.0.3"
+  }
+}

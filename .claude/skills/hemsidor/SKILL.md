@@ -123,16 +123,18 @@ det är det enda undantaget. Luft: sektioner `clamp(4,5rem, 9vw, 7,5rem)`.
 
 ## Lägen — skiljer sig bara i mediakostnad
 
-| Läge | När | Credits |
+| Läge | När | Kostnad |
 |---|---|---|
 | **Omklädnad** | En äldre demo (mörk kol-design) ska till v3 | **0** — se nedan |
 | **Återbruk / lån** | Nischen finns redan i `web/public/*/media/` | 0 |
-| **Nybygge** | Inget i nischen finns | **~35–50** — se Media |
+| **Nybygge** | Inget i nischen finns | **~0,50–1 USD** — se Media |
 
-Saldot är litet (Mathias 2026-09-14). Under 100 credits körs, över 100 frågas
-(CLAUDE.md) — men sikta på under 50.
+**Sedan 2026-09-23 genereras allt via Higgsfields API** (`tools/hf-api/hf.mjs`),
+betalt per generering i dollar. Abonnemangskrediterna är slut och Mathias köper
+inte större plan — `higgsfield`-CLI:t används inte längre för demos. Sikta på
+under 1 USD per demo; över 3 USD frågas.
 
-### Omklädnad: gammal demo → v3, utan credits
+### Omklädnad: gammal demo → v3, utan kostnad
 
 1. Läs den gamla `page.js`. **VERIFIERAT-blocket, kontaktuppgifterna, copyn,
    frågorna och omdömena följer med oförändrade** — de är redan granskade.
@@ -163,7 +165,11 @@ Saldot är litet (Mathias 2026-09-14). Under 100 credits körs, över 100 fråga
   **`betyg` sätts bara när värde och antal är verifierade.** Saknas riktiga:
   exempelkort med `exempel: true` — mallen ger dem **tomma stjärnor** och
   taggen "Exempel", och `not` säger "Exempel — byts mot era riktiga omdömen".
-  Aldrig ett samlat betyg i exempelläge.
+  Aldrig ett samlat betyg i exempelläge. Riktiga omdömen utan Google-betyg
+  (bara från kundens sajt): inget `betyg`, inga `exempel`, och QA körs med
+  betyg-läget `sajt` (Projektkompassen 2026-09-25). **Har omdömet inga
+  stjärnor i källan** (ett citat på sajten): `stjarnor: false` på omdömet, så
+  ritar mallen inga. Fem fyllda stjärnor vore ett påhittat betyg.
 - **Instagram:** bara kundens egna, riktiga inlägg. Går inga koder att få fram:
   `kort`-läget med deras egna bilder i Instagram-ram — **utan gilla-siffror och
   utan påhittade kommentarer.** Facebook-knappen bara med verifierad sida.
@@ -199,7 +205,6 @@ och inget `mailto` i demons data.** Fältet är borttaget.
 mejladress. Skicka in den som `nyckel` till `DemoFormular`, slå på autosvar i deras röst, klart.
 Förfrågningarna går då direkt till kunden och aldrig via oss. Bakgrunden står i
 `docs/formular-web3forms.md`.
-
 - **Demos med riktiga kontaktuppgifter visas inte publikt** (Mathias). De är
   `robots: noindex` och länkas bara i DM till kunden.
 - Firmanamnet är en uppgift. Läst ur ett Instagram-handle: säg det och be
@@ -239,34 +244,60 @@ Varför-film (lugn, med logokort) + poster, kontaktfilm + poster, en bild per
 tjänst (4:3), **10–14 jobbilder (4:3, 960×720) till två band**, logotypen —
 och en ljus variant av den om den är mörk och flerfärgad.
 
-### Var credits läggs (och inte)
+### Var pengarna läggs (och inte)
 
 Den enda filmen som **måste** genereras är förvandlingen, som är hero-film.
-**720p räcker** (5 s ≈ 32 credits; 4 s ≈ 26): skala upp lokalt med
-`scale=1920:-2:flags=lanczos`, slöjan över heron döljer skillnaden.
-Varför-filmen, kontaktfilmen och slutkortet byggs lokalt med ffmpeg för
-0 credits. Stående mobilversion av heron: rama om samma klipp till 9:16.
+**720p räcker**: skala upp lokalt med `scale=1920:-2:flags=lanczos`, slöjan
+över heron döljer skillnaden. Varför-filmen, kontaktfilmen och slutkortet byggs
+lokalt med ffmpeg utan kostnad. Stående mobilversion av heron: rama om samma klipp
+till 9:16.
+
+**Modeller (Mathias 2026-09-23: inte Seedance 2.5 — billigare och minst lika
+bra).** `node tools/hf-api/hf.mjs modeller` visar listan med priser, och
+`node tools/hf-api/hf.mjs test` kontrollerar nyckeln gratis. Priserna nedan är
+uppmätta med API:ts prisuppslag 2026-09-23, med dåvarande rabatt.
+
+| Behov | Modell i verktyget | Pris |
+|---|---|---|
+| Förvandlingsfilm A → B (start + slutbild) | `kling` (Kling 3.0 Standard, ljud av) — förstahand | 0,23 USD per 5 s (debiterat 2026-09-25) |
+| … om Kling tappar geometrin | `wan` (Wan 3.0, 720p eller 1080p) | 0,50 USD / 1,00 USD per 5 s |
+| A-bilden (ny bild) | `qwen` (Qwen Image 3, 2k) | 0,075 USD (1k: 0,04 USD) |
+| B-bilden (redigera A) | `qwen` med `--ref A` — alternativ `grok` | 0,075 USD |
+| Bild med text/skylt | `ideogram` | 0,03 USD |
+
+Ljud på Kling höjer priset med hälften, så det står av. Seedance 2.5 och
+Seedance 2.0 används inte längre, och **inga testkörningar med Seedance**
+(Mathias 2026-09-23: "för dyr").
+Nano Banana finns inte i API:t. **Valet av `kling` och `qwen` gäller tills
+jämförelsetestet i `tools/hf-api/README.md` har körts** — resultatet skrivs in
+här.
 
 Förvandlingen är kedjan **A → B**: A = slitet utgångsläge
 (`"documentary contractor photography, natural muted colors, no HDR, no
 people, no text, no logos"`), B = samma bild färdig (`--image <A>`, "Keep the
 geometry, position and perspective IDENTICAL to the reference, nothing added
 or removed anywhere else"). **Granska B mot A punkt för punkt** innan klippet
-körs — en insmugen detalj kostade 104 credits. Klippet:
+körs — en insmugen detalj kostade en hel omgenerering. Kedjan:
 
 ```sh
-higgsfield generate create seedance_2_5 --mode omni_reference \
-  --start-image A.jpg --end-image B.jpg --duration 5 --resolution 720p \
-  --aspect-ratio 16:9 --generate-audio false --prompt "<det fysiska arbetet, steg för steg>. \
-  NO glowing lines, NO light effects, no crossfade, no morphing, locked camera."
+node tools/hf-api/hf.mjs bild --modell qwen --prompt-fil p-A.txt --format 16:9 --ut A.png
+node tools/hf-api/hf.mjs bild --modell qwen --prompt-fil p-B.txt --ref A.png --format 16:9 --ut B.png
+node tools/hf-api/hf.mjs film --modell kling --start A.png --slut B.png --sek 5 \
+  --prompt-fil p-film.txt --ut forvandling.mp4
 ```
 
-`higgsfield generate cost` först, alltid. Saldo: `higgsfield account status`.
+Filmprompten beskriver det fysiska arbetet steg för steg och slutar med
+`NO glowing lines, NO light effects, no crossfade, no morphing, locked camera.`
+Ljud är av som standard (`--ljud pa` slår på). Verktyget skriver ut **priset
+före varje körning**; `node tools/hf-api/hf.mjs pris film …` räknar utan att
+köra. Nyckeln ligger som `HF_CREDENTIALS=nyckel-id:hemlighet` i
+`tools/hf-api/.env.local` (Git-ignorerad) — **aldrig i repot, aldrig i chatten**
+(repot är publikt). Misslyckade körningar debiteras inte.
 Förvandlingen ska se ut som **arbete**, aldrig som en uttoning. Granska med
-bildrutor (`select` + `tile`) innan den används. Ladda ner direkt — Higgsfields
-CDN raderar efter ~30 dagar.
+bildrutor (`select` + `tile`) innan den används. Verktyget laddar ner direkt — API:ts
+filer raderas efter sju dagar.
 
-### Recepten (ffmpeg, 0 credits)
+### Recepten (ffmpeg, gratis)
 
 **Logokortet på slutet av Varför-filmen** — Mathias krav: loggan kommer upp
 i slutet, och det är i Varför-sektionen den gör det (inte i heron). Vit bakgrund för mörka logotyper, `mork`-färgen för ljusa.
@@ -432,7 +463,7 @@ på **kanon och minst en demo till**.
 
    ```sh
    cp .claude/skills/hemsidor/qa.mjs web/qa.mjs && cd web
-   node qa.mjs <route> <port> "<början på firmanamnet>" "<förra leadets namn|lorem>" <betyg ja|nej> <inbaddat|kort|ingen>
+   node qa.mjs <route> <port> "<början på firmanamnet>" "<förra leadets namn|lorem>" <betyg ja|nej|sajt> <inbaddat|kort|ingen>
    ```
 
    **Ta bort `web/qa.mjs` före commit.** Skriptet kontrollerar på 1440 och
