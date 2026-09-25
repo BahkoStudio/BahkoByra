@@ -266,3 +266,22 @@ Utliggare hämtade med `vidiq_outliers` (långform, under 50 000 prenumeranter, 
 | 5 | Why Do So Many "Extinct" Animals Turn Up Alive? (95) | Mavora (53 000) fem listor à 1,3–1,57 M; Mystic Evidence (1 760) 968 584 | Fältet är kryptid-listor. Vår vinkel: Lazarus-taxa och varför utdöendedatum är gissningar (samma logik som thylacine-manuset) | gul, full Grind |
 
 Dödade i rundan: *What Hunted the First Americans?* (ExtinctZoo 2,8 M och NORTH 02 672 k på samma innehåll); dire wolf-genomet (kanalens egen regel: dire wolf-spåret är slut).
+
+## Topp 10 ej gjorda idéer, omkontrollerade 2026-09-25
+
+Urval ur hela idéhistoriken, rangordnat med formatkatalogen (`modelleringsguide.md` del 2c och Storm-rapporten om 20 format). Sök i `vidiq_youtube_search` samma dag där inget annat anges.
+
+| # | Titel (vidIQ) | Format | Läge | Status |
+|---|---|---|---|---|
+| 1 | The Woolly Mammoth Is Coming Back… But Not by 2028 (90) | Coming back… but | Noll videor om förseningen (TIME 2026-08-24) | grön, tidskritisk |
+| 2 | 5 Billion Sea Stars Melted Off the Pacific Coast. Scientists Finally Found the Killer. (97) | Löst gåta på plats | Bara nyhetsklipp (kontroll 09-23) | grön |
+| 3 | 15 Facts About the Last Two Northern White Rhinos That Make No Sense (91) | Faktalistan | Långform tom; Shorts 3,4 M och 2,8 M (indonesiska) bevisar efterfrågan; The Fable Fund 96 k är en naturfilm, annan vinkel | grön |
+| 4 | Scientists Lowered a Camera Under Antarctica's Ice. Something Was Already Living There. (91) | Kameran | Ingen långform (kontroll 09-23); WISSARD 2015 verifierad | grön |
+| 5 | A Dog Found the Last Black-Footed Ferrets. Then Scientists Cloned One From 1988. (92) | Platt/identitet | Bara Shorts plus en 38-minutare med 2 visningar | grön |
+| 6 | They Saved the Tasmanian Devil… Then It Ate 3,000 Penguins (88) | Efterspelet | Tre mikrokanaler (171, 17, 4 visningar), ingen dragkraft; krok: Colossal/UTAS djävulssamarbete 2026-06-30 | grön |
+| 7 | Why Do So Many "Extinct" Animals Turn Up Alive? (95) | "Utdöda" som lever, ärlig version | Galante 786 k närliggande | gul, full Grind |
+| 8 | Every Animal in North America Had a Deadlier Ice Age Version (95) | Då och nu | ExtinctZoo 1,0 M samma djur | gul, full Grind |
+| 9 | The Ibex Came Back From Extinction… For Seven Minutes (90) | Coming back… but | Factor Trace 20 153 (2023, 4:44), övriga under 300 | gul-grön |
+| 10 | Cheetahs Are Back in India… But They Keep Dying (89) | Coming back… but | Indiska nyhetsklipp (kontroll 09-12); gepardintresset högt efter Pack Vibes | grön, kolla om före bygge |
+
+Dödade i samma kontroll: **Taung-barnet och örnen** (PBS Eons *When Humans Were Prey* 6 895 912, samma fall som kärna); **Why Are There No Green Mammals?** (Sapiens, 205 000 pren., 40 749 på sex dagar, 2026-09-19); **Why Elephants Work for Humans (But Never Domesticated)** (Pack Vibes gjorde den själva 2026-09-21, 16 187, plus fyra kopior).
