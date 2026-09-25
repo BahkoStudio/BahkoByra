@@ -298,10 +298,13 @@ export default function DemoSida({ data: d }) {
                     <figcaption><b>{o.namn}</b><span>{o.kalla}</span></figcaption>
                     {o.google ? <GoogleG className={s.recensionG} /> : null}
                   </div>
-                  <div className={s.recensionRad}>
-                    <Stjarnor tomma={o.exempel} etikett={o.exempel ? t.exempelStjarnor : t.femStjarnor} />
-                    {o.exempel ? <span className={s.exempelTagg}>{t.exempel}</span> : null}
-                  </div>
+                  {/* stjarnor: false = omdömet har inget betyg i källan (t.ex. ett citat på kundens sajt). Rita inga stjärnor då. */}
+                  {o.stjarnor === false ? null : (
+                    <div className={s.recensionRad}>
+                      <Stjarnor tomma={o.exempel} etikett={o.exempel ? t.exempelStjarnor : t.femStjarnor} />
+                      {o.exempel ? <span className={s.exempelTagg}>{t.exempel}</span> : null}
+                    </div>
+                  )}
                   <blockquote>{o.text}</blockquote>
                 </figure>
               ))}

@@ -37,3 +37,7 @@ start-server.bat
 
 # Maskinspecifika instruktioner - bara denna dator
 CLAUDE.local.md
+
+# Lokala hemligheter (API-nycklar). Aldrig i repot, repot är publikt.
+.env.local
+.env.*.local

@@ -1,7 +1,8 @@
 // QA för demomallen v3.1 (ljus design, delad mall i web/app/(demo)/_mall/; hero = logotyp + ort + två tjänster, tjänsteband, resan).
 // Playwright hittas bara inifrån web/, så: kopiera hit filen till web/qa.mjs, kör, ta bort före commit.
 //   cp .claude/skills/hemsidor/qa.mjs web/qa.mjs && cd web
-//   node qa.mjs <route> <port> "<början på firmanamnet i h1>" "<förbjudet regex>" <betyg: ja|nej> <instagram: inbaddat|kort|ingen>
+//   node qa.mjs <route> <port> "<början på firmanamnet i h1>" "<förbjudet regex>" <betyg: ja|nej|sajt> <instagram: inbaddat|kort|ingen>
+// betyg: ja = verifierat Google-betyg · nej = exempelomdömen · sajt = riktiga omdömen från kundens sajt, utan betyg
 // Exempel: node qa.mjs swedcro 3457 "Swedcro" "golvvision|rskompakt|lorem" ja inbaddat
 import { chromium, devices } from 'playwright';
 import fs from 'node:fs';
@@ -218,7 +219,11 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   const tomma = await page.locator('#omdomen [class*="stjarnorTomma"]').count();
   ok(exempel === tomma, `exempelomdömen har tomma stjärnor (${exempel}/${tomma})`);
   if (betyg === 'ja') ok((await page.locator('#omdomen [class*="betyg"]').count()) >= 1, 'betygsbrickan visas (verifierat betyg)');
-  else { ok((await page.locator('#omdomen [class*="betygTal"]').count()) === 0 && !/\d[,.]\d\s*(av|\/)\s*5|\d+\s+(recensioner|omdömen|omtaler)/i.test(omd), 'inget påhittat betyg eller antal'); ok(exempel >= 1, 'overifierade omdömen märkta Exempel'); }
+  else {
+    ok((await page.locator('#omdomen [class*="betygTal"]').count()) === 0 && !/\d[,.]\d\s*(av|\/)\s*5|\d+\s+(recensioner|omdömen|omtaler)/i.test(omd), 'inget påhittat betyg eller antal');
+    if (betyg === 'sajt') ok(exempel === 0, 'riktiga omdömen från kundens sajt, inga exempelkort');
+    else ok(exempel >= 1, 'overifierade omdömen märkta Exempel');
+  }
 
   // --- instagram ---
   if (instagram === 'inbaddat') {

@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { Newsreader, Inter } from 'next/font/google';
+import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import styles from './svhus.module.css';
 import DemoFormular from '../../komponenter/DemoFormular';
 
@@ -37,20 +38,25 @@ import DemoFormular from '../../komponenter/DemoFormular';
      utgångsläge, så sidan är komplett även där stödet saknas.
    =========================================================================== */
 
-const display = Newsreader({
-  subsets: ['latin'],
-  weight: ['300', '400'],
+/* Newsreader ligger lokalt i ./fonter (Googles latin-filer, v26, OFL-licens).
+   2026-09-25 fick Vercels byggservrar ett svar från Google Fonts för just
+   Newsreader som next/font inte kunde läsa, och hela sajtens bygge föll.
+   Lokala filer gör bygget oberoende av Google för det här typsnittet. */
+const display = localFont({
+  src: [{ path: './fonter/newsreader-latin.woff2', weight: '300 400', style: 'normal' }],
   display: 'swap',
+  fallback: ['Times New Roman', 'serif'],
+  adjustFontFallback: 'Times New Roman',
   variable: '--sv-display',
 });
 
 /* Kursiven: egen instans, hämtas först när den behövs. */
-const displayKursiv = Newsreader({
-  subsets: ['latin'],
-  weight: ['300', '400'],
-  style: ['italic'],
+const displayKursiv = localFont({
+  src: [{ path: './fonter/newsreader-latin-kursiv.woff2', weight: '300 400', style: 'italic' }],
   display: 'swap',
   preload: false,
+  fallback: ['Times New Roman', 'serif'],
+  adjustFontFallback: 'Times New Roman',
   variable: '--sv-display-kursiv',
 });
 
