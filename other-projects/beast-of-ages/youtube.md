@@ -21,6 +21,7 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 | `manus/honeybees-never-tamed.md` | Paradox-mallen (Pack Vibes "Why X … (But Never Y)"), Grinden grön 2026-09-12, tre rundor manusloop, paketet överst |
 | `manus/why-did-someone-paint-an-animal-that-was-already-extinct.md` | Knapp-modellering, Grinden grön 2026-09-18 (steg 2 gult, läst och friad), tre rundor manusloop (taket), paketet överst |
 | `manus/dodo-hatch-from-a-chicken.md` | Kanalens egen "Coming back... but"-mall, Grinden grön 2026-09-19 (steg 1 gult, egen katalogöverlappning läst och friad), tre rundor manusloop (taket, Mathias avstämd på sista fixarna), paketet överst |
+| `manus/mammoth-site-pond-61-mammoths.md` | Djuptidsdokumentären ("What It Was Like to Live…", Knapp-struktur, stil Quanta/Axen/Franz, öppning i scenen i presens), långt TV-test 2 964 ord, Grinden grön 2026-09-25 (steg 2 gult: Nat Geo-avsnitt), tre rundor manusloop, alla fyra godkände i runda 3, paketet överst |
 | `manus/de-extinction-eras-veo.md` | 106 Veo-prompter à 8 sekunder, stilbibeln, musikbädden |
 | `analys/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
 | `analys/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |

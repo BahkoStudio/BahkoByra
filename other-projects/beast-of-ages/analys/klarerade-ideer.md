@@ -285,3 +285,13 @@ Urval ur hela idéhistoriken, rangordnat med formatkatalogen (`modelleringsguide
 | 10 | Cheetahs Are Back in India… But They Keep Dying (89) | Coming back… but | Indiska nyhetsklipp (kontroll 09-12); gepardintresset högt efter Pack Vibes | grön, kolla om före bygge |
 
 Dödade i samma kontroll: **Taung-barnet och örnen** (PBS Eons *When Humans Were Prey* 6 895 912, samma fall som kärna); **Why Are There No Green Mammals?** (Sapiens, 205 000 pren., 40 749 på sex dagar, 2026-09-19); **Why Elephants Work for Humans (But Never Domesticated)** (Pack Vibes gjorde den själva 2026-09-21, 16 187, plus fyra kopior).
+
+## Grind 2026-09-25: djuptidsformatet ("What It Was Like to Live in [epok/plats]")
+
+Mathias valde formatet ur topp 10-listan och föreslog Wrangel Island.
+
+- **Wrangel Island när de sista mammutarna dog (dödad, steg 3 och 4).** Stora kanaler har gjort det nyligen och en septembervåg pågår; engelska småkanaler i vårt format låg på 11–562 visningar.
+- **White Sands (dödad).** Prövades som alternativ i samma format och föll också i Grinden.
+- **Mammut-platsen i Hot Springs, South Dakota ✅ SKRIVEN — se `manus/mammoth-site-pond-61-mammoths.md`.** Steg 1, 3, 4 och 5 gröna, steg 2 gult (Nat Geos *Lost Beasts Unearthed*, 634 000, feb 2026, ägnar ungefär en fjärdedel åt platsen men inte åt den nya dateringen). Nyhetsankare 7/10: Mahan m.fl., *Quaternary Research*, 11 aug 2026, 160 000–232 000 år i stället för cirka 26 000. Långt TV-test, 2 964 ord.
+
+**Regler som kom ur arbetet (sparade som minnen):** djuptidsmanus öppnar i scenen i presens, aldrig i nyhetsregister; nyheten blir vändningen. Stilreferenser: Quanta (@Itzquanta), Axen (@AxenCool) och Franz (@imfranzyt). Franz *What Was Life Like For Ancient Cats?* (284 112) bevisar att formen bär på en ny kanal.
