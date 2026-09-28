@@ -160,6 +160,7 @@
     .site-footer { max-width: 1080px; margin: 0 auto; padding: 1.6rem 5vw 2.6rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; align-items: center; justify-content: space-between; border-top: 1px solid var(--beige); font-size: 0.78rem; color: var(--mid); }
     .site-footer a { color: var(--crimson); text-decoration: none; font-weight: 600; }
     .site-footer a:hover { text-decoration: underline; }
+    .td-pixel { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
   </style>
   <script src="js/i18n.js"></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4880340628636698" crossorigin="anonymous"></script>
@@ -180,7 +181,7 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       <span data-i18n="back">Tillbaka</span>
     </a>
-    <a href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener" class="nav-buy" data-i18n="nav.buybook">Köp boken</a>
+    <a href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener" class="nav-buy" data-i18n="nav.buybook">Köp boken</a>
   </div>
 </header>
 
@@ -190,7 +191,7 @@
   </div>
 </main>
 
-<a class="kopbar" href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener">
+<a class="kopbar" href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener">
   <img src="img/bok-fram.jpg" alt="" width="30" height="42">
   <span class="kopbar-text"><b data-i18n="kopbar.t">Köp boken</b><span data-i18n="kopbar.s">via Bokus</span></span>
   <span class="kopbar-pris">349 kr</span>
@@ -198,6 +199,7 @@
 
 <footer class="site-footer">
   <span>© 2026 MaykasKitchen</span>
+  <span data-i18n="footer.aff">Köplänkarna till Bokus är affiliatelänkar.</span>
   <span>Hemsida av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
 </footer>
 
@@ -596,7 +598,7 @@ function render() {
         <strong>${tv('Maykas kokbok', 'Mayka’s cookbook')}</strong>
         <p>${tv('Maykas gröna kök. Cirka 50 växtbaserade recept, inbunden, 349 kr via Bokus.', 'Maykas gröna kök. About 50 plant-based recipes, hardcover, 349 SEK via Bokus.')}</p>
       </div>
-      <a href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener">${tv('Köp boken', 'Buy the book')}</a>
+      <a href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener">${tv('Köp boken', 'Buy the book')}</a>
     </aside>`;
 }
 
@@ -654,5 +656,6 @@ window.MK_RENDER = RECIPE_ID ? render : renderList;
 window.MK_RENDER();
 initLangToggle();
 </script>
+  <img class="td-pixel" src="https://imp.tradedoubler.com/imp?type(inv)g(0)p(362)a(3477349)prod(0)" width="1" height="1" alt="" aria-hidden="true" referrerpolicy="no-referrer-when-downgrade">
 </body>
 </html>

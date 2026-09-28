@@ -117,6 +117,7 @@
       'nl.fel':                'Det gick inte att skicka. Försök igen om en stund.',
       'footer.copy':           '© 2026 MaykasKitchen. Alla rättigheter förbehållna.',
       'footer.made':           'Skapad med ♥ i Skåne, Sverige',
+      'footer.aff':            'Köplänkarna till Bokus är affiliatelänkar.',
 
       /* POPUP */
       'popup.title':       'Matglädje<br><em>direkt i din inkorg</em>',
@@ -283,6 +284,7 @@
       'nl.fel':                'It could not be sent. Please try again in a moment.',
       'footer.copy':           '© 2026 MaykasKitchen. All rights reserved.',
       'footer.made':           'Made with ♥ in Skåne, Sweden',
+      'footer.aff':            'The links to Bokus are affiliate links.',
 
       /* POPUP */
       'popup.title':       'Food joy<br><em>straight to your inbox</em>',

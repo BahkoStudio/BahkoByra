@@ -374,6 +374,7 @@ a { color: inherit; }
 .nl-fel { font-size: 0.85rem; color: #ffb4a0; margin-top: 0.6rem; }
 .nl-popup .nl-fel { color: var(--terra-dk); }
 .footer-bottom { max-width: 1240px; margin: 0 auto; padding-top: 1.6rem; border-top: 1px solid rgba(244,235,220,0.12); display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; font-size: 0.74rem; color: rgba(244,235,220,0.55); }
+.td-pixel { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 .footer-by a { color: var(--gold); text-decoration: none; font-weight: 600; }
 
 /* ══════════════════════════════════════════════════════════
