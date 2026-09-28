@@ -32,7 +32,7 @@ Tre omdömen citeras ordagrant på demon (Kawa, Oscar, Tomas) med namn, jobb, or
 
 ## INTE verifierat
 
-Telefonnummer (**inget publicerat någonstans** — demon har ingen Ring-knapp, allt går till mejl och formulär), antal anställda, grundat år, priser, Google-betyg.
+Antal anställda, grundat år, priser, Google-betyg. (Telefonnummer saknades 2026-09-14 men står sedan dess på alltfix.com, se nedan.)
 
 ## Media — 52,5 credits
 
@@ -56,3 +56,40 @@ Deras nuvarande sajt använder AI-genererade bilder (filnamn `Gemini_Generated_I
 - Formuläret går till mathias@bahkobyra.se.
 - Omdömena är riktiga från Offerta, källan står utskriven. Google-profil saknas.
 - Bildmaterialet är illustrationer, märkt. De har 12 egna inlägg — be om bilderna.
+
+## 2026-09-28: 3D-konfigurator för uterum
+
+Mathias pratade med Rami. Han vill hellre ha en **3D-prototyp för uterum** än hemsidedemon, "typ i samma stil" som 3D-planlösningen för mäklare. Hans nuvarande konfigurator på [alltfix.com/customize](https://www.alltfix.com/customize) är en platt fönsterram (Three.js) med form, mått, material, färg och glas, och den laddar sin ljusmiljö från en extern GitHub-adress.
+
+**Prototyp:** `bahkobyra.se/cloud/alltfix-uterum/` (källa: `web/public/cloud/alltfix-uterum/`). Samma teknik som `cloud/planlosning-3d/`, Three.js lokalt, inget hämtas utifrån utom typsnittet.
+
+Vad kunden gör:
+- Väljer bredd 3–7 m och djup 2–4,5 m. Golvytan räknas ur samma tal som bygger rummet.
+- Väljer tak (lamelltak med vridbara lameller, eller glastak), glaspartier (skjut, vik eller öppet), profilfärg, klart eller tonat glas, LED och insektsnät.
+- Öppnar och stänger partierna, vinklar lamellerna och ser rummet utifrån, inifrån och ovanifrån, mot en villa med altan.
+- Drar solen över en sommardag och väljer väderstreck. En rad säger om solen lyser in, från sidan eller står bakom huset.
+- Delar designen som länk (allt ligger i adressen) och bokar kostnadsfritt hembesök med designen bifogad.
+
+### Nytt verifierat (alltfix.com, 2026-09-28)
+
+| Uppgift | Värde | Källa |
+|---|---|---|
+| Ny sajt | alltfix.com — "Alltfix – Fönster, Dörrar & Garageportar i Stockholm", webbshop, Klarna, 3D-konfigurator | alltfix.com |
+| Telefon | +46 735 19 23 33 och +46 737 77 37 48 | alltfix.com sidfot |
+| Samma bolag | Alltfix Stockholm AB, Vintervägen 16 Järfälla, org.nr 5592722341 | alltfix.com sidfot |
+| Löfte | "Kostnadsfri konsultation och hembesök för att hitta den perfekta lösningen" | alltfix.com startsida |
+| Färger | marin #1C1C30, knappguld #C5A572 (mätta på sidan) | alltfix.com |
+
+### Flaggor före utskick
+
+- **Produktutbudet:** lamelltak (bioklimatisk pergola), skjut- och viksystem och insektsnät står på fixfonster.se. **Glastak är inte bekräftat** — fråga Rami.
+- Färgerna är ett urval av paletten i hans egen konfigurator, inte RAL-koder.
+- Förfrågan från formuläret går med Web3Forms demonyckel till mathias@bahkobyra.se. Skarp version: egen nyckel till support@alltfix.com.
+- Inga priser på sidan. Rutan i formuläret säger att bilden är förenklad och att mått, utförande och pris bestäms vid hembesöket.
+- Solen är en uppskattning för Stockholm en sommardag, inte en solstudie.
+- Sidan är noindex och länkas bara i DM.
+
+### DM-utkast
+
+> Tja Rami! Här är 3D-prototypen för uterum: bahkobyra.se/cloud/alltfix-uterum/ — kunden väljer mått, lamell- eller glastak, skjut- eller viksystem och färg, ser rummet mot sitt hus och skickar designen direkt till dig när hen bokar hembesök 💪
+

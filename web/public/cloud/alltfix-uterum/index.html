@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Alltfix — Designa ditt uterum i 3D</title>
+<meta name="description" content="Välj mått, tak, glaspartier och färg och se ditt uterum mot huset i 3D. Prototyp för Alltfix Stockholm AB.">
+<meta name="theme-color" content="#1C1C30">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ALLTFIX — uterumskonfigurator i 3D.
+   Prototyp byggd av Bahko Byrå. Färgerna är Alltfix egna, mätta
+   på alltfix.com 2026-09-28: marin #1C1C30 och knappguld #C5A572.
+   Tekniken är samma som 3D-planlösningen (../planlosning-3d/):
+   Three.js vendorat lokalt, ingenting hämtas utifrån under körning
+   utom typsnittet.
+   ============================================================ */
+:root{
+  --marin:#1C1C30;
+  --marin2:#24243c;
+  --kort:rgba(28,28,48,.90);
+  --linje:rgba(255,255,255,.12);
+  --linje2:rgba(255,255,255,.28);
+  --text:#F6F3EC;
+  --text2:#B9B6C4;          /* 7,4:1 mot --marin */
+  --guld:#C5A572;           /* Alltfix knappfärg, mörk text på den */
+  --guld2:#D8BC8A;
+  --guldtext:#D9BE8C;       /* guld som text på marin, 8,9:1 */
+  --himmel-topp:#b9cbd8;
+  --himmel-horisont:#e3e8ea;
+  --r:12px;
+  --snabb:140ms;
+  --panel:372px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:linear-gradient(180deg,var(--himmel-topp) 0%,var(--himmel-horisont) 62%,var(--himmel-horisont) 100%);
+  background-attachment:fixed;
+  color:var(--text);
+  font-family:'Poppins',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
+  overflow:hidden;
+}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--guld2);outline-offset:2px}
+
+/* ---------- scenen fyller allt, chromet ligger ovanpå ---------- */
+.buhne{position:fixed;inset:0;z-index:0}
+#scen{position:absolute;inset:0}
+/* setSize(..., false) i app.js rör inte CSS-måtten. Utan de här raderna
+   lägger duken ut sig på sina attributpixlar och blir DPR gånger för stor
+   (fällan från planlösningen: halva huset utanför bild på varje retinaskärm). */
+#scen canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+#scen canvas:active{cursor:grabbing}
+
+.glaskort{
+  background:var(--kort);
+  -webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);
+  border:1px solid var(--linje);border-radius:18px;
+  box-shadow:0 18px 50px rgba(8,8,20,.28);
+}
+
+/* ---------- toppraden ---------- */
+.topp{position:fixed;top:16px;left:20px;right:20px;z-index:10;display:flex;align-items:center;gap:14px;pointer-events:none}
+.topp > *{pointer-events:auto}
+.marke{display:flex;align-items:center;gap:12px;height:52px;padding:0 18px;width:var(--panel)}
+.marke img{height:30px;width:auto;display:block}
+.marke span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);border-left:1px solid var(--linje2);padding-left:12px;white-space:nowrap}
+.vyer{margin:0 auto;display:flex;padding:5px;gap:4px}
+.vyer button{height:42px;padding:0 18px;border-radius:12px;font-weight:500;color:var(--text2);transition:background var(--snabb),color var(--snabb)}
+.vyer button[aria-pressed="true"]{background:var(--guld);color:var(--marin)}
+.vyer button:not([aria-pressed="true"]):hover{color:var(--text);background:rgba(255,255,255,.07)}
+.dela{height:52px;padding:0 18px;display:flex;align-items:center;gap:8px;font-weight:500}
+.dela svg{width:18px;height:18px}
+
+/* ---------- konfigurationspanelen ---------- */
+.panel{position:fixed;z-index:10;top:84px;left:20px;bottom:20px;width:var(--panel);display:flex;flex-direction:column;overflow:hidden}
+.panel-inre{flex:1;overflow-y:auto;padding:22px 22px 8px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
+.panel h1{font-size:24px;line-height:1.2;font-weight:700;letter-spacing:-.01em}
+.panel h1 em{font-style:normal;color:var(--guldtext)}
+.ingress{color:var(--text2);margin-top:6px}
+.sek{margin-top:22px;padding-top:18px;border-top:1px solid var(--linje)}
+.sek h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--guldtext);font-weight:600;margin-bottom:12px}
+
+.reglage{margin-bottom:14px}
+.reglage label{display:flex;justify-content:space-between;font-weight:500;margin-bottom:6px}
+.reglage output{color:var(--guldtext);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:32px;background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--guld) 0 var(--fyll,50%),rgba(255,255,255,.18) var(--fyll,50%))}
+input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:rgba(255,255,255,.18)}
+input[type=range]::-moz-range-progress{height:4px;border-radius:4px;background:var(--guld)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--text);border:3px solid var(--guld);margin-top:-9px;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--text);border:3px solid var(--guld)}
+.yta{display:flex;justify-content:space-between;align-items:baseline;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.05);color:var(--text2)}
+.yta b{font-size:18px;color:var(--text);font-variant-numeric:tabular-nums}
+
+.val{display:grid;gap:8px}
+.val.tva{grid-template-columns:1fr 1fr}
+.val.tre{grid-template-columns:1fr 1fr 1fr}
+.alt{position:relative;display:block;text-align:left;padding:12px 12px 12px;border:1px solid var(--linje2);border-radius:12px;transition:border-color var(--snabb),background var(--snabb);min-height:44px}
+.alt b{display:block;font-weight:600;font-size:14px}
+.alt small{display:block;color:var(--text2);font-size:12px;line-height:1.4;margin-top:3px}
+.alt[aria-pressed="true"]{border-color:var(--guld);background:rgba(197,165,114,.14)}
+.alt[aria-pressed="true"]::after{content:"";position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--guld)}
+.alt:not([aria-pressed="true"]):hover{border-color:rgba(255,255,255,.5)}
+.val.tre .alt{text-align:center;padding:12px 6px}
+.val.tre .alt::after{display:none}
+
+.farger{display:flex;gap:10px;flex-wrap:wrap}
+.farg{width:44px;height:44px;border-radius:50%;border:2px solid transparent;display:grid;place-items:center;transition:border-color var(--snabb)}
+.farg span{width:32px;height:32px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.farg[aria-pressed="true"]{border-color:var(--guld)}
+.fargnamn{margin-top:8px;color:var(--text2)}
+.fargnamn b{color:var(--text);font-weight:500}
+
+.vaxel{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;cursor:pointer;min-height:44px}
+.vaxel span b{display:block;font-weight:500}
+.vaxel span small{color:var(--text2);font-size:12px}
+.vaxel input{position:absolute;opacity:0;width:1px;height:1px}
+.vaxel i{flex:none;width:44px;height:26px;border-radius:13px;background:rgba(255,255,255,.2);position:relative;transition:background var(--snabb)}
+.vaxel i::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--text);transition:transform 180ms ease}
+.vaxel input:checked + i{background:var(--guld)}
+.vaxel input:checked + i::after{transform:translateX(18px);background:var(--marin)}
+.vaxel input:focus-visible + i{outline:3px solid var(--guld2);outline-offset:2px}
+
+.summering{padding:16px 22px 20px;border-top:1px solid var(--linje);background:rgba(20,20,36,.6)}
+.summering p{color:var(--text2);font-size:13px}
+.summering p b{color:var(--text);font-weight:600}
+.cta{margin-top:12px;width:100%;height:52px;border-radius:12px;background:var(--guld);color:var(--marin);font-weight:600;font-size:16px;box-shadow:0 8px 22px rgba(197,165,114,.28);transition:background var(--snabb)}
+.cta:hover{background:var(--guld2)}
+.ring{display:block;text-align:center;margin-top:10px;color:var(--text2);font-size:13px;text-decoration:none}
+.ring b{color:var(--text);font-weight:500}
+
+/* ---------- på duken: öppna partierna, lameller ---------- */
+.handling{position:fixed;z-index:10;left:calc(var(--panel) + 40px);right:360px;bottom:20px;display:flex;justify-content:center;pointer-events:none}
+.handling-inre{pointer-events:auto;display:flex;align-items:center;gap:16px;padding:8px 10px 8px 8px}
+.knapp{height:44px;padding:0 18px;border-radius:12px;background:rgba(255,255,255,.1);font-weight:500;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.knapp:hover{background:rgba(255,255,255,.16)}
+.knapp[aria-pressed="true"]{background:var(--guld);color:var(--marin)}
+.knapp:disabled{opacity:.45;cursor:not-allowed}
+.knapp svg{width:18px;height:18px}
+.lamell{display:flex;align-items:center;gap:10px;min-width:220px;padding-right:8px}
+.lamell label{font-weight:500;white-space:nowrap}
+.lamell output{min-width:3.2em;text-align:right;color:var(--guldtext);font-variant-numeric:tabular-nums}
+
+/* ---------- solkortet ---------- */
+.sol{position:fixed;z-index:10;right:20px;bottom:20px;width:320px;padding:16px 18px 14px}
+.sol h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--guldtext);font-weight:600;display:flex;justify-content:space-between}
+.sol h2 output{letter-spacing:0;font-size:14px;color:var(--text);text-transform:none;font-variant-numeric:tabular-nums}
+.rikt{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.rikt button{height:36px;border-radius:10px;border:1px solid var(--linje2);font-size:13px;font-weight:500;color:var(--text2)}
+.rikt button[aria-pressed="true"]{border-color:var(--guld);color:var(--text);background:rgba(197,165,114,.16)}
+.riktetikett{margin-top:10px;font-size:12px;color:var(--text2)}
+.solrad{margin-top:8px;color:var(--text);font-size:13px;min-height:2.9em}
+
+/* ---------- måttetiketter i 3D ---------- */
+#etiketter{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.matt{position:absolute;left:0;top:0;padding:3px 9px;border-radius:999px;background:var(--marin);color:var(--guldtext);font-weight:600;font-size:13px;white-space:nowrap;will-change:transform;transition:opacity var(--snabb);box-shadow:0 4px 12px rgba(0,0,0,.25)}
+
+/* ---------- krediten ---------- */
+.kredit-rad{margin-top:10px;text-align:center;font-size:12px;color:var(--text2)}
+.kredit-rad a{color:var(--text2)}
+
+/* ---------- laddskärm ---------- */
+#laddar{position:fixed;inset:0;z-index:50;background:var(--marin);display:grid;place-items:center;transition:opacity 420ms ease}
+#laddar.klar{opacity:0;pointer-events:none}
+#laddar img{height:40px;opacity:.9}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;z-index:60;left:50%;top:84px;transform:translate(-50%,-8px);opacity:0;padding:10px 16px;border-radius:12px;background:var(--marin);border:1px solid var(--linje2);transition:opacity 200ms ease,transform 200ms ease;pointer-events:none}
+.toast.syns{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- modal: boka hembesök ---------- */
+.modal{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:20px;background:rgba(10,10,22,.6)}
+.modal-kort{width:min(520px,100%);max-height:calc(100svh - 40px);overflow-y:auto;padding:26px 26px 22px;color:var(--text)}
+.modal-kort h2{font-size:22px;line-height:1.25}
+.modal-kort > p{color:var(--text2);margin-top:6px}
+.designrad{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.06);font-size:13px;color:var(--text2)}
+.designrad b{color:var(--text);font-weight:500}
+.falt{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.falt label{display:grid;gap:6px;font-size:13px;font-weight:500}
+.falt label.hel{grid-column:1/-1}
+.falt input,.falt textarea{width:100%;min-height:46px;padding:11px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.34);background:rgba(255,255,255,.06);font-size:16px}
+.falt textarea{min-height:90px;resize:vertical}
+.falt input::placeholder,.falt textarea::placeholder{color:#9e9bab}
+.modal-knappar{display:flex;gap:10px;margin-top:18px;align-items:center}
+.modal-knappar .cta{margin:0;flex:1}
+.stang{height:52px;padding:0 16px;border-radius:12px;border:1px solid var(--linje2)}
+.formnot{margin-top:12px;font-size:12px;color:var(--text2)}
+.formfel{margin-top:12px;padding:10px 12px;border-radius:10px;background:rgba(200,95,72,.18);border:1px solid rgba(200,95,72,.6);font-size:13px}
+.kvitto{text-align:center;padding:10px 0 4px}
+.kvitto h2{margin-top:10px}
+.kvitto p{color:var(--text2);margin-top:6px}
+.bot{position:absolute;left:-9999px}
+
+/* ---------- mobil ----------
+   Duken ligger överst och sidan skrollar under den. Panel och solkort
+   blir vanliga block i flödet. */
+@media (max-width:860px){
+  body{overflow:auto;background-attachment:scroll}
+  .buhne{position:sticky;top:0;height:52svh;z-index:5;background:linear-gradient(180deg,var(--himmel-topp),var(--himmel-horisont))}
+  .topp{position:absolute;top:10px;left:10px;right:10px;gap:8px}
+  .marke{width:auto;height:44px;padding:0 12px}
+  .marke img{height:24px}
+  .marke span{display:none}
+  .vyer{margin:0 0 0 auto;padding:3px}
+  .vyer button{height:38px;padding:0 10px;font-size:13px}
+  .dela{display:none}
+  .handling{position:absolute;left:10px;right:10px;bottom:10px}
+  .handling-inre{padding:5px;gap:8px;width:100%;justify-content:space-between}
+  .knapp{height:42px;padding:0 12px;font-size:13px}
+  .lamell{min-width:0;flex:1}
+  .lamell label{font-size:13px}
+  .panel,.sol{position:relative;inset:auto;width:auto;margin:12px 10px 0;z-index:1}
+  .panel{display:block;overflow:visible}
+  .panel-inre{overflow:visible;padding:18px 16px 6px}
+  .summering{border-radius:0 0 18px 18px}
+  .sol{margin-bottom:24px}
+  .toast{top:64px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:1ms!important}
+}
+</style>
+</head>
+<body>
+<div id="laddar" aria-hidden="true"><img src="./logo-alltfix.png" alt=""></div>
+
+<div class="buhne" id="buhne">
+<div id="scen" aria-label="3D-vy av uterummet. Dra för att vrida, nyp eller skrolla för att zooma."></div>
+<div id="etiketter" aria-hidden="true"></div>
+
+<header class="topp">
+  <div class="marke glaskort"><img src="./logo-alltfix.png" alt="Alltfix" width="111" height="30"><span>Uterum i 3D</span></div>
+  <nav class="vyer glaskort" aria-label="Kameravy">
+    <button type="button" data-vy="ute" aria-pressed="true">Utifrån</button>
+    <button type="button" data-vy="inne" aria-pressed="false">Inifrån</button>
+    <button type="button" data-vy="ovan" aria-pressed="false">Ovanifrån</button>
+  </nav>
+  <button type="button" class="dela glaskort" id="dela">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg>
+    Dela din design
+  </button>
+</header>
+
+<div class="handling">
+  <div class="handling-inre glaskort">
+    <button type="button" class="knapp" id="oppna" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18v16H3z"/><path d="M12 4v16"/><path d="M8 12h-2M18 12h-2"/></svg>
+      <span>Öppna partierna</span>
+    </button>
+    <div class="lamell" id="lamell-rad">
+      <label for="lamell">Lameller</label>
+      <input type="range" id="lamell" min="0" max="100" step="1" value="60">
+      <output id="ut-lamell" for="lamell">60 %</output>
+    </div>
+  </div>
+</div>
+</div>
+
+<aside class="panel glaskort" aria-label="Välj utförande">
+  <div class="panel-inre">
+    <h1>Designa ditt <em>uterum</em></h1>
+    <p class="ingress">Välj mått, tak och glas. Du ser ditt uterum mot huset direkt.</p>
+
+    <section class="sek" aria-labelledby="h-matt">
+      <h2 id="h-matt">Mått</h2>
+      <div class="reglage">
+        <label for="bredd">Bredd längs huset <output id="ut-bredd" for="bredd">5,0 m</output></label>
+        <input type="range" id="bredd" min="3" max="7" step="0.5" value="5">
+      </div>
+      <div class="reglage">
+        <label for="djup">Djup ut från huset <output id="ut-djup" for="djup">3,5 m</output></label>
+        <input type="range" id="djup" min="2" max="4.5" step="0.5" value="3.5">
+      </div>
+      <p class="yta">Golvyta <b id="ut-yta">17,5 m²</b></p>
+    </section>
+
+    <section class="sek" aria-labelledby="h-tak">
+      <h2 id="h-tak">Tak</h2>
+      <div class="val tva" data-grupp="tak">
+        <button type="button" class="alt" data-varde="lamell" aria-pressed="true"><b>Lamelltak</b><small>Vridbara lameller: öppna för ljus, stäng för skugga och regn</small></button>
+        <button type="button" class="alt" data-varde="glas" aria-pressed="false"><b>Glastak</b><small>Klart tak i lutning, maximalt dagsljus</small></button>
+      </div>
+    </section>
+
+    <section class="sek" aria-labelledby="h-vagg">
+      <h2 id="h-vagg">Glaspartier</h2>
+      <div class="val tre" data-grupp="vagg">
+        <button type="button" class="alt" data-varde="skjut" aria-pressed="true"><b>Skjut&shy;partier</b></button>
+        <button type="button" class="alt" data-varde="vik" aria-pressed="false"><b>Vik&shy;system</b></button>
+        <button type="button" class="alt" data-varde="oppen" aria-pressed="false"><b>Öppet</b></button>
+      </div>
+      <p class="ingress" id="vagg-text">Glaspartierna glider åt sidan och staplas i ena änden.</p>
+    </section>
+
+    <section class="sek" aria-labelledby="h-farg">
+      <h2 id="h-farg">Profilfärg</h2>
+      <div class="farger" data-grupp="farg" role="group" aria-labelledby="h-farg"></div>
+      <p class="fargnamn">Vald: <b id="ut-farg">Antracit</b></p>
+    </section>
+
+    <section class="sek" aria-labelledby="h-glas">
+      <h2 id="h-glas">Glas</h2>
+      <div class="val tva" data-grupp="glas">
+        <button type="button" class="alt" data-varde="klart" aria-pressed="true"><b>Klart glas</b><small>Fri utsikt åt alla håll</small></button>
+        <button type="button" class="alt" data-varde="tonat" aria-pressed="false"><b>Tonat glas</b><small>Dämpar solen och insynen</small></button>
+      </div>
+    </section>
+
+    <section class="sek" aria-labelledby="h-till">
+      <h2 id="h-till">Tillval</h2>
+      <label class="vaxel"><span><b>LED-belysning</b><small>Spotlights i takprofilerna</small></span><input type="checkbox" id="led" checked><i aria-hidden="true"></i></label>
+      <label class="vaxel"><span><b>Insektsnät</b><small>Nät i öppningarna när glaset är öppet</small></span><input type="checkbox" id="nat"><i aria-hidden="true"></i></label>
+    </section>
+  </div>
+
+  <div class="summering">
+    <p id="sammanfattning" aria-live="polite"><b>5,0 × 3,5 m</b> · 17,5 m² · Lamelltak · Skjutpartier · Antracit</p>
+    <button type="button" class="cta" id="boka">Boka kostnadsfritt hembesök</button>
+    <a class="ring" href="tel:+46735192333">eller ring <b>073-519 23 33</b></a>
+    <p class="kredit-rad">Prototyp byggd av <a href="https://bahkobyra.se/" target="_blank" rel="noopener">Bahko Byrå</a></p>
+  </div>
+</aside>
+
+<section class="sol glaskort" aria-labelledby="h-sol">
+  <h2 id="h-sol">Solen en sommardag <output id="ut-tid" for="tid">15:00</output></h2>
+  <input type="range" id="tid" min="5" max="23" step="0.25" value="15" aria-label="Tid på dagen">
+  <p class="riktetikett" id="h-rikt">Uterummet vetter mot</p>
+  <div class="rikt" role="group" aria-labelledby="h-rikt" data-grupp="rikt">
+    <button type="button" data-varde="S" aria-pressed="true">Söder</button>
+    <button type="button" data-varde="V" aria-pressed="false">Väster</button>
+    <button type="button" data-varde="O" aria-pressed="false">Öster</button>
+    <button type="button" data-varde="N" aria-pressed="false">Norr</button>
+  </div>
+  <p class="solrad" id="solrad" aria-live="polite"></p>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-kort glaskort" role="document">
+    <form id="form" novalidate>
+      <h2>Boka kostnadsfritt hembesök</h2>
+      <p>Vi kommer ut, mäter på plats och går igenom din design. Du får en offert efteråt.</p>
+      <p class="designrad" id="designrad"></p>
+      <div class="falt">
+        <label>Namn<input name="namn" autocomplete="name" required></label>
+        <label>Telefon<input name="telefon" type="tel" autocomplete="tel" required></label>
+        <label class="hel">E-post (valfritt)<input name="epost" type="email" autocomplete="email"></label>
+        <label class="hel">Adress eller ort<input name="adress" autocomplete="street-address" placeholder="Var ska uterummet byggas?"></label>
+        <label class="hel">Något mer vi bör veta?<textarea name="meddelande" placeholder="Till exempel när du vill att det står klart"></textarea></label>
+      </div>
+      <input type="checkbox" name="botcheck" class="bot" tabindex="-1" autocomplete="off">
+      <div class="formfel" id="formfel" hidden></div>
+      <div class="modal-knappar">
+        <button type="button" class="stang" id="stang">Avbryt</button>
+        <button type="submit" class="cta" id="skicka">Skicka min design</button>
+      </div>
+      <p class="formnot">Din design följer med förfrågan. Bilden är en förenklad visualisering: exakta mått, utförande och pris bestäms vid hembesöket. Inga massutskick.</p>
+    </form>
+    <div class="kvitto" id="kvitto" hidden role="status">
+      <h2>Tack, din design är skickad</h2>
+      <p>Vi hör av oss för att boka en tid för hembesöket.</p>
+      <div class="modal-knappar"><button type="button" class="cta" id="kvitto-stang">Tillbaka till uterummet</button></div>
+    </div>
+  </div>
+</div>
+
+<script type="importmap">
+{"imports":{"three":"./vendor/three.module.min.js"}}
+</script>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
