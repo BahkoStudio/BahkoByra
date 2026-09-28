@@ -74,7 +74,7 @@ button{background:none;border:0;cursor:pointer}
 .marke img{height:30px;width:auto;display:block}
 .marke span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);border-left:1px solid var(--linje2);padding-left:12px;white-space:nowrap}
 .vyer{margin:0 auto;display:flex;padding:5px;gap:4px}
-.vyer button{height:42px;padding:0 18px;border-radius:12px;font-weight:500;color:var(--text2);transition:background var(--snabb),color var(--snabb)}
+.vyer button{height:42px;padding:0 18px;border-radius:12px;font-weight:500;color:var(--text2)}
 .vyer button[aria-pressed="true"]{background:var(--guld);color:var(--marin)}
 .vyer button:not([aria-pressed="true"]):hover{color:var(--text);background:rgba(255,255,255,.07)}
 .dela{height:52px;padding:0 18px;display:flex;align-items:center;gap:8px;font-weight:500}
@@ -82,7 +82,7 @@ button{background:none;border:0;cursor:pointer}
 
 /* ---------- konfigurationspanelen ---------- */
 .panel{position:fixed;z-index:10;top:84px;left:20px;bottom:20px;width:var(--panel);display:flex;flex-direction:column;overflow:hidden}
-.panel-inre{flex:1;overflow-y:auto;padding:22px 22px 8px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
+.panel-inre{flex:1;overflow-y:auto;padding:22px 22px 8px;-webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(180deg,#000 calc(100% - 36px),transparent);scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
 .panel h1{font-size:24px;line-height:1.2;font-weight:700;letter-spacing:-.01em}
 .panel h1 em{font-style:normal;color:var(--guldtext)}
 .ingress{color:var(--text2);margin-top:6px}
@@ -104,7 +104,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .val{display:grid;gap:8px}
 .val.tva{grid-template-columns:1fr 1fr}
 .val.tre{grid-template-columns:1fr 1fr 1fr}
-.alt{position:relative;display:block;text-align:left;padding:12px 12px 12px;border:1px solid var(--linje2);border-radius:12px;transition:border-color var(--snabb),background var(--snabb);min-height:44px}
+.alt{position:relative;display:block;text-align:left;padding:12px 12px 12px;border:1px solid var(--linje2);border-radius:12px;min-height:44px}
 .alt b{display:block;font-weight:600;font-size:14px}
 .alt small{display:block;color:var(--text2);font-size:12px;line-height:1.4;margin-top:3px}
 .alt[aria-pressed="true"]{border-color:var(--guld);background:rgba(197,165,114,.14)}
@@ -114,7 +114,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .val.tre .alt::after{display:none}
 
 .farger{display:flex;gap:10px;flex-wrap:wrap}
-.farg{width:44px;height:44px;border-radius:50%;border:2px solid transparent;display:grid;place-items:center;transition:border-color var(--snabb)}
+.farg{width:44px;height:44px;border-radius:50%;border:2px solid transparent;display:grid;place-items:center}
 .farg span{width:32px;height:32px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
 .farg[aria-pressed="true"]{border-color:var(--guld)}
 .fargnamn{margin-top:8px;color:var(--text2)}
@@ -139,7 +139,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .ring b{color:var(--text);font-weight:500}
 
 /* ---------- på duken: öppna partierna, lameller ---------- */
-.handling{position:fixed;z-index:10;left:calc(var(--panel) + 40px);right:360px;bottom:20px;display:flex;justify-content:center;pointer-events:none}
+.handling{position:fixed;z-index:10;left:calc(var(--panel) + 40px);right:20px;bottom:20px;display:flex;justify-content:center;pointer-events:none}
 .handling-inre{pointer-events:auto;display:flex;align-items:center;gap:16px;padding:8px 10px 8px 8px}
 .knapp{height:44px;padding:0 18px;border-radius:12px;background:rgba(255,255,255,.1);font-weight:500;display:flex;align-items:center;gap:8px;white-space:nowrap}
 .knapp:hover{background:rgba(255,255,255,.16)}
@@ -151,8 +151,8 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .lamell output{min-width:3.2em;text-align:right;color:var(--guldtext);font-variant-numeric:tabular-nums}
 
 /* ---------- solkortet ---------- */
-.sol{position:fixed;z-index:10;right:20px;bottom:20px;width:320px;padding:16px 18px 14px}
-.sol h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--guldtext);font-weight:600;display:flex;justify-content:space-between}
+.sol h2 + input{margin-top:4px}
+.sol h2{display:flex;justify-content:space-between;align-items:baseline}
 .sol h2 output{letter-spacing:0;font-size:14px;color:var(--text);text-transform:none;font-variant-numeric:tabular-nums}
 .rikt{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
 .rikt button{height:36px;border-radius:10px;border:1px solid var(--linje2);font-size:13px;font-weight:500;color:var(--text2)}
@@ -162,7 +162,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 
 /* ---------- måttetiketter i 3D ---------- */
 #etiketter{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.matt{position:absolute;left:0;top:0;padding:3px 9px;border-radius:999px;background:var(--marin);color:var(--guldtext);font-weight:600;font-size:13px;white-space:nowrap;will-change:transform;transition:opacity var(--snabb);box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.matt{position:absolute;left:0;top:0;padding:3px 9px;border-radius:999px;background:var(--marin);color:#fff;font-weight:600;font-size:13px;white-space:nowrap;will-change:transform;box-shadow:0 4px 12px rgba(0,0,0,.25)}
 
 /* ---------- krediten ---------- */
 .kredit-rad{margin-top:10px;text-align:center;font-size:12px;color:var(--text2)}
@@ -218,11 +218,10 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   .knapp{height:42px;padding:0 12px;font-size:13px}
   .lamell{min-width:0;flex:1}
   .lamell label{font-size:13px}
-  .panel,.sol{position:relative;inset:auto;width:auto;margin:12px 10px 0;z-index:1}
+  .panel{position:relative;inset:auto;width:auto;margin:12px 10px 24px;z-index:1}
   .panel{display:block;overflow:visible}
   .panel-inre{overflow:visible;padding:18px 16px 6px}
   .summering{border-radius:0 0 18px 18px}
-  .sol{margin-bottom:24px}
   .toast{top:64px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -315,6 +314,19 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
       </div>
     </section>
 
+    <section class="sek sol" aria-labelledby="h-sol">
+      <h2 id="h-sol">Solen en sommardag <output id="ut-tid" for="tid">15:00</output></h2>
+      <input type="range" id="tid" min="5" max="23" step="0.25" value="15" aria-label="Tid på dagen">
+      <p class="riktetikett" id="h-rikt">Uterummet vetter mot</p>
+      <div class="rikt" role="group" aria-labelledby="h-rikt" data-grupp="rikt">
+        <button type="button" data-varde="S" aria-pressed="true">Söder</button>
+        <button type="button" data-varde="V" aria-pressed="false">Väster</button>
+        <button type="button" data-varde="O" aria-pressed="false">Öster</button>
+        <button type="button" data-varde="N" aria-pressed="false">Norr</button>
+      </div>
+      <p class="solrad" id="solrad" aria-live="polite"></p>
+    </section>
+
     <section class="sek" aria-labelledby="h-till">
       <h2 id="h-till">Tillval</h2>
       <label class="vaxel"><span><b>LED-belysning</b><small>Spotlights i takprofilerna</small></span><input type="checkbox" id="led" checked><i aria-hidden="true"></i></label>
@@ -330,18 +342,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   </div>
 </aside>
 
-<section class="sol glaskort" aria-labelledby="h-sol">
-  <h2 id="h-sol">Solen en sommardag <output id="ut-tid" for="tid">15:00</output></h2>
-  <input type="range" id="tid" min="5" max="23" step="0.25" value="15" aria-label="Tid på dagen">
-  <p class="riktetikett" id="h-rikt">Uterummet vetter mot</p>
-  <div class="rikt" role="group" aria-labelledby="h-rikt" data-grupp="rikt">
-    <button type="button" data-varde="S" aria-pressed="true">Söder</button>
-    <button type="button" data-varde="V" aria-pressed="false">Väster</button>
-    <button type="button" data-varde="O" aria-pressed="false">Öster</button>
-    <button type="button" data-varde="N" aria-pressed="false">Norr</button>
-  </div>
-  <p class="solrad" id="solrad" aria-live="polite"></p>
-</section>
+
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
