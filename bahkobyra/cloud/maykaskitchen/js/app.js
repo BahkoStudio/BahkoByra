@@ -29,6 +29,7 @@ const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ── LENIS – mjuk skroll (inte vid reducerad rörelse) ───── */
 if (!REDUCE && typeof Lenis === 'function') {
   const lenis = new Lenis({
+    anchors: { offset: -70 },
     duration: 1.3,
     easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true
@@ -67,7 +68,8 @@ function initStage() {
   // Intro: boken landar (eget offset-objekt så att den inte krockar med skrollens värden), texten stiger
   if (har3d) gsap.from(window.BOK3D.intro, { scale: 0.6, y: -0.8, ry: -1.1, duration: 1.6, ease: 'power3.out', delay: 0.1 });
   gsap.from('.slide-1 > *', { y: 40, autoAlpha: 0, duration: 1.1, ease: 'power3.out', stagger: 0.12, delay: 0.25 });
-  gsap.from('.slide-side-1', { y: 30, autoAlpha: 0, duration: 1.0, ease: 'power3.out', delay: 0.7 });
+  gsap.from('.slide-side-1 > *', { y: 30, autoAlpha: 0, duration: 1.0, ease: 'power3.out', stagger: 0.06, delay: 0.7 });
+  gsap.from('#stage-cta', { y: 30, autoAlpha: 0, duration: 1.0, ease: 'power3.out', delay: 0.85 });
 
   if (REDUCE) return;
 
@@ -81,8 +83,10 @@ function initStage() {
   // tunn kant utan text bredvid. Boken glider åt motsatt sida mot texten (desktop).
   // På mobil (my) sitter boken lägre i första vyn, under rubriken, och lyfts sedan upp.
   const F = 0.13;
+  // Uttoningen har uttryckligt startläge (synlig) så att skroll tillbaka alltid tar fram texten igen,
+  // även om man skrollade medan introt pågick.
   const byt = (ut, in_, t) => tl
-    .to(ut, { autoAlpha: 0, y: -24, ease: 'none', duration: F }, t)
+    .fromTo(ut, { autoAlpha: 1, y: 0 }, { autoAlpha: 0, y: -24, ease: 'none', duration: F, immediateRender: false }, t)
     .fromTo(in_, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, ease: 'none', duration: F }, t + F);
   tl.fromTo(st, { ry: -0.35, rx: 0.08, rz: 0, x: 0, scale: 1, my: -0.085 },
                { ry: Math.PI - 0.3, rx: 0.10, rz: 0.03, x: -0.72, scale: 1.02, my: 0, ease: 'power1.inOut', duration: 1 }, 0)
@@ -107,11 +111,11 @@ function initReveals() {
   grupper.forEach(sel => {
     const els = gsap.utils.toArray(sel);
     if (!els.length) return;
+    // Inget göms i förväg: allt är synligt och klickbart även om skrollmätningen skulle missa.
     ScrollTrigger.batch(els, {
-      start: 'top 88%',
-      onEnter: batch => gsap.fromTo(batch, { y: 36, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.9, ease: 'power3.out', stagger: 0.08, overwrite: true })
+      start: 'top 98%', once: true,
+      onEnter: batch => gsap.fromTo(batch, { y: 28, autoAlpha: 0.001 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: 'power3.out', stagger: 0.06, overwrite: true })
     });
-    gsap.set(els, { autoAlpha: 0 });
   });
 }
 
