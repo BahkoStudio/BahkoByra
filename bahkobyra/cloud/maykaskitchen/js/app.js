@@ -3,97 +3,115 @@
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ── AIRTABLE CONFIG ─────────────────────────────────────── */
-const AIRTABLE_TOKEN  = ['patTK0EvdtERoORBS',
-  '6c663344139bc3ded866f18948e128101e3d8116fe9eaecfa181ec15b79cdc2e'].join('.');
-const AIRTABLE_BASE   = 'appmmwhjfVRpQm5FK';
-const AIRTABLE_TABLE  = 'tblVMRAxQzeXOw1OF';
+/* ── NYHETSBREV via Web3Forms ─────────────────────────────
+   Nyckeln är publik med flit: den säger bara vilken inkorg inskicket går till och ger
+   ingen åtkomst till något (se docs/formular-web3forms.md). Tills Mayka har en egen
+   nyckel används Bahkos demonyckel, som landar hos mathias@bahkobyra.se med
+   "Nyhetsbrev maykaskitchen.se" i ämnesraden. Byt NL_NYCKEL när Maykas nyckel finns. */
+const NL_NYCKEL = '38db5da0-8af0-4b31-bcdc-a840e84e5764';
 
-async function submitToAirtable(email) {
-  const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ fields: { 'Email Template': email } })
+async function skickaNyhetsbrev(form, kalla) {
+  const data = new FormData(form);
+  data.set('access_key', NL_NYCKEL);
+  data.set('subject', 'Nyhetsbrev maykaskitchen.se');
+  data.set('from_name', 'maykaskitchen.se');
+  data.set('kalla', kalla);
+  data.delete('redirect');   // med redirect svarar Web3Forms 303 och svaret går inte att läsa
+  const res = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST', body: data, headers: { Accept: 'application/json' }
   });
-  if (!res.ok) throw new Error('Airtable error');
+  const svar = await res.json().catch(() => ({}));
+  return res.ok && svar.success !== false;   // tack visas bara när inskicket faktiskt gick fram
 }
 
-const header = document.getElementById('site-header');
+const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ── LENIS — smooth scroll ───────────────────────────────── */
-const lenis = new Lenis({
-  duration: 1.6,
-  easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  smoothWheel: true
-});
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add(time => lenis.raf(time * 1000));
-gsap.ticker.lagSmoothing(0);
-
-/* ── HERO WORD REVEAL ───────────────────────────────────── */
-function initHeroWords() {
-  document.querySelectorAll('.hero-word').forEach((w, i) => {
-    setTimeout(() => w.classList.add('visible'), 200 + i * 130);
+/* ── LENIS – mjuk skroll (inte vid reducerad rörelse) ───── */
+if (!REDUCE && typeof Lenis === 'function') {
+  const lenis = new Lenis({
+    duration: 1.3,
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true
   });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(time => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
 }
 
-/* ── HEADER STYLE ON SCROLL ─────────────────────────────── */
+/* ── HEADER ─────────────────────────────────────────────── */
 function initHeader() {
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        header.classList.toggle('on-scroll', window.scrollY > 80);
-        ticking = false;
-      });
-      ticking = true;
-    }
+  const header = document.getElementById('site-header');
+  if (!header) return;
+  // Genomskinlig över den gröna scenen, gräddvit så fort scenen släppt.
+  // Scenen är fastnålad, så gränsen hämtas från scenens egen ScrollTrigger.
+  const slut = () => { const st = ScrollTrigger.getById('scen'); return (st ? st.end : window.innerHeight) - 70; };
+  ScrollTrigger.create({
+    trigger: document.body, start: slut, end: () => slut() + 1e6,
+    onEnter: () => header.classList.add('on-scroll'),
+    onLeaveBack: () => header.classList.remove('on-scroll')
   });
 }
 
-/* ── RECIPE SECTION ANIMATIONS ───────────────────────────── */
-function initRecipeSection() {
-  const recipeSection = document.getElementById('recept');
-  if (!recipeSection) return;
+/* ── SCENEN – 3D-boken snurrar medan textbilderna byter ─── */
+function initStage() {
+  const stage = document.getElementById('hero');
+  if (!stage) return;
 
-  const hdr   = recipeSection.querySelector('.recipes-header');
-  const cards = recipeSection.querySelectorAll('.recipe-card');
-  const all   = recipeSection.querySelector('.recipes-all');
-
-  gsap.from(hdr, {
-    y: 55, opacity: 0, duration: 1.2, ease: 'power4.out', immediateRender: false,
-    scrollTrigger: { trigger: hdr, start: 'top 90%', toggleActions: 'play none none reverse' }
-  });
-  gsap.from(cards, {
-    y: 45, opacity: 0, stagger: 0.1, duration: 1.0, ease: 'power4.out', immediateRender: false,
-    scrollTrigger: { trigger: recipeSection.querySelector('.recipes-grid'), start: 'top 90%', toggleActions: 'play none none reverse' }
-  });
-  if (all) {
-    gsap.from(all, {
-      y: 30, opacity: 0, duration: 1.0, ease: 'power4.out', immediateRender: false,
-      scrollTrigger: { trigger: all, start: 'top 95%', toggleActions: 'play none none reverse' }
-    });
+  const har3d = window.BOK3D && window.BOK3D.init && window.BOK3D.init();
+  if (!har3d) {
+    const fb = document.getElementById('book-fallback');
+    if (fb) fb.hidden = false;
   }
+  const st = har3d ? window.BOK3D.state : { ry: 0, rx: 0, rz: 0, scale: 1, x: 0, y: 0 };
+
+  // Intro: boken landar (eget offset-objekt så att den inte krockar med skrollens värden), texten stiger
+  if (har3d) gsap.from(window.BOK3D.intro, { scale: 0.6, y: -0.8, ry: -1.1, duration: 1.6, ease: 'power3.out', delay: 0.1 });
+  gsap.from('.slide-1 > *', { y: 40, autoAlpha: 0, duration: 1.1, ease: 'power3.out', stagger: 0.12, delay: 0.25 });
+  gsap.from('.slide-side-1', { y: 30, autoAlpha: 0, duration: 1.0, ease: 'power3.out', delay: 0.7 });
+
+  if (REDUCE) return;
+
+  // Fyra vyer, som förlagan: omslag → baksida → sidkanterna uppifrån → omslag
+  const tl = gsap.timeline({
+    scrollTrigger: { id: 'scen', trigger: stage, start: 'top top', end: '+=320%', pin: true, scrub: 0.8, anticipatePin: 1 }
+  });
+  // Boken flyttar sig åt motsatt sida mot texten (som burken i förlagan); på mobil ignoreras x.
+  // Fyra vyer med var sin text: omslag → baksida → ovanifrån med sidkanterna → omslag + köp.
+  // Nästa text tonar in i samma stund som den förra tonar ut, så boken aldrig står som en
+  // tunn kant utan text bredvid. Boken glider åt motsatt sida mot texten (desktop).
+  // På mobil (my) sitter boken lägre i första vyn, under rubriken, och lyfts sedan upp.
+  const F = 0.13;
+  const byt = (ut, in_, t) => tl
+    .to(ut, { autoAlpha: 0, y: -24, ease: 'none', duration: F }, t)
+    .fromTo(in_, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, ease: 'none', duration: F }, t + F);
+  tl.fromTo(st, { ry: -0.35, rx: 0.08, rz: 0, x: 0, scale: 1, my: -0.085 },
+               { ry: Math.PI - 0.3, rx: 0.10, rz: 0.03, x: -0.72, scale: 1.02, my: 0, ease: 'power1.inOut', duration: 1 }, 0)
+    .to(st, { ry: Math.PI * 1.35, rx: 1.0, rz: -0.28, x: 0.72, scale: 1.04, ease: 'power1.inOut', duration: 1 }, 1)
+    .to(st, { ry: Math.PI * 2 - 0.3, rx: 0.08, rz: 0, x: -0.72, scale: 1.08, ease: 'power1.inOut', duration: 1 }, 2)
+    .to({}, { duration: 0.5 }, 3);
+  byt('[data-slide="1"]', '.slide-2', 0.2);
+  byt('.slide-2', '.slide-3', 1.2);
+  byt('.slide-3', '.slide-4', 2.2);
 }
 
-/* ── CTA SECTION ANIMATIONS ──────────────────────────────── */
-function initCTA() {
-  const section = document.getElementById('kontakt');
-  if (!section) return;
-
-  const hdr   = section.querySelector('.cta-header');
-  const cards = section.querySelectorAll('.cta-card');
-
-  gsap.from(hdr, {
-    y: 50, opacity: 0, duration: 1.2, ease: 'power4.out', immediateRender: false,
-    scrollTrigger: { trigger: hdr, start: 'top 90%', toggleActions: 'play none none reverse' }
-  });
-  gsap.from(cards, {
-    y: 40, opacity: 0, stagger: 0.15, duration: 1.1, ease: 'power4.out', immediateRender: false,
-    scrollTrigger: { trigger: cards[0], start: 'top 90%', toggleActions: 'play none none reverse' }
+/* ── SEKTIONER – mjuk infasning ─────────────────────────── */
+function initReveals() {
+  if (REDUCE) return;
+  const grupper = [
+    '.inne-text > *', '.inne-media', '.inne-band img',
+    '.kok-head > *', '.kok-bild',
+    '.siffror-head > *', '.tal li', '.brands',
+    '.om-media', '.om-text > *',
+    '.cta-inner > *'
+  ];
+  grupper.forEach(sel => {
+    const els = gsap.utils.toArray(sel);
+    if (!els.length) return;
+    ScrollTrigger.batch(els, {
+      start: 'top 88%',
+      onEnter: batch => gsap.fromTo(batch, { y: 36, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.9, ease: 'power3.out', stagger: 0.08, overwrite: true })
+    });
+    gsap.set(els, { autoAlpha: 0 });
   });
 }
 
@@ -111,16 +129,11 @@ function initPopup() {
   function openPopup() {
     popup.classList.add('visible');
     overlay.classList.add('visible');
-    document.body.style.overflow = 'hidden';
   }
-
   function closePopup() {
     popup.classList.remove('visible');
     overlay.classList.remove('visible');
-    document.body.style.overflow = '';
     clearTimeout(popupTimer);
-    // Kom ihag att besokaren stangt den. Utan detta poppar den upp igen
-    // vid varje omladdning och vid varje 90-sekundersintervall.
     try { localStorage.setItem('mk-nl-dismissed', String(Date.now())); } catch (_) {}
   }
 
@@ -130,43 +143,61 @@ function initPopup() {
     if (e.key === 'Escape' && popup.classList.contains('visible')) closePopup();
   });
 
+  const felPopup = document.getElementById('nl-popup-fel');
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    const email = form.querySelector('input[type="email"]').value;
-    try {
-      await submitToAirtable(email);
-    } catch (_) { /* silent — spara ändå */ }
-    form.hidden = true;
-    success.hidden = false;
-    // Stäng popup efter 2.5s
-    setTimeout(closePopup, 2500);
+    if (!form.reportValidity()) return;
+    const knapp = form.querySelector('button[type="submit"]');
+    knapp.disabled = true; felPopup.hidden = true;
+    let ok = false;
+    try { ok = await skickaNyhetsbrev(form, 'popup'); } catch (_) { ok = false; }
+    knapp.disabled = false;
+    if (ok) {
+      form.hidden = true;
+      success.hidden = false;
+      setTimeout(closePopup, 2500);
+    } else {
+      felPopup.hidden = false;
+    }
   });
 
-  // Popupen tands efter 45 s. Har den stangts under de senaste 14 dagarna
-  // visas den inte alls.
+  // Tänds först när läsaren nått sidfoten, då har hela sidan fått säga sitt.
+  // Har den stängts de senaste 14 dagarna visas den inte alls.
   const AVFARDAD_DAGAR = 14;
   let avfardad = false;
   try {
     const t = parseInt(localStorage.getItem('mk-nl-dismissed') || '0', 10);
     avfardad = t > 0 && (Date.now() - t) < AVFARDAD_DAGAR * 864e5;
   } catch (_) {}
-  if (!avfardad) popupTimer = setTimeout(openPopup, 45_000);
+  const fot = document.querySelector('.site-footer');
+  if (!avfardad && fot && 'IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(e => {
+      if (e[0].isIntersecting) { obs.disconnect(); popupTimer = setTimeout(openPopup, 1200); }
+    }, { threshold: 0.35 });
+    obs.observe(fot);
+  }
 }
 
-/* ── FOOTER NEWSLETTER ───────────────────────────────────── */
+/* ── FOOTER-NYHETSBREV ───────────────────────────────────── */
 function initForms() {
   const form = document.getElementById('footer-nl-form');
   if (!form) return;
+  const tack = document.getElementById('footer-nl-tack');
+  const fel = document.getElementById('footer-nl-fel');
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    const email = form.querySelector('input[type="email"]').value;
-    try { await submitToAirtable(email); } catch (_) {}
-    form.insertAdjacentHTML('afterend', '<p style="font-size:.8rem;color:var(--gold);margin-top:.5rem">✓ Tack!</p>');
-    form.remove();
+    if (!form.reportValidity()) return;
+    const knapp = form.querySelector('button[type="submit"]');
+    knapp.disabled = true; fel.hidden = true;
+    let ok = false;
+    try { ok = await skickaNyhetsbrev(form, 'sidfot'); } catch (_) { ok = false; }
+    knapp.disabled = false;
+    if (ok) { form.hidden = true; tack.hidden = false; }
+    else fel.hidden = false;
   });
 }
 
-/* ── MOBILE NAV ──────────────────────────────────────────── */
+/* ── MOBILMENY ───────────────────────────────────────────── */
 function initMobileNav() {
   const hamburger = document.getElementById('nav-hamburger');
   const mobileNav = document.getElementById('mobile-nav');
@@ -179,32 +210,25 @@ function initMobileNav() {
     mobileNav.classList.add('open');
     mobileNav.removeAttribute('aria-hidden');
     overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
   }
-
   function closeNav() {
     hamburger.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
     mobileNav.classList.remove('open');
     mobileNav.setAttribute('aria-hidden', 'true');
     overlay.classList.remove('open');
-    document.body.style.overflow = '';
   }
-
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.contains('open') ? closeNav() : openNav();
-  });
+  hamburger.addEventListener('click', () => hamburger.classList.contains('open') ? closeNav() : openNav());
   overlay.addEventListener('click', closeNav);
   mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
 }
 
-/* ── BOOT ────────────────────────────────────────────────── */
+/* ── START ───────────────────────────────────────────────── */
 window.addEventListener('DOMContentLoaded', () => {
   initLangToggle();
-  initHeroWords();
+  initStage();
   initHeader();
-  initRecipeSection();
-  initCTA();
+  initReveals();
   initForms();
   initPopup();
   initMobileNav();

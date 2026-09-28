@@ -4,20 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recept – MaykasKitchen</title>
-  <meta name="description" content="Autentiska assyriska och syrianska recept från MaykasKitchen.">
+  <meta name="description" content="Alla recept från Maykas kök – assyriska och syrianska rätter, gratis och steg för steg. Ur samma kök som kokboken Maykas gröna kök.">
+  <meta name="theme-color" content="#1C4229">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --crimson: #8C1A26; --crimson-lt: #B32233;
-      --gold: #C9952A; --gold-lt: #E0B84A;
-      --purple: #4A1A6B; --purple-lt: #6B2E96;
-      --ivory: #F5F0E5; --cream: #F5F0E5;
-      --white: #FEFCF7; --beige: #E8DDD0;
-      --charcoal: #1A100E; --mid: #6A5A52;
-      --dark: #0E0A08;
+      --green: #1C4229; --green-dk: #12301D;
+      --terra: #C4482B; --terra-dk: #A33A22;
+      --gold: #E3A93B; --gold-lt: #F1C76B;
+      --cream: #F4EBDC; --cream-2: #EADFCB; --white: #FFFDF8;
+      --ink: #14201A; --mid: #5B665E; --line: rgba(20,32,26,0.12);
+      /* gamla namn som receptlayouten använder */
+      --crimson: var(--terra); --crimson-lt: var(--terra-dk);
+      --purple: var(--green); --purple-lt: var(--green);
+      --ivory: var(--cream); --beige: var(--cream-2);
+      --charcoal: var(--ink); --dark: var(--green-dk);
+      --display: 'Marcellus', 'Cormorant Garamond', Georgia, serif;
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans: 'Poppins', system-ui, sans-serif;
     }
@@ -25,10 +30,61 @@
     body { background: var(--ivory); color: var(--charcoal); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
     /* ── HEADER ── */
-    .site-header { position: sticky; top: 0; z-index: 100; padding: 1.2rem 5vw; display: flex; align-items: center; justify-content: space-between; background: rgba(245,240,229,0.96); backdrop-filter: blur(16px); border-bottom: 1px solid var(--beige); }
-    .nav-logo { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--charcoal); text-decoration: none; letter-spacing: 0.04em; }
-    .back-btn { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; font-weight: 500; color: var(--crimson); text-decoration: none; padding: 0.5rem 1rem; border: 1.5px solid var(--crimson); border-radius: 50px; transition: background 0.2s, color 0.2s; }
-    .back-btn:hover { background: var(--crimson); color: var(--ivory); }
+    .site-header { position: sticky; top: 0; z-index: 100; padding: 0.9rem 5vw; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: rgba(244,235,220,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+    .nav-logo { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: 0.04em; }
+    .nav-mini { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-mini a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; opacity: 0.85; padding: 0.4rem 0; }
+    .nav-mini a:hover { opacity: 1; color: var(--terra); }
+    .nav-right { display: flex; align-items: center; gap: 0.7rem; }
+    .nav-buy { display: inline-flex; align-items: center; min-height: 40px; padding: 0.5rem 1.1rem; border-radius: 999px; background: var(--terra); color: var(--cream); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-decoration: none; }
+    .nav-buy:hover { background: var(--terra-dk); }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; font-size: 0.8rem; font-weight: 500; color: var(--ink); text-decoration: none; padding: 0.4rem 1rem; border: 1.5px solid var(--line); border-radius: 999px; transition: background 0.2s, color 0.2s; }
+    .back-btn:hover { border-color: var(--terra); color: var(--terra); }
+    .back-btn[hidden] { display: none; }
+    @media (max-width: 760px) { .nav-mini { display: none; } .nav-buy { display: none; } }
+
+    /* ── LISTA ── */
+    .list-head { max-width: 1080px; margin: 0 auto; padding: 4rem 5vw 1.5rem; text-align: center; }
+    .kicker { display: inline-flex; align-items: center; gap: 0.7rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--terra); }
+    .kicker::before { content: ''; width: 1.6rem; height: 1px; background: currentColor; }
+    .list-title { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1; margin: 0.8rem 0 0.9rem; }
+    .list-sub { font-size: 1rem; color: var(--mid); max-width: 32rem; margin: 0 auto; }
+    .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; max-width: 1080px; margin: 1.8rem auto 0; padding: 0 5vw; }
+    .chip { min-height: 44px; padding: 0.45rem 1rem; border-radius: 999px; border: 1.5px solid var(--line); background: transparent; font-family: var(--sans); font-size: 0.78rem; font-weight: 500; color: var(--ink); cursor: pointer; }
+    .chip.is-on, .chip:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+    .list-grid { max-width: 1080px; margin: 0 auto; padding: 2.5rem 5vw 5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.6rem; }
+    .rcard { display: flex; flex-direction: column; background: var(--white); border-radius: 14px; overflow: hidden; border: 1px solid var(--line); text-decoration: none; color: var(--ink); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .rcard:hover { transform: translateY(-4px); box-shadow: 0 24px 40px -24px rgba(20,32,26,0.4); }
+    .rcard-img { aspect-ratio: 4 / 3; overflow: hidden; background: var(--cream-2); }
+    .rcard-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .rcard:hover .rcard-img img { transform: scale(1.04); }
+    .rcard-body { padding: 1.1rem 1.2rem 1.3rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+    .rcard-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .rcard-tags span { font-size: 0.64rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 999px; background: var(--cream-2); color: var(--mid); }
+    .rcard h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; line-height: 1.2; }
+    .rcard p { font-size: 0.84rem; color: var(--mid); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .rcard-foot { margin-top: auto; padding-top: 0.6rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; color: var(--mid); }
+    .rcard-foot b { color: var(--terra); font-weight: 600; }
+    .list-empty { grid-column: 1 / -1; text-align: center; color: var(--mid); padding: 3rem 0; }
+
+    /* Bok-puff efter receptet */
+    .bok-puff { display: flex; align-items: center; gap: 1.4rem; margin-top: 2.5rem; padding: 1.5rem 1.8rem; border-radius: 16px; background: var(--green-dk); color: var(--cream); }
+    .bok-puff img { width: 72px; height: 100px; object-fit: cover; border-radius: 3px; flex: none; box-shadow: 0 12px 24px -10px rgba(0,0,0,0.6); }
+    .bok-puff strong { display: block; font-family: var(--display); font-weight: 400; font-size: 1.25rem; text-transform: uppercase; line-height: 1.1; margin-bottom: 0.3rem; }
+    .bok-puff p { font-size: 0.86rem; color: rgba(244,235,220,0.8); }
+    .bok-puff a { margin-left: auto; flex: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0.7rem 1.4rem; border-radius: 999px; background: var(--terra); color: var(--cream); font-size: 0.8rem; font-weight: 600; text-decoration: none; }
+    .bok-puff a:hover { background: var(--terra-dk); }
+    @media (max-width: 640px) { .bok-puff { flex-wrap: wrap; } .bok-puff a { margin-left: 0; width: 100%; justify-content: center; } }
+    .kopbar { display: none; }
+    @media (max-width: 760px) {
+      .kopbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; display: flex; align-items: center; gap: 0.75rem; min-height: 64px; padding: 0.55rem 1rem calc(0.55rem + env(safe-area-inset-bottom, 0px)); background: var(--terra); color: var(--cream); text-decoration: none; box-shadow: 0 -10px 30px -12px rgba(0,0,0,0.45); font-family: var(--sans); }
+      .kopbar img { width: 30px; height: 42px; object-fit: cover; border-radius: 2px; flex: none; }
+      .kopbar-text { display: flex; flex-direction: column; line-height: 1.2; }
+      .kopbar-text b { font-size: 0.95rem; font-weight: 600; }
+      .kopbar-text span { font-size: 0.75rem; opacity: 0.85; }
+      .kopbar-pris { margin-left: auto; font-family: var(--display); font-size: 1.35rem; }
+      body { padding-bottom: 64px; }
+    }
 
     /* ── RECIPE DETAIL ── */
     .recipe-page { max-width: 1080px; margin: 0 auto; padding: 3rem 5vw 5rem; }
@@ -97,8 +153,8 @@
       .recipe-page { padding: 2rem 4vw 4rem; }
       .recipe-story { padding: 1rem 1.2rem; }
     }
-    .lang-toggle { background: transparent; border: 1.5px solid var(--gold); color: var(--gold); font-family: var(--sans); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; padding: 0.32rem 0.7rem; border-radius: 50px; cursor: pointer; transition: background 0.2s, color 0.2s; line-height: 1; }
-    .lang-toggle:hover { background: var(--gold); color: var(--dark); }
+    .lang-toggle { min-width: 44px; min-height: 40px; background: transparent; border: 1.5px solid var(--line); color: var(--ink); font-family: var(--sans); font-size: 0.64rem; font-weight: 600; letter-spacing: 0.12em; padding: 0.3rem 0.7rem; border-radius: 999px; cursor: pointer; transition: background 0.2s, color 0.2s; line-height: 1; }
+    .lang-toggle:hover { border-color: var(--terra); color: var(--terra); }
 
     /* ── FOOTER ── */
     .site-footer { max-width: 1080px; margin: 0 auto; padding: 1.6rem 5vw 2.6rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; align-items: center; justify-content: space-between; border-top: 1px solid var(--beige); font-size: 0.78rem; color: var(--mid); }
@@ -112,23 +168,36 @@
 
 <header class="site-header">
   <a class="nav-logo" href="index.html">MaykasKitchen</a>
-  <div style="display:flex;align-items:center;gap:0.8rem;">
+  <ul class="nav-mini">
+    <li><a href="index.html" data-i18n="nav.home">Hem</a></li>
+    <li><a href="index.html#boken" data-i18n="nav.book">Boken</a></li>
+    <li><a href="recept.html" data-i18n="nav.recipes">Recept</a></li>
+    <li><a href="index.html#kontakt" data-i18n="nav.collab">Samarbeten</a></li>
+  </ul>
+  <div class="nav-right">
     <button class="lang-toggle" id="lang-toggle">EN</button>
-    <a class="back-btn" href="index.html#recept">
+    <a class="back-btn" id="back-btn" href="recept.html" hidden>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       <span data-i18n="back">Tillbaka</span>
     </a>
+    <a href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener" class="nav-buy" data-i18n="nav.buybook">Köp boken</a>
   </div>
 </header>
 
-<main class="recipe-page" id="recipe-content">
+<main id="recipe-content">
   <div class="not-found">
     <p data-i18n="r.loading">Laddar recept…</p>
   </div>
 </main>
 
+<a class="kopbar" href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener">
+  <img src="img/bok-fram.jpg" alt="" width="30" height="42">
+  <span class="kopbar-text"><b data-i18n="kopbar.t">Köp boken</b><span data-i18n="kopbar.s">via Bokus</span></span>
+  <span class="kopbar-pris">349 kr</span>
+</a>
+
 <footer class="site-footer">
-  <span>© 2025 MaykasKitchen</span>
+  <span>© 2026 MaykasKitchen</span>
   <span>Hemsida av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
 </footer>
 
@@ -455,9 +524,11 @@ function render() {
   const r = RECIPES[id];
   const container = document.getElementById('recipe-content');
   if (!r) {
-    container.innerHTML = `<div class="not-found"><h2>${getT('r.notfound.h')}</h2><p>${getT('r.notfound.p')}</p><a class="btn-primary" href="index.html#recept">${getT('r.notfound.btn')}</a></div>`;
+    container.innerHTML = `<div class="not-found"><h2>${getT('r.notfound.h')}</h2><p>${getT('r.notfound.p')}</p><a class="btn-primary" href="recept.html">${getT('r.notfound.btn')}</a></div>`;
     return;
   }
+  container.className = 'recipe-page';
+  document.getElementById('back-btn').hidden = false;
 
   const title       = tv(r.title, r.title_en);
   const description = tv(r.description, r.description_en);
@@ -518,11 +589,69 @@ function render() {
         </div>
         ${tipsHtml}
       </div>
-    </div>`;
+    </div>
+    <aside class="bok-puff">
+      <img src="img/bok-fram.jpg" alt="" width="72" height="100">
+      <div>
+        <strong>${tv('Maykas kokbok', 'Mayka’s cookbook')}</strong>
+        <p>${tv('Maykas gröna kök. Cirka 50 växtbaserade recept, inbunden, 349 kr via Bokus.', 'Maykas gröna kök. About 50 plant-based recipes, hardcover, 349 SEK via Bokus.')}</p>
+      </div>
+      <a href="https://www.bokus.com/bok/9789190032091/maykas-grona-kok-kutle-hummus-och-karlek/" target="_blank" rel="noopener">${tv('Köp boken', 'Buy the book')}</a>
+    </aside>`;
 }
 
-window.MK_RENDER = render;
-render();
+/* ── LISTA: alla recept när inget id anges ── */
+const CHIPS = ['Vegetariskt', 'Vegan', 'Kött', 'Kyckling', 'Bakverk', 'Snabb', 'Traditionellt'];
+let aktivChip = 'alla';
+
+function tagText(label) {
+  const k = typeof tagKey === 'function' ? tagKey(label) : null;
+  return k ? getT(k) : label;
+}
+
+function renderList() {
+  const container = document.getElementById('recipe-content');
+  container.className = '';
+  document.getElementById('back-btn').hidden = true;
+  document.title = getT('list.title') + ' – MaykasKitchen';
+
+  const alla = Object.entries(RECIPES);
+  const synliga = alla.filter(([, r]) => aktivChip === 'alla' || r.badges.includes(aktivChip));
+
+  const chips = ['alla', ...CHIPS].map(c =>
+    `<button class="chip${c === aktivChip ? ' is-on' : ''}" data-chip="${c}">${c === 'alla' ? getT('list.all') : tagText(c)}</button>`).join('');
+
+  const kort = synliga.map(([id, r]) => `
+    <a class="rcard" href="recept.html?id=${id}">
+      <div class="rcard-img"><img src="${r.image}" alt="${tv(r.title, r.title_en)}" loading="lazy"></div>
+      <div class="rcard-body">
+        <div class="rcard-tags">${r.badges.slice(0, 3).map(b => `<span>${tagText(b)}</span>`).join('')}</div>
+        <h3>${tv(r.title, r.title_en)}</h3>
+        <p>${tv(r.description, r.description_en)}</p>
+        <div class="rcard-foot">
+          <span>${[r.time ? r.time + ' ' + getT('r.min') : '', r.portions ? r.portions + ' ' + getT('r.portions') : ''].filter(Boolean).join(' · ')}</span>
+          <b>${getT('recipe.view')}</b>
+        </div>
+      </div>
+    </a>`).join('');
+
+  container.innerHTML = `
+    <div class="list-head">
+      <span class="kicker">${synliga.length} ${getT('list.count')}</span>
+      <h1 class="list-title">${getT('list.title')}</h1>
+      <p class="list-sub">${getT('list.sub')}</p>
+    </div>
+    <div class="chips">${chips}</div>
+    <div class="list-grid">${kort || `<p class="list-empty">–</p>`}</div>`;
+
+  container.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => {
+    aktivChip = b.dataset.chip;
+    renderList();
+  }));
+}
+
+window.MK_RENDER = RECIPE_ID ? render : renderList;
+window.MK_RENDER();
 initLangToggle();
 </script>
 </body>
