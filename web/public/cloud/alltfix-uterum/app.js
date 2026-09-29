@@ -40,7 +40,7 @@ const FARGER = [
    har sina täckningar; lameller kräver plant tak, pannor minst 14° fall. */
 const FORM = { plant: 'Plant tak', pulpet: 'Pulpettak', sadel: 'Sadeltak' };
 const FORM_TEXT = {
-  plant: 'Rakt tak i samma höjd hela vägen in till huset.',
+  plant: 'Nästan plant tak med ett litet fall ut från huset, så att vattnet rinner av.',
   pulpet: 'Taket lutar åt ett håll, från huset ner mot trädgården.',
   sadel: 'Två takfall med nocken från huset ut mot trädgården.',
 };
@@ -67,8 +67,10 @@ const VAGGAR = ['vv', 'vf', 'vh'];
 const VAGGNAMN = { vv: 'Vänster gavel', vf: 'Front', vh: 'Höger gavel' };
 const MATERIAL = { glas: 'Glas', tra: 'Trävägg', fasad: 'Fasadvägg' };
 const MATERIAL_KORT = { glas: 'glas', tra: 'trä', fasad: 'fasad' };
+// en glasvägg med Glaspartier: Öppet har inget glas, bara stolpar (sista rundan: etiketten sa "Glas")
+const materialOrd = (k) => (S[k] === 'glas' && S.vagg === 'oppen' ? 'öppen' : MATERIAL_KORT[S[k]]);
 const VAGG_KORT = { vv: 'Vänster', vf: 'Front', vh: 'Höger' };
-const INSIDA = { skiva: 'Vit skiva', parlspont: 'Vit pärlspont', tra: 'Träpanel' };
+const INSIDA = { ingen: 'Ingen beklädnad', skiva: 'Vit skiva', parlspont: 'Vit pärlspont', tra: 'Träpanel' };
 const RIKT_GRAD = { S: 0, V: 90, N: 180, O: -90 };
 const RIKT_ORD = { S: 'söder', V: 'väster', N: 'norr', O: 'öster' };
 /* Måtten i meter, alltid avrundade till hela centimeter. Höjden är
@@ -81,8 +83,11 @@ const MATT = {
 const har = (lista, v) => v != null && Object.prototype.hasOwnProperty.call(lista, v);
 const klamMatt = (k, v) => Math.min(MATT[k].max, Math.max(MATT[k].min, Math.round(v * 100) / 100));
 
-const S = { b: 5, d: 3.5, h: 2.5, form: 'plant', lut: 10, tak: 'lamell', golv: 'trall', vagg: 'skjut', farg: 'antracit', glas: 'klart',
-  vv: 'glas', vf: 'glas', vh: 'glas', insida: 'skiva', led: true, nat: false, rikt: 'S', tid: 15, lamell: 0.6, lutOnskad: 10 };
+/* Startdesignen är ett Alltfix-bygge där allt ingår i grundpriset: vita stolpar, plant tak med
+   takpapp och bred vit vindskiva, ljus trall, inga tillval (kundloopen 2026-09-29: första bilden var
+   ett svart lamelltak som Rensons, med två tillval förvalda). */
+const S = { b: 5, d: 3.5, h: 2.5, form: 'plant', lut: 10, tak: 'takpapp', golv: 'trall', vagg: 'skjut', farg: 'vit', glas: 'klart',
+  vv: 'glas', vf: 'glas', vh: 'glas', insida: 'ingen', led: false, nat: false, rikt: 'S', tid: 15, lamell: 0.6, lutOnskad: 10 };
 /* lutOnskad är lutningen kunden valde. normalisera klämmer S.lut ur den, så
    att lutningen går tillbaka när en gräns släpper (Rami-runda 3: 20° blev 17°
    när djupet ökades, och stod kvar på 17° när djupet minskades igen). */
@@ -186,7 +191,8 @@ let hojdSankt = false;      // höjden sänktes för att taket annars gått öve
 function normalisera(o = S) {
   const egen = o === S;
   if (!har(FORM, o.form)) o.form = 'plant';
-  if (!TAK_FOR[o.form].includes(o.tak)) o.tak = TAK_FOR[o.form][0];
+  // en täckning som inte finns för formen blir den som ingår för formen (kundloopen: pulpet gav glastak, ett tillval)
+  if (!TAK_FOR[o.form].includes(o.tak)) o.tak = TAK_FOR[o.form].includes(GRUNDVAL.tak[o.form]) ? GRUNDVAL.tak[o.form] : TAK_FOR[o.form][0];
   if (!har(GOLV, o.golv)) o.golv = 'trall';
   for (const k of VAGGAR) if (!har(MATERIAL, o[k])) o[k] = 'glas';
   if (!har(INSIDA, o.insida)) o.insida = 'skiva';
@@ -223,7 +229,8 @@ function lasHash() {
   ur('tak', TAK); ur('golv', GOLV); ur('vagg', VAGG); ur('glas', GLAS); ur('rikt', RIKT_GRAD);
   // väggarna och insidan: gamla länkar saknar dem och får glas och vit skiva; ogiltigt blir också det
   for (const k of VAGGAR) S[k] = har(MATERIAL, p.get(k)) ? p.get(k) : 'glas';
-  S.insida = har(INSIDA, p.get('ins')) ? p.get('ins') : 'skiva';
+  // gamla länkar utan ins hade vit skiva; en tom adress behåller startdesignen
+  if (har(INSIDA, p.get('ins'))) S.insida = p.get('ins'); else if (p.has('tak')) S.insida = 'skiva';
   // gamla länkar saknar form: glastaket lutade, lamelltaket var plant
   if (har(FORM, p.get('form'))) S.form = p.get('form');
   else if (p.has('tak')) S.form = S.tak === 'lamell' || S.tak === 'takpapp' ? 'plant' : 'pulpet';
@@ -298,7 +305,7 @@ const M = {
   // taktäckningarna utöver glaset, och golven inne i rummet
   // kanalplast: mjölkvit och halvgenomskinlig; ett svagt eget sken (dagsljuset som
   // sprids i skivan) gör undersidan ljus i stället för grå, sattSol släcker det i mörkret
-  kanal: new THREE.MeshStandardMaterial({ color: 0xeef0ec, roughness: 0.42, transparent: true, opacity: 0.62,
+  kanal: new THREE.MeshStandardMaterial({ color: 0xeef0ec, roughness: 0.42, transparent: true, opacity: 0.8,
     depthWrite: false, side: THREE.DoubleSide, envMapIntensity: 0.8, emissive: 0xf4f6f2, emissiveIntensity: 0.25 }),
   papp: new THREE.MeshStandardMaterial({ color: 0x2f3134, roughness: 0.95 }),
   pannor: new THREE.MeshStandardMaterial({ color: 0x3b3e43, roughness: 0.78 }),
@@ -310,13 +317,15 @@ const M = {
   insSkiva: new THREE.MeshStandardMaterial({ color: 0xf1f0eb, roughness: 0.82 }),
   insParlspont: new THREE.MeshStandardMaterial({ color: 0xf6f5f0, roughness: 0.6 }),
   insTra: new THREE.MeshStandardMaterial({ color: 0xdcc096, roughness: 0.62 }),     // ljus furu
+  // ingen beklädnad: obehandlade reglar mot vindskyddet, stommen syns
+  insIngen: new THREE.MeshStandardMaterial({ color: 0xd3bd93, roughness: 0.85 }),
   // vald vägg blinkar till i guld; träffytorna för klick i bilden ritas aldrig
   markering: new THREE.MeshBasicMaterial({ color: 0xc5a572, transparent: true, opacity: 0.38, depthWrite: false, side: THREE.DoubleSide }),
   // på en vit tät vägg syntes 0,38 knappt (runda 3: medelfärgen ändrades 3/−2/−14)
   markeringTat: new THREE.MeshBasicMaterial({ color: 0xc5a572, transparent: true, opacity: 0.62, depthWrite: false, side: THREE.DoubleSide }),
   traff: new THREE.MeshBasicMaterial({ visible: false, side: THREE.DoubleSide }),
 };
-const INS_MAT = { skiva: M.insSkiva, parlspont: M.insParlspont, tra: M.insTra };
+const INS_MAT = { ingen: M.insIngen, skiva: M.insSkiva, parlspont: M.insParlspont, tra: M.insTra };
 /* Kanalplastens skuggdjup: hälften av skuggkartans punkter, se byggRum. */
 const KANAL_SKUGGA = new THREE.MeshDepthMaterial({ depthPacking: THREE.RGBADepthPacking, alphaHash: true, opacity: 0.5 });
 
@@ -325,7 +334,7 @@ const KANAL_SKUGGA = new THREE.MeshDepthMaterial({ depthPacking: THREE.RGBADepth
    typen skickas som uniform. Fasadpanelen följer väggens riktning via
    världsnormalen, så gavlarna får stående panel även de. */
 const TYPER = { panel: 1, dack: 2, gras: 3, sten: 4, matta: 5, takpanna: 6, parkett: 7, pannor: 8, kanal: 9, klinker: 10,
-  liggande: 11, parlspont: 12, trapanel: 13, skiva: 14 };
+  liggande: 11, parlspont: 12, trapanel: 13, skiva: 14, reglar: 15 };
 const STRUKTUR_GLSL = `
   float m = 1.0;
   if (uTyp == 1) {
@@ -333,13 +342,18 @@ const STRUKTUR_GLSL = `
       float u = abs(vNormW.x) > 0.5 ? vVarld.z : vVarld.x;
       float p = u / 0.172;
       float kant = abs(fract(p) - 0.5) * 2.0;
-      m *= 1.0 - 0.26 * smoothstep(0.86, 1.0, kant);
+      /* Fogen blir bredare och svagare när den är smalare än en pixel. Utan det bröts
+         fogarna på en gavel i flack vinkel upp i prickar och fasadväggen såg ut som puts
+         (trovärdighet 2026-09-29). Medelvärdet är detsamma, så husväggen ser ut som förut. */
+      float fw = min(1.0, max(0.14, 3.0 * fwidth(p)));
+      m *= 1.0 - 0.26 * (0.14 / fw) * smoothstep(1.0 - fw, 1.0, kant);
       m *= 0.965 + 0.05 * fract(sin(floor(p) * 12.9898) * 43758.5453);
     }
   } else if (uTyp == 2) {
     float p = vVarld.z / 0.145;
     float kant = abs(fract(p) - 0.5) * 2.0;
-    m *= 1.0 - 0.5 * smoothstep(0.88, 1.0, kant);
+    float fw = min(1.0, max(0.12, 3.0 * fwidth(p)));
+    m *= 1.0 - 0.5 * (0.12 / fw) * smoothstep(1.0 - fw, 1.0, kant);
     m *= 0.9 + 0.16 * fract(sin(floor(p) * 12.9898) * 43758.5453);
     m *= 0.97 + 0.03 * sin(vVarld.x * 23.0 + floor(p) * 3.1);
   } else if (uTyp == 3) {
@@ -410,6 +424,12 @@ const STRUKTUR_GLSL = `
       m *= 1.0 - 0.3 * smoothstep(0.92, 1.0, f);
       m *= 0.88 + 0.16 * fract(sin(ri * 12.9898) * 43758.5453);
       m *= 0.94 + 0.06 * sin(l * 7.0 + sin(f * 5.0 + ri * 1.7) * 2.2 + ri);
+    } else if (uTyp == 15) {
+      // ingen beklädnad: reglar 45 mm c/c 60 cm, mörkare vindskydd mellan dem
+      float f = abs(fract(u / 0.6) - 0.5);
+      float regel = 1.0 - smoothstep(0.0225, 0.03, f);
+      m *= mix(0.62, 1.0, regel);
+      m *= 0.96 + 0.04 * sin(l * 9.0 + floor(u / 0.6) * 2.3);
     } else {
       // vit skiva: skarvar var 1,2 m
       m *= 1.0 - 0.1 * smoothstep(0.988, 1.0, fract(u / 1.2));
@@ -432,7 +452,7 @@ function strukturera(mat, typ) {
 }
 for (const [k, t] of [['fasad', 'panel'], ['dack', 'dack'], ['gras', 'gras'], ['sten', 'sten'], ['matta', 'matta'], ['tak', 'takpanna'],
   ['papp', 'matta'], ['pannor', 'pannor'], ['kanal', 'kanal'], ['parkett', 'parkett'], ['klinker', 'klinker'],
-  ['traVagg', 'liggande'], ['insSkiva', 'skiva'], ['insParlspont', 'parlspont'], ['insTra', 'trapanel']]) strukturera(M[k], t);
+  ['traVagg', 'liggande'], ['insSkiva', 'skiva'], ['insParlspont', 'parlspont'], ['insTra', 'trapanel'], ['insIngen', 'reglar']]) strukturera(M[k], t);
 
 /* ---------- geometri ---------- */
 const BOX = new THREE.BoxGeometry(1, 1, 1);
@@ -1026,11 +1046,16 @@ function byggRum() {
   // materialet mitt på varje vägg, på väggens utsida; normalen avgör om väggen vetter mot kameran
   const hM = Y0 + H * 0.62;
   materialPunkter = [
-    { k: 'vv', p: new THREE.Vector3(-W / 2 - 0.05, hM, D / 2), n: new THREE.Vector3(-1, 0, 0) },
+    { k: 'vv', p: new THREE.Vector3(-W / 2 - 0.05, hM, D * 0.42), n: new THREE.Vector3(-1, 0, 0) },
     { k: 'vf', p: new THREE.Vector3(0, hM, D + 0.05), n: new THREE.Vector3(0, 0, 1) },
-    { k: 'vh', p: new THREE.Vector3(W / 2 + 0.05, hM, D / 2), n: new THREE.Vector3(1, 0, 0) },
+    { k: 'vh', p: new THREE.Vector3(W / 2 + 0.05, hM, D * 0.42), n: new THREE.Vector3(1, 0, 0) },
   ];
-  materialPunkter.forEach(({ k }, i) => { materialEl[i].textContent = MATERIAL_KORT[S[k]]; materialEl[i].dataset.m = S[k]; });
+  // inifrån sitter gavlarnas etikett längre fram, där kamerans blick mot främre hörnet når den
+  const hI = Y0 + H * 0.72;
+  materialPunkter[0].pi = new THREE.Vector3(-W / 2 + 0.3, hI, D * 0.78);
+  materialPunkter[1].pi = new THREE.Vector3(0, hI, D - 0.3);
+  materialPunkter[2].pi = new THREE.Vector3(W / 2 - 0.3, hI, D * 0.78);
+  materialPunkter.forEach(({ k }, i) => { materialEl[i].textContent = `${VAGG_KORT[k]} · ${materialOrd(k)}`; materialEl[i].dataset.m = S[k]; });
   mattEl[0].textContent = `${dec(W, 2)} m`;
   mattEl[1].textContent = `${dec(D, 2)} m`;
   mattEl[2].textContent = `${dec(H, 2)} m`;
@@ -1397,7 +1422,11 @@ let uteSida = 'vh';
 /* Inifrån står kameran vid den ena gaveln och tittar mot det främre hörnet
    vid den andra. Är bara vänster gavel tät vänds blicken mot den, så att
    dess insida syns (runda 3: valet av insida syntes inte alls). */
-const inneSpegel = () => (S.vv !== 'glas' && S.vh === 'glas' ? -1 : 1);
+/* Kundloopen 2026-09-29: med två täta gavlar syntes bara den högra inifrån, också när
+   Vänster valdes. Nu tittar kameran mot den gavel som valdes sist; innan någon valts
+   mot den täta gaveln om bara en är tät. */
+let inneSida = null;
+const inneSpegel = () => ((inneSida || (S.vv !== 'glas' && S.vh === 'glas' ? 'vv' : 'vh')) === 'vv' ? -1 : 1);
 function vyLage(v) {
   const { W, D } = rumMatt;
   // inramningen räknas med den vyns egen bildvinkel, inte den som råkar gälla nu
@@ -1405,7 +1434,7 @@ function vyLage(v) {
   kamera.fov = VY_FOV[v]; kamera.updateProjectionMatrix();
   let ut;
   const sx = uteSida === 'vv' ? -1 : 1;
-  if (v === 'ute') ut = centreraI(new THREE.Vector3(sx * 0.3, 1.25, D * 0.55), new THREE.Vector3(sx * 0.6, 0.52, 1).normalize(), rumHorn());
+  if (v === 'ute') ut = centreraI(new THREE.Vector3(sx * 0.3, 1.25, D * 0.55), new THREE.Vector3(sx * 0.85, 0.56, 1).normalize(), rumHorn());
   else if (v === 'ovan') ut = centreraI(new THREE.Vector3(0.3, 0.2, D * 0.55 + 0.3), new THREE.Vector3(0.0001, 1, 0.3).normalize(), rumHorn(0.1));
   else {
     // från soffan, snett över rummet mot det främre hörnet, lite uppåt så taket syns
@@ -1475,19 +1504,43 @@ function flyttaEtikett(e, p, bw, bh) {
   const syns = _p.z < 1 && Math.abs(_p.x) < 1.05 && Math.abs(_p.y) < 1.05;
   const x = (_p.x * 0.5 + 0.5) * bw;
   const y = (-_p.y * 0.5 + 0.5) * bh;
-  e.style.transform = `translate3d(${Math.round(x - e.offsetWidth / 2)}px, ${Math.round(y - e.offsetHeight / 2)}px, 0)`;
+  const w = e.offsetWidth, h = e.offsetHeight;
+  e._ruta = [Math.round(x - w / 2), Math.round(y - h / 2), w, h];
+  e.style.transform = `translate3d(${e._ruta[0]}px, ${e._ruta[1]}px, 0)`;
   return syns;
 }
 function placeraEtiketter() {
   const bw = renderare.domElement.clientWidth, bh = renderare.domElement.clientHeight;
+  const synligaMatt = [];
   (vy === 'ovan' ? mattPunkterOvan : mattPunkter).forEach((p, i) => {
     const syns = flyttaEtikett(mattEl[i], p, bw, bh) && vy !== 'inne';
     mattEl[i].style.opacity = !syns ? '0' : skymsAvVagg(p) ? '0.22' : '1';
+    if (syns) synligaMatt.push(mattEl[i]._ruta);
   });
-  const visa = vy === 'ute' && (vaggSekSyns || nuTid() < materialTill);
-  materialPunkter.forEach(({ p, n }, i) => {
-    const syns = flyttaEtikett(materialEl[i], p, bw, bh) && visa && _r.copy(kamera.position).sub(p).dot(n) > 0.3;
+  /* Väggens namn och material, med samma namn som i panelen ("Vänster · Trä"). Inifrån
+     sitter etiketten på väggens insida (kundloopen: bilden sa bara "Glas" och "Trä"). */
+  const visa = vy !== 'ovan' && (vaggSekSyns || nuTid() < materialTill);
+  const inne = vy === 'inne';
+  materialPunkter.forEach(({ k, p, n, pi }, i) => {
+    const q = inne ? pi : p;
+    const mot = _r.copy(kamera.position).sub(q).dot(n);
+    const syns = flyttaEtikett(materialEl[i], q, bw, bh) && visa && (inne ? mot < -0.3 : mot > 0.3);
+    /* Sista rundan: "Front · Glas" lade sig över måttet "3,50 m". En väggetikett som
+       krockar med ett synligt mått flyttas upp ovanför det (eller ner om det inte går). */
+    if (syns) {
+      const ruta = materialEl[i]._ruta, [x, , w, h] = ruta;
+      // några varv: en flytt kan landa på nästa etikett (också en tidigare väggetikett)
+      for (let varv = 0; varv < 3; varv++) {
+        const krock = synligaMatt.find(([mx, my, mw, mh]) => x < mx + mw + 4 && x + w + 4 > mx && ruta[1] < my + mh + 4 && ruta[1] + h + 4 > my);
+        if (!krock) break;
+        const upp = krock[1] - h - 6;
+        ruta[1] = upp >= 0 ? upp : krock[1] + krock[3] + 6;
+      }
+      materialEl[i].style.transform = `translate3d(${x}px, ${ruta[1]}px, 0)`;
+      synligaMatt.push(ruta);
+    }
     materialEl[i].style.opacity = syns ? '1' : '0';
+    materialEl[i].classList.toggle('vald', k === valdVagg);
   });
 }
 
@@ -1565,6 +1618,62 @@ const gruppAv = (grupp) => (grupp === 'vagg' ? !harGlas() : grupp === 'glas' ? !
 const listaOrd = (a) => (a.length > 1 ? a.slice(0, -1).join(', ') + ' och ' + a[a.length - 1] : a[0] || '');
 const stor = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 
+/* ---------- stegen ----------
+   Kundloopen 2026-09-29: alla tio grupper låg i en lista på 3,3 skärmhöjder, och på
+   telefonen syntes 345 px av den åt gången. Nu är valen fem steg i en flikrad, som
+   Rensons, och bara ett steg syns åt gången. */
+const FASER = ['matt', 'tak', 'vaggar', 'golv', 'tillval'];
+let fas = 'matt';
+const mobil = () => innerWidth <= 860;
+function visaFas(f, rulla = true) {
+  if (!FASER.includes(f)) return;
+  const byt = f !== fas;
+  fas = f;
+  for (const p of document.querySelectorAll('[data-fas]')) p.hidden = p.dataset.fas !== f;
+  for (const t of document.querySelectorAll('[data-flik]')) {
+    const pa = t.dataset.flik === f;
+    t.setAttribute('aria-selected', String(pa)); t.tabIndex = pa ? 0 : -1;
+  }
+  if (byt && rulla) {
+    if (!mobil()) $('panel-inre').scrollTop = 0;
+    else {
+      // flikraden fram precis under den klistrade 3D-bilden, om kunden har skrollat förbi den
+      const fl = document.querySelector('.flikar').getBoundingClientRect(), under = $('buhne').getBoundingClientRect().bottom;
+      if (fl.top < under) scrollBy(0, fl.top - under - 8);
+    }
+  }
+  ritaNu();
+}
+/* Ett element fram i panelens synliga del: på datorn i panelens rullning, på telefonen
+   mellan 3D-bilden och den fasta bokningsraden (friktion: materialknapparna hamnade
+   under bokningsraden, bara 30 px syntes). */
+function framTill(el, smidigt = !REDUCERAD) {
+  if (!el || !el.getClientRects().length) return;
+  const r = el.getBoundingClientRect();
+  let topp, botten, rulla;
+  if (!mobil()) {
+    const inre = $('panel-inre'), c = inre.getBoundingClientRect();
+    topp = c.top + 12; botten = c.bottom - 44;
+    rulla = (d) => inre.scrollBy({ top: d, behavior: smidigt ? 'smooth' : 'auto' });
+  } else {
+    topp = $('buhne').getBoundingClientRect().bottom + 12;
+    const pb = $('prisbar');
+    botten = innerHeight - (pb.classList.contains('dold') ? 0 : pb.offsetHeight) - 12;
+    rulla = (d) => scrollBy({ top: d, behavior: smidigt ? 'smooth' : 'auto' });
+  }
+  let d = 0;
+  if (r.bottom > botten) d = r.bottom - botten;
+  if (r.top - d < topp) d = r.top - topp;
+  if (Math.abs(d) > 1) rulla(d);
+}
+/* En kort not under fältet när ett mått hamnar utanför gränserna (kundloopen: 1500 cm blev tyst 700). */
+const gransTimer = {};
+function visaGrans(el, text) {
+  el.textContent = text; el.hidden = false;
+  clearTimeout(gransTimer[el.id]);
+  gransTimer[el.id] = setTimeout(() => { el.hidden = true; }, 6000);
+}
+
 /* ---------- vad som ingår och vad som är tillval (GRUNDVAL i pris.js) ---------- */
 let valdVagg = 'vf';        // väggen som knapparna under ritningen gäller
 function ingarVal(grupp, v, o = S) {
@@ -1581,8 +1690,18 @@ function grundFor(grupp, o = S) {
 /* Ett val i en grupp som ändring av S: en ny takform börjar på sin standardlutning, som i panelen. */
 function andring(grupp, v) {
   if (grupp === 'material') return { [valdVagg]: v };
-  if (grupp === 'form') { const lut = v === S.form ? S.lutOnskad : LUT[v] ? LUT[v].std : S.lut; return { form: v, lut, lutOnskad: lut }; }
+  if (grupp === 'form') {
+    const lut = v === S.form ? S.lutOnskad : LUT[v] ? LUT[v].std : S.lut;
+    return { form: v, lut, lutOnskad: lut, tak: takVidForm(v) };
+  }
   return { [grupp]: v };
+}
+/* Täckningen efter ett byte till formen v: var täckningen den som ingår, blir den den som
+   ingår för den nya formen (kundloopen: pulpettak bytte tyst till glastak, ett tillval). */
+function takVidForm(v, o = S) {
+  const ingar = GRUNDVAL.tak[v];
+  if (o.tak === GRUNDVAL.tak[o.form] && TAK_FOR[v].includes(ingar)) return ingar;
+  return TAK_FOR[v].includes(o.tak) ? o.tak : TAK_FOR[v].includes(ingar) ? ingar : TAK_FOR[v][0];
 }
 /* Priset med valet v jämfört med grundvalet, med alla andra val som nu. null utan priser. */
 function tillaggsPris(grupp, v) {
@@ -1602,27 +1721,28 @@ function etikett(grupp, v) {
   if (ingarVal(grupp, v)) return ['Ingår', false];
   const annat = annatUtforande(grupp, v);
   // en grupp som inte gäller just nu, eller ett nät utan glasväggar: inget belopp (runda 3: "+ 0 kr")
-  if (gruppAv(grupp) || (grupp === 'nat' && !harGlas())) return [annat ? '' : 'Tillval', !annat];
+  if (gruppAv(grupp) || (grupp === 'nat' && !harGlas())) return [annat ? 'Ingår' : 'Tillval', !annat];
   const kr = tillaggsPris(grupp, v);
-  if (kr == null || kr === 0) return [annat ? '' : 'Tillval', !annat];
+  if (kr == null || kr === 0) return [annat ? 'Ingår' : 'Tillval', !annat];
   return [skillnad(kr), kr > 0 && !annat];
 }
 /* Dina tillval: allt som skiljer sig från grundpriset, med vad det kostar när priser finns. */
 function tillvalLista() {
   const ut = [];
   const nu = prisNu();
-  const lagg = (text, bort) => {
+  // kort: samma tillval med färre ord, till bokningens två rader
+  const lagg = (text, bort, kort = text) => {
     const utan = nu && prisNu(normalisera({ ...S, ...bort }));
-    ut.push({ text, kr: nu && utan ? nu.total - utan.total : null });
+    ut.push({ text, kort, kr: nu && utan ? nu.total - utan.total : null });
   };
   if (!ingarVal('form', S.form)) lagg(FORM[S.form], { form: grundFor('form') });
   if (!ingarVal('tak', S.tak)) lagg(TAK[S.tak], { tak: grundFor('tak') });
-  for (const k of VAGGAR) if (S[k] !== GRUNDVAL.material) lagg(`${MATERIAL[S[k]]}: ${VAGGNAMN[k].toLowerCase()}`, { [k]: GRUNDVAL.material });
+  for (const k of VAGGAR) if (S[k] !== GRUNDVAL.material) lagg(`${MATERIAL[S[k]]}: ${VAGGNAMN[k].toLowerCase()}`, { [k]: GRUNDVAL.material }, `${stor(MATERIAL_KORT[S[k]])} ${VAGG_KORT[k].toLowerCase()}`);
   if (harGlas() && S.vagg !== GRUNDVAL.vagg && !annatUtforande('vagg', S.vagg)) lagg(VAGG[S.vagg], { vagg: GRUNDVAL.vagg });
   if (harGlasYta() && S.glas !== GRUNDVAL.glas) lagg(GLAS[S.glas], { glas: GRUNDVAL.glas });
-  if (S.golv !== GRUNDVAL.golv) lagg(`Golv i ${GOLV[S.golv].toLowerCase()}`, { golv: GRUNDVAL.golv });
-  if (S.h > GRUNDVAL.hojd + 1e-9) lagg(`Höjd ${dec(S.h, 2)} m vid takfoten`, { h: GRUNDVAL.hojd });
-  if (harInsida() && S.insida !== GRUNDVAL.insida) lagg(`Insida i ${INSIDA[S.insida].toLowerCase()}`, { insida: GRUNDVAL.insida });
+  if (S.golv !== GRUNDVAL.golv) lagg(`Golv i ${GOLV[S.golv].toLowerCase()}`, { golv: GRUNDVAL.golv }, GOLV[S.golv]);
+  if (S.h > GRUNDVAL.hojd + 1e-9) lagg(`Höjd ${dec(S.h, 2)} m vid takfoten`, { h: GRUNDVAL.hojd }, `Höjd ${dec(S.h, 2)} m`);
+  if (harInsida() && S.insida !== GRUNDVAL.insida) lagg(S.insida === 'ingen' ? 'Insida utan beklädnad' : `Insida i ${INSIDA[S.insida].toLowerCase()}`, { insida: GRUNDVAL.insida }, `${INSIDA[S.insida]} inne`);
   if (S.led) lagg('LED-belysning', { led: false });
   if (S.nat && harGlas()) lagg('Insektsnät', { nat: false });
   return ut;
@@ -1632,25 +1752,39 @@ function ingarLista() {
   const g = GRUNDVAL, perTak = {};
   for (const f of Object.keys(FORM)) (perTak[g.tak[f]] = perTak[g.tak[f]] || []).push(FORM[f].toLowerCase());
   return [
-    `Stomme, montage och golv i ${GOLV[g.golv].toLowerCase()}`,
+    `Stomme och golv i ${GOLV[g.golv].toLowerCase()}`,
     stor(g.form.map((f) => FORM[f].toLowerCase()).join(' eller ')),
     stor(Object.entries(perTak).map(([t, f]) => `${TAK[t].toLowerCase()} på ${listaOrd(f)}`).join(', ')),
     `Väggar i glas med ${VAGG[g.vagg].toLowerCase()} och ${GLAS[g.glas].toLowerCase()}`,
     `Höjd upp till ${dec(g.hojd, 2)} m vid takfoten`,
-    `${INSIDA[g.insida]} på insidan`,
+    g.insida === 'ingen' ? 'Insida utan beklädnad (beklädnad är tillval)' : `${INSIDA[g.insida]} på insidan`,
     'Alla profilfärger',
   ];
 }
-/* En rad om grundpriset till summeringen, också den ur GRUNDVAL. */
-function ingarKort() {
-  const g = GRUNDVAL;
-  return stor(listaOrd(['stomme', ...(g.material === 'glas' ? ['glasväggar'] : []), GOLV[g.golv].toLowerCase()])) + ' ingår.';
+/* Det som ingår i grundpriset i kundens egen design, val för val. Tillsammans med
+   tillvalLista är det hela designen: summeringen visar båda utan extra tryck. */
+function ingarDesign() {
+  const ut = ['stomme'];
+  if (ingarVal('form', S.form)) ut.push(lutande() ? `${FORM[S.form].toLowerCase()} ${S.lut}°` : FORM[S.form].toLowerCase());
+  if (ingarVal('tak', S.tak)) ut.push(TAK[S.tak].toLowerCase());
+  const glasV = VAGGAR.filter((k) => S[k] === GRUNDVAL.material);
+  const oppet = S.vagg === 'oppen';
+  if (glasV.length === VAGGAR.length) ut.push(oppet ? 'öppna sidor utan glas' : 'glasväggar');
+  else if (glasV.length) ut.push(`${oppet ? 'öppet' : 'glas'}: ${listaOrd(glasV.map((k) => VAGGNAMN[k].toLowerCase()))}`);
+  if (glasV.length && !oppet && (S.vagg === GRUNDVAL.vagg || annatUtforande('vagg', S.vagg))) ut.push(VAGG[S.vagg].toLowerCase());
+  if (harGlasYta() && S.glas === GRUNDVAL.glas) ut.push(GLAS[S.glas].toLowerCase());
+  if (harInsida() && S.insida === GRUNDVAL.insida) ut.push(S.insida === 'ingen' ? 'insida utan beklädnad' : `insida i ${INSIDA[S.insida].toLowerCase()}`);
+  if (S.golv === GRUNDVAL.golv) ut.push(GOLV[S.golv].toLowerCase());
+  if (S.h <= GRUNDVAL.hojd + 1e-9) ut.push(`höjd ${dec(S.h, 2)} m`);
+  ut.push(`profilfärg ${FARGER.find((x) => x.id === S.farg).namn.toLowerCase()}`);
+  return ut;
 }
+const mattText = () => `${dec(S.b, 2)} × ${dec(S.d, 2)} m · höjd ${dec(S.h, 2)} m`;
 const tillvalText = (t) => (t.length ? t.map((r) => r.text + (r.kr != null ? ` (${skillnad(r.kr)})` : '')).join(', ') : 'Inga tillval');
 
 function vaggText() {
-  if (VAGGAR.every((k) => S[k] === 'glas')) return 'glasväggar';
-  return 'väggar: ' + VAGGAR.map((k) => `${VAGGNAMN[k].toLowerCase()} ${MATERIAL_KORT[S[k]]}`).join(', ');
+  if (VAGGAR.every((k) => S[k] === 'glas')) return S.vagg === 'oppen' ? 'öppna sidor utan glas' : 'glasväggar';
+  return 'väggar: ' + VAGGAR.map((k) => `${VAGGNAMN[k].toLowerCase()} ${materialOrd(k)}`).join(', ');
 }
 function sammanfattning(html = true) {
   const f = FARGER.find((x) => x.id === S.farg).namn;
@@ -1660,7 +1794,7 @@ function sammanfattning(html = true) {
   const delar = [`${dec(S.b * S.d)} m²`, form, TAK[S.tak], vaggText()];
   if (harGlas()) delar.push(VAGG[S.vagg]);
   if (harGlasYta()) delar.push(GLAS[S.glas]);
-  if (harInsida()) delar.push(`insida i ${INSIDA[S.insida].toLowerCase()}`);
+  if (harInsida()) delar.push(S.insida === 'ingen' ? 'insida utan beklädnad' : `insida i ${INSIDA[S.insida].toLowerCase()}`);
   delar.push(`golv i ${GOLV[S.golv].toLowerCase()}`, f);
   if (till.length) delar.push(till.join(' och '));
   return html ? `<b>${matt}</b> · ${delar.join(' · ')}` : `${matt} · ${delar.join(' · ')}`;
@@ -1669,24 +1803,21 @@ function sammanfattning(html = true) {
    priser vad som ingår och dina tillval. Inga kronor syns utan priser. */
 function skrivPris() {
   const pris = prisNu(), till = tillvalLista();
-  const ut = $('ut-pris');
-  $('pris-etikett').textContent = pris ? (PRISLAGE === 'exempel' ? 'Exempelpris' : 'Uppskattat pris') : 'Dina tillval';
-  // utan priser står tillvalen med namn direkt i summeringen (runda 3: bara "2 tillval" och ett extra klick)
-  ut.textContent = pris ? kronor(pris.total) : till.length ? till.map((r) => r.text).join(', ') : 'Inga tillval';
-  ut.classList.toggle('antal', !pris);
-  $('pris-hur-text').textContent = pris ? 'Så räknas det' : 'Vad ingår';
+  const pd = $('pris-detaljer');
+  pd.hidden = !pris;
+  if (!pris && pd.open) pd.open = false;
+  $('pris-etikett').textContent = PRISLAGE === 'exempel' ? 'Exempelpris' : 'Uppskattat pris';
+  $('ut-pris').textContent = pris ? kronor(pris.total) : '';
+  $('prisrader').innerHTML = pris ? pris.rader.map((r) => `<li><span>${r.text}${r.hur ? `<small>${r.hur}</small>` : ''}</span><b>${kronor(r.kr)}</b></li>`).join('') : '';
   $('prisbar-text').innerHTML = pris ? `${PRISLAGE === 'exempel' ? 'Exempelpris' : 'Uppskattat pris'} <b id="ut-pris-bar">${kronor(pris.total)}</b>`
-    : `Tillval <b id="ut-pris-bar">${till.length ? `${till.length} valda` : 'Inga'}</b>`;
-  const rader = $('prisrader');
-  rader.hidden = !pris;
-  rader.innerHTML = pris ? pris.rader.map((r) => `<li><span>${r.text}${r.hur ? `<small>${r.hur}</small>` : ''}</span><b>${kronor(r.kr)}</b></li>`).join('') : '';
-  // dina tillval först: på en låg skärm syntes annars bara det första (runda 3)
-  $('ingar-tillval').innerHTML = '<h3>Dina tillval</h3>' + (till.length
-    ? `<ul>${till.map((r) => `<li><span>${r.text}</span>${r.kr != null ? `<b>${skillnad(r.kr)}</b>` : '<b class="ingar">Tillval</b>'}</li>`).join('')}</ul>`
-    : '<p class="tom">Inga tillval</p>')
-    + `<h3>Ingår i grundpriset</h3><ul>${ingarLista().map((t) => `<li><span>${t}</span></li>`).join('')}</ul>`;
+    : `Dina tillval <b id="ut-pris-bar">${till.length ? `${till.length} valda` : 'Inga'}</b>`;
+  // båda listorna utfällda, hela tiden (kundloopen: tillvalen kapades med "…" och ingår låg bakom "Vad ingår")
+  $('sammanfattning').innerHTML = `<b>${mattText()}</b> · ${dec(S.b * S.d)} m²`;
+  $('sum-ingar').textContent = stor(ingarDesign().join(', '));
+  $('sum-tillval').textContent = till.length ? till.map((r) => r.text + (r.kr != null ? ` (${skillnad(r.kr)})` : '')).join(', ')
+    : 'Inga än';
   $('testnot').textContent = PRISLAGE === 'exempel' ? 'Exempelpriser – inte Alltfix priser. Slutpris efter hembesök.'
-    : PRISLAGE ? 'Slutpris efter hembesök.' : `${ingarKort()} Priset tar vi fram tillsammans vid hembesöket.`;
+    : PRISLAGE ? 'Slutpris efter hembesök.' : 'Priset tar vi fram tillsammans vid hembesöket.';
 }
 function skrivEtiketter() {
   for (const g of document.querySelectorAll('[data-grupp]')) {
@@ -1738,6 +1869,10 @@ function uppdateraText() {
     if (+r.value !== S.lut) r.value = S.lut;
     fyll(r);
     $('ut-lut').textContent = `${S.lut}°`;
+    const lf = $('lut-grad');
+    if (document.activeElement !== lf) lf.value = S.lut;
+    lf.setAttribute('aria-valuenow', S.lut); lf.setAttribute('aria-valuemin', r.min); lf.setAttribute('aria-valuemax', r.max);
+    $('lut-min').textContent = `${r.min}°`; $('lut-max').textContent = `${r.max}°`;
     const nn = $('nock-not');
     nn.hidden = !(nockMax < lg.max && S.lut >= nockMax);
     const varfor = forHogt({ ...S, lut: nockMax + 1 }) === 'forl' ? `gå mer än ${dec(FORL_MAX, 0)} m upp på husets tak` : 'gå över husets nock';
@@ -1750,6 +1885,7 @@ function uppdateraText() {
   $('lut-not').textContent = pannorHojde ? `Takpannor kräver minst ${PANNOR_MIN}° lutning, så lutningen är höjd till ${PANNOR_MIN}°.`
     : `Takpannor kräver minst ${PANNOR_MIN}° lutning.`;
   for (const b of document.querySelectorAll('[data-grupp="tak"] [data-varde]')) b.hidden = !TAK_FOR[S.form].includes(b.dataset.varde);
+  $('tak-ingar').textContent = `Ingår i grundpriset: ${listaOrd(GRUNDVAL.form.map((f) => `${FORM[f].toLowerCase()} med ${TAK[GRUNDVAL.tak[f]].toLowerCase()}`))}. Övriga tak är tillval.`;
   // väggarna: ritningen färgas efter materialet, knapparna gäller vald vägg
   for (const b of document.querySelectorAll('[data-vagg]')) {
     const k = b.dataset.vagg;
@@ -1757,11 +1893,11 @@ function uppdateraText() {
     b.setAttribute('aria-pressed', String(k === valdVagg));
     b.setAttribute('aria-label', `${VAGGNAMN[k]}: ${MATERIAL[S[k]].toLowerCase()}`);
     // väggens namn och material i segmentet (runda 3: namnet syntes först efter ett val)
-    b.querySelector('span').innerHTML = `<small>${VAGG_KORT[k]}</small>${stor(MATERIAL_KORT[S[k]])}`;
+    b.querySelector('span').innerHTML = `<small>${VAGG_KORT[k]}</small>${stor(materialOrd(k))}`;
   }
-  $('vagg-vald').textContent = `${VAGGNAMN[valdVagg]}: ${MATERIAL_KORT[S[valdVagg]]}`;
+  $('vagg-vald').textContent = `${VAGGNAMN[valdVagg]}: ${materialOrd(valdVagg)}`;
   $('material-text').textContent = S[valdVagg] === 'glas' ? 'Glasväggen får glaspartier som går att öppna.'
-    : S[valdVagg] === 'tra' ? 'Vitmålad träpanel med vita hörnbrädor, som på Alltfix egna byggen.'
+    : S[valdVagg] === 'tra' ? 'Vitmålad träpanel med vita hörnbrädor.'
       + (S.farg !== 'vit' ? ' Med profilfärg Vit blir också stolparna vita.' : '')
       : 'Samma fasad och sockel som huset, så uterummet ser ut som en del av huset.';
   /* Grupper som inte gäller just nu fälls ihop till rubriken och förklaringen
@@ -1772,14 +1908,14 @@ function uppdateraText() {
     g.classList.toggle('av', av); g.closest('.sek').classList.toggle('av', av);
     for (const b of g.querySelectorAll('[data-varde]')) b.setAttribute('aria-disabled', String(av));
   }
-  $('vagg-text').textContent = glasNu ? VAGG_TEXT[S.vagg] : 'Ingen vägg är av glas. Välj glas på en vägg för att få glaspartier.';
+  $('vagg-text').textContent = glasNu ? VAGG_TEXT[S.vagg] : 'Ingen vägg är av glas.';
   const vaggGlas = glasNu && S.vagg !== 'oppen';
-  const glasText = !harGlasYta() ? 'Glaset gäller glasväggar och glastak. Just nu finns inget glas.'
+  const glasText = !harGlasYta() ? 'Inget glas i väggar eller tak.'
     : !vaggGlas ? 'Gäller glastaket.' : S.tak === 'glas' ? 'Gäller glasväggarna och glastaket.' : '';
   $('glas-text').hidden = !glasText;
   $('glas-text').textContent = glasText;
   $('insida-text').textContent = harInsida() ? 'På insidan av trä- och fasadväggarna och i innertaket under tätt tak. Syns i vyn Inifrån.'
-    : 'Välj en trä- eller fasadvägg eller ett tätt tak för att få en insida att klä.';
+    : 'Gäller trävägg, fasadvägg och tätt tak.';
   // nätet finns bara på glasväggar: utan dem går det inte att slå på (runda 3)
   const nat = $('nat');
   nat.disabled = !glasNu; nat.checked = S.nat && glasNu;
@@ -1788,7 +1924,6 @@ function uppdateraText() {
   // priset räknas ur samma tal som byggde rummet, i samma bildruta
   skrivPris();
   skrivEtiketter();
-  $('sammanfattning').innerHTML = sammanfattning();
   $('ut-farg').textContent = FARGER.find((x) => x.id === S.farg).namn;
   $('ut-lamell').textContent = `${Math.round(S.lamell * 100)} %`;
   $('lamell-rad').hidden = S.tak !== 'lamell';
@@ -1845,16 +1980,30 @@ function visaMaterial(ms = 3200) {
 }
 function valjVagg(k, fran3D = false) {
   if (!VAGGAR.includes(k)) return;
-  valdVagg = k; markera(k); visaMaterial(); uppdateraText();
-  vandTill(k);
-  if (fran3D) {
-    visaToast(`${VAGGNAMN[k]}: ${MATERIAL_KORT[S[k]]}. Välj material under ritningen.`);
-    // materialknapparna fram, nedanför duken på mobilen (runda 3: de låg 1 000 px längre ner)
-    $('vagg-val').scrollIntoView({ block: 'nearest', behavior: REDUCERAD ? 'auto' : 'smooth' });
-  }
+  const sidaFore = inneSpegel();
+  valdVagg = k;
+  if (k !== 'vf') inneSida = k;
+  visaFas('vaggar', false);
+  markera(k); visaMaterial(); uppdateraText();
+  /* Kameran vänds så att väggen syns i varje vy (kundloopen: inifrån stod den kvar).
+     Ovanifrån syns inga väggar, så vyn går ut till Utifrån. */
+  if (vy === 'inne') { if (inneSpegel() !== sidaFore) sattVy('inne', 600); }
+  else if (vy === 'ovan') { if (k !== 'vf') uteSida = k; sattVy('ute', 700); }
+  else vandTill(k);
+  if (fran3D) visaToast(`${VAGGNAMN[k]}: ${materialOrd(k)}. Välj material under ritningen.`);
+  // materialknapparna fram (runda 3 och kundloopen: de låg under bokningsraden eller utanför panelen)
+  requestAnimationFrame(() => framTill(document.querySelector('[data-grupp="material"]')));
 }
 
 document.addEventListener('click', (e) => {
+  const flik = e.target.closest('[data-flik]');
+  if (flik) { visaFas(flik.dataset.flik); return; }
+  const nasta = e.target.closest('[data-till]');
+  if (nasta) {
+    visaFas(nasta.dataset.till);
+    document.querySelector(`[data-flik="${nasta.dataset.till}"]`).focus({ preventScroll: true });
+    return;
+  }
   const knapp = e.target.closest('[data-varde]');
   if (knapp) {
     const gr = knapp.closest('[data-grupp]');
@@ -1863,10 +2012,14 @@ document.addEventListener('click', (e) => {
     const nyckel = grupp === 'material' ? valdVagg : grupp;
     const v = knapp.dataset.varde;
     if (S[nyckel] === v) return;
+    const takFore = S.tak, takNy = grupp === 'form' ? takVidForm(v) : null;
     S[nyckel] = v;
+    if (takNy) S.tak = takNy;
     // ny form börjar på sin standardlutning; pannor kan sedan lyfta den
     if (grupp === 'form' && LUT[v]) S.lut = S.lutOnskad = LUT[v].std;
     if (grupp === 'form' || grupp === 'tak') { pannorHojde = false; normalisera(); }
+    if (grupp === 'form' && S.tak !== takFore)
+      visaToast(`Taktäckningen är nu ${TAK[S.tak].toLowerCase()}${ingarVal('tak', S.tak) ? `, som ingår för ${FORM[v].toLowerCase()}` : ''}.`);
     if (['tak', 'vagg', 'form', 'golv', 'material', 'insida'].includes(grupp)) {
       if (grupp === 'vagg' || grupp === 'material') stangPartier();
       byggRum();
@@ -1891,6 +2044,15 @@ document.addEventListener('click', (e) => {
   if (pv) { valjVagg(pv.dataset.vagg); return; }
   const vk = e.target.closest('[data-vy]');
   if (vk && vk.dataset.vy !== vy) sattVy(vk.dataset.vy);
+});
+
+document.querySelector('.flikar').addEventListener('keydown', (e) => {
+  const i = FASER.indexOf(fas);
+  const ny = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : e.key === 'Home' ? 0 : e.key === 'End' ? FASER.length - 1 : null;
+  if (ny == null) return;
+  e.preventDefault();
+  const f = FASER[(ny + FASER.length) % FASER.length];
+  visaFas(f); document.querySelector(`[data-flik="${f}"]`).focus({ preventScroll: true });
 });
 
 /* Ett rent klick på en vägg i 3D-bilden väljer väggen. Kamerans dragning
@@ -1973,6 +2135,10 @@ for (const k in MATT) {
   r.min = g.min; r.max = g.max; r.step = 0.01; r.value = S[k];
   f.setAttribute('aria-valuemin', Math.round(g.min * 100));
   f.setAttribute('aria-valuemax', Math.round(g.max * 100));
+  // gränserna skrivs ur MATT, samma tal som reglaget och fältet klämmer till
+  const [cmMin, cmMax] = [Math.round(g.min * 100), Math.round(g.max * 100)];
+  document.querySelector(`[data-granser="${k}"]`).innerHTML = `<span>${cmMin} cm</span><span>${cmMax} cm</span>`;
+  const not = $(g.id + '-not');
   /* smutsig: fältet har text som inte tillämpats eller skrivits tillbaka.
      Bara då får blur läsa fältet. Runda 1: skrev man 537 + Enter och
      tryckte + flyttade tryckets mousedown fokus, blur läste fältets gamla
@@ -1985,7 +2151,10 @@ for (const k in MATT) {
   const tillampaInskrivet = () => {
     if (!smutsig) return;
     const cm = tolkaCm(f.value);
-    if (Number.isFinite(cm)) sattMattVarde(k, cm / 100);
+    if (Number.isFinite(cm)) {
+      sattMattVarde(k, cm / 100);
+      if (cm < cmMin || cm > cmMax) visaGrans(not, `${stor(g.namn)} går från ${cmMin} till ${cmMax} cm, så ${cm} cm blev ${Math.round(S[k] * 100)} cm.`);
+    }
     smutsig = false;
   };
   // reglaget skrivs tillbaka också när nockgränsen håller emot (runda 3: tummen stod på 3,00, höjden på 2,90)
@@ -2022,7 +2191,12 @@ for (const k in MATT) {
   for (const knapp of r.closest('.reglage').querySelectorAll('[data-steg]')) {
     const riktning = +knapp.dataset.steg;
     let timer = 0, n = 0, aktiv = false, fore = 0;
-    const steg = () => { tillampaInskrivet(); sattMattVarde(k, S[k] + riktning * 0.01); skrivFalt(); };
+    const steg = () => {
+      tillampaInskrivet();
+      const vid = riktning > 0 ? S[k] >= g.max - 1e-9 : S[k] <= g.min + 1e-9;
+      sattMattVarde(k, S[k] + riktning * 0.01); skrivFalt();
+      if (vid) visaGrans(not, riktning > 0 ? `${stor(g.namn)} är högst ${cmMax} cm.` : `${stor(g.namn)} är minst ${cmMin} cm.`);
+    };
     const upprepa = () => { steg(); n++; timer = setTimeout(upprepa, n < 8 ? 90 : n < 30 ? 45 : 20); };
     const slapp = () => {
       if (!aktiv) return;
@@ -2050,6 +2224,45 @@ lutInp.addEventListener('input', () => {
   byggINastaRuta(); uppdateraText();
 });
 lutInp.addEventListener('change', mattKlart);
+/* Lutningen i hela grader, klämd till reglagets gränser (formens och husets nock). */
+function sattLut(v) {
+  const lo = +lutInp.min, hi = +lutInp.max, ny = Math.min(hi, Math.max(lo, Math.round(v)));
+  if (ny !== S.lut) { S.lut = S.lutOnskad = ny; pannorHojde = false; normalisera(); byggINastaRuta(); uppdateraText(); }
+  return { ny, lo, hi };
+}
+{
+  const f = $('lut-grad'), not = $('lut-grans');
+  let vidFokus = S.lut, smutsig = false;
+  const skriv = () => { f.value = S.lut; smutsig = false; };
+  const tillampa = () => {
+    if (!smutsig) return;
+    const t = /^\s*(\d+(?:[.,]\d+)?)\s*(°|grader)?\s*$/i.exec(f.value);
+    if (t) {
+      const v = Math.round(parseFloat(t[1].replace(',', '.')));
+      const { ny, lo, hi } = sattLut(v);
+      if (ny !== v) visaGrans(not, `Lutningen går från ${lo}° till ${hi}° här, så ${v}° blev ${ny}°.`);
+    }
+    smutsig = false;
+  };
+  const klart = () => { tillampa(); skriv(); if (S.lut !== vidFokus) { vidFokus = S.lut; mattKlart(); } };
+  f.addEventListener('focus', () => { vidFokus = S.lut; smutsig = false; f.select(); });
+  f.addEventListener('input', () => { smutsig = true; });
+  f.addEventListener('blur', klart);
+  f.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); klart(); f.select(); }
+    else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') { e.preventDefault(); tillampa(); sattLut(S.lut + (e.key === 'ArrowUp' ? 1 : -1)); skriv(); }
+  });
+  f.addEventListener('keyup', (e) => { if ((e.key === 'ArrowUp' || e.key === 'ArrowDown') && S.lut !== vidFokus) { vidFokus = S.lut; mattKlart(); } });
+  for (const knapp of document.querySelectorAll('[data-lutsteg]')) {
+    knapp.addEventListener('click', () => {
+      tillampa();
+      const r = +knapp.dataset.lutsteg, fore = S.lut, { lo, hi } = sattLut(S.lut + r);
+      skriv();
+      if (S.lut === fore) visaGrans(not, r > 0 ? `Brantast här är ${hi}°.` : `Flackast här är ${lo}°.`);
+      else mattKlart();
+    });
+  }
+}
 const lamellInp = $('lamell');
 lamellInp.value = Math.round(S.lamell * 100); fyll(lamellInp);
 lamellInp.addEventListener('input', () => {
@@ -2094,7 +2307,7 @@ const prisbar = $('prisbar'), prisDetaljer = document.querySelector('.pris');
 // den övre halvan räknas inte: där ligger den klistrade duken över sidan
 if ('IntersectionObserver' in window)
   new IntersectionObserver(([e]) => prisbar.classList.toggle('dold', e.intersectionRatio > 0.5),
-    { rootMargin: '-52% 0px 0px 0px', threshold: [0, 0.5, 1] }).observe($('ut-pris'));
+    { rootMargin: '-52% 0px 0px 0px', threshold: [0, 0.5, 1] }).observe($('boka'));
 function prisKortHojd() {
   const ul = $('pris-kort'), panel = document.querySelector('.panel'), sum = document.querySelector('.summering');
   ul.style.maxHeight = innerWidth > 860 ? `${Math.max(120, sum.getBoundingClientRect().top - panel.getBoundingClientRect().top - 20)}px` : '';
@@ -2145,12 +2358,13 @@ let fokusFore = null;
 function oppnaModal() {
   fokusFore = document.activeElement;
   const pris = prisNu();
-  // mått och tillval först; vad som ingår går att fälla ut (runda 3: en textvägg på mobilen)
-  $('designrad').innerHTML = `<p>Din design: ${sammanfattning()}</p>`
-    + `<p>Dina tillval: <b>${tillvalText(tillvalLista())}</b></p>`
-    + (pris ? `<p>${PRISLAGE === 'exempel' ? 'Exempelpris' : 'Uppskattat pris'}: <b>${kronor(pris.total)}</b>${PRISLAGE === 'exempel' ? ' (exempelpriser – inte Alltfix priser)' : ' (slutpris efter hembesök)'}</p>`
-      : '<p>Priset tar vi fram tillsammans vid hembesöket.</p>')
-    + `<details><summary>Vad ingår i grundpriset</summary><ul>${ingarLista().map((t) => `<li>${t}</li>`).join('')}</ul></details>`;
+  /* Designen på högst tre rader innan fälten (kundloopen: 10–14 rader). Hela designen,
+     vad som ingår och tillvalen följer med förfrågan. */
+  const till = tillvalLista();
+  const formText = lutande() ? `${FORM[S.form].toLowerCase()} ${S.lut}°` : FORM[S.form].toLowerCase();
+  $('designrad').innerHTML = `<p class="d1">Din design: <b>${dec(S.b, 2)} × ${dec(S.d, 2)} m</b> · höjd ${dec(S.h, 2)} m · ${formText} · ${TAK[S.tak].toLowerCase()}</p>`
+    + `<p class="d2${pris ? ' en' : ''}">${till.length ? `${till.length} tillval: <b>${till.map((r) => r.kort).join(', ')}</b>` : 'Tillval: <b>inga</b>'}</p>`
+    + (pris ? `<p class="d1">${PRISLAGE === 'exempel' ? 'Exempelpris' : 'Uppskattat pris'}: <b>${kronor(pris.total)}</b>${PRISLAGE === 'exempel' ? ' (exempelpriser – inte Alltfix priser)' : ' (slutpris efter hembesök)'}</p>` : '');
   form.hidden = false; kvitto.hidden = true; formfel.hidden = true;
   modal.hidden = false;
   setTimeout(() => form.querySelector('input[name="namn"]').focus(), 30);
@@ -2272,6 +2486,9 @@ window.__demo = {
   husSnitt: () => ({ snitt: husSnitt, anslutning, mote: takMote(), nockGrans: +NOCK_GRANS.toFixed(3), forl: rumMatt.zBak }),
   /* Väggarna: välj vägg (vv, vf, vh) och material genom panelens knappar. */
   valjVagg: (k) => valjVagg(k),
+  /* Stegen: fas('tak') visar steget Tak; fasNu() säger vilket som syns. */
+  fas: (f) => visaFas(f),
+  fasNu: () => fas,
   vaggVid: (x, y) => vaggVid(x, y),
   vagg: (k, m) => { valjVagg(k); const el = document.querySelector(`[data-grupp="material"] [data-varde="${m}"]`); if (el) el.click(); return { vv: S.vv, vf: S.vf, vh: S.vh }; },
   tillval: () => tillvalLista(),

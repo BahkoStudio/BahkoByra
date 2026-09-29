@@ -7,7 +7,7 @@
    1. Skriv beloppen i PRISER nedan, i kronor inklusive moms, i stället för
       null. Enheten står efter varje rad (per m², per löpmeter och så vidare).
    2. Fyll i ALLA belopp. Ett tillägg som inte kostar något (klart glas,
-      trätrall, vit skiva …) skrivs 0, inte null. Så länge något belopp
+      trätrall, ingen beklädnad …) skrivs 0, inte null. Så länge något belopp
       fortfarande är null visar sidan inga kronor alls, bara vad som ingår
       och vilka tillval kunden gjort (webbläsarens konsol säger vilka som
       saknas). Då kan en halvfärdig prislista aldrig ge en för låg summa.
@@ -24,7 +24,7 @@ export const PRISER = {
   glas: { klart: null, tonat: null },             // tillägg per löpmeter glasvägg
   material: { tra: null, fasad: null },           // per löpmeter trävägg eller fasadvägg, i stället för glas
   gavel: { klart: null, tonat: null, tra: null, fasad: null },  // per m² gavel ovanför väggarna när taket lutar
-  insida: { skiva: null, parlspont: null, tra: null },           // per m² insida: täta väggar och innertak under tätt tak
+  insida: { ingen: null, skiva: null, parlspont: null, tra: null },  // per m² insida: täta väggar och innertak under tätt tak (ingen: 0)
   hojd: null,                                    // per påbörjade 10 cm över grundhöjden (GRUNDVAL.hojd), hela rummet
   takform: { plant: null, pulpet: null, sadel: null },           // fast tillägg per takform
   tak: { lamell: null, glas: null, kanalplast: null, takpapp: null, takpannor: null },  // per m² takyta
@@ -39,7 +39,7 @@ export const EXEMPELPRISER = {
   glas: { klart: 0, tonat: 450 },
   material: { tra: 3900, fasad: 5800 },
   gavel: { klart: 4800, tonat: 5300, tra: 2600, fasad: 3400 },
-  insida: { skiva: 0, parlspont: 420, tra: 560 },
+  insida: { ingen: 0, skiva: 290, parlspont: 420, tra: 560 },
   hojd: 1800,
   takform: { plant: 0, pulpet: 0, sadel: 14000 },
   tak: { lamell: 4200, glas: 3400, kanalplast: 1200, takpapp: 1600, takpannor: 2100 },
@@ -58,7 +58,7 @@ export const GRUNDVAL = {
   glas: 'klart',
   golv: 'trall',
   hojd: 2.5,                                                     // meter vid takfoten
-  insida: 'skiva',                                               // vit skiva på insidan
+  insida: 'ingen',                                               // Rami: invändig beklädnad är ett tillval
   led: false,
   nat: false,
 };
@@ -81,7 +81,7 @@ const avrunda = (kr) => Math.round(kr / 100) * 100;
 const tal = (v, n = 1) => v.toFixed(n).replace('.', ',');
 const GOLVNAMN = { trall: 'trätrall', parkett: 'parkett', klinker: 'klinker' };
 const VAGGNAMN = { vv: 'vänster gavel', vf: 'front', vh: 'höger gavel' };
-const INSIDANAMN = { skiva: 'vit skiva', parlspont: 'vit pärlspont', tra: 'träpanel' };
+const INSIDANAMN = { ingen: 'utan beklädnad', skiva: 'vit skiva', parlspont: 'vit pärlspont', tra: 'träpanel' };
 const TATT = ['takpapp', 'takpannor'];         // samma täta tak som i app.js: de får innertak
 // ett belopp ur prislistan, eller null om det inte är ifyllt
 const pr = (grupp, k) => { const v = k == null ? P[grupp] : P[grupp] && P[grupp][k]; return typeof v === 'number' ? v : null; };
