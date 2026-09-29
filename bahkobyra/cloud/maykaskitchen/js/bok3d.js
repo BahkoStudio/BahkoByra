@@ -9,9 +9,9 @@
   const W = 1, H = 1.395, T = 0.13;          // bredd, höjd, tjocklek (omslagets proportion 1100×1534)
   const BOARD = 0.016;                        // pärmens tjocklek
   const api = {
-    state: { ry: -0.35, rx: 0.08, rz: 0, scale: 1, x: 0, y: 0, my: 0 },
+    state: { ry: -0.35, rx: 0.08, rz: 0, scale: 1, x: 0, y: 0, mix: 0 },
     intro: { ry: 0, y: 0, scale: 1 },
-    ready: false, portrait: false, yPortrait: 0
+    ready: false, portrait: false, yRest: 0, yLater: 0
   };
   window.BOK3D = api;
 
@@ -200,20 +200,50 @@
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       const tan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-      const dH = H / ((h < 520 && w > h ? 0.62 : 0.56) * 2 * tan);
-      const dW = W / (0.70 * 2 * tan * camera.aspect);
-      const d = Math.max(dH, dW);
+      api.portrait = camera.aspect < 0.8;
+      let d;
+      if (api.portrait) {
+        // Telefon: boken får plats i luckan mellan rubriken och texten, mätt på just den här skärmen.
+        // Vila: mellan underrubriken och texten längst ner. Senare vyer: mellan sidhuvudet och texten.
+        const ct = canvas.getBoundingClientRect().top;
+        const rect = (sel) => { const e = document.querySelector(sel); return e ? e.getBoundingClientRect() : null; };
+        const sub = rect('.slide-1 .display-sub'), side = rect('.slide-side-1'), s2 = rect('.slide-2'), hdr = rect('.site-header');
+        const top0 = sub ? sub.bottom - ct : h * 0.3, bot0 = side ? side.top - ct : h * 0.72;
+        const top1 = hdr ? hdr.bottom - ct : 70, bot1 = s2 ? s2.top - ct : h * 0.6;
+        const marg = 22;
+        const hPx = Math.max(160, Math.min(bot0 - top0 - 2 * marg, bot1 - top1 - 2 * marg, 0.58 * h, 0.72 * w * H / W));
+        d = H / ((hPx / h) * 2 * tan);
+        visH = 2 * d * tan;
+        api.yRest = ((h / 2) - (top0 + bot0) / 2) / h * visH;
+        api.yLater = ((h / 2) - (top1 + bot1) / 2) / h * visH;
+      } else {
+        const dH = H / ((h < 520 && w > h ? 0.62 : 0.56) * 2 * tan);
+        const dW = W / (0.70 * 2 * tan * camera.aspect);
+        d = Math.max(dH, dW);
+        visH = 2 * d * tan;
+        api.yRest = api.yLater = 0;
+      }
       camera.position.set(0, 0, d);
       camera.lookAt(0, 0, 0);
       camera.updateProjectionMatrix();
-      visH = 2 * d * tan;
-      api.portrait = camera.aspect < 0.8;
-      // mobil: bokens mitt på 44 % av höjden, så den täcker rubrikens nederkant och lämnar plats för texten
-      api.yPortrait = api.portrait ? 0.06 * visH : 0;
     }
     resize();
     window.addEventListener('resize', resize);
+    window.addEventListener('load', resize);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(resize);
     if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
+
+    // Mätning: bokens ruta på skärmen i CSS-px (projicerade hörn)
+    api.skarmbox = () => {
+      const r = canvas.getBoundingClientRect(); book.updateMatrixWorld(); const v = new THREE.Vector3();
+      let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+      for (const sx of [-1, 1]) for (const sy of [-1, 1]) for (const sz of [-1, 1]) {
+        v.set(sx * W / 2, sy * H / 2, sz * T / 2).applyMatrix4(book.matrixWorld).project(camera);
+        const px = r.left + (v.x + 1) / 2 * r.width, py = r.top + (1 - v.y) / 2 * r.height;
+        x0 = Math.min(x0, px); x1 = Math.max(x1, px); y0 = Math.min(y0, py); y1 = Math.max(y1, py);
+      }
+      return { left: Math.round(x0), top: Math.round(y0), right: Math.round(x1), bottom: Math.round(y1) };
+    };
 
     // Kalibrering (används vid mätning): api.tune({ hemi, key, rim, env, clearcoat, ccr, rough })
     api.tune = (o) => {
@@ -244,7 +274,7 @@
       const ry = s.ry + i.ry;
       book.rotation.set(s.rx, ry, s.rz + Math.sin(t * 0.7) * 0.015);
       book.position.x = api.portrait ? 0 : s.x;
-      book.position.y = s.y + i.y + bob + api.yPortrait + (api.portrait ? s.my * visH : 0);
+      book.position.y = s.y + i.y + bob + (api.portrait ? api.yRest + (api.yLater - api.yRest) * s.mix : 0);
       const sk = s.scale * i.scale;
       book.scale.setScalar(sk);
       // skuggan: under boken, bred när omslaget vänder sig mot oss, smal när kanten gör det

@@ -28,7 +28,7 @@
   --bd: calc(var(--bw) * 0.115);               /* bokens tjocklek */
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 body {
   background: var(--cream);
   color: var(--ink);
@@ -139,9 +139,10 @@ a { color: inherit; }
 .mobile-nav {
   position: fixed; inset: 0 0 0 auto; width: min(82vw, 340px); z-index: 99;
   background: var(--green-dk); color: var(--cream);
-  padding: 6rem 2rem 2rem; transform: translateX(100%); transition: transform 0.4s cubic-bezier(.7,0,.2,1);
+  padding: 6rem 2rem 2rem; transform: translateX(100%); visibility: hidden;
+  transition: transform 0.4s cubic-bezier(.7,0,.2,1), visibility 0s linear 0.4s;
 }
-.mobile-nav.open { transform: translateX(0); }
+.mobile-nav.open { transform: translateX(0); visibility: visible; transition-delay: 0s; }
 .mobile-nav-links { display: flex; flex-direction: column; gap: 0.2rem; }
 .mobile-nav-links a {
   font-family: var(--display); font-size: 1.6rem; text-transform: uppercase; text-decoration: none;
@@ -217,10 +218,23 @@ a { color: inherit; }
 .scroll-line { width: 1px; height: 44px; background: linear-gradient(var(--gold), transparent); animation: hint 1.8s ease-in-out infinite; }
 @keyframes hint { 0%,100% { transform: scaleY(0.4); transform-origin: top; opacity: 0.4 } 50% { transform: scaleY(1); opacity: 1 } }
 
+/* ── Sektionsbyten: rundat övre hörn som lägger sig över föregående block, ornament överst ── */
+.inne, .kok, .siffror, .om, .cta, .slut { position: relative; border-radius: 32px 32px 0 0; margin-top: -32px; }
+.inne { z-index: 2; } .kok { z-index: 3; } .siffror { z-index: 4; } .om { z-index: 5; } .cta { z-index: 6; } .slut { z-index: 7; }
+.site-footer { position: relative; z-index: 8; }
+.seam { display: flex; align-items: center; justify-content: center; gap: 0.9rem; margin: 0 auto 2.6rem; width: 100%; max-width: 1240px; }
+.seam span { flex: 1; max-width: 5.5rem; height: 1px; background: currentColor; opacity: 0.35; }
+.seam i { width: 8px; height: 8px; transform: rotate(45deg); background: currentColor; opacity: 0.8; }
+.inne .seam, .om .seam { color: var(--terra); }
+.kok .seam { color: var(--terra-dk); }
+.siffror .seam, .slut .seam { color: var(--gold); }
+.cta .seam { color: var(--cream); }
+.kok .seam, .siffror .seam, .slut .seam { margin-bottom: 2rem; }
+
 /* ══════════════════════════════════════════════════════════
    VAD FINNS I BOKEN
    ══════════════════════════════════════════════════════════ */
-.inne { padding: 8rem 6vw 6rem; background: var(--cream); }
+.inne { padding: 4.5rem 6vw 6rem; background: var(--cream); }
 .inne-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; max-width: 1240px; margin: 0 auto; }
 .inne-media { position: relative; padding: 2.2rem 0 0 2.2rem; }
 .inne-block { position: absolute; left: 0; top: 0; right: 2.2rem; aspect-ratio: 1200 / 1219; background: var(--terra); border-radius: 4px; }
@@ -259,7 +273,7 @@ a { color: inherit; }
 /* ══════════════════════════════════════════════════════════
    UR MAYKAS KÖK
    ══════════════════════════════════════════════════════════ */
-.kok { padding: 7rem 6vw; background: var(--gold); color: var(--ink); }
+.kok { padding: 4rem 6vw 7rem; background: var(--gold); color: var(--ink); }
 .kok .kicker { color: var(--ink); }
 .kok .h2 em { color: var(--terra-dk); }
 .kok .lead { color: rgba(20,32,26,0.75); margin: 0 auto 2rem; }
@@ -274,7 +288,7 @@ a { color: inherit; }
 /* ══════════════════════════════════════════════════════════
    SIFFROR
    ══════════════════════════════════════════════════════════ */
-.siffror { padding: 7rem 6vw; background: var(--green-dk); color: var(--cream); text-align: center; }
+.siffror { padding: 4rem 6vw 7rem; background: var(--green-dk); color: var(--cream); text-align: center; }
 .siffror .h2 { color: var(--cream); }
 .siffror .h2 em { color: var(--gold); }
 .siffror-head { display: flex; flex-direction: column; align-items: center; margin-bottom: 3.5rem; }
@@ -291,8 +305,8 @@ a { color: inherit; }
 /* ══════════════════════════════════════════════════════════
    OM MAYKA
    ══════════════════════════════════════════════════════════ */
-.om { background: var(--cream); }
-.om-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; max-width: 1240px; margin: 0 auto; padding: 8rem 6vw; }
+.om { background: var(--cream); padding-top: 4rem; }
+.om-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; max-width: 1240px; margin: 0 auto; padding: 0 6vw 8rem; }
 .om-media img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; }
 .om-roles { font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terra); margin: -0.4rem 0 1.4rem; }
 .om-body { font-family: var(--serif); font-size: 1.32rem; line-height: 1.55; color: var(--ink); max-width: 34rem; }
@@ -324,7 +338,7 @@ a { color: inherit; }
 /* ══════════════════════════════════════════════════════════
    SAMARBETEN
    ══════════════════════════════════════════════════════════ */
-.cta { padding: 7rem 6vw; background: var(--terra); color: var(--cream); }
+.cta { padding: 4rem 6vw 7rem; background: var(--terra); color: var(--cream); }
 .cta-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
 .cta .kicker { color: var(--cream); }
 .cta .h2 { color: var(--cream); }
@@ -340,7 +354,7 @@ a { color: inherit; }
 /* ══════════════════════════════════════════════════════════
    SLUT – tillbaka till boken
    ══════════════════════════════════════════════════════════ */
-.slut { background: var(--green); color: var(--cream); padding: 7rem 6vw; }
+.slut { background: var(--green); color: var(--cream); padding: 4rem 6vw 7rem; }
 .slut-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
 .slut-bok { width: min(100%, 420px); justify-self: center; border-radius: 8px; box-shadow: 0 40px 80px -30px rgba(0,0,0,0.6); }
 .slut-text { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
@@ -471,27 +485,30 @@ a { color: inherit; }
   .slide-body { font-size: 0.9rem; }
   .scroll-hint { display: none; }
 
-  .inne { padding: 5rem 5vw 4rem; }
+  .inne { padding: 3.2rem 5vw 4rem; }
   .inne-grid, .om-grid, .cta-inner { grid-template-columns: 1fr; }
   .fakta { grid-template-columns: repeat(2, 1fr); gap: 0.9rem 1rem; }
-  .om-grid { padding: 5rem 5vw; }
+  .om-grid { padding: 0 5vw 5rem; }
+  .om { padding-top: 3.2rem; }
+  .inne, .kok, .siffror, .om, .cta, .slut { border-radius: 24px 24px 0 0; margin-top: -24px; }
+  .seam { margin-bottom: 2rem; }
   .inne-media { padding: 1.2rem 0 0 1.2rem; }
   .inne-block { inset: 0 1.2rem 1.2rem 0; }
   .inne-band { grid-template-columns: 1fr; gap: 0; margin-top: 3rem; }
   .inne-band figure:not(.band-mitt) { display: none; }
   .inne-band .band-mitt { transform: none; }
-  .kok { padding: 5rem 5vw; }
+  .kok { padding: 3.2rem 5vw 5rem; }
   .kok-band { grid-template-columns: 1fr 1fr; gap: 0.7rem; }
   .kok-bild:nth-child(3) { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
-  .siffror { padding: 5rem 5vw; }
+  .siffror { padding: 3.2rem 5vw 5rem; }
   .tal { gap: 0.7rem; }
   .tal-total { grid-column: 1 / -1; }
   .tal li { padding: 1.2rem 0.8rem; }
   .banner { height: 60vw; min-height: 260px; }
-  .cta { padding: 5rem 5vw; }
+  .cta { padding: 3.2rem 5vw 5rem; }
   .cta-card { padding: 1.6rem 1.3rem; }
   .cta-email { font-size: 0.86rem; }
-  .slut { padding: 5rem 5vw; }
+  .slut { padding: 3.2rem 5vw 5rem; }
   .slut-inner { grid-template-columns: 1fr; text-align: center; }
   .slut-bok { width: min(60vw, 240px); }
   .slut-text { align-items: center; }

@@ -60,7 +60,7 @@ function initStage() {
 
   // Fotot av omslaget syns tills 3D-boken bevisligen ritats rätt (bok3d.js byter själv).
   const har3d = window.BOK3D && window.BOK3D.init && window.BOK3D.init();
-  const st = har3d ? window.BOK3D.state : { ry: 0, rx: 0, rz: 0, scale: 1, x: 0, y: 0 };
+  const st = har3d ? window.BOK3D.state : { ry: 0, rx: 0, rz: 0, scale: 1, x: 0, y: 0, mix: 0 };
 
   // Intro: boken landar (eget offset-objekt så att den inte krockar med skrollens värden), texten stiger
   if (har3d) gsap.from(window.BOK3D.intro, { scale: 0.6, y: -0.8, ry: -1.1, duration: 1.6, ease: 'power3.out', delay: 0.1 });
@@ -85,8 +85,8 @@ function initStage() {
   const byt = (ut, in_, t) => tl
     .fromTo(ut, { autoAlpha: 1, y: 0 }, { autoAlpha: 0, y: -24, ease: 'none', duration: F, immediateRender: false }, t)
     .fromTo(in_, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, ease: 'none', duration: F }, t + F);
-  tl.fromTo(st, { ry: -0.35, rx: 0.08, rz: 0, x: 0, scale: 1, my: -0.085 },
-               { ry: Math.PI - 0.3, rx: 0.10, rz: 0.03, x: -0.72, scale: 1.02, my: 0, ease: 'power1.inOut', duration: 1 }, 0)
+  tl.fromTo(st, { ry: -0.35, rx: 0.08, rz: 0, x: 0, scale: 1, mix: 0 },
+               { ry: Math.PI - 0.3, rx: 0.10, rz: 0.03, x: -0.72, scale: 1.02, mix: 1, ease: 'power1.inOut', duration: 1 }, 0)
     .to(st, { ry: Math.PI * 1.35, rx: 1.0, rz: -0.28, x: 0.72, scale: 1.04, ease: 'power1.inOut', duration: 1 }, 1)
     .to(st, { ry: Math.PI * 2 - 0.3, rx: 0.08, rz: 0, x: -0.72, scale: 1.08, ease: 'power1.inOut', duration: 1 }, 2)
     .to({}, { duration: 0.5 }, 3);
