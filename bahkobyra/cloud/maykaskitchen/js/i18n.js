@@ -329,7 +329,9 @@
   };
 
   window.MK_T = T;
-  window.MK_LANG = localStorage.getItem('mk-lang') || 'sv';
+  let sparatSprak = null;
+  try { sparatSprak = localStorage.getItem('mk-lang'); } catch (_) {}
+  window.MK_LANG = sparatSprak === 'en' ? 'en' : 'sv';
 
   window.getT = function (key) {
     return (T[window.MK_LANG] && T[window.MK_LANG][key]) || (T.sv[key]) || key;
@@ -345,7 +347,7 @@
 
   window.applyLang = function (lang) {
     window.MK_LANG = lang;
-    localStorage.setItem('mk-lang', lang);
+    try { localStorage.setItem('mk-lang', lang); } catch (_) {}
     document.documentElement.lang = lang;
 
     document.querySelectorAll('[data-i18n]').forEach(el => {

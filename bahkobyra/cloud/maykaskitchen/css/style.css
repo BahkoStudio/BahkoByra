@@ -463,13 +463,13 @@ a { color: inherit; }
 
 @media (max-width: 1000px) {
   .nav-links { display: none; }
-  .nav-buy { display: none; }
   .nav-hamburger { display: flex; }
   .footer-top { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .tal { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 760px) {
+  .nav-buy { display: none; }
   :root { --bw: clamp(140px, 46vw, 230px); }
 
   .slide-1 { justify-content: flex-start; padding-top: 11vh; }

@@ -327,8 +327,9 @@
       <div class="footer-newsletter">
         <h4 data-i18n="footer.nl.title">Nyhetsbrev</h4>
         <p data-i18n="footer.nl.p">Få nya recept och matinspiration direkt i din inkorg!</p>
-        <form class="footer-nl-form" id="footer-nl-form" novalidate>
+        <form class="footer-nl-form" id="footer-nl-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
           <input type="email" name="email" id="footer-nl-email" autocomplete="email" data-i18n-ph="footer.nl.placeholder" placeholder="Din e-post" aria-label="Din e-post" required>
+          <input type="hidden" name="access_key" value="38db5da0-8af0-4b31-bcdc-a840e84e5764"><input type="hidden" name="subject" value="Nyhetsbrev maykaskitchen.se"><input type="hidden" name="from_name" value="maykaskitchen.se"><input type="hidden" name="kalla" value="sidfot-utan-js">
           <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="display:none">
           <button type="submit" data-i18n="footer.nl.btn">Prenumerera</button>
         </form>

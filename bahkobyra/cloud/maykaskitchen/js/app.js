@@ -7,7 +7,8 @@ gsap.registerPlugin(ScrollTrigger);
    Nyckeln är publik med flit: den säger bara vilken inkorg inskicket går till och ger
    ingen åtkomst till något (se docs/formular-web3forms.md). Tills Mayka har en egen
    nyckel används Bahkos demonyckel, som landar hos mathias@bahkobyra.se med
-   "Nyhetsbrev maykaskitchen.se" i ämnesraden. Byt NL_NYCKEL när Maykas nyckel finns. */
+   "Nyhetsbrev maykaskitchen.se" i ämnesraden. Byt NL_NYCKEL här OCH i index.html
+   (sidfotsformulärets dolda access_key, används när JavaScript inte körs) när Maykas nyckel finns. */
 const NL_NYCKEL = '38db5da0-8af0-4b31-bcdc-a840e84e5764';
 
 async function skickaNyhetsbrev(form, kalla) {
@@ -34,6 +35,7 @@ if (!REDUCE && typeof Lenis === 'function') {
     easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true
   });
+  window.MK_LENIS = lenis;
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(time => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -223,6 +225,24 @@ function initMobileNav() {
   overlay.addEventListener('click', closeNav);
   mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
 }
+
+/* ── DJUPLÄNK – scenen nålas fast efter webbläsarens eget hopp, så hoppa igen när allt är mätt ── */
+function landaPaHash() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  const mal = id && document.getElementById(id);
+  if (!mal) return null;
+  if (window.ScrollTrigger) ScrollTrigger.refresh();
+  const y = Math.max(0, mal.getBoundingClientRect().top + window.scrollY - 70);
+  if (window.MK_LENIS) window.MK_LENIS.scrollTo(y, { immediate: true, force: true });
+  else window.scrollTo(0, y);
+  return y;
+}
+window.addEventListener('load', () => {
+  const y = landaPaHash();
+  if (y === null) return;
+  // En gång till när bilder och typsnitt satt sig, men bara om läsaren inte redan börjat skrolla själv.
+  setTimeout(() => { if (Math.abs(window.scrollY - y) < 40) landaPaHash(); }, 450);
+});
 
 /* ── START ───────────────────────────────────────────────── */
 window.addEventListener('DOMContentLoaded', () => {
