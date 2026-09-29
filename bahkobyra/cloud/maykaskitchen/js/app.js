@@ -53,6 +53,11 @@ function initHeader() {
     onEnter: () => header.classList.add('on-scroll'),
     onLeaveBack: () => header.classList.remove('on-scroll')
   });
+  // Slutet är början igen: samma genomskinliga rubrikrad över den mörka scenen.
+  if (document.getElementById('slut')) ScrollTrigger.create({
+    trigger: '#slut', start: 'top 70px', end: 'bottom 70px',
+    onToggle: self => header.classList.toggle('over-slut', self.isActive)
+  });
 }
 
 /* ── SCENEN – 3D-boken snurrar medan textbilderna byter ─── */
@@ -67,7 +72,6 @@ function initStage() {
   // Intro: boken landar (eget offset-objekt så att den inte krockar med skrollens värden), texten stiger
   if (har3d) gsap.from(window.BOK3D.intro, { scale: 0.6, y: -0.8, ry: -1.1, duration: 1.6, ease: 'power3.out', delay: 0.1 });
   gsap.from('.slide-1 > *', { y: 40, autoAlpha: 0, duration: 1.1, ease: 'power3.out', stagger: 0.12, delay: 0.25 });
-  gsap.from('.slide-side-1 > *', { y: 30, autoAlpha: 0, duration: 1.0, ease: 'power3.out', stagger: 0.06, delay: 0.7 });
   gsap.from('#stage-cta', { y: 30, autoAlpha: 0, duration: 1.0, ease: 'power3.out', delay: 0.85 });
 
   if (REDUCE) return;
@@ -226,6 +230,13 @@ function initMobileNav() {
   mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
 }
 
+/* ── KÖPRADEN viker undan när slutets egen köpknapp syns (två knappar med samma pris i bild) ── */
+function initKopbar() {
+  const bar = document.getElementById('kopbar'), mal = document.querySelector('#slut .pris-rad');
+  if (!bar || !mal || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(e => bar.classList.toggle('viker', e[0].isIntersecting), { threshold: 0.6 }).observe(mal);
+}
+
 /* ── DJUPLÄNK – scenen nålas fast efter webbläsarens eget hopp, så hoppa igen när allt är mätt ── */
 function landaPaHash() {
   const id = decodeURIComponent(location.hash.slice(1));
@@ -237,12 +248,17 @@ function landaPaHash() {
   else window.scrollTo(0, y);
   return y;
 }
+let besokarenRorde = false;
+['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(t => window.addEventListener(t, () => { besokarenRorde = true; }, { passive: true, once: true }));
 window.addEventListener('load', () => {
-  const y = landaPaHash();
-  if (y === null) return;
-  // En gång till när bilder och typsnitt satt sig, men bara om läsaren inte redan börjat skrolla själv.
-  setTimeout(() => { if (Math.abs(window.scrollY - y) < 40) landaPaHash(); }, 450);
+  if (landaPaHash() === null) return;
+  // Webbläsarens eget ankarhopp och sena bilder/typsnitt kan flytta sidan efteråt: rätta igen tills besökaren själv rör sidan.
+  [300, 900, 1800, 3200].forEach(ms => setTimeout(() => { if (!besokarenRorde) landaPaHash(); }, ms));
 });
+// Även när bara #-delen byts i samma flik. Klick på menylänkar sköter Lenis själv med mjuk skroll.
+let senastHashKlick = 0;
+document.addEventListener('click', e => { if (e.target.closest && e.target.closest('a[href^="#"]')) senastHashKlick = Date.now(); }, true);
+window.addEventListener('hashchange', () => { if (Date.now() - senastHashKlick > 1000) landaPaHash(); });
 
 /* ── START ───────────────────────────────────────────────── */
 window.addEventListener('DOMContentLoaded', () => {
@@ -253,4 +269,5 @@ window.addEventListener('DOMContentLoaded', () => {
   initForms();
   initPopup();
   initMobileNav();
+  initKopbar();
 });

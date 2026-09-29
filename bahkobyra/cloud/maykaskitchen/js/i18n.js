@@ -14,7 +14,6 @@
       'nav.open':    'Öppna meny',
 
       /* HERO – tre bilder i den fastnålade scenen */
-      'hero.kicker': 'Kokboken · Libris förlag',
       'hero.t1':     'Maykas',
       'hero.t2':     'gröna kök',
       'hero.sub':    'Kutle, hummus &amp; kärlek',
@@ -77,9 +76,6 @@
       'om.banner': '”God mat, starkare människor och en varmare vardag.”',
 
       /* SLUT */
-      'slut.kicker': 'Kokboken',
-      'slut.title':  'Maykas <em>gröna kök</em>',
-      'slut.body':   'Kutle, hummus &amp; kärlek.',
       'slut.btn':    'Beställ min bok',
       'kopbar.t': 'Köp min bok här',
 
@@ -93,13 +89,21 @@
       'cta.label':      'Samarbeten',
       'cta.heading':    'Låt oss skapa <em>tillsammans</em>',
       'cta.sub':        'Mayka samarbetar med varumärken som delar hennes värderingar och passar hennes målgrupp.',
-      'cta.card1.body': 'Mayka arbetar bland annat med:',
-      'collab.i1':  'Reels och videoinnehåll',
+      'cta.card1.body': 'Exempel på samarbeten',
+      'cta.f1': 'visningar på Instagram, 30 dagar',
+      'cta.f2': 'visningar på TikTok, 30 dagar',
+      'cta.f3': 'kvinnor',
+      'cta.f4': 'största åldersgruppen',
+      'cta.var.t': 'Sverige',
+      'cta.var': 'störst andel i Stockholm, Skåne och Västra Götaland',
+      'collab.i1':  'Reels / videoinnehåll',
       'collab.i2':  'Story-serier',
       'collab.i3':  'Produktrecensioner',
       'collab.i4':  'Receptutveckling',
       'collab.i5':  'Event och lanseringar',
-      'collab.i6':  'Ambassadörskap och långsiktiga samarbeten',
+      'collab.i6':  'Långsiktiga samarbeten',
+      'collab.i7': 'Uppslag i bok / receptsamarbeten',
+      'collab.i8': 'Ambassadörskap',
 
       /* FOOTER */
       'footer.tagline':        'Recept, livsstil och äkta stunder<br>med hjärtat i min assyriska/syrianska matkultur.',
@@ -189,7 +193,6 @@
       'nav.open':    'Open menu',
 
       /* HERO */
-      'hero.kicker': 'The cookbook · Libris publishing',
       'hero.t1':     'Maykas',
       'hero.t2':     'gröna kök',
       'hero.sub':    'Kutle, hummus &amp; kärlek',
@@ -252,9 +255,6 @@
       'om.banner': '“Good food, stronger people and a warmer everyday life.”',
 
       /* CLOSING */
-      'slut.kicker': 'The cookbook',
-      'slut.title':  'Maykas <em>gröna kök</em>',
-      'slut.body':   'Kutle, hummus &amp; kärlek.',
       'slut.btn':    'Order my book',
       'kopbar.t': 'Buy my book here',
 
@@ -268,13 +268,21 @@
       'cta.label':      'Collaborations',
       'cta.heading':    'Let’s create <em>together</em>',
       'cta.sub':        'Mayka works with brands that share her values and suit her audience.',
-      'cta.card1.body': 'Mayka works with, among other things:',
-      'collab.i1':  'Reels and video content',
+      'cta.card1.body': 'Examples of collaborations',
+      'cta.f1': 'views on Instagram, 30 days',
+      'cta.f2': 'views on TikTok, 30 days',
+      'cta.f3': 'women',
+      'cta.f4': 'largest age group',
+      'cta.var.t': 'Sweden',
+      'cta.var': 'largest share in Stockholm, Skåne and Västra Götaland',
+      'collab.i1':  'Reels / video content',
       'collab.i2':  'Story series',
       'collab.i3':  'Product reviews',
       'collab.i4':  'Recipe development',
       'collab.i5':  'Events and launches',
-      'collab.i6':  'Ambassadorships and long-term partnerships',
+      'collab.i6':  'Long-term partnerships',
+      'collab.i7': 'Book spreads / recipe partnerships',
+      'collab.i8': 'Ambassadorships',
 
       /* FOOTER */
       'footer.tagline':        'Recipes, lifestyle and real moments,<br>rooted in my Assyrian/Syriac food culture.',

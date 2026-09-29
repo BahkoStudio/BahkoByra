@@ -11,7 +11,7 @@
   const api = {
     state: { ry: -0.35, rx: 0.08, rz: 0, scale: 1, x: 0, y: 0, mix: 0 },
     intro: { ry: 0, y: 0, scale: 1 },
-    ready: false, portrait: false, yRest: 0, yLater: 0
+    ready: false, portrait: false, yRest: 0, yLater: 0, skalaVila: 1
   };
   window.BOK3D = api;
 
@@ -207,21 +207,26 @@
         // Vila: mellan underrubriken och texten längst ner. Senare vyer: mellan sidhuvudet och texten.
         const ct = canvas.getBoundingClientRect().top;
         const rect = (sel) => { const e = document.querySelector(sel); return e ? e.getBoundingClientRect() : null; };
-        const sub = rect('.slide-1 .display-sub'), side = rect('.slide-side-1'), s2 = rect('.slide-2'), hdr = rect('.site-header');
-        const top0 = sub ? sub.bottom - ct : h * 0.3, bot0 = side ? side.top - ct : h * 0.72;
+        // Lagret: boken ligger framför nedre halvan av GRÖNA KÖK och slutar ovanför undertiteln längst ner.
+        const l2 = rect('.slide-1 .display-l2'), sub = rect('.slide-1 .display-sub'), s2 = rect('.slide-2'), hdr = rect('.site-header');
+        const top0 = l2 ? l2.top + l2.height * 0.74 - ct : h * 0.3, bot0 = sub ? sub.top - ct : h * 0.72;
         const top1 = hdr ? hdr.bottom - ct : 70, bot1 = s2 ? s2.top - ct : h * 0.6;
         const marg = 22;
-        const hPx = Math.max(160, Math.min(bot0 - top0 - 2 * marg, bot1 - top1 - 2 * marg, 0.58 * h, 0.72 * w * H / W));
+        const hPx = Math.max(160, Math.min(bot1 - top1 - 2 * marg, 0.58 * h, 0.72 * w * H / W));
+        // I vila får boken vara större än i de senare vyerna (där texten tar plats); skalan glider ner med mix.
+        const hVila = Math.max(160, Math.min(bot0 - top0 - 2 * marg, 0.57 * h, 0.8 * w * H / W));
+        api.skalaVila = hVila / hPx;
         d = H / ((hPx / h) * 2 * tan);
         visH = 2 * d * tan;
-        api.yRest = ((h / 2) - (top0 + bot0) / 2) / h * visH;
+        // Boken börjar vid top0 (lagret över GRÖNA KÖK) i stället för att centreras i luckan.
+        api.yRest = ((h / 2) - (top0 + hVila / 2)) / h * visH;
         api.yLater = ((h / 2) - (top1 + bot1) / 2) / h * visH;
       } else {
         const dH = H / ((h < 520 && w > h ? 0.62 : 0.56) * 2 * tan);
         const dW = W / (0.70 * 2 * tan * camera.aspect);
         d = Math.max(dH, dW);
         visH = 2 * d * tan;
-        api.yRest = api.yLater = 0;
+        api.yRest = api.yLater = 0; api.skalaVila = 1;
       }
       camera.position.set(0, 0, d);
       camera.lookAt(0, 0, 0);
@@ -274,8 +279,8 @@
       const ry = s.ry + i.ry;
       book.rotation.set(s.rx, ry, s.rz + Math.sin(t * 0.7) * 0.015);
       book.position.x = api.portrait ? 0 : s.x;
-      book.position.y = s.y + i.y + bob + (api.portrait ? api.yRest + (api.yLater - api.yRest) * s.mix : 0);
-      const sk = s.scale * i.scale;
+      book.position.y = s.y + i.y + bob + (api.yRest + (api.yLater - api.yRest) * s.mix);
+      const sk = s.scale * i.scale * (api.skalaVila + (1 - api.skalaVila) * s.mix);
       book.scale.setScalar(sk);
       // skuggan: under boken, bred när omslaget vänder sig mot oss, smal när kanten gör det
       const bredd = Math.abs(Math.cos(ry)) * W + Math.abs(Math.sin(ry)) * T;

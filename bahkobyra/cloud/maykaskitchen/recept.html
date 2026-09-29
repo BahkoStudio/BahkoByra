@@ -75,6 +75,15 @@
     .rcard p { font-size: 0.84rem; color: var(--mid); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .rcard-foot { margin-top: auto; padding-top: 0.6rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; color: var(--mid); }
     .rcard-foot b { color: var(--terra); font-weight: 600; }
+    .bok-kort { background: var(--green-dk); color: var(--cream); border-color: transparent; }
+    .bok-kort-bild { position: relative; aspect-ratio: 4 / 3; background: radial-gradient(60% 60% at 50% 45%, rgba(47,106,69,0.75), transparent 70%), var(--green); overflow: hidden; }
+    .bok-kort-bild img { position: absolute; top: 8%; bottom: 8%; left: 0; right: 0; margin: auto; height: 84%; width: auto; max-width: none; border-radius: 2px 4px 4px 2px; box-shadow: 0 18px 30px -12px rgba(0,0,0,0.65); transition: transform 0.6s ease; }
+    .bok-kort:hover .bok-kort-bild img { transform: scale(1.04) rotate(-1deg); }
+    .bok-kort h3 { color: var(--cream); }
+    .bok-kort p { color: rgba(244,235,220,0.85); }
+    .bok-kort .rcard-tags span { color: var(--gold); }
+    .bok-kort .rcard-foot b { display: inline-flex; align-items: center; min-height: 44px; padding: 0 1.2rem; border-radius: 999px; background: var(--terra); color: var(--cream); }
+    .bok-kort-pris { font-family: var(--display); font-size: 1.35rem; color: var(--gold); }
     .list-empty { grid-column: 1 / -1; text-align: center; color: var(--mid); padding: 3rem 0; }
 
     /* Bok-puff efter receptet */
@@ -168,7 +177,7 @@
 
     /* ── FOOTER ── */
     .site-footer { max-width: 1080px; margin: 0 auto; padding: 1.6rem 5vw 2.6rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; align-items: center; justify-content: space-between; border-top: 1px solid var(--beige); font-size: 0.78rem; color: var(--mid); }
-    .site-footer a { color: var(--crimson); text-decoration: none; font-weight: 600; }
+    .site-footer a { color: var(--crimson); text-decoration: none; font-weight: 600; display: inline-block; padding: 13px 0; margin: -13px 0; }
     .site-footer a:hover { text-decoration: underline; }
     .recipe-badge-blogg { color: var(--green); }
     .sr-lista { max-width: 760px; margin: 0 auto; padding: 1rem 5vw 5rem; display: flex; flex-direction: column; gap: 0.8rem; }
@@ -757,8 +766,8 @@ function render() {
     <aside class="bok-puff">
       <img src="img/bok-fram.jpg" alt="" width="72" height="100">
       <div>
-        <strong>${tv('Maykas kokbok', 'Mayka’s cookbook')}</strong>
-        <p>${tv('Kokboken har cirka 50 egna recept ur det gröna köket.', 'The cookbook has about 50 recipes of its own from the green kitchen.')}</p>
+        <strong>Maykas gröna kök</strong>
+        <p>${tv('Cirka 50 recept till i min kokbok, inbunden. 349&nbsp;kr.', 'About 50 more recipes in my cookbook, hardcover, in Swedish. 349&nbsp;kr.')}</p>
       </div>
       <a href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener">${tv('Köp min bok här', 'Buy my book here')}</a>
     </aside>`;
@@ -785,6 +794,17 @@ function renderList() {
   const chips = ['alla', ...CHIPS].map(c =>
     `<button class="chip${c === aktivChip ? ' is-on' : ''}" data-chip="${c}">${c === 'alla' ? getT('list.all') : tagText(c)}</button>`).join('');
 
+  const bokKort = `
+    <a class="rcard bok-kort" href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener">
+      <div class="bok-kort-bild"><img src="img/bok-fram.jpg" alt="${tv('Omslaget till kokboken Maykas gröna kök', 'Cover of the cookbook Maykas gröna kök')}" width="1100" height="1534"></div>
+      <div class="rcard-body">
+        <div class="rcard-tags"><span>${tv('Min kokbok', 'My cookbook')}</span></div>
+        <h3>Maykas gröna kök</h3>
+        <p>${tv('Kutle, hummus &amp; kärlek. Cirka 50 recept, 160 sidor, inbunden.', 'Kutle, hummus &amp; kärlek. About 50 recipes, 160 pages, hardcover, in Swedish.')}</p>
+        <div class="rcard-foot"><span class="bok-kort-pris">349 kr</span><b>${tv('Köp min bok här', 'Buy my book here')}</b></div>
+      </div>
+    </a>`;
+
   const kort = synliga.map(([id, r]) => `
     <a class="rcard" href="recept.html?id=${id}">
       <div class="rcard-img"><img src="${r.image}" alt="${tv(r.title, r.title_en)}" loading="lazy"></div>
@@ -806,7 +826,7 @@ function renderList() {
       <p class="list-sub">${getT('list.sub')}</p>
     </div>
     <div class="chips">${chips}</div>
-    <div class="list-grid">${kort || `<p class="list-empty">–</p>`}</div>`;
+    <div class="list-grid">${bokKort}${kort || `<p class="list-empty">–</p>`}</div>`;
 
   container.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => {
     aktivChip = b.dataset.chip;
