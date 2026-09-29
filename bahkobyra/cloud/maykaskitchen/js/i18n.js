@@ -29,7 +29,7 @@
 
       's3.kicker': 'I boken',
       's3.title':  'Cirka 50 <em>recept</em>',
-      's3.body':   'Från vardagsrätter och grön festmat till måltider för fasta och stillhet. Inbunden, 160 sidor.',
+      's3.body':   'Från vardagsrätter och grön festmat till måltider för fasta och stillhet.',
       's4.kicker': 'Maykas ord',
       's4.quote':  '”Mat förenar människor, precis som kärlek, familj och tro.”',
       's4.by':     'Mayka Gulo',
@@ -57,7 +57,7 @@
       /* UR MAYKAS KÖK */
       'kok.kicker': 'Från Maykas blogg',
       'kok.title':  'Maykas recept, <em>gratis</em>',
-      'kok.body':   'Här finns 17 av Maykas bloggrecept, gratis. Kokboken är en egen samling med cirka 50 recept ur det gröna köket.',
+      'kok.body':   '17 av Maykas bloggrecept, gratis att laga hemma.',
       'kok.btn':    'Alla bloggrecept',
 
       /* SIFFROR */
@@ -82,11 +82,11 @@
       /* SLUT */
       'slut.kicker': 'Kokboken',
       'slut.title':  'Maykas <em>gröna kök</em>',
-      'slut.body':   'Kutle, hummus &amp; kärlek. Inbunden, 160 sidor, från Libris förlag.',
+      'slut.body':   'Kutle, hummus &amp; kärlek.',
       'slut.btn':    'Köp boken',
       'via':       'Köps via Bokus. Länken är en affiliatelänk.',
       'band.cap':  'Mayka med boken.',
-      'kopbar.t': 'Köp boken', 'kopbar.s': 'via Bokus · affiliatelänk',
+      'kopbar.t': 'Köp boken', 'kopbar.s': 'via Bokus',
 
       /* SOCIALA KANALER */
       'social.label': 'Följ mig',
@@ -98,7 +98,7 @@
       'cta.label':      'Samarbeten',
       'cta.heading':    'Låt oss skapa <em>tillsammans</em>',
       'cta.sub':        'Mayka samarbetar med varumärken som delar hennes värderingar och passar hennes målgrupp.',
-      'cta.card1.body': 'Vill du samarbeta med Maykas Kitchen? Mayka arbetar bland annat med:',
+      'cta.card1.body': 'Mayka arbetar bland annat med:',
       'collab.i1':  'Reels och videoinnehåll',
       'collab.i2':  'Story-serier',
       'collab.i3':  'Produktrecensioner',
@@ -196,7 +196,7 @@
 
       's3.kicker': 'In the book',
       's3.title':  'About 50 <em>recipes</em>',
-      's3.body':   'From everyday dishes and green festive food to meals for fasting and stillness. Hardcover, 160 pages.',
+      's3.body':   'From everyday dishes and green festive food to meals for fasting and stillness.',
       's4.kicker': 'In Mayka’s words',
       's4.quote':  '“Food brings people together, just like love, family and faith.”',
       's4.by':     'Mayka Gulo',
@@ -224,7 +224,7 @@
       /* FROM MAYKA’S KITCHEN */
       'kok.kicker': 'From Mayka’s blog',
       'kok.title':  'Mayka’s recipes, <em>free</em>',
-      'kok.body':   'Here are 17 of Mayka’s blog recipes, free. The cookbook is a separate collection of about 50 recipes from the green kitchen.',
+      'kok.body':   '17 of Mayka’s blog recipes, free to cook at home.',
       'kok.btn':    'All blog recipes',
 
       /* NUMBERS */
@@ -249,11 +249,11 @@
       /* CLOSING */
       'slut.kicker': 'The cookbook',
       'slut.title':  'Maykas <em>gröna kök</em>',
-      'slut.body':   'Kutle, hummus &amp; love. Hardcover, 160 pages, published by Libris.',
+      'slut.body':   'Kutle, hummus &amp; love.',
       'slut.btn':    'Buy the book',
       'via':       'Sold via Bokus. The link is an affiliate link.',
       'band.cap':  'Mayka with the book.',
-      'kopbar.t': 'Buy the book', 'kopbar.s': 'via Bokus · affiliate link',
+      'kopbar.t': 'Buy the book', 'kopbar.s': 'via Bokus',
 
       /* SOCIAL */
       'social.label': 'Follow me',
@@ -265,7 +265,7 @@
       'cta.label':      'Collaborations',
       'cta.heading':    'Let’s create <em>together</em>',
       'cta.sub':        'Mayka works with brands that share her values and suit her audience.',
-      'cta.card1.body': 'Want to work with Maykas Kitchen? Mayka works with, among other things:',
+      'cta.card1.body': 'Mayka works with, among other things:',
       'collab.i1':  'Reels and video content',
       'collab.i2':  'Story series',
       'collab.i3':  'Product reviews',
