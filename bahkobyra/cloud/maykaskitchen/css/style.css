@@ -60,7 +60,7 @@ a { color: inherit; }
   letter-spacing: 0.01em;
 }
 .display-l1, .display-l2 { display: block; }
-.display-l1 { font-size: clamp(4rem, 14.5vw, 12.5rem); color: var(--terra); }
+.display-l1 { font-size: clamp(4rem, 14.5vw, 12.5rem); color: #DE6E4C; }   /* 3,5:1 mot scenens grön */
 .display-l2 { font-size: clamp(2.6rem, 9.2vw, 8rem); color: var(--gold); }
 .display-sub {
   font-family: var(--serif); font-style: italic; font-weight: 400;
@@ -128,7 +128,7 @@ a { color: inherit; }
 
 /* Hamburgare */
 .nav-hamburger {
-  display: none; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer;
+  display: none; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: inherit;
   flex-direction: column; align-items: center; justify-content: center; gap: 5px;
 }
 .nav-hamburger span { width: 22px; height: 2px; background: currentColor; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
@@ -205,7 +205,8 @@ a { color: inherit; }
 .book-float { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
 #bok-canvas { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s ease; }
 #bok-canvas.redo { opacity: 1; }
-.book-fallback { position: absolute; left: 50%; top: 50%; height: 56%; width: auto; max-width: 70vw; object-fit: contain; transform: translate(-50%, -50%); border-radius: 2px 6px 6px 2px; box-shadow: -3px 0 0 #12301d, 0 40px 70px -24px rgba(0,0,0,0.7); transition: opacity 0.6s ease; }
+.book-fallback { position: absolute; left: 50%; top: 50%; height: 56%; aspect-ratio: 1100 / 1534; max-width: 70vw; transform: translate(-50%, -50%); border-radius: 2px 6px 6px 2px; overflow: hidden; background: #1c4229 center / cover no-repeat; box-shadow: -3px 0 0 #12301d, 0 40px 70px -24px rgba(0,0,0,0.7); transition: opacity 0.6s ease; }
+.book-fallback img { width: 100%; height: 100%; object-fit: cover; color: transparent; }
 .book-fallback.dold { opacity: 0; }
 
 .scroll-hint {
@@ -308,7 +309,7 @@ a { color: inherit; }
 .social-huvud-namn { font-weight: 600; font-size: 0.92rem; }
 .social-card-handle { font-size: 0.78rem; opacity: 0.7; }
 .social-huvud-pil { margin-left: auto; font-size: 1.2rem; color: var(--gold); }
-.social-ovriga { margin-top: 1rem; font-size: 0.8rem; color: var(--mid); display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.social-ovriga { margin-top: 1rem; font-size: 0.8rem; color: var(--mid); display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
 .social-ovriga a { color: var(--ink); font-weight: 500; text-decoration: none; min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; border-bottom: 1px solid var(--line); }
 .social-ovriga a:hover { color: var(--terra); border-color: var(--terra); }
 
@@ -327,7 +328,7 @@ a { color: inherit; }
 .cta-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
 .cta .kicker { color: var(--cream); }
 .cta .h2 { color: var(--cream); }
-.cta .h2 em { color: var(--gold-lt); }
+.cta .h2 em { color: var(--cream); }
 .cta .lead { color: var(--cream); }
 .cta-card { background: var(--cream); color: var(--ink); border-radius: 12px; padding: 2.2rem; }
 .cta-card-body { font-size: 0.92rem; color: var(--mid); margin-bottom: 1.2rem; }
@@ -458,6 +459,7 @@ a { color: inherit; }
   .slide-1 { justify-content: flex-start; padding-top: 11vh; }
   .kicker { font-size: 0.75rem; }
   .stage-cta { display: none; }
+  .book-fallback { top: 53%; height: 46%; }   /* samma plats som 3D-boken på telefon */
   .display-l1 { font-size: clamp(3.6rem, 19vw, 6rem); }
   .display-l2 { font-size: clamp(2rem, 11vw, 3.6rem); }
   .display-sub { font-size: 1.25rem; margin-top: 0.7rem; }
@@ -497,6 +499,20 @@ a { color: inherit; }
   .footer-top { grid-template-columns: 1fr; gap: 2rem; }
 }
 
+@media (min-width: 761px) and (max-height: 520px) {
+  .display-l1 { font-size: 21vh; }
+  .display-l2 { font-size: 13vh; }
+  .slide-1 .display-sub, .slide-side-1, .scroll-hint { display: none; }
+  .slide-1 .kicker { display: inline-flex; margin-bottom: 0.6rem; }
+  .slide-1 { justify-content: flex-start; padding-top: 16vh; }
+  .display-md { font-size: 7.5vh; }
+  .slide-body, .slide-quote { font-size: 0.85rem; margin-top: 0.6rem; }
+  .slide-2, .slide-3, .slide-4 { max-width: 34vw; }
+  .stage-cta { bottom: 5vh; gap: 0.5rem; }
+  .stage-cta .btn { min-height: 44px; padding: 0.55rem 1.2rem; }
+  .book-fallback { height: 62%; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scroll-line { animation: none; }
   html { scroll-behavior: auto; }
@@ -510,5 +526,10 @@ a { color: inherit; }
 .no-js .slide-1 { justify-content: flex-start; }
 .no-js .book-float { width: 100%; }
 .no-js .book-fallback { position: static; transform: none; height: auto; width: min(70vw, 340px); display: block; }
+.no-js .slide-1 { order: 0; } .no-js .book-float { order: 1; } .no-js .slide-side, .no-js .slide-2, .no-js .slide-3, .no-js .slide-4, .no-js .stage-cta { order: 2; }
+.no-js .site-header { background: rgba(244,235,220,0.96); color: var(--ink); position: sticky; }
+.no-js .nav-hamburger, .no-js .lang-toggle { display: none; }
 .no-js #bok-canvas, .no-js .scroll-hint { display: none; }
 .no-js .stage-cta { display: flex; }
+
+/* Receptsidan utan JavaScript (statiska recept) ligger i recept.html */

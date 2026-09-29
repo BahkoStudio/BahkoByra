@@ -116,7 +116,9 @@
       <!-- 3D-boken (Three.js). Faller tillbaka till en stillbild utan WebGL. -->
       <div class="book-float" id="book-float">
         <canvas id="bok-canvas" aria-label="Boken Maykas gröna kök, snurrar när du skrollar" role="img"></canvas>
-        <img class="book-fallback" id="book-fallback" src="img/bok-fram.jpg" alt="Maykas gröna kök – Kutle, hummus &amp; kärlek, bokomslag" width="1100" height="1534">
+        <div class="book-fallback" id="book-fallback" role="img" aria-label="Maykas gröna kök – Kutle, hummus &amp; kärlek, bokomslag" style="background-image:url(data:image/jpeg;base64,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)">
+          <img src="img/bok-fram.jpg" alt="" width="1100" height="1534" fetchpriority="high" onerror="this.style.visibility='hidden'">
+        </div>
       </div>
 
       <div class="scroll-hint" aria-hidden="true">
@@ -146,14 +148,14 @@
         <ul class="pelare">
           <li><strong data-i18n="inne.1t">Växtbaserat</strong><p data-i18n="inne.1b">Gröna rätter, uråldriga smaker.</p></li>
           <li><strong data-i18n="inne.2t">Påskfastan</strong><p data-i18n="inne.2b">Många recept skapade för påskfastan.</p></li>
-          <li><strong data-i18n="inne.3t">Farmors kapitel</strong><p data-i18n="inne.3b">En hyllning till kvinnorna bakom traditionen.</p></li>
+          <li><strong data-i18n="inne.3t">Kvinnokraft och rötter</strong><p data-i18n="inne.3b">Ett kapitel om Maykas farmor och kvinnorna i byn.</p></li>
         </ul>
 
         <div class="pris-rad">
           <a href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener" class="btn btn-terra btn-lg" data-i18n="inne.btn">Köp boken</a>
           <span class="pris">349 kr</span>
         </div>
-        <p class="via" data-i18n="via">Köps via Bokus.</p>
+        <p class="via" data-i18n="via">Köps via Bokus. Länken är en affiliatelänk.</p>
       </div>
 
       <figure class="inne-media">
@@ -168,7 +170,7 @@
 
     <div class="inne-band">
       <figure><img src="img/bok-bord.jpg" alt="Boken Maykas gröna kök på ett bord bland hummus, tunnbröd och persilja" loading="lazy" width="1600" height="1195"></figure>
-      <figure class="band-mitt"><img src="img/mayka-bokbord.jpg" alt="Mayka framför sin bok i Libris monter" loading="lazy" width="1000" height="1333"><figcaption data-i18n="band.cap">Mayka med boken i Libris monter.</figcaption></figure>
+      <figure class="band-mitt"><img src="img/mayka-bokbord.jpg" alt="Mayka framför sin bok" loading="lazy" width="1000" height="1333"><figcaption data-i18n="band.cap">Mayka med boken.</figcaption></figure>
       <figure><img src="img/mayka-hummus.jpg" alt="Mayka med två skålar hummus" loading="lazy" width="900" height="900"></figure>
     </div>
   </section>
@@ -205,7 +207,7 @@
       <li><strong>3K+</strong><span data-i18n="sp.yt">följare på YouTube</span></li>
       <li class="tal-total"><strong>283K+</strong><span data-i18n="sp.total">följare totalt</span></li>
     </ul>
-    <p class="tal-kalla" data-i18n="sp.src">Enligt Maykas mediakit, september 2026.</p>
+    <p class="tal-kalla" data-i18n="sp.src">Enligt Maykas mediakit.</p>
     <p class="brands"><span data-i18n="sp.brands">Har samarbetat med</span> <b>Le Creuset</b> <b>HelloFresh</b> <b>Weber</b> <b>Ankarsrum</b> <b>Fiskars</b></p>
   </section>
 
@@ -289,7 +291,7 @@
           <a href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener" class="btn btn-terra btn-lg" data-i18n="slut.btn">Köp boken</a>
           <span class="pris">349 kr</span>
         </div>
-        <p class="via" data-i18n="via">Köps via Bokus.</p>
+        <p class="via" data-i18n="via">Köps via Bokus. Länken är en affiliatelänk.</p>
         <span class="slut-isbn">ISBN 978-91-90032-09-1</span>
       </div>
     </div>
@@ -339,8 +341,8 @@
 
   <!-- ── FAST KÖPRAD (mobil) ── -->
   <a class="kopbar" id="kopbar" href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener">
-    <img src="img/bok-fram.jpg" alt="" width="30" height="42">
-    <span class="kopbar-text"><b data-i18n="kopbar.t">Köp boken</b><span data-i18n="kopbar.s">via Bokus</span></span>
+    <img src="img/bok-fram.jpg" alt="" width="30" height="42" onerror="this.style.visibility='hidden'">
+    <span class="kopbar-text"><b data-i18n="kopbar.t">Köp boken</b><span data-i18n="kopbar.s">via Bokus · affiliatelänk</span></span>
     <span class="kopbar-pris">349 kr</span>
   </a>
 
@@ -362,7 +364,7 @@
       </div>
       <div class="nl-popup-divider"><span data-i18n="popup.or">eller</span></div>
       <a href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener" class="nl-popup-book">
-        <img src="img/bok-fram.jpg" alt="" width="44" height="61">
+        <img src="img/bok-fram.jpg" alt="" width="44" height="61" onerror="this.style.visibility='hidden'">
         <div>
           <strong data-i18n="popup.book.title">Köp min bok</strong>
           <span data-i18n="popup.book.sub">Maykas gröna kök · 349 kr</span>

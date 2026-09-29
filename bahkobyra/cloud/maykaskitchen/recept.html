@@ -13,7 +13,7 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --green: #1C4229; --green-dk: #12301D;
-      --terra: #C4482B; --terra-dk: #A33A22;
+      --terra: #B23E24; --terra-dk: #962F19;
       --gold: #E3A93B; --gold-lt: #F1C76B;
       --cream: #F4EBDC; --cream-2: #EADFCB; --white: #FFFDF8;
       --ink: #14201A; --mid: #5B665E; --line: rgba(20,32,26,0.12);
@@ -160,6 +160,17 @@
     .site-footer { max-width: 1080px; margin: 0 auto; padding: 1.6rem 5vw 2.6rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; align-items: center; justify-content: space-between; border-top: 1px solid var(--beige); font-size: 0.78rem; color: var(--mid); }
     .site-footer a { color: var(--crimson); text-decoration: none; font-weight: 600; }
     .site-footer a:hover { text-decoration: underline; }
+    .recipe-badge-blogg { background: var(--green); color: var(--cream); }
+    .sr-lista { max-width: 760px; margin: 0 auto; padding: 1rem 5vw 5rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .sr-recept { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 0.4rem 1rem; }
+    .sr-recept summary { display: flex; align-items: center; gap: 0.9rem; min-height: 56px; cursor: pointer; list-style: none; padding: 0.4rem 0; }
+    .sr-recept summary img { width: 72px; height: 54px; object-fit: cover; border-radius: 8px; flex: none; }
+    .sr-recept summary b { display: block; font-family: var(--serif); font-size: 1.15rem; }
+    .sr-recept summary small { color: var(--mid); font-size: 0.8rem; }
+    .sr-recept h3 { font-family: var(--serif); font-size: 1.2rem; margin: 1rem 0 0.4rem; }
+    .sr-recept h4 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra); margin: 0.7rem 0 0.3rem; }
+    .sr-recept ul, .sr-recept ol { padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.6; }
+    .sr-recept p { font-size: 0.9rem; color: var(--mid); margin: 0.4rem 0; }
     .td-pixel { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
   </style>
   <script src="js/i18n.js"></script>
@@ -198,18 +209,142 @@
   <div class="not-found">
     <p data-i18n="r.loading">Laddar recept…</p>
   </div>
+  <!-- STATISKA RECEPT START -->
   <noscript>
     <style>.not-found { display: none; }</style>
     <div class="list-head">
+      <span class="kicker">Från Maykas blogg</span>
       <h1 class="list-title">Bloggrecept</h1>
-      <p class="list-sub">Recepten visas med JavaScript. Slå på JavaScript i webbläsaren, eller se Maykas recept på <a href="https://www.instagram.com/maykaskitchen/">Instagram</a>.</p>
+      <p class="list-sub">17 av Maykas bloggrecept. Tryck på ett recept för att öppna det. Kokboken är en egen samling med cirka 50 växtbaserade recept.</p>
+    </div>
+    <div class="sr-lista">
+      <details class="sr-recept" id="r-qrimyothe-munkar">
+        <summary><img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCMH3uifMpaES95dj1pBAJ4iwc3fNXxvqYhzGT" alt="" width="96" height="72" loading="lazy"><span><b>Qrimyothe – Mormors munkar 🍩</b><small>120 min · 20 portioner</small></span></summary>
+        <p>Mamma berättar om mormors kärlek i varje tugga ♥️ Det här receptet på Qrimyothe är mer än bara ingredienser – det är ett stycke historia från mitt hem, min kultur och framför allt från mitt hjärta.</p>
+        <h3>Ingredienser</h3><h4>Huvudingredienser</h4><ul><li>7 dl varmt vatten (minst 40°C)</li><li>1 paket torrjäst (ca 12 g)</li><li>2 msk socker</li><li>1 msk salt</li><li>16 dl vetemjöl (ca 960 g)</li><li>Olja till fritering</li></ul>
+        <h3>Tillagning</h3><h4>Förbered degen</h4><ol><li>Häll det varma vattnet i en stor bunke.</li><li>Tillsätt socker och torrjäst. Rör om och låt stå i 10 minuter tills det börjar bubbla.</li><li>Tillsätt salt och sedan mjölet lite i taget under omrörning.</li><li>Knåda degen tills den blir jämn och elastisk – ca 10 min för hand.</li></ol><h4>Jäsning</h4><ol><li>Täck bunken med plastfolie eller bakduk.</li><li>Låt degen jäsa i 1–1,5 timme på en varm plats tills den fördubblats.</li></ol><h4>Forma &amp; fritera</h4><ol><li>Häll lite olja på händerna, ta små bitar och forma till bollar eller ringar.</li><li>Hetta upp olja till ca 180°C i en djup kastrull.</li><li>Fritera tills gyllenbruna – vänd för jämn färg. Låt rinna av på papper.</li></ol><h4>Servering</h4><ol><li>Servera som de är eller pudra med florsocker.</li><li>Ringla sirap eller servera med glass, hallon och mynta 😍</li></ol>
+        <h3>Tips</h3><ul><li>Degen ska vara mjuk – tillsätt mer mjöl om klibbig</li><li>Oljans temperatur är avgörande – 180°C ger bäst resultat</li><li>Traditionellt med socker eller honung</li><li>Förvaras i lufttät behållare 2–3 dagar</li><li>Uppvärmda i ugn blir de extra goda</li></ul>
+      </details>
+      <details class="sr-recept" id="r-kikarts-tikka-masala">
+        <summary><img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCKJbVDrdNwFxeKMmirjvq6ZL34tbPu8S2X5Q9" alt="" width="96" height="72" loading="lazy"><span><b>Den krämigaste kikärts tikka masalan 🤯🔥</b><small>20 min · 4–6 portioner</small></span></summary>
+        <p>En gryta som kramar om både hjärta och smaklökar. Fullproppad med kryddor och värme, klar på bara 20 minuter. Helt vegansk – men så god att ingen märker det 😊</p>
+        <h3>Ingredienser</h3><h4>Huvudingredienser</h4><ul><li>1 gul lök, finhackad</li><li>3 vitlöksklyftor, finrivna</li><li>390g krossade tomater</li><li>5 dl vatten</li><li>2 × 380g kikärtor (avrunna och sköljda)</li><li>350g kokosmjölk</li><li>Rapsolja till stekning</li></ul><h4>Kryddor</h4><ul><li>1 msk salt</li><li>1 msk lökpulver</li><li>1 msk paprikapulver</li><li>1 tsk chiliflakes</li><li>1 msk malen ingefära</li><li>1 msk spiskummin</li><li>½ msk malen koriander</li><li>1 msk gurkmeja</li></ul>
+        <h3>Tillagning</h3><ol><li>Hetta upp rapsolja i en kastrull. Fräs löken tills mjuk och gyllene.</li><li>Tillsätt vitlöken och fräs en kort stund.</li><li>Häll i krossade tomater och vatten. Sjuda under lock ca 10 min.</li><li>Blanda ner alla kryddor och låt dem fräsa med.</li><li>Rör ner kikärtor och kokosmjölk. Sjuda på låg värme 10 min.</li><li>Servera med ris, naan eller som den är.</li></ol>
+        <h3>Tips</h3><ul><li>Extra gott med nybakat naan</li><li>Mixa hälften av kikärtorna för ännu krämigare konsistens</li><li>Smakar ännu bättre dagen efter</li><li>Kan frysas i 3 månader</li><li>Servera med basmatiris eller quinoa</li></ul>
+      </details>
+      <details class="sr-recept" id="r-lax-risbowl">
+        <summary><img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHC8y19NS5037zrR9qXSut4TKmZEpjlBcOhHew0" alt="" width="96" height="72" loading="lazy"><span><b>Kryddig lax- &amp; risbowl</b><small>45 min · 4 portioner</small></span></summary>
+        <p>Perfekt som fräsch vardagsmiddag eller lyxig lunch. Snabbt, enkelt och smakrikt – du vill göra den här om och om igen!</p>
+        <h3>Ingredienser</h3><h4>Laxen</h4><ul><li>500g färsk laxfilé</li><li>1 tsk salt</li><li>½ tsk cayennepeppar</li><li>1 tsk vitlökspulver</li></ul><h4>Riset</h4><ul><li>3 dl basmatiris</li><li>6 dl vatten</li><li>1 tsk salt</li></ul><h4>Primörgrönsaker</h4><ul><li>1 bunt sparris</li><li>1 påse mini morötter</li><li>3–4 salladslökar</li><li>5–6 rädisor</li><li>1 paket sockerärtor</li><li>1 vitlöksklyfta</li><li>1 tsk havssalt</li><li>1 krm chiliflakes</li><li>Rivet skal från ½ citron</li><li>1 msk olivolja</li></ul><h4>Honungs- &amp; senapsmajonnäs</h4><ul><li>1 dl majonnäs</li><li>2 tsk dijonsenap</li><li>1 tsk honung</li><li>1 krm cayennepeppar</li><li>Saft från ½ citron</li></ul>
+        <h3>Tillagning</h3><h4>Tillagning</h4><ol><li>Skär laxen i kuber och krydda med salt, cayenne och vitlökspulver. Tillaga i ugn 180°C i ca 15 min.</li><li>Koka riset: skölj, koka upp med saltat vatten, sänk värmen och sjuda 10 min.</li><li>Blanda majonnäs, dijonsenap, honung, cayenne och citronsaft till en slät sås.</li><li>Skär grönsakerna och fräs snabbt i olja med vitlök, salt, chili och citronzest.</li><li>Fördela ris i skålar, toppa med grönsaker och lax, ringla över såsen.</li></ol>
+        <h3>Tips</h3><ul><li>Byt lax mot tofu för veganskt alternativ</li><li>Förbered grönsakerna i förväg</li><li>Servera med extra citronklyftor</li><li>Avokado och marinerad rödlök passar också bra</li></ul>
+      </details>
+      <details class="sr-recept" id="r-kafta-bil-sejnie">
+        <summary><img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHC8zXxYz037zrR9qXSut4TKmZEpjlBcOhHew02" alt="" width="96" height="72" loading="lazy"><span><b>Kafta bil sejnie – Köttbullar i tomatsås</b><small>60 min · 5–6 portioner</small></span></summary>
+        <p>En traditionell rätt från Mellanöstern med saftiga köttbullar och potatis i en smakrik tomatsås.</p>
+        <h3>Ingredienser</h3><h4>Biffarna</h4><ul><li>450g nötfärs</li><li>1 liten gul lök, finskuren</li><li>½ liten gul paprika, finskuren</li><li>Näve persilja</li></ul><h4>Tomatsåsen</h4><ul><li>Stekta biffarna</li><li>450g delikatesspotatis</li><li>1 liter vatten</li><li>3 msk tomatpuré</li><li>3 msk kalvbuljong</li><li>1 tsk chiliflakes</li><li>1 nypa havsalt</li><li>1 tsk koriander</li></ul>
+        <h3>Tillagning</h3><h4>Tillagning</h4><ol><li>Blanda färs med grönsaker, forma till bollar och platta ut i handen.</li><li>Stek lätt i olja.</li><li>Tillsätt vatten och tomatpuré.</li><li>Halvera delikatesspotatisarna och lägg i grytan.</li><li>Tillsätt buljong och krydda med chiliflakes, salt och koriander.</li><li>Lägg på lock och låt koka klart.</li><li>Servera med ris och vermicellinudlar.</li></ol>
+        <h3>Tips</h3><ul><li>Autentiskt med ris och vermicellinudlar</li><li>Justera chiliflakes efter smak</li><li>Kan förberedas dagen innan</li><li>Spiskummin i färsen ger mer smak</li></ul>
+      </details>
+      <details class="sr-recept" id="r-kofta-bil-sanieh">
+        <summary><img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCGg5LVZ9bnLa0KVhUD3INroEj6yqmid4HwlYB" alt="" width="96" height="72" loading="lazy"><span><b>Köfta bil Sanieh</b><small>60 min · 8 portioner</small></span></summary>
+        <p>Mellanösterns vardagsfavorit med smak av hem. Kryddig köttfärs, potatis och padron paprika i mustig tomatsås.</p>
+        <h3>Ingredienser</h3><h4>Köftabiffarna</h4><ul><li>1 kg nötfärs (10–15% fetthalt)</li><li>2 salladslökar, finhackade</li><li>1 knippe persilja, finhackad</li><li>3 vitlöksklyftor</li><li>3 msk olivolja</li><li>1 msk salt</li><li>1 tsk svartpeppar</li><li>1 tsk garam masala</li></ul><h4>Grönsaker</h4><ul><li>Ca 4 fasta potatisar, skalade och klyvade</li><li>5–6 padron paprika</li></ul><h4>Tomatsås</h4><ul><li>3 dl vatten</li><li>1 msk tomatpuré</li><li>1 tsk lökpulver</li><li>1 tsk salt</li><li>1 tsk chiliflakes</li></ul>
+        <h3>Tillagning</h3><h4>Förbered järparna</h4><ol><li>Hacka lök, vitlök och persilja fint. Blanda med olivolja och kryddor. Knåda in i färsen och forma till järpar.</li></ol><h4>Förstek potatisen</h4><ol><li>Halvstekvpotatisskivorna i olja tills gyllenbruna men ej genomstekta.</li></ol><h4>Stek järparna</h4><ol><li>Snabbstek 1–2 min per sida för smak och form.</li></ol><h4>Grädda</h4><ol><li>Varva järpar och potatis i ugnsform. Häll tomatpuré och vatten över – krydda väl.</li><li>Baka 250°C ca 20 min, lägg på padron paprika och baka 15 min till.</li><li>Servera med ris eller bröd!</li></ol>
+        <h3>Tips</h3><ul><li>Garam masala finns i mellanösternbutiker</li><li>Padron kan bytas mot mild paprika</li><li>Smakar bättre dagen efter</li><li>Servera med basmatiris och yoghurt</li></ul>
+      </details>
+      <details class="sr-recept" id="r-pasta-pesto">
+        <summary><img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCfVuc1HC48dYxTFVG4qu9OSWrN21vZPBkJiCo" alt="" width="96" height="72" loading="lazy"><span><b>Pasta pesto med ugnsbakade tomater &amp; stekt halloumi</b><small>40 min · 4 portioner</small></span></summary>
+        <p>En smakrik, krämig och färgsprakande pastarätt med pesto, ugnsbakade tomater och stekt halloumi.</p>
+        <h3>Ingredienser</h3><h4>Ugnsbakade tomater</h4><ul><li>400g körsbärstomater</li><li>2 msk olivolja</li><li>1 tsk havssalt</li><li>1 krm svartpeppar</li></ul><h4>Såsen</h4><ul><li>1 gul lök</li><li>5 dl matgrädde</li><li>380g grön pesto</li><li>400g pasta</li></ul><h4>Topping</h4><ul><li>250g halloumi</li><li>1 knippe färsk basilika</li><li>Nymalen svartpeppar</li></ul>
+        <h3>Tillagning</h3><ol><li>Ugnsbaka tomater med olivolja och salt, 200°C i 15 min.</li><li>Koka pasta enligt anvisning – spara pastavattnet.</li><li>Fräs finhackad lök. Tillsätt grädde och låt puttra. Rör ner peston.</li><li>Vänd ner pasta i såsen, tillsätt lite pastavatten vid behov.</li><li>Stek halloumiskivor gyllene i torr panna.</li><li>Toppa med tomater, halloumi, basilika och svartpeppar.</li></ol>
+        <h3>Tips</h3><ul><li>Prova olika tomatfärger för vackrare presentation</li><li>Pastavatten binder såsen perfekt</li><li>Byt halloumi mot grillad zucchini för vegan</li><li>Soltorkade tomater ger annan smakprofil</li></ul>
+      </details>
+      <details class="sr-recept" id="r-kyckling-shawarma">
+        <summary><img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCG7jiQH9bnLa0KVhUD3INroEj6yqmid4HwlYB" alt="" width="96" height="72" loading="lazy"><span><b>Kyckling Shawarma</b><small>120 min · 5 portioner</small></span></summary>
+        <p>Autentisk mellanöstern kyckling shawarma med hemmagjorda tunnbröd, kryddigt kött och fräscha tillbehör.</p>
+        <h3>Ingredienser</h3><h4>Kycklingen</h4><ul><li>900g kycklinglårfilé</li><li>1 tsk spiskummin</li><li>1 tsk paprikapulver</li><li>1 tsk gurkmeja</li><li>1 tsk malen koriander</li><li>1 msk vitlökspulver</li><li>1 msk lökpulver</li><li>1 tsk cayennepeppar</li><li>1 tsk dragon</li><li>1 msk salt</li><li>1 tsk svartpeppar</li><li>1 msk tomatpuré</li></ul><h4>Vitlökssås</h4><ul><li>2,5 dl grekisk yoghurt</li><li>2 vitlöksklyftor (rivna)</li><li>Mynta och persilja, finhackad</li><li>1 tsk limesaft</li><li>Flingsalt</li></ul><h4>Löksallad</h4><ul><li>2 röda lökar</li><li>1 msk torkad persilja</li><li>1–2 tsk sumak</li><li>1 msk olivolja</li><li>Flingsalt</li></ul><h4>Tunnbröd (ca 5 st)</h4><ul><li>5,5 dl vetemjöl</li><li>2,5 dl ljummet vatten</li><li>1 tsk salt</li><li>15g färsk jäst</li></ul>
+        <h3>Tillagning</h3><h4>Marinera</h4><ol><li>Skär kycklingen i strimlor, blanda med alla kryddor och tomatpuré. Täck och ställ i kyl minst 1 timme.</li></ol><h4>Vitlökssås</h4><ol><li>Blanda yoghurt, riven vitlök, örter och limesaft. Smaka av med salt.</li></ol><h4>Löksallad</h4><ol><li>Skiva lök tunt. Blanda med persilja, sumak, olivolja och salt. Låt stå 10–15 min.</li></ol><h4>Tunnbröd</h4><ol><li>Lös jäst i vatten, tillsätt mjöl och salt. Knåda 8–10 min, jäs 1 timme.</li><li>Dela i 5 bitar, kavla tunt. Grädda i torr het panna ca 1 min per sida.</li></ol><h4>Tillaga &amp; servera</h4><ol><li>Stek kycklingen i het panna tills genomstekt.</li><li>Bygg shawarma: kyckling + grönsaker + vitlökssås i tunnbröd.</li></ol>
+        <h3>Tips</h3><ul><li>Marinera över natten för djupare smak</li><li>Tunnbröden kan frysas</li><li>Extra vitlökssås som dipp</li><li>Prova att grilla kycklingen för rökig smak</li></ul>
+      </details>
+      <details class="sr-recept" id="r-pannpizzor">
+        <summary><img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHC9IRZic42Pb4HZiuUEJYFXxpw0kyC8QIv7W2f" alt="" width="96" height="72" loading="lazy"><span><b>Snabba pannpizzor direkt i ugnsformen</b><small>90 min · 4–6 portioner</small></span></summary>
+        <p>Perfekt för kylskåpsrester! Enkel deg, valfria toppings – familjens favorit på nolltid.</p>
+        <h3>Ingredienser</h3><h4>Pizzadeg</h4><ul><li>5 dl ljummet vatten</li><li>25g färsk jäst</li><li>2 tsk salt</li><li>2 msk olivolja</li><li>ca 10–12 dl vetemjöl</li></ul><h4>Toppings</h4><ul><li>Tomatsås</li><li>Ost (mozzarella, cheddar)</li><li>Kylskåpsrester (skinka, grönsaker, champinjoner)</li><li>Örter (oregano, basilika)</li></ul>
+        <h3>Tillagning</h3><ol><li>Lös jästen i vattnet. Tillsätt salt och olivolja.</li><li>Arbeta in mjölet till en smidig lös deg. Jäs under duk 45–60 min.</li><li>Dela i 2 bitar, lägg på ugnsform med bakplåtspapper och tryck ut med fingrar.</li><li>Låt jäsa 20 min. Lägg på topping.</li><li>Grädda 230°C i 15–20 min. Njut! 😊</li></ol>
+        <h3>Tips</h3><ul><li>Perfekt för kylskåpsrester</li><li>Degen kan göras dagen innan</li><li>Prova oliver, paprika och champinjoner</li><li>Kan frysas efter gräddning</li></ul>
+      </details>
+      <details class="sr-recept" id="r-batata-harra">
+        <summary><img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCfWaFTn48dYxTFVG4qu9OSWrN21vZPBkJiCoK" alt="" width="96" height="72" loading="lazy"><span><b>Batata Harra – Friterad potatis med tomatsås</b><small>35 min · 4–6 portioner</small></span></summary>
+        <p>Kryddig libanesisk rätt med krispig potatis och het tomatsås. Perfekt som meze eller tillbehör!</p>
+        <h3>Ingredienser</h3><h4>Potatis</h4><ul><li>1 kg fast potatis</li><li>Rapsolja till fritering</li></ul><h4>Tomatsås</h4><ul><li>1,5 msk tomatpuré</li><li>2 msk rapsolja</li><li>1 msk lökpulver</li><li>½ msk svartpeppar</li><li>1 dl vatten</li><li>1,5 tsk salt</li><li>1 vitlöksklyfta</li><li>1,5 tsk chiliflakes</li><li>1 msk paprikapulver</li></ul><h4>Topping</h4><ul><li>Färsk persilja (finhackad)</li><li>Färsk mynta (finhackad)</li><li>Tajinkrydda efter smak</li></ul>
+        <h3>Tillagning</h3><h4>Fritera</h4><ol><li>Skala och tärna potatisen. Blötlägg i kallt vatten 5 min, torka noga.</li><li>Fritera tills gyllene och ca 80% klar. Lägg på papper.</li></ol><h4>Tomatsås</h4><ol><li>Stek tomatpurén i olja. Häll i vatten, krydda med allt.</li><li>Sjuda 1 min.</li></ol><h4>Slutför</h4><ol><li>Vänd ner potatisen i såsen.</li><li>Strö rikligt med persilja, mynta och tajinkrydda.</li><li>Servera varm med libabröd och hummus.</li></ol>
+        <h3>Tips</h3><ul><li>Torka potatisen noga för krispighet</li><li>Fritera inte helt färdigt – klart 80%</li><li>Tajinkrydda finns i mellanösternbutiker</li><li>Supergott med hummus och bröd</li></ul>
+      </details>
+      <details class="sr-recept" id="r-mini-lahmacun">
+        <summary><img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCFL7L57kjIHwnGYgUvXdix8ms3ac07hetyqO4" alt="" width="96" height="72" loading="lazy"><span><b>Mini Lahmacun – Perfekt mängd, noll svinn!</b><small>75 min · 15 portioner</small></span></summary>
+        <p>15 perfekta mini lahmacun. Frysvänliga, fyllda av smak och älskade av hela familjen!</p>
+        <h3>Ingredienser</h3><h4>Degen (ca 15 st)</h4><ul><li>4 dl varmt vatten (40°C)</li><li>1 tsk torrjäst</li><li>½ dl rapsolja</li><li>2 tsk salt</li><li>7 dl vetemjöl</li></ul><h4>Köttfärsfyllning</h4><ul><li>1 gul lök</li><li>1 kvisttomat</li><li>1 röd spetspaprika</li><li>1 grön paprika (gärna sivri)</li><li>350g nötfärs (eller 50/50 nöt/lamm)</li><li>1 msk paprikapulver</li><li>½ tsk svartpeppar</li></ul><h4>Montering</h4><ul><li>En näve färsk persilja</li></ul>
+        <h3>Tillagning</h3><h4>Degen</h4><ol><li>Blanda vatten, jäst och olja. Vänta 5 min. Tillsätt mjöl och salt.</li><li>Knåda till smidig deg. Jäs 15 min under duk.</li><li>Dela i 15 bitar och kavla ut tunna runda kakor.</li></ol><h4>Fyllning</h4><ol><li>Mixa alla grönsaker till puré. Blanda med köttfärs och kryddor. Knåda väl. Ställ i kyl.</li></ol><h4>Gräddning</h4><ol><li>Förvärm ugn till 250°C.</li><li>Bred ut köttfärsen tunt på degkakorna.</li><li>Grädda 8–10 min tills kanterna är gyllene.</li><li>Servera direkt eller frys in.</li></ol>
+        <h3>Tips</h3><ul><li>Frysvänliga – ta fram precis vad du behöver</li><li>50/50 nöt och lamm ger autentisk smak</li><li>Sivri paprika är mild och perfekt</li></ul>
+      </details>
+      <details class="sr-recept" id="r-lins-bulgur-jarpar">
+        <summary><img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCrZI4Zt1TCmP1dAHK4ioO3RwLkl5gtYD2IMbW" alt="" width="96" height="72" loading="lazy"><span><b>Lins- och bulgurjärpar med sumak och spetspaprika</b><small>45 min · 4–6 portioner</small></span></summary>
+        <p>Proteinrika vegetariska järpar med röda linser, bulgur och aromatiska kryddor från Mellanöstern.</p>
+        <h3>Ingredienser</h3><h4>Huvudingredienser</h4><ul><li>1 liter vatten</li><li>3 dl röda linser</li><li>6 dl finmalen bulgur</li><li>1,5 gul lök, finhackad</li><li>2 röda spetspaprikor, finhackade</li><li>5–6 salladslökar, finhackade</li><li>0,5 dl rapsolja</li><li>1–1,5 msk tomatpuré</li></ul><h4>Kryddor</h4><ul><li>2,5 tsk salt</li><li>1 msk sumak</li><li>1 tsk svartpeppar</li><li>1 tsk garam masala</li><li>1 tsk cayennepeppar</li></ul>
+        <h3>Tillagning</h3><h4>Koka linser och bulgur</h4><ol><li>Koka upp 1 liter vatten. Skölj linser och lägg i. Skumma.</li><li>Koka ca 10 min tills gröna. Stäng av värmen.</li><li>Skölj bulgur och rör ner. Låt svälla tills tjockt.</li></ol><h4>Grönsaksröran</h4><ol><li>Finhacka lök, paprika och salladslök.</li><li>Fräs gul lök i rapsolja tills mjuk.</li><li>Tillsätt paprika och tomatpuré, fräs 2 min.</li><li>Vänd ner salladslök och kryddor. Stek 5–7 min. Svalna.</li></ol><h4>Forma</h4><ol><li>Blanda lins-bulgur och grönsaksröran.</li><li>Tillsätt vatten om degen är torr – ska vara formbar.</li><li>Forma till järpar eller bollar.</li></ol>
+        <h3>Tips</h3><ul><li>Servera i libabröd med citron och sirap</li><li>Sumak ger syrlig smak – finns i mellanösternbutiker</li><li>Kan förberedas dagen innan</li></ul>
+      </details>
+      <details class="sr-recept" id="r-kall-foul-medames">
+        <summary><img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHCzNWv2DP9mAtjTsb7I6ZNyREunpVPwDz3h850" alt="" width="96" height="72" loading="lazy"><span><b>Kall foul medames</b><small>15 min · 4 portioner</small></span></summary>
+        <p>Fräsch och proteinrik sallad med kokta favabönor, färska örter och citron. Perfekt som meze eller lätt lunch!</p>
+        <h3>Ingredienser</h3><ul><li>2 burkar kokta bruna bönor eller favabönor (à 400g)</li><li>2–3 vitlöksklyftor, finhackade</li><li>1 liten lök, finhackad</li><li>1 stor tomat, hackad</li><li>1 grön chili, finhackad</li><li>1 dl färsk persilja, grovhackad</li><li>2–3 msk färsk salvia, finhackad</li><li>2 msk färsk mynta, finhackad</li><li>1 citron, saften</li><li>0,5 dl olivolja</li><li>Salt och svartpeppar</li></ul>
+        <h3>Tillagning</h3><ol><li>Skölj bönorna noga och häll av vätskan.</li><li>Lägg i skål och blanda med alla grönsaker.</li><li>Ringla citron och olivolja.</li><li>Krydda med örter, salt och peppar.</li><li>Rör om och låt stå 5–10 min.</li></ol>
+        <h3>Tips</h3><ul><li>Servera med libabröd</li><li>Kan göras dagen innan</li><li>Extra olivolja och citron vid servering</li><li>Prova med feta eller tahini</li></ul>
+      </details>
+      <details class="sr-recept" id="r-kycklingfile-potatis-dragon">
+        <summary><img src="https://j0bzpddd4j.ufs.sh/f/bwjssIq7FWHC8m7bPB037zrR9qXSut4TKmZEpjlBcOhHew02" alt="" width="96" height="72" loading="lazy"><span><b>Stekt kycklingfilé med smörslungad potatis &amp; dragonsås</b><small>60 min · 3–4 portioner</small></span></summary>
+        <p>Krämig dragonsås, saftig kyckling och smörstekta grönsaker – enkel men med känsla av vardagslyx.</p>
+        <h3>Ingredienser</h3><h4>Kyckling</h4><ul><li>3 kycklingfiléer</li><li>Salt och svartpeppar</li><li>Smör och olja till stekning</li><li>Färsk timjan eller rosmarin (valfritt)</li></ul><h4>Potatis &amp; grönsaker</h4><ul><li>800g delikatesspotatis</li><li>1 röd, 1 gul, 1 orange paprika</li><li>1 stor rödlök</li><li>Ca 300g brysselkål</li><li>50–75g smör</li><li>Salt och svartpeppar</li></ul><h4>Dragonsås</h4><ul><li>2 dl vispgrädde</li><li>1 dl crème fraîche</li><li>1–2 tsk dijonsenap</li><li>1 tsk vitvinsvinäger</li><li>1–2 tsk torkad dragon</li><li>Salt och svartpeppar</li></ul>
+        <h3>Tillagning</h3><h4>Kycklingen</h4><ol><li>Förvärm ugn 150°C. Krydda filéerna. Bryn i smör+olja 2–3 min/sida.</li><li>Lägg i ugnsform, tillsätt smör eller buljong. Tillaga till 70–72°C innetemperatur.</li><li>Låt vila 5–10 min.</li></ol><h4>Potatis &amp; grönsaker</h4><ol><li>Koka potatis nästan klar. Halvera. Förkoka brysselkål 3 min.</li><li>Stek potatis gyllenbrun. Tillsätt grönsaker, stek 10 min. Avsluta med smörklick.</li></ol><h4>Dragonsås</h4><ol><li>Koka grädde och crème fraîche. Vispa ner senap, dragon och vinäger.</li><li>Sjuda 5–10 min tills lätt tjocknat. Smaka av.</li></ol><h4>Servering</h4><ol><li>Skär kycklingen i sneda skivor. Lägg på grönsaker och ringla sås.</li></ol>
+        <h3>Tips</h3><ul><li>Kötttermometer ger perfekt resultat</li><li>Dragonsåsen kan göras i förväg</li><li>Zucchini och sparris passar också bra</li></ul>
+      </details>
+      <details class="sr-recept" id="r-friterad-kyckling-bbq">
+        <summary><img src="img/friterad-kyckling-bbq.jpg" alt="" width="96" height="72" loading="lazy"><span><b>Friterad kyckling med BBQ-glaze &amp; vitlöksmajonnäs 😍🔥</b><small>90 min · 4 portioner</small></span></summary>
+        <p>Krispig friterad kyckling penslad med en kladdig BBQ- och ketchupglaze, och en snabb vitlöksmajonnäs till. Vår perfekta fredagsmiddag!</p>
+        <h3>Ingredienser</h3><h4>Friterad kyckling</h4><ul><li>1 paket färska kycklingfiléer</li><li>4 dl grädde</li><li>½ dl soja</li><li>1 msk vitlökspulver</li><li>1 msk lökpulver</li><li>1 msk rökt paprikapulver</li><li>½ msk salt</li><li>Svartpeppar</li><li>3 msk chilisås</li></ul><h4>Panering</h4><ul><li>5–6 dl vetemjöl</li><li>1 msk vitlökspulver</li><li>1 msk lökpulver</li><li>1 msk chicken cajun-krydda</li><li>En nypa salt</li><li>Svartpeppar</li><li>Frityrolja</li></ul><h4>Vitlöksmajonnäs</h4><ul><li>1 dl majonnäs</li><li>½ tsk sesamolja</li><li>1 liten vitlöksklyfta, pressad</li><li>En nypa cayennepeppar</li><li>En nypa salt</li></ul><h4>BBQ- &amp; ketchupglaze</h4><ul><li>1 dl ketchup</li><li>½ dl soja</li><li>½ dl valfri BBQ-sås</li><li>Chili efter smak</li><li>Lite färskpressad lime</li></ul>
+        <h3>Tillagning</h3><h4>Marinera kycklingen</h4><ol><li>Skär kycklingfiléerna på mitten.</li><li>Blanda grädde, soja, vitlökspulver, lökpulver, rökt paprikapulver, salt, svartpeppar och chilisås.</li><li>Lägg ner kycklingen och blanda ordentligt så att alla bitar täcks.</li><li>Täck över och låt marinera i kylen i cirka 1 timme.</li></ol><h4>Panera &amp; fritera</h4><ol><li>Blanda allt till paneringen i en skål.</li><li>Ta kycklingen direkt från marinaden och vänd ordentligt i mjölblandningen. Tryck gärna in mjölet lite med händerna så får du en extra krispig och härlig yta.</li><li>Lägg de panerade kycklingbitarna på en plåt medan du panerar resten.</li><li>Hetta upp frityroljan till cirka 170–180°C och fritera kycklingen, gärna en bit åt gången, tills den är gyllene, krispig och helt genomstekt.</li><li>Förvara den färdigfriterade kycklingen varmt i ugnen medan du gör resten.</li></ol><h4>Vitlöksmajonnäs</h4><ol><li>Blanda ihop allt och smaka av. Enkelt och SÅ gott till kycklingen!</li></ol><h4>Glaze &amp; servering</h4><ol><li>Blanda ihop allt till glazen till en härligt kladdig sås.</li><li>Pensla den varma, krispiga kycklingen ordentligt med BBQ-glazen precis innan servering.</li></ol>
+        <h3>Tips</h3><ul><li>Tryck in mjölet med händerna – det ger en extra krispig yta</li><li>Fritera gärna en bit i taget så håller oljan temperaturen</li><li>Håll oljan på 170–180°C</li><li>Håll den färdiga kycklingen varm i ugnen medan du friterar resten</li><li>Pensla på glazen precis innan servering</li></ul>
+      </details>
+      <details class="sr-recept" id="r-humse-qarhone">
+        <summary><img src="img/humse-qarhone.jpg" alt="" width="96" height="72" loading="lazy"><span><b>Humse qarhone</b><small>60 min · 4 portioner</small></span></summary>
+        <p>En otroligt god, smakrik och proteinrik assyrisk/syriansk kikärtsgryta med bulgurbollar.</p>
+        <h3>Ingredienser</h3><h4>Bulgurbollar</h4><ul><li>2 dl bulgur, finmald</li><li>2 dl shiche, finmald</li><li>Vatten</li><li>0,5 dl mannagryn</li><li>2 tsk salt</li><li>2 tsk svartpeppar</li><li>1 msk torkad mynta</li></ul><h4>Tomatsås</h4><ul><li>1 gul lök, finhackad</li><li>3–4 klyftor vitlök, finhackade</li><li>3–4 msk olivolja</li><li>1 msk tomatpuré</li><li>Ca 1,5 l vatten</li><li>480 g kikärtor (i tetrapack)</li><li>0,5 msk citronpeppar</li><li>1 msk salt</li><li>1 msk paprikapulver</li><li>0,5 msk chiliflakes</li></ul>
+        <h3>Tillagning</h3><h4>Bulgurbollar</h4><ol><li>Blanda bulgursorterna och häll över vatten tills det täcker. Låt vila 20 minuter under lock.</li><li>Tillsätt mannagryn, salt, peppar och torkad mynta. Knåda tills degen håller ihop, tillsätt vatten gradvis.</li><li>Forma små bollar med fuktiga händer.</li></ol><h4>Tomatsås</h4><ol><li>Fräs lök och vitlök i olivolja.</li><li>Tillsätt tomatpurén och stek några minuter.</li><li>Häll i vatten och kryddor. Låt småkoka 10 minuter.</li><li>Sila och häll ner kikärtorna.</li><li>Tillsätt bulgurbollarna och låt småkoka 10 minuter.</li><li>Justera vätska, salt och peppar efter behov.</li></ol>
+        <h3>Tips</h3><ul><li>Servera med salladslök, mynta och pressad citron</li></ul>
+      </details>
+      <details class="sr-recept" id="r-hummus-x3">
+        <summary><img src="img/hummus-x3.jpg" alt="" width="96" height="72" loading="lazy"><span><b>Hummus x 3</b><small>20 min · 4–6 portioner</small></span></summary>
+        <p>Grundreceptet på min hummus, där kikärtornas karaktär får stå i rampljuset. Krämig, syrlig och supergod – plus två smaksättningar.</p>
+        <h3>Ingredienser</h3><h4>Grundrecept</h4><ul><li>800 g kikärtor (i tetrapack)</li><li>3 vitlöksklyftor</li><li>Saft från 2 citroner</li><li>0,5 msk salt</li><li>1 dl tahini/sesampasta</li><li>1 dl vatten</li></ul><h4>Smaksättning 1: paprika &amp; harissa</h4><ul><li>1,5 msk paprikapuré</li><li>1 msk harissa</li><li>Granatäppelkärnor</li><li>Krasse</li><li>Olivolja</li></ul><h4>Smaksättning 2: gurkmeja &amp; koriander</h4><ul><li>2 msk malen gurkmeja</li><li>1 tsk malen spiskummin</li><li>1 tsk korianderfrön</li><li>Olivolja</li><li>Kikärtor</li><li>Färsk mynta</li></ul>
+        <h3>Tillagning</h3><h4>Grundrecept</h4><ol><li>Skölj och låt kikärtorna rinna av, mixa dem sedan släta.</li><li>Tillsätt vitlöken och fortsätt mixa. Pressa i citronsaften, tillsätt salt och tahini. Tillsätt vattnet gradvis under mixning tills den blir krämig och binder ihop sig.</li><li>Lägg upp på ett fat, ringla över olivolja och avsluta med chiliflakes och sumak.</li></ol><h4>Smaksättning 1</h4><ol><li>Tillsätt 1,5 msk paprikapuré och 1 msk harissa till grundreceptet. Mixa en gång till.</li><li>Toppa med olivolja, granatäppelkärnor och krasse.</li></ol><h4>Smaksättning 2</h4><ol><li>Gör grundreceptet och tillsätt 2 msk gurkmeja, 1 tsk spiskummin och 1 tsk koriander. Mixa.</li><li>Servera toppad med olivolja, kikärtor och färsk mynta.</li></ol>
+        <h3>Tips</h3><ul><li>Gör grundreceptet först och dela sedan upp det om du vill göra flera smaker</li></ul>
+      </details>
+      <details class="sr-recept" id="r-lahmo-do-bayto">
+        <summary><img src="img/lahmo-do-bayto.jpg" alt="" width="96" height="72" loading="lazy"><span><b>Lahmo do bayto</b></span></summary>
+        <p>Mjukt hembakat bröd – assyriskt/syrianskt husets bröd. Mjuk, smidig deg som gräddas till gyllene, fluffiga bröd.</p>
+        <h3>Ingredienser</h3><h4>Deg</h4><ul><li>50 g färsk jäst</li><li>8 dl fingervarmt vatten</li><li>1 msk salt</li><li>¾ dl rapsolja</li><li>Ca 17–18 dl vetemjöl</li></ul>
+        <h3>Tillagning</h3><h4>Gör degen</h4><ol><li>Smula jästen i en stor bunke och lös upp den i det fingervarma vattnet.</li><li>Tillsätt salt och rapsolja.</li><li>Arbeta in mjölet lite i taget. Börja med cirka 16 dl och tillsätt mer vid behov. Degen ska vara mjuk, smidig och gärna lite klibbig – undvik att tillsätta för mycket mjöl.</li><li>Knåda degen ordentligt och låt den jäsa övertäckt tills den har ungefär dubblat sin storlek.</li></ol><h4>Forma och grädda</h4><ol><li>Dela degen i lika stora bitar och forma dem till runda bröd. Ha lite olja på händerna och platta försiktigt till bröden.</li><li>Lägg bröden på en plåt med bakplåtspapper och låt jäsa ytterligare 30 minuter.</li><li>Grädda i 220°C varmluft i cirka 20 minuter, eller tills bröden har fått en fin gyllene färg.</li></ol>
+        <h3>Tips</h3><ul><li>Degen ska vara lite klibbig – för mycket mjöl ger torrt bröd</li><li>Olja på händerna gör det lätt att forma bröden</li><li>Gräddas i 220°C varmluft, cirka 20 minuter</li></ul>
+      </details>
     </div>
   </noscript>
+  <!-- STATISKA RECEPT SLUT -->
 </main>
 
 <a class="kopbar" href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener">
   <img src="img/bok-fram.jpg" alt="" width="30" height="42">
-  <span class="kopbar-text"><b data-i18n="kopbar.t">Köp boken</b><span data-i18n="kopbar.s">via Bokus</span></span>
+  <span class="kopbar-text"><b data-i18n="kopbar.t">Köp boken</b><span data-i18n="kopbar.s">via Bokus · affiliatelänk</span></span>
   <span class="kopbar-pris">349 kr</span>
 </a>
 
@@ -579,7 +714,7 @@ function render() {
     <div class="recipe-hero">
       <div class="recipe-hero-img"><img src="${r.image}" alt="${title}" loading="eager"></div>
       <div class="recipe-hero-content">
-        <div class="recipe-badges">${r.badges.map(b => `<span class="recipe-badge-tag">${b}</span>`).join('')}</div>
+        <div class="recipe-badges"><span class="recipe-badge-tag recipe-badge-blogg">${tv('Bloggrecept', 'Blog recipe')}</span>${r.badges.map(b => `<span class="recipe-badge-tag">${b}</span>`).join('')}</div>
         <h1 class="recipe-title">${title}</h1>
         <p class="recipe-desc">${description}</p>
         <div class="recipe-meta">
@@ -612,7 +747,7 @@ function render() {
       <img src="img/bok-fram.jpg" alt="" width="72" height="100">
       <div>
         <strong>${tv('Maykas kokbok', 'Mayka’s cookbook')}</strong>
-        <p>${tv('Maykas gröna kök. Cirka 50 växtbaserade recept, inbunden, 349 kr via Bokus.', 'Maykas gröna kök. About 50 plant-based recipes, hardcover, 349 SEK via Bokus.')}</p>
+        <p>${tv('Det här är ett bloggrecept. Kokboken Maykas gröna kök är en egen samling med cirka 50 växtbaserade recept. Inbunden, 349 kr via Bokus (affiliatelänk).', 'This is a blog recipe. The cookbook Maykas gröna kök is a separate collection of about 50 plant-based recipes. Hardcover, 349 SEK via Bokus (affiliate link).')}</p>
       </div>
       <a href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener">${tv('Köp boken', 'Buy the book')}</a>
     </aside>`;

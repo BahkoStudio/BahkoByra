@@ -200,7 +200,7 @@
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       const tan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-      const dH = H / (0.56 * 2 * tan);
+      const dH = H / ((h < 520 && w > h ? 0.62 : 0.56) * 2 * tan);
       const dW = W / (0.70 * 2 * tan * camera.aspect);
       const d = Math.max(dH, dW);
       camera.position.set(0, 0, d);
