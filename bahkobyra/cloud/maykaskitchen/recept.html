@@ -32,11 +32,12 @@
 
     /* ── HEADER ── */
     .site-header { position: sticky; top: 0; z-index: 100; padding: 0.9rem 5vw; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: rgba(244,235,220,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-    .nav-logo { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: 0.04em; display: inline-flex; align-items: center; min-height: 44px; }
+    .nav-logo { font-family: var(--serif); font-size: clamp(1.05rem, 5.2vw, 1.45rem); font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: 0.04em; display: inline-flex; align-items: center; min-height: 44px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .nav-mini { display: flex; gap: 1.6rem; list-style: none; }
     .nav-mini a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; opacity: 0.85; padding: 0.4rem 0; }
     .nav-mini a:hover { opacity: 1; color: var(--terra); }
-    .nav-right { display: flex; align-items: center; gap: 0.7rem; }
+    .nav-right { display: flex; align-items: center; gap: 0.5rem; flex: none; }
+    @media (max-width: 480px) { .back-btn span { display: none; } .back-btn { padding: 0.4rem 0.8rem; } }
     .nav-buy { display: inline-flex; align-items: center; min-height: 40px; padding: 0.5rem 1.1rem; border-radius: 999px; background: var(--terra); color: var(--cream); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-decoration: none; }
     .nav-buy:hover { background: var(--terra-dk); }
     .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; font-size: 0.8rem; font-weight: 500; color: var(--ink); text-decoration: none; padding: 0.4rem 1rem; border: 1.5px solid var(--line); border-radius: 999px; transition: background 0.2s, color 0.2s; }
@@ -201,7 +202,7 @@
   </ul>
   <div class="nav-right">
     <button class="lang-toggle" id="lang-toggle">EN</button>
-    <a class="back-btn" id="back-btn" href="recept.html" hidden>
+    <a class="back-btn" id="back-btn" href="recept.html" aria-label="Tillbaka till alla recept" hidden>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       <span data-i18n="back">Tillbaka</span>
     </a>
