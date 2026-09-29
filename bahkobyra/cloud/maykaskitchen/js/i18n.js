@@ -18,7 +18,6 @@
       'hero.t1':     'Maykas',
       'hero.t2':     'gröna kök',
       'hero.sub':    'Kutle, hummus &amp; kärlek',
-      'hero.body':   'Mayka Gulos debutbok, där det gröna köket möter tusenåriga traditioner.',
       'hero.btn':    'Köp min bok här',
       'hero.btn2':   'Gratis bloggrecept',
       'hero.scroll': 'Skrolla',
@@ -112,7 +111,9 @@
       'footer.nl.tack':        'Tack! Du är anmäld.',
       'nl.fel':                'Det gick inte att skicka. Försök igen om en stund.',
       'footer.copy':           '© 2026 MaykasKitchen. Alla rättigheter förbehållna.',
-      'footer.made':           'Skapad med ♥ i Sverige',
+      'footer.made':           'Skapad med ♥ i Skåne, Sverige',
+      'footer.priv':           'Integritet och kakor',
+      'nl.integritet':         'Adressen används bara till nyhetsbrevet och du kan avsluta när du vill. <a href="integritet.html">Så hanterar vi dina uppgifter</a>.',
 
       /* POPUP */
       'popup.title':       'Matglädje<br><em>direkt i din inkorg</em>',
@@ -173,7 +174,6 @@
       'tag.pizza': 'Pizza',
       'tag.potatis': 'Potatis',
       'tag.protein': 'Protein',
-      'tag.syriskt': 'Syriskt',
       'tag.turkiskt': 'Turkiskt',
       'tag.vardagslyx': 'Vardagslyx'
     },
@@ -193,7 +193,6 @@
       'hero.t1':     'Maykas',
       'hero.t2':     'gröna kök',
       'hero.sub':    'Kutle, hummus &amp; kärlek',
-      'hero.body':   'Mayka Gulo’s debut cookbook, in Swedish, where the green kitchen meets thousand-year-old traditions.',
       'hero.btn':    'Buy my book here',
       'hero.btn2':   'Free blog recipes',
       'hero.scroll': 'Scroll',
@@ -287,7 +286,9 @@
       'footer.nl.tack':        'Thank you! You are signed up.',
       'nl.fel':                'It could not be sent. Please try again in a moment.',
       'footer.copy':           '© 2026 MaykasKitchen. All rights reserved.',
-      'footer.made':           'Made with ♥ in Sweden',
+      'footer.made':           'Made with ♥ in Skåne, Sweden',
+      'footer.priv':           'Privacy and cookies',
+      'nl.integritet':         'Your address is only used for the newsletter and you can unsubscribe at any time. <a href="integritet.html">How we handle your data</a>.',
 
       /* POPUP */
       'popup.title':       'Food joy<br><em>straight to your inbox</em>',
@@ -348,7 +349,6 @@
       'tag.pizza': 'Pizza',
       'tag.potatis': 'Potato',
       'tag.protein': 'Protein',
-      'tag.syriskt': 'Syrian',
       'tag.turkiskt': 'Turkish',
       'tag.vardagslyx': 'Everyday luxury'
     }

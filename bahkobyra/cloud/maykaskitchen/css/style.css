@@ -587,3 +587,9 @@ a { color: inherit; }
 
 /* Förstorad text på mellanstora skärmar: loggan krymper hellre än klipps */
 @media (min-width: 961px) and (max-width: 1180px) { .nav-logo { font-size: clamp(1.05rem, 2.45vw, 1.45rem); } }
+
+/* ── Nyhetsbrev: vad adressen används till ── */
+.nl-integritet { margin-top: 0.7rem; font-size: 0.72rem; line-height: 1.5; color: var(--mid); }
+.nl-integritet a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.footer-newsletter .nl-integritet { color: rgba(244,235,220,0.78); }
+.footer-priv { color: inherit; text-decoration: underline; text-underline-offset: 2px; }

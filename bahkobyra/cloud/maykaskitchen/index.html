@@ -20,16 +20,6 @@
   <link rel="preload" as="image" href="img/bok-fram.jpg">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/i18n.js"></script>
-  <script>
-    /* Annonsskriptet (Maykas AdSense) laddas när sidan är klar, så det inte bromsar första skärmen. */
-    window.addEventListener('load', function () {
-      setTimeout(function () {
-        var a = document.createElement('script'); a.async = true; a.crossOrigin = 'anonymous';
-        a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4880340628636698';
-        document.head.appendChild(a);
-      }, 2500);
-    });
-  </script>
 </head>
 <body>
 
@@ -85,7 +75,6 @@
 
       <div class="slide-side slide-side-1 is-on" data-slide="1">
         <span class="kicker side-kicker" data-i18n="hero.kicker">Kokboken · Libris förlag</span>
-        <p class="side-text" data-i18n="hero.body">Mayka Gulos debutbok, där det gröna köket möter tusenåriga traditioner.</p>
       </div>
 
       <div class="slide slide-2" data-slide="2">
@@ -167,7 +156,7 @@
     </div>
 
     <div class="inne-band">
-      <figure><img src="img/bok-bord.jpg" alt="Boken Maykas gröna kök på ett bord bland hummus, tunnbröd och persilja" loading="lazy" width="1600" height="1195"></figure>
+      <figure><img src="img/bok-hylla.jpg" alt="Maykas gröna kök på hyllan i förlaget Libris monter" loading="lazy" width="800" height="1000"></figure>
       <figure class="band-mitt"><img src="img/mayka-bokbord.jpg" alt="Mayka framför sin bok" loading="lazy" width="1000" height="1333"></figure>
       <figure><img src="img/mayka-hummus.jpg" alt="Mayka med två skålar hummus" loading="lazy" width="900" height="900"></figure>
     </div>
@@ -289,7 +278,7 @@
   <section id="slut" class="slut">
     <div class="seam" aria-hidden="true"><span></span><i></i><span></span></div>
     <div class="slut-inner">
-      <img class="slut-bok" src="img/bok-hander.jpg" alt="Två händer håller boken Maykas gröna kök" loading="lazy" width="1100" height="1473">
+      <img class="slut-bok" src="img/bok-fram.jpg" alt="Omslaget till Maykas gröna kök – Kutle, hummus &amp; kärlek" loading="lazy" width="1100" height="1534">
       <div class="slut-text">
         <span class="kicker" data-i18n="slut.kicker">Kokboken</span>
         <h2 class="display display-md slut-title" data-i18n="slut.title">Maykas <em>gröna kök</em></h2>
@@ -333,13 +322,15 @@
           <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="display:none">
           <button type="submit" data-i18n="footer.nl.btn">Prenumerera</button>
         </form>
+        <p class="nl-integritet" data-i18n="nl.integritet">Adressen används bara till nyhetsbrevet och du kan avsluta när du vill. <a href="integritet.html">Så hanterar vi dina uppgifter</a>.</p>
         <p class="nl-tack" id="footer-nl-tack" role="status" hidden data-i18n="footer.nl.tack">Tack! Du är anmäld.</p>
         <p class="nl-fel" id="footer-nl-fel" role="alert" hidden data-i18n="nl.fel">Det gick inte att skicka. Försök igen om en stund.</p>
       </div>
     </div>
     <div class="footer-bottom">
       <span data-i18n="footer.copy">© 2026 MaykasKitchen. Alla rättigheter förbehållna.</span>
-      <span data-i18n="footer.made">Skapad med ♥ i Sverige</span>
+      <span data-i18n="footer.made">Skapad med ♥ i Skåne, Sverige</span>
+      <a class="footer-priv" href="integritet.html" data-i18n="footer.priv">Integritet och kakor</a>
       <span class="footer-by">Hemsida av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
     </div>
   </footer>
@@ -363,6 +354,7 @@
         <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="display:none">
         <button type="submit" data-i18n="popup.btn">Prenumerera gratis</button>
       </form>
+      <p class="nl-integritet" data-i18n="nl.integritet">Adressen används bara till nyhetsbrevet och du kan avsluta när du vill. <a href="integritet.html">Så hanterar vi dina uppgifter</a>.</p>
       <p class="nl-fel" id="nl-popup-fel" role="alert" hidden data-i18n="nl.fel">Det gick inte att skicka. Försök igen om en stund.</p>
       <div class="nl-popup-success" id="nl-popup-success" hidden>
         <span data-i18n="popup.success"><span>✓</span> Tack! Du är nu med i gemenskapen 🌿</span>
