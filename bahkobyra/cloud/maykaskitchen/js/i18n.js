@@ -66,7 +66,7 @@
       'sp.tt':     'följare på TikTok',
       'sp.fb':     'följare på Facebook',
       'sp.yt':     'följare på YouTube',
-      'sp.total':  'följare totalt',
+      'sp.total':  'total räckvidd över alla kanaler',
       'sp.brands': 'Har samarbetat med',
 
       /* OM MAYKA */
@@ -103,7 +103,7 @@
       'collab.i6':  'Ambassadörskap och långsiktiga samarbeten',
 
       /* FOOTER */
-      'footer.tagline':        'Mat från hjärtat &amp; tro i själen.<br>Assyriska/Syrianska rötter, alltid lagat med kärlek.',
+      'footer.tagline':        'Recept, livsstil och äkta stunder<br>med hjärtat i min assyriska/syrianska matkultur.',
       'footer.explore':        'Utforska',
       'footer.nl.title':       'Nyhetsbrev',
       'footer.nl.p':           'Få nya recept och matinspiration direkt i din inkorg!',
@@ -112,11 +112,11 @@
       'footer.nl.tack':        'Tack! Du är anmäld.',
       'nl.fel':                'Det gick inte att skicka. Försök igen om en stund.',
       'footer.copy':           '© 2026 MaykasKitchen. Alla rättigheter förbehållna.',
-      'footer.made':           'Skapad med ♥ i Skåne, Sverige',
+      'footer.made':           'Skapad med ♥ i Sverige',
 
       /* POPUP */
       'popup.title':       'Matglädje<br><em>direkt i din inkorg</em>',
-      'popup.sub':         'Nya recept och säsongsinspiration, gratis varje månad.',
+      'popup.sub':         'Nya recept och matinspiration från mitt kök.',
       'popup.placeholder': 'Din e-postadress',
       'popup.btn':         'Prenumerera gratis',
       'popup.success':     '<span>✓</span> Tack! Du är nu med i gemenskapen 🌿',
@@ -162,7 +162,20 @@
       'tag.dessert':       'Dessert',
       'tag.mellanostern':  'Mellanöstern',
       'tag.hemlagat':      'Hemlagat',
-      'tag.grill':         'Grill'
+      'tag.grill':         'Grill',
+      'tag.bbq': 'BBQ',
+      'tag.familj': 'Familj',
+      'tag.halsosam': 'Hälsosam',
+      'tag.indiskt': 'Indiskt',
+      'tag.klassisk': 'Klassisk',
+      'tag.libanesiskt': 'Libanesiskt',
+      'tag.pasta': 'Pasta',
+      'tag.pizza': 'Pizza',
+      'tag.potatis': 'Potatis',
+      'tag.protein': 'Protein',
+      'tag.syriskt': 'Syriskt',
+      'tag.turkiskt': 'Turkiskt',
+      'tag.vardagslyx': 'Vardagslyx'
     },
 
     en: {
@@ -179,8 +192,8 @@
       'hero.kicker': 'The cookbook · Libris publishing',
       'hero.t1':     'Maykas',
       'hero.t2':     'gröna kök',
-      'hero.sub':    'Kutle, hummus &amp; love',
-      'hero.body':   'Mayka Gulo’s debut cookbook, where the green kitchen meets thousand-year-old traditions.',
+      'hero.sub':    'Kutle, hummus &amp; kärlek',
+      'hero.body':   'Mayka Gulo’s debut cookbook, in Swedish, where the green kitchen meets thousand-year-old traditions.',
       'hero.btn':    'Buy my book here',
       'hero.btn2':   'Free blog recipes',
       'hero.scroll': 'Scroll',
@@ -198,7 +211,7 @@
 
       /* WHAT’S INSIDE */
       'inne.kicker': 'What’s inside',
-      'inne.title':  'Kutle, hummus <em>&amp; love</em>',
+      'inne.title':  'Kutle, hummus <em>&amp; kärlek</em>',
       'inne.body':   'In her debut cookbook Mayka Gulo invites you into a kitchen that joins the old and the new.',
       'inne.1t':     'Plant-based',
       'inne.1b':     'Green dishes, ancient flavours.',
@@ -228,7 +241,7 @@
       'sp.tt':     'followers on TikTok',
       'sp.fb':     'followers on Facebook',
       'sp.yt':     'followers on YouTube',
-      'sp.total':  'followers in total',
+      'sp.total':  'total reach across all channels',
       'sp.brands': 'Has worked with',
 
       /* ABOUT */
@@ -242,7 +255,7 @@
       /* CLOSING */
       'slut.kicker': 'The cookbook',
       'slut.title':  'Maykas <em>gröna kök</em>',
-      'slut.body':   'Kutle, hummus &amp; love.',
+      'slut.body':   'Kutle, hummus &amp; kärlek.',
       'slut.btn':    'Order my book',
       'kopbar.t': 'Buy my book here',
 
@@ -265,7 +278,7 @@
       'collab.i6':  'Ambassadorships and long-term partnerships',
 
       /* FOOTER */
-      'footer.tagline':        'Food from the heart &amp; faith in the soul.<br>Assyrian/Syriac roots, always cooked with love.',
+      'footer.tagline':        'Recipes, lifestyle and real moments,<br>rooted in my Assyrian/Syriac food culture.',
       'footer.explore':        'Explore',
       'footer.nl.title':       'Newsletter',
       'footer.nl.p':           'Get new recipes and food inspiration straight to your inbox!',
@@ -274,17 +287,17 @@
       'footer.nl.tack':        'Thank you! You are signed up.',
       'nl.fel':                'It could not be sent. Please try again in a moment.',
       'footer.copy':           '© 2026 MaykasKitchen. All rights reserved.',
-      'footer.made':           'Made with ♥ in Skåne, Sweden',
+      'footer.made':           'Made with ♥ in Sweden',
 
       /* POPUP */
       'popup.title':       'Food joy<br><em>straight to your inbox</em>',
-      'popup.sub':         'New recipes and seasonal inspiration, free every month.',
+      'popup.sub':         'New recipes and food inspiration from my kitchen.',
       'popup.placeholder': 'Your email address',
       'popup.btn':         'Subscribe for free',
       'popup.success':     '<span>✓</span> Thank you! You’re now part of the community 🌿',
       'popup.or':          'or',
       'popup.book.title':  'Buy my book',
-      'popup.book.sub':    'Maykas gröna kök · 349 SEK',
+      'popup.book.sub':    'Maykas gröna kök · 349 kr',
 
       /* RECIPE PAGE */
       'back':           'Back',
@@ -324,7 +337,20 @@
       'tag.dessert':       'Dessert',
       'tag.mellanostern':  'Middle East',
       'tag.hemlagat':      'Homemade',
-      'tag.grill':         'Grill'
+      'tag.grill':         'Grill',
+      'tag.bbq': 'BBQ',
+      'tag.familj': 'Family',
+      'tag.halsosam': 'Healthy',
+      'tag.indiskt': 'Indian',
+      'tag.klassisk': 'Classic',
+      'tag.libanesiskt': 'Lebanese',
+      'tag.pasta': 'Pasta',
+      'tag.pizza': 'Pizza',
+      'tag.potatis': 'Potato',
+      'tag.protein': 'Protein',
+      'tag.syriskt': 'Syrian',
+      'tag.turkiskt': 'Turkish',
+      'tag.vardagslyx': 'Everyday luxury'
     }
   };
 
