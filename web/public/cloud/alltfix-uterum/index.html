@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Alltfix — Designa ditt uterum i 3D</title>
-<meta name="description" content="Välj mått, tak, glaspartier och färg och se ditt uterum mot huset i 3D. Prototyp för Alltfix Stockholm AB.">
+<meta name="description" content="Välj mått, tak, golv, glaspartier och färg och se ditt uterum mot huset i 3D. Prototyp för Alltfix Stockholm AB.">
 <meta name="theme-color" content="#1C1C30">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,7 +74,7 @@ button{background:none;border:0;cursor:pointer}
 .marke img{height:30px;width:auto;display:block}
 .marke span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);border-left:1px solid var(--linje2);padding-left:12px;white-space:nowrap}
 .vyer{margin:0 auto;display:flex;padding:5px;gap:4px}
-.vyer button{height:42px;padding:0 18px;border-radius:12px;font-weight:500;color:var(--text2)}
+.vyer button{height:44px;padding:0 18px;border-radius:12px;font-weight:500;color:var(--text2)}
 .vyer button[aria-pressed="true"]{background:var(--guld);color:var(--marin)}
 .vyer button:not([aria-pressed="true"]):hover{color:var(--text);background:rgba(255,255,255,.07)}
 .dela{height:52px;padding:0 18px;display:flex;align-items:center;gap:8px;font-weight:500}
@@ -85,22 +85,84 @@ button{background:none;border:0;cursor:pointer}
    och då finns ingen rullning att komma tillbaka med (Mathias 2026-09-28: LED och insektsnät
    kastade ner panelen till bokningsknappen). */
 .panel{position:fixed;z-index:10;top:84px;left:20px;bottom:20px;width:var(--panel);display:flex;flex-direction:column;overflow:hidden;overflow:clip}
-.panel-inre{flex:1;overflow-y:auto;padding:22px 22px 8px;-webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(180deg,#000 calc(100% - 36px),transparent);scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
+.panel-inre{flex:1;overflow-y:auto;padding:16px 22px 44px;-webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(180deg,#000 calc(100% - 36px),transparent);scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent;
+  /* tangentbordsfokus skrollas fram ovanför den tonade nederkanten, med plats för fokusramen */
+  scroll-padding-block:12px 48px}
 .panel h1{font-size:24px;line-height:1.2;font-weight:700;letter-spacing:-.01em}
 .panel h1 em{font-style:normal;color:var(--guldtext)}
 .ingress{color:var(--text2);margin-top:6px}
 .sek{margin-top:22px;padding-top:18px;border-top:1px solid var(--linje)}
 .sek h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--guldtext);font-weight:600;margin-bottom:12px}
 
+/* ---------- stegen: fem flikar, ett steg i taget (som Rensons flikrad) ---------- */
+.panel-topp{flex:none;padding:18px 22px 0}
+.panel-topp .ingress{font-size:13px;margin-top:4px}
+.flikar{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:12px;padding:4px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid var(--linje)}
+.flik{min-height:48px;border-radius:10px;padding:4px 2px;font-size:13px;font-weight:600;line-height:1.15;color:var(--text2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:background var(--snabb),color var(--snabb)}
+.flik small{display:block;font-size:11px;font-weight:500;opacity:.85;margin-bottom:1px}
+.flik[aria-selected="true"]{background:var(--guld);color:var(--marin)}
+.flik:not([aria-selected="true"]):hover{color:var(--text);background:rgba(255,255,255,.08)}
+.fas > .sek:first-child{margin-top:0;padding-top:0;border-top:0}
+.nasta{margin-top:20px;width:100%;min-height:48px;border-radius:12px;border:1px solid var(--guld);color:var(--text);font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px}
+.nasta:hover{background:rgba(197,165,114,.14)}
+/* min och max vid reglagets ändar, som i Rensons fält */
+.granser{display:flex;justify-content:space-between;margin:-10px 0 6px;font-size:12px;color:var(--text2);font-variant-numeric:tabular-nums}
+.grans-not{margin-top:8px;padding:6px 10px;border-radius:10px;background:rgba(197,165,114,.12);border:1px solid rgba(197,165,114,.4);font-size:12px;color:var(--text)}
+/* summeringen: vad som ingår och tillvalen, båda alltid utfällda */
+.sum{margin-bottom:6px}
+.sum p{color:var(--text2);font-size:13px}
+.sum .sum-matt{margin-bottom:6px}
+.sum-rad{display:grid;grid-template-columns:62px 1fr;column-gap:8px;padding:5px 0;border-top:1px solid var(--linje);line-height:1.45}
+.sum-rad > span:last-child{color:var(--text)}
+.sum-et{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--text2);padding-top:1px}
+.sum-et.till{color:var(--guldtext)}
+/* Dator: panelen har flikraden och summeringen fast, så valen får mer höjd när måttets
+   − [ cm ] + står på samma rad som namnet och stegets rubrik bara läses upp (fliken bär namnet). */
+@media (min-width:861px){
+  .panel-topp{padding-top:14px}
+  .panel-topp .ingress{display:none}
+  .panel h1{font-size:21px}
+  .flikar{margin-top:10px}
+  .flik{min-height:44px}
+  .fas > .sek:first-child > h2{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .reglage{display:grid;grid-template-columns:1fr auto;column-gap:10px;align-items:center}
+  .reglage > label{grid-column:1;grid-row:1;margin:0}
+  .reglage > label output{display:none}
+  .reglage > .stegrad{grid-column:2;grid-row:1;width:204px;margin:0}
+  /* sista rundan: 178 px gav fältet 19 px och "500 cm" syntes som "50 cm" */
+  .reglage > .stegrad .cmfalt{padding:0 8px}
+  .reglage > input[type=range]{grid-column:1 / -1;grid-row:2}
+  .reglage > :not(label):not(.stegrad):not(input){grid-column:1 / -1}
+  .summering{padding:12px 22px 14px}
+  .summering .cta{margin-top:8px}
+  .kredit-rad{margin-top:4px}
+}
+
 .reglage{margin-bottom:14px}
-.reglage label{display:flex;justify-content:space-between;font-weight:500;margin-bottom:6px}
+.reglage > label{display:flex;justify-content:space-between;font-weight:500;margin-bottom:6px}
 .reglage output{color:var(--guldtext);font-variant-numeric:tabular-nums}
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:32px;background:transparent;cursor:pointer}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;cursor:pointer}
 input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--guld) 0 var(--fyll,50%),rgba(255,255,255,.18) var(--fyll,50%))}
 input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:rgba(255,255,255,.18)}
 input[type=range]::-moz-range-progress{height:4px;border-radius:4px;background:var(--guld)}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--text);border:3px solid var(--guld);margin-top:-9px;box-shadow:0 2px 8px rgba(0,0,0,.35)}
 input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--text);border:3px solid var(--guld)}
+/* − [ 537 cm ] +  under varje måttreglage: 1 cm per tryck, alla tryckytor 44 px */
+.stegrad{display:flex;align-items:center;gap:8px;margin-top:2px;max-width:360px}
+.steg{flex:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--linje2);font-size:22px;line-height:1;display:grid;place-items:center;
+  -webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation}
+.steg:hover{border-color:rgba(255,255,255,.5)}
+.steg:active{background:rgba(197,165,114,.2);border-color:var(--guld)}
+.cmfalt{flex:1;min-width:0;display:flex;align-items:center;gap:6px;height:44px;padding:0 12px;border:1px solid var(--linje2);border-radius:12px;background:rgba(255,255,255,.05);cursor:text}
+.cmfalt:focus-within{border-color:var(--guld);outline:3px solid var(--guld2);outline-offset:2px}
+.cmfalt input{flex:1;min-width:0;width:100%;height:100%;border:0;background:none;text-align:right;font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}
+.cmfalt input:focus{outline:none}
+.cmfalt span{flex:none;color:var(--text2);font-weight:500}
+.hojdrad{margin-top:8px;font-size:13px;color:var(--text2)}
+.hojdrad b{color:var(--text);font-weight:500}
+.undertitel{font-weight:500;margin:0 0 8px}
+.undertitel + .val{margin-bottom:10px}
+.not{margin-top:8px;padding:8px 12px;border-radius:10px;background:rgba(197,165,114,.12);border:1px solid rgba(197,165,114,.4);font-size:12px;color:var(--text)}
 .yta{display:flex;justify-content:space-between;align-items:baseline;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.05);color:var(--text2)}
 .yta b{font-size:18px;color:var(--text);font-variant-numeric:tabular-nums}
 
@@ -115,6 +177,38 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .alt:not([aria-pressed="true"]):hover{border-color:rgba(255,255,255,.5)}
 .val.tre .alt{text-align:center;padding:12px 6px}
 .val.tre .alt::after{display:none}
+/* "Ingår" eller "Tillval" (med priser: "+ 4 200 kr") på varje val: läsbar men underordnad knappens namn */
+.etikett{display:block;margin-top:5px;font-size:12px;line-height:1.3;font-weight:600;letter-spacing:.01em;color:var(--text2);font-variant-numeric:tabular-nums}
+.etikett.tillval{color:var(--guldtext)}
+/* valen som inte gäller just nu fälls ihop till rubriken och förklaringen (runda 3: de tog full plats) */
+.val.av .alt{opacity:.42;cursor:not-allowed}
+.val.av .alt[aria-pressed="true"]{background:none}
+.sek.av > .val{display:none}
+/* en grupp som inte gäller just nu tar en rad: rubriken och en kort förklaring bredvid */
+.sek.av{display:flex;align-items:baseline;gap:10px;flex-wrap:nowrap}
+.sek.av h2{color:var(--text2);margin:0;flex:none}
+.sek.av .ingress{margin-top:0;font-size:12px;min-width:0}
+.vaxel.av{opacity:.5;cursor:not-allowed}
+
+/* ---------- väggarna: ritning ovanifrån ---------- */
+.plan{display:grid;grid-template-columns:60px 1fr 60px;grid-template-rows:24px 70px 44px;gap:4px;max-width:360px}
+.plan-hus{grid-column:1 / -1;grid-row:1;display:grid;place-items:center;border-radius:8px;background:repeating-linear-gradient(90deg,#e8e5de 0 6px,#d2cdc2 6px 7px);color:var(--marin);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.plan-golv{grid-column:2;grid-row:2;display:grid;place-items:center;border-radius:6px;background:repeating-linear-gradient(90deg,rgba(155,122,85,.38) 0 13px,rgba(155,122,85,.26) 13px 14px);color:var(--text);font-size:12px;font-weight:500}
+.plan-vagg{position:relative;display:grid;place-items:center;min-width:44px;min-height:44px;border-radius:8px;border:2px solid transparent;font-size:12px;font-weight:700;color:var(--marin);transition:border-color var(--snabb)}
+.plan-vagg[data-vagg="vv"]{grid-column:1;grid-row:2}
+.plan-vagg[data-vagg="vh"]{grid-column:3;grid-row:2}
+.plan-vagg[data-vagg="vf"]{grid-column:1 / -1;grid-row:3}
+.plan-vagg.m-glas{background:linear-gradient(135deg,#a9cddd,#7fb0c6);color:#10233a}
+/* trä: vita liggande bräder med tydlig fog; fasad: samma som husraden ovanför, stående panel */
+.plan-vagg.m-tra{background:repeating-linear-gradient(180deg,#fbfaf6 0 5px,#b9b2a3 5px 6px)}
+.plan-vagg.m-fasad{background:repeating-linear-gradient(90deg,#e8e5de 0 6px,#d2cdc2 6px 7px)}
+.plan-vagg[aria-pressed="true"]{border-color:var(--guld);box-shadow:0 0 0 3px rgba(197,165,114,.45)}
+.plan-vagg[aria-pressed="true"]::after{content:"";position:absolute;top:5px;right:5px;width:8px;height:8px;border-radius:50%;background:var(--guld);box-shadow:0 0 0 2px var(--marin)}
+.plan-vagg:not([aria-pressed="true"]):hover{border-color:rgba(255,255,255,.6)}
+.plan-vagg span{padding:2px 5px;border-radius:6px;background:rgba(255,255,255,.82);line-height:1.2;text-align:center}
+.plan-vagg span small{display:block;font-size:11px;font-weight:500}
+.plan-vagg[data-vagg="vf"] span small{display:inline;margin-right:.35em}
+.plan-vagg[data-vagg="vf"] span small::after{content:" ·"}
 
 .farger{display:flex;gap:10px;flex-wrap:wrap}
 .farg{width:44px;height:44px;border-radius:50%;border:2px solid transparent;display:grid;place-items:center}
@@ -126,20 +220,67 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .vaxel{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;cursor:pointer;min-height:44px}
 .vaxel span b{display:block;font-weight:500}
 .vaxel span small{color:var(--text2);font-size:12px}
-.vaxel input{position:absolute;right:0;top:50%;opacity:0;width:1px;height:1px;margin:0}
+.vaxel input{position:absolute;right:0;top:0;opacity:0;width:1px;height:100%;margin:0}
 .vaxel i{flex:none;width:44px;height:26px;border-radius:13px;background:rgba(255,255,255,.2);position:relative;transition:background var(--snabb)}
 .vaxel i::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--text);transition:transform 180ms ease}
 .vaxel input:checked + i{background:var(--guld)}
 .vaxel input:checked + i::after{transform:translateX(18px);background:var(--marin)}
 .vaxel input:focus-visible + i{outline:3px solid var(--guld2);outline-offset:2px}
 
-.summering{padding:16px 22px 20px;border-top:1px solid var(--linje);background:rgba(20,20,36,.6)}
+.summering{position:relative;padding:16px 22px 20px;border-top:1px solid var(--linje);background:rgba(20,20,36,.6)}
 .summering p{color:var(--text2);font-size:13px}
+/* priset: hela raden är knappen som fäller ut "Så räknas det" */
+.pris{margin-bottom:10px}
+.pris summary{list-style:none;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:12px;min-height:44px;cursor:pointer;border-radius:10px}
+.pris summary::-webkit-details-marker{display:none}
+.pris-etikett{grid-column:1;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--guldtext);font-weight:600}
+.pris summary > b{grid-column:1;font-size:24px;line-height:1.2;font-weight:700;font-variant-numeric:tabular-nums}
+.pris-hur{grid-column:2;grid-row:1 / span 2;display:flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid var(--linje2);border-radius:10px;font-size:13px;font-weight:500;color:var(--text)}
+.pris-hur svg{width:14px;height:14px;transition:transform var(--snabb)}
+.pris[open] .pris-hur svg{transform:rotate(180deg)}
+.pris summary:hover .pris-hur{border-color:rgba(255,255,255,.5)}
+.pris summary > b.antal{font-size:15px;line-height:1.35;font-weight:600;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.pris-kort{margin-top:8px;font-size:13px}
+.pris-kort ul{list-style:none}
+.pris-kort h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--guldtext);font-weight:600;margin:12px 0 2px}
+.pris-kort h3:first-child{margin-top:4px}
+.pris-kort .tom{color:var(--text2);padding:5px 0;border-top:1px solid var(--linje)}
+.pris-kort .rader li:first-child{border-top:0}
+/* På dator fälls uppställningen ut som ett kort ovanför summeringen, över
+   valen, i stället för att krympa dem till en skrollruta i skrollrutan.
+   app.js sätter max-height efter panelens höjd. */
+@media (min-width:861px){
+  /* tonad nederkant när listan fortsätter (runda 3: det syntes inte att kortet gick att skrolla) */
+  .pris-kort{position:absolute;left:12px;right:12px;bottom:calc(100% + 8px);margin:0;padding:6px 14px 28px;overflow-y:auto;
+    -webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(180deg,#000 calc(100% - 28px),transparent);
+    background:var(--marin);border:1px solid var(--linje2);border-radius:14px;box-shadow:0 -12px 36px rgba(8,8,20,.45)}
+}
+.pris li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:5px 0;border-top:1px solid var(--linje)}
+.pris li span{color:var(--text)}
+.pris li small{display:block;color:var(--text2);font-size:12px}
+.pris li b{flex:none;font-weight:500;font-variant-numeric:tabular-nums}
+.pris li b.ingar{color:var(--text2)}
+.summering p.testnot{margin-bottom:8px;font-size:12px}
+/* Priset tar plats i den fasta summeringen. På en låg skärm (1440 x 900 och
+   lägre) kortas designraden till två rader, på de lägsta till en, så valen
+   får plats att skrolla; hela raden står i bokningen. */
+@media (min-width:861px) and (max-height:960px){
+  #sammanfattning{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+  .summering{padding-top:12px}
+  .ring{margin-top:8px}
+  .kredit-rad{margin-top:6px}
+}
+@media (min-width:861px) and (max-height:800px){
+  #sammanfattning{-webkit-line-clamp:1}
+  .pris summary > b.antal{-webkit-line-clamp:1}
+}
 .summering p b{color:var(--text);font-weight:600}
 .cta{margin-top:12px;width:100%;height:52px;border-radius:12px;background:var(--guld);color:var(--marin);font-weight:600;font-size:16px;box-shadow:0 8px 22px rgba(197,165,114,.28);transition:background var(--snabb)}
 .cta:hover{background:var(--guld2)}
 .ring{display:block;text-align:center;margin-top:10px;color:var(--text2);font-size:13px;text-decoration:none}
 .ring b{color:var(--text);font-weight:500}
+/* ringlänken: tryckytan är 44 px hög men raden tar nästan samma plats som förut */
+.ring{min-height:44px;display:flex;align-items:center;justify-content:center;gap:.3em;margin-top:0;margin-bottom:-8px}
 
 /* ---------- på duken: öppna partierna, lameller ---------- */
 .handling{position:fixed;z-index:10;left:calc(var(--panel) + 40px);right:20px;bottom:20px;display:flex;justify-content:center;pointer-events:none}
@@ -153,23 +294,33 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .lamell label{font-weight:500;white-space:nowrap}
 .lamell output{min-width:3.2em;text-align:right;color:var(--guldtext);font-variant-numeric:tabular-nums}
 
+/* ---------- mobil: priset följer med medan man väljer ---------- */
+.prisbar{display:none}
+
 /* ---------- solkortet ---------- */
 .sol h2 + input{margin-top:4px}
 .sol h2{display:flex;justify-content:space-between;align-items:baseline}
 .sol h2 output{letter-spacing:0;font-size:14px;color:var(--text);text-transform:none;font-variant-numeric:tabular-nums}
 .rikt{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
-.rikt button{height:36px;border-radius:10px;border:1px solid var(--linje2);font-size:13px;font-weight:500;color:var(--text2)}
+.rikt button{height:44px;border-radius:10px;border:1px solid var(--linje2);font-size:13px;font-weight:500;color:var(--text2)}
 .rikt button[aria-pressed="true"]{border-color:var(--guld);color:var(--text);background:rgba(197,165,114,.16)}
 .riktetikett{margin-top:10px;font-size:12px;color:var(--text2)}
 .solrad{margin-top:8px;color:var(--text);font-size:13px;min-height:2.9em}
 
 /* ---------- måttetiketter i 3D ---------- */
 #etiketter{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.matt{position:absolute;left:0;top:0;padding:3px 9px;border-radius:999px;background:var(--marin);color:#fff;font-weight:600;font-size:13px;white-space:nowrap;will-change:transform;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.matt{position:absolute;left:0;top:0;padding:3px 9px;border-radius:999px;background:var(--marin);color:#fff;font-weight:600;font-size:13px;white-space:nowrap;will-change:transform;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:opacity 200ms ease}
+.matt.mat{background:#fff;color:var(--marin);text-transform:capitalize;display:flex;align-items:center;gap:6px}
+.matt.mat::before{content:"";width:10px;height:10px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(28,28,48,.35)}
+.matt.mat[data-m="glas"]::before{background:#7fb0c6}
+.matt.mat[data-m="tra"]::before{background:repeating-linear-gradient(180deg,#fbfaf6 0 2px,#9f977f 2px 3px)}
+.matt.mat[data-m="fasad"]::before{background:linear-gradient(180deg,#e8e5de 0 60%,#6b6966 60%)}
+/* vald vägg: etiketten i guld, samma namn som i panelen */
+.matt.mat.vald{background:var(--guld);color:var(--marin);box-shadow:0 0 0 3px rgba(28,28,48,.25),0 4px 12px rgba(0,0,0,.25)}
 
 /* ---------- krediten ---------- */
 .kredit-rad{margin-top:10px;text-align:center;font-size:12px;color:var(--text2)}
-.kredit-rad a{color:var(--text2)}
+.kredit-rad a{color:var(--text2);display:inline-flex;align-items:center;min-height:44px;margin:-13px 0;vertical-align:middle}
 
 /* ---------- laddskärm ---------- */
 #laddar{position:fixed;inset:0;z-index:50;background:var(--marin);display:grid;place-items:center;transition:opacity 420ms ease}
@@ -177,7 +328,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 #laddar img{height:40px;opacity:.9}
 
 /* ---------- toast ---------- */
-.toast{position:fixed;z-index:60;left:50%;top:84px;transform:translate(-50%,-8px);opacity:0;padding:10px 16px;border-radius:12px;background:var(--marin);border:1px solid var(--linje2);transition:opacity 200ms ease,transform 200ms ease;pointer-events:none}
+.toast{position:fixed;z-index:60;left:50%;top:84px;transform:translate(-50%,-8px);opacity:0;padding:10px 16px;width:max-content;max-width:calc(100vw - 32px);text-align:center;border-radius:12px;background:var(--marin);border:1px solid var(--linje2);transition:opacity 200ms ease,transform 200ms ease;pointer-events:none}
 .toast.syns{opacity:1;transform:translate(-50%,0)}
 
 /* ---------- modal: boka hembesök ---------- */
@@ -187,6 +338,18 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .modal-kort > p{color:var(--text2);margin-top:6px}
 .designrad{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.06);font-size:13px;color:var(--text2)}
 .designrad b{color:var(--text);font-weight:500}
+.designrad p + p{margin-top:4px}
+/* designen på högst tre rader innan fälten: en rad design, högst två rader tillval */
+.designrad .d1{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;overflow:hidden}
+.designrad .d2{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.designrad .d2.en{-webkit-line-clamp:1}
+.modal-kort h2 + .designrad{margin-top:10px}
+.designrad details{margin-top:6px}
+.designrad summary{cursor:pointer;min-height:44px;display:flex;align-items:center;justify-content:space-between;color:var(--text);font-weight:500;list-style:none}
+.designrad summary::-webkit-details-marker{display:none}
+.designrad summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:0 6px 4px}
+.designrad details[open] summary::after{transform:rotate(225deg);margin-bottom:0}
+.designrad details ul{margin:0 0 4px 18px}
 .falt{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
 .falt label{display:grid;gap:6px;font-size:13px;font-weight:500}
 .falt label.hel{grid-column:1/-1}
@@ -207,6 +370,11 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
    Duken ligger överst och sidan skrollar under den. Panel och solkort
    blir vanliga block i flödet. */
 @media (max-width:860px){
+  /* height:auto: med 100 % var body bara en skärm hög, och den klistrade duken
+     släppte redan vid 320 px skroll, innan Tak, Golv och lutningen (runda 1).
+     scroll-padding: fokus skrollas fram nedanför duken och ovanför prisraden. */
+  html,body{height:auto}
+  html{scroll-padding-top:calc(52svh + 12px);scroll-padding-bottom:80px}
   body{overflow:auto;background-attachment:scroll}
   .buhne{position:sticky;top:0;height:52svh;z-index:5;background:linear-gradient(180deg,var(--himmel-topp),var(--himmel-horisont))}
   .topp{position:absolute;top:10px;left:10px;right:10px;gap:8px}
@@ -214,18 +382,36 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   .marke img{height:24px}
   .marke span{display:none}
   .vyer{margin:0 0 0 auto;padding:3px}
-  .vyer button{height:38px;padding:0 10px;font-size:13px}
+  .vyer button{height:44px;padding:0 10px;font-size:13px}
   .dela{display:none}
   .handling{position:absolute;left:10px;right:10px;bottom:10px}
   .handling-inre{padding:5px;gap:8px;width:100%;justify-content:space-between}
-  .knapp{height:42px;padding:0 12px;font-size:13px}
-  .lamell{min-width:0;flex:1}
-  .lamell label{font-size:13px}
+  .knapp{height:44px;padding:0 12px;font-size:13px}
+  .lamell{min-width:0;flex:1;gap:8px}
+  /* etiketten läses upp men tar ingen plats: reglaget blir brett nog att dra i */
+  .lamell label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .lamell input{min-width:0}
+  /* utan lamelltak står bara knappen där, inte en tom bred list */
+  .handling-inre:has(> #lamell-rad[hidden]){width:auto}
   .panel{position:relative;inset:auto;width:auto;margin:12px 10px 24px;z-index:1}
   .panel{display:block;overflow:visible}
-  .panel-inre{overflow:visible;padding:18px 16px 6px}
+  .panel-inre{overflow:visible;padding:16px 16px 6px}
+  .panel-topp{padding:18px 16px 0}
+  .flik{font-size:12.5px}
   .summering{border-radius:0 0 18px 18px}
+  .prisbar{display:flex;position:sticky;bottom:0;z-index:4;align-items:center;justify-content:space-between;gap:12px;
+    padding:8px 16px calc(8px + env(safe-area-inset-bottom));background:var(--marin);border-top:1px solid var(--linje2);
+    box-shadow:0 -10px 24px rgba(8,8,20,.3);transition:opacity 180ms ease,transform 180ms ease,visibility 0s}
+  .prisbar.dold{opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity 180ms ease,transform 180ms ease,visibility 0s 180ms}
+  .prisbar span{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--guldtext);font-weight:600;line-height:1.2}
+  .prisbar b{display:block;font-size:18px;letter-spacing:0;text-transform:none;color:var(--text);font-variant-numeric:tabular-nums}
+  .prisbar .cta{margin:0;width:auto;height:44px;padding:0 18px;font-size:14px;box-shadow:none}
   .toast{top:64px}
+}
+@media (max-width:360px){
+  .topp{gap:6px}
+  .vyer button{padding:0 6px;font-size:12px}
+  .marke{padding:0 8px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:1ms!important}
@@ -268,34 +454,127 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 </div>
 
 <aside class="panel glaskort" aria-label="Välj utförande">
-  <div class="panel-inre">
+  <!-- Valen i fem steg, som Rensons flikrad (kundloopen 2026-09-29: en lista på 3,3 skärmhöjder) -->
+  <div class="panel-topp">
     <h1>Designa ditt <em>uterum</em></h1>
-    <p class="ingress">Välj mått, tak och glas. Du ser ditt uterum mot huset direkt.</p>
+    <p class="ingress">Fem steg. Du ser uterummet mot huset direkt, och vad som ingår.</p>
+    <div class="flikar" role="tablist" aria-label="Steg">
+      <button type="button" role="tab" class="flik" id="flik-matt" data-flik="matt" aria-controls="fas-matt" aria-selected="true"><small>1</small>Mått</button>
+      <button type="button" role="tab" class="flik" id="flik-tak" data-flik="tak" aria-controls="fas-tak" aria-selected="false" tabindex="-1"><small>2</small>Tak</button>
+      <button type="button" role="tab" class="flik" id="flik-vaggar" data-flik="vaggar" aria-controls="fas-vaggar" aria-selected="false" tabindex="-1"><small>3</small>Väggar</button>
+      <button type="button" role="tab" class="flik" id="flik-golv" data-flik="golv" aria-controls="fas-golv" aria-selected="false" tabindex="-1"><small>4</small>Golv</button>
+      <button type="button" role="tab" class="flik" id="flik-tillval" data-flik="tillval" aria-controls="fas-tillval" aria-selected="false" tabindex="-1"><small>5</small>Tillval</button>
+    </div>
+  </div>
+  <div class="panel-inre" id="panel-inre">
 
+    <div class="fas" id="fas-matt" data-fas="matt" role="tabpanel" aria-labelledby="flik-matt">
     <section class="sek" aria-labelledby="h-matt">
       <h2 id="h-matt">Mått</h2>
       <div class="reglage">
-        <label for="bredd">Bredd längs huset <output id="ut-bredd" for="bredd">5,0 m</output></label>
-        <input type="range" id="bredd" min="3" max="7" step="0.5" value="5">
+        <label for="bredd">Bredd längs huset <output id="ut-bredd" for="bredd">5,00 m</output></label>
+        <input type="range" id="bredd" min="3" max="7" step="0.01" value="5">
+        <div class="granser" data-granser="b" aria-hidden="true"><span>300 cm</span><span>700 cm</span></div>
+        <div class="stegrad">
+          <button type="button" class="steg" data-steg="-1" aria-label="Minska bredden 1 cm">−</button>
+          <label class="cmfalt"><input type="text" id="bredd-cm" inputmode="numeric" autocomplete="off" role="spinbutton" aria-label="Bredd längs huset i centimeter" value="500"><span aria-hidden="true">cm</span></label>
+          <button type="button" class="steg" data-steg="1" aria-label="Öka bredden 1 cm">+</button>
+        </div>
+        <p class="grans-not" id="bredd-not" role="status" hidden></p>
       </div>
       <div class="reglage">
-        <label for="djup">Djup ut från huset <output id="ut-djup" for="djup">3,5 m</output></label>
-        <input type="range" id="djup" min="2" max="4.5" step="0.5" value="3.5">
+        <label for="djup">Djup ut från huset <output id="ut-djup" for="djup">3,50 m</output></label>
+        <input type="range" id="djup" min="2" max="4.5" step="0.01" value="3.5">
+        <div class="granser" data-granser="d" aria-hidden="true"><span>200 cm</span><span>450 cm</span></div>
+        <div class="stegrad">
+          <button type="button" class="steg" data-steg="-1" aria-label="Minska djupet 1 cm">−</button>
+          <label class="cmfalt"><input type="text" id="djup-cm" inputmode="numeric" autocomplete="off" role="spinbutton" aria-label="Djup ut från huset i centimeter" value="350"><span aria-hidden="true">cm</span></label>
+          <button type="button" class="steg" data-steg="1" aria-label="Öka djupet 1 cm">+</button>
+        </div>
+        <p class="grans-not" id="djup-not" role="status" hidden></p>
+      </div>
+      <div class="reglage">
+        <label for="hojd">Höjd vid takfoten <output id="ut-hojd" for="hojd">2,50 m</output></label>
+        <input type="range" id="hojd" min="2.1" max="3" step="0.01" value="2.5">
+        <div class="granser" data-granser="h" aria-hidden="true"><span>210 cm</span><span>300 cm</span></div>
+        <div class="stegrad">
+          <button type="button" class="steg" data-steg="-1" aria-label="Minska höjden 1 cm">−</button>
+          <label class="cmfalt"><input type="text" id="hojd-cm" inputmode="numeric" autocomplete="off" role="spinbutton" aria-label="Höjd vid takfoten i centimeter" value="250"><span aria-hidden="true">cm</span></label>
+          <button type="button" class="steg" data-steg="1" aria-label="Öka höjden 1 cm">+</button>
+        </div>
+        <p class="grans-not" id="hojd-not" role="status" hidden></p>
+        <p class="hojdrad" id="hojd-info">Samma höjd hela vägen in till huset.</p>
+        <p class="hojdrad" id="hojd-tillval">Höjd upp till 2,50 m ingår i grundpriset.</p>
       </div>
       <p class="yta">Golvyta <b id="ut-yta">17,5 m²</b></p>
     </section>
+    <button type="button" class="nasta" data-till="tak">Nästa: Tak <span aria-hidden="true">→</span></button>
+    </div>
 
+    <div class="fas" id="fas-tak" data-fas="tak" role="tabpanel" aria-labelledby="flik-tak" hidden>
     <section class="sek" aria-labelledby="h-tak">
       <h2 id="h-tak">Tak</h2>
-      <div class="val tva" data-grupp="tak">
-        <button type="button" class="alt" data-varde="lamell" aria-pressed="true"><b>Lamelltak</b><small>Vridbara lameller: öppna för ljus, stäng för skugga och regn</small></button>
-        <button type="button" class="alt" data-varde="glas" aria-pressed="false"><b>Glastak</b><small>Klart tak i lutning, maximalt dagsljus</small></button>
+      <p class="undertitel" id="h-form">Takform</p>
+      <div class="val tre" data-grupp="form" role="group" aria-labelledby="h-form">
+        <button type="button" class="alt" data-varde="plant" aria-pressed="true"><b>Plant tak</b></button>
+        <button type="button" class="alt" data-varde="pulpet" aria-pressed="false"><b>Pulpet&shy;tak</b></button>
+        <button type="button" class="alt" data-varde="sadel" aria-pressed="false"><b>Sadel&shy;tak</b></button>
       </div>
+      <p class="ingress" id="form-text">Nästan plant tak med ett litet fall ut från huset, så att vattnet rinner av.</p>
+      <div class="reglage" id="lut-rad" hidden style="margin-top:14px">
+        <label for="lut">Taklutning <output id="ut-lut" for="lut">10°</output></label>
+        <input type="range" id="lut" min="5" max="25" step="1" value="10">
+        <div class="granser" aria-hidden="true"><span id="lut-min">5°</span><span id="lut-max">25°</span></div>
+        <div class="stegrad">
+          <button type="button" class="steg" data-lutsteg="-1" aria-label="Minska lutningen 1 grad">−</button>
+          <label class="cmfalt"><input type="text" id="lut-grad" inputmode="numeric" autocomplete="off" role="spinbutton" aria-label="Taklutning i grader" value="10"><span aria-hidden="true">°</span></label>
+          <button type="button" class="steg" data-lutsteg="1" aria-label="Öka lutningen 1 grad">+</button>
+        </div>
+        <p class="grans-not" id="lut-grans" role="status" hidden></p>
+        <p class="hojdrad" id="nock-not" hidden></p>
+      </div>
+      <p class="not" id="anslut-not" hidden>Taket ansluts till husets tak. Anslutningen går vi igenom vid hembesöket.</p>
+      <p class="undertitel" id="h-tackning" style="margin-top:16px">Taktäckning</p>
+      <div class="val tva" data-grupp="tak" role="group" aria-labelledby="h-tackning">
+        <button type="button" class="alt" data-varde="lamell" aria-pressed="false"><b>Lamelltak</b><small>Vridbara lameller: öppna för ljus, stäng för skugga och regn</small></button>
+        <button type="button" class="alt" data-varde="glas" aria-pressed="false" hidden><b>Glastak</b><small>Klart tak, maximalt dagsljus</small></button>
+        <button type="button" class="alt" data-varde="kanalplast" aria-pressed="false" hidden><b>Kanalplast</b><small>Mjölkvit skiva som sprider dagsljuset</small></button>
+        <button type="button" class="alt" data-varde="takpapp" aria-pressed="true"><b>Takpapp</b><small>Tätt tak med vit vindskiva</small></button>
+        <button type="button" class="alt" data-varde="takpannor" aria-pressed="false" hidden><b>Takpannor</b><small>Tätt tak i samma stil som huset</small></button>
+      </div>
+      <!-- under knapparna: noten får aldrig knuffa knappen man just tryckte på -->
+      <p class="not" id="lut-not" hidden>Takpannor kräver minst 14° lutning.</p>
+      <p class="ingress" id="tak-ingar" style="margin-top:10px"></p>
+    </section>
+    <button type="button" class="nasta" data-till="vaggar">Nästa: Väggar <span aria-hidden="true">→</span></button>
+    </div>
+
+    <div class="fas" id="fas-vaggar" data-fas="vaggar" role="tabpanel" aria-labelledby="flik-vaggar" hidden>
+    <section class="sek" aria-labelledby="h-vaggar">
+      <h2 id="h-vaggar">Väggar</h2>
+      <div id="vagg-val">
+      <p class="ingress" style="margin:0 0 10px">Tryck på en vägg här eller i bilden.</p>
+      <!-- ritning ovanifrån: huset överst, uterummets tre väggar går att trycka på -->
+      <div class="plan" role="group" aria-label="Välj vägg">
+        <div class="plan-hus" aria-hidden="true">Huset</div>
+        <button type="button" class="plan-vagg" data-vagg="vv" aria-pressed="false"><span></span></button>
+        <div class="plan-golv" aria-hidden="true">Uterummet</div>
+        <button type="button" class="plan-vagg" data-vagg="vh" aria-pressed="false"><span></span></button>
+        <button type="button" class="plan-vagg" data-vagg="vf" aria-pressed="true"><span></span></button>
+      </div>
+      <p class="undertitel" id="vagg-vald" style="margin-top:10px">Front: glas</p>
+      <div class="val tre" data-grupp="material" role="group" aria-labelledby="vagg-vald">
+        <button type="button" class="alt" data-varde="glas" aria-pressed="true"><b>Glas</b></button>
+        <button type="button" class="alt" data-varde="tra" aria-pressed="false"><b>Trä&shy;vägg</b></button>
+        <button type="button" class="alt" data-varde="fasad" aria-pressed="false"><b>Fasad&shy;vägg</b></button>
+      </div>
+      </div>
+      <p class="ingress" id="material-text">Glasväggen får glaspartier som går att öppna.</p>
     </section>
 
     <section class="sek" aria-labelledby="h-vagg">
       <h2 id="h-vagg">Glaspartier</h2>
-      <div class="val tre" data-grupp="vagg">
+      <div class="val tre" data-grupp="vagg" role="group" aria-labelledby="h-vagg">
         <button type="button" class="alt" data-varde="skjut" aria-pressed="true"><b>Skjut&shy;partier</b></button>
         <button type="button" class="alt" data-varde="vik" aria-pressed="false"><b>Vik&shy;system</b></button>
         <button type="button" class="alt" data-varde="oppen" aria-pressed="false"><b>Öppet</b></button>
@@ -303,22 +582,57 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
       <p class="ingress" id="vagg-text">Glaspartierna glider åt sidan och staplas i ena änden.</p>
     </section>
 
-    <section class="sek" aria-labelledby="h-farg">
-      <h2 id="h-farg">Profilfärg</h2>
-      <div class="farger" data-grupp="farg" role="group" aria-labelledby="h-farg"></div>
-      <p class="fargnamn">Vald: <b id="ut-farg">Antracit</b></p>
-    </section>
-
     <section class="sek" aria-labelledby="h-glas">
       <h2 id="h-glas">Glas</h2>
-      <div class="val tva" data-grupp="glas">
+      <div class="val tva" data-grupp="glas" role="group" aria-labelledby="h-glas">
         <button type="button" class="alt" data-varde="klart" aria-pressed="true"><b>Klart glas</b><small>Fri utsikt åt alla håll</small></button>
         <button type="button" class="alt" data-varde="tonat" aria-pressed="false"><b>Tonat glas</b><small>Dämpar solen och insynen</small></button>
       </div>
+      <p class="ingress" id="glas-text" hidden></p>
     </section>
 
+    <section class="sek" aria-labelledby="h-insida">
+      <h2 id="h-insida">Insida</h2>
+      <!-- Rami: invändig beklädnad är ett tillval. Utan beklädnad syns stommen. -->
+      <div class="val tva" data-grupp="insida" role="group" aria-labelledby="h-insida">
+        <button type="button" class="alt" data-varde="ingen" aria-pressed="true"><b>Ingen beklädnad</b><small>Reglarna syns</small></button>
+        <button type="button" class="alt" data-varde="skiva" aria-pressed="false"><b>Vit skiva</b><small>Släta vita väggar</small></button>
+        <button type="button" class="alt" data-varde="parlspont" aria-pressed="false"><b>Vit pärlspont</b><small>Smala vita bräder</small></button>
+        <button type="button" class="alt" data-varde="tra" aria-pressed="false"><b>Träpanel</b><small>Ljus furu</small></button>
+      </div>
+      <p class="ingress" id="insida-text">På insidan av trä- och fasadväggarna och i innertaket under tätt tak. Syns i vyn Inifrån.</p>
+    </section>
+    <button type="button" class="nasta" data-till="golv">Nästa: Golv och färg <span aria-hidden="true">→</span></button>
+    </div>
+
+    <div class="fas" id="fas-golv" data-fas="golv" role="tabpanel" aria-labelledby="flik-golv" hidden>
+    <section class="sek" aria-labelledby="h-golv">
+      <h2 id="h-golv">Golv</h2>
+      <div class="val tre" data-grupp="golv" role="group" aria-labelledby="h-golv">
+        <button type="button" class="alt" data-varde="trall" aria-pressed="true"><b>Trätrall</b></button>
+        <button type="button" class="alt" data-varde="parkett" aria-pressed="false"><b>Parkett</b></button>
+        <button type="button" class="alt" data-varde="klinker" aria-pressed="false"><b>Klinker</b></button>
+      </div>
+    </section>
+
+    <section class="sek" aria-labelledby="h-farg">
+      <h2 id="h-farg">Profilfärg</h2>
+      <div class="farger" data-grupp="farg" role="group" aria-labelledby="h-farg"></div>
+      <p class="fargnamn">Vald: <b id="ut-farg">Vit</b> · alla profilfärger ingår i grundpriset</p>
+    </section>
+    <button type="button" class="nasta" data-till="tillval">Nästa: Tillval <span aria-hidden="true">→</span></button>
+    </div>
+
+    <div class="fas" id="fas-tillval" data-fas="tillval" role="tabpanel" aria-labelledby="flik-tillval" hidden>
+    <section class="sek" aria-labelledby="h-till">
+      <h2 id="h-till">Tillval</h2>
+      <label class="vaxel"><span><b>LED-belysning</b><small>Spotlights i takprofilerna</small><span class="etikett tillval" data-etikett="led">Tillval</span></span><input type="checkbox" id="led"><i aria-hidden="true"></i></label>
+      <label class="vaxel"><span><b>Insektsnät</b><small id="nat-text">Nät i öppningarna när glaset är öppet</small><span class="etikett tillval" data-etikett="nat">Tillval</span></span><input type="checkbox" id="nat"><i aria-hidden="true"></i></label>
+    </section>
+
+    <!-- inget köpval: solen visar bara hur ljuset faller -->
     <section class="sek sol" aria-labelledby="h-sol">
-      <h2 id="h-sol">Solen en sommardag <output id="ut-tid" for="tid">15:00</output></h2>
+      <h2 id="h-sol">Se solen en sommardag <output id="ut-tid" for="tid">15:00</output></h2>
       <input type="range" id="tid" min="5" max="23" step="0.25" value="15" aria-label="Tid på dagen">
       <p class="riktetikett" id="h-rikt">Uterummet vetter mot</p>
       <div class="rikt" role="group" aria-labelledby="h-rikt" data-grupp="rikt">
@@ -329,17 +643,33 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
       </div>
       <p class="solrad" id="solrad" aria-live="polite"></p>
     </section>
+    </div>
 
-    <section class="sek" aria-labelledby="h-till">
-      <h2 id="h-till">Tillval</h2>
-      <label class="vaxel"><span><b>LED-belysning</b><small>Spotlights i takprofilerna</small></span><input type="checkbox" id="led" checked><i aria-hidden="true"></i></label>
-      <label class="vaxel"><span><b>Insektsnät</b><small>Nät i öppningarna när glaset är öppet</small></span><input type="checkbox" id="nat"><i aria-hidden="true"></i></label>
-    </section>
+    <div class="prisbar" id="prisbar">
+      <span id="prisbar-text">Dina tillval <b id="ut-pris-bar">Inga</b></span>
+      <button type="button" class="cta" data-boka>Boka hembesök</button>
+    </div>
   </div>
 
+  <!-- Summeringen: vad som ingår och dina tillval, alltid utfällda (kundloopen: listorna låg bakom "Vad ingår") -->
   <div class="summering">
-    <p id="sammanfattning" aria-live="polite"><b>5,0 × 3,5 m</b> · 17,5 m² · Lamelltak · Skjutpartier · Antracit</p>
-    <button type="button" class="cta" id="boka">Boka kostnadsfritt hembesök</button>
+    <div class="sum">
+      <p class="sum-matt" id="sammanfattning"><b>5,00 × 3,50 m · höjd 2,50 m</b> · 17,5 m²</p>
+      <p class="sum-rad"><span class="sum-et">Ingår</span><span id="sum-ingar"></span></p>
+      <p class="sum-rad"><span class="sum-et till">Tillval</span><span id="sum-tillval">Inga</span></p>
+    </div>
+    <details class="pris" id="pris-detaljer" hidden>
+      <summary>
+        <span class="pris-etikett" id="pris-etikett">Uppskattat pris</span>
+        <b id="ut-pris">–</b>
+        <span class="pris-hur"><span id="pris-hur-text">Så räknas det</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+      </summary>
+      <div class="pris-kort" id="pris-kort">
+        <ul class="rader" id="prisrader"></ul>
+      </div>
+    </details>
+    <p class="testnot" id="testnot">Priset tar vi fram tillsammans vid hembesöket.</p>
+    <button type="button" class="cta" id="boka">Boka hembesök</button>
     <a class="ring" href="tel:+46735192333">eller ring <b>073-519 23 33</b></a>
     <p class="kredit-rad">Prototyp byggd av <a href="https://bahkobyra.se/" target="_blank" rel="noopener">Bahko Byrå</a></p>
   </div>
@@ -352,9 +682,8 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <div class="modal" id="modal" hidden>
   <div class="modal-kort glaskort" role="document">
     <form id="form" novalidate>
-      <h2>Boka kostnadsfritt hembesök</h2>
-      <p>Vi kommer ut, mäter på plats och går igenom din design. Du får en offert efteråt.</p>
-      <p class="designrad" id="designrad"></p>
+      <h2>Boka hembesök</h2>
+      <div class="designrad" id="designrad"></div>
       <div class="falt">
         <label>Namn<input name="namn" autocomplete="name" required></label>
         <label>Telefon<input name="telefon" type="tel" autocomplete="tel" required></label>
@@ -368,7 +697,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
         <button type="button" class="stang" id="stang">Avbryt</button>
         <button type="submit" class="cta" id="skicka">Skicka min design</button>
       </div>
-      <p class="formnot">Din design följer med förfrågan. Bilden är en förenklad visualisering: exakta mått, utförande och pris bestäms vid hembesöket. Inga massutskick.</p>
+      <p class="formnot">Vi kommer ut, mäter på plats och går igenom din design. Hela din design följer med förfrågan. Bilden är en förenklad visualisering: exakta mått, utförande och pris bestäms vid hembesöket.</p>
     </form>
     <div class="kvitto" id="kvitto" hidden role="status">
       <h2>Tack, din design är skickad</h2>
