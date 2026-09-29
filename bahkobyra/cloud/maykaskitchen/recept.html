@@ -33,7 +33,7 @@
     /* ── HEADER ── */
     .site-header { position: sticky; top: 0; z-index: 100; padding: 0.9rem 5vw; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: rgba(244,235,220,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
     .nav-logo { font-family: var(--serif); font-size: clamp(1.05rem, 5.2vw, 1.45rem); font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: 0.04em; display: inline-flex; align-items: center; min-height: 44px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .nav-mini { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-mini { display: flex; gap: clamp(0.8rem, 1.3vw, 1.6rem); list-style: none; }
     .nav-mini a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; opacity: 0.85; padding: 0.4rem 0; }
     .nav-mini a:hover { opacity: 1; color: var(--terra); }
     .nav-right { display: flex; align-items: center; gap: 0.5rem; flex: none; }
@@ -43,7 +43,9 @@
     .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; font-size: 0.8rem; font-weight: 500; color: var(--ink); text-decoration: none; padding: 0.4rem 1rem; border: 1.5px solid var(--line); border-radius: 999px; transition: background 0.2s, color 0.2s; }
     .back-btn:hover { border-color: var(--terra); color: var(--terra); }
     .back-btn[hidden] { display: none; }
-    @media (max-width: 760px) { .nav-mini { display: none; } .nav-buy { display: none; } }
+    @media (max-width: 1000px) { .nav-mini { display: none; } }
+    @media (min-width: 1001px) and (max-width: 1180px) { .nav-logo { font-size: clamp(1.05rem, 2.7vw, 1.45rem); } }
+    @media (max-width: 760px) { .nav-buy { display: none; } }
 
     /* ── LISTA ── */
     .list-head { max-width: 1080px; margin: 0 auto; padding: 4rem 5vw 1.5rem; text-align: center; }
@@ -84,7 +86,6 @@
       .kopbar img { width: 30px; height: 42px; object-fit: cover; border-radius: 2px; flex: none; }
       .kopbar-text { display: flex; flex-direction: column; line-height: 1.2; }
       .kopbar-text b { font-size: 0.95rem; font-weight: 600; }
-      .kopbar-text span { font-size: 0.8rem; }
       .kopbar-pris { margin-left: auto; font-family: var(--display); font-size: 1.35rem;  white-space: nowrap; flex: none; }
       body { padding-bottom: 64px; }
     }
@@ -206,7 +207,7 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       <span data-i18n="back">Tillbaka</span>
     </a>
-    <a href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener" class="nav-buy" data-i18n="nav.buybook">Köp boken</a>
+    <a href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener" class="nav-buy" data-i18n="nav.buybook">Köp min bok</a>
   </div>
 </header>
 
@@ -349,7 +350,7 @@
 
 <a class="kopbar" href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener">
   <img src="img/bok-fram.jpg" alt="" width="30" height="42">
-  <span class="kopbar-text"><b data-i18n="kopbar.t">Köp boken</b><span data-i18n="kopbar.s">via Bokus</span></span>
+  <span class="kopbar-text"><b data-i18n="kopbar.t">Köp min bok här</b></span>
   <span class="kopbar-pris">349 kr</span>
 </a>
 
@@ -753,7 +754,7 @@ function render() {
         <strong>${tv('Maykas kokbok', 'Mayka’s cookbook')}</strong>
         <p>${tv('Kokboken har cirka 50 egna recept ur det gröna köket.', 'The cookbook has about 50 recipes of its own from the green kitchen.')}</p>
       </div>
-      <a href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener">${tv('Köp boken', 'Buy the book')}</a>
+      <a href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener">${tv('Köp min bok här', 'Buy my book here')}</a>
     </aside>`;
 }
 

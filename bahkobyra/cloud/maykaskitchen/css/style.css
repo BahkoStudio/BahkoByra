@@ -103,7 +103,7 @@ a { color: inherit; }
 }
 .site-header nav { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
 .nav-logo { font-family: var(--serif); font-size: clamp(1.05rem, 5.2vw, 1.45rem); font-weight: 600; letter-spacing: 0.04em; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.nav-links { list-style: none; display: flex; gap: 2rem; }
+.nav-links { list-style: none; display: flex; gap: clamp(0.9rem, 1.7vw, 2rem); }
 .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-decoration: none; opacity: 0.9; padding: 0.4rem 0; }
 .nav-links a:hover { opacity: 1; }
 .nav-right { display: flex; align-items: center; gap: 0.8rem; flex: none; }
@@ -413,7 +413,6 @@ a { color: inherit; }
   .kopbar img { width: 30px; height: 42px; object-fit: cover; border-radius: 2px; box-shadow: 0 4px 10px rgba(0,0,0,0.35); flex: none; }
   .kopbar-text { display: flex; flex-direction: column; line-height: 1.2; }
   .kopbar-text b { font-size: 0.95rem; font-weight: 600; }
-  .kopbar-text span { font-size: 0.8rem; }
   .kopbar-pris { margin-left: auto; font-family: var(--display); font-size: 1.35rem; letter-spacing: 0.02em;  white-space: nowrap; flex: none; }
   body { padding-bottom: 64px; }
 }
@@ -425,6 +424,7 @@ a { color: inherit; }
 .nl-popup-overlay.visible { opacity: 1; pointer-events: all; }
 .nl-popup {
   position: fixed; left: 50%; top: 50%; z-index: 201; width: min(92vw, 440px);
+  max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px); overflow-y: auto; overscroll-behavior: contain; border-radius: 18px;
   transform: translate(-50%, -46%) scale(0.96); opacity: 0; pointer-events: none;
   transition: opacity 0.4s, transform 0.4s cubic-bezier(.2,.8,.2,1);
 }
@@ -445,6 +445,7 @@ a { color: inherit; }
 .nl-popup-divider::before, .nl-popup-divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 .nl-popup-book { display: flex; align-items: center; gap: 0.9rem; text-align: left; text-decoration: none; padding: 0.8rem 1rem; border-radius: 12px; background: var(--green-dk); color: var(--cream); }
 .nl-popup-book img { width: 44px; height: 61px; object-fit: cover; border-radius: 2px; flex: none; }
+.nl-popup-book > div { flex: 1; min-width: 0; }
 .nl-popup-book strong { display: block; font-size: 0.9rem; }
 .nl-popup-book span:not(.nl-popup-arrow) { font-size: 0.74rem; opacity: 0.75; }
 .nl-popup-arrow { margin-left: auto; color: var(--gold); }
@@ -576,3 +577,13 @@ a { color: inherit; }
   .partner-lista { flex-wrap: wrap; justify-content: center; padding-right: 0; }
   .partner-band { -webkit-mask-image: none; mask-image: none; }
 }
+
+/* ── Smal telefon: popupens köpruta får plats med knapptexten på en rad ── */
+@media (max-width: 400px) {
+  .nl-popup-inner { padding: 2.3rem 1.2rem 1.4rem; }
+  .nl-popup-book { gap: 0.7rem; padding: 0.7rem 0.85rem; }
+  .nl-popup-book img { width: 36px; height: 50px; }
+}
+
+/* Förstorad text på mellanstora skärmar: loggan krymper hellre än klipps */
+@media (min-width: 961px) and (max-width: 1180px) { .nav-logo { font-size: clamp(1.05rem, 2.45vw, 1.45rem); } }

@@ -10,7 +10,7 @@
       'nav.recipes': 'Recept',
       'nav.about':   'Om Mayka',
       'nav.collab':  'Samarbeten',
-      'nav.buybook': 'Köp boken',
+      'nav.buybook': 'Köp min bok',
       'nav.open':    'Öppna meny',
 
       /* HERO – tre bilder i den fastnålade scenen */
@@ -19,7 +19,7 @@
       'hero.t2':     'gröna kök',
       'hero.sub':    'Kutle, hummus &amp; kärlek',
       'hero.body':   'Mayka Gulos debutbok, där det gröna köket möter tusenåriga traditioner.',
-      'hero.btn':    'Köp boken',
+      'hero.btn':    'Köp min bok här',
       'hero.btn2':   'Gratis bloggrecept',
       'hero.scroll': 'Skrolla',
 
@@ -49,10 +49,9 @@
       'f.band.t':   'Band',   'f.band': 'inbunden',
       'f.forlag.t': 'Förlag',
       'f.isbn.t':   'ISBN',
-      'inne.kalla': 'Källa: förlaget Libris.',
       'inne.quote':  '”Det här kapitlet är för henne. För kvinnorna i byn. För dem som med sina händer byggde framtid med kärlek, kreativitet och smak.”',
       'inne.src':    'Ur kapitlet <em>En hyllning till kvinnokraft, kärlek och rötter</em>, sidan 37',
-      'inne.btn':    'Köp boken',
+      'inne.btn':    'Köp min bok nu',
 
       /* UR MAYKAS KÖK */
       'kok.kicker': 'Från Maykas blogg',
@@ -69,7 +68,6 @@
       'sp.yt':     'följare på YouTube',
       'sp.total':  'följare totalt',
       'sp.brands': 'Har samarbetat med',
-      'sp.src':    'Enligt Maykas mediakit.',
 
       /* OM MAYKA */
       'om.kicker': 'Om Mayka',
@@ -83,10 +81,8 @@
       'slut.kicker': 'Kokboken',
       'slut.title':  'Maykas <em>gröna kök</em>',
       'slut.body':   'Kutle, hummus &amp; kärlek.',
-      'slut.btn':    'Köp boken',
-      'via':       'Köps via Bokus. Länken är en affiliatelänk.',
-      'band.cap':  'Mayka med boken.',
-      'kopbar.t': 'Köp boken', 'kopbar.s': 'via Bokus',
+      'slut.btn':    'Beställ min bok',
+      'kopbar.t': 'Köp min bok här',
 
       /* SOCIALA KANALER */
       'social.label': 'Följ mig',
@@ -117,7 +113,6 @@
       'nl.fel':                'Det gick inte att skicka. Försök igen om en stund.',
       'footer.copy':           '© 2026 MaykasKitchen. Alla rättigheter förbehållna.',
       'footer.made':           'Skapad med ♥ i Skåne, Sverige',
-      'footer.aff':            'Köplänkarna till Bokus är affiliatelänkar.',
 
       /* POPUP */
       'popup.title':       'Matglädje<br><em>direkt i din inkorg</em>',
@@ -177,7 +172,7 @@
       'nav.recipes': 'Recipes',
       'nav.about':   'About Mayka',
       'nav.collab':  'Collaborations',
-      'nav.buybook': 'Buy the book',
+      'nav.buybook': 'Buy my book',
       'nav.open':    'Open menu',
 
       /* HERO */
@@ -186,7 +181,7 @@
       'hero.t2':     'gröna kök',
       'hero.sub':    'Kutle, hummus &amp; love',
       'hero.body':   'Mayka Gulo’s debut cookbook, where the green kitchen meets thousand-year-old traditions.',
-      'hero.btn':    'Buy the book',
+      'hero.btn':    'Buy my book here',
       'hero.btn2':   'Free blog recipes',
       'hero.scroll': 'Scroll',
 
@@ -216,10 +211,9 @@
       'f.band.t':   'Binding', 'f.band': 'hardcover',
       'f.forlag.t': 'Publisher',
       'f.isbn.t':   'ISBN',
-      'inne.kalla': 'Source: the publisher Libris.',
       'inne.quote':  '“This chapter is for her. For the women of the village. For those who built a future with their hands, with love, creativity and taste.”',
       'inne.src':    'From the chapter <em>A tribute to the strength of women, love and roots</em>, page 37 (in Swedish)',
-      'inne.btn':    'Buy the book',
+      'inne.btn':    'Buy my book now',
 
       /* FROM MAYKA’S KITCHEN */
       'kok.kicker': 'From Mayka’s blog',
@@ -236,7 +230,6 @@
       'sp.yt':     'followers on YouTube',
       'sp.total':  'followers in total',
       'sp.brands': 'Has worked with',
-      'sp.src':    'From Mayka’s media kit.',
 
       /* ABOUT */
       'om.kicker': 'About Mayka',
@@ -250,10 +243,8 @@
       'slut.kicker': 'The cookbook',
       'slut.title':  'Maykas <em>gröna kök</em>',
       'slut.body':   'Kutle, hummus &amp; love.',
-      'slut.btn':    'Buy the book',
-      'via':       'Sold via Bokus. The link is an affiliate link.',
-      'band.cap':  'Mayka with the book.',
-      'kopbar.t': 'Buy the book', 'kopbar.s': 'via Bokus',
+      'slut.btn':    'Order my book',
+      'kopbar.t': 'Buy my book here',
 
       /* SOCIAL */
       'social.label': 'Follow me',
@@ -284,7 +275,6 @@
       'nl.fel':                'It could not be sent. Please try again in a moment.',
       'footer.copy':           '© 2026 MaykasKitchen. All rights reserved.',
       'footer.made':           'Made with ♥ in Skåne, Sweden',
-      'footer.aff':            'The links to Bokus are affiliate links.',
 
       /* POPUP */
       'popup.title':       'Food joy<br><em>straight to your inbox</em>',
