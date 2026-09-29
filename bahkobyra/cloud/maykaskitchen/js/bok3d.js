@@ -40,7 +40,9 @@
         d[k] = r; d[k + 1] = g; d[k + 2] = b; d[k + 3] = 1;
       }
     }
-    const t = new THREE.DataTexture(d, EW, EH, THREE.RGBAFormat, THREE.FloatType);
+    const h = new Uint16Array(d.length);
+    for (let q = 0; q < d.length; q++) h[q] = THREE.DataUtils.toHalfFloat(d[q]);
+    const t = new THREE.DataTexture(h, EW, EH, THREE.RGBAFormat, THREE.HalfFloatType);
     t.mapping = THREE.EquirectangularReflectionMapping;
     t.magFilter = THREE.LinearFilter; t.minFilter = THREE.LinearFilter;
     t.needsUpdate = true;
@@ -102,16 +104,27 @@
     const rim = new THREE.DirectionalLight(0xf1c76b, 0.5); rim.position.set(2.8, 1.2, -2.6); scene.add(rim);
 
     /* Texturer */
-    const loader = new THREE.TextureLoader();
-    const aniso = renderer.capabilities.getMaxAnisotropy();
+    const aniso = Math.min(4, renderer.capabilities.getMaxAnisotropy());
+    const maxTex = renderer.capabilities.maxTextureSize || 2048;
     let laddade = 0;
-    function tex(src) {
-      const t = loader.load(src, () => { if (++laddade >= 3) api.ready = true; });
-      t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = aniso; return t;
+    function tex(src, w, h) {
+      w = Math.min(w, maxTex); h = Math.min(h, maxTex);
+      const c = document.createElement('canvas'); c.width = w; c.height = h;
+      const t = new THREE.CanvasTexture(c);
+      t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = aniso;
+      const img = new Image();
+      img.onload = () => {
+        c.getContext('2d').drawImage(img, 0, 0, w, h);
+        t.needsUpdate = true;
+        if (++laddade >= 3) api.ready = true;
+      };
+      img.onerror = () => { api.fel = 'bild'; };
+      img.src = src;
+      return t;
     }
-    const texFram = tex('img/bok-fram.jpg');
-    const texBak  = tex('img/bok-bak.jpg');
-    const texRygg = tex('img/bok-rygg.jpg');
+    const texFram = tex('img/bok-fram.jpg', 1024, 1024);
+    const texBak  = tex('img/bok-bak.jpg', 1024, 1024);
+    const texRygg = tex('img/bok-rygg.jpg', 128, 1024);
     const texKantU = bladTextur(true, aniso);    // framkanten: blad staplas längs tjockleken
     const texKantV = bladTextur(false, aniso);   // över- och underkant
 
@@ -183,6 +196,7 @@
     let visH = 1;
     function resize() {
       const w = canvas.clientWidth || 1, h = canvas.clientHeight || 1;
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       const tan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
@@ -199,6 +213,7 @@
     }
     resize();
     window.addEventListener('resize', resize);
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
 
     // Kalibrering (används vid mätning): api.tune({ hemi, key, rim, env, clearcoat, ccr, rough })
     api.tune = (o) => {
@@ -238,7 +253,40 @@
       shadow.scale.set(Math.max(0.45, bredd * 1.25) * sk, 1, sk * (0.8 + Math.abs(Math.sin(s.rx)) * 0.6));
       shadow.material.opacity = 0.8 - bob * 4;
       renderer.render(scene, camera);
+      if (api.ready && !api.kontrollerad) kontrollera();
     }
+
+    // Läser av några punkter på omslaget direkt efter ritningen. Är de nästan lika (tomt omslag)
+    // eller har ett skuggprogram fallerat, stannar fotot kvar och 3D-duken göms.
+    const px = new Uint8Array(4), v3 = new THREE.Vector3();
+    let forsok = 0;
+    function kontrollera() {
+      if (++forsok < 3) return;                   // ge uppladdningen ett par bildrutor
+      api.kontrollerad = true;
+      const gl = renderer.getContext();
+      const trasigt = (renderer.info.programs || []).some(p => p.diagnostics && p.diagnostics.runnable === false);
+      const punkter = [[0, 0.33], [0, 0], [0, -0.33], [0.28, 0.18], [-0.28, -0.18], [0.2, -0.4]];
+      const farger = [];
+      book.updateMatrixWorld();
+      for (const [x, y] of punkter) {
+        v3.set(x * W, y * H, T / 2 + 0.001).applyMatrix4(book.matrixWorld).project(camera);
+        const bx = Math.round((v3.x + 1) / 2 * gl.drawingBufferWidth), by = Math.round((v3.y + 1) / 2 * gl.drawingBufferHeight);
+        if (bx < 0 || by < 0 || bx >= gl.drawingBufferWidth || by >= gl.drawingBufferHeight) continue;
+        gl.readPixels(bx, by, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
+        farger.push([px[0], px[1], px[2]]);
+      }
+      let spann = 0;
+      for (let k = 0; k < 3; k++) { const vals = farger.map(f => f[k]); spann = Math.max(spann, Math.max(...vals) - Math.min(...vals)); }
+      api.kontroll = { trasigt, spann, punkter: farger.length };
+      if (trasigt || api.fel || farger.length < 3 || spann < 40) visaReserv(); else visa3d();
+    }
+    function visa3d() { canvas.classList.add('redo'); const fb = document.getElementById('book-fallback'); if (fb) fb.classList.add('dold'); api.visar = '3d'; }
+    function visaReserv() { canvas.style.display = 'none'; api.visar = 'foto'; }
+
+    // Safari kan kasta 3D-duken när man byter app. Då visas fotot, och 3D prövas igen när duken kommer tillbaka.
+    canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); canvas.classList.remove('redo'); const fb = document.getElementById('book-fallback'); if (fb) fb.classList.remove('dold'); }, false);
+    canvas.addEventListener('webglcontextrestored', () => { [texFram, texBak, texRygg].forEach(t => { t.needsUpdate = true; }); api.kontrollerad = false; forsok = 0; }, false);
+
     frame();
     return true;
   }

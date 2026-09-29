@@ -9,8 +9,8 @@
   --green:    #1C4229;
   --green-dk: #12301D;
   --green-lt: #2F6A45;
-  --terra:    #C4482B;
-  --terra-dk: #A33A22;
+  --terra:    #B23E24;   /* 4,9:1 mot krämvit text; omslagets ton är #C45335 */
+  --terra-dk: #962F19;
   --gold:     #E3A93B;
   --gold-lt:  #F1C76B;
   --cream:    #F4EBDC;
@@ -102,7 +102,7 @@ a { color: inherit; }
   transition: background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
 }
 .site-header nav { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
-.nav-logo { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; }
+.nav-logo { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
 .nav-links { list-style: none; display: flex; gap: 2rem; }
 .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-decoration: none; opacity: 0.9; padding: 0.4rem 0; }
 .nav-links a:hover { opacity: 1; }
@@ -203,8 +203,10 @@ a { color: inherit; }
 
 /* 3D-boken: canvasen täcker hela scenen, boken centreras av kameran */
 .book-float { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
-#bok-canvas { display: block; width: 100%; height: 100%; }
-.book-fallback { position: absolute; left: 50%; top: 50%; width: calc(var(--bw) * 1.35); height: auto; transform: translate(-50%, -50%); border-radius: 8px; }
+#bok-canvas { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity 0.6s ease; }
+#bok-canvas.redo { opacity: 1; }
+.book-fallback { position: absolute; left: 50%; top: 50%; height: 56%; width: auto; max-width: 70vw; object-fit: contain; transform: translate(-50%, -50%); border-radius: 2px 6px 6px 2px; box-shadow: -3px 0 0 #12301d, 0 40px 70px -24px rgba(0,0,0,0.7); transition: opacity 0.6s ease; }
+.book-fallback.dold { opacity: 0; }
 
 .scroll-hint {
   position: absolute; right: 6vw; bottom: 8vh; z-index: 3;
@@ -225,6 +227,7 @@ a { color: inherit; }
 .inne-media img { position: relative; border-radius: 4px; box-shadow: 0 30px 60px -25px rgba(20,32,26,0.5); width: 100%; height: auto; }
 .inne-media .bokcitat { position: relative; margin: 1.6rem 0 0 0; }
 .inne-text .lead { margin-bottom: 2rem; }
+.inne .pris { color: var(--terra-dk); }
 
 .fakta { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; gap: 0 2.2rem; margin: 0 0 0.6rem; padding: 1.1rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .fakta div { display: flex; flex-direction: column; gap: 0.15rem; }
@@ -256,7 +259,7 @@ a { color: inherit; }
    UR MAYKAS KÖK
    ══════════════════════════════════════════════════════════ */
 .kok { padding: 7rem 6vw; background: var(--gold); color: var(--ink); }
-.kok .kicker { color: var(--terra-dk); }
+.kok .kicker { color: var(--ink); }
 .kok .h2 em { color: var(--terra-dk); }
 .kok .lead { color: rgba(20,32,26,0.75); margin: 0 auto 2rem; }
 .kok-head { text-align: center; max-width: 42rem; margin: 0 auto 3.5rem; display: flex; flex-direction: column; align-items: center; }
@@ -290,7 +293,7 @@ a { color: inherit; }
 .om { background: var(--cream); }
 .om-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; max-width: 1240px; margin: 0 auto; padding: 8rem 6vw; }
 .om-media img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; }
-.om-roles { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terra); margin: -0.4rem 0 1.4rem; }
+.om-roles { font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terra); margin: -0.4rem 0 1.4rem; }
 .om-body { font-family: var(--serif); font-size: 1.32rem; line-height: 1.55; color: var(--ink); max-width: 34rem; }
 .om-sign { display: block; font-family: var(--serif); font-style: italic; font-size: 2rem; color: var(--terra); margin: 1rem 0 2.2rem; }
 
@@ -322,10 +325,10 @@ a { color: inherit; }
    ══════════════════════════════════════════════════════════ */
 .cta { padding: 7rem 6vw; background: var(--terra); color: var(--cream); }
 .cta-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
-.cta .kicker { color: var(--gold-lt); }
+.cta .kicker { color: var(--cream); }
 .cta .h2 { color: var(--cream); }
 .cta .h2 em { color: var(--gold-lt); }
-.cta .lead { color: rgba(244,235,220,0.85); }
+.cta .lead { color: var(--cream); }
 .cta-card { background: var(--cream); color: var(--ink); border-radius: 12px; padding: 2.2rem; }
 .cta-card-body { font-size: 0.92rem; color: var(--mid); margin-bottom: 1.2rem; }
 .collab-list { list-style: none; display: flex; flex-direction: column; margin-bottom: 1.8rem; }
@@ -343,7 +346,7 @@ a { color: inherit; }
 .slut-title { margin: 0.2rem 0 0.4rem; }
 .slut-body { font-size: 1rem; color: rgba(244,235,220,0.8); margin-bottom: 1rem; }
 .slut .pris { font-size: 1.6rem; }
-.slut-isbn { font-size: 0.78rem; letter-spacing: 0.12em; color: rgba(244,235,220,0.5); margin-top: 0.6rem; }
+.slut-isbn { font-size: 0.78rem; letter-spacing: 0.12em; color: rgba(244,235,220,0.75); margin-top: 0.6rem; }
 
 /* ══════════════════════════════════════════════════════════
    FOOTER
@@ -360,7 +363,7 @@ a { color: inherit; }
 .footer-social a:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
 .site-footer h4 { font-family: var(--display); font-weight: 400; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; color: var(--gold); }
 .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 0; }
-.footer-links a { font-size: 0.86rem; text-decoration: none; opacity: 0.8; min-height: 44px; display: inline-flex; align-items: center; }
+.footer-links a { font-size: 0.86rem; text-decoration: none; opacity: 0.8; min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; }
 .footer-links a:hover { opacity: 1; color: var(--gold); }
 .footer-newsletter p { font-size: 0.86rem; color: rgba(244,235,220,0.7); margin-bottom: 1rem; }
 .footer-nl-form { display: flex; gap: 0.5rem; }
@@ -377,7 +380,7 @@ a { color: inherit; }
 .nl-popup .nl-fel { color: var(--terra-dk); }
 .footer-bottom { max-width: 1240px; margin: 0 auto; padding-top: 1.6rem; border-top: 1px solid rgba(244,235,220,0.12); display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; font-size: 0.74rem; color: rgba(244,235,220,0.55); }
 .td-pixel { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-.footer-by a { color: var(--gold); text-decoration: none; font-weight: 600; }
+.footer-by a { color: var(--gold); text-decoration: none; font-weight: 600; display: inline-block; padding: 14px 0; margin: -14px 0; }
 
 /* ══════════════════════════════════════════════════════════
    FAST KÖPRAD – bara på mobil, ett tryck till köp från varje skärm
@@ -498,3 +501,14 @@ a { color: inherit; }
   .scroll-line { animation: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ── Utan JavaScript: inget göms, scenen läses uppifrån och ner ── */
+.no-js .stage-inner { height: auto; min-height: 0; overflow: visible; display: flex; flex-direction: column; align-items: flex-start; gap: 2.2rem; padding: 110px 6vw 70px; }
+.no-js .slide, .no-js .slide-side, .no-js .stage-cta, .no-js .book-float, .no-js .slide-1 .display-sub {
+  position: static; inset: auto; transform: none; visibility: visible; opacity: 1; max-width: 38rem; padding: 0; text-align: left; align-items: flex-start;
+}
+.no-js .slide-1 { justify-content: flex-start; }
+.no-js .book-float { width: 100%; }
+.no-js .book-fallback { position: static; transform: none; height: auto; width: min(70vw, 340px); display: block; }
+.no-js #bok-canvas, .no-js .scroll-hint { display: none; }
+.no-js .stage-cta { display: flex; }

@@ -58,11 +58,8 @@ function initStage() {
   const stage = document.getElementById('hero');
   if (!stage) return;
 
+  // Fotot av omslaget syns tills 3D-boken bevisligen ritats rätt (bok3d.js byter själv).
   const har3d = window.BOK3D && window.BOK3D.init && window.BOK3D.init();
-  if (!har3d) {
-    const fb = document.getElementById('book-fallback');
-    if (fb) fb.hidden = false;
-  }
   const st = har3d ? window.BOK3D.state : { ry: 0, rx: 0, rz: 0, scale: 1, x: 0, y: 0 };
 
   // Intro: boken landar (eget offset-objekt så att den inte krockar med skrollens värden), texten stiger

@@ -163,7 +163,16 @@
     .td-pixel { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
   </style>
   <script src="js/i18n.js"></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4880340628636698" crossorigin="anonymous"></script>
+  <script>
+    /* Annonsskriptet (Maykas AdSense) laddas när sidan är klar, så det inte bromsar första skärmen. */
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        var a = document.createElement('script'); a.async = true; a.crossOrigin = 'anonymous';
+        a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4880340628636698';
+        document.head.appendChild(a);
+      }, 2500);
+    });
+  </script>
 </head>
 <body>
 
@@ -189,6 +198,13 @@
   <div class="not-found">
     <p data-i18n="r.loading">Laddar recept…</p>
   </div>
+  <noscript>
+    <style>.not-found { display: none; }</style>
+    <div class="list-head">
+      <h1 class="list-title">Bloggrecept</h1>
+      <p class="list-sub">Recepten visas med JavaScript. Slå på JavaScript i webbläsaren, eller se Maykas recept på <a href="https://www.instagram.com/maykaskitchen/">Instagram</a>.</p>
+    </div>
+  </noscript>
 </main>
 
 <a class="kopbar" href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener">
