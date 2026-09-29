@@ -41,7 +41,7 @@
       'inne.1t':     'Växtbaserat',
       'inne.1b':     'Gröna rätter, uråldriga smaker.',
       'inne.2t':     'Påskfastan',
-      'inne.2b':     'Många recept skapade för påskfastan.',
+      'inne.2b':     'Många recept skapade med påskfastan i åtanke.',
       'inne.3t':     'Kvinnokraft och rötter',
       'inne.3b':     'Ett kapitel om Maykas farmor och kvinnorna i byn.',
       'f.recept.t': 'Recept', 'f.recept': 'cirka 50',
@@ -57,7 +57,7 @@
       /* UR MAYKAS KÖK */
       'kok.kicker': 'Från Maykas blogg',
       'kok.title':  'Maykas recept, <em>gratis</em>',
-      'kok.body':   'Här finns 17 av Maykas bloggrecept, gratis. Kokboken är en egen samling med cirka 50 växtbaserade recept.',
+      'kok.body':   'Här finns 17 av Maykas bloggrecept, gratis. Kokboken är en egen samling med cirka 50 recept ur det gröna köket.',
       'kok.btn':    'Alla bloggrecept',
 
       /* SIFFROR */
@@ -208,7 +208,7 @@
       'inne.1t':     'Plant-based',
       'inne.1b':     'Green dishes, ancient flavours.',
       'inne.2t':     'Lent',
-      'inne.2b':     'Many recipes created for Lent.',
+      'inne.2b':     'Many recipes created with Lent in mind.',
       'inne.3t':     'Strength of women, and roots',
       'inne.3b':     'A chapter about Mayka’s grandmother and the women of the village.',
       'f.recept.t': 'Recipes', 'f.recept': 'about 50',
@@ -224,7 +224,7 @@
       /* FROM MAYKA’S KITCHEN */
       'kok.kicker': 'From Mayka’s blog',
       'kok.title':  'Mayka’s recipes, <em>free</em>',
-      'kok.body':   'Here are 17 of Mayka’s blog recipes, free. The cookbook is a separate collection of about 50 plant-based recipes.',
+      'kok.body':   'Here are 17 of Mayka’s blog recipes, free. The cookbook is a separate collection of about 50 recipes from the green kitchen.',
       'kok.btn':    'All blog recipes',
 
       /* NUMBERS */

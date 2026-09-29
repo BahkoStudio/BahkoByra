@@ -284,7 +284,7 @@
     function visaReserv() { canvas.style.display = 'none'; api.visar = 'foto'; }
 
     // Safari kan kasta 3D-duken när man byter app. Då visas fotot, och 3D prövas igen när duken kommer tillbaka.
-    canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); canvas.classList.remove('redo'); const fb = document.getElementById('book-fallback'); if (fb) fb.classList.remove('dold'); }, false);
+    canvas.addEventListener('webglcontextlost', e => { e.preventDefault(); api.visar = 'foto'; api.kontroll = null; canvas.classList.remove('redo'); const fb = document.getElementById('book-fallback'); if (fb) fb.classList.remove('dold'); }, false);
     canvas.addEventListener('webglcontextrestored', () => { [texFram, texBak, texRygg].forEach(t => { t.needsUpdate = true; }); api.kontrollerad = false; forsok = 0; }, false);
 
     frame();

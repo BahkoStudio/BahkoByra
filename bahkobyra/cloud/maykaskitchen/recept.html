@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="sv" class="no-js">
 <head>
+  <script>document.documentElement.classList.remove('no-js')</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recept – MaykasKitchen</title>
@@ -31,7 +32,7 @@
 
     /* ── HEADER ── */
     .site-header { position: sticky; top: 0; z-index: 100; padding: 0.9rem 5vw; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: rgba(244,235,220,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-    .nav-logo { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: 0.04em; }
+    .nav-logo { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: 0.04em; display: inline-flex; align-items: center; min-height: 44px; }
     .nav-mini { display: flex; gap: 1.6rem; list-style: none; }
     .nav-mini a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; opacity: 0.85; padding: 0.4rem 0; }
     .nav-mini a:hover { opacity: 1; color: var(--terra); }
@@ -60,7 +61,8 @@
     .rcard:hover .rcard-img img { transform: scale(1.04); }
     .rcard-body { padding: 1.1rem 1.2rem 1.3rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
     .rcard-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
-    .rcard-tags span { font-size: 0.64rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 999px; background: var(--cream-2); color: var(--mid); }
+    .rcard-tags span { font-size: 0.66rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid); }
+    .rcard-tags span + span::before { content: "·"; margin-right: 0.35rem; }
     .rcard h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; line-height: 1.2; }
     .rcard p { font-size: 0.84rem; color: var(--mid); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .rcard-foot { margin-top: auto; padding-top: 0.6rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; color: var(--mid); }
@@ -81,7 +83,7 @@
       .kopbar img { width: 30px; height: 42px; object-fit: cover; border-radius: 2px; flex: none; }
       .kopbar-text { display: flex; flex-direction: column; line-height: 1.2; }
       .kopbar-text b { font-size: 0.95rem; font-weight: 600; }
-      .kopbar-text span { font-size: 0.75rem; opacity: 0.85; }
+      .kopbar-text span { font-size: 0.8rem; }
       .kopbar-pris { margin-left: auto; font-family: var(--display); font-size: 1.35rem; }
       body { padding-bottom: 64px; }
     }
@@ -94,8 +96,9 @@
     .recipe-hero-img { border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; }
     .recipe-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .recipe-hero-content { display: flex; flex-direction: column; gap: 1rem; }
-    .recipe-badges { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .recipe-badge-tag { font-size: 0.72rem; font-weight: 500; padding: 0.3rem 0.8rem; border-radius: 50px; background: var(--beige); color: var(--mid); text-transform: uppercase; letter-spacing: 0.05em; }
+    .recipe-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .recipe-badge-tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); }
+    .recipe-badge-tag + .recipe-badge-tag::before { content: "·"; margin-right: 0.5rem; color: var(--line); }
     .recipe-title { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 600; line-height: 1.15; color: var(--charcoal); }
     .recipe-desc { font-size: 0.9rem; color: var(--mid); line-height: 1.75; }
     .recipe-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
@@ -153,14 +156,14 @@
       .recipe-page { padding: 2rem 4vw 4rem; }
       .recipe-story { padding: 1rem 1.2rem; }
     }
-    .lang-toggle { min-width: 44px; min-height: 40px; background: transparent; border: 1.5px solid var(--line); color: var(--ink); font-family: var(--sans); font-size: 0.64rem; font-weight: 600; letter-spacing: 0.12em; padding: 0.3rem 0.7rem; border-radius: 999px; cursor: pointer; transition: background 0.2s, color 0.2s; line-height: 1; }
+    .lang-toggle { min-width: 44px; min-height: 44px; background: transparent; border: 1.5px solid var(--line); color: var(--ink); font-family: var(--sans); font-size: 0.64rem; font-weight: 600; letter-spacing: 0.12em; padding: 0.3rem 0.7rem; border-radius: 999px; cursor: pointer; transition: background 0.2s, color 0.2s; line-height: 1; }
     .lang-toggle:hover { border-color: var(--terra); color: var(--terra); }
 
     /* ── FOOTER ── */
     .site-footer { max-width: 1080px; margin: 0 auto; padding: 1.6rem 5vw 2.6rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; align-items: center; justify-content: space-between; border-top: 1px solid var(--beige); font-size: 0.78rem; color: var(--mid); }
     .site-footer a { color: var(--crimson); text-decoration: none; font-weight: 600; }
     .site-footer a:hover { text-decoration: underline; }
-    .recipe-badge-blogg { background: var(--green); color: var(--cream); }
+    .recipe-badge-blogg { color: var(--green); }
     .sr-lista { max-width: 760px; margin: 0 auto; padding: 1rem 5vw 5rem; display: flex; flex-direction: column; gap: 0.8rem; }
     .sr-recept { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 0.4rem 1rem; }
     .sr-recept summary { display: flex; align-items: center; gap: 0.9rem; min-height: 56px; cursor: pointer; list-style: none; padding: 0.4rem 0; }
@@ -171,6 +174,7 @@
     .sr-recept h4 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--terra); margin: 0.7rem 0 0.3rem; }
     .sr-recept ul, .sr-recept ol { padding-left: 1.2rem; font-size: 0.9rem; line-height: 1.6; }
     .sr-recept p { font-size: 0.9rem; color: var(--mid); margin: 0.4rem 0; }
+    .no-js .lang-toggle { display: none; }
     .td-pixel { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
   </style>
   <script src="js/i18n.js"></script>
@@ -215,7 +219,7 @@
     <div class="list-head">
       <span class="kicker">Från Maykas blogg</span>
       <h1 class="list-title">Bloggrecept</h1>
-      <p class="list-sub">17 av Maykas bloggrecept. Tryck på ett recept för att öppna det. Kokboken är en egen samling med cirka 50 växtbaserade recept.</p>
+      <p class="list-sub">17 av Maykas bloggrecept. Tryck på ett recept för att öppna det. Kokboken är en egen samling med cirka 50 recept ur det gröna köket.</p>
     </div>
     <div class="sr-lista">
       <details class="sr-recept" id="r-qrimyothe-munkar">
@@ -747,7 +751,7 @@ function render() {
       <img src="img/bok-fram.jpg" alt="" width="72" height="100">
       <div>
         <strong>${tv('Maykas kokbok', 'Mayka’s cookbook')}</strong>
-        <p>${tv('Det här är ett bloggrecept. Kokboken Maykas gröna kök är en egen samling med cirka 50 växtbaserade recept. Inbunden, 349 kr via Bokus (affiliatelänk).', 'This is a blog recipe. The cookbook Maykas gröna kök is a separate collection of about 50 plant-based recipes. Hardcover, 349 SEK via Bokus (affiliate link).')}</p>
+        <p>${tv('Det här är ett bloggrecept. Kokboken Maykas gröna kök är en egen samling med cirka 50 recept ur det gröna köket. Inbunden, 349 kr via Bokus (affiliatelänk).', 'This is a blog recipe. The cookbook Maykas gröna kök is a separate collection of about 50 recipes from the green kitchen. Hardcover, 349 SEK via Bokus (affiliate link).')}</p>
       </div>
       <a href="https://clk.tradedoubler.com/click?p=362&amp;a=3477349&amp;url=https%3A%2F%2Fwww.bokus.com%2Fbok%2F9789190032091%2Fmaykas-grona-kok-kutle-hummus-och-karlek%2F" target="_blank" rel="sponsored noopener">${tv('Köp boken', 'Buy the book')}</a>
     </aside>`;

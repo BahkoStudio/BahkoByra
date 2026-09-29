@@ -315,7 +315,7 @@ a { color: inherit; }
 
 .banner { position: relative; height: clamp(320px, 62vh, 620px); overflow: hidden; }
 .banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
-.banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,32,26,0.05), rgba(20,32,26,0.62)); }
+.banner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,32,26,0.05) 20%, rgba(20,32,26,0.78)); }
 .banner-quote {
   position: absolute; left: 6vw; right: 6vw; bottom: 10%; z-index: 1; text-align: center;
   font-family: var(--serif); font-style: italic; font-size: clamp(1.5rem, 3.4vw, 2.8rem); line-height: 1.3; color: var(--cream);
@@ -398,7 +398,7 @@ a { color: inherit; }
   .kopbar img { width: 30px; height: 42px; object-fit: cover; border-radius: 2px; box-shadow: 0 4px 10px rgba(0,0,0,0.35); flex: none; }
   .kopbar-text { display: flex; flex-direction: column; line-height: 1.2; }
   .kopbar-text b { font-size: 0.95rem; font-weight: 600; }
-  .kopbar-text span { font-size: 0.8rem; opacity: 0.9; }
+  .kopbar-text span { font-size: 0.8rem; }
   .kopbar-pris { margin-left: auto; font-family: var(--display); font-size: 1.35rem; letter-spacing: 0.02em; }
   body { padding-bottom: 64px; }
 }
