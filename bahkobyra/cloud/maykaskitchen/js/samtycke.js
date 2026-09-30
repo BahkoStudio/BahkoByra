@@ -1,22 +1,36 @@
-/* ── Samtycke + Google Analytics (G-37QD3TJL56) + AdSense på receptsidan ─────
-   Lagen om elektronisk kommunikation kräver samtycke innan statistikkakor sätts.
-   Därför laddas gtag.js och AdSense först när besökaren tryckt "Godkänn". Valet sparas i
-   webbläsaren och kan ändras via "Kakinställningar" i sidfoten. */
+/* ── Samtycke via Googles egen ruta (AdSense → Sekretess och meddelanden) ─────
+   Googles certifierade samtyckesruta levereras av AdSense-koden (adsbygoogle.js), så koden
+   laddas på alla sidor. Annonser visas bara där skripttaggen har data-annonser="ja"
+   (receptsidan); övriga sidor pausar annonsförfrågningarna (pauseAdRequests = 1).
+   Google Analytics (G-37QD3TJL56) laddas först när besökaren samtyckt i Googles ruta
+   (TCF-syfte 1, lagra/läsa information), eller när GDPR inte gäller besökaren.
+   "Kakinställningar" i sidfoten öppnar Googles ruta igen (krav från Google). */
 (function () {
   'use strict';
   var MATT_ID = 'G-37QD3TJL56';
-  var NYCKEL = 'mk-analys';          // 'ja' | 'nej'
-  var laddad = false, annonserLaddade = false;
+  var PUB = 'ca-pub-4880340628636698';
+  var tagg = document.currentScript;
+  var annonser = !!(tagg && tagg.getAttribute('data-annonser') === 'ja');
+  var gaLaddad = false;
 
-  function las() { try { return localStorage.getItem(NYCKEL); } catch (_) { return null; } }
-  function spara(v) { try { localStorage.setItem(NYCKEL, v); } catch (_) {} }
+  // Consent mode: allt nekat tills Googles ruta säger annat (rutan uppdaterar själv).
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+  window.gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', wait_for_update: 500
+  });
+
+  // AdSense-koden, som också levererar samtyckesrutan
+  window.adsbygoogle = window.adsbygoogle || [];
+  if (!annonser) window.adsbygoogle.pauseAdRequests = 1;      // säljsidan och integritetssidan: inga annonser
+  var a = document.createElement('script');
+  a.async = true; a.crossOrigin = 'anonymous';
+  a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + PUB;
+  document.head.appendChild(a);
 
   function laddaAnalytics() {
-    if (laddad) return;
-    laddad = true;
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function () { window.dataLayer.push(arguments); };
-    window.gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+    if (gaLaddad) return;
+    gaLaddad = true;
     window.gtag('js', new Date());
     window.gtag('config', MATT_ID);
     var s = document.createElement('script');
@@ -25,71 +39,27 @@
     document.head.appendChild(s);
   }
 
-  function laddaAnnonser() {
-    // Bara på sidor som har annonser (receptsidan). Laddas efter load så första skärmen inte bromsas.
-    var meta = document.querySelector('meta[name="mk-annonser"]');
-    if (!meta || annonserLaddade) return;
-    annonserLaddade = true;
-    var ladda = function () {
-      setTimeout(function () {
-        var a = document.createElement('script'); a.async = true; a.crossOrigin = 'anonymous';
-        a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + meta.getAttribute('content');
-        document.head.appendChild(a);
-      }, 2500);
-    };
-    if (document.readyState === 'complete') ladda(); else window.addEventListener('load', ladda);
-  }
-
-  function rensaGaKakor() {
-    // Vid "Nej tack" efter ett tidigare ja: ta bort Analytics-kakorna på den här domänen.
-    document.cookie.split(';').forEach(function (c) {
-      var namn = c.split('=')[0].trim();
-      if (/^(_ga|__gads|__gpi|__eoi)/.test(namn)) {
-        var d = location.hostname.replace(/^www\./, '');
-        document.cookie = namn + '=; Max-Age=0; path=/';
-        document.cookie = namn + '=; Max-Age=0; path=/; domain=.' + d;
-      }
-    });
-  }
-
-  function ruta() { return document.getElementById('samtycke'); }
-  function visa() { var r = ruta(); if (r) { r.hidden = false; document.documentElement.classList.add('har-samtycke-ruta'); } }
-  function dolj() { var r = ruta(); if (r) { r.hidden = true; document.documentElement.classList.remove('har-samtycke-ruta'); } }
-
-  function stangAv() {
-    // Googles egen avstängning: taggen slutar skicka och skriver inga fler kakor.
-    window['ga-disable-' + MATT_ID] = true;
-    if (typeof window.gtag === 'function') window.gtag('consent', 'update', { analytics_storage: 'denied' });
-  }
-
-  function val(v) {
-    spara(v);
-    dolj();
-    if (v === 'ja') { window['ga-disable-' + MATT_ID] = false; laddaAnalytics(); laddaAnnonser(); }
-    else {
-      stangAv();
-      rensaGaKakor();
-      if (laddad || annonserLaddade) setTimeout(function () { rensaGaKakor(); location.reload(); }, 150);
+  // Lyssna på Googles ruta (TCF). Laddas aldrig Googles ruta, laddas aldrig Analytics heller.
+  window.googlefc = window.googlefc || {};
+  window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+  window.googlefc.callbackQueue.push({
+    CONSENT_DATA_READY: function () {
+      if (typeof window.__tcfapi !== 'function') return;
+      window.__tcfapi('addEventListener', 2.2, function (tc, ok) {
+        if (!ok || !tc) return;
+        if (tc.eventStatus !== 'tcloaded' && tc.eventStatus !== 'useractioncomplete') return;
+        var samtycke = tc.gdprApplies === false || !!(tc.purpose && tc.purpose.consents && tc.purpose.consents[1]);
+        if (samtycke) laddaAnalytics();
+      });
     }
-  }
-
-  window.MK_SAMTYCKE = { oppna: visa, val: val };
-
-  var start = las();
-  // Annonsraden (meta mk-annonser) står längre ner i <head> än det här skriptet: vänta tills sidan är inläst.
-  if (start === 'ja') { laddaAnalytics(); document.addEventListener('DOMContentLoaded', laddaAnnonser); }
-  else if (start === 'nej') { stangAv(); rensaGaKakor(); }
+  });
 
   document.addEventListener('DOMContentLoaded', function () {
-    var r = ruta();
-    if (!r) return;
-    var ja = r.querySelector('[data-samtycke="ja"]'), nej = r.querySelector('[data-samtycke="nej"]');
-    if (ja) ja.addEventListener('click', function () { val('ja'); });
-    if (nej) nej.addEventListener('click', function () { val('nej'); });
-    document.querySelectorAll('[data-kakinstallningar]').forEach(function (a) {
-      a.addEventListener('click', function (e) { e.preventDefault(); visa(); });
+    document.querySelectorAll('[data-kakinstallningar]').forEach(function (l) {
+      l.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.googlefc.callbackQueue.push(window.googlefc.showRevocationMessage);
+      });
     });
-    var nu = las();
-    if (nu !== 'ja' && nu !== 'nej') visa();
   });
 })();

@@ -123,9 +123,6 @@
       'footer.made':           'Skapad med ♥ i Skåne, Sverige',
       'footer.priv':           'Integritet och kakor',
       'footer.kakor': 'Kakinställningar',
-      'samtycke.text': 'Får vi använda kakor för besöksstatistik (Google Analytics) och annonser på receptsidan (Google AdSense)? <a href="integritet.html">Läs mer</a>.',
-      'samtycke.ja': 'Godkänn',
-      'samtycke.nej': 'Nej tack',
       'nl.integritet':         'Adressen används bara till nyhetsbrevet och du kan avsluta när du vill. <a href="integritet.html">Så hanterar vi dina uppgifter</a>.',
 
       /* POPUP */
@@ -311,9 +308,6 @@
       'footer.made':           'Made with ♥ in Skåne, Sweden',
       'footer.priv':           'Privacy and cookies',
       'footer.kakor': 'Cookie settings',
-      'samtycke.text': 'May we use cookies for visitor statistics (Google Analytics) and ads on the recipe page (Google AdSense)? <a href="integritet.html">Read more</a>.',
-      'samtycke.ja': 'Accept',
-      'samtycke.nej': 'No thanks',
       'nl.integritet':         'Your address is only used for the newsletter and you can unsubscribe at any time. <a href="integritet.html">How we handle your data</a>.',
 
       /* POPUP */
