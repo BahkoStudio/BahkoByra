@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="sv" class="no-js">
 <head>
+  <script src="js/samtycke.js"></script>
   <script>document.documentElement.classList.remove('no-js')</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -197,6 +198,18 @@
     .sr-recept p { font-size: 0.9rem; color: var(--mid); margin: 0.4rem 0; }
     .no-js .lang-toggle { display: none; }
     .td-pixel { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+  
+/* ── Samtyckesruta för Google Analytics ── */
+.samtycke { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 150; max-width: 30rem; margin-left: auto;
+  display: flex; flex-direction: column; gap: 0.8rem; padding: 1rem 1.1rem; border-radius: 14px;
+  background: var(--cream, #F4EBDC); color: var(--ink, #14201A); box-shadow: 0 18px 40px -14px rgba(0,0,0,0.45); font-size: 0.86rem; line-height: 1.5; }
+.samtycke[hidden] { display: none; }
+.samtycke a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.samtycke-knappar { display: flex; gap: 0.6rem; }
+.samtycke-knapp { flex: 1; min-height: 44px; padding: 0.5rem 1rem; border-radius: 999px; border: 1.5px solid var(--ink, #14201A);
+  background: transparent; color: var(--ink, #14201A); font: inherit; font-weight: 600; cursor: pointer; }
+.samtycke-knapp[data-samtycke="ja"] { background: var(--ink, #14201A); color: var(--cream, #F4EBDC); }
+@media (max-width: 760px) { .samtycke { bottom: calc(64px + 12px + env(safe-area-inset-bottom, 0px)); } }
   </style>
   <script src="js/i18n.js"></script>
   <script>
@@ -375,7 +388,7 @@
 
 <footer class="site-footer">
   <span>© 2026 Mayka Gulo</span>
-  <a class="footer-priv" href="integritet.html" data-i18n="footer.priv">Integritet och kakor</a>
+  <a class="footer-priv" href="integritet.html" data-i18n="footer.priv">Integritet och kakor</a> <a class="footer-priv" href="#" data-kakinstallningar data-i18n="footer.kakor">Kakinställningar</a>
   <span>Hemsida av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
 </footer>
 
@@ -844,5 +857,6 @@ window.MK_RENDER();
 initLangToggle();
 </script>
   <img class="td-pixel" src="https://imp.tradedoubler.com/imp?type(inv)g(0)p(362)a(3477349)prod(0)" width="1" height="1" alt="" aria-hidden="true" referrerpolicy="no-referrer-when-downgrade">
+<div id="samtycke" class="samtycke" role="region" aria-label="Kakor" hidden><p data-i18n="samtycke.text">Får vi mäta besöken med Google Analytics? Det sätter kakor och hjälper oss förbättra sidan. <a href="integritet.html">Läs mer</a>.</p><div class="samtycke-knappar"><button type="button" class="samtycke-knapp" data-samtycke="nej" data-i18n="samtycke.nej">Nej tack</button><button type="button" class="samtycke-knapp" data-samtycke="ja" data-i18n="samtycke.ja">Godkänn</button></div></div>
 </body>
 </html>
