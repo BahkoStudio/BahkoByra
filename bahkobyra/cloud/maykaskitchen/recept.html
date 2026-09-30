@@ -212,16 +212,7 @@
 @media (max-width: 760px) { .samtycke { bottom: calc(64px + 12px + env(safe-area-inset-bottom, 0px)); } }
   </style>
   <script src="js/i18n.js"></script>
-  <script>
-    /* Annonsskriptet (Maykas AdSense) laddas när sidan är klar, så det inte bromsar första skärmen. */
-    window.addEventListener('load', function () {
-      setTimeout(function () {
-        var a = document.createElement('script'); a.async = true; a.crossOrigin = 'anonymous';
-        a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4880340628636698';
-        document.head.appendChild(a);
-      }, 2500);
-    });
-  </script>
+  <meta name="mk-annonser" content="ca-pub-4880340628636698">
 </head>
 <body>
 
@@ -857,6 +848,6 @@ window.MK_RENDER();
 initLangToggle();
 </script>
   <img class="td-pixel" src="https://imp.tradedoubler.com/imp?type(inv)g(0)p(362)a(3477349)prod(0)" width="1" height="1" alt="" aria-hidden="true" referrerpolicy="no-referrer-when-downgrade">
-<div id="samtycke" class="samtycke" role="region" aria-label="Kakor" hidden><p data-i18n="samtycke.text">Får vi mäta besöken med Google Analytics? Det sätter kakor och hjälper oss förbättra sidan. <a href="integritet.html">Läs mer</a>.</p><div class="samtycke-knappar"><button type="button" class="samtycke-knapp" data-samtycke="nej" data-i18n="samtycke.nej">Nej tack</button><button type="button" class="samtycke-knapp" data-samtycke="ja" data-i18n="samtycke.ja">Godkänn</button></div></div>
+<div id="samtycke" class="samtycke" role="region" aria-label="Kakor" hidden><p data-i18n="samtycke.text">Får vi använda kakor för besöksstatistik (Google Analytics) och annonser på receptsidan (Google AdSense)? <a href="integritet.html">Läs mer</a>.</p><div class="samtycke-knappar"><button type="button" class="samtycke-knapp" data-samtycke="nej" data-i18n="samtycke.nej">Nej tack</button><button type="button" class="samtycke-knapp" data-samtycke="ja" data-i18n="samtycke.ja">Godkänn</button></div></div>
 </body>
 </html>
