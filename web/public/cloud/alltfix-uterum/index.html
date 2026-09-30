@@ -2,10 +2,10 @@
 <html lang="sv">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Alltfix — Designa ditt uterum i 3D</title>
-<meta name="description" content="Välj mått, tak, golv, glaspartier och färg och se ditt uterum mot huset i 3D. Prototyp för Alltfix Stockholm AB.">
+<title>Alltfix — Uterum på ditt hus</title>
+<meta name="description" content="Ta ett foto av ditt hus, lägg in uterummet på bilden och välj mått, tak, väggar och golv. Varje ändring syns direkt i samma bild. Prototyp för Alltfix Stockholm AB.">
 <meta name="theme-color" content="#1C1C30">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +37,7 @@
   --panel:372px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
+html,body{height:100%;touch-action:pan-x pan-y}
 body{
   background:linear-gradient(180deg,var(--himmel-topp) 0%,var(--himmel-horisont) 62%,var(--himmel-horisont) 100%);
   background-attachment:fixed;
@@ -155,7 +155,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .steg:active{background:rgba(197,165,114,.2);border-color:var(--guld)}
 .cmfalt{flex:1;min-width:0;display:flex;align-items:center;gap:6px;height:44px;padding:0 12px;border:1px solid var(--linje2);border-radius:12px;background:rgba(255,255,255,.05);cursor:text}
 .cmfalt:focus-within{border-color:var(--guld);outline:3px solid var(--guld2);outline-offset:2px}
-.cmfalt input{flex:1;min-width:0;width:100%;height:100%;border:0;background:none;text-align:right;font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}
+.cmfalt input{flex:1;min-width:0;width:100%;height:44px;margin:-1px 0;border:0;background:none;text-align:right;font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}
 .cmfalt input:focus{outline:none}
 .cmfalt span{flex:none;color:var(--text2);font-weight:500}
 .hojdrad{margin-top:8px;font-size:13px;color:var(--text2)}
@@ -274,6 +274,49 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   #sammanfattning{-webkit-line-clamp:1}
   .pris summary > b.antal{-webkit-line-clamp:1}
 }
+#tak-text{display:none}
+/* Dator och platta liggande: taktäckningen på en rad, som takformen, två eller tre
+   knappar utan beskrivning och den valda täckningens beskrivning under dem. Stegets
+   texter och luft lite tätare. Då ryms takform, täckning och lutning i valens synliga
+   del också med pulpettak (granskningen 2026-09-29: på 1180 x 820 låg Kanalplast och
+   Takpapp under summeringen). */
+@media (min-width:861px){
+  .val[data-grupp="tak"]{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:1fr}
+  .val[data-grupp="tak"] .alt{text-align:center;padding:12px 6px}
+  .val[data-grupp="tak"] .alt::after{display:none}
+  .val[data-grupp="tak"] .alt small{display:none}
+  #tak-text{display:block;margin-top:0}
+  #fas-tak .ingress{font-size:13px;line-height:1.4;margin-top:4px}
+  #fas-tak .undertitel + .val{margin-bottom:6px}
+  #fas-tak #h-tackning{margin-top:10px!important}
+  #fas-tak #lut-rad{margin-top:8px!important}
+}
+/* Surfplatta liggande (1180 x 820), 1440 x 900 och andra låga skärmar: summeringen tog
+   314 av panelens 716 px, och valen fick 245 px att rulla i. Med pulpettak låg
+   Kanalplast och Takpapp under summeringen (granskningen 2026-09-29). Här blir
+   summeringen kompaktare: raderna Ingår och Tillval på en rad var (hela listan
+   står i bokningen), en lägre knapp, och ring-länken och krediten på samma rad. */
+@media (min-width:861px) and (max-height:960px){
+  .summering{display:flex;flex-wrap:wrap;align-items:center;column-gap:8px;padding:10px 18px 8px}
+  .summering > *{flex:1 1 100%;min-width:0}
+  .sum{margin-bottom:2px}
+  .sum .sum-matt{margin-bottom:3px}
+  .sum-rad{padding:3px 0}
+  .sum-rad:not(.hel) > span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .summering .sum-rad{cursor:pointer}
+  .summering p.testnot{margin-bottom:0}
+  .summering .cta{height:46px;margin-top:6px}
+  .summering > .ring{flex:0 1 auto;margin-top:0;text-align:left;font-size:12px;display:inline-flex;align-items:center;min-height:44px}
+  .summering > .kredit-rad{flex:0 1 auto;margin:0 0 0 auto;text-align:right;font-size:11px}
+  .summering .kredit-rad a{margin:0}
+  /* panelens topp lite tätare: rubriken, knappen till fotot och flikraden */
+  .panel-topp{padding-top:10px}
+  .panel h1{font-size:19px}
+  .panel-topp .till-foto{margin-top:6px}
+  .flikar{margin-top:8px}
+  /* valens rullning: lite mindre luft överst och en kortare tonad nederkant (app.js framTill räknar med 28 px) */
+  .panel-inre{padding-top:10px;-webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(180deg,#000 calc(100% - 28px),transparent);scroll-padding-block:12px 40px}
+}
 .summering p b{color:var(--text);font-weight:600}
 .cta{margin-top:12px;width:100%;height:52px;border-radius:12px;background:var(--guld);color:var(--marin);font-weight:600;font-size:16px;box-shadow:0 8px 22px rgba(197,165,114,.28);transition:background var(--snabb)}
 .cta:hover{background:var(--guld2)}
@@ -282,7 +325,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 /* ringlänken: tryckytan är 44 px hög men raden tar nästan samma plats som förut */
 .ring{min-height:44px;display:flex;align-items:center;justify-content:center;gap:.3em;margin-top:0;margin-bottom:-8px}
 
-/* ---------- på duken: öppna partierna, lameller ---------- */
+/* ---------- på duken: öppna partierna, placeringen på fotot ---------- */
 .handling{position:fixed;z-index:10;left:calc(var(--panel) + 40px);right:20px;bottom:20px;display:flex;justify-content:center;pointer-events:none}
 .handling-inre{pointer-events:auto;display:flex;align-items:center;gap:16px;padding:8px 10px 8px 8px}
 .knapp{height:44px;padding:0 18px;border-radius:12px;background:rgba(255,255,255,.1);font-weight:500;display:flex;align-items:center;gap:8px;white-space:nowrap}
@@ -290,9 +333,136 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .knapp[aria-pressed="true"]{background:var(--guld);color:var(--marin)}
 .knapp:disabled{opacity:.45;cursor:not-allowed}
 .knapp svg{width:18px;height:18px}
-.lamell{display:flex;align-items:center;gap:10px;min-width:220px;padding-right:8px}
-.lamell label{font-weight:500;white-space:nowrap}
-.lamell output{min-width:3.2em;text-align:right;color:var(--guldtext);font-variant-numeric:tabular-nums}
+.knapp.guld{background:var(--guld);color:var(--marin);font-weight:600}
+.knapp.guld:hover{background:var(--guld2)}
+
+/* ---------- fotoläget ----------
+   Fotot, duken, etiketterna och punkterna har exakt samma ruta, som app.js
+   räknar ut ur fotots bildförhållande (lagFotoLayout). Himlen byts mot marin. */
+.foto{position:absolute;display:block;width:0;height:0;max-width:100%;object-fit:fill;pointer-events:none;-webkit-user-select:none;user-select:none;box-shadow:0 18px 50px rgba(8,8,20,.45)}
+html.fotovy body,html.fotovy .buhne{background:var(--marin)}
+html.fotovy #scen canvas{cursor:default}
+html.fotovy.placerar #scen canvas{cursor:move}
+.punkter{position:absolute;pointer-events:none;z-index:2}
+.punkter.av .handtag,.punkter.av .horisont,.punkter.av .dorr-linje{display:none}
+.punkter:not(.dorr) [data-punkt="D1"],.punkter:not(.dorr) [data-punkt="D2"],.punkter:not(.dorr) .dorr-linje{display:none}
+/* hela den streckade linjen är ett grepp på 44 px (granskningen: bara punkten längst till höger gick att dra) */
+.horisont{position:absolute;left:0;right:0;top:0;height:44px;margin-top:-22px;pointer-events:auto;touch-action:none;cursor:ns-resize;will-change:transform}
+.horisont::before{content:"";position:absolute;left:0;right:0;top:21px;border-top:2px dashed rgba(255,255,255,.95);filter:drop-shadow(0 1px 1px rgba(0,0,0,.55))}
+.handtag{position:absolute;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;pointer-events:auto;touch-action:none;cursor:grab;will-change:transform}
+.handtag:active{cursor:grabbing}
+/* en ihålig ring med hårkors: väggens fot syns genom punkten (granskningen: den heltäckande punkten täckte 0,6 m vägg) */
+.handtag::after{content:"";position:absolute;inset:8px;border-radius:50%;border:3px solid var(--guld);box-shadow:0 0 0 2px #fff,0 2px 10px rgba(0,0,0,.45),inset 0 0 0 1.5px rgba(0,0,0,.35);
+  background:linear-gradient(#fff,#fff) center/2px 10px no-repeat,linear-gradient(#fff,#fff) center/10px 2px no-repeat}
+.handtag::before{content:attr(data-text);position:absolute;left:50%;top:calc(100% - 4px);transform:translateX(-50%);white-space:nowrap;background:rgba(20,20,36,.86);color:#fff;font-size:12px;font-weight:600;line-height:1;padding:5px 9px;border-radius:999px;pointer-events:none}
+.handtag[data-punkt="H"]::before{left:auto;right:calc(100% - 2px);top:50%;transform:translateY(-50%)}
+.handtag[data-punkt="H"]::after{background:var(--guld)}
+.handtag[data-punkt="T"]::after,.handtag[data-punkt="D1"]::after,.handtag[data-punkt="D2"]::after{border-color:#fff;box-shadow:0 0 0 2px var(--marin),0 2px 10px rgba(0,0,0,.45)}
+.handtag[data-punkt="T"]::before,.handtag[data-punkt="D2"]::before{top:auto;bottom:calc(100% - 4px)}
+.handtag.valfri::after{border-style:dashed;opacity:.8}
+.handtag.valfri::before{opacity:.8}
+.handtag.utanfor{opacity:.55}
+.dorr-linje{position:absolute;left:0;top:0;width:0;border-left:2px dashed #fff;margin-left:-1px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.6));will-change:transform}
+/* medan en punkt dras på pekskärm: förstoring ovanför fingret */
+.lupp{position:absolute;left:0;top:0;width:116px;height:116px;border-radius:50%;border:3px solid #fff;box-shadow:0 6px 22px rgba(0,0,0,.5);pointer-events:none;z-index:3}
+html.drar .handtag::before{opacity:0}
+/* instruktionen och varningarna på själva fotot (granskningen: på telefonen låg de under bokningsraden) */
+.foto-lapp{position:absolute;left:8px;right:8px;top:8px;display:flex;flex-direction:column;align-items:flex-start;gap:4px;pointer-events:none;z-index:2}
+.foto-lapp span{max-width:100%;padding:5px 10px;border-radius:10px;background:rgba(20,20,36,.84);color:#fff;font-size:12px;font-weight:600;line-height:1.3}
+.foto-lapp span.varn{background:rgba(120,62,30,.92)}
+.tak-lapp{position:absolute;left:0;top:0;padding:3px 8px;border-radius:999px;background:rgba(20,20,36,.8);color:#fff;font-size:11px;font-weight:600;pointer-events:none}
+html.drar .foto-lapp{opacity:.25}
+/* medan man drar: måtten och väggnamnen tonas ned, så de inte skymmer punkterna */
+html.drar #etiketter{opacity:.12}
+html.fotovy.placerar:not(.drar) #etiketter{opacity:.3}
+#etiketter{transition:opacity 160ms ease}
+.till-foto{margin-top:10px;width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;border:1px solid var(--guld);font-weight:600;font-size:13px;color:var(--text)}
+.till-foto:hover{background:rgba(197,165,114,.14)}
+.till-foto svg,.byt-foto svg{width:18px;height:18px;flex:none}
+.vyer .byt-foto{display:flex;align-items:center;gap:6px;color:var(--text)}
+.fotosek .vaxel{padding-top:4px}
+/* den fotorealistiska bilden: före/efter i fotots ruta (fotomontagets reglage) */
+.forgrund{position:absolute;z-index:1;pointer-events:none}
+.pensel-yta{position:absolute;z-index:4;cursor:crosshair;touch-action:none}
+/* två drag med fingret på ett eget foto: dörren och väggens fot (granskningen 2026-09-29: 7–9 moment) */
+.strak-yta{position:absolute;z-index:4;cursor:crosshair;touch-action:none}
+.strak-yta svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.strak-yta line{stroke:#fff;stroke-width:3;stroke-dasharray:7 5;filter:drop-shadow(0 1px 1px rgba(0,0,0,.6))}
+.strak-yta circle{fill:none;stroke:var(--guld);stroke-width:3}
+.strak-lapp{position:absolute;left:8px;right:8px;top:8px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;pointer-events:none}
+.strak-lapp p{margin:0;max-width:100%;padding:7px 11px;border-radius:10px;background:rgba(20,20,36,.88);color:#fff;font-size:13px;font-weight:600;line-height:1.3}
+.strak-lapp p b{color:var(--guld)}
+.strak-lapp button{pointer-events:auto;min-height:44px;padding:0 14px;border-radius:999px;background:rgba(20,20,36,.88);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:12.5px;font-weight:600}
+.strak-lapp .varn{background:rgba(120,62,30,.94)}
+.punkter.guide [data-punkt="A"],.punkter.guide [data-punkt="B"],.punkter.guide [data-punkt="H"],.punkter.guide [data-punkt="T"],.punkter.guide .horisont,.punkter.guide .foto-lapp{display:none}
+html.guidar #etiketter{display:none}
+.punkter.guide [data-punkt="D1"]::before,.punkter.guide [data-punkt="D2"]::before{opacity:.85}
+.knapp.dampad{opacity:.62}
+#skapa-ai small.ai-kvar{display:block;font-size:11px;font-weight:500;opacity:.8;line-height:1.1;margin-top:2px}
+.ai-fel.info{background:rgba(20,20,36,.95);border-color:var(--guld)}
+.ai-fel .ai-val{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.ai-fel .ai-val .knapp{min-height:44px;border:1px solid var(--linje2)}
+.knapp-par{display:flex;gap:8px;margin-top:8px}
+.knapp-par .knapp{flex:1;justify-content:center;border:1px solid var(--linje2)}
+.jmf{position:absolute;z-index:1;overflow:hidden;background:var(--marin)}
+.jmf img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none;-webkit-user-select:none;user-select:none}
+.jmf img.efter{clip-path:inset(0 0 0 var(--delning,30%))}
+.jmf .linje{position:absolute;top:0;bottom:0;left:var(--delning,30%);width:2px;background:#fff;transform:translateX(-1px);pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.2)}
+.jmf .grepp{position:absolute;top:50%;left:var(--delning,30%);width:44px;height:44px;border-radius:50%;background:#fff;color:var(--marin);display:grid;place-items:center;transform:translate(-50%,-50%);box-shadow:0 4px 16px rgba(0,0,0,.35);pointer-events:none}
+.jmf .grepp svg{width:22px;height:22px}
+.jmf-lapp{position:absolute;top:10px;left:10px;padding:4px 10px;border-radius:999px;background:rgba(20,20,36,.72);color:#fff;font-size:12px;font-weight:600;pointer-events:none}
+.jmf-lapp.efter{left:auto;right:10px}
+/* touch-action pan-y: på telefonen går sidan fortfarande att skrolla över bilden */
+.jmf input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0;touch-action:pan-y}
+html.aivy .punkter{display:none}
+.arbetar{position:absolute;z-index:3;display:grid;place-items:center;background:rgba(20,20,36,.62);text-align:center;padding:20px}
+.arbetar b{display:block;font-size:18px}
+.arbetar p{color:var(--text2);margin-top:4px}
+.stapel{width:min(320px,70vw);height:6px;border-radius:6px;background:rgba(255,255,255,.15);margin:14px auto 0;overflow:hidden}
+.stapel i{display:block;height:100%;width:var(--p,0%);background:var(--guld);transition:width 600ms linear}
+.handling{flex-direction:column;align-items:center;gap:8px}
+.ai-fel{pointer-events:auto;max-width:min(520px,100%);padding:10px 14px;border-radius:12px;background:#3a2330;border:1px solid rgba(200,95,72,.7);font-size:13px;box-shadow:0 8px 24px rgba(8,8,20,.35)}
+a.knapp{text-decoration:none;color:inherit}
+a.knapp.guld{color:var(--marin)}
+.ai-sek{margin-top:12px;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:4px 10px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.05)}
+.ai-sek h2{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--guldtext);font-weight:600;line-height:1.2;width:4.2em}
+.remsa{display:flex;gap:6px;overflow-x:auto}
+.remsa button{position:relative;flex:none;width:64px;height:48px;border:2px solid transparent;border-radius:9px;padding:0;overflow:hidden;background:rgba(255,255,255,.06)}
+.remsa button[aria-pressed="true"]{border-color:var(--guld)}
+.remsa img{display:block;width:100%;height:100%;object-fit:cover}
+.remsa b{position:absolute;left:3px;top:3px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:rgba(20,20,36,.8);color:#fff;font-size:11px;line-height:18px;font-weight:600;text-align:center}
+.ai-vald{grid-column:1/-1;font-size:12px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ai-vald b{color:var(--text);font-weight:500}
+
+/* ---------- första skärmen ---------- */
+.start{position:fixed;inset:0;z-index:55;overflow-y:auto;display:grid;place-items:center;padding:24px 16px;background:rgba(20,20,36,.94)}
+.start-kort{width:min(540px,100%);padding:28px 26px 20px}
+.start-logo{display:block;height:28px;width:auto;margin-bottom:16px}
+.start h1{font-size:28px;line-height:1.18;font-weight:700;letter-spacing:-.01em}
+.start h1 em{font-style:normal;color:var(--guldtext)}
+.start .ingress{margin-top:8px}
+.start .not{margin-top:12px}
+.start-knappar{display:grid;gap:10px;margin-top:20px}
+.start-knapp{min-height:52px;padding:0 16px;border-radius:12px;border:1px solid var(--linje2);display:flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:15px;color:var(--text)}
+.start-knapp:hover{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.05)}
+.start-knapp.forsta{background:var(--guld);border-color:var(--guld);color:var(--marin);box-shadow:0 8px 22px rgba(197,165,114,.28)}
+.start-knapp.forsta:hover{background:var(--guld2)}
+.start-knapp svg{width:20px;height:20px;flex:none}
+.start-kort.dra{outline:3px dashed var(--guld);outline-offset:6px}
+.start-tips{margin-top:18px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.05);font-size:13px;color:var(--text2)}
+.start-tips b{display:block;color:var(--text);font-weight:600;margin-bottom:4px}
+.start-tips ul{margin-left:18px}
+.start-tips li + li{margin-top:2px}
+.start-integritet{margin-top:12px;font-size:12px;color:var(--text2)}
+.start-laser{margin-top:10px;font-size:13px;color:var(--guldtext);font-weight:600}
+.start-knapp:disabled{opacity:.55;cursor:progress}
+.foto-steg{margin:0 0 8px 18px;color:var(--text2)}
+.foto-steg li + li{margin-top:4px}
+.foto-steg b{color:var(--text);font-weight:600}
+.foto-steg-rubrik{margin:0 0 6px;color:var(--text2)}
+#foto-hjalp-klar .till-foto{margin:0 0 10px}
+.start-3d{display:flex;align-items:center;justify-content:center;width:100%;min-height:44px;margin-top:6px;color:var(--text2);font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.start-3d:hover{color:var(--text)}
 
 /* ---------- mobil: priset följer med medan man väljer ---------- */
 .prisbar{display:none}
@@ -308,7 +478,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .solrad{margin-top:8px;color:var(--text);font-size:13px;min-height:2.9em}
 
 /* ---------- måttetiketter i 3D ---------- */
-#etiketter{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+#etiketter{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
 .matt{position:absolute;left:0;top:0;padding:3px 9px;border-radius:999px;background:var(--marin);color:#fff;font-weight:600;font-size:13px;white-space:nowrap;will-change:transform;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:opacity 200ms ease}
 .matt.mat{background:#fff;color:var(--marin);text-transform:capitalize;display:flex;align-items:center;gap:6px}
 .matt.mat::before{content:"";width:10px;height:10px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(28,28,48,.35)}
@@ -387,12 +557,14 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   .handling{position:absolute;left:10px;right:10px;bottom:10px}
   .handling-inre{padding:5px;gap:8px;width:100%;justify-content:space-between}
   .knapp{height:44px;padding:0 12px;font-size:13px}
-  .lamell{min-width:0;flex:1;gap:8px}
-  /* etiketten läses upp men tar ingen plats: reglaget blir brett nog att dra i */
-  .lamell label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-  .lamell input{min-width:0}
-  /* utan lamelltak står bara knappen där, inte en tom bred list */
-  .handling-inre:has(> #lamell-rad[hidden]){width:auto}
+  /* fotot i full bredd: duken blir så hög som fotot kräver, högst 70 % av skärmen */
+  html.fotovy{scroll-padding-top:calc(min(70svh,100vw / var(--kvot,1.333) + 120px) + 12px)}
+  html.fotovy .buhne{height:min(70svh,calc(100vw / var(--kvot,1.333) + 120px))}
+  /* bara knapparna, inte en tom bred list */
+  .handling-inre{width:auto}
+  .vyer .byt-foto{padding:0 10px}
+  .start-kort{padding:22px 18px 14px}
+  .start h1{font-size:24px}
   .panel{position:relative;inset:auto;width:auto;margin:12px 10px 24px;z-index:1}
   .panel{display:block;overflow:visible}
   .panel-inre{overflow:visible;padding:16px 16px 6px}
@@ -407,11 +579,23 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   .prisbar b{display:block;font-size:18px;letter-spacing:0;text-transform:none;color:var(--text);font-variant-numeric:tabular-nums}
   .prisbar .cta{margin:0;width:auto;height:44px;padding:0 18px;font-size:14px;box-shadow:none}
   .toast{top:64px}
+  /* medan uterummet placeras på fotot: bokningsraden skymmer inte instruktionen */
+  html.placerar .prisbar{visibility:hidden}
+}
+/* telefonen i fotoläget: Öppna partierna och Placering blir ikoner (namnet finns kvar
+   för skärmläsare), så att knappen för den fotorealistiska bilden får plats */
+@media (max-width:560px){
+  html.fotovy .handling-inre{max-width:100%}
+  html.fotovy #oppna,html.fotovy #placera{width:44px;padding:0;justify-content:center;flex:none}
+  html.fotovy #oppna span,html.fotovy #placera span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  html.fotovy #skapa-ai{padding:0 12px;min-width:0}
+  html.fotovy #skapa-ai span{white-space:normal;line-height:1.15;text-align:left}
 }
 @media (max-width:360px){
   .topp{gap:6px}
   .vyer button{padding:0 6px;font-size:12px}
   .marke{padding:0 8px}
+  .vyer .byt-foto svg{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:1ms!important}
@@ -422,15 +606,57 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <div id="laddar" aria-hidden="true"><img src="./logo-alltfix.png" alt=""></div>
 
 <div class="buhne" id="buhne">
+<!-- fotoläget: kundens foto bakom duken, duken exakt över fotots yta -->
+<img class="foto" id="foto" alt="Ditt foto av huset, med uterummet inlagt" hidden>
 <div id="scen" aria-label="3D-vy av uterummet. Dra för att vrida, nyp eller skrolla för att zooma."></div>
+<!-- förgrunden: det kunden målat över (det som står framför uterummet), från fotot ovanpå rummet -->
+<canvas class="forgrund" id="forgrund" aria-hidden="true" hidden></canvas>
+<!-- måttetiketterna ovanför förgrunden: löven trasade sönder "Front · Glas" (granskningen 2026-09-29) -->
 <div id="etiketter" aria-hidden="true"></div>
+<div class="pensel-yta" id="pensel-yta" hidden aria-label="Måla över det som står framför uterummet"></div>
+<div class="strak-yta" id="strak-yta" hidden>
+  <svg aria-hidden="true"><line id="strak-linje" x1="0" y1="0" x2="0" y2="0" visibility="hidden"/><circle id="strak-a" r="9" visibility="hidden"/><circle id="strak-b" r="9" visibility="hidden"/></svg>
+  <div class="strak-lapp" id="strak-lapp" aria-live="polite"></div>
+</div>
+<!-- den fotorealistiska bilden: huset i dag till vänster om linjen, AI-bilden till höger -->
+<div class="jmf" id="jmf" hidden>
+  <img id="jmf-fore" alt="Huset i dag, utan uterum">
+  <img id="jmf-efter" class="efter" alt="AI-illustration av huset med det nya uterummet">
+  <div class="linje" aria-hidden="true"></div>
+  <div class="grepp" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 7-5 5 5 5M15 7l5 5-5 5"/></svg></div>
+  <span class="jmf-lapp fore" aria-hidden="true">I dag</span>
+  <span class="jmf-lapp efter" aria-hidden="true">Med uterum (AI)</span>
+  <input type="range" id="delning" min="0" max="100" value="30" aria-label="Dra för att jämföra huset i dag med AI-bilden">
+</div>
+<div class="arbetar" id="arbetar" hidden aria-live="polite">
+  <div><b id="arbetar-rubrik">Uterummet byggs på ditt foto …</b><p id="arbetar-text">Det tar oftast omkring en minut.</p><div class="stapel"><i id="stapel"></i></div></div>
+</div>
+<!-- placeringen på fotot: två punkter vid husväggens fot och horisonten -->
+<div class="punkter" id="punkter" hidden>
+  <div class="foto-lapp" id="foto-lapp" aria-live="polite" hidden></div>
+  <div class="horisont" id="horisont" aria-hidden="true"></div>
+  <div class="dorr-linje" id="dorr-linje" aria-hidden="true"></div>
+  <button type="button" class="handtag" data-punkt="A" data-text="Väggens fot" aria-label="Uterummets vänstra hörn vid husväggens fot. Dra, eller flytta med piltangenterna."></button>
+  <button type="button" class="handtag" data-punkt="B" data-text="Väggens fot" aria-label="Uterummets högra hörn vid husväggens fot. Dra, eller flytta med piltangenterna."></button>
+  <button type="button" class="handtag" data-punkt="H" data-text="Horisont" aria-label="Horisonten, i kamerans höjd. Dra linjen dit husets vågräta linjer ser helt raka ut. Piltangenterna upp och ner flyttar den."></button>
+  <button type="button" class="handtag" data-punkt="T" data-text="Takfot · valfri" aria-label="Husets takfot, valfri. Dra punkten till husets hängränna ovanför uterummet, så säger vi till om taket inte får plats."></button>
+  <button type="button" class="handtag" data-punkt="D1" data-text="Dörrens tröskel" aria-label="Dörrmåttet: dörrens tröskel. Dra till tröskeln på en dörr i fotot."></button>
+  <button type="button" class="handtag" data-punkt="D2" data-text="Dörrens överkant" aria-label="Dörrmåttet: dörrens överkant. Dra till dörrens överkant."></button>
+  <canvas class="lupp" id="lupp" aria-hidden="true" hidden></canvas>
+  <span class="tak-lapp" id="tak-lapp" aria-hidden="true" hidden>Taket ovanifrån</span>
+</div>
 
 <header class="topp">
-  <div class="marke glaskort"><img src="./logo-alltfix.png" alt="Alltfix" width="111" height="30"><span>Uterum i 3D</span></div>
-  <nav class="vyer glaskort" aria-label="Kameravy">
+  <div class="marke glaskort"><img src="./logo-alltfix.png" alt="Alltfix" width="111" height="30"><span id="marke-text">Uterum i 3D</span></div>
+  <nav class="vyer glaskort" aria-label="Vy">
+    <button type="button" data-vy="foto" aria-pressed="false" hidden>Ditt foto</button>
     <button type="button" data-vy="ute" aria-pressed="true">Utifrån</button>
     <button type="button" data-vy="inne" aria-pressed="false">Inifrån</button>
     <button type="button" data-vy="ovan" aria-pressed="false">Ovanifrån</button>
+    <button type="button" class="byt-foto" id="byt-foto" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+      Byt foto
+    </button>
   </nav>
   <button type="button" class="dela glaskort" id="dela">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg>
@@ -439,16 +665,30 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 </header>
 
 <div class="handling">
+  <div class="ai-fel" id="ai-fel" role="alert" hidden></div>
   <div class="handling-inre glaskort">
     <button type="button" class="knapp" id="oppna" aria-pressed="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18v16H3z"/><path d="M12 4v16"/><path d="M8 12h-2M18 12h-2"/></svg>
       <span>Öppna partierna</span>
     </button>
-    <div class="lamell" id="lamell-rad">
-      <label for="lamell">Lameller</label>
-      <input type="range" id="lamell" min="0" max="100" step="1" value="60">
-      <output id="ut-lamell" for="lamell">60 %</output>
-    </div>
+    <!-- fotoläget: punkterna och horisonten syns medan placeringen är på -->
+    <button type="button" class="knapp" id="placera" aria-pressed="false" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18"/><path d="m9 6 3-3 3 3M9 18l3 3 3-3M6 9l-3 3 3 3M18 9l3 3-3 3"/></svg>
+      <span>Placering</span>
+    </button>
+    <!-- den fotorealistiska bilden (const AI_BILD i app.js): skapa, växla mot skissen, spara -->
+    <button type="button" class="knapp guld" id="skapa-ai" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15.5l-1.8-4.7L5.5 9l4.7-1.3z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
+      <span>Skapa fotorealistisk bild</span>
+    </button>
+    <button type="button" class="knapp" id="visa-ai" aria-pressed="false" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/></svg>
+      <span>Visa skissen</span>
+    </button>
+    <a class="knapp guld" id="spara-ai" hidden download="uterum-alltfix-1.jpg">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+      <span>Spara bilden</span>
+    </a>
   </div>
 </div>
 </div>
@@ -457,7 +697,17 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   <!-- Valen i fem steg, som Rensons flikrad (kundloopen 2026-09-29: en lista på 3,3 skärmhöjder) -->
   <div class="panel-topp">
     <h1>Designa ditt <em>uterum</em></h1>
-    <p class="ingress">Fem steg. Du ser uterummet mot huset direkt, och vad som ingår.</p>
+    <p class="ingress" id="panel-ingress">Fem steg. Du ser uterummet mot huset direkt, och vad som ingår.</p>
+    <button type="button" class="till-foto" id="till-foto" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+      Lägg uterummet på ett foto av ditt hus
+    </button>
+    <!-- de fotorealistiska bilderna till fotot: tryck för att visa en igen -->
+    <section class="ai-sek" id="ai-sek" aria-labelledby="h-ai" hidden>
+      <h2 id="h-ai">Dina bilder</h2>
+      <div class="remsa" id="remsa"></div>
+      <p class="ai-vald" id="ai-vald"></p>
+    </section>
     <div class="flikar" role="tablist" aria-label="Steg">
       <button type="button" role="tab" class="flik" id="flik-matt" data-flik="matt" aria-controls="fas-matt" aria-selected="true"><small>1</small>Mått</button>
       <button type="button" role="tab" class="flik" id="flik-tak" data-flik="tak" aria-controls="fas-tak" aria-selected="false" tabindex="-1"><small>2</small>Tak</button>
@@ -469,6 +719,58 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   <div class="panel-inre" id="panel-inre">
 
     <div class="fas" id="fas-matt" data-fas="matt" role="tabpanel" aria-labelledby="flik-matt">
+    <!-- fotoläget: placeringen och ljuset, först av allt -->
+    <section class="sek fotosek" id="foto-sek" aria-labelledby="h-foto" hidden>
+      <h2 id="h-foto">Uterummet på ditt foto</h2>
+      <ol class="foto-steg" id="foto-hjalp">
+        <li><b>Dörren</b>: dra med fingret från altandörrens tröskel upp till dess överkant. Då vet bilden hur stort allt är.</li>
+        <li><b>Väggens fot</b>: dra med fingret längs husväggens fot, där uterummet ska börja och sluta.</li>
+        <li>Finjustera sedan med <b>punkterna</b> och <b>den streckade linjen</b>, dit husets vågräta linjer ser helt raka ut.</li>
+      </ol>
+      <!-- när rummet redan står på fotot (exempelhuset, eller efter de två dragen): stegen som gäller då -->
+      <div id="foto-hjalp-klar" hidden>
+        <p class="foto-steg-rubrik">Uterummet står redan mot husväggen, mätt mot altandörren. Vill du ändra placeringen:</p>
+        <ol class="foto-steg">
+          <li><b>Punkterna vid väggens fot</b>: dra dem dit uterummet ska börja och sluta.</li>
+          <li><b>Den streckade linjen</b>: dra den dit husets vågräta linjer ser helt raka ut.</li>
+        </ol>
+        <button type="button" class="till-foto" id="gor-om"><span>Placera om med två drag på fotot</span></button>
+      </div>
+      <p class="hojdrad" id="foto-kamera" role="status"></p>
+      <div class="reglage" style="margin-top:12px">
+        <label for="kamera-cm">Kamerans höjd</label>
+        <div class="stegrad">
+          <button type="button" class="steg" data-khsteg="-1" aria-label="Sänk kamerans höjd 5 cm">−</button>
+          <label class="cmfalt"><input type="text" id="kamera-cm" inputmode="numeric" autocomplete="off" aria-label="Kamerans höjd över marken i centimeter" value="160"><span aria-hidden="true">cm</span></label>
+          <button type="button" class="steg" data-khsteg="1" aria-label="Höj kamerans höjd 5 cm">+</button>
+        </div>
+      </div>
+      <button type="button" class="till-foto" id="dorr-knapp" aria-pressed="false"><span>Mät kamerans höjd med en dörr</span></button>
+      <div id="dorr-rad" hidden>
+        <p class="hojdrad">Dra de två vita punkterna till tröskeln och överkanten på en dörr i samma husvägg som uterummet.</p>
+        <div class="reglage" style="margin-top:8px">
+          <label for="dorr-cm">Dörrens höjd</label>
+          <div class="stegrad"><label class="cmfalt"><input type="text" id="dorr-cm" inputmode="numeric" autocomplete="off" aria-label="Dörrens höjd i centimeter" value="210"><span aria-hidden="true">cm</span></label></div>
+        </div>
+      </div>
+      <p class="hojdrad">Valfritt: dra <b>Takfot</b> till husets hängränna ovanför uterummet, så säger vi till om taket inte får plats under den.</p>
+      <!-- förgrunden: ett träd eller en buske framför platsen ska stå framför uterummet -->
+      <button type="button" class="till-foto" id="pensel-knapp" aria-pressed="false"><span>Måla det som står framför uterummet</span></button>
+      <div id="pensel-rad" hidden>
+        <p class="hojdrad">Måla med fingret över träd, buskar eller annat som står mellan kameran och uterummet. Det hamnar framför rummet i bilden.</p>
+        <div class="knapp-par">
+          <button type="button" class="knapp" id="pensel-sudd" aria-pressed="false">Sudda</button>
+          <button type="button" class="knapp" id="pensel-rensa">Rensa allt</button>
+        </div>
+      </div>
+      <div class="reglage" style="margin-top:12px">
+        <label for="ljus">Ljuset kommer från <output id="ut-ljus" for="ljus">Snett bakom dig, vänster</output></label>
+        <input type="range" id="ljus" min="-180" max="180" step="5" value="-35">
+        <div class="granser" aria-hidden="true"><span>Vänster</span><span>Höger</span></div>
+      </div>
+      <label class="vaxel"><span><b>Mulet väder</b><small>Mjuk skugga, som på ett foto utan sol</small></span><input type="checkbox" id="mulet"><i aria-hidden="true"></i></label>
+      <p class="hojdrad">Fotot stannar i din webbläsare och skickas inte någonstans, inte heller med bokningen. En delad länk har designen och placeringen, men inte fotot.</p>
+    </section>
     <section class="sek" aria-labelledby="h-matt">
       <h2 id="h-matt">Mått</h2>
       <div class="reglage">
@@ -505,6 +807,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
         <p class="grans-not" id="hojd-not" role="status" hidden></p>
         <p class="hojdrad" id="hojd-info">Samma höjd hela vägen in till huset.</p>
         <p class="hojdrad" id="hojd-tillval">Höjd upp till 2,50 m ingår i grundpriset.</p>
+        <p class="not" id="takfot-not" hidden></p>
       </div>
       <p class="yta">Golvyta <b id="ut-yta">17,5 m²</b></p>
     </section>
@@ -521,6 +824,18 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
         <button type="button" class="alt" data-varde="sadel" aria-pressed="false"><b>Sadel&shy;tak</b></button>
       </div>
       <p class="ingress" id="form-text">Nästan plant tak med ett litet fall ut från huset, så att vattnet rinner av.</p>
+      <!-- täckningen före lutningen (granskningen 2026-09-29): på plattan liggande
+           hamnade Kanalplast och Takpapp under summeringen när pulpettakets lutning kom till -->
+      <p class="undertitel" id="h-tackning" style="margin-top:16px">Taktäckning</p>
+      <div class="val tva" data-grupp="tak" role="group" aria-labelledby="h-tackning">
+        <button type="button" class="alt" data-varde="kanalplast" aria-pressed="false"><b>Kanalplast</b><small>Mjölkvit skiva som släpper in dagsljuset</small></button>
+        <button type="button" class="alt" data-varde="takpapp" aria-pressed="true"><b>Takpapp</b><small>Tätt tak med vit vindskiva</small></button>
+        <button type="button" class="alt" data-varde="takpannor" aria-pressed="false" hidden><b>Takpannor</b><small>Tegel eller betong, tätt tak som på huset</small></button>
+      </div>
+      <!-- på datorn och plattan liggande står knapparna på en rad utan beskrivning; den valda täckningens beskrivning står här -->
+      <p class="ingress" id="tak-text"></p>
+      <!-- under knapparna: noten får aldrig knuffa knappen man just tryckte på -->
+      <p class="not" id="lut-not" hidden>Takpannor kräver minst 14° lutning.</p>
       <div class="reglage" id="lut-rad" hidden style="margin-top:14px">
         <label for="lut">Taklutning <output id="ut-lut" for="lut">10°</output></label>
         <input type="range" id="lut" min="5" max="25" step="1" value="10">
@@ -534,17 +849,9 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
         <p class="hojdrad" id="nock-not" hidden></p>
       </div>
       <p class="not" id="anslut-not" hidden>Taket ansluts till husets tak. Anslutningen går vi igenom vid hembesöket.</p>
-      <p class="undertitel" id="h-tackning" style="margin-top:16px">Taktäckning</p>
-      <div class="val tva" data-grupp="tak" role="group" aria-labelledby="h-tackning">
-        <button type="button" class="alt" data-varde="lamell" aria-pressed="false"><b>Lamelltak</b><small>Vridbara lameller: öppna för ljus, stäng för skugga och regn</small></button>
-        <button type="button" class="alt" data-varde="glas" aria-pressed="false" hidden><b>Glastak</b><small>Klart tak, maximalt dagsljus</small></button>
-        <button type="button" class="alt" data-varde="kanalplast" aria-pressed="false" hidden><b>Kanalplast</b><small>Mjölkvit skiva som sprider dagsljuset</small></button>
-        <button type="button" class="alt" data-varde="takpapp" aria-pressed="true"><b>Takpapp</b><small>Tätt tak med vit vindskiva</small></button>
-        <button type="button" class="alt" data-varde="takpannor" aria-pressed="false" hidden><b>Takpannor</b><small>Tätt tak i samma stil som huset</small></button>
-      </div>
-      <!-- under knapparna: noten får aldrig knuffa knappen man just tryckte på -->
-      <p class="not" id="lut-not" hidden>Takpannor kräver minst 14° lutning.</p>
       <p class="ingress" id="tak-ingar" style="margin-top:10px"></p>
+      <!-- på fotot syns bara takets kant: täckningen ovanifrån, i 3D utan fotot -->
+      <button type="button" class="till-foto" id="se-ovan" hidden>Se taket ovanifrån</button>
     </section>
     <button type="button" class="nasta" data-till="vaggar">Nästa: Väggar <span aria-hidden="true">→</span></button>
     </div>
@@ -624,6 +931,12 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
     </div>
 
     <div class="fas" id="fas-tillval" data-fas="tillval" role="tabpanel" aria-labelledby="flik-tillval" hidden>
+    <!-- hela listorna i sista steget: på låga skärmar kapas sammanfattningens rader till en rad -->
+    <section class="sek" aria-labelledby="h-dindesign">
+      <h2 id="h-dindesign">Din design</h2>
+      <p class="sum-rad hel"><span class="sum-et">Ingår</span><span id="lista-ingar"></span></p>
+      <p class="sum-rad hel"><span class="sum-et till">Tillval</span><span id="lista-tillval">Inga</span></p>
+    </section>
     <section class="sek" aria-labelledby="h-till">
       <h2 id="h-till">Tillval</h2>
       <label class="vaxel"><span><b>LED-belysning</b><small>Spotlights i takprofilerna</small><span class="etikett tillval" data-etikett="led">Tillval</span></span><input type="checkbox" id="led"><i aria-hidden="true"></i></label>
@@ -631,7 +944,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
     </section>
 
     <!-- inget köpval: solen visar bara hur ljuset faller -->
-    <section class="sek sol" aria-labelledby="h-sol">
+    <section class="sek sol" id="sol-sek" aria-labelledby="h-sol">
       <h2 id="h-sol">Se solen en sommardag <output id="ut-tid" for="tid">15:00</output></h2>
       <input type="range" id="tid" min="5" max="23" step="0.25" value="15" aria-label="Tid på dagen">
       <p class="riktetikett" id="h-rikt">Uterummet vetter mot</p>
@@ -676,6 +989,42 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 </aside>
 
 
+
+<!-- Första skärmen: ett foto av huset, exempelhuset eller 3D utan foto -->
+<div class="start" id="start" hidden role="dialog" aria-modal="true" aria-labelledby="start-rubrik">
+  <div class="start-kort glaskort">
+    <img src="./logo-alltfix.png" alt="Alltfix" width="111" height="30" class="start-logo">
+    <h1 id="start-rubrik">Se uterummet på <em>ditt eget hus</em></h1>
+    <p class="ingress">Fotografera platsen där uterummet ska byggas. Sedan väljer du mått, tak, väggar och golv och ser varje ändring direkt i samma bild.</p>
+    <p class="not" id="start-not" hidden>Designen från länken är inläst. Fotot följer inte med en länk: välj samma foto igen, så hamnar uterummet på samma plats.</p>
+    <div class="start-knappar">
+      <button type="button" class="start-knapp forsta" id="start-kamera">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+        Ta ett foto av ditt hus
+      </button>
+      <button type="button" class="start-knapp" id="start-valj">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="15.5" cy="8.5" r="1.5"/></svg>
+        Välj ett foto
+      </button>
+      <button type="button" class="start-knapp" id="start-exempel">Prova med ett exempelhus</button>
+      <button type="button" class="start-knapp" id="start-behall" hidden>Fortsätt med samma foto</button>
+      <input type="file" id="fil-kamera" accept="image/*" capture="environment" hidden>
+      <input type="file" id="fil-valj" accept="image/*" hidden>
+    </div>
+    <p class="start-laser" id="start-laser" role="status" hidden>Läser in fotot …</p>
+    <p class="formfel" id="start-fel" role="alert" hidden></p>
+    <div class="start-tips">
+      <b>Så blir bilden bra</b>
+      <ul>
+        <li>Håll telefonen liggande och rak, inte snett uppåt eller nedåt.</li>
+        <li>Stå 8–10 meter från väggen, ungefär uterummets djup plus fem meter, så att hela väggen och lite mark framför kommer med.</li>
+        <li>Stå där du vill se uterummet ifrån, och se till att inget står mellan dig och platsen där det ska byggas.</li>
+      </ul>
+    </div>
+    <p class="start-integritet">Fotot stannar i din webbläsare och skickas inte någonstans.</p>
+    <button type="button" class="start-3d" id="start-3d">Visa i 3D utan foto</button>
+  </div>
+</div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

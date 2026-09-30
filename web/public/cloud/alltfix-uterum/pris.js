@@ -27,7 +27,7 @@ export const PRISER = {
   insida: { ingen: null, skiva: null, parlspont: null, tra: null },  // per m² insida: täta väggar och innertak under tätt tak (ingen: 0)
   hojd: null,                                    // per påbörjade 10 cm över grundhöjden (GRUNDVAL.hojd), hela rummet
   takform: { plant: null, pulpet: null, sadel: null },           // fast tillägg per takform
-  tak: { lamell: null, glas: null, kanalplast: null, takpapp: null, takpannor: null },  // per m² takyta
+  tak: { kanalplast: null, takpapp: null, takpannor: null },  // per m² takyta (Ramis tre täckningar)
   golv: { trall: null, parkett: null, klinker: null },           // tillägg per m² golvyta
   led: null,                                     // fast pris
   nat: null,                                     // fast pris, bara när någon vägg är av glas
@@ -42,7 +42,7 @@ export const EXEMPELPRISER = {
   insida: { ingen: 0, skiva: 290, parlspont: 420, tra: 560 },
   hojd: 1800,
   takform: { plant: 0, pulpet: 0, sadel: 14000 },
-  tak: { lamell: 4200, glas: 3400, kanalplast: 1200, takpapp: 1600, takpannor: 2100 },
+  tak: { kanalplast: 1200, takpapp: 1600, takpannor: 2100 },
   golv: { trall: 0, parkett: 950, klinker: 1450 },
   led: 7500,
   nat: 3900,
