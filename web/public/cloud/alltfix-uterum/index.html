@@ -370,7 +370,21 @@ html.drar .handtag::before{opacity:0}
 .foto-lapp{position:absolute;left:8px;right:8px;top:8px;display:flex;flex-direction:column;align-items:flex-start;gap:4px;pointer-events:none;z-index:2}
 .foto-lapp span{max-width:100%;padding:5px 10px;border-radius:10px;background:rgba(20,20,36,.84);color:#fff;font-size:12px;font-weight:600;line-height:1.3}
 .foto-lapp span.varn{background:rgba(120,62,30,.92)}
-.tak-lapp{position:absolute;left:0;top:0;padding:3px 8px;border-radius:999px;background:rgba(20,20,36,.8);color:#fff;font-size:11px;font-weight:600;pointer-events:none}
+.foto-lapp span.not{background:rgba(20,20,36,.84);color:#f3ead9}   /* sadeltaket ansluts till husets tak: en upplysning, inget fel */
+/* uterummet i en vridbar ruta över fotot: rummet ritas på rutans egen duk (ovanför förgrunden), knappen är 44 px */
+.inset{position:absolute;left:0;top:0;pointer-events:auto;touch-action:none;cursor:grab;background:#d9dee6;box-shadow:0 0 0 1px rgba(255,255,255,.4),0 8px 24px rgba(0,0,0,.35);will-change:transform;outline-offset:2px;overflow:hidden}
+.inset-duk{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.inset.drar{cursor:grabbing}
+.inset-lapp{position:absolute;left:8px;bottom:8px;max-width:calc(100% - 16px);padding:3px 8px;border-radius:999px;background:rgba(20,20,36,.8);color:#fff;font-size:11px;font-weight:600;line-height:1.3;pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.inset-knapp{position:absolute;right:2px;top:2px;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;color:#fff;touch-action:manipulation}
+.inset-knapp::before{content:"";position:absolute;inset:7px;border-radius:50%;background:rgba(20,20,36,.8);box-shadow:0 0 0 1px rgba(255,255,255,.35)}
+.inset-knapp svg{position:relative;width:18px;height:18px}
+.inset.stor{z-index:3}
+/* förstorad: fotots punkter, linjer och mått ligger inte ovanpå rummet */
+html.insetstor .punkter > :not(.inset){display:none}
+html.insetstor #etiketter{opacity:0!important}   /* över placerar-regelns 0,3 */
+.inset.stor .inset-lapp{left:12px;bottom:12px;font-size:13px;padding:5px 10px}
+.inset.stor .inset-knapp{right:8px;top:8px}
 html.drar .foto-lapp{opacity:.25}
 /* medan man drar: måtten och väggnamnen tonas ned, så de inte skymmer punkterna */
 html.drar #etiketter{opacity:.12}
@@ -643,7 +657,15 @@ a.knapp.guld{color:var(--marin)}
   <button type="button" class="handtag" data-punkt="D1" data-text="Dörrens tröskel" aria-label="Dörrmåttet: dörrens tröskel. Dra till tröskeln på en dörr i fotot."></button>
   <button type="button" class="handtag" data-punkt="D2" data-text="Dörrens överkant" aria-label="Dörrmåttet: dörrens överkant. Dra till dörrens överkant."></button>
   <canvas class="lupp" id="lupp" aria-hidden="true" hidden></canvas>
-  <span class="tak-lapp" id="tak-lapp" aria-hidden="true" hidden>Taket ovanifrån</span>
+  <!-- uterummet i en vridbar ruta: WebGL ritar rummet och bilden kopieras till rutans egen duk, som bara ritas om när rummet eller vinkeln ändrats -->
+  <div class="inset" id="inset" tabindex="0" role="group" aria-label="Uterummet i 3D. Dra för att vrida, piltangenterna vrider, plus och minus zoomar." hidden>
+    <canvas class="inset-duk" id="inset-duk" aria-hidden="true"></canvas>
+    <span class="inset-lapp">Uterummet · dra för att vrida</span>
+    <button type="button" class="inset-knapp" id="inset-stor" aria-label="Förstora">
+      <svg class="ik-stor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+      <svg class="ik-stang" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" hidden><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
 </div>
 
 <header class="topp">
@@ -723,7 +745,7 @@ a.knapp.guld{color:var(--marin)}
     <section class="sek fotosek" id="foto-sek" aria-labelledby="h-foto" hidden>
       <h2 id="h-foto">Uterummet på ditt foto</h2>
       <ol class="foto-steg" id="foto-hjalp">
-        <li><b>Dörren</b>: dra med fingret från altandörrens tröskel upp till dess överkant. Då vet bilden hur stort allt är.</li>
+        <li><b>Dörren</b>: dra från tröskeln på en dörr i marknivå, inte balkongdörren, upp till dess överkant. Då vet bilden hur stort allt är.</li>
         <li><b>Väggens fot</b>: dra med fingret längs husväggens fot, där uterummet ska börja och sluta.</li>
         <li>Finjustera sedan med <b>punkterna</b> och <b>den streckade linjen</b>, dit husets vågräta linjer ser helt raka ut.</li>
       </ol>
@@ -850,7 +872,7 @@ a.knapp.guld{color:var(--marin)}
       </div>
       <p class="not" id="anslut-not" hidden>Taket ansluts till husets tak. Anslutningen går vi igenom vid hembesöket.</p>
       <p class="ingress" id="tak-ingar" style="margin-top:10px"></p>
-      <!-- på fotot syns bara takets kant: täckningen ovanifrån, i 3D utan fotot -->
+      <!-- på fotot syns bara takets kant: förstorar den vridbara rutan, rakt uppifrån -->
       <button type="button" class="till-foto" id="se-ovan" hidden>Se taket ovanifrån</button>
     </section>
     <button type="button" class="nasta" data-till="vaggar">Nästa: Väggar <span aria-hidden="true">→</span></button>

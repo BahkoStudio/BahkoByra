@@ -755,6 +755,7 @@ function tatVagg(forald, mat, delar) {
 function byggRum() {
   rum.traverse((o) => { if (o.userData.egenGeo) o.geometry.dispose(); });
   rum.clear();
+  insetBygg++;                                   // den vridbara rutan ritas om
   sektioner = [];
   natGrupp = new THREE.Group(); ledGrupp = new THREE.Group(); natLista = [];
   const W = S.b, D = S.d;
@@ -1637,6 +1638,23 @@ function flyttaEtikett(e, p, bw, bh) {
   e.style.transform = `translate3d(${e._ruta[0]}px, ${e._ruta[1]}px, 0)`;
   return syns;
 }
+/* På fotot medan placeringen är på: ett mått som hamnar bakom en punkts lapp
+   ("Väggens fot", centrerad under det 44 px stora handtaget, ca 100 × 24 px)
+   flyttas ner under lappen. Telefonen visade "4,50 m" som ett avklippt "…0 m"
+   bakom vänstra punkten (granskningen 2026-09-30). */
+function undvikPunktLapp(e) {
+  if (!fotoVyNu() || !placeraPa || guide || punktLager.classList.contains('av')) return;
+  const f = fotoPunkter(); if (!f) return;
+  const bw = punktLager.clientWidth, bh = punktLager.clientHeight, r = e._ruta;
+  for (const k of ['A', 'B']) {
+    const cx = f[k][0] * bw, cy = f[k][1] * bh;
+    const lx0 = cx - 52, lx1 = cx + 52, ly0 = cy + 16, ly1 = cy + 42;
+    if (r[0] < lx1 && r[0] + r[2] > lx0 && r[1] < ly1 && r[1] + r[3] > ly0) {
+      r[1] = Math.round(ly1 + 4);
+      e.style.transform = `translate3d(${r[0]}px, ${r[1]}px, 0)`;
+    }
+  }
+}
 /* Punkterna är i rummets egna koordinater; på fotot står rummet flyttat och vridet. */
 const iVarlden = (p) => p.clone().applyMatrix4(rum.matrixWorld);
 function placeraEtiketter() {
@@ -1645,6 +1663,7 @@ function placeraEtiketter() {
   rum.updateMatrixWorld();
   (vy === 'ovan' ? mattPunkterOvan : mattPunkter).map(iVarlden).forEach((p, i) => {
     const syns = flyttaEtikett(mattEl[i], p, bw, bh) && vy !== 'inne';
+    if (syns) undvikPunktLapp(mattEl[i]);
     mattEl[i].style.opacity = !syns ? '0' : skymsAvVagg(p) ? '0.22' : '1';
     if (syns) synligaMatt.push(mattEl[i]._ruta);
   });
@@ -1714,10 +1733,12 @@ function stegRuta(bara = false) {
     if (t >= 1) { animationer.delete(a); if (a.klar) a.klar(); }
   }
   if (kontroller.enabled && kontroller.update()) behovRitas = true;
+  if (insetSyns() && insetDampa()) behovRitas = true;
   if (bara && !behovRitas) return;
   behovRitas = false;
+  // rutan först: dess hörn på duken ritas över av huvudbilden, så duken aldrig visar rutan när den göms
+  if (insetSyns()) ritaInset();
   renderare.render(scen, kamera);
-  if (takInsetSyns()) ritaTakInset();
   placeraEtiketter();
   placeraPunkter();
 }
@@ -1764,7 +1785,8 @@ function visaFas(f, rulla = true) {
   const byt = f !== fas;
   fas = f;
   // på fotot: punkterna försvinner när kunden går vidare från Mått första gången, så bilden blir ren
-  if (foto.aktiv && placeraAuto && f !== 'matt') {
+  // inte medan de två dragen väntar: då finns ingen placering att spara, och rummet hade visats oplacerat
+  if (foto.aktiv && placeraAuto && f !== 'matt' && !guideSyns()) {
     placeraAuto = false; sattPlacering(false);
     // första gången: säg var placeringen finns (granskningen: på telefonen är knappen bara en ikon)
     if (!placeringTips) { placeringTips = true; visaToast('Placeringen är sparad. Tryck på Placering (knappen med korset) för att ändra den.'); }
@@ -2181,8 +2203,18 @@ document.addEventListener('click', (e) => {
     // ny form börjar på sin standardlutning; pannor kan sedan lyfta den
     if (grupp === 'form' && LUT[v]) S.lut = S.lutOnskad = LUT[v].std;
     if (grupp === 'form' || grupp === 'tak') { pannorHojde = false; normalisera(); }
-    if (grupp === 'form' && S.tak !== takFore) {
-      visaToast(`Taktäckningen är nu ${TAK[S.tak].toLowerCase()}${ingarVal('tak', S.tak) ? `, som ingår för ${FORM[v].toLowerCase()}` : ''}.`);
+    /* Pulpettak på ett foto med takfoten markerad: hellre en flackare lutning än
+       en varning (Mathias 2026-09-30). Standardlutningen 10° når 5 cm över
+       exempelhusets takfot; 9° går fritt. Ner till formens minsta lutning. */
+    let flackare = null;
+    if (grupp === 'form' && v === 'pulpet' && foto.aktiv && overTakfot() > 0.005) {
+      const g = lutGranser();
+      for (let l = S.lut - 1; l >= g.min; l--) if (overTakfot({ ...S, lut: l }) < 0.005) { S.lut = S.lutOnskad = flackare = l; normalisera(); break; }
+    }
+    if (grupp === 'form' && (S.tak !== takFore || flackare != null)) {
+      const tak = S.tak !== takFore ? `Taktäckningen är nu ${TAK[S.tak].toLowerCase()}${ingarVal('tak', S.tak) ? `, som ingår för ${FORM[v].toLowerCase()}` : ''}.` : '';
+      const lut = flackare != null ? `Lutningen ${flackare}° håller taket under husets takfot.` : '';
+      visaToast([tak, lut].filter(Boolean).join(' '));
     }
     /* Ny takform på datorn och plattan liggande: täckningen och lutningen fram i panelens
        rullning, men aldrig så långt att takformen man just tryckte på rullar bort
@@ -2548,6 +2580,14 @@ prisDetaljer.addEventListener('keydown', (e) => {
 const toast = $('toast');
 let toastTimer = 0;
 function visaToast(t) {
+  /* På telefonen låg toasten över den vridbara rutan och dess knapp i 2,6 s
+     (granskningen 2026-09-30): står rutan överst på fotot flyttar toasten ner under den. */
+  let topp = '';
+  if (mobil() && insetSyns() && !inset.stor) {
+    const r = insetRuta();
+    if (r.y < 60) topp = `${fotoRuta().y + r.y + r.h + 8}px`;
+  }
+  toast.style.top = topp;
   toast.textContent = t; toast.classList.add('syns');
   clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('syns'), 2600);
 }
@@ -2758,18 +2798,50 @@ function fotoKamera() {
   skuggGrans.z.value = S.d + 0.7 + 4;
   skuggGrans.inv.value.copy(fotoSkugga.matrixWorld).invert();
 }
-/* Taket ovanifrån, infällt uppe till höger i fotot medan steget Tak visas: från
-   marken syns bara takets kant, så takpapp och takpannor skilde 1 % av
-   pixlarna på fotot (granskningen 2026-09-29). Samma renderare och skuggkarta,
-   en egen kamera i en ruta; skissen och maskerna ritas utan den. */
+/* ============================================================
+   Uterummet i en vridbar ruta
+   Infälld i fotot i alla steg: bara rummet med altanen (huset på fotot är
+   inte med, inget påhittat hus, ingen tomt), sett uppifrån från början, så
+   taket syns: från marken syns bara takets kant, och takpapp och takpannor
+   skilde 1 % av pixlarna på fotot (granskningen 2026-09-29). Ett drag i rutan
+   vrider runt rummets mitt, nyp eller hjul zoomar rutan (inte sidan), och en
+   knapp förstorar den över fotot (Mathias 2026-09-30: "se uppifrån, sidorna
+   och så, inte på själva huset men på altanen/uterummet"). Samma renderare,
+   samma skuggkarta och samma material, en egen kamera; skissen och maskerna
+   ritas utan den. Rummet ritas i ett hörn av WebGL-duken innan huvudbilden
+   och kopieras till rutans egen duk (ovanför förgrunden och penselytan), och
+   bara när rummet, valen, ljuset, vinkeln eller rutans storlek ändrats: ett
+   drag på fotots punkter kostar inte en andra bild av scenen (granskningen
+   2026-09-30: varje händelse ritade scenen två gånger, 85 + 79 draw calls).
+   ============================================================ */
 const insetKamera = new THREE.PerspectiveCamera(36, 4 / 3, 0.1, 150);
-const takInsetSyns = () => fotoVyNu() && fas === 'tak' && !aiVisas && !!rumMatt;
-/* Rutan står i det hörn av fotot som uterummet täcker minst, helst nertill: där
-   är det oftast gräs. Uppe till höger täckte den husets gavel och övre fönster
-   (granskningen 2026-09-29). */
-function takInsetRuta() {
+const insetEl = $('inset'), insetDuk = $('inset-duk'), insetLapp = insetEl.querySelector('.inset-lapp'), insetKnapp = $('inset-stor');
+/* Vridningen: az runt rummets lodräta axel (0 = från trädgården, rakt mot
+   huset), el lutningen ner mot rummet (0 = i marknivå, 1,3 = nästan rakt
+   uppifrån; rakt uppifrån blev taket en kantlös rektangel), zoom som faktor
+   på avståndet. Målen dämpas in som kameran i 3D-läget. */
+const INSET_START = { az: 0.35, el: 0.95, zoom: 1 };
+const inset = { ...INSET_START, malAz: INSET_START.az, malEl: INSET_START.el, malZoom: 1, stor: false, pek: new Map(), nyp: 0, horn: null, tid: 0 };
+const INSET_EL = [0.06, 1.3], INSET_ZOOM = [0.7, 2.2];
+const INSET_BAKGRUND = 0xd9dee6;   // ljus och neutral: takpapp och skuggor syns mot den, som .inset i stilmallen
+/* Rutan syns när rummet står på fotot: inte under de två dragen (rummet är
+   dolt då, och guidens knapp låg i rutans hörn), inte i penselläget (ett drag
+   i rutan målade på fotot) och inte över den fotorealistiska bilden. */
+const insetSyns = () => fotoVyNu() && !aiVisas && !!rumMatt && !guideSyns() && !penselLage;
+/* Nytt foto: vinkeln och zoomen börjar om, och den stora vyn stängs. */
+function insetBorjaOm() {
+  Object.assign(inset, INSET_START, { malAz: INSET_START.az, malEl: INSET_START.el, malZoom: 1, horn: null });
+  if (inset.stor) insetStor(false);
+}
+/* Rutan står i det hörn av fotot där den täcker minst av uterummet och
+   placeringspunkterna, helst nertill: där är det oftast gräs. Uppe till höger
+   täckte den husets gavel och övre fönster (granskningen 2026-09-29).
+   Förstorad fyller den fotot. */
+function insetRuta() {
   const el = renderare.domElement, cw = el.clientWidth, ch = el.clientHeight;
-  const w = Math.round(cw * (cw < 600 ? 0.4 : 0.3)), h = Math.round(w * 0.75), m = Math.round(Math.max(6, cw * 0.012));
+  const m = Math.round(Math.max(6, cw * 0.012));
+  if (inset.stor) return { x: m, y: m, w: cw - 2 * m, h: ch - 2 * m, cw, ch };
+  const w = Math.round(cw * (cw < 600 ? 0.36 : 0.3)), h = Math.round(w * 0.75);
   const horn = [[cw - w - m, ch - h - m], [m, ch - h - m], [cw - w - m, m], [m, m]];
   let [x, y] = horn[2];
   if (foto.aktiv && rumMatt) {
@@ -2779,30 +2851,164 @@ function takInsetRuta() {
       const p = tillFoto(new THREE.Vector3(l.cx + ux * u + fx * z, yy, l.cz + uz * u + fz * z));
       if (p) pts.push([p[0] * cw, p[1] * ch]);
     }
+    // punkterna som går att dra, som 44 px-rutor: takfoten och horisontgreppet ligger utanför rummets låda
+    const grepp = [];
+    if (placeraPa) {
+      const f = fotoPunkter();
+      if (f) grepp.push([0.9 * cw, f.H * ch]);
+      if (foto.takfot) grepp.push([foto.takfot[0] * cw, foto.takfot[1] * ch]);
+      if (foto.dorr && dorrLage) grepp.push([foto.dorr.fot[0] * cw, foto.dorr.fot[1] * ch], [foto.dorr.fot[0] * cw, foto.dorr.topp * ch]);
+    }
     if (pts.length) {
       const x0 = Math.min(...pts.map((p) => p[0])), x1 = Math.max(...pts.map((p) => p[0])), y0 = Math.min(...pts.map((p) => p[1])), y1 = Math.max(...pts.map((p) => p[1]));
-      const tackt = ([a, b]) => Math.max(0, Math.min(a + w, x1) - Math.max(a, x0)) * Math.max(0, Math.min(b + h, y1) - Math.max(b, y0));
-      [x, y] = horn.reduce((bast, hh) => (tackt(hh) < tackt(bast) - 1 ? hh : bast), horn[0]);
+      const yta = ([a, b], [gx0, gy0, gx1, gy1]) => Math.max(0, Math.min(a + w, gx1) - Math.max(a, gx0)) * Math.max(0, Math.min(b + h, gy1) - Math.max(b, gy0));
+      const tackt = (hh) => yta(hh, [x0, y0, x1, y1]) + grepp.reduce((sum, [gx, gy]) => sum + 4 * yta(hh, [gx - 22, gy - 22, gx + 22, gy + 22]), 0);
+      /* Rutan står kvar i sitt hörn så länge det täcker nästan inget av rummet
+         och punkterna, och flyttar aldrig mitt i ett drag: den hoppade mellan
+         hörnen medan punkterna drogs (Mathias eget foto 2026-09-30), och på
+         plattan landade den över förgrunden intill punkt A. */
+      const kvar = inset.horn != null && (drarNu || tackt(horn[inset.horn]) <= w * h * 0.02);
+      if (!kvar) inset.horn = horn.indexOf(horn.reduce((bast, hh) => (tackt(hh) < tackt(bast) - 1 ? hh : bast), horn[0]));
+      [x, y] = horn[inset.horn];
     }
   }
   return { x, y, w, h, cw, ch };
 }
-function ritaTakInset() {
-  const r = takInsetRuta();
+/* Ett steg av dämpningen mot målet; sant medan rutan rör sig. */
+function insetDampa() {
+  /* Efter tiden, inte efter bildrutan: 80 ms till 63 % av vägen, så känslan är
+     densamma på 60 och 120 Hz och när grafikkortet hinner färre bilder. */
+  const nu = nuTid(), dt = Math.min(100, Math.max(0, nu - inset.tid)); inset.tid = nu;
+  const k = REDUCERAD ? 1 : 1 - Math.exp(-dt / 80);
+  let ror = false;
+  for (const [a, m] of [['az', 'malAz'], ['el', 'malEl'], ['zoom', 'malZoom']]) {
+    const d = inset[m] - inset[a];
+    if (Math.abs(d) < 1e-4) { inset[a] = inset[m]; continue; }
+    inset[a] += d * k; ror = true;
+  }
+  return ror;
+}
+/* Det som syns i rutan, som en nyckel: rummet (byggt om), valen, ljuset,
+   rummets vridning mot solen, vinkeln och rutans storlek. Samma nyckel = samma
+   bild, och då ritas inget. */
+let insetNyckel = '', insetBygg = 0, insetVikt = null, insetRitadSenast = false;
+function insetNyckelNu(r) {
+  const l = foto.lage;
+  return [insetBygg, r.w, r.h, renderare.getPixelRatio(), inset.az.toFixed(4), inset.el.toFixed(4), inset.zoom.toFixed(4),
+    S.b, S.d, S.h, S.form, S.lut, S.tak, S.golv, S.vagg, S.vv, S.vf, S.vh, S.insida, S.farg, S.glas, S.led, S.nat,
+    foto.ljus.az, foto.ljus.mulet, ljusNatt, markerad, oppen.toFixed(3), (l.t / D2R).toFixed(0)].join('|');
+}
+function ritaInset(tvinga = false) {
+  const r = insetRuta();
+  insetRitadSenast = false;
+  // medan ett drag på fotots punkter pågår står rutans bild kvar; den ritas om vid släpp
+  if (drarNu && !tvinga && insetNyckel) return false;
+  const nyckel = insetNyckelNu(r);
+  if (!tvinga && nyckel === insetNyckel) return false;
+  insetNyckel = nyckel; insetRitadSenast = true;
   rum.updateMatrixWorld(true);
-  const { W: rw, D: rd, topBak } = rumMatt, avst = Math.max(rw, rd) * 1.7 + 2;
-  const mal = new THREE.Vector3(0, topBak * 0.4, rd * 0.5).applyMatrix4(rum.matrixWorld);
-  insetKamera.position.copy(new THREE.Vector3(rw * 0.25, topBak + avst * 0.9, rd * 0.5 + avst * 0.6).applyMatrix4(rum.matrixWorld));
+  const { W: rw, D: rd, topBak } = rumMatt, avst = (Math.max(rw, rd) * 1.7 + 2) * inset.zoom;
+  const ce = Math.cos(inset.el), se = Math.sin(inset.el);
+  const mal = new THREE.Vector3(0, topBak * 0.4, rd * 0.5);
+  const pos = new THREE.Vector3(mal.x + avst * ce * Math.sin(inset.az), mal.y + avst * se, mal.z + avst * ce * Math.cos(inset.az));
+  mal.applyMatrix4(rum.matrixWorld); pos.applyMatrix4(rum.matrixWorld);
+  insetKamera.position.copy(pos);
   insetKamera.up.set(0, 1, 0); insetKamera.lookAt(mal); insetKamera.aspect = r.w / r.h; insetKamera.updateProjectionMatrix();
-  const skugga = fotoSkugga.visible, mg = rum.getObjectByName('matt'), mgSyns = mg && mg.visible;
-  fotoSkugga.visible = false; if (mg) mg.visible = false;
+  // skuggfångaren på marken följer med: rummet står på en yta i stället för att sväva mot bakgrunden
+  const mg = rum.getObjectByName('matt'), mgSyns = mg && mg.visible, skugga = fotoSkugga.visible;
+  if (mg) mg.visible = false; fotoSkugga.visible = true;
   const cc = renderare.getClearColor(new THREE.Color()), ca = renderare.getClearAlpha();
   // WebGL räknar rutan nedifrån
   renderare.setScissorTest(true); renderare.setScissor(r.x, r.ch - r.y - r.h, r.w, r.h); renderare.setViewport(r.x, r.ch - r.y - r.h, r.w, r.h);
-  renderare.setClearColor(0x2a2a44, 1);
+  renderare.setClearColor(INSET_BAKGRUND, 1);
   renderare.render(scen, insetKamera);
+  insetVikt = { drawCalls: renderare.info.render.calls, trianglar: renderare.info.render.triangles };
   renderare.setScissorTest(false); renderare.setViewport(0, 0, r.cw, r.ch); renderare.setClearColor(cc, ca);
-  fotoSkugga.visible = skugga; if (mg) mg.visible = mgSyns;
+  if (mg) mg.visible = mgSyns; fotoSkugga.visible = skugga;
+  // bilden till rutans egen duk, i samma stund (huvudbilden ritas över hörnet strax efter)
+  const dpr = renderare.getPixelRatio(), dw = Math.max(1, Math.round(r.w * dpr)), dh = Math.max(1, Math.round(r.h * dpr));
+  if (insetDuk.width !== dw || insetDuk.height !== dh) { insetDuk.width = dw; insetDuk.height = dh; }
+  const g = insetDuk.getContext('2d');
+  g.clearRect(0, 0, dw, dh);
+  try { g.drawImage(renderare.domElement, Math.round(r.x * dpr), Math.round(r.y * dpr), dw, dh, 0, 0, dw, dh); }
+  catch { /* duken kan vara tom när WebGL-kontexten just tappats; nästa bild ritar om */ insetNyckel = ''; }
+  return true;
+}
+/* Rutan på skärmen: samma ruta som WebGL ritar i, som ett grepp ovanpå duken. */
+function placeraInset() {
+  const pa = insetSyns();
+  insetEl.hidden = !pa;
+  if (!pa) { fotoLapp.style.left = fotoLapp.style.right = ''; return; }
+  const r = insetRuta();
+  // instruktionen överst på fotot viker undan för rutan (telefonen: den låg över rutan och dess knapp)
+  const hogt = !inset.stor && r.y < 60, hoger = r.x + r.w / 2 > r.cw / 2;
+  fotoLapp.style.right = hogt && hoger ? `${r.cw - r.x + 8}px` : '';
+  fotoLapp.style.left = hogt && !hoger ? `${r.x + r.w + 8}px` : '';
+  insetEl.style.transform = `translate3d(${r.x}px, ${r.y}px, 0)`;
+  insetEl.style.width = r.w + 'px'; insetEl.style.height = r.h + 'px';
+  // texten efter rutans bredd: på telefonen är den lilla rutan 140 px
+  const text = inset.stor ? 'Dra för att vrida · nyp eller skrolla zoomar' : r.w < 220 ? 'Dra för att vrida' : 'Uterummet · dra för att vrida';
+  if (insetLapp.textContent !== text) insetLapp.textContent = text;
+}
+function insetZooma(f) {
+  inset.malZoom = Math.min(INSET_ZOOM[1], Math.max(INSET_ZOOM[0], inset.malZoom * f));
+  ritaNu();
+}
+function insetVrid(daz, del) {
+  inset.malAz += daz;
+  inset.malEl = Math.min(INSET_EL[1], Math.max(INSET_EL[0], inset.malEl + del));
+  ritaNu();
+}
+/* Förstorad över fotot, och tillbaka: punkterna och måtten på fotot göms så
+   länge, och zoomen börjar om så hela rummet syns. Escape stänger. */
+function insetStor(pa) {
+  inset.stor = pa;
+  inset.malZoom = 1;
+  insetEl.classList.toggle('stor', pa);
+  document.documentElement.classList.toggle('insetstor', pa);
+  insetKnapp.setAttribute('aria-label', pa ? 'Stäng den stora vyn' : 'Förstora');
+  insetKnapp.querySelector('.ik-stor').hidden = pa; insetKnapp.querySelector('.ik-stang').hidden = !pa;
+  placeraInset(); ritaNu();
+}
+insetKnapp.addEventListener('click', () => insetStor(!inset.stor));
+{
+  const nypAvst = () => { const [a, b] = [...inset.pek.values()]; return Math.hypot(b.x - a.x, b.y - a.y); };
+  // händelserna i rutan stannar där: inte till punkterna, inte till rummet på fotot, inte till sidan
+  insetEl.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('button')) return;
+    e.stopPropagation();
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    e.preventDefault();
+    inset.pek.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (inset.pek.size === 2) inset.nyp = nypAvst();
+    try { insetEl.setPointerCapture(e.pointerId); } catch { /* äldre webbläsare */ }
+    insetEl.classList.add('drar');
+  });
+  insetEl.addEventListener('pointermove', (e) => {
+    const p = inset.pek.get(e.pointerId); if (!p) return;
+    e.stopPropagation();
+    const dx = e.clientX - p.x, dy = e.clientY - p.y; p.x = e.clientX; p.y = e.clientY;
+    if (inset.pek.size >= 2) { const d = nypAvst(); if (inset.nyp > 0 && d > 0) insetZooma(inset.nyp / d); inset.nyp = d; return; }
+    /* Ett halvt varv i sidled per 300 px, drygt en kvarts lutning: samma känsla i
+       den lilla rutan, den stora och på telefonen. Förut var det ett halvt varv
+       per rutbredd: 140 px på telefonen (ett varv på ett svep), 1 000 px förstorad. */
+    insetVrid(-(dx / 300) * Math.PI, (dy / 300) * Math.PI * 0.6);
+  });
+  const slapp = (e) => {
+    if (!inset.pek.has(e.pointerId)) return;
+    inset.pek.delete(e.pointerId); inset.nyp = 0;
+    if (!inset.pek.size) insetEl.classList.remove('drar');
+  };
+  for (const ev of ['pointerup', 'pointercancel', 'lostpointercapture']) insetEl.addEventListener(ev, slapp);
+  insetEl.addEventListener('wheel', (e) => { e.preventDefault(); e.stopPropagation(); insetZooma(Math.exp(e.deltaY * 0.0012)); }, { passive: false });
+  // tangentbordet: pilarna vrider, plus och minus zoomar
+  insetEl.addEventListener('keydown', (e) => {
+    const d = { ArrowLeft: [0.15, 0], ArrowRight: [-0.15, 0], ArrowUp: [0, 0.1], ArrowDown: [0, -0.1] }[e.key];
+    if (d) { e.preventDefault(); insetVrid(d[0], d[1]); }
+    else if (e.key === '+' || e.key === '-') { e.preventDefault(); insetZooma(e.key === '+' ? 0.85 : 1 / 0.85); }
+  });
+  // Escape stänger den stora vyn, men inte när bokningsrutan ligger över: den tar sitt Escape själv
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && inset.stor && startEl.hidden && $('modal').hidden) insetStor(false); });
 }
 /* En punkt på fotot (andelar 0–1 från övre vänstra hörnet) ner på marken, med
    kameran på höjden h och lutningen lut. null ovanför horisonten. */
@@ -2887,35 +3093,38 @@ function hojdUrDorr(d = foto.dorr, lut = foto.lage.lutning, f = fotoPunkter()) {
   const yb = vaggHojd(d.fot, l1), yt = vaggHojd([d.fot[0], d.topp], l1);
   return yb != null && yt != null && yt - yb > 1e-3 ? d.hojd / (yt - yb) : null;
 }
-/* Startläget på ett nytt foto: telefonen rak, kameran i ögonhöjd och
-   uterummets bakkant mitt i bilden, en tredjedel från nederkanten. Punkterna
-   ska sedan flyttas till väggens fot: ingen text säger att det här stämmer. */
+/* Startläget på ett nytt foto: telefonen rak (horisonten mitt i bilden),
+   kameran i ögonhöjd och uterummet mitt i bilden, stående på marken framför
+   huset: så långt bort att det tar ungefär 40 % av bildens bredd och hela
+   altanen syns ovanför nederkanten. Väggens fot hamnar då 70–80 % ner. Förut
+   stod bakkanten 66 % ner utan hänsyn till bredden: ett 5 m brett rum fyllde
+   bilden, och med guiden överhoppad fanns inget att greppa. Punkterna ska
+   sedan flyttas till väggens fot: ingen text säger att det här stämmer. */
+const OGONHOJD = 1.6;
 function autoPlacera() {
-  const c = markTraff(0.5, 0.66, 1.6, 0);
-  foto.lage = { h: 1.6, lutning: 0, cx: c.x, cz: c.z, t: 0 };
+  const tv = tanV(), h = OGONHOJD;
+  const avst = Math.max(S.b / (2 * 0.4 * tv * foto.kvot), S.d + 0.7 + h / (2 * 0.46 * tv));
+  const c = markTraff(0.5, Math.min(0.8, Math.max(0.7, 0.5 + h / (2 * avst * tv))), h, 0);
+  foto.lage = { h: OGONHOJD, lutning: 0, cx: c.x, cz: c.z, t: 0 };
 }
-/* Exempelhuset är känt: placeringen, bildvinkeln (45,5°, ur fotots två
-   flyktpunkter) och horisonten är uppmätta på fotot (granskningen 2026-09-29),
-   kamerans höjd (0,97 m) ur altandörren (2,1 m) och takfoten (2,4 m) ur
-   fotot. Fotot är mulet. Utan egen design blir rummet 4,5 × 3 m med höjden
-   2,1 m, så att det ryms under husets låga takfot. */
-const EXEMPEL = { fov: 45.5, A: [0.3375, 0.752], B: [0.789, 0.812], H: 0.63, dorr: { fot: [0.519, 0.754], topp: 0.442, hojd: 2.1 },
-  tf: [0.52, 0.418], matt: { b: 4.5, d: 3, h: 2.1 },
-  // björkstammen framför platsen, i fotots pixlar: den står 3 m närmare kameran än rummet
-  bjork: [[62, 1125], [190, 1125], [166, 1060], [160, 950], [168, 860], [185, 780], [195, 700], [200, 600], [206, 500], [172, 480], [150, 560],
-    [136, 700], [126, 790], [110, 760], [80, 700], [56, 620], [36, 520], [10, 470], [0, 520], [20, 620], [55, 720], [90, 810], [96, 870], [92, 960], [88, 1060]],
-  /* stammarna ovanför klykan och grenarna framför rummets tak, som linjer med
-     bredd [x, y, bredd] i fotots pixlar (granskningen 2026-09-29: taket skar av
-     högra stammen vid klykan, och den tjocka grenen mot huset försvann) */
-  grenar: [
-    [[180, 650, 36], [179, 560, 34], [176, 480, 32], [172, 400, 30], [178, 320, 30], [182, 250, 28]],            // högra stammen
-    [[196, 545, 26], [212, 450, 25], [233, 360, 24], [258, 280, 22], [268, 250, 20]],                             // stammen till höger om den
-    [[196, 562, 26], [240, 536, 22], [282, 512, 19], [340, 483, 16], [393, 466, 13], [447, 400, 10], [513, 350, 8]], // tjocka grenen mot huset
-    [[18, 300, 14], [60, 332, 15], [110, 392, 14], [158, 454, 13]],                                               // mörka grenen snett ned mot stammen
-    [[100, 302, 11], [130, 340, 11], [162, 376, 10]],
-    [[74, 650, 28], [70, 560, 27], [67, 470, 26], [66, 380, 25], [70, 290, 24]],                                  // vänstra stammen
-    [[10, 650, 22], [6, 560, 22], [0, 470, 20]],                                                                  // stammen längst till vänster
-  ] };
+/* Exempelhuset är känt (bytt 2026-09-30: en faluröd enplansvilla rakt
+   framifrån, utan träd; det förra fotot var taget snett med en björk framför).
+   Uppmätt i fotots pixlar (1600 × 1200): altandörrens karm 682–920 × 506–822
+   (tröskeln y 822, karmens överkant y 506 = 2,1 m), sockelns fot mot gräset
+   y 866, hängrännans underkant y 440. Fotot är rakt: husets vågräta linjer är
+   parallella, så horisonten ligger mitt i bilden (kamerans höjd, 1,77 m ur
+   dörren). Bildvinkeln 49,7° är EXIF 28 mm i filen (kameran står då 8,7 m från
+   väggen). Rummet står mitt för dörren, 4,5 m brett: hörnen 2,25 m åt var sida
+   längs sockelns fot. Takfoten (hängrännans underkant, y 440) ligger 2,83 m
+   över marken: plant tak går fritt, pulpet får 9° automatiskt när formen väljs
+   (10° når 2,88 m, 9° går fritt; se knapparna för form), sadeltaket ansluts till husets tak.
+   Tröskeln står på ett stentrappsteg 0,29 m över marken (y 823 mot 866), och
+   altanen ligger 0,18 m upp: trappstegets kant syns 11 cm ovanför trallen, och
+   med plant tak (rumstopp 2,28 m) döljs dörrkarmens överkant (2,39 m) bakom
+   takbalken. Det får vara så: 2,1 m är standardhöjden, och 2,25 m skulle
+   tvinga pulpettaket ner till 6°. Fotot är mulet. */
+const EXEMPEL = { fov: 49.7, A: [0.2884, 0.7217], B: [0.7116, 0.7217], H: 0.5, dorr: { fot: [0.5, 0.685], topp: 0.4217, hojd: 2.1 },
+  tf: [0.5, 0.3667], matt: { b: 4.5, d: 3, h: 2.1 } };
 function exempelLage() {
   const lut = lutningAv(EXEMPEL.H), h = hojdUrDorr(EXEMPEL.dorr, lut, { A: EXEMPEL.A, B: EXEMPEL.B }) || 1;
   if (['b', 'd', 'h'].every((k) => S[k] === STANDARD[k])) { Object.assign(S, EXEMPEL.matt); normalisera(); }
@@ -2925,20 +3134,7 @@ function exempelLage() {
   foto.dorr = { ...EXEMPEL.dorr, fot: EXEMPEL.dorr.fot.slice() }; foto.dorrMatt = true;
   foto.ljus.mulet = true; $('mulet').checked = true;
   foto.bekraftad = true;
-  // björken målas in som förgrund från början
-  if (!foto.pensel) {
-    const c = penselKanvas(), g = c.getContext('2d'), sx = c.width / 1600, sy = c.height / 1200;
-    g.fillStyle = '#fff'; g.beginPath();
-    EXEMPEL.bjork.forEach(([x, y], i) => (i ? g.lineTo(x * sx, y * sy) : g.moveTo(x * sx, y * sy)));
-    g.closePath(); g.fill();
-    g.strokeStyle = '#fff'; g.lineCap = 'round'; g.lineJoin = 'round';
-    for (const gren of EXEMPEL.grenar) for (let i = 1; i < gren.length; i++) {
-      const [x0, y0, b0] = gren[i - 1], [x1, y1, b1] = gren[i];
-      g.lineWidth = ((b0 + b1) / 2) * sx;
-      g.beginPath(); g.moveTo(x0 * sx, y0 * sy); g.lineTo(x1 * sx, y1 * sy); g.stroke();
-    }
-    penselNr++;
-  }
+  // inget står framför platsen på exempelfotot: ingen förgrund målas in
 }
 /* Placeringen ur en delad länk, till samma foto. */
 function lageUrLank(fp) {
@@ -2991,6 +3187,7 @@ function lagFotoLayout() {
   // först när rutan är satt: ett foto i naturlig storlek (1600 px) vidgade sidan på telefonen
   fotoEl.hidden = !pa; punktLager.hidden = !pa;
   jmfEl.hidden = !(pa && aiVisas);
+  placeraInset();
   visaGuide();
   document.documentElement.classList.toggle('aivy', pa && aiVisas);
   ritaForgrund();
@@ -3075,9 +3272,7 @@ function placeraPunkter() {
     el.style.transform = `translate3d(${Math.round(inom(x) * w)}px, ${Math.round(inom(y) * h)}px, 0)`;
   };
   for (const k of ['A', 'B']) { handtag[k].hidden = !f; if (f) flytta(handtag[k], f[k][0], f[k][1]); }
-  const tl = $('tak-lapp'), ts = takInsetSyns();
-  tl.hidden = !ts;
-  if (ts) { const r = takInsetRuta(); tl.style.transform = `translate3d(${r.x + 8}px, ${r.y + 8}px, 0)`; }
+  placeraInset();
   const hy = Math.round(horisontY() * h);
   handtag.H.style.transform = `translate3d(${Math.round(w * 0.9)}px, ${hy}px, 0)`;
   horisontEl.style.transform = `translateY(${hy}px)`;
@@ -3103,11 +3298,19 @@ function fotoVarningar() {
   if (f && [f.A, f.B].some(([x, y]) => x < 0 || x > 1 || y > 1)) ut.push('Uterummet går utanför fotot. Minska bredden eller flytta punkterna.');
   const l = foto.lage, ux = Math.cos(l.t), uz = -Math.sin(l.t), fx = Math.sin(l.t), fz = Math.cos(l.t);
   const nara = Math.min(...[-1, 1].map((s) => { const u = s * (S.b / 2 + 0.4), w = S.d + 0.7; return Math.hypot(l.cx + ux * u + fx * w, l.cz + uz * u + fz * w); }));
+  /* Altanens framkant utanför fotot (rummet nära kameran eller långt ner i
+     bilden): det får vara så, men det ska synas varför rummet ser avskuret ut. */
+  if (!ut.length) {
+    const fram = [-1, 1].map((s) => { const u = s * S.b / 2, w = S.d + 0.7; return tillFoto(new THREE.Vector3(l.cx + ux * u + fx * w, 0, l.cz + uz * u + fz * w), l); });
+    if (fram.some((p) => !p || p[1] > 1.005 || p[0] < -0.005 || p[0] > 1.005)) ut.push('Altanen går utanför fotot. Det gör inget, men dra uterummet uppåt om du vill se hela.');
+  }
   if (nara < 2.5) ut.push(`Du står nära: uterummets framkant är bara ${dec(nara, 1)} m från kameran. Ta gärna ett foto längre ifrån.`);
   const over = overTakfot();
-  if (over > 0.01) ut.push(`Taket når ${Math.round(over * 100)} cm över husets takfot.`);
+  // sadeltakets nock når nästan alltid över en enplansvillas takfot och ansluts till husets tak: en upplysning (fotoNot), ingen varning
+  if (over > 0.01 && S.form !== 'sadel') ut.push(`Taket når ${Math.round(over * 100)} cm över husets takfot.`);
   return ut;
 }
+const fotoNot = () => (S.form === 'sadel' && overTakfot() > 0.01 ? `Sadeltaket ansluts till husets tak (${Math.round(overTakfot() * 100)} cm över takfoten).` : '');
 /* Texten om placeringen: i panelen, och kort på fotot medan placeringen är på
    (granskningen: på telefonen låg instruktionen under bokningsraden). */
 function skrivFotoInfo() {
@@ -3130,9 +3333,10 @@ function skrivFotoInfo() {
   if (placeraPa) lapp.push(dorrLage ? 'Dra punkterna till dörrens tröskel och överkant'
     : foto.bekraftad ? 'Punkterna vid väggens fot · linjen där husets vågräta linjer ser raka ut'
       : '1 Dra punkterna till husväggens fot · 2 Dra linjen dit husets vågräta linjer ser raka ut');
-  fotoLapp.innerHTML = [...lapp.map((t) => `<span>${t}</span>`), ...varn.map((t) => `<span class="varn">${t}</span>`)].join('');
-  fotoLapp.hidden = !lapp.length && !varn.length;
-  const tn = $('takfot-not'); tn.hidden = !(varn.length && overTakfot() > 0.01);
+  const not = fotoNot();
+  fotoLapp.innerHTML = [...lapp.map((t) => `<span>${t}</span>`), ...varn.map((t) => `<span class="varn">${t}</span>`), not && `<span class="not">${not}</span>`].filter(Boolean).join('');
+  fotoLapp.hidden = !lapp.length && !varn.length && !not;
+  const tn = $('takfot-not'); tn.hidden = !(overTakfot() > 0.01);
   if (!tn.hidden) tn.textContent = takfotRad();
 }
 /* Förslaget när taket går över husets takfot: lägre höjd eller flackare tak. */
@@ -3143,7 +3347,9 @@ function takfotRad() {
   let lut = null;
   if (g) for (let v = S.lut - 1; v >= g.min; v--) if (overTakfot({ ...S, lut: v }) < 0.005) { lut = v; break; }
   const forslag = [lagre < S.h && overTakfot({ ...S, h: lagre }) < 0.005 && `höjden ${dec(lagre, 2)} m`, lut != null && `lutningen ${lut}°`].filter(Boolean);
-  return `Taket når ${Math.round(over * 100)} cm över husets takfot på fotot. Då ansluts det till husets tak, och det går vi igenom vid hembesöket.`
+  const cm = Math.round(over * 100);
+  return (S.form === 'sadel' ? `Sadeltakets nock når ${cm} cm över husets takfot på fotot, så taket ansluts till husets tak. Det går vi igenom vid hembesöket.`
+    : `Taket når ${cm} cm över husets takfot på fotot. Då ansluts det till husets tak, och det går vi igenom vid hembesöket.`)
     + (forslag.length ? ` Ska taket sluta under takfoten räcker ${listaOrd(forslag).replace(' och ', ' eller ')}.` : '');
 }
 
@@ -3235,12 +3441,15 @@ function slutaDra() {
    de två dragen och penseln. */
 let flerFingrar = false, dragFore = null, avbrytPensel = null;
 addEventListener('pointerdown', (e) => {
-  if (e.pointerType !== 'touch') return;
+  // musen och pennan är aldrig ett andra finger: ett nyp i den vridbara rutan följt av ett musdrag på fotot gjorde inget (rättningen 2026-09-30)
+  if (e.pointerType !== 'touch') { flerFingrar = false; return; }
   if (e.isPrimary) { flerFingrar = false; return; }
   if (flerFingrar) return;
   flerFingrar = true;
   avbrytFotoDrag();
 }, true);
+// när första fingret lyfts är gesten över: resten av fingrarna är aldrig primära och gör ändå ingenting
+for (const ev of ['pointerup', 'pointercancel']) addEventListener(ev, (e) => { if (e.pointerType === 'touch' && e.isPrimary) flerFingrar = false; }, true);
 function avbrytFotoDrag() {
   if (strak) { strak = null; luppEl.hidden = true; ritaStrak(null, null); }
   if (avbrytPensel) avbrytPensel();
@@ -3269,6 +3478,30 @@ function visaLupp(fx, fy) {
   g.moveTo(c - 18 * dpr, c); g.lineTo(c - 4 * dpr, c); g.moveTo(c + 4 * dpr, c); g.lineTo(c + 18 * dpr, c); g.stroke();
   luppEl.hidden = false;
 }
+/* Väggens fot står alltid minst GLAPP (andel av fotots höjd) under horisonten.
+   Mathias eget foto 2026-09-30: punkterna låg 0,03 under linjen, vid balkongen.
+   Där är markplanet nästan parallellt med blicken, så rummet stod 60 m bort,
+   sett från kanten (altanen en tunn remsa), och varje liten rörelse av punkten
+   blev tiotals meter: rummet hoppade. 0,04 är 20–30 m bort med ett vanligt foto. */
+const GLAPP = 0.04;
+// hur långt utanför fotot väggens fot får dras: samma gräns som en delad länk läser (−500 till 1 500 promille)
+const UT_MIN = 0.45, UT_MAX = 1.45;
+/* Kamerans höjd för väggens fot a–b: en uppmätt dörr sitter i husväggens plan,
+   så flyttas väggen räknas höjden om ur dörren; annars står den kvar. */
+const hojdFor = (a, b, lut = foto.lage.lutning) => {
+  if (!foto.dorrMatt) return foto.lage.h;
+  const h = hojdUrDorr(foto.dorr, lut, { A: a, B: b });
+  return h ? Math.min(10, Math.max(0.3, h)) : foto.lage.h;
+};
+/* Mjuk gräns: går målet (s = 1) inte att ställa rummet på, söks den närmaste
+   punkten mot målet som går, räknat från där draget står nu (s = 0). Rummet
+   stannar vid gränsen i stället för att fastna en bit före den eller hoppa. */
+function langstMot(prova) {
+  const hel = prova(1); if (hel) return hel;
+  let lo = 0, hi = 1, bast = null;
+  for (let i = 0; i < 12; i++) { const s = (lo + hi) / 2, r = prova(s); if (r) { lo = s; bast = r; } else hi = s; }
+  return bast;
+}
 /* Punkt A, B, horisonten H, takfoten T eller dörrens D1 och D2 till en punkt
    på fotot (andelar). A, B och tröskeln stannar under horisonten, horisonten
    ovanför dem. Ändras horisonten står punkterna kvar på fotot och placeringen
@@ -3278,16 +3511,34 @@ function dragTill(namn, fx, fy) {
   const lut = foto.lage.lutning;
   if (namn === 'H') {
     const lagst = Math.min(f.A[1], f.B[1], dorrLage && foto.dorr ? foto.dorr.fot[1] : 1);
-    const nl = lutningAv(Math.min(lagst - 0.03, Math.max(0.04, fy)));
-    if (Math.abs(nl) > 30 * D2R) return;
-    const h = foto.dorrMatt ? hojdUrDorr(foto.dorr, nl) || foto.lage.h : foto.lage.h;
-    tillampaPlacering(lageFranPunkter(f.A, f.B, nl, h, 'A'));
+    // linjen stannar GLAPP ovanför punkterna (står den redan närmare får den stå kvar, men inte gå längre ner)
+    const hi = Math.max(lagst - GLAPP, Math.min(f.H, lagst - 0.005));
+    const mal = lutningAv(Math.min(hi, Math.max(0.04, fy)));
+    const nl0 = Math.max(-30 * D2R, Math.min(30 * D2R, mal));
+    /* Punkterna står kvar på fotot. Blir rummet bredare än 7 m (linjen nära
+       punkterna: väggen långt bort) står mitten kvar och hörnen glider in lika
+       mycket från var sida; förut stod A kvar och B for tvärs över fotot. */
+    tillampaPlacering(langstMot((s) => {
+      const nl = lut + (nl0 - lut) * s, h = hojdFor(f.A, f.B, nl), r = lageFranPunkter(f.A, f.B, nl, h, 'A');
+      return r && r.klamd ? lageFranPunkter(f.A, f.B, nl, h, 'M') || r : r;
+    }));
   } else if (namn === 'A' || namn === 'B') {
-    const p = [inom(fx), Math.min(1, Math.max(f.H + 0.03, fy))];
-    const [a, b] = namn === 'A' ? [p, f.B] : [f.A, p];
-    // en uppmätt dörr sitter i husväggens plan: flyttas väggen räknas kamerans höjd om
-    const h = foto.dorrMatt ? hojdUrDorr(foto.dorr, lut, { A: a, B: b }) || foto.lage.h : foto.lage.h;
-    if (tillampaPlacering(lageFranPunkter(a, b, lut, h, namn === 'A' ? 'B' : 'A'))) foto.bekraftad = true;
+    /* Punkten stannar GLAPP under horisonten, och får gå en bit utanför fotot
+       (ett hörn utanför drogs förut in till kanten med ett ryck). */
+    const nu = f[namn], lo = Math.min(nu[1], f.H + GLAPP);
+    const mal = [Math.min(UT_MAX, Math.max(-UT_MIN, fx)), Math.min(UT_MAX, Math.max(lo, fy))];
+    const r = langstMot((s) => {
+      const p = [nu[0] + (mal[0] - nu[0]) * s, nu[1] + (mal[1] - nu[1]) * s];
+      const [a, b] = namn === 'A' ? [p, f.B] : [f.A, p];
+      const h = hojdFor(a, b);
+      const r0 = lageFranPunkter(a, b, lut, h, namn === 'A' ? 'B' : 'A');
+      /* Bredden klämd (3–7 m): då stod den andra punkten fast och den dragna rörde
+         sig inte alls under fingret (Mathias 2026-09-30: rummet 7 m brett, punkt A
+         gick inte att dra). Nu följer den dragna punkten fingret och den andra
+         flyttar med, så rummet glider längs väggen i stället för att fastna. */
+      return r0 && r0.klamd ? lageFranPunkter(a, b, lut, h, namn) || r0 : r0;
+    });
+    if (tillampaPlacering(r)) foto.bekraftad = true;
   } else if (namn === 'T') {
     foto.takfot = [inom(fx), inom(fy, 0, Math.min(f.A[1], f.B[1]) - 0.04)];
     fotoKamera(); uppdateraText(); skrivFotoInfo(); ritaNu();
@@ -3305,6 +3556,12 @@ function kopplaDrag(el, namn) {
   el.addEventListener('pointerdown', (e) => {
     if (e.button !== 0 || !fotoVyNu() || !e.isPrimary || flerFingrar) return;
     e.preventDefault(); e.stopPropagation();
+    /* Linjens greppyta är 44 px hög över hela fotot. Stod rummet nära
+       horisonten låg hela rummet inom den (Mathias video 2026-09-30): varje
+       försök att dra rummet ner tog linjen, som inte får gå under punkterna, och
+       inget hände. Där rummet står går draget till rummet; linjen tas bredvid
+       rummet eller i sin punkt längst till höger. */
+    if (el === horisontEl && rumUnder(e)) { borjaRumDrag(e); return; }
     const r = punktLager.getBoundingClientRect(), mx = (e.clientX - r.left) / r.width, my = (e.clientY - r.top) / r.height;
     // greppet sitter kvar där fingret tog tag, punkten hoppar inte till fingret; på linjen hoppar den till fingrets höjd
     const p = el === horisontEl ? [mx, my] : pekPunkt(namn) || [mx, my];
@@ -3313,6 +3570,8 @@ function kopplaDrag(el, namn) {
     borjaDra();
   });
   el.addEventListener('pointermove', (e) => {
+    // med musen: över rummet visar linjen rummets pekare, så det syns vad ett drag tar
+    if (el === horisontEl && !drag && e.pointerType === 'mouse') el.style.cursor = rumUnder(e) ? 'move' : '';
     if (!drag || drag.el !== el || drag.id !== e.pointerId) return;
     const r = punktLager.getBoundingClientRect();
     dragTill(namn, (e.clientX - r.left) / r.width + drag.dx, (e.clientY - r.top) / r.height + drag.dy);
@@ -3345,45 +3604,59 @@ function stralMot(e) {
   fotoStral.setFromCamera(_fn, kamera);
   return fotoStral;
 }
+/* Rummet under fingret, eller null. */
+function rumUnder(e) {
+  if (!fotoVyNu() || !placeraPa || guideSyns() || !rum.visible) return null;
+  const mark = new Set(Object.values(markeringar));
+  return stralMot(e).intersectObject(rum, true).find((h) => h.object.userData.del !== 'matt' && (synlig(h.object) || mark.has(h.object))) || null;
+}
 renderare.domElement.addEventListener('pointerdown', (e) => {
   if (!fotoVyNu() || !placeraPa || !e.isPrimary || flerFingrar || e.button !== 0) return;
-  const mark = new Set(Object.values(markeringar));
-  const t = stralMot(e).intersectObject(rum, true).find((h) => h.object.userData.del !== 'matt' && (synlig(h.object) || mark.has(h.object)));
-  if (!t) return;
-  /* Rummet glider längs husväggen med fingret, aldrig ut från den: planet är
-     väggens eget (lodrätt), och bara rörelsen längs väggen räknas. Granskningen
-     2026-09-29: ett drag uppåt på exempelhusets dörr (skärmens steg 1) sköt det
-     färdigplacerade rummet ut på gräsmattan, till en prick vid horisonten. */
-  const nv = new THREE.Vector3(Math.sin(foto.lage.t), 0, Math.cos(foto.lage.t));
-  drag = { typ: 'rum', id: e.pointerId, plan: new THREE.Plane().setFromNormalAndCoplanarPoint(nv, t.point), p0: t.point.clone(),
-    u: [Math.cos(foto.lage.t), -Math.sin(foto.lage.t)], c0: { cx: foto.lage.cx, cz: foto.lage.cz } };
+  if (rumUnder(e)) borjaRumDrag(e);
+});
+function borjaRumDrag(e) {
+  /* Rummet följer fingret fritt på fotot, också upp och ner (Mathias
+     2026-09-30: rummet stod vid balkongen och gick bara att dra i sidled, aldrig
+     ner till marken). Förut gled det bara längs husväggen, för att ett drag inte
+     skulle skjuta det ut på gräsmattan; men då gick en fel placerad vägg inte
+     att rätta med rummet. Nu flyttar draget väggens fot A och B lika mycket på
+     fotot som fingret rör sig, och placeringen räknas ur dem med samma bredd:
+     rummet sitter kvar under fingret. Punkterna stannar GLAPP under horisonten
+     och får gå utanför fotot, så ett rum halvvägs ute går att dra in igen. */
+  const f = fotoPunkter(); if (!f) return;
+  const r = punktLager.getBoundingClientRect();
+  drag = { typ: 'rum', id: e.pointerId, m0: [(e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height],
+    A0: f.A.slice(), B0: f.B.slice(), d: [0, 0] };
   try { renderare.domElement.setPointerCapture(e.pointerId); } catch { /* äldre webbläsare */ }
   borjaDra();
-});
+}
+/* Rummet flyttat så att väggens fot står d (andelar av fotot) från där draget började. */
+function rumFlyttat(d) {
+  const a = [drag.A0[0] + d[0], drag.A0[1] + d[1]], b = [drag.B0[0] + d[0], drag.B0[1] + d[1]];
+  return lageFranPunkter(a, b, foto.lage.lutning, hojdFor(a, b), 'M', S.b);
+}
 renderare.domElement.addEventListener('pointermove', (e) => {
   if (!drag || drag.typ !== 'rum' || drag.id !== e.pointerId) return;
-  const p = new THREE.Vector3();
-  if (!stralMot(e).ray.intersectPlane(drag.plan, p)) return;
-  const s = (p.x - drag.p0.x) * drag.u[0] + (p.z - drag.p0.z) * drag.u[1];
-  const l = { ...foto.lage, cx: drag.c0.cx + drag.u[0] * s, cz: drag.c0.cz + drag.u[1] * s };
-  if (rumFramfor(l) && fotoPunkterFor(l) && inomFotot(l)) { sattFotoLage(l); foto.bekraftad = true; }
+  const r = punktLager.getBoundingClientRect(), H = horisontY();
+  const { A0, B0 } = drag;
+  let dx = (e.clientX - r.left) / r.width - drag.m0[0], dy = (e.clientY - r.top) / r.height - drag.m0[1];
+  // högst GLAPP under horisonten (stod rummet redan närmare får det stå kvar, men inte gå högre)
+  dy = Math.max(Math.min(0, H + GLAPP - Math.min(A0[1], B0[1])), Math.min(UT_MAX - Math.max(A0[1], B0[1]), dy));
+  // en bit utanför fotot går bra, men inte hur långt som helst (och inte längre än en delad länk bär)
+  dx = Math.max(-UT_MIN - Math.min(A0[0], B0[0]), Math.min(UT_MAX - Math.max(A0[0], B0[0]), dx));
+  const d0 = drag.d, res = langstMot((s) => { const d = [d0[0] + (dx - d0[0]) * s, d0[1] + (dy - d0[1]) * s]; const q = rumFlyttat(d); return q && { q, d }; });
+  if (!res) return;
+  drag.d = res.d;
+  if (tillampaPlacering(res.q)) foto.bekraftad = true;
 });
 for (const ev of ['pointerup', 'pointercancel']) renderare.domElement.addEventListener(ev, (e) => { if (drag && drag.typ === 'rum' && drag.id === e.pointerId) slutaDra(); });
-/* Rummet glider inte ut ur fotot: hörnen vid väggens fot stannar i bilden, eller
-   åtminstone inte längre ut än de redan står (granskningen: ett drag längs
-   väggens fot som började på rummet sköt det halvvägs ut ur bilden). */
-function inomFotot(l) {
-  const [A, B] = hornVarld(l), a = tillFoto(A, l), b = tillFoto(B, l), f = fotoPunkter();
-  if (!a || !b || !f) return false;
-  const ut = (x) => Math.max(0, -x, x - 1);
-  return ut(a[0]) <= Math.max(0.005, ut(f.A[0]) + 1e-4) && ut(b[0]) <= Math.max(0.005, ut(f.B[0]) + 1e-4);
-}
-// rummet får inte dras så att ett bakre hörn hamnar över horisonten
-function fotoPunkterFor(l) {
-  const [A, B] = hornVarld(l), a = tillFoto(A, l), b = tillFoto(B, l), hy = horisontY(l.lutning);
-  return a && b && a[1] > hy + 0.01 && b[1] > hy + 0.01;
-}
-$('placera').addEventListener('click', () => { placeraAuto = false; sattPlacering(!placeraPa); });
+$('placera').addEventListener('click', () => {
+  /* Under de två dragen finns ingen placering att gömma: knappen stängde guiden
+     och visade rummet oplacerat, svävande mitt på fasaden (Mathias eget foto
+     2026-09-30). Guiden står kvar, och knappen säger vad som väntas. */
+  if (guideSyns()) { visaToast('Gör först de två dragen på fotot, eller tryck "Placera med punkterna i stället".'); return; }
+  placeraAuto = false; sattPlacering(!placeraPa);
+});
 /* De två dragen igen, också på exempelhuset: dörren och väggens fot. */
 $('gor-om').addEventListener('click', () => {
   if (!fotoVyNu()) return;
@@ -3392,7 +3665,16 @@ $('gor-om').addEventListener('click', () => {
   skrivFotoInfo();
   if (mobil()) scrollTo({ top: 0, behavior: REDUCERAD ? 'auto' : 'smooth' });
 });
-$('se-ovan').addEventListener('click', () => sattVy('ovan'));
+/* Taket ovanifrån: den vridbara rutan förstorad och vriden rakt uppifrån
+   (den lämnade fotot för 3D-vyn förut, som visade samma sak som rutan). Är
+   rutan gömd, under de två dragen, går det till 3D-vyn som förut. */
+$('se-ovan').addEventListener('click', () => {
+  if (!insetSyns()) { sattVy('ovan'); return; }
+  inset.malAz = 0; inset.malEl = INSET_EL[1];
+  if (REDUCERAD) { inset.az = 0; inset.el = INSET_EL[1]; }
+  insetStor(true);
+  insetEl.focus({ preventScroll: true });
+});
 
 /* ---------- två drag på ett eget foto ----------
    Granskningen 2026-09-29: ett eget foto tog 7–9 moment, och innan kunden hittat
@@ -3415,13 +3697,14 @@ function visaGuide() {
   rum.visible = !pa;
   if (fotoVyNu()) fotoSkugga.visible = !pa;
   document.documentElement.classList.toggle('guidar', pa);
+  placeraInset();                                // rutan göms under de två dragen (den stod tom, med guidens knapp i hörnet)
   ritaNu();
   if (pa) punktLager.classList.toggle('dorr', guide === 'vagg' && !!foto.dorr && foto.dorrMatt);
   else if (!dorrLage) punktLager.classList.remove('dorr');
   if (!pa) { strakLapp.innerHTML = ''; return; }
   const fel = guideFel ? `<p class="varn">${guideFel}</p>` : '';
   strakLapp.innerHTML = guide === 'dorr'
-    ? `<p><b>1 av 2</b> Dra med fingret från altandörrens tröskel rakt upp till dörrens överkant</p>${fel}<button type="button" data-guide="utan-dorr">Ingen dörr på fotot</button>`
+    ? `<p><b>1 av 2</b> Dra från tröskeln på en dörr i marknivå (inte balkongdörren) rakt upp till dörrens överkant</p>${fel}<button type="button" data-guide="utan-dorr">Ingen dörr på fotot</button>`
     : `<p><b>2 av 2</b> Dra med fingret längs husväggens fot, från där uterummet ska börja till där det ska sluta</p>${fel}<button type="button" data-guide="punkter">Placera med punkterna i stället</button>`;
 }
 strakLapp.addEventListener('click', (e) => {
@@ -3537,9 +3820,16 @@ function dorrDrag(a, b) {
   // lodrät: tröskeln rakt under där fingret började
   const fot = [a[0], nere[1]];
   if (fot[1] - topp < 0.04) return 'Dra längre: från tröskeln hela vägen upp till dörrens överkant.';
-  let lut = foto.lage.lutning;
-  // tröskeln över bildens mitt: fotot är taget snett nedåt, horisonten ligger högre
-  if (fot[1] < horisontY(lut) + 0.05) lut = lutningAv(Math.max(0.03, Math.min(topp, fot[1] - 0.12)));
+  /* Horisonten: fotot antas taget i ögonhöjd tills väggens egna linjer (andra
+     draget) eller kundens drag på linjen säger annat. Den stod mitt i bilden
+     (telefonen rak) tills nu, och står väggen rakt mot kameran hittar andra
+     draget inga linjer att rätta den med: på Mathias eget foto 2026-09-30, en
+     villa på håll med dörren liten i bilden, blev kameran 4,2 m upp och rummet
+     ritades som från en stege, med altanen bred som ett golv. Dörren ger skalan
+     vid väggen, och horisonten ligger ögonhöjden ovanför tröskeln i den skalan. */
+  const skala = (fot[1] - topp) / 2.1;
+  let lut = lutningAv(Math.max(0.03, Math.min(fot[1] - GLAPP, fot[1] - OGONHOJD * skala)));
+  if (Math.abs(lut) > 30 * D2R) lut = Math.sign(lut) * 30 * D2R;
   const g1 = markTraff(fot[0], fot[1], 1, lut); if (!g1) return 'Börja draget nere vid dörrens tröskel.';
   const l1 = { h: 1, lutning: lut, cx: g1.x, cz: g1.z, t: 0 };
   const yt = vaggHojd([fot[0], topp], l1);
@@ -3565,7 +3855,7 @@ function vaggDrag(a, b) {
      ett för flackt streck (granskningen: 0,74 till 0,754 mot väggens 0,735 till
      0,771) gav annars 3,1 m där väggen är drygt 4 m. */
   const L = horisontLinje, ratt = ([x, y]) => (L && Math.abs(L.my + L.k * (x - L.mx) - y) < 0.03 ? [x, L.my + L.k * (x - L.mx)] : [x, y]);
-  const [p, q] = [p0, q0].map(ratt).map(([x, y]) => [x, Math.max(hy + 0.03, y)]);
+  const [p, q] = [p0, q0].map(ratt).map(([x, y]) => [x, Math.max(hy + GLAPP, y)]);
   const h = foto.dorrMatt ? hojdUrDorr(foto.dorr, lut, { A: p, B: q }) || foto.lage.h : foto.lage.h;
   const r = lageFranPunkter(p, q, lut, h, 'M');
   if (!r) return 'Det gick inte att ställa uterummet där. Dra längs väggens fot, nedanför dörren och fönstren.';
@@ -3652,8 +3942,9 @@ async function lasFoto(kalla, { exempel = false } = {}) {
     const kvot = c.width / c.height;
     Object.assign(foto, { bild: c, blob, url: URL.createObjectURL(blob), w: c.width, h: c.height, kvot,
       fov: exempel ? EXEMPEL.fov : fovUrExif(ex, c.width, c.height) || standardFov(kvot), exif: !!fovUrExif(ex, c.width, c.height), exempel,
-      bekraftad: false, takfot: null, dorr: null, dorrMatt: false, klamd: false, pensel: null, sudd: null, auto: null, autoAv: false, litet: null, halvt: null });
+      bekraftad: false, takfot: null, dorr: null, dorrMatt: false, klamd: false, pensel: null, sudd: null, auto: null, autoAv: true, litet: null, halvt: null });
     autoSig = ''; autoNyckel = '';
+    insetBorjaOm();                              // vinkeln och zoomen i rutan hängde kvar från förra fotot
     await new Promise((ok) => { fotoEl.onload = ok; fotoEl.onerror = ok; fotoEl.src = foto.url; });
     // ett nytt foto: bilderna gällde det förra
     for (const v of versioner) URL.revokeObjectURL(v.url);
@@ -3729,8 +4020,9 @@ $('till-foto').addEventListener('click', visaStart);
 
 /* ============================================================
    Förgrunden: det som står framför uterummet på fotot
-   Granskningen 2026-09-29: björken framför altandörren stod 3 m närmare
-   kameran än rummet, men ritades bakom det. Kunden eller säljaren målar över
+   Granskningen 2026-09-29: björken framför altandörren på det förra
+   exempelfotot stod 3 m närmare kameran än rummet, men ritades bakom det
+   (exempelhuset byttes 2026-09-30 till ett utan träd). Kunden eller säljaren målar över
    det som står framför; de pixlarna läggs överst från fotot, på skissen, i
    bilden som skickas till AI:n och i den färdiga bilden.
    ============================================================ */
@@ -3783,6 +4075,7 @@ function sattPenselLage(pa) {
   penselLage = pa;
   if (pa && placeraPa) sattPlacering(false);
   penselYta.hidden = !pa;
+  placeraInset();                                // rutan göms medan man målar: penselytan låg över den och ett drag i rutan målade
   document.documentElement.classList.toggle('penslar', pa);
   $('pensel-knapp').setAttribute('aria-pressed', String(pa));
   $('pensel-knapp').querySelector('span').textContent = pa ? 'Klar med penseln' : 'Måla det som står framför uterummet';
@@ -3830,7 +4123,10 @@ function sattPenselLage(pa) {
   $('pensel-rensa').addEventListener('click', () => { rensaPensel(true); skrivAi(); });
 }
 
-/* ---------- förgrunden hittas själv ----------
+/* ---------- förgrunden hittas själv (avstängd från start) ----------
+   Mathias 2026-09-30: på hans eget foto målades verandaräcke, rabatter och träd
+   framför rummet, så det såg avskuret ut. Sökningen är därför av från start
+   (foto.autoAv); kunden målar själv med penseln det som står framför.
    Granskningen 2026-09-29: på kundens eget foto hamnade björken bakom rummet
    (stammen syntes genom glaset, trallen täckte stamfoten), och på exempelhuset
    målade taket och stolparna över de hängande grenarna. Sidan letar nu själv,
@@ -5019,9 +5315,10 @@ for (const rad of document.querySelectorAll('.summering .sum-rad')) rad.addEvent
 window.__demo = {
   S,
   lage: () => ({ vy, oppen, natt: ljusNatt, kamera: kamera.position.toArray().map((n) => +n.toFixed(2)) }),
+  /* Huvudbilden (renderare.info nollställs per render); ruta: den vridbara rutans senaste bild, och om den ritades i senaste synka. */
   vikt: () => ({ drawCalls: renderare.info.render.calls, trianglar: renderare.info.render.triangles,
     program: renderare.info.programs ? renderare.info.programs.length : null, geometrier: renderare.info.memory.geometries,
-    ljus: (() => { let n = 0; scen.traverse((o) => { if (o.isLight) n++; }); return n; })() }),
+    ljus: (() => { let n = 0; scen.traverse((o) => { if (o.isLight) n++; }); return n; })(), ruta: insetVikt, rutaRitad: insetRitadSenast }),
   sattOppen: (v) => { oppen = v; oppenMal = v > 0.5 ? 1 : 0; tillampaOppen(v); uppdateraSkuggor(); uppdateraText(); },
   sattVy: (v) => sattVy(v, 0),
   bilder: () => renderare.info.render.frame,
@@ -5079,7 +5376,7 @@ window.__demo = {
   oppna: () => document.getElementById('oppna').click(),
   /* Rita nu och vänta in grafikkortet. I testmiljön renderar SwiftShader på
      processorn, och en skärmdump utan det här visade en bildruta flera sekunder gammal. */
-  synka: () => { if (kontroller.enabled) kontroller.update(); renderare.render(scen, kamera); if (takInsetSyns()) ritaTakInset(); placeraEtiketter(); placeraPunkter(); const gl = renderare.getContext(); const px = new Uint8Array(4); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px); return true; },
+  synka: () => { if (kontroller.enabled) kontroller.update(); if (insetSyns()) ritaInset(); renderare.render(scen, kamera); placeraEtiketter(); placeraPunkter(); const gl = renderare.getContext(); const px = new Uint8Array(4); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px); return true; },
   /* Var hamnar rummets hörn på duken, jämfört med den fria ytan? */
   ram: () => { const l = projiceradLada(rumHorn()); return { rum: [l.x0, l.y0, l.x1, l.y1].map(Math.round), fri: friYta(), hinder: hinder().map((r) => [r.x0, r.y0, r.x1, r.y1].map(Math.round)) }; },
   /* ---------- fotoläget ----------
@@ -5145,6 +5442,13 @@ window.__demo = {
   /* Bilden som skickas: utfylld till bildtjänstens format, fotots ruta i den, och valen. */
   skickas: () => { const t = tillFormat(skissKanvas()); return { w: t.bild.width, h: t.bild.height, ruta: t.ruta, val: fotoVal(t.ruta, t.kvot) }; },
   sattFov: (v) => { foto.fov = v; fotoKamera(); ritaNu(); return foto.fov; },
+  /* Den vridbara rutan: läget, vrid(az, el, zoom) sätter vinklarna direkt (radianer), stor(pa) förstorar. */
+  inset: () => ({ syns: insetSyns(), ruta: insetSyns() ? insetRuta() : null, az: +inset.az.toFixed(3), el: +inset.el.toFixed(3), zoom: +inset.zoom.toFixed(3),
+    malAz: +inset.malAz.toFixed(3), malEl: +inset.malEl.toFixed(3), stor: inset.stor, lapp: insetLapp.textContent, dold: insetEl.hidden }),
+  insetVrid: (az, el, zoom = inset.malZoom) => { inset.az = inset.malAz = az; inset.el = inset.malEl = el; inset.zoom = inset.malZoom = zoom; ritaNu(); return true; },
+  insetStor: (pa) => { insetStor(pa); return inset.stor; },
+  /* En punkt i rummets egna meter (x i sidled från mitten, y upp, z ut från väggen) som andelar av fotot. */
+  fotoPunkt: (x, y, z) => { rum.updateMatrixWorld(true); const p = tillFoto(new THREE.Vector3(x, y, z).applyMatrix4(rum.matrixWorld)); return p && p.map((v) => +v.toFixed(4)); },
   /* Förgrundspenseln: stryk(punkter) målar en linje genom punkterna (andelar av fotot). */
   pensel: (pts, sudd = false) => { const c = penselKanvas(), g = c.getContext('2d'); g.globalCompositeOperation = sudd ? 'destination-out' : 'source-over'; g.strokeStyle = '#fff'; g.lineWidth = c.width * 0.044; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); pts.forEach(([x, y], i) => (i ? g.lineTo(x * c.width, y * c.height) : g.moveTo(x * c.width, y * c.height))); g.stroke(); g.globalCompositeOperation = 'source-over'; penselNr++; ritaForgrund(); skrivAi(); return penselNr; },
   skapaAi: async (test = null) => { await skapaAi(test); return versioner.length; },
