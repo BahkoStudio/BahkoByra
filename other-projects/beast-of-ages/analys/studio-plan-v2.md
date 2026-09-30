@@ -125,7 +125,7 @@ Slutsats: den som redan vet vad kanalen är stannar. Den som kommer från starts
 
 | Tid | Vad | Exempel (dire wolf-videon) |
 |---|---|---|
-| 0:00–0:03 | Första meningen direkt, första bilden = miniatyrens motiv | *"Romulus and Remus turn two years old this month, and they now weigh more than any gray wolf in Yellowstone."* |
+| 0:00–0:03 | Första meningen direkt, första bilden = miniatyrens motiv | *"Romulus and Remus turn two on October 1st, and they are already bigger than Yellowstone's gray wolves."* (Screen Rant, september 2026) |
 | 0:03–0:20 | Det överraskande faktumet ur titeln | Jakten, kaninen de bar hem levande |
 | 0:20–0:45 | Frågan videon svarar på, sagd rakt ut | *"So are they dire wolves now? Here is what the scientists who study real dire wolf bones say."* |
 | 0:45–1:00 | Första nya faktumet levereras | IUCN:s besked från april 2025 |
