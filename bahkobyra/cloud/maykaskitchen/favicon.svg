@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Mayka Gulo">
+  <circle cx="32" cy="32" r="32" fill="#1C4229"/>
+  <!-- M i krämvitt -->
+  <path d="M15 47 V18 L32 38 L49 18 V47" fill="none" stroke="#F4EBDC" stroke-width="5.2" stroke-linejoin="miter" stroke-linecap="butt"/>
+  <!-- halsbandet hänger mellan M:ets toppar -->
+  <path d="M15.5 19 Q32 31.5 48.5 19" fill="none" stroke="#E3A93B" stroke-width="1.7" stroke-linecap="round" stroke-dasharray="1.6 1.4"/>
+  <!-- korset -->
+  <path d="M32 25.5 V34" stroke="#E3A93B" stroke-width="2.1" stroke-linecap="round"/>
+  <path d="M28.7 28.4 H35.3" stroke="#E3A93B" stroke-width="2.1" stroke-linecap="round"/>
+</svg>

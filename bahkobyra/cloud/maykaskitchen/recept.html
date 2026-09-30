@@ -4,14 +4,17 @@
   <script>document.documentElement.classList.remove('no-js')</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recept – MaykasKitchen</title>
+  <title>Recept – Mayka Gulo</title>
   <meta name="description" content="17 av Maykas bloggrecept, gratis och steg för steg. Ur samma kök som kokboken Maykas gröna kök – Kutle, hummus &amp; kärlek.">
-  <meta property="og:title" content="Maykas bloggrecept – MaykasKitchen">
+  <meta property="og:title" content="Maykas bloggrecept – Mayka Gulo">
   <meta property="og:description" content="17 av Maykas bloggrecept, gratis att laga hemma. Ur samma kök som kokboken Maykas gröna kök.">
-  <meta property="og:image" content="https://maykaskitchen.se/img/og.jpg">
+  <meta property="og:image" content="https://maykagulo.se/img/og.jpg">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#1C4229">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -41,6 +44,7 @@
     .nav-mini { display: flex; gap: clamp(0.8rem, 1.3vw, 1.6rem); list-style: none; }
     .nav-mini a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); text-decoration: none; opacity: 0.85; padding: 0.4rem 0; }
     .nav-mini a:hover { opacity: 1; color: var(--terra); }
+    .logo-mark { width: 34px; height: 34px; margin-right: 0.55rem; flex: none; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
     .nav-right { display: flex; align-items: center; gap: 0.5rem; flex: none; }
     @media (max-width: 480px) { .back-btn span { display: none; } .back-btn { padding: 0.4rem 0.8rem; } }
     .nav-buy { display: inline-flex; align-items: center; min-height: 40px; padding: 0.5rem 1.1rem; border-radius: 999px; background: var(--terra); color: var(--cream); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-decoration: none; }
@@ -208,7 +212,7 @@
 <body>
 
 <header class="site-header">
-  <a class="nav-logo" href="index.html">MaykasKitchen</a>
+  <a class="nav-logo" href="index.html"><img class="logo-mark" src="img/logga.svg" alt="" width="34" height="34">Mayka Gulo</a>
   <ul class="nav-mini">
     <li><a href="index.html" data-i18n="nav.home">Hem</a></li>
     <li><a href="index.html#boken" data-i18n="nav.book">Boken</a></li>
@@ -369,7 +373,7 @@
 </a>
 
 <footer class="site-footer">
-  <span>© 2026 MaykasKitchen</span>
+  <span>© 2026 Mayka Gulo</span>
   <a class="footer-priv" href="integritet.html" data-i18n="footer.priv">Integritet och kakor</a>
   <span>Hemsida av <a href="https://bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
 </footer>
@@ -706,7 +710,7 @@ function render() {
   const title       = tv(r.title, r.title_en);
   const description = tv(r.description, r.description_en);
   const story       = tv(r.personalStory, r.personalStory_en);
-  document.title    = title + ' – MaykasKitchen';
+  document.title    = title + ' – Mayka Gulo';
 
   const storyHtml = story
     ? `<div class="recipe-story">${story.split('\n\n').map(p => `<p>${p}</p>`).join('')}</div>` : '';
@@ -786,7 +790,7 @@ function renderList() {
   const container = document.getElementById('recipe-content');
   container.className = '';
   document.getElementById('back-btn').hidden = true;
-  document.title = getT('list.title') + ' – MaykasKitchen';
+  document.title = getT('list.title') + ' – Mayka Gulo';
 
   const alla = Object.entries(RECIPES);
   const synliga = alla.filter(([, r]) => aktivChip === 'alla' || r.badges.includes(aktivChip) || (aktivChip === 'Vegetariskt' && r.badges.includes('Vegan')));

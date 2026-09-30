@@ -1,4 +1,4 @@
-/* ── MaykasKitchen ───────────────────────────────────────── */
+/* ── Mayka Gulo ───────────────────────────────────────── */
 'use strict';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -7,15 +7,15 @@ gsap.registerPlugin(ScrollTrigger);
    Nyckeln är publik med flit: den säger bara vilken inkorg inskicket går till och ger
    ingen åtkomst till något (se docs/formular-web3forms.md). Tills Mayka har en egen
    nyckel används Bahkos demonyckel, som landar hos mathias@bahkobyra.se med
-   "Nyhetsbrev maykaskitchen.se" i ämnesraden. Byt NL_NYCKEL här OCH i index.html
+   "Nyhetsbrev maykagulo.se" i ämnesraden. Byt NL_NYCKEL här OCH i index.html
    (sidfotsformulärets dolda access_key, används när JavaScript inte körs) när Maykas nyckel finns. */
 const NL_NYCKEL = '38db5da0-8af0-4b31-bcdc-a840e84e5764';
 
 async function skickaNyhetsbrev(form, kalla) {
   const data = new FormData(form);
   data.set('access_key', NL_NYCKEL);
-  data.set('subject', 'Nyhetsbrev maykaskitchen.se');
-  data.set('from_name', 'maykaskitchen.se');
+  data.set('subject', 'Nyhetsbrev maykagulo.se');
+  data.set('from_name', 'maykagulo.se');
   data.set('kalla', kalla);
   data.delete('redirect');   // med redirect svarar Web3Forms 303 och svaret går inte att läsa
   const res = await fetch('https://api.web3forms.com/submit', {
