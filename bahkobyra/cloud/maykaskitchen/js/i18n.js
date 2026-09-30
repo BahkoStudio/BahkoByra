@@ -17,6 +17,8 @@
       'hero.t1':     'Maykas',
       'hero.t2':     'gröna kök',
       'hero.sub':    'Kutle, hummus &amp; kärlek',
+      'hero.kicker': 'Kokboken · Libris förlag',
+      'hero.body': 'Mayka Gulos debutbok, där det gröna köket möter tusenåriga traditioner.',
       'hero.btn':    'Köp min bok här',
       'hero.btn2':   'Gratis bloggrecept',
       'hero.scroll': 'Skrolla',
@@ -77,6 +79,9 @@
 
       /* SLUT */
       'slut.btn':    'Beställ min bok',
+      'slut.kicker': 'Kokboken',
+      'slut.title': 'Maykas <em>gröna kök</em>',
+      'slut.body': 'Kutle, hummus &amp; kärlek.',
       'kopbar.t': 'Köp min bok här',
 
       /* SOCIALA KANALER */
@@ -196,6 +201,8 @@
       'hero.t1':     'Maykas',
       'hero.t2':     'gröna kök',
       'hero.sub':    'Kutle, hummus &amp; kärlek',
+      'hero.kicker': 'The cookbook · Libris publishing',
+      'hero.body': 'Mayka Gulo’s debut cookbook, in Swedish, where the green kitchen meets thousand-year-old traditions.',
       'hero.btn':    'Buy my book here',
       'hero.btn2':   'Free blog recipes',
       'hero.scroll': 'Scroll',
@@ -256,6 +263,9 @@
 
       /* CLOSING */
       'slut.btn':    'Order my book',
+      'slut.kicker': 'The cookbook',
+      'slut.title': 'Maykas <em>gröna kök</em>',
+      'slut.body': 'Kutle, hummus &amp; kärlek.',
       'kopbar.t': 'Buy my book here',
 
       /* SOCIAL */

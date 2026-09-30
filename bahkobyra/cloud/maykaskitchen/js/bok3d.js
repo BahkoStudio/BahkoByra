@@ -207,19 +207,15 @@
         // Vila: mellan underrubriken och texten längst ner. Senare vyer: mellan sidhuvudet och texten.
         const ct = canvas.getBoundingClientRect().top;
         const rect = (sel) => { const e = document.querySelector(sel); return e ? e.getBoundingClientRect() : null; };
-        // Lagret: boken ligger framför nedre halvan av GRÖNA KÖK och slutar ovanför undertiteln längst ner.
-        const l2 = rect('.slide-1 .display-l2'), sub = rect('.slide-1 .display-sub'), s2 = rect('.slide-2'), hdr = rect('.site-header');
-        const top0 = l2 ? l2.top + l2.height * 0.74 - ct : h * 0.3, bot0 = sub ? sub.top - ct : h * 0.72;
+        const sub = rect('.slide-1 .display-sub'), side = rect('.slide-side-1'), s2 = rect('.slide-2'), hdr = rect('.site-header');
+        const top0 = sub ? sub.bottom - ct : h * 0.3, bot0 = side ? side.top - ct : h * 0.72;
         const top1 = hdr ? hdr.bottom - ct : 70, bot1 = s2 ? s2.top - ct : h * 0.6;
         const marg = 22;
-        const hPx = Math.max(160, Math.min(bot1 - top1 - 2 * marg, 0.58 * h, 0.72 * w * H / W));
-        // I vila får boken vara större än i de senare vyerna (där texten tar plats); skalan glider ner med mix.
-        const hVila = Math.max(160, Math.min(bot0 - top0 - 2 * marg, 0.57 * h, 0.8 * w * H / W));
-        api.skalaVila = hVila / hPx;
+        const hPx = Math.max(160, Math.min(bot0 - top0 - 2 * marg, bot1 - top1 - 2 * marg, 0.58 * h, 0.72 * w * H / W));
+        api.skalaVila = 1;
         d = H / ((hPx / h) * 2 * tan);
         visH = 2 * d * tan;
-        // Boken börjar vid top0 (lagret över GRÖNA KÖK) i stället för att centreras i luckan.
-        api.yRest = ((h / 2) - (top0 + hVila / 2)) / h * visH;
+        api.yRest = ((h / 2) - (top0 + bot0) / 2) / h * visH;
         api.yLater = ((h / 2) - (top1 + bot1) / 2) / h * visH;
       } else {
         const dH = H / ((h < 520 && w > h ? 0.62 : 0.56) * 2 * tan);

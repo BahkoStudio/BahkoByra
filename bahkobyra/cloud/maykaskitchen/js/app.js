@@ -53,11 +53,7 @@ function initHeader() {
     onEnter: () => header.classList.add('on-scroll'),
     onLeaveBack: () => header.classList.remove('on-scroll')
   });
-  // Slutet är början igen: samma genomskinliga rubrikrad över den mörka scenen.
-  if (document.getElementById('slut')) ScrollTrigger.create({
-    trigger: '#slut', start: 'top 70px', end: 'bottom 70px',
-    onToggle: self => header.classList.toggle('over-slut', self.isActive)
-  });
+
 }
 
 /* ── SCENEN – 3D-boken snurrar medan textbilderna byter ─── */
@@ -72,6 +68,7 @@ function initStage() {
   // Intro: boken landar (eget offset-objekt så att den inte krockar med skrollens värden), texten stiger
   if (har3d) gsap.from(window.BOK3D.intro, { scale: 0.6, y: -0.8, ry: -1.1, duration: 1.6, ease: 'power3.out', delay: 0.1 });
   gsap.from('.slide-1 > *', { y: 40, autoAlpha: 0, duration: 1.1, ease: 'power3.out', stagger: 0.12, delay: 0.25 });
+  gsap.from('.slide-side-1 > *', { y: 30, autoAlpha: 0, duration: 1.0, ease: 'power3.out', stagger: 0.06, delay: 0.7 });
   gsap.from('#stage-cta', { y: 30, autoAlpha: 0, duration: 1.0, ease: 'power3.out', delay: 0.85 });
 
   if (REDUCE) return;
