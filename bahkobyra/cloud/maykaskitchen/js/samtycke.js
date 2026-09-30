@@ -8,7 +8,6 @@
 (function () {
   'use strict';
   var MATT_ID = 'G-37QD3TJL56';
-  var PUB = 'ca-pub-4880340628636698';
   var tagg = document.currentScript;
   var annonser = !!(tagg && tagg.getAttribute('data-annonser') === 'ja');
   var gaLaddad = false;
@@ -23,10 +22,7 @@
   // AdSense-koden, som också levererar samtyckesrutan
   window.adsbygoogle = window.adsbygoogle || [];
   if (!annonser) window.adsbygoogle.pauseAdRequests = 1;      // säljsidan och integritetssidan: inga annonser
-  var a = document.createElement('script');
-  a.async = true; a.crossOrigin = 'anonymous';
-  a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + PUB;
-  document.head.appendChild(a);
+  // Själva AdSense-koden står som fast rad i <head> direkt efter det här skriptet (Googles granskning letar där).
 
   function laddaAnalytics() {
     if (gaLaddad) return;
