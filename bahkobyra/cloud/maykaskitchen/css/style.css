@@ -629,6 +629,6 @@ a { color: inherit; }
 .cta-fakta { align-self: stretch; }
 
 /* ── Logga: M med korshalsband ── */
-.logo-mark { width: 34px; height: 34px; margin-right: 0.55rem; flex: none; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+.logo-mark { width: 36px; height: 36px; margin-right: 0.45rem; flex: none; color: inherit; overflow: visible; }
 .footer-logo { display: inline-flex; align-items: center; gap: 0.55rem; }
-@media (max-width: 400px) { .logo-mark { width: 30px; height: 30px; margin-right: 0.45rem; } }
+@media (max-width: 400px) { .logo-mark { width: 32px; height: 32px; margin-right: 0.35rem; } }
