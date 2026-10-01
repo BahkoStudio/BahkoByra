@@ -41,10 +41,10 @@ export default function Start() {
       <section className={`mork ${styles.heroBygge}`} id="top">
         <div className={`wrap ${styles.heroGrid}`}>
           <div className={styles.heroText} data-trapp>
-            <span className="eyebrow">Byrån för bygg &amp; hantverk</span>
-            {/* Rubriken talar till firman, inte om oss (Mathias 2026-09-23). Sökorden
-                "hemsidor" och "hantverkare" bär undertexten och sidans title i stället. */}
+            {/* Rubriken talar till firman (Mathias 2026-09-23). Tjänst + ort ligger som första rad
+                I H1 (Mathias 2026-10-01): synlig text, samma som Google-profilens kategori och ort. */}
             <h1>
+              <span className="eyebrow" style={{ display: 'flex' }}>Webbdesign i Jönköping &amp; Huskvarna</span>
               Ni gör ett fantastiskt jobb.<br /> <span className="accent">Nu ska fler få veta det.</span>
             </h1>
             <p className={styles.heroLede}>

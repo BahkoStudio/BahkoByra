@@ -17,11 +17,11 @@ const outfit = Outfit({
 export const metadata = {
   metadataBase: new URL('https://www.bahkobyra.se'),
   title: {
-    default: 'Hemsidor för hantverkare och lokala företag | Bahko Byrå, Jönköping',
+    default: 'Webbdesign i Jönköping & Huskvarna | Hemsidor för hantverkare | Bahko Byrå',
     template: '%s | Bahko Byrå',
   },
   description:
-    'Vi bygger hemsidor åt hantverkare och lokala företag i Sverige. Ni får ett färdigt förslag inom 48 timmar och ser sidan innan ni bestämmer er.',
+    'Webbyrå i Huskvarna, Jönköping. Vi bygger hemsidor åt hantverkare och lokala företag. Ni får ett färdigt förslag inom 48 timmar och ser sidan innan ni bestämmer er.',
   openGraph: {
     type: 'website',
     locale: 'sv_SE',
@@ -76,7 +76,9 @@ const organisationsSchema = {
     closes: '22:00',
   },
   description:
-    'Digital byrå som bygger hemsidor för bygg- och hantverksfirmor i Sverige.',
+    'Webbyrå i Huskvarna, Jönköping, som bygger hemsidor åt hantverkare och lokala företag.',
+  hasMap: 'https://g.page/r/CY8e778hr3z7EAE',
+  knowsAbout: ['Webbdesign', 'Hemsidor för hantverkare', 'Lokal SEO', 'Google Företagsprofil', 'Google Ads'],
   slogan: 'Synlighet som säljer.',
   areaServed: [
     { '@type': 'City', name: 'Jönköping' },
