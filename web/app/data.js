@@ -67,7 +67,7 @@ export const TJANSTER = [
     kort: 'Synas när någon i er stad söker efter det ni gör.',
     rubrik: 'Synas när kunden söker',
     ingress:
-      'Svenskar söker "takläggare Örebro", inte "takläggning". Lokal SEO handlar om att finnas där, med rätt uppgifter, när någon i närheten behöver er.',
+      'Svenskar söker "målare Jönköping", inte "målning". Lokal SEO handlar om att finnas där, med rätt uppgifter, när någon i närheten behöver er.',
     punkter: [
       {
         h: 'Google Företagsprofil',

@@ -84,6 +84,9 @@ export default function Footer() {
                 </span>
               </li>
               <li>
+                <a href="https://g.page/r/CY8e778hr3z7EAE" target="_blank" rel="noopener">Hitta hit på Google Maps</a>
+              </li>
+              <li>
                 <a href="https://www.instagram.com/bahkobyra1/" target="_blank" rel="noopener">
                   Instagram
                 </a>

@@ -4,7 +4,7 @@ import Maskot from '../../komponenter/Maskot';
 import styles from './jonkoping.module.css';
 
 export const metadata = {
-  title: 'Webbyrå i Jönköping',
+  title: 'Webbyrå i Jönköping & Huskvarna, webbdesign för lokala företag',
   description:
     'Bahko Byrå är en webbyrå med kontor i Huskvarna, Jönköping. Vi bygger hemsidor för bygg- och hantverksfirmor: färdigt förslag inom 48 timmar, live inom sju dagar. Boka gärna ett möte på kontoret.',
   alternates: { canonical: '/webbyra-jonkoping/' },
@@ -61,7 +61,7 @@ const BESOK = {
   tider: 'Alla dagar 8–22',
   tel: '076-254 09 51',
   telHref: 'tel:+46762540951',
-  karta: 'https://maps.google.com/?q=Kungs%C3%A4ngsv%C3%A4gen+27,+561+51+Huskvarna',
+  karta: 'https://g.page/r/CY8e778hr3z7EAE', // Google-profilen: klicken landar på profilen, inte på en adressökning
 };
 
 const FRAGOR_JKPG = [
@@ -99,7 +99,7 @@ export default function Jonkoping() {
           </nav>
           <h1>
             <Maskot pose="vinkar" stil="liten" alt="Bahko-maskoten hälsar" />{' '}
-            Webbyrå i Jönköping
+            Webbyrå i Jönköping &amp; Huskvarna
           </h1>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
             Bahko Byrå är en webbyrå med kontor i Huskvarna, Jönköping, som bygger hemsidor för bygg- och
