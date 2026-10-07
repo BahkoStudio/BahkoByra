@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Fraunces, Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import styles from './nordicsnickare.module.css';
 import DemoFormular from '../../komponenter/DemoFormular';
 
@@ -32,27 +32,36 @@ import DemoFormular from '../../komponenter/DemoFormular';
    Ingen sektion heter Våra projekt eller Referenser.
    =========================================================================== */
 
-const display = Fraunces({
-  subsets: ['latin'],
-  weight: ['400', '600'],
+const display = localFont({
+  /* Fraunces, lokal kopia av Googles latin-fil (se app/typsnitt/LASMIG.md) */
+  src: [
+    { path: '../../typsnitt/fraunces-normal-variabel.woff2', weight: '400', style: 'normal' },
+    { path: '../../typsnitt/fraunces-normal-variabel.woff2', weight: '600', style: 'normal' },
+  ],
   display: 'swap',
   variable: '--ns-display',
 });
 
 /* Kursiven ligger i en egen instans och hämtas först när den behövs — den
    används i ett par rubrikord och ska inte belasta första renderingen. */
-const displayKursiv = Fraunces({
-  subsets: ['latin'],
-  weight: ['400', '600'],
-  style: ['italic'],
+const displayKursiv = localFont({
+  /* Fraunces italic, lokal kopia av Googles latin-fil (se app/typsnitt/LASMIG.md) */
+  src: [
+    { path: '../../typsnitt/fraunces-italic-variabel.woff2', weight: '400', style: 'italic' },
+    { path: '../../typsnitt/fraunces-italic-variabel.woff2', weight: '600', style: 'italic' },
+  ],
   display: 'swap',
   preload: false,
   variable: '--ns-display-kursiv',
 });
 
-const ui = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
+const ui = localFont({
+  /* Inter, lokal kopia av Googles latin-fil (se app/typsnitt/LASMIG.md) */
+  src: [
+    { path: '../../typsnitt/inter-normal-variabel.woff2', weight: '400', style: 'normal' },
+    { path: '../../typsnitt/inter-normal-variabel.woff2', weight: '500', style: 'normal' },
+    { path: '../../typsnitt/inter-normal-variabel.woff2', weight: '600', style: 'normal' },
+  ],
   display: 'swap',
   variable: '--ns-ui',
 });

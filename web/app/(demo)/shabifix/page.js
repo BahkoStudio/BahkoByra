@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Archivo, Space_Grotesk } from 'next/font/google';
+import localFont from 'next/font/local';
 import styles from './shabifix.module.css';
 import DemoFormular from '../../komponenter/DemoFormular';
 
@@ -35,16 +35,23 @@ import DemoFormular from '../../komponenter/DemoFormular';
    CSS-delay + checkbox, FAQ via <details name>, stegen via radio + :checked.
    =========================================================================== */
 
-const display = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['500', '700'],
+const display = localFont({
+  /* Space Grotesk, lokal kopia av Googles latin-fil (se app/typsnitt/LASMIG.md) */
+  src: [
+    { path: '../../typsnitt/space-grotesk-normal-variabel.woff2', weight: '500', style: 'normal' },
+    { path: '../../typsnitt/space-grotesk-normal-variabel.woff2', weight: '700', style: 'normal' },
+  ],
   display: 'swap',
   variable: '--sh-display',
 });
 
-const ui = Archivo({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
+const ui = localFont({
+  /* Archivo, lokal kopia av Googles latin-fil (se app/typsnitt/LASMIG.md) */
+  src: [
+    { path: '../../typsnitt/archivo-normal-variabel.woff2', weight: '400', style: 'normal' },
+    { path: '../../typsnitt/archivo-normal-variabel.woff2', weight: '500', style: 'normal' },
+    { path: '../../typsnitt/archivo-normal-variabel.woff2', weight: '600', style: 'normal' },
+  ],
   display: 'swap',
   variable: '--sh-ui',
 });

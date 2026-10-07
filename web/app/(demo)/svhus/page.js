@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import localFont from 'next/font/local';
 import styles from './svhus.module.css';
 import DemoFormular from '../../komponenter/DemoFormular';
@@ -60,9 +60,13 @@ const displayKursiv = localFont({
   variable: '--sv-display-kursiv',
 });
 
-const ui = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
+const ui = localFont({
+  /* Inter, lokal kopia av Googles latin-fil (se app/typsnitt/LASMIG.md) */
+  src: [
+    { path: '../../typsnitt/inter-normal-variabel.woff2', weight: '400', style: 'normal' },
+    { path: '../../typsnitt/inter-normal-variabel.woff2', weight: '500', style: 'normal' },
+    { path: '../../typsnitt/inter-normal-variabel.woff2', weight: '600', style: 'normal' },
+  ],
   display: 'swap',
   variable: '--sv-ui',
 });

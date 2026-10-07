@@ -1,4 +1,4 @@
-import { Outfit } from 'next/font/google';
+import localFont from 'next/font/local';
 import Script from 'next/script';
 import '../globals.css';
 import Header from '../komponenter/Header';
@@ -7,9 +7,16 @@ import Rorelse from '../komponenter/Rorelse';
 import Popup from '../komponenter/Popup';
 import StickyBokning from '../komponenter/StickyBokning';
 
-const outfit = Outfit({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
+const outfit = localFont({
+  /* Outfit, lokal kopia av Googles latin-fil (se app/typsnitt/LASMIG.md) */
+  src: [
+    { path: '../typsnitt/outfit-normal-variabel.woff2', weight: '300', style: 'normal' },
+    { path: '../typsnitt/outfit-normal-variabel.woff2', weight: '400', style: 'normal' },
+    { path: '../typsnitt/outfit-normal-variabel.woff2', weight: '500', style: 'normal' },
+    { path: '../typsnitt/outfit-normal-variabel.woff2', weight: '600', style: 'normal' },
+    { path: '../typsnitt/outfit-normal-variabel.woff2', weight: '700', style: 'normal' },
+    { path: '../typsnitt/outfit-normal-variabel.woff2', weight: '800', style: 'normal' },
+  ],
   display: 'swap',
   variable: '--font-outfit',
 });
