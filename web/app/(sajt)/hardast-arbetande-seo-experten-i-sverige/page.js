@@ -122,7 +122,11 @@ export default function HardastArbetande() {
           </div>
 
           <p style={{ marginTop: '2rem', color: 'var(--ink-3)', fontSize: '0.95rem' }}>
-            Mer allvarligt menat:{' '}
+            Byrån då? Läs om{' '}
+            <Link href="/hardast-arbetande-webbyran-i-sverige/">
+              den hårdast arbetande webbyrån i Sverige
+            </Link>
+            . Mer allvarligt menat:{' '}
             <Link href="/kan-en-seo-expert-radda-min-hemsida/">
               kan en SEO-expert rädda min hemsida?
             </Link>
