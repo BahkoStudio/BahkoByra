@@ -46,7 +46,7 @@ export default function HeroBygge() {
 
   return (
     <div className={klasser.join(' ')}>
-      <span className={styles.etikett}>Så kan er sida se ut</span>
+      <span className={styles.etikett}>B bygger ert förslag</span>
 
       <div className={styles.scen} aria-label="Bahko-maskoten bygger en hemsida och lyfter en mobil som ringer" role="img">
         <img
@@ -75,7 +75,7 @@ export default function HeroBygge() {
         )}
       </div>
 
-      <p className={styles.bubbla}>Den här gör jag åt er.</p>
+      <p className={styles.bubbla}>Så kan ert förslag se ut.</p>
     </div>
   );
 }

@@ -17,7 +17,7 @@ export const PORTFOLJ = [
     typ: 'kund',
     url: 'https://smamaleri.se/',
     bild: '/img/portfolj/smamaleri.jpg',
-    rad: 'Offertflöde som funkar i mobilen och ROT-avdraget förklarat rätt.',
+    rad: 'Offertformulär som funkar i mobilen och ROT-avdraget förklarat rätt.',
   },
   {
     namn: 'Bromma Trädgårdsservice',
@@ -49,7 +49,7 @@ export const PORTFOLJ = [
     typ: 'demo',
     url: '/cloud/bygg/',
     bild: '/img/portfolj/granit.jpg',
-    rad: 'Förvandlingen från förfallet hus till drömhus, i scroll.',
+    rad: 'Från förfallet hus till drömhus medan man bläddrar ner.',
   },
   {
     namn: 'Asmar Relining',

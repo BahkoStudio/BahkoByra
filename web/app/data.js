@@ -140,32 +140,32 @@ export const FRAGOR = [
   {
     fraga: 'Vad kostar en ny hemsida?',
     svar:
-      'Det beror på hur mycket ni behöver, därför står inget pris här. Ni får ett fast pris svart på vitt i förslaget, och förslaget kostar ingenting.',
+      'Det beror på hur mycket ni behöver. Ni får ett fast pris svart på vitt i förslaget, och förslaget är kostnadsfritt.',
   },
   {
     fraga: 'Sitter vi fast i ett avtal?',
     svar:
-      'Nej. Vi jobbar utan bindningstid, och sidan och domänen är era. Vill ni gå vidare någon gång tar ni med er allt.',
+      'Nej. Ingen bindningstid. Vill ni gå vidare någon gång tar ni med er allt, sida som domän.',
   },
   {
     fraga: 'Hur vet jag att ni inte är en säljare till?',
     svar:
-      'En säljare vill ha er underskrift innan ni sett något. Hos oss ser ni förslaget färdigt först, sen avgör ni.',
+      'En säljare vill ofta ha er underskrift innan ni sett något. Hos oss ser ni förslaget färdigt först.',
   },
   {
     fraga: 'Hur vet jag att det ger fler förfrågningar?',
     svar:
-      'Ingen kan lova en plats på Google. Bromma Trädgårdsservice låg etta i Googles platslista och först i ChatGPT på trädgårdsservice i Stockholm den 30 juli. De fick 30+ förfrågningar via hemsidan inom 2 månader.',
+      'Ingen kan lova en plats på Google. Men titta på Bromma. Etta i platslistan och först i ChatGPT den 30 juli. Ett 30-tal förfrågningar via sidan på två månader.',
   },
   {
     fraga: 'Är det inte enklare att köpa förfrågningar från en offertsajt?',
     svar:
-      'Där betalar ni för förfrågan och delar den med flera firmor, ofta på pris. Från er egen hemsida kommer förfrågan bara till er. Många kör båda en tid.',
+      'Där betalar ni för förfrågan och delar den med flera firmor, ofta på pris. Från er egen hemsida kommer den bara till er. En del kör båda en tid.',
   },
   {
     fraga: 'Hur snabbt kan den vara klar?',
     svar:
-      'Ni får ett färdigt förslag inom 48 timmar. Säger ni ja är sidan normalt live inom sju dagar, på er egen domän. Det som brukar ta tid är att få in bilder, så ju snabbare ni skickar dem desto snabbare går det.',
+      'Förslaget tar två dygn. Säger ni ja är sidan normalt ute inom en vecka. Det som brukar ta tid är att få in bilder, så ju snabbare ni skickar dem desto snabbare går det.',
   },
   {
     fraga: 'Måste jag kunna något tekniskt?',
@@ -185,6 +185,6 @@ export const FRAGOR = [
   {
     fraga: 'Vilka jobbar ni med?',
     svar:
-      'Hantverkare och lokala företag. I drift i dag: måleri, trädgård och en kokbok. Demos finns för bygg och VVS.',
+      'Hantverkare och lokala företag. Ute i dag: måleri och trädgård, plus en säljsida åt en lokal företagare. Demos finns för bygg och VVS.',
   },
 ];

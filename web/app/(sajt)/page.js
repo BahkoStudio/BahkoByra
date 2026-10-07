@@ -27,11 +27,11 @@ const PIL = (
 
 /* Tjänsterna som en resa: ordningen är den vi bygger i, texten talar om vad steget ger. */
 const RESAN = [
-  { slug: 'hemsidor', rubrik: 'Kunden fattar direkt', text: 'Kunden ser vad ni gör och hur man når er, redan på första skärmen i mobilen.' },
-  { slug: 'seo', rubrik: 'Google förstår var ni jobbar', text: 'Då kan ni komma upp när någon i er stad söker på det ni gör.' },
-  { slug: 'google-ads', rubrik: 'Syns redan nu', text: 'Annonser kan visas ovanför de vanliga träffarna medan ni väntar på att sidan ska synas av egen kraft.' },
-  { slug: 'reklamfilmer', rubrik: 'Sticker ut bland offerterna', text: 'Film på era egna jobb visar hantverket innan kunden jämför offerterna.' },
-  { slug: 'appar', rubrik: 'När kalendern är full', text: 'Bokning direkt på sidan, så att förfrågningarna inte drunknar i telefonen.' },
+  { slug: 'hemsidor', rubrik: 'Kunden fattar direkt', text: 'Kunden ser vad ni gör och hur man når er, redan på första skärmen i mobilen.', lank: 'Så gör vi hemsidan' },
+  { slug: 'seo', rubrik: 'Google förstår var ni jobbar', text: 'Då kan ni komma upp när någon i er stad söker på det ni gör.', lank: 'Så syns ni i er stad' },
+  { slug: 'google-ads', rubrik: 'Syns medan ni väntar', text: 'Annonser kan ligga ovanför träffarna redan första veckan, så ni slipper vänta på att sidan ska synas av sig själv.', lank: 'Så fungerar annonserna' },
+  { slug: 'reklamfilmer', rubrik: 'Sticker ut bland offerterna', text: 'Film på era egna jobb visar hantverket innan kunden jämför priserna.', lank: 'Se en reklamfilm' },
+  { slug: 'appar', rubrik: 'Kalendern fylls, inte telefonen', text: 'Bokning direkt på sidan, så att förfrågningarna inte drunknar bland samtalen.', lank: 'Så bokar kunden själv' },
 ];
 
 const SPELA = (
@@ -99,7 +99,7 @@ export default function Start() {
       <section className={`mork ${styles.panelYta}`} id="bevis">
         <div className={`wrap ${styles.panelInner}`} data-trapp>
           <div>
-            <span className="eyebrow">Ett riktigt kundcase</span>
+            <span className="eyebrow">Kundcase</span>
             <h2>
               Vår kund låg etta i Googles platslista, <span className="accent">före en firma med 117 omdömen.</span>
             </h2>
@@ -110,7 +110,7 @@ export default function Start() {
             <BevisSiffror />
             <div className={styles.panelKnapp}>
               <Link href="/case/" className="btn btn-sekundar">
-                Se kunderna {PIL}
+                Se sajten vi gjorde åt dem {PIL}
               </Link>
             </div>
             {/* Ögat sitter bakom luppen — Mathias egen render, som den är */}
@@ -136,10 +136,11 @@ export default function Start() {
           <div data-trapp>
             <span className="eyebrow">Kunder och demos</span>
             <h2>
-              Öppna sajterna i mobilen <span className="accent">och döm själva.</span>
+              Här är sidorna vi gjort. <span className="accent">Öppna dem i mobilen.</span>
             </h2>
             <p className="lede" style={{ marginTop: '1rem' }}>
-              Tre kunders sajter och två demos som visar hur ett förslag ser ut.
+              Två hantverkare och en lokal företagare i drift, plus två demos som visar hur ett
+              förslag ser ut.
             </p>
           </div>
 
@@ -147,7 +148,7 @@ export default function Start() {
 
           <div className={styles.caseMer}>
             <Link href="/case/" className="btn btn-sekundar">
-              Se fler leveranser och demos
+              Se alla demos
             </Link>
           </div>
         </div>
@@ -177,10 +178,10 @@ export default function Start() {
             Därför ringer kunden <span className="accent">en annan firma.</span>
           </h2>
           <p className={`lede ${styles.videoLede}`}>
-            Kunden googlar det ni gör i er stad och ringer oftast någon av de första i listan.
-            Syns ni inte där får ni köpa förfrågningar från en offertsajt, och dela dem med flera
-            firmor. Då är det lätt att bli nummer fem i kön. Och säljaren som lovade guld och
-            gröna skogar binder ofta upp er i ett år eller två.
+            Kunden googlar det ni gör i er stad och ringer någon av de första i listan. Syns ni
+            inte där hamnar ni på en offertsajt, där samma förfrågan går till flera firmor. Då är
+            det lätt att bli nummer fem i kön. Och säljaren som ringde och lovade guld och gröna
+            skogar binder ofta upp er i ett år eller två.
           </p>
           <HeroVideo />
         </div>
@@ -196,7 +197,8 @@ export default function Start() {
                 Förfrågningar ni inte <span className="accent">delar med någon.</span>
               </h2>
               <p className="lede" style={{ marginTop: '1rem' }}>
-                Börja med hemsidan. Resten lägger vi till när det lönar sig.
+                Från er egen hemsida går förfrågan till er. Ingen annan får den. Börja där, resten
+                lägger vi till när det lönar sig.
               </p>
             </div>
             <div className={styles.tjanstMaskot}>
@@ -223,7 +225,7 @@ export default function Start() {
                       <h3>{r.rubrik}</h3>
                       <p>{r.text}</p>
                       <span className={styles.tjanstFot}>
-                        <span className={styles.tagg}>{t.namn}</span>
+                        <span className={styles.tagg}>{r.lank}</span>
                         <span className={styles.tjanstPil}>{PIL}</span>
                       </span>
                     </div>
@@ -276,7 +278,7 @@ export default function Start() {
             Se först var <span className="accent">jobben läcker.</span>
           </h2>
           <p className={styles.gratisMaskot}>
-            <span>Två vägar om ni vill börja på egen hand.</span>
+            <span>Två vägar om ni vill titta innan ni ber om ett förslag.</span>
             <MaskotScen
               className={styles.gratisScen}
               src="/img/maskot-scener/fikar.webp"
@@ -291,8 +293,7 @@ export default function Start() {
               <span className={styles.gratisTagg}>Kostnadsfri analys</span>
               <h3>10-punktsanalys av er hemsida</h3>
               <p>
-                Vi går igenom er hemsida på tio punkter och mejlar svaret. Där ser ni var ni
-                tappar kunder.
+                Ni får svaret på mejl, med det som kostar er flest kunder överst.
               </p>
               <span className={styles.gratisLank}>Få kostnadsfri analys {PIL}</span>
             </a>
@@ -301,8 +302,7 @@ export default function Start() {
               <span className={styles.gratisTagg}>Kostnadsfri guide</span>
               <h3>3 saker som avgör vem kunden hittar på Google</h3>
               <p>
-                Guide och kort video om tre saker som påverkar var ett lokalt företag hamnar på
-                Google och i Maps. Gjord för den som inte jobbar med webb.
+                Kort video och guide, gjord för den som inte jobbar med webb.
               </p>
               <span className={styles.gratisLank}>Hämta guiden {PIL}</span>
             </a>

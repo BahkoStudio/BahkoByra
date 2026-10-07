@@ -46,7 +46,7 @@ function Kort({ k, dubblett }) {
           <strong>{k.namn}</strong>
           <span className={styles.rad}>{k.rad}</span>
           <span className={k.typ === 'kund' ? styles.markKund : styles.markDemo}>
-            {k.typ === 'kund' ? 'Kund i drift' : 'Demo'}
+            {k.typ === 'kund' ? 'Kund' : 'Demo'}
           </span>
         </span>
       </a>

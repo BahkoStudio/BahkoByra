@@ -10,7 +10,7 @@ import styles from './BevisBromma.module.css';
      Ingen procentsats, det finns ingen mätning av läget före. */
 
 export const BEVIS = [
-  { tal: '1:a', text: 'i Googles platslista, före fem andra trädgårdsfirmor' },
+  { tal: '5', text: 'trädgårdsfirmor bakom dem i listan den 30 juli' },
   { tal: '1:a', text: 'i ChatGPT:s svar på samma fråga' },
   { tal: '30+', text: 'förfrågningar via hemsidan inom 2 månader' },
 ];

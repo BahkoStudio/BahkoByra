@@ -7,22 +7,22 @@ const STEG = [
   {
     n: '01',
     h: 'Ni får ett förslag',
-    p: 'Vi bygger en riktig sida åt er och skickar den inom 48 timmar. Byggd för er firma och er stad.',
+    p: 'En färdig sida för er firma och er stad, inom 48 timmar.',
   },
   {
     n: '02',
     h: 'Ni tittar och säger till',
-    p: 'Gillar ni den gör vi den skarp med era bilder och kontaktuppgifter.',
+    p: 'Gillar ni den fyller vi på med era bilder och kontaktuppgifter.',
   },
   {
     n: '03',
-    h: 'Sidan går live',
+    h: 'Sidan kommer ut',
     p: 'På er egen domän, normalt inom sju dagar.',
   },
   {
     n: '04',
     h: 'Kunderna hittar in',
-    p: 'Offertknappen finns på varje skärm och sidan är snabb i mobilen. Vill ni ändra något når ni samma person som byggde sidan.',
+    p: 'Sidan är snabb i mobilen och har en offertknapp på varje skärm, så den som hittar er lättare hör av sig. Vill ni ändra något når ni samma person hela vägen.',
   },
 ];
 
