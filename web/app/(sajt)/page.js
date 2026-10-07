@@ -57,6 +57,9 @@ export default function Start() {
               <span className="eyebrow" style={{ display: 'flex' }}>Webbdesign i Jönköping &amp; Huskvarna</span>
               Bli firman kunderna <span className="accent">ringer först.</span>
             </h1>
+            <p className={styles.heroLede}>
+              Hemsidor och Google-optimering åt lokala företag som vill ha fler förfrågningar.
+            </p>
             <div className={styles.heroKnappar}>
               <Link href="/kontakt/" className="btn btn-primar">
                 Visa hur min hemsida kan se ut {PIL}
