@@ -3,3 +3,6 @@ node_modules/
 app/_mall/
 app/_sida/
 public/
+typsnitt/
+komponenter/
+formular.js

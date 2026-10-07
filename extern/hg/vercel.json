@@ -1,5 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- '.' '../../web/app/(demo)/_mall' '../../web/app/(demo)/hg' '../../web/public/hg'"
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- '.' '../../web/app/(demo)/_mall' '../../web/app/(demo)/hg' '../../web/public/hg' '../../web/app/typsnitt' '../../web/app/komponenter/DemoFormular.js' '../../web/app/formular.js'"
 }
