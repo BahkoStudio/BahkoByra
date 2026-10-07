@@ -79,7 +79,7 @@ export default function RoiKalkyl() {
   return (
     <div ref={rot} className={`${styles.kort} ${igang ? styles.igang : ''}`}>
       <h2 className={styles.rubrik}>
-        Vad kan en ny hemsida <span className={styles.accent}>ge er?</span>
+        Räkna på jobben <span className={styles.accent}>ni missar.</span>
       </h2>
 
       <ol className={styles.resa}>
@@ -150,16 +150,16 @@ export default function RoiKalkyl() {
                 <span className={styles.resUnder}>mer om året</span>
               </div>
             </div>
-            <p className={styles.resAr}>Pengar som i dag går till en annan firma.</p>
+            <p className={styles.resAr}>Så mycket är fler kunder värda för er.</p>
           </div>
         </li>
       </ol>
 
       <div className={styles.fot}>
         <Link href="/kontakt/" className="btn btn-primar">
-          Se er sida kostnadsfritt
+          Visa hur min hemsida kan se ut
         </Link>
-        <p className={styles.finstilt}>Räkneexempel med era egna siffror, inget löfte.</p>
+        <p className={styles.finstilt}>Siffrorna fyller ni i själva. 10 % är ett exempel.</p>
       </div>
     </div>
   );

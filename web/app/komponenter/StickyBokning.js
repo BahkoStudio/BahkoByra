@@ -75,7 +75,7 @@ export default function StickyBokning() {
           </svg>
         </a>
         <Link href="/kontakt/" className={`btn btn-primar ${styles.knapp}`} tabIndex={synlig ? 0 : -1}>
-          Se er sida kostnadsfritt
+          Visa hur min hemsida kan se ut
         </Link>
       </div>
     </div>

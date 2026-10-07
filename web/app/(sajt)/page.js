@@ -25,6 +25,15 @@ const PIL = (
   </svg>
 );
 
+/* Tjänsterna som en resa: ordningen är den vi bygger i, texten talar om vad steget ger. */
+const RESAN = [
+  { slug: 'hemsidor', rubrik: 'Kunden fattar direkt', text: 'Kunden ser vad ni gör och hur man når er, redan på första skärmen i mobilen.' },
+  { slug: 'seo', rubrik: 'Google förstår var ni jobbar', text: 'Då kan ni komma upp när någon i er stad söker på det ni gör.' },
+  { slug: 'google-ads', rubrik: 'Syns redan nu', text: 'Annonser kan visas ovanför de vanliga träffarna medan ni väntar på att sidan ska synas av egen kraft.' },
+  { slug: 'reklamfilmer', rubrik: 'Sticker ut bland offerterna', text: 'Film på era egna jobb visar hantverket innan kunden jämför offerterna.' },
+  { slug: 'appar', rubrik: 'När kalendern är full', text: 'Bokning direkt på sidan, så att förfrågningarna inte drunknar i telefonen.' },
+];
+
 const SPELA = (
   <svg viewBox="0 0 24 24" aria-hidden="true">
     <path d="M8 5v14l11-7z" fill="currentColor" />
@@ -45,20 +54,23 @@ export default function Start() {
                 I H1 (Mathias 2026-10-01): synlig text, samma som Google-profilens kategori och ort. */}
             <h1>
               <span className="eyebrow" style={{ display: 'flex' }}>Webbdesign i Jönköping &amp; Huskvarna</span>
-              Ni gör ett fantastiskt jobb.<br /> <span className="accent">Nu ska fler få veta det.</span>
+              Bli firman kunderna <span className="accent">ringer först.</span>
             </h1>
             <p className={styles.heroLede}>
-              Vi bygger hemsidor åt hantverkare och lokala företag, så att fler kunder ringer.
-              Färdigt förslag på 48 timmar, ni tittar först och bestämmer sen.
+              Vi bygger hemsidor åt hantverkare och lokala företag. Bromma Trädgårdsservice fick
+              30+ förfrågningar via sin nya hemsida inom 2 månader.
             </p>
             <div className={styles.heroKnappar}>
               <Link href="/kontakt/" className="btn btn-primar">
-                Se er sida kostnadsfritt {PIL}
+                Visa hur min hemsida kan se ut {PIL}
               </Link>
               <a href="#video" className={`btn btn-sekundar ${styles.videoKnapp}`}>
                 {SPELA} Se videon · 2 min
               </a>
             </div>
+            <p className={styles.heroBevis}>
+              <strong>Ni har ett färdigt förslag inom 48 timmar.</strong> Sen bestämmer ni.
+            </p>
           </div>
 
           <div className={styles.heroScen}>
@@ -67,12 +79,12 @@ export default function Start() {
 
           <div className={styles.heroSiffror} data-trapp>
             <div>
-              <strong>48h</strong>
-              <span>Till färdigt förslag</span>
+              <strong>7 dagar</strong>
+              <span>Normalt tills sidan är live</span>
             </div>
             <div>
-              <strong>0 kr</strong>
-              <span>Tills ni säger ja</span>
+              <strong>Ingen</strong>
+              <span>Bindningstid</span>
             </div>
             <div>
               <strong>1</strong>
@@ -89,12 +101,11 @@ export default function Start() {
           <div>
             <span className="eyebrow">Ett riktigt kundcase</span>
             <h2>
-              Plats 1 på Google. <span className="accent">Först i ChatGPT.</span>
+              Vår kund låg etta i Googles platslista, <span className="accent">före en firma med 117 omdömen.</span>
             </h2>
             <p className="lede" style={{ marginTop: '1.1rem' }}>
-              Bromma Trädgårdsservice i Stockholm fick ny hemsida av oss. Den 30 juli låg firman
-              överst på Google för &quot;trädgårdsservice i Stockholm&quot;, före en konkurrent med
-              117 omdömen. ChatGPT nämnde dem först.
+              Bromma Trädgårdsservice i Stockholm fick ny hemsida av oss. Så här såg det ut den
+              30 juli, när man sökte på &quot;trädgårdsservice i Stockholm&quot;.
             </p>
             <BevisSiffror />
             <div className={styles.panelKnapp}>
@@ -123,13 +134,12 @@ export default function Start() {
       <section className={`mork ${styles.caseYta}`} id="case">
         <div className="wrap">
           <div data-trapp>
-            <span className="eyebrow">Leveranser i drift</span>
+            <span className="eyebrow">Kunder och demos</span>
             <h2>
-              Riktiga sajter. <span className="accent">Riktiga firmor.</span>
+              Öppna sajterna i mobilen <span className="accent">och döm själva.</span>
             </h2>
             <p className="lede" style={{ marginTop: '1rem' }}>
-              Tre kunder med sajter i drift, och två demos som visar hur ett förslag ser ut.
-              Klicka in och syna dem.
+              Tre kunders sajter och två demos som visar hur ett förslag ser ut.
             </p>
           </div>
 
@@ -164,23 +174,29 @@ export default function Start() {
         <div className={`wrap ${styles.videoInner}`} data-trapp>
           <span className="eyebrow">Två minuter, rakt på sak</span>
           <h2>
-            Därför syns inte <span className="accent">ert företag på Google.</span>
+            Därför ringer kunden <span className="accent">en annan firma.</span>
           </h2>
+          <p className={`lede ${styles.videoLede}`}>
+            Kunden googlar det ni gör i er stad och ringer oftast någon av de första i listan.
+            Syns ni inte där får ni köpa förfrågningar från en offertsajt, och dela dem med flera
+            firmor. Då är det lätt att bli nummer fem i kön. Och säljaren som lovade guld och
+            gröna skogar binder ofta upp er i ett år eller två.
+          </p>
           <HeroVideo />
         </div>
       </section>
 
-      {/* ── TJÄNSTER: klickbara kort med ikoner ── */}
+      {/* ── TJÄNSTER: en resa i fem steg, ikonerna binds ihop av en linje ── */}
       <section id="tjanster">
         <div className="wrap">
           <div className={styles.tjanstIntro} data-trapp>
             <div>
-              <span className="eyebrow">Vad vi gör</span>
+              <span className="eyebrow">Egna förfrågningar</span>
               <h2>
-                Allt som får kunden <span className="accent">att höra av sig.</span>
+                Förfrågningar ni inte <span className="accent">delar med någon.</span>
               </h2>
               <p className="lede" style={{ marginTop: '1rem' }}>
-                Hemsidan först. Resten bygger vi på när den står och ringer.
+                Börja med hemsidan. Resten lägger vi till när det lönar sig.
               </p>
             </div>
             <div className={styles.tjanstMaskot}>
@@ -193,19 +209,29 @@ export default function Start() {
             </div>
           </div>
 
-          <div className={styles.tjanstNat} data-trapp>
-            {TJANSTER.map((t) => (
-              <Link key={t.slug} href={`/tjanster/${t.slug}/`} className={styles.tjanstKort}>
-                <TjanstIkon slug={t.slug} />
-                <h3>{t.namn}</h3>
-                <p>{t.kort}</p>
-                <span className={styles.tjanstFot}>
-                  <span className={styles.tagg}>{t.tagg}</span>
-                  <span className={styles.tjanstPil}>{PIL}</span>
-                </span>
-              </Link>
-            ))}
-          </div>
+          <ol className={styles.tjanstNat} data-trapp>
+            {RESAN.map((r, i) => {
+              const t = TJANSTER.find((x) => x.slug === r.slug);
+              return (
+                <li key={r.slug} className={styles.resSteg}>
+                  <Link href={`/tjanster/${t.slug}/`} className={styles.tjanstKort}>
+                    <div className={styles.ikonRad}>
+                      <TjanstIkon slug={t.slug} />
+                      <span className={styles.stegNr}>Steg {i + 1}</span>
+                    </div>
+                    <div className={styles.stegText}>
+                      <h3>{r.rubrik}</h3>
+                      <p>{r.text}</p>
+                      <span className={styles.tjanstFot}>
+                        <span className={styles.tagg}>{t.namn}</span>
+                        <span className={styles.tjanstPil}>{PIL}</span>
+                      </span>
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
+          </ol>
         </div>
       </section>
 
@@ -214,9 +240,9 @@ export default function Start() {
         <div className="wrap">
           <span className="eyebrow">Hur vi jobbar</span>
           <h2>
-            Från första samtal
+            Ni ser er nya sida
             <br />
-            till <span className="accent">färdig hemsida.</span>
+            <span className="accent">innan ni bestämmer er.</span>
           </h2>
 
           <div data-avsloja="upp">
@@ -225,8 +251,8 @@ export default function Start() {
 
           <div className={styles.processCta} data-avsloja="upp">
             <div>
-              <h3>Se er nya hemsida innan ni bestämmer er.</h3>
-              <p>Komplett förslag inom 48 timmar. Det kostar ingenting att titta.</p>
+              <h3>Berätta vad ni gör och var. Vi tar fram förslaget.</h3>
+              <p>Sidan och domänen är era, och vi jobbar utan bindningstid.</p>
             </div>
             <MaskotScen
               className={styles.processScen}
@@ -236,7 +262,7 @@ export default function Start() {
               index={3}
             />
             <Link href="/kontakt/" className="btn btn-primar">
-              Se er sida kostnadsfritt {PIL}
+              Visa hur min hemsida kan se ut {PIL}
             </Link>
           </div>
         </div>
@@ -245,12 +271,12 @@ export default function Start() {
       {/* ── GRATIS ANALYS + GRATIS GUIDE ── */}
       <section className={styles.gratisYta} id="gratis">
         <div className="wrap">
-          <span className="eyebrow">Kostnadsfritt att börja</span>
+          <span className="eyebrow">Inte redo för ett förslag än?</span>
           <h2>
-            Två kostnadsfria sätt <span className="accent">att börja.</span>
+            Se först var <span className="accent">jobben läcker.</span>
           </h2>
           <p className={styles.gratisMaskot}>
-            <span>Båda är kostnadsfria. Ni behöver inte bestämma något idag.</span>
+            <span>Två vägar om ni vill börja på egen hand.</span>
             <MaskotScen
               className={styles.gratisScen}
               src="/img/maskot-scener/fikar.webp"
@@ -265,18 +291,18 @@ export default function Start() {
               <span className={styles.gratisTagg}>Kostnadsfri analys</span>
               <h3>10-punktsanalys av er hemsida</h3>
               <p>
-                Vi granskar er hemsida på tio punkter och skickar en personlig rapport:
-                mobilanpassning, synlighet på Google och vad som kostar er kunder. Svar inom 24 timmar.
+                Vi går igenom er hemsida på tio punkter och mejlar svaret. Där ser ni var ni
+                tappar kunder.
               </p>
               <span className={styles.gratisLank}>Få kostnadsfri analys {PIL}</span>
             </a>
 
             <a href="/foretag/gratis-guide.html" className={styles.gratisKort}>
               <span className={styles.gratisTagg}>Kostnadsfri guide</span>
-              <h3>3 sätt att ranka högre på Google</h3>
+              <h3>3 saker som avgör vem kunden hittar på Google</h3>
               <p>
-                Guide och kort video som visar hur ett lokalt företag når topp 3 på Google
-                och i Maps. Inga tekniska förkunskaper behövs.
+                Guide och kort video om tre saker som påverkar var ett lokalt företag hamnar på
+                Google och i Maps. Gjord för den som inte jobbar med webb.
               </p>
               <span className={styles.gratisLank}>Hämta guiden {PIL}</span>
             </a>
@@ -290,10 +316,10 @@ export default function Start() {
           <span className="eyebrow">Vanliga frågor</span>
           <h2>
             <Maskot pose="undersoker" stil="liten" alt="Bahko-maskoten undersöker frågorna" />{' '}
-            Vanliga frågor, <span className="accent">raka svar.</span>
+            Frågorna säljaren <span className="accent">slingrade sig runt.</span>
           </h2>
           <p className="lede" style={{ margin: '1rem 0 2.4rem' }}>
-            Det här undrar de flesta firmor som hör av sig.
+            Ställ dem till oss också.
           </p>
           <Faq frager={FRAGOR} />
         </div>

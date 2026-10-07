@@ -17,8 +17,10 @@ import styles from './HeroBygge.module.css';
    prefers-reduced-motion: sista rutan som stillbild, ingen film. */
 
 const BAS = '/brand/maskot/bygge/f-';
-const LOOP = '/brand/maskot/bahko-bygger-loop.mp4';
-const SISTA = 71;
+// Filmen (2026-10-07, Kling 3.0 Pro): B bygger sidan i fönstret och lyfter en mobil som ringer.
+// Start- och slutbild är samma ruta, så loopen syns inte.
+const LOOP = '/brand/maskot/bahko-ringer-loop.mp4';
+const STILLA = '/brand/maskot/bygge/stilla-ringer.webp';
 
 const ruta = (i) => `${BAS}${String(i).padStart(3, '0')}.webp`;
 
@@ -44,13 +46,13 @@ export default function HeroBygge() {
 
   return (
     <div className={klasser.join(' ')}>
-      <span className={styles.etikett}>Live: B bygger er sida</span>
+      <span className={styles.etikett}>Så kan er sida se ut</span>
 
-      <div className={styles.scen} aria-label="Bahko-maskoten bygger en hemsida, panel för panel" role="img">
+      <div className={styles.scen} aria-label="Bahko-maskoten bygger en hemsida och lyfter en mobil som ringer" role="img">
         <img
           ref={bildRef}
           className={styles.bild}
-          src={lage === 'stilla' ? ruta(SISTA) : ruta(0)}
+          src={lage === 'stilla' ? STILLA : ruta(0)}
           alt=""
           width="1200"
           height="675"
@@ -73,7 +75,7 @@ export default function HeroBygge() {
         )}
       </div>
 
-      <p className={styles.bubbla}>Den här bygger jag åt er. Klar på 48&nbsp;timmar.</p>
+      <p className={styles.bubbla}>Den här gör jag åt er.</p>
     </div>
   );
 }

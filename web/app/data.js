@@ -140,31 +140,51 @@ export const FRAGOR = [
   {
     fraga: 'Vad kostar en ny hemsida?',
     svar:
-      'Fast engångspris utan månadsavgifter eller bindningstid. Ni får exakt pris i det kostnadsfria förslaget, innan ni bestämmer er. Vi tar aldrig betalt för att visa hur sidan skulle kunna se ut.',
+      'Det beror på hur mycket ni behöver, därför står inget pris här. Ni får ett fast pris svart på vitt i förslaget, och förslaget kostar ingenting.',
+  },
+  {
+    fraga: 'Sitter vi fast i ett avtal?',
+    svar:
+      'Nej. Vi jobbar utan bindningstid, och sidan och domänen är era. Vill ni gå vidare någon gång tar ni med er allt.',
+  },
+  {
+    fraga: 'Hur vet jag att ni inte är en säljare till?',
+    svar:
+      'En säljare vill ha er underskrift innan ni sett något. Hos oss ser ni förslaget färdigt först, sen avgör ni.',
+  },
+  {
+    fraga: 'Hur vet jag att det ger fler förfrågningar?',
+    svar:
+      'Ingen kan lova en plats på Google. Bromma Trädgårdsservice låg etta i Googles platslista och först i ChatGPT på trädgårdsservice i Stockholm den 30 juli. De fick 30+ förfrågningar via hemsidan inom 2 månader.',
+  },
+  {
+    fraga: 'Är det inte enklare att köpa förfrågningar från en offertsajt?',
+    svar:
+      'Där betalar ni för förfrågan och delar den med flera firmor, ofta på pris. Från er egen hemsida kommer förfrågan bara till er. Många kör båda en tid.',
   },
   {
     fraga: 'Hur snabbt kan den vara klar?',
     svar:
-      'Ni får ett färdigt förslag inom 48 timmar. Säger ni ja är sidan normalt live inom sju dagar, på er egen domän. Det som brukar ta tid är att få in bilder och texter, så ju snabbare ni skickar dem desto snabbare går det.',
+      'Ni får ett färdigt förslag inom 48 timmar. Säger ni ja är sidan normalt live inom sju dagar, på er egen domän. Det som brukar ta tid är att få in bilder, så ju snabbare ni skickar dem desto snabbare går det.',
   },
   {
     fraga: 'Måste jag kunna något tekniskt?',
     svar:
-      'Nej. Bahko Byrå sköter domän, publicering, texter och bilder. Ni berättar om er verksamhet och skickar bilder från jobb ni gjort, vi gör resten.',
-  },
-  {
-    fraga: 'Vad händer efter lanseringen?',
-    svar:
-      'Ni äger sidan och domänen. Vill ni växa vidare hjälper vi till med synlighet på Google, omdömen och löpande förbättringar, men det är helt valfritt och inget abonnemang som rullar på i bakgrunden.',
+      'Nej. Vi sköter domän, publicering och texterna. Ni berättar om firman och skickar bilder från jobb ni gjort.',
   },
   {
     fraga: 'Jag har redan en hemsida, är det lönt att byta?',
     svar:
-      'Beror på. Hittar kunderna telefonnumret direkt i mobilen, förstår de inom fem sekunder vad ni gör och var, och finns det ett enkelt sätt att begära offert? Är svaret ja på allt behöver ni oss inte. Är svaret nej på något är det oftast där jobben läcker.',
+      'Ta fram mobilen och testa. Hittar man telefonnumret direkt, och förstår man på en gång vad ni gör och var? Är svaret nej är det oftast där jobben läcker.',
+  },
+  {
+    fraga: 'Vad händer efter lanseringen?',
+    svar:
+      'Vill ni växa vidare hjälper vi till med synlighet på Google och omdömen. Det är valfritt och rullar inte på i bakgrunden.',
   },
   {
     fraga: 'Vilka jobbar ni med?',
     svar:
-      'Bygg och hantverk i Sverige. Måleri, tak, mark, bygg, trädgård, VVS. Vi kan branschens säljmönster, vad kunderna söker på och vad de vill se innan de ringer.',
+      'Hantverkare och lokala företag. I drift i dag: måleri, trädgård och en kokbok. Demos finns för bygg och VVS.',
   },
 ];
