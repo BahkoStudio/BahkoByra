@@ -75,7 +75,6 @@ export default function HeroBygge() {
         )}
       </div>
 
-      <p className={styles.bubbla}>Så kan ert förslag se ut.</p>
     </div>
   );
 }

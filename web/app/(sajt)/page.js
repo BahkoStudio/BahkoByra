@@ -7,7 +7,6 @@ import Marquee from '../komponenter/Marquee';
 import RoiKalkyl from '../komponenter/RoiKalkyl';
 import Portfolj from '../komponenter/Portfolj';
 import BevisBromma, { BevisSiffror } from '../komponenter/BevisBromma';
-import ProcessRail from '../komponenter/ProcessRail';
 import TjanstIkon from '../komponenter/TjanstIkon';
 import Faq from '../komponenter/Faq';
 import { TJANSTER, FRAGOR } from '../data';
@@ -26,20 +25,22 @@ const PIL = (
 );
 
 /* Tjänsterna som en resa: ordningen är den vi bygger i, texten talar om vad steget ger. */
+/* Tjänsterna: korta texter i kundens perspektiv, och en länk som säger vad man får se. */
+const TJANSTTEXT = {
+  hemsidor: { text: 'Kunden ser vad ni gör och hur man når er, redan på första skärmen i mobilen.', lank: 'Så gör vi hemsidan' },
+  seo: { text: 'Ni kan komma upp när någon i er stad söker på det ni gör.', lank: 'Så syns ni i er stad' },
+  'google-ads': { text: 'Annonser som kan ligga ovanför träffarna redan första veckan.', lank: 'Så fungerar annonserna' },
+  reklamfilmer: { text: 'Film på ert arbete, så att kunden ser skillnaden innan priserna jämförs.', lank: 'Se en reklamfilm' },
+  appar: { text: 'Bokning direkt på sidan, så att förfrågningarna inte drunknar bland samtalen.', lank: 'Så bokar kunden själv' },
+};
+
+/* Hur vi jobbar, som en resa i fyra stationer */
 const RESAN = [
-  { slug: 'hemsidor', rubrik: 'Kunden fattar direkt', text: 'Kunden ser vad ni gör och hur man når er, redan på första skärmen i mobilen.', lank: 'Så gör vi hemsidan' },
-  { slug: 'seo', rubrik: 'Google förstår var ni jobbar', text: 'Då kan ni komma upp när någon i er stad söker på det ni gör.', lank: 'Så syns ni i er stad' },
-  { slug: 'google-ads', rubrik: 'Syns medan ni väntar', text: 'Annonser kan ligga ovanför träffarna redan första veckan, så ni slipper vänta på att sidan ska synas av sig själv.', lank: 'Så fungerar annonserna' },
-  { slug: 'reklamfilmer', rubrik: 'Sticker ut bland offerterna', text: 'Film på era egna jobb visar hantverket innan kunden jämför priserna.', lank: 'Se en reklamfilm' },
-  { slug: 'appar', rubrik: 'Kalendern fylls, inte telefonen', text: 'Bokning direkt på sidan, så att förfrågningarna inte drunknar bland samtalen.', lank: 'Så bokar kunden själv' },
+  { nr: '01', h: 'Ni får ett förslag', p: 'En färdig sida för er firma och er stad, inom 48 timmar.' },
+  { nr: '02', h: 'Ni tittar och säger till', p: 'Gillar ni den fyller vi på med era bilder och kontaktuppgifter.' },
+  { nr: '03', h: 'Sidan kommer ut', p: 'På er egen domän, normalt inom sju dagar.' },
+  { nr: '04', h: 'Kunderna hittar in', p: 'Snabb i mobilen, med en kontaktknapp på varje skärm. Vill ni ändra något når ni samma person hela vägen.' },
 ];
-
-const SPELA = (
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M8 5v14l11-7z" fill="currentColor" />
-  </svg>
-);
-
 
 export default function Start() {
   return (
@@ -56,16 +57,12 @@ export default function Start() {
               <span className="eyebrow" style={{ display: 'flex' }}>Webbdesign i Jönköping &amp; Huskvarna</span>
               Bli firman kunderna <span className="accent">ringer först.</span>
             </h1>
-            <p className={styles.heroLede}>
-              Vi bygger hemsidor åt hantverkare och lokala företag. Bromma Trädgårdsservice fick
-              30+ förfrågningar via sin nya hemsida inom 2 månader.
-            </p>
             <div className={styles.heroKnappar}>
               <Link href="/kontakt/" className="btn btn-primar">
                 Visa hur min hemsida kan se ut {PIL}
               </Link>
-              <a href="#video" className={`btn btn-sekundar ${styles.videoKnapp}`}>
-                {SPELA} Se videon · 2 min
+              <a href="/foretag/gratis-guide.html" className="btn btn-sekundar">
+                Kostnadsfri guide {PIL}
               </a>
             </div>
             <p className={styles.heroBevis}>
@@ -138,10 +135,6 @@ export default function Start() {
             <h2>
               Här är sidorna vi gjort. <span className="accent">Öppna dem i mobilen.</span>
             </h2>
-            <p className="lede" style={{ marginTop: '1rem' }}>
-              Två hantverkare och en lokal företagare i drift, plus två demos som visar hur ett
-              förslag ser ut.
-            </p>
           </div>
 
           <Portfolj />
@@ -173,15 +166,13 @@ export default function Start() {
       {/* ── VIDEON: två minuter, rakt på sak ── */}
       <section className={`mork ${styles.videoYta}`} id="video">
         <div className={`wrap ${styles.videoInner}`} data-trapp>
-          <span className="eyebrow">Två minuter, rakt på sak</span>
           <h2>
             Därför ringer kunden <span className="accent">en annan firma.</span>
           </h2>
           <p className={`lede ${styles.videoLede}`}>
-            Kunden googlar det ni gör i er stad och ringer någon av de första i listan. Syns ni
-            inte där hamnar ni på en offertsajt, där samma förfrågan går till flera firmor. Då är
-            det lätt att bli nummer fem i kön. Och säljaren som ringde och lovade guld och gröna
-            skogar binder ofta upp er i ett år eller två.
+            Kunden googlar och ringer den som syns först. Syns ni inte där får ni köpa
+            förfrågningar i stället, som nummer fem i kön. Och säljaren som lovade guld och gröna
+            skogar binder er gärna i två år.
           </p>
           <HeroVideo />
         </div>
@@ -192,13 +183,12 @@ export default function Start() {
         <div className="wrap">
           <div className={styles.tjanstIntro} data-trapp>
             <div>
-              <span className="eyebrow">Egna förfrågningar</span>
+              <span className="eyebrow">Våra tjänster</span>
               <h2>
-                Förfrågningar ni inte <span className="accent">delar med någon.</span>
+                Allt som får kunden <span className="accent">att ringa er.</span>
               </h2>
               <p className="lede" style={{ marginTop: '1rem' }}>
-                Från er egen hemsida går förfrågan till er. Ingen annan får den. Börja där, resten
-                lägger vi till när det lönar sig.
+                Börja med hemsidan. Resten lägger vi till när det lönar sig.
               </p>
             </div>
             <div className={styles.tjanstMaskot}>
@@ -211,33 +201,23 @@ export default function Start() {
             </div>
           </div>
 
-          <ol className={styles.tjanstNat} data-trapp>
-            {RESAN.map((r, i) => {
-              const t = TJANSTER.find((x) => x.slug === r.slug);
-              return (
-                <li key={r.slug} className={styles.resSteg}>
-                  <Link href={`/tjanster/${t.slug}/`} className={styles.tjanstKort}>
-                    <div className={styles.ikonRad}>
-                      <TjanstIkon slug={t.slug} />
-                      <span className={styles.stegNr}>Steg {i + 1}</span>
-                    </div>
-                    <div className={styles.stegText}>
-                      <h3>{r.rubrik}</h3>
-                      <p>{r.text}</p>
-                      <span className={styles.tjanstFot}>
-                        <span className={styles.tagg}>{r.lank}</span>
-                        <span className={styles.tjanstPil}>{PIL}</span>
-                      </span>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
-          </ol>
+          <div className={styles.tjanstNat} data-trapp>
+            {TJANSTER.map((t) => (
+              <Link key={t.slug} href={`/tjanster/${t.slug}/`} className={styles.tjanstKort}>
+                <TjanstIkon slug={t.slug} />
+                <h3>{t.namn}</h3>
+                <p>{TJANSTTEXT[t.slug].text}</p>
+                <span className={styles.tjanstFot}>
+                  <span className={styles.tagg}>{TJANSTTEXT[t.slug].lank}</span>
+                  <span className={styles.tjanstPil}>{PIL}</span>
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── PROCESS: horisontellt spår styrt av scrollen ── */}
+      {/* ── PROCESS: resan i fyra stationer med en streckad väg emellan ── */}
       <section className={`mork ${styles.process}`} id="process">
         <div className="wrap">
           <span className="eyebrow">Hur vi jobbar</span>
@@ -247,9 +227,15 @@ export default function Start() {
             <span className="accent">innan ni bestämmer er.</span>
           </h2>
 
-          <div data-avsloja="upp">
-            <ProcessRail />
-          </div>
+          <ol className={styles.resa} data-trapp>
+            {RESAN.map((r) => (
+              <li key={r.nr} className={styles.resaSteg}>
+                <span className={styles.resaNod}>{r.nr}</span>
+                <h3>{r.h}</h3>
+                <p>{r.p}</p>
+              </li>
+            ))}
+          </ol>
 
           <div className={styles.processCta} data-avsloja="upp">
             <div>

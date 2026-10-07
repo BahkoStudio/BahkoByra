@@ -34,10 +34,10 @@ const KUNDER = [
   },
   {
     namn: "Mayka's Kitchen",
-    bransch: 'Restaurang & catering',
-    url: 'https://maykaskitchen.se',
+    bransch: 'Kokbok · Säljsida',
+    url: 'https://maykagulo.se',
     bild: '/img/maykaskitchen.jpg',
-    lang: "Mayka's Kitchen lagar mat som redan hade ett rykte, men sajten berättade inte historien. Bahko Byrå byggde maykaskitchen.se runt berättelsen om köket, med video, meny och ett receptbibliotek på både svenska och engelska som ger gästerna ett skäl att komma tillbaka till sidan mellan besöken.",
+    lang: "Mayka Gulo gav ut kokboken Maykas gröna kök och behövde en sida som säljer den. Bahko Byrå byggde maykagulo.se som bokens egen säljsida: boken i 3D på första skärmen, smakprov ur recepten, berättelsen bakom köket och en köpknapp som följer med hela vägen ner.",
   },
 ];
 

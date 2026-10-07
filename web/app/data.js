@@ -126,7 +126,7 @@ export const TJANSTER = [
     kort: 'Rörligt som stannar i minnet och funkar i flödet.',
     rubrik: 'Film som stoppar tummen',
     ingress:
-      'Kort video till sociala medier och YouTube. Före och efter, hantverket på nära håll, ansiktet bakom firman.',
+      'Kort video till sociala medier och YouTube. Före och efter, ert arbete på nära håll, ansiktet bakom företaget.',
     punkter: [
       { h: 'Före och efter', p: 'Den starkaste sortens bevis ni kan visa.' },
       { h: 'Format för flödet', p: 'Vertikalt, textat, begripligt utan ljud.' },
@@ -185,6 +185,6 @@ export const FRAGOR = [
   {
     fraga: 'Vilka jobbar ni med?',
     svar:
-      'Hantverkare och lokala företag. Ute i dag: måleri och trädgård, plus en säljsida åt en lokal företagare. Demos finns för bygg och VVS.',
+      'Lokala företag som vill ha fler kunder från sin egen stad. Ute i dag: måleri, trädgård och en säljsida för en kokbok. Demos finns för bygg och VVS.',
   },
 ];
