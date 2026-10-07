@@ -73,9 +73,17 @@
   transform: scale(0.94);
 }
 
+.kort {
+  display: none;
+}
+
 @media (max-width: 720px) {
-  .text {
+  .text,
+  .langt {
     display: none;
+  }
+  .kort {
+    display: inline;
   }
   .ring {
     display: inline-flex;

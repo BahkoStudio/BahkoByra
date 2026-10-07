@@ -11,7 +11,7 @@ const RAD = [
   'Förslag inom 48 timmar',
   'brommatradgardsservice.se',
   'Ni äger sidan',
-  'maykaskitchen.se',
+  'maykagulo.se',
   'Synlighet som säljer',
 ];
 

@@ -94,7 +94,7 @@ export default function Popup() {
         </p>
 
         <a href="/kontakt/" className="btn btn-primar">
-          Se er sida kostnadsfritt
+          Visa hur min hemsida kan se ut
         </a>
         <button className={styles.senare} onClick={stang}>
           Inte nu

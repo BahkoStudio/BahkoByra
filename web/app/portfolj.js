@@ -17,7 +17,7 @@ export const PORTFOLJ = [
     typ: 'kund',
     url: 'https://smamaleri.se/',
     bild: '/img/portfolj/smamaleri.jpg',
-    rad: 'Offertflöde som funkar i mobilen och ROT-avdraget förklarat rätt.',
+    rad: 'Offertformulär som funkar i mobilen och ROT-avdraget förklarat rätt.',
   },
   {
     namn: 'Bromma Trädgårdsservice',
@@ -29,17 +29,17 @@ export const PORTFOLJ = [
     bild: '/img/portfolj/bromma.jpg',
     // Rapport 1, 30 juli 2026 (skärmbilder i content/kundarbete/bromma/bevis/): plats 1 i
     // Googles Platser-flik och först i ChatGPT:s svar på 'trädgårdsservice i Stockholm'.
-    rad: 'Plats 1 på Google och först i ChatGPT:s svar, 30 juli 2026.',
+    rad: 'Hemsida med en egen sida för BRF-kunder.',
   },
   {
     namn: "Mayka's Kitchen",
-    kategori: 'Restaurang & catering',
-    kort: 'Restaurang',
-    adress: 'maykaskitchen.se',
+    kategori: 'Kokbok · Säljsida',
+    kort: 'Kokbok',
+    adress: 'maykagulo.se',
     typ: 'kund',
-    url: 'https://maykaskitchen.se',
+    url: 'https://maykagulo.se',
     bild: '/img/portfolj/maykaskitchen.jpg',
-    rad: 'Meny, video och recept på två språk som får gästerna att komma tillbaka.',
+    rad: 'Säljsida för kokboken Maykas gröna kök, med boken i 3D och köpknapp.',
   },
   {
     namn: 'GRANIT Bygg',
@@ -49,7 +49,7 @@ export const PORTFOLJ = [
     typ: 'demo',
     url: '/cloud/bygg/',
     bild: '/img/portfolj/granit.jpg',
-    rad: 'Förvandlingen från förfallet hus till drömhus, i scroll.',
+    rad: 'Från förfallet hus till drömhus medan man bläddrar ner.',
   },
   {
     namn: 'Asmar Relining',
