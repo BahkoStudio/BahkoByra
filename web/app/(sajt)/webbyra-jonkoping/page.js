@@ -38,12 +38,12 @@ const LOKALT = [
 
 /* Bevis: bara verifierat. Plats 1 på Google och först i ChatGPT är skärmbilderna i
    rapport 1, 30 juli 2026 (content/kundarbete/bromma/bevis/). Förfrågningarna är
-   räknade i kundens formulärinkorg 27 juli till 22 september. Ingen procentsats:
+   räknade i kundens formulärinkorg 27 juli till 3 oktober. Ingen procentsats:
    det finns ingen mätning av läget före (Mathias 2026-09-23). */
 const RESULTAT = [
   { tal: '1', etikett: 'Plats på Google', text: 'Bromma Trädgårdsservice i Stockholm låg först av sex firmor i Googles Platser-flik för trädgårdsservice i Stockholm den 30 juli 2026.' },
   { tal: '1', etikett: 'Först i ChatGPT', text: 'Samma firma kom först i ChatGPT:s svar på frågan om trädgårdsservice i Stockholm.' },
-  { tal: '25+', etikett: 'Förfrågningar via sidan', text: '25 offertförfrågningar kom in via formuläret på sidan mellan 27 juli och 22 september. Ett kundcase, inget löfte.' },
+  { tal: '30+', etikett: 'Förfrågningar via sidan', text: 'Minst 30 offertförfrågningar kom in via formuläret på sidan mellan 27 juli och 3 oktober. Ett kundcase, inget löfte.' },
 ];
 
 /* Vad en sida från Bahko Byrå innehåller. Samma moduler som varje demo byggs med. */

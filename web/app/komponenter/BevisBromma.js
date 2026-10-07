@@ -4,14 +4,15 @@ import styles from './BevisBromma.module.css';
    - Plats 1 av 6 i Googles Platser-flik och först i ChatGPT:s svar på
      "trädgårdsservice i Stockholm". Skärmbilderna är från rapport 1, 30 juli 2026
      (original i content/kundarbete/bromma/bevis/).
-   - Förfrågningarna räknade i kundens Web3Forms-inkorg: 27 inskick 27 juli till
-     22 september, minus Mathias två egna tester: 25 (Mathias beslut 2026-09-23: "25+").
+   - Förfrågningarna räknade i kundens Web3Forms-inkorg: 33 inskick 27 juli till
+     3 oktober, minus Mathias två egna tester och ett obekräftat test: 30 (rapport 10,
+     2026-10-04). Tidigare 25+ (27 inskick till 22 september).
      Ingen procentsats, det finns ingen mätning av läget före. */
 
 export const BEVIS = [
   { tal: '1:a', text: 'på Google, före fem andra trädgårdsfirmor' },
   { tal: '1:a', text: 'i ChatGPT:s svar på samma fråga' },
-  { tal: '25+', text: 'förfrågningar via hemsidan inom två månader' },
+  { tal: '30+', text: 'förfrågningar via hemsidan sedan 27 juli' },
 ];
 
 export function BevisSiffror({ className }) {
