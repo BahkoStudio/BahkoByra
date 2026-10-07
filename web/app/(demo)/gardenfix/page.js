@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Archivo, Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import styles from './gardenfix.module.css';
 import DemoFormular from '../../komponenter/DemoFormular';
 
@@ -40,9 +40,35 @@ import DemoFormular from '../../komponenter/DemoFormular';
    nisch och samma stad. Mathias känner till leadet och bad om demon.
    =========================================================================== */
 
-const display = Archivo({ subsets: ['latin'], weight: ['400', '600'], display: 'swap', variable: '--gf-display' });
-const displayKursiv = Archivo({ subsets: ['latin'], weight: ['400', '600'], style: ['italic'], display: 'swap', preload: false, variable: '--gf-display-kursiv' });
-const ui = Inter({ subsets: ['latin'], weight: ['400', '500', '600'], display: 'swap', variable: '--gf-ui' });
+const display = localFont({
+  /* Archivo, lokal kopia av Googles latin-fil (se app/typsnitt/LASMIG.md) */
+  src: [
+    { path: '../../typsnitt/archivo-normal-variabel.woff2', weight: '400', style: 'normal' },
+    { path: '../../typsnitt/archivo-normal-variabel.woff2', weight: '600', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--gf-display',
+});
+const displayKursiv = localFont({
+  /* Archivo italic, lokal kopia av Googles latin-fil (se app/typsnitt/LASMIG.md) */
+  src: [
+    { path: '../../typsnitt/archivo-italic-variabel.woff2', weight: '400', style: 'italic' },
+    { path: '../../typsnitt/archivo-italic-variabel.woff2', weight: '600', style: 'italic' },
+  ],
+  display: 'swap',
+  preload: false,
+  variable: '--gf-display-kursiv',
+});
+const ui = localFont({
+  /* Inter, lokal kopia av Googles latin-fil (se app/typsnitt/LASMIG.md) */
+  src: [
+    { path: '../../typsnitt/inter-normal-variabel.woff2', weight: '400', style: 'normal' },
+    { path: '../../typsnitt/inter-normal-variabel.woff2', weight: '500', style: 'normal' },
+    { path: '../../typsnitt/inter-normal-variabel.woff2', weight: '600', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--gf-ui',
+});
 
 export const metadata = {
   title: 'Garden Fix Stockholm — trädgårdsskötsel och anläggning',
