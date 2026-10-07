@@ -1,27 +1,19 @@
-/* 3D-glasikon: lite på sned i vila, rätar upp sig med studs vid hover.
-   Kortet är ett <a>; a:hover läcker inte ut ur modulen eftersom .ikon är lokal.
-   Ordningen bland syskonen ger varje kort sin egen lutning. Bilderna är
+/* 3D-glasikon: rak i vila, lyfter med studs vid hover.
+   Kortet är ett <a>; a:hover läcker inte ut ur modulen eftersom .ikon är lokal. Bilderna är
    renderade på vitt, samma vitt som kortet, så de behöver ingen frilagd kant. */
 .ikon {
   display: block;
   width: 96px;
   margin: -0.4rem 0 0.6rem -0.5rem;
-  transform: rotate(-5deg);
   transition: transform 0.24s var(--studs);
   will-change: transform;
 }
 
-a:nth-child(2n) .ikon {
-  transform: rotate(4deg);
-}
-
-a:nth-child(3n) .ikon {
-  transform: rotate(-3deg);
-}
-
+/* Ingen lutning i vila (Mathias 2026-10-07: lutningen fick glaset att se smält ut).
+   Vid hover lyfter ikonen rakt upp med en studs. */
 a:hover .ikon,
 a:focus-visible .ikon {
-  transform: rotate(0deg) scale(1.08) translateY(-3px);
+  transform: scale(1.06) translateY(-4px);
 }
 
 .ikon img {
