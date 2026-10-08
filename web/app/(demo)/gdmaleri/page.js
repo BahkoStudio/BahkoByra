@@ -116,7 +116,7 @@ const data = {
     kort: [
       { id: 'invandig', namn: 'Invändig målning', bild: `${M}/tjanst-invandig.jpg`, alt: 'Rum med mörkblått målat tak, ljusa väggar och vitt fönster', text: 'Väggar, tak och lister i hem, kontor och lokaler. Golv och möbler täcks med plast eller papper innan första penseldraget.', punkter: ['Väggar och tak', 'Takmålning', 'Kontor och lokaler'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>) },
       { id: 'fasad', namn: 'Fasadmålning', bild: `${M}/tjanst-fasad.jpg`, alt: 'Nymålad laxrosa panelfasad med vitt burspråksfönster och svart stuprör', text: 'Tvätt, skrapning och ny färg på träfasaden, vindskivor, takfot och fönsterkarmar. Vi målar med Flügger, som täcker bra och skyddar länge.', punkter: ['Tvätt och skrapning', 'Vindskivor och takfot', 'Rödmålning'], ritning: (<><path d="M20 100V48l80-34 80 34v52" /><path d="M20 100h160" /><path d="M44 56v44M68 50v50M92 44v56M116 44v56M140 50v50M164 56v44" /></>) },
-      { id: 'tapet', namn: 'Tapetsering och spackel', bild: `${M}/tjanst-tapet.jpg`, alt: 'Nyuppsatt mönstrad tapet med fåglar och blad runt en dörr', text: 'Gammal tapet bort, väggen bredspacklas slät och den nya tapeten sätts upp. Vi hjälper dig också att välja.', punkter: ['Tapetborttagning', 'Bredspackling', 'Hjälp att välja tapet'], ritning: (<><path d="M40 20h120v84H40z" /><path d="M80 20v84M120 20v84" /><path d="M48 40c8-8 16 8 24 0M88 40c8-8 16 8 24 0M128 40c8-8 16 8 24 0M48 72c8-8 16 8 24 0M88 72c8-8 16 8 24 0M128 72c8-8 16 8 24 0" /></>) },
+      { id: 'tapet', namn: 'Tapetsering och spackel', bild: `${M}/tjanst-tapet.jpg`, alt: 'Nyuppsatt mönstrad tapet runt en dörr', text: 'Gammal tapet bort, väggen bredspacklas slät och den nya tapeten sätts upp. Vi hjälper dig också att välja.', punkter: ['Tapetborttagning', 'Bredspackling', 'Hjälp att välja tapet'], ritning: (<><path d="M40 20h120v84H40z" /><path d="M80 20v84M120 20v84" /><path d="M48 40c8-8 16 8 24 0M88 40c8-8 16 8 24 0M128 40c8-8 16 8 24 0M48 72c8-8 16 8 24 0M88 72c8-8 16 8 24 0M128 72c8-8 16 8 24 0" /></>) },
       { id: 'snickerier', namn: 'Snickerier och fönster', bild: `${M}/tjanst-snickerier.jpg`, alt: 'Spegeldörr målad i mörkgrönt i en ljus lägenhet', text: 'Dörrar, foder, lister och fönster målas så att de skyddas och ser nya ut igen. Ruttna fönsterfoder kan bytas i samma veva.', punkter: ['Fönstermålning', 'Dörrar och lister', 'Byte av fönsterfoder'], ritning: (<><path d="M54 16h92v88H54z" /><path d="M100 16v88M54 60h92" /><path d="M44 104h112" /></>) },
     ],
   },
@@ -164,11 +164,11 @@ const data = {
 
   om: {
     eyebrow: 'Om GD Måleri',
-    rubrik: ['Målerifirman där', 'ägaren svarar själv'],
+    rubrik: ['Ägaren driver', 'firman själv'],
     kortRad: 'Stockholm',
     stycken: [
       'GD Måleri Sthlm AB är en målerifirma i Stockholm som drivs av Ghandi Danho. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
-      'Vi målar åt villaägare, bostadsrätter och företag, från en lägenhet på 43 kvm till en fasad på 350 kvm i Täby kyrkby. Du har samma kontakt hela vägen, vi målar med Flügger och vi är försäkrade via Trygg-Hansa.',
+      'Vi målar åt villaägare, bostadsrätter och företag, från en lägenhet på 43 kvm till en fasad på 350 kvm i Täby kyrkby. Färgen är Flügger, och vi är försäkrade via Trygg-Hansa.',
     ],
     bevis: [
       { ord: '4,9 av 5', text: 'i snitt på Reco, 45 omdömen' },
@@ -180,7 +180,7 @@ const data = {
   steg: {
     eyebrow: 'Så går det till',
     rubrik: ['Från första samtalet till', 'färdig genomgång'],
-    lead: 'Samma kontakt hela vägen, och fakturan kommer när jobbet är klart.',
+    lead: 'Inget extra utan ditt ja, och fakturan kommer när jobbet är klart.',
     lista: [
       { namn: 'Ring eller skriv', text: 'Berätta vad som ska målas, inne eller ute. Det räcker med några rader.', ikon: 'kontakt' },
       { namn: 'Kostnadsfri offert', text: 'Du får en offert där material, arbete, förarbete, städning och bortforsling ingår.', ikon: 'offert' },
@@ -213,7 +213,7 @@ const data = {
     eyebrow: 'Vanliga frågor',
     rubrik: ['Det ni brukar', 'fråga först'],
     lead: 'Pengar och risk först, det praktiska sedan.',
-    kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring Ghandi och fråga rakt ut om just ditt hus eller din lägenhet.' },
+    kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring oss och fråga rakt ut om just ditt hus eller din lägenhet.' },
     lista: [
       { q: 'Vad kostar det?', a: 'Det beror på ytan, skicket och vad som ska göras. Därför börjar vi med en offert, och den är kostnadsfri. Offerten tar med material, arbete, förarbete som tvätt och skrapning, städning och bortforsling.' },
       { q: 'Hur fungerar ROT-avdraget?', a: 'Vi drar av ROT direkt på fakturan och sköter resten, så du behöver inte göra något själv. Hur stort avdraget blir beror på arbetskostnaden och hur mycket avdrag du redan har använt i år.' },
@@ -235,7 +235,7 @@ const data = {
     poster: `${M}/poster-kontakt.jpg`,
     formRubrik: 'Berätta kort om jobbet',
     placeholder: 'Vad som ska målas, inne eller ute, ungefärlig yta, och var i Stockholm',
-    formNot: 'Skriv kort om jobbet, så kan Ghandi ge ett vettigt svar redan i första samtalet.',
+    formNot: 'Skriv kort om jobbet, så vet vi vad det gäller när vi hör av oss.',
   },
 
   popup: {
