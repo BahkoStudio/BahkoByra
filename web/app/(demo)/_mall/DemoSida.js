@@ -183,7 +183,7 @@ export default function DemoSida({ data: d }) {
         </div>
 
         {/* 2. Tjänster: kort med bild */}
-        <section className={`${s.sek} ${s.sekMjuk}`} id="tjanster">
+        <section className={`${s.sek} ${s.sekMjuk}${d.tjanster.lattKort ? ` ${s.lattKort}` : ''}`} id="tjanster">
           <div className={s.wrap}>
             <Rubrik r={d.tjanster} />
             <div className={s.tjanster}>
@@ -244,7 +244,8 @@ export default function DemoSida({ data: d }) {
           <div className={s.wrap}>
             <div className={s.omGrid}>
               <div className={s.omKort}>
-                <Logo logo={d.logo} ordmarke={d.ordmarke} klass="om" />
+                {/* Valfritt om.bild { src, w, h, alt } i stället för logotypen (t.ex. ett märke). */}
+                {d.om.bild ? <Image src={d.om.bild.src} alt={d.om.bild.alt} width={d.om.bild.w} height={d.om.bild.h} sizes="340px" /> : <Logo logo={d.logo} ordmarke={d.ordmarke} klass="om" />}
                 {d.om.kortRad ? <p className={s.omOrt}>{d.om.kortRad}</p> : null}
               </div>
               <div className={s.omTxt}>

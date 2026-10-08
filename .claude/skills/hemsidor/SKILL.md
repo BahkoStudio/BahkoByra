@@ -386,10 +386,10 @@ Kopiera `swedcro/page.js` och byt innehållet. Fälten:
 | `nav` | `vanster` och `hoger`, två länkar var (logotypen hamnar emellan) |
 | `hero` | `ort`, `tjanster: ['Ett', 'Två']`, `video`, `videoMobil`, `poster`, `posterMobil` — och `h1` (rader) bara när logotyp saknas |
 | `tejp` | Åtta korta ord till bandet under heron (valfri) |
-| `tjanster` | `eyebrow`, `rubrik`, `lead`, `kort[]`: `id`, `namn`, `bild`, `alt`, `text`, `punkter`, `ritning` (JSX-paths, viewBox 200×120) |
+| `tjanster` | `eyebrow`, `rubrik`, `lead`, `kort[]`: `id`, `namn`, `bild`, `alt`, `text`, `punkter`, `ritning` (JSX-paths, viewBox 200×120) · valfritt `lattKort: true` = kortrubriker i `accentText` vikt 600 och punkter grå vikt 400 (GD Måleri 2026-10-08, kundens önskemål) |
 | `jobb` | rubrikfält + `rad1[]`, `rad2[]`: `src`, `alt`, `txt` · `not` · `tid` (varvtid, ~10 s per bild) |
 | `varfor` | rubrikfält + `punkter[]`, `video`, `poster`, `videoAlt` |
-| `om` | `eyebrow`, `rubrik`, `kortRad` (orten under logotypen), `stycken[]`, `bevis[]` |
+| `om` | `eyebrow`, `rubrik`, `kortRad` (orten under logotypen), `stycken[]`, `bevis[]` · valfri `bild: { src, w, h, alt }` visar en bild (t.ex. ett Reco-märke) i stället för logotypen på Om-kortet |
 | `steg` | rubrikfält + `lista[]`: `namn`, `text`, valfri `ikon` (`kontakt`, `besok`, `offert`, `arbete`, `plan`, `klart`). **Utelämna för att ta bort sektionen** |
 | `omdomen` | rubrikfält + `betyg` (bara verifierat), `lista[]`, `not`, `lank` |
 | `instagram` | rubrikfält + `bio`, och `koder[]` **eller** `kort[]`. Utelämna helt om kontot saknas |

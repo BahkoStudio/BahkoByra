@@ -20,7 +20,8 @@
 | Tjänster | Invändig målning, tapetsering, snickerier & fönstermålning, takmålning, fasadmålning, bredspackling & tapetborttagning | gdmaleri.se |
 | Löften | "kostnadsfri offert", "Nöjd kund garanti", "flera års erfarenhet", 1 års garanti på måleriarbetet, F-skatt och fullt försäkrade via Trygg-Hansa, Flügger-färg, faktura efter slutfört arbete (över 500 kvm: 50 % vid halva jobbet), inga extraarbeten utan godkännande, ROT direkt på fakturan, ytor täcks med plast/papper, offerten inkluderar material, förarbete, städning och bortforsling | gdmaleri.se (startsida + FAQ) |
 | Omdömen | Reco 4,9/5 av 45 (39 femmor, 6 fyror). På sidan: Ola A, Inga-Lill M, Anders F — femmor från verifierade kunder, ordagrant (Ola och Inga-Lill hela, Anders kortat i slutet med …). Betyget och utmärkelsen står i tjänstebandet direkt under heron och i tjänsternas ingress | reco.se |
-| Utmärkelse | Rekommenderat företag på Reco 2024, 2025, 2026 ("tredje året i rad") | reco.se, IG-inlägg DcmMHrIEbrF |
+| Utmärkelse | Rekommenderat företag på Reco 2024, 2025, 2026 ("tredje året i rad"). Recos märkesbild "Rekommenderat 3 år i rad" (från Mathias, `images/4.png`, samma som IG-inlägg DcmMHrIEbrF) är beskuren till den runda brickan, utan raden "4.9 / 5 (44 recos)", och ligger som `reco-3-ar.png` i tjänsternas ingress på båda sidorna | reco.se (märkena Badge2024–2026), IG-inlägg DcmMHrIEbrF |
+| Fasadtvätt, taktvätt och takmålning (yttertak) | Nya tjänster på huvudsidan (kortet "Fasadtvätt och fasadmålning" och kortet "Taktvätt och takmålning", tejpen, footern, formulärets val, titel, beskrivning, JSON-LD). Källa: Ghandi via Mathias 2026-10-08. Takfotona är Ghandis egna (images/5.png före, 6.png efter, samma jobb som IG-karusellen Dcja9QqkbrR) och visar **taktvätt**, inte målning. **gdmaleri.se:s "Takmålning" är innertak** — det står "innertak" i invändig-kortet. ROT: Skatteverket räknar "rengöra … tak, takpannor" och "reparera och underhålla … takpannor" på småhus som rotarbete. Inga löften om produkt, metod, garanti eller pris | Mathias/Ghandi, IG, skatteverket.se |
 | Referensjobb | IG-bildtexter ordagrant: "Årets sista Fasad på 234 kvm 2026 är avklarad i Bromma" (Dd-zVd3ggOI), "Exklusiv Fasadmålning klar 350 kvm i Täby kyrkby" (Dc1IM7Pgpeh, platstagg Täby), "180 kvm Tak/Vägg målning samt microlituppsättning och snobbkant" (DeNI1zEkcpW, platstagg Södertälje). Alla tre inbäddade på sidan. Lägenhet 43 kvm (Reco, Johan W). Reco nämner också "Ommålning av fasad 250 kvm" (annat jobb, ingen ort) | IG, Reco |
 
 ## INTE verifierat
@@ -38,6 +39,18 @@ Google-profil och betyg (ingen hittad), öppettider, priser, antal projekt, ledt
 | 4 tjänstebilder + 14 jobbilder | Deras egna foton från gdmaleri.se (galleri, utförda arbeten, tjänstesidor); en är ett proffsfoto från sajten (P1588156, "Rum målat i ljust") och en är en bildruta ur deras egen film ("Innertak spacklas"). Sidan säger därför "Alla bilder är från våra egna projekt", inte "fotograferade av oss" | 0 |
 | Logotyp | Deras egen: vektorkonturerna ur `GD-MALERI-STHLM-AB-logo-1.svg` i sajtens mediebibliotek (gradientbilden i SVG:n är bortstrippad av WordPress) fyllda med färgerna ur deras 512-px PNG, 1400 px; ljus variant med texten i vitt för heron | 0 |
 | Instagram | Tre riktiga inlägg inbäddade (Bromma, Täby kyrkby, Södertälje) | 0 |
+| Tak (`tjanst-tak.jpg`, `jobb-tak-fore.jpg`) | Ghandis egna foton (via Mathias 2026-10-08): efter tvätt (6.png) som tjänstebild, före tvätt (5.png) i jobbandet med bildtexten "Tak före tvätt". 4:3-beskurna, före-bilden bort från en parkerad bil. Ingen bild påstås visa ett målat tak. "Invändig målning" och "Tapetsering och spackel" är sammanslagna till ett kort så att rutnätet fortsatt har fyra kort; `tjanst-tapet.jpg` flyttade till jobbandet | 0 |
+| Reco-märket (`reco-3-ar.png`, 480×480 med alfa) | Recos egen märkesbild, rund bricka friställd. Ligger i **Om oss-kortet i stället för logotypen** (mallfältet `om.bild`) på båda sidorna, med raden "Reco 2024–2026" | 0 |
+
+### Malländring 2026-10-08 (godkänd av Mathias)
+
+Två valfria datafält, utan dem ser alla andra demos ut som förut (pixeljämfört på swedcro och trestad):
+- `tjanster.lattKort: true` → klassen `lattKort` på tjänstesektionen: kortrubriker i `accentText` vikt 600, punkterna `#475569` vikt 400 (Ghandi ville inte ha svarta feta rubriker och punkter).
+- `om.bild: { src, w, h, alt }` → bilden i Om oss-kortet i stället för logotypen.
+
+### Tjänstekortens texter (omskrivna 2026-10-08, Ghandi tyckte de var "sådär")
+
+Fyra kort: "Invändig målning" och "Tapetsering och spackel" är sammanslagna så att rutnätet håller 4 → 2 → 1. Före/efter står i leveransrapporten.
 
 ## Flaggor före utskick
 
@@ -53,6 +66,33 @@ Google-profil och betyg (ingen hittad), öppettider, priser, antal projekt, ledt
 - Ett av de inbäddade IG-inläggen (Täby kyrkby) har en kampanjtext i bildtexten ("10 % på arbetskostnaden och 30 % på färg"). Byt inlägg om kampanjen är slut.
 - Hero-orten är "Stockholm" som firman själv skriver ("Din målare i Stockholm"), fast bolaget har säte i Södertälje.
 - **Säljvinkel:** telefonlänken på gdmaleri.se går till platshållaren 123-456-7890. Varje mobilbesökare som trycker på numret ringer fel, trots 45 omdömen och tre år som Rekommenderat företag.
+
+## BRF-sidan (`bahkobyra.se/gdmaleri/brf/`, 2026-10-08)
+
+Ghandi såg huvudsidan och skrev: "den ser bra ut, är detta till BRF? Våran Reco 3 år, rekommenderat företag". **Besked via Mathias samma dag: han har främst jobbat åt privatkunder och vill nu börja ta BRF-uppdrag.** BRF är ett nytt område för honom.
+
+- **Källa:** `web/app/(demo)/gdmaleri/brf/page.js`, samma mall, tema, logotyp, filmer och kontakt som huvudsidan. Länkas från huvudsidans nav som "För BRF" (även footerns Sidan-kolumn och mobilmenyn); BRF-sidan länkar tillbaka med "Startsida". "Om oss" föll ur huvudsidans nav (pillret rymmer två länkar per sida).
+- **Vinkel:** erbjudandet, inte en historik. Rubriken är "Målning för bostadsrättsföreningar: Trapphus, entréer och fasader". Föreningen får samma upplägg som privatkunderna (kostnadsfri offert med allt inräknat, inget extra utan ja, faktura efter jobbet, F-skatt, Trygg-Hansa, ett års garanti). Rekommenderat företag på Reco tre år i rad och 4,9 av 5 (45) står i tjänstebandet, tjänsternas ingress, Om oss och första IG-inlägget (DcmMHrIEbrF, Recos "3 år i rad"-märke). Omdömena sägs uttryckligen komma från privatkunder.
+- **Referensjobbet:** Ghandi (via Mathias 2026-10-08), ordagrant: "Referenser har jag från en Brf Holmströmsgruppen AB där vi målade deras 4 lägenheter". Kontroll (WebSearch samma dag, [Holmströmgruppens årsredovisning 2022](https://storage.mfn.se/5562af67-8dc6-49a9-a669-756a0471a021/holmstromgruppen-arsredovisning-2022.pdf), [mfn.se](https://mfn.se/a/holmstromsgruppen/holmstrom-fastigheter-holding-ab-publ-signs-agreement-to-sell-all-shares-in-ham-nordic-ab)): **Holmströmgruppen AB** (utan s) är ett **fastighetsbolag** i Stockholm, moderbolag till Holmström Fastigheter Holding AB (publ) med bostäder och samhällsfastigheter i Mälardalen och Örnsköldsvik, alltså **inte en bostadsrättsförening**. **Namngivningen är godkänd** (Ghandi via Mathias 2026-10-08: Holmströmsgruppen godkänner att namnges som referens). Sidan säger "fyra lägenheter åt fastighetsbolaget Holmströmgruppen" (Lägenheter-kortet, Om oss och FAQ:n "Har ni jobbat åt fastighetsägare eller föreningar förut?", där den också kallas "vår referens"), utan ort, yta, år eller omdöme. Stavningen är bolagets egen (Holmströmgruppen, utan s); Ghandi skrev "Holmströmsgruppen". En variant utan namn står i en kommentar överst i page.js.
+- **Belagt om BRF i övrigt:** bara erbjudandet. gdmaleri.se/vara-tjanster/ skriver "Vi utför uppdrag åt företag, BRF & privatpersoner" och "bred erfarenhet av både klassiska och moderna trapphusmålningar" (citeras inte som BRF-erfarenhet). Inget Reco-omdöme (alla 45 genomlästa) och inget IG-inlägg gäller en BRF.
+- **Genererade bilder (Higgsfield API, Qwen Image 3, 2k, 4:3, 2026-10-08):** `brf-trapphus.jpg` (målare bakifrån rollar en trapphusvägg, terrazzotrappa), `brf-entre.jpg` (gröna dubbla entrédörrar i ljus puts), `brf-fasad.jpg` (gul putsfasad på ett trevåningshus från 50-talet med björkar). **0,075 USD styck, 0,225 USD totalt** (ett första försök på entrén misslyckades, "model temporarily unavailable", och debiterades inte). De är tjänstekortens bilder för Trapphus, Entréer och dörrar samt Fasader och fönster. Märkning: alt-texten börjar med "Illustrationsbild" och `jobb.not` säger "Bilderna på trapphus, entré och fasad under Tjänster är illustrationsbilder." Jobbanden är bara egna foton från privatkunder, med bildtexter som inte påstår BRF. Byt mot riktiga foton från första föreningsjobbet.
+- **ROT för BRF (Skatteverket, hämtat 2026-10-08):** rotavdrag ges bara till privatpersoner, i bostadsrätt bara för arbete inne i bostaden där bostadsrättshavaren har underhållsansvaret. "Inget avdrag ges för arbete på gemensamma ytor, till exempel tak, fasader, trapphus och entréer." Källa: [Ger arbetet rätt till rotavdrag?](https://www.skatteverket.se/foretag/skatterochavdrag/rotochrut/gerarbetetratttillrotavdrag.4.5c1163881590be297b5173bf.html), [Så fungerar rotavdraget](https://www.skatteverket.se/privat/fastigheterochbostad/rotarbeteochrutarbete/safungerarrotavdraget.4.5947400c11f47f7f9dd80004014.html). Sidan säger det rätta.
+- **Fel på gdmaleri.se:** FAQ:n säger att ROT gäller "För privatpersoner & företag … upp till 75 000 kr". Företag får inte ROT, och högst 50 000 kr av de 75 000 får vara rot (resten rut). Rätta när sajten flyttas.
+- **SEO:** egen titel ("Målare för BRF i Stockholm – trapphus och fasad | GD Måleri Sthlm AB"), JSON-LD `Service` med `provider` = samma `HousePainter` (@id gdmaleri.se/#business), `audience` Bostadsrättsföreningar, inget betygsschema, `noindex` kvar. Vid flytten blir den `gdmaleri.se/brf/` (ny slug, ingen 301 behövs).
+
+### Flaggor BRF
+
+- ~~Fråga Ghandi om Holmströmsgruppen godkänner att namnges som referens.~~ **Godkänt 2026-10-08.** Kvar att bekräfta: att det är Holmströmgruppen AB (fastighetsbolaget, Holmström Fastigheter) och inte en BRF med liknande namn — han skrev "Brf Holmströmsgruppen AB" — och stavningen. Var det en förening de förvaltar ska texten säga det.
+- Fråga om Holmströmgruppen kan lämna ett omdöme (Reco eller Google) och om det finns foton från de fyra lägenheterna.
+- De tre BRF-bilderna är genererade illustrationer (se ovan). Inga påhittade referenser, kundnamn, omdömen eller antal på sidan.
+
+### Plan: vad Ghandi behöver för att vinna BRF-jobb
+
+1. **Första föreningsjobbet.** Ett trapphus, en entré eller en fasad åt en förening, gärna en mindre förening eller grannföreningen till en nöjd privatkund. Fota före, under och efter: bilderna ersätter illustrationerna, och jobbet blir sidans första BRF-referens. Till dess är de fyra lägenheterna åt Holmströmgruppen den enda referensen åt en fastighetsägare.
+2. **Ett omdöme från styrelsen** på Reco (och Google) efter det jobbet, med föreningens namn om de går med på det.
+3. **Ett skriftligt underlag för styrelsemötet:** en offertmall för föreningar med ytor, förarbete, material, städning och bortforsling, tidsplan, hur de boende påverkas (avisering, framkomlighet), betalningsplan, garanti och försäkringsbevis. Styrelser fattar beslut på papper, inte i telefon.
+4. **Ansvarsförsäkringens belopp** från Trygg-Hansa (och gärna försäkringsbeviset som PDF). Föreningar och förvaltare frågar ofta efter det.
+5. **Fråga honom:** arbetstider i trapphus, om han kan avisera de boende, hur stor fasad han klarar med eget folk, och om han har eller kan ta fram ställning/lift. Svaren blir copy på BRF-sidan.
 
 ## Optimering
 

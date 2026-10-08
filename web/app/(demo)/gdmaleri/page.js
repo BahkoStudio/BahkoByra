@@ -55,6 +55,26 @@ import DemoSida from '../_mall/DemoSida';
    Hero = 0:02.1–6.1, 6.35–9.3, 30.3–33.3, 39.7–42.7, 55.0–58.5 (16,4 s,
    stående omramad per klipp) · Varför = takfoten 0:13.2–19.2 + logokort ·
    kontakt = herofilmen nedskalad och suddad.
+   Fasadtvätt, taktvätt och takmålning (YTTERTAK) som tjänster: Ghandi via
+   Mathias 2026-10-08 ("fasadtvätt, och takmålning i tjänsterna också").
+   Takfotona är Ghandis egna, skickade via Mathias 2026-10-08 (images/5.png
+   och 6.png, samma jobb som IG-karusellen Dcja9QqkbrR). Ghandi beskriver
+   jobbet som TAKTVÄTT: Före = jobb-tak-fore.jpg ("Tak före tvätt"), Efter
+   tvätt = tjanst-tak.jpg (tjänstekortet). Ingen bild påstås visa ett målat
+   tak. OBS: gdmaleri.se:s "Takmålning" är INNERTAK; här står det
+   "innertak" i invändig-kortet. Skatteverket (gerarbetetratttillrotavdrag,
+   hämtat 2026-10-08): på småhus ger "rengöra … tak, takpannor" och
+   "reparera och underhålla … takpannor" rotavdrag. Inga löften om metod,
+   kemikalier, produkt, garanti eller pris för tvätt eller takmålning.
+   Tjänstekortens texter omskrivna 2026-10-08 (Ghandi tyckte de var
+   "sådär"); "Invändig målning" och "Tapetsering och spackel" är ett kort
+   så att rutnätet har fyra kort (4 → 2 → 1). tjanster.lattKort (mallfält):
+   rubrikerna i accentText 600, punkterna grå 400 (Ghandis önskemål).
+   Reco-märket "Rekommenderat 3 år i rad" (reco-3-ar.png): Recos egen
+   märkesbild från IG-inlägg DcmMHrIEbrF (images/4.png från Mathias),
+   beskuren till den runda brickan utan raden "4.9 / 5 (44 recos)". Ligger i
+   Om oss-kortet i stället för logotypen (mallfält om.bild), med raden
+   "Reco 2024–2026" (märkena Badge2024–2026 på reco.se).
    GD Måleri Sthlm AB är KUND hos Bahko Byrå sedan 2026-10-08.
 
    INTE verifierat, och finns därför inte på sidan: Google-profil och betyg
@@ -82,12 +102,16 @@ import DemoSida from '../_mall/DemoSida';
    bahkobyra.se/gdmaleri ska inte konkurrera med hans egen domän. Ingen
    canonical till gdmaleri.se förrän innehållet där är detsamma. Åtgärdslistan
    står i content/leads/gdmaleri.md under "Optimering".
+
+   BRF-UNDERSIDA (2026-10-08): brf/page.js, länkad som "För BRF" i nav (och
+   därmed footer och mobilmeny). Egen VERIFIERAT/FLAGGOR där; BRF är nytt
+   för Ghandi, och tre av dess bilder är genererade illustrationer.
    =========================================================================== */
 
 export const metadata = {
-  title: 'Målare i Stockholm – fasadmålning och invändig målning | GD Måleri Sthlm AB',
+  title: 'Målare i Stockholm – fasad, tak och invändig målning | GD Måleri Sthlm AB',
   description:
-    'GD Måleri Sthlm AB är målare i Stockholm: fasadmålning, invändig målning, tapetsering och bredspackling. Kostnadsfri offert, ROT direkt på fakturan och 4,9 av 5 på Reco.',
+    'GD Måleri Sthlm AB är målare i Stockholm: fasadtvätt och fasadmålning, taktvätt och takmålning, invändig målning, tapetsering och bredspackling. Kostnadsfri offert, ROT direkt på fakturan och 4,9 av 5 på Reco.',
   robots: { index: false, follow: false },
 };
 
@@ -107,7 +131,7 @@ const schema = {
   url: `${DOMAN}/`,
   logo: `${FILBAS}${M}/logo-gdmaleri.png`,
   image: `${FILBAS}${M}/tjanst-fasad.jpg`,
-  description: 'Målerifirma i Stockholm: invändig målning, fasadmålning, tapetsering, bredspackling, takmålning och målning av snickerier och fönster. ROT dras direkt på fakturan.',
+  description: 'Målerifirma i Stockholm: invändig målning av väggar och innertak, fasadtvätt och fasadmålning, taktvätt och målning av yttertak, tapetsering, bredspackling och målning av snickerier och fönster. ROT dras direkt på fakturan.',
   telephone: '+46737298889',
   email: 'info@gdmaleri.se',
   foundingDate: '2024-01-16',
@@ -152,7 +176,9 @@ const data = {
   cta: { txt: 'Begär kostnadsfri offert', kort: 'Begär offert', lank: 'Begär offert' },
   nav: {
     vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#jobb', txt: 'Våra jobb' }],
-    hoger: [{ href: '#om', txt: 'Om oss' }, { href: '#omdomen', txt: 'Omdömen' }],
+    // Undersidan för bostadsrättsföreningar (brf/page.js). Länkas här, i footerns
+    // "Sidan"-kolumn och i mobilmenyn — mallen tar nav-länkarna till alla tre.
+    hoger: [{ href: '/gdmaleri/brf/', txt: 'För BRF' }, { href: '#omdomen', txt: 'Omdömen' }],
   },
 
   hero: {
@@ -163,27 +189,29 @@ const data = {
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
   },
-  tejp: ['4,9 av 5 på Reco', 'Rekommenderat tre år i rad', 'Invändig målning', 'Fasadmålning', 'F-skatt och försäkrade', 'Tapetsering', 'ROT direkt på fakturan', 'Bredspackling'],
+  tejp: ['4,9 av 5 på Reco', 'Rekommenderat tre år i rad', 'Invändig målning', 'Fasadtvätt', 'Fasadmålning', 'Taktvätt', 'Takmålning', 'Tapetsering', 'ROT direkt på fakturan', 'F-skatt och försäkrade'],
 
   tjanster: {
     eyebrow: 'Vad vi gör',
     rubrik: ['Inne, ute och', 'allt förarbete'],
     lead: '4,9 av 5 i snitt på Reco från 45 omdömen, och Rekommenderat företag på Reco tre år i rad. Vi målar inne och ute och gör förarbetet själva: skrapning, slipning, spackling och tapetborttagning.',
+    lattKort: true,
     kort: [
-      { id: 'invandig', namn: 'Invändig målning', bild: `${M}/tjanst-invandig.jpg`, alt: 'Rum med mörkblått målat tak, ljusa väggar och vitt fönster', text: 'Väggar, tak och lister i hem, kontor och lokaler. Golv och möbler täcks med plast eller papper innan första penseldraget.', punkter: ['Väggar och tak', 'Takmålning', 'Kontor och lokaler'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>) },
-      { id: 'fasad', namn: 'Fasadmålning', bild: `${M}/tjanst-fasad.jpg`, alt: 'Nymålad laxrosa panelfasad med vitt burspråksfönster och svart stuprör', text: 'Tvätt, skrapning och ny färg på träfasaden, vindskivor, takfot och fönsterkarmar. Vi målar med Flügger, som täcker bra och skyddar länge.', punkter: ['Tvätt och skrapning', 'Vindskivor och takfot', 'Rödmålning'], ritning: (<><path d="M20 100V48l80-34 80 34v52" /><path d="M20 100h160" /><path d="M44 56v44M68 50v50M92 44v56M116 44v56M140 50v50M164 56v44" /></>) },
-      { id: 'tapet', namn: 'Tapetsering och spackel', bild: `${M}/tjanst-tapet.jpg`, alt: 'Nyuppsatt mönstrad tapet runt en dörr', text: 'Gammal tapet bort, väggen bredspacklas slät och den nya tapeten sätts upp. Vi hjälper dig också att välja.', punkter: ['Tapetborttagning', 'Bredspackling', 'Hjälp att välja tapet'], ritning: (<><path d="M40 20h120v84H40z" /><path d="M80 20v84M120 20v84" /><path d="M48 40c8-8 16 8 24 0M88 40c8-8 16 8 24 0M128 40c8-8 16 8 24 0M48 72c8-8 16 8 24 0M88 72c8-8 16 8 24 0M128 72c8-8 16 8 24 0" /></>) },
-      { id: 'snickerier', namn: 'Snickerier och fönster', bild: `${M}/tjanst-snickerier.jpg`, alt: 'Spegeldörr målad i mörkgrönt i en ljus lägenhet', text: 'Dörrar, foder, lister och fönster målas så att de skyddas och ser nya ut igen. Ruttna fönsterfoder kan bytas i samma veva.', punkter: ['Fönstermålning', 'Dörrar och lister', 'Byte av fönsterfoder'], ritning: (<><path d="M54 16h92v88H54z" /><path d="M100 16v88M54 60h92" /><path d="M44 104h112" /></>) },
+      { id: 'invandig', namn: 'Invändig målning och tapet', bild: `${M}/tjanst-invandig.jpg`, alt: 'Rum med mörkblått målat tak, ljusa väggar och vitt fönster', text: 'Nya färger på väggar, innertak och lister, hemma eller på kontoret. Vill du ha tapet river vi den gamla, bredspacklar väggen slät och hjälper dig att välja den nya. Golv och möbler täcks med plast eller papper innan vi börjar.', punkter: ['Golv och möbler täcks', 'Hjälp att välja tapet', 'ROT direkt på fakturan'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>) },
+      { id: 'fasad', namn: 'Fasadtvätt och fasadmålning', bild: `${M}/tjanst-fasad.jpg`, alt: 'Nymålad laxrosa panelfasad med vitt burspråksfönster och svart stuprör', text: 'Vi tvättar fasaden och skrapar bort lös färg innan vi målar. Panel, vindskivor, takfot och fönsterkarmar får ny färg från Flügger. ROT dras direkt på fakturan.', punkter: ['Fasadtvätt', 'Skrapning av lös färg', 'Färg från Flügger'], ritning: (<><path d="M20 100V48l80-34 80 34v52" /><path d="M20 100h160" /><path d="M44 56v44M68 50v50M92 44v56M116 44v56M140 50v50M164 56v44" /></>) },
+      { id: 'tak', namn: 'Taktvätt och takmålning', bild: `${M}/tjanst-tak.jpg`, alt: 'Grått betongpannetak efter taktvätt, med en vit villa och tallar i bakgrunden', text: 'Mossa och lav tvättas bort från takpannorna. Vill du ha ny färg på taket målar vi det också. På ett småhus ger både tvätten och målningen ROT, och vi drar det direkt på fakturan.', punkter: ['Taktvätt', 'Takmålning', 'ROT på småhus'], ritning: (<><path d="M16 76L100 24l84 52" /><path d="M36 64v40h128V64" /><path d="M58 52l84 0M46 62h108" /><path d="M136 30v18" /></>) },
+      { id: 'snickerier', namn: 'Snickerier och fönster', bild: `${M}/tjanst-snickerier.jpg`, alt: 'Spegeldörr målad i mörkgrönt i en ljus lägenhet', text: 'Fönster, dörrar, foder och lister skrapas, slipas och målas, så att träet skyddas mot fukt igen. Har fönsterfodren ruttnat byter vi dem i samma veva.', punkter: ['Fönstermålning', 'Byte av ruttna foder', 'Dörrar och lister'], ritning: (<><path d="M54 16h92v88H54z" /><path d="M100 16v88M54 60h92" /><path d="M44 104h112" /></>) },
     ],
   },
 
   jobb: {
     eyebrow: 'Våra jobb',
     rubrik: ['Hus och hem vi', 'har målat om'],
-    lead: 'Fasader, fönster, trapphus och rum. Alla bilder är från våra egna projekt.',
+    lead: 'Fasader, tak, fönster, trappor och rum. Alla bilder är från våra egna projekt.',
     not: 'Fler jobb, med ort och yta, finns på vårt Instagram.',
     tid: '70s',
     rad1: [
+      { src: `${M}/jobb-tak-fore.jpg`, alt: 'Betongpannetak med mossa och gul lav före taktvätt', txt: 'Tak före tvätt' },
       { src: `${M}/jobb-rod-timmer.jpg`, alt: 'Närbild på en rödmålad timmervägg med vit knutbräda och altanräcke', txt: 'Timmervägg målad i rött' },
       { src: `${M}/jobb-rod-fonster.jpg`, alt: 'Vitmålat spröjsat fönster i en röd träfasad', txt: 'Fönster målade vita' },
       { src: `${M}/jobb-langsida.jpg`, alt: 'Långsida på ett hus med laxrosa stående panel, vita fönster och svart stuprör', txt: 'Panel och fönster målade' },
@@ -200,6 +228,7 @@ const data = {
       { src: `${M}/jobb-trapphus.jpg`, alt: 'Trapphus med mörkrosa nederdel och ljus vägg ovanför', txt: 'Trapphus målat i två kulörer' },
       { src: `${M}/jobb-vardagsrum.jpg`, alt: 'Tomt vardagsrum med ljusrosa väggar och tre fönster', txt: 'Vardagsrum målat ljusrosa' },
       { src: `${M}/jobb-bredspackling.jpg`, alt: 'Vägg under bredspackling, golvet täckt med papper', txt: 'Vägg bredspacklas före målning' },
+      { src: `${M}/tjanst-tapet.jpg`, alt: 'Nyuppsatt mönstrad tapet runt en dörr', txt: 'Mönstrad tapet uppsatt' },
     ],
   },
 
@@ -221,7 +250,9 @@ const data = {
   om: {
     eyebrow: 'Om GD Måleri',
     rubrik: ['Ägaren driver', 'firman själv'],
-    kortRad: 'Stockholm',
+    // Recos märke i stället för logotypen (Mathias 2026-10-08). Mallfältet om.bild.
+    bild: { src: `${M}/reco-3-ar.png`, w: 480, h: 480, alt: 'Reco: Rekommenderat företag tre år i rad' },
+    kortRad: 'Reco 2024–2026',
     stycken: [
       'GD Måleri Sthlm AB är målare i Stockholm, och firman drivs av Ghandi Danho. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
       'Vi målar åt villaägare, bostadsrätter och företag, från en lägenhet på 43 kvm till en fasad på 350 kvm i Täby kyrkby. Färgen är Flügger, och vi är försäkrade via Trygg-Hansa.',
@@ -272,7 +303,7 @@ const data = {
     kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring oss och fråga rakt ut om just ditt hus eller din lägenhet.' },
     lista: [
       { q: 'Vad kostar det?', a: 'Det beror på ytan, skicket och vad som ska göras. Därför börjar vi med en offert, och den är kostnadsfri. Offerten tar med material, arbete, förarbete som tvätt och skrapning, städning och bortforsling.' },
-      { q: 'Hur fungerar ROT-avdraget?', a: 'Vi drar av ROT direkt på fakturan och sköter resten, så du behöver inte göra något själv. Hur stort avdraget blir beror på arbetskostnaden och hur mycket avdrag du redan har använt i år.' },
+      { q: 'Hur fungerar ROT-avdraget?', a: 'Vi drar av ROT direkt på fakturan och sköter resten, så du behöver inte göra något själv. Hur stort avdraget blir beror på arbetskostnaden och hur mycket avdrag du redan har använt i år. På ett småhus gäller det också taktvätt och takmålning: Skatteverket räknar rengöring och underhåll av tak och takpannor som rotarbete.' },
       { q: 'När betalar jag?', a: 'Du får fakturan när arbetet är klart, ingen förskottsbetalning. På stora jobb över 500 kvm betalas halva arbetskostnaden när halva jobbet är gjort.' },
       { q: 'Vad händer om något oväntat dyker upp?', a: 'Då hör vi av oss direkt och föreslår en lösning. Vi gör inga extraarbeten utan ditt godkännande.' },
       { q: 'Har ni garanti?', a: 'Ja, ett år på måleriarbetet. Behöver något åtgärdas under den tiden gör vi det utan extra kostnad.' },
@@ -300,7 +331,7 @@ const data = {
   },
 
   footer: {
-    text: 'Målare i Stockholm för invändig målning, fasadmålning, tapetsering och snickerier. Kostnadsfri offert och slutbesiktning innan fakturan.',
+    text: 'Målare i Stockholm för invändig målning, fasadtvätt och fasadmålning, taktvätt och takmålning, tapetsering och snickerier. Kostnadsfri offert och slutbesiktning innan fakturan.',
   },
 
   modal: {

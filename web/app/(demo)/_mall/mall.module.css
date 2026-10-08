@@ -734,6 +734,9 @@ html:has(.sida) {
   gap: 0.55rem;
 }
 .tjanstTxt li .bock { width: 18px; height: 18px; color: var(--accent-text); }
+/* Valfritt (data: tjanster.lattKort): rubriken i accentfärg och lättare, punkterna i brödtextens grå. GD Måleri 2026-10-08. */
+.lattKort .tjanstTxt h3 { color: var(--accent-text); font-weight: 600; }
+.lattKort .tjanstTxt ul { color: var(--text-2); font-weight: 400; }
 .tjanstTxt .pilLank { margin-top: auto; }
 /* Hela kortet klickbart utan att nästla länkar. */
 .tjanstTxt .pilLank::before {
