@@ -104,7 +104,6 @@ import DemoSida from '../_mall/DemoSida';
    röda-gavel-filmerna är borttagna 2026-10-08. Logokortet: loggan är nästan
    kvadratisk, så den fyller 85 % av höjden men bara 51 % av bredden.
    (gamla video-varfor.mp4 och poster-varfor.jpg med vitt logokort är borttagna)
-   och kan raderas ur media/ (ersatta av *-mork).
    Logotypen är deras egen: formerna, penseln och texten är vektorerna ur
    GD-MALERI-STHLM-AB-logo-1.svg i deras mediebibliotek (gradientbilden i den
    filen är bortstrippad), fyllda med färgerna ur deras 512-px PNG. 1400 px
