@@ -29,8 +29,12 @@ export default function DemoFormular({ className, amne, children, nyckel = DEMO_
       // set, inte append: de dolda fälten finns redan i formuläret för besökare utan
       // JavaScript. Dubbletter gör anropet ogiltigt.
       data.set('access_key', nyckel);
-      data.set('subject', amne);
-      data.set('from_name', fran);
+      // {falt} i ämnesraden byts mot fältets värde, t.ex. "Ny förfrågan – {kundtyp}". Utan klamrar: oförändrad.
+      // amne/fran = null: skicka inga sådana fält, så gäller ämne och avsändare från kundens Web3Forms-panel.
+      if (amne) data.set('subject', amne.replace(/\{(\w+)\}/g, (_, f) => String(data.get(f) || '').trim()));
+      else data.delete('subject');
+      if (fran) data.set('from_name', fran);
+      else data.delete('from_name');
       // Web3Forms svarar 303 med Location när redirect finns med, och då kan
       // webbläsaren inte läsa svaret: inskicket gick fram men sidan visade fel.
       // Reservläget utan JavaScript behöver fältet, det här anropet gör inte det.

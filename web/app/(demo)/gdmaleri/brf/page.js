@@ -1,4 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, modal } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — undersida för bostadsrättsföreningar (/gdmaleri/brf/)
@@ -27,9 +28,9 @@ import DemoSida from '../../_mall/DemoSida';
    "fastighetsbolaget Holmströmgruppen" mot "en fastighetsägare" i
    Lägenheter-kortet, Om oss och FAQ:n, och stryk "som också är vår
    referens".
-   Reco-märket (reco-3-ar.png) ligger i Om oss-kortet i stället för
-   logotypen (mallfält om.bild), som på huvudsidan: Recos egen märkesbild
-   ur IG-inlägg DcmMHrIEbrF, beskuren till den runda brickan. Fasadtvätt
+   Reco-kortet (reco-kort.png) ligger i Om oss i stället för logotypen
+   (mallfält om.bild, rundad), som på huvudsidan: Recos egen märkesbild ur
+   IG-inlägg DcmMHrIEbrF, hela kortet utan beskärning (säger 44 recos). Fasadtvätt
    som tjänst: Ghandi via Mathias 2026-10-08. tjanster.lattKort: lättare
    kortrubriker och grå punkter (Ghandis önskemål). Korttexterna kortade
    till en mening var 2026-10-08 (Mathias: "håll bullet points"), inga nya
@@ -91,6 +92,12 @@ import DemoSida from '../../_mall/DemoSida';
    till 75 000 kr" — fel enligt Skatteverket (bara privatpersoner, högst
    50 000 kr rot av totalt 75 000 kr rot + rut). Sidan här säger det rätta.
 
+   FORMULÄR OCH MENY (2026-10-08, som huvudsidan): Ghandis egen Web3Forms-nyckel
+   (data.formular i ../_gd.js), kundtyp Privatperson/Företag/BRF, "Vi återkommer
+   inom 24 timmar" (Mathias på Ghandis vägnar 2026-10-08). Footerns Tjänster-kolumn
+   länkar till tjänstesidorna och mobilmenyn får dem (nav.extra). Bokningslänkar
+   till Cal.com (data.bokning) och öppettider vardagar 08–17 som huvudsidan.
+
    OPTIMERING: egen titel och beskrivning, JSON-LD Service som pekar på samma
    HousePainter-entitet (@id gdmaleri.se/#business), inget betygsschema,
    noindex KVAR som på huvudsidan tills flytten till gdmaleri.se.
@@ -115,7 +122,7 @@ const schema = {
   serviceType: 'Måleri för bostadsrättsföreningar',
   description: 'Målning av trapphus, entréer, fasader och fönster åt bostadsrättsföreningar i Stockholm. Kostnadsfri offert där material, förarbete, städning och bortforsling ingår.',
   provider: { '@type': 'HousePainter', '@id': `${DOMAN}/#business`, name: 'GD Måleri Sthlm AB', url: `${DOMAN}/`, telephone: '+46737298889' },
-  areaServed: { '@type': 'City', name: 'Stockholm' },
+  areaServed: [{ '@type': 'City', name: 'Stockholm' }, { '@type': 'AdministrativeArea', name: 'Stockholms län' }],
   audience: { '@type': 'Audience', audienceType: 'Bostadsrättsföreningar' },
 };
 
@@ -138,11 +145,15 @@ const data = {
     igHandle: '@gdmaleristhlm',
     fb: 'https://www.facebook.com/people/GD-M%C3%A5leri-Sthlm-AB/61557609848512/',
     orgnr: '559468-2444',
+    oppet: 'Vardagar 08–17',
   },
   cta: { txt: 'Begär kostnadsfri offert', kort: 'Begär offert', lank: 'Begär offert' },
+  formular,
+  bokning,
   nav: {
     vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#jobb', txt: 'Våra jobb' }],
     hoger: [{ href: '#omdomen', txt: 'Omdömen' }, { href: '/gdmaleri/', txt: 'Startsida' }],
+    extra: menyExtra('/gdmaleri/brf/'),
   },
 
   hero: {
@@ -212,8 +223,7 @@ const data = {
   om: {
     eyebrow: 'Om GD Måleri',
     rubrik: ['Ägaren driver', 'firman själv'],
-    bild: { src: `${M}/reco-3-ar.png`, w: 480, h: 480, alt: 'Reco: Rekommenderat företag tre år i rad' },
-    kortRad: 'Reco 2024–2026',
+    bild: { src: `${M}/reco-kort.png`, w: 827, h: 845, alt: 'Reco: GD Måleri Sthlm AB, rekommenderat företag tre år i rad, 4,9 av 5', rundad: true },
     utanKort: true,
     stycken: [
       'GD Måleri Sthlm AB är en målerifirma i Stockholm som drivs av Ghandi Danho. Hittills har vi mest målat åt privatkunder, inne och ute, och nu tar vi även uppdrag åt bostadsrättsföreningar.',
@@ -290,12 +300,15 @@ const data = {
     eyebrow: 'Kontakt',
     rubrik: ['Begär en offert', 'till styrelsen'],
     lead: 'Ring, eller skriv några rader om föreningen och vilka ytor det gäller. Offerten är kostnadsfri och tar med allt, från förarbete till bortforsling.',
-    checkar: ['Kostnadsfri offert, allt inräknat', 'Inget extra utan ert godkännande', 'Faktura när jobbet är klart'],
+    checkar: ['Svar inom 24 timmar', 'Kostnadsfri offert, allt inräknat', 'Inget extra utan ert godkännande'],
     video: `${M}/video-kontakt.mp4`,
     poster: `${M}/poster-kontakt.jpg`,
     formRubrik: 'Berätta kort om föreningen',
     placeholder: 'Föreningen och var i Stockholm, vilka ytor (trapphus, fasad, fönster) och ungefärlig storlek',
-    formNot: 'Skriv kort om jobbet, så vet vi vad det gäller när vi hör av oss.',
+    kundtyp,
+    formNot,
+    epostNamn,
+    formNotBock: true,
   },
 
   popup: {
@@ -305,12 +318,10 @@ const data = {
 
   footer: {
     text: 'Målare för bostadsrättsföreningar i Stockholm: trapphus, fasader, fönster och dörrar. Kostnadsfri offert och faktura när jobbet är klart.',
+    tjanster: footerTjanster,
   },
 
-  modal: {
-    rubrik: 'Så här kan GD Måleri se ut på nätet',
-    text: 'Det här är ett kostnadsfritt förslag, byggt på det ni själva visar på gdmaleri.se, Instagram och Reco, med era egna projektfoton. Ingen beställning, inget åtagande. Vill ni se den skarpt med ett formulär som landar i inkorgen? Boka ett kostnadsfritt 15-minuterssamtal med Mathias.',
-  },
+  modal,
 };
 
 export default function GdMaleriBrf() {

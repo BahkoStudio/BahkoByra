@@ -68,7 +68,7 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   const h1Namn = await page.locator('h1').evaluate((e) => (e.querySelector('img')?.alt || e.innerText).replace(/\s+/g, ' ').trim());
   ok(h1Namn.toLowerCase().startsWith(h1start.toLowerCase()), `h1 = firmanamnet (${h1Namn})`);
   const ordning = await page.evaluate(() => [...document.querySelectorAll('main > section')].map((s) => s.id));
-  const vantad = ['top', 'tjanster', 'jobb', 'varfor', 'om', 'process', 'omdomen', 'instagram', 'fragor', 'kontakt'].filter((id) => ordning.includes(id));
+  const vantad = ['top', 'tjanster', 'jobb', 'varfor', 'om', 'process', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt'].filter((id) => ordning.includes(id));
   ok(JSON.stringify(ordning) === JSON.stringify(vantad) && ['top', 'tjanster', 'jobb', 'varfor', 'om', 'omdomen', 'fragor', 'kontakt'].every((id) => ordning.includes(id)), `sektionsordning (${ordning.join(' ')})`);
   ok((await page.locator('[class*="stat"]').count()) === 0, 'ingen siffer-rad (utdöd)');
 
@@ -186,7 +186,7 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   ok((await page.locator('#varfor [class*="varforNot"]').count()) === 0, 'ingen illustrationsnot under Varför-filmen (Mathias 2026-09-19)');
 
   // --- tjänster: kort med bild ---
-  const tj = await page.locator('#tjanster article').evaluateAll((els) => els.map((e) => ({ bild: !!e.querySelector('img'), lank: !!e.querySelector('a[href="#kontakt"]') })));
+  const tj = await page.locator('#tjanster article').evaluateAll((els) => els.map((e) => ({ bild: !!e.querySelector('img'), lank: !!e.querySelector('a[href="#kontakt"], a[href^="/"]') })));
   ok(tj.length >= 3 && tj.every((x) => x.bild && x.lank), `tjänstekort med bild och länk (${tj.length})`);
 
   // --- jobb: två band åt var sitt håll ---
@@ -235,6 +235,15 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
     ok(!/\d+\s*(gilla|likes|kommentarer)/i.test(await page.locator('#instagram').innerText()), 'inga påhittade gilla-siffror');
   } else ok((await page.locator('#instagram').count()) === 0, 'ingen Instagram-sektion');
 
+  // --- bokningskalendern (valfri, data: bokning.inbaddad): iframe utan embed-JS ---
+  if (await page.locator('#boka').count()) {
+    const ifr = await page.locator('#boka iframe').evaluateAll((els) => els.map((e) => ({ src: e.src, titel: e.title, lat: e.getAttribute('loading'), h: e.getBoundingClientRect().height })));
+    ok(ifr.length === 1 && /^https:\/\//.test(ifr[0].src) && ifr[0].titel && ifr[0].lat === 'lazy' && ifr[0].h >= 500, `bokning: en inbäddad kalender med title och loading=lazy (${ifr[0]?.src}, ${Math.round(ifr[0]?.h)} px)`);
+    ok(!(await page.locator('script[src*="cal.com"], script[src*="embed.js"]').count()), 'bokning: ingen embed-JS');
+    const r = await page.request.get(ifr[0].src); const xfo = r.headers()['x-frame-options'] || ''; const csp = r.headers()['content-security-policy'] || '';
+    ok(r.status() === 200 && !xfo && !/frame-ancestors/.test(csp), `bokning: kalendern svarar ${r.status()} och får ramas in`);
+  }
+
   // --- frågor och formulär ---
   const faq = await page.locator('#fragor details').evaluateAll((els) => els.map((e) => e.getAttribute('name')));
   ok(faq.length >= 5 && new Set(faq).size === 1 && faq[0], `frågor: ${faq.length} st, ett öppet åt gången`);
@@ -268,7 +277,7 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   // --- helsidesbilder att titta på ---
   await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(400);
   await page.screenshot({ path: `${UT}/${namn}-hero.png` });
-  for (const id of ['tjanster', 'jobb', 'varfor', 'om', 'omdomen', 'instagram', 'fragor', 'kontakt']) {
+  for (const id of ['tjanster', 'jobb', 'varfor', 'om', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt']) {
     if (!(await page.locator(`#${id}`).count())) continue;
     await page.locator(`#${id}`).evaluate((e) => window.scrollTo(0, e.offsetTop - 90)); await page.waitForTimeout(500);
     await page.screenshot({ path: `${UT}/${namn}-${id}.png` });

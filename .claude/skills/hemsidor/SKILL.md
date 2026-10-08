@@ -202,7 +202,11 @@ och inget `mailto` i demons data.** Fältet är borttaget.
   webbläsare, inte med qa-skriptet.
 
 **Vid leverans till kund:** kunden skapar en egen nyckel på web3forms.com med sin egen
-mejladress. Skicka in den som `nyckel` till `DemoFormular`, slå på autosvar i deras röst, klart.
+mejladress. Lägg den i datafältet `formular.nyckel` (med kundens egen `amne` och `fran`, inga
+Bahko-namn), slå på autosvar i deras röst i Web3Forms-panelen, klart. Ta bort meningen i
+`modal.text` om att formuläret inte landar i inkorgen. Testa genom att fånga anropet i
+Playwright (`page.route('https://api.web3forms.com/**')`), aldrig genom ett riktigt inskick.
+Förebild: GD Måleri 2026-10-08.
 Förfrågningarna går då direkt till kunden och aldrig via oss. Bakgrunden står i
 `docs/formular-web3forms.md`.
 - **Demos med riktiga kontaktuppgifter visas inte publikt** (Mathias). De är
@@ -372,6 +376,19 @@ med "hela copyn är värdelös".
   tankstreck. Knapptext = handling, aldrig "Läs mer" eller "Skicka".
 - Svenska, du-tilltal, inga klyschor. Personligt varumärke → jag-form.
 
+### Tjänstesidor (undersidor per tjänst)
+
+En tjänstesida är en egen route under kunden (`<kund>/<tjanst>/page.js`) med samma mall
+och ett eget `data`-objekt. Det gemensamma (tema, logotyp, kontakt, formulär, Varför, Om
+oss, steg, länklistor) ligger i en datafil i kundmappen, t.ex. `gdmaleri/_gd.js`
+(understrecket = ingen route). Varje sida: egen titel och beskrivning, JSON-LD `Service`
+med `provider` = huvudsidans entitet (`@id`), inget betygsschema, `noindex` som
+huvudsidan. Tjänstekorten = deltjänsterna (korta texter, punkterna bär innehållet),
+omdömen som handlar om just den tjänsten (fasta, inte `levande`), egen FAQ, belagda
+projekt med ort och yta. Huvudsidans kort länkar dit (`lank`), footerns Tjänster-kolumn
+(`footer.tjanster`) och mobilmenyn (`nav.extra`) också. QA:n kör per route.
+Förebild: GD Måleri 2026-10-08 (efter marlonshantverksgrupp.se).
+
 ## Steg 4 — Datafilen
 
 Kopiera `swedcro/page.js` och byt innehållet. Fälten:
@@ -383,19 +400,21 @@ Kopiera `swedcro/page.js` och byt innehållet. Fälten:
 | `logo` | `{ src, w, h, alt, topp, ljus }` — `ljus` är en ljus variant för heron (valfri). `topp: 'fri'` (kräver `ljus`) = ingen bricka/rundel i headern: ljusa varianten över filmen, egna färger efter skroll (GD Måleri 2026-10-08). Eller utelämna `logo` och sätt `ordmarke: 'Namn'` |
 | `kontakt` | `tel`, `telHref`, `epost`, `adress`, `oppet`, `ig`, `igHandle`, `fb`, `orgnr` — bara verifierade, resten utelämnas |
 | `cta` | `txt`, `kort`, `lank` |
-| `nav` | `vanster` och `hoger`, två länkar var (logotypen hamnar emellan) |
+| `nav` | `vanster` och `hoger`, två länkar var (logotypen hamnar emellan) · valfritt `extra: [{ href, txt }]` = fler länkar bara i mobilmenyn, t.ex. tjänstesidor som inte ryms i pillret (GD Måleri 2026-10-08) |
 | `hero` | `ort`, `tjanster: ['Ett', 'Två']`, `video`, `videoMobil`, `poster`, `posterMobil` — och `h1` (rader) bara när logotyp saknas |
 | `tejp` | Åtta korta ord till bandet under heron (valfri) |
-| `tjanster` | `eyebrow`, `rubrik`, `lead`, `kort[]`: `id`, `namn`, `bild`, `alt`, `text`, `punkter`, `ritning` (JSX-paths, viewBox 200×120) · valfritt `lattKort: true` = kortrubriker i `accentText` vikt 600 och punkter grå vikt 400 (GD Måleri 2026-10-08, kundens önskemål) |
+| `tjanster` | `eyebrow`, `rubrik`, `lead`, `kort[]`: `id`, `namn`, `bild`, `alt`, `text`, `punkter`, `ritning` (JSX-paths, viewBox 200×120), valfri `lank: { href, txt }` = kortet leder till tjänstens egen sida i stället för formuläret (texten säger vart, t.ex. "Allt om fasaden", aldrig "Läs mer") · valfritt `kolumner: 3` = tre kort i rad, 3 → 3 → 1 (för en undersida med tre kort; utan fältet 4 → 2 → 1) · valfritt `lattKort: true` = kortrubriker i `accentText` vikt 600 och punkter grå vikt 400 (GD Måleri 2026-10-08, kundens önskemål) |
 | `jobb` | rubrikfält + `rad1[]`, `rad2[]`: `src`, `alt`, `txt` · `not` · `tid` (varvtid, ~10 s per bild) |
 | `varfor` | rubrikfält + `punkter[]`, `video`, `poster`, `videoAlt` |
-| `om` | `eyebrow`, `rubrik`, `kortRad` (orten under logotypen), `stycken[]`, `bevis[]` · valfri `bild: { src, w, h, alt }` visar en bild (t.ex. ett Reco-märke) i stället för logotypen på Om-kortet · valfritt `utanKort: true` = märket står fritt utan det vita kortet |
+| `om` | `eyebrow`, `rubrik`, `kortRad` (orten under logotypen), `stycken[]`, `bevis[]` · valfri `bild: { src, w, h, alt, rundad? }` visar en bild (t.ex. ett Reco-märke) i stället för logotypen på Om-kortet; `rundad: true` = bilden ÄR ett kort (Recos hela märkeskort): hela bilden upp till 440 px, 18 px radie och kortskugga, ingen beskärning · valfritt `utanKort: true` = märket står fritt utan det vita kortet (GD Måleri 2026-10-08: `reco-kort.png` med `rundad` + `utanKort`, ingen `kortRad`) |
 | `steg` | rubrikfält + `lista[]`: `namn`, `text`, valfri `ikon` (`kontakt`, `besok`, `offert`, `arbete`, `plan`, `klart`). **Utelämna för att ta bort sektionen** |
 | `omdomen` | rubrikfält + `betyg` (bara verifierat), `lista[]`, `not`, `lank` · valfritt `levande: { google: { placeId \| sok + cid, nyckelEnv?, cacheSek? }, reco: { urlEnv }, max? }` = levande omdömen hämtade på servern (se Levande flöden) |
 | `instagram` | rubrikfält + `bio`, och `koder[]` **eller** `kort[]`. Utelämna helt om kontot saknas · valfritt `levande: { env, antal? }` = de senaste inläggen ur ett Behold-flöde eller en IG-token i env (se Levande flöden) |
-| `fragor` | rubrikfält + `kort` (rubrik, text), `lista[]` (q, a) — 6–8 frågor, pengar och risk först |
-| `kontaktSektion` | `eyebrow`, `rubrik`, `lead`, `checkar` (tre), `video`, `poster`, `formRubrik`, `placeholder`, `formNot` |
-| `popup`, `footer`, `modal` | `rubrik` + `text` · `text` · `rubrik` + `text` |
+| `fragor` | rubrikfält + `kort` (rubrik, text), `lista[]` (q, a) — 6–8 frågor, pengar och risk först. `a` får vara JSX med en källänk (t.ex. Skatteverket); mallen stryker under länken |
+| `kontaktSektion` | `eyebrow`, `rubrik`, `lead`, `checkar` (tre), `video`, `poster`, `formRubrik`, `placeholder`, `formNot` · valfritt `kundtyp: ['Privatperson', 'Företag', 'BRF']` = obligatoriskt val som knappar överst i formuläret, skickas som fältet `kundtyp` · valfritt `formNotBock: true` = bock framför `formNot` (t.ex. "Vi återkommer inom 24 timmar") · valfritt `epostNamn: 'email'` = e-postfältets namn (Web3Forms autosvar går bara till fältet `email`; utan fältet heter det `epost`) (GD Måleri 2026-10-08) |
+| `bokning` | Valfritt: `{ url, txt, not?, ringUrl?, ringTxt?, kortTxt?, inbaddad? }` = vanliga länkar till kundens bokningssida (t.ex. Cal.com) i ny flik: konturknapp + textlänk + rad under kontaktbockarna (på mobil efter formuläret), och `kortTxt` som pillänk i frågekortet. Ingen klient-JS, aldrig en API-nyckel. Formuläret förblir huvudvägen (GD Måleri 2026-10-08) · valfritt `inbaddad: { eyebrow, rubrik, lead, titel, src? }` = **kalendern inbäddad** som `<iframe loading="lazy">` i egen sektion `#boka` mellan Frågor och Kontakt (rubrikfält + ram + `ringTxt`-länken under); knappen i kontaktsektionen utgår och `kortTxt` pekar på `#boka`. Ingen embed.js. `src` utelämnad = `url` + `?embed=true&theme=light`. **Cal.com:** `/embed`-routen är tom utan embed.js (sidan står `visibility: hidden`), `?embed=true` på vanliga bokningssidan fungerar; `theme=light` annars mörk kalender hos besökare med mörkt läge; inga X-Frame-Options. Höjden är fast (880 px dator, 1 680 under 840 px, 1 420 under 560 px) så kalendern och formulärsteget ryms utan egen skroll. **Klicka inte på tider i test** — Cal reserverar tiden i några minuter (GD Måleri 2026-10-08) |
+| `formular` | Valfritt, bara när kunden har en egen Web3Forms-nyckel: `{ nyckel, amne, fran, kvittens: [rubrik, text] }`. `{falt}` i `amne` byts mot fältets värde (`'Ny förfrågan – {kundtyp}'`). `amne: null` / `fran: null` = inga `subject`/`from_name` i anropet, så gäller kundens inställningar i Web3Forms-panelen (GD Måleri: panelen har `{field:kundtyp}` i ämnet). Utan fältet: demonyckeln, ämnesraden "<namn>: ny förfrågan från förslaget" och avsändaren "Bahko-förslag" |
+| `popup`, `footer`, `modal` | `rubrik` + `text` · `text` (+ valfritt `tjanster: [{ href, txt }]` = footerns Tjänster-kolumn länkar dit i stället för till korten) · `rubrik` + `text` |
 
 "Rubrikfält" = `eyebrow`, `rubrik: ['rak del', 'kursiv del']`, `lead`.
 
