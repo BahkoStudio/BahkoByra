@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { fontKlasser } from './fonter';
 import s from './mall.module.css';
 import DemoFormular from '../../komponenter/DemoFormular';
+import { googleOmdomen, recoOmdomen, instagramInlagg, kortaText } from './levande';
 
 /* ===========================================================================
    DEMOMALLEN v3 — en serverkomponent, noll eget klient-JS.
@@ -29,6 +30,10 @@ const T = {
     byggd: 'Förslag byggt av', omForslaget: 'Om det här förslaget', stangKort: 'Stäng',
     modalBadge: 'Förslag av Bahko Byrå', modalCta: 'Boka 15 min kostnadsfritt samtal →', modalAlt: 'Eller mejla → mathias@bahkobyra.se',
     modalFot: 'Bahko Byrå · Synlighet som säljer.', ellerSkriv: 'Eller skriv några rader →', orgnr: 'Org.nr',
+    // Bara de levande flödena (levande.js) använder raderna nedan.
+    stjarnorAv: 'av 5 stjärnor', omdomenAntal: 'omdömen', lasGoogle: 'Läs alla på Google', igBild: 'Instagram-inlägg',
+    notGoogle: 'Google-omdömena hämtas direkt från vår profil, i den ordning Google rankar dem som mest relevanta. Bara omdömen med text visas.',
+    notReco: 'Reco-omdömena hämtas direkt från Reco.se.',
   },
   nb: {
     meny: 'Meny', stang: 'Lukk menyen', ring: 'Ring', kontakt: 'Kontakt', tillToppen: 'Til toppen',
@@ -41,6 +46,9 @@ const T = {
     byggd: 'Forslag laget av', omForslaget: 'Om dette forslaget', stangKort: 'Lukk',
     modalBadge: 'Forslag fra Bahko Byrå', modalCta: 'Book 15 min gratis samtale →', modalAlt: 'Eller send e-post → mathias@bahkobyra.se',
     modalFot: 'Bahko Byrå · Synlighet som selger.', ellerSkriv: 'Eller skriv noen linjer →', orgnr: 'Org.nr',
+    stjarnorAv: 'av 5 stjerner', omdomenAntal: 'omtaler', lasGoogle: 'Les alle på Google', igBild: 'Instagram-innlegg',
+    notGoogle: 'Google-omtalene hentes direkte fra profilen vår, i den rekkefølgen Google rangerer dem som mest relevante. Bare omtaler med tekst vises.',
+    notReco: 'Reco-omtalene hentes direkte fra Reco.se.',
   },
 };
 
@@ -67,7 +75,7 @@ const RESEIKONER = {
 const RESESTANDARD = ['kontakt', 'besok', 'offert', 'arbete', 'plan'];
 
 const STJARNA = 'M12 2.500l2.900 6.100 6.600.8-4.900 4.600 1.300 6.500L12 17.300l-5.900 3.200 1.300-6.500L2.500 9.400l6.600-.8z';
-const Stjarnor = ({ tomma, etikett }) => (<span className={`${s.stjarnor} ${tomma ? s.stjarnorTomma : ''}`} role="img" aria-label={etikett}>{[0, 1, 2, 3, 4].map((i) => (<svg viewBox="0 0 24 24" aria-hidden="true" key={i}><path d={STJARNA} /></svg>))}</span>);
+const Stjarnor = ({ tomma, etikett, antal }) => (<span className={`${s.stjarnor} ${tomma ? s.stjarnorTomma : ''}`} role="img" aria-label={etikett}>{[0, 1, 2, 3, 4].map((i) => (<svg className={antal != null && i >= antal ? s.stjarnaTom : undefined} viewBox="0 0 24 24" aria-hidden="true" key={i}><path d={STJARNA} /></svg>))}</span>);
 
 const Rubrik = ({ r, mork }) => (
   <div className={`${s.sekHuvud} ${mork ? s.paMork : ''}`}>
@@ -80,6 +88,20 @@ const Rubrik = ({ r, mork }) => (
 function Logo({ logo, ordmarke, klass, priority }) {
   if (!logo) return <span className={klass === 'ftr' ? s.ftrOrd : klass === 'om' ? s.omOrd : s.hdrOrd}>{ordmarke}</span>;
   return <Image src={logo.src} alt={logo.alt} width={logo.w} height={logo.h} priority={priority} sizes={klass === 'om' ? '340px' : klass === 'ftr' ? '250px' : '150px'} />;
+}
+
+// Headerns logotyp. topp: 'fri' (valfritt) = ingen bricka eller rundel bakom: den ljusa varianten över
+// filmen tonar över till loggans egna färger när headern blivit vit. Annars som förut.
+function HdrLogo({ d, priority }) {
+  if (d.logo?.topp === 'fri' && d.logo.ljus) {
+    return (
+      <span className={s.logoFriPar}>
+        <Image className={s.logoFriLjus} src={d.logo.ljus} alt="" width={d.logo.w} height={d.logo.h} priority={priority} sizes="150px" />
+        <Image className={s.logoFriEgen} src={d.logo.src} alt="" width={d.logo.w} height={d.logo.h} priority={priority} sizes="150px" />
+      </span>
+    );
+  }
+  return <Logo logo={d.logo && { ...d.logo, alt: '' }} ordmarke={d.ordmarke} priority={priority} />;
 }
 
 // En grupp måste vara bredare än skärmen för att loopen ska vara sömlös (7 kort ≈ 2 640 px).
@@ -103,11 +125,150 @@ const Band = ({ rad: kort, hoger, tid }) => { const rad = fyllUt(kort); return (
   </div>
 ); };
 
+// 7. Omdömen. `levande` = { g, r } från levande.js (null = statiskt läge, exakt som förut).
+function Omdomen({ d, t, levande }) {
+  const g = levande?.g;
+  const r = levande?.r;
+  const lista = levande
+    ? [...(g?.lista || []), ...(r ? r.lista : d.omdomen.lista)].slice(0, d.omdomen.levande.max || 6)
+    : d.omdomen.lista;
+  const not = levande
+    ? [g?.lista?.length ? t.notGoogle : null, r ? t.notReco : d.omdomen.not].filter(Boolean).join(' ')
+    : d.omdomen.not;
+  const fmt = (v) => v.toLocaleString(d.sprak === 'nb' ? 'nb-NO' : 'sv-SE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  return (
+    <section className={`${s.sek} ${s.sekMjuk}`} id="omdomen">
+      <div className={s.wrap}>
+        <div className={s.omdHuvud}>
+          <Rubrik r={d.omdomen} />
+          {g?.betyg ? (
+            <a className={s.betyg} href={g.uri} target="_blank" rel="noopener">
+              <GoogleG />
+              <span className={s.betygTal}>{fmt(g.betyg)}</span>
+              <span className={s.betygTxt}><Stjarnor antal={Math.round(g.betyg)} etikett={`${fmt(g.betyg)} ${t.stjarnorAv}`} /><span>{g.antal} {t.omdomenAntal} · <span className={s.googleMaps}>Google Maps</span></span></span>
+            </a>
+          ) : d.omdomen.betyg ? (
+            <div className={s.betyg}>
+              <GoogleG />
+              <span className={s.betygTal}>{d.omdomen.betyg.varde}</span>
+              <span className={s.betygTxt}><Stjarnor etikett={t.femStjarnor} /><span>{d.omdomen.betyg.text}</span></span>
+            </div>
+          ) : null}
+        </div>
+        <div className={s.recensioner}>
+          {lista.map((o, i) => (
+            <figure className={s.recension} key={o.id || o.namn}>
+              <div className={s.recensionHuvud}>
+                {/* Google kräver författarens bild, namn och länk till profilen när den finns. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <span className={s.avatar} style={{ '--av': AVATARFARGER[i % AVATARFARGER.length] }} aria-hidden="true">{o.foto ? <img src={o.foto} alt="" width={44} height={44} loading="lazy" referrerPolicy="no-referrer" /> : o.namn[0]}</span>
+                <figcaption>
+                  <b>{o.profil ? <a href={o.profil} target="_blank" rel="noopener">{o.namn}</a> : o.namn}</b>
+                  {o.lank
+                    ? <a className={s.recensionKalla} href={o.lank} target="_blank" rel="noopener">{o.kalla}{o.maps ? <> · <span className={s.googleMaps}>Google Maps</span></> : null}</a>
+                    : <span>{o.kalla}</span>}
+                </figcaption>
+                {o.google ? <GoogleG className={s.recensionG} /> : null}
+              </div>
+              {/* stjarnor: false = omdömet har inget betyg i källan (t.ex. ett citat på kundens sajt). Rita inga stjärnor då. */}
+              {o.stjarnor === false ? null : (
+                <div className={s.recensionRad}>
+                  {typeof o.betyg === 'number'
+                    ? <Stjarnor antal={o.betyg} etikett={`${o.betyg} ${t.stjarnorAv}`} />
+                    : <Stjarnor tomma={o.exempel} etikett={o.exempel ? t.exempelStjarnor : t.femStjarnor} />}
+                  {o.exempel ? <span className={s.exempelTagg}>{t.exempel}</span> : null}
+                </div>
+              )}
+              <blockquote>{o.text}</blockquote>
+            </figure>
+          ))}
+        </div>
+        <div className={s.recensionerFot}>
+          <p className={s.recensionerNot}>{not}</p>
+          <div className={s.recensionerKnappar}>
+            {g?.uri ? <a className={`${s.btn} ${s.btnLjus}`} href={g.uri} target="_blank" rel="noopener">{t.lasGoogle}</a> : null}
+            {d.omdomen.lank ? <a className={`${s.btn} ${s.btnLjus}`} href={d.omdomen.lank.href} target="_blank" rel="noopener">{d.omdomen.lank.txt}</a> : null}
+            <a className={`${s.btn} ${s.btnMork}`} href="#kontakt">{d.cta.txt}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Hämtar på servern; svarar ingen källa ritas det statiska läget oförändrat.
+async function OmdomenLevande({ d, t }) {
+  const [g, r] = await Promise.all([googleOmdomen(d.omdomen.levande.google), recoOmdomen(d.omdomen.levande.reco)]);
+  return <Omdomen d={d} t={t} levande={g || r ? { g, r } : null} />;
+}
+
+const IgKortIkoner = () => (
+  <div className={s.igKortIkoner} aria-hidden="true">
+    <svg viewBox="0 0 24 24"><path d="M12 20.500s-7.500-4.600-7.500-10A4.300 4.300 0 0112 7.800a4.300 4.300 0 017.500 2.700c0 5.400-7.500 10-7.500 10z" /></svg>
+    <svg viewBox="0 0 24 24"><path d="M20.500 11.500a8.500 8.500 0 01-12.600 7.400L3.500 20.500l1.600-4.300A8.500 8.500 0 1120.500 11.500z" /></svg>
+    <svg viewBox="0 0 24 24"><path d="M21 3L10.500 13.500M21 3l-6.500 18-4-7.500L3 9.500z" /></svg>
+  </div>
+);
+
+// 8. Instagram. `inlagg` = levande inlägg från levande.js (null = statiskt läge, exakt som förut).
+function Instagram({ d, t, inlagg }) {
+  const k = d.kontakt;
+  return (
+    <section className={s.sek} id="instagram">
+      <div className={s.wrap}>
+        <Rubrik r={d.instagram} />
+        <div className={s.igStapel}>
+          <div className={s.igProfil}>
+            <span className={s.igRing} aria-hidden="true"><span>{d.logo ? <Image src={d.logo.src} alt="" width={d.logo.w} height={d.logo.h} sizes="56px" /> : d.namn[0]}</span></span>
+            <div><b>{k.igHandle}</b><small>{d.instagram.bio}</small></div>
+          </div>
+          <div className={s.igKnappar}>
+            <a className={s.igKnapp} href={k.ig} target="_blank" rel="noopener"><IgIkon />{t.folj}</a>
+            {k.fb ? <a className={`${s.igKnapp} ${s.fbKnapp}`} href={k.fb} target="_blank" rel="noopener"><FbIkon />{t.foljFb}</a> : null}
+          </div>
+        </div>
+        <div className={s.igRutnat}>
+          {inlagg
+            ? inlagg.map((p) => (
+              <a className={s.igInlagg} href={p.lank} target="_blank" rel="noopener" key={p.id}>
+                <div className={s.igKortHuvud}><span className={s.igRing} aria-hidden="true"><span>{d.logo ? <Image src={d.logo.src} alt="" width={d.logo.w} height={d.logo.h} sizes="38px" /> : d.namn[0]}</span></span>{k.igHandle}</div>
+                {/* Extern bild (Beholds eller Instagrams CDN): vanlig img, så att next.config inte behöver röras. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <div className={s.igKortBild}><img src={p.bild} alt={`${t.igBild}: ${kortaText(p.text, 100) || k.igHandle}`} width={800} height={800} loading="lazy" decoding="async" /></div>
+                <IgKortIkoner />
+                <p className={s.igKortTxt}><b>{k.igHandle}</b>{kortaText(p.text)}</p>
+              </a>
+            ))
+            : d.instagram.koder
+              ? d.instagram.koder.map((kod, i) => (
+                <div className={s.igInlagg} key={kod}>
+                  <iframe src={`https://www.instagram.com/p/${kod}/embed/captioned/`} title={`${t.inlagg} ${k.igHandle} (${i + 1})`} loading="lazy" allow="encrypted-media" />
+                </div>
+              ))
+              : d.instagram.kort.map((ko) => (
+                <a className={s.igInlagg} href={k.ig} target="_blank" rel="noopener" key={ko.bild}>
+                  <div className={s.igKortHuvud}><span className={s.igRing} aria-hidden="true"><span>{d.namn[0]}</span></span>{k.igHandle}</div>
+                  <div className={s.igKortBild}><Image src={ko.bild} alt={ko.alt} width={800} height={800} sizes="(max-width: 700px) 92vw, 380px" /></div>
+                  <IgKortIkoner />
+                  <p className={s.igKortTxt}><b>{k.igHandle}</b>{ko.text}</p>
+                </a>
+              ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+async function InstagramLevande({ d, t }) {
+  const inlagg = await instagramInlagg(d.instagram.levande);
+  return <Instagram d={d} t={t} inlagg={inlagg} />;
+}
+
 export default function DemoSida({ data: d }) {
   const t = T[d.sprak || 'sv'];
   const k = d.kontakt;
   const harTel = Boolean(k.tel);
-  const logoKlass = d.logo ? (d.logo.topp === 'bricka' ? s.logoBricka : d.logo.topp === 'vit' ? s.logoVit : '') : '';
+  const logoKlass = d.logo ? (d.logo.topp === 'bricka' ? s.logoBricka : d.logo.topp === 'vit' ? s.logoVit : d.logo.topp === 'fri' ? s.logoFri : '') : '';
   const lankar = [...d.nav.vanster, ...d.nav.hoger];
   // Utan logotyp är h1 firmanamnet i text. Längsta raden i stora tecken (en liten rad är 0,62 av höjden) styr storleken i CSS.
   const h1Rader = d.hero.h1 || [d.namn];
@@ -133,10 +294,10 @@ export default function DemoSida({ data: d }) {
           {harTel
             ? <a className={s.hdrTel} href={k.telHref} aria-label={`${t.ring} ${k.tel}`}><Tel /><span aria-hidden="true">{k.tel}</span></a>
             : <a className={s.hdrTel} href={k.ig} target="_blank" rel="noopener" aria-label={`${d.namn} Instagram`}><IgIkon /><span aria-hidden="true">{k.igHandle}</span></a>}
-          <a className={`${s.hdrMobilLogo} ${logoKlass}`} href="#top" aria-label={d.namn}><Logo logo={d.logo && { ...d.logo, alt: '' }} ordmarke={d.ordmarke} /></a>
+          <a className={`${s.hdrMobilLogo} ${logoKlass}`} href="#top" aria-label={d.namn}><HdrLogo d={d} /></a>
           <nav className={s.hdrPiller} aria-label={t.meny}>
             {d.nav.vanster.map((l) => <a href={l.href} key={l.href}>{l.txt}</a>)}
-            <a className={`${s.hdrLogo} ${logoKlass}`} href="#top" aria-label={`${d.namn} – ${t.tillToppen.toLowerCase()}`}><Logo logo={d.logo && { ...d.logo, alt: '' }} ordmarke={d.ordmarke} priority /></a>
+            <a className={`${s.hdrLogo} ${logoKlass}`} href="#top" aria-label={`${d.namn} – ${t.tillToppen.toLowerCase()}`}><HdrLogo d={d} priority /></a>
             {d.nav.hoger.map((l) => <a href={l.href} key={l.href}>{l.txt}</a>)}
           </nav>
           <div className={s.hdrHoger}>
@@ -243,7 +404,7 @@ export default function DemoSida({ data: d }) {
         <section className={`${s.sek} ${s.sekKram}`} id="om">
           <div className={s.wrap}>
             <div className={s.omGrid}>
-              <div className={s.omKort}>
+              <div className={`${s.omKort}${d.om.utanKort ? ` ${s.omKortFri}` : ''}`}>
                 {/* Valfritt om.bild { src, w, h, alt } i stället för logotypen (t.ex. ett märke). */}
                 {d.om.bild ? <Image src={d.om.bild.src} alt={d.om.bild.alt} width={d.om.bild.w} height={d.om.bild.h} sizes="340px" /> : <Logo logo={d.logo} ordmarke={d.ordmarke} klass="om" />}
                 {d.om.kortRad ? <p className={s.omOrt}>{d.om.kortRad}</p> : null}
@@ -278,86 +439,11 @@ export default function DemoSida({ data: d }) {
           </section>
         ) : null}
 
-        {/* 7. Omdömen i Google-stil */}
-        <section className={`${s.sek} ${s.sekMjuk}`} id="omdomen">
-          <div className={s.wrap}>
-            <div className={s.omdHuvud}>
-              <Rubrik r={d.omdomen} />
-              {d.omdomen.betyg ? (
-                <div className={s.betyg}>
-                  <GoogleG />
-                  <span className={s.betygTal}>{d.omdomen.betyg.varde}</span>
-                  <span className={s.betygTxt}><Stjarnor etikett={t.femStjarnor} /><span>{d.omdomen.betyg.text}</span></span>
-                </div>
-              ) : null}
-            </div>
-            <div className={s.recensioner}>
-              {d.omdomen.lista.map((o, i) => (
-                <figure className={s.recension} key={o.namn}>
-                  <div className={s.recensionHuvud}>
-                    <span className={s.avatar} style={{ '--av': AVATARFARGER[i % AVATARFARGER.length] }} aria-hidden="true">{o.namn[0]}</span>
-                    <figcaption><b>{o.namn}</b><span>{o.kalla}</span></figcaption>
-                    {o.google ? <GoogleG className={s.recensionG} /> : null}
-                  </div>
-                  {/* stjarnor: false = omdömet har inget betyg i källan (t.ex. ett citat på kundens sajt). Rita inga stjärnor då. */}
-                  {o.stjarnor === false ? null : (
-                    <div className={s.recensionRad}>
-                      <Stjarnor tomma={o.exempel} etikett={o.exempel ? t.exempelStjarnor : t.femStjarnor} />
-                      {o.exempel ? <span className={s.exempelTagg}>{t.exempel}</span> : null}
-                    </div>
-                  )}
-                  <blockquote>{o.text}</blockquote>
-                </figure>
-              ))}
-            </div>
-            <div className={s.recensionerFot}>
-              <p className={s.recensionerNot}>{d.omdomen.not}</p>
-              <div className={s.recensionerKnappar}>
-                {d.omdomen.lank ? <a className={`${s.btn} ${s.btnLjus}`} href={d.omdomen.lank.href} target="_blank" rel="noopener">{d.omdomen.lank.txt}</a> : null}
-                <a className={`${s.btn} ${s.btnMork}`} href="#kontakt">{d.cta.txt}</a>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* 7. Omdömen i Google-stil — levande från Google/Reco om data slår på det, annars statiska */}
+        {d.omdomen.levande ? <OmdomenLevande d={d} t={t} /> : <Omdomen d={d} t={t} />}
 
-        {/* 8. Instagram: riktiga inlägg som inbäddningar, annars egna bilder i IG-ram */}
-        {d.instagram ? (
-          <section className={s.sek} id="instagram">
-            <div className={s.wrap}>
-              <Rubrik r={d.instagram} />
-              <div className={s.igStapel}>
-                <div className={s.igProfil}>
-                  <span className={s.igRing} aria-hidden="true"><span>{d.logo ? <Image src={d.logo.src} alt="" width={d.logo.w} height={d.logo.h} sizes="56px" /> : d.namn[0]}</span></span>
-                  <div><b>{k.igHandle}</b><small>{d.instagram.bio}</small></div>
-                </div>
-                <div className={s.igKnappar}>
-                  <a className={s.igKnapp} href={k.ig} target="_blank" rel="noopener"><IgIkon />{t.folj}</a>
-                  {k.fb ? <a className={`${s.igKnapp} ${s.fbKnapp}`} href={k.fb} target="_blank" rel="noopener"><FbIkon />{t.foljFb}</a> : null}
-                </div>
-              </div>
-              <div className={s.igRutnat}>
-                {d.instagram.koder
-                  ? d.instagram.koder.map((kod, i) => (
-                    <div className={s.igInlagg} key={kod}>
-                      <iframe src={`https://www.instagram.com/p/${kod}/embed/captioned/`} title={`${t.inlagg} ${k.igHandle} (${i + 1})`} loading="lazy" allow="encrypted-media" />
-                    </div>
-                  ))
-                  : d.instagram.kort.map((ko) => (
-                    <a className={s.igInlagg} href={k.ig} target="_blank" rel="noopener" key={ko.bild}>
-                      <div className={s.igKortHuvud}><span className={s.igRing} aria-hidden="true"><span>{d.namn[0]}</span></span>{k.igHandle}</div>
-                      <div className={s.igKortBild}><Image src={ko.bild} alt={ko.alt} width={800} height={800} sizes="(max-width: 700px) 92vw, 380px" /></div>
-                      <div className={s.igKortIkoner} aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M12 20.500s-7.500-4.600-7.500-10A4.300 4.300 0 0112 7.800a4.300 4.300 0 017.500 2.700c0 5.400-7.500 10-7.500 10z" /></svg>
-                        <svg viewBox="0 0 24 24"><path d="M20.500 11.500a8.500 8.500 0 01-12.600 7.400L3.500 20.500l1.600-4.300A8.500 8.500 0 1120.500 11.500z" /></svg>
-                        <svg viewBox="0 0 24 24"><path d="M21 3L10.500 13.500M21 3l-6.500 18-4-7.500L3 9.500z" /></svg>
-                      </div>
-                      <p className={s.igKortTxt}><b>{k.igHandle}</b>{ko.text}</p>
-                    </a>
-                  ))}
-              </div>
-            </div>
-          </section>
-        ) : null}
+        {/* 8. Instagram: riktiga inlägg som inbäddningar, annars egna bilder i IG-ram — eller levande flöde */}
+        {d.instagram ? (d.instagram.levande ? <InstagramLevande d={d} t={t} /> : <Instagram d={d} t={t} />) : null}
 
         {/* 9. Frågor */}
         <section className={`${s.sek} ${s.sekKram}`} id="fragor">

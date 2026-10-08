@@ -70,11 +70,26 @@ import DemoSida from '../_mall/DemoSida';
    "sådär"); "Invändig målning" och "Tapetsering och spackel" är ett kort
    så att rutnätet har fyra kort (4 → 2 → 1). tjanster.lattKort (mallfält):
    rubrikerna i accentText 600, punkterna grå 400 (Ghandis önskemål).
+   Korten kortade igen samma kväll (Mathias: "tjänstetexterna är för mycket,
+   håll bullet points"): en mening per kort, punkterna bär innehållet, inga
+   nya påståenden (allt ur texterna ovan).
    Reco-märket "Rekommenderat 3 år i rad" (reco-3-ar.png): Recos egen
    märkesbild från IG-inlägg DcmMHrIEbrF (images/4.png från Mathias),
    beskuren till den runda brickan utan raden "4.9 / 5 (44 recos)". Ligger i
    Om oss-kortet i stället för logotypen (mallfält om.bild), med raden
    "Reco 2024–2026" (märkena Badge2024–2026 på reco.se).
+   INGA PLATTOR BAKOM MÄRKENA (Mathias 2026-10-08): logo.topp 'fri' = ingen
+   vit rundel bakom loggan i headern (ljus variant över filmen, egna färger
+   när headern blivit vit), om.utanKort = Reco-märket står fritt utan det
+   vita kortet, och Varför-filmens logokort är mörkt (#0D1B2A, `mork`) med
+   den ljusa varianten i stället för vitt (video-varfor-mork.mp4).
+
+   LEVANDE FLÖDEN (mallens levande.js, 2026-10-08): omdomen.levande och
+   instagram.levande. Utan nycklar i miljön (GOOGLE_PLACES_KEY,
+   GDMALERI_RECO_URL, GDMALERI_IG_FLODE) ser sidan ut exakt som nu. Med dem
+   hämtas Google-omdömen (högst 5, Googles ordning), Reco-omdömen och de tre
+   senaste Instagram-inläggen på servern var sjätte timme. Vad som behövs och
+   kostar: content/leads/gdmaleri.md, "Levande omdömen och Instagram".
    GD Måleri Sthlm AB är KUND hos Bahko Byrå sedan 2026-10-08.
 
    INTE verifierat, och finns därför inte på sidan: Google-profil och betyg
@@ -88,6 +103,8 @@ import DemoSida from '../_mall/DemoSida';
    deras egen film (se ovan). Den genererade rödfärgade villan och
    röda-gavel-filmerna är borttagna 2026-10-08. Logokortet: loggan är nästan
    kvadratisk, så den fyller 85 % av höjden men bara 51 % av bredden.
+   (gamla video-varfor.mp4 och poster-varfor.jpg med vitt logokort är borttagna)
+   och kan raderas ur media/ (ersatta av *-mork).
    Logotypen är deras egen: formerna, penseln och texten är vektorerna ur
    GD-MALERI-STHLM-AB-logo-1.svg i deras mediebibliotek (gradientbilden i den
    filen är bortstrippad), fyllda med färgerna ur deras 512-px PNG. 1400 px
@@ -163,7 +180,7 @@ const data = {
     accentLjus: '#FF8E9A',
     paAccent: '#fff',
   },
-  logo: { src: `${M}/logo-gdmaleri.png`, ljus: `${M}/logo-gdmaleri-ljus.png`, w: 1400, h: 1315, alt: 'GD Måleri Sthlm AB', topp: 'bricka' },
+  logo: { src: `${M}/logo-gdmaleri.png`, ljus: `${M}/logo-gdmaleri-ljus.png`, w: 1400, h: 1315, alt: 'GD Måleri Sthlm AB', topp: 'fri' },
   kontakt: {
     tel: '073-729 88 89',
     telHref: 'tel:+46737298889',
@@ -197,10 +214,10 @@ const data = {
     lead: '4,9 av 5 i snitt på Reco från 45 omdömen, och Rekommenderat företag på Reco tre år i rad. Vi målar inne och ute och gör förarbetet själva: skrapning, slipning, spackling och tapetborttagning.',
     lattKort: true,
     kort: [
-      { id: 'invandig', namn: 'Invändig målning och tapet', bild: `${M}/tjanst-invandig.jpg`, alt: 'Rum med mörkblått målat tak, ljusa väggar och vitt fönster', text: 'Nya färger på väggar, innertak och lister, hemma eller på kontoret. Vill du ha tapet river vi den gamla, bredspacklar väggen slät och hjälper dig att välja den nya. Golv och möbler täcks med plast eller papper innan vi börjar.', punkter: ['Golv och möbler täcks', 'Hjälp att välja tapet', 'ROT direkt på fakturan'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>) },
-      { id: 'fasad', namn: 'Fasadtvätt och fasadmålning', bild: `${M}/tjanst-fasad.jpg`, alt: 'Nymålad laxrosa panelfasad med vitt burspråksfönster och svart stuprör', text: 'Vi tvättar fasaden och skrapar bort lös färg innan vi målar. Panel, vindskivor, takfot och fönsterkarmar får ny färg från Flügger. ROT dras direkt på fakturan.', punkter: ['Fasadtvätt', 'Skrapning av lös färg', 'Färg från Flügger'], ritning: (<><path d="M20 100V48l80-34 80 34v52" /><path d="M20 100h160" /><path d="M44 56v44M68 50v50M92 44v56M116 44v56M140 50v50M164 56v44" /></>) },
-      { id: 'tak', namn: 'Taktvätt och takmålning', bild: `${M}/tjanst-tak.jpg`, alt: 'Grått betongpannetak efter taktvätt, med en vit villa och tallar i bakgrunden', text: 'Mossa och lav tvättas bort från takpannorna. Vill du ha ny färg på taket målar vi det också. På ett småhus ger både tvätten och målningen ROT, och vi drar det direkt på fakturan.', punkter: ['Taktvätt', 'Takmålning', 'ROT på småhus'], ritning: (<><path d="M16 76L100 24l84 52" /><path d="M36 64v40h128V64" /><path d="M58 52l84 0M46 62h108" /><path d="M136 30v18" /></>) },
-      { id: 'snickerier', namn: 'Snickerier och fönster', bild: `${M}/tjanst-snickerier.jpg`, alt: 'Spegeldörr målad i mörkgrönt i en ljus lägenhet', text: 'Fönster, dörrar, foder och lister skrapas, slipas och målas, så att träet skyddas mot fukt igen. Har fönsterfodren ruttnat byter vi dem i samma veva.', punkter: ['Fönstermålning', 'Byte av ruttna foder', 'Dörrar och lister'], ritning: (<><path d="M54 16h92v88H54z" /><path d="M100 16v88M54 60h92" /><path d="M44 104h112" /></>) },
+      { id: 'invandig', namn: 'Invändig målning och tapet', bild: `${M}/tjanst-invandig.jpg`, alt: 'Rum med mörkblått målat tak, ljusa väggar och vitt fönster', text: 'Väggar, innertak och lister, hemma eller på kontoret.', punkter: ['Tapet och bredspackling', 'Golv och möbler täcks', 'ROT direkt på fakturan'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>) },
+      { id: 'fasad', namn: 'Fasadtvätt och fasadmålning', bild: `${M}/tjanst-fasad.jpg`, alt: 'Nymålad laxrosa panelfasad med vitt burspråksfönster och svart stuprör', text: 'Panel, vindskivor, takfot och fönsterkarmar får ny färg.', punkter: ['Fasadtvätt och skrapning', 'Färg från Flügger', 'ROT direkt på fakturan'], ritning: (<><path d="M20 100V48l80-34 80 34v52" /><path d="M20 100h160" /><path d="M44 56v44M68 50v50M92 44v56M116 44v56M140 50v50M164 56v44" /></>) },
+      { id: 'tak', namn: 'Taktvätt och takmålning', bild: `${M}/tjanst-tak.jpg`, alt: 'Grått betongpannetak efter taktvätt, med en vit villa och tallar i bakgrunden', text: 'Mossa och lav tvättas bort, och taket kan målas om.', punkter: ['Taktvätt', 'Takmålning', 'ROT på småhus'], ritning: (<><path d="M16 76L100 24l84 52" /><path d="M36 64v40h128V64" /><path d="M58 52l84 0M46 62h108" /><path d="M136 30v18" /></>) },
+      { id: 'snickerier', namn: 'Snickerier och fönster', bild: `${M}/tjanst-snickerier.jpg`, alt: 'Spegeldörr målad i mörkgrönt i en ljus lägenhet', text: 'Fönster, dörrar, foder och lister skrapas, slipas och målas.', punkter: ['Fönstermålning', 'Byte av ruttna foder', 'Träet skyddas mot fukt'], ritning: (<><path d="M54 16h92v88H54z" /><path d="M100 16v88M54 60h92" /><path d="M44 104h112" /></>) },
     ],
   },
 
@@ -242,8 +259,8 @@ const data = {
       { rubrik: 'Ett års garanti', text: 'Behöver något åtgärdas under det första året gör vi det utan extra kostnad.' },
       { rubrik: 'Slutbesiktning före fakturan', text: 'Vi går igenom resultatet när jobbet är klart. Ingen förskottsbetalning, och ROT är redan avdraget på fakturan.' },
     ],
-    video: `${M}/video-varfor.mp4`,
-    poster: `${M}/poster-varfor.jpg`,
+    video: `${M}/video-varfor-mork.mp4`,
+    poster: `${M}/poster-varfor-mork.jpg`,
     videoAlt: 'En målare rollar en vit takfot med långskaft mot tallar och blå himmel, ur GD Måleris egen film. Filmen slutar med GD Måleris logotyp.',
   },
 
@@ -253,6 +270,7 @@ const data = {
     // Recos märke i stället för logotypen (Mathias 2026-10-08). Mallfältet om.bild.
     bild: { src: `${M}/reco-3-ar.png`, w: 480, h: 480, alt: 'Reco: Rekommenderat företag tre år i rad' },
     kortRad: 'Reco 2024–2026',
+    utanKort: true,
     stycken: [
       'GD Måleri Sthlm AB är målare i Stockholm, och firman drivs av Ghandi Danho. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
       'Vi målar åt villaägare, bostadsrätter och företag, från en lägenhet på 43 kvm till en fasad på 350 kvm i Täby kyrkby. Färgen är Flügger, och vi är försäkrade via Trygg-Hansa.',
@@ -286,6 +304,15 @@ const data = {
     ],
     not: 'Från Reco.se, där kundrelationen kontrolleras. Ordagrant, ett av dem kortat där det står …',
     lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' },
+    // Levande omdömen (mallens levande.js). Utan nycklar i miljön visas listan ovan oförändrad.
+    // Google: GOOGLE_PLACES_KEY i Vercel. placeId saknas än: Text Search på namnet, och cid
+    // kontrolleras mot profilen (maps.google.com/?cid=13566570836618556636). Sätt placeId när det är känt.
+    // Reco: hela API-URL:en från Reco (med nyckel) i GDMALERI_RECO_URL. Utan den: Reco-citaten ovan.
+    levande: {
+      google: { sok: 'GD Måleri Sthlm AB', cid: '13566570836618556636' },
+      reco: { urlEnv: 'GDMALERI_RECO_URL' },
+      max: 6,
+    },
   },
 
   instagram: {
@@ -293,6 +320,8 @@ const data = {
     rubrik: ['Följ jobben', 'i vardagen'],
     lead: 'Det senaste från vårt konto, direkt från Instagram.',
     bio: 'Måleri inne och ute · Stockholm',
+    // Levande flöde: Behold JSON-URL (eller Instagram-token) i GDMALERI_IG_FLODE. Utan den: inbäddningarna.
+    levande: { env: 'GDMALERI_IG_FLODE', antal: 3 },
     koder: ['Dd-zVd3ggOI', 'Dc1IM7Pgpeh', 'DeNI1zEkcpW'],
   },
 

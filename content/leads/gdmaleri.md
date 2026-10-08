@@ -62,7 +62,7 @@ Fyra kort: "Invändig målning" och "Tapetsering och spackel" är sammanslagna s
 - **Kundloopen runda 2:** sidan lovar bara **kostnadsfri offert** (som gdmaleri.se), inte "kostnadsfri besiktning". Besiktning före offert står bara i ett Reco-omdöme (Ola A) och finns kvar enbart som hans citat; processteget "Besiktning" är borttaget. Varför-sektionen heter nu "Allt i offerten, inget i förskott" (offerten med allt inräknat, inget extra utan ja, slutbesiktning och faktura efter jobbet — allt ur sajten). "Ett års garanti" är borta ur tjänstebandet och kontaktens bockar (konkurrenten vimalar.se har 5 år) och står bara i Varför-punkterna och FAQ. "Inga massutskick, ingen säljlista" och "ärligt besked" i FAQ-kortet är strukna (påhittade löften).
 - Jobbilderna "Gavel målad i rött" och "Panelfasad och foder målade" är utbytta mot andra egna foton (närbild på röd timmervägg; långsida med laxrosa panel), så att samma gavel inte syns två gånger (gällde den gamla Varför-filmen) och samma burspråkshörn inte både som tjänstebild och jobbild.
 - **Formulärets "Vad gäller det?" förväljer första tjänsten** (Invändig målning) — styrs av mallen (`defaultValue={d.tjanster.kort[0].namn}` i DemoSida.js), inte av datafilen. En fasadkund som inte ändrar valet hamnar i fel kategori. Rättas i mallen (tomt förstaval "Välj …"), inte här.
-- **Omdömena är från Reco, inte Google.** Därför ingen betygsbricka i omdömessektionen (mallens bricka bär Googles G). Snittbetyget 4,9 av 45 står i stället som bevisord i Om oss.
+- **Omdömena är från Reco, inte Google.** Därför ingen betygsbricka i omdömessektionen (mallens bricka bär Googles G). Den kommer av sig själv med riktiga Google-betyget när `GOOGLE_PLACES_KEY` finns (se "Levande omdömen och Instagram"). Snittbetyget 4,9 av 45 står i stället som bevisord i Om oss.
 - Ett av de inbäddade IG-inläggen (Täby kyrkby) har en kampanjtext i bildtexten ("10 % på arbetskostnaden och 30 % på färg"). Byt inlägg om kampanjen är slut.
 - Hero-orten är "Stockholm" som firman själv skriver ("Din målare i Stockholm"), fast bolaget har säte i Södertälje.
 - **Säljvinkel:** telefonlänken på gdmaleri.se går till platshållaren 123-456-7890. Varje mobilbesökare som trycker på numret ringer fel, trots 45 omdömen och tre år som Rekommenderat företag.
@@ -139,6 +139,49 @@ Enligt skillen `optimering`, 2026-10-08. Han är kund nu.
 - llms.txt, "AI-stil", Markdown-version för AI, Wikidata-post: ingen dokumenterad effekt.
 - Ta bort `noindex` från bahkobyra.se/gdmaleri före flytten, eller sätta canonical därifrån till gdmaleri.se medan innehållet där är ett annat.
 - H1:an är logotypen med firmanamnet som alt. Det är mallens val och ingen förlust: titeln och brödtexten bär "målare i Stockholm".
+
+## Levande omdömen och Instagram (byggt 2026-10-08, AV tills nycklarna finns)
+
+Mathias: "widget för omdömen och instagram, allt han lägger ska också läggas på hemsidan från insta och reco och google". Byggt i mallen som valfria fält (`omdomen.levande`, `instagram.levande`, koden i `_mall/levande.js`), påslaget i data på båda GD-sidorna. Servern hämtar flödena och ritar vanlig HTML (noll klient-JS), och hämtar om var sjätte timme. **Utan nycklar i miljön ser sidan ut exakt som i dag** (statiska Reco-citat och tre inbäddade IG-inlägg). Svarar en källa inte, eller är något fel, visas det statiska innehållet. Nycklar ligger bara som miljövariabler i Vercel, aldrig i repot (repot är publikt).
+
+| Flöde | Vad som behövs | Miljövariabel i Vercel | Kostnad |
+|---|---|---|---|
+| **Google-omdömen** | Ett Google Cloud-projekt med **Places API (New)** påslaget, ett faktureringskonto (kort krävs) och en API-nyckel **begränsad till Places API (New)**. Sätt en budgetvarning eller kvot i Cloud Console. Ghandi behöver inte göra något om vi kör på Bahkos projekt. Kör vi på hans: han skapar projektet och lägger in oss som användare. | `GOOGLE_PLACES_KEY` | **0 kr i praktiken.** Fälten med omdömen räknas som SKU:n Place Details Enterprise + Atmosphere: 25 USD per 1 000 anrop, och **de första 1 000 anropen per månad är gratis**. Vi gör högst ~120 i månaden (var 6:e timme). Namnsökningen som hittar profilen (bara `places.id`) ligger på IDs Only-SKU:n, som inte kostar något. |
+| **Reco-omdömen** | Reco har inget öppet API. Widget och API ingår i Recos **betalda Standardlösning** (pris efter offert, "baseras på omsättning och behov"). Recos egen WordPress-plugin hämtar JSON från `api.reco.se` med ett **företags-id och en API-nyckel som Reco lämnar ut**. Ghandi (som Reco-kund) ber Reco om id, nyckel och den aktuella API-adressen. Skrapa aldrig reco.se: villkoren förbjuder kopiering i kommersiellt syfte. | `GDMALERI_RECO_URL` (hela adressen, med nyckel) | Ingår i hans Reco-avtal om det har widget/API. Annars offert från Reco. |
+| **Instagram** | Rekommenderat: ett gratis konto på **Behold.so**, kopplat till @gdmaleristhlm. Skapa ett **JSON-flöde** och kopiera flödes-URL:en (`https://feeds.behold.so/…`). Kontot behöver troligen vara **professionellt** (Företag eller Kreatör, gratis att byta i appen). Alternativ utan Behold: en token från Instagram API med Instagram-inloggning (professionellt konto, ingen Facebook-sida behövs). Den måste då förnyas var 60:e dag, och bild-URL:erna går ut. Det sköter Behold åt oss. | `GDMALERI_IG_FLODE` (Behold-URL:en, eller token) | **Gratis:** 1 flöde, de 6 senaste inläggen, uppdatering en gång per dygn, 1 200 visningar i månaden. **Starter 10 USD/mån:** uppdatering varje timme. Gratis räcker för tre inlägg. Att servern hämtar högst 4 gånger per dygn bör hålla oss långt under visningstaket, men om hämtningar räknas som visningar är inte verifierat. |
+
+**Så slås det på:** lägg in variablerna i Vercel-projektet (Production), och gör sedan en ny deploy. Variablerna läses vid bygget och därefter var sjätte timme.
+
+- **Google, place_id:** saknas än. Då söker servern på "GD Måleri Sthlm AB" och visar bara profilen om dess `googleMapsUri` innehåller **cid 13566570836618556636**. Fel firma visas alltså aldrig.
+  - När vi vet place_id: sätt `placeId` i `omdomen.levande.google` i båda page.js. Ett place_id är inte hemligt och får enligt Google sparas.
+  - Att cid står i `googleMapsUri` bygger på erfarenhet och är inte dokumenterat av Google. Visas Google-omdömena inte trots att nyckeln finns, sätt `placeId` (hämtas med Googles [Place ID Finder](https://developers.google.com/maps/documentation/places/web-service/place-id)).
+- **Vad som visas från Google:**
+  - Högst 5 omdömen, i Googles relevansordning. Det är taket i Place Details, och det finns ingen sortering på "nyaste" i API:t.
+  - Bara omdömen med text visas. Inget filtreras på betyg.
+  - Varje kort har författarens bild och namn, med länk till profilen, och texten "Google Maps" med länk till omdömet. Det är Googles krav på attribution.
+  - Betygsbrickan med G-märket och "x omdömen · Google Maps" kommer automatiskt och länkar till profilen.
+  - Noten under omdömena berättar hur de är sorterade och filtrerade, vilket Google kräver.
+- **Hur det blandas:** Google-omdömena först, sedan Reco (levande, annars de tre statiska citaten), högst 6 kort.
+- **Ingen JSON-LD** med omdömen eller betyg (svartlistan). Allt detta är synligt innehåll.
+- **Cachning, flagga:** Googles villkor tillåter bara att place_id lagras, och säger att övrigt innehåll inte ska cachas utöver undantagen. Att spara svaret i sex timmar är en gråzon.
+  - Vill vi vara strikta: sätt `cacheSek: 0` i `omdomen.levande.google`. Då hämtas omdömena vid varje sidvisning och sidan blir dynamisk.
+  - Det är fortfarande gratis upp till 1 000 visningar i månaden, och kostar 25 USD per 1 000 visningar därefter.
+- **Testat** mot en lokal fejkserver (Places, Reco och Behold):
+  - renderingen syns och ser rätt ut,
+  - fel cid ger det statiska läget,
+  - en källa som inte svarar ger det statiska läget,
+  - utan nycklar är sidan statisk med samma HTML som förut.
+
+## Inga plattor bakom märkena (Mathias 2026-10-08)
+
+Valfria mallfält. Andra demos har oförändrad HTML, och swedcro är pixeljämförd.
+- `logo.topp: 'fri'` (kräver `logo.ljus`) tar bort den vita rundeln bakom loggan i headern, både på dator och mobil.
+  - Över filmen visas den ljusa varianten. När headern blivit vit tonar den över till loggans egna färger.
+- `om.utanKort: true` tar bort det vita kortet bakom Reco-märket i Om oss. Märket står fritt på den krämvita ytan.
+- Varför-filmens logokort är nu mörkt (`#0D1B2A`) med den ljusa loggan, inte vitt. Filerna heter `video-varfor-mork.mp4` och `poster-varfor-mork.jpg`.
+  - De gamla `video-varfor.mp4` och `poster-varfor.jpg` används inte längre och kan raderas ur `public/gdmaleri/media/`.
+- Heron och footern hade redan ingen platta.
+- Den vita ringen i Instagram-profilraden är Instagrams profilbildsram och är kvar.
 
 ## DM-utkast (när demon är live)
 

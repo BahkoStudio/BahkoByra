@@ -31,7 +31,10 @@ import DemoSida from '../../_mall/DemoSida';
    logotypen (mallfält om.bild), som på huvudsidan: Recos egen märkesbild
    ur IG-inlägg DcmMHrIEbrF, beskuren till den runda brickan. Fasadtvätt
    som tjänst: Ghandi via Mathias 2026-10-08. tjanster.lattKort: lättare
-   kortrubriker och grå punkter (Ghandis önskemål).
+   kortrubriker och grå punkter (Ghandis önskemål). Korttexterna kortade
+   till en mening var 2026-10-08 (Mathias: "håll bullet points"), inga nya
+   påståenden. Som huvudsidan: logo.topp 'fri', om.utanKort, mörkt logokort
+   i Varför-filmen och levande omdömen/Instagram (se huvudsidans block).
 
    Bärande idé: en offert styrelsen kan fatta beslut på. Allt med i offerten,
    inget extra utan föreningens ja, fakturan när jobbet är klart, F-skatt och
@@ -126,7 +129,7 @@ const data = {
     accentLjus: '#FF8E9A',
     paAccent: '#fff',
   },
-  logo: { src: `${M}/logo-gdmaleri.png`, ljus: `${M}/logo-gdmaleri-ljus.png`, w: 1400, h: 1315, alt: 'GD Måleri Sthlm AB', topp: 'bricka' },
+  logo: { src: `${M}/logo-gdmaleri.png`, ljus: `${M}/logo-gdmaleri-ljus.png`, w: 1400, h: 1315, alt: 'GD Måleri Sthlm AB', topp: 'fri' },
   kontakt: {
     tel: '073-729 88 89',
     telHref: 'tel:+46737298889',
@@ -158,10 +161,10 @@ const data = {
     lead: 'Nu tar vi även uppdrag åt bostadsrättsföreningar. Våra privatkunder har gjort oss till Rekommenderat företag på Reco tre år i rad, med 4,9 av 5 i snitt från 45 omdömen. Förarbetet gör vi själva: tvätt, skrapning, spackling och slipning.',
     lattKort: true,
     kort: [
-      { id: 'trapphus', namn: 'Trapphus', bild: `${M}/brf-trapphus.jpg`, alt: 'Illustrationsbild: en målare bakifrån rollar en ljus trapphusvägg ovanför en grön nederdel, golvet täckt med papper', text: 'Väggar och tak i trapphuset spacklas, slipas och grundmålas innan färgen läggs på. Vi hjälper gärna till med färgval och designförslag.', punkter: ['Väggar och tak', 'Spackling och slipning', 'Färgval och förslag'], ritning: (<><path d="M30 104h28V82h28V60h28V38h28V16h28" /><path d="M30 104h140" /><path d="M44 78l70-56" /></>) },
-      { id: 'entre', namn: 'Entréer och dörrar', bild: `${M}/brf-entre.jpg`, alt: 'Illustrationsbild: nymålade gröna entrédörrar med glasrutor i ett ljust putsat flerbostadshus', text: 'Entrén är det första alla ser. Vi målar dörrar, foder och väggarna runt dem, med samma förarbete som på allt annat: skrapning, slipning och grundmålning.', punkter: ['Entrédörrar', 'Väggar och tak i entrén', 'Skrapning och grundmålning'], ritning: (<><path d="M40 104V20h120v84" /><path d="M64 104V44h72v60" /><path d="M100 44v60" /><path d="M90 76h4M106 76h4" /><path d="M30 104h140" /></>) },
-      { id: 'fasad', namn: 'Fasader och fönster', bild: `${M}/brf-fasad.jpg`, alt: 'Illustrationsbild: nymålad gul putsfasad på ett trevåningshus från 1950-talet, med vita fönster och björkar', text: 'Trä, puts, tegel eller plåt. Vi börjar med fasadens skick: tvätt, skrapning av lös färg och nödvändiga lagningar. Fönstren skrapas, slipas och grundmålas så att färgen fäster.', punkter: ['Fasadtvätt', 'Fönster och karmar', 'Färg från Flügger'], ritning: (<><path d="M30 104V24h140v80" /><path d="M24 104h152" /><path d="M50 40h20v18H50zM90 40h20v18H90zM130 40h20v18h-20zM50 72h20v18H50zM130 72h20v18h-20z" /><path d="M90 104V74h20v30" /></>) },
-      { id: 'lagenhet', namn: 'Lägenheter', bild: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', text: 'Vi har målat fyra lägenheter åt fastighetsbolaget Holmströmgruppen och hela lägenheter åt privatkunder. Vill en medlem måla om hemma kan hen få ROT, och vi drar det direkt på fakturan.', punkter: ['Väggar och tak', 'Snickerier', 'ROT för medlemmen'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>) },
+      { id: 'trapphus', namn: 'Trapphus', bild: `${M}/brf-trapphus.jpg`, alt: 'Illustrationsbild: en målare bakifrån rollar en ljus trapphusvägg ovanför en grön nederdel, golvet täckt med papper', text: 'Väggar och tak i trapphuset, med förarbetet gjort ordentligt.', punkter: ['Spackling och slipning', 'Grundmålning', 'Färgval och förslag'], ritning: (<><path d="M30 104h28V82h28V60h28V38h28V16h28" /><path d="M30 104h140" /><path d="M44 78l70-56" /></>) },
+      { id: 'entre', namn: 'Entréer och dörrar', bild: `${M}/brf-entre.jpg`, alt: 'Illustrationsbild: nymålade gröna entrédörrar med glasrutor i ett ljust putsat flerbostadshus', text: 'Entrén är det första alla ser.', punkter: ['Entrédörrar och foder', 'Entréns väggar och tak', 'Skrapning och grundmålning'], ritning: (<><path d="M40 104V20h120v84" /><path d="M64 104V44h72v60" /><path d="M100 44v60" /><path d="M90 76h4M106 76h4" /><path d="M30 104h140" /></>) },
+      { id: 'fasad', namn: 'Fasader och fönster', bild: `${M}/brf-fasad.jpg`, alt: 'Illustrationsbild: nymålad gul putsfasad på ett trevåningshus från 1950-talet, med vita fönster och björkar', text: 'Trä, puts, tegel eller plåt, och fönstren med karmar.', punkter: ['Fasadtvätt och skrapning', 'Nödvändiga lagningar', 'Färg från Flügger'], ritning: (<><path d="M30 104V24h140v80" /><path d="M24 104h152" /><path d="M50 40h20v18H50zM90 40h20v18H90zM130 40h20v18h-20zM50 72h20v18H50zM130 72h20v18h-20z" /><path d="M90 104V74h20v30" /></>) },
+      { id: 'lagenhet', namn: 'Lägenheter', bild: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', text: 'Fyra lägenheter åt fastighetsbolaget Holmströmgruppen.', punkter: ['Väggar och tak', 'Snickerier', 'ROT för medlemmen'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>) },
     ],
   },
 
@@ -201,8 +204,8 @@ const data = {
       { rubrik: 'F-skatt och försäkring', text: 'Vi har F-skatt och är fullt försäkrade via Trygg-Hansa, så föreningen är skyddad om något skulle gå fel.' },
       { rubrik: 'Faktura när jobbet är klart', text: 'Ingen förskottsbetalning, och ett års garanti på måleriarbetet. På jobb över 500 kvm betalas halva arbetskostnaden vid halva jobbet.' },
     ],
-    video: `${M}/video-varfor.mp4`,
-    poster: `${M}/poster-varfor.jpg`,
+    video: `${M}/video-varfor-mork.mp4`,
+    poster: `${M}/poster-varfor-mork.jpg`,
     videoAlt: 'En målare rollar en vit takfot med långskaft mot tallar och blå himmel, ur GD Måleris egen film. Filmen slutar med GD Måleris logotyp.',
   },
 
@@ -211,6 +214,7 @@ const data = {
     rubrik: ['Ägaren driver', 'firman själv'],
     bild: { src: `${M}/reco-3-ar.png`, w: 480, h: 480, alt: 'Reco: Rekommenderat företag tre år i rad' },
     kortRad: 'Reco 2024–2026',
+    utanKort: true,
     stycken: [
       'GD Måleri Sthlm AB är en målerifirma i Stockholm som drivs av Ghandi Danho. Hittills har vi mest målat åt privatkunder, inne och ute, och nu tar vi även uppdrag åt bostadsrättsföreningar.',
       'Vi har målat allt från en lägenhet på 43 kvm till en fasad på 350 kvm i Täby kyrkby, och fyra lägenheter åt fastighetsbolaget Holmströmgruppen. Färgen är Flügger, och kunderna på Reco har gett oss 4,9 av 5 i snitt.',
@@ -244,6 +248,15 @@ const data = {
     ],
     not: 'Från privatkunder på Reco.se, där kundrelationen kontrolleras. Ordagrant, två av dem kortade där det står …',
     lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' },
+    // Levande omdömen (mallens levande.js). Utan nycklar i miljön visas listan ovan oförändrad.
+    // Google: GOOGLE_PLACES_KEY i Vercel. placeId saknas än: Text Search på namnet, och cid
+    // kontrolleras mot profilen (maps.google.com/?cid=13566570836618556636). Sätt placeId när det är känt.
+    // Reco: hela API-URL:en från Reco (med nyckel) i GDMALERI_RECO_URL. Utan den: Reco-citaten ovan.
+    levande: {
+      google: { sok: 'GD Måleri Sthlm AB', cid: '13566570836618556636' },
+      reco: { urlEnv: 'GDMALERI_RECO_URL' },
+      max: 6,
+    },
   },
 
   instagram: {
@@ -251,6 +264,8 @@ const data = {
     rubrik: ['Följ jobben', 'i vardagen'],
     lead: 'Det senaste från vårt konto, direkt från Instagram.',
     bio: 'Måleri inne och ute · Stockholm',
+    // Levande flöde: Behold JSON-URL (eller Instagram-token) i GDMALERI_IG_FLODE. Utan den: inbäddningarna.
+    levande: { env: 'GDMALERI_IG_FLODE', antal: 3 },
     koder: ['DcmMHrIEbrF', 'Dd-zVd3ggOI', 'Dc1IM7Pgpeh'],
   },
 
