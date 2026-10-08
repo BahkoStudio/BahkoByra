@@ -33,9 +33,15 @@ import DemoSida from '../_mall/DemoSida';
    "Verifierat företag", Rekommenderat företag 2024, 2025 och 2026 (IG-inlägg
    DcmMHrIEbrF: "rekommenderat företag för tredje året i rad"); omdömena från
    Ola A (2026-08-25), Anders F (2025-12-19) och Inga-Lill M (2026-07-26) är
-   femmor från verifierade kunder, citerade ordagrant (Ola utan inledningsraden, Anders kortat i slutet).
-   Instagram @gdmaleristhlm: jobb i Bromma (234 kvm fasad), Täby kyrkby (350 kvm
-   fasad), Södertälje (180 kvm tak/vägg). Reco-omdöme Johan W: lägenhet 43 kvm.
+   femmor från verifierade kunder, citerade ordagrant (Ola i sin helhet, Anders
+   kortat i slutet, markerat med …).
+   Instagram @gdmaleristhlm, bildtexter ordagrant: Dd-zVd3ggOI "Årets sista Fasad
+   på 234 kvm 2026 är avklarad i Bromma" · Dc1IM7Pgpeh "Exklusiv Fasadmålning
+   klar 350 kvm i Täby kyrkby" (platstagg Täby) · DeNI1zEkcpW "180 kvm Tak/Vägg
+   målning samt microlituppsättning och snobbkant" (platstagg Södertälje). Alla
+   tre är inbäddade i Instagram-sektionen. Reco-omdöme Johan W: lägenhet 43 kvm.
+   Jobbildernas bildtexter säger bara vad bilden visar och vilken tjänstesida på
+   gdmaleri.se den ligger under; ingen ort är belagd för dem.
    Alla stillbilder är firmans egna foton från gdmaleri.se (galleri, utförda
    arbeten, tjänstesidor) och bildrutor ur deras egen film.
 
@@ -48,10 +54,12 @@ import DemoSida from '../_mall/DemoSida';
 
    FLAGGOR: hero-filmen (rödfärgad villa, förvandlingen) är en genererad
    illustration (Grok Imagine A + B, Kling 3.0) — inte ett av deras hus.
-   Varför-punkten "Ärliga besked" är vår formulering, stäm av med Ghandi.
-   Logotypen är deras egen men liten och lite suddig (512 px från sajten,
-   uppskalad 2x); den ljusa varianten har bara texten omfärgad till vit, som
-   i deras egen vita variant i sajtens header. Formuläret går till
+   Logotypen är deras egen: formerna, penseln och texten är vektorerna ur
+   GD-MALERI-STHLM-AB-logo-1.svg i deras mediebibliotek (gradientbilden i den
+   filen är bortstrippad), fyllda med färgerna ur deras 512-px PNG. 1400 px
+   bred. Den ljusa varianten har bara texten omfärgad till vit, som i deras
+   egen vita variant i sajtens header. Varför-filmens slutkort har den gamla,
+   mjukare loggan. Formuläret går till
    mathias@bahkobyra.se (demonyckeln).
    =========================================================================== */
 
@@ -74,7 +82,7 @@ const data = {
     accentLjus: '#FF8E9A',
     paAccent: '#fff',
   },
-  logo: { src: `${M}/logo-gdmaleri.png`, ljus: `${M}/logo-gdmaleri-ljus.png`, w: 720, h: 687, alt: 'GD Måleri Sthlm AB', topp: 'bricka' },
+  logo: { src: `${M}/logo-gdmaleri.png`, ljus: `${M}/logo-gdmaleri-ljus.png`, w: 1400, h: 1315, alt: 'GD Måleri Sthlm AB', topp: 'bricka' },
   kontakt: {
     tel: '073-729 88 89',
     telHref: 'tel:+46737298889',
@@ -98,12 +106,12 @@ const data = {
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
   },
-  tejp: ['Invändig målning', 'Fasadmålning', 'Takmålning', 'Tapetsering', 'Bredspackling', 'Fönstermålning', 'Snickerier', 'Stockholm'],
+  tejp: ['4,9 av 5 på Reco', 'Rekommenderat tre år i rad', 'Invändig målning', 'Fasadmålning', 'F-skatt och försäkrade', 'Tapetsering', 'Ett års garanti', 'Bredspackling'],
 
   tjanster: {
     eyebrow: 'Vad vi gör',
     rubrik: ['Inne, ute och', 'allt förarbete'],
-    lead: 'Vi målar invändigt och utvändigt och gör förarbetet själva: skrapning, slipning, spackling och tapetborttagning.',
+    lead: '4,9 av 5 i snitt på Reco från 45 omdömen, och Rekommenderat företag på Reco tre år i rad. Vi målar inne och ute och gör förarbetet själva: skrapning, slipning, spackling och tapetborttagning.',
     kort: [
       { id: 'invandig', namn: 'Invändig målning', bild: `${M}/tjanst-invandig.jpg`, alt: 'Rum med mörkblått målat tak, ljusa väggar och vitt fönster', text: 'Väggar, tak och lister i hem, kontor och lokaler. Golv och möbler täcks med plast eller papper innan första penseldraget.', punkter: ['Väggar och tak', 'Takmålning', 'Kontor och lokaler'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>) },
       { id: 'fasad', namn: 'Fasadmålning', bild: `${M}/tjanst-fasad.jpg`, alt: 'Nymålad laxrosa panelfasad med vitt burspråksfönster och svart stuprör', text: 'Tvätt, skrapning och ny färg på träfasaden, vindskivor, takfot och fönsterkarmar. Vi målar med Flügger, som täcker bra och skyddar länge.', punkter: ['Tvätt och skrapning', 'Vindskivor och takfot', 'Rödmålning'], ritning: (<><path d="M20 100V48l80-34 80 34v52" /><path d="M20 100h160" /><path d="M44 56v44M68 50v50M92 44v56M116 44v56M140 50v50M164 56v44" /></>) },
@@ -119,22 +127,22 @@ const data = {
     not: 'Alla bilder är från våra egna projekt.',
     tid: '70s',
     rad1: [
-      { src: `${M}/jobb-rod-gavel.jpg`, alt: 'Rödmålad timmergavel med vita vindskivor mot blå himmel', txt: 'Rödfärgad gavel' },
-      { src: `${M}/jobb-rod-fonster.jpg`, alt: 'Vitmålat spröjsat fönster i en röd träfasad', txt: 'Vita fönster mot rött' },
-      { src: `${M}/jobb-hornet.jpg`, alt: 'Laxrosa panelfasad med vitt burspråksfönster', txt: 'Panel och fönsterfoder' },
-      { src: `${M}/jobb-terrass.jpg`, alt: 'Nymålad laxrosa fasad och vit dörr vid en trädäcksaltan', txt: 'Fasaden vid altanen' },
-      { src: `${M}/jobb-fonsterbleck.jpg`, alt: 'Närbild på vitmålad fönsterbåge och svart fönsterbleck mot panel', txt: 'Fönsterbåge på nära håll' },
-      { src: `${M}/jobb-fonster-maskerade.jpg`, alt: 'Spröjsade fönster maskerade med blå tejp inför målning', txt: 'Fönster maskerade' },
-      { src: `${M}/jobb-spackel-tak.jpg`, alt: 'Målare i vit t-shirt spacklar ett innertak', txt: 'Spackling i tak' },
+      { src: `${M}/jobb-rod-gavel.jpg`, alt: 'Rödmålad timmergavel med vita vindskivor mot blå himmel', txt: 'Gavel målad i rött' },
+      { src: `${M}/jobb-rod-fonster.jpg`, alt: 'Vitmålat spröjsat fönster i en röd träfasad', txt: 'Fönster målade vita' },
+      { src: `${M}/jobb-hornet.jpg`, alt: 'Laxrosa panelfasad med vitt burspråksfönster', txt: 'Panelfasad och foder målade' },
+      { src: `${M}/jobb-terrass.jpg`, alt: 'Nymålad laxrosa fasad och vit dörr vid en trädäcksaltan', txt: 'Fasad och dörr målade' },
+      { src: `${M}/jobb-fonsterbleck.jpg`, alt: 'Närbild på vitmålad fönsterbåge och svart fönsterbleck mot panel', txt: 'Fönsterbåge målad' },
+      { src: `${M}/jobb-fonster-maskerade.jpg`, alt: 'Spröjsade fönster maskerade med blå tejp inför målning', txt: 'Fönster maskade före målning' },
+      { src: `${M}/jobb-spackel-tak.jpg`, alt: 'Målare i vit t-shirt spacklar ett innertak', txt: 'Innertak spacklas' },
     ],
     rad2: [
-      { src: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', txt: 'Sekelskiftesrum i ljust' },
-      { src: `${M}/jobb-bla-tak.jpg`, alt: 'Ljusblått målat tak med spotlightskena och bokhylla', txt: 'Blått tak' },
-      { src: `${M}/jobb-gul-hall.jpg`, alt: 'Hall i varmgul kulör med vita snickerier och balkongdörr', txt: 'Gul hall' },
-      { src: `${M}/jobb-panelvagg.jpg`, alt: 'Vitmålad bröstpanel under en ljusgrön vägg', txt: 'Bröstpanel och vägg' },
-      { src: `${M}/jobb-trapphus.jpg`, alt: 'Trapphus med mörkrosa nederdel och ljus vägg ovanför', txt: 'Trapphus i två kulörer' },
-      { src: `${M}/jobb-vardagsrum.jpg`, alt: 'Tomt vardagsrum med ljusrosa väggar och tre fönster', txt: 'Nymålat vardagsrum' },
-      { src: `${M}/jobb-bredspackling.jpg`, alt: 'Vägg under bredspackling, golvet täckt med papper', txt: 'Bredspackling först' },
+      { src: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', txt: 'Rum målat i ljust' },
+      { src: `${M}/jobb-bla-tak.jpg`, alt: 'Ljusblått målat tak med spotlightskena och bokhylla', txt: 'Tak målat ljusblått' },
+      { src: `${M}/jobb-gul-hall.jpg`, alt: 'Hall i varmgul kulör med vita snickerier och balkongdörr', txt: 'Hall målad i gult' },
+      { src: `${M}/jobb-panelvagg.jpg`, alt: 'Vitmålad bröstpanel under en ljusgrön vägg', txt: 'Bröstpanel målad vit' },
+      { src: `${M}/jobb-trapphus.jpg`, alt: 'Trapphus med mörkrosa nederdel och ljus vägg ovanför', txt: 'Trapphus målat i två kulörer' },
+      { src: `${M}/jobb-vardagsrum.jpg`, alt: 'Tomt vardagsrum med ljusrosa väggar och tre fönster', txt: 'Vardagsrum målat ljusrosa' },
+      { src: `${M}/jobb-bredspackling.jpg`, alt: 'Vägg under bredspackling, golvet täckt med papper', txt: 'Vägg bredspacklas före målning' },
     ],
   },
 
@@ -146,7 +154,7 @@ const data = {
       { rubrik: 'Besiktning före offert', text: 'Ghandi tittar på huset själv och föreslår det du kanske inte tänkt på, innan han räknar.' },
       { rubrik: 'Inget extra utan ditt ja', text: 'Dyker något oväntat upp hör vi av oss direkt. Vi gör inga extraarbeten utan ditt godkännande.' },
       { rubrik: 'Ett års garanti', text: 'Behöver något åtgärdas under det första året gör vi det utan extra kostnad.' },
-      { rubrik: 'Ärliga besked', text: 'Håller färgen ett par år till säger vi det, även när en ommålning hade gett oss mer betalt.' },
+      { rubrik: 'Allt med i offerten', text: 'Material, förarbete som tvätt och skrapning, städning och bortforsling räknas in från början.' },
     ],
     video: `${M}/video-varfor-rodgavel.mp4`,
     poster: `${M}/poster-varfor.jpg`,
@@ -185,11 +193,11 @@ const data = {
     eyebrow: 'Omdömen',
     rubrik: ['Det kunderna', 'lägger märke till'],
     lista: [
-      { namn: 'Ola A', kalla: 'Verifierad kund · Reco', text: 'Vi fick ett väldigt bra intryck av Ghandi då han gjorde en noggrann besiktning av huset innan offert skickades samt kom med förslag på saker vi inte hade tänkt på innan vad gäller estetik. Jobbet utfördes smidigt och snabbt och vi är jättenöjda.' },
+      { namn: 'Ola A', kalla: 'Verifierad kund · Reco', text: 'Målning av 2-plans hus. Vi fick ett väldigt bra intryck av Ghandi då han gjorde en noggrann besiktning av huset innan offert skickades samt kom med förslag på saker vi inte hade tänkt på innan vad gäller estetik. Jobbet utfördes smidigt och snabbt och vi är jättenöjda. Jag kan starkt rekommendera GD Måleri.' },
       { namn: 'Inga-Lill M', kalla: 'Verifierad kund · Reco', text: 'GD Måleri gav ett proffsigt intryck. Trevliga och informativa. Snyggt och snabbt arbete. Efter arbetet, genomgång och påskrift av arbetsorder. Jag är väldigt nöjd med resultatet. Rekommenderas varmt.' },
-      { namn: 'Anders F', kalla: 'Verifierad kund · Reco', text: 'Vi anlitade GD Måleri Sthlm AB för att måla om hall, trapphus och vardagsrum, och är mycket nöjda med resultatet. Arbetet håller riktigt hög kvalitet, utfördes med stor erfarenhet och noggrannhet, och levererades helt enligt överenskommen tidsplan.' },
+      { namn: 'Anders F', kalla: 'Verifierad kund · Reco', text: 'Vi anlitade GD Måleri Sthlm AB för att måla om hall, trapphus och vardagsrum, och är mycket nöjda med resultatet. Arbetet håller riktigt hög kvalitet, utfördes med stor erfarenhet och noggrannhet, och levererades helt enligt överenskommen tidsplan. …' },
     ],
-    not: 'Från Reco.se, där kundrelationen kontrolleras. Ordagrant, två av dem kortade utan att ändra innebörd.',
+    not: 'Från Reco.se, där kundrelationen kontrolleras. Ordagrant, ett av dem kortat där det står …',
     lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' },
   },
 
@@ -231,8 +239,8 @@ const data = {
   },
 
   popup: {
-    rubrik: 'Måla inomhus i vinter?',
-    text: 'Väggar och tak går att måla året runt. Offerten kostar ingenting, och ROT dras direkt på fakturan.',
+    rubrik: 'Inne eller ute?',
+    text: 'Ghandi tittar på jobbet och skickar en offert som inte kostar något. ROT dras direkt på fakturan.',
   },
 
   footer: {

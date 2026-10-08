@@ -19,9 +19,9 @@
 | Facebook | facebook.com/people/GD-Måleri-Sthlm-AB/61557609848512/ | länk från gdmaleri.se |
 | Tjänster | Invändig målning, tapetsering, snickerier & fönstermålning, takmålning, fasadmålning, bredspackling & tapetborttagning | gdmaleri.se |
 | Löften | "kostnadsfri offert", "Nöjd kund garanti", "flera års erfarenhet", 1 års garanti på måleriarbetet, F-skatt och fullt försäkrade via Trygg-Hansa, Flügger-färg, faktura efter slutfört arbete (över 500 kvm: 50 % vid halva jobbet), inga extraarbeten utan godkännande, ROT direkt på fakturan, ytor täcks med plast/papper, offerten inkluderar material, förarbete, städning och bortforsling | gdmaleri.se (startsida + FAQ) |
-| Omdömen | Reco 4,9/5 av 45 (39 femmor, 6 fyror). På sidan: Ola A, Inga-Lill M, Anders F — femmor från verifierade kunder, ordagrant (Ola utan inledningsraden, Anders kortat i slutet) | reco.se |
+| Omdömen | Reco 4,9/5 av 45 (39 femmor, 6 fyror). På sidan: Ola A, Inga-Lill M, Anders F — femmor från verifierade kunder, ordagrant (Ola och Inga-Lill hela, Anders kortat i slutet med …). Betyget och utmärkelsen står i tjänstebandet direkt under heron och i tjänsternas ingress | reco.se |
 | Utmärkelse | Rekommenderat företag på Reco 2024, 2025, 2026 ("tredje året i rad") | reco.se, IG-inlägg DcmMHrIEbrF |
-| Referensjobb | 234 kvm fasad i Bromma, 350 kvm fasad i Täby kyrkby, 180 kvm tak/vägg i Södertälje (IG); lägenhet 43 kvm (Reco, Johan W) | IG, Reco |
+| Referensjobb | IG-bildtexter ordagrant: "Årets sista Fasad på 234 kvm 2026 är avklarad i Bromma" (Dd-zVd3ggOI), "Exklusiv Fasadmålning klar 350 kvm i Täby kyrkby" (Dc1IM7Pgpeh, platstagg Täby), "180 kvm Tak/Vägg målning samt microlituppsättning och snobbkant" (DeNI1zEkcpW, platstagg Södertälje). Alla tre inbäddade på sidan. Lägenhet 43 kvm (Reco, Johan W). Reco nämner också "Ommålning av fasad 250 kvm" (annat jobb, ingen ort) | IG, Reco |
 
 ## INTE verifierat
 
@@ -35,15 +35,15 @@ Google-profil och betyg (ingen hittad), öppettider, priser, antal projekt, ledt
 | Varför-film (rödmålad gavel mot blå himmel + logokort) | Deras eget foto från gdmaleri.se, ffmpeg | 0 |
 | Kontaktfilm | Samma klipp, suddat ping-pong | 0 |
 | 4 tjänstebilder + 14 jobbilder | Deras egna foton från gdmaleri.se (galleri, utförda arbeten, tjänstesidor) och en bildruta ur deras egen film | 0 |
-| Logotyp | Deras egen från sajten (512 px), uppskalad 2x; ljus variant med texten i vitt för heron | 0 |
+| Logotyp | Deras egen: vektorkonturerna ur `GD-MALERI-STHLM-AB-logo-1.svg` i sajtens mediebibliotek (gradientbilden i SVG:n är bortstrippad av WordPress) fyllda med färgerna ur deras 512-px PNG, 1400 px; ljus variant med texten i vitt för heron | 0 |
 | Instagram | Tre riktiga inlägg inbäddade (Bromma, Täby kyrkby, Södertälje) | 0 |
 
 ## Flaggor före utskick
 
 - **Riktigt telefon, mejl och org.nr på sidan — visa inte offentligt.** Sidan är noindex. Formuläret går till mathias@bahkobyra.se.
 - **Hero-filmen är en genererad illustration**, inte ett av deras hus. Säg det om han frågar.
-- **Logotypen är liten och lite suddig** (största filen på sajten är 512 px). Be om originalfilen (SVG eller stor PNG). Den ljusa varianten i heron har bara texten "MÅLERI STHLM AB" omfärgad till vit, som deras egen vita variant i sajtens header.
-- **Varför-punkten "Ärliga besked"** ("Håller färgen ett par år till säger vi det …") är vår formulering, inte Ghandis ord. Stäm av den.
+- **Logotypen är återskapad skarp ur deras egna filer:** former, pensel och text är vektorerna i deras SVG, färgerna är provade ur deras 512-px PNG (gradienten i SVG:n saknas). Be ändå om originalfilen med gradienten. Den ljusa varianten i heron har bara texten "MÅLERI STHLM AB" omfärgad till vit, som deras egen vita variant i sajtens header. Varför-filmens slutkort har kvar den gamla, mjukare loggan.
+- Varför-punkten "Ärliga besked" är borttagen (kundloopen runda 1: påhittat löfte). Ersatt med "Allt med i offerten" ur sajtens FAQ.
 - **Omdömena är från Reco, inte Google.** Därför ingen betygsbricka i omdömessektionen (mallens bricka bär Googles G). Snittbetyget 4,9 av 45 står i stället som bevisord i Om oss.
 - Ett av de inbäddade IG-inläggen (Täby kyrkby) har en kampanjtext i bildtexten ("10 % på arbetskostnaden och 30 % på färg"). Byt inlägg om kampanjen är slut.
 - Hero-orten är "Stockholm" som firman själv skriver ("Din målare i Stockholm"), fast bolaget har säte i Södertälje.
