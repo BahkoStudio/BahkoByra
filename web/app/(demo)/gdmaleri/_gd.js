@@ -45,7 +45,7 @@ export const bokning = {
   txt: 'Boka offertbesök',
   not: 'Kostnadsfri offert vid ett hembesök på 45 minuter, vardagar 08–17.',
   ringUrl: 'https://cal.com/gdmaleri/ring-mig',
-  ringTxt: 'Boka att Ghandi ringer upp',
+  ringTxt: 'Boka att GD Måleri Sthlm AB ringer upp',
   kortTxt: 'Eller boka offertbesök',
   inbaddad: {
     eyebrow: 'Boka online',
