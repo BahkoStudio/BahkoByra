@@ -20,7 +20,8 @@
 | Tjänster | Invändig målning, tapetsering, snickerier & fönstermålning, takmålning, fasadmålning, bredspackling & tapetborttagning | gdmaleri.se |
 | Löften | "kostnadsfri offert", "Nöjd kund garanti", "flera års erfarenhet", 1 års garanti på måleriarbetet, F-skatt och fullt försäkrade via Trygg-Hansa, Flügger-färg, faktura efter slutfört arbete (över 500 kvm: 50 % vid halva jobbet), inga extraarbeten utan godkännande, ROT direkt på fakturan, ytor täcks med plast/papper, offerten inkluderar material, förarbete, städning och bortforsling | gdmaleri.se (startsida + FAQ) |
 | Omdömen | Reco 4,9/5 av 45 (39 femmor, 6 fyror). På sidan: Ola A, Inga-Lill M, Anders F — femmor från verifierade kunder, ordagrant (Ola och Inga-Lill hela, Anders kortat i slutet med …). Betyget och utmärkelsen står i tjänstebandet direkt under heron och i tjänsternas ingress | reco.se |
-| Utmärkelse | Rekommenderat företag på Reco 2024, 2025, 2026 ("tredje året i rad") | reco.se, IG-inlägg DcmMHrIEbrF |
+| Utmärkelse | Rekommenderat företag på Reco 2024, 2025, 2026 ("tredje året i rad"). Recos märkesbild "Rekommenderat 3 år i rad" (från Mathias, `images/4.png`, samma som IG-inlägg DcmMHrIEbrF) är beskuren till den runda brickan, utan raden "4.9 / 5 (44 recos)", och ligger som `reco-3-ar.png` i tjänsternas ingress på båda sidorna | reco.se (märkena Badge2024–2026), IG-inlägg DcmMHrIEbrF |
+| Fasadtvätt, taktvätt och takmålning (yttertak) | Nya tjänster på huvudsidan (kortet "Fasadtvätt och fasadmålning" och kortet "Taktvätt och takmålning", tejpen, footern, formulärets val, titel, beskrivning, JSON-LD). Källa: Ghandi via Mathias 2026-10-08. Takfotona är Ghandis egna (images/5.png före, 6.png efter, samma jobb som IG-karusellen Dcja9QqkbrR) och visar **taktvätt**, inte målning. **gdmaleri.se:s "Takmålning" är innertak** — det står "innertak" i invändig-kortet. ROT: Skatteverket räknar "rengöra … tak, takpannor" och "reparera och underhålla … takpannor" på småhus som rotarbete. Inga löften om produkt, metod, garanti eller pris | Mathias/Ghandi, IG, skatteverket.se |
 | Referensjobb | IG-bildtexter ordagrant: "Årets sista Fasad på 234 kvm 2026 är avklarad i Bromma" (Dd-zVd3ggOI), "Exklusiv Fasadmålning klar 350 kvm i Täby kyrkby" (Dc1IM7Pgpeh, platstagg Täby), "180 kvm Tak/Vägg målning samt microlituppsättning och snobbkant" (DeNI1zEkcpW, platstagg Södertälje). Alla tre inbäddade på sidan. Lägenhet 43 kvm (Reco, Johan W). Reco nämner också "Ommålning av fasad 250 kvm" (annat jobb, ingen ort) | IG, Reco |
 
 ## INTE verifierat
@@ -38,6 +39,18 @@ Google-profil och betyg (ingen hittad), öppettider, priser, antal projekt, ledt
 | 4 tjänstebilder + 14 jobbilder | Deras egna foton från gdmaleri.se (galleri, utförda arbeten, tjänstesidor); en är ett proffsfoto från sajten (P1588156, "Rum målat i ljust") och en är en bildruta ur deras egen film ("Innertak spacklas"). Sidan säger därför "Alla bilder är från våra egna projekt", inte "fotograferade av oss" | 0 |
 | Logotyp | Deras egen: vektorkonturerna ur `GD-MALERI-STHLM-AB-logo-1.svg` i sajtens mediebibliotek (gradientbilden i SVG:n är bortstrippad av WordPress) fyllda med färgerna ur deras 512-px PNG, 1400 px; ljus variant med texten i vitt för heron | 0 |
 | Instagram | Tre riktiga inlägg inbäddade (Bromma, Täby kyrkby, Södertälje) | 0 |
+| Tak (`tjanst-tak.jpg`, `jobb-tak-fore.jpg`) | Ghandis egna foton (via Mathias 2026-10-08): efter tvätt (6.png) som tjänstebild, före tvätt (5.png) i jobbandet med bildtexten "Tak före tvätt". 4:3-beskurna, före-bilden bort från en parkerad bil. Ingen bild påstås visa ett målat tak. "Invändig målning" och "Tapetsering och spackel" är sammanslagna till ett kort så att rutnätet fortsatt har fyra kort; `tjanst-tapet.jpg` flyttade till jobbandet | 0 |
+| Reco-märket (`reco-3-ar.png`, 480×480 med alfa) | Recos egen märkesbild, rund bricka friställd. Ligger i **Om oss-kortet i stället för logotypen** (mallfältet `om.bild`) på båda sidorna, med raden "Reco 2024–2026" | 0 |
+
+### Malländring 2026-10-08 (godkänd av Mathias)
+
+Två valfria datafält, utan dem ser alla andra demos ut som förut (pixeljämfört på swedcro och trestad):
+- `tjanster.lattKort: true` → klassen `lattKort` på tjänstesektionen: kortrubriker i `accentText` vikt 600, punkterna `#475569` vikt 400 (Ghandi ville inte ha svarta feta rubriker och punkter).
+- `om.bild: { src, w, h, alt }` → bilden i Om oss-kortet i stället för logotypen.
+
+### Tjänstekortens texter (omskrivna 2026-10-08, Ghandi tyckte de var "sådär")
+
+Fyra kort: "Invändig målning" och "Tapetsering och spackel" är sammanslagna så att rutnätet håller 4 → 2 → 1. Före/efter står i leveransrapporten.
 
 ## Flaggor före utskick
 
@@ -49,10 +62,37 @@ Google-profil och betyg (ingen hittad), öppettider, priser, antal projekt, ledt
 - **Kundloopen runda 2:** sidan lovar bara **kostnadsfri offert** (som gdmaleri.se), inte "kostnadsfri besiktning". Besiktning före offert står bara i ett Reco-omdöme (Ola A) och finns kvar enbart som hans citat; processteget "Besiktning" är borttaget. Varför-sektionen heter nu "Allt i offerten, inget i förskott" (offerten med allt inräknat, inget extra utan ja, slutbesiktning och faktura efter jobbet — allt ur sajten). "Ett års garanti" är borta ur tjänstebandet och kontaktens bockar (konkurrenten vimalar.se har 5 år) och står bara i Varför-punkterna och FAQ. "Inga massutskick, ingen säljlista" och "ärligt besked" i FAQ-kortet är strukna (påhittade löften).
 - Jobbilderna "Gavel målad i rött" och "Panelfasad och foder målade" är utbytta mot andra egna foton (närbild på röd timmervägg; långsida med laxrosa panel), så att samma gavel inte syns två gånger (gällde den gamla Varför-filmen) och samma burspråkshörn inte både som tjänstebild och jobbild.
 - **Formulärets "Vad gäller det?" förväljer första tjänsten** (Invändig målning) — styrs av mallen (`defaultValue={d.tjanster.kort[0].namn}` i DemoSida.js), inte av datafilen. En fasadkund som inte ändrar valet hamnar i fel kategori. Rättas i mallen (tomt förstaval "Välj …"), inte här.
-- **Omdömena är från Reco, inte Google.** Därför ingen betygsbricka i omdömessektionen (mallens bricka bär Googles G). Snittbetyget 4,9 av 45 står i stället som bevisord i Om oss.
+- **Omdömena är från Reco, inte Google.** Därför ingen betygsbricka i omdömessektionen (mallens bricka bär Googles G). Den kommer av sig själv med riktiga Google-betyget när `GOOGLE_PLACES_KEY` finns (se "Levande omdömen och Instagram"). Snittbetyget 4,9 av 45 står i stället som bevisord i Om oss.
 - Ett av de inbäddade IG-inläggen (Täby kyrkby) har en kampanjtext i bildtexten ("10 % på arbetskostnaden och 30 % på färg"). Byt inlägg om kampanjen är slut.
 - Hero-orten är "Stockholm" som firman själv skriver ("Din målare i Stockholm"), fast bolaget har säte i Södertälje.
 - **Säljvinkel:** telefonlänken på gdmaleri.se går till platshållaren 123-456-7890. Varje mobilbesökare som trycker på numret ringer fel, trots 45 omdömen och tre år som Rekommenderat företag.
+
+## BRF-sidan (`bahkobyra.se/gdmaleri/brf/`, 2026-10-08)
+
+Ghandi såg huvudsidan och skrev: "den ser bra ut, är detta till BRF? Våran Reco 3 år, rekommenderat företag". **Besked via Mathias samma dag: han har främst jobbat åt privatkunder och vill nu börja ta BRF-uppdrag.** BRF är ett nytt område för honom.
+
+- **Källa:** `web/app/(demo)/gdmaleri/brf/page.js`, samma mall, tema, logotyp, filmer och kontakt som huvudsidan. Länkas från huvudsidans nav som "För BRF" (även footerns Sidan-kolumn och mobilmenyn); BRF-sidan länkar tillbaka med "Startsida". "Om oss" föll ur huvudsidans nav (pillret rymmer två länkar per sida).
+- **Vinkel:** erbjudandet, inte en historik. Rubriken är "Målning för bostadsrättsföreningar: Trapphus, entréer och fasader". Föreningen får samma upplägg som privatkunderna (kostnadsfri offert med allt inräknat, inget extra utan ja, faktura efter jobbet, F-skatt, Trygg-Hansa, ett års garanti). Rekommenderat företag på Reco tre år i rad och 4,9 av 5 (45) står i tjänstebandet, tjänsternas ingress, Om oss och första IG-inlägget (DcmMHrIEbrF, Recos "3 år i rad"-märke). Omdömena sägs uttryckligen komma från privatkunder.
+- **Referensjobbet:** Ghandi (via Mathias 2026-10-08), ordagrant: "Referenser har jag från en Brf Holmströmsgruppen AB där vi målade deras 4 lägenheter". Kontroll (WebSearch samma dag, [Holmströmgruppens årsredovisning 2022](https://storage.mfn.se/5562af67-8dc6-49a9-a669-756a0471a021/holmstromgruppen-arsredovisning-2022.pdf), [mfn.se](https://mfn.se/a/holmstromsgruppen/holmstrom-fastigheter-holding-ab-publ-signs-agreement-to-sell-all-shares-in-ham-nordic-ab)): **Holmströmgruppen AB** (utan s) är ett **fastighetsbolag** i Stockholm, moderbolag till Holmström Fastigheter Holding AB (publ) med bostäder och samhällsfastigheter i Mälardalen och Örnsköldsvik, alltså **inte en bostadsrättsförening**. **Namngivningen är godkänd** (Ghandi via Mathias 2026-10-08: Holmströmsgruppen godkänner att namnges som referens). Sidan säger "fyra lägenheter åt fastighetsbolaget Holmströmgruppen" (Lägenheter-kortet, Om oss och FAQ:n "Har ni jobbat åt fastighetsägare eller föreningar förut?", där den också kallas "vår referens"), utan ort, yta, år eller omdöme. Stavningen är bolagets egen (Holmströmgruppen, utan s); Ghandi skrev "Holmströmsgruppen". En variant utan namn står i en kommentar överst i page.js.
+- **Belagt om BRF i övrigt:** bara erbjudandet. gdmaleri.se/vara-tjanster/ skriver "Vi utför uppdrag åt företag, BRF & privatpersoner" och "bred erfarenhet av både klassiska och moderna trapphusmålningar" (citeras inte som BRF-erfarenhet). Inget Reco-omdöme (alla 45 genomlästa) och inget IG-inlägg gäller en BRF.
+- **Genererade bilder (Higgsfield API, Qwen Image 3, 2k, 4:3, 2026-10-08):** `brf-trapphus.jpg` (målare bakifrån rollar en trapphusvägg, terrazzotrappa), `brf-entre.jpg` (gröna dubbla entrédörrar i ljus puts), `brf-fasad.jpg` (gul putsfasad på ett trevåningshus från 50-talet med björkar). **0,075 USD styck, 0,225 USD totalt** (ett första försök på entrén misslyckades, "model temporarily unavailable", och debiterades inte). De är tjänstekortens bilder för Trapphus, Entréer och dörrar samt Fasader och fönster. Märkning: alt-texten börjar med "Illustrationsbild" och `jobb.not` säger "Bilderna på trapphus, entré och fasad under Tjänster är illustrationsbilder." Jobbanden är bara egna foton från privatkunder, med bildtexter som inte påstår BRF. Byt mot riktiga foton från första föreningsjobbet.
+- **ROT för BRF (Skatteverket, hämtat 2026-10-08):** rotavdrag ges bara till privatpersoner, i bostadsrätt bara för arbete inne i bostaden där bostadsrättshavaren har underhållsansvaret. "Inget avdrag ges för arbete på gemensamma ytor, till exempel tak, fasader, trapphus och entréer." Källa: [Ger arbetet rätt till rotavdrag?](https://www.skatteverket.se/foretag/skatterochavdrag/rotochrut/gerarbetetratttillrotavdrag.4.5c1163881590be297b5173bf.html), [Så fungerar rotavdraget](https://www.skatteverket.se/privat/fastigheterochbostad/rotarbeteochrutarbete/safungerarrotavdraget.4.5947400c11f47f7f9dd80004014.html). Sidan säger det rätta.
+- **Fel på gdmaleri.se:** FAQ:n säger att ROT gäller "För privatpersoner & företag … upp till 75 000 kr". Företag får inte ROT, och högst 50 000 kr av de 75 000 får vara rot (resten rut). Rätta när sajten flyttas.
+- **SEO:** egen titel ("Målare för BRF i Stockholm – trapphus och fasad | GD Måleri Sthlm AB"), JSON-LD `Service` med `provider` = samma `HousePainter` (@id gdmaleri.se/#business), `audience` Bostadsrättsföreningar, inget betygsschema, `noindex` kvar. Vid flytten blir den `gdmaleri.se/brf/` (ny slug, ingen 301 behövs).
+
+### Flaggor BRF
+
+- ~~Fråga Ghandi om Holmströmsgruppen godkänner att namnges som referens.~~ **Godkänt 2026-10-08.** Kvar att bekräfta: att det är Holmströmgruppen AB (fastighetsbolaget, Holmström Fastigheter) och inte en BRF med liknande namn — han skrev "Brf Holmströmsgruppen AB" — och stavningen. Var det en förening de förvaltar ska texten säga det.
+- Fråga om Holmströmgruppen kan lämna ett omdöme (Reco eller Google) och om det finns foton från de fyra lägenheterna.
+- De tre BRF-bilderna är genererade illustrationer (se ovan). Inga påhittade referenser, kundnamn, omdömen eller antal på sidan.
+
+### Plan: vad Ghandi behöver för att vinna BRF-jobb
+
+1. **Första föreningsjobbet.** Ett trapphus, en entré eller en fasad åt en förening, gärna en mindre förening eller grannföreningen till en nöjd privatkund. Fota före, under och efter: bilderna ersätter illustrationerna, och jobbet blir sidans första BRF-referens. Till dess är de fyra lägenheterna åt Holmströmgruppen den enda referensen åt en fastighetsägare.
+2. **Ett omdöme från styrelsen** på Reco (och Google) efter det jobbet, med föreningens namn om de går med på det.
+3. **Ett skriftligt underlag för styrelsemötet:** en offertmall för föreningar med ytor, förarbete, material, städning och bortforsling, tidsplan, hur de boende påverkas (avisering, framkomlighet), betalningsplan, garanti och försäkringsbevis. Styrelser fattar beslut på papper, inte i telefon.
+4. **Ansvarsförsäkringens belopp** från Trygg-Hansa (och gärna försäkringsbeviset som PDF). Föreningar och förvaltare frågar ofta efter det.
+5. **Fråga honom:** arbetstider i trapphus, om han kan avisera de boende, hur stor fasad han klarar med eget folk, och om han har eller kan ta fram ställning/lift. Svaren blir copy på BRF-sidan.
 
 ## Optimering
 
@@ -64,7 +104,7 @@ Enligt skillen `optimering`, 2026-10-08. Han är kund nu.
 - **gdmaleri.se** (WordPress/Elementor/All in One SEO) är indexerbar, har canonical till sig själv, ett `Organization`-schema utan betyg och en sitemap med **18 sidor**: startsidan, 7 tjänstesidor (`/fasad-malning/`, `/malning-invandigt/`, `/tapetsering/`, `/takmalning/`, `/bredspackling-tapetborttagning/`, `/snickerier-fonster-malning/`, `/vara-tjanster/`), **6 ortssidor** (`/fasadmalning-bromma/`, `-taby/`, `-danderyd/`, `-huddinge/`, `-lidingo/`, `-sollentuna/`), galleri, utförda arbeten, om oss, kontakt, offert. Ortssidorna är ~880 ord och 30 % lika varandra (inte rena kopior). Tjänstesidorna är tunna, ~340 ord.
 - **Staging-kopia:** `mediumaquamarine-goldfinch-579369.hostingersite.com` serverar en hel kopia av sajten med canonical till sig själv. robots.txt spärrar Googlebot men släpper in alla andra (Bingbot, GPTBot …). gdmaleri.se pekar dit själv: `og:image` och en video på startsidan.
 - **Telefonlänken på gdmaleri.se** går till `tel:123-456-7890`.
-- **Google Företagsprofil:** ingen hittad (webbsök 2026-10-08 gav bara Reco, Eniro och bolagsregister). Det går inte att utesluta en obeanspråkad profil utan att söka i Google Maps.
+- **Google Företagsprofil: FINNS** (Mathias 2026-10-08): "GD Måleri Sthlm AB" i Google Maps, cid 13566570836618556636, nålen vid 59.3039, 18.0862 (Stockholm). Webbsöket hittade den inte. Telefon 073-729 88 89 bekräftad av Mathias. Adress, kategori, antal Google-omdömen och om profilen är beanspråkad är inte kontrollerade härifrån (Maps kräver webbläsare).
 
 ### Gjort i demon (page.js)
 
@@ -78,7 +118,7 @@ Enligt skillen `optimering`, 2026-10-08. Han är kund nu.
 **Ger effekt**
 
 1. **Rätta telefonlänken på gdmaleri.se** (`tel:+46737298889`). *Ingen SEO-punkt, men den största läckan:* varje mobilbesökare som trycker på numret ringer fel, och det är den sajten som syns i dag. Effekt: hög, går att mäta direkt i samtal. **Nu**, 5 minuter i Elementor.
-2. **Google Företagsprofil.** Sök först i Maps efter en befintlig profil och ta över den i så fall, skapa aldrig en dubblett. Primärkategori **Målare**, max tre underkategorier. Visa inte adressen (Prosten Linders väg ser ut som bostadsadress), utan **tjänsteområde** med orterna han faktiskt jobbar i. NAP ska vara identisk med sajten: GD Måleri Sthlm AB · 073-729 88 89 · gdmaleri.se. Riktiga jobbfoton (stillbilder ur filmen duger). *Dokumenterat.* Effekt: **hög**: kartan och lokala AI-svar hämtar härifrån, inte från sajten. **Nu**, inte blockerat. Verifieringen tar dagar, så börja först.
+2. **Google Företagsprofil — finns, optimera den.** Profilen finns (cid 13566570836618556636). Kontrollera att Ghandi äger den, skapa aldrig en dubblett. Lägg in gdmaleri.se som webbplats och rätt telefon. Primärkategori **Målare**, max tre underkategorier. Visa inte adressen (Prosten Linders väg ser ut som bostadsadress), utan **tjänsteområde** med orterna han faktiskt jobbar i. NAP ska vara identisk med sajten: GD Måleri Sthlm AB · 073-729 88 89 · gdmaleri.se. Riktiga jobbfoton (stillbilder ur filmen duger). *Dokumenterat.* Effekt: **hög**: kartan och lokala AI-svar hämtar härifrån, inte från sajten. **Nu**, inte blockerat. Verifieringen tar dagar, så börja först.
 3. **Flytta Reco-kunderna till Google-omdömen.** 45 omdömen på Reco påverkar inte Google alls. Skicka en direktlänk till Google-formuläret efter varje avslutat jobb och svara på varje omdöme. *Dokumenterat.* Effekt: **hög**, och den billigaste stora hävstången. **Blockerat av punkt 2.** Behåll Reco: utmärkelsen är ett bra bevis på sidan.
 4. **Domänflytt: demon till gdmaleri.se, med URL-karta.** Det är blockeraren för allt arbete på sajten. Ordning: (a) behåll de befintliga sökvägarna, så att tjänste- och ortssidorna byggs om på **samma slugs** (då behövs inga 301:or för dem och inga URL:er byts två gånger), (b) 301 för de sidor som försvinner (`/vara-tjanster/`, `/offert/` och `/kontakta-oss/` → `/`; ett ankare som `/#kontakt` går inte att 301:a till), (c) ta bort `noindex`, canonical till sig själv, egen `sitemap.xml`, (d) Search Console som domänegendom, lämna in sitemap, URL-inspektion av startsidan, (e) 301 från `bahkobyra.se/gdmaleri` till gdmaleri.se och ingen rad i vår sitemap, (f) byt `FILBAS` i schemat och kontrollera att logotyp-URL:en svarar 200, (g) hans egen Web3Forms-nyckel i formuläret. *Dokumenterat* (301, canonical, GSC). Effekt: **hög**, men bara om URL-kartan görs. Tappas 17 indexerade sidor blir det sämre än i dag. **Blockerat av** hans ja till flytten, DNS-åtkomst och beslutet om undersidor (punkt 5–6).
 5. **Tjänstesidor på riktigt.** 3–5 fokuserade sidor (fasadmålning, invändig målning, tapetsering + bredspackling, snickerier + fönster) med egna foton, vad som ingår i offerten, ROT-regeln från Skatteverket och ett riktigt omdöme. Ersätter de tunna ~340-ordssidorna på samma URL:er. *Sannolikt.* Effekt: medel–hög. **Görs i samma veva som punkt 4.**
@@ -99,6 +139,49 @@ Enligt skillen `optimering`, 2026-10-08. Han är kund nu.
 - llms.txt, "AI-stil", Markdown-version för AI, Wikidata-post: ingen dokumenterad effekt.
 - Ta bort `noindex` från bahkobyra.se/gdmaleri före flytten, eller sätta canonical därifrån till gdmaleri.se medan innehållet där är ett annat.
 - H1:an är logotypen med firmanamnet som alt. Det är mallens val och ingen förlust: titeln och brödtexten bär "målare i Stockholm".
+
+## Levande omdömen och Instagram (byggt 2026-10-08, AV tills nycklarna finns)
+
+Mathias: "widget för omdömen och instagram, allt han lägger ska också läggas på hemsidan från insta och reco och google". Byggt i mallen som valfria fält (`omdomen.levande`, `instagram.levande`, koden i `_mall/levande.js`), påslaget i data på båda GD-sidorna. Servern hämtar flödena och ritar vanlig HTML (noll klient-JS), och hämtar om var sjätte timme. **Utan nycklar i miljön ser sidan ut exakt som i dag** (statiska Reco-citat och tre inbäddade IG-inlägg). Svarar en källa inte, eller är något fel, visas det statiska innehållet. Nycklar ligger bara som miljövariabler i Vercel, aldrig i repot (repot är publikt).
+
+| Flöde | Vad som behövs | Miljövariabel i Vercel | Kostnad |
+|---|---|---|---|
+| **Google-omdömen** | Ett Google Cloud-projekt med **Places API (New)** påslaget, ett faktureringskonto (kort krävs) och en API-nyckel **begränsad till Places API (New)**. Sätt en budgetvarning eller kvot i Cloud Console. Ghandi behöver inte göra något om vi kör på Bahkos projekt. Kör vi på hans: han skapar projektet och lägger in oss som användare. | `GOOGLE_PLACES_KEY` | **0 kr i praktiken.** Fälten med omdömen räknas som SKU:n Place Details Enterprise + Atmosphere: 25 USD per 1 000 anrop, och **de första 1 000 anropen per månad är gratis**. Vi gör högst ~120 i månaden (var 6:e timme). Namnsökningen som hittar profilen (bara `places.id`) ligger på IDs Only-SKU:n, som inte kostar något. |
+| **Reco-omdömen** | Reco har inget öppet API. Widget och API ingår i Recos **betalda Standardlösning** (pris efter offert, "baseras på omsättning och behov"). Recos egen WordPress-plugin hämtar JSON från `api.reco.se` med ett **företags-id och en API-nyckel som Reco lämnar ut**. Ghandi (som Reco-kund) ber Reco om id, nyckel och den aktuella API-adressen. Skrapa aldrig reco.se: villkoren förbjuder kopiering i kommersiellt syfte. | `GDMALERI_RECO_URL` (hela adressen, med nyckel) | Ingår i hans Reco-avtal om det har widget/API. Annars offert från Reco. |
+| **Instagram** | Rekommenderat: ett gratis konto på **Behold.so**, kopplat till @gdmaleristhlm. Skapa ett **JSON-flöde** och kopiera flödes-URL:en (`https://feeds.behold.so/…`). Kontot behöver troligen vara **professionellt** (Företag eller Kreatör, gratis att byta i appen). Alternativ utan Behold: en token från Instagram API med Instagram-inloggning (professionellt konto, ingen Facebook-sida behövs). Den måste då förnyas var 60:e dag, och bild-URL:erna går ut. Det sköter Behold åt oss. | `GDMALERI_IG_FLODE` (Behold-URL:en, eller token) | **Gratis:** 1 flöde, de 6 senaste inläggen, uppdatering en gång per dygn, 1 200 visningar i månaden. **Starter 10 USD/mån:** uppdatering varje timme. Gratis räcker för tre inlägg. Att servern hämtar högst 4 gånger per dygn bör hålla oss långt under visningstaket, men om hämtningar räknas som visningar är inte verifierat. |
+
+**Så slås det på:** lägg in variablerna i Vercel-projektet (Production), och gör sedan en ny deploy. Variablerna läses vid bygget och därefter var sjätte timme.
+
+- **Google, place_id:** saknas än. Då söker servern på "GD Måleri Sthlm AB" och visar bara profilen om dess `googleMapsUri` innehåller **cid 13566570836618556636**. Fel firma visas alltså aldrig.
+  - När vi vet place_id: sätt `placeId` i `omdomen.levande.google` i båda page.js. Ett place_id är inte hemligt och får enligt Google sparas.
+  - Att cid står i `googleMapsUri` bygger på erfarenhet och är inte dokumenterat av Google. Visas Google-omdömena inte trots att nyckeln finns, sätt `placeId` (hämtas med Googles [Place ID Finder](https://developers.google.com/maps/documentation/places/web-service/place-id)).
+- **Vad som visas från Google:**
+  - Högst 5 omdömen, i Googles relevansordning. Det är taket i Place Details, och det finns ingen sortering på "nyaste" i API:t.
+  - Bara omdömen med text visas. Inget filtreras på betyg.
+  - Varje kort har författarens bild och namn, med länk till profilen, och texten "Google Maps" med länk till omdömet. Det är Googles krav på attribution.
+  - Betygsbrickan med G-märket och "x omdömen · Google Maps" kommer automatiskt och länkar till profilen.
+  - Noten under omdömena berättar hur de är sorterade och filtrerade, vilket Google kräver.
+- **Hur det blandas:** Google-omdömena först, sedan Reco (levande, annars de tre statiska citaten), högst 6 kort.
+- **Ingen JSON-LD** med omdömen eller betyg (svartlistan). Allt detta är synligt innehåll.
+- **Cachning, flagga:** Googles villkor tillåter bara att place_id lagras, och säger att övrigt innehåll inte ska cachas utöver undantagen. Att spara svaret i sex timmar är en gråzon.
+  - Vill vi vara strikta: sätt `cacheSek: 0` i `omdomen.levande.google`. Då hämtas omdömena vid varje sidvisning och sidan blir dynamisk.
+  - Det är fortfarande gratis upp till 1 000 visningar i månaden, och kostar 25 USD per 1 000 visningar därefter.
+- **Testat** mot en lokal fejkserver (Places, Reco och Behold):
+  - renderingen syns och ser rätt ut,
+  - fel cid ger det statiska läget,
+  - en källa som inte svarar ger det statiska läget,
+  - utan nycklar är sidan statisk med samma HTML som förut.
+
+## Inga plattor bakom märkena (Mathias 2026-10-08)
+
+Valfria mallfält. Andra demos har oförändrad HTML, och swedcro är pixeljämförd.
+- `logo.topp: 'fri'` (kräver `logo.ljus`) tar bort den vita rundeln bakom loggan i headern, både på dator och mobil.
+  - Över filmen visas den ljusa varianten. När headern blivit vit tonar den över till loggans egna färger.
+- `om.utanKort: true` tar bort det vita kortet bakom Reco-märket i Om oss. Märket står fritt på den krämvita ytan.
+- Varför-filmens logokort är nu mörkt (`#0D1B2A`) med den ljusa loggan, inte vitt. Filerna heter `video-varfor-mork.mp4` och `poster-varfor-mork.jpg`.
+  - De gamla `video-varfor.mp4` och `poster-varfor.jpg` används inte längre och kan raderas ur `public/gdmaleri/media/`.
+- Heron och footern hade redan ingen platta.
+- Den vita ringen i Instagram-profilraden är Instagrams profilbildsram och är kvar.
 
 ## DM-utkast (när demon är live)
 

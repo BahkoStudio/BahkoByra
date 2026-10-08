@@ -380,24 +380,39 @@ Kopiera `swedcro/page.js` och byt innehållet. Fälten:
 |---|---|
 | `namn`, `sprak` | Firmanamnet. `sprak: 'nb'` för norska |
 | `tema` | De sex färgerna (se Designen) |
-| `logo` | `{ src, w, h, alt, topp, ljus }` — `ljus` är en ljus variant för heron (valfri). Eller utelämna `logo` och sätt `ordmarke: 'Namn'` |
+| `logo` | `{ src, w, h, alt, topp, ljus }` — `ljus` är en ljus variant för heron (valfri). `topp: 'fri'` (kräver `ljus`) = ingen bricka/rundel i headern: ljusa varianten över filmen, egna färger efter skroll (GD Måleri 2026-10-08). Eller utelämna `logo` och sätt `ordmarke: 'Namn'` |
 | `kontakt` | `tel`, `telHref`, `epost`, `adress`, `oppet`, `ig`, `igHandle`, `fb`, `orgnr` — bara verifierade, resten utelämnas |
 | `cta` | `txt`, `kort`, `lank` |
 | `nav` | `vanster` och `hoger`, två länkar var (logotypen hamnar emellan) |
 | `hero` | `ort`, `tjanster: ['Ett', 'Två']`, `video`, `videoMobil`, `poster`, `posterMobil` — och `h1` (rader) bara när logotyp saknas |
 | `tejp` | Åtta korta ord till bandet under heron (valfri) |
-| `tjanster` | `eyebrow`, `rubrik`, `lead`, `kort[]`: `id`, `namn`, `bild`, `alt`, `text`, `punkter`, `ritning` (JSX-paths, viewBox 200×120) |
+| `tjanster` | `eyebrow`, `rubrik`, `lead`, `kort[]`: `id`, `namn`, `bild`, `alt`, `text`, `punkter`, `ritning` (JSX-paths, viewBox 200×120) · valfritt `lattKort: true` = kortrubriker i `accentText` vikt 600 och punkter grå vikt 400 (GD Måleri 2026-10-08, kundens önskemål) |
 | `jobb` | rubrikfält + `rad1[]`, `rad2[]`: `src`, `alt`, `txt` · `not` · `tid` (varvtid, ~10 s per bild) |
 | `varfor` | rubrikfält + `punkter[]`, `video`, `poster`, `videoAlt` |
-| `om` | `eyebrow`, `rubrik`, `kortRad` (orten under logotypen), `stycken[]`, `bevis[]` |
+| `om` | `eyebrow`, `rubrik`, `kortRad` (orten under logotypen), `stycken[]`, `bevis[]` · valfri `bild: { src, w, h, alt }` visar en bild (t.ex. ett Reco-märke) i stället för logotypen på Om-kortet · valfritt `utanKort: true` = märket står fritt utan det vita kortet |
 | `steg` | rubrikfält + `lista[]`: `namn`, `text`, valfri `ikon` (`kontakt`, `besok`, `offert`, `arbete`, `plan`, `klart`). **Utelämna för att ta bort sektionen** |
-| `omdomen` | rubrikfält + `betyg` (bara verifierat), `lista[]`, `not`, `lank` |
-| `instagram` | rubrikfält + `bio`, och `koder[]` **eller** `kort[]`. Utelämna helt om kontot saknas |
+| `omdomen` | rubrikfält + `betyg` (bara verifierat), `lista[]`, `not`, `lank` · valfritt `levande: { google: { placeId \| sok + cid, nyckelEnv?, cacheSek? }, reco: { urlEnv }, max? }` = levande omdömen hämtade på servern (se Levande flöden) |
+| `instagram` | rubrikfält + `bio`, och `koder[]` **eller** `kort[]`. Utelämna helt om kontot saknas · valfritt `levande: { env, antal? }` = de senaste inläggen ur ett Behold-flöde eller en IG-token i env (se Levande flöden) |
 | `fragor` | rubrikfält + `kort` (rubrik, text), `lista[]` (q, a) — 6–8 frågor, pengar och risk först |
 | `kontaktSektion` | `eyebrow`, `rubrik`, `lead`, `checkar` (tre), `video`, `poster`, `formRubrik`, `placeholder`, `formNot` |
 | `popup`, `footer`, `modal` | `rubrik` + `text` · `text` · `rubrik` + `text` |
 
 "Rubrikfält" = `eyebrow`, `rubrik: ['rak del', 'kursiv del']`, `lead`.
+
+### Levande flöden (valfritt, GD Måleri 2026-10-08)
+
+`_mall/levande.js` hämtar Google-omdömen (Places API (New), högst 5, Googles
+relevansordning), Reco-omdömen (API-URL från Reco) och Instagram-inlägg (Behold
+JSON-flöde eller IG-token) **på servern** med `revalidate` 6 h. Noll klient-JS.
+Nycklar och flödes-URL:er bara som miljövariabler i Vercel (`GOOGLE_PLACES_KEY`,
+kundens egna t.ex. `GDMALERI_RECO_URL`, `GDMALERI_IG_FLODE`) — **aldrig i repot**.
+Saknas nyckeln eller svarar källan inte ritas det statiska innehållet exakt som
+förut, och sidan förblir helt statisk. Google-korten får författarens bild, namn
+med profillänk och textattributionen "Google Maps" (Googles krav), och G-märket
+bara där. `cid` jämförs mot profilens `googleMapsUri` så att fel firma aldrig
+visas. Ingen JSON-LD av detta (svartlistan). Testa mot en lokal fejkserver
+(`GOOGLE_PLACES_BAS=http://localhost:…/v1` och http-URL:er i env) före leverans.
+Vad kunden behöver och vad det kostar: `content/leads/gdmaleri.md`.
 
 **Linjeritningarna** lever kvar som ikoner: enkla `<path>` i 200×120, nischens
 eget språk (husgavel, panel, tapetvåd). Håll dem grova — de visas i 60 px.
