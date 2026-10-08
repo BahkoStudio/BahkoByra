@@ -32,9 +32,14 @@ export const kontakt = {
   oppet: 'Vardagar 08–17',
 };
 
-/* Bokning i Cal.com (Mathias 2026-10-08, länkarna svarar 200). Vanliga länkar i ny flik:
-   ingen inbäddning, ingen klient-JS och ALDRIG någon Cal.com-nyckel. Formuläret är
-   huvudvägen, bokningen ett alternativ. */
+/* Bokning i Cal.com (Mathias 2026-10-08, länkarna svarar 200). Ingen klient-JS och
+   ALDRIG någon Cal.com-nyckel. Formuläret är huvudvägen, bokningen ett alternativ.
+   inbaddad (Mathias 2026-10-08 kväll: "vill se själva bokningssystemet på sidan"):
+   kalendern för /offert som <iframe> i egen sektion före kontakt, utan Cal.coms embed.js.
+   Adressen blir cal.com/gdmaleri/offert?embed=true&theme=light: Cal.coms /embed-route
+   håller sidan dold tills embed.js svarar, ?embed=true på vanliga bokningssidan visar
+   kalendern direkt. Inga X-Frame-Options/frame-ancestors hos Cal.com (kollat 2026-10-08).
+   Med inbaddad utgår bokningsknappen i kontaktsektionen och frågekortets länk pekar på #boka. */
 export const bokning = {
   url: 'https://cal.com/gdmaleri/offert',
   txt: 'Boka offertbesök',
@@ -42,6 +47,12 @@ export const bokning = {
   ringUrl: 'https://cal.com/gdmaleri/ring-mig',
   ringTxt: 'Boka att Ghandi ringer upp',
   kortTxt: 'Eller boka offertbesök',
+  inbaddad: {
+    eyebrow: 'Boka online',
+    rubrik: ['Boka offertbesök', 'direkt'],
+    lead: 'Välj en tid som passar – Ghandi kommer hem till dig. Vardagar 08–17.',
+    titel: 'Boka kostnadsfritt offertbesök med GD Måleri (Cal.com)',
+  },
 };
 
 export const cta = { txt: 'Begär kostnadsfri offert', kort: 'Begär offert', lank: 'Begär offert' };
@@ -113,8 +124,7 @@ export const varfor = {
 export const om = {
   eyebrow: 'Om GD Måleri',
   rubrik: ['Ägaren driver', 'firman själv'],
-  bild: { src: `${M}/reco-3-ar.png`, w: 480, h: 480, alt: 'Reco: Rekommenderat företag tre år i rad' },
-  kortRad: 'Reco 2024–2026',
+  bild: { src: `${M}/reco-kort.png`, w: 827, h: 845, alt: 'Reco: GD Måleri Sthlm AB, rekommenderat företag tre år i rad, 4,9 av 5', rundad: true },
   utanKort: true,
   stycken: [
     'GD Måleri Sthlm AB är målare i Stockholm, och firman drivs av Ghandi Danho. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',

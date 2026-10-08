@@ -409,8 +409,8 @@ export default function DemoSida({ data: d }) {
           <div className={s.wrap}>
             <div className={s.omGrid}>
               <div className={`${s.omKort}${d.om.utanKort ? ` ${s.omKortFri}` : ''}`}>
-                {/* Valfritt om.bild { src, w, h, alt } i stället för logotypen (t.ex. ett märke). */}
-                {d.om.bild ? <Image src={d.om.bild.src} alt={d.om.bild.alt} width={d.om.bild.w} height={d.om.bild.h} sizes="340px" /> : <Logo logo={d.logo} ordmarke={d.ordmarke} klass="om" />}
+                {/* Valfritt om.bild { src, w, h, alt, rundad? } i stället för logotypen (t.ex. ett märke). rundad = bilden är ett eget kort: hela bilden, 18 px radie och kortskugga. */}
+                {d.om.bild ? <Image className={d.om.bild.rundad ? s.omBildRundad : undefined} src={d.om.bild.src} alt={d.om.bild.alt} width={d.om.bild.w} height={d.om.bild.h} sizes={d.om.bild.rundad ? '(max-width: 900px) 92vw, 440px' : '340px'} /> : <Logo logo={d.logo} ordmarke={d.ordmarke} klass="om" />}
                 {d.om.kortRad ? <p className={s.omOrt}>{d.om.kortRad}</p> : null}
               </div>
               <div className={s.omTxt}>
@@ -459,13 +459,28 @@ export default function DemoSida({ data: d }) {
                   <h3>{d.fragor.kort.rubrik}</h3>
                   <p>{d.fragor.kort.text}</p>
                   <a className={s.btn} href={harTel ? k.telHref : '#kontakt'}>{harTel ? <><Tel />{t.ring} {k.tel}</> : d.cta.txt}</a>
-                  {d.bokning?.kortTxt ? <a className={s.pilLank} href={d.bokning.url} target="_blank" rel="noopener">{d.bokning.kortTxt}</a> : null}
+                  {d.bokning?.kortTxt ? (d.bokning.inbaddad ? <a className={s.pilLank} href="#boka">{d.bokning.kortTxt}</a> : <a className={s.pilLank} href={d.bokning.url} target="_blank" rel="noopener">{d.bokning.kortTxt}</a>) : null}
                 </aside>
               </div>
               <div className={s.fragor}>{d.fragor.lista.map((f) => <details className={s.fraga} name="faq" key={f.q}><summary>{f.q}<span className={s.fragaIkon} aria-hidden="true" /></summary><p>{f.a}</p></details>)}</div>
             </div>
           </div>
         </section>
+
+        {/* 9b. Valfritt d.bokning.inbaddad { eyebrow, rubrik, lead, titel, src? }: bokningskalendern (Cal.com) inbäddad som <iframe>,
+            som Instagram-inläggen: ingen embed-JS, noll egen klient-JS. src utelämnad = bokning.url + ?embed=true&theme=light
+            (theme=light: annars blir kalendern mörk hos besökare med mörkt läge). GD Måleri 2026-10-08. */}
+        {d.bokning?.inbaddad ? (
+          <section className={s.sek} id="boka">
+            <div className={s.wrap}>
+              <Rubrik r={d.bokning.inbaddad} />
+              <div className={s.bokaRam}>
+                <iframe src={d.bokning.inbaddad.src || `${d.bokning.url}${d.bokning.url.includes('?') ? '&' : '?'}embed=true&theme=light`} title={d.bokning.inbaddad.titel} loading="lazy" />
+              </div>
+              {d.bokning.ringUrl ? <p className={s.bokaFot}><a className={s.pilLank} href={d.bokning.ringUrl} target="_blank" rel="noopener">{d.bokning.ringTxt}</a></p> : null}
+            </div>
+          </section>
+        ) : null}
 
         {/* 10. Kontakt: formulär över suddig film */}
         <section className={s.kontakt} id="kontakt">
@@ -479,8 +494,9 @@ export default function DemoSida({ data: d }) {
                 <h2 className={s.h2}>{d.kontaktSektion.rubrik[0]}{d.kontaktSektion.rubrik[1] ? <> <em>{d.kontaktSektion.rubrik[1]}</em></> : null}</h2>
                 <p className={s.sekLead}>{d.kontaktSektion.lead}</p>
                 <ul className={s.kontaktCheckar}>{d.kontaktSektion.checkar.map((c) => <li key={c}><Bock />{c}</li>)}</ul>
-                {/* Valfritt d.bokning { url, txt, not?, ringUrl?, ringTxt?, kortTxt? }: vanliga länkar till en bokningssida (t.ex. Cal.com), ny flik, ingen inbäddning. Formuläret förblir huvudvägen. */}
-                {d.bokning ? (
+                {/* Valfritt d.bokning { url, txt, not?, ringUrl?, ringTxt?, kortTxt? }: vanliga länkar till en bokningssida (t.ex. Cal.com), ny flik. Formuläret förblir huvudvägen.
+                    Med bokning.inbaddad står kalendern i egen sektion strax ovanför, och länkarna här utgår. */}
+                {d.bokning && !d.bokning.inbaddad ? (
                   <div className={s.kontaktBokning}>
                     <a className={`${s.btn} ${s.btnKontur}`} href={d.bokning.url} target="_blank" rel="noopener"><Kalender />{d.bokning.txt}</a>
                     {d.bokning.not ? <p className={s.bokningNot}>{d.bokning.not}</p> : null}

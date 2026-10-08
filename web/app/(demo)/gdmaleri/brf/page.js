@@ -28,9 +28,9 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExt
    "fastighetsbolaget Holmströmgruppen" mot "en fastighetsägare" i
    Lägenheter-kortet, Om oss och FAQ:n, och stryk "som också är vår
    referens".
-   Reco-märket (reco-3-ar.png) ligger i Om oss-kortet i stället för
-   logotypen (mallfält om.bild), som på huvudsidan: Recos egen märkesbild
-   ur IG-inlägg DcmMHrIEbrF, beskuren till den runda brickan. Fasadtvätt
+   Reco-kortet (reco-kort.png) ligger i Om oss i stället för logotypen
+   (mallfält om.bild, rundad), som på huvudsidan: Recos egen märkesbild ur
+   IG-inlägg DcmMHrIEbrF, hela kortet utan beskärning (säger 44 recos). Fasadtvätt
    som tjänst: Ghandi via Mathias 2026-10-08. tjanster.lattKort: lättare
    kortrubriker och grå punkter (Ghandis önskemål). Korttexterna kortade
    till en mening var 2026-10-08 (Mathias: "håll bullet points"), inga nya
@@ -223,8 +223,7 @@ const data = {
   om: {
     eyebrow: 'Om GD Måleri',
     rubrik: ['Ägaren driver', 'firman själv'],
-    bild: { src: `${M}/reco-3-ar.png`, w: 480, h: 480, alt: 'Reco: Rekommenderat företag tre år i rad' },
-    kortRad: 'Reco 2024–2026',
+    bild: { src: `${M}/reco-kort.png`, w: 827, h: 845, alt: 'Reco: GD Måleri Sthlm AB, rekommenderat företag tre år i rad, 4,9 av 5', rundad: true },
     utanKort: true,
     stycken: [
       'GD Måleri Sthlm AB är en målerifirma i Stockholm som drivs av Ghandi Danho. Hittills har vi mest målat åt privatkunder, inne och ute, och nu tar vi även uppdrag åt bostadsrättsföreningar.',

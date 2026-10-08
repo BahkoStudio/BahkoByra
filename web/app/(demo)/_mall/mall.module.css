@@ -928,6 +928,8 @@ html:has(.sida) {
 }
 /* Valfritt (data: om.utanKort): märket står fritt på sektionens yta, utan det vita kortet. GD Måleri 2026-10-08. */
 .omKortFri { background: none; border: 0; box-shadow: none; }
+/* Valfritt (data: om.bild.rundad): bilden ÄR kortet (Recos hela märkeskort): hela bilden, ingen beskärning, mallens radie och kortskugga. GD Måleri 2026-10-08. */
+.omKort img.omBildRundad { width: min(100%, 440px); max-height: none; border-radius: var(--r); box-shadow: var(--skugga-stor); }
 .omOrd {
   font-family: var(--f-rubrik);
   font-size: clamp(1.8rem, 3vw, 2.4rem);
@@ -1385,6 +1387,25 @@ a.betyg { color: var(--text); }
   .fragorGrid { grid-template-columns: 1fr; }
   .fragorSida { position: static; }
 }
+
+/* ---------- 9b. bokning: kalendern inbäddad (valfri, data: bokning.inbaddad) ----------
+   Cal.com i <iframe> utan embed-JS, så höjden kan inte följa innehållet. Den är satt så att både
+   kalendern och formulärsteget efter vald tid ryms utan egen skroll (uppmätt 2026-10-08:
+   Cal byter till stående layout när ramen är under 768 px bred, alltså under ~840 px skärm;
+   dator: kalender 570, formulär 867 · mobil 390: kalender ~950 + 44 px per ledig tid = 1 386 med 12 tider, formulär 1 254).
+   Cal centrerar lodrätt, så överskottet blir luft i ramen. theme=light i adressen, annars blir
+   kalendern mörk hos besökare med mörkt läge. GD Måleri 2026-10-08. */
+.bokaRam {
+  border-radius: var(--r);
+  overflow: hidden;
+  background: #FAFAFA; /* Cal.coms egen ljusa bakgrund, så ramen och kalendern flyter ihop */
+  border: 1px solid var(--linje);
+  box-shadow: var(--skugga);
+}
+.bokaRam iframe { display: block; width: 100%; height: 880px; border: 0; }
+@media (max-width: 839px) { .bokaRam iframe { height: 1680px; } }
+@media (max-width: 559px) { .bokaRam iframe { height: 1420px; } }
+.bokaFot { margin-top: 1.2rem; }
 
 /* ---------- 10. kontakt: formulär över suddig film ---------- */
 .kontakt {

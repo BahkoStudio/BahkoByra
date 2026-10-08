@@ -74,11 +74,14 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExt
    Korten kortade igen samma kväll (Mathias: "tjänstetexterna är för mycket,
    håll bullet points"): en mening per kort, punkterna bär innehållet, inga
    nya påståenden (allt ur texterna ovan).
-   Reco-märket "Rekommenderat 3 år i rad" (reco-3-ar.png): Recos egen
-   märkesbild från IG-inlägg DcmMHrIEbrF (images/4.png från Mathias),
-   beskuren till den runda brickan utan raden "4.9 / 5 (44 recos)". Ligger i
-   Om oss-kortet i stället för logotypen (mallfält om.bild), med raden
-   "Reco 2024–2026" (märkena Badge2024–2026 på reco.se).
+   Reco-kortet (reco-kort.png): Recos egen märkesbild från IG-inlägg
+   DcmMHrIEbrF (images/4.png från Mathias), HELA kortet som originalet
+   (Mathias 2026-10-08 kväll: "hela Reco-kortet"): rosa ruta med märket
+   "Rekommenderat 3 år i rad" och raden med GD-logotypen och "4.9 / 5
+   (44 recos)". Ingen beskärning, ingen friläggning, 18 px radie
+   (om.bild.rundad). Ligger i Om oss i stället för logotypen (om.bild),
+   utan raden under (kortet säger allt). OBS: bilden säger 44 recos (Recos
+   skärmdump), Reco visar nu 45; texten på sidan säger 45.
    INGA PLATTOR BAKOM MÄRKENA (Mathias 2026-10-08): logo.topp 'fri' = ingen
    vit rundel bakom loggan i headern (ljus variant över filmen, egna färger
    när headern blivit vit), om.utanKort = Reco-märket står fritt utan det
@@ -139,7 +142,9 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExt
    "Vi återkommer inom 24 timmar": Mathias på Ghandis vägnar 2026-10-08.
    BOKNING (data.bokning, _gd.js): Cal.com-länkarna cal.com/gdmaleri/offert
    (kostnadsfri offert, 45 min hembesök, vardagar 08–17) och /ring-mig (15 min,
-   Ghandi ringer upp), vanliga länkar i ny flik, Mathias 2026-10-08. Öppettider
+   Ghandi ringer upp), Mathias 2026-10-08. Kalendern för /offert är inbäddad som
+   <iframe> i egen sektion "Boka offertbesök direkt" före kontakt (bokning.inbaddad,
+   ?embed=true&theme=light, ingen embed.js); /ring-mig är en länk under. Öppettider
    vardagar 08–17 och "hela Stockholm" bekräftade av Ghandi samma dag.
 
    BRF-UNDERSIDA (2026-10-08): brf/page.js, länkad som "För BRF" i nav (och
@@ -298,9 +303,8 @@ const data = {
   om: {
     eyebrow: 'Om GD Måleri',
     rubrik: ['Ägaren driver', 'firman själv'],
-    // Recos märke i stället för logotypen (Mathias 2026-10-08). Mallfältet om.bild.
-    bild: { src: `${M}/reco-3-ar.png`, w: 480, h: 480, alt: 'Reco: Rekommenderat företag tre år i rad' },
-    kortRad: 'Reco 2024–2026',
+    // Recos hela märkeskort i stället för logotypen (Mathias 2026-10-08). Mallfältet om.bild, rundad.
+    bild: { src: `${M}/reco-kort.png`, w: 827, h: 845, alt: 'Reco: GD Måleri Sthlm AB, rekommenderat företag tre år i rad, 4,9 av 5', rundad: true },
     utanKort: true,
     stycken: [
       'GD Måleri Sthlm AB är målare i Stockholm, och firman drivs av Ghandi Danho. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
