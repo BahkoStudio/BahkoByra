@@ -512,10 +512,10 @@ export default function DemoSida({ data: d }) {
               </div>
               {/* Valfritt d.formular { nyckel, amne, fran, kvittens: [rubrik, text] }: kundens egen Web3Forms-nyckel och egna rader.
                   amne: null / fran: null = inga sådana fält i anropet; då gäller kundens inställningar i Web3Forms-panelen. */}
+              {/* Egen nyckel = förfrågan landar hos kunden (formular.nyckel, eller web3nyckel från #235). Utan: demonyckeln. */}
               <DemoFormular
                 className={s.form}
                 amne={d.formular && 'amne' in d.formular ? d.formular.amne : `${d.namn}: ny förfrågan från förslaget`}
-                {/* Egen nyckel = förfrågan landar hos kunden (formular.nyckel, eller web3nyckel från #235). Utan: demonyckeln. */}
                 {...(d.formular?.nyckel || d.web3nyckel ? { nyckel: d.formular?.nyckel || d.web3nyckel } : {})}
                 {...(d.web3nyckel && !d.formular ? { fran: d.namn } : {})}
                 tel={harTel ? k.tel : undefined}
