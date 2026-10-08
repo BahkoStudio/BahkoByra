@@ -481,7 +481,15 @@ export default function DemoSida({ data: d }) {
                   {k.ig ? <a className={s.kontaktRad} href={k.ig} target="_blank" rel="noopener"><span>{t.igRad}</span><b>{k.igHandle}</b></a> : null}
                 </div>
               </div>
-              <DemoFormular className={s.form} amne={`${d.namn}: ny förfrågan från förslaget`}>
+              {/* Egen nyckel i sidans data = förfrågan landar hos kunden.
+                  Utan nyckel används demonyckeln, alltså vår egen inkorg. */}
+              <DemoFormular
+                className={s.form}
+                amne={`${d.namn}: ny förfrågan från förslaget`}
+                nyckel={d.web3nyckel}
+                fran={d.web3nyckel ? d.namn : undefined}
+                tel={harTel ? k.tel : undefined}
+              >
                 <p className={s.formRubrik}>{d.kontaktSektion.formRubrik}</p>
                 <div className={s.formRad}>
                   <label>{t.namn}<input type="text" name="namn" autoComplete="name" required /></label>

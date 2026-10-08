@@ -341,6 +341,12 @@ const data = {
     ],
   },
 
+  /* GD Måleris egen Web3Forms-nyckel: förfrågningarna går till Ghandi, inte till oss.
+     Autosvar måste vara AVSTÄNGT på den i Web3Forms dashboard så länge sidan är ett
+     förslag, annars kommer ett svar signerat Bahko Byrå från en sajt som ser ut att
+     vara deras egen. */
+  web3nyckel: 'w3f_live_eaUWy1VY4IIjx6fN2mYxWpbU0xXF5cLb',
+
   kontaktSektion: {
     eyebrow: 'Kontakt',
     rubrik: ['Begär en offert,', 'den kostar ingenting'],
