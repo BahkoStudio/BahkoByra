@@ -124,6 +124,8 @@ const schema = {
     'https://www.instagram.com/gdmaleristhlm/',
     'https://www.facebook.com/people/GD-M%C3%A5leri-Sthlm-AB/61557609848512/',
     'https://www.reco.se/gd-maleri-sthlm',
+    // Google Företagsprofil (Mathias 2026-10-08, kartlänk ur Maps)
+    'https://maps.google.com/?cid=13566570836618556636',
   ],
 };
 
