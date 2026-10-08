@@ -658,6 +658,10 @@ html:has(.sida) {
 /* Fasta steg i stället för auto-fit: 4 kort i 3 kolumner lämnade ett ensamt kort på rad två. */
 @media (max-width: 1180px) { .tjanster { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 620px) { .tjanster { grid-template-columns: 1fr; } }
+/* Valfritt (data: tjanster.kolumner: 3), för undersidor med tre kort. Jämna rader i alla bredder:
+   3 → 3 → 1. Utan fältet gäller 4 → 2 → 1 ovan. GD Måleri 2026-10-08. */
+.tjanster.tjKol3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 900px) { .tjanster.tjKol3 { grid-template-columns: 1fr; max-width: 36rem; margin-inline: auto; } }
 .tjanst {
   position: relative;
   display: flex;
@@ -1323,6 +1327,7 @@ a.betyg { color: var(--text); }
 .fragaKort h3 { font-family: var(--f-rubrik); font-size: var(--tx-l); font-weight: 700; letter-spacing: -0.01em; }
 .fragaKort p { margin: 0.4rem 0 1.1rem; font-size: var(--tx-m); color: var(--text-2); }
 .fragaKort .btn { width: 100%; }
+.fragaKort .pilLank { margin-top: 0.6rem; }
 .fragor { display: grid; gap: 0.8rem; }
 .fraga {
   border-radius: var(--r);
@@ -1374,6 +1379,8 @@ a.betyg { color: var(--text); }
 .fraga[open] .fragaIkon::after { background: var(--pa-accent); }
 .fraga[open] .fragaIkon::after { transform: rotate(0deg); }
 .fraga p { padding: 0 1.3rem 1.3rem; color: var(--text-2); max-width: 46rem; }
+/* Ett svar kan bära en källänk (JSX i fragor.lista[].a), t.ex. till Skatteverket. Understruken så att den syns utan färg. */
+.fraga p a { color: var(--accent-text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 900px) {
   .fragorGrid { grid-template-columns: 1fr; }
   .fragorSida { position: static; }
@@ -1415,6 +1422,20 @@ a.betyg { color: var(--text); }
 .kontaktCheckar { display: grid; gap: 0.8rem; margin-top: 1.8rem; font-family: var(--f-rubrik); font-size: var(--tx-l); font-weight: 500; }
 .kontaktCheckar li { display: flex; align-items: center; gap: 0.7rem; }
 .kontaktCheckar .bock { width: 24px; height: 24px; }
+/* Valfritt (data: bokning): bokningslänkar under bockarna. På mobil efter formuläret (order 3). GD Måleri 2026-10-08. */
+.kontaktBokning { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1.2rem; margin-top: 1.8rem; }
+.bokningNot { flex-basis: 100%; order: 3; font-size: var(--tx-s); color: rgba(255, 255, 255, 0.82); }
+.bokningRing {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--f-rubrik);
+  font-weight: 600;
+  color: var(--accent-ljus);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.bokningRing:hover { color: #fff; }
 .kontaktRader {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
@@ -1483,6 +1504,42 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
 .form textarea:focus { border-color: var(--accent); background: #fff; }
 .form .btn { width: 100%; }
 .formNot { font-size: var(--tx-s); color: var(--text-2); }
+/* Valfritt (data: kontaktSektion.kundtyp): tre val som knappar, t.ex. Privatperson / Företag / BRF. GD Måleri 2026-10-08. */
+.kundtyp { border: 0; margin: 0; padding: 0; min-width: 0; }
+.kundtyp legend { padding: 0; font-family: var(--f-rubrik); font-size: var(--tx-s); font-weight: 600; }
+/* Lika breda när det ryms (bas 0), aldrig smalare än texten: på 390 px står alla tre på en rad. */
+.kundtypVal { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; }
+.form .kundtypVal label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+  min-width: max-content;
+  min-height: 48px;
+  padding: 0.4rem 0.75rem;
+  border-radius: 12px;
+  border: 1.5px solid #7C8BA1;
+  background: var(--mjuk);
+  font-size: var(--tx-m);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.form .kundtypVal input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.form .kundtypVal label:hover { border-color: var(--accent); }
+.form .kundtypVal label:has(input:checked) { background: var(--accent); border-color: var(--accent); color: var(--pa-accent); }
+.form .kundtypVal label:has(input:focus-visible) { outline: 3px solid #0F172A; outline-offset: 2px; box-shadow: 0 0 0 2px #fff; }
+.formNot .bock { display: inline-block; width: 18px; height: 18px; margin-right: 0.35rem; vertical-align: -4px; color: var(--accent-text); }
 @media (max-width: 900px) {
   .kontaktGrid { grid-template-columns: 1fr; }
   /* Formuläret direkt efter rubrik och bockar; kontaktrutorna sist. Annars låg formuläret en hel skärm ned. */
@@ -1492,6 +1549,7 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
   .kontaktVanster > * { order: 1; }
   .kontaktGrid > .form { order: 2; }
   .kontaktVanster > .kontaktRader { order: 3; margin-top: 1.4rem; }
+  .kontaktVanster > .kontaktBokning { order: 3; }
   .kontakt::before { background: color-mix(in srgb, var(--mork) 72%, transparent); }
 }
 @media (max-width: 480px) {

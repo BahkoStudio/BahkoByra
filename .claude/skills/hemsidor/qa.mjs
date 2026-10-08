@@ -186,7 +186,7 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   ok((await page.locator('#varfor [class*="varforNot"]').count()) === 0, 'ingen illustrationsnot under Varför-filmen (Mathias 2026-09-19)');
 
   // --- tjänster: kort med bild ---
-  const tj = await page.locator('#tjanster article').evaluateAll((els) => els.map((e) => ({ bild: !!e.querySelector('img'), lank: !!e.querySelector('a[href="#kontakt"]') })));
+  const tj = await page.locator('#tjanster article').evaluateAll((els) => els.map((e) => ({ bild: !!e.querySelector('img'), lank: !!e.querySelector('a[href="#kontakt"], a[href^="/"]') })));
   ok(tj.length >= 3 && tj.every((x) => x.bild && x.lank), `tjänstekort med bild och länk (${tj.length})`);
 
   // --- jobb: två band åt var sitt håll ---

@@ -54,7 +54,7 @@ Fyra kort: "Invändig målning" och "Tapetsering och spackel" är sammanslagna s
 
 ## Flaggor före utskick
 
-- **Riktigt telefon, mejl och org.nr på sidan — visa inte offentligt.** Sidan är noindex. Formuläret går till mathias@bahkobyra.se.
+- **Riktigt telefon, mejl och org.nr på sidan — visa inte offentligt.** Sidan är noindex. **Formuläret går till Ghandis egen Web3Forms (nyckel a5e1…), autosvar ställs in i hans Web3Forms-panel** (sedan 2026-10-08, se "Tjänstesidor, kundtyp och svarstid").
 - **Alla filmer är hans egen film** (Omslag-hemsida-2.mp4 från gdmaleri.se). Den genererade förvandlingen (rödfärgad villa) och röda-gavel-filmerna är borttagna 2026-10-08. Villan i filmen har ingen belagd ort, så sidan påstår ingen.
 - Logokortet i Varför-filmen: loggan är nästan kvadratisk och fyller 85 % av höjden men 51 % av bredden (70 % av bredden går inte utan att beskära).
 - **Logotypen är återskapad skarp ur deras egna filer:** former, pensel och text är vektorerna i deras SVG, färgerna är provade ur deras 512-px PNG (gradienten i SVG:n saknas). Be ändå om originalfilen med gradienten. Den ljusa varianten i heron har bara texten "MÅLERI STHLM AB" omfärgad till vit, som deras egen vita variant i sajtens header. Varför-filmens slutkort har samma skarpa logotyp.
@@ -182,6 +182,69 @@ Valfria mallfält. Andra demos har oförändrad HTML, och swedcro är pixeljämf
   - De gamla `video-varfor.mp4` och `poster-varfor.jpg` används inte längre och kan raderas ur `public/gdmaleri/media/`.
 - Heron och footern hade redan ingen platta.
 - Den vita ringen i Instagram-profilraden är Instagrams profilbildsram och är kvar.
+
+## Tjänstesidor, kundtyp och svarstid (2026-10-08)
+
+Ghandi skickade [marlonshantverksgrupp.se/invandigt-maleri/](https://marlonshantverksgrupp.se/invandigt-maleri/) som förebild ("kolla dom bror"). Mathias bestämde samma dag att vi tar tre saker därifrån: **en sida per tjänst**, **kundtyp i formuläret** (Privatperson / Företag / BRF) och **svarstid** ("Vi återkommer inom 24 timmar", källa: Mathias på Ghandis vägnar 2026-10-08). Strukturen är lånad, ingen text är kopierad.
+
+### Sidorna
+
+| URL | Titel | Kort |
+|---|---|---|
+| `/gdmaleri/` | Målare i Stockholm – fasad, tak och invändig målning | Fyra kort som länkar till sina sidor: Invändig målning och tapet · Fasadtvätt och fasadmålning · Taktvätt och takmålning · **Golvläggning och golvslipning** (nytt). "Snickerier och fönster" är inte längre ett eget kort (fönster står i fasadkortet, dörrar/lister i invändig-kortet) så att rutnätet håller 4 → 2 → 1 |
+| `/gdmaleri/invandig-malning/` | Invändig målning i Stockholm | Väggar · Innertak · Tapet och bredspackling · Dörrar och snickerier. Omdömen: Nils F, Elin Linnea G, Pia T |
+| `/gdmaleri/fasad/` | Fasadmålning och fasadtvätt i Stockholm | Fasadtvätt · Fasadmålning · Fönster och karmar · Dörrar och snickerier (snickerier/fönster/vindskivor ryms här, ingen egen sida). Bromma 234 kvm och Täby kyrkby 350 kvm. Omdömen: Lovisa B, Stefan G, Susanne J |
+| `/gdmaleri/tak/` | Taktvätt och takmålning i Stockholm | Taktvätt · Takmålning · Takfot och vindskivor (tre kort, `kolumner: 3`). ROT på småhus med Skatteverket länkad i FAQ. Omdömen: Torbjörn K ("fixa vår tak", säger inte om det var yttertak), Ola A, Edwin N |
+| `/gdmaleri/golv/` | Golvläggning och golvslipning i Stockholm | Golvläggning · Golvslipning · Golvmålning (tre kort). Omdömen: Susanne P (golvslipning + väggar/tak i villa i två plan), Anneli N (lägenhet 80 kvm + slipning av vardagsrumsgolv) |
+| `/gdmaleri/brf/` | oförändrad | Fick formuläret, svarstiden och länkarna nedan |
+
+Alla: samma mall, tema, logotyp, filmer och kontakt (gemensamt i `gdmaleri/_gd.js`), egen titel och beskrivning, JSON-LD `Service` med `provider` = `HousePainter` `@id gdmaleri.se/#business`, inget betygsschema, `noindex` tills flytten. Omdömena på tjänstesidorna är fasta Reco-citat (femmor från verifierade kunder, grade 5 i Recos data) och inte levande, så att de handlar om just den tjänsten. Pillret har kvar två plus två länkar; **footerns Tjänster-kolumn** länkar till alla fem sidorna och **mobilmenyn** får de som inte står i pillret.
+
+**Vid flytten till gdmaleri.se:** hans nuvarande slugs är `/malning-invandigt/`, `/fasad-malning/` och `/takmalning/` (= innertak). Bygg tjänstesidorna på de gamla adresserna (eller 301 dit från de gamla), så att inga indexerade sidor tappas. `/tak/` och `/golv/` är nya. Schemat har ingen `url` för tjänstesidorna förrän adresserna är bestämda.
+
+### Golv (ny tjänst)
+
+- **Källa:** Mathias på Ghandis vägnar 2026-10-08. Bolagsverkets verksamhetsbeskrivning: "måleritjänster, golvläggning …". GD:s eget svar på Reco: "… målningprojekt eller golvläggning". Golvslipning är redan gjord åt två verifierade Reco-kunder (Susanne P 2025-11-14, Anneli N 2025-10-16).
+- **ROT:** Skatteverket räknar "slipa och byta golv" och "måla golv" som rotarbete, bara arbetskostnaden. Länkat i FAQ.
+- **Inte på sidan** (inte belagt): golvtyper och material, metoder (lack, olja, såpa), priser, ledtider, garanti på golvarbete.
+- **Bilderna är genererade illustrationer** (Higgsfield API, Qwen Image 3, 2k, 4:3): `golv-lagt.jpg`, `golv-slipat.jpg` (även på huvudsidans golvkort), `golv-malat.jpg`. Alt-texten börjar med "Illustrationsbild" och `jobb.not` säger det på båda sidorna.
+- **Be Ghandi skicka riktiga golvbilder** (före/efter från en slipning, ett nylagt golv, ett målat golv), gärna från Susanne P:s eller Anneli N:s jobb. De ersätter illustrationerna ett mot ett.
+
+### Formuläret
+
+- **Formuläret går till Ghandis egen Web3Forms (nyckel a5e1…), autosvar ställs in i hans Web3Forms-panel.** Han har Web3Forms Pro. Nyckeln ligger i `gdmaleri/_gd.js` (Web3Forms-nycklar är publika i klienten).
+- **Ämne och avsändare kommer från hans panel:** "Ny förfrågan via hemsidan – {field:kundtyp}" och "GD Måleri hemsida" (skärmdump från Mathias 2026-10-08). Web3Forms dokumentation säger inte om `subject`/`from_name` i anropet går före panelen, så GD:s anrop skickar **inga** sådana fält. Inget redirect-fält, inga Bahko-namn.
+- **Autosvaret** går enligt Web3Forms till fältet som heter `email`, så e-postfältet heter `email` på GD-sidorna (mallfältet `kontaktSektion.epostNamn`; andra demos har kvar `epost`). E-post är valfritt. Under skicka-knappen står: "Vi återkommer inom 24 timmar. Fyller du i e-post får du en bekräftelse direkt." Kvittensen på sidan: "Tack! Din förfrågan är skickad. Vi återkommer inom 24 timmar. Har du bråttom går det bra att ringa 073-729 88 89."
+- **Kundtyp** Privatperson / Företag / BRF är obligatorisk och skickas som fältet `kundtyp` (gemener), som panelens `{field:kundtyp}` läser.
+- **"Vi återkommer inom 24 timmar"** står under skicka-knappen med en bock, som första bocken i kontaktsektionen och i första steget i "Så går det till" på tjänstesidorna.
+- Modalens mening "Vill ni se den skarpt med ett formulär som landar i inkorgen?" är struken på alla GD-sidor.
+- Testat genom att fånga anropet i Playwright på alla sex sidorna: hans nyckel, `kundtyp`, `email`, inget `subject`/`from_name`/`redirect`, inget skickat på riktigt; utan vald kundtyp skickas inget. swedcro skickar som förut (demonyckeln, egen ämnesrad, `epost`). **Ett riktigt testinskick återstår** (i en vanlig webbläsare med en egen e-post: kontrollera att ämnet blir "… – Privatperson" hos Ghandi och att autosvaret kommer).
+
+### Bokning (Cal.com, 2026-10-08)
+
+- Mathias: GD har bokning i Cal.com. **[cal.com/gdmaleri/offert](https://cal.com/gdmaleri/offert)** (kostnadsfri offert, 45 min hembesök, vardagar 08–17) och **[cal.com/gdmaleri/ring-mig](https://cal.com/gdmaleri/ring-mig)** (15 min, Ghandi ringer upp).
+- På alla sex sidorna som **vanliga länkar** i ny flik (`rel="noopener"`), ingen inbäddning, ingen klient-JS, **ingen Cal.com-nyckel någonstans**. Mallfältet `bokning` (valfritt, bara GD):
+  - kontaktsektionen under bockarna: konturknapp "Boka offertbesök", textlänk "Boka att Ghandi ringer upp" och raden "Kostnadsfri offert vid ett hembesök på 45 minuter, vardagar 08–17." På mobil står de efter formuläret, så formuläret förblir huvudvägen.
+  - FAQ-kortet: "Eller boka offertbesök →" under Ring-knappen.
+  - Popupen är orörd (Ring + "Eller skriv några rader").
+- **Öppettider vardagar 08–17** och **"hela Stockholm"** är bekräftade av Ghandi: öppettiderna står i kontaktrutorna och footern, `openingHoursSpecification` mån–fre 08–17 i huvudsidans JSON-LD, och "Var arbetar ni?" svarar "I hela Stockholm" (plus de belagda orterna). `areaServed`: Stockholm, Stockholms län, Bromma, Täby, Södertälje (tjänstesidorna: Stockholm och Stockholms län).
+
+### Mallen (valfria fält, andra demos oförändrade)
+
+`tjanster.kort[].lank`, `tjanster.kolumner: 3`, `kontaktSektion.kundtyp`, `kontaktSektion.formNotBock`, `kontaktSektion.epostNamn`, `formular` (nyckel, ämnesrad med `{falt}` eller `null`, avsändare eller `null`, kvittens), `bokning`, `nav.extra`, `footer.tjanster`, och en understruken länk i FAQ-svar. swedcro och trestad: samma HTML och pixelidentiska tjänster, kontakt och footer före/efter. Fältbeskrivningen står i hemsidor-skillen.
+
+### Kostnad
+
+3 genererade golvbilder à 0,075 USD = **0,225 USD**. Takfotens bild är en bildruta ur hans egen film (0 kr).
+
+### Flaggor
+
+- Golvbilderna är illustrationer: be om riktiga.
+- Torbjörn K:s omdöme på taksidan säger "tak" utan att säga yttertak eller innertak.
+- Kortet Takmålning visar taket efter **tvätt**, inte målat (det står i `jobb.not`). Ingen bild av ett målat yttertak finns.
+- Kortet Fasadtvätt har en färdigmålad fasad som bild (ingen bild av en tvätt finns).
+- "Fasadtvätt/taktvätt går att beställa för sig" bygger på att Ghandi listar dem som egna tjänster. Bekräfta.
+- Täby-inlägget (Dc1IM7Pgpeh) med kampanjtexten ligger nu även på fasadsidan.
 
 ## DM-utkast (när demon är live)
 
