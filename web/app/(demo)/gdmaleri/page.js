@@ -45,6 +45,17 @@ import DemoSida from '../_mall/DemoSida';
    gdmaleri.se den ligger under; ingen ort är belagd för dem.
    Alla stillbilder är firmans egna foton från gdmaleri.se (galleri, utförda
    arbeten, tjänstesidor) och bildrutor ur deras egen film.
+   Alla filmer (hero, Varför, kontakt) är klipp ur firmans EGEN herofilm på
+   gdmaleri.se: wp-content/uploads/2026/02/Omslag-hemsida-2.mp4 (Elementor-
+   bakgrundsvideo i startsidans första sektion, 1920×1080, 60 s, hämtad
+   2026-10-08). Den visar en vit villa med solceller (drönare, deras skylt på
+   altanen, målare på stege vid balkongen), en takfot som rollas, och inne:
+   spackling, rollning och slipning i jacka med GD Måleris logotyp och nummer.
+   Ingen ort är belagd för villan, så filmen påstår ingen.
+   Hero = 0:02.1–6.1, 6.35–9.3, 30.3–33.3, 39.7–42.7, 55.0–58.5 (16,4 s,
+   stående omramad per klipp) · Varför = takfoten 0:13.2–19.2 + logokort ·
+   kontakt = herofilmen nedskalad och suddad.
+   GD Måleri Sthlm AB är KUND hos Bahko Byrå sedan 2026-10-08.
 
    INTE verifierat, och finns därför inte på sidan: Google-profil och betyg
    (ingen hittad), öppettider, priser, antal projekt, ledtider, medlemskap i
@@ -53,25 +64,68 @@ import DemoSida from '../_mall/DemoSida';
    beskriver slutpris över offert vid tillägg — utelämnat). Gatuadressen
    (Prosten Linders Väg 39, Södertälje, enligt Reco) visas inte.
 
-   FLAGGOR: hero-filmen (rödfärgad villa, förvandlingen) är en genererad
-   illustration (Grok Imagine A + B, Kling 3.0) — inte ett av deras hus.
+   FLAGGOR: inga genererade filmer längre — hero, Varför och kontakt är
+   deras egen film (se ovan). Den genererade rödfärgade villan och
+   röda-gavel-filmerna är borttagna 2026-10-08. Logokortet: loggan är nästan
+   kvadratisk, så den fyller 85 % av höjden men bara 51 % av bredden.
    Logotypen är deras egen: formerna, penseln och texten är vektorerna ur
    GD-MALERI-STHLM-AB-logo-1.svg i deras mediebibliotek (gradientbilden i den
    filen är bortstrippad), fyllda med färgerna ur deras 512-px PNG. 1400 px
    bred. Den ljusa varianten har bara texten omfärgad till vit, som i deras
-   egen vita variant i sajtens header. Varför-filmens slutkort har den gamla,
-   mjukare loggan. Formuläret går till
-   mathias@bahkobyra.se (demonyckeln).
+   egen vita variant i sajtens header. Varför-filmens slutkort har samma
+   skarpa logotyp. Formuläret går till
+   mathias@bahkobyra.se (demonyckeln) — byts mot hans egen Web3Forms-nyckel.
+
+   OPTIMERING (skillen optimering, 2026-10-08): titel och beskrivning med
+   firmanamn, tjänst och ort; JSON-LD HousePainter nedan, utan betyg/omdömen
+   (svartlistan). noindex står KVAR tills sidan ligger på gdmaleri.se —
+   bahkobyra.se/gdmaleri ska inte konkurrera med hans egen domän. Ingen
+   canonical till gdmaleri.se förrän innehållet där är detsamma. Åtgärdslistan
+   står i content/leads/gdmaleri.md under "Optimering".
    =========================================================================== */
 
 export const metadata = {
-  title: 'GD Måleri Sthlm AB — målare i Stockholm, inne och ute',
+  title: 'Målare i Stockholm – fasadmålning och invändig målning | GD Måleri Sthlm AB',
   description:
-    'Målare i Stockholm. Invändig målning, fasadmålning, tapetsering, bredspackling och snickerier. Kostnadsfri offert, ingen förskottsbetalning och ROT direkt på fakturan. Förslag på hemsida från Bahko Byrå.',
+    'GD Måleri Sthlm AB är målare i Stockholm: fasadmålning, invändig målning, tapetsering och bredspackling. Kostnadsfri offert, ROT direkt på fakturan och 4,9 av 5 på Reco.',
   robots: { index: false, follow: false },
 };
 
 const M = '/gdmaleri/media';
+
+/* Strukturerad data. url och @id = hans egen domän. Bildfilerna serveras i
+   dag från bahkobyra.se; byt FILBAS till DOMAN när sajten flyttat dit och
+   kontrollera att logotypens URL svarar 200. Inget AggregateRating/Review:
+   egna omdömen i schema är otillåtna, stjärnorna ska komma från Google-profilen. */
+const DOMAN = 'https://gdmaleri.se';
+const FILBAS = 'https://www.bahkobyra.se';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'HousePainter',
+  '@id': `${DOMAN}/#business`,
+  name: 'GD Måleri Sthlm AB',
+  url: `${DOMAN}/`,
+  logo: `${FILBAS}${M}/logo-gdmaleri.png`,
+  image: `${FILBAS}${M}/tjanst-fasad.jpg`,
+  description: 'Målerifirma i Stockholm: invändig målning, fasadmålning, tapetsering, bredspackling, takmålning och målning av snickerier och fönster. ROT dras direkt på fakturan.',
+  telephone: '+46737298889',
+  email: 'info@gdmaleri.se',
+  foundingDate: '2024-01-16',
+  identifier: { '@type': 'PropertyValue', name: 'Organisationsnummer', value: '559468-2444' },
+  vatID: 'SE559468244401',
+  address: { '@type': 'PostalAddress', addressLocality: 'Södertälje', addressRegion: 'Stockholms län', addressCountry: 'SE' },
+  areaServed: [
+    { '@type': 'City', name: 'Stockholm' },
+    { '@type': 'Place', name: 'Bromma, Stockholm' },
+    { '@type': 'City', name: 'Täby' },
+    { '@type': 'City', name: 'Södertälje' },
+  ],
+  sameAs: [
+    'https://www.instagram.com/gdmaleristhlm/',
+    'https://www.facebook.com/people/GD-M%C3%A5leri-Sthlm-AB/61557609848512/',
+    'https://www.reco.se/gd-maleri-sthlm',
+  ],
+};
 
 const data = {
   namn: 'GD Måleri Sthlm AB',
@@ -102,8 +156,8 @@ const data = {
   hero: {
     ort: 'Stockholm',
     tjanster: ['Måleri', 'Fasad'],
-    video: `${M}/video-hero-rodfarg.mp4`,
-    videoMobil: `${M}/video-hero-rodfarg-mobil.mp4`,
+    video: `${M}/video-hero.mp4`,
+    videoMobil: `${M}/video-hero-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
   },
@@ -157,9 +211,9 @@ const data = {
       { rubrik: 'Ett års garanti', text: 'Behöver något åtgärdas under det första året gör vi det utan extra kostnad.' },
       { rubrik: 'Slutbesiktning före fakturan', text: 'Vi går igenom resultatet när jobbet är klart. Ingen förskottsbetalning, och ROT är redan avdraget på fakturan.' },
     ],
-    video: `${M}/video-varfor-rodgavel.mp4`,
+    video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Långsam inzoomning mot en rödmålad gavel med vitt fönster mot blå himmel. Filmen slutar med GD Måleris logotyp.',
+    videoAlt: 'En målare rollar en vit takfot med långskaft mot tallar och blå himmel, ur GD Måleris egen film. Filmen slutar med GD Måleris logotyp.',
   },
 
   om: {
@@ -167,7 +221,7 @@ const data = {
     rubrik: ['Ägaren driver', 'firman själv'],
     kortRad: 'Stockholm',
     stycken: [
-      'GD Måleri Sthlm AB är en målerifirma i Stockholm som drivs av Ghandi Danho. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
+      'GD Måleri Sthlm AB är målare i Stockholm, och firman drivs av Ghandi Danho. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
       'Vi målar åt villaägare, bostadsrätter och företag, från en lägenhet på 43 kvm till en fasad på 350 kvm i Täby kyrkby. Färgen är Flügger, och vi är försäkrade via Trygg-Hansa.',
     ],
     bevis: [
@@ -231,7 +285,7 @@ const data = {
     rubrik: ['Begär en offert,', 'den kostar ingenting'],
     lead: 'Ring, eller skriv några rader om jobbet. Du får en kostnadsfri offert där allt ingår, från förarbete till bortforsling.',
     checkar: ['Kostnadsfri offert, allt inräknat', 'ROT dras direkt på fakturan', 'Ingen förskottsbetalning'],
-    video: `${M}/video-kontakt-rodgavel.mp4`,
+    video: `${M}/video-kontakt.mp4`,
     poster: `${M}/poster-kontakt.jpg`,
     formRubrik: 'Berätta kort om jobbet',
     placeholder: 'Vad som ska målas, inne eller ute, ungefärlig yta, och var i Stockholm',
@@ -244,7 +298,7 @@ const data = {
   },
 
   footer: {
-    text: 'Invändig målning, fasadmålning, tapetsering och snickerier i Stockholm. Kostnadsfri offert och slutbesiktning innan fakturan.',
+    text: 'Målare i Stockholm för invändig målning, fasadmålning, tapetsering och snickerier. Kostnadsfri offert och slutbesiktning innan fakturan.',
   },
 
   modal: {
@@ -254,5 +308,10 @@ const data = {
 };
 
 export default function GdMaleriDemo() {
-  return <DemoSida data={data} />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <DemoSida data={data} />
+    </>
+  );
 }
