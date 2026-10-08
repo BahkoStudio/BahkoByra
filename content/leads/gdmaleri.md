@@ -34,7 +34,7 @@ Google-profil och betyg (ingen hittad), öppettider, priser, antal projekt, ledt
 | **Hero: förvandlingen** (sliten rödfärgad trävilla → nymålad Falu röd med vita knutar) | Genererad illustration: Grok Imagine A + B, Kling 3.0 Std via API (Qwen föll fyra gånger med "Generation failed", inte debiterat) | ca 0,37 USD |
 | Varför-film (rödmålad gavel mot blå himmel + logokort) | Deras eget foto från gdmaleri.se, ffmpeg | 0 |
 | Kontaktfilm | Samma klipp, suddat ping-pong | 0 |
-| 4 tjänstebilder + 14 jobbilder | Deras egna foton från gdmaleri.se (galleri, utförda arbeten, tjänstesidor) och en bildruta ur deras egen film | 0 |
+| 4 tjänstebilder + 14 jobbilder | Deras egna foton från gdmaleri.se (galleri, utförda arbeten, tjänstesidor); en är ett proffsfoto från sajten (P1588156, "Rum målat i ljust") och en är en bildruta ur deras egen film ("Innertak spacklas"). Sidan säger därför "Alla bilder är från våra egna projekt", inte "fotograferade av oss" | 0 |
 | Logotyp | Deras egen: vektorkonturerna ur `GD-MALERI-STHLM-AB-logo-1.svg` i sajtens mediebibliotek (gradientbilden i SVG:n är bortstrippad av WordPress) fyllda med färgerna ur deras 512-px PNG, 1400 px; ljus variant med texten i vitt för heron | 0 |
 | Instagram | Tre riktiga inlägg inbäddade (Bromma, Täby kyrkby, Södertälje) | 0 |
 
@@ -44,6 +44,9 @@ Google-profil och betyg (ingen hittad), öppettider, priser, antal projekt, ledt
 - **Hero-filmen är en genererad illustration**, inte ett av deras hus. Säg det om han frågar.
 - **Logotypen är återskapad skarp ur deras egna filer:** former, pensel och text är vektorerna i deras SVG, färgerna är provade ur deras 512-px PNG (gradienten i SVG:n saknas). Be ändå om originalfilen med gradienten. Den ljusa varianten i heron har bara texten "MÅLERI STHLM AB" omfärgad till vit, som deras egen vita variant i sajtens header. Varför-filmens slutkort har kvar den gamla, mjukare loggan.
 - Varför-punkten "Ärliga besked" är borttagen (kundloopen runda 1: påhittat löfte). Ersatt med "Allt med i offerten" ur sajtens FAQ.
+- **Kundloopen runda 2:** sidan lovar bara **kostnadsfri offert** (som gdmaleri.se), inte "kostnadsfri besiktning". Besiktning före offert står bara i ett Reco-omdöme (Ola A) och finns kvar enbart som hans citat; processteget "Besiktning" är borttaget. Varför-sektionen heter nu "Allt i offerten, inget i förskott" (offerten med allt inräknat, inget extra utan ja, slutbesiktning och faktura efter jobbet — allt ur sajten). "Ett års garanti" är borta ur tjänstebandet och kontaktens bockar (konkurrenten vimalar.se har 5 år) och står bara i Varför-punkterna och FAQ. "Inga massutskick, ingen säljlista" och "ärligt besked" i FAQ-kortet är strukna (påhittade löften).
+- Jobbilderna "Gavel målad i rött" och "Panelfasad och foder målade" är utbytta mot andra egna foton (närbild på röd timmervägg; långsida med laxrosa panel), så att samma gavel inte syns både i galleriet och i Varför-/kontaktfilmen och samma burspråkshörn inte både som tjänstebild och jobbild.
+- **Formulärets "Vad gäller det?" förväljer första tjänsten** (Invändig målning) — styrs av mallen (`defaultValue={d.tjanster.kort[0].namn}` i DemoSida.js), inte av datafilen. En fasadkund som inte ändrar valet hamnar i fel kategori. Rättas i mallen (tomt förstaval "Välj …"), inte här.
 - **Omdömena är från Reco, inte Google.** Därför ingen betygsbricka i omdömessektionen (mallens bricka bär Googles G). Snittbetyget 4,9 av 45 står i stället som bevisord i Om oss.
 - Ett av de inbäddade IG-inläggen (Täby kyrkby) har en kampanjtext i bildtexten ("10 % på arbetskostnaden och 30 % på färg"). Byt inlägg om kampanjen är slut.
 - Hero-orten är "Stockholm" som firman själv skriver ("Din målare i Stockholm"), fast bolaget har säte i Södertälje.

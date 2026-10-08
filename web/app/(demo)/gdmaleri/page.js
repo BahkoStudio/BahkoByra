@@ -5,10 +5,11 @@ import DemoSida from '../_mall/DemoSida';
    Lead: instagram.com/gdmaleristhlm · Stockholm · HAR hemsida (gdmaleri.se).
    Byggd 2026-10-08 på demomallen v3 (kopia av swedcro-kanon).
 
-   Bärande idé: ägaren själv besiktar huset innan offerten skrivs och går
-   igenom resultatet med kunden när jobbet är klart, och fakturan kommer först
-   då. Kunderna på Reco nämner det gång på gång (besiktning före offert,
-   genomgång och påskrift efter, slutbesiktning). Varför-sektionen bär den.
+   Bärande idé: allt i offerten, inget i förskott. Offerten är kostnadsfri och
+   tar med material, förarbete, städning och bortforsling; inget extra görs
+   utan kundens ja; jobbet slutbesiktas och fakturan kommer när det är klart.
+   Allt ur gdmaleri.se. Besiktning FÖRE offert är inget generellt löfte (bara
+   ett Reco-omdöme, Ola A, som står kvar som citat). Varför-sektionen bär den.
 
    VERIFIERAT (2026-10-08):
    gdmaleri.se: "Din målare i Stockholm", "flera års erfarenhet", tjänsterna
@@ -66,7 +67,7 @@ import DemoSida from '../_mall/DemoSida';
 export const metadata = {
   title: 'GD Måleri Sthlm AB — målare i Stockholm, inne och ute',
   description:
-    'Målare i Stockholm. Invändig målning, fasadmålning, tapetsering, bredspackling och snickerier. Besiktning före offerten, ett års garanti och ROT direkt på fakturan. Förslag på hemsida från Bahko Byrå.',
+    'Målare i Stockholm. Invändig målning, fasadmålning, tapetsering, bredspackling och snickerier. Kostnadsfri offert, ingen förskottsbetalning och ROT direkt på fakturan. Förslag på hemsida från Bahko Byrå.',
   robots: { index: false, follow: false },
 };
 
@@ -106,7 +107,7 @@ const data = {
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
   },
-  tejp: ['4,9 av 5 på Reco', 'Rekommenderat tre år i rad', 'Invändig målning', 'Fasadmålning', 'F-skatt och försäkrade', 'Tapetsering', 'Ett års garanti', 'Bredspackling'],
+  tejp: ['4,9 av 5 på Reco', 'Rekommenderat tre år i rad', 'Invändig målning', 'Fasadmålning', 'F-skatt och försäkrade', 'Tapetsering', 'ROT direkt på fakturan', 'Bredspackling'],
 
   tjanster: {
     eyebrow: 'Vad vi gör',
@@ -123,13 +124,13 @@ const data = {
   jobb: {
     eyebrow: 'Våra jobb',
     rubrik: ['Hus och hem vi', 'har målat om'],
-    lead: 'Fasader, trapphus och rum, fotograferade av oss på plats.',
-    not: 'Alla bilder är från våra egna projekt.',
+    lead: 'Fasader, fönster, trapphus och rum. Alla bilder är från våra egna projekt.',
+    not: 'Fler jobb, med ort och yta, finns på vårt Instagram.',
     tid: '70s',
     rad1: [
-      { src: `${M}/jobb-rod-gavel.jpg`, alt: 'Rödmålad timmergavel med vita vindskivor mot blå himmel', txt: 'Gavel målad i rött' },
+      { src: `${M}/jobb-rod-timmer.jpg`, alt: 'Närbild på en rödmålad timmervägg med vit knutbräda och altanräcke', txt: 'Timmervägg målad i rött' },
       { src: `${M}/jobb-rod-fonster.jpg`, alt: 'Vitmålat spröjsat fönster i en röd träfasad', txt: 'Fönster målade vita' },
-      { src: `${M}/jobb-hornet.jpg`, alt: 'Laxrosa panelfasad med vitt burspråksfönster', txt: 'Panelfasad och foder målade' },
+      { src: `${M}/jobb-langsida.jpg`, alt: 'Långsida på ett hus med laxrosa stående panel, vita fönster och svart stuprör', txt: 'Panel och fönster målade' },
       { src: `${M}/jobb-terrass.jpg`, alt: 'Nymålad laxrosa fasad och vit dörr vid en trädäcksaltan', txt: 'Fasad och dörr målade' },
       { src: `${M}/jobb-fonsterbleck.jpg`, alt: 'Närbild på vitmålad fönsterbåge och svart fönsterbleck mot panel', txt: 'Fönsterbåge målad' },
       { src: `${M}/jobb-fonster-maskerade.jpg`, alt: 'Spröjsade fönster maskerade med blå tejp inför målning', txt: 'Fönster maskade före målning' },
@@ -148,13 +149,13 @@ const data = {
 
   varfor: {
     eyebrow: 'Varför GD Måleri',
-    rubrik: ['Samma ögon före', 'och efter jobbet'],
-    lead: 'Ghandi besiktar huset själv innan offerten skrivs, och går igenom resultatet med dig när vi är klara. Fakturan kommer först efter det.',
+    rubrik: ['Allt i offerten,', 'inget i förskott'],
+    lead: 'Offerten kostar ingenting och tar med allt från förarbete till bortforsling. Inget extra görs utan ditt ja, och fakturan kommer när jobbet är klart.',
     punkter: [
-      { rubrik: 'Besiktning före offert', text: 'Ghandi tittar på huset själv och föreslår det du kanske inte tänkt på, innan han räknar.' },
+      { rubrik: 'Allt med i offerten', text: 'Material, förarbete som tvätt och skrapning, städning och bortforsling räknas in från början. Offerten är kostnadsfri.' },
       { rubrik: 'Inget extra utan ditt ja', text: 'Dyker något oväntat upp hör vi av oss direkt. Vi gör inga extraarbeten utan ditt godkännande.' },
       { rubrik: 'Ett års garanti', text: 'Behöver något åtgärdas under det första året gör vi det utan extra kostnad.' },
-      { rubrik: 'Allt med i offerten', text: 'Material, förarbete som tvätt och skrapning, städning och bortforsling räknas in från början.' },
+      { rubrik: 'Slutbesiktning före fakturan', text: 'Vi går igenom resultatet när jobbet är klart. Ingen förskottsbetalning, och ROT är redan avdraget på fakturan.' },
     ],
     video: `${M}/video-varfor-rodgavel.mp4`,
     poster: `${M}/poster-varfor.jpg`,
@@ -182,10 +183,9 @@ const data = {
     lead: 'Samma kontakt hela vägen, och fakturan kommer när jobbet är klart.',
     lista: [
       { namn: 'Ring eller skriv', text: 'Berätta vad som ska målas, inne eller ute. Det räcker med några rader.', ikon: 'kontakt' },
-      { namn: 'Besiktning', text: 'Ghandi tittar på huset eller lägenheten, mäter och föreslår det du kanske inte tänkt på.', ikon: 'besok' },
-      { namn: 'Kostnadsfri offert', text: 'Material, arbete, förarbete, städning och bortforsling ingår.', ikon: 'offert' },
+      { namn: 'Kostnadsfri offert', text: 'Du får en offert där material, arbete, förarbete, städning och bortforsling ingår.', ikon: 'offert' },
       { namn: 'Vi målar', text: 'Allt som inte ska målas täcks. Du hålls uppdaterad, och inget extra görs utan ditt ja.', ikon: 'arbete' },
-      { namn: 'Genomgång', text: 'Vi går igenom resultatet tillsammans. Fakturan kommer efter det, med ROT redan avdraget.', ikon: 'klart' },
+      { namn: 'Slutbesiktning', text: 'Vi går igenom resultatet tillsammans. Fakturan kommer efter det, med ROT redan avdraget.', ikon: 'klart' },
     ],
   },
 
@@ -213,9 +213,9 @@ const data = {
     eyebrow: 'Vanliga frågor',
     rubrik: ['Det ni brukar', 'fråga först'],
     lead: 'Pengar och risk först, det praktiska sedan.',
-    kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring Ghandi och fråga rakt ut. Du får ett ärligt besked om just ditt hus eller din lägenhet.' },
+    kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring Ghandi och fråga rakt ut om just ditt hus eller din lägenhet.' },
     lista: [
-      { q: 'Vad kostar det?', a: 'Det beror på ytan, skicket och vad som ska göras. Därför börjar vi med en besiktning och en offert, utan kostnad. Offerten tar med material, arbete, förarbete som tvätt och skrapning, städning och bortforsling.' },
+      { q: 'Vad kostar det?', a: 'Det beror på ytan, skicket och vad som ska göras. Därför börjar vi med en offert, och den är kostnadsfri. Offerten tar med material, arbete, förarbete som tvätt och skrapning, städning och bortforsling.' },
       { q: 'Hur fungerar ROT-avdraget?', a: 'Vi drar av ROT direkt på fakturan och sköter resten, så du behöver inte göra något själv. Hur stort avdraget blir beror på arbetskostnaden och hur mycket avdrag du redan har använt i år.' },
       { q: 'När betalar jag?', a: 'Du får fakturan när arbetet är klart, ingen förskottsbetalning. På stora jobb över 500 kvm betalas halva arbetskostnaden när halva jobbet är gjort.' },
       { q: 'Vad händer om något oväntat dyker upp?', a: 'Då hör vi av oss direkt och föreslår en lösning. Vi gör inga extraarbeten utan ditt godkännande.' },
@@ -229,22 +229,22 @@ const data = {
   kontaktSektion: {
     eyebrow: 'Kontakt',
     rubrik: ['Begär en offert,', 'den kostar ingenting'],
-    lead: 'Ring, eller skriv några rader. Ghandi tittar på jobbet och skickar en offert där allt ingår.',
-    checkar: ['Kostnadsfri besiktning och offert', 'ROT dras direkt på fakturan', 'Ett års garanti på arbetet'],
+    lead: 'Ring, eller skriv några rader om jobbet. Du får en kostnadsfri offert där allt ingår, från förarbete till bortforsling.',
+    checkar: ['Kostnadsfri offert, allt inräknat', 'ROT dras direkt på fakturan', 'Ingen förskottsbetalning'],
     video: `${M}/video-kontakt-rodgavel.mp4`,
     poster: `${M}/poster-kontakt.jpg`,
     formRubrik: 'Berätta kort om jobbet',
     placeholder: 'Vad som ska målas, inne eller ute, ungefärlig yta, och var i Stockholm',
-    formNot: 'Skriv kort om jobbet, så kan Ghandi ge ett vettigt svar redan i första samtalet. Inga massutskick, ingen säljlista.',
+    formNot: 'Skriv kort om jobbet, så kan Ghandi ge ett vettigt svar redan i första samtalet.',
   },
 
   popup: {
     rubrik: 'Inne eller ute?',
-    text: 'Ghandi tittar på jobbet och skickar en offert som inte kostar något. ROT dras direkt på fakturan.',
+    text: 'Berätta vad som ska målas så får du en offert som inte kostar något. ROT dras direkt på fakturan.',
   },
 
   footer: {
-    text: 'Invändig målning, fasadmålning, tapetsering och snickerier i Stockholm. Besiktning före offerten och genomgång innan fakturan.',
+    text: 'Invändig målning, fasadmålning, tapetsering och snickerier i Stockholm. Kostnadsfri offert och slutbesiktning innan fakturan.',
   },
 
   modal: {
