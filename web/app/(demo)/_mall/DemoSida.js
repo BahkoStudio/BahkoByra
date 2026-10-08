@@ -515,7 +515,10 @@ export default function DemoSida({ data: d }) {
               <DemoFormular
                 className={s.form}
                 amne={d.formular && 'amne' in d.formular ? d.formular.amne : `${d.namn}: ny förfrågan från förslaget`}
-                {...(d.formular?.nyckel ? { nyckel: d.formular.nyckel } : {})}
+                {/* Egen nyckel = förfrågan landar hos kunden (formular.nyckel, eller web3nyckel från #235). Utan: demonyckeln. */}
+                {...(d.formular?.nyckel || d.web3nyckel ? { nyckel: d.formular?.nyckel || d.web3nyckel } : {})}
+                {...(d.web3nyckel && !d.formular ? { fran: d.namn } : {})}
+                tel={harTel ? k.tel : undefined}
                 {...(d.formular && 'fran' in d.formular ? { fran: d.formular.fran } : {})}
                 {...(d.formular?.kvittens ? { kvittens: <><p style={{ fontWeight: 700, fontSize: '1.15rem' }}>{d.formular.kvittens[0]}</p><p>{d.formular.kvittens[1]}</p></> } : {})}
               >
