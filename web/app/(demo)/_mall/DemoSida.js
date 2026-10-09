@@ -16,6 +16,12 @@ import { googleOmdomen, recoOmdomen, instagramInlagg, kortaText } from './levand
    Runt om: glaspiller-header med logotypen mitt bland länkarna, sidflik,
    popup, Bahkos demo-knapp och modal.
 
+   Valfritt data.kund: true (GD Måleri 2026-10-09, första kunden på mallen) = sidan är
+   kundens egen, inte ett förslag: ingen demo-knapp, ingen Bahko-modal (data.modal
+   behövs inte) och ingen byråtext i footerns bottenrad (bara © och org.nr). Popupen
+   flyttar ner till knappens plats. Allt annat som förut; utan fältet renderas sidan
+   exakt som förut (pixeljämfört på swedcro).
+
    Valfritt data.layout: 'styrelse' (GD Måleri BRF 2026-10-09) = en andra sidstruktur för
    en styrelse/beslutsfattare: lugn delad hero utan film (rubrik, ingress, två knappar,
    bevisrad, stillbild med ett litet lager), numrerad lodrät process, tjänster som rader
@@ -456,9 +462,36 @@ function Kontakt({ d, t, k, harTel }) {
 // Data: samarbeten { eyebrow, rubrik, lead?, lista[] { namn, text, href, bilder[] { src, w, h, alt, hojd? } } }.
 // Logotyperna i gråskala som får färg vid hover (och alltid färg där hover inte finns). Delas av båda layouterna.
 // Bara belagda samarbeten, officiella logotypfiler, varje fil en gång per sida. Utan fältet renderas inget.
+// Valfritt samarbeten.band: true (GD Måleri 2026-10-09, som kundens eget band på gdmaleri.se): i stället för
+// korten ett BAND som rullar åt vänster som tjänstebandet (samma rulla-loop, paus vid hover, stilla och
+// sidledsskroll vid minskad rörelse, kopian aria-hidden med tomma alt), rubriken ovanför. Varje post i
+// lista[] är ett märke i bandet, i färg, länkat i ny flik om href finns (utan href: ingen länk).
 function Samarbeten({ d }) {
   if (!d.samarbeten) return null;
   const sa = d.samarbeten;
+  if (sa.band) {
+    const Marke = ({ p, kopia }) => p.bilder.map((b) => <Image src={b.src} alt={kopia ? '' : b.alt} width={b.w} height={b.h} sizes="300px" style={b.hojd ? { '--sam-h': `${b.hojd}px` } : undefined} key={b.src} />);
+    return (
+      <section className={`${s.sek} ${s.samarbeten}`} id="samarbeten">
+        <div className={s.wrap}><Rubrik r={sa} /></div>
+        <div className={s.samBand} role="group" aria-label={sa.eyebrow}>
+          <div className={s.samSpar}>
+            {[false, true].map((kopia) => (
+              <ul className={`${s.samGrupp} ${kopia ? s.samKopia : ''}`} aria-hidden={kopia || undefined} key={kopia ? 'b' : 'a'}>
+                {sa.lista.map((p) => (
+                  <li key={p.namn}>
+                    {p.href
+                      ? <a href={p.href} target="_blank" rel="noopener" title={p.text} tabIndex={kopia ? -1 : undefined}><Marke p={p} kopia={kopia} /></a>
+                      : <span title={p.text}><Marke p={p} kopia={kopia} /></span>}
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
   return (
     <section className={`${s.sek} ${s.samarbeten}`} id="samarbeten">
       <div className={s.wrap}>
@@ -609,7 +642,7 @@ export default function DemoSida({ data: d }) {
     : { href: k.ig, txt: t.folj, ikon: <IgIkon />, ny: true };
 
   return (
-    <div className={`${fontKlasser} ${s.sida}`} style={tema}>
+    <div className={`${fontKlasser} ${s.sida}${d.kund ? ` ${s.kund}` : ''}`} style={tema}>
       <header className={d.layout === 'styrelse' ? `${s.hdr} ${s.hdrLjus}` : s.hdr}>
         <div className={s.hdrIn}>
           {harTel
@@ -838,7 +871,8 @@ export default function DemoSida({ data: d }) {
           </div>
           <div className={s.ftrBar}>
             <span>© {new Date().getFullYear()} {d.namn}{k.orgnr ? ` · ${t.orgnr} ${k.orgnr}` : ''}</span>
-            <span>{t.byggd} <a href="https://www.bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
+            {/* Valfritt d.kund: kundens egen sida, ingen byråtext i bottenraden (GD Måleri 2026-10-09). */}
+            {d.kund ? null : <span>{t.byggd} <a href="https://www.bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>}
           </div>
         </div>
       </footer>
@@ -868,19 +902,24 @@ export default function DemoSida({ data: d }) {
         {harTel ? <a className={s.popupAlt} href="#kontakt">{t.ellerSkriv}</a> : null}
       </aside>
 
-      <a className={s.demoKnapp} href="#bahko-demo">{t.omForslaget}</a>
-      <div className={s.modalLager} id="bahko-demo">
-        <a className={s.modalSkugga} href="#stangd" tabIndex={-1} aria-hidden="true" />
-        <section className={s.modal} aria-labelledby="bahko-rubrik">
-          <a className={s.modalX} href="#stangd" aria-label={t.stangKort}>✕</a>
-          <span className={s.modalBadge}>{t.modalBadge}</span>
-          <h3 id="bahko-rubrik">{d.modal.rubrik}</h3>
-          <p>{d.modal.text}</p>
-          <a className={s.modalCta} href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener">{t.modalCta}</a>
-          <a className={s.modalAlt} href={`mailto:mathias@bahkobyra.se?subject=${encodeURIComponent(`${d.namn} - förslag på hemsida`)}`}>{t.modalAlt}</a>
-          <span className={s.modalFot}>{t.modalFot}</span>
-        </section>
-      </div>
+      {/* Bahkos demo-knapp och modal: bara i förslag. En kunds egen sida (d.kund) har ingen av dem. */}
+      {d.kund ? null : (
+        <>
+          <a className={s.demoKnapp} href="#bahko-demo">{t.omForslaget}</a>
+          <div className={s.modalLager} id="bahko-demo">
+            <a className={s.modalSkugga} href="#stangd" tabIndex={-1} aria-hidden="true" />
+            <section className={s.modal} aria-labelledby="bahko-rubrik">
+              <a className={s.modalX} href="#stangd" aria-label={t.stangKort}>✕</a>
+              <span className={s.modalBadge}>{t.modalBadge}</span>
+              <h3 id="bahko-rubrik">{d.modal.rubrik}</h3>
+              <p>{d.modal.text}</p>
+              <a className={s.modalCta} href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener">{t.modalCta}</a>
+              <a className={s.modalAlt} href={`mailto:mathias@bahkobyra.se?subject=${encodeURIComponent(`${d.namn} - förslag på hemsida`)}`}>{t.modalAlt}</a>
+              <span className={s.modalFot}>{t.modalFot}</span>
+            </section>
+          </div>
+        </>
+      )}
     </div>
   );
 }

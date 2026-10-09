@@ -50,7 +50,7 @@ export const bokning = {
   inbaddad: {
     eyebrow: 'Boka online',
     rubrik: ['Boka offertbesök', 'direkt'],
-    lead: 'Välj en tid som passar – Ghandi kommer hem till dig. Vardagar 08–17.',
+    lead: 'Välj en tid som passar – vi kommer hem till dig. Vardagar 08–17.',
     titel: 'Boka kostnadsfritt offertbesök med GD Måleri (Cal.com)',
   },
 };
@@ -136,11 +136,11 @@ export const varfor = {
 
 export const om = {
   eyebrow: 'Om GD Måleri',
-  rubrik: ['Ägaren driver', 'firman själv'],
+  rubrik: ['Kvalitet före', 'kvantitet'],
   bild: { src: `${M}/reco-kort.png`, w: 827, h: 845, alt: 'Reco: GD Måleri Sthlm AB, rekommenderat företag tre år i rad, 4,9 av 5', rundad: true },
   utanKort: true,
   stycken: [
-    'GD Måleri Sthlm AB är målare i Stockholm, och firman drivs av Ghandi Danho. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
+    'GD Måleri Sthlm AB är en målerifirma i Stockholm som hellre gör färre jobb ordentligt än många i hast. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
     'Vi målar åt villaägare, bostadsrätter och företag, från en lägenhet på 43 kvm till en fasad på 350 kvm i Täby kyrkby. Färgen är Flügger, och vi är försäkrade via Trygg-Hansa.',
   ],
   bevis: [
@@ -169,56 +169,46 @@ export const instagramBas = {
   bio: 'Måleri inne och ute · Stockholm',
 };
 
-/* Samarbeten (Mathias 2026-10-09): logotypremsa sist på ALLA GD-sidor, före footern.
-   BARA belagt: Reco (reco.se/gd-maleri-sthlm: 4,9 av 5, 45 omdömen, Rekommenderat
-   företag 2024, 2025 och 2026 — märkena är Recos EGNA SVG-filer på hans profil,
-   assets/images/badges/trust2024|2025|2026.svg och BadgeThreeYears.svg, hämtade
-   2026-10-09), Flügger (gdmaleri.se FAQ: färg från Flügger; logotypen från
-   flugger.se:s egen header, assets.flugger.dk/cms/media/z5yaf5g3/flugger_logo_cvi_2025_se.svg)
-   och Trygg-Hansa (gdmaleri.se FAQ: "fullt försäkrade via Trygg-Hansa"; logotypen från
-   trygghansa.se:s egen header, siteassets/bilder/logotypes/trygg-hansa-logo-rgb-black.svg,
-   som trots namnet är den röda positiva varianten). INTE med: Måleriföretagen och
-   AAA (märken på gdmaleri.se, inte verifierade — Ghandi får bekräfta) och Cal.com
-   (verktyg, inte samarbete). Reco-kortet reco-kort.png ligger kvar i Om oss (huvud-
-   och tjänstesidorna) respektive heron (BRF): varje bildfil en gång per sida. */
+/* Samarbeten (Mathias 2026-10-09): sist på ALLA GD-sidor, före footern. Sedan 2026-10-09 kväll
+   ett RULLANDE BAND (mallfältet samarbeten.band, som tjänstebandet) i stället för tre kort, med
+   de samarbeten GD själva visar i bandet på gdmaleri.se (skärmdump från Mathias 2026-10-09:
+   Måleriföretagen i Sverige, Flügger färg "Måleriets leverantör", AAA) plus Trygg-Hansa och Reco.
+   VERIFIERAT: Måleriföretagen och AAA = kundens egna samarbeten enligt gdmaleri.se:s band och
+   Mathias 2026-10-09 (Ghandi via Mathias). Logotyperna är GD:s egna filer från gdmaleri.se
+   (wp-content/uploads/2025/02/: maleriforetagen.png beskuren, 0x0.png = Flügger färg med raden
+   "Måleriets leverantör", aaa-soliditet-hogsta-kreditvardighet.png), hämtade i PR #239 2026-10-09
+   och återställda ur git (0a71197). Flügger: kundens egen fil med "Måleriets leverantör" i stället
+   för flugger.se:s rena ordmärke (SVG borttagen). Reco: Recos EGNA SVG-märken på hans profil
+   (reco.se/gd-maleri-sthlm: 4,9 av 5, 45 omdömen, Rekommenderat företag 2024, 2025 och 2026;
+   assets/images/badges/trust2024|2025|2026.svg och BadgeThreeYears.svg, hämtade 2026-10-09).
+   Trygg-Hansa (gdmaleri.se FAQ: "fullt försäkrade via Trygg-Hansa"; logotypen från trygghansa.se:s
+   egen header, siteassets/bilder/logotypes/trygg-hansa-logo-rgb-black.svg, den röda positiva varianten).
+   FLAGGA: AAA-märket är inte kontrollerat mot Dun & Bradstreet (bolaget registrerat 2024-01-16,
+   AAA kräver normalt mer än två års historik) och filen är bara 100×44 px — be om en skarp fil.
+   AAA länkas inte (ingen belagd sida att peka på). Cal.com är ett verktyg, inte ett samarbete.
+   Reco-kortet reco-kort.png ligger kvar i Om oss (huvud- och tjänstesidorna) respektive heron
+   (BRF): varje bildfil en gång per sida. */
 export const samarbeten = {
+  band: true,
   eyebrow: 'Samarbeten',
   rubrik: ['Vi jobbar med', 'namn du känner igen'],
-  lead: 'Flügger står för färgen, Trygg-Hansa för försäkringen och Reco för omdömena.',
   lista: [
-    {
-      namn: 'Reco',
-      href: 'https://www.reco.se/gd-maleri-sthlm',
-      text: 'Rekommenderat företag på Reco tre år i rad, 4,9 av 5',
-      bilder: [
-        { src: `${M}/samarbete-reco-2024.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2024', hojd: 68 },
-        { src: `${M}/samarbete-reco-2025.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2025', hojd: 68 },
-        { src: `${M}/samarbete-reco-2026.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2026', hojd: 68 },
-        { src: `${M}/samarbete-reco-3ar.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag tre år i rad', hojd: 68 },
-      ],
-    },
-    {
-      namn: 'Flügger',
-      href: 'https://www.flugger.se/',
-      text: 'Färgen vi målar med',
-      bilder: [{ src: `${M}/samarbete-flugger.svg`, w: 2024, h: 567, alt: 'Flügger', hojd: 46 }],
-    },
-    {
-      namn: 'Trygg-Hansa',
-      href: 'https://www.trygghansa.se/',
-      text: 'Försäkrade via Trygg-Hansa',
-      bilder: [{ src: `${M}/samarbete-trygghansa.svg`, w: 283, h: 53, alt: 'Trygg-Hansa', hojd: 36 }],
-    },
+    { namn: 'Måleriföretagen', href: 'https://www.maleriforetagen.se/', text: 'Måleriföretagen i Sverige', bilder: [{ src: `${M}/samarbete-maleriforetagen.png`, w: 393, h: 91, alt: 'Måleriföretagen i Sverige', hojd: 44 }] },
+    { namn: 'Flügger', href: 'https://www.flugger.se/', text: 'Flügger färg, färgen vi målar med', bilder: [{ src: `${M}/samarbete-flugger.png`, w: 720, h: 204, alt: 'Flügger färg, Måleriets leverantör', hojd: 54 }] },
+    { namn: 'AAA', text: 'AAA, högsta kreditvärdighet', bilder: [{ src: `${M}/samarbete-aaa.png`, w: 100, h: 44, alt: 'AAA, högsta kreditvärdighet', hojd: 40 }] },
+    { namn: 'Trygg-Hansa', href: 'https://www.trygghansa.se/', text: 'Försäkrade via Trygg-Hansa', bilder: [{ src: `${M}/samarbete-trygghansa.svg`, w: 283, h: 53, alt: 'Trygg-Hansa', hojd: 38 }] },
+    { namn: 'Reco 2024', href: 'https://www.reco.se/gd-maleri-sthlm', text: 'Rekommenderat företag på Reco 2024', bilder: [{ src: `${M}/samarbete-reco-2024.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2024', hojd: 72 }] },
+    { namn: 'Reco 2025', href: 'https://www.reco.se/gd-maleri-sthlm', text: 'Rekommenderat företag på Reco 2025', bilder: [{ src: `${M}/samarbete-reco-2025.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2025', hojd: 72 }] },
+    { namn: 'Reco 2026', href: 'https://www.reco.se/gd-maleri-sthlm', text: 'Rekommenderat företag på Reco 2026', bilder: [{ src: `${M}/samarbete-reco-2026.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2026', hojd: 72 }] },
+    { namn: 'Reco tre år i rad', href: 'https://www.reco.se/gd-maleri-sthlm', text: 'Rekommenderat företag på Reco tre år i rad, 4,9 av 5', bilder: [{ src: `${M}/samarbete-reco-3ar.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag tre år i rad', hojd: 72 }] },
   ],
 };
 
 export const RECO = { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' };
 export const SKV_ROT = 'https://www.skatteverket.se/foretag/skatterochavdrag/rotochrut/gerarbetetratttillrotavdrag.4.5c1163881590be297b5173bf.html';
 
-export const modal = {
-  rubrik: 'Så här kan GD Måleri se ut på nätet',
-  text: 'Det här är ett förslag, byggt på det ni själva visar på gdmaleri.se, Instagram och Reco, med era egna projektfoton. Ingen beställning, inget åtagande. Boka ett kostnadsfritt 15-minuterssamtal med Mathias.',
-};
+// Ingen modal: GD Måleri är KUND (Mathias 2026-10-09). Alla sex sidorna har kund: true, så mallen
+// ritar varken demo-knapp, Bahko-modal eller byråtext i footern.
 
 // Service-post för en tjänstesida. Pekar på huvudsidans HousePainter (@id). Inget betygsschema (svartlistan).
 // Ingen url: sidan ligger inte på gdmaleri.se än (vid flytten: se URL-kartan i content/leads/gdmaleri.md).

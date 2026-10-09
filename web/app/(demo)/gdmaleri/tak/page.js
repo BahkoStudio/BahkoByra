@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, modal, samarbeten, tjanstSchema } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida TAK (/gdmaleri/tak/), 2026-10-08. YTTERTAK.
@@ -159,7 +159,8 @@ const data = {
     bild: footerBild, // Stockholms siluett i skymning, se _gd.js
   },
 
-  modal,
+  // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.
+  kund: true,
   samarbeten,
 };
 

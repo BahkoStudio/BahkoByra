@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, modal, samarbeten } from '../_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, samarbeten } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — undersida för bostadsrättsföreningar (/gdmaleri/brf/)
@@ -186,7 +186,7 @@ const data = {
   cta: { txt: 'Begär kostnadsfri offert', kort: 'Begär offert', lank: 'Begär offert' },
   formular,
   // Kalendern som på huvudsidan; raden under rubriken är skriven för föreningen.
-  bokning: { ...bokning, inbaddad: { ...bokning.inbaddad, lead: 'Välj en tid som passar, så kommer Ghandi ut till föreningen och tittar på ytorna. Vardagar 08–17.' } },
+  bokning: { ...bokning, inbaddad: { ...bokning.inbaddad, lead: 'Välj en tid som passar, så kommer vi ut till föreningen och tittar på ytorna. Vardagar 08–17.' } },
   nav: {
     vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#process', txt: 'Så går det till' }],
     hoger: [{ href: '#omdomen', txt: 'Omdömen' }, { href: '/gdmaleri/', txt: 'Startsida' }],
@@ -233,7 +233,7 @@ const data = {
   varfor: {
     eyebrow: 'Därför GD Måleri',
     rubrik: ['Fyra saker styrelsen', 'kan räkna med'],
-    lead: 'GD Måleri drivs av Ghandi Danho. De flesta av våra jobb har varit åt privatkunder, och föreningen får samma upplägg.',
+    lead: 'GD Måleri är en målerifirma i Stockholm. De flesta av våra jobb har varit åt privatkunder, och föreningen får samma upplägg.',
     punkter: [
       { rubrik: 'Allt med i offerten', text: 'Material, arbete, förarbete som tvätt och skrapning, städning och bortforsling räknas in från början. Offerten är kostnadsfri.' },
       { rubrik: 'Inget extra utan ert ja', text: 'Dyker något oväntat upp hör vi av oss direkt. Vi gör inga extraarbeten utan styrelsens godkännande.' },
@@ -279,8 +279,8 @@ const data = {
       { q: 'Vad händer om något oväntat dyker upp?', a: 'Då hör vi av oss direkt och föreslår en lösning. Vi gör inga extraarbeten utan ert godkännande.' },
       { q: 'Är ni försäkrade?', a: 'Ja. Vi har F-skatt och är fullt försäkrade via Trygg-Hansa. Skulle något gå fel under arbetet är föreningen skyddad.' },
       { q: 'Hur påverkas de boende?', a: 'Allt som inte ska målas täcks med plast eller papper, och golven skyddas innan vi börjar. Städning och bortforsling ingår i offerten.' },
-      { q: 'Vem är vår kontaktperson?', a: 'Ghandi Danho, som äger firman. Han gör offertbesöket och offerten och är er kontakt under hela jobbet, så styrelsen har samma person att ringa: 073-729 88 89, vardagar 08–17.' },
-      { q: 'Vilken färg använder ni, och hjälper ni till med kulörer?', a: 'Vi målar med färg från Flügger. Vi hjälper gärna till med färgval och designförslag, till exempel för ett trapphus.' },
+      { q: 'Vem är vår kontaktperson?', a: 'Samma person hela vägen: den som gör offertbesöket och offerten är er kontakt under hela jobbet, så styrelsen har ett nummer att ringa: 073-729 88 89, vardagar 08–17.' },
+      { q: 'Vilken färg använder ni, och hjälper ni till med kulörer?', a: 'Vi målar med färg från Flügger. Vi hjälper gärna till med färgval och design, till exempel för ett trapphus.' },
       { q: 'Hur lång tid tar det?', a: 'Det beror på hur stora ytorna är och i vilket skick de är, så det går inte att säga utan att veta vad som ska göras. Ring och berätta om ert hus, så kan vi svara på just det.' },
     ],
   },
@@ -313,8 +313,9 @@ const data = {
     bild: footerBild, // Stockholms siluett i skymning, se _gd.js
   },
 
-  modal,
-  // Samarbeten (Reco, Flügger, Trygg-Hansa) sist på sidan, före footern: se _gd.js.
+  // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.
+  kund: true,
+  // Samarbeten: rullande band sist på sidan, före footern: se _gd.js.
   samarbeten,
 };
 

@@ -1,8 +1,9 @@
 import DemoSida from '../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, modal, samarbeten, RECO_WIDGET, RECO_LISTA } from './_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, samarbeten, RECO_WIDGET, RECO_LISTA } from './_gd';
 
 /* ===========================================================================
-   GD MÅLERI STHLM AB — kostnadsfritt hemsideförslag från Bahko Byrå
+   GD MÅLERI STHLM AB — KUND hos Bahko Byrå sedan 2026-10-08 (byggd som förslag 2026-10-08,
+   allt förslagsmaterial borttaget 2026-10-09: kund: true, ingen modal, ingen byråtext).
    Lead: instagram.com/gdmaleristhlm · Stockholm · HAR hemsida (gdmaleri.se).
    Byggd 2026-10-08 på demomallen v3 (kopia av swedcro-kanon).
 
@@ -102,10 +103,10 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerB
    (JSON-LD aggregateRating 4,9/45, hämtat 2026-10-09). Omdömena ordagrant med
    datum och reco.se/r/<id> (se ../gdmaleri/_gd.js RECO_LISTA); Bo M:s signatur
    och Anders F:s stjärn-emojis strukna. Två omdömen utan känt betyg (Jenny E,
-   Viktor E) är inte med. #239:s rullande partnerband (Flügger, Måleriföretagen,
-   AAA, Reco 2024) togs INTE med vid sammanslagningen 2026-10-09 (Mathias beslut):
-   märkena står i stället i Samarbeten sist på sidan (se _gd.js samarbeten), bara
-   belagda sådana — Måleriföretagen och AAA är inte verifierade.
+   Viktor E) är inte med. Samarbeten sist på sidan är sedan 2026-10-09 kväll ett
+   rullande band (_gd.js samarbeten, band: true) med kundens egna samarbeten enligt
+   bandet på gdmaleri.se och Mathias 2026-10-09: Måleriföretagen, Flügger färg, AAA,
+   Trygg-Hansa och Recos fyra märken. AAA är inte kontrollerat mot D&B (se _gd.js).
 
    INTE verifierat, och finns därför inte i någon text: Google-profil och betyg
    (ingen hittad), öppettider, priser, antal projekt, ledtider, medlemskap i
@@ -331,12 +332,12 @@ const data = {
 
   om: {
     eyebrow: 'Om GD Måleri',
-    rubrik: ['Ägaren driver', 'firman själv'],
+    rubrik: ['Kvalitet före', 'kvantitet'],
     // Recos hela märkeskort i stället för logotypen (Mathias 2026-10-08). Mallfältet om.bild, rundad.
     bild: { src: `${M}/reco-kort.png`, w: 827, h: 845, alt: 'Reco: GD Måleri Sthlm AB, rekommenderat företag tre år i rad, 4,9 av 5', rundad: true },
     utanKort: true,
     stycken: [
-      'GD Måleri Sthlm AB är målare i Stockholm, och firman drivs av Ghandi Danho. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
+      'GD Måleri Sthlm AB är en målerifirma i Stockholm som hellre gör färre jobb ordentligt än många i hast. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
       'Vi målar åt villaägare, bostadsrätter och företag, från en lägenhet på 43 kvm till en fasad på 350 kvm i Täby kyrkby. Färgen är Flügger, och vi är försäkrade via Trygg-Hansa.',
     ],
     bevis: [
@@ -429,8 +430,9 @@ const data = {
     bild: footerBild, // Stockholms siluett i skymning, se _gd.js
   },
 
-  modal,
-  // Samarbeten (Reco, Flügger, Trygg-Hansa) sist på sidan, före footern: se _gd.js.
+  // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.
+  kund: true,
+  // Samarbeten: rullande band sist på sidan, före footern: se _gd.js.
   samarbeten,
 };
 

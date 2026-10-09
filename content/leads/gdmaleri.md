@@ -3,7 +3,7 @@
 **Instagram:** [@gdmaleristhlm](https://www.instagram.com/gdmaleristhlm/) — 122 inlägg, 1 044 följare (2026-10-08). Jobb i Bromma, Täby kyrkby och Södertälje under hösten 2026.
 **Hemsida:** [gdmaleri.se](https://gdmaleri.se/) (WordPress/Elementor). **Telefonlänken på sajten är en platshållare:** texten säger 073-729 88 89 men länken bakom är `tel:123-456-7890`, så den som trycker "ring" på mobilen ringer ett påhittat nummer.
 **Reco:** [reco.se/gd-maleri-sthlm](https://www.reco.se/gd-maleri-sthlm) — 4,9 av 5, 45 omdömen, Rekommenderat företag 2024–2026.
-**Demo:** `bahkobyra.se/gdmaleri/` (källa: `web/app/(demo)/gdmaleri/`)
+**Sidan:** `bahkobyra.se/gdmaleri/` (källa: `web/app/(demo)/gdmaleri/`) — sedan 2026-10-09 kundens egen sida (`kund: true`), inte ett förslag; noindex tills flytten till gdmaleri.se.
 **Status:** **KUND hos Bahko Byrå sedan 2026-10-08.** Demo byggd samma dag på demomallen v3; filmerna bytta mot hans egen herofilm 2026-10-08.
 
 ## Verifierat
@@ -26,7 +26,7 @@
 
 ## INTE verifierat
 
-Google-profil och betyg (ingen hittad), öppettider, priser, antal projekt, ledtider. Märkena för Måleriföretagen och AAA-kreditbetyg på sajten är inte kontrollerade och används inte. Sajtens "Alltid fast pris" används inte (ett Reco-omdöme beskriver slutpris över offert efter tillägg).
+Google-profil och betyg (ingen hittad), öppettider, priser, antal projekt, ledtider. Måleriföretagen och AAA visas i Samarbeten-bandet sedan 2026-10-09 (kundens egna samarbeten enligt gdmaleri.se och Mathias), men AAA-märket är inte kontrollerat mot D&B (se "Samarbeten som band"). Sajtens "Alltid fast pris" används inte (ett Reco-omdöme beskriver slutpris över offert efter tillägg).
 
 ## Media
 
@@ -275,7 +275,7 @@ Mathias: en sektion "Samarbeten" sist på ALLA sex GD-sidorna (huvudsidan, fyra 
 
 ### Flaggor Samarbeten
 
-- **Måleriföretagen och AAA** står som märken på gdmaleri.se men är inte verifierade av oss, därför INTE med. **Ghandi får bekräfta medlemskapet i Måleriföretagen** (och AAA-betyget); då läggs det till i remsan.
+- **Måleriföretagen och AAA** — ÄNDRAT 2026-10-09 kväll: med i bandet som kundens egna samarbeten (gdmaleri.se:s band + Mathias). AAA-märket är inte kontrollerat mot D&B, se avsnittet "Samarbeten som band".
 - Cal.com är ett verktyg, inte ett samarbete, och visas inte.
 - Flügger och Trygg-Hansa är leverantörer, inte partners som godkänt att visas. Vill Ghandi vara säker: fråga Flügger-butiken om de får använda logotypen på sin sajt (vanligt för återförsäljare/målare som använder deras färg).
 
@@ -298,3 +298,24 @@ Mathias: footern på alla GD-sidor ska ha en bakgrundsbild med Stockholms siluet
 - **Kontrast mätt på riktiga pixlar** (texten genomskinlig, bakgrunden samplad under varje textruta, DPR 2, sämsta pixeln räknas): gdmaleri 1440: lägst 5,84:1 (bottenraden "Förslag byggt av Bahko Byrå"), ikoner lägst 5,82:1 (krav 3:1); gdmaleri 390: lägst 5,87:1 (info@gdmaleri.se); gdmaleri/brf 1440: 5,85:1, 390: 5,88:1. Inget element under 4,5:1. QA-skriptet mäter footertexten mot `mork` (ser inte fotot) och ger också grönt.
 - **QA 2026-10-09:** gdmaleri 115 OK (betyg `ja`), gdmaleri/brf 91 OK (styrelse), swedcro 109 OK; ingen sidledsskroll på 390/768/1100/1440; logotypen i footern OK; 55 mediafiler, alla hashar unika.
 - Skärmdumpar: `web/.tmp/ftr/gdmaleri-footer-1440-ren.png`, `web/.tmp/ftr/gdmaleri-footer-390-ren.png` (och `-brf-`), plus QA:ns `.tmp/gdmaleri/qa/*-footer.png` (repots rot).
+
+## Kund, inte förslag (2026-10-09)
+
+Mathias: GD Måleri är KUND. Allt förslagsmaterial borttaget från de sex sidorna, utan att röra andra demos.
+
+- **Nytt valfritt mallfält `kund: true`** (DemoSida.js, satt i alla sex `page.js`): ingen demo-knapp "Om det här förslaget", ingen Bahko-modal (`#bahko-demo`), ingen "Förslag byggt av Bahko Byrå" i footerns bottenrad (bara "© 2026 GD Måleri Sthlm AB · Org.nr 559468-2444"), popupen flyttar ner till knappens plats (`.kund .popup`). Utan fältet renderas allt exakt som förut: **swedcro pixelidentisk före/efter, 0 avvikande pixlar på 1440 (1440×10613) och 390 (390×17233)**.
+- **Borttaget ur GD:s data:** `modal` i `_gd.js` ("Det här är ett förslag, byggt på det ni själva visar …") och importen/fältet på alla sex sidorna. Formuläret skickar redan utan `subject`/`from_name` (kundens Web3Forms-panel gäller), så "ny förfrågan från förslaget" finns inte i anropet; inga dolda fält i HTML.
+- **Inga ägarnamn i egna texter:** Om oss-rubriken är nu **"Kvalitet före *kvantitet*"** (Mathias 2026-10-09) med ingressen "GD Måleri Sthlm AB är en målerifirma i Stockholm som hellre gör färre jobb ordentligt än många i hast. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket." (`_gd.js` för tjänstesidorna och `page.js`). BRF: Därför-ingressen "GD Måleri är en målerifirma i Stockholm. De flesta av våra jobb …" och FAQ-svaret "Samma person hela vägen: den som gör offertbesöket och offerten är er kontakt under hela jobbet …". Huvudsessionens ändringar (bokningsraderna utan namn, "ägarledd") ingår. Två FAQ-svar skrivna om så ordet "förslag" inte finns i egna texter: BRF "färgval och design", invändig "färgval och kulörer".
+- **Textsökning på renderad text** (curl, script/style bortskalade, attribut medräknade) efter förslag/prototyp/Bahko/demo/Ghandi/Danho/ägaren på alla sex routes: **0 träffar i egna texter.** Kvar: ordagranna Reco-citat (Ola A: "intryck av Ghandi … kom med förslag på saker"; Edwin N: "Ghandi som ansvarade …") på huvudsidan (Reco-widgeten) och taksidan — citat får stå. I rå HTML finns dessutom `(demo)` i Next:s chunk-sökvägar (route-gruppens mappnamn, syns inte) och `https://www.bahkobyra.se/gdmaleri/media/…` som bild-URL:er i JSON-LD (`FILBAS`, byts vid domänflytten).
+- **QA 2026-10-09:** gdmaleri 115 OK (betyg `ja`), gdmaleri/brf 91 OK (styrelse), swedcro 108 OK; QA-skriptet behövde inget undantag (det kontrollerar inte demo-knappen). swedcro:s kontroll "filmen slutar på ett logokort" är tidskänslig: grön i första körningen, föll sedan i två av tre (luminans 0,22 i stället för 0,65, omväxlande dator och mobil) — swedcro:s film och HTML är orörda.
+- Kvar: **noindex** på alla sex (flytten till gdmaleri.se är inte gjord). Mallfältet står i hemsidor-skillen (båda kopiorna).
+
+## Samarbeten som band (2026-10-09 kväll)
+
+Mathias: Samarbeten ska vara ett **rullande band** som på gdmaleri.se (skärmdump av deras band: Måleriföretagen i Sverige, Flügger färg "Måleriets leverantör", AAA), i stället för de tre korten. Mathias bekräftar att Måleriföretagen och AAA är kundens egna samarbeten, så de är med nu.
+
+- **Mallfält `samarbeten.band: true`** (DemoSida.js `Samarbeten`, CSS `samBand/samSpar/samGrupp/samKopia`): rubriken ovanför, märkena i färg rullar åt vänster med tjänstebandets `rulla`-loop (40 s), paus vid hover/fokus, toning i kanterna, kopian `aria-hidden` med tomma `alt` och `tabindex=-1`, stilla + sidledsskroll vid minskad rörelse, noll klient-JS. Utan fältet: korten som förut (swedcro har inget `samarbeten` alls, pixelidentisk).
+- **Ordning i bandet:** Måleriföretagen → maleriforetagen.se · Flügger färg → flugger.se · AAA (ingen länk: ingen belagd sida) · Trygg-Hansa → trygghansa.se · Reco 2024 · 2025 · 2026 · tre år i rad → reco.se/gd-maleri-sthlm. Gruppen är 1 655 px bred på 1440 (bredare än skärmen, så loopen är tät). Optiska höjder 44/54/40/38/72 px.
+- **Logotyper:** `samarbete-maleriforetagen.png` (393×91), `samarbete-aaa.png` (100×44) och `samarbete-flugger.png` (720×204, "Flügger färg · Måleriets leverantör") är GD:s egna filer från gdmaleri.se (hämtade i PR #239, återställda ur commit 0a71197). Flügger-filen från kundens sajt ersätter flugger.se:s rena ordmärke (`samarbete-flugger.svg` borttagen, varje fil används en gång). Reco- och Trygg-Hansa-SVG:erna som förut.
+- **Flaggor:** AAA-märket är inte kontrollerat mot Dun & Bradstreet (bolaget registrerat 2024-01-16; AAA kräver normalt mer än två års historik) och filen är bara 100×44 px, lätt oskarp i DPR 2 — be om en skarp fil. Måleriföretagen: medlemskapet går inte att slå upp i deras JS-drivna register; källa är kundens egen sajt + Mathias.
+- Skärmdumpar: `web/.tmp/kund/gdmaleri-1440-samarbeten.png`, `-390-`, `-footer.png`, `-popup.png` och QA:ns `.tmp/gdmaleri/qa/*-samarbeten.png`.

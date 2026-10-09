@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, modal, samarbeten, tjanstSchema } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida INVÄNDIG MÅLNING (/gdmaleri/invandig-malning/), 2026-10-08.
@@ -127,7 +127,7 @@ const data = {
       { q: 'Vad kostar det att måla om inne?', a: 'Det beror på ytan, skicket och vad som ska göras. Därför börjar vi med en offert, och den är kostnadsfri. Offerten tar med material, arbete, förarbete som spackling och slipning, städning och bortforsling.' },
       { q: 'Får jag ROT-avdrag?', a: <>Ja, på arbetskostnaden. Skatteverket räknar att måla väggar, tak, dörrar och fönster och att tapetsera som rotarbete. Vi drar av det direkt på fakturan. Bor du i bostadsrätt gäller det arbete inne i lägenheten. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
       { q: 'Hur skyddar ni hemmet?', a: 'Allt som inte ska målas täcks med plast eller papper, och vi skyddar möbler och golv innan vi börjar.' },
-      { q: 'Hjälper ni till med färgval?', a: 'Ja. Vi hjälper till med färgval och förslag, och färgen är Flügger. Miljövänliga alternativ finns.' },
+      { q: 'Hjälper ni till med färgval?', a: 'Ja. Vi hjälper till med färgval och kulörer, och färgen är Flügger. Miljövänliga alternativ finns.' },
       { q: 'När betalar jag?', a: 'Du får fakturan när arbetet är klart, ingen förskottsbetalning.' },
       { q: 'Har ni garanti?', a: 'Ja, ett år på måleriarbetet. Behöver något åtgärdas under den tiden gör vi det utan extra kostnad.' },
       { q: 'Målar ni kontor också?', a: 'Ja. Vi målar hemma hos privatpersoner och åt företag, från lägenheter och villor till kontorslokaler.' },
@@ -161,7 +161,8 @@ const data = {
     bild: footerBild, // Stockholms siluett i skymning, se _gd.js
   },
 
-  modal,
+  // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.
+  kund: true,
   samarbeten,
 };
 
