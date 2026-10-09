@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, modal, samarbeten, tjanstSchema } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, modal, samarbeten, tjanstSchema } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida GOLV (/gdmaleri/golv/), 2026-10-08.
@@ -161,6 +161,7 @@ const data = {
   footer: {
     text: 'Golvläggning, golvslipning och golvmålning i Stockholm, gärna i samma jobb som väggar och tak. Kostnadsfri offert och slutbesiktning innan fakturan.',
     tjanster: footerTjanster,
+    bild: footerBild, // Stockholms siluett i skymning, se _gd.js
   },
 
   modal,

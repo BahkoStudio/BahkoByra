@@ -1,5 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, modal, samarbeten, RECO_WIDGET, RECO_LISTA } from './_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, modal, samarbeten, RECO_WIDGET, RECO_LISTA } from './_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -426,6 +426,7 @@ const data = {
   footer: {
     text: 'Målare i Stockholm för invändig målning, fasadtvätt och fasadmålning, taktvätt och takmålning, tapetsering, snickerier och golv. Kostnadsfri offert och slutbesiktning innan fakturan.',
     tjanster: footerTjanster,
+    bild: footerBild, // Stockholms siluett i skymning, se _gd.js
   },
 
   modal,

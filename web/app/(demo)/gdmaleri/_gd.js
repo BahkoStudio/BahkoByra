@@ -90,6 +90,19 @@ export const SIDOR = [
 ];
 export const footerTjanster = SIDOR.map(({ href, txt }) => ({ href, txt }));
 
+/* Footerns bakgrundsbild på alla GD-sidor (Mathias 2026-10-09): Stockholms siluett i skymning,
+   Riddarholmen med kyrkspiran sett över Riddarfjärden, varma fönsterljus, blå timme.
+   Foto: Andriy Oliynyk (@oliynykan) på Unsplash, "Stockholm in the twilight",
+   https://unsplash.com/photos/6zU54fXfIEQ — Unsplash License (fri för kommersiellt bruk, ingen
+   attribution krävs), hämtad 2026-10-09 i 5931×3954. Referensbilden Mathias skickade (547×365,
+   okänd upphovsrätt) används INTE. footer-stockholm.webp = beskuren 2,4:1, 1920×800;
+   footer-stockholm-mobil.webp = 3:4 runt spiran, 900×1200, för skärmar under 760 px. */
+export const footerBild = {
+  src: `${M}/footer-stockholm.webp`,
+  srcMobil: `${M}/footer-stockholm-mobil.webp`,
+  alt: 'Stockholms siluett i skymning: Riddarholmskyrkans spira och Gamla stans fasader med tända fönster, speglade i Riddarfjärden.',
+};
+
 // Mobilmenyn får tjänstesidorna utom den man står på och de som redan finns i pillret.
 export const menyExtra = (...utom) => SIDOR.filter((l) => !utom.includes(l.href)).map(({ href, kort }) => ({ href, txt: kort }));
 

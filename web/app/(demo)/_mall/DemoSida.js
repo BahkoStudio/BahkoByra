@@ -793,12 +793,21 @@ export default function DemoSida({ data: d }) {
       </main>
       )}
 
-      {/* 11. Footer: ljus, med logotypen */}
-      <footer className={s.ftr}>
+      {/* 11. Footer: ljus, med logotypen. Valfritt footer.bild { src, srcMobil?, alt }: ett foto som bakgrund
+          under en mörk slöja (mork 78 %), ljus text, ljusa ikoner och logo.ljus (GD Måleri 2026-10-09:
+          Stockholms siluett i skymning). Utan fältet: exakt som förut. */}
+      <footer className={d.footer.bild ? `${s.ftr} ${s.ftrMedBild}` : s.ftr}>
+        {d.footer.bild ? (
+          <picture className={s.ftrFoto}>
+            {d.footer.bild.srcMobil ? <source media="(max-width: 760px)" srcSet={d.footer.bild.srcMobil} /> : null}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={d.footer.bild.src} alt={d.footer.bild.alt} loading="lazy" decoding="async" />
+          </picture>
+        ) : null}
         <div className={s.wrap}>
           <div className={s.ftrGrid}>
             <div>
-              <a className={s.ftrLogo} href="#top" aria-label={`${d.namn} – ${t.tillToppen.toLowerCase()}`}><Logo logo={d.logo && { ...d.logo, alt: '' }} ordmarke={d.ordmarke} klass="ftr" /></a>
+              <a className={s.ftrLogo} href="#top" aria-label={`${d.namn} – ${t.tillToppen.toLowerCase()}`}><Logo logo={d.logo && { ...d.logo, src: (d.footer.bild && d.logo.ljus) || d.logo.src, alt: '' }} ordmarke={d.ordmarke} klass="ftr" /></a>
               <p className={s.ftrText}>{d.footer.text}</p>
               <div className={s.ftrSociala}>
                 {k.ig ? <a href={k.ig} target="_blank" rel="noopener" aria-label={`${d.namn} Instagram`}><IgIkon /></a> : null}

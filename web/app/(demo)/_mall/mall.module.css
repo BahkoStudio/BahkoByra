@@ -1846,6 +1846,49 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
 @media (max-width: 520px) {
   .ftrGrid { grid-template-columns: 1fr; }
 }
+/* Footer med bakgrundsfoto (valfritt footer.bild, GD Måleri 2026-10-09): fotot täcker footern
+   (object-fit cover, samma höjd som förut) under en slöja av märkets mörka ton på 78 %, så att
+   all text klarar 4,5:1 även över fotots ljusaste partier (mätt på riktiga pixlar på GD
+   2026-10-09: text lägst 5,8:1, ikoner lägst 5,8:1). Texten ljus, ikonerna i accent-ljus,
+   logotypen i sin ljusa variant. Under 760 px byts fotot mot
+   srcMobil, beskuret runt motivet (spiran). Utan fältet renderas inget av detta. */
+.ftrMedBild {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: var(--mork);
+  border-top-color: var(--linje-mork);
+  color: #fff;
+}
+.ftrFoto { display: contents; }
+.ftrFoto img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+.ftrMedBild::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--mork) 78%, transparent);
+}
+.ftrMedBild .ftrText,
+.ftrMedBild .ftrKol a,
+.ftrMedBild .ftrKol li > span,
+.ftrMedBild .ftrBar { color: #CBD5E1; }
+.ftrMedBild .ftrKol h3, .ftrMedBild .ftrOrd { color: #fff; }
+.ftrMedBild .ftrKol a:hover { color: #fff; }
+.ftrMedBild .ftrKol svg { color: var(--accent-ljus); }
+.ftrMedBild .ftrSociala a { color: #fff; border-color: rgba(255, 255, 255, 0.4); }
+.ftrMedBild .ftrBar { border-top-color: var(--linje-mork); }
+@media (max-width: 760px) {
+  .ftrFoto img { object-position: 50% 50%; }
+}
 
 /* ---------- sidflik: stående "RING …" i högerkanten ---------- */
 .sidflik {
