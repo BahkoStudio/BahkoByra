@@ -251,3 +251,14 @@ Alla: samma mall, tema, logotyp, filmer och kontakt (gemensamt i `gdmaleri/_gd.j
 ## DM-utkast (när demon är live)
 
 > Tja Ghandi! Såg att ring-knappen på gdmaleri.se går till 123-456-7890 i stället för ditt nummer, så jag byggde en gratis prototyp med dina egna jobb och Reco-omdömena: bahkobyra.se/gdmaleri/ — säg vad du tycker 💪
+
+## BRF-sidan ombyggd till egen struktur (2026-10-09)
+
+Mathias: "Jag vill inte ha samma hero på samma sidor – det ska vara två olika strukturer för BRF och vanliga demon." Förebild alviksmaleri.se/malning-brf-stockholm-goteborg-uppsala/ ("fast inte så kaosaktigt … mer 2026-stil"). Ingen text är kopierad.
+
+- **Mallen fick en andra layout:** `layout: 'styrelse'` i data (DemoSida.js `StyrelseMain`, CSS med prefixet `st` i mall.module.css). Utan fältet renderas allt som förut: swedcro och gdmaleri huvudsidan är pixelidentiska före/efter (0 avvikande pixlar på 1440 och 390; 33 px brus på swedcro 1440 finns även mellan två körningar av samma bygge). Fälten står i hemsidor-skillen (`layout`, `omdomen.recoBetyg`, `kontaktSektion.kundtypVald`), QA-skriptet tar `styrelse` som sjunde argument.
+- **Strukturen:** 1 ljus delad hero utan film (h1 "Målning för bostadsrättsföreningar. *Allt i offerten, inget i förskott.*", ingress, Boka offertbesök → kalendern, Ring, bevisrad 4,9 på Reco · tre år i rad · F-skatt och Trygg-Hansa; höger: stillbild ur hans egen film med Reco-kortet som litet lager) · 2 Så går ett BRF-jobb till, fem numrerade steg · 3 tjänster som rader (Trapphus, Entréer och dörrar, Fasad och fönster, Lägenheter) · 4 Därför (fyra punkter i vita kort på kräm) · 5 omdömen från privatkunder med Reco-betyget 4,9 av 45 som bricka · 6 frågor · 7 kalendern + kontakt med BRF förbockat · footer. Inget tjänsteband, inga jobbband, ingen Varför-film, inget Om oss, ingen Instagram. Headern vit från start.
+- **Hero-bilden** `brf-hero.jpg` (1440×1080) är bildruta 6,4 s ur hans egen herofilm (målare på stege vid balkongen), beskuren med ffmpeg. Ingen generering. Reco-kortet ligger nu i heron (inte i Om oss, som inte finns på den här layouten).
+- **Processen:** steg 2 heter "Styrelsens ja" (inget startar utan godkänd offert, inget extra utan ert ja), inte "Avisering av de boende" — avisering är inte belagt. Fråga Ghandi (se planen punkt 5). Steg 1 är "Offertbesök och offert" (Cal.com-bokningen är ett besök på plats), inte "besiktning".
+- **Taget från Alviks:** lugn rubrik + ingress i stället för film, kundcitat, en tydlig processlista, tjänsteblock med bild/text, "därför välja oss", FAQ. **Valt bort:** kontaktbandet mitt på sidan, upprepade H2-block (Invändig/Golv/Underhåll som löpande text), underhållsavtal och "fördelar"-listor (inte belagt för GD), cookie-ruta, serif-rubriker och mörkblå hero.
+- QA 2026-10-09: gdmaleri/brf 91 OK (styrelse), gdmaleri 117 OK, swedcro 109 OK.

@@ -1884,7 +1884,10 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
     .recension,
     .igInlagg,
     .fraga,
-    .form {
+    .form,
+    .stProcess li,
+    .stRad,
+    .stVarfor li {
       animation: stigUpp linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 38%;
@@ -1906,4 +1909,290 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
   .heroOrt { animation-delay: 0.1s; }
   .heroTjanster { animation-delay: 0.2s; }
   .heroCta { animation-delay: 0.32s; }
+}
+
+/* ---------- layout 'styrelse' (valfri, data.layout) ----------
+   GD Måleri BRF 2026-10-09. En andra sidstruktur för en styrelse: lugn delad hero utan film,
+   numrerad lodrät process, tjänster som rader, ljust Därför-block. Samma typsnitt, färger, radier
+   och typskala som resten av mallen; mörkt bara i kontaktsektionen. Utan data.layout används
+   ingenting av det här. Prefixet st = styrelse. */
+
+/* Headern är vit med mörk text från start: heron är ljus, så det finns ingen film att vara genomskinlig över. */
+.hdr.hdrLjus {
+  --bahko-hdr-t: 1;
+  animation: none;
+}
+
+/* 1. Hero: vänster rubrik, ingress, två knappar och bevisrad · höger stillbild med ett litet lager. */
+.stHero {
+  padding: calc(84px + clamp(2.5rem, 6vw, 4.5rem)) 0 clamp(3.5rem, 7vw, 5.5rem);
+  background: var(--vit);
+}
+.stHeroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+.stH1 {
+  font-family: var(--f-rubrik);
+  font-size: clamp(2.1rem, 4.6vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  hyphens: manual;
+}
+.stH1 em {
+  display: block;
+  margin-top: 0.15em;
+  font-family: var(--f-kursiv);
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--accent-text);
+}
+.stIngress {
+  margin-top: 1.2rem;
+  max-width: 34rem;
+  font-size: clamp(1.08rem, 1.4vw, 1.25rem);
+  color: var(--text-2);
+  text-wrap: pretty;
+}
+.stHeroCta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.8rem;
+}
+.stHeroCta .btn { min-height: 58px; padding-inline: 1.8rem; font-size: var(--tx-l); }
+/* Bevisraden: etiketter (14 px, 600) med bock, aldrig räknare. */
+.stBevis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  margin-top: 1.7rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--linje);
+}
+.stBevis li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--f-rubrik);
+  font-size: var(--tx-s);
+  font-weight: 600;
+  color: var(--text-2);
+}
+.stBevis .bock { width: 18px; height: 18px; color: var(--accent-text); }
+.stHeroBild { position: relative; }
+.stHeroFoto {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r);
+  box-shadow: var(--skugga-stor);
+}
+/* Lagret (t.ex. Recos märkeskort) ligger stilla över bildens nedre vänstra hörn. */
+.stHeroLager {
+  position: absolute;
+  left: -1.2rem;
+  bottom: -1.4rem;
+  width: min(34%, 190px);
+  height: auto;
+  border-radius: 12px;
+  box-shadow: var(--skugga-stor);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .stHeroTxt > *,
+  .stHeroBild { animation: stigUpp 0.9s var(--ease) both; }
+  .stHeroTxt > :nth-child(2) { animation-delay: 0.08s; }
+  .stHeroTxt > :nth-child(3) { animation-delay: 0.16s; }
+  .stHeroTxt > :nth-child(4) { animation-delay: 0.24s; }
+  .stHeroTxt > :nth-child(5) { animation-delay: 0.32s; }
+  .stHeroBild { animation-delay: 0.2s; }
+}
+
+/* Tvåspalt med klistrad rubrik till vänster (process och Därför). */
+.stTva {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+.stKlistrad { position: sticky; top: 120px; }
+.stKlistrad .sekHuvud { margin-bottom: 1.8rem; }
+
+/* 2. Processen: numrerade hållplatser på en lodrät linje som ritas medan man skrollar. */
+.stProcess {
+  --nod: 48px;
+  position: relative;
+  display: grid;
+  gap: 1.7rem;
+  max-width: 40rem;
+}
+.stProcess::before,
+.stProcess::after {
+  content: '';
+  position: absolute;
+  top: calc(var(--nod) / 2);
+  bottom: calc(var(--nod) / 2);
+  left: calc(var(--nod) / 2 - 1px);
+  width: 2px;
+  border-radius: 2px;
+}
+.stProcess::before { background: #CBD5E1; }
+.stProcess::after { background: var(--accent); transform-origin: center top; }
+.stProcess li {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: var(--nod) 1fr;
+  column-gap: 1.2rem;
+  align-items: start;
+}
+.stNr {
+  display: grid;
+  place-items: center;
+  width: var(--nod);
+  height: var(--nod);
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--accent);
+  color: var(--accent-text);
+  font-family: var(--f-rubrik);
+  font-size: var(--tx-l);
+  font-weight: 700;
+  box-shadow: 0 0 0 6px var(--mjuk);
+}
+/* Målet: sista hållplatsen är fylld, som i resan. */
+.stProcess li:last-child .stNr { background: var(--accent); border-color: var(--accent); color: var(--pa-accent); }
+.stProcess h3 {
+  padding-top: 0.6rem;
+  font-family: var(--f-rubrik);
+  font-size: var(--tx-xl);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+.stProcess p { margin-top: 0.35rem; max-width: 34rem; font-size: var(--tx-m); color: var(--text-2); }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .stProcess::after {
+      animation: resaRitasNed linear both;
+      animation-timeline: view();
+      animation-range: entry 30% cover 60%;
+    }
+  }
+}
+
+/* 3. Tjänster som rader: bild och text omväxlande. */
+.stRader { display: grid; gap: clamp(2.5rem, 6vw, 5rem); }
+.stRad {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.6rem, 4vw, 4rem);
+  align-items: center;
+}
+.stRadVand .stRadBild { order: 2; }
+.stRadBild {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--mjuk);
+  box-shadow: var(--skugga);
+}
+.stRadBild img { width: 100%; height: 100%; object-fit: cover; }
+.stRadIkon {
+  display: grid;
+  width: 56px;
+  height: 46px;
+  margin-bottom: 1.1rem;
+  padding: 8px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: var(--pa-accent);
+}
+.stRadIkon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.stRadTxt h3 {
+  font-family: var(--f-rubrik);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.stRadTxt p { margin-top: 0.7rem; font-size: var(--tx-l); color: var(--text-2); text-wrap: pretty; }
+.stRadTxt ul {
+  display: grid;
+  gap: 0.5rem;
+  margin: 1.1rem 0 0.6rem;
+  font-size: var(--tx-m);
+  color: var(--text-2);
+}
+.stRadTxt li { display: flex; align-items: center; gap: 0.55rem; }
+.stRadTxt li .bock { width: 18px; height: 18px; color: var(--accent-text); }
+.stNot { margin-top: clamp(2rem, 4vw, 3rem); max-width: 40rem; font-size: var(--tx-s); color: var(--text-2); }
+
+/* 4. Därför: punkter i vita kort på kräm. */
+.stVarfor {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.stVarfor li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.9rem;
+  align-items: start;
+  padding: 1.3rem 1.4rem;
+  border-radius: var(--r);
+  background: #fff;
+  border: 1px solid var(--linje);
+  box-shadow: var(--skugga);
+}
+.stVarfor b {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: var(--f-rubrik);
+  font-size: var(--tx-l);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.stVarfor span { font-size: var(--tx-m); color: var(--text-2); }
+.stVarfor .bock { width: 24px; height: 24px; margin-top: 0.15rem; color: var(--accent-text); }
+
+/* Reco-brickan i omdömen (valfritt omdomen.recoBetyg): ordet i stället för Googles G. */
+.betygReco {
+  font-family: var(--f-rubrik);
+  font-size: var(--tx-l);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .stHero { padding-top: calc(68px + clamp(2rem, 6vw, 3rem)); }
+  .stHeroGrid { grid-template-columns: 1fr; gap: 2.6rem; }
+  .stHeroLager { left: 0.8rem; bottom: -1rem; width: 150px; }
+  .stTva { grid-template-columns: 1fr; }
+  .stKlistrad { position: static; }
+  .stRad { grid-template-columns: 1fr; }
+  .stRadVand .stRadBild { order: 0; }
+}
+@media (max-width: 620px) {
+  .stVarfor { grid-template-columns: 1fr; }
+  .stHeroCta .btn,
+  .stKlistrad .btn,
+  .stKlistrad .varforCta .btn { width: 100%; }
 }

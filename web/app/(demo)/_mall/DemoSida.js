@@ -15,6 +15,13 @@ import { googleOmdomen, recoOmdomen, instagramInlagg, kortaText } from './levand
    Runt om: glaspiller-header med logotypen mitt bland länkarna, sidflik,
    popup, Bahkos demo-knapp och modal.
 
+   Valfritt data.layout: 'styrelse' (GD Måleri BRF 2026-10-09) = en andra sidstruktur för
+   en styrelse/beslutsfattare: lugn delad hero utan film (rubrik, ingress, två knappar,
+   bevisrad, stillbild med ett litet lager), numrerad lodrät process, tjänster som rader
+   (bild/text omväxlande), ljust Därför-block, omdömen, frågor, bokning, kontakt, footer.
+   Inget tjänsteband, inga jobbband, ingen Varför-film, inget Om oss, ingen Instagram.
+   Headern är vit från start. Utan fältet renderas sidan exakt som förut (pixeljämfört).
+
    Fältbeskrivning och regler: ~/.claude/skills/hemsidor/SKILL.md
    =========================================================================== */
 
@@ -154,6 +161,13 @@ function Omdomen({ d, t, levande }) {
               <span className={s.betygTal}>{d.omdomen.betyg.varde}</span>
               <span className={s.betygTxt}><Stjarnor etikett={t.femStjarnor} /><span>{d.omdomen.betyg.text}</span></span>
             </div>
+          ) : d.omdomen.recoBetyg ? (
+            /* Valfritt omdomen.recoBetyg { varde, antal, href }: verifierat Reco-betyg som bricka utan Googles G (GD Måleri BRF 2026-10-09). */
+            <a className={s.betyg} href={d.omdomen.recoBetyg.href} target="_blank" rel="noopener">
+              <span className={s.betygReco} aria-hidden="true">Reco</span>
+              <span className={s.betygTal}>{fmt(d.omdomen.recoBetyg.varde)}</span>
+              <span className={s.betygTxt}><Stjarnor antal={Math.round(d.omdomen.recoBetyg.varde)} etikett={`${fmt(d.omdomen.recoBetyg.varde)} ${t.stjarnorAv}`} /><span>{d.omdomen.recoBetyg.antal} {t.omdomenAntal} · Reco.se</span></span>
+            </a>
           ) : null}
         </div>
         <div className={s.recensioner}>
@@ -265,6 +279,230 @@ async function InstagramLevande({ d, t }) {
   return <Instagram d={d} t={t} inlagg={inlagg} />;
 }
 
+
+// 9. Frågor: delas av båda layouterna (samma HTML som förut).
+function Fragor({ d, t, k, harTel }) {
+  return (
+    <>
+      {/* 9. Frågor */}
+      <section className={`${s.sek} ${s.sekKram}`} id="fragor">
+        <div className={s.wrap}>
+          <div className={s.fragorGrid}>
+            <div className={s.fragorSida}>
+              <Rubrik r={d.fragor} />
+              <aside className={s.fragaKort}>
+                <h3>{d.fragor.kort.rubrik}</h3>
+                <p>{d.fragor.kort.text}</p>
+                <a className={s.btn} href={harTel ? k.telHref : '#kontakt'}>{harTel ? <><Tel />{t.ring} {k.tel}</> : d.cta.txt}</a>
+                {d.bokning?.kortTxt ? (d.bokning.inbaddad ? <a className={s.pilLank} href="#boka">{d.bokning.kortTxt}</a> : <a className={s.pilLank} href={d.bokning.url} target="_blank" rel="noopener">{d.bokning.kortTxt}</a>) : null}
+              </aside>
+            </div>
+            <div className={s.fragor}>{d.fragor.lista.map((f) => <details className={s.fraga} name="faq" key={f.q}><summary>{f.q}<span className={s.fragaIkon} aria-hidden="true" /></summary><p>{f.a}</p></details>)}</div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// 9b. Bokning: kalendern inbäddad (valfri). Delas av båda layouterna.
+function Boka({ d }) {
+  return (
+    <>
+      {/* 9b. Valfritt d.bokning.inbaddad { eyebrow, rubrik, lead, titel, src? }: bokningskalendern (Cal.com) inbäddad som <iframe>,
+          som Instagram-inläggen: ingen embed-JS, noll egen klient-JS. src utelämnad = bokning.url + ?embed=true&theme=light
+          (theme=light: annars blir kalendern mörk hos besökare med mörkt läge). GD Måleri 2026-10-08. */}
+      {d.bokning?.inbaddad ? (
+        <section className={s.sek} id="boka">
+          <div className={s.wrap}>
+            <Rubrik r={d.bokning.inbaddad} />
+            <div className={s.bokaRam}>
+              <iframe src={d.bokning.inbaddad.src || `${d.bokning.url}${d.bokning.url.includes('?') ? '&' : '?'}embed=true&theme=light`} title={d.bokning.inbaddad.titel} loading="lazy" />
+            </div>
+            {d.bokning.ringUrl ? <p className={s.bokaFot}><a className={s.pilLank} href={d.bokning.ringUrl} target="_blank" rel="noopener">{d.bokning.ringTxt}</a></p> : null}
+          </div>
+        </section>
+      ) : null}
+    </>
+  );
+}
+
+// 10. Kontakt: formulär över suddig film. Delas av båda layouterna.
+function Kontakt({ d, t, k, harTel }) {
+  return (
+    <>
+      {/* 10. Kontakt: formulär över suddig film */}
+      <section className={s.kontakt} id="kontakt">
+        <figure className={s.kontaktFilm} aria-hidden="true">
+          <video autoPlay muted loop playsInline preload="metadata" poster={d.kontaktSektion.poster}><source src={d.kontaktSektion.video} type="video/mp4" /></video>
+        </figure>
+        <div className={s.wrap}>
+          <div className={s.kontaktGrid}>
+            <div className={`${s.paMork} ${s.kontaktVanster}`}>
+              <p className={s.eyebrow}>{d.kontaktSektion.eyebrow}</p>
+              <h2 className={s.h2}>{d.kontaktSektion.rubrik[0]}{d.kontaktSektion.rubrik[1] ? <> <em>{d.kontaktSektion.rubrik[1]}</em></> : null}</h2>
+              <p className={s.sekLead}>{d.kontaktSektion.lead}</p>
+              <ul className={s.kontaktCheckar}>{d.kontaktSektion.checkar.map((c) => <li key={c}><Bock />{c}</li>)}</ul>
+              {/* Valfritt d.bokning { url, txt, not?, ringUrl?, ringTxt?, kortTxt? }: vanliga länkar till en bokningssida (t.ex. Cal.com), ny flik. Formuläret förblir huvudvägen.
+                  Med bokning.inbaddad står kalendern i egen sektion strax ovanför, och länkarna här utgår. */}
+              {d.bokning && !d.bokning.inbaddad ? (
+                <div className={s.kontaktBokning}>
+                  <a className={`${s.btn} ${s.btnKontur}`} href={d.bokning.url} target="_blank" rel="noopener"><Kalender />{d.bokning.txt}</a>
+                  {d.bokning.not ? <p className={s.bokningNot}>{d.bokning.not}</p> : null}
+                  {d.bokning.ringUrl ? <a className={s.bokningRing} href={d.bokning.ringUrl} target="_blank" rel="noopener">{d.bokning.ringTxt}</a> : null}
+                </div>
+              ) : null}
+              <div className={s.kontaktRader}>
+                {harTel ? <a className={s.kontaktRad} href={k.telHref}><span>{t.telRad}</span><b>{k.tel}</b></a> : null}
+                {k.epost ? <a className={s.kontaktRad} href={`mailto:${k.epost}`}><span>{t.epostRad}</span><b>{k.epost}</b></a> : null}
+                {k.oppet ? <div className={s.kontaktRad}><span>{t.oppetRad}</span><b>{k.oppet}</b></div> : null}
+                {k.ig ? <a className={s.kontaktRad} href={k.ig} target="_blank" rel="noopener"><span>{t.igRad}</span><b>{k.igHandle}</b></a> : null}
+              </div>
+            </div>
+            {/* Valfritt d.formular { nyckel, amne, fran, kvittens: [rubrik, text] }: kundens egen Web3Forms-nyckel och egna rader.
+                amne: null / fran: null = inga sådana fält i anropet; då gäller kundens inställningar i Web3Forms-panelen. */}
+            {/* Egen nyckel = förfrågan landar hos kunden (formular.nyckel, eller web3nyckel från #235). Utan: demonyckeln. */}
+            <DemoFormular
+              className={s.form}
+              amne={d.formular && 'amne' in d.formular ? d.formular.amne : `${d.namn}: ny förfrågan från förslaget`}
+              {...(d.formular?.nyckel || d.web3nyckel ? { nyckel: d.formular?.nyckel || d.web3nyckel } : {})}
+              {...(d.web3nyckel && !d.formular ? { fran: d.namn } : {})}
+              tel={harTel ? k.tel : undefined}
+              {...(d.formular && 'fran' in d.formular ? { fran: d.formular.fran } : {})}
+              {...(d.formular?.kvittens ? { kvittens: <><p style={{ fontWeight: 700, fontSize: '1.15rem' }}>{d.formular.kvittens[0]}</p><p>{d.formular.kvittens[1]}</p></> } : {})}
+            >
+              <p className={s.formRubrik}>{d.kontaktSektion.formRubrik}</p>
+              {/* Valfritt kontaktSektion.kundtyp: ['Privatperson', 'Företag', 'BRF'] = obligatoriskt val, följer med som fältet kundtyp.
+                  Valfritt kontaktSektion.kundtypVald: 'BRF' = det valet är förbockat från start (BRF-sidan 2026-10-09). */}
+              {d.kontaktSektion.kundtyp?.length ? (
+                <fieldset className={s.kundtyp}>
+                  <legend>{t.kundtyp}</legend>
+                  <div className={s.kundtypVal}>{d.kontaktSektion.kundtyp.map((v) => <label key={v}><input type="radio" name="kundtyp" value={v} required defaultChecked={d.kontaktSektion.kundtypVald === v || undefined} />{v}</label>)}</div>
+                </fieldset>
+              ) : null}
+              <div className={s.formRad}>
+                <label>{t.namn}<input type="text" name="namn" autoComplete="name" required /></label>
+                <label>{t.telefon}<input type="tel" name="telefon" autoComplete="tel" required /></label>
+              </div>
+              {/* Valfritt kontaktSektion.epostNamn: fältnamnet för e-post, t.ex. 'email' (Web3Forms autosvar går bara till fältet email). */}
+              <label>{t.epost}<input type="email" name={d.kontaktSektion.epostNamn || 'epost'} autoComplete="email" /></label>
+              <label>{t.typ}<select name="typ" defaultValue={d.tjanster.kort[0].namn}>{d.tjanster.kort.map((tj) => <option key={tj.id}>{tj.namn}</option>)}<option>{t.annat}</option></select></label>
+              <label>{t.meddelande}<textarea name="meddelande" rows={4} placeholder={d.kontaktSektion.placeholder} /></label>
+              <button className={s.btn} type="submit">{d.cta.txt}</button>
+              {harTel ? <a className={`${s.btn} ${s.btnLjus}`} href={k.telHref}><Tel />{t.ellerRing} {k.tel}</a> : null}
+              <p className={s.formNot} id="form-not">{d.kontaktSektion.formNotBock ? <Bock /> : null}{d.kontaktSektion.formNot}</p>
+            </DemoFormular>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+/* ---------- layout 'styrelse' (valfri, data.layout) ----------
+   GD Måleri BRF 2026-10-09, Mathias: "två olika strukturer för BRF och vanliga demon".
+   Förebild: alviksmaleri.se/malning-brf-… (lugnt upplägg: rubrik + ingress, citat, processlista,
+   tjänsteblock, därför välja oss, FAQ) utan dess upprepningar. Ingen text är kopierad.
+   Data: hero { eyebrow?, h1: [rak, kursiv], ingress, knapp? { href, txt }, bevis[], bild { src, w, h, alt }, lager? { src, w, h, alt } } ·
+   steg (rubrikfält + lista[] { namn, text }) · tjanster (rubrikfält + kort[] som vanligt + not?) ·
+   varfor (rubrikfält + punkter[]) · omdomen · fragor · bokning · kontaktSektion · footer. Inget tejp, jobb, om, instagram. */
+function StyrelseMain({ d, t, k, harTel, andraVag }) {
+  const h = d.hero;
+  return (
+    <main>
+      {/* 1. Hero: delad, utan film. Vänster rubrik för styrelsen, höger stillbild med ett litet lager. */}
+      <section className={s.stHero} id="top">
+        <div className={s.wrap}>
+          <div className={s.stHeroGrid}>
+            <div className={s.stHeroTxt}>
+              {h.eyebrow ? <p className={s.eyebrow}>{h.eyebrow}</p> : null}
+              <h1 className={s.stH1}>{h.h1[0]}{h.h1[1] ? <> <em>{h.h1[1]}</em></> : null}</h1>
+              <p className={s.stIngress}>{h.ingress}</p>
+              <div className={s.stHeroCta}>
+                <a className={s.btn} href={h.knapp?.href || '#kontakt'}>{h.knapp?.txt || d.cta.txt}</a>
+                <a className={`${s.btn} ${s.btnLjus}`} href={andraVag.href} {...(andraVag.ny ? { target: '_blank', rel: 'noopener' } : {})}>{andraVag.ikon}{andraVag.txt}</a>
+              </div>
+              {h.bevis?.length ? <ul className={s.stBevis}>{h.bevis.map((b) => <li key={b}><Bock />{b}</li>)}</ul> : null}
+            </div>
+            <figure className={s.stHeroBild}>
+              <Image className={s.stHeroFoto} src={h.bild.src} alt={h.bild.alt} width={h.bild.w} height={h.bild.h} priority sizes="(max-width: 900px) 92vw, 560px" />
+              {h.lager ? <Image className={s.stHeroLager} src={h.lager.src} alt={h.lager.alt} width={h.lager.w} height={h.lager.h} sizes="210px" /> : null}
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Så går det till: numrerad lodrät process, rubriken klistrad till vänster */}
+      <section className={`${s.sek} ${s.sekMjuk}`} id="process">
+        <div className={s.wrap}>
+          <div className={s.stTva}>
+            <div className={s.stKlistrad}>
+              <Rubrik r={d.steg} />
+              <a className={s.btn} href="#kontakt">{d.cta.txt}</a>
+            </div>
+            <ol className={s.stProcess}>
+              {d.steg.lista.map((st, i) => (
+                <li key={st.namn}>
+                  <span className={s.stNr} aria-hidden="true">{i + 1}</span>
+                  <div><h3>{st.namn}</h3><p>{st.text}</p></div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Tjänster som rader: bild och text omväxlande */}
+      <section className={s.sek} id="tjanster">
+        <div className={s.wrap}>
+          <Rubrik r={d.tjanster} />
+          <div className={s.stRader}>
+            {d.tjanster.kort.map((tj, i) => (
+              <article className={`${s.stRad}${i % 2 ? ` ${s.stRadVand}` : ''}`} key={tj.id}>
+                <div className={s.stRadBild}><Image src={tj.bild} alt={tj.alt} width={800} height={600} sizes="(max-width: 900px) 92vw, 560px" loading={i ? 'lazy' : undefined} /></div>
+                <div className={s.stRadTxt}>
+                  {tj.ritning ? <span className={s.stRadIkon} aria-hidden="true"><svg viewBox="0 0 200 120">{tj.ritning}</svg></span> : null}
+                  <h3>{tj.namn}</h3>
+                  <p>{tj.text}</p>
+                  {tj.punkter?.length ? <ul>{tj.punkter.map((p) => <li key={p}><Bock />{p}</li>)}</ul> : null}
+                  {tj.lank
+                    ? <a className={s.pilLank} href={tj.lank.href}>{tj.lank.txt}</a>
+                    : <a className={s.pilLank} href="#kontakt" aria-label={`${d.cta.lank} – ${tj.namn}`}>{d.cta.lank}</a>}
+                </div>
+              </article>
+            ))}
+          </div>
+          {d.tjanster.not ? <p className={s.stNot}>{d.tjanster.not}</p> : null}
+        </div>
+      </section>
+
+      {/* 4. Därför: ljust, lugnt block med punkter i vita kort */}
+      <section className={`${s.sek} ${s.sekKram}`} id="varfor">
+        <div className={s.wrap}>
+          <div className={s.stTva}>
+            <div className={s.stKlistrad}>
+              <Rubrik r={d.varfor} />
+              <div className={s.varforCta}>
+                <a className={s.btn} href="#kontakt">{d.cta.txt}</a>
+                {harTel ? <a className={`${s.btn} ${s.btnLjus}`} href={k.telHref}><Tel />{t.ring} {k.tel}</a> : null}
+              </div>
+            </div>
+            <ul className={s.stVarfor}>{d.varfor.punkter.map((p) => <li key={p.rubrik}><Bock /><div><b>{p.rubrik}</b><span>{p.text}</span></div></li>)}</ul>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Omdömen (samma komponent som standardlayouten, levande om data slår på det) */}
+      {d.omdomen.levande ? <OmdomenLevande d={d} t={t} /> : <Omdomen d={d} t={t} />}
+
+      {/* 6. Frågor · 7. Bokning + kontakt */}
+      <Fragor d={d} t={t} k={k} harTel={harTel} />
+      <Boka d={d} />
+      <Kontakt d={d} t={t} k={k} harTel={harTel} />
+    </main>
+  );
+}
+
 export default function DemoSida({ data: d }) {
   const t = T[d.sprak || 'sv'];
   const k = d.kontakt;
@@ -290,7 +528,7 @@ export default function DemoSida({ data: d }) {
 
   return (
     <div className={`${fontKlasser} ${s.sida}`} style={tema}>
-      <header className={s.hdr}>
+      <header className={d.layout === 'styrelse' ? `${s.hdr} ${s.hdrLjus}` : s.hdr}>
         <div className={s.hdrIn}>
           {harTel
             ? <a className={s.hdrTel} href={k.telHref} aria-label={`${t.ring} ${k.tel}`}><Tel /><span aria-hidden="true">{k.tel}</span></a>
@@ -309,6 +547,7 @@ export default function DemoSida({ data: d }) {
         </div>
       </header>
 
+      {d.layout === 'styrelse' ? <StyrelseMain d={d} t={t} k={k} harTel={harTel} andraVag={andraVag} /> : (
       <main>
         {/* 1. Hero */}
         <section className={s.hero} id="top">
@@ -449,103 +688,12 @@ export default function DemoSida({ data: d }) {
         {/* 8. Instagram: riktiga inlägg som inbäddningar, annars egna bilder i IG-ram — eller levande flöde */}
         {d.instagram ? (d.instagram.levande ? <InstagramLevande d={d} t={t} /> : <Instagram d={d} t={t} />) : null}
 
-        {/* 9. Frågor */}
-        <section className={`${s.sek} ${s.sekKram}`} id="fragor">
-          <div className={s.wrap}>
-            <div className={s.fragorGrid}>
-              <div className={s.fragorSida}>
-                <Rubrik r={d.fragor} />
-                <aside className={s.fragaKort}>
-                  <h3>{d.fragor.kort.rubrik}</h3>
-                  <p>{d.fragor.kort.text}</p>
-                  <a className={s.btn} href={harTel ? k.telHref : '#kontakt'}>{harTel ? <><Tel />{t.ring} {k.tel}</> : d.cta.txt}</a>
-                  {d.bokning?.kortTxt ? (d.bokning.inbaddad ? <a className={s.pilLank} href="#boka">{d.bokning.kortTxt}</a> : <a className={s.pilLank} href={d.bokning.url} target="_blank" rel="noopener">{d.bokning.kortTxt}</a>) : null}
-                </aside>
-              </div>
-              <div className={s.fragor}>{d.fragor.lista.map((f) => <details className={s.fraga} name="faq" key={f.q}><summary>{f.q}<span className={s.fragaIkon} aria-hidden="true" /></summary><p>{f.a}</p></details>)}</div>
-            </div>
-          </div>
-        </section>
-
-        {/* 9b. Valfritt d.bokning.inbaddad { eyebrow, rubrik, lead, titel, src? }: bokningskalendern (Cal.com) inbäddad som <iframe>,
-            som Instagram-inläggen: ingen embed-JS, noll egen klient-JS. src utelämnad = bokning.url + ?embed=true&theme=light
-            (theme=light: annars blir kalendern mörk hos besökare med mörkt läge). GD Måleri 2026-10-08. */}
-        {d.bokning?.inbaddad ? (
-          <section className={s.sek} id="boka">
-            <div className={s.wrap}>
-              <Rubrik r={d.bokning.inbaddad} />
-              <div className={s.bokaRam}>
-                <iframe src={d.bokning.inbaddad.src || `${d.bokning.url}${d.bokning.url.includes('?') ? '&' : '?'}embed=true&theme=light`} title={d.bokning.inbaddad.titel} loading="lazy" />
-              </div>
-              {d.bokning.ringUrl ? <p className={s.bokaFot}><a className={s.pilLank} href={d.bokning.ringUrl} target="_blank" rel="noopener">{d.bokning.ringTxt}</a></p> : null}
-            </div>
-          </section>
-        ) : null}
-
-        {/* 10. Kontakt: formulär över suddig film */}
-        <section className={s.kontakt} id="kontakt">
-          <figure className={s.kontaktFilm} aria-hidden="true">
-            <video autoPlay muted loop playsInline preload="metadata" poster={d.kontaktSektion.poster}><source src={d.kontaktSektion.video} type="video/mp4" /></video>
-          </figure>
-          <div className={s.wrap}>
-            <div className={s.kontaktGrid}>
-              <div className={`${s.paMork} ${s.kontaktVanster}`}>
-                <p className={s.eyebrow}>{d.kontaktSektion.eyebrow}</p>
-                <h2 className={s.h2}>{d.kontaktSektion.rubrik[0]}{d.kontaktSektion.rubrik[1] ? <> <em>{d.kontaktSektion.rubrik[1]}</em></> : null}</h2>
-                <p className={s.sekLead}>{d.kontaktSektion.lead}</p>
-                <ul className={s.kontaktCheckar}>{d.kontaktSektion.checkar.map((c) => <li key={c}><Bock />{c}</li>)}</ul>
-                {/* Valfritt d.bokning { url, txt, not?, ringUrl?, ringTxt?, kortTxt? }: vanliga länkar till en bokningssida (t.ex. Cal.com), ny flik. Formuläret förblir huvudvägen.
-                    Med bokning.inbaddad står kalendern i egen sektion strax ovanför, och länkarna här utgår. */}
-                {d.bokning && !d.bokning.inbaddad ? (
-                  <div className={s.kontaktBokning}>
-                    <a className={`${s.btn} ${s.btnKontur}`} href={d.bokning.url} target="_blank" rel="noopener"><Kalender />{d.bokning.txt}</a>
-                    {d.bokning.not ? <p className={s.bokningNot}>{d.bokning.not}</p> : null}
-                    {d.bokning.ringUrl ? <a className={s.bokningRing} href={d.bokning.ringUrl} target="_blank" rel="noopener">{d.bokning.ringTxt}</a> : null}
-                  </div>
-                ) : null}
-                <div className={s.kontaktRader}>
-                  {harTel ? <a className={s.kontaktRad} href={k.telHref}><span>{t.telRad}</span><b>{k.tel}</b></a> : null}
-                  {k.epost ? <a className={s.kontaktRad} href={`mailto:${k.epost}`}><span>{t.epostRad}</span><b>{k.epost}</b></a> : null}
-                  {k.oppet ? <div className={s.kontaktRad}><span>{t.oppetRad}</span><b>{k.oppet}</b></div> : null}
-                  {k.ig ? <a className={s.kontaktRad} href={k.ig} target="_blank" rel="noopener"><span>{t.igRad}</span><b>{k.igHandle}</b></a> : null}
-                </div>
-              </div>
-              {/* Valfritt d.formular { nyckel, amne, fran, kvittens: [rubrik, text] }: kundens egen Web3Forms-nyckel och egna rader.
-                  amne: null / fran: null = inga sådana fält i anropet; då gäller kundens inställningar i Web3Forms-panelen. */}
-              {/* Egen nyckel = förfrågan landar hos kunden (formular.nyckel, eller web3nyckel från #235). Utan: demonyckeln. */}
-              <DemoFormular
-                className={s.form}
-                amne={d.formular && 'amne' in d.formular ? d.formular.amne : `${d.namn}: ny förfrågan från förslaget`}
-                {...(d.formular?.nyckel || d.web3nyckel ? { nyckel: d.formular?.nyckel || d.web3nyckel } : {})}
-                {...(d.web3nyckel && !d.formular ? { fran: d.namn } : {})}
-                tel={harTel ? k.tel : undefined}
-                {...(d.formular && 'fran' in d.formular ? { fran: d.formular.fran } : {})}
-                {...(d.formular?.kvittens ? { kvittens: <><p style={{ fontWeight: 700, fontSize: '1.15rem' }}>{d.formular.kvittens[0]}</p><p>{d.formular.kvittens[1]}</p></> } : {})}
-              >
-                <p className={s.formRubrik}>{d.kontaktSektion.formRubrik}</p>
-                {/* Valfritt kontaktSektion.kundtyp: ['Privatperson', 'Företag', 'BRF'] = obligatoriskt val, följer med som fältet kundtyp. */}
-                {d.kontaktSektion.kundtyp?.length ? (
-                  <fieldset className={s.kundtyp}>
-                    <legend>{t.kundtyp}</legend>
-                    <div className={s.kundtypVal}>{d.kontaktSektion.kundtyp.map((v) => <label key={v}><input type="radio" name="kundtyp" value={v} required />{v}</label>)}</div>
-                  </fieldset>
-                ) : null}
-                <div className={s.formRad}>
-                  <label>{t.namn}<input type="text" name="namn" autoComplete="name" required /></label>
-                  <label>{t.telefon}<input type="tel" name="telefon" autoComplete="tel" required /></label>
-                </div>
-                {/* Valfritt kontaktSektion.epostNamn: fältnamnet för e-post, t.ex. 'email' (Web3Forms autosvar går bara till fältet email). */}
-                <label>{t.epost}<input type="email" name={d.kontaktSektion.epostNamn || 'epost'} autoComplete="email" /></label>
-                <label>{t.typ}<select name="typ" defaultValue={d.tjanster.kort[0].namn}>{d.tjanster.kort.map((tj) => <option key={tj.id}>{tj.namn}</option>)}<option>{t.annat}</option></select></label>
-                <label>{t.meddelande}<textarea name="meddelande" rows={4} placeholder={d.kontaktSektion.placeholder} /></label>
-                <button className={s.btn} type="submit">{d.cta.txt}</button>
-                {harTel ? <a className={`${s.btn} ${s.btnLjus}`} href={k.telHref}><Tel />{t.ellerRing} {k.tel}</a> : null}
-                <p className={s.formNot} id="form-not">{d.kontaktSektion.formNotBock ? <Bock /> : null}{d.kontaktSektion.formNot}</p>
-              </DemoFormular>
-            </div>
-          </div>
-        </section>
+        {/* 9. Frågor · 9b. Bokning · 10. Kontakt */}
+        <Fragor d={d} t={t} k={k} harTel={harTel} />
+        <Boka d={d} />
+        <Kontakt d={d} t={t} k={k} harTel={harTel} />
       </main>
+      )}
 
       {/* 11. Footer: ljus, med logotypen */}
       <footer className={s.ftr}>
