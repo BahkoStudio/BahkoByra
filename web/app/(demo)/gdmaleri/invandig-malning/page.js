@@ -23,6 +23,11 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    INTE verifierat, och finns därför inte på sidan: priser per kvm, ledtider,
    färgmärken utöver Flügger, antal rum/projekt.
 
+   NYA BILDER (2026-10-09, Ghandi via Mathias: senaste jobbfotona från IG):
+   invandig-sodertalje-1/-2.webp är bild 2 och 3 ur senaste inlägget DeNI1zEkcpW
+   (publicerat 2026-10-07, Södertälje), ordagrant: "180 kvm Tak/Vägg målning samt
+   microlituppsättning och snobbkant". Bild 1 har inbränd text och används inte.
+   Beskurna 4:3, först i övre bandet.
    FLAGGOR: alla bilder är GD:s egna foton (samma som huvudsidan). Omdömena här
    är fasta (inte levande), så att de handlar om invändig målning.
    OPTIMERING: egen titel och beskrivning, JSON-LD Service → HousePainter
@@ -75,6 +80,8 @@ const data = {
     not: 'Fler jobb, med ort och yta, finns på vårt Instagram.',
     tid: '70s',
     rad1: [
+      { src: `${M}/invandig-sodertalje-1.webp`, alt: 'Nymålat rum med ljusa väggar, vit taklist och skrivbord vid fönstret i Södertälje', txt: 'Södertälje: tak och väggar, 180 kvm' },
+      { src: `${M}/invandig-sodertalje-2.webp`, alt: 'Nymålat vitt tak med taklampa och bred taklist mot ljusgrå väggar, en öppen dörr med glasrutor, i Södertälje', txt: 'Södertälje: nymålat tak' },
       { src: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', txt: 'Rum målat i ljust' },
       { src: `${M}/jobb-gul-hall.jpg`, alt: 'Hall i varmgul kulör med vita snickerier och balkongdörr', txt: 'Hall målad i gult' },
       { src: `${M}/jobb-bla-tak.jpg`, alt: 'Ljusblått målat tak med spotlightskena och bokhylla', txt: 'Tak målat ljusblått' },

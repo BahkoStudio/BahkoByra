@@ -111,6 +111,27 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExt
    (data.bokning, inbäddad) och "Boka att GD Måleri Sthlm AB ringer upp" som
    huvudsidan; ingressen under kalendern är omskriven för föreningen.
 
+   OMARBETNING 2026-10-09 (Mathias: "mer professionell och trovärdig BRF-sida,
+   strukturen ska se annorlunda ut, som de bästa måleri-/renoveringsfirmornas
+   BRF-sidor"). Förebilder för STRUKTUREN (inte texten):
+   andresmaleri.se/tjanster/brf-underhall, /trapphusmalning-stockholm och
+   /kunskap/trapphusrenovering/trapphusrenovering-101-for-styrelse (checklista
+   för styrelsen, offert specificerad per moment, namngiven kontakt,
+   slutbesiktning) · vimalar.se/brf-maleri-stockholm (beslutsunderlag,
+   tidsplan, kontaktperson) · certapro.com HOA/condo-sidorna (jämförbara
+   anbud "apples-to-apples", skriftlig garanti, steg för steg för styrelsen).
+   Nytt: mallsektionen d.styrelse (#styrelse, "Beslutsunderlaget": vad
+   styrelsen ska kräva av en offert → så gör GD Måleri, referenskortet
+   Holmströmgruppen och Ghandi som namngiven kontaktperson), Varför blir
+   "Garanti och trygghet", Så går det till blir sex steg från styrelsens
+   första samtal till garantin, Reco-widgeten och partnerbandet som på
+   huvudsidan, Instagram borttaget här (styrelser beslutar inte på IG).
+   Varje svar i tabellen är ur huvudsidans VERIFIERAT-block eller ovan;
+   kraven i vänsterkolumnen är allmänna råd (förebilderna ovan), inga
+   påståenden om GD. Offertbesöket: Cal.com-händelsen "offert", hembesök
+   45 min (../_gd.js bokning). Inget nytt om referenser, ledtider, priser,
+   boendeinformation eller projektledare — det finns inte på sidan.
+
    OPTIMERING: egen titel och beskrivning, JSON-LD Service som pekar på samma
    HousePainter-entitet (@id gdmaleri.se/#business), inget betygsschema,
    noindex KVAR som på huvudsidan tills flytten till gdmaleri.se.
@@ -258,6 +279,8 @@ const data = {
       { q: 'Vad händer om något oväntat dyker upp?', a: 'Då hör vi av oss direkt och föreslår en lösning. Vi gör inga extraarbeten utan ert godkännande.' },
       { q: 'Är ni försäkrade?', a: 'Ja. Vi har F-skatt och är fullt försäkrade via Trygg-Hansa. Skulle något gå fel under arbetet är föreningen skyddad.' },
       { q: 'Hur påverkas de boende?', a: 'Allt som inte ska målas täcks med plast eller papper, och golven skyddas innan vi börjar. Städning och bortforsling ingår i offerten.' },
+      { q: 'Vem är vår kontaktperson?', a: 'Ghandi Danho, som äger firman. Han gör offertbesöket och offerten och är er kontakt under hela jobbet, så styrelsen har samma person att ringa: 073-729 88 89, vardagar 08–17.' },
+      { q: 'Vilken färg använder ni, och hjälper ni till med kulörer?', a: 'Vi målar med färg från Flügger. Vi hjälper gärna till med färgval och designförslag, till exempel för ett trapphus.' },
       { q: 'Hur lång tid tar det?', a: 'Det beror på hur stora ytorna är och i vilket skick de är, så det går inte att säga utan att veta vad som ska göras. Ring och berätta om ert hus, så kan vi svara på just det.' },
     ],
   },

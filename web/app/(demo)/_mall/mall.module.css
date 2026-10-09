@@ -1197,6 +1197,153 @@ a.betyg { color: var(--text); }
 .recensionerNot { font-size: var(--tx-s); color: var(--text-2); max-width: 38rem; }
 .recensionerKnappar { display: flex; flex-wrap: wrap; gap: 0.8rem; }
 
+/* Utvalda jobb (jobb.utvalda, GD Måleri 2026-10-09): stående bilder, första = före/efter. */
+.utvalda {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  padding: 0;
+}
+.utvaldKort { display: grid; gap: 0.75rem; }
+.utvaldBild {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--mjuk);
+  box-shadow: var(--skugga);
+}
+.utvaldBild img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.utvaldKort figcaption { display: grid; gap: 0.15rem; font-size: var(--tx-s); color: var(--text-2); }
+.utvaldKort figcaption b { font-family: var(--f-rubrik); font-size: var(--tx-m); font-weight: 700; color: var(--text); }
+.utvaldKort figcaption a {
+  justify-self: start;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--accent-text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 900px) {
+  .utvalda { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .utvalda li:first-child { grid-column: 1 / -1; }
+  .utvalda li:first-child .utvaldBild { aspect-ratio: 3 / 4; max-width: 560px; margin-inline: auto; width: 100%; }
+}
+
+/* Reco-widget (omdomen.reco, GD Måleri 2026-10-09): karusell med scroll-snap, noll JS.
+   Pilar via ::scroll-button där det stöds (Chrome 135+); annars svep/skroll och en kant som visar att det finns fler. */
+.reco {
+  border-radius: var(--r);
+  background: #fff;
+  border: 1px solid var(--linje);
+  box-shadow: var(--skugga);
+  overflow: hidden;
+}
+.recoKarusell {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: clamp(1rem, 3vw, 1.6rem);
+  scrollbar-width: thin;
+  scrollbar-color: #94A3B8 transparent;
+  anchor-name: --reco;
+  -webkit-mask-image: linear-gradient(90deg, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, #000 92%, transparent);
+}
+.recoKarusell:focus-visible { outline: 3px solid #0F172A; outline-offset: -3px; }
+.recoSpar {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(340px, 82%);
+  gap: 1rem;
+  margin: 0;
+  padding: clamp(1rem, 3vw, 1.6rem);
+  list-style: none;
+}
+.recoKort {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.3rem;
+  border-radius: 14px;
+  background: var(--mjuk);
+  scroll-snap-align: start;
+}
+.recoKortHuvud { display: flex; align-items: center; gap: 0.75rem; }
+.recoKortHuvud b { display: block; font-family: var(--f-rubrik); font-size: var(--tx-m); font-weight: 600; line-height: 1.25; }
+.recoVerif { display: inline-flex; align-items: center; gap: 0.35rem; font-size: var(--tx-s); color: #166534; }
+.recoVerif svg { width: 15px; height: 15px; flex: none; }
+.recoDatum { font-size: var(--tx-s); color: var(--text-2); }
+.recoText {
+  font-size: var(--tx-m);
+  color: #1E293B;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  line-clamp: 7;
+  overflow: hidden;
+}
+.recoLas {
+  margin-top: auto;
+  font-family: var(--f-rubrik);
+  font-size: var(--tx-s);
+  font-weight: 600;
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.recoLas:hover { color: var(--text); }
+@supports selector(::scroll-button(*)) {
+  .recoKarusell::scroll-button(*) {
+    position: fixed;
+    position-anchor: --reco;
+    top: anchor(center);
+    translate: 0 -50%;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--linje);
+    background: #fff;
+    color: var(--text);
+    font-size: 1.4rem;
+    box-shadow: var(--skugga);
+    cursor: pointer;
+  }
+  .recoKarusell::scroll-button(*):disabled { opacity: 0; }
+  .recoKarusell::scroll-button(left) { content: '‹' / 'Föregående omdöme'; left: calc(anchor(left) + 8px); }
+  .recoKarusell::scroll-button(right) { content: '›' / 'Nästa omdöme'; right: calc(anchor(right) + 8px); }
+}
+.recoBetyg {
+  display: grid;
+  grid-template-columns: repeat(3, auto) 1fr;
+  align-items: end;
+  gap: 1rem clamp(1.5rem, 4vw, 3rem);
+  padding: 1.2rem clamp(1rem, 3vw, 1.6rem);
+  border-top: 1px solid var(--linje);
+}
+.recoSiffra { display: grid; gap: 0.25rem; }
+.recoSiffra > span { font-size: var(--tx-s); color: var(--text-2); }
+.recoSiffra > b { display: inline-flex; align-items: baseline; gap: 0.15rem; font-family: var(--f-rubrik); font-size: var(--tx-xl); font-weight: 800; line-height: 1.1; }
+.recoSiffra small { font-size: var(--tx-m); font-weight: 500; color: var(--text-2); }
+.recoSiffra .betygTal { font-size: inherit; }
+.recoSiffra > .recoTrov { align-items: center; gap: 0.6rem; font-size: var(--tx-l); white-space: nowrap; }
+.recoSiffra .stjarnor { margin-left: 0.5rem; align-self: center; }
+.recoMatare { display: inline-flex; gap: 3px; }
+.recoMatare i { width: 16px; height: 10px; border-radius: 3px; background: #22A35A; }
+.recoLogga { justify-self: end; display: inline-flex; align-items: center; min-height: 44px; }
+.recoLogga svg { width: 104px; height: auto; }
+.recoNot { padding: 0 clamp(1rem, 3vw, 1.6rem) 1.2rem; font-size: var(--tx-s); color: var(--text-2); max-width: 52rem; }
+@media (max-width: 640px) {
+  .recoBetyg { grid-template-columns: 1fr 1fr; }
+  .recoLogga { justify-self: start; }
+}
+
 /* ---------- 8. instagram ---------- */
 .igStapel {
   display: flex;

@@ -134,6 +134,57 @@ const Band = ({ rad: kort, hoger, tid }) => { const rad = fyllUt(kort); return (
   </div>
 ); };
 
+// Recos ordmärke (vektorn ur Recos egen widget på kundens sajt). Bara i Reco-widgeten.
+const RecoLogga = () => (
+  <svg viewBox="0 0 118 32" role="img" aria-label="Reco" fillRule="evenodd" clipRule="evenodd">
+    <path fill="#000" d="M35.658 9.18c-.828-1.176-6.01-.088-8.537.826-.653.217-1.22.61-.74 1.653.522.958 1.045 2.045 1.045 2.741 0 4.308-1.394 8.311-2.57 11.487-.827 2.22-1.655 4.525-1.045 5.134.523.523 1.263.218 7.23-.087.61 0 .828-.13.958-.957 1.133-7.353 3.702-15.359 5.88-15.359.653.044.958.87 1.089 1.088 1.263 3.785 7.883-1.393 6.576-5.178-1.306-3.698-5.183-3.263-9.886 3.394.522-3.176.435-4.22 0-4.743Zm81.88 9.006c.436-9.964-10.017-12.792-18.728-6.918-3.048 2.219-5.226 6.83-5.226 10.703-.436 2.306-2.613 3.786-6.097 5.091-4.791 2.088-9.147-.74-9.582-6.831 0-2.132.87-4.525 2.177-6.527 1.743-2.871 6.533-4.09 5.662-1.044-.244 1.34-1.306 1.74-.87 3.22.626 2.12 3.92 2.132 5.226.217 3.484-4.438-1.742-8.093-8.711-7.44-6.969.61-12.63 5.874-12.63 12.923 0 4.307-8.276 7.658-12.631 5.047-1.307-.653-2.613-2.437-2.178-4.134 0-.609.436-.696.871-.696 4.356-.74 6.098-1.305 8.275-3.046 3.485-2.958 4.356-7.396.436-9.485-1.742-.826-8.275-1.87-13.937 1.915 0 .174-5.662 3.742-5.662 10.486 0 4.394 2.178 7.353 5.662 8.832 2.178.87 4.79 1.262 7.84.87 3.92-.348 8.275-2.784 10.452-4.438 1.307-.87 1.742-.522 2.178 0 7.404 8.833 17.857 3.177 22.212-.13 1.307-.827 1.742-.087 2.178.435 1.742 2.61 4.355 4.22 9.582 4.308 6.968.217 13.066-5.657 13.501-13.358Zm-64.023 1.262c-1.742-1.871 3.484-9.66 6.533-8.833 1.742.348 2.177 1.697 1.306 3.698-.87 2.611-6.533 6.31-7.84 5.135Zm60.104.87c-1.743 8.354-11.76 10.225-12.631 2.132-.435-6.788 6.098-13.793 11.324-10.225 1.742 1.305 2.178 4.7 1.307 8.093ZM20.675 5.524C17.583.216 10.701-1.568 5.475 1.5-5.326 7.765.989 24.038 14.535 25.69c0 0 1.436.174 2.046.174.523 0 .74-.435.218-.609-1.83-.609-2.918-1.61-3.484-3.176 7.578-1.827 11.15-9.964 7.36-16.534" />
+    <path fill="#3096D0" d="M20.505 10.145c-.479-4.612-4.224-8.223-8.84-8.484v8.484h8.84Z" />
+    <path fill="#C3DA4A" d="M11.664 20.631c4.922-.305 8.798-4.351 8.885-9.355h-8.885v9.355Z" />
+    <path fill="#ED2281" d="M1.651 11.276c.074 5.004 3.986 9.05 8.885 9.355v-9.355H1.651Z" />
+    <path fill="#F9C63C" d="M10.532 1.66c-4.617.27-8.362 3.86-8.842 8.485h8.842V1.66Z" />
+  </svg>
+);
+const VerifIkon = () => (<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l1.8 1.3 2.2-.1.7 2.1 1.8 1.3-.7 2.1.7 2.1-1.8 1.3-.7 2.1-2.2-.1L8 15l-1.8-1.3-2.2.1-.7-2.1-1.8-1.3.7-2.1-.7-2.1 1.8-1.3.7-2.1 2.2.1z" fill="#1E7F3C" /><path d="M5.2 8.2l1.9 1.9 3.8-3.9" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>);
+
+// Reco-widget (valfritt omdomen.reco): omdömena i en karusell med scroll-snap (svep/skrolla,
+// ingen JS; pilar via ::scroll-button där webbläsaren stöder det) och Recos siffror under.
+// Siffrorna (betyg, antal, trovärdighet) sätts bara när de står på Reco — det är ett verifierat betyg.
+function RecoWidget({ d, lista }) {
+  const r = d.omdomen.reco;
+  return (
+    <div className={s.reco}>
+      <div className={s.recoKarusell} role="region" aria-label={`Omdömen från Reco, ${lista.length} st — skrolla i sidled`} tabIndex={0}>
+        <ul className={s.recoSpar}>
+          {lista.map((o, i) => (
+            <li className={s.recoKort} key={o.id || o.namn}>
+              <div className={s.recoKortHuvud}>
+                <span className={s.avatar} style={{ '--av': AVATARFARGER[i % AVATARFARGER.length] }} aria-hidden="true">{o.namn[0]}</span>
+                <div>
+                  <b>{o.namn}</b>
+                  <span className={s.recoVerif}><VerifIkon />{o.kalla || 'Verifierad kund'}</span>
+                </div>
+              </div>
+              <div className={s.recensionRad}>
+                <Stjarnor antal={typeof o.betyg === 'number' ? o.betyg : 5} etikett={`${typeof o.betyg === 'number' ? o.betyg : 5} av 5 stjärnor`} />
+                {o.datum ? <time className={s.recoDatum} dateTime={o.datum}>{o.datum}</time> : null}
+              </div>
+              <blockquote className={s.recoText}>{o.text}</blockquote>
+              {o.lank ? <a className={s.recoLas} href={o.lank} target="_blank" rel="noopener" aria-label={`Läs hela omdömet från ${o.namn} på Reco`}>Läs hela på Reco</a> : null}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={s.recoBetyg}>
+        <div className={s.recoSiffra}><span>Omdömen totalt</span><b>{r.antal}</b></div>
+        <div className={s.recoSiffra}><span>Snittbetyg</span><b><span className={s.betygTal}>{r.betyg}</span><small>/5</small><Stjarnor etikett={`${r.betyg} av 5 i snitt`} /></b></div>
+        <div className={s.recoSiffra}><span>Trovärdighet</span><b className={s.recoTrov}><span className={s.recoMatare} aria-hidden="true"><i /><i /><i /><i /></span>{r.trovardighet}</b></div>
+        <a className={s.recoLogga} href={r.lank} target="_blank" rel="noopener" aria-label={`${d.namn} på Reco`}><RecoLogga /></a>
+      </div>
+      {r.not ? <p className={s.recoNot}>{r.not}</p> : null}
+    </div>
+  );
+}
+
 // 7. Omdömen. `levande` = { g, r } från levande.js (null = statiskt läge, exakt som förut).
 function Omdomen({ d, t, levande }) {
   const g = levande?.g;
@@ -171,7 +222,7 @@ function Omdomen({ d, t, levande }) {
             </a>
           ) : null}
         </div>
-        <div className={s.recensioner}>
+        {d.omdomen.reco ? <RecoWidget d={d} lista={lista} /> : <div className={s.recensioner}>
           {lista.map((o, i) => (
             <figure className={s.recension} key={o.id || o.namn}>
               <div className={s.recensionHuvud}>
@@ -198,7 +249,7 @@ function Omdomen({ d, t, levande }) {
               <blockquote>{o.text}</blockquote>
             </figure>
           ))}
-        </div>
+        </div>}
         <div className={s.recensionerFot}>
           <p className={s.recensionerNot}>{not}</p>
           <div className={s.recensionerKnappar}>
@@ -388,7 +439,8 @@ function Kontakt({ d, t, k, harTel }) {
               {/* Valfritt kontaktSektion.epostNamn: fältnamnet för e-post, t.ex. 'email' (Web3Forms autosvar går bara till fältet email). */}
               <label>{t.epost}<input type="email" name={d.kontaktSektion.epostNamn || 'epost'} autoComplete="email" /></label>
               <label>{t.typ}<select name="typ" defaultValue={d.tjanster.kort[0].namn}>{d.tjanster.kort.map((tj) => <option key={tj.id}>{tj.namn}</option>)}<option>{t.annat}</option></select></label>
-              <label>{t.meddelande}<textarea name="meddelande" rows={4} placeholder={d.kontaktSektion.placeholder} /></label>
+              {/* Valfritt kontaktSektion.meddelandeEtikett: egen etikett på fritextfältet när "Kort om jobbet" inte passar nischen (Vantooro 2026-10-09: "Kort om bolaget"). */}
+              <label>{d.kontaktSektion.meddelandeEtikett || t.meddelande}<textarea name="meddelande" rows={4} placeholder={d.kontaktSektion.placeholder} /></label>
               <button className={s.btn} type="submit">{d.cta.txt}</button>
               {harTel ? <a className={`${s.btn} ${s.btnLjus}`} href={k.telHref}><Tel />{t.ellerRing} {k.tel}</a> : null}
               <p className={s.formNot} id="form-not">{d.kontaktSektion.formNotBock ? <Bock /> : null}{d.kontaktSektion.formNot}</p>
@@ -642,6 +694,21 @@ export default function DemoSida({ data: d }) {
         {/* 3. Jobb: två band, första åt vänster, andra åt höger */}
         <section className={`${s.sek} ${s.jobb}`} id="jobb">
           <div className={s.wrap}><Rubrik r={d.jobb} /></div>
+          {/* Valfritt: utvalda senaste jobb (t.ex. en före/efter-bild) som stående bilder före banden */}
+          {d.jobb.utvalda ? (
+            <div className={s.wrap}>
+              <ul className={s.utvalda}>
+                {d.jobb.utvalda.map((u) => (
+                  <li key={u.src}>
+                    <figure className={s.utvaldKort}>
+                      <div className={s.utvaldBild}><Image src={u.src} alt={u.alt} width={u.w} height={u.h} sizes="(max-width: 640px) 92vw, (max-width: 900px) 46vw, 380px" loading="lazy" /></div>
+                      <figcaption>{u.etikett ? <b>{u.etikett}</b> : null}<span>{u.txt}</span>{u.lank ? <a href={u.lank.href} target="_blank" rel="noopener">{u.lank.txt}</a> : null}</figcaption>
+                    </figure>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
           <Band rad={d.jobb.rad1} tid={d.jobb.tid} />
           <Band rad={d.jobb.rad2} tid={d.jobb.tid} hoger />
           <div className={s.wrap}>

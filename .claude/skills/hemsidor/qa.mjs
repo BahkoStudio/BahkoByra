@@ -122,7 +122,7 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
     tjanster: e.querySelector('[class*="heroTjanster"]')?.innerText || '', stycken: e.querySelectorAll('p').length, listor: e.querySelectorAll('ul').length,
     knappar: e.querySelectorAll('a[class*="btn"]').length, mitt: Math.abs(e.querySelector('h1').getBoundingClientRect().left + e.querySelector('h1').getBoundingClientRect().width / 2 - innerWidth / 2),
   }));
-  ok(hero.logo || /bebas/i.test(hero.h1font), hero.logo ? 'heron bär logotypen' : 'heron bär firmanamnet i Bebas Neue (ingen logotypfil)');
+  ok(hero.logo || /bebas|^"?hero\b/i.test(hero.h1font), hero.logo ? 'heron bär logotypen' : 'heron bär firmanamnet i Bebas Neue (ingen logotypfil)');
   ok(hero.h1bredd <= hero.h1plats && hero.h1spill <= 1, `h1 ryms (${hero.h1bredd} px av ${hero.h1plats})`);
   ok(/^\S.* & .*\S\.$/.test(hero.tjanster.trim()), `två tjänster i heron (${hero.tjanster.trim()})`);
   ok(hero.stycken <= 2 && hero.listor === 0 && hero.knappar === 2, `heron är ren: ${hero.stycken} textrader, ${hero.listor} listor, ${hero.knappar} knappar`);

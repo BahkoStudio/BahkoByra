@@ -27,6 +27,16 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    (högtryck, kemikalier, mögelbehandling), ställning/lift, priser, ledtider,
    antal fasader, bygglov.
 
+   NYA BILDER (2026-10-09, Ghandi via Mathias: "senaste jobbfotona från IG, och en
+   före/efter-bild på tjänstesidorna"): fasad-fore-efter.webp är ett SAMMANSATT foto
+   av Ghandis två bilder på samma gavel (före: flagnande färg och ställning, efter:
+   nymålad), efter-bilden perspektivjusterad mot före-bilden med nio passpunkter
+   (fönsterhörn), vänster halva före och höger halva efter, etiketterna inbrända.
+   Huset är Bromma-jobbet: efter-bilden är samma foto som bild 4 i IG-inlägget
+   Dd-zVd3ggOI (publicerat 2026-10-02). jobb-taby-1/-2.webp: Ghandis två foton ur
+   Täby-inlägget Dc1IM7Pgpeh (2026-09-03, "350 kvm i Täby kyrkby"). jobb-bromma-altan
+   .webp: bild 6 ur Dd-zVd3ggOI, beskuren 4:3. Alt-texten på före/efter säger att
+   bilden är sammansatt.
    FLAGGOR: alla bilder är GD:s egna foton. Kortet "Fasadtvätt" har ingen bild
    av en tvätt: bilden är en färdigmålad långsida och alt-texten säger det.
    Täby-inlägget har en kampanjtext (10 % / 30 %): byt inlägg när kampanjen är slut.
@@ -77,10 +87,17 @@ const data = {
   jobb: {
     eyebrow: 'Våra jobb',
     rubrik: ['Hus vi har', 'målat om'],
-    lead: 'Fasader, fönster och tak ute, och rum inne. Alla bilder är från våra egna projekt.',
-    not: 'Fler jobb, med ort och yta, finns på vårt Instagram.',
+    lead: 'Senast 234 kvm i Bromma, och innan dess 350 kvm i Täby kyrkby. Alla bilder är från våra egna projekt.',
+    not: 'Före/efter-bilden är två foton av samma gavel, tagna före och efter jobbet och satta ihop på mitten. Fler jobb finns på vårt Instagram.',
+    // Utvalda (mallfältet jobb.utvalda): senaste fasadjobben, se NYA BILDER ovan.
+    utvalda: [
+      { src: `${M}/fasad-fore-efter.webp`, w: 900, h: 1200, etikett: 'Före och efter', txt: 'Bromma, 234 kvm. Samma gavel: vänster halva före, höger halva efter.', alt: 'Sammansatt före/efter-bild av samma gavel i Bromma: vänster halva visar flagnande grå färg och en byggställning, höger halva den nymålade ljusgrå panelen med vita fönster', lank: { href: 'https://www.instagram.com/p/Dd-zVd3ggOI/', txt: 'Se jobbet på Instagram' } },
+      { src: `${M}/jobb-taby-1.webp`, w: 900, h: 1200, etikett: 'Täby kyrkby, 350 kvm', txt: 'Träfasad i grått, klar i september 2026.', alt: 'Nymålad grå träfasad på ett modernt tvåvåningshus med altan och utemöbler i Täby kyrkby', lank: { href: 'https://www.instagram.com/p/Dc1IM7Pgpeh/', txt: 'Se jobbet på Instagram' } },
+      { src: `${M}/jobb-taby-2.webp`, w: 900, h: 1200, etikett: 'Täby kyrkby, 350 kvm', txt: 'Samma hus från andra sidan.', alt: 'Samma nymålade grå träfasad i Täby kyrkby, sedd från tomten med tallar och berghällar' },
+    ],
     tid: '70s',
     rad1: [
+      { src: `${M}/jobb-bromma-altan.webp`, alt: 'Ljusgrå panelfasad med vita spröjsade altandörrar och fönsterkarmar mot ett trädäck', txt: 'Bromma: väggar och fönsterkarmar' },
       { src: `${M}/jobb-rod-timmer.jpg`, alt: 'Närbild på en rödmålad timmervägg med vit knutbräda och altanräcke', txt: 'Timmervägg målad i rött' },
       { src: `${M}/jobb-fonsterbleck.jpg`, alt: 'Närbild på vitmålad fönsterbåge och svart fönsterbleck mot panel', txt: 'Fönsterbåge målad' },
       { src: `${M}/jobb-fonster-maskerade.jpg`, alt: 'Spröjsade fönster maskerade med blå tejp inför målning', txt: 'Fönster maskade före målning' },

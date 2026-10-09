@@ -219,3 +219,29 @@ export const tjanstSchema = ({ namn, typ, beskrivning }) => ({
   // "Hela Stockholm": bekräftat av Ghandi (via Mathias 2026-10-08).
   areaServed: [{ '@type': 'City', name: 'Stockholm' }, { '@type': 'AdministrativeArea', name: 'Stockholms län' }],
 });
+
+// Reco-widgeten (mallfältet omdomen.reco, Mathias 2026-10-09: "Reco widget" som på gdmaleri.se).
+// Siffrorna ur Recos egen widget på gdmaleri.se och reco.se/gd-maleri-sthlm, hämtade 2026-10-09:
+// reviewCount 45, rating 4,87 (visas 4,9), transparencyRating "Best" = "Mycket Bra".
+export const RECO_WIDGET = {
+  betyg: '4,9',
+  antal: 45,
+  trovardighet: 'Mycket bra',
+  lank: 'https://www.reco.se/gd-maleri-sthlm',
+  not: 'Verifiering av kundrelationen sker då företaget delar, via sitt affärssystem, sin kunds kontaktinformation varpå Reco kan inhämta verifierade kundomdömen via e-post eller SMS. Här visas de senaste fyrorna och femmorna, ordagrant.',
+};
+
+// Ordagrant från reco.se (JSON-LD och omdömeskorten), radbrytningar som mellanslag. Bo M:s
+// signatur ("Bosse Mats") och Anders F:s inledande stjärn-emojis är strukna; inget annat ändrat.
+export const RECO_LISTA = [
+  { namn: 'Lovisa B', kalla: 'Verifierad kund', betyg: 5, datum: '2026-09-07', lank: 'https://www.reco.se/r/3333371', text: 'Vi fick ett väldigt trevligt och kunnigt bemötande. De gjorde ett bra jobb med att slipa och måla vår stora fasad och blev klara i tid. Lätta att kommunicera med och väldigt trevliga.' },
+  { namn: 'Bo M', kalla: 'Verifierad kund', betyg: 5, datum: '2026-08-28', lank: 'https://www.reco.se/r/3322910', text: 'GD Måleri målade om två fritidshus och en sjöstuga. Allt gick jätte snabbt från offert till igångsättning (< 1vecka). Arbetet utfördes snabbt och resultatet var det jag förväntade mej. (bra jobbat).' },
+  { namn: 'Ola A', kalla: 'Verifierad kund', betyg: 5, datum: '2026-08-25', lank: 'https://www.reco.se/r/3319605', text: 'Målning av 2-plans hus. Vi fick ett väldigt bra intryck av Ghandi då han gjorde en noggrann besiktning av huset innan offert skickades samt kom med förslag på saker vi inte hade tänkt på innan vad gäller estetik. Jobbet utfördes smidigt och snabbt och vi är jättenöjda. Jag kan starkt rekommendera GD Måleri.' },
+  { namn: 'Inga-Lill M', kalla: 'Verifierad kund', betyg: 5, datum: '2026-07-26', lank: 'https://www.reco.se/r/3296517', text: 'GD Måleri gav ett proffsigt intryck. Trevliga och informativa. Snyggt och snabbt arbete. Efter arbetet, genomgång och påskrift av arbetsorder. Jag är väldigt nöjd med resultatet. Rekommenderas varmt.' },
+  { namn: 'Susanne J', kalla: 'Verifierad kund', betyg: 5, datum: '2026-07-22', lank: 'https://www.reco.se/r/3293682', text: 'Målade om fasaden på vårt hus. Jättebra bemötande från offertförfrågan till färdigt resultat. Alltid lätt att få kontakt med företagsägare Ghandhi. Målarna som kom var super duktiga, lätta att ha och göra med. Kan varmt rekommendera GD Måleri Sthlm AB.' },
+  { namn: 'Stefan G', kalla: 'Verifierad kund', betyg: 5, datum: '2026-07-22', lank: 'https://www.reco.se/r/3293594', text: 'Excellent utfört arbete, jag har uppskattat tydligheten i all kommunikation, där jag som kund haft ett mycket gott samarbete med GD Måleri. Hög yrkeskunskap och stolthet över ett väl utfört arbete med hög kvalité. Projektet involverade fasadarbeten (träfasad) samt målning av fasad. Jag rekommenderar varmt GD Måleri AB.' },
+  { namn: 'Henry Z', kalla: 'Verifierad kund', betyg: 4, datum: '2026-05-22', lank: 'https://www.reco.se/r/3235137', text: 'Målningsarbetet var genomfört på ett noggrant sett. Målarna är erfarna inom yrket och har hållit tidsplan trots väder påverka ( vissa regniga dagareller för kalla morgontemperaturer ).' },
+  { namn: 'Marianne J', kalla: 'Verifierad kund', betyg: 4, datum: '2026-05-02', lank: 'https://www.reco.se/r/3213574', text: 'Ett väldigt trevligt bemötande och ett snabbt och snyggt utförande av en målad fasad' },
+  { namn: 'Anders F', kalla: 'Verifierad kund', betyg: 5, datum: '2025-12-19', lank: 'https://www.reco.se/r/3091360', text: 'Vi anlitade GD Måleri Sthlm AB för att måla om hall, trapphus och vardagsrum, och är mycket nöjda med resultatet. Arbetet håller riktigt hög kvalitet, utfördes med stor erfarenhet och noggrannhet, och levererades helt enligt överenskommen tidsplan. Allt dessutom till ett väldigt bra pris. Vi upplevde kommunikationen som smidig och professionell genom hela processen. Starkaste rekommendationer – vi skulle utan tvekan anlita dem igen.' },
+];
+
