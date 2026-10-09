@@ -11,7 +11,8 @@ import { googleOmdomen, recoOmdomen, instagramInlagg, kortaText } from './levand
    1 hero · 2 tjänster (kort med bild) · 3 jobb (två band) · 4 varför (mörk,
    förvandlingsfilm med logotypen i slutet) · 5 om oss (med logotypen) ·
    6 så går det till · 7 omdömen (Google-stil) · 8 Instagram · 9 frågor ·
-   10 kontakt (formulär över suddig film) · 11 footer (med logotypen).
+   10 kontakt (formulär över suddig film) · 10b samarbeten (valfri logotypremsa,
+   sist) · 11 footer (med logotypen).
    Runt om: glaspiller-header med logotypen mitt bland länkarna, sidflik,
    popup, Bahkos demo-knapp och modal.
 
@@ -399,6 +400,34 @@ function Kontakt({ d, t, k, harTel }) {
   );
 }
 
+// 10b. Samarbeten: lugn logotypremsa SIST på sidan, strax före footern (valfri, GD Måleri 2026-10-09).
+// Data: samarbeten { eyebrow, rubrik, lead?, lista[] { namn, text, href, bilder[] { src, w, h, alt, hojd? } } }.
+// Logotyperna i gråskala som får färg vid hover (och alltid färg där hover inte finns). Delas av båda layouterna.
+// Bara belagda samarbeten, officiella logotypfiler, varje fil en gång per sida. Utan fältet renderas inget.
+function Samarbeten({ d }) {
+  if (!d.samarbeten) return null;
+  const sa = d.samarbeten;
+  return (
+    <section className={`${s.sek} ${s.samarbeten}`} id="samarbeten">
+      <div className={s.wrap}>
+        <Rubrik r={sa} />
+        <ul className={s.samList}>
+          {sa.lista.map((p) => (
+            <li className={p.bilder.length > 1 ? `${s.samKort} ${s.samKortBred}` : s.samKort} key={p.namn}>
+              <a href={p.href} target="_blank" rel="noopener">
+                <span className={s.samLogo}>
+                  {p.bilder.map((b) => <Image src={b.src} alt={b.alt} width={b.w} height={b.h} sizes="300px" style={b.hojd ? { '--sam-h': `${b.hojd}px` } : undefined} key={b.src} />)}
+                </span>
+                <span className={s.samText}>{p.text}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- layout 'styrelse' (valfri, data.layout) ----------
    GD Måleri BRF 2026-10-09, Mathias: "två olika strukturer för BRF och vanliga demon".
    Förebild: alviksmaleri.se/malning-brf-… (lugnt upplägg: rubrik + ingress, citat, processlista,
@@ -495,10 +524,11 @@ function StyrelseMain({ d, t, k, harTel, andraVag }) {
       {/* 5. Omdömen (samma komponent som standardlayouten, levande om data slår på det) */}
       {d.omdomen.levande ? <OmdomenLevande d={d} t={t} /> : <Omdomen d={d} t={t} />}
 
-      {/* 6. Frågor · 7. Bokning + kontakt */}
+      {/* 6. Frågor · 7. Bokning + kontakt · 7b. Samarbeten (valfri, sist) */}
       <Fragor d={d} t={t} k={k} harTel={harTel} />
       <Boka d={d} />
       <Kontakt d={d} t={t} k={k} harTel={harTel} />
+      <Samarbeten d={d} />
     </main>
   );
 }
@@ -688,10 +718,11 @@ export default function DemoSida({ data: d }) {
         {/* 8. Instagram: riktiga inlägg som inbäddningar, annars egna bilder i IG-ram — eller levande flöde */}
         {d.instagram ? (d.instagram.levande ? <InstagramLevande d={d} t={t} /> : <Instagram d={d} t={t} />) : null}
 
-        {/* 9. Frågor · 9b. Bokning · 10. Kontakt */}
+        {/* 9. Frågor · 9b. Bokning · 10. Kontakt · 10b. Samarbeten (valfri, sist) */}
         <Fragor d={d} t={t} k={k} harTel={harTel} />
         <Boka d={d} />
         <Kontakt d={d} t={t} k={k} harTel={harTel} />
+        <Samarbeten d={d} />
       </main>
       )}
 

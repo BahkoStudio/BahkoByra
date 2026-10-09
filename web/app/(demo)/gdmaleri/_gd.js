@@ -156,6 +156,49 @@ export const instagramBas = {
   bio: 'Måleri inne och ute · Stockholm',
 };
 
+/* Samarbeten (Mathias 2026-10-09): logotypremsa sist på ALLA GD-sidor, före footern.
+   BARA belagt: Reco (reco.se/gd-maleri-sthlm: 4,9 av 5, 45 omdömen, Rekommenderat
+   företag 2024, 2025 och 2026 — märkena är Recos EGNA SVG-filer på hans profil,
+   assets/images/badges/trust2024|2025|2026.svg och BadgeThreeYears.svg, hämtade
+   2026-10-09), Flügger (gdmaleri.se FAQ: färg från Flügger; logotypen från
+   flugger.se:s egen header, assets.flugger.dk/cms/media/z5yaf5g3/flugger_logo_cvi_2025_se.svg)
+   och Trygg-Hansa (gdmaleri.se FAQ: "fullt försäkrade via Trygg-Hansa"; logotypen från
+   trygghansa.se:s egen header, siteassets/bilder/logotypes/trygg-hansa-logo-rgb-black.svg,
+   som trots namnet är den röda positiva varianten). INTE med: Måleriföretagen och
+   AAA (märken på gdmaleri.se, inte verifierade — Ghandi får bekräfta) och Cal.com
+   (verktyg, inte samarbete). Reco-kortet reco-kort.png ligger kvar i Om oss (huvud-
+   och tjänstesidorna) respektive heron (BRF): varje bildfil en gång per sida. */
+export const samarbeten = {
+  eyebrow: 'Samarbeten',
+  rubrik: ['Vi jobbar med', 'namn du känner igen'],
+  lead: 'Flügger står för färgen, Trygg-Hansa för försäkringen och Reco för omdömena.',
+  lista: [
+    {
+      namn: 'Reco',
+      href: 'https://www.reco.se/gd-maleri-sthlm',
+      text: 'Rekommenderat företag på Reco tre år i rad, 4,9 av 5',
+      bilder: [
+        { src: `${M}/samarbete-reco-2024.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2024', hojd: 68 },
+        { src: `${M}/samarbete-reco-2025.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2025', hojd: 68 },
+        { src: `${M}/samarbete-reco-2026.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2026', hojd: 68 },
+        { src: `${M}/samarbete-reco-3ar.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag tre år i rad', hojd: 68 },
+      ],
+    },
+    {
+      namn: 'Flügger',
+      href: 'https://www.flugger.se/',
+      text: 'Färgen vi målar med',
+      bilder: [{ src: `${M}/samarbete-flugger.svg`, w: 2024, h: 567, alt: 'Flügger', hojd: 46 }],
+    },
+    {
+      namn: 'Trygg-Hansa',
+      href: 'https://www.trygghansa.se/',
+      text: 'Försäkrade via Trygg-Hansa',
+      bilder: [{ src: `${M}/samarbete-trygghansa.svg`, w: 283, h: 53, alt: 'Trygg-Hansa', hojd: 36 }],
+    },
+  ],
+};
+
 export const RECO = { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' };
 export const SKV_ROT = 'https://www.skatteverket.se/foretag/skatterochavdrag/rotochrut/gerarbetetratttillrotavdrag.4.5c1163881590be297b5173bf.html';
 

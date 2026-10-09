@@ -1577,6 +1577,60 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
   .formRad { grid-template-columns: 1fr; }
 }
 
+/* ---------- 10b. samarbeten: logotypremsa sist, före footern (valfri, data: samarbeten) ----------
+   GD Måleri 2026-10-09. Vit yta efter den mörka kontaktsektionen, logotyperna i gråskala som
+   får färg vid hover. Där hover inte finns (mobil) står de i färg hela tiden: en remsa som
+   aldrig får färg ser ut som ett fel. Varje logotyp har en egen optisk höjd (--sam-h) så att
+   ett brett ordmärke och en rund bricka väger lika. */
+.samarbeten { background: var(--vit); }
+.samarbeten .sekHuvud { margin-bottom: clamp(1.8rem, 3vw, 2.6rem); }
+.samList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.samKort a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 184px;
+  height: 100%;
+  padding: 1.7rem 1.25rem;
+  border: 1px solid var(--linje);
+  border-radius: var(--r);
+  background: var(--vit);
+  text-align: center;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.samKort a:hover { border-color: #CBD5E1; box-shadow: var(--skugga); }
+.samLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  height: 68px;
+  max-width: 100%;
+  filter: grayscale(1) opacity(0.72);
+  transition: filter 0.3s var(--ease);
+}
+.samKort a:hover .samLogo,
+.samKort a:focus-visible .samLogo { filter: none; }
+.samLogo img { width: auto; height: var(--sam-h, 56px); max-width: 100%; object-fit: contain; }
+.samText { font-size: var(--tx-m); color: var(--text-2); max-width: 24rem; text-wrap: pretty; }
+@media (hover: none) { .samLogo { filter: none; } }
+@media (max-width: 760px) {
+  .samList { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+  .samKortBred { grid-column: 1 / -1; }
+  .samKort a { min-height: 156px; padding: 1.3rem 0.9rem; gap: 0.8rem; }
+  .samLogo { height: 56px; gap: 0.5rem; }
+  .samLogo img { height: calc(var(--sam-h, 56px) * 0.82); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .samKort a, .samLogo { transition: none; }
+}
+
 /* ---------- 11. footer: ljus, med logotypen ---------- */
 .ftr {
   padding: clamp(3.5rem, 6vw, 5rem) 0 6.5rem;

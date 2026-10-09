@@ -73,7 +73,7 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   const h1Namn = await page.locator('h1').evaluate((e) => (e.querySelector('img')?.alt || e.innerText).replace(/\s+/g, ' ').trim());
   ok(h1Namn.toLowerCase().startsWith(h1start.toLowerCase()), `h1 = firmanamnet (${h1Namn})`);
   const ordning = await page.evaluate(() => [...document.querySelectorAll('main > section')].map((s) => s.id));
-  const alla = st ? ['top', 'process', 'tjanster', 'varfor', 'omdomen', 'fragor', 'boka', 'kontakt'] : ['top', 'tjanster', 'jobb', 'varfor', 'om', 'process', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt'];
+  const alla = st ? ['top', 'process', 'tjanster', 'varfor', 'omdomen', 'fragor', 'boka', 'kontakt', 'samarbeten'] : ['top', 'tjanster', 'jobb', 'varfor', 'om', 'process', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt', 'samarbeten']; // samarbeten: valfri logotypremsa SIST (GD Måleri 2026-10-09)
   const kravs = st ? ['top', 'process', 'tjanster', 'varfor', 'omdomen', 'fragor', 'kontakt'] : ['top', 'tjanster', 'jobb', 'varfor', 'om', 'omdomen', 'fragor', 'kontakt'];
   const vantad = alla.filter((id) => ordning.includes(id));
   ok(JSON.stringify(ordning) === JSON.stringify(vantad) && kravs.every((id) => ordning.includes(id)), `sektionsordning (${ordning.join(' ')})`);
@@ -328,7 +328,7 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
     await page.addStyleTag({ content: '*,*::before,*::after{animation:none !important}' });
     await page.screenshot({ path: `${UT}/${namn}-hela.png`, fullPage: true });
   }
-  for (const id of ['tjanster', 'jobb', 'varfor', 'om', 'process', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt']) {
+  for (const id of ['tjanster', 'jobb', 'varfor', 'om', 'process', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt', 'samarbeten']) {
     if (!(await page.locator(`#${id}`).count())) continue;
     await page.locator(`#${id}`).evaluate((e) => window.scrollTo(0, e.offsetTop - 90)); await page.waitForTimeout(500);
     await page.screenshot({ path: `${UT}/${namn}-${id}.png` });

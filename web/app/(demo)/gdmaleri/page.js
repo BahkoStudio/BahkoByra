@@ -1,5 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, modal } from './_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, modal, samarbeten } from './_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -403,6 +403,8 @@ const data = {
   },
 
   modal,
+  // Samarbeten (Reco, Flügger, Trygg-Hansa) sist på sidan, före footern: se _gd.js.
+  samarbeten,
 };
 
 export default function GdMaleriDemo() {
