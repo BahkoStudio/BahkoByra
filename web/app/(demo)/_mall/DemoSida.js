@@ -16,6 +16,12 @@ import { googleOmdomen, recoOmdomen, instagramInlagg, kortaText } from './levand
    Runt om: glaspiller-header med logotypen mitt bland länkarna, sidflik,
    popup, Bahkos demo-knapp och modal.
 
+   Valfritt data.kund: true (GD Måleri 2026-10-09, första kunden på mallen) = sidan är
+   kundens egen, inte ett förslag: ingen demo-knapp, ingen Bahko-modal (data.modal
+   behövs inte) och ingen byråtext i footerns bottenrad (bara © och org.nr). Popupen
+   flyttar ner till knappens plats. Allt annat som förut; utan fältet renderas sidan
+   exakt som förut (pixeljämfört på swedcro).
+
    Valfritt data.layout: 'styrelse' (GD Måleri BRF 2026-10-09) = en andra sidstruktur för
    en styrelse/beslutsfattare: lugn delad hero utan film (rubrik, ingress, två knappar,
    bevisrad, stillbild med ett litet lager), numrerad lodrät process, tjänster som rader
@@ -196,64 +202,84 @@ function Omdomen({ d, t, levande }) {
     ? [g?.lista?.length ? t.notGoogle : null, r ? t.notReco : d.omdomen.not].filter(Boolean).join(' ')
     : d.omdomen.not;
   const fmt = (v) => v.toLocaleString(d.sprak === 'nb' ? 'nb-NO' : 'sv-SE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const b = d.omdomen.betyg;
+  // Betygsbrickorna. Google: levande (g) eller statiskt omdomen.betyg { varde, text } — sedan GD Måleri
+  // 2026-10-09 också { varde: 4.8, antal: 18, href } = talet formateras, stjärnorna avrundas och brickan
+  // länkar till Google-profilen (som Bromma Trädgårdsservice). Reco: omdomen.recoBetyg { varde, antal, href }
+  // (GD Måleri BRF 2026-10-09). Finns båda står de sida vid sida; finns en ritas den exakt som förut.
+  const googleUri = g?.uri || (!g?.betyg && b?.href) || null;
+  const googleBricka = g?.betyg ? (
+    <a className={s.betyg} href={g.uri} target="_blank" rel="noopener">
+      <GoogleG />
+      <span className={s.betygTal}>{fmt(g.betyg)}</span>
+      <span className={s.betygTxt}><Stjarnor antal={Math.round(g.betyg)} etikett={`${fmt(g.betyg)} ${t.stjarnorAv}`} /><span>{g.antal} {t.omdomenAntal} · <span className={s.googleMaps}>Google Maps</span></span></span>
+    </a>
+  ) : b ? (() => {
+    const Tagg = b.href ? 'a' : 'div';
+    const tal = typeof b.varde === 'number' ? fmt(b.varde) : b.varde;
+    return (
+      <Tagg className={s.betyg} {...(b.href ? { href: b.href, target: '_blank', rel: 'noopener' } : {})}>
+        <GoogleG />
+        <span className={s.betygTal}>{tal}</span>
+        <span className={s.betygTxt}>
+          {typeof b.varde === 'number' ? <Stjarnor antal={Math.round(b.varde)} etikett={`${tal} ${t.stjarnorAv}`} /> : <Stjarnor etikett={t.femStjarnor} />}
+          <span>{b.text || `${b.antal} ${t.omdomenAntal} · Google`}</span>
+        </span>
+      </Tagg>
+    );
+  })() : null;
+  const recoBricka = d.omdomen.recoBetyg ? (
+    <a className={s.betyg} href={d.omdomen.recoBetyg.href} target="_blank" rel="noopener">
+      <span className={s.betygReco} aria-hidden="true">Reco</span>
+      <span className={s.betygTal}>{fmt(d.omdomen.recoBetyg.varde)}</span>
+      <span className={s.betygTxt}><Stjarnor antal={Math.round(d.omdomen.recoBetyg.varde)} etikett={`${fmt(d.omdomen.recoBetyg.varde)} ${t.stjarnorAv}`} /><span>{d.omdomen.recoBetyg.antal} {t.omdomenAntal} · Reco.se</span></span>
+    </a>
+  ) : null;
+  // Kort i Google-stil: vit yta, färgad initial, G-märke på Google-omdömen.
+  const Kort = ({ o, i }) => (
+    <figure className={s.recension}>
+      <div className={s.recensionHuvud}>
+        {/* Google kräver författarens bild, namn och länk till profilen när den finns. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <span className={s.avatar} style={{ '--av': AVATARFARGER[i % AVATARFARGER.length] }} aria-hidden="true">{o.foto ? <img src={o.foto} alt="" width={44} height={44} loading="lazy" referrerPolicy="no-referrer" /> : o.namn[0]}</span>
+        <figcaption>
+          <b>{o.profil ? <a href={o.profil} target="_blank" rel="noopener">{o.namn}</a> : o.namn}</b>
+          {o.lank
+            ? <a className={s.recensionKalla} href={o.lank} target="_blank" rel="noopener">{o.kalla}{o.maps ? <> · <span className={s.googleMaps}>Google Maps</span></> : null}</a>
+            : <span>{o.kalla}</span>}
+        </figcaption>
+        {o.google ? <GoogleG className={s.recensionG} /> : null}
+      </div>
+      {/* stjarnor: false = omdömet har inget betyg i källan (t.ex. ett citat på kundens sajt). Rita inga stjärnor då. */}
+      {o.stjarnor === false ? null : (
+        <div className={s.recensionRad}>
+          {typeof o.betyg === 'number'
+            ? <Stjarnor antal={o.betyg} etikett={`${o.betyg} ${t.stjarnorAv}`} />
+            : <Stjarnor tomma={o.exempel} etikett={o.exempel ? t.exempelStjarnor : t.femStjarnor} />}
+          {o.exempel ? <span className={s.exempelTagg}>{t.exempel}</span> : null}
+        </div>
+      )}
+      <blockquote>{o.text}</blockquote>
+    </figure>
+  );
+  // Valfritt omdomen.googleLista (GD Måleri 2026-10-09): statiska Google-kort som egen rad FÖRE Reco-widgeten.
+  // Visas inte när levande Google-kort redan finns (de går in i listan ovan).
+  const googleLista = d.omdomen.reco && !g?.lista?.length ? d.omdomen.googleLista : null;
   return (
     <section className={`${s.sek} ${s.sekMjuk}`} id="omdomen">
       <div className={s.wrap}>
         <div className={s.omdHuvud}>
           <Rubrik r={d.omdomen} />
-          {g?.betyg ? (
-            <a className={s.betyg} href={g.uri} target="_blank" rel="noopener">
-              <GoogleG />
-              <span className={s.betygTal}>{fmt(g.betyg)}</span>
-              <span className={s.betygTxt}><Stjarnor antal={Math.round(g.betyg)} etikett={`${fmt(g.betyg)} ${t.stjarnorAv}`} /><span>{g.antal} {t.omdomenAntal} · <span className={s.googleMaps}>Google Maps</span></span></span>
-            </a>
-          ) : d.omdomen.betyg ? (
-            <div className={s.betyg}>
-              <GoogleG />
-              <span className={s.betygTal}>{d.omdomen.betyg.varde}</span>
-              <span className={s.betygTxt}><Stjarnor etikett={t.femStjarnor} /><span>{d.omdomen.betyg.text}</span></span>
-            </div>
-          ) : d.omdomen.recoBetyg ? (
-            /* Valfritt omdomen.recoBetyg { varde, antal, href }: verifierat Reco-betyg som bricka utan Googles G (GD Måleri BRF 2026-10-09). */
-            <a className={s.betyg} href={d.omdomen.recoBetyg.href} target="_blank" rel="noopener">
-              <span className={s.betygReco} aria-hidden="true">Reco</span>
-              <span className={s.betygTal}>{fmt(d.omdomen.recoBetyg.varde)}</span>
-              <span className={s.betygTxt}><Stjarnor antal={Math.round(d.omdomen.recoBetyg.varde)} etikett={`${fmt(d.omdomen.recoBetyg.varde)} ${t.stjarnorAv}`} /><span>{d.omdomen.recoBetyg.antal} {t.omdomenAntal} · Reco.se</span></span>
-            </a>
-          ) : null}
+          {googleBricka && recoBricka ? <div className={s.brickor}>{googleBricka}{recoBricka}</div> : googleBricka || recoBricka}
         </div>
+        {googleLista?.length ? <div className={`${s.recensioner} ${s.recensionerFore}`}>{googleLista.map((o, i) => <Kort o={o} i={i} key={o.id || o.namn} />)}</div> : null}
         {d.omdomen.reco ? <RecoWidget d={d} lista={lista} /> : <div className={s.recensioner}>
-          {lista.map((o, i) => (
-            <figure className={s.recension} key={o.id || o.namn}>
-              <div className={s.recensionHuvud}>
-                {/* Google kräver författarens bild, namn och länk till profilen när den finns. */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <span className={s.avatar} style={{ '--av': AVATARFARGER[i % AVATARFARGER.length] }} aria-hidden="true">{o.foto ? <img src={o.foto} alt="" width={44} height={44} loading="lazy" referrerPolicy="no-referrer" /> : o.namn[0]}</span>
-                <figcaption>
-                  <b>{o.profil ? <a href={o.profil} target="_blank" rel="noopener">{o.namn}</a> : o.namn}</b>
-                  {o.lank
-                    ? <a className={s.recensionKalla} href={o.lank} target="_blank" rel="noopener">{o.kalla}{o.maps ? <> · <span className={s.googleMaps}>Google Maps</span></> : null}</a>
-                    : <span>{o.kalla}</span>}
-                </figcaption>
-                {o.google ? <GoogleG className={s.recensionG} /> : null}
-              </div>
-              {/* stjarnor: false = omdömet har inget betyg i källan (t.ex. ett citat på kundens sajt). Rita inga stjärnor då. */}
-              {o.stjarnor === false ? null : (
-                <div className={s.recensionRad}>
-                  {typeof o.betyg === 'number'
-                    ? <Stjarnor antal={o.betyg} etikett={`${o.betyg} ${t.stjarnorAv}`} />
-                    : <Stjarnor tomma={o.exempel} etikett={o.exempel ? t.exempelStjarnor : t.femStjarnor} />}
-                  {o.exempel ? <span className={s.exempelTagg}>{t.exempel}</span> : null}
-                </div>
-              )}
-              <blockquote>{o.text}</blockquote>
-            </figure>
-          ))}
+          {lista.map((o, i) => <Kort o={o} i={i} key={o.id || o.namn} />)}
         </div>}
         <div className={s.recensionerFot}>
           <p className={s.recensionerNot}>{not}</p>
           <div className={s.recensionerKnappar}>
-            {g?.uri ? <a className={`${s.btn} ${s.btnLjus}`} href={g.uri} target="_blank" rel="noopener">{t.lasGoogle}</a> : null}
+            {googleUri ? <a className={`${s.btn} ${s.btnLjus}`} href={googleUri} target="_blank" rel="noopener">{t.lasGoogle}</a> : null}
             {d.omdomen.lank ? <a className={`${s.btn} ${s.btnLjus}`} href={d.omdomen.lank.href} target="_blank" rel="noopener">{d.omdomen.lank.txt}</a> : null}
             <a className={`${s.btn} ${s.btnMork}`} href="#kontakt">{d.cta.txt}</a>
           </div>
@@ -456,9 +482,36 @@ function Kontakt({ d, t, k, harTel }) {
 // Data: samarbeten { eyebrow, rubrik, lead?, lista[] { namn, text, href, bilder[] { src, w, h, alt, hojd? } } }.
 // Logotyperna i gråskala som får färg vid hover (och alltid färg där hover inte finns). Delas av båda layouterna.
 // Bara belagda samarbeten, officiella logotypfiler, varje fil en gång per sida. Utan fältet renderas inget.
+// Valfritt samarbeten.band: true (GD Måleri 2026-10-09, som kundens eget band på gdmaleri.se): i stället för
+// korten ett BAND som rullar åt vänster som tjänstebandet (samma rulla-loop, paus vid hover, stilla och
+// sidledsskroll vid minskad rörelse, kopian aria-hidden med tomma alt), rubriken ovanför. Varje post i
+// lista[] är ett märke i bandet, i färg, länkat i ny flik om href finns (utan href: ingen länk).
 function Samarbeten({ d }) {
   if (!d.samarbeten) return null;
   const sa = d.samarbeten;
+  if (sa.band) {
+    const Marke = ({ p, kopia }) => p.bilder.map((b) => <Image src={b.src} alt={kopia ? '' : b.alt} width={b.w} height={b.h} sizes="300px" style={b.hojd ? { '--sam-h': `${b.hojd}px` } : undefined} key={b.src} />);
+    return (
+      <section className={`${s.sek} ${s.samarbeten}`} id="samarbeten">
+        <div className={s.wrap}><Rubrik r={sa} /></div>
+        <div className={s.samBand} role="group" aria-label={sa.eyebrow}>
+          <div className={s.samSpar}>
+            {[false, true].map((kopia) => (
+              <ul className={`${s.samGrupp} ${kopia ? s.samKopia : ''}`} aria-hidden={kopia || undefined} key={kopia ? 'b' : 'a'}>
+                {sa.lista.map((p) => (
+                  <li key={p.namn}>
+                    {p.href
+                      ? <a href={p.href} target="_blank" rel="noopener" title={p.text} tabIndex={kopia ? -1 : undefined}><Marke p={p} kopia={kopia} /></a>
+                      : <span title={p.text}><Marke p={p} kopia={kopia} /></span>}
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
   return (
     <section className={`${s.sek} ${s.samarbeten}`} id="samarbeten">
       <div className={s.wrap}>
@@ -609,7 +662,7 @@ export default function DemoSida({ data: d }) {
     : { href: k.ig, txt: t.folj, ikon: <IgIkon />, ny: true };
 
   return (
-    <div className={`${fontKlasser} ${s.sida}`} style={tema}>
+    <div className={`${fontKlasser} ${s.sida}${d.kund ? ` ${s.kund}` : ''}`} style={tema}>
       <header className={d.layout === 'styrelse' ? `${s.hdr} ${s.hdrLjus}` : s.hdr}>
         <div className={s.hdrIn}>
           {harTel
@@ -793,12 +846,21 @@ export default function DemoSida({ data: d }) {
       </main>
       )}
 
-      {/* 11. Footer: ljus, med logotypen */}
-      <footer className={s.ftr}>
+      {/* 11. Footer: ljus, med logotypen. Valfritt footer.bild { src, srcMobil?, alt }: ett foto som bakgrund
+          under en mörk slöja (mork 78 %), ljus text, ljusa ikoner och logo.ljus (GD Måleri 2026-10-09:
+          Stockholms siluett i skymning). Utan fältet: exakt som förut. */}
+      <footer className={d.footer.bild ? `${s.ftr} ${s.ftrMedBild}` : s.ftr}>
+        {d.footer.bild ? (
+          <picture className={s.ftrFoto}>
+            {d.footer.bild.srcMobil ? <source media="(max-width: 760px)" srcSet={d.footer.bild.srcMobil} /> : null}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={d.footer.bild.src} alt={d.footer.bild.alt} loading="lazy" decoding="async" />
+          </picture>
+        ) : null}
         <div className={s.wrap}>
           <div className={s.ftrGrid}>
             <div>
-              <a className={s.ftrLogo} href="#top" aria-label={`${d.namn} – ${t.tillToppen.toLowerCase()}`}><Logo logo={d.logo && { ...d.logo, alt: '' }} ordmarke={d.ordmarke} klass="ftr" /></a>
+              <a className={s.ftrLogo} href="#top" aria-label={`${d.namn} – ${t.tillToppen.toLowerCase()}`}><Logo logo={d.logo && { ...d.logo, src: (d.footer.bild && d.logo.ljus) || d.logo.src, alt: '' }} ordmarke={d.ordmarke} klass="ftr" /></a>
               <p className={s.ftrText}>{d.footer.text}</p>
               <div className={s.ftrSociala}>
                 {k.ig ? <a href={k.ig} target="_blank" rel="noopener" aria-label={`${d.namn} Instagram`}><IgIkon /></a> : null}
@@ -829,7 +891,8 @@ export default function DemoSida({ data: d }) {
           </div>
           <div className={s.ftrBar}>
             <span>© {new Date().getFullYear()} {d.namn}{k.orgnr ? ` · ${t.orgnr} ${k.orgnr}` : ''}</span>
-            <span>{t.byggd} <a href="https://www.bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>
+            {/* Valfritt d.kund: kundens egen sida, ingen byråtext i bottenraden (GD Måleri 2026-10-09). */}
+            {d.kund ? null : <span>{t.byggd} <a href="https://www.bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>}
           </div>
         </div>
       </footer>
@@ -859,19 +922,24 @@ export default function DemoSida({ data: d }) {
         {harTel ? <a className={s.popupAlt} href="#kontakt">{t.ellerSkriv}</a> : null}
       </aside>
 
-      <a className={s.demoKnapp} href="#bahko-demo">{t.omForslaget}</a>
-      <div className={s.modalLager} id="bahko-demo">
-        <a className={s.modalSkugga} href="#stangd" tabIndex={-1} aria-hidden="true" />
-        <section className={s.modal} aria-labelledby="bahko-rubrik">
-          <a className={s.modalX} href="#stangd" aria-label={t.stangKort}>✕</a>
-          <span className={s.modalBadge}>{t.modalBadge}</span>
-          <h3 id="bahko-rubrik">{d.modal.rubrik}</h3>
-          <p>{d.modal.text}</p>
-          <a className={s.modalCta} href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener">{t.modalCta}</a>
-          <a className={s.modalAlt} href={`mailto:mathias@bahkobyra.se?subject=${encodeURIComponent(`${d.namn} - förslag på hemsida`)}`}>{t.modalAlt}</a>
-          <span className={s.modalFot}>{t.modalFot}</span>
-        </section>
-      </div>
+      {/* Bahkos demo-knapp och modal: bara i förslag. En kunds egen sida (d.kund) har ingen av dem. */}
+      {d.kund ? null : (
+        <>
+          <a className={s.demoKnapp} href="#bahko-demo">{t.omForslaget}</a>
+          <div className={s.modalLager} id="bahko-demo">
+            <a className={s.modalSkugga} href="#stangd" tabIndex={-1} aria-hidden="true" />
+            <section className={s.modal} aria-labelledby="bahko-rubrik">
+              <a className={s.modalX} href="#stangd" aria-label={t.stangKort}>✕</a>
+              <span className={s.modalBadge}>{t.modalBadge}</span>
+              <h3 id="bahko-rubrik">{d.modal.rubrik}</h3>
+              <p>{d.modal.text}</p>
+              <a className={s.modalCta} href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener">{t.modalCta}</a>
+              <a className={s.modalAlt} href={`mailto:mathias@bahkobyra.se?subject=${encodeURIComponent(`${d.namn} - förslag på hemsida`)}`}>{t.modalAlt}</a>
+              <span className={s.modalFot}>{t.modalFot}</span>
+            </section>
+          </div>
+        </>
+      )}
     </div>
   );
 }

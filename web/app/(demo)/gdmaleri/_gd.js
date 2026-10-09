@@ -50,7 +50,7 @@ export const bokning = {
   inbaddad: {
     eyebrow: 'Boka online',
     rubrik: ['Boka offertbesök', 'direkt'],
-    lead: 'Välj en tid som passar – Ghandi kommer hem till dig. Vardagar 08–17.',
+    lead: 'Välj en tid som passar – vi kommer hem till dig. Vardagar 08–17.',
     titel: 'Boka kostnadsfritt offertbesök med GD Måleri (Cal.com)',
   },
 };
@@ -90,6 +90,19 @@ export const SIDOR = [
 ];
 export const footerTjanster = SIDOR.map(({ href, txt }) => ({ href, txt }));
 
+/* Footerns bakgrundsbild på alla GD-sidor (Mathias 2026-10-09): Stockholms siluett i skymning,
+   Riddarholmen med kyrkspiran sett över Riddarfjärden, varma fönsterljus, blå timme.
+   Foto: Andriy Oliynyk (@oliynykan) på Unsplash, "Stockholm in the twilight",
+   https://unsplash.com/photos/6zU54fXfIEQ — Unsplash License (fri för kommersiellt bruk, ingen
+   attribution krävs), hämtad 2026-10-09 i 5931×3954. Referensbilden Mathias skickade (547×365,
+   okänd upphovsrätt) används INTE. footer-stockholm.webp = beskuren 2,4:1, 1920×800;
+   footer-stockholm-mobil.webp = 3:4 runt spiran, 900×1200, för skärmar under 760 px. */
+export const footerBild = {
+  src: `${M}/footer-stockholm.webp`,
+  srcMobil: `${M}/footer-stockholm-mobil.webp`,
+  alt: 'Stockholms siluett i skymning: Riddarholmskyrkans spira och Gamla stans fasader med tända fönster, speglade i Riddarfjärden.',
+};
+
 // Mobilmenyn får tjänstesidorna utom den man står på och de som redan finns i pillret.
 export const menyExtra = (...utom) => SIDOR.filter((l) => !utom.includes(l.href)).map(({ href, kort }) => ({ href, txt: kort }));
 
@@ -123,11 +136,11 @@ export const varfor = {
 
 export const om = {
   eyebrow: 'Om GD Måleri',
-  rubrik: ['Ägaren driver', 'firman själv'],
+  rubrik: ['Kvalitet före', 'kvantitet'],
   bild: { src: `${M}/reco-kort.png`, w: 827, h: 845, alt: 'Reco: GD Måleri Sthlm AB, rekommenderat företag tre år i rad, 4,9 av 5', rundad: true },
   utanKort: true,
   stycken: [
-    'GD Måleri Sthlm AB är målare i Stockholm, och firman drivs av Ghandi Danho. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
+    'GD Måleri Sthlm AB är en målerifirma i Stockholm som hellre gör färre jobb ordentligt än många i hast. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
     'Vi målar åt villaägare, bostadsrätter och företag, från en lägenhet på 43 kvm till en fasad på 350 kvm i Täby kyrkby. Färgen är Flügger, och vi är försäkrade via Trygg-Hansa.',
   ],
   bevis: [
@@ -156,56 +169,73 @@ export const instagramBas = {
   bio: 'Måleri inne och ute · Stockholm',
 };
 
-/* Samarbeten (Mathias 2026-10-09): logotypremsa sist på ALLA GD-sidor, före footern.
-   BARA belagt: Reco (reco.se/gd-maleri-sthlm: 4,9 av 5, 45 omdömen, Rekommenderat
-   företag 2024, 2025 och 2026 — märkena är Recos EGNA SVG-filer på hans profil,
-   assets/images/badges/trust2024|2025|2026.svg och BadgeThreeYears.svg, hämtade
-   2026-10-09), Flügger (gdmaleri.se FAQ: färg från Flügger; logotypen från
-   flugger.se:s egen header, assets.flugger.dk/cms/media/z5yaf5g3/flugger_logo_cvi_2025_se.svg)
-   och Trygg-Hansa (gdmaleri.se FAQ: "fullt försäkrade via Trygg-Hansa"; logotypen från
-   trygghansa.se:s egen header, siteassets/bilder/logotypes/trygg-hansa-logo-rgb-black.svg,
-   som trots namnet är den röda positiva varianten). INTE med: Måleriföretagen och
-   AAA (märken på gdmaleri.se, inte verifierade — Ghandi får bekräfta) och Cal.com
-   (verktyg, inte samarbete). Reco-kortet reco-kort.png ligger kvar i Om oss (huvud-
-   och tjänstesidorna) respektive heron (BRF): varje bildfil en gång per sida. */
+/* Samarbeten (Mathias 2026-10-09): sist på ALLA GD-sidor, före footern. Sedan 2026-10-09 kväll
+   ett RULLANDE BAND (mallfältet samarbeten.band, som tjänstebandet) i stället för tre kort, med
+   de samarbeten GD själva visar i bandet på gdmaleri.se (skärmdump från Mathias 2026-10-09:
+   Måleriföretagen i Sverige, Flügger färg "Måleriets leverantör", AAA) plus Trygg-Hansa och Reco.
+   VERIFIERAT: Måleriföretagen och AAA = kundens egna samarbeten enligt gdmaleri.se:s band och
+   Mathias 2026-10-09 (Ghandi via Mathias). Logotyperna är GD:s egna filer från gdmaleri.se
+   (wp-content/uploads/2025/02/: maleriforetagen.png beskuren, 0x0.png = Flügger färg med raden
+   "Måleriets leverantör", aaa-soliditet-hogsta-kreditvardighet.png), hämtade i PR #239 2026-10-09
+   och återställda ur git (0a71197). Flügger: kundens egen fil med "Måleriets leverantör" i stället
+   för flugger.se:s rena ordmärke (SVG borttagen). Reco: Recos EGNA SVG-märken på hans profil
+   (reco.se/gd-maleri-sthlm: 4,9 av 5, 45 omdömen, Rekommenderat företag 2024, 2025 och 2026;
+   assets/images/badges/trust2024|2025|2026.svg och BadgeThreeYears.svg, hämtade 2026-10-09).
+   Trygg-Hansa (gdmaleri.se FAQ: "fullt försäkrade via Trygg-Hansa"; logotypen från trygghansa.se:s
+   egen header, siteassets/bilder/logotypes/trygg-hansa-logo-rgb-black.svg, den röda positiva varianten).
+   FLAGGA: AAA-märket är inte kontrollerat mot Dun & Bradstreet (bolaget registrerat 2024-01-16,
+   AAA kräver normalt mer än två års historik) och filen är bara 100×44 px — be om en skarp fil.
+   AAA länkas inte (ingen belagd sida att peka på). Cal.com är ett verktyg, inte ett samarbete.
+   Reco-kortet reco-kort.png ligger kvar i Om oss (huvud- och tjänstesidorna) respektive heron
+   (BRF): varje bildfil en gång per sida. */
 export const samarbeten = {
+  band: true,
   eyebrow: 'Samarbeten',
   rubrik: ['Vi jobbar med', 'namn du känner igen'],
-  lead: 'Flügger står för färgen, Trygg-Hansa för försäkringen och Reco för omdömena.',
   lista: [
-    {
-      namn: 'Reco',
-      href: 'https://www.reco.se/gd-maleri-sthlm',
-      text: 'Rekommenderat företag på Reco tre år i rad, 4,9 av 5',
-      bilder: [
-        { src: `${M}/samarbete-reco-2024.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2024', hojd: 68 },
-        { src: `${M}/samarbete-reco-2025.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2025', hojd: 68 },
-        { src: `${M}/samarbete-reco-2026.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2026', hojd: 68 },
-        { src: `${M}/samarbete-reco-3ar.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag tre år i rad', hojd: 68 },
-      ],
-    },
-    {
-      namn: 'Flügger',
-      href: 'https://www.flugger.se/',
-      text: 'Färgen vi målar med',
-      bilder: [{ src: `${M}/samarbete-flugger.svg`, w: 2024, h: 567, alt: 'Flügger', hojd: 46 }],
-    },
-    {
-      namn: 'Trygg-Hansa',
-      href: 'https://www.trygghansa.se/',
-      text: 'Försäkrade via Trygg-Hansa',
-      bilder: [{ src: `${M}/samarbete-trygghansa.svg`, w: 283, h: 53, alt: 'Trygg-Hansa', hojd: 36 }],
-    },
+    { namn: 'Måleriföretagen', href: 'https://www.maleriforetagen.se/', text: 'Måleriföretagen i Sverige', bilder: [{ src: `${M}/samarbete-maleriforetagen.png`, w: 393, h: 91, alt: 'Måleriföretagen i Sverige', hojd: 44 }] },
+    { namn: 'Flügger', href: 'https://www.flugger.se/', text: 'Flügger färg, färgen vi målar med', bilder: [{ src: `${M}/samarbete-flugger.png`, w: 720, h: 204, alt: 'Flügger färg, Måleriets leverantör', hojd: 54 }] },
+    { namn: 'AAA', text: 'AAA, högsta kreditvärdighet', bilder: [{ src: `${M}/samarbete-aaa.png`, w: 100, h: 44, alt: 'AAA, högsta kreditvärdighet', hojd: 40 }] },
+    { namn: 'Trygg-Hansa', href: 'https://www.trygghansa.se/', text: 'Försäkrade via Trygg-Hansa', bilder: [{ src: `${M}/samarbete-trygghansa.svg`, w: 283, h: 53, alt: 'Trygg-Hansa', hojd: 38 }] },
+    { namn: 'Reco 2024', href: 'https://www.reco.se/gd-maleri-sthlm', text: 'Rekommenderat företag på Reco 2024', bilder: [{ src: `${M}/samarbete-reco-2024.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2024', hojd: 72 }] },
+    { namn: 'Reco 2025', href: 'https://www.reco.se/gd-maleri-sthlm', text: 'Rekommenderat företag på Reco 2025', bilder: [{ src: `${M}/samarbete-reco-2025.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2025', hojd: 72 }] },
+    { namn: 'Reco 2026', href: 'https://www.reco.se/gd-maleri-sthlm', text: 'Rekommenderat företag på Reco 2026', bilder: [{ src: `${M}/samarbete-reco-2026.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2026', hojd: 72 }] },
+    { namn: 'Reco tre år i rad', href: 'https://www.reco.se/gd-maleri-sthlm', text: 'Rekommenderat företag på Reco tre år i rad, 4,9 av 5', bilder: [{ src: `${M}/samarbete-reco-3ar.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag tre år i rad', hojd: 72 }] },
   ],
 };
 
 export const RECO = { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' };
+
+/* GOOGLE-OMDÖMEN (2026-10-09, Mathias klistrade in Googles recensionssida ur Maps-profilen
+   cid 13566570836618556636): 4,8 av 5, 18 recensioner — inklusive ett 1-stjärnigt (Martin, 5 mån:
+   "Dåligt utfört jobb …"), som inte visas som kort men räknas i betyget och nås via "Läs alla på Google".
+   Stjärnor per omdöme står inte i underlaget (bara Martins), därför stjarnor: false på varje kort —
+   fem fyllda stjärnor vore ett påhittat betyg. Texterna ordagrant, med Googles egna stavfel;
+   "…" bara där Google själv kortat ("… Mer"). Namnen som Google visar dem, förnamn + initial.
+   Omdömen som också finns på Reco med samma text (anneli nordberg = Anneli N, Jonas Persson =
+   Susanne P:s text, Ola Andersson = Ola A) visas bara en gång, som Reco-kort. Som på Bromma
+   Trädgårdsservice: betygsbricka med Googles G, kort med G-märke, länk till profilen.
+   Inget AggregateRating/Review-schema (svartlistan). */
+export const GOOGLE_LANK = 'https://maps.google.com/?cid=13566570836618556636';
+export const GOOGLE_BETYG = { varde: 4.8, antal: 18, text: '18 recensioner på Google', href: GOOGLE_LANK };
+const G = (namn, text) => ({ namn, kalla: 'Recension på Google', google: true, stjarnor: false, text });
+export const GOOGLE_OMDOMEN = {
+  viktor: G('Viktor E', 'På en och halv vecka omvandlade de 3 rum med gamla tapeter och ojämnt tak till helt släta ytor med fint målad färg. Allt detta till ett överkomligt pris och god kommunikation. Om du söker proffsig målning till bra precis, tveka inte att anlita GD måleri!'),
+  jenny: G('Jenny E', 'Snabb och bra kommunikation. Tydlig offert och tydlighet med extradebitering. Inga oväntade överraskningar. Trevlig personal Inga konstigheter. Tidplanen höll. Rekommenderar varmt Ghandi och hans personal.'),
+  therese: G('Therese G', 'Vi har anlitat Ghandi måleri nu vid ett flertal tillfällen och har alltid blivit så nöjda med både jobbet och servicen. Ghandi måleri är det självklara valet nu vid val av målarfirma i Sthlm.'),
+  per: G('Per', 'Anlitades för ommålning av mitt hus utvändigt. Löpande bra dialog och höll alltid utlovade tider.'),
+  thorellski: G('Thorellski', 'Vi är mycket nöjda med det arbete (rödmålning, målning av vita snickerier samt byte av ruttna fönsterfoder) som GD Måleri Sthlm gjort hos oss! Bra kommunikation, trevligt bemötande, flexibilitet och ett noggrant utfört arbete. Kan rekommenderas!'),
+  daniel: G('Daniel N', 'Hade ganska bråttom med mitt projekt inför en försäljning och GD Måleri var snabba med att svara och ge offert samt hade kort ledtid. De slutförde arbetet inom tid (en vecka) och med ett bra resultat.'),
+  marianne: G('Marianne L', 'Ett mycket trevligt bemötande och utmärkt utfört arbete som gällde fasadmålning.'),
+  matteus: G('Matteus E', 'Vi har varit väldigt nöjda med Ghandi och hans anställda. De fick i uppdrag att måla om vårt nya radhus på 125kvm invändigt. Resultatet är proffsigt och kommunikationen bra trots att vi varit på semester under arbetets gång. Vi blev …'),
+  maja: G('Maja B', 'Fantastiskt arbete, proffsig och kunnig. Över förväntan i effektivitet och grundlighet. Det tog knappt 3 dagar från första meddelande till att arbetet sattes igång, och två dagar senare var allt klart. Vi kunde inte vara mer nöjda med bemötandet eller utförandet! Vi rekommenderar verkligen om Ghandi.'),
+  patrik: G('Patrik L', 'Kan inte vara mer nöjd! Fantastik kommunikation och allt utfört perfekt. Ghandi kan sina saker och är lätt och trevlig att prata med. Jag rekommenderar till 100% /patrik'),
+  oliwer: G('Oliwer C', 'Jätte nöjd med deras arbete. Slutförde arbetet snabbare en förväntat och med otroligt bra resultat. Rekommenderar starkt!'),
+};
 export const SKV_ROT = 'https://www.skatteverket.se/foretag/skatterochavdrag/rotochrut/gerarbetetratttillrotavdrag.4.5c1163881590be297b5173bf.html';
 
-export const modal = {
-  rubrik: 'Så här kan GD Måleri se ut på nätet',
-  text: 'Det här är ett förslag, byggt på det ni själva visar på gdmaleri.se, Instagram och Reco, med era egna projektfoton. Ingen beställning, inget åtagande. Boka ett kostnadsfritt 15-minuterssamtal med Mathias.',
-};
+// Ingen modal: GD Måleri är KUND (Mathias 2026-10-09). Alla sex sidorna har kund: true, så mallen
+// ritar varken demo-knapp, Bahko-modal eller byråtext i footern.
 
 // Service-post för en tjänstesida. Pekar på huvudsidans HousePainter (@id). Inget betygsschema (svartlistan).
 // Ingen url: sidan ligger inte på gdmaleri.se än (vid flytten: se URL-kartan i content/leads/gdmaleri.md).

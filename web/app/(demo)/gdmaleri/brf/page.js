@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, modal, samarbeten } from '../_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, samarbeten, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — undersida för bostadsrättsföreningar (/gdmaleri/brf/)
@@ -79,6 +79,11 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExt
    vardagsrum, "enligt överenskommen tidsplan"; samma utdrag som huvudsidan).
    Reco-betyget 4,9 av 5 av 45 omdömen (reco.se/gd-maleri-sthlm) står som
    bricka i omdömessektionen (omdomen.recoBetyg) — utan Googles G.
+   GOOGLE (2026-10-09, se ../_gd.js GOOGLE_OMDOMEN): Google-betyget 4,8 av 5 av
+   18 recensioner som bricka med Googles G bredvid Reco-brickan, båda länkade,
+   och tre Google-kort utan stjärnor: Jenny E (tydlig offert, extradebitering,
+   tidplanen höll), Daniel N (snabb offert, klart inom en vecka) och Therese G
+   (anlitat flera gånger) — det en styrelse frågar efter.
 
    INTE verifierat, och finns därför inte på sidan: något jobb åt en BRF —
    det finns inget (Ghandis besked; inget Reco-omdöme, IG-inlägg eller foto är
@@ -186,7 +191,7 @@ const data = {
   cta: { txt: 'Begär kostnadsfri offert', kort: 'Begär offert', lank: 'Begär offert' },
   formular,
   // Kalendern som på huvudsidan; raden under rubriken är skriven för föreningen.
-  bokning: { ...bokning, inbaddad: { ...bokning.inbaddad, lead: 'Välj en tid som passar, så kommer Ghandi ut till föreningen och tittar på ytorna. Vardagar 08–17.' } },
+  bokning: { ...bokning, inbaddad: { ...bokning.inbaddad, lead: 'Välj en tid som passar, så kommer vi ut till föreningen och tittar på ytorna. Vardagar 08–17.' } },
   nav: {
     vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#process', txt: 'Så går det till' }],
     hoger: [{ href: '#omdomen', txt: 'Omdömen' }, { href: '/gdmaleri/', txt: 'Startsida' }],
@@ -233,7 +238,7 @@ const data = {
   varfor: {
     eyebrow: 'Därför GD Måleri',
     rubrik: ['Fyra saker styrelsen', 'kan räkna med'],
-    lead: 'GD Måleri drivs av Ghandi Danho. De flesta av våra jobb har varit åt privatkunder, och föreningen får samma upplägg.',
+    lead: 'GD Måleri är en målerifirma i Stockholm. De flesta av våra jobb har varit åt privatkunder, och föreningen får samma upplägg.',
     punkter: [
       { rubrik: 'Allt med i offerten', text: 'Material, arbete, förarbete som tvätt och skrapning, städning och bortforsling räknas in från början. Offerten är kostnadsfri.' },
       { rubrik: 'Inget extra utan ert ja', text: 'Dyker något oväntat upp hör vi av oss direkt. Vi gör inga extraarbeten utan styrelsens godkännande.' },
@@ -245,15 +250,19 @@ const data = {
   omdomen: {
     eyebrow: 'Omdömen',
     rubrik: ['Vad våra privatkunder', 'säger'],
-    lead: 'Omdömena är från privatkunder på Reco. Det är så vi har jobbat hittills, och så jobbar vi åt föreningen.',
-    // Verifierat Reco-betyg (reco.se/gd-maleri-sthlm, 2026-10-08) som bricka utan Googles G.
+    lead: 'Omdömena är från privatkunder på Google och Reco. Det är så vi har jobbat hittills, och så jobbar vi åt föreningen.',
+    // Google-betyget (4,8 av 5, 18 recensioner, 2026-10-09) och Reco-betyget (2026-10-08) som två brickor sida vid sida.
+    betyg: GOOGLE_BETYG,
     recoBetyg: { varde: 4.9, antal: 45, href: 'https://www.reco.se/gd-maleri-sthlm' },
     lista: [
+      GOOGLE_OMDOMEN.jenny,
+      GOOGLE_OMDOMEN.daniel,
+      GOOGLE_OMDOMEN.therese,
       { namn: 'Nils F', kalla: 'Verifierad kund · Reco', text: 'Vi anlitade GD Måleri för att åtgärda taket i vår 20-talslägenhet, som hade stora sprickor på flera ställen. Vi fick dem rekommenderade av en granne och förstår verkligen varför. … När vissa områden behövde en andra omgång, kom de snabbt tillbaka och fixade det utan problem.' },
       { namn: 'Anders F', kalla: 'Verifierad kund · Reco', text: 'Vi anlitade GD Måleri Sthlm AB för att måla om hall, trapphus och vardagsrum, och är mycket nöjda med resultatet. Arbetet håller riktigt hög kvalitet, utfördes med stor erfarenhet och noggrannhet, och levererades helt enligt överenskommen tidsplan. …' },
       { namn: 'Pia T', kalla: 'Verifierad kund · Reco', text: 'Väggarna i min lägenhet blev fint målade precis med den färg som jag önskade. Likaså gick det snabbt! Bra kommunikation o bästa samarbete. Tack - jag är så nöjd!' },
     ],
-    not: 'Från privatkunder på Reco.se, där kundrelationen kontrolleras. Ordagrant, två av dem kortade där det står …',
+    not: 'Från privatkunder på Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09; två av dem kortade där det står …',
     lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' },
     // Levande omdömen (mallens levande.js). Utan nycklar i miljön visas listan ovan oförändrad.
     // Google: GOOGLE_PLACES_KEY i Vercel. placeId saknas än: Text Search på namnet, och cid
@@ -279,8 +288,8 @@ const data = {
       { q: 'Vad händer om något oväntat dyker upp?', a: 'Då hör vi av oss direkt och föreslår en lösning. Vi gör inga extraarbeten utan ert godkännande.' },
       { q: 'Är ni försäkrade?', a: 'Ja. Vi har F-skatt och är fullt försäkrade via Trygg-Hansa. Skulle något gå fel under arbetet är föreningen skyddad.' },
       { q: 'Hur påverkas de boende?', a: 'Allt som inte ska målas täcks med plast eller papper, och golven skyddas innan vi börjar. Städning och bortforsling ingår i offerten.' },
-      { q: 'Vem är vår kontaktperson?', a: 'Ghandi Danho, som äger firman. Han gör offertbesöket och offerten och är er kontakt under hela jobbet, så styrelsen har samma person att ringa: 073-729 88 89, vardagar 08–17.' },
-      { q: 'Vilken färg använder ni, och hjälper ni till med kulörer?', a: 'Vi målar med färg från Flügger. Vi hjälper gärna till med färgval och designförslag, till exempel för ett trapphus.' },
+      { q: 'Vem är vår kontaktperson?', a: 'Samma person hela vägen: den som gör offertbesöket och offerten är er kontakt under hela jobbet, så styrelsen har ett nummer att ringa: 073-729 88 89, vardagar 08–17.' },
+      { q: 'Vilken färg använder ni, och hjälper ni till med kulörer?', a: 'Vi målar med färg från Flügger. Vi hjälper gärna till med färgval och design, till exempel för ett trapphus.' },
       { q: 'Hur lång tid tar det?', a: 'Det beror på hur stora ytorna är och i vilket skick de är, så det går inte att säga utan att veta vad som ska göras. Ring och berätta om ert hus, så kan vi svara på just det.' },
     ],
   },
@@ -310,10 +319,12 @@ const data = {
   footer: {
     text: 'Målare för bostadsrättsföreningar i Stockholm: trapphus, fasader, fönster och dörrar. Kostnadsfri offert och faktura när jobbet är klart.',
     tjanster: footerTjanster,
+    bild: footerBild, // Stockholms siluett i skymning, se _gd.js
   },
 
-  modal,
-  // Samarbeten (Reco, Flügger, Trygg-Hansa) sist på sidan, före footern: se _gd.js.
+  // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.
+  kund: true,
+  // Samarbeten: rullande band sist på sidan, före footern: se _gd.js.
   samarbeten,
 };
 

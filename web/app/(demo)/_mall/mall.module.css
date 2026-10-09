@@ -1196,6 +1196,10 @@ a.betyg { color: var(--text); }
 }
 .recensionerNot { font-size: var(--tx-s); color: var(--text-2); max-width: 38rem; }
 .recensionerKnappar { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+/* Två betygsbrickor sida vid sida (Google + Reco, GD Måleri 2026-10-09). En ensam bricka står som förut. */
+.brickor { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; }
+/* Google-korten som egen rad före Reco-widgeten (omdomen.googleLista). */
+.recensionerFore { margin-bottom: 1.3rem; }
 
 /* Utvalda jobb (jobb.utvalda, GD Måleri 2026-10-09): stående bilder, första = före/efter. */
 .utvalda {
@@ -1777,6 +1781,44 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
 @media (prefers-reduced-motion: reduce) {
   .samKort a, .samLogo { transition: none; }
 }
+/* Samarbeten som BAND (valfritt samarbeten.band, GD Måleri 2026-10-09, som kundens eget band på
+   gdmaleri.se): märkena i färg rullar åt vänster med samma rulla-loop som tjänstebandet, paus vid
+   hover, toning i kanterna. Vid minskad rörelse: stilla, sidledsskroll, kopian dold. */
+.samBand {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.samSpar {
+  display: flex;
+  width: max-content;
+  animation: rulla var(--samtid, 40s) linear infinite;
+}
+.samBand:hover .samSpar,
+.samBand:focus-within .samSpar { animation-play-state: paused; }
+.samGrupp {
+  display: flex;
+  align-items: center;
+  gap: clamp(3rem, 6vw, 5.5rem);
+  margin: 0;
+  padding: 0 clamp(3rem, 6vw, 5.5rem) 0 0;
+  list-style: none;
+}
+.samGrupp li { display: flex; align-items: center; height: 88px; }
+.samGrupp a, .samGrupp span { display: flex; align-items: center; gap: 0.7rem; min-height: 44px; }
+.samGrupp a { border-radius: 8px; }
+.samGrupp img { width: auto; height: var(--sam-h, 56px); max-width: none; object-fit: contain; }
+@media (max-width: 760px) {
+  .samGrupp { gap: 2.2rem; padding-right: 2.2rem; }
+  .samGrupp li { height: 72px; }
+  .samGrupp img { height: calc(var(--sam-h, 56px) * 0.82); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .samSpar { animation: none; }
+  .samBand { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .samKopia { display: none; }
+  .samGrupp { padding-inline: 1rem; }
+}
 
 /* ---------- 11. footer: ljus, med logotypen ---------- */
 .ftr {
@@ -1845,6 +1887,49 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
 }
 @media (max-width: 520px) {
   .ftrGrid { grid-template-columns: 1fr; }
+}
+/* Footer med bakgrundsfoto (valfritt footer.bild, GD Måleri 2026-10-09): fotot täcker footern
+   (object-fit cover, samma höjd som förut) under en slöja av märkets mörka ton på 78 %, så att
+   all text klarar 4,5:1 även över fotots ljusaste partier (mätt på riktiga pixlar på GD
+   2026-10-09: text lägst 5,8:1, ikoner lägst 5,8:1). Texten ljus, ikonerna i accent-ljus,
+   logotypen i sin ljusa variant. Under 760 px byts fotot mot
+   srcMobil, beskuret runt motivet (spiran). Utan fältet renderas inget av detta. */
+.ftrMedBild {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: var(--mork);
+  border-top-color: var(--linje-mork);
+  color: #fff;
+}
+.ftrFoto { display: contents; }
+.ftrFoto img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+.ftrMedBild::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--mork) 78%, transparent);
+}
+.ftrMedBild .ftrText,
+.ftrMedBild .ftrKol a,
+.ftrMedBild .ftrKol li > span,
+.ftrMedBild .ftrBar { color: #CBD5E1; }
+.ftrMedBild .ftrKol h3, .ftrMedBild .ftrOrd { color: #fff; }
+.ftrMedBild .ftrKol a:hover { color: #fff; }
+.ftrMedBild .ftrKol svg { color: var(--accent-ljus); }
+.ftrMedBild .ftrSociala a { color: #fff; border-color: rgba(255, 255, 255, 0.4); }
+.ftrMedBild .ftrBar { border-top-color: var(--linje-mork); }
+@media (max-width: 760px) {
+  .ftrFoto img { object-position: 50% 50%; }
 }
 
 /* ---------- sidflik: stående "RING …" i högerkanten ---------- */
@@ -1962,6 +2047,8 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
   height: 1px;
   pointer-events: none;
 }
+/* Kundens egen sida (data.kund): ingen demo-knapp, så popupen tar dess plats i hörnet. */
+.kund .popup { bottom: max(1.5rem, calc(env(safe-area-inset-bottom) + 1rem)); }
 .demoKnapp {
   position: fixed;
   right: 1.5rem;

@@ -3,7 +3,7 @@
 **Instagram:** [@gdmaleristhlm](https://www.instagram.com/gdmaleristhlm/) — 122 inlägg, 1 044 följare (2026-10-08). Jobb i Bromma, Täby kyrkby och Södertälje under hösten 2026.
 **Hemsida:** [gdmaleri.se](https://gdmaleri.se/) (WordPress/Elementor). **Telefonlänken på sajten är en platshållare:** texten säger 073-729 88 89 men länken bakom är `tel:123-456-7890`, så den som trycker "ring" på mobilen ringer ett påhittat nummer.
 **Reco:** [reco.se/gd-maleri-sthlm](https://www.reco.se/gd-maleri-sthlm) — 4,9 av 5, 45 omdömen, Rekommenderat företag 2024–2026.
-**Demo:** `bahkobyra.se/gdmaleri/` (källa: `web/app/(demo)/gdmaleri/`)
+**Sidan:** `bahkobyra.se/gdmaleri/` (källa: `web/app/(demo)/gdmaleri/`) — sedan 2026-10-09 kundens egen sida (`kund: true`), inte ett förslag; noindex tills flytten till gdmaleri.se.
 **Status:** **KUND hos Bahko Byrå sedan 2026-10-08.** Demo byggd samma dag på demomallen v3; filmerna bytta mot hans egen herofilm 2026-10-08.
 
 ## Verifierat
@@ -26,7 +26,7 @@
 
 ## INTE verifierat
 
-Google-profil och betyg (ingen hittad), öppettider, priser, antal projekt, ledtider. Märkena för Måleriföretagen och AAA-kreditbetyg på sajten är inte kontrollerade och används inte. Sajtens "Alltid fast pris" används inte (ett Reco-omdöme beskriver slutpris över offert efter tillägg).
+Öppettider, priser, antal projekt, ledtider. Google-profil och betyg är verifierade sedan 2026-10-09 (se "Google-omdömen"). Måleriföretagen och AAA visas i Samarbeten-bandet sedan 2026-10-09 (kundens egna samarbeten enligt gdmaleri.se och Mathias), men AAA-märket är inte kontrollerat mot D&B (se "Samarbeten som band"). Sajtens "Alltid fast pris" används inte (ett Reco-omdöme beskriver slutpris över offert efter tillägg).
 
 ## Media
 
@@ -62,7 +62,7 @@ Fyra kort: "Invändig målning" och "Tapetsering och spackel" är sammanslagna s
 - **Kundloopen runda 2:** sidan lovar bara **kostnadsfri offert** (som gdmaleri.se), inte "kostnadsfri besiktning". Besiktning före offert står bara i ett Reco-omdöme (Ola A) och finns kvar enbart som hans citat; processteget "Besiktning" är borttaget. Varför-sektionen heter nu "Allt i offerten, inget i förskott" (offerten med allt inräknat, inget extra utan ja, slutbesiktning och faktura efter jobbet — allt ur sajten). "Ett års garanti" är borta ur tjänstebandet och kontaktens bockar (konkurrenten vimalar.se har 5 år) och står bara i Varför-punkterna och FAQ. "Inga massutskick, ingen säljlista" och "ärligt besked" i FAQ-kortet är strukna (påhittade löften).
 - Jobbilderna "Gavel målad i rött" och "Panelfasad och foder målade" är utbytta mot andra egna foton (närbild på röd timmervägg; långsida med laxrosa panel), så att samma gavel inte syns två gånger (gällde den gamla Varför-filmen) och samma burspråkshörn inte både som tjänstebild och jobbild.
 - **Formulärets "Vad gäller det?" förväljer första tjänsten** (Invändig målning) — styrs av mallen (`defaultValue={d.tjanster.kort[0].namn}` i DemoSida.js), inte av datafilen. En fasadkund som inte ändrar valet hamnar i fel kategori. Rättas i mallen (tomt förstaval "Välj …"), inte här.
-- **Omdömena är från Reco, inte Google.** Därför ingen betygsbricka i omdömessektionen (mallens bricka bär Googles G). Den kommer av sig själv med riktiga Google-betyget när `GOOGLE_PLACES_KEY` finns (se "Levande omdömen och Instagram"). Snittbetyget 4,9 av 45 står i stället som bevisord i Om oss.
+- **Google-omdömena finns på sidan sedan 2026-10-09** (se "Google-omdömen" nederst): betygsbrickan 4,8 av 5 (18 recensioner) med Googles G, länkad till profilen, och Google-kort utan stjärnor. Innan dess var omdömena bara från Reco och brickan saknades. Med `GOOGLE_PLACES_KEY` ersätter den levande brickan den statiska.
 - Ett av de inbäddade IG-inläggen (Täby kyrkby) har en kampanjtext i bildtexten ("10 % på arbetskostnaden och 30 % på färg"). Byt inlägg om kampanjen är slut.
 - Hero-orten är "Stockholm" som firman själv skriver ("Din målare i Stockholm"), fast bolaget har säte i Södertälje.
 - **Säljvinkel:** telefonlänken på gdmaleri.se går till platshållaren 123-456-7890. Varje mobilbesökare som trycker på numret ringer fel, trots 45 omdömen och tre år som Rekommenderat företag.
@@ -275,7 +275,7 @@ Mathias: en sektion "Samarbeten" sist på ALLA sex GD-sidorna (huvudsidan, fyra 
 
 ### Flaggor Samarbeten
 
-- **Måleriföretagen och AAA** står som märken på gdmaleri.se men är inte verifierade av oss, därför INTE med. **Ghandi får bekräfta medlemskapet i Måleriföretagen** (och AAA-betyget); då läggs det till i remsan.
+- **Måleriföretagen och AAA** — ÄNDRAT 2026-10-09 kväll: med i bandet som kundens egna samarbeten (gdmaleri.se:s band + Mathias). AAA-märket är inte kontrollerat mot D&B, se avsnittet "Samarbeten som band".
 - Cal.com är ett verktyg, inte ett samarbete, och visas inte.
 - Flügger och Trygg-Hansa är leverantörer, inte partners som godkänt att visas. Vill Ghandi vara säker: fråga Flügger-butiken om de får använda logotypen på sin sajt (vanligt för återförsäljare/målare som använder deras färg).
 
@@ -287,3 +287,54 @@ En annan session byggde samtidigt (PR #239, i main) Reco-widget, rullande partne
 - **INTE taget:** `partner` (rullande band med Flügger, Måleriföretagen, AAA, Reco 2024 — koden i DemoSida.js/mall.module.css och `partner-*.png` borttagna, de användes bara av GD) och #239:s `styrelse`-sektion/BRF-struktur (koden borttagen; dess CSS-klasser `.stRad`/`.stNot` krockade dessutom med vår styrelse-layout). BRF-sidan är vår: `layout: 'styrelse'`, delad hero utan film, process i fem steg, tjänster som rader, Reco-betyget som bricka (`omdomen.recoBetyg`). Måleriföretagen och AAA visas inte alls (inte verifierade, se Flaggor Samarbeten).
 - **Konflikter:** SKILL.md (fälttabellen: `omdomen` fick både `recoBetyg` och `reco`, `kontaktSektion` både `kundtypVald` och `meddelandeEtikett`; raderna `styrelse` och `partner` ströks), qa.mjs (vår sektionsordning med `samarbeten` sist, utan `styrelse`), DemoSida.js (våra utbrutna Fragor/Boka/Kontakt/Samarbeten + deras RecoWidget och utvalda), brf/page.js (helt vår), page.js (importerna slogs ihop, `partner` bort).
 - Övriga demos (Vantooro #238, Hällgren Nord #237) renderas som i main.
+
+## Footern med Stockholms siluett (2026-10-09)
+
+Mathias: footern på alla GD-sidor ska ha en bakgrundsbild med Stockholms siluett i skymning (Riddarholmen sett över vattnet, kyrkspiran, varma fönsterljus, blå timme), som referensbilden han skickade. Referensbilden (547×365 px, hämtad från nätet, okänd upphovsrätt) används INTE.
+
+- **Fotot:** Andriy Oliynyk (@oliynykan) på Unsplash, "Stockholm in the twilight", https://unsplash.com/photos/6zU54fXfIEQ — **Unsplash License** (fri för kommersiellt bruk, ingen attribution krävs; vi anger ändå fotografen här och i `_gd.js`). Hämtad 2026-10-09 i 5931×3954. Samma vy som referensen: Riddarholmskyrkans spira, Gamla stans fasader med tända fönster, skeppet vid kajen, rosa skymningshimmel och Riddarfjärden i förgrunden. Ingen generering behövdes (0 USD). Kandidat två var Oscar Nord, unsplash.com/photos/VgU7z7SQhIs (samma vy, iPhone, 4032×3024).
+- **Filerna:** `footer-stockholm.webp` (1920×800, beskuren 2,4:1 runt siluetten, 123 KB) och `footer-stockholm-mobil.webp` (900×1200, 3:4 runt spiran, 70 KB) i `web/public/gdmaleri/media/`.
+- **Mallen fick ett valfritt fält `footer.bild { src, srcMobil?, alt }`** (DemoSida.js + `.ftrMedBild` i mall.module.css): fotot som `<picture>` med `object-fit: cover` i footerns vanliga höjd, slöja av `mork` (#0D1B2A) på 78 %, text `#CBD5E1`, rubriker vita, ikoner i `accentLjus`, `logo.ljus` i stället för den mörka logotypen, bottenraden "© 2026 … Org.nr …" i samma ljusa grå. Under 760 px byts fotot mot den stående beskärningen med spiran mitt i bild. Påslaget i alla sex `page.js` via `footerBild` i `_gd.js`. Utan fältet är footern exakt som förut: **swedcro pixelidentisk före/efter, 0 avvikande pixlar på 1440 och 390** (helsidesbilder, samma metod som 2026-10-09).
+- **Kontrast mätt på riktiga pixlar** (texten genomskinlig, bakgrunden samplad under varje textruta, DPR 2, sämsta pixeln räknas): gdmaleri 1440: lägst 5,84:1 (bottenraden "Förslag byggt av Bahko Byrå"), ikoner lägst 5,82:1 (krav 3:1); gdmaleri 390: lägst 5,87:1 (info@gdmaleri.se); gdmaleri/brf 1440: 5,85:1, 390: 5,88:1. Inget element under 4,5:1. QA-skriptet mäter footertexten mot `mork` (ser inte fotot) och ger också grönt.
+- **QA 2026-10-09:** gdmaleri 115 OK (betyg `ja`), gdmaleri/brf 91 OK (styrelse), swedcro 109 OK; ingen sidledsskroll på 390/768/1100/1440; logotypen i footern OK; 55 mediafiler, alla hashar unika.
+- Skärmdumpar: `web/.tmp/ftr/gdmaleri-footer-1440-ren.png`, `web/.tmp/ftr/gdmaleri-footer-390-ren.png` (och `-brf-`), plus QA:ns `.tmp/gdmaleri/qa/*-footer.png` (repots rot).
+
+## Kund, inte förslag (2026-10-09)
+
+Mathias: GD Måleri är KUND. Allt förslagsmaterial borttaget från de sex sidorna, utan att röra andra demos.
+
+- **Nytt valfritt mallfält `kund: true`** (DemoSida.js, satt i alla sex `page.js`): ingen demo-knapp "Om det här förslaget", ingen Bahko-modal (`#bahko-demo`), ingen "Förslag byggt av Bahko Byrå" i footerns bottenrad (bara "© 2026 GD Måleri Sthlm AB · Org.nr 559468-2444"), popupen flyttar ner till knappens plats (`.kund .popup`). Utan fältet renderas allt exakt som förut: **swedcro pixelidentisk före/efter, 0 avvikande pixlar på 1440 (1440×10613) och 390 (390×17233)**.
+- **Borttaget ur GD:s data:** `modal` i `_gd.js` ("Det här är ett förslag, byggt på det ni själva visar …") och importen/fältet på alla sex sidorna. Formuläret skickar redan utan `subject`/`from_name` (kundens Web3Forms-panel gäller), så "ny förfrågan från förslaget" finns inte i anropet; inga dolda fält i HTML.
+- **Inga ägarnamn i egna texter:** Om oss-rubriken är nu **"Kvalitet före *kvantitet*"** (Mathias 2026-10-09) med ingressen "GD Måleri Sthlm AB är en målerifirma i Stockholm som hellre gör färre jobb ordentligt än många i hast. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket." (`_gd.js` för tjänstesidorna och `page.js`). BRF: Därför-ingressen "GD Måleri är en målerifirma i Stockholm. De flesta av våra jobb …" och FAQ-svaret "Samma person hela vägen: den som gör offertbesöket och offerten är er kontakt under hela jobbet …". Huvudsessionens ändringar (bokningsraderna utan namn, "ägarledd") ingår. Två FAQ-svar skrivna om så ordet "förslag" inte finns i egna texter: BRF "färgval och design", invändig "färgval och kulörer".
+- **Textsökning på renderad text** (curl, script/style bortskalade, attribut medräknade) efter förslag/prototyp/Bahko/demo/Ghandi/Danho/ägaren på alla sex routes: **0 träffar i egna texter.** Kvar: ordagranna Reco-citat (Ola A: "intryck av Ghandi … kom med förslag på saker"; Edwin N: "Ghandi som ansvarade …") på huvudsidan (Reco-widgeten) och taksidan — citat får stå. I rå HTML finns dessutom `(demo)` i Next:s chunk-sökvägar (route-gruppens mappnamn, syns inte) och `https://www.bahkobyra.se/gdmaleri/media/…` som bild-URL:er i JSON-LD (`FILBAS`, byts vid domänflytten).
+- **QA 2026-10-09:** gdmaleri 115 OK (betyg `ja`), gdmaleri/brf 91 OK (styrelse), swedcro 108 OK; QA-skriptet behövde inget undantag (det kontrollerar inte demo-knappen). swedcro:s kontroll "filmen slutar på ett logokort" är tidskänslig: grön i första körningen, föll sedan i två av tre (luminans 0,22 i stället för 0,65, omväxlande dator och mobil) — swedcro:s film och HTML är orörda.
+- Kvar: **noindex** på alla sex (flytten till gdmaleri.se är inte gjord). Mallfältet står i hemsidor-skillen (båda kopiorna).
+
+## Samarbeten som band (2026-10-09 kväll)
+
+Mathias: Samarbeten ska vara ett **rullande band** som på gdmaleri.se (skärmdump av deras band: Måleriföretagen i Sverige, Flügger färg "Måleriets leverantör", AAA), i stället för de tre korten. Mathias bekräftar att Måleriföretagen och AAA är kundens egna samarbeten, så de är med nu.
+
+- **Mallfält `samarbeten.band: true`** (DemoSida.js `Samarbeten`, CSS `samBand/samSpar/samGrupp/samKopia`): rubriken ovanför, märkena i färg rullar åt vänster med tjänstebandets `rulla`-loop (40 s), paus vid hover/fokus, toning i kanterna, kopian `aria-hidden` med tomma `alt` och `tabindex=-1`, stilla + sidledsskroll vid minskad rörelse, noll klient-JS. Utan fältet: korten som förut (swedcro har inget `samarbeten` alls, pixelidentisk).
+- **Ordning i bandet:** Måleriföretagen → maleriforetagen.se · Flügger färg → flugger.se · AAA (ingen länk: ingen belagd sida) · Trygg-Hansa → trygghansa.se · Reco 2024 · 2025 · 2026 · tre år i rad → reco.se/gd-maleri-sthlm. Gruppen är 1 655 px bred på 1440 (bredare än skärmen, så loopen är tät). Optiska höjder 44/54/40/38/72 px.
+- **Logotyper:** `samarbete-maleriforetagen.png` (393×91), `samarbete-aaa.png` (100×44) och `samarbete-flugger.png` (720×204, "Flügger färg · Måleriets leverantör") är GD:s egna filer från gdmaleri.se (hämtade i PR #239, återställda ur commit 0a71197). Flügger-filen från kundens sajt ersätter flugger.se:s rena ordmärke (`samarbete-flugger.svg` borttagen, varje fil används en gång). Reco- och Trygg-Hansa-SVG:erna som förut.
+- **Flaggor:** AAA-märket är inte kontrollerat mot Dun & Bradstreet (bolaget registrerat 2024-01-16; AAA kräver normalt mer än två års historik) och filen är bara 100×44 px, lätt oskarp i DPR 2 — be om en skarp fil. Måleriföretagen: medlemskapet går inte att slå upp i deras JS-drivna register; källa är kundens egen sajt + Mathias.
+- Skärmdumpar: `web/.tmp/kund/gdmaleri-1440-samarbeten.png`, `-390-`, `-footer.png`, `-popup.png` och QA:ns `.tmp/gdmaleri/qa/*-samarbeten.png`.
+
+## Google-omdömen (2026-10-09)
+
+Mathias: lägg till GD:s Google-omdömen "så som vi gjorde för Bromma". Underlaget är Googles recensionssida ur Maps-profilen (cid 13566570836618556636), klistrad av Mathias 2026-10-09: **4,8 av 5, 18 recensioner**, inklusive ett 1-stjärnigt (Martin, 5 mån: "Dåligt utfört jobb och icke-professionellt bemötande överhuvudtaget. Rekommenderar inte!"). Betyget och antalet räknar med det; det visas inte som kort men nås via "Läs alla på Google". Allt ligger i `gdmaleri/_gd.js` (`GOOGLE_BETYG`, `GOOGLE_OMDOMEN`).
+
+**Så gjorde Bromma** (`bahkobyra/cloud/brommatradgardsservice/index.html`, statisk sajt): ett G-fält med Googles G, "Omdömen på Google", stjärnor och knapparna "Läs alla omdömen på Google" (Maps-profilen via cid) och "Lämna ett omdöme" (g.page-länk), sedan ett rutnät av vita kort med stjärnor, G-ikon + "Google" som källa, texten, namnet och jobbet. Ingen AggregateRating/Review i schemat. Bromma visar fem stjärnor per kort eftersom alla deras Google-omdömen är femmor.
+
+**Så är det gjort för GD, inom mallens omdömessektion:**
+
+- **Betygsbrickan** (mallens `omdomen.betyg`, nu med `varde: 4.8, antal: 18, href`): Googles G, "4,8", fem stjärnor (avrundat), "18 recensioner på Google", länkad till profilen. Knappen **"Läs alla på Google"** kommer av sig själv ur `href`. Ingen "Lämna ett omdöme"-knapp: g.page-länken för GD:s profil är inte känd (Ghandi kan hämta den i Google Företagsprofil → "Be om recensioner").
+- **Huvudsidan:** brickan + **sex Google-kort** som egen rad (Viktor E, Jenny E, Therese G, Maja B, Matteus E, Daniel N) före Reco-widgeten med de nio Reco-omdömena. Noten: "Omdömena är hämtade från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09." Knappar: Läs alla på Google · Läs alla 45 på Reco · CTA.
+- **BRF-sidan:** Google-brickan och Reco-brickan **sida vid sida**, båda länkade. Korten: Jenny E (tydlig offert, extradebitering, tidplanen höll), Daniel N (snabb offert, klart inom en vecka) och Therese G (anlitat flera gånger) bredvid de tre Reco-korten. Ingressen säger "privatkunder på Google och Reco".
+- **Tjänstesidorna:** brickan + Google-kort som passar tjänsten bredvid Reco-korten. Fasad: Per, Marianne L, Thorellski. Tak: Thorellski, Per, Oliwer C. Invändig: Viktor E, Matteus E, Maja B. Golv: Patrik L.
+- **Inga stjärnor på Google-korten** (`stjarnor: false`): stjärnorna per omdöme står inte i underlaget (bara Martins), och fem fyllda vore ett påhittat betyg. Reco-korten bredvid har sina stjärnor som förut (grade 5 i Recos data).
+- **Dubbletter visas en gång.** Tre Google-omdömen har samma text som Reco-omdömen som redan står på sidorna: anneli nordberg = Anneli N (golv), Jonas Persson = Susanne P:s text (golv), Ola Andersson = Ola A (huvudsidan, tak). De visas bara som Reco-kort. Därför har golv bara ett Google-kort.
+- **Namn** som Google visar dem, förnamn + initial i samma form som Reco-korten (Viktor E, inte Viktor E.). Texterna ordagrant med Googles stavfel ("Fantastik", "Jätte nöjd", "snabbare en förväntat", "bra precis"); "…" bara där Google själv kortat (Matteus E). Omdömen som nämner Ghandi är kundernas egna ord och står kvar.
+- **Mallen:** `betyg` med `href`/`antal` (bricka som länk, formaterat tal), två brickor sida vid sida (`.brickor`), `googleLista` (Google-raden före Reco-widgeten, `.recensionerFore`), knappen ur `betyg.href`. Utan de nya fälten renderas allt som förut: swedcro pixeljämförd (se nedan). Inget AggregateRating/Review-schema.
+- **Inte verifierat:** stjärnor per Google-omdöme, datum (Google visar bara "x mån"), g.page-länken för "Lämna ett omdöme".
+

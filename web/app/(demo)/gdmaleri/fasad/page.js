@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, modal, samarbeten, tjanstSchema } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida FASAD (/gdmaleri/fasad/), 2026-10-08.
@@ -41,6 +41,9 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    av en tvätt: bilden är en färdigmålad långsida och alt-texten säger det.
    Täby-inlägget har en kampanjtext (10 % / 30 %): byt inlägg när kampanjen är slut.
    Omdömena här är fasta (inte levande), så att de handlar om fasader.
+   GOOGLE (2026-10-09, se ../_gd.js GOOGLE_OMDOMEN): betygsbrickan 4,8 av 5 (18)
+   och tre Google-kort utan stjärnor: Per (hus utvändigt), Marianne L
+   (fasadmålning) och Thorellski (rödmålning, snickerier, fönsterfoder).
    OPTIMERING: egen titel och beskrivning, JSON-LD Service → HousePainter
    (@id gdmaleri.se/#business), inget betygsschema, noindex tills flytten.
    =========================================================================== */
@@ -122,12 +125,16 @@ const data = {
   omdomen: {
     eyebrow: 'Omdömen',
     rubrik: ['Kunderna om', 'sina fasader'],
+    betyg: GOOGLE_BETYG,
     lista: [
       { namn: 'Lovisa B', kalla: 'Verifierad kund · Reco', text: 'Vi fick ett väldigt trevligt och kunnigt bemötande. De gjorde ett bra jobb med att slipa och måla vår stora fasad och blev klara i tid. Lätta att kommunicera med och väldigt trevliga.' },
       { namn: 'Stefan G', kalla: 'Verifierad kund · Reco', text: 'Excellent utfört arbete, jag har uppskattat tydligheten i all kommunikation, där jag som kund haft ett mycket gott samarbete med GD Måleri. Hög yrkeskunskap och stolthet över ett väl utfört arbete med hög kvalité. Projektet involverade fasadarbeten (träfasad) samt målning av fasad. Jag rekommenderar varmt GD Måleri AB.' },
       { namn: 'Susanne J', kalla: 'Verifierad kund · Reco', text: 'Målade om fasaden på vårt hus. Jättebra bemötande från offertförfrågan till färdigt resultat. Alltid lätt att få kontakt med företagsägare Ghandhi. Målarna som kom var super duktiga, lätta att ha och göra med. Kan varmt rekommendera GD Måleri Sthlm AB.' },
+      GOOGLE_OMDOMEN.per,
+      GOOGLE_OMDOMEN.marianne,
+      GOOGLE_OMDOMEN.thorellski,
     ],
-    not: 'Från Reco.se, där kundrelationen kontrolleras. Ordagrant.',
+    not: 'Från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09.',
     lank: RECO,
   },
 
@@ -173,9 +180,11 @@ const data = {
   footer: {
     text: 'Fasadtvätt och fasadmålning i Stockholm: trä, puts, tegel och plåt, med fönster, vindskivor och takfot. Kostnadsfri offert och slutbesiktning innan fakturan.',
     tjanster: footerTjanster,
+    bild: footerBild, // Stockholms siluett i skymning, se _gd.js
   },
 
-  modal,
+  // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.
+  kund: true,
   samarbeten,
 };
 

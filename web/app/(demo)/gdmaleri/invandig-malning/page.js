@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, modal, samarbeten, tjanstSchema } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida INVÄNDIG MÅLNING (/gdmaleri/invandig-malning/), 2026-10-08.
@@ -30,6 +30,9 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    Beskurna 4:3, först i övre bandet.
    FLAGGOR: alla bilder är GD:s egna foton (samma som huvudsidan). Omdömena här
    är fasta (inte levande), så att de handlar om invändig målning.
+   GOOGLE (2026-10-09, se ../_gd.js GOOGLE_OMDOMEN): betygsbrickan 4,8 av 5 (18)
+   och tre Google-kort utan stjärnor: Viktor E (tre rum, tapeter och tak),
+   Matteus E (radhus 125 kvm invändigt, kortat av Google) och Maja B.
    OPTIMERING: egen titel och beskrivning, JSON-LD Service → HousePainter
    (@id gdmaleri.se/#business), inget betygsschema, noindex tills flytten.
    =========================================================================== */
@@ -107,12 +110,16 @@ const data = {
   omdomen: {
     eyebrow: 'Omdömen',
     rubrik: ['Kunderna om', 'jobben inomhus'],
+    betyg: GOOGLE_BETYG,
     lista: [
       { namn: 'Nils F', kalla: 'Verifierad kund · Reco', text: 'Vi anlitade GD Måleri för att åtgärda taket i vår 20-talslägenhet, som hade stora sprickor på flera ställen. Vi fick dem rekommenderade av en granne och förstår verkligen varför. Vi är otroligt nöjda med resultatet! … När vissa områden behövde en andra omgång, kom de snabbt tillbaka och fixade det utan problem.' },
       { namn: 'Elin Linnea G', kalla: 'Verifierad kund · Reco', text: 'Större målning på flera våningar hos oss, med många olika färgval etc. Det hanterade de jättebra. Bra dialoger innan och under, lätta att få tag på och bra att resonera med. … Blev jättefint hemma - rekommenderar!' },
       { namn: 'Pia T', kalla: 'Verifierad kund · Reco', text: 'Väggarna i min lägenhet blev fint målade precis med den färg som jag önskade. Likaså gick det snabbt! Bra kommunikation o bästa samarbete. Tack - jag är så nöjd!' },
+      GOOGLE_OMDOMEN.viktor,
+      GOOGLE_OMDOMEN.matteus,
+      GOOGLE_OMDOMEN.maja,
     ],
-    not: 'Från Reco.se, där kundrelationen kontrolleras. Ordagrant, två av dem kortade där det står …',
+    not: 'Från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09; tre av dem kortade där det står …',
     lank: RECO,
   },
 
@@ -127,7 +134,7 @@ const data = {
       { q: 'Vad kostar det att måla om inne?', a: 'Det beror på ytan, skicket och vad som ska göras. Därför börjar vi med en offert, och den är kostnadsfri. Offerten tar med material, arbete, förarbete som spackling och slipning, städning och bortforsling.' },
       { q: 'Får jag ROT-avdrag?', a: <>Ja, på arbetskostnaden. Skatteverket räknar att måla väggar, tak, dörrar och fönster och att tapetsera som rotarbete. Vi drar av det direkt på fakturan. Bor du i bostadsrätt gäller det arbete inne i lägenheten. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
       { q: 'Hur skyddar ni hemmet?', a: 'Allt som inte ska målas täcks med plast eller papper, och vi skyddar möbler och golv innan vi börjar.' },
-      { q: 'Hjälper ni till med färgval?', a: 'Ja. Vi hjälper till med färgval och förslag, och färgen är Flügger. Miljövänliga alternativ finns.' },
+      { q: 'Hjälper ni till med färgval?', a: 'Ja. Vi hjälper till med färgval och kulörer, och färgen är Flügger. Miljövänliga alternativ finns.' },
       { q: 'När betalar jag?', a: 'Du får fakturan när arbetet är klart, ingen förskottsbetalning.' },
       { q: 'Har ni garanti?', a: 'Ja, ett år på måleriarbetet. Behöver något åtgärdas under den tiden gör vi det utan extra kostnad.' },
       { q: 'Målar ni kontor också?', a: 'Ja. Vi målar hemma hos privatpersoner och åt företag, från lägenheter och villor till kontorslokaler.' },
@@ -158,9 +165,11 @@ const data = {
   footer: {
     text: 'Invändig målning i Stockholm: väggar, innertak, tapetsering, bredspackling, dörrar och snickerier. Kostnadsfri offert och slutbesiktning innan fakturan.',
     tjanster: footerTjanster,
+    bild: footerBild, // Stockholms siluett i skymning, se _gd.js
   },
 
-  modal,
+  // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.
+  kund: true,
   samarbeten,
 };
 
