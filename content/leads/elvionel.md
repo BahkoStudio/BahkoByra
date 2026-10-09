@@ -58,6 +58,6 @@ Elsäkerhetsverkets register när org.nr/bolagsnamn finns.
 
 ## ⚠️ Rättelse 2026-09-14
 
-Kontot @reel_innovations som ledde hit är **Valora**, en företagsförmedling — inte Elvion El. Mathias riktade om förslaget till Valora själva: se `content/leads/valora.md` och `bahkobyra.se/valora/`.
+Kontot @reel_innovations som ledde hit är **Valora**, en företagsförmedling — inte Elvion El. Mathias riktade om förslaget till Valora själva: se `content/leads/vantooro.md` och `bahkobyra.se/vantooro/` (kontot heter sedan 2026-10 @vantooro).
 
 Den här demon ligger kvar och är sann om Elvion El, men den kom aldrig från deras eget konto. Vill du skicka den måste du hitta en egen kontaktväg till firman först.

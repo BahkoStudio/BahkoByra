@@ -537,7 +537,8 @@ export default function DemoSida({ data: d }) {
                 {/* Valfritt kontaktSektion.epostNamn: fältnamnet för e-post, t.ex. 'email' (Web3Forms autosvar går bara till fältet email). */}
                 <label>{t.epost}<input type="email" name={d.kontaktSektion.epostNamn || 'epost'} autoComplete="email" /></label>
                 <label>{t.typ}<select name="typ" defaultValue={d.tjanster.kort[0].namn}>{d.tjanster.kort.map((tj) => <option key={tj.id}>{tj.namn}</option>)}<option>{t.annat}</option></select></label>
-                <label>{t.meddelande}<textarea name="meddelande" rows={4} placeholder={d.kontaktSektion.placeholder} /></label>
+                {/* Valfritt kontaktSektion.meddelandeEtikett: egen etikett på fritextfältet när "Kort om jobbet" inte passar nischen (Vantooro 2026-10-09: "Kort om bolaget"). */}
+                <label>{d.kontaktSektion.meddelandeEtikett || t.meddelande}<textarea name="meddelande" rows={4} placeholder={d.kontaktSektion.placeholder} /></label>
                 <button className={s.btn} type="submit">{d.cta.txt}</button>
                 {harTel ? <a className={`${s.btn} ${s.btnLjus}`} href={k.telHref}><Tel />{t.ellerRing} {k.tel}</a> : null}
                 <p className={s.formNot} id="form-not">{d.kontaktSektion.formNotBock ? <Bock /> : null}{d.kontaktSektion.formNot}</p>
