@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, modal, tjanstSchema } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, modal, samarbeten, tjanstSchema } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida FASAD (/gdmaleri/fasad/), 2026-10-08.
@@ -176,6 +176,7 @@ const data = {
   },
 
   modal,
+  samarbeten,
 };
 
 export default function GdMaleriFasad() {

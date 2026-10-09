@@ -1,5 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, modal, RECO_WIDGET, RECO_LISTA, PARTNER } from './_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, modal, samarbeten, RECO_WIDGET, RECO_LISTA } from './_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -96,22 +96,22 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExt
    kostar: content/leads/gdmaleri.md, "Levande omdömen och Instagram".
    GD Måleri Sthlm AB är KUND hos Bahko Byrå sedan 2026-10-08.
 
-   RECO-WIDGET OCH PARTNERBAND (2026-10-09, Mathias): siffrorna ur Recos egen
+   RECO-WIDGET (2026-10-09, Mathias, PR #239): siffrorna ur Recos egen
    widget på gdmaleri.se (reviewCount 45, rating 4,8667 → 4,9, transparencyRating
    "Best" = "Mycket bra", verifieringstexten ordagrant) och reco.se/gd-maleri-sthlm
    (JSON-LD aggregateRating 4,9/45, hämtat 2026-10-09). Omdömena ordagrant med
    datum och reco.se/r/<id> (se ../gdmaleri/_gd.js RECO_LISTA); Bo M:s signatur
    och Anders F:s stjärn-emojis strukna. Två omdömen utan känt betyg (Jenny E,
-   Viktor E) är inte med. Partnerbandets fyra märken är de som står i
-   gdmaleri.se:s sidfot: Flügger (0x0.png), Måleriföretagen (maleriforetagen.png,
-   beskuren), AAA (aaa-soliditet-hogsta-kreditvardighet.png, bara 100×58 px) och
-   Recos officiella trust2024.svg (= sajtens Unknown.jpg).
+   Viktor E) är inte med. #239:s rullande partnerband (Flügger, Måleriföretagen,
+   AAA, Reco 2024) togs INTE med vid sammanslagningen 2026-10-09 (Mathias beslut):
+   märkena står i stället i Samarbeten sist på sidan (se _gd.js samarbeten), bara
+   belagda sådana — Måleriföretagen och AAA är inte verifierade.
 
    INTE verifierat, och finns därför inte i någon text: Google-profil och betyg
    (ingen hittad), öppettider, priser, antal projekt, ledtider, medlemskap i
-   Måleriföretagen och AAA-kreditbetyg (logotyperna står i partnerbandet för
-   att Mathias bad om det, men påståendena är inte kontrollerade — se
-   FLAGGOR), "Alltid fast pris" (sajten säger det, men ett Reco-omdöme
+   Måleriföretagen och AAA-kreditbetyg (märkena står på gdmaleri.se men är inte
+   kontrollerade — se FLAGGOR; inte med på sidan),
+   "Alltid fast pris" (sajten säger det, men ett Reco-omdöme
    beskriver slutpris över offert vid tillägg — utelämnat). Gatuadressen
    (Prosten Linders Väg 39, Södertälje, enligt Reco) visas inte.
 
@@ -123,12 +123,12 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExt
    målning samt microlituppsättning och snobbkant"). Hämtat 2026-10-09 via Instagrams
    publika inbäddning (profilens /embed/ och inläggens /embed/captioned/).
 
-   FLAGGOR (partnerbandet): AAA — Dun & Bradstreets AAA kräver att bolaget
+   FLAGGOR (märken som INTE visas): AAA — Dun & Bradstreets AAA kräver att bolaget
    funnits i mer än två år; GD registrerades 2024-01-16 och märket laddades upp
    på sajten 2025-02, så det kan inte ha varit giltigt då. Märket är dessutom ett
    licensierat varumärke (D&B LiveLogo). Ghandi måste bekräfta aktivt AAA och
-   licens, och skicka en skarp fil (nuvarande är 100 px bred) — annars tas det
-   bort. Måleriföretagen — medlemskapet gick inte att kontrollera
+   licens, och skicka en skarp fil (sajtens är 100 px bred) — först då kan det
+   läggas i Samarbeten. Måleriföretagen — medlemskapet gick inte att kontrollera
    (medlemsregistret är JS-drivet); Ghandi bekräftar.
    FLAGGOR: inga genererade filmer längre — hero, Varför och kontakt är
    deras egen film (se ovan). Den genererade rödfärgade villan och
@@ -376,8 +376,6 @@ const data = {
     },
   },
 
-  partner: PARTNER,
-
   instagram: {
     eyebrow: 'Instagram',
     rubrik: ['Följ jobben', 'i vardagen'],
@@ -431,6 +429,8 @@ const data = {
   },
 
   modal,
+  // Samarbeten (Reco, Flügger, Trygg-Hansa) sist på sidan, före footern: se _gd.js.
+  samarbeten,
 };
 
 export default function GdMaleriDemo() {

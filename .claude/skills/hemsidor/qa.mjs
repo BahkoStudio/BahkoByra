@@ -1,14 +1,19 @@
 // QA för demomallen v3.1 (ljus design, delad mall i web/app/(demo)/_mall/; hero = logotyp + ort + två tjänster, tjänsteband, resan).
 // Playwright hittas bara inifrån web/, så: kopiera hit filen till web/qa.mjs, kör, ta bort före commit.
 //   cp .claude/skills/hemsidor/qa.mjs web/qa.mjs && cd web
-//   node qa.mjs <route> <port> "<början på firmanamnet i h1>" "<förbjudet regex>" <betyg: ja|nej|sajt> <instagram: inbaddat|kort|ingen>
+//   node qa.mjs <route> <port> "<början på firmanamnet i h1>" "<förbjudet regex>" <betyg: ja|nej|sajt> <instagram: inbaddat|kort|ingen> [layout: standard|styrelse]
 // betyg: ja = verifierat Google-betyg · nej = exempelomdömen · sajt = riktiga omdömen från kundens sajt, utan betyg
+// layout: styrelse = mallens andra sidstruktur (data.layout, GD Måleri BRF 2026-10-09): ljus hero utan film med text-h1,
+//   numrerad process, tjänster som rader, ljust Därför-block; inget band, inga jobbband, inget Om oss, ingen Instagram.
+//   Då är h1-argumentet början på rubriken, och betyg "ja" gäller även en verifierad Reco-bricka.
 // Exempel: node qa.mjs swedcro 3457 "Swedcro" "golvvision|rskompakt|lorem" ja inbaddat
+//          node qa.mjs gdmaleri/brf 3041 "Målning för" "lorem" ja ingen styrelse
 import { chromium, devices } from 'playwright';
 import fs from 'node:fs';
 import { execSync } from 'node:child_process';
 
-const [route, port, h1start, forbjudet, betyg = 'nej', instagram = 'inbaddat'] = process.argv.slice(2);
+const [route, port, h1start, forbjudet, betyg = 'nej', instagram = 'inbaddat', layout = 'standard'] = process.argv.slice(2);
+const st = layout === 'styrelse';
 const BAS = `http://localhost:${port}`;
 const SIDA = `${BAS}/${route}/`;
 const UT = `../.tmp/${route}/qa`;
@@ -68,8 +73,10 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   const h1Namn = await page.locator('h1').evaluate((e) => (e.querySelector('img')?.alt || e.innerText).replace(/\s+/g, ' ').trim());
   ok(h1Namn.toLowerCase().startsWith(h1start.toLowerCase()), `h1 = firmanamnet (${h1Namn})`);
   const ordning = await page.evaluate(() => [...document.querySelectorAll('main > section')].map((s) => s.id));
-  const vantad = ['top', 'tjanster', 'styrelse', 'jobb', 'varfor', 'om', 'process', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt'].filter((id) => ordning.includes(id));
-  ok(JSON.stringify(ordning) === JSON.stringify(vantad) && ['top', 'tjanster', 'jobb', 'varfor', 'om', 'omdomen', 'fragor', 'kontakt'].every((id) => ordning.includes(id)), `sektionsordning (${ordning.join(' ')})`);
+  const alla = st ? ['top', 'process', 'tjanster', 'varfor', 'omdomen', 'fragor', 'boka', 'kontakt', 'samarbeten'] : ['top', 'tjanster', 'jobb', 'varfor', 'om', 'process', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt', 'samarbeten']; // samarbeten: valfri logotypremsa SIST (GD Måleri 2026-10-09)
+  const kravs = st ? ['top', 'process', 'tjanster', 'varfor', 'omdomen', 'fragor', 'kontakt'] : ['top', 'tjanster', 'jobb', 'varfor', 'om', 'omdomen', 'fragor', 'kontakt'];
+  const vantad = alla.filter((id) => ordning.includes(id));
+  ok(JSON.stringify(ordning) === JSON.stringify(vantad) && kravs.every((id) => ordning.includes(id)), `sektionsordning (${ordning.join(' ')})`);
   ok((await page.locator('[class*="stat"]').count()) === 0, 'ingen siffer-rad (utdöd)');
 
   // --- header: genomskinlig högst upp, vit efter skroll, logotypen mitt i pillret ---
@@ -78,7 +85,9 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   await page.evaluate(() => window.scrollTo(0, 400)); await page.waitForTimeout(400);
   const a1 = tal(await hdr.evaluate((e) => getComputedStyle(e).backgroundColor))[3] ?? 1;
   const hdrFarg = farg(await hdr.evaluate((e) => getComputedStyle(e).color));
-  ok(a0 === 0, `header genomskinlig vid 0 (alfa ${a0})`);
+  // Styrelse-layouten har ljus hero utan film: headern är vit med mörk text redan vid 0.
+  if (st) ok(a0 >= 0.8, `header vit från start över den ljusa heron (alfa ${a0})`);
+  else ok(a0 === 0, `header genomskinlig vid 0 (alfa ${a0})`);
   ok(a1 >= 0.8 && kontrast(hdrFarg, [255, 255, 255]) >= 7, `header vit med mörk text efter skroll (alfa ${a1})`);
   await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(400);
   if (namn === 'desktop') {
@@ -91,6 +100,21 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
 
   // --- hero ---
   const vids = await page.locator('section[id="top"] video').evaluateAll((els) => els.filter((e) => getComputedStyle(e).display !== 'none').length);
+  if (st) {
+    // Styrelse: ingen film, text-h1 i Outfit som ryms, ingress, två knappar, bevisrad, en stillbild (+ ett lager).
+    ok(vids === 0, 'ingen film i heron (styrelse-layout)');
+    const h = await page.locator('section[id="top"]').evaluate((e) => { const h1 = e.querySelector('h1'); return ({
+      h1font: getComputedStyle(h1).fontFamily, h1spill: h1.scrollWidth - h1.clientWidth, em: !!h1.querySelector('em'),
+      bilder: e.querySelectorAll('img').length, knappar: e.querySelectorAll('a[class*="btn"]').length, bevis: e.querySelectorAll('ul li').length, stycken: e.querySelectorAll('p').length,
+    }); });
+    ok(/outfit|rubrik/i.test(h.h1font) && h.em, `h1 i Outfit med kursiv poäng (${h.h1font.split(',')[0]})`);
+    ok(h.h1spill <= 1, `h1 ryms på raden (spill ${h.h1spill} px)`);
+    ok(h.bilder >= 1 && h.bilder <= 2 && h.knappar === 2 && h.bevis >= 3 && h.stycken >= 2, `heron: ${h.bilder} bild(er), ${h.knappar} knappar, ${h.bevis} bevis, ${h.stycken} textrader`);
+    if (namn === 'mobil') {
+      const b = await page.locator('section[id="top"] a[class*="btn"]').last().evaluate((el) => el.getBoundingClientRect().bottom);
+      ok(b <= 844, `hero-knapparna inom första skärmen (${Math.round(b)})`);
+    }
+  } else {
   ok(vids === 1, `en synlig hero-film (${vids})`);
   // Heron bär bara logotyp, ort, två tjänster och knapparna (Mathias 2026-09-19). Ingen ingress, ingen bevisrad.
   const hero = await page.locator('section[id="top"]').evaluate((e) => ({
@@ -114,9 +138,10 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
     const b = await page.locator('section[id="top"] a[class*="btn"]').last().evaluate((el) => el.getBoundingClientRect().bottom);
     ok(b <= 844, `hero-knapparna inom första skärmen (${Math.round(b)})`);
   }
+  }
 
   // --- kontrast, hela sidan: varje synlig textnod mot närmaste täckande bakgrund ---
-  const svaga = await page.evaluate(() => {
+  const svaga = await page.evaluate((overFilmSel) => {
     const L = (c) => { const v = c.map((x) => x / 255).map((x) => (x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4)); return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2]; };
     const rgb = (s) => { const n = (s.match(/[\d.]+/g) || []).map(Number); return /^color\(srgb/.test(s) ? [n[0] * 255, n[1] * 255, n[2] * 255, n[3] ?? 1] : n; };
     const ut = [];
@@ -124,7 +149,7 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
       if (![...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length > 1)) continue;
       const cs = getComputedStyle(el); const r = el.getBoundingClientRect();
       if (cs.visibility === 'hidden' || cs.display === 'none' || r.width < 2 || el.closest('[aria-hidden="true"]')) continue;
-      if (el.closest('#top, #kontakt > div > div > div:first-child, header')) continue; // över film: mäts separat
+      if (el.closest(overFilmSel)) continue; // över film: mäts separat
       if (parseFloat(cs.webkitTextStrokeWidth) > 0) continue; // konturord i tjänstebandet: konturen bär ordet, fyllningen är bandets färg
       let e = el, bg = null, grad = false;
       while (e) { const b = getComputedStyle(e); if (/gradient/.test(b.backgroundImage)) { grad = true; break; } const c = rgb(b.backgroundColor); if (c.length && (c[3] ?? 1) > 0.95) { bg = c; break; } e = e.parentElement; }
@@ -135,7 +160,7 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
       if (k < (stor ? 3 : 4.5)) ut.push(`${k.toFixed(2)} "${el.textContent.trim().slice(0, 30)}"`);
     }
     return [...new Set(ut)];
-  });
+  }, st ? '#kontakt > div > div > div:first-child' : '#top, #kontakt > div > div > div:first-child, header'); // styrelse: heron och headern är ljusa ytor och mäts här
   ok(svaga.length === 0, `all text >= 4,5:1${svaga.length ? ' — ' + svaga.slice(0, 6).join(' | ') : ''}`);
   await overFilm(page, '#kontakt h2', 'kontaktrubrik', namn, [0, 2, 4]);
   await overFilm(page, '#kontakt p[class*="sekLead"]', 'kontaktingress', namn, [0, 2, 4]);
@@ -162,19 +187,31 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
     ok(await page.locator('header a[class*="hdrRing"], header a[class*="mobilNavKnapp"]').first().isVisible(), 'mobilheadern bär kontaktvägen');
     const sma = await page.locator('header a').evaluateAll((els) => els.filter((e) => e.offsetParent && e.getBoundingClientRect().height < 44).map((e) => e.textContent.trim()));
     ok(sma.length === 0, `tryckytor i headern >= 44 px${sma.length ? ': ' + sma.join(', ') : ''}`);
+    if (st) {
+      // Styrelse: varje synlig länk, knapp och fråga på hela sidan är minst 44 px hög.
+      const smaAlla = await page.locator('main a, main button, main summary, footer a, main label[class]').evaluateAll((els) => els.filter((e) => e.offsetParent && e.getBoundingClientRect().width > 0 && e.getBoundingClientRect().height < 44).map((e) => e.textContent.trim().slice(0, 30)));
+      ok(smaAlla.length === 0, `tryckytor på hela sidan >= 44 px${smaAlla.length ? ': ' + smaAlla.join(', ') : ''}`);
+    }
   }
 
-  // --- tjänstebandet under heron: rullar åt vänster ---
+  // --- tjänstebandet under heron: rullar åt vänster (styrelse: finns inte) ---
   const tejp = page.locator('div[class*="tejp"] [class*="tejpSpar"]');
+  if (st) ok((await tejp.count()) === 0, 'inget tjänsteband (styrelse-layout)');
+  else {
   ok((await tejp.count()) === 1 && (await page.evaluate(() => document.querySelector('main > section')?.nextElementSibling?.className || '')).includes('tejp'), 'tjänstebandet ligger direkt under heron');
   await page.evaluate(() => window.scrollTo({ top: document.querySelector('div[class*="tejp"]').offsetTop - 300, behavior: 'instant' })); await page.waitForTimeout(300);
   const t0 = await tejp.evaluate((e) => new DOMMatrix(getComputedStyle(e).transform).m41); await page.waitForTimeout(800);
   const t1 = await tejp.evaluate((e) => new DOMMatrix(getComputedStyle(e).transform).m41);
   ok(t1 < t0, `tjänstebandet rullar åt vänster (${(t1 - t0).toFixed(1)} px)`);
   ok((await page.locator('div[class*="tejp"] [class*="tejpGrupp"]:first-child span').count()) >= 6, 'minst sex ord i tjänstebandet');
+  }
 
   // --- så går det till: resan, utan ordningssiffror ---
-  if (await page.locator('#process').count()) {
+  if (st) {
+    // Styrelse: numrerad lodrät process (siffrorna är beställda av Mathias 2026-10-09 för den här layouten).
+    const pr = await page.locator('#process').evaluate((e) => ({ steg: e.querySelectorAll('ol > li').length, nr: e.querySelectorAll('ol > li [class*="stNr"]').length, h3: e.querySelectorAll('ol > li h3').length }));
+    ok(pr.steg >= 3 && pr.nr === pr.steg && pr.h3 === pr.steg, `processen: ${pr.steg} numrerade steg med rubrik`);
+  } else if (await page.locator('#process').count()) {
     const resa = await page.locator('#process').evaluate((e) => ({
       steg: e.querySelectorAll('li').length, ikoner: e.querySelectorAll('li svg').length,
       siffror: /\b0?[1-9]\b/.test([...e.querySelectorAll('li')].map((li) => li.innerText).join(' ').replace(/\d+ (timmar|dygn|arbetsdag|kr|%)/g, '')),
@@ -189,6 +226,15 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   const tj = await page.locator('#tjanster article').evaluateAll((els) => els.map((e) => ({ bild: !!e.querySelector('img'), lank: !!e.querySelector('a[href="#kontakt"], a[href^="/"]') })));
   ok(tj.length >= 3 && tj.every((x) => x.bild && x.lank), `tjänstekort med bild och länk (${tj.length})`);
 
+  if (st) {
+    // Styrelse: tjänsterna är rader med bild och text omväxlande; inga jobbband; Därför-blocket är ljust utan film.
+    const rader = await page.locator('#tjanster article').evaluateAll((els) => els.map((e) => { const b = e.querySelector('img').getBoundingClientRect(); const t = e.querySelector('h3').getBoundingClientRect(); return b.left < t.left ? 'bild-text' : 'text-bild'; }));
+    ok(rader.length >= 3 && (namn === 'mobil' || rader.every((r, i) => r === (i % 2 ? 'text-bild' : 'bild-text'))), `tjänster som rader${namn === 'mobil' ? ' (staplade)' : ', omväxlande'} (${rader.join(' · ')})`);
+    ok((await page.locator('#jobb, #om, #instagram').count()) === 0, 'inga jobbband, inget Om oss, ingen Instagram (styrelse-layout)');
+    const vf = await page.locator('#varfor').evaluate((e) => getComputedStyle(e).backgroundColor);
+    ok(lum(...tal(vf).slice(0, 3)) > 0.5 && (await page.locator('#varfor video').count()) === 0, `Därför-blocket är ljust och utan film (${vf})`);
+    ok((await page.locator('#varfor li').count()) >= 3, 'minst tre punkter i Därför-blocket');
+  } else {
   // --- jobb: två band åt var sitt håll ---
   await page.locator('#jobb').scrollIntoViewIfNeeded(); await page.waitForTimeout(300);
   const xs = async () => page.locator('#jobb [class*="bandSpar"]').evaluateAll((els) => els.map((e) => new DOMMatrix(getComputedStyle(e).transform).m41));
@@ -211,6 +257,7 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
 
   // --- om oss och footer bär logotypen ---
   ok((await page.locator('#om [class*="omKort"] img, #om [class*="omOrd"]').count()) === 1, 'logotypen i Om oss');
+  }
   ok((await page.locator('footer [class*="ftrLogo"] img, footer [class*="ftrOrd"]').count()) === 1, 'logotypen i footern');
 
   // --- omdömen ---
@@ -277,7 +324,11 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   // --- helsidesbilder att titta på ---
   await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(400);
   await page.screenshot({ path: `${UT}/${namn}-hero.png` });
-  for (const id of ['tjanster', 'styrelse', 'jobb', 'varfor', 'om', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt']) {
+  if (st) { // hela sidan, för granskning med ögonen: skrollstyrda entréer stängs av, annars står allt utanför rutan osynligt
+    await page.addStyleTag({ content: '*,*::before,*::after{animation:none !important}' });
+    await page.screenshot({ path: `${UT}/${namn}-hela.png`, fullPage: true });
+  }
+  for (const id of ['tjanster', 'jobb', 'varfor', 'om', 'process', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt', 'samarbeten']) {
     if (!(await page.locator(`#${id}`).count())) continue;
     await page.locator(`#${id}`).evaluate((e) => window.scrollTo(0, e.offsetTop - 90)); await page.waitForTimeout(500);
     await page.screenshot({ path: `${UT}/${namn}-${id}.png` });
@@ -301,8 +352,16 @@ for (const [namn, vp] of [['768', { width: 768, height: 1024 }], ['1100', { widt
   await ctx.close();
 }
 
-// --- minskad rörelse: banden står still och går att dra i sidled ---
-{
+// --- minskad rörelse: banden står still och går att dra i sidled (styrelse: inga band, popupen får inte visas) ---
+if (st) {
+  const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
+  const page = await ctx.newPage();
+  await page.goto(SIDA, { waitUntil: 'load' });
+  const pop = await page.locator('aside[class*="popup"]').evaluate((e) => getComputedStyle(e).display);
+  const linje = await page.locator('#process ol').evaluate((e) => getComputedStyle(e, '::after').animationName);
+  ok(pop === 'none' && linje === 'none', `minskad rörelse: popupen dold, processlinjen stilla (${pop}, ${linje})`);
+  await ctx.close();
+} else {
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
   const page = await ctx.newPage();
   await page.goto(SIDA, { waitUntil: 'load' });

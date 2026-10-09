@@ -45,7 +45,7 @@ export const bokning = {
   txt: 'Boka offertbesök',
   not: 'Kostnadsfri offert vid ett hembesök på 45 minuter, vardagar 08–17.',
   ringUrl: 'https://cal.com/gdmaleri/ring-mig',
-  ringTxt: 'Boka att Ghandi ringer upp',
+  ringTxt: 'Boka att GD Måleri Sthlm AB ringer upp',
   kortTxt: 'Eller boka offertbesök',
   inbaddad: {
     eyebrow: 'Boka online',
@@ -156,6 +156,49 @@ export const instagramBas = {
   bio: 'Måleri inne och ute · Stockholm',
 };
 
+/* Samarbeten (Mathias 2026-10-09): logotypremsa sist på ALLA GD-sidor, före footern.
+   BARA belagt: Reco (reco.se/gd-maleri-sthlm: 4,9 av 5, 45 omdömen, Rekommenderat
+   företag 2024, 2025 och 2026 — märkena är Recos EGNA SVG-filer på hans profil,
+   assets/images/badges/trust2024|2025|2026.svg och BadgeThreeYears.svg, hämtade
+   2026-10-09), Flügger (gdmaleri.se FAQ: färg från Flügger; logotypen från
+   flugger.se:s egen header, assets.flugger.dk/cms/media/z5yaf5g3/flugger_logo_cvi_2025_se.svg)
+   och Trygg-Hansa (gdmaleri.se FAQ: "fullt försäkrade via Trygg-Hansa"; logotypen från
+   trygghansa.se:s egen header, siteassets/bilder/logotypes/trygg-hansa-logo-rgb-black.svg,
+   som trots namnet är den röda positiva varianten). INTE med: Måleriföretagen och
+   AAA (märken på gdmaleri.se, inte verifierade — Ghandi får bekräfta) och Cal.com
+   (verktyg, inte samarbete). Reco-kortet reco-kort.png ligger kvar i Om oss (huvud-
+   och tjänstesidorna) respektive heron (BRF): varje bildfil en gång per sida. */
+export const samarbeten = {
+  eyebrow: 'Samarbeten',
+  rubrik: ['Vi jobbar med', 'namn du känner igen'],
+  lead: 'Flügger står för färgen, Trygg-Hansa för försäkringen och Reco för omdömena.',
+  lista: [
+    {
+      namn: 'Reco',
+      href: 'https://www.reco.se/gd-maleri-sthlm',
+      text: 'Rekommenderat företag på Reco tre år i rad, 4,9 av 5',
+      bilder: [
+        { src: `${M}/samarbete-reco-2024.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2024', hojd: 68 },
+        { src: `${M}/samarbete-reco-2025.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2025', hojd: 68 },
+        { src: `${M}/samarbete-reco-2026.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag 2026', hojd: 68 },
+        { src: `${M}/samarbete-reco-3ar.svg`, w: 308, h: 308, alt: 'Reco: Rekommenderat företag tre år i rad', hojd: 68 },
+      ],
+    },
+    {
+      namn: 'Flügger',
+      href: 'https://www.flugger.se/',
+      text: 'Färgen vi målar med',
+      bilder: [{ src: `${M}/samarbete-flugger.svg`, w: 2024, h: 567, alt: 'Flügger', hojd: 46 }],
+    },
+    {
+      namn: 'Trygg-Hansa',
+      href: 'https://www.trygghansa.se/',
+      text: 'Försäkrade via Trygg-Hansa',
+      bilder: [{ src: `${M}/samarbete-trygghansa.svg`, w: 283, h: 53, alt: 'Trygg-Hansa', hojd: 36 }],
+    },
+  ],
+};
+
 export const RECO = { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' };
 export const SKV_ROT = 'https://www.skatteverket.se/foretag/skatterochavdrag/rotochrut/gerarbetetratttillrotavdrag.4.5c1163881590be297b5173bf.html';
 
@@ -202,17 +245,3 @@ export const RECO_LISTA = [
   { namn: 'Anders F', kalla: 'Verifierad kund', betyg: 5, datum: '2025-12-19', lank: 'https://www.reco.se/r/3091360', text: 'Vi anlitade GD Måleri Sthlm AB för att måla om hall, trapphus och vardagsrum, och är mycket nöjda med resultatet. Arbetet håller riktigt hög kvalitet, utfördes med stor erfarenhet och noggrannhet, och levererades helt enligt överenskommen tidsplan. Allt dessutom till ett väldigt bra pris. Vi upplevde kommunikationen som smidig och professionell genom hela processen. Starkaste rekommendationer – vi skulle utan tvekan anlita dem igen.' },
 ];
 
-// Partnerbandet (mallfältet d.partner, Mathias 2026-10-09): samma fyra märken som i
-// gdmaleri.se:s sidfot. Filerna är deras egna från sajten (wp-content/uploads/2025/02/:
-// 0x0.png = Flügger, maleriforetagen.png, aaa-soliditet-hogsta-kreditvardighet.png) och
-// Recos egen märkesfil trust2024.svg (samma märke som sajtens Unknown.jpg, skarpare).
-// Se FLAGGOR om Måleriföretagen och AAA.
-export const PARTNER = {
-  etikett: 'Märken och leverantörer',
-  lista: [
-    { src: `${M}/partner-maleriforetagen.png`, w: 393, h: 91, hojd: 40, alt: 'Måleriföretagen i Sverige' },
-    { src: `${M}/partner-flugger.png`, w: 720, h: 204, hojd: 52, alt: 'Flügger färg, Måleriets leverantör' },
-    { src: `${M}/partner-aaa.png`, w: 100, h: 44, hojd: 40, alt: 'AAA, högsta kreditvärdighet' },
-    { src: `${M}/partner-reco-2024.png`, w: 320, h: 320, hojd: 76, alt: 'Reco: Rekommenderat företag 2024' },
-  ],
-};
