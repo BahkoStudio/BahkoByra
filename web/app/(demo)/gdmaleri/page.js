@@ -1,5 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, modal } from './_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, modal, RECO_WIDGET, RECO_LISTA, PARTNER } from './_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — kostnadsfritt hemsideförslag från Bahko Byrå
@@ -96,13 +96,40 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExt
    kostar: content/leads/gdmaleri.md, "Levande omdömen och Instagram".
    GD Måleri Sthlm AB är KUND hos Bahko Byrå sedan 2026-10-08.
 
-   INTE verifierat, och finns därför inte på sidan: Google-profil och betyg
+   RECO-WIDGET OCH PARTNERBAND (2026-10-09, Mathias): siffrorna ur Recos egen
+   widget på gdmaleri.se (reviewCount 45, rating 4,8667 → 4,9, transparencyRating
+   "Best" = "Mycket bra", verifieringstexten ordagrant) och reco.se/gd-maleri-sthlm
+   (JSON-LD aggregateRating 4,9/45, hämtat 2026-10-09). Omdömena ordagrant med
+   datum och reco.se/r/<id> (se ../gdmaleri/_gd.js RECO_LISTA); Bo M:s signatur
+   och Anders F:s stjärn-emojis strukna. Två omdömen utan känt betyg (Jenny E,
+   Viktor E) är inte med. Partnerbandets fyra märken är de som står i
+   gdmaleri.se:s sidfot: Flügger (0x0.png), Måleriföretagen (maleriforetagen.png,
+   beskuren), AAA (aaa-soliditet-hogsta-kreditvardighet.png, bara 100×58 px) och
+   Recos officiella trust2024.svg (= sajtens Unknown.jpg).
+
+   INTE verifierat, och finns därför inte i någon text: Google-profil och betyg
    (ingen hittad), öppettider, priser, antal projekt, ledtider, medlemskap i
-   Måleriföretagen och AAA-kreditbetyg (märkena står på sajten men är inte
-   kontrollerade), "Alltid fast pris" (sajten säger det, men ett Reco-omdöme
+   Måleriföretagen och AAA-kreditbetyg (logotyperna står i partnerbandet för
+   att Mathias bad om det, men påståendena är inte kontrollerade — se
+   FLAGGOR), "Alltid fast pris" (sajten säger det, men ett Reco-omdöme
    beskriver slutpris över offert vid tillägg — utelämnat). Gatuadressen
    (Prosten Linders Väg 39, Södertälje, enligt Reco) visas inte.
 
+   NYA BILDER (2026-10-09, Ghandi via Mathias): Fasad-kortet visar
+   fasad-fore-efter-kortbild.webp, sammansatt före/efter av samma gavel (Bromma-jobbet,
+   IG Dd-zVd3ggOI 2026-10-02; se fasad/page.js). Banden: jobb-taby-43.webp (Ghandis
+   foto ur Täby-inlägget Dc1IM7Pgpeh, 2026-09-03) och invandig-sodertalje-1.webp
+   (bild 2 ur senaste inlägget DeNI1zEkcpW, 2026-10-07, Södertälje, "180 kvm Tak/Vägg
+   målning samt microlituppsättning och snobbkant"). Hämtat 2026-10-09 via Instagrams
+   publika inbäddning (profilens /embed/ och inläggens /embed/captioned/).
+
+   FLAGGOR (partnerbandet): AAA — Dun & Bradstreets AAA kräver att bolaget
+   funnits i mer än två år; GD registrerades 2024-01-16 och märket laddades upp
+   på sajten 2025-02, så det kan inte ha varit giltigt då. Märket är dessutom ett
+   licensierat varumärke (D&B LiveLogo). Ghandi måste bekräfta aktivt AAA och
+   licens, och skicka en skarp fil (nuvarande är 100 px bred) — annars tas det
+   bort. Måleriföretagen — medlemskapet gick inte att kontrollera
+   (medlemsregistret är JS-drivet); Ghandi bekräftar.
    FLAGGOR: inga genererade filmer längre — hero, Varför och kontakt är
    deras egen film (se ovan). Den genererade rödfärgade villan och
    röda-gavel-filmerna är borttagna 2026-10-08. Logokortet: loggan är nästan
@@ -250,7 +277,7 @@ const data = {
     lattKort: true,
     kort: [
       { id: 'invandig', namn: 'Invändig målning och tapet', bild: `${M}/tjanst-invandig.jpg`, alt: 'Rum med mörkblått målat tak, ljusa väggar och vitt fönster', text: 'Väggar, innertak och snickerier, hemma eller på kontoret.', punkter: ['Tapet och bredspackling', 'Dörrar, foder och lister', 'ROT direkt på fakturan'], lank: { href: '/gdmaleri/invandig-malning/', txt: 'Allt om invändig målning' }, ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>) },
-      { id: 'fasad', namn: 'Fasadtvätt och fasadmålning', bild: `${M}/tjanst-fasad.jpg`, alt: 'Nymålad laxrosa panelfasad med vitt burspråksfönster och svart stuprör', text: 'Panel, vindskivor, takfot och fönsterkarmar får ny färg.', punkter: ['Fasadtvätt och skrapning', 'Fönster och dörrar', 'Färg från Flügger'], lank: { href: '/gdmaleri/fasad/', txt: 'Allt om fasaden' }, ritning: (<><path d="M20 100V48l80-34 80 34v52" /><path d="M20 100h160" /><path d="M44 56v44M68 50v50M92 44v56M116 44v56M140 50v50M164 56v44" /></>) },
+      { id: 'fasad', namn: 'Fasadtvätt och fasadmålning', bild: `${M}/fasad-fore-efter-kortbild.webp`, alt: 'Sammansatt före/efter-bild av samma gavel i Bromma: vänster halva flagnande grå färg och byggställning, höger halva nymålad ljusgrå panel', text: 'Panel, vindskivor, takfot och fönsterkarmar får ny färg.', punkter: ['Fasadtvätt och skrapning', 'Fönster och dörrar', 'Färg från Flügger'], lank: { href: '/gdmaleri/fasad/', txt: 'Allt om fasaden' }, ritning: (<><path d="M20 100V48l80-34 80 34v52" /><path d="M20 100h160" /><path d="M44 56v44M68 50v50M92 44v56M116 44v56M140 50v50M164 56v44" /></>) },
       { id: 'tak', namn: 'Taktvätt och takmålning', bild: `${M}/tjanst-tak.jpg`, alt: 'Grått betongpannetak efter taktvätt, med en vit villa och tallar i bakgrunden', text: 'Mossa och lav tvättas bort, och taket kan målas om.', punkter: ['Taktvätt', 'Takmålning', 'ROT på småhus'], lank: { href: '/gdmaleri/tak/', txt: 'Allt om taket' }, ritning: (<><path d="M16 76L100 24l84 52" /><path d="M36 64v40h128V64" /><path d="M58 52l84 0M46 62h108" /><path d="M136 30v18" /></>) },
       { id: 'golv', namn: 'Golvläggning och golvslipning', bild: `${M}/golv-slipat.jpg`, alt: 'Illustrationsbild: trägolv halvvägs slipat, ljust där golvslipen har gått och mörkt och slitet bredvid', text: 'Nytt golv, eller det gamla slipat eller målat.', punkter: ['Golvläggning', 'Golvslipning', 'Golvmålning'], lank: { href: '/gdmaleri/golv/', txt: 'Allt om golv' }, ritning: (<><path d="M14 100h172" /><path d="M40 100l22-62h76l22 62" /><path d="M74 100l8-62M126 100l-8-62M100 100V38" /></>) },
     ],
@@ -263,6 +290,7 @@ const data = {
     not: 'Golvbilden under Tjänster är en illustrationsbild. Fler jobb, med ort och yta, finns på vårt Instagram.',
     tid: '70s',
     rad1: [
+      { src: `${M}/jobb-taby-43.webp`, alt: 'Nymålad grå träfasad på ett modernt tvåvåningshus i Täby kyrkby, sedd från tomten', txt: 'Täby kyrkby, 350 kvm' },
       { src: `${M}/jobb-tak-fore.jpg`, alt: 'Betongpannetak med mossa och gul lav före taktvätt', txt: 'Tak före tvätt' },
       { src: `${M}/jobb-rod-timmer.jpg`, alt: 'Närbild på en rödmålad timmervägg med vit knutbräda och altanräcke', txt: 'Timmervägg målad i rött' },
       { src: `${M}/jobb-rod-fonster.jpg`, alt: 'Vitmålat spröjsat fönster i en röd träfasad', txt: 'Fönster målade vita' },
@@ -274,6 +302,7 @@ const data = {
       { src: `${M}/tjanst-snickerier.jpg`, alt: 'Spegeldörr målad i mörkgrönt i en ljus lägenhet', txt: 'Dörr målad mörkgrön' },
     ],
     rad2: [
+      { src: `${M}/invandig-sodertalje-1.webp`, alt: 'Nymålat rum med ljusa väggar, vit taklist och skrivbord vid fönstret i Södertälje', txt: 'Södertälje: tak och väggar, 180 kvm' },
       { src: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', txt: 'Rum målat i ljust' },
       { src: `${M}/jobb-bla-tak.jpg`, alt: 'Ljusblått målat tak med spotlightskena och bokhylla', txt: 'Tak målat ljusblått' },
       { src: `${M}/jobb-gul-hall.jpg`, alt: 'Hall i varmgul kulör med vita snickerier och balkongdörr', txt: 'Hall målad i gult' },
@@ -332,13 +361,10 @@ const data = {
   omdomen: {
     eyebrow: 'Omdömen',
     rubrik: ['Det kunderna', 'lägger märke till'],
-    lista: [
-      { namn: 'Ola A', kalla: 'Verifierad kund · Reco', text: 'Målning av 2-plans hus. Vi fick ett väldigt bra intryck av Ghandi då han gjorde en noggrann besiktning av huset innan offert skickades samt kom med förslag på saker vi inte hade tänkt på innan vad gäller estetik. Jobbet utfördes smidigt och snabbt och vi är jättenöjda. Jag kan starkt rekommendera GD Måleri.' },
-      { namn: 'Inga-Lill M', kalla: 'Verifierad kund · Reco', text: 'GD Måleri gav ett proffsigt intryck. Trevliga och informativa. Snyggt och snabbt arbete. Efter arbetet, genomgång och påskrift av arbetsorder. Jag är väldigt nöjd med resultatet. Rekommenderas varmt.' },
-      { namn: 'Anders F', kalla: 'Verifierad kund · Reco', text: 'Vi anlitade GD Måleri Sthlm AB för att måla om hall, trapphus och vardagsrum, och är mycket nöjda med resultatet. Arbetet håller riktigt hög kvalitet, utfördes med stor erfarenhet och noggrannhet, och levererades helt enligt överenskommen tidsplan. …' },
-    ],
-    not: 'Från Reco.se, där kundrelationen kontrolleras. Ordagrant, ett av dem kortat där det står …',
-    lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' },
+    reco: RECO_WIDGET,
+    lista: RECO_LISTA,
+    not: 'Från Reco.se, där kundrelationen kontrolleras.',
+    lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla 45 på Reco' },
     // Levande omdömen (mallens levande.js). Utan nycklar i miljön visas listan ovan oförändrad.
     // Google: GOOGLE_PLACES_KEY i Vercel. placeId saknas än: Text Search på namnet, och cid
     // kontrolleras mot profilen (maps.google.com/?cid=13566570836618556636). Sätt placeId när det är känt.
@@ -349,6 +375,8 @@ const data = {
       max: 6,
     },
   },
+
+  partner: PARTNER,
 
   instagram: {
     eyebrow: 'Instagram',

@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, modal } from '../_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExtra, modal, RECO_WIDGET, RECO_LISTA, PARTNER } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — undersida för bostadsrättsföreningar (/gdmaleri/brf/)
@@ -26,7 +26,7 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExt
 
    VARIANT UTAN NAMN (om godkännandet dras tillbaka): byt
    "fastighetsbolaget Holmströmgruppen" mot "en fastighetsägare" i
-   Lägenheter-kortet, Om oss och FAQ:n, och stryk "som också är vår
+   Lägenheter-kortet, Om oss och FAQ:n, stryk referenskortet i styrelse, och stryk "som också är vår
    referens".
    Reco-kortet (reco-kort.png) ligger i Om oss i stället för logotypen
    (mallfält om.bild, rundad), som på huvudsidan: Recos egen märkesbild ur
@@ -98,6 +98,27 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, menyExt
    länkar till tjänstesidorna och mobilmenyn får dem (nav.extra). Bokningslänkar
    till Cal.com (data.bokning) och öppettider vardagar 08–17 som huvudsidan.
 
+   OMARBETNING 2026-10-09 (Mathias: "mer professionell och trovärdig BRF-sida,
+   strukturen ska se annorlunda ut, som de bästa måleri-/renoveringsfirmornas
+   BRF-sidor"). Förebilder för STRUKTUREN (inte texten):
+   andresmaleri.se/tjanster/brf-underhall, /trapphusmalning-stockholm och
+   /kunskap/trapphusrenovering/trapphusrenovering-101-for-styrelse (checklista
+   för styrelsen, offert specificerad per moment, namngiven kontakt,
+   slutbesiktning) · vimalar.se/brf-maleri-stockholm (beslutsunderlag,
+   tidsplan, kontaktperson) · certapro.com HOA/condo-sidorna (jämförbara
+   anbud "apples-to-apples", skriftlig garanti, steg för steg för styrelsen).
+   Nytt: mallsektionen d.styrelse (#styrelse, "Beslutsunderlaget": vad
+   styrelsen ska kräva av en offert → så gör GD Måleri, referenskortet
+   Holmströmgruppen och Ghandi som namngiven kontaktperson), Varför blir
+   "Garanti och trygghet", Så går det till blir sex steg från styrelsens
+   första samtal till garantin, Reco-widgeten och partnerbandet som på
+   huvudsidan, Instagram borttaget här (styrelser beslutar inte på IG).
+   Varje svar i tabellen är ur huvudsidans VERIFIERAT-block eller ovan;
+   kraven i vänsterkolumnen är allmänna råd (förebilderna ovan), inga
+   påståenden om GD. Offertbesöket: Cal.com-händelsen "offert", hembesök
+   45 min (../_gd.js bokning). Inget nytt om referenser, ledtider, priser,
+   boendeinformation eller projektledare — det finns inte på sidan.
+
    OPTIMERING: egen titel och beskrivning, JSON-LD Service som pekar på samma
    HousePainter-entitet (@id gdmaleri.se/#business), inget betygsschema,
    noindex KVAR som på huvudsidan tills flytten till gdmaleri.se.
@@ -151,7 +172,7 @@ const data = {
   formular,
   bokning,
   nav: {
-    vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#jobb', txt: 'Våra jobb' }],
+    vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#styrelse', txt: 'För styrelsen' }],
     hoger: [{ href: '#omdomen', txt: 'Omdömen' }, { href: '/gdmaleri/', txt: 'Startsida' }],
     extra: menyExtra('/gdmaleri/brf/'),
   },
@@ -177,6 +198,39 @@ const data = {
       { id: 'fasad', namn: 'Fasader och fönster', bild: `${M}/brf-fasad.jpg`, alt: 'Illustrationsbild: nymålad gul putsfasad på ett trevåningshus från 1950-talet, med vita fönster och björkar', text: 'Trä, puts, tegel eller plåt, och fönstren med karmar.', punkter: ['Fasadtvätt och skrapning', 'Nödvändiga lagningar', 'Färg från Flügger'], ritning: (<><path d="M30 104V24h140v80" /><path d="M24 104h152" /><path d="M50 40h20v18H50zM90 40h20v18H90zM130 40h20v18h-20zM50 72h20v18H50zM130 72h20v18h-20z" /><path d="M90 104V74h20v30" /></>) },
       { id: 'lagenhet', namn: 'Lägenheter', bild: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', text: 'Fyra lägenheter åt fastighetsbolaget Holmströmgruppen.', punkter: ['Väggar och tak', 'Snickerier', 'ROT för medlemmen'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>) },
     ],
+  },
+
+  // Beslutsunderlaget (mallfältet d.styrelse). Vänster: allmänna krav en styrelse bör ställa på
+  // varje målerioffert (Andrés Måleris checklista för styrelser, CertaPros jämförbara anbud).
+  // Höger: GD:s svar, bara verifierat (se VERIFIERAT och huvudsidans block).
+  styrelse: {
+    eyebrow: 'För styrelsen',
+    rubrik: ['Det här ska offerten svara på,', 'och så gör vi'],
+    lead: 'Jämför ni flera målerifirmor? Lägg offerterna bredvid varandra och ställ samma frågor till alla. Här är våra svar.',
+    tabellRubrik: 'Krav på en offert och GD Måleris svar',
+    kolumner: ['Styrelsen bör kräva', 'GD Måleri'],
+    rader: [
+      { krav: 'Att någon tittar på ytorna innan priset sätts', svar: 'Kostnadsfritt offertbesök på plats, cirka 45 minuter. Ghandi kommer ut själv.' },
+      { krav: 'Vad som ingår, punkt för punkt', svar: 'Material, arbete, förarbete som tvätt och skrapning, städning och bortforsling.' },
+      { krav: 'Hur tillkommande arbeten hanteras', svar: 'Inga extraarbeten utan föreningens godkännande. Dyker något upp hör vi av oss direkt.' },
+      { krav: 'Betalningsplan', svar: 'Faktura när jobbet är klart, ingen förskottsbetalning. Över 500 kvm: halva arbetskostnaden vid halva jobbet.' },
+      { krav: 'Skriftlig garanti', svar: 'Ett års garanti på måleriarbetet.' },
+      { krav: 'F-skatt och ansvarsförsäkring', svar: 'F-skatt, och fullt försäkrade via Trygg-Hansa.' },
+      { krav: 'Skydd av gemensamma ytor', svar: 'Allt som inte ska målas täcks, och golven skyddas innan vi börjar.' },
+      { krav: 'Kontroll när jobbet är klart', svar: 'Slutbesiktning tillsammans med er innan fakturan skickas.' },
+    ],
+    referens: {
+      etikett: 'Referens',
+      rubrik: 'Holmströmgruppen',
+      text: 'Fyra lägenheter åt fastighetsbolaget Holmströmgruppen, som har godkänt att vi nämner dem. Fråga oss om referensen när ni jämför offerter.',
+      lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: '45 omdömen på Reco', ny: true },
+    },
+    kontakt: {
+      etikett: 'Er kontaktperson',
+      namn: 'Ghandi Danho',
+      roll: 'Ägare, gör offerten och är er kontakt under jobbet',
+    },
+    not: 'Vänsterkolumnen är allmänna råd för styrelser som tar in offerter på måleri. Högerkolumnen är vad vi lovar på gdmaleri.se.',
   },
 
   jobb: {
@@ -206,14 +260,14 @@ const data = {
   },
 
   varfor: {
-    eyebrow: 'Varför GD Måleri',
-    rubrik: ['En offert styrelsen', 'kan besluta om'],
-    lead: 'De flesta av våra jobb har varit åt privatkunder, och föreningen får samma upplägg: en kostnadsfri offert med allt inräknat, inget extra utan ert ja och fakturan när jobbet är klart.',
+    eyebrow: 'Garanti och trygghet',
+    rubrik: ['Det som skyddar', 'föreningen'],
+    lead: 'De flesta av våra jobb har varit åt privatkunder. Föreningen får samma villkor som de.',
     punkter: [
-      { rubrik: 'Allt med i offerten', text: 'Material, arbete, förarbete som tvätt och skrapning, städning och bortforsling räknas in från början.' },
-      { rubrik: 'Inget extra utan ert ja', text: 'Dyker något oväntat upp hör vi av oss direkt. Vi gör inga extraarbeten utan ert godkännande.' },
-      { rubrik: 'F-skatt och försäkring', text: 'Vi har F-skatt och är fullt försäkrade via Trygg-Hansa, så föreningen är skyddad om något skulle gå fel.' },
-      { rubrik: 'Faktura när jobbet är klart', text: 'Ingen förskottsbetalning, och ett års garanti på måleriarbetet. På jobb över 500 kvm betalas halva arbetskostnaden vid halva jobbet.' },
+      { rubrik: 'Ett års garanti', text: 'Garanti på måleriarbetet i ett år. Blir något fel kommer vi tillbaka.' },
+      { rubrik: 'F-skatt och Trygg-Hansa', text: 'Vi har F-skatt och är fullt försäkrade via Trygg-Hansa, så föreningen är skyddad om något skulle gå fel.' },
+      { rubrik: 'Ingen förskottsbetalning', text: 'Fakturan kommer när jobbet är klart. Inget extra görs utan ert godkännande.' },
+      { rubrik: 'Rekommenderat tre år i rad', text: 'Reco har utsett oss till Rekommenderat företag tre år i rad, med 4,9 av 5 i snitt från 45 omdömen.' },
     ],
     video: `${M}/video-varfor-mork.mp4`,
     poster: `${M}/poster-varfor-mork.jpg`,
@@ -237,31 +291,29 @@ const data = {
   },
 
   steg: {
-    eyebrow: 'Så går det till',
-    rubrik: ['Från första samtalet till', 'färdig genomgång'],
-    lead: 'Inget extra utan föreningens ja, och fakturan kommer när jobbet är klart.',
+    eyebrow: 'Projektets gång',
+    rubrik: ['Sex steg, från styrelsen', 'till garantin'],
+    lead: 'Styrelsen fattar beslutet, vi gör resten. Hur lång tid varje steg tar beror på ytorna. Fråga oss om just ert hus.',
     lista: [
-      { namn: 'Ring eller skriv', text: 'Berätta vilka ytor det gäller: trapphus, fasad, fönster eller dörrar.', ikon: 'kontakt' },
-      { namn: 'Kostnadsfri offert', text: 'Styrelsen får en offert där material, arbete, förarbete, städning och bortforsling ingår.', ikon: 'offert' },
-      { namn: 'Vi målar', text: 'Allt som inte ska målas täcks. Ni hålls uppdaterade, och inget extra görs utan ert ja.', ikon: 'arbete' },
-      { namn: 'Slutbesiktning', text: 'Vi går igenom resultatet tillsammans. Fakturan kommer efter det.', ikon: 'klart' },
+      { namn: 'Samtal', text: 'Ring eller skriv vilka ytor det gäller: trapphus, entré, fasad eller fönster.', ikon: 'kontakt' },
+      { namn: 'Offertbesök', text: 'Vi tittar på ytorna på plats. Kostnadsfritt, cirka 45 minuter.', ikon: 'besok' },
+      { namn: 'Offert', text: 'Allt som ingår står med: material, arbete, förarbete, städning och bortforsling.', ikon: 'offert' },
+      { namn: 'Beslut', text: 'Styrelsen tar ställning i lugn och ro. Frågor svarar Ghandi på direkt.', ikon: 'plan' },
+      { namn: 'Målning', text: 'Allt som inte ska målas täcks. Ni hålls uppdaterade, inget extra utan ert ja.', ikon: 'arbete' },
+      { namn: 'Slutbesiktning', text: 'Vi går igenom resultatet tillsammans. Sedan faktura och ett års garanti.', ikon: 'klart' },
     ],
   },
 
   omdomen: {
     eyebrow: 'Omdömen',
-    rubrik: ['Vad våra privatkunder', 'säger'],
-    lista: [
-      { namn: 'Nils F', kalla: 'Verifierad kund · Reco', text: 'Vi anlitade GD Måleri för att åtgärda taket i vår 20-talslägenhet, som hade stora sprickor på flera ställen. Vi fick dem rekommenderade av en granne och förstår verkligen varför. … När vissa områden behövde en andra omgång, kom de snabbt tillbaka och fixade det utan problem.' },
-      { namn: 'Anders F', kalla: 'Verifierad kund · Reco', text: 'Vi anlitade GD Måleri Sthlm AB för att måla om hall, trapphus och vardagsrum, och är mycket nöjda med resultatet. Arbetet håller riktigt hög kvalitet, utfördes med stor erfarenhet och noggrannhet, och levererades helt enligt överenskommen tidsplan. …' },
-      { namn: 'Pia T', kalla: 'Verifierad kund · Reco', text: 'Väggarna i min lägenhet blev fint målade precis med den färg som jag önskade. Likaså gick det snabbt! Bra kommunikation o bästa samarbete. Tack - jag är så nöjd!' },
-    ],
-    not: 'Från privatkunder på Reco.se, där kundrelationen kontrolleras. Ordagrant, två av dem kortade där det står …',
-    lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' },
-    // Levande omdömen (mallens levande.js). Utan nycklar i miljön visas listan ovan oförändrad.
-    // Google: GOOGLE_PLACES_KEY i Vercel. placeId saknas än: Text Search på namnet, och cid
-    // kontrolleras mot profilen (maps.google.com/?cid=13566570836618556636). Sätt placeId när det är känt.
-    // Reco: hela API-URL:en från Reco (med nyckel) i GDMALERI_RECO_URL. Utan den: Reco-citaten ovan.
+    rubrik: ['Så beskriver kunderna', 'hur vi jobbar'],
+    // Reco-widgeten som på huvudsidan (../_gd.js RECO_WIDGET). Urvalet: omdömen om det en styrelse
+    // väger in (besiktning före offert, kontakt med ägaren, genomgång efteråt, tidsplan, kommunikation).
+    // Alla från privatkunder; noten säger det.
+    reco: { ...RECO_WIDGET, not: 'Omdömena kommer från privatkunder i villor och lägenheter. Verifiering av kundrelationen sker då företaget delar, via sitt affärssystem, sin kunds kontaktinformation varpå Reco kan inhämta verifierade kundomdömen via e-post eller SMS.' },
+    lista: ['Ola A', 'Susanne J', 'Inga-Lill M', 'Henry Z', 'Stefan G', 'Anders F'].map((n) => RECO_LISTA.find((o) => o.namn === n)),
+    not: 'Från privatkunder på Reco.se, där kundrelationen kontrolleras.',
+    lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla 45 på Reco' },
     levande: {
       google: { sok: 'GD Måleri Sthlm AB', cid: '13566570836618556636' },
       reco: { urlEnv: 'GDMALERI_RECO_URL' },
@@ -269,15 +321,7 @@ const data = {
     },
   },
 
-  instagram: {
-    eyebrow: 'Instagram',
-    rubrik: ['Följ jobben', 'i vardagen'],
-    lead: 'Det senaste från vårt konto, direkt från Instagram.',
-    bio: 'Måleri inne och ute · Stockholm',
-    // Levande flöde: Behold JSON-URL (eller Instagram-token) i GDMALERI_IG_FLODE. Utan den: inbäddningarna.
-    levande: { env: 'GDMALERI_IG_FLODE', antal: 3 },
-    koder: ['DcmMHrIEbrF', 'Dd-zVd3ggOI', 'Dc1IM7Pgpeh'],
-  },
+  partner: PARTNER,
 
   fragor: {
     eyebrow: 'Frågor från styrelser',
@@ -292,6 +336,8 @@ const data = {
       { q: 'Vad händer om något oväntat dyker upp?', a: 'Då hör vi av oss direkt och föreslår en lösning. Vi gör inga extraarbeten utan ert godkännande.' },
       { q: 'Är ni försäkrade?', a: 'Ja. Vi har F-skatt och är fullt försäkrade via Trygg-Hansa. Skulle något gå fel under arbetet är föreningen skyddad.' },
       { q: 'Hur påverkas de boende?', a: 'Allt som inte ska målas täcks med plast eller papper, och golven skyddas innan vi börjar. Städning och bortforsling ingår i offerten.' },
+      { q: 'Vem är vår kontaktperson?', a: 'Ghandi Danho, som äger firman. Han gör offertbesöket och offerten och är er kontakt under hela jobbet, så styrelsen har samma person att ringa: 073-729 88 89, vardagar 08–17.' },
+      { q: 'Vilken färg använder ni, och hjälper ni till med kulörer?', a: 'Vi målar med färg från Flügger. Vi hjälper gärna till med färgval och designförslag, till exempel för ett trapphus.' },
       { q: 'Hur lång tid tar det?', a: 'Det beror på hur stora ytorna är och i vilket skick de är, så det går inte att säga utan att veta vad som ska göras. Ring och berätta om ert hus, så kan vi svara på just det.' },
     ],
   },

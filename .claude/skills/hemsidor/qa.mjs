@@ -68,7 +68,7 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   const h1Namn = await page.locator('h1').evaluate((e) => (e.querySelector('img')?.alt || e.innerText).replace(/\s+/g, ' ').trim());
   ok(h1Namn.toLowerCase().startsWith(h1start.toLowerCase()), `h1 = firmanamnet (${h1Namn})`);
   const ordning = await page.evaluate(() => [...document.querySelectorAll('main > section')].map((s) => s.id));
-  const vantad = ['top', 'tjanster', 'jobb', 'varfor', 'om', 'process', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt'].filter((id) => ordning.includes(id));
+  const vantad = ['top', 'tjanster', 'styrelse', 'jobb', 'varfor', 'om', 'process', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt'].filter((id) => ordning.includes(id));
   ok(JSON.stringify(ordning) === JSON.stringify(vantad) && ['top', 'tjanster', 'jobb', 'varfor', 'om', 'omdomen', 'fragor', 'kontakt'].every((id) => ordning.includes(id)), `sektionsordning (${ordning.join(' ')})`);
   ok((await page.locator('[class*="stat"]').count()) === 0, 'ingen siffer-rad (utdöd)');
 
@@ -277,7 +277,7 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   // --- helsidesbilder att titta på ---
   await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(400);
   await page.screenshot({ path: `${UT}/${namn}-hero.png` });
-  for (const id of ['tjanster', 'jobb', 'varfor', 'om', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt']) {
+  for (const id of ['tjanster', 'styrelse', 'jobb', 'varfor', 'om', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt']) {
     if (!(await page.locator(`#${id}`).count())) continue;
     await page.locator(`#${id}`).evaluate((e) => window.scrollTo(0, e.offsetTop - 90)); await page.waitForTimeout(500);
     await page.screenshot({ path: `${UT}/${namn}-${id}.png` });
