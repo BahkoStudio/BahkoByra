@@ -205,6 +205,33 @@ export const samarbeten = {
 };
 
 export const RECO = { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' };
+
+/* GOOGLE-OMDÖMEN (2026-10-09, Mathias klistrade in Googles recensionssida ur Maps-profilen
+   cid 13566570836618556636): 4,8 av 5, 18 recensioner — inklusive ett 1-stjärnigt (Martin, 5 mån:
+   "Dåligt utfört jobb …"), som inte visas som kort men räknas i betyget och nås via "Läs alla på Google".
+   Stjärnor per omdöme står inte i underlaget (bara Martins), därför stjarnor: false på varje kort —
+   fem fyllda stjärnor vore ett påhittat betyg. Texterna ordagrant, med Googles egna stavfel;
+   "…" bara där Google själv kortat ("… Mer"). Namnen som Google visar dem, förnamn + initial.
+   Omdömen som också finns på Reco med samma text (anneli nordberg = Anneli N, Jonas Persson =
+   Susanne P:s text, Ola Andersson = Ola A) visas bara en gång, som Reco-kort. Som på Bromma
+   Trädgårdsservice: betygsbricka med Googles G, kort med G-märke, länk till profilen.
+   Inget AggregateRating/Review-schema (svartlistan). */
+export const GOOGLE_LANK = 'https://maps.google.com/?cid=13566570836618556636';
+export const GOOGLE_BETYG = { varde: 4.8, antal: 18, text: '18 recensioner på Google', href: GOOGLE_LANK };
+const G = (namn, text) => ({ namn, kalla: 'Recension på Google', google: true, stjarnor: false, text });
+export const GOOGLE_OMDOMEN = {
+  viktor: G('Viktor E', 'På en och halv vecka omvandlade de 3 rum med gamla tapeter och ojämnt tak till helt släta ytor med fint målad färg. Allt detta till ett överkomligt pris och god kommunikation. Om du söker proffsig målning till bra precis, tveka inte att anlita GD måleri!'),
+  jenny: G('Jenny E', 'Snabb och bra kommunikation. Tydlig offert och tydlighet med extradebitering. Inga oväntade överraskningar. Trevlig personal Inga konstigheter. Tidplanen höll. Rekommenderar varmt Ghandi och hans personal.'),
+  therese: G('Therese G', 'Vi har anlitat Ghandi måleri nu vid ett flertal tillfällen och har alltid blivit så nöjda med både jobbet och servicen. Ghandi måleri är det självklara valet nu vid val av målarfirma i Sthlm.'),
+  per: G('Per', 'Anlitades för ommålning av mitt hus utvändigt. Löpande bra dialog och höll alltid utlovade tider.'),
+  thorellski: G('Thorellski', 'Vi är mycket nöjda med det arbete (rödmålning, målning av vita snickerier samt byte av ruttna fönsterfoder) som GD Måleri Sthlm gjort hos oss! Bra kommunikation, trevligt bemötande, flexibilitet och ett noggrant utfört arbete. Kan rekommenderas!'),
+  daniel: G('Daniel N', 'Hade ganska bråttom med mitt projekt inför en försäljning och GD Måleri var snabba med att svara och ge offert samt hade kort ledtid. De slutförde arbetet inom tid (en vecka) och med ett bra resultat.'),
+  marianne: G('Marianne L', 'Ett mycket trevligt bemötande och utmärkt utfört arbete som gällde fasadmålning.'),
+  matteus: G('Matteus E', 'Vi har varit väldigt nöjda med Ghandi och hans anställda. De fick i uppdrag att måla om vårt nya radhus på 125kvm invändigt. Resultatet är proffsigt och kommunikationen bra trots att vi varit på semester under arbetets gång. Vi blev …'),
+  maja: G('Maja B', 'Fantastiskt arbete, proffsig och kunnig. Över förväntan i effektivitet och grundlighet. Det tog knappt 3 dagar från första meddelande till att arbetet sattes igång, och två dagar senare var allt klart. Vi kunde inte vara mer nöjda med bemötandet eller utförandet! Vi rekommenderar verkligen om Ghandi.'),
+  patrik: G('Patrik L', 'Kan inte vara mer nöjd! Fantastik kommunikation och allt utfört perfekt. Ghandi kan sina saker och är lätt och trevlig att prata med. Jag rekommenderar till 100% /patrik'),
+  oliwer: G('Oliwer C', 'Jätte nöjd med deras arbete. Slutförde arbetet snabbare en förväntat och med otroligt bra resultat. Rekommenderar starkt!'),
+};
 export const SKV_ROT = 'https://www.skatteverket.se/foretag/skatterochavdrag/rotochrut/gerarbetetratttillrotavdrag.4.5c1163881590be297b5173bf.html';
 
 // Ingen modal: GD Måleri är KUND (Mathias 2026-10-09). Alla sex sidorna har kund: true, så mallen

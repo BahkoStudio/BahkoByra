@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida GOLV (/gdmaleri/golv/), 2026-10-08.
@@ -33,6 +33,10 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    börjar med "Illustrationsbild" och jobb.not säger det. Ghandi bör skicka riktiga
    golvbilder (se content/leads/gdmaleri.md). Banden är egna målningsfoton.
    Omdömena här är fasta (inte levande), så att de handlar om golv.
+   GOOGLE (2026-10-09, se ../_gd.js GOOGLE_OMDOMEN): betygsbrickan 4,8 av 5 (18)
+   och Patrik L som Google-kort utan stjärnor. anneli nordberg och Jonas Persson
+   på Google har samma text som Reco-korten Anneli N och Susanne P här, så de
+   visas bara en gång (som Reco-kort).
 
    OPTIMERING: egen titel och beskrivning, JSON-LD Service som pekar på samma
    HousePainter-entitet (@id gdmaleri.se/#business), inget betygsschema, noindex
@@ -111,11 +115,13 @@ const data = {
   omdomen: {
     eyebrow: 'Omdömen',
     rubrik: ['Kunderna om', 'golven'],
+    betyg: GOOGLE_BETYG,
     lista: [
       { namn: 'Susanne P', kalla: 'Verifierad kund · Reco', text: 'En noggrann offert för både slipning av golv och målning av alla väggar/tak i villa i två plan följdes upp med perfekt leverans! Både golvslipningen och målningen startades enligt plan och varje del levererades enligt plan vilket var viktigt för oss då vi hela tiden flyttade efter med alla möbler. … GD Måleri Sthlm AB hanterade helheten, allt från golvslipning, materialinköp och målning. … Vi kommer att använda GD Måleri Sthlm AB igen!' },
       { namn: 'Anneli N', kalla: 'Verifierad kund · Reco', text: 'Anlitade GD Måleri och fick ett otroligt bra bemötande från start till avslut- Uppdraget var att måla vår lägenhet på 80 kvm plus slipning av vardagsrumsgolv. Vi är otroligt nöjda med resultatet som blev fantastisk ,och skulle definitivt rekommendera dem till alla som behöver måleriarbete. Tack för ett strålande jobb!' },
+      GOOGLE_OMDOMEN.patrik,
     ],
-    not: 'Från Reco.se, där kundrelationen kontrolleras. Ordagrant, ett av dem kortat där det står …',
+    not: 'Från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09; ett av dem kortat där det står …',
     lank: RECO,
   },
 

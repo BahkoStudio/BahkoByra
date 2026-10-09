@@ -26,7 +26,7 @@
 
 ## INTE verifierat
 
-Google-profil och betyg (ingen hittad), öppettider, priser, antal projekt, ledtider. Måleriföretagen och AAA visas i Samarbeten-bandet sedan 2026-10-09 (kundens egna samarbeten enligt gdmaleri.se och Mathias), men AAA-märket är inte kontrollerat mot D&B (se "Samarbeten som band"). Sajtens "Alltid fast pris" används inte (ett Reco-omdöme beskriver slutpris över offert efter tillägg).
+Öppettider, priser, antal projekt, ledtider. Google-profil och betyg är verifierade sedan 2026-10-09 (se "Google-omdömen"). Måleriföretagen och AAA visas i Samarbeten-bandet sedan 2026-10-09 (kundens egna samarbeten enligt gdmaleri.se och Mathias), men AAA-märket är inte kontrollerat mot D&B (se "Samarbeten som band"). Sajtens "Alltid fast pris" används inte (ett Reco-omdöme beskriver slutpris över offert efter tillägg).
 
 ## Media
 
@@ -62,7 +62,7 @@ Fyra kort: "Invändig målning" och "Tapetsering och spackel" är sammanslagna s
 - **Kundloopen runda 2:** sidan lovar bara **kostnadsfri offert** (som gdmaleri.se), inte "kostnadsfri besiktning". Besiktning före offert står bara i ett Reco-omdöme (Ola A) och finns kvar enbart som hans citat; processteget "Besiktning" är borttaget. Varför-sektionen heter nu "Allt i offerten, inget i förskott" (offerten med allt inräknat, inget extra utan ja, slutbesiktning och faktura efter jobbet — allt ur sajten). "Ett års garanti" är borta ur tjänstebandet och kontaktens bockar (konkurrenten vimalar.se har 5 år) och står bara i Varför-punkterna och FAQ. "Inga massutskick, ingen säljlista" och "ärligt besked" i FAQ-kortet är strukna (påhittade löften).
 - Jobbilderna "Gavel målad i rött" och "Panelfasad och foder målade" är utbytta mot andra egna foton (närbild på röd timmervägg; långsida med laxrosa panel), så att samma gavel inte syns två gånger (gällde den gamla Varför-filmen) och samma burspråkshörn inte både som tjänstebild och jobbild.
 - **Formulärets "Vad gäller det?" förväljer första tjänsten** (Invändig målning) — styrs av mallen (`defaultValue={d.tjanster.kort[0].namn}` i DemoSida.js), inte av datafilen. En fasadkund som inte ändrar valet hamnar i fel kategori. Rättas i mallen (tomt förstaval "Välj …"), inte här.
-- **Omdömena är från Reco, inte Google.** Därför ingen betygsbricka i omdömessektionen (mallens bricka bär Googles G). Den kommer av sig själv med riktiga Google-betyget när `GOOGLE_PLACES_KEY` finns (se "Levande omdömen och Instagram"). Snittbetyget 4,9 av 45 står i stället som bevisord i Om oss.
+- **Google-omdömena finns på sidan sedan 2026-10-09** (se "Google-omdömen" nederst): betygsbrickan 4,8 av 5 (18 recensioner) med Googles G, länkad till profilen, och Google-kort utan stjärnor. Innan dess var omdömena bara från Reco och brickan saknades. Med `GOOGLE_PLACES_KEY` ersätter den levande brickan den statiska.
 - Ett av de inbäddade IG-inläggen (Täby kyrkby) har en kampanjtext i bildtexten ("10 % på arbetskostnaden och 30 % på färg"). Byt inlägg om kampanjen är slut.
 - Hero-orten är "Stockholm" som firman själv skriver ("Din målare i Stockholm"), fast bolaget har säte i Södertälje.
 - **Säljvinkel:** telefonlänken på gdmaleri.se går till platshållaren 123-456-7890. Varje mobilbesökare som trycker på numret ringer fel, trots 45 omdömen och tre år som Rekommenderat företag.
@@ -319,3 +319,22 @@ Mathias: Samarbeten ska vara ett **rullande band** som på gdmaleri.se (skärmdu
 - **Logotyper:** `samarbete-maleriforetagen.png` (393×91), `samarbete-aaa.png` (100×44) och `samarbete-flugger.png` (720×204, "Flügger färg · Måleriets leverantör") är GD:s egna filer från gdmaleri.se (hämtade i PR #239, återställda ur commit 0a71197). Flügger-filen från kundens sajt ersätter flugger.se:s rena ordmärke (`samarbete-flugger.svg` borttagen, varje fil används en gång). Reco- och Trygg-Hansa-SVG:erna som förut.
 - **Flaggor:** AAA-märket är inte kontrollerat mot Dun & Bradstreet (bolaget registrerat 2024-01-16; AAA kräver normalt mer än två års historik) och filen är bara 100×44 px, lätt oskarp i DPR 2 — be om en skarp fil. Måleriföretagen: medlemskapet går inte att slå upp i deras JS-drivna register; källa är kundens egen sajt + Mathias.
 - Skärmdumpar: `web/.tmp/kund/gdmaleri-1440-samarbeten.png`, `-390-`, `-footer.png`, `-popup.png` och QA:ns `.tmp/gdmaleri/qa/*-samarbeten.png`.
+
+## Google-omdömen (2026-10-09)
+
+Mathias: lägg till GD:s Google-omdömen "så som vi gjorde för Bromma". Underlaget är Googles recensionssida ur Maps-profilen (cid 13566570836618556636), klistrad av Mathias 2026-10-09: **4,8 av 5, 18 recensioner**, inklusive ett 1-stjärnigt (Martin, 5 mån: "Dåligt utfört jobb och icke-professionellt bemötande överhuvudtaget. Rekommenderar inte!"). Betyget och antalet räknar med det; det visas inte som kort men nås via "Läs alla på Google". Allt ligger i `gdmaleri/_gd.js` (`GOOGLE_BETYG`, `GOOGLE_OMDOMEN`).
+
+**Så gjorde Bromma** (`bahkobyra/cloud/brommatradgardsservice/index.html`, statisk sajt): ett G-fält med Googles G, "Omdömen på Google", stjärnor och knapparna "Läs alla omdömen på Google" (Maps-profilen via cid) och "Lämna ett omdöme" (g.page-länk), sedan ett rutnät av vita kort med stjärnor, G-ikon + "Google" som källa, texten, namnet och jobbet. Ingen AggregateRating/Review i schemat. Bromma visar fem stjärnor per kort eftersom alla deras Google-omdömen är femmor.
+
+**Så är det gjort för GD, inom mallens omdömessektion:**
+
+- **Betygsbrickan** (mallens `omdomen.betyg`, nu med `varde: 4.8, antal: 18, href`): Googles G, "4,8", fem stjärnor (avrundat), "18 recensioner på Google", länkad till profilen. Knappen **"Läs alla på Google"** kommer av sig själv ur `href`. Ingen "Lämna ett omdöme"-knapp: g.page-länken för GD:s profil är inte känd (Ghandi kan hämta den i Google Företagsprofil → "Be om recensioner").
+- **Huvudsidan:** brickan + **sex Google-kort** som egen rad (Viktor E, Jenny E, Therese G, Maja B, Matteus E, Daniel N) före Reco-widgeten med de nio Reco-omdömena. Noten: "Omdömena är hämtade från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09." Knappar: Läs alla på Google · Läs alla 45 på Reco · CTA.
+- **BRF-sidan:** Google-brickan och Reco-brickan **sida vid sida**, båda länkade. Korten: Jenny E (tydlig offert, extradebitering, tidplanen höll), Daniel N (snabb offert, klart inom en vecka) och Therese G (anlitat flera gånger) bredvid de tre Reco-korten. Ingressen säger "privatkunder på Google och Reco".
+- **Tjänstesidorna:** brickan + Google-kort som passar tjänsten bredvid Reco-korten. Fasad: Per, Marianne L, Thorellski. Tak: Thorellski, Per, Oliwer C. Invändig: Viktor E, Matteus E, Maja B. Golv: Patrik L.
+- **Inga stjärnor på Google-korten** (`stjarnor: false`): stjärnorna per omdöme står inte i underlaget (bara Martins), och fem fyllda vore ett påhittat betyg. Reco-korten bredvid har sina stjärnor som förut (grade 5 i Recos data).
+- **Dubbletter visas en gång.** Tre Google-omdömen har samma text som Reco-omdömen som redan står på sidorna: anneli nordberg = Anneli N (golv), Jonas Persson = Susanne P:s text (golv), Ola Andersson = Ola A (huvudsidan, tak). De visas bara som Reco-kort. Därför har golv bara ett Google-kort.
+- **Namn** som Google visar dem, förnamn + initial i samma form som Reco-korten (Viktor E, inte Viktor E.). Texterna ordagrant med Googles stavfel ("Fantastik", "Jätte nöjd", "snabbare en förväntat", "bra precis"); "…" bara där Google själv kortat (Matteus E). Omdömen som nämner Ghandi är kundernas egna ord och står kvar.
+- **Mallen:** `betyg` med `href`/`antal` (bricka som länk, formaterat tal), två brickor sida vid sida (`.brickor`), `googleLista` (Google-raden före Reco-widgeten, `.recensionerFore`), knappen ur `betyg.href`. Utan de nya fälten renderas allt som förut: swedcro pixeljämförd (se nedan). Inget AggregateRating/Review-schema.
+- **Inte verifierat:** stjärnor per Google-omdöme, datum (Google visar bara "x mån"), g.page-länken för "Lämna ett omdöme".
+

@@ -1196,6 +1196,10 @@ a.betyg { color: var(--text); }
 }
 .recensionerNot { font-size: var(--tx-s); color: var(--text-2); max-width: 38rem; }
 .recensionerKnappar { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+/* Två betygsbrickor sida vid sida (Google + Reco, GD Måleri 2026-10-09). En ensam bricka står som förut. */
+.brickor { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; }
+/* Google-korten som egen rad före Reco-widgeten (omdomen.googleLista). */
+.recensionerFore { margin-bottom: 1.3rem; }
 
 /* Utvalda jobb (jobb.utvalda, GD Måleri 2026-10-09): stående bilder, första = före/efter. */
 .utvalda {

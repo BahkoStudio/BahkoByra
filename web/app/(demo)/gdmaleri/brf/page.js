@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, samarbeten } from '../_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, samarbeten, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — undersida för bostadsrättsföreningar (/gdmaleri/brf/)
@@ -79,6 +79,11 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerB
    vardagsrum, "enligt överenskommen tidsplan"; samma utdrag som huvudsidan).
    Reco-betyget 4,9 av 5 av 45 omdömen (reco.se/gd-maleri-sthlm) står som
    bricka i omdömessektionen (omdomen.recoBetyg) — utan Googles G.
+   GOOGLE (2026-10-09, se ../_gd.js GOOGLE_OMDOMEN): Google-betyget 4,8 av 5 av
+   18 recensioner som bricka med Googles G bredvid Reco-brickan, båda länkade,
+   och tre Google-kort utan stjärnor: Jenny E (tydlig offert, extradebitering,
+   tidplanen höll), Daniel N (snabb offert, klart inom en vecka) och Therese G
+   (anlitat flera gånger) — det en styrelse frågar efter.
 
    INTE verifierat, och finns därför inte på sidan: något jobb åt en BRF —
    det finns inget (Ghandis besked; inget Reco-omdöme, IG-inlägg eller foto är
@@ -245,15 +250,19 @@ const data = {
   omdomen: {
     eyebrow: 'Omdömen',
     rubrik: ['Vad våra privatkunder', 'säger'],
-    lead: 'Omdömena är från privatkunder på Reco. Det är så vi har jobbat hittills, och så jobbar vi åt föreningen.',
-    // Verifierat Reco-betyg (reco.se/gd-maleri-sthlm, 2026-10-08) som bricka utan Googles G.
+    lead: 'Omdömena är från privatkunder på Google och Reco. Det är så vi har jobbat hittills, och så jobbar vi åt föreningen.',
+    // Google-betyget (4,8 av 5, 18 recensioner, 2026-10-09) och Reco-betyget (2026-10-08) som två brickor sida vid sida.
+    betyg: GOOGLE_BETYG,
     recoBetyg: { varde: 4.9, antal: 45, href: 'https://www.reco.se/gd-maleri-sthlm' },
     lista: [
+      GOOGLE_OMDOMEN.jenny,
+      GOOGLE_OMDOMEN.daniel,
+      GOOGLE_OMDOMEN.therese,
       { namn: 'Nils F', kalla: 'Verifierad kund · Reco', text: 'Vi anlitade GD Måleri för att åtgärda taket i vår 20-talslägenhet, som hade stora sprickor på flera ställen. Vi fick dem rekommenderade av en granne och förstår verkligen varför. … När vissa områden behövde en andra omgång, kom de snabbt tillbaka och fixade det utan problem.' },
       { namn: 'Anders F', kalla: 'Verifierad kund · Reco', text: 'Vi anlitade GD Måleri Sthlm AB för att måla om hall, trapphus och vardagsrum, och är mycket nöjda med resultatet. Arbetet håller riktigt hög kvalitet, utfördes med stor erfarenhet och noggrannhet, och levererades helt enligt överenskommen tidsplan. …' },
       { namn: 'Pia T', kalla: 'Verifierad kund · Reco', text: 'Väggarna i min lägenhet blev fint målade precis med den färg som jag önskade. Likaså gick det snabbt! Bra kommunikation o bästa samarbete. Tack - jag är så nöjd!' },
     ],
-    not: 'Från privatkunder på Reco.se, där kundrelationen kontrolleras. Ordagrant, två av dem kortade där det står …',
+    not: 'Från privatkunder på Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09; två av dem kortade där det står …',
     lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' },
     // Levande omdömen (mallens levande.js). Utan nycklar i miljön visas listan ovan oförändrad.
     // Google: GOOGLE_PLACES_KEY i Vercel. placeId saknas än: Text Search på namnet, och cid

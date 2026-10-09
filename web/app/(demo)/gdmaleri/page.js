@@ -1,5 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, samarbeten, RECO_WIDGET, RECO_LISTA } from './_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, samarbeten, RECO_WIDGET, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN } from './_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — KUND hos Bahko Byrå sedan 2026-10-08 (byggd som förslag 2026-10-08,
@@ -108,8 +108,18 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerB
    bandet på gdmaleri.se och Mathias 2026-10-09: Måleriföretagen, Flügger färg, AAA,
    Trygg-Hansa och Recos fyra märken. AAA är inte kontrollerat mot D&B (se _gd.js).
 
-   INTE verifierat, och finns därför inte i någon text: Google-profil och betyg
-   (ingen hittad), öppettider, priser, antal projekt, ledtider, medlemskap i
+   GOOGLE-OMDÖMEN (2026-10-09, Mathias klistrade in Googles recensionssida ur
+   Maps-profilen cid 13566570836618556636): 4,8 av 5, 18 recensioner, inklusive
+   ett 1-stjärnigt som inte visas som kort men räknas i betyget. Betygsbrickan
+   (Googles G, 4,8, "18 recensioner på Google") länkar till profilen, och knappen
+   "Läs alla på Google" också. Sex Google-kort (Viktor E, Jenny E, Therese G,
+   Maja B, Matteus E, Daniel N) som egen rad före Reco-widgeten, ordagrant,
+   utan stjärnor (betyg per omdöme står inte i underlaget). Underlaget och
+   reglerna: _gd.js GOOGLE_OMDOMEN. Gjort som på Bromma Trädgårdsservice (G-fält
+   med betyg, kort med G-märke, länk till profilen), inom mallens omdömessektion.
+
+   INTE verifierat, och finns därför inte i någon text: öppettider, priser,
+   antal projekt, ledtider, medlemskap i
    Måleriföretagen och AAA-kreditbetyg (märkena står på gdmaleri.se men är inte
    kontrollerade — se FLAGGOR; inte med på sidan),
    "Alltid fast pris" (sajten säger det, men ett Reco-omdöme
@@ -362,9 +372,13 @@ const data = {
   omdomen: {
     eyebrow: 'Omdömen',
     rubrik: ['Det kunderna', 'lägger märke till'],
+    // Google-betyget (4,8 av 5, 18 recensioner, 2026-10-09) som bricka med Googles G, länkad till profilen.
+    betyg: GOOGLE_BETYG,
+    // Sex Google-omdömen som egen rad före Reco-widgeten (mallfältet omdomen.googleLista).
+    googleLista: [GOOGLE_OMDOMEN.viktor, GOOGLE_OMDOMEN.jenny, GOOGLE_OMDOMEN.therese, GOOGLE_OMDOMEN.maja, GOOGLE_OMDOMEN.matteus, GOOGLE_OMDOMEN.daniel],
     reco: RECO_WIDGET,
     lista: RECO_LISTA,
-    not: 'Från Reco.se, där kundrelationen kontrolleras.',
+    not: 'Omdömena är hämtade från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09.',
     lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla 45 på Reco' },
     // Levande omdömen (mallens levande.js). Utan nycklar i miljön visas listan ovan oförändrad.
     // Google: GOOGLE_PLACES_KEY i Vercel. placeId saknas än: Text Search på namnet, och cid

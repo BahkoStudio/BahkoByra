@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida TAK (/gdmaleri/tak/), 2026-10-08. YTTERTAK.
@@ -31,6 +31,10 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
 
    FLAGGOR: tre tjänstekort (tjanster.kolumner: 3). Kortet Takmålning visar
    taket EFTER TVÄTT, inte målat. Omdömena är fasta (inte levande).
+   GOOGLE (2026-10-09, se ../_gd.js GOOGLE_OMDOMEN): betygsbrickan 4,8 av 5 (18)
+   och tre Google-kort utan stjärnor: Thorellski (rödmålning, fönsterfoder), Per
+   (hus utvändigt) och Oliwer C. Ola Andersson på Google har samma text som
+   Reco-kortet Ola A här och visas bara en gång.
    OPTIMERING: egen titel och beskrivning, JSON-LD Service → HousePainter
    (@id gdmaleri.se/#business), inget betygsschema, noindex tills flytten.
    =========================================================================== */
@@ -105,12 +109,16 @@ const data = {
   omdomen: {
     eyebrow: 'Omdömen',
     rubrik: ['Kunderna om', 'tak och hus'],
+    betyg: GOOGLE_BETYG,
     lista: [
       { namn: 'Torbjörn K', kalla: 'Verifierad kund · Reco', text: 'GD Måleri fick i uppdrag att fixa vår tak. Riktigt bra slutresultat och färdiga före utsatt slutdag. Kan varmt rekommendera GD Måleri.' },
       { namn: 'Ola A', kalla: 'Verifierad kund · Reco', text: 'Målning av 2-plans hus. Vi fick ett väldigt bra intryck av Ghandi då han gjorde en noggrann besiktning av huset innan offert skickades samt kom med förslag på saker vi inte hade tänkt på innan vad gäller estetik. Jobbet utfördes smidigt och snabbt och vi är jättenöjda. Jag kan starkt rekommendera GD Måleri.' },
       { namn: 'Edwin N', kalla: 'Verifierad kund · Reco', text: 'Jag anlitade GD Måleri för målning av mitt hus och är riktig nöjd med slutresultatet. Ghandi som ansvarade för projektet var serviceinriktad, punktlig och professionell. De levererade det vi hade kommit överens om och enligt tidplan, Jag stark rekommenderar GD Måler: Ghandi. Mvh Amin' },
+      GOOGLE_OMDOMEN.thorellski,
+      GOOGLE_OMDOMEN.per,
+      GOOGLE_OMDOMEN.oliwer,
     ],
-    not: 'Från Reco.se, där kundrelationen kontrolleras. Ordagrant.',
+    not: 'Från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09.',
     lank: RECO,
   },
 

@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida INVÄNDIG MÅLNING (/gdmaleri/invandig-malning/), 2026-10-08.
@@ -30,6 +30,9 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    Beskurna 4:3, först i övre bandet.
    FLAGGOR: alla bilder är GD:s egna foton (samma som huvudsidan). Omdömena här
    är fasta (inte levande), så att de handlar om invändig målning.
+   GOOGLE (2026-10-09, se ../_gd.js GOOGLE_OMDOMEN): betygsbrickan 4,8 av 5 (18)
+   och tre Google-kort utan stjärnor: Viktor E (tre rum, tapeter och tak),
+   Matteus E (radhus 125 kvm invändigt, kortat av Google) och Maja B.
    OPTIMERING: egen titel och beskrivning, JSON-LD Service → HousePainter
    (@id gdmaleri.se/#business), inget betygsschema, noindex tills flytten.
    =========================================================================== */
@@ -107,12 +110,16 @@ const data = {
   omdomen: {
     eyebrow: 'Omdömen',
     rubrik: ['Kunderna om', 'jobben inomhus'],
+    betyg: GOOGLE_BETYG,
     lista: [
       { namn: 'Nils F', kalla: 'Verifierad kund · Reco', text: 'Vi anlitade GD Måleri för att åtgärda taket i vår 20-talslägenhet, som hade stora sprickor på flera ställen. Vi fick dem rekommenderade av en granne och förstår verkligen varför. Vi är otroligt nöjda med resultatet! … När vissa områden behövde en andra omgång, kom de snabbt tillbaka och fixade det utan problem.' },
       { namn: 'Elin Linnea G', kalla: 'Verifierad kund · Reco', text: 'Större målning på flera våningar hos oss, med många olika färgval etc. Det hanterade de jättebra. Bra dialoger innan och under, lätta att få tag på och bra att resonera med. … Blev jättefint hemma - rekommenderar!' },
       { namn: 'Pia T', kalla: 'Verifierad kund · Reco', text: 'Väggarna i min lägenhet blev fint målade precis med den färg som jag önskade. Likaså gick det snabbt! Bra kommunikation o bästa samarbete. Tack - jag är så nöjd!' },
+      GOOGLE_OMDOMEN.viktor,
+      GOOGLE_OMDOMEN.matteus,
+      GOOGLE_OMDOMEN.maja,
     ],
-    not: 'Från Reco.se, där kundrelationen kontrolleras. Ordagrant, två av dem kortade där det står …',
+    not: 'Från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09; tre av dem kortade där det står …',
     lank: RECO,
   },
 
