@@ -64,6 +64,17 @@ const nextConfig = {
       { source: '/cloud/osterlunds', destination: '/osterlunds/', permanent: true },
       { source: '/cloud/osterlunds/:path*', destination: '/osterlunds/', permanent: true },
       // Raderad förpivot-artefakt.
+      // GD Måleri är kund på egen domän sedan 2026-10-11 (extern/gdmaleri, Mathias ja 2026-10-11).
+      // 301 med demons mappnamn → gdmaleri.se:s slugs (samma karta som SLUGS i extern/gdmaleri/kopiera.mjs).
+      // Källan web/app/(demo)/gdmaleri/ byggs kvar här — extern-bygget kopierar från den — men nås inte längre.
+      { source: '/gdmaleri', destination: 'https://gdmaleri.se/', statusCode: 301 },
+      { source: '/gdmaleri/fasad/:rest*', destination: 'https://gdmaleri.se/fasad-malning/', statusCode: 301 },
+      { source: '/gdmaleri/tak/:rest*', destination: 'https://gdmaleri.se/takmalning/', statusCode: 301 },
+      { source: '/gdmaleri/invandig-malning/:rest*', destination: 'https://gdmaleri.se/malning-invandigt/', statusCode: 301 },
+      { source: '/gdmaleri/golv/:rest*', destination: 'https://gdmaleri.se/golv/', statusCode: 301 },
+      { source: '/gdmaleri/brf/:rest*', destination: 'https://gdmaleri.se/brf/', statusCode: 301 },
+      { source: '/gdmaleri/media/:fil*', destination: 'https://gdmaleri.se/gdmaleri/media/:fil*', statusCode: 301 },
+      { source: '/gdmaleri/:path*', destination: 'https://gdmaleri.se/', statusCode: 301 },
       { source: '/pitchdeck.html', destination: '/', permanent: true },
     ];
   },

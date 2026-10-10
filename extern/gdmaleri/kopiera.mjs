@@ -30,8 +30,11 @@ cpSync(path.join(WEB, 'public/gdmaleri'), path.join(HAR, 'public/gdmaleri'), { r
 // /gdmaleri/<demo-mapp>/ → /<slug>/ (längsta först, så att '/gdmaleri/' tas sist). Media (/gdmaleri/media/) rörs inte.
 const byten = Object.entries(SLUGS).filter(([d]) => d).map(([d, s]) => [`/gdmaleri/${d}/`, `/${s}/`]);
 byten.push([`'/gdmaleri/'`, `'/'`], ['`/gdmaleri/`', '`/`']);
-const skrivOm = (txt) => {
+const skrivOm = (txt, slug) => {
   for (const [fran, till] of byten) txt = txt.split(fran).join(till);
+  // Indexering på (Mathias ja 2026-10-11): bara här, demon på bahkobyra.se 301:as bort. Self-canonical per sida.
+  const ren = "robots: { index: false, follow: false },";
+  if (slug !== undefined && txt.includes(ren)) txt = txt.split(ren).join(`alternates: { canonical: 'https://gdmaleri.se/${slug ? `${slug}/` : ''}' },`);
   // Schemats bild-URL:er pekar på bahkobyra.se så länge sajten bor där; här bor filerna på gdmaleri.se.
   return txt.split("const FILBAS = 'https://www.bahkobyra.se'").join("const FILBAS = 'https://gdmaleri.se'");
 };
@@ -42,7 +45,8 @@ for (const f of readdirSync(KALLA)) {
   if (statSync(fil).isDirectory()) {
     if (!(f in SLUGS)) throw new Error(`okänd undersida ${f}: lägg till den i SLUGS`);
     mkdirSync(path.join(GRUPP, SLUGS[f]), { recursive: true });
-    for (const g of readdirSync(fil)) writeFileSync(path.join(GRUPP, SLUGS[f], g), skrivOm(readFileSync(path.join(fil, g), 'utf8')));
-  } else writeFileSync(path.join(GRUPP, f), skrivOm(readFileSync(fil, 'utf8')));
+    for (const g of readdirSync(fil)) writeFileSync(path.join(GRUPP, SLUGS[f], g), skrivOm(readFileSync(path.join(fil, g), 'utf8'), g === 'page.js' ? SLUGS[f] : undefined));
+  } else writeFileSync(path.join(GRUPP, f), skrivOm(readFileSync(fil, 'utf8'), f === 'page.js' ? '' : undefined));
 }
+if (readdirSync(GRUPP, { recursive: true }).some((f) => f.endsWith('page.js') && readFileSync(path.join(GRUPP, f), 'utf8').includes('index: false'))) throw new Error('noindex kvar i en sida');
 console.log('kopierade mallen, typsnitten, komponenterna, gdmaleri-sidorna (', Object.values(SLUGS).map((s) => `/${s}`).join(' '), ') och public/gdmaleri');
