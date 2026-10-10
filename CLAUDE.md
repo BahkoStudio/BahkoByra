@@ -41,7 +41,7 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │   │   └── <kund>/ ........... media till Next-demoserna, samma mappnamn som i (demo)/
 │   ├── next.config.mjs ....... 🔒 host-rewrites: styr vad .se och .cloud visar
 │   └── vercel.json ........... 🔒
-├── extern/ ................... hg/ rolssons/ = demos på EGNA vercel.app-adresser (undantag, extern/README.md)
+├── extern/ ................... hg/ rolssons/ = demos på EGNA vercel.app-adresser; gdmaleri/ = KUNDSAJT gdmaleri.se (extern/README.md)
 │                                Ingen egen kopia: kopiera.mjs hämtar mall + sida + media ur web/ vid bygget
 │
 │                          ═══ KUNDERNAS SAJTER ═══
@@ -191,6 +191,7 @@ Den vanligaste fällan. Fem av dem bygger DET HÄR repot och delar bara **roten*
 | `brommatradgardsservice.se` | BahkoByra | `bahkobyra/cloud/brommatradgardsservice` | brommatradgardsservice.se |
 | `hg-maskinentreprenad` | BahkoByra | `extern/hg` (kopierar ur `web/`) | egen `*.vercel.app` (undantag) |
 | `rolssons-maleri` | BahkoByra | `extern/rolssons` (kopierar ur `web/`) | egen `*.vercel.app` (undantag) |
+| `gdmaleri` (skapas av Mathias) | BahkoByra | `extern/gdmaleri` (kopierar ur `web/`, skriver om sökvägarna) | gdmaleri.se + www (DNS hos Hostinger) |
 | **`mayka`** | **MaykaKitchen** | `.claude/skills/video-to-website/maykas/site` | **maykaskitchen.se** |
 | `website-ttcv` | MaykaKitchen | — | (ingen egen domän, verkar oanvänt) |
 | `dashbord` | KlinikCRM | — | (annat projekt) |

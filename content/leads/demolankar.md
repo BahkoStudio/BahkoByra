@@ -65,6 +65,8 @@ brommatradgardsservice, smamaleri och maykaskitchen har egna live-sajter i
 `bahkobyra/cloud/` (🔒) och egna mappar i `content/kundarbete/` — de listas
 inte här som "demo" eftersom de redan är levererat kundarbete.
 
+**gdmaleri (2026-10-10):** flyttar till egen domän gdmaleri.se via `extern/gdmaleri/` (Vercel-projektet `gdmaleri`). Raden ovan står kvar så länge demon serveras på bahkobyra.se/gdmaleri/ — källan är fortfarande `web/app/(demo)/gdmaleri/`. Se `content/kundarbete/gdmaleri/`.
+
 ## Platshållarfälla (bifynd 2026-08-26)
 `070-123 45 67` är ett klickbart platshållarnummer på flera demos (bygg,
 golvresan, nordicsnickare; nya osterlunds anvander 040 123 4567 i finskt format). Städa bort/byt till ett tydligt

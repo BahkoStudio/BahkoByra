@@ -1,0 +1,9 @@
+node_modules/
+.next/
+app/_mall/
+app/_sida/
+public/
+typsnitt/
+komponenter/
+formular.js
+app/(gd)/
