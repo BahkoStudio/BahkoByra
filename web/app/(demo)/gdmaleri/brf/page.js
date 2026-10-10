@@ -98,8 +98,10 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerB
 
    FLAGGOR: BRF är ett NYTT område för honom. GENERERADE BILDER (Higgsfield
    API, Qwen Image 3, 2k, 4:3, 2026-10-08, 0,075 USD styck) — raderna
-   Trapphus (brf-trapphus.jpg), Entréer och dörrar (brf-entre.jpg) och Fasad
-   och fönster (brf-fasad.jpg). De är illustrationer, inte GD:s jobb:
+   Entréer och dörrar (brf-entre.jpg) och Fasad och fönster (brf-fasad.jpg).
+   Trapphus visar sedan 2026-10-10 GD:s eget foto jobb-trapphus.jpg (en trappa
+   i ett hem, inte ett BRF-trapphus) i stället för den genererade
+   brf-trapphus.jpg — Ghandi via sms: "ta bort denna bild och lägga nått annat". De är illustrationer, inte GD:s jobb:
    alt-texten börjar med "Illustrationsbild" och tjanster.not säger det på
    sidan (jobbanden med jobb.not finns inte i den här layouten). Lägenheter
    har ett eget foto (jobb-sekelskifte.jpg). Planen för att vinna BRF-jobb
@@ -226,9 +228,9 @@ const data = {
     eyebrow: 'Tjänster för föreningen',
     rubrik: ['Trapphus, entréer, fasader', 'och lägenheter'],
     lead: 'Nu tar vi även uppdrag åt bostadsrättsföreningar. Våra privatkunder har gjort oss till Rekommenderat företag på Reco tre år i rad, med 4,9 av 5 i snitt från 45 omdömen.',
-    not: 'Bilderna på trapphus, entré och fasad är illustrationsbilder. Lägenhetsbilden är från ett eget projekt. Fler egna jobb, med ort och yta, finns på vårt Instagram.',
+    not: 'Bilderna på entré och fasad är illustrationsbilder. Trapp- och lägenhetsbilden är från egna projekt. Fler egna jobb, med ort och yta, finns på vårt Instagram.',
     kort: [
-      { id: 'trapphus', namn: 'Trapphus', bild: `${M}/brf-trapphus.jpg`, alt: 'Illustrationsbild: en målare bakifrån rollar en ljus trapphusvägg ovanför en grön nederdel, golvet täckt med papper', text: 'Väggar och tak i trapphuset, med spackling och slipning gjord innan färgen går på.', punkter: ['Spackling och slipning', 'Grundmålning och färdigmålning', 'Hjälp med färgval'], ritning: (<><path d="M30 104h28V82h28V60h28V38h28V16h28" /><path d="M30 104h140" /><path d="M44 78l70-56" /></>) },
+      { id: 'trapphus', namn: 'Trapphus', bild: `${M}/jobb-trapphus.jpg`, alt: 'Trappa i ett hem med mörkrosa nederdel och ljus vägg ovanför, målad av GD Måleri', text: 'Väggar och tak i trapphuset, med spackling och slipning gjord innan färgen går på.', punkter: ['Spackling och slipning', 'Grundmålning och färdigmålning', 'Hjälp med färgval'], ritning: (<><path d="M30 104h28V82h28V60h28V38h28V16h28" /><path d="M30 104h140" /><path d="M44 78l70-56" /></>) },
       { id: 'entre', namn: 'Entréer och dörrar', bild: `${M}/brf-entre.jpg`, alt: 'Illustrationsbild: nymålade gröna entrédörrar med glasrutor i ett ljust putsat flerbostadshus', text: 'Entrén är det första de boende och besökarna ser. Dörrar, foder, väggar och tak.', punkter: ['Entrédörrar och foder', 'Väggar och tak i entrén', 'Skrapning och grundmålning'], ritning: (<><path d="M40 104V20h120v84" /><path d="M64 104V44h72v60" /><path d="M100 44v60" /><path d="M90 76h4M106 76h4" /><path d="M30 104h140" /></>) },
       { id: 'fasad', namn: 'Fasad och fönster', bild: `${M}/brf-fasad.jpg`, alt: 'Illustrationsbild: nymålad gul putsfasad på ett trevåningshus från 1950-talet, med vita fönster och björkar', text: 'Fasadtvätt, skrapning och målning av trä, puts, tegel eller plåt, och fönstren med karmar.', punkter: ['Fasadtvätt', 'Skrapning och nödvändiga lagningar', 'Fönster och karmar'], ritning: (<><path d="M30 104V24h140v80" /><path d="M24 104h152" /><path d="M50 40h20v18H50zM90 40h20v18H90zM130 40h20v18h-20zM50 72h20v18H50zM130 72h20v18h-20z" /><path d="M90 104V74h20v30" /></>) },
       { id: 'lagenhet', namn: 'Lägenheter', bild: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', text: 'Fyra lägenheter åt fastighetsbolaget Holmströmgruppen är vår referens. Målar en medlem om inne i sin lägenhet kan medlemmen få ROT.', punkter: ['Väggar och tak', 'Dörrar och snickerier', 'ROT för medlemmen, inte föreningen'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>) },
