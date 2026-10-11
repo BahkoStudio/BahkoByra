@@ -42,10 +42,14 @@ import DemoSida from '../_mall/DemoSida';
      fotograf och licens per fil i content/leads/soderholms.md). Märkt i
      jobb.not. Bilden på Thermia-pumpen (tjanst-installation) är en riktig
      Thermia, men inte deras installation.
-   - Hero-filmen är INTE en genererad förvandling (Higgsfield-nyckeln saknas,
-     0 USD): långsam rörelse över en luft/vatten-utedel i snö (Commons).
-     Varför-filmen = större fastighetsanläggning (Commons) + ordmärket.
-     Kontaktfilmen = hero, suddad.
+   - Hero-filmen är en GENERERAD ILLUSTRATION (Grok Imagine, gjord av Mathias
+     2026-10-11): rostig oljepanna och oljetank i ett mörkt källarrum blir ett
+     ljust pannrum med värmepump och varmvattenberedare. Inget riktigt jobb,
+     ingen Thermia-modell, ingen vattenstämpel eller logga i bild. Liggande =
+     16:9-beskärning, stående = 9:16 runt pannan/pumpen.
+     Varför-filmen = samma förvandling + ordmärkeskortet. Kontaktfilmen =
+     drönarfilm över Uppsala domkyrka i höstfärger (Grok Imagine, Mathias
+     2026-10-11, genererad illustration), ping-pong-loop, lätt suddad.
    - Omdömena är EXEMPEL.
    - Riktiga kontaktuppgifter och org.nr på sidan: visa INTE offentligt.
    =========================================================================== */
@@ -139,7 +143,7 @@ const data = {
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Långsam inzoomning över rör och pumpar i en större värmeanläggning. Filmen slutar med Söderholms ordmärke.',
+    videoAlt: 'Ett gammalt pannrum med rostig oljepanna förvandlas till ett ljust rum med värmepump. Filmen slutar med Söderholms ordmärke.',
   },
 
   om: {
@@ -204,8 +208,8 @@ const data = {
     rubrik: ['Boka rådgivning,', 'vi tar det därifrån'],
     lead: 'Ring 08-25 30 33, eller skriv några rader om huset. Vi återkommer och hjälper dig välja rätt värmelösning.',
     checkar: ['Thermia-återförsäljare sedan 90-talet', 'Installation och service i samma firma', 'Offert anpassad efter ditt hus'],
-    video: `${M}/video-kontakt.mp4`,
-    poster: `${M}/poster-kontakt.jpg`,
+    video: `${M}/video-kontakt-uppsala.mp4`,
+    poster: `${M}/poster-kontakt-uppsala.jpg`,
     formRubrik: 'Berätta kort om huset',
     placeholder: 'Typ av hus eller fastighet, hur du värmer i dag, och om det gäller ny pump eller service',
     formNot: 'Skriv kort om huset, då kan vi ge ett vettigt svar redan i första samtalet.',
