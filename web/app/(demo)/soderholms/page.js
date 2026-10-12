@@ -2,62 +2,63 @@ import DemoSida from '../_mall/DemoSida';
 
 /* ===========================================================================
    SÖDERHOLMS EL & VVS — kostnadsfritt hemsideförslag från Bahko Byrå
-   Lead: soderholms.se (kom via länken i deras Instagram-bio) · värmepumpar
-   (Thermia-återförsäljare), installation och service, el och VVS ·
-   Stockholm och Uppsala. HAR hemsida (sajtbyggare, bara stockbilder, ingen
-   logotyp, ingen bild på ett eget jobb).
+   Version 2 (2026-10-12): omgjord efter kundens önskemål om att sticka ut.
+   Lead: soderholms.se + Instagram @soderholms.se (113 följare) · värmepumpar
+   (Thermia-återförsäljare), varmvatten, systemrening, el och laddbox, VVS ·
+   Stockholm och Uppsala.
 
-   Bärande idé: en firma sedan 1940 som har jobbat med en enda
-   värmepumpstillverkare, Thermia, sedan början av 90-talet: samma firma
-   installerar, servar och svarar i telefon, och den finns kvar när pumpen
-   behöver service om tio år.
+   Bärande idé: en el- och VVS-firma sedan 1942 som installerar Thermias
+   senaste pumpar (Sigrin, Atlas) och tar hand om hela systemet runt pumpen:
+   el, rör, systemvatten. Deras egna ord: "vi tar hand om hela systemet, inte
+   bara symptomen".
 
-   VERIFIERAT (soderholms.se via WebFetch + webbarkivet 2026-04-16; allabolag,
-   syna, bolagsfakta, byggkatalogen, merinfo; allt 2026-10-11):
-   Firmanamn "Söderholms El & VVS AB" · org.nr 556041-3055, AB, registrerat
-   1942-05-23, F-skatt och moms (syna) · besöksadress Tranebergsvägen 78 bv,
-   167 44 Bromma (sajten + registret) · tel 08-25 30 33 · info@soderholms.se
-   · "har funnits sedan 1940" · "jobbat med Thermias värmepumpar sedan början
-   av 90-talet" · "stolta återförsäljare av Thermia värmepumpar" · installerar
-   och utför service på Thermias värmepumpar i Stockholm och Uppsala · "både
-   villa och större fastighetsanläggningar" · "för både företag och
-   privatkunder" · luft-, vatten- och bergvärmepumpar · rådgivning och
-   konsultation · priser: "kontakta oss för en offert" · SNI 43210
-   Elinstallationer · två anställda (registret).
+   VERIFIERAT (Instagram @soderholms.se — profil + 10 inlägg via embed,
+   soderholms.se via WebFetch, allabolag/syna/bolagsfakta; allt 2026-10-12):
+   Namn "Söderholms El & VVS" (IG-profilnamn; bolaget Söderholms El & VVS AB)
+   · org.nr 556041-3055, registrerat 1942-05-23, F-skatt och moms · logotypen
+   (IG-profilbilden) säger "SEDAN 1942" — sajtens äldre årtal är fel och används ALDRIG
+   · Tranebergsvägen 78 bv, 167 44 Bromma · 08-25 30 33 · info@soderholms.se
+   · Thermia-återförsäljare, Thermia sedan början av 90-talet (sajten) ·
+   installation, service och rådgivning; luft-, vatten- och bergvärme; villa och
+   större fastighetsanläggningar; privat och företag; Stockholm och Uppsala
+   (sajten) · IG: installerar Thermia Sigrin ("Thermias nya flaggskepp",
+   "precis fått Sigrin på plats hos en kund"; "vår perfekta utbytespump",
+   ersätter berg-, jord- eller sjövärmepump, "ger mycket varmvatten") · bytte
+   en gammal IVT mot Thermia Atlas 12 kW (före/efter-bilderna är deras) ·
+   tillfälligt TTM FiltrX C250-systemfilter för att rena värmesystem från
+   magnetit · Zaptec Go 2-laddbox: "från rådgivning och dimensionering till
+   komplett installation" · "Trappor? Inga problem" — pump bärs i trappa ·
+   "vi tar hand om hela systemet, inte bara symptomen" · "hjälper dig hela
+   vägen från första fråga till färdig installation".
 
-   INTE verifierat, och finns därför inte på sidan: Google-betyget (en
-   katalog visar 4,5 av 2 recensioner, ingen text att citera), öppettider
-   (samma katalog säger mån–fre 8–17, obekräftat), Instagram-inläggen
-   (kontot @soderholms08 svarar tomt utan inloggning — be Mathias bekräfta
-   handle), Facebook, ägarnamn, priser, ledtider, garantier, certifieringar
-   (behörighet för el/kyl), ROT/grön teknik-avdrag.
+   INTE verifierat, och finns därför inte på sidan: Google-betyg och omdömen
+   (exempelkort), öppettider, priser, ledtider, garantier (Zaptecs 5 år är
+   tillverkarens, nämns inte), behörigheter, ROT/grön teknik.
+   VARMVATTENBEREDARE: med i Mathias brief, men deras kanaler nämner bara
+   varmvatten från värmepumpen (Sigrin). Kortet säger därför "varmvatten"
+   och "byte av beredare" — STÄM AV med kunden.
 
    FLAGGOR:
+   - Logotypen är OMRITAD efter IG-profilbilden (bara 100×100 px finns
+     publikt): samma uppbyggnad (guldlinjer, hus med värmevågor, "SÖDERHOLMS
+     EL & VVS", "SEDAN 1942"), satt i Oswald med guldtoning. Be om originalfilen.
+   - Egna bilder (IG): före/efter IVT→Atlas (sammansatt av deras två foton,
+     etiketter inbrända), Sigrin, TTM-filtret, filtret i pannrummet, Zaptec,
+     pumpen i trappan. LÅNADE: tjanst-installation (Commons, en Thermia men inte
+     deras jobb) och båda jobbanden (Commons + stockbilder från deras gamla
+     sajt), märkta i jobb.not.
+   - Hero-filmen (oljepanna → värmepump) och kontaktfilmen (Uppsala) är
+     GENERERADE illustrationer från Grok Imagine (Mathias 2026-10-11). Den grå
+     källaren och det gyllene Uppsala går ihop med svart-guld; behållna.
+     Varför-filmen = förvandlingen + logotypen i guld på svart.
    - Formuläret går till mathias@bahkobyra.se (demonyckeln).
-   - INGEN logotyp finns (sajten har bara firmanamnet i text): ordmärke.
-     Slutkortet i Varför-filmen är ordmärket satt i Outfit.
-   - INGA egna foton: alla bilder är LÅNADE illustrationsbilder. Fyra är
-     stockbilderna från deras egen sajt (laptop, elcentral, verktyg, telefon),
-     resten är fria bilder från Wikimedia Commons (CC0/PD/CC BY/CC BY-SA —
-     fotograf och licens per fil i content/leads/soderholms.md). Märkt i
-     jobb.not. Bilden på Thermia-pumpen (tjanst-installation) är en riktig
-     Thermia, men inte deras installation.
-   - Hero-filmen är en GENERERAD ILLUSTRATION (Grok Imagine, gjord av Mathias
-     2026-10-11): rostig oljepanna och oljetank i ett mörkt källarrum blir ett
-     ljust pannrum med värmepump och varmvattenberedare. Inget riktigt jobb,
-     ingen Thermia-modell, ingen vattenstämpel eller logga i bild. Liggande =
-     16:9-beskärning, stående = 9:16 runt pannan/pumpen.
-     Varför-filmen = samma förvandling + ordmärkeskortet. Kontaktfilmen =
-     drönarfilm över Uppsala domkyrka i höstfärger (Grok Imagine, Mathias
-     2026-10-11, genererad illustration), ping-pong-loop, lätt suddad.
-   - Omdömena är EXEMPEL.
    - Riktiga kontaktuppgifter och org.nr på sidan: visa INTE offentligt.
    =========================================================================== */
 
 export const metadata = {
-  title: 'Söderholms El & VVS — Thermia värmepumpar i Stockholm och Uppsala',
+  title: 'Söderholms El & VVS — Thermia värmepumpar, el och VVS i Stockholm och Uppsala',
   description:
-    'Installation och service av Thermia värmepumpar, luft, vatten och berg, för villor och större fastigheter. Sedan 1940, Bromma. Förslag på hemsida från Bahko Byrå.',
+    'Thermia värmepumpar, varmvatten, systemrening, el och laddbox. Installation och service i Stockholm och Uppsala, sedan 1942. Förslag på hemsida från Bahko Byrå.',
   robots: { index: false, follow: false },
 };
 
@@ -66,57 +67,64 @@ const M = '/soderholms/media';
 const data = {
   namn: 'Söderholms El & VVS',
   tema: {
-    mork: '#0B1724',
-    accent: '#C2410C',
-    accentHover: '#9A3412',
-    accentText: '#9A3412',
-    accentLjus: '#FB923C',
-    paAccent: '#fff',
+    mork: '#0B0B0C',
+    accent: '#C9A227',
+    accentHover: '#B08C1E',
+    accentText: '#7A5C12',
+    accentLjus: '#E0B84A',
+    paAccent: '#0B0B0C',
   },
-  ordmarke: 'Söderholms',
+  logo: { src: `${M}/logo-soderholms.png`, ljus: `${M}/logo-soderholms-ljus.png`, w: 680, h: 460, alt: 'Söderholms El & VVS', topp: 'fri' },
   kontakt: {
     tel: '08-25 30 33',
     telHref: 'tel:+468253033',
     epost: 'info@soderholms.se',
     adress: 'Tranebergsvägen 78 bv, 167 44 Bromma',
+    ig: 'https://www.instagram.com/soderholms.se/',
+    igHandle: '@soderholms.se',
     orgnr: '556041-3055',
   },
-  cta: { txt: 'Boka rådgivning', kort: 'Boka rådgivning', lank: 'Boka rådgivning' },
+  cta: { txt: 'Begär offert', kort: 'Begär offert', lank: 'Begär offert' },
   nav: {
-    vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#jobb', txt: 'Anläggningar' }],
-    hoger: [{ href: '#om', txt: 'Om oss' }, { href: '#fragor', txt: 'Frågor' }],
+    vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#jobb', txt: 'Jobb' }],
+    hoger: [{ href: '#om', txt: 'Om oss' }, { href: '#kontakt', txt: 'Offert' }],
   },
 
   hero: {
     ort: 'Stockholm · Uppsala',
-    tjanster: ['Värmepumpar', 'Service'],
+    tjanster: ['Värmepumpar', 'El & VVS'],
     video: `${M}/video-hero.mp4`,
     videoMobil: `${M}/video-hero-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
   },
-  tejp: ['Bergvärme', 'Luft/vatten', 'Vattenvärme', 'Thermia', 'Service', 'Rådgivning', 'El & VVS', 'Stockholm · Uppsala'],
+  tejp: ['Thermia Sigrin', 'Bergvärme', 'Luft/vatten', 'Varmvatten', 'Systemrening', 'Laddbox', 'El & VVS', 'Sedan 1942'],
 
   tjanster: {
     eyebrow: 'Vad vi gör',
-    rubrik: ['Värmepumpen, från val', 'till service'],
-    lead: 'Vi hjälper dig välja rätt pump, installerar den och kommer tillbaka när den behöver service. För villor, företag och större fastighetsanläggningar.',
+    rubrik: ['Hela systemet,', 'inte bara pumpen'],
+    lead: 'Vi installerar och servar Thermias värmepumpar, och tar hand om elen, rören och systemvattnet runt dem. För villor, företag och större fastigheter.',
     kort: [
-      { id: 'installation', namn: 'Installation', bild: `${M}/tjanst-installation.jpg`, alt: 'Thermia bergvärmepump installerad i ett tekniskt utrymme', text: 'Professionell installation av Thermia värmepumpar, anpassad efter huset och ditt behov.', punkter: ['Bergvärme', 'Luft/vatten', 'Vattenvärme'], ritning: (<><path d="M30 104V44l70-30 70 30v60z" /><path d="M78 104V70h44v34" /><path d="M100 70V54" /><path d="M86 54h28" /></>) },
-      { id: 'service', namn: 'Service och underhåll', bild: `${M}/tjanst-service.jpg`, alt: 'Tekniker med öppen värmepump, rör och kompressor synliga', text: 'Regelbunden service för bästa prestanda och lång livslängd på pumpen.', punkter: ['Återkommande service', 'Felsökning', 'Thermias värmepumpar'], ritning: (<><circle cx="100" cy="60" r="34" /><circle cx="100" cy="60" r="10" /><path d="M100 14v12M100 94v12M54 60h12M134 60h12" /></>) },
-      { id: 'radgivning', namn: 'Rådgivning', bild: `${M}/tjanst-radgivning.jpg`, alt: 'Två personer vid ett bord med laptop och anteckningar', text: 'Vi hjälper dig välja rätt värmelösning för ditt hem eller din fastighet.', punkter: ['Vilken pumptyp passar', 'Villa eller fastighet', 'Offert efter behov'], ritning: (<><path d="M30 26h104v56H76l-22 18V82H30z" /><path d="M150 50h20v44h-16v14l-16-14h-30" /></>) },
-      { id: 'el-vvs', namn: 'El och VVS', bild: `${M}/tjanst-el.jpg`, alt: 'Elcentral med automatsäkringar och kopplingsplintar', text: 'Vi är både el- och VVS-firma, så elen och rören runt pumpen hålls i samma hand.', punkter: ['Elinstallation', 'VVS runt pumpen', 'Ett företag att ringa'], ritning: (<><path d="M110 12L70 66h30l-10 42 40-56h-30z" /></>) },
+      { id: 'varmepump', namn: 'Värmepumpar', bild: `${M}/tjanst-varmepump-sigrin.webp`, alt: 'Nyinstallerad Thermia Sigrin i grafit i ett tekniskt utrymme', text: 'Vi är Thermia-återförsäljare och installerar bland annat nya Sigrin, som kan ersätta din gamla berg-, jord- eller sjövärmepump.', punkter: ['Berg, luft och vatten', 'Byte av gammal pump', 'Service och underhåll'], ritning: (<><path d="M30 104V44l70-30 70 30v60z" /><path d="M78 104V70h44v34" /><path d="M86 58c6-6 10 6 16 0s10 6 16 0" /></>) },
+      { id: 'varmvatten', namn: 'Varmvatten', bild: `${M}/tjanst-installation.jpg`, alt: 'Thermia-värmepump med inbyggd varmvattenberedare i ett pannrum', text: 'Rätt pump ger mycket varmvatten. Vi hjälper dig välja lösning och byter beredaren när den gamla har gjort sitt.', punkter: ['Varmvatten från pumpen', 'Byte av beredare', 'Rådgivning före köp'], ritning: (<><path d="M70 14h60v92H70z" /><path d="M82 40c6-6 10 6 18 0s12 6 18 0" /><path d="M82 60c6-6 10 6 18 0s12 6 18 0" /></>) },
+      { id: 'systemrening', namn: 'VVS och systemrening', bild: `${M}/tjanst-systemrening.webp`, alt: 'TTM FiltrX systemfilter med manometer monterat på ett värmesystem', text: 'Vi renar värmesystem från magnetit och smuts med systemfilter, så att pumpar och ventiler håller längre.', punkter: ['Systemfilter (TTM FiltrX)', 'Bättre värmeöverföring', 'Färre driftstörningar'], ritning: (<><circle cx="100" cy="60" r="34" /><path d="M100 26v68M66 60h68" /><path d="M24 60h42M134 60h42" /></>) },
+      { id: 'el', namn: 'El och laddbox', bild: `${M}/tjanst-laddbox.webp`, alt: 'Zaptec Go 2-laddbox monterad på en stolpe i en trädgård', text: 'Vi är både el- och VVS-firma. Laddbox som Zaptec Go 2 installerar vi hela vägen, från dimensionering till färdig installation.', punkter: ['Elinstallation', 'Laddbox (Zaptec Go 2)', 'El runt värmepumpen'], ritning: (<><path d="M110 12L70 66h30l-10 42 40-56h-30z" /></>) },
     ],
   },
 
   jobb: {
-    eyebrow: 'Anläggningar',
-    rubrik: ['Från villa till', 'fastighet'],
-    lead: 'Värmepumpar inne och ute, i villor och i större fastighetsanläggningar.',
-    not: 'Illustrationsbilder — byts mot era egna projektfoton.',
+    eyebrow: 'Senaste jobben',
+    rubrik: ['Från vårt', 'Instagram'],
+    lead: 'Riktiga installationer: en gammal IVT som fick ge plats åt en Thermia Atlas, en pump som skulle upp för trappan och ett värmesystem som renades.',
+    not: 'De tre utvalda bilderna är våra egna, från Instagram. Bilderna i banden är illustrationsbilder — byts mot era egna projektfoton.',
     tid: '60s',
+    utvalda: [
+      { src: `${M}/jobb-fore-efter-ivt-atlas.webp`, w: 900, h: 1200, alt: 'Sammansatt före/efter-bild: vänster halva en gammal vit IVT-värmepump, höger halva den nya grå Thermia Atlas på samma plats', etikett: 'Före / efter', txt: 'Gammal IVT ut, Thermia Atlas 12 kW in' },
+      { src: `${M}/jobb-trappor.webp`, w: 900, h: 1200, alt: 'Värmepump på transportvagn vid en stentrappa utomhus', etikett: 'Installation', txt: 'Trappor? Inga problem' },
+      { src: `${M}/jobb-systemfilter-pannrum.webp`, w: 900, h: 1200, alt: 'Tillfälligt systemfilter kopplat till värmesystemet i ett pannrum med rutigt golv', etikett: 'Systemrening', txt: 'Magnetit ut ur värmesystemet' },
+    ],
     rad1: [
-      { src: `${M}/jobb-inomhusdel.jpg`, alt: 'Värmepump och expansionskärl i ett pannrum', txt: 'Inomhusdel i pannrummet' },
+      { src: `${M}/jobb-inomhusdel.jpg`, alt: 'Thermia-värmepump och expansionskärl i ett pannrum', txt: 'Inomhusdel i pannrummet' },
       { src: `${M}/jobb-utedel-vagg.jpg`, alt: 'Utedel till en värmepump monterad på en tegelvägg', txt: 'Utedel på vägg' },
       { src: `${M}/jobb-fastighet-ror.jpg`, alt: 'Gula rör och pumpar i en stor värmeanläggning', txt: 'Större fastighetsanläggning' },
       { src: `${M}/jobb-utedel-tegel.jpg`, alt: 'Utedel till en värmepump framför en mörk vägg', txt: 'Luft/vatten, utedel' },
@@ -127,35 +135,35 @@ const data = {
       { src: `${M}/jobb-undercentral.jpg`, alt: 'Rör och värmeväxlare i en undercentral', txt: 'Undercentral' },
       { src: `${M}/jobb-termostat.jpg`, alt: 'Termostatventil på ett vitt element', txt: 'Rätt värme i rummet' },
       { src: `${M}/jobb-verktyg.jpg`, alt: 'Tänger och verktyg i en verktygsväska', txt: 'Verktygen på plats' },
-      { src: `${M}/jobb-telefon.jpg`, alt: 'Person i vit skjorta med en mobiltelefon', txt: 'Ring oss direkt' },
+      { src: `${M}/jobb-telefon.jpg`, alt: 'Person i vit skjorta med en mobiltelefon', txt: 'Ring 08-25 30 33' },
     ],
   },
 
   varfor: {
     eyebrow: 'Varför Söderholms',
-    rubrik: ['Samma firma', 'år efter år'],
-    lead: 'En värmepump ska gå i många år. Vi har funnits sedan 1940 och jobbat med Thermia sedan början av 90-talet, så den som installerar din pump är också den som servar den.',
+    rubrik: ['Vi tar hand om', 'hela systemet'],
+    lead: 'En värmepump är bara så bra som systemet runt den. Vi är el- och VVS-firma sedan 1942 och har jobbat med Thermia sedan början av 90-talet, så pumpen, elen och rören hålls i samma hand.',
     punkter: [
-      { rubrik: 'Thermia sedan 90-talet', text: 'Vi är återförsäljare av Thermia och har installerat och servat deras pumpar sedan början av 90-talet.' },
-      { rubrik: 'Installation och service', text: 'Samma firma tar hand om pumpen från installationen till servicen efteråt.' },
-      { rubrik: 'El och VVS i samma hand', text: 'Vi gör både elen och rören, så du behöver inte samordna flera hantverkare.' },
-      { rubrik: 'Rätt pump, inte största', text: 'Vi hjälper dig välja det som passar huset. Räcker en mindre lösning säger vi det.' },
+      { rubrik: 'Thermia sedan 90-talet', text: 'Återförsäljare av Thermia, och vi installerar deras senaste pumpar som Sigrin och Atlas.' },
+      { rubrik: 'El och VVS i samma firma', text: 'Elen, rören och systemvattnet runt pumpen gör vi själva. Du behöver inte samordna flera hantverkare.' },
+      { rubrik: 'Hela vägen', text: 'Från första frågan och dimensioneringen till färdig installation och service efteråt.' },
+      { rubrik: 'Rätt pump, inte största', text: 'Vi hjälper dig välja det som passar huset och borrhålet du redan har. Räcker en mindre lösning säger vi det.' },
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Ett gammalt pannrum med rostig oljepanna förvandlas till ett ljust rum med värmepump. Filmen slutar med Söderholms ordmärke.',
+    videoAlt: 'Ett gammalt pannrum med rostig oljepanna förvandlas till ett ljust rum med värmepump. Filmen slutar med Söderholms El & VVS logotyp i guld.',
   },
 
   om: {
     eyebrow: 'Om Söderholms',
-    rubrik: ['I branschen', 'sedan 1940'],
+    rubrik: ['El och VVS', 'sedan 1942'],
     kortRad: 'Bromma · Stockholm och Uppsala',
     stycken: [
-      'Söderholms El & VVS har funnits sedan 1940. Sedan början av 90-talet har vi arbetat med Thermias värmepumpar, och i dag är vi stolta återförsäljare av dem.',
-      'Vi installerar och servar värmepumpar i Stockholm och Uppsala, för både privatpersoner och företag, i villor och i större fastighetsanläggningar. Med kunskap och kvalitet i fokus vill vi ge dig en energieffektiv och pålitlig lösning.',
+      'Söderholms El & VVS har funnits sedan 1942. Sedan början av 90-talet har vi arbetat med Thermias värmepumpar, och i dag är vi stolta återförsäljare av dem.',
+      'Vi installerar och servar värmepumpar i Stockholm och Uppsala, för privatpersoner och företag, i villor och i större fastighetsanläggningar. Och eftersom vi är både el- och VVS-firma tar vi hand om hela systemet, inte bara symptomen.',
     ],
     bevis: [
-      { ord: 'Sedan 1940', text: 'el och VVS i Bromma' },
+      { ord: 'Sedan 1942', text: 'el och VVS i Bromma' },
       { ord: 'Thermia', text: 'återförsäljare sedan 90-talet' },
       { ord: 'F-skatt', text: 'godkänd för F-skatt' },
     ],
@@ -163,14 +171,14 @@ const data = {
 
   steg: {
     eyebrow: 'Så går det till',
-    rubrik: ['Från första samtalet', 'till varmt hus'],
+    rubrik: ['Från första frågan', 'till färdig installation'],
     lead: 'Samma ordning oavsett om det är en villa eller en fastighet.',
     lista: [
-      { namn: 'Ring eller skriv', text: 'Berätta om huset och hur du värmer det i dag.', ikon: 'kontakt' },
-      { namn: 'Rådgivning', text: 'Vi går igenom vilken typ av pump som passar: luft, vatten eller berg.', ikon: 'besok' },
+      { namn: 'Ring eller skriv', text: 'Ring 08-25 30 33 eller skicka en förfrågan om huset och hur du värmer det i dag.', ikon: 'kontakt' },
+      { namn: 'Rådgivning', text: 'Vi går igenom vilken pump som passar: luft, vatten eller berg, och om borrhålet kan återanvändas.', ikon: 'besok' },
       { namn: 'Offert', text: 'Du får en offert anpassad efter typ och installation.', ikon: 'offert' },
-      { namn: 'Installation', text: 'Vi installerar pumpen och tar hand om el och VVS runt den.', ikon: 'arbete' },
-      { namn: 'Service', text: 'Regelbunden service håller pumpen effektiv i många år.', ikon: 'klart' },
+      { namn: 'Installation', text: 'Vi installerar pumpen och tar hand om el och VVS runt den, trappor inräknade.', ikon: 'arbete' },
+      { namn: 'Service', text: 'Regelbunden service och ett rent systemvatten håller pumpen effektiv i många år.', ikon: 'klart' },
     ],
   },
 
@@ -180,10 +188,18 @@ const data = {
     lista: [
       { namn: 'Villaägare', kalla: 'Bromma', exempel: true, text: 'Här står ett riktigt omdöme från en kund, med namn och ort som de själva skrivit det.' },
       { namn: 'Fastighetsägare', kalla: 'Stockholm', exempel: true, text: 'Ett andra kort, hämtat ur er Google-profil.' },
-      { namn: 'Privatkund', kalla: 'Uppsala', exempel: true, text: 'Ett tredje kort, gärna om en service eller en installation.' },
+      { namn: 'Privatkund', kalla: 'Uppsala', exempel: true, text: 'Ett tredje kort, gärna om ett pumpbyte eller en service.' },
     ],
     not: 'Exempel — byts mot era riktiga omdömen.',
     lank: { href: 'https://www.google.com/maps/search/S%C3%B6derholms+El+%26+VVS+AB+Bromma', txt: 'Se oss på Google' },
+  },
+
+  instagram: {
+    eyebrow: 'Instagram',
+    rubrik: ['Följ jobben', 'i vardagen'],
+    lead: 'Nya installationer och nyheter från Thermia, direkt från vårt konto.',
+    bio: 'El & VVS sedan 1942 · Thermia värmepumpar · Stockholm och Uppsala',
+    koder: ['DePVBOBCwMu', 'DcMD58mAvQ2', 'DeW6uanghmz'],
   },
 
   fragor: {
@@ -193,41 +209,41 @@ const data = {
     kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring 08-25 30 33 eller mejla info@soderholms.se, så svarar vi på det som gäller just ditt hus.' },
     lista: [
       { q: 'Vad kostar en värmepump?', a: 'Priset beror på typ av pump och installation. Kontakta oss så får du en offert.' },
-      { q: 'Vad är en värmepump?', a: 'En energieffektiv lösning för att värma upp, och kyla ned, ditt hem.' },
+      { q: 'Kan min gamla bergvärmepump bytas?', a: 'Ja. Thermia Sigrin kan ersätta en berg-, jord- eller sjövärmepump och anpassar sig efter ditt värmebehov och det borrhål som redan finns.' },
       { q: 'Vilka typer av värmepumpar erbjuder ni?', a: 'Luft-, vatten- och bergvärmepumpar, så att det finns en lösning för olika bostäder och energibehov.' },
       { q: 'Varför Thermia?', a: 'Thermia är kända för hög kvalitet och energieffektivitet, vilket ger lägre driftskostnader. Vi har jobbat med deras pumpar sedan början av 90-talet.' },
-      { q: 'Hur går installationen till?', a: 'Vi installerar pumpen professionellt och anpassar installationen efter dina behov.' },
-      { q: 'Servar ni pumpar ni redan installerat?', a: 'Ja. Vi utför regelbunden service på Thermias värmepumpar, för bästa prestanda och längre livslängd.' },
+      { q: 'Vad är systemrening?', a: 'Magnetit bildas av korrosion i värmesystemet och kan sätta igen ventiler och slita på pumpar. Med ett systemfilter renar vi systemvattnet så att värmen förs över bättre.' },
+      { q: 'Gör ni elen också?', a: 'Ja. Vi är både el- och VVS-firma och installerar till exempel laddboxar, från dimensionering till färdig installation.' },
       { q: 'Tar ni större fastigheter?', a: 'Ja. Vi gör både villor och större fastighetsanläggningar, för privatpersoner och företag.' },
       { q: 'Var arbetar ni?', a: 'I Stockholm och Uppsala. Vi sitter på Tranebergsvägen i Bromma.' },
     ],
   },
 
   kontaktSektion: {
-    eyebrow: 'Kontakt',
-    rubrik: ['Boka rådgivning,', 'vi tar det därifrån'],
-    lead: 'Ring 08-25 30 33, eller skriv några rader om huset. Vi återkommer och hjälper dig välja rätt värmelösning.',
-    checkar: ['Thermia-återförsäljare sedan 90-talet', 'Installation och service i samma firma', 'Offert anpassad efter ditt hus'],
+    eyebrow: 'Offert',
+    rubrik: ['Begär offert,', 'eller ring oss'],
+    lead: 'Ring 08-25 30 33, eller skriv några rader om huset. Vi återkommer med frågor och en offert.',
+    checkar: ['Thermia-återförsäljare sedan 90-talet', 'El och VVS i samma firma', 'Stockholm och Uppsala'],
     video: `${M}/video-kontakt-uppsala.mp4`,
     poster: `${M}/poster-kontakt-uppsala.jpg`,
-    formRubrik: 'Berätta kort om huset',
-    placeholder: 'Typ av hus eller fastighet, hur du värmer i dag, och om det gäller ny pump eller service',
+    formRubrik: 'Begär offert',
+    placeholder: 'Typ av hus eller fastighet, hur du värmer i dag, och om det gäller ny pump, varmvatten, service eller el',
     formNot: 'Skriv kort om huset, då kan vi ge ett vettigt svar redan i första samtalet.',
     kundtyp: ['Privatperson', 'Företag', 'Fastighet/BRF'],
   },
 
   popup: {
-    rubrik: 'Dags för service?',
-    text: 'Vi servar Thermias värmepumpar i Stockholm och Uppsala. Ring eller skriv så bokar vi en tid.',
+    rubrik: 'Dags att byta pump?',
+    text: 'Ring 08-25 30 33 eller begär en offert. Vi hjälper dig från första frågan till färdig installation.',
   },
 
   footer: {
-    text: 'Installation och service av Thermia värmepumpar, el och VVS. Sedan 1940, i Stockholm och Uppsala.',
+    text: 'Thermia värmepumpar, varmvatten, systemrening, el och VVS. Sedan 1942, i Stockholm och Uppsala.',
   },
 
   modal: {
-    rubrik: 'Så här kan Söderholms se ut på nätet',
-    text: 'Det här är ett kostnadsfritt förslag, byggt på det ni själva skriver på soderholms.se. Bilderna är lånade tills vi får era egna. Ingen beställning, inget åtagande. Vill ni se den skarpt med ett formulär som landar i inkorgen? Boka ett kostnadsfritt 15-minuterssamtal med Mathias.',
+    rubrik: 'Så här kan Söderholms El & VVS se ut på nätet',
+    text: 'Det här är ett kostnadsfritt förslag, byggt på det ni själva visar på soderholms.se och Instagram, med era egna bilder där vi hade dem. Ingen beställning, inget åtagande. Vill ni se den skarpt med ett formulär som landar i inkorgen? Boka ett kostnadsfritt 15-minuterssamtal med Mathias.',
   },
 };
 
