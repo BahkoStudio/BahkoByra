@@ -47,10 +47,12 @@ import DemoSida from '../_mall/DemoSida';
      pumpen i trappan. LÅNADE: tjanst-installation (Commons, en Thermia men inte
      deras jobb) och båda jobbanden (Commons + stockbilder från deras gamla
      sajt), märkta i jobb.not.
-   - Hero-filmen (oljepanna → värmepump) och kontaktfilmen (Uppsala) är
-     GENERERADE illustrationer från Grok Imagine (Mathias 2026-10-11). Den grå
-     källaren och det gyllene Uppsala går ihop med svart-guld; behållna.
-     Varför-filmen = förvandlingen + logotypen i guld på svart.
+   - HERON (Mathias 2026-10-12): kundens EGET jobb, före/efter IVT → Thermia
+     Atlas 12 kW (deras två IG-foton, deras Före/Efter-etiketter), bredvid
+     logotyp, ort och knappar. Den genererade källarfilmen är borta ur heron;
+     förvandlingen finns kvar som Varför-filmen (+ logotypen i guld på svart).
+     Kontaktfilmen (Uppsala) är en GENERERAD illustration (Grok Imagine).
+     Utvalda jobb = de två övriga egna bilderna (trappan, filtret).
    - Formuläret går till mathias@bahkobyra.se (demonyckeln).
    - Riktiga kontaktuppgifter och org.nr på sidan: visa INTE offentligt.
    =========================================================================== */
@@ -93,10 +95,8 @@ const data = {
   hero: {
     ort: 'Stockholm · Uppsala',
     tjanster: ['Värmepumpar', 'El & VVS'],
-    video: `${M}/video-hero.mp4`,
-    videoMobil: `${M}/video-hero-mobil.mp4`,
-    poster: `${M}/poster-hero.jpg`,
-    posterMobil: `${M}/poster-hero-mobil.jpg`,
+    // Kundens eget jobb i heron (Mathias 2026-10-12): deras två IG-foton sammansatta, med deras egna Före/Efter-etiketter.
+    foreEfter: { src: `${M}/jobb-fore-efter-ivt-atlas.webp`, w: 900, h: 1200, alt: 'Före och efter: till vänster en gammal vit IVT-värmepump, till höger den nya grå Thermia Atlas på samma plats', txt: 'Gammal IVT ut, Thermia Atlas 12 kW in' },
   },
   tejp: ['Thermia Sigrin', 'Bergvärme', 'Luft/vatten', 'Varmvatten', 'Systemrening', 'Laddbox', 'El & VVS', 'Sedan 1942'],
 
@@ -115,11 +115,10 @@ const data = {
   jobb: {
     eyebrow: 'Senaste jobben',
     rubrik: ['Från vårt', 'Instagram'],
-    lead: 'Riktiga installationer: en gammal IVT som fick ge plats åt en Thermia Atlas, en pump som skulle upp för trappan och ett värmesystem som renades.',
-    not: 'De tre utvalda bilderna är våra egna, från Instagram. Bilderna i banden är illustrationsbilder — byts mot era egna projektfoton.',
+    lead: 'Riktiga installationer: en pump som skulle upp för trappan och ett värmesystem som renades.',
+    not: 'De två utvalda bilderna är våra egna, från Instagram. Bilderna i banden är illustrationsbilder — byts mot era egna projektfoton.',
     tid: '60s',
     utvalda: [
-      { src: `${M}/jobb-fore-efter-ivt-atlas.webp`, w: 900, h: 1200, alt: 'Sammansatt före/efter-bild: vänster halva en gammal vit IVT-värmepump, höger halva den nya grå Thermia Atlas på samma plats', etikett: 'Före / efter', txt: 'Gammal IVT ut, Thermia Atlas 12 kW in' },
       { src: `${M}/jobb-trappor.webp`, w: 900, h: 1200, alt: 'Värmepump på transportvagn vid en stentrappa utomhus', etikett: 'Installation', txt: 'Trappor? Inga problem' },
       { src: `${M}/jobb-systemfilter-pannrum.webp`, w: 900, h: 1200, alt: 'Tillfälligt systemfilter kopplat till värmesystemet i ett pannrum med rutigt golv', etikett: 'Systemrening', txt: 'Magnetit ut ur värmesystemet' },
     ],

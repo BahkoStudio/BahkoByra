@@ -40,11 +40,11 @@
 | Slot | Källa | Kostnad |
 |---|---|---|
 | Logotyp (`logo-soderholms.png` svart platta, `-ljus.png` guld med alfa) | omritad efter IG-profilbilden | 0 |
-| Hero (liggande + stående) | genererad förvandling (Grok Imagine, Mathias 2026-10-11): oljepanna → värmepump. Illustration | 0 |
-| Varför-film | samma förvandling + guldlogotypen på svart | 0 |
+| Hero | **egen (IG):** före/efter gammal IVT → Thermia Atlas 12 kW, deras två foton med deras Före/Efter-etiketter, bredvid logotyp och knappar (Mathias 2026-10-12; ersatte den genererade källarfilmen) | 0 |
+| Varför-film | genererad förvandling (Grok Imagine, Mathias 2026-10-11): oljepanna → värmepump + guldlogotypen på svart. Illustration | 0 |
 | Kontaktfilm | drönarfilm över Uppsala domkyrka, höst (Grok Imagine, Mathias), ping-pong, lätt suddad. Illustration | 0 |
 | Tjänstebilder | **egna (IG):** Sigrin, TTM-filter, Zaptec · **lånad:** `tjanst-installation` (Commons, Thermia men inte deras jobb) | 0 |
-| Utvalda jobb (3) | **egna (IG):** före/efter IVT→Atlas (sammansatt), pump i trappa, filter i pannrum | 0 |
+| Utvalda jobb (2) | **egna (IG):** pump i trappa, filter i pannrum (före/efter-bilden flyttad till heron) | 0 |
 | Jobband (10) | **lånade:** 8 Commons + 2 stockbilder från deras sajt, märkta i `jobb.not` | 0 |
 | Instagram | tre riktiga inlägg inbäddade (DePVBOBCwMu, DcMD58mAvQ2, DeW6uanghmz) | 0 |
 
