@@ -1,49 +1,54 @@
-# Söderholms El & VVS AB — lead
+# Söderholms El & VVS — lead
 
-**Hemsida:** [soderholms.se](https://www.soderholms.se/) — finns. En sida i en sajtbyggare: tre tjänsterutor, FAQ, kontakt. Ingen logotyp (firmanamnet i text), bara stockbilder (laptop, verktyg, elcentral, telefon) och Thermias logga. Inget eget jobb, inget omdöme.
-**Instagram:** troligen @soderholms08 (sajten har en Instagram-ikon med det namnet; leadet kom via länken i deras IG-bio). Embed-sidan svarar tom utan inloggning — **be Mathias bekräfta handle och om kontot har inlägg**.
+**Hemsida:** [soderholms.se](https://www.soderholms.se/) — en sida i en sajtbyggare: tre tjänsterutor, FAQ, kontakt. Ingen logotyp på sajten, bara stockbilder. Sajten anger fel grundår — **rätt är 1942** (registret 1942-05-23 och logotypen "SEDAN 1942").
+**Instagram:** [@soderholms.se](https://www.instagram.com/soderholms.se/) — "Söderholms El & VVS", 113 följare, 10 inlägg (Thermia Sigrin, IVT→Thermia Atlas 12 kW, TTM-systemfilter, Zaptec Go 2, pump i trappa). Profilbilden är logotypen: svart-guld med hus. (@soderholms08 var fel handle.)
 **Demo:** `bahkobyra.se/soderholms/` (källa: `web/app/(demo)/soderholms/page.js`). Lokalt: `http://localhost:<port>/soderholms/`.
-**Status:** demo byggd 2026-10-11 på demomallen v3. Inte committad, inte skickad.
+**Status:** v1 byggd och mergad 2026-10-11 (#245, #246). **v2 2026-10-12** (svart-guld, logotyp, egna IG-bilder, 1942, offertfokus): PR öppen, inte mergad. Mathias lovade prototyp inom 48 h från 11/10 eftermiddag; kunden får dagliga erbjudanden och vill att vi sticker ut.
 
 > **Visa INTE offentligt:** sidan bär riktiga kontaktuppgifter (telefon, mejl, adress) och org.nr. `robots: noindex`. Länkas bara i DM till firman.
 
-## Verifierat (2026-10-11)
+## Verifierat (2026-10-12)
 
 | Uppgift | Värde | Källa |
 |---|---|---|
-| Firmanamn | Söderholms El & VVS AB | sajt, register |
-| Org.nr | 556041-3055, AB, reg. 1942-05-23, säte Stockholm, F-skatt + moms, SNI 43210 Elinstallationer, 2 anställda | allabolag, syna, bolagsfakta |
-| Ledning | Styrelseledamot Daniel Robin Iverborg, suppleant Jim Mikael Åke Iverborg (postadress Bålsta) — **används inte på sidan** | syna |
-| Adress | Tranebergsvägen 78 bv, 167 44 Bromma — **visa INTE offentligt** | sajt + register |
-| Telefon / e-post | 08-25 30 33 · info@soderholms.se — **visa INTE offentligt** | sajt |
-| Historik | "har funnits sedan 1940", "jobbat med Thermias värmepumpar sedan början av 90-talet" | sajt |
-| Tjänster (deras ord) | installation av Thermia värmepumpar, service och underhåll, rådgivning och konsultation; luft-, vatten- och bergvärmepumpar; "både villa och större fastighets anläggningar"; "företag och privatkunder"; Stockholm och Uppsala; "stolta återförsäljare av Thermia" | sajt |
-| Pris | "Priserna varierar … kontakta oss för en offert" | sajt (FAQ) |
+| Namn | Söderholms El & VVS (bolag: Söderholms El & VVS AB) | IG-profil, sajt, register |
+| Grundat | **1942** (reg. 1942-05-23; logotypen "SEDAN 1942") | register, IG-logotyp |
+| Org.nr | 556041-3055, AB, F-skatt + moms, SNI 43210 Elinstallationer, 2 anställda | allabolag, syna, bolagsfakta |
+| Ledning | Styrelseledamot Daniel Robin Iverborg, suppleant Jim Mikael Åke Iverborg — **används inte på sidan** | syna |
+| Adress / telefon / e-post | Tranebergsvägen 78 bv, 167 44 Bromma · 08-25 30 33 · info@soderholms.se — **visa INTE offentligt** | sajt, IG-inlägg |
+| Thermia | återförsäljare, Thermia sedan början av 90-talet | sajt |
+| Tjänster | installation, service, rådgivning; luft/vatten/berg; villa och större fastighet; privat och företag; Stockholm och Uppsala | sajt |
+| Sigrin | "Thermias nya flaggskepp", installerad hos kund, "vår perfekta utbytespump", ersätter berg-/jord-/sjövärmepump, "ger mycket varmvatten" | IG DePVBOBCwMu, Ddrkv42qSFr |
+| IVT → Atlas | gammal IVT bytt mot Thermia Atlas 12 kW, egna före/efter-foton | IG DcMD58mAvQ2 (DcMD1DKi2Lg, DcMD1MHCFsj) |
+| Systemrening | tillfälligt TTM FiltrX C250-systemfilter mot magnetit; "vi tar hand om hela systemet, inte bara symptomen" | IG DeW6uanghmz |
+| El / laddbox | Zaptec Go 2, "från rådgivning och dimensionering till komplett installation" | IG DduSs9qifCp |
+| Trappor | "Trappor? Inga problem" — pump i trappa | IG DcL_UFhCdV5 |
 
-## INTE verifierat (står inte på sidan)
+## INTE verifierat / flaggat
 
-- **Google-betyg:** en katalog visar 4,5 av 2 recensioner, utan text. Ingen betygsbricka; tre exempelkort med tomma stjärnor.
-- Öppettider (katalog: mån–fre 8–17, obekräftat), Instagram-inlägg, Facebook, priser, ledtider, garantier, behörigheter/certifieringar, ROT eller grön teknik-avdrag, antal installationer.
+- **Varmvattenberedare:** med i Mathias brief; deras kanaler nämner bara varmvatten från Sigrin. Kortet "Varmvatten" (byte av beredare) — **stäm av med kunden.**
+- **Logotypen är omritad** efter IG-profilbilden (endast 100×100 px publikt): guldlinjer, hus med värmevågor, "SÖDERHOLMS EL & VVS" i Oswald, "SEDAN 1942". **Be om originalfilen** och byt in.
+- Google-betyg och omdömen (tre exempelkort), öppettider, priser, ledtider, garantier, behörigheter, ROT/grön teknik.
 
-## Konfliktkoll (demolankar + kundarbete, 2026-10-11)
+## Konfliktkoll (demolankar + kundarbete)
 
-- **Nisch:** ingen befintlig kund eller lead i värmepump/VVS. Närmast: **elvionel** (elektriker, Sollentuna, lead) — Söderholms är registrerade som elinstallationsfirma, så det är angränsande men inte samma erbjudande. Ingen kund i `content/kundarbete/` i nischen.
-- **Ägare:** Iverborg, Bålsta, adressen och telefonnumret finns inte i någon annan lead. Ingen koppling hittad.
+- **Nisch:** ingen kund eller lead i värmepump/VVS. Närmast: **elvionel** (elektriker, Sollentuna, lead) — angränsande. Ingen kund i nischen i `content/kundarbete/`.
+- **Ägare:** Iverborg (Bålsta) — ingen koppling till andra leads.
 
-## Media
+## Media (v2)
 
 | Slot | Källa | Kostnad |
 |---|---|---|
-| Hero (liggande + stående) | **genererad förvandling** (Grok Imagine, Mathias 2026-10-11, 10 s): oljepanna i mörk källare → ljust pannrum med värmepump. Illustration, ingen vattenstämpel. Beskuren 16:9 + 9:16, ljud borttaget | 0 (Mathias egen generering) |
-| Varför-film | samma förvandling + ordmärkeskort (Outfit) | 0 |
-| Kontaktfilm | **drönarfilm bakåt från Uppsala domkyrka över staden, höst** (Grok Imagine, Mathias 2026-10-11, genererad illustration), ping-pong-loop, lätt suddad, ljud borttaget — visar serviceområdet | 0 |
-| Tjänstebilder (4) | 2 Commons (Thermia-pump, service), 2 stockbilder från deras egen sajt (laptop, elcentral) | 0 |
-| Jobband (10) | 8 Commons, 2 stockbilder från deras sajt (verktyg, telefon), märkta i `jobb.not` | 0 |
-| Instagram | utelämnad (kontot inte verifierat) | 0 |
+| Logotyp (`logo-soderholms.png` svart platta, `-ljus.png` guld med alfa) | omritad efter IG-profilbilden | 0 |
+| Hero (liggande + stående) | genererad förvandling (Grok Imagine, Mathias 2026-10-11): oljepanna → värmepump. Illustration | 0 |
+| Varför-film | samma förvandling + guldlogotypen på svart | 0 |
+| Kontaktfilm | drönarfilm över Uppsala domkyrka, höst (Grok Imagine, Mathias), ping-pong, lätt suddad. Illustration | 0 |
+| Tjänstebilder | **egna (IG):** Sigrin, TTM-filter, Zaptec · **lånad:** `tjanst-installation` (Commons, Thermia men inte deras jobb) | 0 |
+| Utvalda jobb (3) | **egna (IG):** före/efter IVT→Atlas (sammansatt), pump i trappa, filter i pannrum | 0 |
+| Jobband (10) | **lånade:** 8 Commons + 2 stockbilder från deras sajt, märkta i `jobb.not` | 0 |
+| Instagram | tre riktiga inlägg inbäddade (DePVBOBCwMu, DcMD58mAvQ2, DeW6uanghmz) | 0 |
 
-Totalt **0 USD** i API. Förvandlingsfilmen gjordes av Mathias i Grok Imagine; ingen Higgsfield-körning.
-
-- **Filmerna är illustrationer** (hero/Varför/kontakt) — sägs i leveransen, ingen not på sidan (skillens regel).
+Totalt **0 USD**. Filmerna är illustrationer — sägs i leveransen, ingen not på sidan (skillens regel).
 
 ### Bildlicenser (Wikimedia Commons — attribution krävs om sidan går live)
 
@@ -52,7 +57,6 @@ Totalt **0 USD** i API. Förvandlingsfilmen gjordes av Mathias i Grok Imagine; i
 | `tjanst-installation` | [Thermia Sole-Wasser-Wärmepumpe.jpg](https://commons.wikimedia.org/wiki/File:Thermia_Sole-Wasser-W%C3%A4rmepumpe.jpg) | Volkerschmidt | CC BY 3.0 |
 | `jobb-inomhusdel` | [Värmepump Villa Classic 105.jpg](https://commons.wikimedia.org/wiki/File:V%C3%A4rmepump_Villa_Classic_105.jpg) | Holger.Ellgaard | CC BY-SA 3.0 |
 | `jobb-utedel-vagg` | [Outunit of heat pump.jpg](https://commons.wikimedia.org/wiki/File:Outunit_of_heat_pump.jpg) | No machine-readable author provided. Ppntori assumed (based on copyright claims). | Public domain |
-| `tjanst-service` | [Geothermal heat pump.JPG](https://commons.wikimedia.org/wiki/File:Geothermal_heat_pump.JPG) | Dr Tzeferis Petros | CC BY-SA 4.0 |
 | `jobb-fastighet-ror` | [20190425-BSU Heat-Pump-03.jpg](https://commons.wikimedia.org/wiki/File:20190425-BSU_Heat-Pump-03.jpg) | Paul Gipe | CC BY-SA 4.0 |
 | `jobb-utedel-tradgard` | [Carrier Outdoor Split Air Conditioner Heat Pump System (55005181522).jpg](https://commons.wikimedia.org/wiki/File:Carrier_Outdoor_Split_Air_Conditioner_Heat_Pump_System_(55005181522).jpg) | Tony Webster | CC BY 4.0 |
 | `jobb-utedel-tegel` | [Outdoor air conditioner unit installed in residential garden space.jpg](https://commons.wikimedia.org/wiki/File:Outdoor_air_conditioner_unit_installed_in_residential_garden_space.jpg) | Shixart1985 | CC BY 2.0 |
@@ -61,17 +65,17 @@ Totalt **0 USD** i API. Förvandlingsfilmen gjordes av Mathias i Grok Imagine; i
 | `jobb-termostat` | [Heimeier-Thermostat-1687928.jpg](https://commons.wikimedia.org/wiki/File:Heimeier-Thermostat-1687928.jpg) | USA-Reiseblogger / Simon | CC0 |
 Ändringar: beskurna till 4:3; tillverkarmärken (Ultimate, Carrier, Ecodan) suddade i `jobb-utedel-vagg`, `jobb-utedel-tradgard` och den gamla herofilmen (utbytt 2026-10-11) — ange "bearbetad" i attributionen.
 
-Stockbilderna från soderholms.se (`tjanst-radgivning`, `tjanst-el`, `jobb-verktyg`, `jobb-telefon`) har okänd licens via sajtbyggaren — de är redan deras egna sajtbilder, men byt dem mot egna foton före en skarp sajt.
+Stockbilderna från soderholms.se (`jobb-verktyg`, `jobb-telefon`) har okänd licens via sajtbyggaren — de är redan deras egna sajtbilder, men byt dem mot egna foton före en skarp sajt.
 
 ## Flaggor före utskick
 
-- **Ingen logotyp:** ordmärket "Söderholms" i headern, footern och på slutkortet. Fråga om de har en logga.
-- **Inga egna bilder:** allt är lånat. Största lyftet blir deras egna installationsfoton (pannrum, utedelar, bilar).
-- **CC BY-SA-bilder** kräver attribution om demon blir skarp sajt (listan ovan).
-- Omdömen i exempelläge. Instagram-sektionen utelämnad.
-- Formuläret går till mathias@bahkobyra.se (demonyckeln), kundtyp Privatperson/Företag/Fastighet-BRF.
-- Säljvinkel: 86 år gammal firma och Thermia sedan 90-talet, men sajten säger det i en mening, har ingen bild på ett eget jobb och inget omdöme.
+- Logotypen omritad — be om original (vektor/PNG).
+- Varmvattenberedare-kortet bygger på briefen, inte deras kanaler.
+- Jobbanden och ett tjänstekort är lånade. Be om fler egna jobbfoton (de har bara 7 egna bilder på IG); med 10+ egna kan banden bli helt deras.
+- Omdömen i exempelläge — be om Google-profilen eller kundcitat.
+- Formuläret går till mathias@bahkobyra.se (demonyckeln). På mobil ligger Ring-knappen fast i headern hela tiden (tel:+468253033) och "Begär offert" leder till formuläret.
+- Säljvinkel: firma sedan 1942, Thermias senaste pumpar och el + VVS i samma hand — men sajten har inget eget jobb, ingen logotyp och fel grundår.
 
 ## DM-utkast (inte skickat)
 
-> Hej! Jag såg soderholms.se via er Instagram och byggde ett kostnadsfritt förslag på hur Söderholms kan se ut på nätet, med 1940-historien och Thermia i fokus: bahkobyra.se/soderholms/ — vill ni ha det skarpt med era egna bilder tar det 15 minuter att prata igenom. /Mathias, Bahko Byrå
+> Hej! Här är prototypen vi lovade: bahkobyra.se/soderholms/ — er svart-guld-profil, era egna jobb från Instagram (IVT → Thermia Atlas, Sigrin, systemrening) och en tydlig Ring/Begär offert-knapp på mobilen, med 1942 och Thermia i fokus. Säg till vad ni vill ändra, så tar vi det på 15 minuter. /Mathias, Bahko Byrå

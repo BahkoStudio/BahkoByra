@@ -685,12 +685,15 @@ export default function DemoSida({ data: d }) {
       {d.layout === 'styrelse' ? <StyrelseMain d={d} t={t} k={k} harTel={harTel} andraVag={andraVag} /> : (
       <main>
         {/* 1. Hero */}
-        <section className={s.hero} id="top">
+        {/* Valfritt: hero.foreEfter = kundens egen före/efter-bild bredvid texten i stället för film (Söderholms 2026-10-12). */}
+        <section className={d.hero.foreEfter ? `${s.hero} ${s.heroDelad}` : s.hero} id="top">
+          {d.hero.foreEfter ? null : (
           <figure className={s.heroFilm} aria-hidden="true">
             <video className={s.heroLiggande} autoPlay muted loop playsInline preload="metadata" poster={d.hero.poster}><source src={d.hero.video} type="video/mp4" /></video>
             <video className={s.heroStaende} autoPlay muted loop playsInline preload="metadata" poster={d.hero.posterMobil}><source src={d.hero.videoMobil} type="video/mp4" /></video>
           </figure>
-          <div className={s.wrap}>
+          )}
+          <div className={d.hero.foreEfter ? `${s.wrap} ${s.heroDeladGrid}` : s.wrap}>
             <div className={s.heroIn}>
               <h1 className={s.h1} style={{ '--h1-tecken': h1Tecken }}>
                 {d.logo
@@ -704,6 +707,12 @@ export default function DemoSida({ data: d }) {
                 <a className={`${s.btn} ${s.btnKontur}`} href={andraVag.href} {...(andraVag.ny ? { target: '_blank', rel: 'noopener' } : {})}>{andraVag.ikon}{andraVag.txt}</a>
               </div>
             </div>
+            {d.hero.foreEfter ? (
+              <figure className={s.heroForeEfter}>
+                <div className={s.heroForeEfterBild}><Image src={d.hero.foreEfter.src} alt={d.hero.foreEfter.alt} width={d.hero.foreEfter.w} height={d.hero.foreEfter.h} priority sizes="(max-width: 900px) 88vw, 520px" /></div>
+                {d.hero.foreEfter.txt ? <figcaption><span>{d.hero.foreEfter.txt}</span></figcaption> : null}
+              </figure>
+            ) : null}
           </div>
         </section>
 
@@ -750,7 +759,7 @@ export default function DemoSida({ data: d }) {
           {/* Valfritt: utvalda senaste jobb (t.ex. en före/efter-bild) som stående bilder före banden */}
           {d.jobb.utvalda ? (
             <div className={s.wrap}>
-              <ul className={s.utvalda}>
+              <ul className={d.jobb.utvalda.length === 2 ? `${s.utvalda} ${s.utvalda2}` : s.utvalda}>
                 {d.jobb.utvalda.map((u) => (
                   <li key={u.src}>
                     <figure className={s.utvaldKort}>

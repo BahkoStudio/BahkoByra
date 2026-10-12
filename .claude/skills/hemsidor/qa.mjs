@@ -115,18 +115,21 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
       ok(b <= 844, `hero-knapparna inom första skärmen (${Math.round(b)})`);
     }
   } else {
-  ok(vids === 1, `en synlig hero-film (${vids})`);
+  // Delad hero (hero.foreEfter, Söderholms 2026-10-12): kundens egen före/efter-bild bredvid texten i stället för film.
+  const delad = await page.locator('section[id="top"] [class*="heroForeEfter"] img').count();
+  if (delad) ok(vids === 0 && (await page.locator('section[id="top"] [class*="heroForeEfter"] img').first().isVisible()), `delad hero: egen före/efter-bild synlig, ingen film (${vids})`);
+  else ok(vids === 1, `en synlig hero-film (${vids})`);
   // Heron bär bara logotyp, ort, två tjänster och knapparna (Mathias 2026-09-19). Ingen ingress, ingen bevisrad.
   const hero = await page.locator('section[id="top"]').evaluate((e) => ({
     logo: !!e.querySelector('h1 img'), h1font: getComputedStyle(e.querySelector('h1')).fontFamily, h1bredd: Math.round((e.querySelector('h1 img') || e.querySelector('h1')).getBoundingClientRect().width), h1plats: innerWidth - 32, h1spill: e.querySelector('h1 img') ? 0 : e.querySelector('h1').scrollWidth - e.querySelector('h1').clientWidth,
     tjanster: e.querySelector('[class*="heroTjanster"]')?.innerText || '', stycken: e.querySelectorAll('p').length, listor: e.querySelectorAll('ul').length,
-    knappar: e.querySelectorAll('a[class*="btn"]').length, mitt: Math.abs(e.querySelector('h1').getBoundingClientRect().left + e.querySelector('h1').getBoundingClientRect().width / 2 - innerWidth / 2),
+    knappar: e.querySelectorAll('a[class*="btn"]').length, mitt: (() => { const r = e.querySelector('h1').getBoundingClientRect(), k = e.querySelector('[class*="heroIn"]').getBoundingClientRect(); const m = e.querySelector('[class*="heroForeEfter"]') ? k.left + k.width / 2 : innerWidth / 2; return Math.abs(r.left + r.width / 2 - m); })(),
   }));
   ok(hero.logo || /bebas|^"?hero\b/i.test(hero.h1font), hero.logo ? 'heron bär logotypen' : 'heron bär firmanamnet i Bebas Neue (ingen logotypfil)');
   ok(hero.h1bredd <= hero.h1plats && hero.h1spill <= 1, `h1 ryms (${hero.h1bredd} px av ${hero.h1plats})`);
   ok(/^\S.* & .*\S\.$/.test(hero.tjanster.trim()), `två tjänster i heron (${hero.tjanster.trim()})`);
   ok(hero.stycken <= 2 && hero.listor === 0 && hero.knappar === 2, `heron är ren: ${hero.stycken} textrader, ${hero.listor} listor, ${hero.knappar} knappar`);
-  ok(hero.mitt <= 12, `heron centrerad (${Math.round(hero.mitt)} px från mitten)`);
+  ok(hero.mitt <= 12, `heron centrerad (${Math.round(hero.mitt)} px från mitten${delad ? ' av textkolumnen' : ''})`);
   const tider = [0, 3, 6, 9, 12];
   if (!hero.logo) await overFilm(page, 'h1', 'h1', namn, tider);
   await overFilm(page, 'p[class*="heroOrt"]', 'ort', namn, tider);
@@ -249,7 +252,8 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   await film.scrollIntoViewIfNeeded();
   const langd = await film.evaluate(async (v) => { if (!(v.duration > 0)) await new Promise((r) => v.addEventListener('loadedmetadata', r, { once: true })); return v.duration; });
   ok(langd >= 5, `Varför-filmen ${langd.toFixed(1)} s`);
-  await film.evaluate((v) => { v.pause(); v.currentTime = v.duration - 0.15; }); await page.waitForTimeout(500);
+  // Vänta på att bildrutan faktiskt är framme (seeked + data), inte en fast tid: utan hero-film laddas Varför-filmen kallt på mobil.
+  await film.evaluate((v) => new Promise((r) => { v.pause(); const klar = () => (v.readyState >= 2 ? r() : v.addEventListener('loadeddata', r, { once: true })); v.addEventListener('seeked', klar, { once: true }); v.currentTime = v.duration - 0.15; setTimeout(r, 8000); })); await page.waitForTimeout(500);
   await film.screenshot({ path: `${UT}/${namn}-varfor-slutbild.png` }); // TITTA: logotypen ska synas här
   // Logokortet är enfärgat: vitt för mörka logotyper, märkets mörka ton för ljusa. En bildruta ur själva filmen ligger mitt emellan.
   const slutLum = lum(...medel(`${UT}/${namn}-varfor-slutbild.png`));
