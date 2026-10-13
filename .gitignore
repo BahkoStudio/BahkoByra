@@ -41,3 +41,8 @@ CLAUDE.local.md
 # Lokala hemligheter (API-nycklar). Aldrig i repot, repot är publikt.
 .env.local
 .env.*.local
+
+# GD Måleri veckorapport: hämtad statistik, färdiga rapporter och lokal konfig (property-id)
+tools/gd-rapport/data/
+tools/gd-rapport/ut/
+tools/gd-rapport/konfig.local.json

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>{{titel}}</title>
+<style>
+/* Outfit bäddas in av bygg.mjs (web/app/typsnitt/outfit-normal-variabel.woff2). Faller tillbaka på system-ui. */
+@font-face{font-family:'Outfit';font-style:normal;font-weight:100 900;src:url({{typsnitt_url}}) format('woff2')}
+
+*{margin:0;padding:0;box-sizing:border-box}
+@page{size:A4;margin:0}
+html,body{background:#F4F6F9}
+body{font-family:'Outfit',system-ui,'Segoe UI',Arial,sans-serif;color:#0D1B2A;font-size:9.6pt;line-height:1.45;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+/* Ingen overflow:hidden. Blir innehållet för långt växer sidan till två i stället för att klippas. */
+.sida{width:210mm;min-height:297mm;padding:12mm 14mm 10mm;position:relative;display:flex;flex-direction:column;background:#F4F6F9}
+
+.stampel{position:absolute;top:21mm;right:14mm;transform:rotate(5deg);border:2.5px solid #D42E44;color:#D42E44;
+  font-weight:800;letter-spacing:.22em;font-size:10pt;padding:1.6mm 4mm;border-radius:4px;background:rgba(255,255,255,.85);
+  text-transform:uppercase}
+
+.topp{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid #0D1B2A;padding-bottom:3mm;margin-bottom:5mm}
+.topp .marke{font-size:7.6pt;font-weight:700;letter-spacing:.28em;text-transform:uppercase}
+.topp .nr{font-size:7.6pt;font-weight:700;letter-spacing:.06em;color:#D42E44}
+
+h1{font-size:19pt;font-weight:800;line-height:1.15;letter-spacing:-.01em;margin-bottom:1.5mm}
+h1 em{font-style:normal;color:#D42E44}
+.under{font-size:9.6pt;color:#4A5565;margin-bottom:5.5mm}
+
+.rubrik{font-size:7.2pt;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:#D42E44;
+  border-left:3.5px solid #D42E44;padding-left:7px;margin-bottom:2.4mm}
+
+/* Tre stora block */
+.block3{display:flex;gap:4mm;margin-bottom:5.5mm}
+.kort{flex:1;background:#0D1B2A;color:#FFFFFF;border-radius:8px;padding:4.2mm 5mm 3.8mm;display:flex;flex-direction:column}
+.kort .et{font-size:7.2pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.kort .rad{display:flex;align-items:baseline;gap:3mm;margin-top:1.4mm}
+.kort .n{font-size:26pt;font-weight:800;line-height:1;letter-spacing:-.02em}
+.kort .andring{font-size:8.2pt;font-weight:700;white-space:nowrap}
+.kort .d{font-size:7.9pt;color:rgba(255,255,255,.78);margin-top:2mm;line-height:1.4}
+.upp{color:#5FD38D}.ned{color:#FF8E9A}.noll{color:rgba(255,255,255,.6)}
+table .upp{color:#1E8A4C}table .ned{color:#B82237}table .noll{color:#7A8494}
+
+/* Två kolumner med tabeller */
+.tva{display:flex;gap:6mm;margin-bottom:4.5mm}
+.tva>div{flex:1;min-width:0}
+table{width:100%;border-collapse:collapse}
+th{font-size:6.8pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-align:left;color:#6B7585;
+  padding:0 2mm 1.4mm 0;border-bottom:1.5px solid #0D1B2A}
+td{padding:1.15mm 2mm 1.15mm 0;border-bottom:1px solid #D9DEE6;font-size:8.3pt;line-height:1.3;vertical-align:baseline}
+th.h,td.h{text-align:right;padding-left:3mm;padding-right:0;white-space:nowrap;width:1%}
+th:last-child,td:last-child{padding-right:0}
+td .sti{color:#7A8494;font-size:7pt;margin-left:1.2mm;white-space:nowrap}
+td.k{font-weight:600}
+.tom{color:#7A8494;font-style:normal}
+
+/* Källor */
+.kallor{background:#FFFFFF;border:1px solid #D9DEE6;border-radius:8px;padding:3.2mm 4.5mm;margin-bottom:4.5mm;font-size:8.4pt;line-height:1.5}
+.kallor .chips{display:flex;flex-wrap:wrap;gap:1.6mm 2.2mm;margin-top:1mm}
+.chip{display:inline-block;border:1px solid #D9DEE6;border-radius:100px;padding:.7mm 2.6mm;white-space:nowrap;background:#F4F6F9}
+.chip b{font-weight:700}
+.chip.ai{border-color:#D42E44;background:rgba(212,46,68,.07);color:#B82237}
+.chip.ai small{font-size:6.6pt;font-weight:700;letter-spacing:.1em;margin-left:1mm}
+.kallor .enheter{margin-top:1.8mm;color:#4A5565;font-size:8pt}
+
+/* Textblock */
+.text2{display:flex;gap:4mm;margin-bottom:4mm}
+.textblock{flex:1;background:#FFFFFF;border:1px solid #D9DEE6;border-radius:8px;padding:3.6mm 4.5mm 3.4mm}
+.textblock h3{font-size:9.6pt;font-weight:800;margin-bottom:1.6mm}
+.textblock p,.textblock li{font-size:8.6pt;line-height:1.45;color:#1E2A3A}
+.textblock p{margin-bottom:1.6mm}
+.textblock p:last-child{margin-bottom:0}
+.textblock ul{padding-left:4mm;margin-bottom:1.6mm}
+.textblock ul:last-child{margin-bottom:0}
+.textblock li{margin-bottom:.6mm}
+
+.fot{margin-top:auto;padding-top:3.5mm;border-top:1px solid #D9DEE6;display:flex;justify-content:space-between;
+  font-size:7.4pt;color:#6B7585;letter-spacing:.05em}
+</style>
+</head>
+<body>
+<div class="sida">
+  {{stampel}}
+  <div class="topp">
+    <span class="marke">Bahko Byrå · GD Måleri Sthlm AB</span>
+    <span class="nr">Veckorapport {{vecka_kort}} · {{sondag}}</span>
+  </div>
+
+  <h1>Veckorapport <em>{{vecka_kort}}</em> · GD Måleri Sthlm AB</h1>
+  <p class="under">{{datumintervall}} · gdmaleri.se · jämfört med veckan före ({{datumintervall_fore}})</p>
+
+  <div class="block3">
+    <div class="kort">
+      <div class="et">Besök</div>
+      <div class="rad"><span class="n">{{besok}}</span><span class="andring">{{besok_andring}}</span></div>
+      <div class="d">{{besok_detalj}}</div>
+    </div>
+    <div class="kort">
+      <div class="et">Förfrågningar</div>
+      <div class="rad"><span class="n">{{forfragningar}}</span><span class="andring">{{forfragningar_andring}}</span></div>
+      <div class="d">{{forfragningar_detalj}}</div>
+    </div>
+    <div class="kort">
+      <div class="et">Google-sök</div>
+      <div class="rad"><span class="n">{{klick}}</span><span class="andring">{{klick_andring}}</span></div>
+      <div class="d">{{klick_detalj}}</div>
+    </div>
+  </div>
+
+  <div class="tva">
+    <div>
+      <div class="rubrik">Sidor</div>
+      <table>
+        <tr><th>Sida</th><th class="h">Besök</th><th class="h">Före</th><th class="h">Ändring</th></tr>
+        {{sidor_rader}}
+      </table>
+    </div>
+    <div>
+      <div class="rubrik">Sökord på Google</div>
+      <table>
+        <tr><th>Sökord</th><th class="h">Klick</th><th class="h">Visningar</th><th class="h">Plats</th></tr>
+        {{sokord_rader}}
+      </table>
+    </div>
+  </div>
+
+  <div class="rubrik">Varifrån besöken kom</div>
+  <div class="kallor">
+    <div class="chips">{{kallor_chips}}</div>
+    <div class="enheter">{{enheter}}</div>
+  </div>
+
+  <div class="text2">
+    <div class="textblock">
+      <h3>Vad vi gjorde den här veckan</h3>
+      {{text_gjorde}}
+    </div>
+    <div class="textblock">
+      <h3>Nästa vecka</h3>
+      {{text_nasta}}
+    </div>
+  </div>
+
+  <div class="fot"><span>GD Måleri Sthlm AB · Veckorapport {{vecka_kort}}</span><span>Bahko Byrå · bahkobyra.se · sida {{sida_nr}} av {{sidor_totalt}}</span></div>
+</div>
+</body>
+</html>
