@@ -2,7 +2,8 @@
    GD MÅLERI STHLM AB — det som är gemensamt för alla GD-sidor:
    huvudsidan (page.js), BRF (brf/) och tjänstesidorna invandig-malning/, fasad/,
    tak/ och golv/ (2026-10-08, efter förebilden marlonshantverksgrupp.se som
-   Ghandi skickade: en sida per tjänst, kundtyp i formuläret, svarstid).
+   Ghandi skickade: en sida per tjänst, kundtyp i formuläret, svarstid) samt
+   tapetsering/, snickerier-fonster-malning/, fasadtvatt/ och taktvatt/ (2026-10-13).
    Källorna för allt nedan står i huvudsidans VERIFIERAT-block.
    =========================================================================== */
 
@@ -81,10 +82,16 @@ export const formNot = 'Vi återkommer inom 24 timmar. Fyller du i e-post får d
 export const epostNamn = 'email';
 
 // Tjänstesidorna. Footerns Tjänster-kolumn länkar hit på alla GD-sidor.
+// 2026-10-13 (Mathias: "varje tjänst ska ha en undersida"): fyra nya sidor, tapetsering/,
+// snickerier-fonster-malning/, fasadtvatt/ och taktvatt/. Samma ordning som startsidans åtta kort.
 export const SIDOR = [
-  { href: '/gdmaleri/invandig-malning/', txt: 'Invändig målning och tapet', kort: 'Invändig målning' },
-  { href: '/gdmaleri/fasad/', txt: 'Fasadtvätt och fasadmålning', kort: 'Fasad' },
-  { href: '/gdmaleri/tak/', txt: 'Taktvätt och takmålning', kort: 'Tak' },
+  { href: '/gdmaleri/invandig-malning/', txt: 'Invändig målning', kort: 'Invändig målning' },
+  { href: '/gdmaleri/tapetsering/', txt: 'Tapetsering och bredspackling', kort: 'Tapetsering' },
+  { href: '/gdmaleri/fasad/', txt: 'Fasadmålning', kort: 'Fasadmålning' },
+  { href: '/gdmaleri/fasadtvatt/', txt: 'Fasadtvätt', kort: 'Fasadtvätt' },
+  { href: '/gdmaleri/tak/', txt: 'Takmålning', kort: 'Takmålning' },
+  { href: '/gdmaleri/taktvatt/', txt: 'Taktvätt', kort: 'Taktvätt' },
+  { href: '/gdmaleri/snickerier-fonster-malning/', txt: 'Fönster och snickerier', kort: 'Fönster och snickerier' },
   { href: '/gdmaleri/golv/', txt: 'Golvläggning och golvslipning', kort: 'Golv' },
   { href: '/gdmaleri/brf/', txt: 'Målning för BRF', kort: 'För BRF' },
 ];
@@ -112,7 +119,11 @@ export const footerLankar = [
 ];
 
 // Mobilmenyn får tjänstesidorna utom den man står på och de som redan finns i pillret.
-export const menyExtra = (...utom) => SIDOR.filter((l) => !utom.includes(l.href)).map(({ href, kort }) => ({ href, txt: kort }));
+// Fasadtvätt och taktvätt står inte i mobilmenyn (med alla nio blev panelen 35 px högre än
+// skärmen på 390×844, mätt 2026-10-13); de nås från fasad- och taksidorna, korten på startsidan
+// och footerns Tjänster-kolumn på alla sidor.
+const EJ_I_MENYN = ['/gdmaleri/fasadtvatt/', '/gdmaleri/taktvatt/'];
+export const menyExtra = (...utom) => SIDOR.filter((l) => !utom.includes(l.href) && !EJ_I_MENYN.includes(l.href)).map(({ href, kort }) => ({ href, txt: kort }));
 
 // Tjänstesidornas pillermeny: två plus två, som BRF-sidan.
 export const navUndersida = {

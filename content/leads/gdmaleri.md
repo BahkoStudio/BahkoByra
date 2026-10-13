@@ -338,3 +338,23 @@ Mathias: lägg till GD:s Google-omdömen "så som vi gjorde för Bromma". Underl
 - **Mallen:** `betyg` med `href`/`antal` (bricka som länk, formaterat tal), två brickor sida vid sida (`.brickor`), `googleLista` (Google-raden före Reco-widgeten, `.recensionerFore`), knappen ur `betyg.href`. Utan de nya fälten renderas allt som förut: swedcro pixeljämförd (se nedan). Inget AggregateRating/Review-schema.
 - **Inte verifierat:** stjärnor per Google-omdöme, datum (Google visar bara "x mån"), g.page-länken för "Lämna ett omdöme".
 
+
+## Fyra nya tjänstesidor (2026-10-13)
+
+Mathias: "varje tjänst ska ha en undersida/landningssida". Byggda på samma mall och nivå som golv/ och fasad/ (gren `demo/gdmaleri-tjanstesidor`, inte pushad). Startsidan har nu **åtta kort** (Invändig målning · Tapetsering och bredspackling · Fasadmålning · Fasadtvätt · Takmålning · Taktvätt · Fönster och snickerier · Golv), ett per sida, rutnätet 4 → 2 → 1. `SIDOR` i `_gd.js` har nio rader (footerns Tjänster-kolumn på alla sidor); mobilmenyn visar sju av dem (fasadtvätt och taktvätt är utelämnade, annars 35 px för hög på 390×844).
+
+| Sida | Slug på gdmaleri.se | Kort | Foton | Omdömen |
+|---|---|---|---|---|
+| `tapetsering/` | `/tapetsering/` (gammal WP-slug, 301:an bort; `/bredspackling-tapetborttagning/` 301:as hit) | Tapetsering · Bredspackling · Tapetborttagning (3 kolumner) | tjanst-tapet, jobb-bredspackling, jobb-panelvagg (kort); band inomhus inkl. jobb-spackel-tak, Södertälje | Nils F, Pia T, Anders F (Reco); Viktor E, Matteus E (Google) |
+| `snickerier-fonster-malning/` | `/snickerier-fonster-malning/` (gammal WP-slug, 301:an bort) | Fönster · Karmar och foder · Dörrar · Lister, vindskivor och knutar | jobb-rod-fonster, jobb-fonsterbleck, tjanst-snickerier, jobb-langsida (kort); jobb-fonster-maskerade, Bromma-altan, Täby i banden | Thorellski, Per, Jenny E (Google); Stefan G, Bo M (Reco) |
+| `fasadtvatt/` | `/fasadtvatt/` (ny) | Fasadtvätt för sig · Tvätt inför målning · Fasadmålning efteråt (länk till fasad/) | fasad-fore-efter-kortbild, jobb-terrass, tjanst-fasad (kort); utvalda fasad-fore-efter + jobb-taby-1 | Lovisa B, Susanne J, Bo M (Reco); Marianne L, Per (Google) |
+| `taktvatt/` | `/taktvatt/` (ny) | Taktvätt · Resultatet · Takmålning som tillval (länk till tak/) | jobb-tak-fore, tjanst-tak, tak-vindskiva (kort) | Torbjörn K, Ola A, Inga-Lill M (Reco); Oliwer C, Per (Google) |
+
+**Belagt:** gdmaleri.se:s egna tjänstetexter (WordPress-versionen på v1.gdmaleri.se, hämtade 2026-10-13): tapetsering med "papperstapeter, non-woven och vinyltapeter", tapetborttagning "utan att skada väggen", bredspackling som grundarbete; snickerier/fönster: "skrapas, slipas och grundas", "dörrar, lister, fönsterbågar", inom- och utomhus, färg som skyddar mot fukt och UV. Fasadtvätt och taktvätt som egna tjänster: Ghandi via Mathias 2026-10-08. Orter: bara Bromma, Täby kyrkby, Södertälje, Nacka, Tyresö, Handen, Värmdö. **ROT, Skatteverket live 2026-10-13:** 30 % av arbetskostnaden, högst 50 000 kr per person och år (75 000 med rut), äga bostaden, material och resor ger inget avdrag; småhus: rengöra fasader/tak/takpannor, måla fönster/dörrar/väggar, tapetsera; bostadsrätt: bara inne i lägenheten, insidan av fönster och ytterdörr; BRF/gemensamma ytor: inget. Stämmer med uppdragets text. Internlänkar: tapetsering ↔ invändig målning, snickerier → fasadmålning, fasadtvätt ↔ fasadmålning, taktvätt ↔ takmålning.
+
+**Flaggor:**
+- Ingen bild visar en pågående fasad- eller taktvätt, en tapetborttagning eller ett målat yttertak. Kortet Tapetborttagning visar en färdig vägg; fasadtvätt-sidans före/efter-bild (Bromma) kallas "före och efter jobbet", inte "efter tvätt" (fasad/page.js beskriver samma bild som nymålad).
+- Köksluckor nämns inte (GD:s egen text nämner dem inte). Tvättmetoder, medel, taktyper utöver betongpannor, priser, ledtider och garanti på tvätt står inte på sidorna.
+- "Alger" på taktvätt-sidan är uppdragets ordval; bilderna visar mossa och lav.
+- Fem omdömen per sida (tre Reco + två Google), inga dubbletter; Torbjörn K säger "tak" utan yttertak/innertak.
+- QA mot extern-bygget på 3042: alla fem routes 115 OK, 0 FEL; QA:ns sista koll "/om-oss/ och /swedcro/ svarar 200" faller alltid på extern-bygget (de sidorna finns inte där).
