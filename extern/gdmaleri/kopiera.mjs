@@ -15,7 +15,7 @@ const KALLA = path.join(WEB, 'app/(demo)/gdmaleri');
 const GRUPP = path.join(HAR, 'app/(gd)');
 
 // demo-mapp → sökväg på gdmaleri.se ('' = startsidan)
-export const SLUGS = { '': '', 'fasad': 'fasad-malning', 'tak': 'takmalning', 'invandig-malning': 'malning-invandigt', 'golv': 'golv', 'brf': 'brf' };
+export const SLUGS = { '': '', 'fasad': 'fasad-malning', 'tak': 'takmalning', 'invandig-malning': 'malning-invandigt', 'golv': 'golv', 'brf': 'brf', 'integritet': 'integritet' };
 
 for (const mal of ['app/_mall', 'app/(gd)', 'typsnitt', 'komponenter', 'formular.js', 'public/gdmaleri']) rmSync(path.join(HAR, mal), { recursive: true, force: true });
 

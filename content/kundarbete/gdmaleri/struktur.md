@@ -10,6 +10,7 @@ Ur `extern/gdmaleri/kopiera.mjs` (SLUGS) och `app/sitemap.js`, 2026-10-10.
 | `/malning-invandigt/` | `gdmaleri/invandig-malning/` | Invändig målning och tapet (gammal WP-slug) |
 | `/golv/` | `gdmaleri/golv/` | Golvläggning och golvslipning (ny) |
 | `/brf/` | `gdmaleri/brf/` | Målning för BRF (ny) |
+| `/integritet/` | `gdmaleri/integritet/` | Integritet och cookies (2026-10-13, inte i sitemapen; länkad i footern) |
 
 301 från gamla WordPress-sidor (`extern/gdmaleri/next.config.mjs`):
 - `/vara-tjanster/`, `/offert/`, `/kontakta-oss/`, `/om-oss/`, `/galleri/`, `/utforda-arbeten/` → `/`

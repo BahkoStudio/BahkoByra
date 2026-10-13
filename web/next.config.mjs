@@ -73,6 +73,7 @@ const nextConfig = {
       { source: '/gdmaleri/invandig-malning/:rest*', destination: 'https://gdmaleri.se/malning-invandigt/', statusCode: 301 },
       { source: '/gdmaleri/golv/:rest*', destination: 'https://gdmaleri.se/golv/', statusCode: 301 },
       { source: '/gdmaleri/brf/:rest*', destination: 'https://gdmaleri.se/brf/', statusCode: 301 },
+      { source: '/gdmaleri/integritet/:rest*', destination: 'https://gdmaleri.se/integritet/', statusCode: 301 },
       { source: '/gdmaleri/media/:fil*', destination: 'https://gdmaleri.se/gdmaleri/media/:fil*', statusCode: 301 },
       { source: '/gdmaleri/:path*', destination: 'https://gdmaleri.se/', statusCode: 301 },
       { source: '/pitchdeck.html', destination: '/', permanent: true },

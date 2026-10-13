@@ -103,6 +103,14 @@ export const footerBild = {
   alt: 'Stockholms siluett i skymning: Riddarholmskyrkans spira och Gamla stans fasader med tända fönster, speglade i Riddarfjärden.',
 };
 
+/* Länkar i footerns bottenrad (mallfältet footer.lankar, 2026-10-13): integritetssidan och
+   "Cookieinställningar", som öppnar samtyckesrutan igen (public/gdmaleri/js/analytics.js lyssnar
+   på href="#cookieval"). Krävs när GA4 mäter sajten. */
+export const footerLankar = [
+  { href: '/gdmaleri/integritet/', txt: 'Integritet och cookies' },
+  { href: '#cookieval', txt: 'Cookieinställningar' },
+];
+
 // Mobilmenyn får tjänstesidorna utom den man står på och de som redan finns i pillret.
 export const menyExtra = (...utom) => SIDOR.filter((l) => !utom.includes(l.href)).map(({ href, kort }) => ({ href, txt: kort }));
 

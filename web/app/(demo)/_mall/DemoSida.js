@@ -902,6 +902,8 @@ export default function DemoSida({ data: d }) {
             <span>© {new Date().getFullYear()} {d.namn}{k.orgnr ? ` · ${t.orgnr} ${k.orgnr}` : ''}</span>
             {/* Valfritt d.kund: kundens egen sida, ingen byråtext i bottenraden (GD Måleri 2026-10-09). */}
             {d.kund ? null : <span>{t.byggd} <a href="https://www.bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span>}
+            {/* Valfritt footer.lankar [{ href, txt }]: integritet och cookieinställningar (GD Måleri 2026-10-13). */}
+            {d.footer.lankar ? <span className={s.ftrLankar}>{d.footer.lankar.map((l) => <a href={l.href} key={l.href}>{l.txt}</a>)}</span> : null}
           </div>
         </div>
       </footer>

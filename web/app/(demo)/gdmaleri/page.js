@@ -1,5 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, samarbeten, RECO_WIDGET, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN } from './_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, menyExtra, samarbeten, RECO_WIDGET, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN } from './_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — KUND hos Bahko Byrå sedan 2026-10-08 (byggd som förslag 2026-10-08,
@@ -442,6 +442,7 @@ const data = {
     text: 'Målare i Stockholm för invändig målning, fasadtvätt och fasadmålning, taktvätt och takmålning, tapetsering, snickerier och golv. Kostnadsfri offert och slutbesiktning innan fakturan.',
     tjanster: footerTjanster,
     bild: footerBild, // Stockholms siluett i skymning, se _gd.js
+    lankar: footerLankar, // Integritet och Cookieinställningar, se _gd.js
   },
 
   // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.
