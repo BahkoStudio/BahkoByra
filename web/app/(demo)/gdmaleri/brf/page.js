@@ -264,7 +264,7 @@ const data = {
       { namn: 'Anders F', kalla: 'Verifierad kund · Reco', text: 'Vi anlitade GD Måleri Sthlm AB för att måla om hall, trapphus och vardagsrum, och är mycket nöjda med resultatet. Arbetet håller riktigt hög kvalitet, utfördes med stor erfarenhet och noggrannhet, och levererades helt enligt överenskommen tidsplan. …' },
       { namn: 'Pia T', kalla: 'Verifierad kund · Reco', text: 'Väggarna i min lägenhet blev fint målade precis med den färg som jag önskade. Likaså gick det snabbt! Bra kommunikation o bästa samarbete. Tack - jag är så nöjd!' },
     ],
-    not: 'Från privatkunder på Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09; två av dem kortade där det står …',
+    not: 'Från privatkunder på Google (4,8 av 5, 19 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09, antalet 2026-10-13; två av dem kortade där det står …',
     lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' },
     // Levande omdömen (mallens levande.js). Utan nycklar i miljön visas listan ovan oförändrad.
     // Google: GOOGLE_PLACES_KEY i Vercel. placeId saknas än: Text Search på namnet, och cid

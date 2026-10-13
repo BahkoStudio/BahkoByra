@@ -119,7 +119,7 @@ const data = {
       GOOGLE_OMDOMEN.matteus,
       GOOGLE_OMDOMEN.maja,
     ],
-    not: 'Från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09; tre av dem kortade där det står …',
+    not: 'Från Google (4,8 av 5, 19 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09, antalet 2026-10-13; tre av dem kortade där det står …',
     lank: RECO,
   },
 

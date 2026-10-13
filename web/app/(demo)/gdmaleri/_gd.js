@@ -225,7 +225,8 @@ export const RECO = { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs al
    Trädgårdsservice: betygsbricka med Googles G, kort med G-märke, länk till profilen.
    Inget AggregateRating/Review-schema (svartlistan). */
 export const GOOGLE_LANK = 'https://maps.google.com/?cid=13566570836618556636';
-export const GOOGLE_BETYG = { varde: 4.8, antal: 18, text: '18 recensioner på Google', href: GOOGLE_LANK };
+// 2026-10-13: 19 recensioner enligt Företagsprofilen (Mathias skärmdump som Manager), fortfarande 4,8. Det nittonde omdömets text har vi inte.
+export const GOOGLE_BETYG = { varde: 4.8, antal: 19, text: '19 recensioner på Google', href: GOOGLE_LANK };
 const G = (namn, text) => ({ namn, kalla: 'Recension på Google', google: true, stjarnor: false, text });
 export const GOOGLE_OMDOMEN = {
   viktor: G('Viktor E', 'På en och halv vecka omvandlade de 3 rum med gamla tapeter och ojämnt tak till helt släta ytor med fint målad färg. Allt detta till ett överkomligt pris och god kommunikation. Om du söker proffsig målning till bra precis, tveka inte att anlita GD måleri!'),

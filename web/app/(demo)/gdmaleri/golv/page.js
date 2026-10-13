@@ -121,7 +121,7 @@ const data = {
       { namn: 'Anneli N', kalla: 'Verifierad kund · Reco', text: 'Anlitade GD Måleri och fick ett otroligt bra bemötande från start till avslut- Uppdraget var att måla vår lägenhet på 80 kvm plus slipning av vardagsrumsgolv. Vi är otroligt nöjda med resultatet som blev fantastisk ,och skulle definitivt rekommendera dem till alla som behöver måleriarbete. Tack för ett strålande jobb!' },
       GOOGLE_OMDOMEN.patrik,
     ],
-    not: 'Från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09; ett av dem kortat där det står …',
+    not: 'Från Google (4,8 av 5, 19 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09, antalet 2026-10-13; ett av dem kortat där det står …',
     lank: RECO,
   },
 

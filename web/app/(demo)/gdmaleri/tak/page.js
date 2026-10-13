@@ -118,7 +118,7 @@ const data = {
       GOOGLE_OMDOMEN.per,
       GOOGLE_OMDOMEN.oliwer,
     ],
-    not: 'Från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09.',
+    not: 'Från Google (4,8 av 5, 19 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09, antalet 2026-10-13.',
     lank: RECO,
   },
 
