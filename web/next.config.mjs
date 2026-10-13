@@ -74,6 +74,11 @@ const nextConfig = {
       { source: '/gdmaleri/golv/:rest*', destination: 'https://gdmaleri.se/golv/', statusCode: 301 },
       { source: '/gdmaleri/brf/:rest*', destination: 'https://gdmaleri.se/brf/', statusCode: 301 },
       { source: '/gdmaleri/integritet/:rest*', destination: 'https://gdmaleri.se/integritet/', statusCode: 301 },
+      // Fyra nya tjänstesidor 2026-10-13 (samma slugs som demo-mapparna).
+      { source: '/gdmaleri/tapetsering/:rest*', destination: 'https://gdmaleri.se/tapetsering/', statusCode: 301 },
+      { source: '/gdmaleri/snickerier-fonster-malning/:rest*', destination: 'https://gdmaleri.se/snickerier-fonster-malning/', statusCode: 301 },
+      { source: '/gdmaleri/fasadtvatt/:rest*', destination: 'https://gdmaleri.se/fasadtvatt/', statusCode: 301 },
+      { source: '/gdmaleri/taktvatt/:rest*', destination: 'https://gdmaleri.se/taktvatt/', statusCode: 301 },
       { source: '/gdmaleri/media/:fil*', destination: 'https://gdmaleri.se/gdmaleri/media/:fil*', statusCode: 301 },
       { source: '/gdmaleri/:path*', destination: 'https://gdmaleri.se/', statusCode: 301 },
       { source: '/pitchdeck.html', destination: '/', permanent: true },
