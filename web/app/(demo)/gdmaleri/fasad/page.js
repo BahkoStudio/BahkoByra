@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida FASAD (/gdmaleri/fasad/), 2026-10-08.
@@ -134,7 +134,7 @@ const data = {
       GOOGLE_OMDOMEN.marianne,
       GOOGLE_OMDOMEN.thorellski,
     ],
-    not: 'Från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09.',
+    not: 'Från Google (4,8 av 5, 19 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09, antalet 2026-10-13.',
     lank: RECO,
   },
 
@@ -181,6 +181,7 @@ const data = {
     text: 'Fasadtvätt och fasadmålning i Stockholm: trä, puts, tegel och plåt, med fönster, vindskivor och takfot. Kostnadsfri offert och slutbesiktning innan fakturan.',
     tjanster: footerTjanster,
     bild: footerBild, // Stockholms siluett i skymning, se _gd.js
+    lankar: footerLankar, // Integritet och Cookieinställningar, se _gd.js
   },
 
   // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.

@@ -1,5 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, samarbeten, RECO_WIDGET, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN } from './_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, menyExtra, samarbeten, RECO_WIDGET, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN } from './_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — KUND hos Bahko Byrå sedan 2026-10-08 (byggd som förslag 2026-10-08,
@@ -220,8 +220,8 @@ const schema = {
   identifier: { '@type': 'PropertyValue', name: 'Organisationsnummer', value: '559468-2444' },
   vatID: 'SE559468244401',
   address: { '@type': 'PostalAddress', addressLocality: 'Södertälje', addressRegion: 'Stockholms län', addressCountry: 'SE' },
-  // Hela Stockholm och vardagar 08–17: bekräftat av Ghandi (via Mathias 2026-10-08).
-  openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '17:00' },
+  // Hela Stockholm bekräftat 2026-10-08; alla dagar 08–17: Ghandi via Mathias 2026-10-13 (var vardagar).
+  openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], opens: '08:00', closes: '17:00' },
   areaServed: [
     { '@type': 'City', name: 'Stockholm' },
     { '@type': 'AdministrativeArea', name: 'Stockholms län' },
@@ -257,7 +257,7 @@ const data = {
     igHandle: '@gdmaleristhlm',
     fb: 'https://www.facebook.com/people/GD-M%C3%A5leri-Sthlm-AB/61557609848512/',
     orgnr: '559468-2444',
-    oppet: 'Vardagar 08–17',
+    oppet: 'Alla dagar 08–17',
   },
   cta: { txt: 'Begär kostnadsfri offert', kort: 'Begär offert', lank: 'Begär offert' },
   formular,
@@ -442,6 +442,7 @@ const data = {
     text: 'Målare i Stockholm för invändig målning, fasadtvätt och fasadmålning, taktvätt och takmålning, tapetsering, snickerier och golv. Kostnadsfri offert och slutbesiktning innan fakturan.',
     tjanster: footerTjanster,
     bild: footerBild, // Stockholms siluett i skymning, se _gd.js
+    lankar: footerLankar, // Integritet och Cookieinställningar, se _gd.js
   },
 
   // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.

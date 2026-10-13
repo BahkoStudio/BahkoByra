@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida GOLV (/gdmaleri/golv/), 2026-10-08.
@@ -121,7 +121,7 @@ const data = {
       { namn: 'Anneli N', kalla: 'Verifierad kund · Reco', text: 'Anlitade GD Måleri och fick ett otroligt bra bemötande från start till avslut- Uppdraget var att måla vår lägenhet på 80 kvm plus slipning av vardagsrumsgolv. Vi är otroligt nöjda med resultatet som blev fantastisk ,och skulle definitivt rekommendera dem till alla som behöver måleriarbete. Tack för ett strålande jobb!' },
       GOOGLE_OMDOMEN.patrik,
     ],
-    not: 'Från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09; ett av dem kortat där det står …',
+    not: 'Från Google (4,8 av 5, 19 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09, antalet 2026-10-13; ett av dem kortat där det står …',
     lank: RECO,
   },
 
@@ -168,6 +168,7 @@ const data = {
     text: 'Golvläggning, golvslipning och golvmålning i Stockholm, gärna i samma jobb som väggar och tak. Kostnadsfri offert och slutbesiktning innan fakturan.',
     tjanster: footerTjanster,
     bild: footerBild, // Stockholms siluett i skymning, se _gd.js
+    lankar: footerLankar, // Integritet och Cookieinställningar, se _gd.js
   },
 
   // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.

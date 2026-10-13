@@ -28,8 +28,8 @@ export const kontakt = {
   igHandle: '@gdmaleristhlm',
   fb: 'https://www.facebook.com/people/GD-M%C3%A5leri-Sthlm-AB/61557609848512/',
   orgnr: '559468-2444',
-  // Vardagar 08–17: bekräftat av Ghandi (via Mathias 2026-10-08).
-  oppet: 'Vardagar 08–17',
+  // Alla dagar 08–17: Ghandi via Mathias 2026-10-13 (ersätter "vardagar" från 2026-10-08).
+  oppet: 'Alla dagar 08–17',
 };
 
 /* Bokning i Cal.com (Mathias 2026-10-08, länkarna svarar 200). Ingen klient-JS och
@@ -43,14 +43,14 @@ export const kontakt = {
 export const bokning = {
   url: 'https://cal.com/gdmaleri/offert',
   txt: 'Boka offertbesök',
-  not: 'Kostnadsfri offert vid ett hembesök på 45 minuter, vardagar 08–17.',
+  not: 'Kostnadsfri offert vid ett hembesök på 45 minuter, alla dagar 08–17.',
   ringUrl: 'https://cal.com/gdmaleri/ring-mig',
   ringTxt: 'Boka att GD Måleri Sthlm AB ringer upp',
   kortTxt: 'Eller boka offertbesök',
   inbaddad: {
     eyebrow: 'Boka online',
     rubrik: ['Boka offertbesök', 'direkt'],
-    lead: 'Välj en tid som passar – vi kommer hem till dig. Vardagar 08–17.',
+    lead: 'Välj en tid som passar – vi kommer hem till dig. Alla dagar 08–17.',
     titel: 'Boka kostnadsfritt offertbesök med GD Måleri (Cal.com)',
   },
 };
@@ -102,6 +102,14 @@ export const footerBild = {
   srcMobil: `${M}/footer-stockholm-mobil.webp`,
   alt: 'Stockholms siluett i skymning: Riddarholmskyrkans spira och Gamla stans fasader med tända fönster, speglade i Riddarfjärden.',
 };
+
+/* Länkar i footerns bottenrad (mallfältet footer.lankar, 2026-10-13): integritetssidan och
+   "Cookieinställningar", som öppnar samtyckesrutan igen (public/gdmaleri/js/analytics.js lyssnar
+   på href="#cookieval"). Krävs när GA4 mäter sajten. */
+export const footerLankar = [
+  { href: '/gdmaleri/integritet/', txt: 'Integritet och cookies' },
+  { href: '#cookieval', txt: 'Cookieinställningar' },
+];
 
 // Mobilmenyn får tjänstesidorna utom den man står på och de som redan finns i pillret.
 export const menyExtra = (...utom) => SIDOR.filter((l) => !utom.includes(l.href)).map(({ href, kort }) => ({ href, txt: kort }));
@@ -217,7 +225,8 @@ export const RECO = { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs al
    Trädgårdsservice: betygsbricka med Googles G, kort med G-märke, länk till profilen.
    Inget AggregateRating/Review-schema (svartlistan). */
 export const GOOGLE_LANK = 'https://maps.google.com/?cid=13566570836618556636';
-export const GOOGLE_BETYG = { varde: 4.8, antal: 18, text: '18 recensioner på Google', href: GOOGLE_LANK };
+// 2026-10-13: 19 recensioner enligt Företagsprofilen (Mathias skärmdump som Manager), fortfarande 4,8. Det nittonde omdömets text har vi inte.
+export const GOOGLE_BETYG = { varde: 4.8, antal: 19, text: '19 recensioner på Google', href: GOOGLE_LANK };
 const G = (namn, text) => ({ namn, kalla: 'Recension på Google', google: true, stjarnor: false, text });
 export const GOOGLE_OMDOMEN = {
   viktor: G('Viktor E', 'På en och halv vecka omvandlade de 3 rum med gamla tapeter och ojämnt tak till helt släta ytor med fint målad färg. Allt detta till ett överkomligt pris och god kommunikation. Om du söker proffsig målning till bra precis, tveka inte att anlita GD måleri!'),

@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, samarbeten, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, menyExtra, samarbeten, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — undersida för bostadsrättsföreningar (/gdmaleri/brf/)
@@ -188,7 +188,7 @@ const data = {
     igHandle: '@gdmaleristhlm',
     fb: 'https://www.facebook.com/people/GD-M%C3%A5leri-Sthlm-AB/61557609848512/',
     orgnr: '559468-2444',
-    oppet: 'Vardagar 08–17',
+    oppet: 'Alla dagar 08–17',
   },
   cta: { txt: 'Begär kostnadsfri offert', kort: 'Begär offert', lank: 'Begär offert' },
   formular,
@@ -264,7 +264,7 @@ const data = {
       { namn: 'Anders F', kalla: 'Verifierad kund · Reco', text: 'Vi anlitade GD Måleri Sthlm AB för att måla om hall, trapphus och vardagsrum, och är mycket nöjda med resultatet. Arbetet håller riktigt hög kvalitet, utfördes med stor erfarenhet och noggrannhet, och levererades helt enligt överenskommen tidsplan. …' },
       { namn: 'Pia T', kalla: 'Verifierad kund · Reco', text: 'Väggarna i min lägenhet blev fint målade precis med den färg som jag önskade. Likaså gick det snabbt! Bra kommunikation o bästa samarbete. Tack - jag är så nöjd!' },
     ],
-    not: 'Från privatkunder på Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09; två av dem kortade där det står …',
+    not: 'Från privatkunder på Google (4,8 av 5, 19 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09, antalet 2026-10-13; två av dem kortade där det står …',
     lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' },
     // Levande omdömen (mallens levande.js). Utan nycklar i miljön visas listan ovan oförändrad.
     // Google: GOOGLE_PLACES_KEY i Vercel. placeId saknas än: Text Search på namnet, och cid
@@ -322,6 +322,7 @@ const data = {
     text: 'Målare för bostadsrättsföreningar i Stockholm: trapphus, fasader, fönster och dörrar. Kostnadsfri offert och faktura när jobbet är klart.',
     tjanster: footerTjanster,
     bild: footerBild, // Stockholms siluett i skymning, se _gd.js
+    lankar: footerLankar, // Integritet och Cookieinställningar, se _gd.js
   },
 
   // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.

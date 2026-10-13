@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida INVÄNDIG MÅLNING (/gdmaleri/invandig-malning/), 2026-10-08.
@@ -119,7 +119,7 @@ const data = {
       GOOGLE_OMDOMEN.matteus,
       GOOGLE_OMDOMEN.maja,
     ],
-    not: 'Från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09; tre av dem kortade där det står …',
+    not: 'Från Google (4,8 av 5, 19 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09, antalet 2026-10-13; tre av dem kortade där det står …',
     lank: RECO,
   },
 
@@ -166,6 +166,7 @@ const data = {
     text: 'Invändig målning i Stockholm: väggar, innertak, tapetsering, bredspackling, dörrar och snickerier. Kostnadsfri offert och slutbesiktning innan fakturan.',
     tjanster: footerTjanster,
     bild: footerBild, // Stockholms siluett i skymning, se _gd.js
+    lankar: footerLankar, // Integritet och Cookieinställningar, se _gd.js
   },
 
   // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.
