@@ -28,8 +28,8 @@ export const kontakt = {
   igHandle: '@gdmaleristhlm',
   fb: 'https://www.facebook.com/people/GD-M%C3%A5leri-Sthlm-AB/61557609848512/',
   orgnr: '559468-2444',
-  // Vardagar 08–17: bekräftat av Ghandi (via Mathias 2026-10-08).
-  oppet: 'Vardagar 08–17',
+  // Alla dagar 08–17: Ghandi via Mathias 2026-10-13 (ersätter "vardagar" från 2026-10-08).
+  oppet: 'Alla dagar 08–17',
 };
 
 /* Bokning i Cal.com (Mathias 2026-10-08, länkarna svarar 200). Ingen klient-JS och
@@ -43,14 +43,14 @@ export const kontakt = {
 export const bokning = {
   url: 'https://cal.com/gdmaleri/offert',
   txt: 'Boka offertbesök',
-  not: 'Kostnadsfri offert vid ett hembesök på 45 minuter, vardagar 08–17.',
+  not: 'Kostnadsfri offert vid ett hembesök på 45 minuter, alla dagar 08–17.',
   ringUrl: 'https://cal.com/gdmaleri/ring-mig',
   ringTxt: 'Boka att GD Måleri Sthlm AB ringer upp',
   kortTxt: 'Eller boka offertbesök',
   inbaddad: {
     eyebrow: 'Boka online',
     rubrik: ['Boka offertbesök', 'direkt'],
-    lead: 'Välj en tid som passar – vi kommer hem till dig. Vardagar 08–17.',
+    lead: 'Välj en tid som passar – vi kommer hem till dig. Alla dagar 08–17.',
     titel: 'Boka kostnadsfritt offertbesök med GD Måleri (Cal.com)',
   },
 };

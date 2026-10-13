@@ -220,8 +220,8 @@ const schema = {
   identifier: { '@type': 'PropertyValue', name: 'Organisationsnummer', value: '559468-2444' },
   vatID: 'SE559468244401',
   address: { '@type': 'PostalAddress', addressLocality: 'Södertälje', addressRegion: 'Stockholms län', addressCountry: 'SE' },
-  // Hela Stockholm och vardagar 08–17: bekräftat av Ghandi (via Mathias 2026-10-08).
-  openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '17:00' },
+  // Hela Stockholm bekräftat 2026-10-08; alla dagar 08–17: Ghandi via Mathias 2026-10-13 (var vardagar).
+  openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], opens: '08:00', closes: '17:00' },
   areaServed: [
     { '@type': 'City', name: 'Stockholm' },
     { '@type': 'AdministrativeArea', name: 'Stockholms län' },
@@ -257,7 +257,7 @@ const data = {
     igHandle: '@gdmaleristhlm',
     fb: 'https://www.facebook.com/people/GD-M%C3%A5leri-Sthlm-AB/61557609848512/',
     orgnr: '559468-2444',
-    oppet: 'Vardagar 08–17',
+    oppet: 'Alla dagar 08–17',
   },
   cta: { txt: 'Begär kostnadsfri offert', kort: 'Begär offert', lank: 'Begär offert' },
   formular,

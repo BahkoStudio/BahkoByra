@@ -188,7 +188,7 @@ const data = {
     igHandle: '@gdmaleristhlm',
     fb: 'https://www.facebook.com/people/GD-M%C3%A5leri-Sthlm-AB/61557609848512/',
     orgnr: '559468-2444',
-    oppet: 'Vardagar 08–17',
+    oppet: 'Alla dagar 08–17',
   },
   cta: { txt: 'Begär kostnadsfri offert', kort: 'Begär offert', lank: 'Begär offert' },
   formular,

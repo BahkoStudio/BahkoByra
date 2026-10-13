@@ -5,7 +5,7 @@ Skrivet 2026-10-13 för Cowork (webbläsaragenten) med Mathias bredvid. Google-k
 "GD Måleri Sthlm AB" (Painter, 4,8 av 5, 19 omdömen, cid 13566570836618556636).
 
 Läget när detta skrevs: profilen har rätt namn, kategori, telefon och webbplats, men öppettiderna
-står som alla sju dagar 08–17 (ska vara mån–fre), området är bara "Stockholm", profilstyrkan är
+står som alla sju dagar 08–17 (RÄTT, Ghandi 2026-10-13), området är bara "Stockholm", profilstyrkan är
 inte full, inga tjänster, ingen bokningslänk, ingen beskrivning.
 
 Regler för Cowork:
@@ -21,11 +21,7 @@ Regler för Cowork:
 Öppna google.com, sök "GD Måleri Sthlm AB", panelen "Your business on Google" visas. Alternativt business.google.com → välj profilen.
 
 ### 1.1 Öppettider (Edit profile → Hours)
-Byt till:
-- Måndag–fredag: 08:00–17:00
-- Lördag, söndag: Stängd
-
-Spara. Kontroll: panelen ska visa "Open · Closes 5 pm" på en vardag före 17.
+Kontrollera bara att alla sju dagar står som 08:00–17:00 (Ghandi 2026-10-13: öppet alla dagar). Ändra inget.
 
 ### 1.2 Tjänsteområde (Edit profile → Service area)
 Lägg till så att listan blir exakt: **Stockholm, Södertälje, Bromma, Täby**. Inga fler orter. Ingen gatuadress ska visas (profilen ska vara en "service area business").
@@ -40,7 +36,7 @@ Så kan GA4 skilja klick från profilen från vanliga Google-sökningar.
 ### 1.4 Beskrivning (Edit profile → About → Description)
 Klistra in ordagrant (under 750 tecken):
 ```
-GD Måleri Sthlm AB är en målerifirma i Stockholm och Södertälje. Vi gör invändig målning, tapetsering och bredspackling, fasadtvätt och fasadmålning, taktvätt och takmålning, golvläggning och golvslipning, och tar uppdrag åt bostadsrättsföreningar. Rekommenderat företag på Reco 2024, 2025 och 2026 med 4,9 av 5. Kostnadsfri offert där material, förarbete, städning och bortforsling ingår. Inget extraarbete utan ditt godkännande, faktura när arbetet är klart, ROT dras direkt på fakturan. F-skatt, försäkrade via Trygg-Hansa och ett års garanti på måleriarbetet. Vardagar 08–17.
+GD Måleri Sthlm AB är en målerifirma i Stockholm och Södertälje. Vi gör invändig målning, tapetsering och bredspackling, fasadtvätt och fasadmålning, taktvätt och takmålning, golvläggning och golvslipning, och tar uppdrag åt bostadsrättsföreningar. Rekommenderat företag på Reco 2024, 2025 och 2026 med 4,9 av 5. Kostnadsfri offert där material, förarbete, städning och bortforsling ingår. Inget extraarbete utan ditt godkännande, faktura när arbetet är klart, ROT dras direkt på fakturan. F-skatt, försäkrade via Trygg-Hansa och ett års garanti på måleriarbetet. Öppet alla dagar 08–17.
 ```
 
 ### 1.5 Kategorier (Edit profile → Business category)
