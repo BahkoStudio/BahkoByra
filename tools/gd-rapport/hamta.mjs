@@ -318,15 +318,18 @@ async function hamtaScVecka(token, v) {
     position: 0,
   };
   const sokord =
-    (await postJson(url, { ...bas, dimensions: ['query'], rowLimit: 10 }, token, 'Search Console sökord ' + v.id)).rows || [];
+    (await postJson(url, { ...bas, dimensions: ['query'], rowLimit: 250 }, token, 'Search Console sökord ' + v.id)).rows || [];
   const sidor =
-    (await postJson(url, { ...bas, dimensions: ['page'], rowLimit: 10 }, token, 'Search Console sidor ' + v.id)).rows || [];
+    (await postJson(url, { ...bas, dimensions: ['page'], rowLimit: 250 }, token, 'Search Console sidor ' + v.id)).rows || [];
+  // Topp 10 efter klick, sedan visningar: med få klick avgör visningarna vad som syns (API:t sorterar
+  // bara på klick, och lika många klick kom i bokstavsordning, 2026-10-13).
+  const topp = (rader) => [...rader].sort((x, y) => y.clicks - x.clicks || y.impressions - x.impressions).slice(0, 10);
 
   const rad = (r) => ({ klick: r.clicks, visningar: r.impressions, ctr: r.ctr, position: r.position });
   return {
     ...rad(tot),
-    sokord: sokord.map((r) => ({ sokord: r.keys[0], ...rad(r) })),
-    sidor: sidor.map((r) => ({ sida: r.keys[0].replace(/^https?:\/\/[^/]+/, '') || '/', ...rad(r) })),
+    sokord: topp(sokord).map((r) => ({ sokord: r.keys[0], ...rad(r) })),
+    sidor: topp(sidor).map((r) => ({ sida: r.keys[0].replace(/^https?:\/\/[^/]+/, '') || '/', ...rad(r) })),
   };
 }
 
