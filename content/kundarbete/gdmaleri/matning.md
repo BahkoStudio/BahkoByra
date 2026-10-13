@@ -21,6 +21,9 @@ från GA4. GA4 visar beteendet: vilka sidor, varifrån, hur många klick på num
 
 ## Cowork: gör en gång (ca 30 minuter)
 
+Google-kontot är **bahkostudio@gmail.com** i alla steg (Mathias 2026-10-13). Den fullständiga Cowork-texten,
+inklusive Företagsprofilen steg för steg, finns i `cowork-optimering.md`.
+
 ### 1. Google Analytics 4 (Mathias konto, Ghandi får läsrätt)
 1. analytics.google.com → Admin (kugghjulet) → **Create property**. Namn `GD Måleri Sthlm AB`, tidszon Sverige, valuta SEK. Bransch "Home & garden", storlek liten.
 2. **Create web data stream**: URL `https://gdmaleri.se`, namn `gdmaleri.se`. Enhanced measurement på (standard).
