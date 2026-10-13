@@ -1,49 +1,36 @@
-# GD Måleri — Cowork-instruktioner: Företagsprofil, GA4, Search Console, Bing
+# Cowork-uppdrag: GD Måleri Sthlm AB på Google (klistra in allt nedan i Cowork)
 
-Skrivet 2026-10-13 för Cowork (webbläsaragenten) med Mathias bredvid. Google-kontot är
-**bahkostudio@gmail.com** i alla steg nedan. Mathias är redan Manager på Företagsprofilen
-"GD Måleri Sthlm AB" (Painter, 4,8 av 5, 19 omdömen, cid 13566570836618556636).
+Du arbetar i webbläsaren åt Bahko Byrå, inloggad på Google med **bahkostudio@gmail.com**. Mathias sitter bredvid och kan svara på frågor. Kunden är målerifirman **GD Måleri Sthlm AB** (gdmaleri.se, telefon 073-729 88 89, e-post info@gdmaleri.se, org.nr 559468-2444). Mathias är redan Manager på företagets Google Företagsprofil.
 
-Läget när detta skrevs: profilen har rätt namn, kategori, telefon och webbplats, men öppettiderna
-står som alla sju dagar 08–17 (RÄTT, Ghandi 2026-10-13), området är bara "Stockholm", profilstyrkan är
-inte full, inga tjänster, ingen bokningslänk, ingen beskrivning.
-
-Regler för Cowork:
-- Gör bara det som står här. Skapa ALDRIG en ny profil, ändra aldrig företagsnamnet, ta aldrig bort något.
-- Hoppa över allt Google föreslår som inte står här (Annonser, "Add chat", "Finish your ad", AI Tools/GMBEverywhere som är ett tillägg utanför Google).
-- Skriv inget om GD som inte står i det här dokumentet. Hitta inte på tjänster, orter, priser eller år.
-- Fastnar något (verifiering, kod via sms till Ghandi, saknad behörighet): stanna och säg till Mathias.
+Fyra regler:
+1. Gör bara det som står här, i den här ordningen. Skapa aldrig en ny Företagsprofil, byt aldrig företagsnamn, ta aldrig bort något.
+2. Klistra in texter ordagrant. Hitta inte på tjänster, orter, priser, år eller siffror. Står det inte här, fråga Mathias.
+3. Hoppa över allt Google föreslår som inte står här: annonser, "Finish your ad", "Add chat", "AI Tools" (tillägget GMBEverywhere är inte Google).
+4. Fastnar du (verifiering, sms-kod, saknad behörighet, fråga om betalning): stanna och säg till Mathias. Skriv efter varje del "Del N klar" eller "Del N stannade vid steg X: varför".
 
 ---
 
-## Del 1. Google Företagsprofil (business.google.com, bahkostudio@gmail.com)
+## Del 1: Google Företagsprofil
 
-Öppna google.com, sök "GD Måleri Sthlm AB", panelen "Your business on Google" visas. Alternativt business.google.com → välj profilen.
+Gå till https://business.google.com och välj profilen "GD Måleri Sthlm AB" (går också att nå genom att söka företagsnamnet på google.com; panelen "Your business on Google" visas).
 
-### 1.1 Öppettider (Edit profile → Hours)
-Kontrollera bara att alla sju dagar står som 08:00–17:00 (Ghandi 2026-10-13: öppet alla dagar). Ändra inget.
+**1.1 Öppettider.** Öppna Edit profile → Hours. Alla sju dagar ska stå 08:00–17:00. Stämmer det: ändra inget. Annars: sätt varje dag till 08:00–17:00.
 
-### 1.2 Tjänsteområde (Edit profile → Service area)
-Lägg till så att listan blir exakt: **Stockholm, Södertälje, Bromma, Täby**. Inga fler orter. Ingen gatuadress ska visas (profilen ska vara en "service area business").
+**1.2 Tjänsteområde.** Edit profile → Service area. Listan ska bli exakt dessa fyra: Stockholm, Södertälje, Bromma, Täby. Lägg till det som saknas, lägg inte till fler. Ingen gatuadress ska vara synlig i profilen.
 
-### 1.3 Webbplats (Edit profile → Contact → Website)
-Byt till:
+**1.3 Webbplats.** Edit profile → Contact → Website. Byt till exakt:
 ```
 https://gdmaleri.se/?utm_source=google&utm_medium=organic&utm_campaign=gbp
 ```
-Så kan GA4 skilja klick från profilen från vanliga Google-sökningar.
 
-### 1.4 Beskrivning (Edit profile → About → Description)
-Klistra in ordagrant (under 750 tecken):
+**1.4 Beskrivning.** Edit profile → About → Description. Klistra in exakt:
 ```
 GD Måleri Sthlm AB är en målerifirma i Stockholm och Södertälje. Vi gör invändig målning, tapetsering och bredspackling, fasadtvätt och fasadmålning, taktvätt och takmålning, golvläggning och golvslipning, och tar uppdrag åt bostadsrättsföreningar. Rekommenderat företag på Reco 2024, 2025 och 2026 med 4,9 av 5. Kostnadsfri offert där material, förarbete, städning och bortforsling ingår. Inget extraarbete utan ditt godkännande, faktura när arbetet är klart, ROT dras direkt på fakturan. F-skatt, försäkrade via Trygg-Hansa och ett års garanti på måleriarbetet. Öppet alla dagar 08–17.
 ```
 
-### 1.5 Kategorier (Edit profile → Business category)
-Primär: **Målare** (Painter), ska redan vara satt, rör inte. Lägg till högst två underkategorier om de finns i Googles lista med dessa betydelser: "Golvläggare/Golvslipning" och "Takläggare" är FEL (annan bransch), välj inte dem. Finns "Fasadrenovering" eller "Tapetserare (väggar)" får de läggas till, annars inga underkategorier. Vid tvekan: ingen.
+**1.5 Kategori.** Edit profile → Business category. Primär kategori ska vara "Målare" (Painter). Är den det: rör inget. Lägg inte till några underkategorier.
 
-### 1.6 Tjänster (Edit services)
-Under kategorin Målare, lägg till varje tjänst med beskrivningen (max en mening), inget pris:
+**1.6 Tjänster.** Edit services. Lägg till tio tjänster under Målare, utan pris, med exakt dessa namn och beskrivningar:
 
 | Tjänst | Beskrivning |
 |---|---|
@@ -58,77 +45,124 @@ Under kategorin Målare, lägg till varje tjänst med beskrivningen (max en meni
 | Fönster och snickerier | Målning av fönster, dörrar, karmar och foder. |
 | Målning för bostadsrättsföreningar | Trapphus, entréer, fasader och fönster, med offert där allt ingår. |
 
-### 1.7 Bokningslänk (Bookings)
-Lägg till länken `https://cal.com/gdmaleri/offert` som bokningslänk ("Add a booking link" / "Appointment link").
+**1.7 Bokningslänk.** Bookings (eller "Add a booking link"). Lägg in:
+```
+https://cal.com/gdmaleri/offert
+```
 
-### 1.8 Foton (Photos)
-- Logotyp: `web/public/gdmaleri/media/logo-gdmaleri.png` (Mathias ger filen).
-- Omslagsbild: fasadbilden från Täby kyrkby (jobb-taby-43.webp) eller Bromma-efterbilden.
-- Lägg upp 10–15 riktiga jobbfoton från sajtens mapp `web/public/gdmaleri/media/` (jobb-*.jpg, jobb-*.webp, invandig-sodertalje-*.webp, fasad-fore-efter.webp, tak-*). INTE golv-*.jpg och INTE brf-*.jpg: de är genererade illustrationer.
-- Skriv ort i bildtexten där vi vet den: Täby kyrkby, Bromma, Södertälje.
+**1.8 Foton.** Photos. Ladda ned bilderna från adresserna nedan (högerklicka, spara) och ladda upp dem i profilen. Det är GD:s egna jobbfoton från sajten. Ladda inte upp några andra bilder.
 
-### 1.9 Frågor och svar (Q&A i profilen)
-Lägg in tre frågor med svar, ordagrant:
-1. **Får jag ROT-avdrag?** Ja, om du är privatperson och äger och bor i bostaden. Vi drar av ROT direkt på fakturan. Regler och belopp finns på skatteverket.se.
-2. **Vad ingår i offerten?** Material, arbete, förarbete, täckning, städning och bortforsling. Inget extraarbete utan ditt godkännande, och fakturan kommer när arbetet är klart.
-3. **Var arbetar ni?** I hela Stockholm och Södertälje. I år har vi bland annat målat fasader i Bromma och Täby kyrkby och tak och väggar i Södertälje.
+- Logotyp (som Logo): https://gdmaleri.se/gdmaleri/media/logo-gdmaleri.png
+- Omslag (som Cover): https://gdmaleri.se/gdmaleri/media/jobb-taby-43.webp
+- Jobbfoton (som Photos), med bildtexten i parentes där det står en:
+  - https://gdmaleri.se/gdmaleri/media/jobb-taby-1.webp (Fasadmålning, Täby kyrkby)
+  - https://gdmaleri.se/gdmaleri/media/jobb-taby-2.webp (Fasadmålning, Täby kyrkby)
+  - https://gdmaleri.se/gdmaleri/media/fasad-fore-efter.webp (Fasad före och efter, Bromma)
+  - https://gdmaleri.se/gdmaleri/media/jobb-bromma-altan.webp (Altan, Bromma)
+  - https://gdmaleri.se/gdmaleri/media/invandig-sodertalje-1.webp (Invändig målning, Södertälje)
+  - https://gdmaleri.se/gdmaleri/media/invandig-sodertalje-2.webp (Invändig målning, Södertälje)
+  - https://gdmaleri.se/gdmaleri/media/jobb-rod-timmer.jpg (Timmervägg målad i rött)
+  - https://gdmaleri.se/gdmaleri/media/jobb-rod-fonster.jpg (Fönster målade vita)
+  - https://gdmaleri.se/gdmaleri/media/jobb-langsida.jpg (Panel och fönster målade)
+  - https://gdmaleri.se/gdmaleri/media/jobb-terrass.jpg (Fasad och dörr målade)
+  - https://gdmaleri.se/gdmaleri/media/jobb-tak-fore.jpg (Tak före tvätt)
+  - https://gdmaleri.se/gdmaleri/media/tak-vindskiva.jpg (Takarbete)
+  - https://gdmaleri.se/gdmaleri/media/jobb-bla-tak.jpg (Tak målat ljusblått)
+  - https://gdmaleri.se/gdmaleri/media/jobb-gul-hall.jpg (Hall målad i gult)
+  - https://gdmaleri.se/gdmaleri/media/jobb-vardagsrum.jpg (Vardagsrum målat ljusrosa)
 
-### 1.10 Omdömen (Read reviews och Ask for reviews)
-- Svara på alla obesvarade omdömen, kort och personligt, utan att nämna efternamn. Mall: "Tack [förnamn]! Roligt att du är nöjd med [det omdömet handlar om]. Välkommen tillbaka. /GD Måleri Sthlm AB". Det 1-stjärniga: "Tack för att du hör av dig. Vi vill gärna förstå vad som blev fel, ring oss på 073-729 88 89 så löser vi det." Inget mer.
-- Ask for reviews → kopiera länken och spara den i det här dokumentet under rubriken "Recensionslänk" (längst ner). Mathias ger Ghandi en sms-mall: "Hej! Tack för förtroendet. Får vi be om ett omdöme på Google? Det tar en minut: [länk]. /GD Måleri".
-- Kopiera det nyaste omdömets text (det nittonde) och klistra in det till Mathias.
+**1.9 Frågor och svar.** Q&A i profilen (på Google Maps-sidan för företaget, "Frågor och svar" / "Ask a question"). Lägg in tre frågor och svara på dem själv som företaget, ordagrant:
 
-### 1.11 Inlägg (Posts)
-Ett inlägg nu: foto från Täby kyrkby, text "Fasadmålning i Täby kyrkby, 350 kvm. Tvätt, skrapning, grundning och två strykningar. Kostnadsfri offert: 073-729 88 89." Knapp "Få offert" → https://gdmaleri.se/fasad-malning/. Sedan två inlägg i månaden med samma mönster (riktigt jobb, ort, yta, foto).
+1. Fråga: Får jag ROT-avdrag? Svar: Ja, om du är privatperson och äger och bor i bostaden. Vi drar av ROT direkt på fakturan. Regler och belopp finns på skatteverket.se.
+2. Fråga: Vad ingår i offerten? Svar: Material, arbete, förarbete, täckning, städning och bortforsling. Inget extraarbete utan ditt godkännande, och fakturan kommer när arbetet är klart.
+3. Fråga: Var arbetar ni? Svar: I hela Stockholm och Södertälje. I år har vi bland annat målat fasader i Bromma och Täby kyrkby och tak och väggar i Södertälje.
 
-### 1.12 Statistik (Performance)
-Läs av sista söndagen varje månad: samtal, webbklick, vägbeskrivningar, sökord. Skriv siffrorna i `tools/gd-rapport/text/vNN.md` under "Google Företagsprofil". Går inte att hämta automatiskt.
+**1.10 Svara på omdömen.** Read reviews. Svara på varje omdöme som saknar svar. Använd kundens förnamn, aldrig efternamn.
+- Positiva: "Tack [förnamn]! Roligt att du är nöjd med [det omdömet handlar om, ett eller två ord]. Välkommen tillbaka. /GD Måleri Sthlm AB"
+- Det 1-stjärniga (Martin): "Tack för att du hör av dig. Vi vill gärna förstå vad som blev fel. Ring oss på 073-729 88 89 så löser vi det. /GD Måleri Sthlm AB"
+- Kopiera texten i det nyaste omdömet (det nittonde) och ge Mathias den.
 
----
+**1.11 Recensionslänk.** Ask for reviews. Kopiera länken och ge Mathias den.
 
-## Del 2. Google Analytics 4 (analytics.google.com, bahkostudio@gmail.com)
-1. Admin → Create property → namn `GD Måleri Sthlm AB`, tidszon Sverige, valuta SEK → Next → bransch "Home & garden", storlek liten → Create.
-2. Data streams → Web → URL `https://gdmaleri.se`, namn `gdmaleri.se` → Create stream. Enhanced measurement på.
-3. Kopiera **Measurement ID** (G-XXXXXXXXXX) och ge Mathias det.
-4. Mathias (vercel.com): projektet `gdmaleri` → Settings → Environment Variables → `GDMALERI_GA_ID` = mät-ID, Production → Save → Deployments → Redeploy senaste.
-5. Kontroll: gdmaleri.se i inkognito, rutan längst ner visas, tryck Okej, Reports → Realtime visar besöket.
-6. Admin → Key events → New key event → `generate_lead`.
-7. Admin → Data settings → Data retention → 14 months. Google signals: av.
-8. Admin → Property access management → Add → `info@gdmaleri.se` → Viewer.
+**1.12 Ett inlägg.** Posts → Add update. Foto: https://gdmaleri.se/gdmaleri/media/jobb-taby-43.webp. Text exakt:
+```
+Fasadmålning i Täby kyrkby, 350 kvm. Tvätt, skrapning, grundning och två strykningar. Kostnadsfri offert: 073-729 88 89.
+```
+Knapp: "Få offert" med länken https://gdmaleri.se/fasad-malning/
 
-## Del 3. Search Console (search.google.com/search-console, bahkostudio@gmail.com)
-1. Add property → **Domain** → `gdmaleri.se` → Continue. Google visar en TXT-post.
-2. Mathias lägger TXT-posten i Hostinger hPanel (Domains → gdmaleri.se → DNS Zone → Add record → TXT, namn `@`, värde från Google). Den gamla google-site-verification-TXT:n får vara kvar. Vänta 5–10 minuter → Verify.
-3. Sitemaps → `sitemap.xml` → Submit.
-4. URL inspection → Request indexing, en i taget: `https://gdmaleri.se/`, `/fasad-malning/`, `/takmalning/`, `/malning-invandigt/`, `/golv/`, `/brf/`.
-5. GA4 → Admin → Product links → Search Console links → Link → välj egendomen och strömmen gdmaleri.se.
-6. Settings → Users and permissions → Add user → `info@gdmaleri.se` → Full (om Ghandi vill se själv).
-
-## Del 4. Tjänstekonto för söndagsrapporten (console.cloud.google.com, bahkostudio@gmail.com)
-1. Nytt projekt `bahko-rapporter`.
-2. APIs & Services → Library → aktivera **Google Analytics Data API** och **Google Search Console API**.
-3. IAM & Admin → Service accounts → Create service account → namn `gd-rapport` → Create and continue → Done.
-4. Öppna kontot → Keys → Add key → Create new key → JSON → ladda ned. Mathias sparar filen som `C:\Users\mathi\OneDrive\Dokument\gd-rapport\tjanstekonto.json`. Filen ska ALDRIG in i repot eller i chatten.
-5. Kopiera kontots e-postadress (slutar på `.iam.gserviceaccount.com`):
-   - GA4 → Admin → Property access management → Add → adressen → Viewer.
-   - Search Console → Settings → Users and permissions → Add user → adressen → Full.
-6. GA4 → Admin → Property details → kopiera Property ID (bara siffror) till Mathias. Han lägger det i `tools/gd-rapport/konfig.local.json` enligt `tools/gd-rapport/README.md`.
-
-## Del 5. Bing (bahkostudio@gmail.com går att använda som inloggning via Google)
-1. bing.com/webmasters → Add site → "Import from Google Search Console" → gdmaleri.se. Lämna in `https://gdmaleri.se/sitemap.xml` manuellt om den inte följer med.
-2. bingplaces.com → Import from Google Business Profile → välj GD Måleri Sthlm AB. Kontrollera namn, telefon 073-729 88 89, webbplats gdmaleri.se, kategori Målare.
-
-## Del 6. Kataloger (samma namn, telefon och webbplats överallt)
-Formen är alltid: **GD Måleri Sthlm AB · 073-729 88 89 · https://gdmaleri.se**
-- hitta.se: sök företaget, "Är detta ditt företag?" → lägg till webbplats och tjänster. Namnet ska vara GD Måleri Sthlm AB (inte "Gd Måleri Sthlm i Stockholm").
-- eniro.se: samma kontroll.
-- Facebook-sidan och Instagram-bion: webbplats gdmaleri.se och telefonnumret. (Instagram kräver Ghandis inloggning: be honom.)
-- Gå INTE med i massregistreringskataloger.
+**1.13 Statistik.** Performance. Läs av senaste månaden och ge Mathias fyra siffror: samtal, webbklick, vägbeskrivningar, antal som sökte upp profilen.
 
 ---
 
-## Recensionslänk
-(Cowork fyller i länken från "Ask for reviews" här.)
+## Del 2: Google Analytics 4
 
-## Klarmarkering
-Cowork skriver efter varje del: klart / stannade vid steg X och varför.
+Gå till https://analytics.google.com
+
+1. Admin (kugghjulet nere till vänster) → Create → Property. Namn `GD Måleri Sthlm AB`. Tidszon Sverige. Valuta SEK. Next.
+2. Bransch: Home & garden (eller närmaste). Storlek: liten. Create. Godkänn villkoren.
+3. Välj plattform Web. URL `https://gdmaleri.se`. Stream name `gdmaleri.se`. Create stream.
+4. Kopiera **Measurement ID** (börjar med G-) och ge Mathias det. Mathias lägger in det i Vercel och gör en ny deploy. Vänta på hans klartecken innan steg 5.
+5. Kontroll: öppna https://gdmaleri.se i ett inkognitofönster. En ruta längst ner frågar om Google Analytics. Tryck Okej. Gå till Reports → Realtime i GA4: besöket ska synas inom en minut.
+6. Admin → Key events → New key event → skriv `generate_lead` → Save.
+7. Admin → Data collection and modification → Data retention → välj 14 months → Save.
+8. Admin → Property access management → Add users → `info@gdmaleri.se` → roll Viewer → Add.
+
+---
+
+## Del 3: Google Search Console
+
+Gå till https://search.google.com/search-console
+
+1. Add property → välj **Domain** (vänster rutan) → skriv `gdmaleri.se` → Continue.
+2. Google visar en TXT-post (börjar med google-site-verification=). Kopiera hela värdet och ge Mathias det. Mathias lägger in den hos Hostinger. Vänta på hans klartecken, vänta sedan fem minuter, tryck Verify. Misslyckas det: vänta tio minuter till och prova igen, säg till om det fortfarande inte går.
+3. Sitemaps (vänstermenyn) → skriv `sitemap.xml` → Submit.
+4. URL inspection (sökfältet högst upp) → klistra in en adress i taget, vänta på resultatet, tryck Request indexing. Gör det för alla sex:
+   - https://gdmaleri.se/
+   - https://gdmaleri.se/fasad-malning/
+   - https://gdmaleri.se/takmalning/
+   - https://gdmaleri.se/malning-invandigt/
+   - https://gdmaleri.se/golv/
+   - https://gdmaleri.se/brf/
+5. Settings → Users and permissions → Add user → `info@gdmaleri.se` → Full → Add.
+6. Gå tillbaka till GA4 → Admin → Product links → Search Console links → Link → välj egendomen gdmaleri.se och webbströmmen gdmaleri.se → Submit.
+
+---
+
+## Del 4: Tjänstekonto för veckorapporten
+
+Gå till https://console.cloud.google.com
+
+1. Skapa ett nytt projekt: namn `bahko-rapporter`. Välj det.
+2. APIs & Services → Library. Sök "Google Analytics Data API" → Enable. Sök "Google Search Console API" → Enable.
+3. IAM & Admin → Service accounts → Create service account. Namn `gd-rapport`. Create and continue. Hoppa över rollerna. Done.
+4. Klicka på kontot → fliken Keys → Add key → Create new key → JSON → Create. En fil laddas ned. Säg till Mathias var filen hamnade. Filen får aldrig klistras in i chatten.
+5. Kopiera kontots e-postadress (slutar på `.iam.gserviceaccount.com`).
+   - GA4 → Admin → Property access management → Add users → adressen → Viewer → Add.
+   - Search Console → Settings → Users and permissions → Add user → adressen → Full → Add.
+6. GA4 → Admin → Property details → kopiera **Property ID** (bara siffror) och ge Mathias det.
+
+---
+
+## Del 5: Bing
+
+1. https://www.bing.com/webmasters → logga in med Google-kontot → Add a site → "Import from Google Search Console" → välj gdmaleri.se → Import. Kontrollera under Sitemaps att `https://gdmaleri.se/sitemap.xml` finns, lägg annars till den.
+2. https://www.bingplaces.com → logga in med Google-kontot → "Import from Google Business Profile" → välj GD Måleri Sthlm AB. Kontrollera efteråt: namn GD Måleri Sthlm AB, telefon 073-729 88 89, webbplats gdmaleri.se, kategori Målare.
+
+---
+
+## Del 6: Hitta och Eniro
+
+Rätt uppgifter överallt är: GD Måleri Sthlm AB, 073-729 88 89, https://gdmaleri.se, info@gdmaleri.se.
+
+1. https://www.hitta.se → sök "GD Måleri Sthlm AB". Öppna företagets sida. Finns "Är detta ditt företag?" eller "Uppdatera uppgifter": lägg till webbplatsen och e-posten, kontrollera att namnet är exakt GD Måleri Sthlm AB. Krävs inloggning med BankID eller kod till företaget: stanna och säg till Mathias.
+2. https://www.eniro.se → samma kontroll.
+3. Gå inte med i några andra kataloger, även om de föreslås.
+
+---
+
+## Det Mathias gör själv (inte Cowork)
+- Lägger mät-ID:t i Vercel (projektet gdmaleri → Settings → Environment Variables → `GDMALERI_GA_ID`) och redeployar.
+- Lägger TXT-posten från Search Console i Hostinger hPanel (Domains → gdmaleri.se → DNS Zone → Add record → TXT, namn @). Den gamla google-site-verification-posten får vara kvar.
+- Flyttar tjänstekontots JSON-fil till `C:\Users\mathi\OneDrive\Dokument\gd-rapport\tjanstekonto.json` och skriver Property ID i `tools/gd-rapport/konfig.local.json` (se `tools/gd-rapport/README.md`).
+- Skickar recensionslänken till Ghandi med sms-mallen: "Hej! Tack för förtroendet. Får vi be om ett omdöme på Google? Det tar en minut: [länk]. /GD Måleri"
+- Ber Ghandi lägga gdmaleri.se och telefonnumret i Instagram-bion och på Facebook-sidan.
