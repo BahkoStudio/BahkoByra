@@ -116,13 +116,17 @@ Gå till https://search.google.com/search-console
 1. Add property → välj **Domain** (vänster rutan) → skriv `gdmaleri.se` → Continue.
 2. Google visar en TXT-post (börjar med google-site-verification=). Kopiera hela värdet och ge Mathias det. Mathias lägger in den hos Hostinger. Vänta på hans klartecken, vänta sedan fem minuter, tryck Verify. Misslyckas det: vänta tio minuter till och prova igen, säg till om det fortfarande inte går.
 3. Sitemaps (vänstermenyn) → skriv `sitemap.xml` → Submit.
-4. URL inspection (sökfältet högst upp) → klistra in en adress i taget, vänta på resultatet, tryck Request indexing. Gör det för alla sex:
+4. URL inspection (sökfältet högst upp) → klistra in en adress i taget, vänta på resultatet, tryck Request indexing. Gör det för alla tio (de fyra sista finns när Mathias sagt att tjänstesidorna är live):
    - https://gdmaleri.se/
    - https://gdmaleri.se/fasad-malning/
    - https://gdmaleri.se/takmalning/
    - https://gdmaleri.se/malning-invandigt/
    - https://gdmaleri.se/golv/
    - https://gdmaleri.se/brf/
+   - https://gdmaleri.se/tapetsering/
+   - https://gdmaleri.se/snickerier-fonster-malning/
+   - https://gdmaleri.se/fasadtvatt/
+   - https://gdmaleri.se/taktvatt/
 5. Settings → Users and permissions → Add user → `info@gdmaleri.se` → Full → Add.
 6. Gå tillbaka till GA4 → Admin → Product links → Search Console links → Link → välj egendomen gdmaleri.se och webbströmmen gdmaleri.se → Submit.
 
