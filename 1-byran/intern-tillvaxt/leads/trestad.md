@@ -126,3 +126,13 @@ VARM, prototyp utlovad inom 48 h. Blå palett, mörk loggvariant för ljusa ytor
 ## 2026-09-19: justerad efter Mathias feedback
 
 Heron är nu logotyp, ort och två tjänster (som Axels Landscaping), med ett rullande tjänsteband under. Förvandlingsfilmen är hero-film och den lugna filmen ligger i Varför med loggan på slutet. Stegen är en resa med ikoner, utan siffror. Noten "Filmen är en illustration" är struken på Mathias begäran, så att hero-filmen är en illustration står bara här och i sidans kodkommentar.
+
+## 2026-09-22: offert skickad som PDF
+
+Offert byggd i Bahkos design (marinblå + smaragd, Outfit, vår logga), fyra A4-sidor:
+omslag · det här ingår + pris · leveransplan + garanti · vad vi behöver + nästa steg.
+Hemsida engångs plus månadsavgift utan bindningstid, med en garanti på fler
+kundförfrågningar inom 90 dagar. Belopp och villkor står i offerten, aldrig här (repot är publikt).
+Nytt samtal torsdag 24/9 kl. 15.00.
+Filer: PDF och HTML-källa i `OneDrive/1 Bahko Byrå/Kunder/Trestad Bygg/`
+(`offert-trestad-2026-09-22.html`, loggorna bakas in vid rendering).

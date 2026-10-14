@@ -141,9 +141,8 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 för hela listan, samma filer som repots), minnesmappen `~/.claude/projects/…/memory/`,
 `OneDrive/audits/` (OS-audit-rapporter), `OneDrive/Dokument/Backups/higgsfield-genererat/`
 (betalda genereringar utanför repot), Google Drive **H:** (`BahkoByrå/BahkoByra/` —
-contentleveranser, karuseller, Bromma-material). Beast of Ages äldre manus
-`OneDrive/2 Beast of Ages/Gamla manus 2025/` (manus från 2025/jan 2026 — reglerna där är
-ERSATTA, se `3-beast-of-ages/youtube.md`).
+contentleveranser, karuseller, Bromma-material). Beast of Ages källmaterial och musik:
+`OneDrive/2 Beast of Ages/` (`Research/`, `Musik och ljud/`).
 
 **Andra egna projekt och äldre material i OneDrive, utanför repot** (inget av dem byggs av
 någon Vercel; flyttas ett nytt eget projekt in i repot får det en egen numrerad gren, som
@@ -156,7 +155,7 @@ någon Vercel; flyttas ett nytt eget projekt in i repot får det en egen numrera
 | `1 Bahko Byrå/Arkiv 2025/` + `1 Bahko Byrå/Kunder/Bodens (2025)/` + `Shirdell (2025)/` | Äldre kund- och BahkoStudio-material från 2024–2025, före rebranden |
 | `3 Privat/Personlig utveckling/` | Utbildningsmaterial (Proctor, Napoleon Hill), inget projekt |
 
-Kortformat-djurvideorna från 2025 (`Skrivbord/Short Djur/`) finns inte längre på disken.
+Beast of Ages äldre manus från 2025 och kortformat-djurvideorna (`Short Djur`) raderade Mathias medvetet 2026-10-14.
 
 ## Vill du något? Hit går du
 
