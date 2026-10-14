@@ -102,7 +102,7 @@ om allt utanpå. Nonstop Business tog samma titel och samma miniatyr och fick 2 
 vara ny."* Källdokumentet skärper den: även när idén är ny måste förpackningen vara det
 också.
 
-**Mall A–G i `analys/modelleringsguide.md` är element, inte mallar att fylla i.**
+**Mall A–G i `ideer/modelleringsguide.md` är element, inte mallar att fylla i.**
 Att låna "en orsakskedja där varje led utlöser nästa" ur Nepal-videon är modellering.
 Att skriva *A Wall of Water Hit [plats] With No Rain* vore kopiering.
 

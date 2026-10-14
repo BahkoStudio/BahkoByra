@@ -9,7 +9,7 @@ inga sakfel eller strukturfel, bara språklig finslipning som inte krävde ytter
 kritiker-körningar. Förlagan är Knapp-mallen (`Why Don't We Eat Male Chickens?`),
 en-variabel-modellerad: djuret och frågan är bytta, mekaniken är densamma.
 
-**Unikhetskontrollerad 2026-08-24 (`analys/klarerade-ideer.md`):** engelsk långform är
+**Unikhetskontrollerad 2026-08-24 (`ideer/klarerade-ideer.md`):** engelsk långform är
 praktiskt taget tom — största träffen är en 2:32-video från 2018 med 15 324 visningar.
 Efterfrågan är ändå bevisad brutalt: en 16-sekunders Short om samma fråga har **9,3
 miljoner visningar**. Frågan ligger redan i varje bilförares huvud.
@@ -24,7 +24,7 @@ miljoner visningar**. Frågan ligger redan i varje bilförares huvud.
 
 **Mall:** LÅST. Ren Knapp-vardagsfråga, exakt mallen `Why Don't We Eat Male Chickens?`
 rakt av — samma mall som kanalens egna hippo-video (529 653 visningar) bygger på.
-**Bevis:** `analys/klarerade-ideer.md` — engelsk långform tom (störst 15 324 visningar,
+**Bevis:** `ideer/klarerade-ideer.md` — engelsk långform tom (störst 15 324 visningar,
 2018), en 16-sekunders Short om samma fråga har 9,3 miljoner visningar. vidIQ-titelpoäng
 2026-08-29: **90/100**.
 

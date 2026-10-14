@@ -78,7 +78,7 @@ vad en moa är; kostar sökbarheten.
 #### 9. Scientists Are Bringing Back a Bird That Makes No Sense
 
 **Mall:** Apex-form ("Scientists…"). **Bevis:** vidIQ **86/100**. Wilder America kör
-mallen fyrtio gånger i månaden (`analys/modelleringsguide.md`), därför inte först.
+mallen fyrtio gånger i månaden (`ideer/modelleringsguide.md`), därför inte först.
 
 #### 10. 15 Mindblowing Facts About the De-Extinct Moa
 

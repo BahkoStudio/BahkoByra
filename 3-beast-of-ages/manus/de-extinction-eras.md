@@ -224,8 +224,9 @@ prompten den här gången.
 
 ---
 
-**Bild och ljud:** 106 Veo-prompter à åtta sekunder ligger i
-`de-extinction-eras-veo.md` i samma mapp. Genomgående musik plus sfx, ingen voiceover.
+**Bild och ljud:** genomgående musik plus sfx, ingen voiceover. Videopromptar görs inte
+(Mathias 2026-10-14, se `DELETIONS.md` i repots rot); hur bilden tas fram står i
+`produktion/README.md`.
 
 ---
 

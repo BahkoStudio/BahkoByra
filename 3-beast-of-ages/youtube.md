@@ -6,30 +6,54 @@ Ligger här för att materialet annars hamnar i en temporär sessionsmapp och f�
 Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 **Manus skrivs på engelska.** Samtal om arbetet förs på svenska.
 
+## Kvistarna
+
+Gren 3 är sorterad i kvistar, en mapp per steg i arbetet. Varje mapp har en `README.md` som
+säger hur steget görs. **Reglerna står här i `youtube.md` och vinner över kvistarnas README:er.**
+
+    strategi/ → ideer/ (Grinden) → research/ → paket/ → manus/ → produktion/ → publicering/
+                                                                                    └→ tillbaka till strategi/
+
+Paketet ligger före manuset i flödet, för paketet skrivs före manuset (se nedan).
+
+| Kvist | Mapp |
+|---|---|
+| Strategi & vidIQ-data | `strategi/` |
+| Idébank & Grinden | `ideer/` |
+| Research (faktabank per video) | `research/` |
+| Manus | `manus/` |
+| Paketet (titel, miniatyr, beskrivning) | `paket/` |
+| Produktion (röst, bild, musik, klipp) | `produktion/` |
+| Publicering & uppföljning | `publicering/` |
+| Struktur & regler (källdokumenten) | `reference/` |
+| Skills & verktyg | `skills.md` |
+| Konvertering & tratt | `konvertering.md` |
+
 ## Vad som finns här
 
 | Fil | Vad |
 |---|---|
-| `manus/de-extinction-eras.md` | **Video 1, klar att spela in.** Paketet överst, manuset under |
-| `manus/saiga-200000-antelope.md` | **Video 2, klar att spela in.** Apex-modellering, unikhetskontrollerad |
-| `manus/tander.md` | **Video 3, klar att spela in.** Knapp-modellering, sex rundor manusloop |
-| `manus/deer-freeze-headlights.md` | **Klar att spela in (Mathias godkänd efter runda 11).** Knapp-modellering, `Why Don't We Eat Male Chickens?` |
-| `manus/why-dont-we-eat-horse-meat.md` | Knapp-modellering (mall B), Grinden grön 2026-09-09, tre rundor manusloop, paketet överst |
-| `manus/moa-15-facts.md` | Mall E (kanalens egen "15 De-Extinct X Facts"), Grinden grön 2026-09-09, tre rundor manusloop, paketet överst |
-| `manus/hippo-on-land-at-night.md` | Mall F (andraperson-scenario), Grinden grön 2026-09-09, tre loopar à tre rundor (utökad till 2 254 ord 2026-09-11), paketet överst |
-| `manus/pufferfish-seafloor-circles.md` | Apex-gåta (spåret först, förövaren sist), klarerad 2026-08-24 och omkontrollerad 2026-09-09, tre loopar à tre rundor (utökad till 1 992 ord 2026-09-11), paketet överst |
-| `manus/honeybees-never-tamed.md` | Paradox-mallen (Pack Vibes "Why X … (But Never Y)"), Grinden grön 2026-09-12, tre rundor manusloop, paketet överst |
-| `manus/why-dont-we-drink-camel-milk.md` | Mall B (vardagsfråga), Grinden villkorlig grön 2026-09-20 (jämförbar kanal floppade på exakt frågan, annan mekanism vald), tre rundor manusloop (taket), paketet överst |
-| `manus/de-extinction-eras-veo.md` | 106 Veo-prompter à 8 sekunder, stilbibeln, musikbädden |
-| `analys/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
-| `analys/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
-| `analys/klarerade-ideer.md` | Fem unikhetskontrollerade idéer redo att välja bland, plus de dödade |
-| `analys/utliggare-att-modellera.md` | Tio utliggare värda att modellera, plus stopplistan |
-| `analys/modelleringsguide.md` | ⭐ **Reglerna före varje ny video** + Mathias femton godkända referenser + egna utliggare (del 2b) |
+| `README.md` | Kvistkartan och vilka lokala filer som ska flyttas in i vilken kvist |
+| `skills.md` | Vilka skills och verktyg gren 3 använder, och när |
+| `strategi/README.md` | vidIQ-rutinen, mät på median, utliggarribban, hur nya utliggare hittas |
+| `strategi/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
+| `strategi/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
+| `strategi/utliggare-att-modellera.md` | Tio utliggare värda att modellera, plus stopplistan |
+| `strategi/panelens-beslut.md` | Kolla-over-panelens 15 beslut, tre videor att göra först, vad som skjuts upp |
+| `ideer/README.md` | Idébanken och Grinden, i den ordning de används |
+| `ideer/modelleringsguide.md` | ⭐ **Reglerna före varje ny video** + Mathias femton godkända referenser + egna utliggare (del 2b) |
+| `ideer/klarerade-ideer.md` | Fem unikhetskontrollerade idéer redo att välja bland, plus de dödade |
+| `ideer/dubbla-ner-ideer.md` | Dubbla ner-idéer byggda på Knapps Male Chickens och Orca-ärren |
+| `research/README.md` | Faktabanken per video, källreglerna, tidskritiska fakta |
+| `research/research-mall.md` | Mallen som fylls i innan ett manus skrivs |
+| `manus/README.md` | ⭐ Manusreglerna + **listan över alla manus med status** |
+| `paket/README.md` | Titlar, miniatyr, beskrivning, fäst kommentar, CTA |
+| `produktion/README.md` | Röst, bild och klipp, musik, redigering |
+| `publicering/README.md` | Checklistan vid uppladdning, uppföljningen, testa eller dubbla ner |
 | `reference/testa-vs-dubbla-ner.md` | Källdokumentet bakom testa/dubbla ner-ramverket, med Vintage Vehicles-fallstudien |
 | `reference/modellering-vs-kopiering.md` | Var gränsen går mellan att låna och att stjäla, med bevisbilder |
 | `reference/thumbnail-reglerna.md` | 50-procentstestet, fråga före relevans, referensinsamling |
-| `analys/panelens-beslut.md` | Kolla-over-panelens 15 beslut, tre videor att göra först, vad som skjuts upp |
+| `konvertering.md` | Konvertering & tratt, väntar på beslut |
 
 **En fil per video.** Paketet och manuset bor tillsammans, för de dömdes mot varandra —
 en titel får bara lova vad manuset betalar. Mekanismerna de båda dömdes mot ligger i skillen
@@ -86,7 +110,7 @@ noll tankstreck, noll AI-mönster. Överlevnadstiderna faller monotont: tre veck
 dagar, nio timmar, elva minuter.
 
 Tre rundor manusloop och två rundor på paketet. Vad varje runda faktiskt rättade står i
-`manus/de-extinction-eras.md` längst ner — läs det innan nästa manus, för två av felen är
+`manus/de-extinction-eras.md`, avsnittet "Vad de tre manusrundorna rättade" — läs det innan nästa manus, för två av felen är
 sådana jag gjorde i instruktionen och inte i texten.
 
 ## Paketet skrivs före manuset
@@ -167,12 +191,13 @@ formats andra och tredje video.
 
 Loopar som gäller det här projektet: `/manusloop` för manus, `/kolla-over` för genomlysning.
 
-## Äldre arbetsmapp på skrivbordet — två lösta konflikter
+## Äldre manus från 2025 — två lösta konflikter
 
-`OneDrive/Skrivbord/youtube/` innehåller kanalens material från hösten 2025 och januari
-2026: fem manus med titel- och thumbnailpaket (giant dogs, brown hyena, early humans,
-porcupine vs komodo) plus mallen `SCRIPT_TEMPLATE_UPDATED.txt`. Renderade filer ligger i
-`OneDrive/Skrivbord/Short Djur/`.
+`OneDrive/2 Beast of Ages/Gamla manus 2025/` (tidigare `OneDrive/Skrivbord/youtube/`)
+innehåller kanalens material från hösten 2025 och januari 2026: fem manus med titel- och
+thumbnailpaket (giant dogs, brown hyena, early humans, porcupine vs komodo) plus mallen
+`SCRIPT_TEMPLATE_UPDATED.txt`. De renderade filerna som låg i `OneDrive/Skrivbord/Short Djur/`
+finns inte längre på disken (kontrollerat 2026-10-14).
 
 Materialet är sju månader äldre än reglerna ovan och motsäger dem på två punkter. **Det
 här dokumentet vinner:**

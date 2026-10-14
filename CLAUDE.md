@@ -61,11 +61,17 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │       ⚠ Kundfilerna PEKAR på sajtkoden i bahkobyra/cloud/ och extern/. De flyttar den aldrig.
 │
 │                          ═══ GREN 3: BEAST OF AGES (YouTube, inte Bahko Byrå) ═══
-├── 3-beast-of-ages/ .......... README.md = kvistarna · youtube.md = ⭐ ALLA regler + index, läs först
-│   ├── manus/ ................ en fil per video: paketet överst, manuset under
-│   ├── analys/ ............... kanalen, konkurrenter, idéer, panelens beslut
+├── 3-beast-of-ages/ .......... README.md = kvistkartan · youtube.md = ⭐ ALLA regler + index, läs först
+│   ├── strategi/ ............. kanalen, konkurrenter, utliggare, panelens beslut + vidIQ-rutinen
+│   ├── ideer/ ................ idébanken
 │   │   └── modelleringsguide.md  ⭐ reglerna + GRINDEN före varje ny video
+│   ├── research/ ............. en faktabank per video innan manus (research-mall.md)
+│   ├── manus/ ................ en fil per video: paketet överst, manuset under · README = listan
+│   ├── paket/ ................ titel, miniatyr, beskrivning, CTA · thumbnails/ utanför git
+│   ├── produktion/ ........... röst, bild, musik, klipp (inga videopromptar)
+│   ├── publicering/ .......... checklistan vid uppladdning + uppföljning 48 h / 7 / 28 dagar
 │   ├── reference/ ............ källdokumenten bakom reglerna, med bevisbilder
+│   ├── skills.md ............. vilka skills och verktyg gren 3 använder, och när
 │   └── konvertering.md ....... väntar på beslut, läs varningen
 │
 │                          ═══ GREN 4: EKONOMI & ADMIN ═══
@@ -131,24 +137,26 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 | ⭐ | Här bor det viktiga — börja leta här |
 | ⚠ | Känd fälla, se längst ner |
 
-**Ligger inte i repot:** `~/.claude/skills/` (de globala skillsen, däribland task-observer — se `docs/skills-oversikt.md`
+**Ligger inte i repot:** `~/.claude/skills/` (de globala skillsen — se `docs/skills-oversikt.md`
 för hela listan, samma filer som repots), minnesmappen `~/.claude/projects/…/memory/`,
 `OneDrive/audits/` (OS-audit-rapporter), `OneDrive/Dokument/Backups/higgsfield-genererat/`
 (betalda genereringar utanför repot), Google Drive **H:** (`BahkoByrå/BahkoByra/` —
-contentleveranser, karuseller, Bromma-material). Beast of Ages äldre arbetsmapp
-`OneDrive/Skrivbord/youtube/` (manus från 2025/jan 2026 — reglerna där är ERSATTA, se
-`3-beast-of-ages/youtube.md`).
+contentleveranser, karuseller, Bromma-material). Beast of Ages äldre manus
+`OneDrive/2 Beast of Ages/Gamla manus 2025/` (manus från 2025/jan 2026 — reglerna där är
+ERSATTA, se `3-beast-of-ages/youtube.md`).
 
-**Andra egna projekt som ligger på skrivbordet, utanför repot** (inget av dem byggs av
-någon Vercel; flyttas ett nytt eget projekt in i repot får det en egen numrerad gren, som `3-beast-of-ages/`):
+**Andra egna projekt och äldre material i OneDrive, utanför repot** (inget av dem byggs av
+någon Vercel; flyttas ett nytt eget projekt in i repot får det en egen numrerad gren, som
+`3-beast-of-ages/`). Mapparna låg tidigare på skrivbordet; sökvägarna kontrollerade 2026-10-14:
 
-| Mapp (`OneDrive/Skrivbord/`) | Vad |
+| Mapp (`OneDrive/`) | Vad |
 |---|---|
-| `rtf/` | YouTube-verktyg (aug 2026): tidsstämplar varje ord i en video och rankar ögonblicken som förtjänar en grafik. README + SKILL.md i mappen; `rtf-claude-design/` är en körning av det |
-| `Short Djur/` | Kortformat-djurvideor från 2025 (Shorts-material) — inte Beast of Ages långform |
-| `avatar/` + `viktigt prompt med mera/` | Avatarbilder och de gamla prompterna (avatar, sälj, youtube) från 2025 |
-| `Företag/`, `Bodens/`, `shirdell/` | Äldre kund- och BahkoStudio-material från 2024–2025, före rebranden |
-| `Bob/` | Utbildningsmaterial (Proctor, Napoleon Hill), inget projekt |
+| `1 Bahko Byrå/Kunskap/rtf-skill/` | YouTube-verktyg (aug 2026): tidsstämplar varje ord i en video och rankar ögonblicken som förtjänar en grafik. README + SKILL.md i mappen; `rtf-claude-design/` bredvid är en körning av det |
+| `1 Bahko Byrå/Content/Avatar-bilder/` + `1 Bahko Byrå/Anteckningar och prompter/Prompter 2025/` | Avatarbilder och de gamla prompterna (avatar, sälj, youtube) från 2025 |
+| `1 Bahko Byrå/Arkiv 2025/` + `1 Bahko Byrå/Kunder/Bodens (2025)/` + `Shirdell (2025)/` | Äldre kund- och BahkoStudio-material från 2024–2025, före rebranden |
+| `3 Privat/Personlig utveckling/` | Utbildningsmaterial (Proctor, Napoleon Hill), inget projekt |
+
+Kortformat-djurvideorna från 2025 (`Skrivbord/Short Djur/`) finns inte längre på disken.
 
 ## Vill du något? Hit går du
 
@@ -174,10 +182,12 @@ någon Vercel; flyttas ett nytt eget projekt in i repot får det en egen numrera
 | Hitta en kunds hemsida/struktur/Drive/SEO-underlag | `2-kunder/kunder/<kund>/` — mall i `_mall/README.md` |
 | Hitta en demolänk att skicka | `1-byran/intern-tillvaxt/leads/demolankar.md` |
 | Visa bevis på resultat i sälj (Google + ChatGPT) | `2-kunder/kunder/bromma/bevis/` — bara verifierade skärmdumpar, aldrig ur minnet |
-| Fånga en lärdom under arbetet | task-observer (global skill) → `.claude/observations.md`; regeln skrivs in i rätt skill |
+| Fånga en lärdom under arbetet | Skriv in regeln direkt i rätt skill, eller i minnesmappen (task-observer är borttagen, se `DELETIONS.md`) |
 | Se vilka skills som finns | `docs/skills-oversikt.md` |
-| Skriva manus för Beast of Ages (YouTube) | `/manusloop` — regler i `3-beast-of-ages/youtube.md` |
-| Välja eller kontrollera en videoidé (Beast of Ages) | `3-beast-of-ages/analys/modelleringsguide.md` — grinden i del 3 körs ALLTID först |
+| Skriva manus för Beast of Ages (YouTube) | `/manusloop` — regler i `3-beast-of-ages/youtube.md` och `3-beast-of-ages/manus/README.md`, faktabanken först i `3-beast-of-ages/research/` |
+| Välja eller kontrollera en videoidé (Beast of Ages) | `3-beast-of-ages/ideer/modelleringsguide.md` — grinden i del 3 körs ALLTID först (`3-beast-of-ages/ideer/README.md`) |
+| Titel, miniatyr eller publicering (Beast of Ages) | `3-beast-of-ages/paket/README.md` · `3-beast-of-ages/publicering/README.md` |
+| Fatta ett beslut om kanalen (Beast of Ages) | `/youtube-roast`, alla skills för gren 3 i `3-beast-of-ages/skills.md` |
 | Hitta en kundsajts källkod | `bahkobyra/cloud/<kund>/` — ⚠ flytta aldrig, Vercel pekar dit |
 | Sälja: metodik, offer, cadence, JA-protokollet | `1-byran/intern-tillvaxt/sales_methodology.md` + dashboardens Spelbok |
 | Köra något operativt | dashboarden `web/public/crm-f2822a6f3a/index.html` |
@@ -256,10 +266,11 @@ Sex saker att veta innan något görs där:
    en enda nyhetsvåg (Colossals varghybrider, mars 2026). Snittet 6 890 visningar per video
    beskriver vågen, inte kanalen. Medianen är ungefär 1 300. Samma fälla gäller
    konkurrenterna — deras snitt mäter hur många videor de släppt, inte hur bra de är.
-2. **Publiceringstakt är den enda variabel som skiljer kanalen från konkurrenterna.**
+2. **Publiceringstakt är en verklig skillnad mot konkurrenterna, men inte den enda.**
    De släpper 8–26 videor i månaden mot 4. Deras vanliga video går sämre än denna kanals
-   botten. De vinner på antal lotter, inte på kvalitet — gillningar per visning är 9–23 %
-   här mot 2,1 % på den största konkurrentvideon.
+   botten. Gillningar per visning är 9–23 % här mot 2,1 % på den största konkurrentvideon.
+   Men Wild Origins är genuint mycket större i vårt format; deras titelmall går att låna,
+   inte deras påhittade premisser (`youtube.md`).
 3. **Publiken är vuxna män, tyngdpunkt 45+.** Uppmätt i YouTube Studio 2026-08-24:
    84 % män, 82 % är 35 eller äldre, och största enskilda gruppen är 65+ (20,6 %).
    Barn finns i praktiken inte (1,3 % under 25). Tolvåringstestet i manusloopen står
@@ -275,17 +286,23 @@ Sex saker att veta innan något görs där:
    populationssiffror. Det är i wildlife falska djurfakta
    sprids snabbast och lever längst. Osäker: skriv om meningen så den inte behöver siffran.
 6. **En vald idé går genom GRINDEN innan en rad skrivs.** Fem steg i
-   `analys/modelleringsguide.md`, del 3: har vi redan gjort den, har någon annan gjort
+   `ideer/modelleringsguide.md`, del 3: har vi redan gjort den, har någon annan gjort
    den (tre formuleringar, aldrig en), har en jämförbar kanal nyss lyckats, är
    förpackningen vår egen, bär djuret. **Grinden kostar 15 credits. En kasserad
    manusloop kostar nio rundor kritiker.** Fem idéer har redan dött där — de står i
-   `analys/klarerade-ideer.md` så ingen föreslår dem igen. Modellera aldrig genom att
+   `ideer/klarerade-ideer.md` så ingen föreslår dem igen. Modellera aldrig genom att
    kopiera: samma ämne är tillåtet, samma titel plus samma miniatyr är det inte
    (`reference/modellering-vs-kopiering.md`).
 
+Sökvägarna ovan är relativa till `3-beast-of-ages/`. De tio kvistarna står i
+`3-beast-of-ages/README.md`: strategi, idéer, research, manus, paket, produktion och
+publicering (en mapp var), regler (`reference/` plus `youtube.md`), `skills.md` och
+`konvertering.md`.
+
 vidIQ är kopplat som MCP-server på användarnivå och läser kanalen direkt
 (`vidiq_channel_stats`, `vidiq_outliers`, `vidiq_video_transcript`, m.fl., 5 credits per anrop).
-Loopar som gäller projektet: `/manusloop` för manus, `/kolla-over` för genomlysning.
+Skills som gäller projektet: `/manusloop` för manus, `/youtube-roast` för beslut,
+`/kolla-over` för genomlysning. Hela listan: `3-beast-of-ages/skills.md`.
 
 ## Regler som gäller alltid
 

@@ -9,7 +9,7 @@ upprepade lådtesen från föregående stycke — och den meningen är struken i
 nedan. Fixet var mekaniskt och redan specificerat av kritikern (nytt ordantal 1727 i
 kritikerns egen kontroll; 1737 i vår egen räkning, skillnaden är räknemetod, båda inom
 målintervallet 1700–1900). Ingen fjärde AI-körning gjordes, enligt taket. Förlagan är
-Knapps *Why Don't We Eat Male Chickens?* (mall B i `analys/modelleringsguide.md`), en
+Knapps *Why Don't We Eat Male Chickens?* (mall B i `ideer/modelleringsguide.md`), en
 variabel bytt: djuret.
 
 **Grinden körd 2026-09-09, alla fem steg gröna.**
