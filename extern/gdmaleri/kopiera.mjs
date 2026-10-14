@@ -17,7 +17,8 @@ const GRUPP = path.join(HAR, 'app/(gd)');
 // demo-mapp → sökväg på gdmaleri.se ('' = startsidan)
 // 2026-10-13: fyra nya tjänstesidor. tapetsering och snickerier-fonster-malning är WordPress-sajtens gamla slugs
 // (301:orna i next.config.mjs borttagna), fasadtvatt och taktvatt är nya.
-export const SLUGS = { '': '', 'fasad': 'fasad-malning', 'tak': 'takmalning', 'invandig-malning': 'malning-invandigt', 'golv': 'golv', 'brf': 'brf', 'integritet': 'integritet', 'tapetsering': 'tapetsering', 'snickerier-fonster-malning': 'snickerier-fonster-malning', 'fasadtvatt': 'fasadtvatt', 'taktvatt': 'taktvatt' };
+// 2026-10-14: guidesidan basta-malare-stockholm ("Så väljer du målare"), ny.
+export const SLUGS = { '': '', 'fasad': 'fasad-malning', 'tak': 'takmalning', 'invandig-malning': 'malning-invandigt', 'golv': 'golv', 'brf': 'brf', 'integritet': 'integritet', 'tapetsering': 'tapetsering', 'snickerier-fonster-malning': 'snickerier-fonster-malning', 'fasadtvatt': 'fasadtvatt', 'taktvatt': 'taktvatt', 'basta-malare-stockholm': 'basta-malare-stockholm' };
 
 for (const mal of ['app/_mall', 'app/(gd)', 'typsnitt', 'komponenter', 'formular.js', 'public/gdmaleri']) rmSync(path.join(HAR, mal), { recursive: true, force: true });
 
