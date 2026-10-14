@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, menyExtra, samarbeten, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, samarbeten, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — undersida för bostadsrättsföreningar (/gdmaleri/brf/)
@@ -22,6 +22,9 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerB
    privatkunder och vill nu börja ta BRF-uppdrag. Enda arbetet åt en
    fastighetsägare/förening, ordagrant från Ghandi samma dag: "Referenser har
    jag från en Brf Holmströmsgruppen AB där vi målade deras 4 lägenheter".
+   BEKRÄFTAT 2026-10-14 (Mathias): lägenheterna låg i en BRF som Holmströmgruppen
+   FÖRVALTAR, så sidan säger "i en bostadsrättsförening som förvaltas av
+   Holmströmgruppen". Öppet: område, år, foton, omdöme. Stavning: bolagets egen (utan s).
    Kontroll (WebSearch 2026-10-08, mfn.se/Holmströmgruppens årsredovisning
    2022): Holmströmgruppen AB är ett fastighetsbolag i Stockholm (moderbolag
    till Holmström Fastigheter Holding AB (publ), bostads- och
@@ -233,7 +236,7 @@ const data = {
       { id: 'trapphus', namn: 'Trapphus', bild: `${M}/jobb-trapphus.jpg`, alt: 'Trappa i ett hem med mörkrosa nederdel och ljus vägg ovanför, målad av GD Måleri', text: 'Väggar och tak i trapphuset, med spackling och slipning gjord innan färgen går på.', punkter: ['Spackling och slipning', 'Grundmålning och färdigmålning', 'Hjälp med färgval'], ritning: (<><path d="M30 104h28V82h28V60h28V38h28V16h28" /><path d="M30 104h140" /><path d="M44 78l70-56" /></>) },
       { id: 'entre', namn: 'Entréer och dörrar', bild: `${M}/brf-entre.jpg`, alt: 'Illustrationsbild: nymålade gröna entrédörrar med glasrutor i ett ljust putsat flerbostadshus', text: 'Entrén är det första de boende och besökarna ser. Dörrar, foder, väggar och tak.', punkter: ['Entrédörrar och foder', 'Väggar och tak i entrén', 'Skrapning och grundmålning'], ritning: (<><path d="M40 104V20h120v84" /><path d="M64 104V44h72v60" /><path d="M100 44v60" /><path d="M90 76h4M106 76h4" /><path d="M30 104h140" /></>) },
       { id: 'fasad', namn: 'Fasad och fönster', bild: `${M}/brf-fasad.jpg`, alt: 'Illustrationsbild: nymålad gul putsfasad på ett trevåningshus från 1950-talet, med vita fönster och björkar', text: 'Fasadtvätt, skrapning och målning av trä, puts, tegel eller plåt, och fönstren med karmar.', punkter: ['Fasadtvätt', 'Skrapning och nödvändiga lagningar', 'Fönster och karmar'], ritning: (<><path d="M30 104V24h140v80" /><path d="M24 104h152" /><path d="M50 40h20v18H50zM90 40h20v18H90zM130 40h20v18h-20zM50 72h20v18H50zM130 72h20v18h-20z" /><path d="M90 104V74h20v30" /></>) },
-      { id: 'lagenhet', namn: 'Lägenheter', bild: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', text: 'Fyra lägenheter åt fastighetsbolaget Holmströmgruppen är vår referens. Målar en medlem om inne i sin lägenhet kan medlemmen få ROT.', punkter: ['Väggar och tak', 'Dörrar och snickerier', 'ROT för medlemmen, inte föreningen'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>) },
+      { id: 'lagenhet', namn: 'Lägenheter', bild: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', text: 'Vår referens: fyra lägenheter i en bostadsrättsförening som förvaltas av Holmströmgruppen. Målar en medlem om inne i sin lägenhet kan medlemmen få ROT.', punkter: ['Väggar och tak', 'Dörrar och snickerier', 'ROT för medlemmen, inte föreningen'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>) },
     ],
   },
 
@@ -284,7 +287,7 @@ const data = {
     kort: { rubrik: 'Sitter du i styrelsen?', text: 'Ring och berätta vilka ytor det gäller, så får ni en offert att ta ställning till.' },
     lista: [
       { q: 'Vad kostar det för föreningen?', a: 'Det beror på ytorna, skicket och vad som ska göras. Därför börjar vi med en offert, och den är kostnadsfri. Offerten tar med material, arbete, förarbete som tvätt och skrapning, städning och bortforsling.' },
-      { q: 'Har ni jobbat åt fastighetsägare eller föreningar förut?', a: 'Ja. Vi har målat fyra lägenheter åt fastighetsbolaget Holmströmgruppen, som också är vår referens. Annars har vi mest målat åt privatkunder i villor och lägenheter, och nu tar vi även uppdrag åt bostadsrättsföreningar. Det styrelsen kan kontrollera är hur vi har jobbat: 46 omdömen på Reco med 4,9 av 5 i snitt, och Rekommenderat företag tre år i rad.' },
+      { q: 'Har ni jobbat åt fastighetsägare eller föreningar förut?', a: 'Ja. Vi har målat fyra lägenheter i en bostadsrättsförening som förvaltas av Holmströmgruppen, och de är också vår referens. Annars har vi mest målat åt privatkunder i villor och lägenheter. Det styrelsen kan kontrollera är hur vi har jobbat: 46 omdömen på Reco med 4,9 av 5 i snitt, och Rekommenderat företag tre år i rad.' },
       { q: 'Kan föreningen få ROT-avdrag?', a: 'Nej. ROT är en skattereduktion för privatpersoner, och Skatteverket ger inget avdrag för arbete på gemensamma ytor som tak, fasader, trapphus och entréer. Räkna därför med hela arbetskostnaden i budgeten. Målar en medlem om inne i sin egen lägenhet, där medlemmen har underhållsansvaret enligt stadgarna, kan medlemmen få ROT, och då drar vi det direkt på fakturan.' },
       { q: 'När betalar föreningen?', a: 'Ni får fakturan när arbetet är klart, ingen förskottsbetalning. På stora jobb över 500 kvm betalas halva arbetskostnaden när halva jobbet är gjort.' },
       { q: 'Vad händer om något oväntat dyker upp?', a: 'Då hör vi av oss direkt och föreslår en lösning. Vi gör inga extraarbeten utan ert godkännande.' },
@@ -323,6 +326,7 @@ const data = {
     tjanster: footerTjanster,
     bild: footerBild, // Stockholms siluett i skymning, se _gd.js
     lankar: footerLankar, // Integritet och Cookieinställningar, se _gd.js
+    orter: footerOrter, // Där vi jobbar: ortssidorna, se _gd.js
   },
 
   // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.

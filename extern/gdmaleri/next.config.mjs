@@ -13,8 +13,8 @@ const nextConfig = {
       ...till('/')(['vara-tjanster', 'offert', 'kontakta-oss', 'om-oss', 'galleri', 'utforda-arbeten']),
       // Bredspackling och tapetborttagning bor på tapetseringssidan.
       ...till('/tapetsering/')(['bredspackling-tapetborttagning']),
-      // Ortssidorna: ingen egen sida än (se content/leads/gdmaleri.md punkt 6) — till fasadsidan tills vidare.
-      ...till('/fasad-malning/')(['fasadmalning-bromma', 'fasadmalning-taby', 'fasadmalning-danderyd', 'fasadmalning-huddinge', 'fasadmalning-lidingo', 'fasadmalning-sollentuna']),
+      // Ortssidorna (/fasadmalning-bromma/, -taby/, -danderyd/, -huddinge/, -lidingo/, -sollentuna/) är egna
+      // sidor igen sedan 2026-10-14 (Search Console: visningar på plats 8–15); 308:orna till /fasad-malning/ borttagna.
       // WordPress-filer och flöden som kan vara länkade/indexerade.
       { source: '/wp-content/:path*', destination: '/', permanent: true },
       { source: '/wp-admin/:path*', destination: 'https://v1.gdmaleri.se/wp-admin/:path*', permanent: false },

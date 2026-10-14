@@ -122,6 +122,24 @@ export const footerLankar = [
   { href: '#cookieval', txt: 'Cookieinställningar' },
 ];
 
+/* ORTSSIDORNA (2026-10-14, Mathias: "bygg dom andra platserna också"). Search Console visade att
+   WordPress-sajtens ortssidor hade visningar på plats 8–15 (vecka 41); de 308:ades till /fasad-malning/
+   tills nu. Belagda jobb bara i Bromma (fasad 234 kvm), Täby kyrkby (fasad 350 kvm) och Södertälje
+   (tak och väggar 180 kvm, bolagets säte); Lidingö, Sollentuna, Huddinge och Danderyd visar närmaste
+   belagda jobb, märkt med sin riktiga ort. Länkas från footerns rad "Där vi jobbar" (mallfältet
+   footer.orter) på alla GD-sidor, startsidans Om oss och fasadsidans frågor. INTE i mobilmenyn.
+   Bokstavsordning, så att ingen ort ser ut att vara "störst". */
+export const ORTER = [
+  { href: '/gdmaleri/fasadmalning-bromma/', ort: 'Bromma', txt: 'Fasadmålning i Bromma' },
+  { href: '/gdmaleri/fasadmalning-danderyd/', ort: 'Danderyd', txt: 'Fasadmålning i Danderyd' },
+  { href: '/gdmaleri/fasadmalning-huddinge/', ort: 'Huddinge', txt: 'Fasadmålning i Huddinge' },
+  { href: '/gdmaleri/fasadmalning-lidingo/', ort: 'Lidingö', txt: 'Fasadmålning på Lidingö' },
+  { href: '/gdmaleri/fasadmalning-sollentuna/', ort: 'Sollentuna', txt: 'Fasadmålning i Sollentuna' },
+  { href: '/gdmaleri/malare-sodertalje/', ort: 'Södertälje', txt: 'Målare i Södertälje' },
+  { href: '/gdmaleri/fasadmalning-taby/', ort: 'Täby', txt: 'Fasadmålning i Täby' },
+];
+export const footerOrter = { rubrik: 'Där vi jobbar', lankar: ORTER.map(({ href, ort }) => ({ href, txt: ort })) };
+
 // Mobilmenyn får tjänstesidorna utom den man står på och de som redan finns i pillret.
 // Fasadtvätt och taktvätt står inte i mobilmenyn (med alla nio blev panelen 35 px högre än
 // skärmen på 390×844, mätt 2026-10-13); de nås från fasad- och taksidorna, korten på startsidan
@@ -265,7 +283,8 @@ export const skapadAv = 'Hemsida skapad av';
 
 // Service-post för en tjänstesida. Pekar på huvudsidans HousePainter (@id). Inget betygsschema (svartlistan).
 // Ingen url: sidan ligger inte på gdmaleri.se än (vid flytten: se URL-kartan i content/leads/gdmaleri.md).
-export const tjanstSchema = ({ namn, typ, beskrivning }) => ({
+// omrade (ortssidorna 2026-10-14): areaServed = orten i stället för Stockholm och länet.
+export const tjanstSchema = ({ namn, typ, beskrivning, omrade }) => ({
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: namn,
@@ -273,7 +292,7 @@ export const tjanstSchema = ({ namn, typ, beskrivning }) => ({
   description: beskrivning,
   provider: { '@type': 'HousePainter', '@id': `${DOMAN}/#business`, name: 'GD Måleri Sthlm AB', url: `${DOMAN}/`, telephone: '+46737298889' },
   // "Hela Stockholm": bekräftat av Ghandi (via Mathias 2026-10-08).
-  areaServed: [{ '@type': 'City', name: 'Stockholm' }, { '@type': 'AdministrativeArea', name: 'Stockholms län' }],
+  areaServed: omrade || [{ '@type': 'City', name: 'Stockholm' }, { '@type': 'AdministrativeArea', name: 'Stockholms län' }],
 });
 
 // Recos EGEN widget (Ghandi via Mathias 2026-10-14, kod från Recos företagspanel, venue 5702839):
@@ -310,3 +329,59 @@ export const RECO_LISTA = [
   { namn: 'Anders F', kalla: 'Verifierad kund', betyg: 5, datum: '2025-12-19', lank: 'https://www.reco.se/r/3091360', text: 'Vi anlitade GD Måleri Sthlm AB för att måla om hall, trapphus och vardagsrum, och är mycket nöjda med resultatet. Arbetet håller riktigt hög kvalitet, utfördes med stor erfarenhet och noggrannhet, och levererades helt enligt överenskommen tidsplan. Allt dessutom till ett väldigt bra pris. Vi upplevde kommunikationen som smidig och professionell genom hela processen. Starkaste rekommendationer – vi skulle utan tvekan anlita dem igen.' },
 ];
 
+// Ett Reco-omdöme ur RECO_LISTA som statiskt kort (ortssidorna 2026-10-14). Bara femmor används så,
+// eftersom de statiska korten ritar fem stjärnor.
+export const recoKort = (namn) => {
+  const o = RECO_LISTA.find((r) => r.namn === namn);
+  if (!o || o.betyg !== 5) throw new Error(`recoKort: ${namn} saknas eller är inte en femma`);
+  return { namn: o.namn, kalla: 'Verifierad kund · Reco', text: o.text };
+};
+
+/* Jobbilderna som bandbilder (ortssidorna 2026-10-14). Alt och bildtext som på tjänstesidorna; ort står
+   bara där den är belagd (Bromma: IG Dd-zVd3ggOI, Täby kyrkby: IG Dc1IM7Pgpeh, Södertälje: IG DeNI1zEkcpW).
+   Övriga bilder har ingen känd ort och får aldrig märkas med en. */
+const bb = (fil, alt, txt) => ({ src: `${M}/${fil}`, alt, txt });
+export const BAND = {
+  brommaAltan: bb('jobb-bromma-altan.webp', 'Ljusgrå panelfasad med vita spröjsade altandörrar och fönsterkarmar mot ett trädäck', 'Bromma: väggar och fönsterkarmar'),
+  taby2: bb('jobb-taby-2.webp', 'Samma nymålade grå träfasad i Täby kyrkby, sedd från tomten med tallar och berghällar', 'Täby kyrkby, 350 kvm'),
+  taby43: bb('jobb-taby-43.webp', 'Nymålad grå träfasad på ett modernt tvåvåningshus i Täby kyrkby, sedd från tomten', 'Täby kyrkby, från tomten'),
+  sodertalje1: bb('invandig-sodertalje-1.webp', 'Nymålat rum med ljusa väggar, vit taklist och skrivbord vid fönstret i Södertälje', 'Södertälje: tak och väggar, 180 kvm'),
+  sodertalje2: bb('invandig-sodertalje-2.webp', 'Nymålat vitt tak med taklampa och bred taklist mot ljusgrå väggar, en öppen dörr med glasrutor, i Södertälje', 'Södertälje: nymålat tak'),
+  langsida: bb('jobb-langsida.jpg', 'Långsida på ett hus med laxrosa stående panel, vita fönster och svart stuprör', 'Panel och fönster målade'),
+  rodTimmer: bb('jobb-rod-timmer.jpg', 'Närbild på en rödmålad timmervägg med vit knutbräda och altanräcke', 'Timmervägg målad i rött'),
+  rodFonster: bb('jobb-rod-fonster.jpg', 'Vitmålat spröjsat fönster i en röd träfasad', 'Fönster målade vita'),
+  fonsterbleck: bb('jobb-fonsterbleck.jpg', 'Närbild på vitmålad fönsterbåge och svart fönsterbleck mot panel', 'Fönsterbåge målad'),
+  terrass: bb('jobb-terrass.jpg', 'Nymålad laxrosa fasad och vit dörr vid en trädäcksaltan', 'Fasad och dörr målade'),
+  fonsterMaskerade: bb('jobb-fonster-maskerade.jpg', 'Spröjsade fönster maskerade med blå tejp inför målning', 'Fönster maskade före målning'),
+  takFore: bb('jobb-tak-fore.jpg', 'Betongpannetak med mossa och gul lav före taktvätt', 'Tak före tvätt'),
+  takEfter: bb('tjanst-tak.jpg', 'Grått betongpannetak efter taktvätt, med en vit villa och tallar i bakgrunden', 'Tak efter tvätt'),
+  sekelskifte: bb('jobb-sekelskifte.jpg', 'Ljust rum med två höga spröjsade fönster och radiatorer', 'Rum målat i ljust'),
+  gulHall: bb('jobb-gul-hall.jpg', 'Hall i varmgul kulör med vita snickerier och balkongdörr', 'Hall målad i gult'),
+  blaTak: bb('jobb-bla-tak.jpg', 'Ljusblått målat tak med spotlightskena och bokhylla', 'Tak målat ljusblått'),
+  trappa: bb('jobb-trapphus.jpg', 'Trappa i ett hem med mörkrosa nederdel och ljus vägg ovanför', 'Trappa målad i två kulörer'),
+  vardagsrum: bb('jobb-vardagsrum.jpg', 'Tomt vardagsrum med ljusrosa väggar och tre fönster', 'Vardagsrum målat ljusrosa'),
+  panelvagg: bb('jobb-panelvagg.jpg', 'Vitmålad bröstpanel under en ljusgrön vägg', 'Bröstpanel målad vit'),
+  spackelTak: bb('jobb-spackel-tak.jpg', 'Målare i vit t-shirt spacklar ett innertak', 'Innertak spacklas'),
+  dorrGron: bb('tjanst-snickerier.jpg', 'Spegeldörr målad i mörkgrönt i en ljus lägenhet', 'Dörr målad mörkgrön'),
+};
+
+// Utvalda jobb (stående 3:4) med belagd ort, för ortssidorna.
+export const UTVALDA = {
+  brommaForeEfter: { src: `${M}/fasad-fore-efter.webp`, w: 900, h: 1200, etikett: 'Bromma, 234 kvm', txt: 'Samma gavel: vänster halva före, höger halva efter jobbet.', alt: 'Sammansatt före/efter-bild av samma gavel i Bromma: vänster halva visar smutsig, flagnande grå färg och en byggställning, höger halva den rena, nymålade ljusgrå panelen med vita fönster', lank: { href: 'https://www.instagram.com/p/Dd-zVd3ggOI/', txt: 'Se jobbet på Instagram' } },
+  taby1: { src: `${M}/jobb-taby-1.webp`, w: 900, h: 1200, etikett: 'Täby kyrkby, 350 kvm', txt: 'Träfasad i grått, klar i september 2026.', alt: 'Nymålad grå träfasad på ett modernt tvåvåningshus med altan och utemöbler i Täby kyrkby', lank: { href: 'https://www.instagram.com/p/Dc1IM7Pgpeh/', txt: 'Se jobbet på Instagram' } },
+  taby2: { src: `${M}/jobb-taby-2.webp`, w: 900, h: 1200, etikett: 'Täby kyrkby, från tomten', txt: 'Samma hus, sett från andra sidan.', alt: 'Samma nymålade grå träfasad i Täby kyrkby, sedd från tomten med tallar och berghällar' },
+};
+
+// Ritningarna i tjänstekorten (samma streck som på tjänstesidorna).
+export const RITNING = {
+  fasad: (<><path d="M20 100V48l80-34 80 34v52" /><path d="M20 100h160" /><path d="M44 56v44M68 50v50M92 44v56M116 44v56M140 50v50M164 56v44" /></>),
+  tvatt: (<><path d="M20 100V48l80-34 80 34v52" /><path d="M20 100h160" /><path d="M60 64c6 8 6 14 0 20M92 58c6 8 6 14 0 20M124 64c6 8 6 14 0 20" /></>),
+  fonster: (<><path d="M54 16h92v88H54z" /><path d="M100 16v88M54 60h92" /><path d="M44 104h112" /></>),
+  dorr: (<><path d="M64 104V20h72v84" /><path d="M76 32h48v30H76zM76 72h48v24H76z" /><path d="M54 104h92" /></>),
+  plats: (<><path d="M100 96S70 66 70 44a30 30 0 0160 0c0 22-30 52-30 52z" /><circle cx="100" cy="44" r="11" /><path d="M44 110h112" /></>),
+  taktvatt: (<><path d="M16 76L100 24l84 52" /><path d="M36 64v40h128V64" /><path d="M70 50c4 6 4 10 0 14M100 40c4 6 4 10 0 14M130 50c4 6 4 10 0 14" /></>),
+  takfot: (<><path d="M20 90L100 30l80 60" /><path d="M34 94L100 44l66 50" /><path d="M60 64l6 6M84 48l6 6M116 48l-6 6M140 64l-6 6" /></>),
+  vagg: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M84 60h32v24H84z" /></>),
+  innertak: (<><path d="M20 30h160" /><path d="M20 30l30 24h100l30-24" /><path d="M50 54v46M150 54v46" /><path d="M70 40l10 6M110 38l-6 8" /></>),
+  maskering: (<><path d="M20 100V48l80-34 80 34v52" /><path d="M20 100h160" /><path d="M56 70h88M56 84h88" /><path d="M72 56l8 8M100 50l8 8M128 56l-6 8" /></>),
+};

@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida FASAD (/gdmaleri/fasad/), 2026-10-08.
@@ -153,7 +153,8 @@ const data = {
       { q: 'Målar ni fönster och vindskivor också?', a: 'Ja. Fönster, fönsterkarmar, vindskivor, takfot och dörrar kan ingå i samma offert som fasaden.' },
       { q: 'När betalar jag?', a: 'Du får fakturan när arbetet är klart, ingen förskottsbetalning. På stora jobb över 500 kvm betalas halva arbetskostnaden när halva jobbet är gjort.' },
       { q: 'Har ni garanti?', a: 'Ja, ett år på måleriarbetet. Behöver något åtgärdas under den tiden gör vi det utan extra kostnad.' },
-      { q: 'Var arbetar ni?', a: 'I hela Stockholm. I år har vi bland annat målat fasader i Bromma och Täby kyrkby.' },
+      // Internlänkar till ortssidorna med beskrivande ankartext (2026-10-14), se ORTER i _gd.js.
+      { q: 'Var arbetar ni?', a: <>I hela Stockholm. I år har vi bland annat målat fasader i Bromma och Täby kyrkby, se <a href="/gdmaleri/fasadmalning-bromma/">fasadmålning i Bromma</a> och <a href="/gdmaleri/fasadmalning-taby/">fasadmålning i Täby</a>. Vi tar också fasadjobb i resten av Stockholm, till exempel <a href="/gdmaleri/fasadmalning-lidingo/">fasadmålning på Lidingö</a>, <a href="/gdmaleri/fasadmalning-sollentuna/">fasadmålning i Sollentuna</a>, <a href="/gdmaleri/fasadmalning-danderyd/">fasadmålning i Danderyd</a> och <a href="/gdmaleri/fasadmalning-huddinge/">fasadmålning i Huddinge</a>. Firman har sitt säte i Södertälje, se <a href="/gdmaleri/malare-sodertalje/">målare i Södertälje</a>.</> },
     ],
   },
 
@@ -182,6 +183,7 @@ const data = {
     tjanster: footerTjanster,
     bild: footerBild, // Stockholms siluett i skymning, se _gd.js
     lankar: footerLankar, // Integritet och Cookieinställningar, se _gd.js
+    orter: footerOrter, // Där vi jobbar: ortssidorna, se _gd.js
   },
 
   // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.
