@@ -26,7 +26,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning i Täby – målare för fasad och hus | GD Måleri Sthlm AB',
+  title: 'Fasadmålning i Täby – 350 kvm i Täby kyrkby | GD Måleri Sthlm AB',
   description:
     'Fasadmålning i Täby: 350 kvm träfasad i Täby kyrkby, klar i september 2026. Tvätt, skrapning och målning i samma offert, kostnadsfritt hembesök och ROT på fakturan.',
   robots: { index: false, follow: false },
