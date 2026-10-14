@@ -55,6 +55,7 @@ Två tekniska nivåer, båda serveras av `web`-appen (`next start`, se
 | kmctransport | Kranbil/transport/bud | `web/public/cloud/kmctransport/` | Generisk | 🔒 | |
 | nordiapartner | Taktvätt | `web/public/cloud/nordiapartner/` | Generisk | | |
 | osterlunds | Jordbyggnad, infra, sprängning, maskintransport (Oravais, FINLAND) | `web/app/(demo)/osterlunds/` | Äkta lead (IG @osterlundsjordbyggnad) | | Byggd om 2026-08-31 på nya mallen. Gamla `/cloud/osterlunds` 301:ar hit — får aldrig brytas. Den gamla demon sålde villamark och låg fel mot nischen |
+| stobytak | Takläggning, takbyte, plåt, rännor, papptak (Stoby/Hässleholm, Skåne) | `web/app/(demo)/stobytak/` | Äkta lead (IG @stobytak, stobytak.se, Perna Consulting AB, org.nr 556967-6611) | | Byggd 2026-10-14 på mallen v3. Riktigt telefon, mejl och org.nr på sidan — visa INTE offentligt. Egna foton, omdömen från deras sajt, hero = eget foto i rörelse (ingen förvandling). `1-byran/intern-tillvaxt/leads/stobytak.md` |
 | pizzeriamatstugan | Restaurang | `web/public/cloud/pizzeriamatstugan/` | Off-nisch | 🔒 | |
 | solpanelstjejen | Solcellsbesiktning (Värmland) | `web/public/cloud/solpanelstjejen/` | Generisk | | |
 | mugglagret | E-handel, keramikmuggar | `web/public/cloud/mugglagret/` | Off-nisch | | |
