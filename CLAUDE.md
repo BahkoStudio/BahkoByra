@@ -137,6 +137,8 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 | ⭐ | Här bor det viktiga — börja leta här |
 | ⚠ | Känd fälla, se längst ner |
 
+**OneDrive speglar grenarna** (sedan 2026-10-14, ångra-logg i `OneDrive/audits/flytt-os-2026-10-14.csv`): `1 Bahko Byrå/` har Hemsidor, SEO, Content, Intern tillväxt (Leads, Sälj, Notion-CRM), Kunder (`<företag>/Avtal/`, `Rapporter/`, `Material/`), Ekonomi och admin (Fakturor, Kvitton, Kostnader) och Byrårådet. `2 Beast of Ages/` har Strategi, Idéer, Research, Manus, Paket, Produktion, Publicering, YouTube-rådet och Arkiv, plus `Musik och ljud/`. Texten för varje kvist bor i repot, OneDrive har bara filer som inte hör hemma i git. `3 Privat/` är privat.
+
 **Ligger inte i repot:** `~/.claude/skills/` (de globala skillsen — se `docs/skills-oversikt.md`
 för hela listan, samma filer som repots), minnesmappen `~/.claude/projects/…/memory/`,
 `OneDrive/audits/` (OS-audit-rapporter), `OneDrive/Dokument/Backups/higgsfield-genererat/`
@@ -151,7 +153,7 @@ någon Vercel; flyttas ett nytt eget projekt in i repot får det en egen numrera
 | Mapp (`OneDrive/`) | Vad |
 |---|---|
 | `1 Bahko Byrå/Kunskap/rtf-skill/` | YouTube-verktyg (aug 2026): tidsstämplar varje ord i en video och rankar ögonblicken som förtjänar en grafik. README + SKILL.md i mappen; `rtf-claude-design/` bredvid är en körning av det |
-| `1 Bahko Byrå/Content/Avatar-bilder/` + `1 Bahko Byrå/Anteckningar och prompter/Prompter 2025/` | Avatarbilder och de gamla prompterna (avatar, sälj, youtube) från 2025 |
+| `1 Bahko Byrå/Content/Avatar-bilder/` + `1 Bahko Byrå/Anteckningar och prompter/Prompter 2025/` | Avatarbilder och de gamla prompterna (avatar, sälj) från 2025; youtube-prompten ligger i `2 Beast of Ages/Strategi/` |
 | `1 Bahko Byrå/Arkiv 2025/` + `1 Bahko Byrå/Kunder/Bodens (2025)/` + `Shirdell (2025)/` | Äldre kund- och BahkoStudio-material från 2024–2025, före rebranden |
 | `3 Privat/Personlig utveckling/` | Utbildningsmaterial (Proctor, Napoleon Hill), inget projekt |
 
