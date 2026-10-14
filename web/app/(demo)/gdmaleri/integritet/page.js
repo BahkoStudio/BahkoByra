@@ -12,7 +12,9 @@ import { M, kontakt, tema } from '../_gd';
    - Bokningen är Cal.com, inbäddad som iframe (bokning.inbaddad i _gd.js).
    - Instagram-inlägg bäddas in som iframe från instagram.com (mallen, instagram.koder).
    - GA4 laddas bara efter ja i samtyckesrutan (public/gdmaleri/js/analytics.js, 'gd_consent').
-   - Omdömen från Reco och Google är statisk text på sidan, inga skript från dem.
+   - Omdömen från Google är statisk text. Reco: Recos egen widget som iframe från widget.reco.se,
+     inga cookies (Playwright 2026-10-14). Instagram: Behold-flöde (GDMALERI_IG_FLODE) sedan 2026-10-13,
+     iframe från instagram.com bara som reserv.
    =========================================================================== */
 export const metadata = {
   title: 'Integritet och cookies | GD Måleri Sthlm AB',
@@ -84,9 +86,10 @@ export default function GdMaleriIntegritet() {
           webbläsare.
         </p>
         <p style={stil.p}>
-          Inlägg från Instagram bäddas in direkt från instagram.com. När de visas kan Instagram
-          (Meta) sätta egna cookies enligt sin policy. Omdömena från Reco och Google är vanlig text
-          på sidan och laddar inget från dem.
+          Våra senaste Instagram-inlägg hämtas via tjänsten Behold och visas som vanliga bilder.
+          Går flödet inte att hämta bäddas inläggen in direkt från instagram.com, och då kan
+          Instagram (Meta) sätta egna cookies enligt sin policy. Omdömesrutan från Reco laddas från
+          widget.reco.se och sätter inga cookies. Omdömena från Google är vanlig text på sidan.
         </p>
 
         <h2 style={stil.h2}>Dina rättigheter</h2>
@@ -96,7 +99,7 @@ export default function GdMaleriIntegritet() {
           hanterar dina uppgifter kan du vända dig till Integritetsskyddsmyndigheten (IMY).
         </p>
 
-        <p style={stil.fot}>Uppdaterad 13 oktober 2026.</p>
+        <p style={stil.fot}>Uppdaterad 14 oktober 2026.</p>
       </main>
     </div>
   );

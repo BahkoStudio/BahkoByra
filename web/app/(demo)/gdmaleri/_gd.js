@@ -163,7 +163,7 @@ export const om = {
     'Vi målar åt villaägare, bostadsrätter och företag, från en lägenhet på 43 kvm till en fasad på 350 kvm i Täby kyrkby. Färgen är Flügger, och vi är försäkrade via Trygg-Hansa.',
   ],
   bevis: [
-    { ord: '4,9 av 5', text: 'i snitt på Reco, 45 omdömen' },
+    { ord: '4,9 av 5', text: 'i snitt på Reco, 46 omdömen' },
     { ord: 'Tre år i rad', text: 'Rekommenderat företag på Reco' },
     { ord: 'F-skatt', text: 'och fullt försäkrade' },
   ],
@@ -269,6 +269,15 @@ export const tjanstSchema = ({ namn, typ, beskrivning }) => ({
   // "Hela Stockholm": bekräftat av Ghandi (via Mathias 2026-10-08).
   areaServed: [{ '@type': 'City', name: 'Stockholm' }, { '@type': 'AdministrativeArea', name: 'Stockholms län' }],
 });
+
+// Recos EGEN widget (Ghandi via Mathias 2026-10-14, kod från Recos företagspanel, venue 5702839):
+// levande, visar de senaste 4:orna och 5:orna och antalet. Laddar bara från widget.reco.se, sätter
+// inga cookies (kontrollerat 2026-10-14, då 46 omdömen och 4,9). Ersätter de statiska Reco-korten på startsidan.
+export const RECO_IFRAME = {
+  src: 'https://widget.reco.se/v2/venues/5702839/horizontal/xlarge?inverted=false&border=true&lang=sv',
+  titel: 'GD Måleri Sthlm AB - Omdömen på Reco',
+  hojd: 225,
+};
 
 // Reco-widgeten (mallfältet omdomen.reco, Mathias 2026-10-09: "Reco widget" som på gdmaleri.se).
 // Siffrorna ur Recos egen widget på gdmaleri.se och reco.se/gd-maleri-sthlm, hämtade 2026-10-09:

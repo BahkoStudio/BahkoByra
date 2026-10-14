@@ -264,7 +264,7 @@ function Omdomen({ d, t, levande }) {
   );
   // Valfritt omdomen.googleLista (GD Måleri 2026-10-09): statiska Google-kort som egen rad FÖRE Reco-widgeten.
   // Visas inte när levande Google-kort redan finns (de går in i listan ovan).
-  const googleLista = d.omdomen.reco && !g?.lista?.length ? d.omdomen.googleLista : null;
+  const googleLista = (d.omdomen.reco || d.omdomen.recoIframe) && !g?.lista?.length ? d.omdomen.googleLista : null;
   return (
     <section className={`${s.sek} ${s.sekMjuk}`} id="omdomen">
       <div className={s.wrap}>
@@ -273,7 +273,13 @@ function Omdomen({ d, t, levande }) {
           {googleBricka && recoBricka ? <div className={s.brickor}>{googleBricka}{recoBricka}</div> : googleBricka || recoBricka}
         </div>
         {googleLista?.length ? <div className={`${s.recensioner} ${s.recensionerFore}`}>{googleLista.map((o, i) => <Kort o={o} i={i} key={o.id || o.namn} />)}</div> : null}
-        {d.omdomen.reco ? <RecoWidget d={d} lista={lista} /> : <div className={s.recensioner}>
+        {/* Valfritt omdomen.recoIframe { src, titel, hojd } (GD Måleri 2026-10-14): Recos egen widget som iframe,
+            levande med senaste omdömena och antalet. Går före den statiska RecoWidget. */}
+        {d.omdomen.recoIframe ? (
+          <div className={s.recoRam}>
+            <iframe src={d.omdomen.recoIframe.src} title={d.omdomen.recoIframe.titel} height={d.omdomen.recoIframe.hojd || 225} loading="lazy" />
+          </div>
+        ) : d.omdomen.reco ? <RecoWidget d={d} lista={lista} /> : <div className={s.recensioner}>
           {lista.map((o, i) => <Kort o={o} i={i} key={o.id || o.namn} />)}
         </div>}
         <div className={s.recensionerFot}>

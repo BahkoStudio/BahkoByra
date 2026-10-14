@@ -2512,3 +2512,7 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
   .stKlistrad .btn,
   .stKlistrad .varforCta .btn { width: 100%; }
 }
+
+/* Recos egen widget som iframe (valfritt omdomen.recoIframe, GD Måleri 2026-10-14). Recos kod: höjd 225, full bredd, ingen kant. */
+.recoRam { margin-top: 1.5rem; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 1px 2px rgba(13,27,42,.06), 0 8px 24px rgba(13,27,42,.06); }
+.recoRam iframe { display: block; width: 100%; border: 0; overflow: hidden; }
