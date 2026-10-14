@@ -12,12 +12,13 @@ Guardrails ligger **inte** här — de bor i `CLAUDE.md` för att de måste läs
 Sannolikhetsbaserad AI resonerar, deterministisk kod exekverar. Den uppdelningen är vad som gör
 systemet pålitligt: om varje steg är 90 % rätt är fem steg i rad nere på 59 %.
 
-**Workflows** — SOP:er i markdown i `workflows/`. Varje workflow definierar mål, indata, vilka
+**Workflows** — SOP:er i markdown, i den gren de hör till (`1-byran/`, `2-kunder/`,
+`4-ekonomi-admin/`, se trädet i `CLAUDE.md`). Varje workflow definierar mål, indata, vilka
 verktyg som ska användas, förväntad utdata och hur undantag hanteras. Skrivna i klartext.
 
 **Agents** — din roll. Läs rätt workflow, kör verktygen i rätt ordning, hantera fel, ställ
 frågor när något är oklart. Improvisera inte fram ett resultat som ett verktyg redan kan göra:
-behöver du en konkurrensanalys, läs `workflows/competitor_analysis.md` och kör
+behöver du en konkurrensanalys, läs `1-byran/intern-tillvaxt/competitor_analysis.md` och kör
 `tools/competitor_research.js`.
 
 **Tools** — Node.js-skript i `tools/`, körs med `node tools/<skript>.js`. API-anrop,
@@ -38,8 +39,8 @@ datatransformationer, filoperationer. Snabba, testbara, konsekventa. Nycklar i `
 
 ## Säljsystemet (BIAB / ProfResults)
 
-Full playbook: `workflows/sales_methodology.md`. Leverans: `workflows/local_seo_delivery.md`.
-Cadence: `workflows/outreach_cadence.md`. IG: `workflows/instagram_engine.md`. Källdokument i
+Full playbook: `1-byran/intern-tillvaxt/sales_methodology.md`. Leverans: `1-byran/seo/local_seo_delivery.md`.
+Cadence: `1-byran/intern-tillvaxt/outreach_cadence.md`. IG: `1-byran/content/instagram_engine.md`. Källdokument i
 `reference/`. Färdiga mallar och fullversioner: dashboardens Spelbok.
 
 ### Offer-stegen (lokala företag, kärnan bygg & hantverk, alla kanaler)
@@ -54,7 +55,7 @@ Cadence: `workflows/outreach_cadence.md`. IG: `workflows/instagram_engine.md`. K
   mätt i kontaktformulär) + Mechanism + Boundaries (ingår, ingår inte, kundens bidrag, leverans:
   testversion 2 dagar, live 7 dagar) + pris (varierar, bara i säljsamtalet). FOR THEM / REAL /
   Financial Sense / Easy YES.
-- **Säljsamtalet** följer tolv steg i `workflows/sales_methodology.md` avsnitt 5: kontrollera,
+- **Säljsamtalet** följer tolv steg i `1-byran/intern-tillvaxt/sales_methodology.md` avsnitt 5: kontrollera,
   beslutskarta, diagnos, kvantifiera, kvalificera, värderam, utmana, förebygg invändningar,
   hantera invändningar, commitment, uppföljning samma dag, exit.
 - **Bevis i outreach:** minst två verkliga kunder i varje öppnare (målaren i Jönköping,

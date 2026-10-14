@@ -3,7 +3,7 @@ import styles from './BevisBromma.module.css';
 /* Brommas bevis, bara det som går att belägga (Mathias 2026-09-23):
    - Plats 1 av 6 i Googles Platser-flik och först i ChatGPT:s svar på
      "trädgårdsservice i Stockholm". Skärmbilderna är från rapport 1, 30 juli 2026
-     (original i content/kundarbete/bromma/bevis/).
+     (original i 2-kunder/kunder/bromma/bevis/).
    - Förfrågningarna räknade i kundens Web3Forms-inkorg: 33 inskick 27 juli till
      3 oktober, minus Mathias två egna tester och ett obekräftat test: 30 (rapport 10,
      2026-10-04). Tidigare 25+ (27 inskick till 22 september).

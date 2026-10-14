@@ -440,7 +440,7 @@ med profillänk och textattributionen "Google Maps" (Googles krav), och G-märke
 bara där. `cid` jämförs mot profilens `googleMapsUri` så att fel firma aldrig
 visas. Ingen JSON-LD av detta (svartlistan). Testa mot en lokal fejkserver
 (`GOOGLE_PLACES_BAS=http://localhost:…/v1` och http-URL:er i env) före leverans.
-Vad kunden behöver och vad det kostar: `content/leads/gdmaleri.md`.
+Vad kunden behöver och vad det kostar: `1-byran/intern-tillvaxt/leads/gdmaleri.md`.
 
 **Linjeritningarna** lever kvar som ikoner: enkla `<path>` i 200×120, nischens
 eget språk (husgavel, panel, tapetvåd). Håll dem grova — de visas i 60 px.
@@ -538,8 +538,8 @@ på **kanon och minst en demo till**.
 
 ## Steg 6 — Leverans
 
-- Leadfilen `content/leads/<kund>.md` (vad som är verifierat, flaggor, DM-utkast)
-  och en rad i `content/leads/demolankar.md`.
+- Leadfilen `1-byran/intern-tillvaxt/leads/<kund>.md` (vad som är verifierat, flaggor, DM-utkast)
+  och en rad i `1-byran/intern-tillvaxt/leads/demolankar.md`.
 - Gren från färsk `origin/main` (`git fetch` först). Lägg bara till demons
   egna sökvägar — **aldrig `git add -A`** (junctions i `.claude/skills/`, och
   Brommas filer hör inte hit). Commit-meddelanden med citattecken skrivs till

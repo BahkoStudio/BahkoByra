@@ -12,7 +12,7 @@ Underlaget kommer från en korsgranskad kartläggning (juli 2026): fyra parallel
 
 ## Grundregler
 
-**1. White hat, utan undantag.** Ingen dold text, ingen cloaking, inget review-schema på egeninsamlade omdömen. Kundens sajt är kundens levebröd, en manuell åtgärd från Google kan slå ut den. Detta är också projektets stående regel (`workflows/local_seo_delivery.md`).
+**1. White hat, utan undantag.** Ingen dold text, ingen cloaking, inget review-schema på egeninsamlade omdömen. Kundens sajt är kundens levebröd, en manuell åtgärd från Google kan slå ut den. Detta är också projektets stående regel (`1-byran/seo/local_seo_delivery.md`).
 
 **2. Ange alltid evidensgrad.** Varje rekommendation märks:
 - **Dokumenterat** — Google, schema.org eller plattformens egen dokumentation säger det

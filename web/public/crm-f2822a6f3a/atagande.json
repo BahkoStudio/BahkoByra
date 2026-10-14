@@ -4,7 +4,7 @@
     "kadens": "vecka",
     "veckodag": "sondag",
     "start": "2026-08-02",
-    "var": "content/kundarbete/bromma/rapporter/",
+    "var": "2-kunder/kunder/bromma/rapporter/",
     "kund": "Bromma Trädgårdsservice"
   },
   {
@@ -12,8 +12,16 @@
     "kadens": "vecka",
     "veckodag": "mandag",
     "start": "2026-08-03",
-    "var": "content/kundarbete/bromma/produktionsrutin.md",
+    "var": "2-kunder/kunder/bromma/produktionsrutin.md",
     "kund": "Bromma Trädgårdsservice"
+  },
+  {
+    "vad": "Veckorapport till GD Måleri (Ghandi)",
+    "kadens": "vecka",
+    "veckodag": "sondag",
+    "start": "2026-10-18",
+    "var": "tools/gd-rapport/ + 2-kunder/rapporter/SOP.md",
+    "kund": "GD Måleri"
   },
   {
     "vad": "IG-karusell @bahkobyra",
