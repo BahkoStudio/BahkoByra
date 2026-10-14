@@ -470,7 +470,10 @@ function Kontakt({ d, t, k, harTel }) {
               </div>
               {/* Valfritt kontaktSektion.epostNamn: fältnamnet för e-post, t.ex. 'email' (Web3Forms autosvar går bara till fältet email). */}
               <label>{t.epost}<input type="email" name={d.kontaktSektion.epostNamn || 'epost'} autoComplete="email" /></label>
-              <label>{t.typ}<select name="typ" defaultValue={d.tjanster.kort[0].namn}>{d.tjanster.kort.map((tj) => <option key={tj.id}>{tj.namn}</option>)}<option>{t.annat}</option></select></label>
+              {/* Valfritt kontaktSektion.typer ['…']: egna val i "Vad gäller det?" när korten inte är tjänster (GD Måleri guidesida 2026-10-14). */}
+              <label>{t.typ}<select name="typ" defaultValue={d.kontaktSektion.typer?.[0] || d.tjanster.kort[0].namn}>{d.kontaktSektion.typer
+                ? d.kontaktSektion.typer.map((v) => <option key={v}>{v}</option>)
+                : d.tjanster.kort.map((tj) => <option key={tj.id}>{tj.namn}</option>)}<option>{t.annat}</option></select></label>
               {/* Valfritt kontaktSektion.meddelandeEtikett: egen etikett på fritextfältet när "Kort om jobbet" inte passar nischen (Vantooro 2026-10-09: "Kort om bolaget"). */}
               <label>{d.kontaktSektion.meddelandeEtikett || t.meddelande}<textarea name="meddelande" rows={4} placeholder={d.kontaktSektion.placeholder} /></label>
               <button className={s.btn} type="submit">{d.cta.txt}</button>
@@ -652,6 +655,7 @@ export default function DemoSida({ data: d }) {
   const lankar = [...d.nav.vanster, ...d.nav.hoger];
   // Utan logotyp är h1 firmanamnet i text. Längsta raden i stora tecken (en liten rad är 0,62 av höjden) styr storleken i CSS.
   const h1Rader = d.hero.h1 || [d.namn];
+  const HeroLogoTagg = d.hero.rubrik ? 'p' : 'h1';
   const h1Tecken = Math.max(...h1Rader.map((rad) => (rad.txt ? rad.txt.length * (rad.liten ? 0.62 : 1) : rad.length))).toFixed(1);
   // Bandet under heron: egna ord i d.tejp, annars tjänsternas namn och punkter.
   const tejp = d.tejp || [...new Set(d.tjanster.kort.flatMap((tj) => [tj.namn, ...(tj.punkter || [])]))].slice(0, 10);
@@ -701,13 +705,22 @@ export default function DemoSida({ data: d }) {
           )}
           <div className={d.hero.foreEfter ? `${s.wrap} ${s.heroDeladGrid}` : s.wrap}>
             <div className={s.heroIn}>
-              <h1 className={s.h1} style={{ '--h1-tecken': h1Tecken }}>
+              {/* Valfritt hero.rubrik { fraga, svar } (GD Måleri guidesida 2026-10-14): h1 är texten, inte logotypen.
+                  Logotypen ritas då som <p> med samma utseende, frågan i ortens stil och svaret i tjänsteradens.
+                  hero.ort och hero.tjanster används inte. Utan fältet: exakt som förut. */}
+              <HeroLogoTagg className={s.h1} style={{ '--h1-tecken': h1Tecken }}>
                 {d.logo
                   ? <Image className={d.logo.ljus ? undefined : d.logo.topp === 'vit' ? s.heroLogoVit : d.logo.topp === 'bricka' ? s.heroLogoSken : undefined} src={d.logo.ljus || d.logo.src} alt={d.namn} width={d.logo.w} height={d.logo.h} style={{ '--logo-ar': (d.logo.w / d.logo.h).toFixed(3) }} priority sizes="460px" />
                   : h1Rader.map((rad, i) => <span className={rad.liten ? s.h1Liten : undefined} key={i}>{rad.txt || rad}</span>)}
-              </h1>
-              {d.hero.ort ? <p className={s.heroOrt}>{d.hero.ort}</p> : null}
-              <p className={s.heroTjanster}>{d.hero.tjanster[0]} &amp; {d.hero.tjanster[1]}.</p>
+              </HeroLogoTagg>
+              {d.hero.rubrik ? (
+                <h1 className={s.heroRubrik}><span className={s.heroOrt}>{d.hero.rubrik.fraga}</span> <span className={s.heroTjanster}>{d.hero.rubrik.svar}</span></h1>
+              ) : (
+                <>
+                  {d.hero.ort ? <p className={s.heroOrt}>{d.hero.ort}</p> : null}
+                  <p className={s.heroTjanster}>{d.hero.tjanster[0]} &amp; {d.hero.tjanster[1]}.</p>
+                </>
+              )}
               <div className={s.heroCta}>
                 <a className={s.btn} href="#kontakt">{d.cta.txt}</a>
                 <a className={`${s.btn} ${s.btnKontur}`} href={andraVag.href} {...(andraVag.ny ? { target: '_blank', rel: 'noopener' } : {})}>{andraVag.ikon}{andraVag.txt}</a>
@@ -820,7 +833,8 @@ export default function DemoSida({ data: d }) {
               <div className={s.omTxt}>
                 <p className={s.eyebrow}>{d.om.eyebrow}</p>
                 <h2 className={s.h2}>{d.om.rubrik[0]}{d.om.rubrik[1] ? <> <em>{d.om.rubrik[1]}</em></> : null}</h2>
-                <div className={s.stycken}>{d.om.stycken.map((st) => <p key={st.slice(0, 24)}>{st}</p>)}</div>
+                {/* Ett stycke får vara JSX med en länk (GD Måleri 2026-10-14); strängar som förut. */}
+                <div className={s.stycken}>{d.om.stycken.map((st, i) => <p key={typeof st === 'string' ? st.slice(0, 24) : i}>{st}</p>)}</div>
                 {d.om.bevis?.length ? <div className={s.omBevis}>{d.om.bevis.map((b) => <div key={b.ord}><b>{b.ord}</b><span>{b.text}</span></div>)}</div> : null}
                 <a className={s.pilLank} href="#kontakt">{d.cta.lank}</a>
               </div>

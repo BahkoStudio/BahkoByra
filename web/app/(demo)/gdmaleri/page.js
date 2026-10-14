@@ -351,6 +351,8 @@ const data = {
     stycken: [
       'GD Måleri Sthlm AB är en målerifirma i Stockholm som hellre gör färre jobb ordentligt än många i hast. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
       'Vi målar åt villaägare, bostadsrätter och företag, från en lägenhet på 43 kvm till en fasad på 350 kvm i Täby kyrkby. Färgen är Flügger, och vi är försäkrade via Trygg-Hansa.',
+      // Internlänk till guidesidan (2026-10-14). Title och H1 på startsidan är oförändrade.
+      <>Jämför gärna innan du bestämmer dig. <a href="/gdmaleri/basta-malare-stockholm/">Så väljer du rätt målare i Stockholm</a>: omdömen, försäkring och vad som ska stå i offerten.</>,
     ],
     bevis: [
       { ord: '4,9 av 5', text: 'i snitt på Reco, 46 omdömen' },

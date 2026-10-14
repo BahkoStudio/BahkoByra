@@ -112,8 +112,12 @@ export const footerBild = {
 
 /* Länkar i footerns bottenrad (mallfältet footer.lankar, 2026-10-13): integritetssidan och
    "Cookieinställningar", som öppnar samtyckesrutan igen (public/gdmaleri/js/analytics.js lyssnar
-   på href="#cookieval"). Krävs när GA4 mäter sajten. */
+   på href="#cookieval"). Krävs när GA4 mäter sajten.
+   2026-10-14: guidesidan basta-malare-stockholm/ först (Mathias: "se till att han rankar för den bästa
+   målare expert i stockholm"). Står här och inte i Tjänster-kolumnen, eftersom den inte är en tjänst. */
+export const GUIDE = { href: '/gdmaleri/basta-malare-stockholm/', txt: 'Så väljer du målare' };
 export const footerLankar = [
+  GUIDE,
   { href: '/gdmaleri/integritet/', txt: 'Integritet och cookies' },
   { href: '#cookieval', txt: 'Cookieinställningar' },
 ];

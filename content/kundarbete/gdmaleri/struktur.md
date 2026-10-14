@@ -1,6 +1,6 @@
 # GD Måleri — struktur på gdmaleri.se
 
-Ur `extern/gdmaleri/kopiera.mjs` (SLUGS) och `app/sitemap.js`, 2026-10-10, fyra nya tjänstesidor 2026-10-13.
+Ur `extern/gdmaleri/kopiera.mjs` (SLUGS) och `app/sitemap.js`, 2026-10-10, fyra nya tjänstesidor 2026-10-13, guidesidan 2026-10-14.
 
 | Sökväg | Demo-mapp i web/ | Sida |
 |---|---|---|
@@ -14,6 +14,7 @@ Ur `extern/gdmaleri/kopiera.mjs` (SLUGS) och `app/sitemap.js`, 2026-10-10, fyra 
 | `/snickerier-fonster-malning/` | `gdmaleri/snickerier-fonster-malning/` | Fönster, dörrar och snickerier (gammal WP-slug, egen sida igen 2026-10-13) |
 | `/fasadtvatt/` | `gdmaleri/fasadtvatt/` | Fasadtvätt (ny 2026-10-13) |
 | `/taktvatt/` | `gdmaleri/taktvatt/` | Taktvätt (ny 2026-10-13) |
+| `/basta-malare-stockholm/` | `gdmaleri/basta-malare-stockholm/` | Guide: Bästa målaren i Stockholm? Så väljer du rätt målerifirma (ny 2026-10-14; länkad i footerns bottenrad och startsidans Om oss, inte i mobilmenyn) |
 | `/integritet/` | `gdmaleri/integritet/` | Integritet och cookies (2026-10-13, inte i sitemapen; länkad i footern) |
 
 301 från gamla WordPress-sidor (`extern/gdmaleri/next.config.mjs`):

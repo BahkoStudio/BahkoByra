@@ -595,6 +595,9 @@ html:has(.sida) {
   color: var(--accent-ljus);
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
 }
+/* Valfritt hero.rubrik (GD Måleri guidesida 2026-10-14): h1 är texten, fråga i ortens stil och svar i tjänsteradens. */
+.heroRubrik { font: inherit; text-wrap: balance; }
+.heroRubrik > span { display: block; text-wrap: balance; }
 .heroCta {
   display: flex;
   flex-wrap: wrap;
@@ -774,6 +777,8 @@ html:has(.sida) {
 .lattKort .tjanstTxt h3 { color: var(--accent-text); font-weight: 600; }
 .lattKort .tjanstTxt ul { color: var(--text-2); font-weight: 400; }
 .tjanstTxt .pilLank { margin-top: auto; }
+/* Länkar i kortets text (GD Måleri guidesida 2026-10-14): över kortets klickyta, som frågornas länkar. */
+.tjanstTxt p a { position: relative; z-index: 1; color: var(--accent-text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 /* Hela kortet klickbart utan att nästla länkar. */
 .tjanstTxt .pilLank::before {
   content: '';
@@ -975,6 +980,7 @@ html:has(.sida) {
   color: var(--text-2);
 }
 .stycken p + p { margin-top: 1rem; }
+.stycken a { color: var(--accent-text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 .omBevis {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
