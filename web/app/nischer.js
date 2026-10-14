@@ -68,7 +68,7 @@ export const NISCHER = [
       {
         fraga: 'Vad kostar en hemsida för en målerifirma?',
         svar:
-          'Ni får ett exakt fast pris i det kostnadsfria förslaget, innan ni bestämmer er. Engångspris, inga månadsavgifter, ingen bindningstid. Vad som avgör priset förklarar vi öppet på sidan om vad en hemsida kostar.',
+          'Ni får ett exakt fast pris i det kostnadsfria förslaget, innan ni bestämmer er. Underhåll och SEO efter lanseringen har en månadsavgift som också står i förslaget, och det finns ingen bindningstid. Vad som avgör priset förklarar vi öppet på sidan om vad en hemsida kostar.',
       },
     ],
   },
@@ -130,7 +130,7 @@ export const NISCHER = [
       {
         fraga: 'Vad kostar en hemsida för en trädgårdsfirma?',
         svar:
-          'Ni får ett exakt fast pris i det kostnadsfria förslaget, innan ni bestämmer er. Engångspris, inga månadsavgifter, ingen bindningstid. Vad som avgör priset förklarar vi öppet på sidan om vad en hemsida kostar.',
+          'Ni får ett exakt fast pris i det kostnadsfria förslaget, innan ni bestämmer er. Underhåll och SEO efter lanseringen har en månadsavgift som också står i förslaget, och det finns ingen bindningstid. Vad som avgör priset förklarar vi öppet på sidan om vad en hemsida kostar.',
       },
     ],
   },
