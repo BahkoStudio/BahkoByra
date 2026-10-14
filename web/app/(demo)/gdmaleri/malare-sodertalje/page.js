@@ -55,7 +55,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Målare i Södertälje', svar: 'Inne och ute, från vårt eget säte.' } },
+  hero: { ...hero, rubrik: { fraga: 'Målare i Södertälje', svar: 'Inne & ute.' } },
   tejp: ['Målare i Södertälje', 'Vårt säte', '180 kvm tak och väggar', 'Invändig målning', 'Fasad och tak', 'Rekommenderat företag på Reco', 'Faktura när jobbet är klart', 'ROT på fakturan'],
 
   tjanster: {
@@ -82,7 +82,7 @@ const data = {
     ],
     tid: '70s',
     rad1: [BAND.sekelskifte, BAND.gulHall, BAND.blaTak, BAND.spackelTak, BAND.trappa, BAND.panelvagg],
-    rad2: [BAND.brommaAltan, BAND.takFore, BAND.takEfter, BAND.taby2, BAND.rodFonster, BAND.dorrGron],
+    rad2: [BAND.brommaAltan, BAND.takFore, BAND.terrass, BAND.taby2, BAND.rodFonster, BAND.dorrGron],
   },
 
   varfor,

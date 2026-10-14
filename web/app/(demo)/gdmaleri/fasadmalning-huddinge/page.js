@@ -52,7 +52,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Huddinge', svar: 'Offert vid ett hembesök, utan kostnad.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Huddinge', svar: 'Fasad & tak.' } },
   tejp: ['Fasadmålning i Huddinge', 'Fasad och tak', 'Taktvätt', 'Inget extra utan ditt ja', 'Slutbesiktning före fakturan', 'Färg från Flügger', '46 omdömen på Reco', 'ROT på småhus'],
 
   tjanster: {

@@ -49,7 +49,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Täby', svar: '350 kvm träfasad i Täby kyrkby.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Täby', svar: 'Träfasad & vindskivor.' } },
   tejp: ['Fasadmålning i Täby', '350 kvm i Täby kyrkby', 'Träfasad i grått', 'Tvätt, skrapning och lagning', 'Fönster och vindskivor', 'Ingen förskottsbetalning', '4,9 av 5 på Reco', 'ROT på småhus'],
 
   tjanster: {
@@ -59,7 +59,7 @@ const data = {
     lattKort: true,
     kolumner: 3,
     kort: [
-      { id: 'taby-jobbet', namn: 'Huset i Täby kyrkby', bild: `${M}/jobb-taby-43.webp`, alt: 'Nymålad grå träfasad på ett modernt tvåvåningshus i Täby kyrkby, sedd från tomten', text: 'Ett modernt tvåvåningshus med träfasad, nymålat i grått och klart i september 2026.', punkter: ['350 kvm träfasad', 'Kulör: grått', 'Bilder på Instagram'], lank: { href: '#jobb', txt: 'Se bilderna från Täby' }, ritning: RITNING.plats },
+      { id: 'taby-jobbet', namn: 'Huset i Täby kyrkby', bild: `${M}/jobb-taby-43.webp`, alt: 'Nymålad grå träfasad på ett modernt tvåvåningshus i Täby kyrkby, sedd från tomten', text: 'Ett modernt tvåvåningshus med träfasad, nymålat i grått och klart i september 2026.', punkter: ['350 kvm träfasad', 'Kulör: grått', 'Bilder på Instagram'], ritning: RITNING.plats },
       { id: 'tvatt', namn: 'Tvätt innan färgen', bild: `${M}/jobb-langsida.jpg`, alt: 'Långsida på ett hus med laxrosa stående panel, vita fönster och svart stuprör', text: 'Innan vi målar tvättas fasaden och lös färg skrapas bort. Tvätten går också att beställa för sig.', punkter: ['Tvätt och skrapning', 'Lagning där det behövs', 'ROT på småhus'], lank: { href: '/gdmaleri/fasadtvatt/', txt: 'Fasadtvätt' }, ritning: RITNING.tvatt },
       { id: 'detaljer', namn: 'Fönster och vindskivor', bild: `${M}/jobb-fonsterbleck.jpg`, alt: 'Närbild på vitmålad fönsterbåge och svart fönsterbleck mot panel', text: 'Fönsterbågar, vindskivor och takfot kan målas i samma veva som väggarna, i samma offert.', punkter: ['Fönsterbågar', 'Vindskivor och takfot', 'Färg från Flügger'], lank: { href: '/gdmaleri/fasad/', txt: 'Fasadmålning i Stockholm' }, ritning: RITNING.fonster },
     ],
@@ -72,7 +72,7 @@ const data = {
     not: 'Bilder utan ort i bildtexten är från andra jobb än det i Täby kyrkby. Fler bilder finns på vårt Instagram.',
     utvalda: [UTVALDA.taby1, UTVALDA.taby2],
     tid: '70s',
-    rad1: [BAND.brommaAltan, BAND.rodFonster, BAND.terrass, BAND.rodTimmer, BAND.fonsterMaskerade, BAND.langsida],
+    rad1: [BAND.brommaAltan, BAND.rodFonster, BAND.terrass, BAND.rodTimmer, BAND.fonsterMaskerade, BAND.gulHall],
     rad2: [BAND.takEfter, BAND.blaTak, BAND.sodertalje2, BAND.trappa, BAND.takFore, BAND.vardagsrum],
   },
 

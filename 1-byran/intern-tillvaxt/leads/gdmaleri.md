@@ -358,3 +358,32 @@ Mathias: "varje tjänst ska ha en undersida/landningssida". Byggda på samma mal
 - "Alger" på taktvätt-sidan är uppdragets ordval; bilderna visar mossa och lav.
 - Fem omdömen per sida (tre Reco + två Google), inga dubbletter; Torbjörn K säger "tak" utan yttertak/innertak.
 - QA mot extern-bygget på 3042: alla fem routes 115 OK, 0 FEL; QA:ns sista koll "/om-oss/ och /swedcro/ svarar 200" faller alltid på extern-bygget (de sidorna finns inte där).
+
+## Ortssidor 2026-10-14
+
+Mathias 2026-10-14: "bygg dom andra platserna också". Search Console vecka 41 visade att WordPress-sajtens gamla ortssidor hade visningar på plats 8–15 ("fasadmålning lidingö" 60 visningar plats 13, "bromma" 57/12,6, "täby" 45/9,4, "sollentuna" 39/11,2, "huddinge" 32/7,7; sidan /fasadmalning-danderyd/ 41 visningar plats 7,8). 308:orna till `/fasad-malning/` i `extern/gdmaleri/next.config.mjs` är borttagna och sidorna finns igen, på gamla slugs. Gren `demo/gdmaleri-orter`, inte pushad.
+
+| Sida (demo-mapp = slug) | Belagt | Bilder |
+|---|---|---|
+| `fasadmalning-bromma/` | Fasad 234 kvm (IG Dd-zVd3ggOI, 2026-10-02: väggar, vindskivor, takfot, fönsterkarmar) | fasad-fore-efter (+ kortbild), jobb-bromma-altan |
+| `fasadmalning-taby/` | Fasad 350 kvm i Täby kyrkby (IG Dc1IM7Pgpeh, 2026-09-03, grått) | jobb-taby-1/-2/-43 |
+| `malare-sodertalje/` (ny slug) | Säte (allabolag); tak och väggar 180 kvm med snobbkant (IG DeNI1zEkcpW, 2026-10-07); först i Recos lista "Målare i Södertälje" när vi tittade 2026-10-14 (4,9, 46 omdömen; Reco anger inte sorteringen) | invandig-sodertalje-1/-2 |
+| `fasadmalning-lidingo/` | **Inget jobb.** Visar Bromma och Täby kyrkby, märkta med sina orter | GD:s foton med riktig ort |
+| `fasadmalning-sollentuna/` | **Inget jobb.** Visar Täby kyrkby (grannkommun) och Bromma | dito |
+| `fasadmalning-huddinge/` | **Inget jobb.** Visar Södertälje (invändigt, sägs rakt ut) och fasaderna i Bromma och Täby kyrkby | dito |
+| `fasadmalning-danderyd/` | **Inget jobb.** Visar Täby kyrkby (grannkommun i norr) och Bromma | dito |
+
+**Lokala fakta** bara ur sv.wikipedia.org, lästa 2026-10-14 och citerade i varje sidas VERIFIERAT-block: Brommas villaområden från 1880-talet och Gamla Bromma trädgårdsstad 1910–1930-talen; Lidingö en ö och egen kommun, villastäder från 1906, flerbostadshus från omkring 1950; Sollentunas villatomter ur herrgårdsmarken, 114 villor i Norrviken 1906–1910; Huddinge gränsar i norr till Stockholm, villaområden runt centrum; Danderyd mest villakvarter, rosorna i vapnet, fyra kommundelar (Danderyd, Djursholm, Enebyberg, Stocksund), gränsar i norr till Täby. Inga avstånd eller restider (inte verifierade); "närmaste jobb" beskrivs bara som grannkommun där det är belagt.
+
+**Unika sidor:** egen title, description, H1 (text-h1 via mallfältet `hero.rubrik`, "Fasadmålning i X" + två ord som tjänstesidornas rad), tejp, tre kort, jobbtexter, omdömesurval, sex frågor (minst hälften om orten), kontakttexter, popup och footertext per sida. Gemensamma meningar parvis mellan de fyra sidorna utan jobb: 31–40 % av hela sidan (Varför, Om oss, stegen, samarbeten och footern delas av alla GD-sidor), 11–19 % utan de delade sektionerna. WordPress-sidorna låg på 30 %.
+
+**Schema:** Service med `areaServed` = orten → HousePainter `@id` gdmaleri.se/#business (`tjanstSchema({ omrade })`). Inget AggregateRating/Review/FAQPage. Startsidans `areaServed` är oförändrad (Lidingö, Sollentuna, Huddinge, Danderyd läggs inte till).
+
+**Internlänkar:** footerns rad "Där vi jobbar" på alla GD-sidor (nytt valfritt mallfält `footer.orter`, andra demos oförändrade), en mening i startsidans Om oss, frågan "Var arbetar ni?" på `/fasad-malning/` med ankartexter "fasadmålning i Bromma" osv. Ortssidorna länkar till fasad, fasadtvätt, snickerier, tak/taktvätt, invändig målning, BRF och guiden. Inte i mobilmenyn.
+
+**Flaggor:**
+- Inget belagt jobb i Lidingö, Sollentuna, Huddinge och Danderyd 2026-10-14; byt in ett riktigt jobb (ort, år, yta, foto) när det finns. Fråga Ghandi. Sidorna säger "Vi har inga bilder från X på sidan än".
+- Inga omdömen nämner en ort; sidorna påstår inget sådant. Be om ett ortsbundet omdöme från Bromma- och Täby-kunderna.
+- Reco-placeringen i Södertälje kan ändras; frågan anger datumet.
+- Täby-inlägget har kampanjtexten (10 % / 30 %); byt när kampanjen är slut.
+- QA-mallens två hero-kontroller ("h1 = firmanamnet" och "heron bär firmanamnet i Bebas Neue") faller på alla sju, som på guidesidan: H1 är orten i text, inte logotypen, med flit.

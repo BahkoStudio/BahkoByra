@@ -55,7 +55,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Bromma', svar: 'Vår senaste fasad: 234 kvm.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Bromma', svar: 'Fasad & fönsterkarmar.' } },
   tejp: ['Fasadmålning i Bromma', '234 kvm klart 2026', 'Väggar och vindskivor', 'Takfot och fönsterkarmar', 'Trä, puts, tegel och plåt', 'Färg från Flügger', 'ROT på småhus', 'Kostnadsfritt hembesök'],
 
   tjanster: {
@@ -65,7 +65,7 @@ const data = {
     lattKort: true,
     kolumner: 3,
     kort: [
-      { id: 'bromma-jobbet', namn: 'Jobbet i Bromma, 234 kvm', bild: `${M}/fasad-fore-efter-kortbild.webp`, alt: 'Sammansatt före/efter-bild av samma gavel i Bromma: vänster halva flagnande grå färg och byggställning, höger halva nymålad ljusgrå panel', text: 'Samma gavel före och efter: flagnande grå färg blev en ren, ljusgrå panel med vita fönster.', punkter: ['Väggar och vindskivor', 'Takfot och fönsterkarmar', 'Klart hösten 2026'], lank: { href: '#jobb', txt: 'Se bilderna från jobbet' }, ritning: RITNING.plats },
+      { id: 'bromma-jobbet', namn: 'Jobbet i Bromma, 234 kvm', bild: `${M}/fasad-fore-efter-kortbild.webp`, alt: 'Sammansatt före/efter-bild av samma gavel i Bromma: vänster halva flagnande grå färg och byggställning, höger halva nymålad ljusgrå panel', text: 'Samma gavel före och efter: flagnande grå färg blev en ren, ljusgrå panel med vita fönster.', punkter: ['Väggar och vindskivor', 'Takfot och fönsterkarmar', 'Klart hösten 2026'], ritning: RITNING.plats },
       { id: 'villan', namn: 'Fasadmålning på villan', bild: `${M}/tjanst-fasad.jpg`, alt: 'Nymålad laxrosa panelfasad med vitt burspråksfönster och svart stuprör', text: 'Bromma har villaområden från 1880-talet och en trädgårdsstad från 1910- till 1930-talen. Oavsett husets ålder börjar vi med fasadens skick: tvätt, skrapning av lös färg och lagning.', punkter: ['Trä, puts, tegel och plåt', 'Färg från Flügger', 'ROT på småhus'], lank: { href: '/gdmaleri/fasad/', txt: 'Allt om fasadmålning' }, ritning: RITNING.fasad },
       { id: 'fonster', namn: 'Fönster och altandörrar', bild: `${M}/jobb-rod-fonster.jpg`, alt: 'Vitmålat spröjsat fönster i en röd träfasad', text: 'På huset i Bromma ingick fönsterkarmarna. Fönster, foder och dörrar kan ligga i samma offert som fasaden.', punkter: ['Fönsterkarmar och foder', 'Ytterdörrar', 'Samma offert'], lank: { href: '/gdmaleri/snickerier-fonster-malning/', txt: 'Fönster och snickerier' }, ritning: RITNING.fonster },
     ],

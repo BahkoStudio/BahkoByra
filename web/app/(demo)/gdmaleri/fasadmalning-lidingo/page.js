@@ -52,7 +52,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadmålning på Lidingö', svar: 'Hembesök på ön, utan kostnad.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning på Lidingö', svar: 'Villor & föreningar.' } },
   tejp: ['Fasadmålning på Lidingö', 'Hembesök utan kostnad', 'Trä, puts, tegel och plåt', 'Tvätt för sig eller före målning', 'Ingen förskottsbetalning', 'Ett års garanti', 'Rekommenderat företag 2024–2026', 'ROT på fakturan'],
 
   tjanster: {
@@ -64,7 +64,7 @@ const data = {
     kort: [
       { id: 'villa', namn: 'Fasaden på villan', bild: `${M}/tjanst-fasad.jpg`, alt: 'Nymålad laxrosa panelfasad med vitt burspråksfönster och svart stuprör', text: 'Trä, puts, tegel eller plåt. Vid hembesöket ser vi vad fasaden behöver: tvätt, skrapning av lös färg och de lagningar som behövs.', punkter: ['Hembesök utan kostnad', 'Färg från Flügger', 'ROT på småhus'], lank: { href: '/gdmaleri/fasad/', txt: 'Allt om fasadmålning' }, ritning: RITNING.fasad },
       { id: 'forening', namn: 'Flerbostadshus och föreningar', bild: `${M}/jobb-fonster-maskerade.jpg`, alt: 'Spröjsade fönster maskerade med blå tejp inför målning', text: 'Bor du i en bostadsrättsförening tar vi fram en offert till styrelsen, för fasad, trapphus eller entréer.', punkter: ['Offert till styrelsen', 'Fasad, trapphus och entréer', 'Faktura efter jobbet'], lank: { href: '/gdmaleri/brf/', txt: 'Målning för BRF' }, ritning: RITNING.dorr },
-      { id: 'narmast', namn: 'Närmaste jobb vi kan visa', bild: `${M}/jobb-bromma-altan.webp`, alt: 'Ljusgrå panelfasad med vita spröjsade altandörrar och fönsterkarmar mot ett trädäck, ett jobb i Bromma', text: 'Vi har inga bilder från Lidingö på sidan än. Fasaderna vi kan visa med ort och yta är i Bromma och Täby kyrkby.', punkter: ['Bromma: 234 kvm', 'Täby kyrkby: 350 kvm', 'Alla bilder märkta med ort'], lank: { href: '#jobb', txt: 'Se jobben' }, ritning: RITNING.plats },
+      { id: 'narmast', namn: 'Närmaste jobb vi kan visa', bild: `${M}/jobb-bromma-altan.webp`, alt: 'Ljusgrå panelfasad med vita spröjsade altandörrar och fönsterkarmar mot ett trädäck, ett jobb i Bromma', text: 'Vi har inga bilder från Lidingö på sidan än. Fasaderna vi kan visa med ort och yta är i Bromma och Täby kyrkby.', punkter: ['Bromma: 234 kvm', 'Täby kyrkby: 350 kvm', 'Alla bilder märkta med ort'], lank: { href: '/gdmaleri/fasadmalning-bromma/', txt: 'Fasadmålning i Bromma' }, ritning: RITNING.plats },
     ],
   },
 

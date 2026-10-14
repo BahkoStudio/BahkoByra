@@ -53,7 +53,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Sollentuna', svar: 'Från tvätt till sista strykningen.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Sollentuna', svar: 'Tvätt & ny färg.' } },
   tejp: ['Fasadmålning i Sollentuna', 'Genomgång före målning', 'Fönster och snickerier', 'Fasadtvätt', 'Kostnadsfri offert', 'Faktura när jobbet är klart', 'F-skatt och Trygg-Hansa', '4,8 av 5 på Google'],
 
   tjanster: {

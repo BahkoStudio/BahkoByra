@@ -54,7 +54,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Danderyd', svar: 'Faktura först när villan är klar.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Danderyd', svar: 'Fasad & ytterdörrar.' } },
   tejp: ['Fasadmålning i Danderyd', 'Djursholm, Stocksund och Enebyberg', 'Takfot och vindskivor', 'Ytterdörrar och fönster', 'Ingen förskottsbetalning', 'Ett års garanti', 'Rekommenderat företag på Reco', 'ROT på småhus'],
 
   tjanster: {
