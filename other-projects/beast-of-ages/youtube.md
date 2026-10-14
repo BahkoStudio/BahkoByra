@@ -27,6 +27,8 @@ Kanal-ID `UCWxSYqJuIrRX92qZTEm2XwA`. Engelskspråkig publik, svenskt konto.
 | `manus/two-extinct-animals-easy-rat-sea-mink.md` | Paradoxmallen (Maclear's rat + havsmink), nyhetsankare GBE jan 2026 och IUCN okt 2025, 2 098 ord, tre rundor manusloop, alla fyra godkände i runda 3, paketet överst |
 | `manus/tasmania-last-thylacine-1936.md` | Djuptidsformatet (samma som mammutplatsen), 90 år sedan 7 sept 1936, Weisbecker 2026 och Pask 2036 som krokar, 2 126 ord, tre rundor manusloop, alla fyra godkände i runda 3, paketet överst |
 | `manus/liquid-blood-foal-clone.md` | Nyhetsdjupdykning om Batagaika-fölet (flytande blod 2019, misslyckad kloning, Lena-hästen, Kurt som kontrast), nyhetsankare 5/10, 2 055 ord, tre rundor manusloop, alla fyra godkände i runda 3; paketet är inte visat för Mathias än |
+| `manus/how-did-ice-age-people-survive-winter-mammoth-bone-houses.md` | Lager-för-lager-mallen (paper-house-formen) med streckgubbar, nyhetsankare Mezhyrich-dateringen 2025 och Moots DNA-studie juli 2026, 1 850 ord, tre rundor manusloop, alla fyra godkände i runda 3, paketet överst |
+| `manus/which-extinct-animals-worth-bringing-back-ranked.md` | Rankad nedräkning 6–1 av Colossals sex arter efter Seddon 2014 + IUCN 2016 (metoden sägs öppet), fjärilen Xerces blue som vändning, 2 162 ord, tre rundor manusloop, alla fyra godkände i runda 3, paketet överst |
 | `manus/de-extinction-eras-veo.md` | 106 Veo-prompter à 8 sekunder, stilbibeln, musikbädden |
 | `analys/kanalen.md` | Siffrorna, topp- och bottenvideor, vad 464k-videon faktiskt var |
 | `analys/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
