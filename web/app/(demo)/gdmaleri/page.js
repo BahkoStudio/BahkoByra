@@ -1,9 +1,10 @@
 import DemoSida from '../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, menyExtra, samarbeten, RECO_WIDGET, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN } from './_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, menyExtra, samarbeten, RECO_WIDGET, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from './_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — KUND hos Bahko Byrå sedan 2026-10-08 (byggd som förslag 2026-10-08,
-   allt förslagsmaterial borttaget 2026-10-09: kund: true, ingen modal, ingen byråtext).
+   allt förslagsmaterial borttaget 2026-10-09: kund: true, ingen modal, ingen byråtext;
+   kreditraden "Hemsida skapad av bahkobyra.se" tillagd 2026-10-14).
    Lead: instagram.com/gdmaleristhlm · Stockholm · HAR hemsida (gdmaleri.se).
    Byggd 2026-10-08 på demomallen v3 (kopia av swedcro-kanon).
 
@@ -449,6 +450,7 @@ const data = {
 
   // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.
   kund: true,
+  skapadAv,
   // Samarbeten: rullande band sist på sidan, före footern: se _gd.js.
   samarbeten,
 };

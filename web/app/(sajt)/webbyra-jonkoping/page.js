@@ -6,7 +6,7 @@ import styles from './jonkoping.module.css';
 export const metadata = {
   title: 'Webbyrå i Jönköping & Huskvarna, förslag inom 48 h',
   description:
-    'Webbyrå med kontor i Huskvarna, Jönköping. Köp en hemsida till fast engångspris utan månadsavgift: färdigt förslag inom 48 timmar, live inom sju dagar.',
+    'Webbyrå med kontor i Huskvarna, Jönköping. Köp en hemsida till fast pris: färdigt förslag inom 48 timmar, live inom sju dagar. Kom förbi på kaffe.',
   alternates: { canonical: '/webbyra-jonkoping/' },
 };
 
@@ -80,7 +80,7 @@ const STEG = [
 const SEGMENT = [
   {
     h: 'Målerifirmor',
-    p: 'Offertflöde i mobilen, ROT förklarat enligt Skatteverket och bilder på riktiga jobb. Smålands Måleri i Jönköping har en sådan sida i drift.',
+    p: 'Offertflöde i mobilen, ROT förklarat enligt Skatteverket och bilder på riktiga jobb. Smålands Måleri i Jönköping och GD Måleri i Stockholm har sådana sidor i drift, byggda av Bahko Byrå.',
     lank: { href: '/hemsida-for-malerifirma/', text: 'Hemsida för målerifirma' },
   },
   {
@@ -142,7 +142,7 @@ const FRAGOR_JKPG = [
   {
     fraga: 'Vad kostar en hemsida hos en webbyrå i Jönköping?',
     svar:
-      'Ni får ett exakt fast pris i det kostnadsfria förslaget, innan ni bestämmer er. Engångspris, inga månadsavgifter, ingen bindningstid. Vad som avgör priset förklaras öppet på sidan om vad en hemsida kostar.',
+      'Ni får ett exakt fast pris i det kostnadsfria förslaget, innan ni bestämmer er. Underhåll och SEO efter lanseringen har en månadsavgift som också står i förslaget, och det finns ingen bindningstid. Vad som avgör priset förklaras öppet på sidan om vad en hemsida kostar.',
   },
   {
     fraga: 'Hur snabbt kan vi ha en ny sida?',
@@ -157,7 +157,7 @@ const FRAGOR_JKPG = [
   {
     fraga: 'Tillkommer det några månadskostnader efteråt?',
     svar:
-      'Hemsidan har ingen månadsavgift och ingen bindningstid. Hjälp med Google, AI-svar eller annonser efter lanseringen är frivilliga tillägg som ni väljer själva.',
+      'Ja, för det som pågår efter lanseringen: underhåll av sidan och SEO har en månadsavgift. Byter ni domän tillkommer en kostnad för det. Allt står i förslaget innan ni bestämmer er, och det finns ingen bindningstid.',
   },
   {
     fraga: 'Äger vi hemsidan och domänen?',
@@ -318,8 +318,9 @@ export default function Jonkoping() {
           <h2>Vad kostar en hemsida i Jönköping?</h2>
           <div className={styles.brodtext}>
             <p>
-              En hemsida från Bahko Byrå har ett fast engångspris, utan månadsavgift och utan
-              bindningstid. Ni äger sidan och domänen, även om ni en dag slutar hos oss.
+              En hemsida från Bahko Byrå har ett fast pris. Efter lanseringen har underhåll och
+              SEO en månadsavgift, och byter ni domän tillkommer en kostnad för det. Det finns
+              ingen bindningstid, och ni äger sidan och domänen även om ni en dag slutar hos oss.
             </p>
             <p>
               Priset beror på hur många tjänster och sidor er firma behöver, så det står i
@@ -398,7 +399,7 @@ export default function Jonkoping() {
           <h2>Synas i Jönköping: Google, AI-svar och annonser</h2>
           <p className={styles.brodtext}>
             En ny sida är grunden. Det här är tilläggen för den som vill att fler i Jönköping och
-            Huskvarna hittar den. Inget av det är ett krav, och ingen placering utlovas.
+            Huskvarna hittar den. Ingen placering utlovas.
           </p>
           <div className={`${styles.punktNat} ${styles.fyra}`}>
             {SYNAS.map((sy) => (
