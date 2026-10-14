@@ -1,7 +1,8 @@
 # Kvist: SEO
 
-Månadstjänsten efter hemsidan: lokal SEO, Google Företagsprofil, GEO och AEO (att synas i
-AI-svar). Den är intern leverans och uppsälj. Den säljs aldrig som front offer i outreach.
+Månadstjänsten som ingår från start, i samma avtal som hemsidan: lokal SEO, Google
+Företagsprofil, GEO och AEO (att synas i AI-svar). Den säljs i säljsamtalet, aldrig som front
+offer i outreach.
 
 | Vad | Var |
 |---|---|

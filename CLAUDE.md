@@ -70,7 +70,7 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │
 │                          ═══ GREN 4: EKONOMI & ADMIN ═══
 ├── 4-ekonomi-admin/ .......... fakturering.md · kostnader.md · manadsavslut.md
-│                                Bara rutiner. Belopp, avtal, bank: OneDrive/Contracts & Legal/ + Notion
+│                                Bara rutiner. Belopp, avtal, bank: OneDrive/1 Bahko Byrå/Kunder/<kund>/Avtal/ + Notion
 │
 │                          ═══ MOTORRUMMET (sajterna och systemet) ═══
 ├── web/ ...................... 🔒 Vercel-projektet bahko-byra bygger HÄRIFRÅN

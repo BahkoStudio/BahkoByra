@@ -1,6 +1,6 @@
-# Mall för en ny kund i `kundarbete/`
+# Mall för en ny kund i `2-kunder/kunder/`
 
-Kopiera detta mönster (fyra filer) när en ny kund läggs till. Använd de
+Skapa de fyra filerna nedan när en ny kund läggs till. Använd de
 befintliga kunderna som facit för hur mycket varje fil ska innehålla —
 `bromma/` är fullt ifylld, `smamaleri/` och `maykaskitchen/` visar hur en
 TODO-stub ser ut när uppgifter saknas.

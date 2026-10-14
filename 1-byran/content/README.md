@@ -6,7 +6,7 @@ Byråns EGET content, en mapp per uppgift. Kundernas content (Bromma m.fl.) bor 
 | Mapp/fil | Vad |
 |---|---|
 | `instagram_engine.md` | IG-rutinen för @bahkobyra |
-| `ig/` | Kontentplan, mallar, media och veckans paket |
+| `ig/` | Mallar, media och veckans paket. `ig/kontentplan-bahkobyra.md` är inaktuell (v33–36) och följs inte |
 | `dm/` | DM-öppnare och systemprompten för DM |
 | `email/` | Välkomstmejl, sekvens, nyhetsbrev |
 | `cold-call/` | Ringlistor och ringmanus |

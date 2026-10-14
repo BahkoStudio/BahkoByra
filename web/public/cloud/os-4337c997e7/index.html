@@ -123,22 +123,28 @@ input.saknas,input.saknas:hover{border-color:var(--fel)}
 /* minmax(0,...) overallt: utan det far grid items min-width:auto och en bred
    tabell tvingar upp HELA sidan i stallet for att scrolla i sin egen container. */
 .ram{display:grid;grid-template-columns:minmax(0,var(--nav-b)) minmax(0,1fr);min-height:calc(100vh - var(--topp-h))}
+/* Med fyra grenar var menyn 895px hog och Ekonomi & admin hamnade under
+   kanten pa en 768px-skarm. Tatare rader och mindre luft mellan grupperna
+   gor att alla fyra grenar ryms; visa() scrollar dessutom den aktiva raden
+   in i bild om menyn anda ar for lang. */
 .nav{
-  border-right:1px solid var(--linje);padding:1.1rem .8rem 2rem;
+  border-right:1px solid var(--linje);padding:.8rem .8rem 1rem;
   position:sticky;top:var(--topp-h);height:calc(100vh - var(--topp-h));overflow-y:auto;
 }
-.nav-grupp{font-size:.64rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text2);margin:.95rem .5rem .35rem}
+.nav-grupp{font-size:.64rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text2);margin:.7rem .5rem .25rem}
 .nav-grupp:first-child{margin-top:0}
 /* Kvisten ar en underrubrik inom grenen: mindre och indragen, sa grenen
    (Bahkobyra, Kunder ...) forblir den tydliga nivan. */
-.nav-kvist{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);opacity:.8;margin:.7rem .65rem .25rem 2.55rem}
+.nav-kvist{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);opacity:.8;margin:.45rem .65rem .15rem 2.55rem}
 .nav a{
-  display:flex;align-items:center;gap:.55rem;padding:.4rem .65rem;border-radius:10px;
-  font-size:.9rem;color:var(--text2);transition:background .2s,color .2s;
+  display:flex;align-items:center;gap:.55rem;padding:.32rem .65rem;border-radius:10px;
+  font-size:.9rem;line-height:1.3;color:var(--text2);transition:background .2s,color .2s;
 }
 .nav a:hover{color:var(--text);background:var(--yta)}
 .nav a.on{color:var(--text);background:var(--yta);box-shadow:inset 2px 0 0 var(--acc)}
-.nav a .pr{font-size:1rem;width:1.35rem;text-align:center;flex-shrink:0}
+/* Ikonen arvde radhojden 1.6 och gjorde varje rad 36px hog: den bestamde
+   hela menyns langd. */
+.nav a .pr{font-size:1rem;line-height:1;width:1.35rem;text-align:center;flex-shrink:0}
 .inneh{padding:1.6rem clamp(1rem,3vw,2.6rem) 4rem;max-width:1180px;width:100%;min-width:0}
 @media(max-width:960px){
   .ram{grid-template-columns:minmax(0,1fr)}
@@ -467,7 +473,11 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
 .kund-namn{color:var(--text);letter-spacing:.04em}
 .kund-bar{flex:1 1 90px;max-width:160px;height:6px;border-radius:var(--rp);background:var(--yta);overflow:hidden}
 .kund-bar i{display:block;height:100%;background:var(--acc)}
-.kund-nasta{flex-basis:100%;font-size:.76rem;font-weight:500;letter-spacing:0;text-transform:none;color:var(--text2);padding-left:1.5rem}
+/* Summeringen borjar redan efter plustecknet, sa Nasta-raden ska inte dras in
+   en gang till. Plustecknet star vid namnet, inte mitt emellan raderna. */
+.kund-nasta{flex-basis:100%;font-size:.76rem;font-weight:500;letter-spacing:0;text-transform:none;color:var(--text2);padding-left:0}
+#kund-lista details.ihop summary{align-items:flex-start}
+#kund-lista details.ihop summary::before{margin-top:.05rem}
 .kund-fot{display:flex;justify-content:flex-end;margin-top:.6rem}
 a.steg{color:var(--text2);transition:border-color .2s}
 a.steg:hover{border-color:var(--acc)}
@@ -622,6 +632,9 @@ a.steg:hover{border-color:var(--acc)}
       </div>
       <p class="notis" id="crm-status" style="margin-top:.4rem"></p>
       <p class="notis" id="kund-status" style="margin-top:.3rem"></p>
+      <div class="lank-rad" style="margin-top:.5rem">
+        <a class="knapp knapp--ram" href="#kundresan" data-till="kundresan">Öppna Kundresan</a>
+      </div>
       <hr class="delare">
       <h3 style="margin-bottom:.4rem">Veckans XP: inkommande DEMO</h3>
       <div class="kpi-mal"><span class="stor" id="xp-tal">0</span><span class="notis">av målet <b>3 per vecka</b>,
@@ -1340,7 +1353,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     </table></div>
     <p class="notis" style="margin-top:.5rem">Sökvägarna med 🔒 är inställda i Vercel. Flyttas en mapp
     går kundens sajt ner. Allt om varje kund: <code>2-kunder/kunder/&lt;kund&gt;/</code>. Avtal och
-    fakturor: <code>OneDrive/Contracts &amp; Legal/</code>, aldrig i repot.</p>
+    fakturor: <code>OneDrive/1 Bahko Byrå/Kunder/&lt;kund&gt;/Avtal/</code>, aldrig i repot.</p>
   </div>
 </section>
 
@@ -1362,7 +1375,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
         <tr><td><b>2</b></td><td>Avtalet påskrivet av kunden</td></tr>
         <tr><td><b>3</b></td><td>Faktura 1 enligt avtalet, nummer <code>BAHKO-</code> + fyra siffror</td></tr>
         <tr><td><b>4</b></td><td>Uppstartsmöte, 20 minuter</td></tr>
-        <tr><td><b>5</b></td><td>Domänhost och Google Företagsprofil: mathias@bahkobyra.se tillagd</td></tr>
+        <tr><td><b>5</b></td><td>Domänhost: mathias@bahkobyra.se tillagd. Google Företagsprofil: bahkostudio@gmail.com tillagd som ansvarig</td></tr>
         <tr><td><b>6</b></td><td>Bilder, videor och tjänstelistan inne</td></tr>
         <tr><td><b>7</b></td><td>Claude lägger upp kunden: mapp ur <code>_mall/</code>, Notion på "Kund", rapportdagen i <code>atagande.json</code></td></tr>
       </tbody></table></div>
@@ -1372,7 +1385,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       <div class="t-rull"><table class="t"><tbody>
         <tr><td>Material saknas dag 2</td><td class="notis">Börja ändå med våra bilder. Bygget stannar aldrig på bilder.</td></tr>
         <tr><td>Ingen domänhost dag 5</td><td class="notis">Ring, mejla inte. Utan den går sidan inte live.</td></tr>
-        <tr><td>Faktura obetald dag 7</td><td class="notis">Vänlig påminnelse. Avtalet ger rätt att pausa arbetet.</td></tr>
+        <tr><td>Faktura obetald efter förfallodagen</td><td class="notis">Följ <a href="#ekonomi" data-till="ekonomi" data-mal="paminnelse-kort">påminnelsetrappan under Ekonomi</a>: dag 1 mejl, dag 7 ring, dag 14 paus, räknat från förfallodagen.</td></tr>
       </tbody></table></div>
       <p class="notis" style="margin-top:.6rem">Avtalets sex sidor och vad som alltid ska stå med:
       <code>mallar/avtal-struktur.md</code>. Facit: Proffsmaskiner-avtalet i OneDrive.</p>
@@ -1383,18 +1396,19 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     <h3>Mallarna</h3>
     <div class="mall"><h4>Välkomstmejlet</h4>
       <button class="kopiera" type="button">Kopiera</button>
-      <p>Välkommen till Bahko Byrå, så här kommer vi igång</p>
+      <p class="not">Ämnesrad: Välkommen till Bahko Byrå, så här kommer vi igång</p>
       <p>Hejsan!</p>
-      <p>Tack för förtroendet, vad roligt att vi ska jobba ihop. Avtalet ligger bifogat, och så fort det är påskrivet drar vi igång.</p>
-      <p>För att sidan ska bli klar på sju dagar behöver vi fyra saker från er:
-1. Era bästa bilder och videor på jobben ni gjort, om ni har några. Har ni inga tar vi fram dem.
+      <p>Tack för förtroendet, vad roligt att vi ska jobba ihop. Avtalet ligger bifogat. När det är påskrivet och första fakturan är betald drar vi igång, och sju dagar senare är sidan live.</p>
+      <p>Vi behöver fyra saker från er:
+1. Era bästa bilder och videor från riktiga jobb, om ni har några. Har ni inga använder vi bilder som visar tjänsten, och byter mot era egna när ni vill.
 2. En snabb titt på tjänsterna i förslaget: vad stämmer, vad ska bort, vad saknas?
-3. Tillgång till er domänhost, där [domän] är registrerad.
-4. Lägg till mathias@bahkobyra.se som ansvarig i er Google Företagsprofil.</p>
-      <p>Jag bokar gärna 20 minuter i telefon så går vi igenom allt på en gång. Passar [dag och tid]?</p>
+3. Tillgång till er domänhost, där [domän] är registrerad. Lägg till mathias@bahkobyra.se som användare.
+4. Lägg till bahkostudio@gmail.com som ansvarig i er Google Företagsprofil.</p>
+      <p>Skicka aldrig lösenord i mejl. Går något inte att lösa med en inbjudan loggar vi in tillsammans i ett kort samtal.</p>
+      <p>Jag bokar gärna 20 minuter i telefon så går vi igenom allt på en gång. Passar [dag och tid] eller [dag och tid]?</p>
       <p>Vänliga hälsningar
 Mathias Bahko</p>
-      <p class="not">Första raden är ämnesraden. Byt ut det inom hakparentes. Inga tankstreck.</p>
+      <p class="not">Ämnesraden följer inte med i kopian. Byt ut det inom hakparentes och ge två tider att välja på. Inga tankstreck.</p>
     </div>
     <div class="mall"><h4>Uppstartsmötet, 20 minuter</h4>
       <button class="kopiera" type="button">Kopiera</button>
@@ -1418,7 +1432,8 @@ Mathias Bahko</p>
         </tbody>
       </table></div>
       <p class="notis" style="margin-top:.5rem">Lösenord skickas aldrig i mejl. Kunden lägger till
-      mathias@bahkobyra.se som användare, eller loggar in själv i ett kort videosamtal.</p>
+      mathias@bahkobyra.se som användare hos domänhosten och bahkostudio@gmail.com som ansvarig i
+      Google Företagsprofilen, eller loggar in själv i ett kort videosamtal.</p>
     </div></details>
   </div>
 </section>
@@ -1505,12 +1520,12 @@ Mathias Bahko</p>
       <h3>Mejltexten</h3>
       <div class="mall"><h4>Två meningar, alltid</h4>
         <button class="kopiera" type="button">Kopiera</button>
-        <p>Veckans rapport för [kund]</p>
+        <p class="not">Ämnesrad: [Veckans/Månadens] rapport för [kund]</p>
         <p>Hejsan!</p>
-        <p>Här kommer veckans rapport, den ligger bifogad. [Det enda kunden behöver göra eller veta.]</p>
+        <p>Här kommer [veckans/månadens] rapport, den ligger bifogad. [Det enda kunden behöver göra eller veta.]</p>
         <p>Vänliga hälsningar
 Mathias Bahko</p>
-        <p class="not">Mening ett: vad som ligger bifogat. Mening två: det enda som kräver kunden. Behåll kundens tilltal.</p>
+        <p class="not">Mening ett: vad som ligger bifogat. Mening två: det enda som kräver kunden. Veckans eller månadens efter tabellen ovanför. Behåll kundens tilltal.</p>
       </div>
     </div>
   </div>
@@ -1629,13 +1644,13 @@ Mathias Bahko</p>
     <span class="oga">Gren 4 · Ekonomi &amp; admin</span>
     <h2>Ekonomi &amp; admin</h2>
     <p>Pengarna in, pengarna ut och pappren. Här står bara rutinerna. Belopp, bankuppgifter och
-    avtal bor i <code>OneDrive/Contracts &amp; Legal/</code> och Notion. Filer: <code>4-ekonomi-admin/</code>.</p>
+    avtal bor i <code>OneDrive/1 Bahko Byrå/Kunder/&lt;kund&gt;/Avtal/</code> och Notion. Filer: <code>4-ekonomi-admin/</code>.</p>
   </div>
 
   <div class="kort" id="manad-kort">
     <h3 style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">Månadsavslut
       <span class="tagg" id="manad-namn"></span></h3>
-    <p class="notis">Sista vardagen i månaden, 30 minuter. Listan börjar om varje ny månad.</p>
+    <p class="notis">Sista vardagen i månaden, 30 minuter. Listan går vidare till nästa månad först när allt är bockat, så att inget ogjort försvinner.</p>
     <div class="check" id="manad-check" style="margin-top:.5rem"></div>
   </div>
 
@@ -1650,8 +1665,8 @@ Mathias Bahko</p>
         <tr><td><b>Logg</b></td><td>Nummer, period och betald i Notion-affären.</td></tr>
       </tbody></table></div>
     </div>
-    <div class="kort">
-      <h3>Påminnelser</h3>
+    <div class="kort" id="paminnelse-kort">
+      <h3>Påminnelser, dagar efter förfallodagen</h3>
       <div class="t-rull"><table class="t"><tbody>
         <tr><td><b>Dag 1</b></td><td>Vänlig påminnelse per mejl, fakturan bifogad igen</td></tr>
         <tr><td><b>Dag 7</b></td><td>Ring kunden</td></tr>
@@ -1733,6 +1748,15 @@ Mathias Bahko</p>
        ska alltid synas, annars vet man inte var man ar. */
     var aktiv = nav.querySelector("a.on");
     if (aktiv && nav.scrollWidth > nav.clientWidth) nav.scrollLeft = aktiv.offsetLeft - (nav.clientWidth - aktiv.offsetWidth) / 2;
+    /* Samma sak pa datorn: ar sidomenyn hogre an fonstret (lag skarm) ska den
+       som landar pa #ekonomi via en lank se den aktiva raden. Bara om raden
+       ligger utanfor bild, annars hoppar menyn vid varje klick. */
+    if (aktiv && nav.scrollHeight > nav.clientHeight) {
+      var topp = aktiv.offsetTop, botten = topp + aktiv.offsetHeight;
+      if (topp < nav.scrollTop || botten > nav.scrollTop + nav.clientHeight) {
+        nav.scrollTop = Math.max(0, topp - (nav.clientHeight - aktiv.offsetHeight) / 2);
+      }
+    }
     document.title = "Bahko OS · " + (BLAD.filter(function (b) { return b.id === id; })[0] || { namn: "" }).namn;
     /* Dolda textareas har scrollHeight 0, sa hojden maste satas om nar bladet
        blir synligt. Samma sak med CRM-siffran: den ska vara farsk vid varje byte. */
@@ -1825,23 +1849,91 @@ Mathias Bahko</p>
   /* bb_os_kund_v1 = kundresan per kund + manadsavslutet (gren 2 och 4).
      Egen nyckel: kunddata far aldrig riskera spelvarlden eller KPI-loggen. */
   var K_KUND = "bb_os_kund_v1";
+  /* Standardkunderna ar redan live, sa steg 1 (onboarding) och steg 2 (bygge)
+     ar gjorda. Utan forbockning sa Bryggan "4 med onboarding eller bygge kvar"
+     fran dag ett. "tidigare" = gjort innan Kundresan fanns. Galler bara en
+     webblasare dar nyckeln saknas. RESA_LIVE_ID speglar RESA[0] + RESA[1]
+     langre ner (RESA ar inte definierad an har). */
+  var RESA_LIVE_ID = ["avtal-skickat", "avtal-signerat", "faktura1", "faktura1-betald", "uppstart",
+    "domanhost", "gbp", "material", "upplagd", "byggd", "formular", "qa", "godkand", "live", "faktura2"];
+  function liveChecks() {
+    var c = {};
+    RESA_LIVE_ID.forEach(function (id) { c[id] = "tidigare"; });
+    return c;
+  }
   function defaultKund() {
     return {
       version: 1,
       kunder: [
-        { id: "bromma", namn: "Bromma Trädgårdsservice", checks: {} },
-        { id: "gdmaleri", namn: "GD Måleri", checks: {} },
-        { id: "smamaleri", namn: "Småmåleri", checks: {} },
-        { id: "maykagulo", namn: "maykagulo.se", checks: {} }
+        { id: "bromma", namn: "Bromma Trädgårdsservice", checks: liveChecks() },
+        { id: "gdmaleri", namn: "GD Måleri", checks: liveChecks() },
+        { id: "smamaleri", namn: "Småmåleri", checks: liveChecks() },
+        { id: "maykagulo", namn: "maykagulo.se", checks: liveChecks() }
       ],
-      manad: { period: "", checks: {} }
+      manad: { period: "", checks: {} },
+      manadHistorik: []
     };
+  }
+  /* las() godkanner allt som ar ett objekt, aven en array eller en kund som ar
+     null. Da kastade ritaKunder TypeError, starten avbrots och HELA OS:et blev
+     tomt. Har kontrolleras varje del: ar toppnivan eller kundlistan fel laggs
+     en kopia undan och standarddata anvands; enskilda trasiga kunder och
+     bockar rensas bort (originalet sparas undan aven da). */
+  function rensaChecks(c) {
+    var ut = {};
+    if (!c || typeof c !== "object" || Array.isArray(c)) return ut;
+    Object.keys(c).forEach(function (id) { if (c[id]) ut[id] = String(c[id]); });
+    return ut;
+  }
+  function normaliseraKund(d) {
+    var trasig = false;
+    if (!d || typeof d !== "object" || Array.isArray(d) || !Array.isArray(d.kunder)) {
+      return { data: defaultKund(), trasig: true };
+    }
+    var sedda = {};
+    var giltiga = d.kunder.filter(function (k) {
+      var ok = k && typeof k === "object" && !Array.isArray(k);
+      if (!ok) trasig = true;
+      return ok;
+    });
+    /* Fanns det kunder men ingen gick att lasa ar listan trasig, inte tom. */
+    if (d.kunder.length && !giltiga.length) giltiga = defaultKund().kunder;
+    var kunder = giltiga.map(function (k) {
+      var namn = String(k.namn || "").trim() || "Namnlös kund";
+      var id = String(k.id || "").trim() || namn.toLowerCase().replace(/[^a-z0-9åäö]+/g, "-").replace(/^-|-$/g, "") || "kund";
+      /* Dubbla id gor att oppna kort och bockar blandas ihop. */
+      while (sedda[id]) id += "-2";
+      sedda[id] = true;
+      if (!k.checks || typeof k.checks !== "object" || Array.isArray(k.checks)) { if (k.checks != null) trasig = true; }
+      return { id: id, namn: namn, checks: rensaChecks(k.checks) };
+    });
+    var m = d.manad;
+    if (m != null && (typeof m !== "object" || Array.isArray(m))) trasig = true;
+    m = m && typeof m === "object" && !Array.isArray(m) ? m : {};
+    var period = /^\d{4}-\d{2}$/.test(String(m.period || "")) ? String(m.period) : "";
+    var historik = Array.isArray(d.manadHistorik) ? d.manadHistorik.filter(function (h) {
+      return h && typeof h === "object" && /^\d{4}-\d{2}$/.test(String(h.period || ""));
+    }).map(function (h) { return { period: String(h.period), checks: rensaChecks(h.checks) }; }) : [];
+    return {
+      data: { version: 1, kunder: kunder, manad: { period: period, checks: rensaChecks(m.checks) }, manadHistorik: historik },
+      trasig: trasig
+    };
+  }
+  function lasKund(tyst) {
+    var n = normaliseraKund(las(K_KUND, defaultKund));
+    if (n.trasig) {
+      try {
+        var rad = localStorage.getItem(K_KUND);
+        if (rad) localStorage.setItem(K_KUND + "_korrupt_" + Date.now(), rad);
+        localStorage.setItem(K_KUND, JSON.stringify(n.data));
+      } catch (e) {}
+      if (!tyst) alert("Datat i " + K_KUND + " hade fel form. En kopia är undanlagd och det som gick att rädda laddades.");
+    }
+    return n.data;
   }
   var VARLD = las(K_VARLD, defaultVarld);
   var LOGG = las(K_LOGG, defaultLogg);
-  var KUND = las(K_KUND, defaultKund);
-  if (!Array.isArray(KUND.kunder)) KUND.kunder = [];
-  if (!KUND.manad || typeof KUND.manad !== "object") KUND.manad = { period: "", checks: {} };
+  var KUND = lasKund();
   function sparaVarld() { try { localStorage.setItem(K_VARLD, JSON.stringify(VARLD)); } catch (e) {} }
   function sparaLogg() { try { localStorage.setItem(K_LOGG, JSON.stringify(LOGG)); } catch (e) {} }
   function sparaKund() { try { localStorage.setItem(K_KUND, JSON.stringify(KUND)); } catch (e) {} }
@@ -2529,7 +2621,8 @@ Mathias Bahko</p>
      Samma punkter som SOP:erna i 2-kunder/. Andras en punkt i en SOP ska den
      andras har ocksa, annars sager checklistan och dokumentet olika saker.
      Punkternas id ar kontraktet mot sparad data: byt aldrig ett id, lagg
-     till nya i stallet. */
+     till nya i stallet. Nya punkter i steg 1-2 laggs aven in i RESA_LIVE_ID
+     vid lagringen, annars far standardkunderna en obockad rad. */
   var RESA = [
     { steg: "1 Onboarding & avtal", blad: "onboarding", punkter: [
       { id: "avtal-skickat", text: "Avtal och välkomstmejl skickade" },
@@ -2548,7 +2641,9 @@ Mathias Bahko</p>
       { id: "qa", text: "QA i mobil, surfplatta och dator" },
       { id: "godkand", text: "Kunden har godkänt" },
       { id: "live", text: "Live på kundens domän" },
-      { id: "faktura2", text: "Del 2 fakturerad (om hemsidan delas i två)" }
+      /* Texten sager "eller ej aktuellt" sa att punkten alltid kan bockas:
+         annars kom en kund vars hemsida inte delas i tva aldrig ur steg 2. */
+      { id: "faktura2", text: "Del 2 fakturerad, eller ej aktuellt" }
     ] },
     { steg: "3 Leverans & support", blad: "leverans", punkter: [
       { id: "kanaler", text: "Kunden vet hur den når oss (mejl, telefon, rapport)" },
@@ -2622,20 +2717,35 @@ Mathias Bahko</p>
     if (!c) return;
     var k = KUND.kunder[+c.getAttribute("data-kund")];
     if (!k) return;
-    if (c.checked) k.checks[c.getAttribute("data-punkt")] = idag();
-    else delete k.checks[c.getAttribute("data-punkt")];
+    var punkt = c.getAttribute("data-punkt"), ki = c.getAttribute("data-kund");
+    if (c.checked) k.checks[punkt] = idag();
+    else delete k.checks[punkt];
+    /* Omritningen byter ut hela listan, sa fokus hamnade pa body och nasta
+       Tab borjade om fran sidans topp. Lagg tillbaka det pa samma ruta. */
+    var hadeFokus = document.activeElement === c;
     sparaKund(); ritaKunder();
+    if (hadeFokus) {
+      var ny = document.querySelector('#kund-lista [data-kund="' + ki + '"][data-punkt="' + punkt + '"]');
+      if (ny) ny.focus();
+    }
   });
   document.getElementById("kund-lista").addEventListener("click", function (e) {
     var b = e.target.closest("[data-kund-bort]");
     if (!b) return;
-    var k = KUND.kunder[+b.getAttribute("data-kund-bort")];
-    if (!k || !confirm("Ta bort " + k.namn + " ur Kundresan? Bockarna försvinner.")) return;
+    var nr = +b.getAttribute("data-kund-bort"), k = KUND.kunder[nr];
+    if (!k) return;
+    /* Med tva kort med samma namn ska fragan saga vilket av dem som tas bort. */
+    var samma = KUND.kunder.filter(function (x) { return x.namn.trim().toLowerCase() === k.namn.trim().toLowerCase(); }).length > 1;
+    var vilket = samma ? " (kort " + (nr + 1) + " av " + KUND.kunder.length + ", " + kundKlara(k) + " av " + RESA_ALLA.length + " bockade)" : "";
+    if (!confirm("Ta bort " + k.namn + vilket + " ur Kundresan? Bockarna försvinner.")) return;
     KUND.kunder.splice(+b.getAttribute("data-kund-bort"), 1); sparaKund(); ritaKunder();
   });
   document.getElementById("kund-lagg").addEventListener("click", function () {
     var f = document.getElementById("kund-in"), t = f.value.trim();
     if (!t) { f.focus(); return; }
+    /* Samma namn tva ganger gav identiska kort som inte gick att skilja at. */
+    if (KUND.kunder.some(function (k) { return k.namn.trim().toLowerCase() === t.toLowerCase(); }) &&
+        !confirm(t + " finns redan i Kundresan. Lägga till en till med samma namn?")) { f.focus(); return; }
     var id = t.toLowerCase().replace(/[^a-z0-9åäö]+/g, "-").replace(/^-|-$/g, "") || "kund";
     while (KUND.kunder.some(function (k) { return k.id === id; })) id += "-2";
     KUND.kunder.push({ id: id, namn: t, checks: {} });
@@ -2644,6 +2754,13 @@ Mathias Bahko</p>
   });
   document.getElementById("kund-in").addEventListener("keydown", function (e) {
     if (e.key === "Enter") document.getElementById("kund-lagg").click();
+  });
+  /* Tva flikar oppna: utan lyssnare skrev den inaktuella fliken over den
+     andras bockar vid nasta klick. Nu laser fliken om nar den andra sparar. */
+  window.addEventListener("storage", function (e) {
+    if (e.key !== K_KUND) return;
+    KUND = lasKund(true);
+    ritaKunder(); ritaManad();
   });
 
   /* ================= Manadsavslut (gren 4) ================= */
@@ -2657,10 +2774,31 @@ Mathias Bahko</p>
   ];
   var MANADSNAMN = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"];
   function periodNu() { return idag().slice(0, 7); }
+  function periodNamn(p) { return MANADSNAMN[+p.slice(5, 7) - 1] + " " + p.slice(0, 4); }
+  function manadKlar(m) { return MANAD.every(function (u) { return m.checks[u.id]; }); }
+  /* Avslutet gors sista vardagen. Bockar man en del den 30:e och fortsatter
+     den 2:a ska oktober inte forsvinna: en ofardig period ligger kvar och
+     visas som "inte klart" tills allt ar bockat. Forst da byts perioden, och
+     den gamla sparas i manadHistorik. */
+  function bytManadOmKlar() {
+    var nu = periodNu(), m = KUND.manad;
+    if (m.period === nu) return;
+    /* En tom period i framtiden (datorns klocka stod fel) kastas utan vidare. */
+    var tomFramtid = m.period > nu && !Object.keys(m.checks).length;
+    if (m.period && !manadKlar(m) && !tomFramtid) return;
+    if (m.period && Object.keys(m.checks).length) {
+      KUND.manadHistorik.push({ period: m.period, checks: m.checks });
+      if (KUND.manadHistorik.length > 24) KUND.manadHistorik = KUND.manadHistorik.slice(-24);
+    }
+    KUND.manad = { period: nu, checks: {} };
+    sparaKund();
+  }
+  function manadGammal() { return KUND.manad.period && KUND.manad.period !== periodNu(); }
   function ritaManad() {
-    if (KUND.manad.period !== periodNu()) { KUND.manad = { period: periodNu(), checks: {} }; sparaKund(); }
-    var d = new Date();
-    document.getElementById("manad-namn").textContent = MANADSNAMN[d.getMonth()] + " " + d.getFullYear();
+    bytManadOmKlar();
+    var tagg = document.getElementById("manad-namn");
+    tagg.textContent = periodNamn(KUND.manad.period) + (manadGammal() ? ", inte klart" : "");
+    tagg.classList.toggle("tagg--varning", !!manadGammal());
     document.getElementById("manad-check").innerHTML = MANAD.map(function (u) {
       return '<label><input type="checkbox" data-manad="' + u.id + '"' + (KUND.manad.checks[u.id] ? " checked" : "") +
         "><span>" + esc(u.text) + "</span></label>";
@@ -2672,7 +2810,10 @@ Mathias Bahko</p>
     if (!c) return;
     if (c.checked) KUND.manad.checks[c.getAttribute("data-manad")] = idag();
     else delete KUND.manad.checks[c.getAttribute("data-manad")];
-    sparaKund(); ritaKundStatus();
+    sparaKund();
+    /* Sista bocken i en gammal period: den arkiveras och manadens lista visas. */
+    if (manadGammal() && manadKlar(KUND.manad)) ritaManad();
+    else ritaKundStatus();
   });
 
   /* Kommandobryggan far en rad om kunderna och, de sista tre dagarna i
@@ -2687,11 +2828,16 @@ Mathias Bahko</p>
     var txt = "<b>" + KUND.kunder.length + (KUND.kunder.length === 1 ? " kund" : " kunder") + "</b> i Kundresan";
     if (oppna.length) txt += ", " + oppna.length + " med onboarding eller bygge kvar";
     var d = new Date(), sista = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
-    if (sista - d.getDate() < 3) {
+    if (manadGammal()) {
+      var gjort = MANAD.filter(function (u) { return KUND.manad.checks[u.id]; }).length;
+      txt += ". <b>Månadsavslutet för " + esc(periodNamn(KUND.manad.period)) + " är inte klart:</b> " + gjort + " av " + MANAD.length;
+    } else if (sista - d.getDate() < 3) {
       var klara = MANAD.filter(function (u) { return KUND.manad.checks[u.id]; }).length;
       txt += ". <b>Månadsavslut:</b> " + klara + " av " + MANAD.length + " klart";
     }
-    rad.innerHTML = txt + '. <a href="#kundresan" data-till="kundresan">Öppna Kundresan</a>';
+    /* Lanken till Kundresan ar en ramknapp i HTML:en under raden: som inline-
+       lank i en notis var den 16px hog pa mobil. */
+    rad.innerHTML = txt + ".";
   }
 
   /* ================= Autosize =================
@@ -2741,7 +2887,16 @@ Mathias Bahko</p>
 
   /* ================= Export + utskrift ================= */
   document.getElementById("exportera").addEventListener("click", function () {
-    var blob = new Blob([JSON.stringify({ exporterad: idag(), bb_os_v1: VARLD, bb_os_logg_v1: LOGG, bb_os_kund_v1: KUND }, null, 2)], { type: "application/json" });
+    /* Samma format som CRM:ets backup: varje bb_-nyckel har sitt varde som
+       JSON-STRANG. CRM:ets Aterstall gor setItem(nyckel, varde) rakt av, sa ett
+       objekt hade blivit "[object Object]" och spelvarlden, loggen och
+       Kundresan hade forsvunnit vid aterlasning. */
+    var blob = new Blob([JSON.stringify({
+      exporterad: idag(),
+      bb_os_v1: JSON.stringify(VARLD),
+      bb_os_logg_v1: JSON.stringify(LOGG),
+      bb_os_kund_v1: JSON.stringify(KUND)
+    }, null, 2)], { type: "application/json" });
     var a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = "bahko-os-" + idag() + ".json";

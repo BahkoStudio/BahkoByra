@@ -8,7 +8,8 @@ vad den betalar för.
 
 ```
  JA ──► 1 Onboarding & avtal ──► 2 Bygge ──► 3 Löpande leverans ──► 4 Rapport ──► 5 Retention & uppsälj
-        (dag 0–2)                (dag 2–7)   (varje månad)          (vecka/månad)  (månad 3, 6, 12)
+        (dag 0–2)                (7 dagar    (varje månad)          (vecka/månad)  (dag 30, månad 3, 6, 12)
+                                 från betalning)
                                                     ▲                                    │
                                                     └────────────────────────────────────┘
 ```
@@ -26,9 +27,11 @@ vad den betalar för.
 | Vad | Var |
 |---|---|
 | En mapp per kund (hemsida, struktur, Drive, SEO-underlag, rapporter) | `kunder/<kund>/`, mall i `kunder/_mall/README.md` |
-| Var i resan varje kund är, checklista per kund | kommandocentralen, gren 2 (`docs/bahko_os.md`) |
-| Avtal, fakturor och priser | `OneDrive/Contracts & Legal/<kund>/` (aldrig i repot, det är publikt) |
-| Affären och nästa samtal | Notion-CRM:et, steget "Kund" |
+| Var i resan varje kund är | Notion-CRM:et, kundens steg. Det är sanningen om kundläget |
+| Checklista per kund | kommandocentralen, gren 2 (`docs/bahko_os.md`). Mathias egen avbockning, sparad i en webbläsare |
+| Avtal, fakturor och priser | `OneDrive/1 Bahko Byrå/Kunder/<kund>/Avtal/` (aldrig i repot, det är publikt) |
+| Affären, kontaktpersoner, nästa samtal och nästa faktura | Notion-CRM:et, steget "Kund" |
+| Kundens rapporter | Kundens Drive, aldrig i repot |
 | Återkommande åtaganden med datum (rapportdagar m.m.) | `web/public/crm-f2822a6f3a/atagande.json` |
 
 ## Regler för grenen
@@ -37,5 +40,5 @@ vad den betalar för.
 - **Varje leverans följs av en färdig mejltext på högst två meningar.** Mathias mejlar själv.
 - **Personuppgifter, bankuppgifter och belopp skrivs aldrig in i repot.**
 - **AI får aldrig spela kundens riktiga jobb** i content (bilder och filmer på kundens arbete ska vara äkta).
-- Ny kund: kopiera `kunder/_mall/`, lägg in åtagandena i `atagande.json`, och bocka av
-  onboardingen i kommandocentralen.
+- Ny kund: skapa de fyra filerna som beskrivs i `kunder/_mall/README.md`, lägg in åtagandena i
+  `web/public/crm-f2822a6f3a/atagande.json`, och bocka av onboardingen i kommandocentralen.

@@ -70,7 +70,8 @@ En offert är ett **garanterat resultat**, inte en tjänstebeskrivning ("jag byg
 **Kunden bidrar med:** bilder på riktiga jobb, kontaktuppgifter, godkännande av texter, tillgång
 till domän och Google-profil. Ingår inte: annonser, löpande content, sådant som inte står i listan.
 
-**Riskreversering:** når vi inte resultatet fortsätter vi jobba utan extra kostnad tills ni är där.
+**Riskreversering:** ingen bindningstid. SEO och underhåll ingår från start och kan sägas upp när
+som helst, och kunden äger sidan och domänen. Har avtalet en garanti gäller avtalets text, ord för ord.
 
 **Positioneringen i en mening:**
 > Vi hjälper lokala företag att få fler kundförfrågningar och ranka på Googles första sida inom
@@ -97,8 +98,8 @@ Varje bra offer är fortfarande:
 Vi bygger en skräddarsydd demo av deras nya hemsida gratis, klar inom 48 timmar. De kikar i
 mobilen. Gillar de den bokar vi säljsamtalet. Där, och först där, kommer priset.
 
-Retainer och löpande optimering säljs som uppsell **efter** levererad sajt, aldrig kallt.
-Retainer-pitch: "Nu när basen står är det bästa att hålla underhållet igång så vi 1) inte tappar
+SEO och underhåll säljs **från start**, i samma avtal som hemsidan, med månadsavgift och utan
+bindningstid. Det tas upp i säljsamtalet, aldrig kallt. Pitchen för månaden: "Nu när basen står är det bästa att hålla underhållet igång så vi 1) inte tappar
 det vi har, 2) fortsätter klättra. Plus: vi jobbar inte med en konkurrent i er zon så länge vi
 samarbetar."
 
@@ -245,8 +246,8 @@ Fyra alternativ: (1) gratis mot case study, (2) **betalt upfront i sin helhet (f
 - Välj ETT pris och **stå fast på det** under samtalet. Memorera. Tveka aldrig.
 - Priset kan ändras mellan kunder. Gamla leads: "Vi höjer priset till X, men eftersom vi
   offererade dig det gamla priset håller vi det till och med [datum]."
-- BahkoByra: hemsida som engångsköp, 12 000 kr ex moms (ingen retainer). Löpande optimering säljs som
-  uppsell först efter levererad sajt. (Prisändring 2026-08-01, tidigare 29 900 kr.)
+- BahkoByra: hemsida i två delar plus månadsavgift för SEO och underhåll, ingen bindningstid.
+  Beloppen står i offerten och avtalet i kundens avtalsmapp i OneDrive, aldrig här.
 
 ---
 

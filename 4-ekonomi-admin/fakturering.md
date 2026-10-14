@@ -13,10 +13,13 @@
 
 ## Rutinen per faktura
 
-1. Ta förra fakturans mall för kunden (`OneDrive/Contracts & Legal/<kund>/`), byt period och nummer.
-2. Rendera till PDF, ögonläs den.
+1. Ta förra fakturans mall för kunden (`OneDrive/1 Bahko Byrå/Kunder/<kund>/Avtal/`), byt period och nummer.
+2. Rendera till PDF, ögonläs den. Kontrollera att momsreg.nr, F-skatt, fakturanummer och
+   förfallodag är ifyllda, och att inga platshållare står kvar (till exempel "kontrollera" eller
+   "ange bankgiro" i sidfoten).
 3. Mathias mejlar den, med en mejltext på högst två meningar.
-4. Notera i Notion-affären: fakturanummer, period, skickad datum.
+4. Notera i Notion-affären: fakturanummer, period, skickad datum, och sätt fältet
+   "Nästa faktura" till nästa fakturadag.
 5. När betalningen kommit: bocka av i Notion.
 
 ## Påminnelser
@@ -29,5 +32,7 @@
 
 ## Löpande fakturor just nu
 
-Står i Notion-CRM:et (affärer på steget "Kund", med "Nästa samtal" = nästa fakturadag),
-inte här.
+Står i Notion-CRM:et (affärer på steget "Kund"), inte här. Ett fält per sak:
+**"Nästa faktura"** är nästa fakturadag, **"Nästa samtal"** är nästa kontrollpunkt
+(`2-kunder/retention-upsell/SOP.md`). Fältet "Nästa faktura" läggs till för hand i Notion,
+eftersom Claude inte kan ändra databasens fält via MCP.

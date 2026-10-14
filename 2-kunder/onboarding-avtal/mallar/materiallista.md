@@ -9,6 +9,8 @@ Det vi behöver av kunden. Bocka av i kommandocentralen (gren 2, kundens checkli
 | Logga i bästa upplösning (SVG eller PNG) | Skarp logga på alla skärmar | Vi ritar om den befintliga, kunden godkänner |
 | Tillgång till domänhost | För att koppla domänen och mejlautomatiken | Sidan kan inte gå live, ring kunden |
 | Google Företagsprofil, Bahko som ansvarig | Lokal SEO och omdömen | SEO-delen väntar, hemsidan kan gå live ändå |
+| Google Företagsprofil verifierad | Utan verifiering rankar profilen inte, och garantin står still | Kunden startar verifieringen från sitt eget konto, vi kan inte göra det åt dem |
+| GA4 och Search Console | Rapporten varje månad | Skapas av oss under Bahkos Google-konto, rapportverktygets tjänstekonto får läsrätt |
 | Kontaktuppgifter till sidan: telefon, mejl, adress, org.nr | Visas på sidan och i formuläret | Vi tar dem från befintlig sajt och låter kunden kontrollera |
 | Vem som ska få förfrågningarna (mejladress) | Formuläret skickar dit | Vi använder kontaktmejlen |
 

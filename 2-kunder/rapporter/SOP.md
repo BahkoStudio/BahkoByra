@@ -7,9 +7,9 @@
 
 | Kund | Rapport | Dag | Hur |
 |---|---|---|---|
-| Bromma Trädgårdsservice | Veckorapport, 2 sidor PDF | Söndag | HTML-mallen i `kunder/bromma/rapporter/` (senaste rapportens HTML är mallen), Edge till PDF, till Drive "05 Rapporter och planer" |
+| Bromma Trädgårdsservice | Veckorapport, 2 sidor PDF. **Sista rapporten 2026-10-18** (rapport 12, täcker v41–v42), samarbetet slutar efter vecka 42 | Söndag | Mallen är `rapport10-bromma.html`, som ligger ospårad i huvudkopian (`Skrivbord/test/content/kundarbete/bromma/rapporter/`). Edge till PDF, till Drive "05 Rapporter och planer" |
 | GD Måleri | Veckorapport, 1 sida PDF | Söndag | `node tools/gd-rapport/hamta.mjs` och `bygg.mjs`, se `tools/gd-rapport/README.md` |
-| Ny kund med månadsavgift | Månadsrapport, 1 sida PDF | Första vardagen i månaden | Samma upplägg som GD-verktyget, en sida |
+| Ny kund med månadsavgift | Månadsrapport, 1 sida PDF | Första vardagen i månaden | GD-verktyget är byggt bara för GD. Det måste först göras generellt (kunden som parameter), annars görs månadsrapporten för hand |
 
 Varje rapportdag ligger i `web/public/crm-f2822a6f3a/atagande.json`, så dashboarden varnar
 när en rapport förfaller.
@@ -25,10 +25,15 @@ när en rapport förfaller.
 
 Inget annat. Hellre en sida som läses än tre som inte gör det.
 
+**Undantag, contentkunder** (som Bromma från rapport 10): vad som gått ut, vad det gav och vad
+som kommer. Google-siffror bara när vi har åtkomst till dem.
+
 ## Innan den skickas
 
+- Antalet förfrågningar tas från Web3Forms (Submissions) och bokningsverktyget. GA4 visar bara
+  klick och beteende, och räknar bara besökare som sagt ja till kakor.
 - Siffrorna ser rimliga ut (jämför med förra rapporten). Ögonläs PDF:en, texten kan klippas tyst.
 - Inga påhittade siffror, inga förutsägelser om placering.
 - **Mejltext på högst två meningar** bifogas: mening ett säger vad som ligger bifogat, mening
   två det enda kunden behöver göra eller veta. Mathias mejlar själv.
-- Rapporten arkiveras i kundens Drive och i `kunder/<kund>/rapporter/`.
+- Rapporten arkiveras bara i kundens Drive, aldrig i repot (repot är publikt).

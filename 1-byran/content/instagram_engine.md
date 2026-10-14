@@ -36,7 +36,8 @@ payoff+mjuk CTA, jag-form, tolvårsspråk, 5 hookar → välj 1). Den gamla 7-st
 idé-hooks, precis det reel-skillen underkänner.
 Idé-generering: fråga "om jag drev ett [takföretag] och ville ha fler jobb — vad skulle jag
 undra över?" Byråns eget IG-material: `1-byran/content/ig/`. (Kontentplanen som stod här
-raderades 2026-08-26 på Mathias order.)
+raderades 2026-08-26 på Mathias order. Kopian `ig/kontentplan-bahkobyra.md` är inaktuell
+(v33–36) och följs inte.)
 
 CTA leder alltid till front-offern: **kostnadsfri demo** ("DM:a 'DEMO' så skickar jag ett utkast på er nya hemsida").
 
