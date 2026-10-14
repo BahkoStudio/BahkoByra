@@ -17,9 +17,19 @@ Operativsystemet för varumärke, content och leads, byggt på två ramverk:
   OS:ets Spelvärld, som är FILTRET för allt content. Knappen "Kopiera som
   AI-kontext" matar strategin till Claude-sessioner.
 
-Modulerna: Kommandobryggan (dagens uppdrag, 15-minutersrutinen),
-Spelvärlden, Säsongen (90 dagar, 13 veckokapitel), Instagram, YouTube,
-LinkedIn, Manus (äger all kopierbar text), SOP:er, Kundverkstan.
+Menyn följer ekosystemets grenar (samma som mapparna i repot, se `CLAUDE.md`),
+omgjord 2026-10-14:
+
+| Gren | Blad |
+|---|---|
+| Start | Kommandobryggan (dagens uppdrag, 15-minutersrutinen, rad om kunderna och månadsavslutet) |
+| 1 Bahkobyrå | Hemsidor & SEO (demos, kundmall, optimering, produktionschecklistan) · Content: Spelvärlden, Säsongen, Instagram, YouTube, LinkedIn, Manus (äger all kopierbar text) · Intern tillväxt: SOP:er & idéer |
+| 2 Kunder | Kundresan (checklista per kund, kundsajterna) · Onboarding & avtal · Leverans & support · Rapporter · Retention & uppsälj |
+| 3 Beast of Ages | Beast of Ages (de fyra kvistarna, konverteringen väntar på beslut) |
+| 4 Ekonomi & admin | Ekonomi & admin (månadsavslutet, fakturering, påminnelser, kostnader) |
+
+Kundverkstan finns inte längre: korten delades mellan Hemsidor & SEO och Kundresan, och
+den gamla adressen `#verkstan` leder till Hemsidor & SEO.
 
 ## Data — var saker bor
 
@@ -27,8 +37,9 @@ LinkedIn, Manus (äger all kopierbar text), SOP:er, Kundverkstan.
 |---|---|---|
 | `bb_os_v1` | spelvärlden + säsongen | lågfrekvent, dyrt att förlora |
 | `bb_os_logg_v1` | KPI-rader, dagens checklista, MVL-läge, idébanken | högfrekvent |
+| `bb_os_kund_v1` | kundresan per kund (bockarna med datum) + månadsavslutet | medelfrekvent, punkternas id är kontraktet |
 
-Båda är **formfrysta** när de tagits i bruk (Heligt-listan) och åker med i
+Alla tre är **formfrysta** när de tagits i bruk (Heligt-listan) och åker med i
 CRM:ets backup (bb_-prefixet). OS:et har dessutom egen Export-knapp.
 `bb_crm_v2` och `bahko_sop_dagslogg_v1` läses på sin höjd — **skrivs ALDRIG**
 från OS:et. Korrupt data stashas som `<nyckel>_korrupt_<ts>` och nyckeln sås om.
