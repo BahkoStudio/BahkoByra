@@ -4,9 +4,9 @@ import Maskot from '../../komponenter/Maskot';
 import styles from './jonkoping.module.css';
 
 export const metadata = {
-  title: 'Webbyrå i Jönköping & Huskvarna, webbdesign för lokala företag',
+  title: 'Webbyrå i Jönköping & Huskvarna, förslag inom 48 h',
   description:
-    'Bahko Byrå är en webbyrå med kontor i Huskvarna, Jönköping. Vi bygger hemsidor för bygg- och hantverksfirmor: färdigt förslag inom 48 timmar, live inom sju dagar. Boka gärna ett möte på kontoret.',
+    'Webbyrå med kontor i Huskvarna, Jönköping. Köp en hemsida till fast engångspris utan månadsavgift: färdigt förslag inom 48 timmar, live inom sju dagar.',
   alternates: { canonical: '/webbyra-jonkoping/' },
 };
 
@@ -56,6 +56,70 @@ const INGAR = [
   'Er egen domän. Ni äger sidan och domänen, och det finns ingen bindningstid.',
 ];
 
+/* Köpa hemsida: samma tre steg som förut stod som brödtext under "På plats".
+   Flyttade hit i stället för att stå på två ställen (brief 2026-10-14). */
+const STEG = [
+  {
+    h: 'Ni berättar om firman',
+    p: 'Via formuläret, ett samtal eller på kontoret i Huskvarna. Har ni redan en sida kan ni börja med en',
+    lank: { href: '/foretag/gratis-granskning.html', text: 'kostnadsfri granskning av er nuvarande hemsida' },
+  },
+  {
+    h: 'Färdigt förslag inom 48 timmar',
+    p: 'Inte en offert med punkter och ett pris, utan er nya sida byggd på riktigt, med ert namn och era tjänster. Ni klickar runt i den på mobilen och ser exakt hur den blir. Det fasta priset står i samma förslag.',
+  },
+  {
+    h: 'Ja eller nej',
+    p: 'Säger ni ja görs sidan skarp med era bilder, texter och uppgifter och går live inom sju dagar på er egen domän. Säger ni nej kostar det ingenting.',
+  },
+];
+
+/* Segment. Länka bara till sidor som finns: /hemsida-for-byggfirma/ är 404
+   (2026-10-14), lägg till länken när sidan är publicerad. Ingen e-handel här
+   förrän Mathias bekräftat erbjudandet. */
+const SEGMENT = [
+  {
+    h: 'Målerifirmor',
+    p: 'Offertflöde i mobilen, ROT förklarat enligt Skatteverket och bilder på riktiga jobb. Smålands Måleri i Jönköping har en sådan sida i drift.',
+    lank: { href: '/hemsida-for-malerifirma/', text: 'Hemsida för målerifirma' },
+  },
+  {
+    h: 'Trädgårdsfirmor',
+    p: 'Säsongens tjänster först, områdena ni kör i och en snabb väg till offert. Bromma Trädgårdsservice är caset längre ner på sidan.',
+    lank: { href: '/hemsida-for-tradgardsfirma/', text: 'Hemsida för trädgårdsfirma' },
+  },
+  {
+    h: 'Bygg och andra hantverkare',
+    p: 'Byggfirmor, VVS, el, tak och mark: samma moduler, anpassade efter hur era kunder letar och vad de vill se innan de ringer.',
+  },
+  {
+    h: 'Lokala tjänsteföretag',
+    p: 'Firmor som lever på att folk i Jönköping och Huskvarna hittar dem, ringer och bokar. Sidan byggs för samtalet, inte för att se fin ut i en portfolio.',
+  },
+];
+
+const SYNAS = [
+  {
+    h: 'Lokal SEO och Google Företagsprofil',
+    p: 'Rätt uppgifter överallt, en profil som sköts och sidor som svarar på det folk i Jönköping faktiskt söker på.',
+    lank: { href: '/tjanster/seo/', text: 'Lokal SEO' },
+  },
+  {
+    h: 'Synas i AI-svar',
+    p: 'Googles AI-översikter och ChatGPT hämtar svar från sidor som svarar tydligt. Samma arbete, med texter skrivna för att kunna citeras.',
+  },
+  {
+    h: 'Google Ads',
+    p: 'Annonser när ni vill ha förfrågningar snabbt, kopplade till sidan så att ni ser vad klicken ger.',
+    lank: { href: '/tjanster/google-ads/', text: 'Google Ads' },
+  },
+  {
+    h: 'Appar',
+    p: 'Bokningsappar och kundportaler när en sida inte räcker.',
+    lank: { href: '/tjanster/appar/', text: 'Appar' },
+  },
+];
+
 const BESOK = {
   adress: ['Kungsängsvägen 27', '561 51 Huskvarna'],
   tider: 'Alla dagar 8–22',
@@ -85,11 +149,71 @@ const FRAGOR_JKPG = [
     svar:
       'Färdigt förslag inom 48 timmar. Säger ni ja är sidan normalt live inom sju dagar, på er egen domän, och ni äger både sidan och domänen.',
   },
+  {
+    fraga: 'Vad är skillnaden mellan ert förslag och en vanlig offert?',
+    svar:
+      'En offert beskriver en sida och sätter ett pris. Förslaget från Bahko Byrå är sidan: byggd med ert namn och era tjänster, så att ni kan klicka runt i den innan ni bestämmer er. Det fasta priset står i samma förslag, och det kostar ingenting att säga nej.',
+  },
+  {
+    fraga: 'Tillkommer det några månadskostnader efteråt?',
+    svar:
+      'Hemsidan har ingen månadsavgift och ingen bindningstid. Hjälp med Google, AI-svar eller annonser efter lanseringen är frivilliga tillägg som ni väljer själva.',
+  },
+  {
+    fraga: 'Äger vi hemsidan och domänen?',
+    svar:
+      'Ja. Sidan och domänen är era, även om ni en dag slutar hos Bahko Byrå. Det finns ingen bindningstid som håller er kvar.',
+  },
+  {
+    fraga: 'Kan ni hjälpa oss att synas på Google och i AI-svar i Jönköping?',
+    svar:
+      'Ja, som tillägg: lokal SEO, Google Företagsprofil, synlighet i AI-svar och Google Ads. Ingen kan garantera en placering på Google, och Bahko Byrå lovar ingen. Det som går att visa är vad som hänt för andra kunder, som Bromma Trädgårdsservice på den här sidan.',
+  },
 ];
+
+/* Strukturerad data för just den här sidan. Organisationen finns redan i
+   layouten (@id #organization) och upprepas inte, den refereras. FAQ-schemat
+   byggs ur samma lista som visas, så text och schema kan aldrig glida isär. */
+const SIDA = 'https://www.bahkobyra.se/webbyra-jonkoping/';
+const SIDSCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': SIDA + '#webpage',
+      url: SIDA,
+      name: 'Webbyrå i Jönköping & Huskvarna',
+      inLanguage: 'sv-SE',
+      about: { '@id': 'https://www.bahkobyra.se/#organization' },
+      breadcrumb: { '@id': SIDA + '#breadcrumb' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': SIDA + '#breadcrumb',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://www.bahkobyra.se/' },
+        { '@type': 'ListItem', position: 2, name: 'Webbyrå i Jönköping', item: SIDA },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': SIDA + '#faq',
+      mainEntity: FRAGOR_JKPG.map((f) => ({
+        '@type': 'Question',
+        name: f.fraga,
+        acceptedAnswer: { '@type': 'Answer', text: f.svar },
+      })),
+    },
+  ],
+};
 
 export default function Jonkoping() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SIDSCHEMA) }}
+      />
       <section className={`mork ${styles.topp}`}>
         <div className="wrap">
           <nav className={styles.brod} aria-label="Brödsmulor">
@@ -103,8 +227,9 @@ export default function Jonkoping() {
           </h1>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
             Bahko Byrå är en webbyrå med kontor i Huskvarna, Jönköping, som bygger hemsidor för bygg- och
-            hantverksfirmor. Färdigt förslag inom 48 timmar, live inom sju dagar, och en kund
-            här i stan vars sajt ni kan syna innan ni hör av er.
+            hantverksfirmor och andra lokala företag. Vill ni köpa en hemsida i Jönköping får ni ett
+            färdigt förslag med fast pris inom 48 timmar, live inom sju dagar, och en kund här i stan
+            vars sajt ni kan syna innan ni hör av er.
           </p>
           <div className={styles.toppKnappar}>
             <Link href="/kontakt/" className="btn btn-primar">
@@ -131,13 +256,6 @@ export default function Jonkoping() {
           </div>
           <div className={styles.brodtext}>
             <p>
-              Det Bahko Byrå gör för en hantverksfirma är alltid samma tre steg: ett färdigt
-              förslag på er nya sida inom 48 timmar, byggt på riktigt så ni ser exakt hur den
-              blir. Säger ni ja görs den skarp med era bilder, texter och uppgifter och går
-              live inom sju dagar på er egen domän. Säger ni nej kostar det ingenting, och
-              förslaget var ändå värt titten.
-            </p>
-            <p>
               För firmor i Jönköping med omnejd finns en fördel till: det går att ses. Ta med
               telefonen och era frågor till kontoret, så tittar vi på hur ni syns idag och vad
               som skulle göra störst skillnad först.
@@ -162,6 +280,56 @@ export default function Jonkoping() {
                 Öppna i kartan
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.ytaLjus}>
+        <div className="wrap">
+          <span className="eyebrow">Så går det till</span>
+          <h2>Köpa hemsida i Jönköping: så går det till</h2>
+          <ol className={styles.steg}>
+            {STEG.map((st, i) => (
+              <li key={st.h} className="kort">
+                <span className={styles.stegNr} aria-hidden="true">{i + 1}</span>
+                <h3>{st.h}</h3>
+                <p>
+                  {st.p}
+                  {st.lank && (
+                    <>
+                      {' '}
+                      <Link href={st.lank.href}>{st.lank.text}</Link>.
+                    </>
+                  )}
+                </p>
+              </li>
+            ))}
+          </ol>
+          <p className={styles.brodtext}>
+            Skillnaden mot en vanlig offert är att ni inte behöver föreställa er något. Ni ser
+            sidan, med er firma i, innan ni betalar en krona.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div className="wrap">
+          <span className="eyebrow">Pris</span>
+          <h2>Vad kostar en hemsida i Jönköping?</h2>
+          <div className={styles.brodtext}>
+            <p>
+              En hemsida från Bahko Byrå har ett fast engångspris, utan månadsavgift och utan
+              bindningstid. Ni äger sidan och domänen, även om ni en dag slutar hos oss.
+            </p>
+            <p>
+              Priset beror på hur många tjänster och sidor er firma behöver, så det står i
+              förslaget i stället för här. Då vet ni exakt vad det blir, med sidan framför er,
+              innan ni bestämmer er. Säger ni nej har det inte kostat något.
+            </p>
+            <p>
+              Vill ni förstå vad som brukar driva priset upp eller ner? Läs{' '}
+              <Link href="/vad-kostar-en-hemsida/">vad som avgör priset på en hemsida</Link>.
+            </p>
           </div>
         </div>
       </section>
@@ -204,12 +372,60 @@ export default function Jonkoping() {
         </div>
       </section>
 
+      <section className={styles.ytaLjus}>
+        <div className="wrap">
+          <span className="eyebrow">För vem</span>
+          <h2>Hemsidor för hantverkare och lokala företag i Jönköping</h2>
+          <div className={`${styles.punktNat} ${styles.fyra}`}>
+            {SEGMENT.map((sg) => (
+              <div key={sg.h} className="kort">
+                <h3>{sg.h}</h3>
+                <p>{sg.p}</p>
+                {sg.lank && (
+                  <Link href={sg.lank.href} className={styles.kortLank}>
+                    {sg.lank.text} {PIL}
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="wrap">
+          <span className="eyebrow">Synas</span>
+          <h2>Synas i Jönköping: Google, AI-svar och annonser</h2>
+          <p className={styles.brodtext}>
+            En ny sida är grunden. Det här är tilläggen för den som vill att fler i Jönköping och
+            Huskvarna hittar den. Inget av det är ett krav, och ingen placering utlovas.
+          </p>
+          <div className={`${styles.punktNat} ${styles.fyra}`}>
+            {SYNAS.map((sy) => (
+              <div key={sy.h} className="kort">
+                <h3>{sy.h}</h3>
+                <p>{sy.p}</p>
+                {sy.lank && (
+                  <Link href={sy.lank.href} className={styles.kortLank}>
+                    {sy.lank.text} {PIL}
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className={styles.ctaYta}>
         <div className="wrap">
           <div className={styles.cta}>
             <div>
               <h3>Se er firma på en riktig sida, innan ni betalar något</h3>
               <p>Förslaget byggs inom 48 timmar. Ni bestämmer sen.</p>
+              <p className={styles.ctaSmall}>
+                Har ni redan en sida?{' '}
+                <Link href="/foretag/gratis-granskning.html">Börja med en kostnadsfri granskning</Link>.
+              </p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">
               Få kostnadsfritt förslag {PIL}
