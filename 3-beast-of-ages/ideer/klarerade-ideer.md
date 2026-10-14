@@ -203,3 +203,105 @@ prenumerantantalet, inget stopp enligt steg 3. Manuset byggdes medvetet på en a
 mekanism (kaseinkemi + Rom + US Camel Corps) än Murphs (hållbarhet), enligt regel 15.
 Tre rundor manusloop (taket). Lärdom värd att spara: en flopp på EXAKT samma fråga från en
 jämförbar kanal är inte automatiskt en dödare — bara ett krav på en annan mekanism.
+
+## Lätt kontroll 2026-09-18: tio djur för framtida de-extinction (Mathias lista)
+
+Mathias lista "10 animals for future de-extinction" prövad som EN samlingsvideo och
+som TIO enskilda videor. Samlingsvideon är död: formen "X animals scientists could/are
+trying to bring back" är extremt mättad just nu (Brave Wilderness 21,8 M prenumeranter
+aug 2026, Forrest Galante flera gånger, en 15 900-prenumerantskanal fick 1,4 M visningar
+på exakt vinkeln sex veckor sedan). De enskilda djuren kontrollerade var för sig, en
+sökning + vidIQ-titelpoäng, i Knapp-stil ("Why did X go extinct/exist?").
+
+| # | Djur | Föreslagen titel (vidIQ) | Läge | Status |
+|---|---|---|---|---|
+| 1 | Falklandsvarg | Why Did an Island's Only Land Mammal Go Extinct in 8 Years? (97) | bara mikrokanaler (under 6 000 pren.), inget på engelska i vårt format | klar |
+| 2 | Baiji (Yangtzeflodsdelfin) | Why Did the Yangtze's Only Dolphin Vanish in 20 Years? (97) | NHM 2013 (352 k) och Ben G Thomas 2018 (82 k) finns, men ingen ny långform | klar |
+| 3 | Kinesisk svärdstör | The Largest Freshwater Fish on Earth Went Extinct and Nobody Noticed (93) | bara nyhetsklipp 2020/2022 (CBS m.fl.), ingen berättande dokumentär | klar |
+| 4 | Guldpadda | Why Did an Entire Species Vanish in a Single Year? (96) | RISK — minst fem småkanaler (under 12 000 pren.) gjorde egna 8–45-minuters versioner 2025, en uppenbart AI-genererad; återkommande litet-kanals-ämne | risk, vänta eller gör snabbt |
+| 5 | Toolache-känguru | Why Did the Best Jumper in Australia Go Extinct First? (96) | NOLL träffar på engelska | klar, starkast |
+| 6 | Havsmink | Why Was There Only Ever One Sea-Going Mink? (90) | i praktiken noll riktade träffar | klar |
+| 7 | Stäppbison | Why Did the Bison That Outlived the Mammoth Still Go Extinct? (88) | täckt som "frusen mumie"-listpunkt (Blue Babe) i flera stora listor, men ingen gör själva utdöendeberättelsen | klar med not |
+| 8 | Lena-häst | Why Is There a Perfectly Preserved Ice Age Foal in a Freezer? (93) | samma sak — nämns i permafrost-listor (Origins Explained 830 k), aldrig egen video | klar med not |
+| 9 | Megalania | Why Did the Largest Lizard That Ever Lived Disappear? (93) | RISK — Ben G Thomas 1,6 M (2018) och ExtinctZoo 9,7 M (2024) samt två färska småkanalsversioner 2025/2026 | risk |
+| 10 | Skrattuggla | Why Did an Owl That Laughed Go Extinct? (94) | bara Shorts och klipp under en minut, ingen långform | klar |
+
+**Bedömning:** åtta av tio är klara för full Grind, två (guldpadda, Megalania) har
+konkurrens som gör dem till en risk snarare än en säker vinst. Toolache-kängurun är
+starkast (noll konkurrens, högst titelpoäng bland de säkra). Ingen full Grind eller
+manus byggt än — detta är enbart den lätta kontrollen Mathias bad om.
+
+## Ombedömning 2026-09-19: The Dodo Is Coming Back… But It Will Hatch From a Chicken
+
+Steg 1 (egen katalog) missades den 12:e: kanalen publicerade redan 12 juli "The Artificial
+Egg Built to Hatch a Moa" (9 528 visningar). Mekanismerna skiljer sig (moa: mekaniskt
+konstgjort äggskal i titan/silikon för en för stor ägg-volym; dodo: genredigerade
+Nicobar-duv-könsceller injicerade i en vanlig kycklingembryo) men temat "fågel + ägg +
+de-extinction" är samma. Steg 2 uppdaterad: Yahoo News Australia (3 210 pren., 18 sep
+2025, 37 sek) och Kindred Creatures (397 pren., 30 dec 2025, 20 min) har båda använt
+"kyckling-surrogat"-vinkeln specifikt. Colossals egna videor (1,6 M okt 2025, 3,8 M PR-
+klipp) täcker genombrottet men inte titelns vändning. Ingen kanal i vår storleksklass
+eller större har gjort den. **Bedömning: fortsatt grön, men inte obevakad — flagga i
+manuset att vinkeln synts i mindre kanaler.** Full Grind + manus startad 2026-09-19.
+
+## Trendrunda 2026-09-23 (vidIQ outliers + trending + sök, 40-tal anrop)
+
+Signaler: **Colossal-nyheter** (GroovyGavins mammutbesök 281 k på ett dygn, 22 sep; TIME 24 aug: mammutdatumet glider),
+**"utdöda djur som lever"** (Mavora 1,3–1,57 M på fem listor sedan mars, Mystic Evidence 968 k på en 1 760-kanal, Doctor NOS 759 k,
+Forrest Galante 786 k, Psychopoly 251 k), **genetik-nyheter i "Scientists Just Found…"-form** (Species Decoder 2 910 prenumeranter:
+röd varg 338 856, ny kattart 30 982, kör färska artiklar inom två veckor). Verifierat i källa: TIME 2026-08-24 (mammut: graviditet 2027 och födsel 2028 var
+målet, Lamm säger nu "early 2030s", redigeringar ~60 → ~150 gener); Cell Genomics publicerade dire wolf-genomet online 2026-07-27
+(två tredjedelar från en varg/prärievarg-anfader, en tredjedel från en gammal släkt besläktad med sydamerikanska hunddjur).
+
+| # | Titel (vidIQ) | Kontroll | Status |
+|---|---|---|---|
+| 1 | The Woolly Mammoth Is Coming Back… But Not by 2028 (90) | noll träffar på förseningen i YouTube-sökning efter 20 aug; listvideor (Psychopoly m.fl.) säger fortfarande "2028" | klar, tidskritisk (nyhetsvåg ~2 veckor). Full Grind återstår |
+| 2 | Why Do So Many "Extinct" Animals Turn Up Alive? (95) | efterfrågan bevisad (1 M+ på små kanaler) men fältet är kryptid-spekulation; Galante 786 k "5 more found in 15 years" | gul, full Grind (steg 2–3) före bygge. Bygger på Lazarus-taxa och tröskeln för utdöendedatum, samma logik som thylacine-manuset |
+| 3 | The Dire Wolf Genome Is Finally Peer-Reviewed. It Says the Dire Wolf Wasn't Really a Wolf. (91) | bara The Real Odds (30 visn.) och en indonesisk kanal (37 k) | klar, uppföljare till "If They're Not Dire Wolves… Then What Are They?" (19 982) |
+| 4 | A Dog Found the Last Black-Footed Ferrets. Then Scientists Cloned One From 1988. (92) | ingen engelsk långform på klonen (bara Shorts och en 3-minutare); Ze Franks pestvideo 467 k täcker en annan vinkel | klar, faktakontroll av årtal vid bygge |
+
+Dödade eller nedprioriterade: **röd varg/"ghost alleles"** (Species Decoder 338 856, 8 sep, och kanalen har redan sin egen röda varg-video), **bluebuck** (Colossals egna film 1,8 M / 25-minutare 264 k, Coyote Peterson 52 k),
+**ny kattart Tilcayo** (nyhetsklipp, utanför nischen), **beardog** (8–48 k, men kanalens förhistoriska rovdjursvideor gav 150–180), **"Why Don't We Eat X"** (mättat: hippo 1,02 M på NEXPSY, Knapp har hippo och känguru, kanalens hästvideo fick 460).
+
+## Modelleringsrunda 2026-09-23 — fem idéer med störst viral potential
+
+Utliggare hämtade med `vidiq_outliers` (långform, under 50 000 prenumeranter, tre månader, sorterat på breakout). Varje idé modellerar en form som redan slagit på en liten kanal; ämnet är vårt.
+
+| # | Titel (vidIQ) | Förlaga (form) | Kontroll | Status |
+|---|---|---|---|---|
+| 1 | 5 Billion Sea Stars Melted Off the Pacific Coast. Scientists Finally Found the Killer. (97) | Past Wilds (568 pren.) *Spotted Lanternflies Are Vanishing in Pennsylvania — The Real Predator Was Unexpected* 380 592, breakout 5 484; Blackwater America (3 040) *…What's Hunting Alligators in the Mississippi* 230 254 | Bara nyhetsklipp och mikrokanaler på "killern hittad". Keystone Atlas (5 370) har 109 k på urchin-uppföljningen (annan vinkel). Prentice m.fl. 2025, Nature Ecol. Evol.: *Vibrio pectenicida*; 2026 kommentar i samma tidskrift ifrågasätter beviset — ärlighetsvändning | gul-grön, full Grind |
+| 2 | Scientists Lowered a Camera Under Antarctica's Ice. Something Was Already Living There. (91) | Explorer Vault (6 170) *Scientists Lowered a Camera to the Bottom of Crater Lake…* 1 504 909; kamera-shorts om Antarktis 64 M (IFLScience) och 28 M (Cleo Abram) | Ingen långform. Fakta: WISSARD jan 2015, 740 m is, 850 km från öppet hav, genomskinliga ~20 cm fiskar, amfipoder, maneter; sydligaste fisk någonsin | grön, full Grind |
+| 3 | Every Animal in North America Had a Deadlier Ice Age Version (95) | Drowned Earth (1 070) *Every Ocean Apex Predator Had A Worse Version* 282 721; Curious Fing (12 900) *10 Prehistoric Ocean Monsters…* 1,41 M | GUL: ExtinctZoo (1,53 M) *Ice Age America Was Basically Africa On Steroids* 1,0 M (maj 2026) har samma djur. Skillnaden måste vara parformen (bäver/jättebäver, puma/amerikanskt lejon, grizzly/kortnosbjörn, kondor/Teratornis) | gul, avgörs i Grind |
+| 4 | The Woolly Mammoth Is Coming Back… But Not by 2028 (90) | Kanalens egen coming-back-form; GroovyGavin (3,08 M) mammutbesök 281 k på ett dygn 22 sep | Noll långform på förseningen. TIME 2026-08-24 verifierad | grön, tidskritisk |
+| 5 | Why Do So Many "Extinct" Animals Turn Up Alive? (95) | Mavora (53 000) fem listor à 1,3–1,57 M; Mystic Evidence (1 760) 968 584 | Fältet är kryptid-listor. Vår vinkel: Lazarus-taxa och varför utdöendedatum är gissningar (samma logik som thylacine-manuset) | gul, full Grind |
+
+Dödade i rundan: *What Hunted the First Americans?* (ExtinctZoo 2,8 M och NORTH 02 672 k på samma innehåll); dire wolf-genomet (kanalens egen regel: dire wolf-spåret är slut).
+
+## Topp 10 ej gjorda idéer, omkontrollerade 2026-09-25
+
+Urval ur hela idéhistoriken, rangordnat med formatkatalogen (`modelleringsguide.md` del 2c och Storm-rapporten om 20 format). Sök i `vidiq_youtube_search` samma dag där inget annat anges.
+
+| # | Titel (vidIQ) | Format | Läge | Status |
+|---|---|---|---|---|
+| 1 | The Woolly Mammoth Is Coming Back… But Not by 2028 (90) | Coming back… but | Noll videor om förseningen (TIME 2026-08-24) | grön, tidskritisk |
+| 2 | 5 Billion Sea Stars Melted Off the Pacific Coast. Scientists Finally Found the Killer. (97) | Löst gåta på plats | Bara nyhetsklipp (kontroll 09-23) | grön |
+| 3 | 15 Facts About the Last Two Northern White Rhinos That Make No Sense (91) | Faktalistan | Långform tom; Shorts 3,4 M och 2,8 M (indonesiska) bevisar efterfrågan; The Fable Fund 96 k är en naturfilm, annan vinkel | grön |
+| 4 | Scientists Lowered a Camera Under Antarctica's Ice. Something Was Already Living There. (91) | Kameran | Ingen långform (kontroll 09-23); WISSARD 2015 verifierad | grön |
+| 5 | A Dog Found the Last Black-Footed Ferrets. Then Scientists Cloned One From 1988. (92) | Platt/identitet | Bara Shorts plus en 38-minutare med 2 visningar | grön |
+| 6 | They Saved the Tasmanian Devil… Then It Ate 3,000 Penguins (88) | Efterspelet | Tre mikrokanaler (171, 17, 4 visningar), ingen dragkraft; krok: Colossal/UTAS djävulssamarbete 2026-06-30 | grön |
+| 7 | Why Do So Many "Extinct" Animals Turn Up Alive? (95) | "Utdöda" som lever, ärlig version | Galante 786 k närliggande | gul, full Grind |
+| 8 | Every Animal in North America Had a Deadlier Ice Age Version (95) | Då och nu | ExtinctZoo 1,0 M samma djur | gul, full Grind |
+| 9 | The Ibex Came Back From Extinction… For Seven Minutes (90) | Coming back… but | Factor Trace 20 153 (2023, 4:44), övriga under 300 | gul-grön |
+| 10 | Cheetahs Are Back in India… But They Keep Dying (89) | Coming back… but | Indiska nyhetsklipp (kontroll 09-12); gepardintresset högt efter Pack Vibes | grön, kolla om före bygge |
+
+Dödade i samma kontroll: **Taung-barnet och örnen** (PBS Eons *When Humans Were Prey* 6 895 912, samma fall som kärna); **Why Are There No Green Mammals?** (Sapiens, 205 000 pren., 40 749 på sex dagar, 2026-09-19); **Why Elephants Work for Humans (But Never Domesticated)** (Pack Vibes gjorde den själva 2026-09-21, 16 187, plus fyra kopior).
+
+## Grind 2026-09-25: djuptidsformatet ("What It Was Like to Live in [epok/plats]")
+
+Mathias valde formatet ur topp 10-listan och föreslog Wrangel Island.
+
+- **Wrangel Island när de sista mammutarna dog (dödad, steg 3 och 4).** Stora kanaler har gjort det nyligen och en septembervåg pågår; engelska småkanaler i vårt format låg på 11–562 visningar.
+- **White Sands (dödad).** Prövades som alternativ i samma format och föll också i Grinden.
+- **Mammut-platsen i Hot Springs, South Dakota ✅ SKRIVEN — se `manus/mammoth-site-pond-61-mammoths.md`.** Steg 1, 3, 4 och 5 gröna, steg 2 gult (Nat Geos *Lost Beasts Unearthed*, 634 000, feb 2026, ägnar ungefär en fjärdedel åt platsen men inte åt den nya dateringen). Nyhetsankare 7/10: Mahan m.fl., *Quaternary Research*, 11 aug 2026, 160 000–232 000 år i stället för cirka 26 000. Långt TV-test, 2 964 ord.
+
+**Regler som kom ur arbetet (sparade som minnen):** djuptidsmanus öppnar i scenen i presens, aldrig i nyhetsregister; nyheten blir vändningen. Stilreferenser: Quanta (@Itzquanta), Axen (@AxenCool) och Franz (@imfranzyt). Franz *What Was Life Like For Ancient Cats?* (284 112) bevisar att formen bär på en ny kanal.

@@ -361,6 +361,49 @@ igen dag 30. Siffrorna står här så att jämförelsen går att göra.
 
 ---
 
+## Del 2c — Formatkatalogen: 20 vinnande format (2026-09-24)
+
+*Sammanställd ur `vidiq_channel_videos` (kanalen, 2026-09-21), `vidiq_outliers` (långform,
+under 50 000 prenumeranter, tre månader, 2026-09-23) och del 2 ovan. Exempeltitlarna är
+förslag; varje idé måste fortfarande klara Grinden (del 3) innan något skrivs.*
+
+**Kanalens egna format (bevisade hos vår publik)**
+
+| # | Format | Bevis | Exempel för oss |
+|---|---|---|---|
+| 1 | `15 Facts About the De-Extinct [X] That Make No Sense` | Dire wolf 67 855; moa 7 249 på elva dagar (breakout 76); mammut 5 999 | 15 Facts About the Last Two Northern White Rhinos That Make No Sense |
+| 2 | `[X] Is Coming Back… But [konkret vändning]` | Thylacin 23 987. Wilder America slog oss 7x med en konkret paradox, så vändningen ska vara ett faktum, inte "something's wrong" | The Woolly Mammoth Is Coming Back… But Not by 2028 |
+| 3 | `[Nyhet].. That's the Problem` / `…Everything Changes` | 84 680, 15 411, 10 856. Har bara burit Colossal-nyheter | Colossal Needs 150 Genes for a Mammoth.. That's the Problem |
+| 4 | Identitetsfrågan: `If It's Not [X]… Then What Is It?` / `What [X] Actually Is` | Egen 19 982; Species Decoder (2 910 pren.) röd varg 338 856 | If It's Not a Zebra… Then What Was the Quagga? |
+| 5 | Platt beskrivning av en konstig sak | The Artificial Egg Built to Hatch a Moa 9 530 | The Ferret Cloned From a Cell Frozen in 1988 |
+
+**Nischens vinnare (bevisade på jämförbara eller mindre kanaler)**
+
+| # | Format | Bevis | Exempel för oss |
+|---|---|---|---|
+| 6 | Mall A: `Scientists Finally Found What's Killing [X] in [plats]` | Past Wilds (568 pren.) 380 592, breakout 5 484; Wilder America 442 948 och 416 244; Blackwater America (3 040) 230 254 | 5 Billion Sea Stars Melted Off the Pacific Coast. Scientists Finally Found the Killer. |
+| 7 | Kameran: `Scientists Lowered a Camera Into [plats]` | Explorer Vault (6 170) 1 504 909; kamera-shorts 64 M och 28 M | Scientists Lowered a Camera Under Antarctica's Ice. Something Was Already Living There. |
+| 8 | Paradox på ett känt djur (mall C) | Pack Vibes gepard 1,96 M | Why Elephants Work for Humans (But Were Never Domesticated) |
+| 9 | Biologins varför-fråga | Pack Vibes *Why Purple Is So Hard for Animals to Make* 1 140 104; Curious Cabinet *Where Are All the Flightless Bats?* 344 908 | Why Are There No Green Mammals? |
+| 10 | "Utdöd" återfunnen | Mavora fem listor 1,3–1,57 M; Mystic Evidence (1 760) 968 584; Wilder America 189 867 | Scientists Knew This Pig Only From Fossils. Then They Found Hunters Eating It. (chacopekarin) |
+| 11 | `N Prehistoric [X] That Should Never Have Existed` | Curious Fing (12 900) 1 412 774; World Long Gone (892) 228 047 | 7 Prehistoric Birds That Were Too Big to Fly — But Did |
+| 12 | Människan som byte (mall F) | The Curious Kid (19 600) 644 141 | A Bird Killed the Most Famous Child in Human Evolution (Taung-barnet) |
+| 13 | `Every [X] Had a Worse Version` | Drowned Earth (1 070) 282 721 | Every Animal in North America Had a Deadlier Ice Age Version |
+| 14 | Det förbisedda: `Why Nobody Talks About [X]` | Nature with Taha (542) 354 225 | Everyone Knows the Mammoth. Nobody Talks About the Mastodon. |
+| 15 | `[X] Were Absolute Freaks of Nature` | Edmund Extinction 673 650 | Ground Sloths Were Absolute Freaks of Nature |
+| 16 | Vad skrämmer toppredatorn? | Apex Paleo 334 646 och *How Do Leopard Seals Terrify Even Orcas?* 64 872 | The Megalodon Had One Rival. It Was Much Smaller. |
+| 17 | Invasionen: `[Exotiskt djur] Are Spreading in [US-plats]` | Wilder America nilgai Texas 1 045 376 | Giant Lizards From Argentina Are Spreading in Georgia |
+| 18 | Efterspelet: `[X] Came Back. [N] Years Later…` | Apex Arena (6 280) 153 421; Keystone Atlas (5 370) 109 170 | Sea Otters Came Back to a California Marsh. The Marsh Stopped Washing Away. |
+| 19 | Mall H: `[Känt djur] Evolution Explained` | Curious Cabinet: häst 76 833, uggla 84 068, panda 62 199 (tre av tre) | Rhino Evolution Explained |
+| 20 | Mall B: `Why Don't We Eat [X]?` | NEXPSY hippo 1 022 787 (3 720 pren.); Knapp 259 512 | **Vila.** Mättad just nu (hippo gjord av tre kanaler, älg av fem, vår häst 460) |
+
+**Vad katalogen säger:** de fyra största visningssiffrorna på små kanaler (1,5 M, 1,41 M,
+1,14 M, 1,05 M) kommer från format 7, 11, 9 och 17. Ingen av dem har kanalen testat.
+Kanalens egna format har bara burit Colossal-nyheter, med ett undantag: moa-listan (format
+1) gick över utliggarribban utan dire wolf.
+
+---
+
 ## Del 3 — Grinden: kollas ALLTID på en vald idé, före allt annat
 
 **Den här körs när en idé är vald och innan en enda rad skrivs.** Inte på idélistan, inte
