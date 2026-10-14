@@ -918,6 +918,14 @@ export default function DemoSida({ data: d }) {
               </ul>
             </div>
           </div>
+          {/* Valfritt footer.orter { rubrik, lankar: [{ href, txt }] }: en diskret rad med ortssidorna ovanför
+              bottenraden (GD Måleri 2026-10-14, "Där vi jobbar"). Utan fältet: exakt som förut. */}
+          {d.footer.orter ? (
+            <nav className={s.ftrOrter} aria-label={d.footer.orter.rubrik}>
+              <h3>{d.footer.orter.rubrik}</h3>
+              <ul>{d.footer.orter.lankar.map((l) => <li key={l.href}><a href={l.href}>{l.txt}</a></li>)}</ul>
+            </nav>
+          ) : null}
           <div className={s.ftrBar}>
             <span>© {new Date().getFullYear()} {d.namn}{k.orgnr ? ` · ${t.orgnr} ${k.orgnr}` : ''}</span>
             {/* Valfritt d.kund: kundens egen sida, ingen förslagstext i bottenraden (GD Måleri 2026-10-09).

@@ -1915,6 +1915,21 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
 }
 .ftrBar a { display: inline-block; padding-block: 0.75rem; text-decoration: underline; text-underline-offset: 3px; }
 .ftrLankar { display: flex; flex-wrap: wrap; gap: 0 1.4rem; }
+/* Valfritt footer.orter (GD Måleri 2026-10-14): ortslänkar på en rad ovanför bottenraden. */
+.ftrOrter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 1.2rem;
+  margin-top: 2.5rem;
+  font-size: var(--tx-s);
+  color: var(--text-2);
+}
+.ftrOrter h3 { font-family: var(--f-rubrik); font-size: var(--tx-s); font-weight: 700; color: var(--text); }
+.ftrOrter ul { display: flex; flex-wrap: wrap; gap: 0 1.2rem; }
+.ftrOrter a { display: inline-block; padding-block: 0.75rem; }
+.ftrOrter a:hover { color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; }
+.ftrOrter + .ftrBar { margin-top: 1rem; }
 @media (max-width: 900px) {
   .ftrGrid { grid-template-columns: 1fr 1fr; }
   .ftrGrid > :first-child { grid-column: 1 / -1; }
@@ -1962,6 +1977,8 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
 .ftrMedBild .ftrKol svg { color: var(--accent-ljus); }
 .ftrMedBild .ftrSociala a { color: #fff; border-color: rgba(255, 255, 255, 0.4); }
 .ftrMedBild .ftrBar { border-top-color: var(--linje-mork); }
+.ftrMedBild .ftrOrter, .ftrMedBild .ftrOrter a { color: #CBD5E1; }
+.ftrMedBild .ftrOrter h3, .ftrMedBild .ftrOrter a:hover { color: #fff; }
 @media (max-width: 760px) {
   .ftrFoto img { object-position: 50% 50%; }
 }

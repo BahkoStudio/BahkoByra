@@ -1,5 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, menyExtra, samarbeten, RECO_IFRAME, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from './_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, samarbeten, RECO_IFRAME, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from './_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — KUND hos Bahko Byrå sedan 2026-10-08 (byggd som förslag 2026-10-08,
@@ -354,6 +354,8 @@ const data = {
       'Vi målar åt villaägare, bostadsrätter och företag, från en lägenhet på 43 kvm till en fasad på 350 kvm i Täby kyrkby. Färgen är Flügger, och vi är försäkrade via Trygg-Hansa.',
       // Internlänk till guidesidan (2026-10-14). Title och H1 på startsidan är oförändrade.
       <>Jämför gärna innan du bestämmer dig. <a href="/gdmaleri/basta-malare-stockholm/">Så väljer du rätt målare i Stockholm</a>: omdömen, försäkring och vad som ska stå i offerten.</>,
+      // Internlänkar till ortssidorna (2026-10-14), se ORTER i _gd.js.
+      <>Vi tar uppdrag i hela Stockholm, till exempel <a href="/gdmaleri/fasadmalning-bromma/">fasadmålning i Bromma</a>, <a href="/gdmaleri/fasadmalning-taby/">fasadmålning i Täby</a>, <a href="/gdmaleri/fasadmalning-lidingo/">fasadmålning på Lidingö</a> och fasadmålning i <a href="/gdmaleri/fasadmalning-sollentuna/">Sollentuna</a>, <a href="/gdmaleri/fasadmalning-danderyd/">Danderyd</a> och <a href="/gdmaleri/fasadmalning-huddinge/">Huddinge</a>. Firman har sitt säte i Södertälje: läs mer om oss som <a href="/gdmaleri/malare-sodertalje/">målare i Södertälje</a>.</>,
     ],
     bevis: [
       { ord: '4,9 av 5', text: 'i snitt på Reco, 46 omdömen' },
@@ -449,6 +451,7 @@ const data = {
     tjanster: footerTjanster,
     bild: footerBild, // Stockholms siluett i skymning, se _gd.js
     lankar: footerLankar, // Integritet och Cookieinställningar, se _gd.js
+    orter: footerOrter, // Där vi jobbar: ortssidorna, se _gd.js
   },
 
   // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.
