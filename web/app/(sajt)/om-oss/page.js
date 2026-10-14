@@ -22,7 +22,7 @@ const PRINCIPER = [
   },
   {
     h: 'Ni äger allt',
-    p: 'Sidan, domänen, texterna och bilderna är era. Inget abonnemang som håller sidan gisslan, inga månadsavgifter som rullar i bakgrunden.',
+    p: 'Sidan, domänen, texterna och bilderna är era. Underhåll och SEO betalas per månad, men utan bindningstid: ni kan sluta när ni vill och tar med er allt.',
   },
   {
     h: 'Vi lovar bara det vi styr över',

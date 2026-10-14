@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, DOMAN, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, menyExtra, hero, varfor, om, steg, instagramBas, RECO, RECO_IFRAME, RECO_LISTA, SKV_ROT, samarbeten, GOOGLE_BETYG, GOOGLE_OMDOMEN } from '../_gd';
+import { M, DOMAN, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, menyExtra, hero, varfor, om, steg, instagramBas, RECO, RECO_IFRAME, RECO_LISTA, SKV_ROT, samarbeten, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — guidesida "Så väljer du målare" (/gdmaleri/basta-malare-stockholm/),
@@ -244,6 +244,7 @@ const data = {
 
   // KUND, inte förslag (Mathias 2026-10-09): ingen demo-knapp, ingen Bahko-modal, ingen byråtext i footern.
   kund: true,
+  skapadAv,
   samarbeten,
 };
 

@@ -258,8 +258,10 @@ export const GOOGLE_OMDOMEN = {
 };
 export const SKV_ROT = 'https://www.skatteverket.se/foretag/skatterochavdrag/rotochrut/gerarbetetratttillrotavdrag.4.5c1163881590be297b5173bf.html';
 
-// Ingen modal: GD Måleri är KUND (Mathias 2026-10-09). Alla sex sidorna har kund: true, så mallen
-// ritar varken demo-knapp, Bahko-modal eller byråtext i footern.
+// Ingen modal: GD Måleri är KUND (Mathias 2026-10-09). Alla sidorna har kund: true, så mallen
+// ritar varken demo-knapp eller Bahko-modal.
+// Kreditraden i footern (Mathias 2026-10-14: "sida skapad av bahkobyra.se").
+export const skapadAv = 'Hemsida skapad av';
 
 // Service-post för en tjänstesida. Pekar på huvudsidans HousePainter (@id). Inget betygsschema (svartlistan).
 // Ingen url: sidan ligger inte på gdmaleri.se än (vid flytten: se URL-kartan i content/leads/gdmaleri.md).

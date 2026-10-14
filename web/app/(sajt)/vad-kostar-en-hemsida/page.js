@@ -34,15 +34,15 @@ const AVGOR = [
     p: 'Ett offertformulär och en ringknapp är standard. Bokningskalender, priskalkylator eller kundportal är egna byggen som kostar mer, och som bara ska byggas när de faktiskt behövs.',
   },
   {
-    h: 'Löpande eller engångs',
-    p: 'Hos oss är priset ett engångspris och sidan blir er, med domän och innehåll. Månadsabonnemang kan se billigt ut men blir dyrare för varje år som går, och ni äger ofta ingenting den dag ni vill lämna.',
+    h: 'Bygget och det löpande',
+    p: 'Hos oss har bygget ett fast pris och sidan blir er, med domän och innehåll. Underhåll och SEO efter lanseringen har en månadsavgift, och byter ni domän kostar det extra. Allt står i förslaget, och ingen bindningstid låser fast er.',
   },
 ];
 
 const FALLOR = [
   {
-    h: 'Månadsavgiften som aldrig tar slut',
-    p: 'En låg månadskostnad låter tryggt, men räkna på tre år. Fråga alltid vad som händer med sidan, domänen och innehållet om ni säger upp avtalet. Är svaret att allt försvinner betalar ni hyra, inte pris.',
+    h: 'Avtalet ni inte kommer ur',
+    p: 'En låg månadskostnad låter tryggt, men räkna på tre år och fråga efter bindningstiden. Fråga också vad som händer med sidan, domänen och innehållet om ni säger upp avtalet. Är svaret att allt försvinner betalar ni hyra, inte pris.',
   },
   {
     h: 'Ni äger inte er egen domän',
@@ -62,7 +62,7 @@ const FRAGOR_PRIS = [
   {
     fraga: 'Varför står det inget pris här?',
     svar:
-      'För att ett pris utan att ha sett er firma vore en gissning, och gissningar brukar sluta med tillägg på fakturan. Ni får ett exakt fast pris i det kostnadsfria förslaget i stället, och det priset gäller. Inga månadsavgifter, ingen bindningstid.',
+      'För att ett pris utan att ha sett er firma vore en gissning, och gissningar brukar sluta med tillägg på fakturan. Ni får ett exakt fast pris i det kostnadsfria förslaget i stället, och det priset gäller. Där står också månadsavgiften för underhåll och SEO. Ingen bindningstid.',
   },
   {
     fraga: 'Vad ingår i priset hos er?',
@@ -141,8 +141,8 @@ export default function Prisguide() {
               <h3>Så får ni ert pris, svart på vitt</h3>
               <p>
                 Bahko Byrå bygger ett färdigt förslag på er nya sida inom 48 timmar, med exakt
-                fast pris. Engångspris, inga månadsavgifter, ingen bindningstid. Kostar
-                ingenting att se, och ni bestämmer sen.
+                fast pris, och med månadsavgiften för underhåll och SEO utskriven. Ingen
+                bindningstid. Kostar ingenting att se, och ni bestämmer sen.
               </p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">
