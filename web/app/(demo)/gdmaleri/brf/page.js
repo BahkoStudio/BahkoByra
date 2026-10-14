@@ -255,7 +255,7 @@ const data = {
     lead: 'Omdömena är från privatkunder på Google och Reco. Det är så vi har jobbat hittills, och så jobbar vi åt föreningen.',
     // Google-betyget (4,8 av 5, 18 recensioner, 2026-10-09) och Reco-betyget (2026-10-08) som två brickor sida vid sida.
     betyg: GOOGLE_BETYG,
-    recoBetyg: { varde: 4.9, antal: 45, href: 'https://www.reco.se/gd-maleri-sthlm' },
+    recoBetyg: { varde: 4.9, antal: 46, href: 'https://www.reco.se/gd-maleri-sthlm' },
     lista: [
       GOOGLE_OMDOMEN.jenny,
       GOOGLE_OMDOMEN.daniel,
@@ -284,7 +284,7 @@ const data = {
     kort: { rubrik: 'Sitter du i styrelsen?', text: 'Ring och berätta vilka ytor det gäller, så får ni en offert att ta ställning till.' },
     lista: [
       { q: 'Vad kostar det för föreningen?', a: 'Det beror på ytorna, skicket och vad som ska göras. Därför börjar vi med en offert, och den är kostnadsfri. Offerten tar med material, arbete, förarbete som tvätt och skrapning, städning och bortforsling.' },
-      { q: 'Har ni jobbat åt fastighetsägare eller föreningar förut?', a: 'Ja. Vi har målat fyra lägenheter åt fastighetsbolaget Holmströmgruppen, som också är vår referens. Annars har vi mest målat åt privatkunder i villor och lägenheter, och nu tar vi även uppdrag åt bostadsrättsföreningar. Det styrelsen kan kontrollera är hur vi har jobbat: 45 omdömen på Reco med 4,9 av 5 i snitt, och Rekommenderat företag tre år i rad.' },
+      { q: 'Har ni jobbat åt fastighetsägare eller föreningar förut?', a: 'Ja. Vi har målat fyra lägenheter åt fastighetsbolaget Holmströmgruppen, som också är vår referens. Annars har vi mest målat åt privatkunder i villor och lägenheter, och nu tar vi även uppdrag åt bostadsrättsföreningar. Det styrelsen kan kontrollera är hur vi har jobbat: 46 omdömen på Reco med 4,9 av 5 i snitt, och Rekommenderat företag tre år i rad.' },
       { q: 'Kan föreningen få ROT-avdrag?', a: 'Nej. ROT är en skattereduktion för privatpersoner, och Skatteverket ger inget avdrag för arbete på gemensamma ytor som tak, fasader, trapphus och entréer. Räkna därför med hela arbetskostnaden i budgeten. Målar en medlem om inne i sin egen lägenhet, där medlemmen har underhållsansvaret enligt stadgarna, kan medlemmen få ROT, och då drar vi det direkt på fakturan.' },
       { q: 'När betalar föreningen?', a: 'Ni får fakturan när arbetet är klart, ingen förskottsbetalning. På stora jobb över 500 kvm betalas halva arbetskostnaden när halva jobbet är gjort.' },
       { q: 'Vad händer om något oväntat dyker upp?', a: 'Då hör vi av oss direkt och föreslår en lösning. Vi gör inga extraarbeten utan ert godkännande.' },

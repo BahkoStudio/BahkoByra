@@ -1,5 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, menyExtra, samarbeten, RECO_WIDGET, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from './_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, menyExtra, samarbeten, RECO_IFRAME, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from './_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — KUND hos Bahko Byrå sedan 2026-10-08 (byggd som förslag 2026-10-08,
@@ -285,7 +285,7 @@ const data = {
   tjanster: {
     eyebrow: 'Vad vi gör',
     rubrik: ['Inne, ute och', 'allt förarbete'],
-    lead: '4,9 av 5 i snitt på Reco från 45 omdömen, och Rekommenderat företag på Reco tre år i rad. Vi målar inne och ute och gör förarbetet själva: skrapning, slipning, spackling och tapetborttagning.',
+    lead: '4,9 av 5 i snitt på Reco från 46 omdömen, och Rekommenderat företag på Reco tre år i rad. Vi målar inne och ute och gör förarbetet själva: skrapning, slipning, spackling och tapetborttagning.',
     lattKort: true,
     // Åtta kort sedan 2026-10-13 (Mathias: "varje tjänst ska ha en undersida"), ett per tjänstesida.
     // Rutnätet håller 4 → 2 → 1 (två rader på dator). Bilderna är GD:s egna foton, varje fil en gång per sida.
@@ -352,9 +352,11 @@ const data = {
     stycken: [
       'GD Måleri Sthlm AB är en målerifirma i Stockholm som hellre gör färre jobb ordentligt än många i hast. Vi målar inomhus och utomhus och gör förarbetet själva, med flera års erfarenhet i yrket.',
       'Vi målar åt villaägare, bostadsrätter och företag, från en lägenhet på 43 kvm till en fasad på 350 kvm i Täby kyrkby. Färgen är Flügger, och vi är försäkrade via Trygg-Hansa.',
+      // Internlänk till guidesidan (2026-10-14). Title och H1 på startsidan är oförändrade.
+      <>Jämför gärna innan du bestämmer dig. <a href="/gdmaleri/basta-malare-stockholm/">Så väljer du rätt målare i Stockholm</a>: omdömen, försäkring och vad som ska stå i offerten.</>,
     ],
     bevis: [
-      { ord: '4,9 av 5', text: 'i snitt på Reco, 45 omdömen' },
+      { ord: '4,9 av 5', text: 'i snitt på Reco, 46 omdömen' },
       { ord: 'Tre år i rad', text: 'Rekommenderat företag på Reco' },
       { ord: 'F-skatt', text: 'och fullt försäkrade' },
     ],
@@ -379,10 +381,11 @@ const data = {
     betyg: GOOGLE_BETYG,
     // Sex Google-omdömen som egen rad före Reco-widgeten (mallfältet omdomen.googleLista).
     googleLista: [GOOGLE_OMDOMEN.viktor, GOOGLE_OMDOMEN.jenny, GOOGLE_OMDOMEN.therese, GOOGLE_OMDOMEN.maja, GOOGLE_OMDOMEN.matteus, GOOGLE_OMDOMEN.daniel],
-    reco: RECO_WIDGET,
+    // Recos egen, levande widget (2026-10-14) i stället för de statiska Reco-korten.
+    recoIframe: RECO_IFRAME,
     lista: RECO_LISTA,
-    not: 'Omdömena är hämtade från Google (4,8 av 5, 18 recensioner) och Reco.se, där kundrelationen kontrolleras. Ordagrant, hämtade 2026-10-09.',
-    lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla 45 på Reco' },
+    not: 'Omdömena är hämtade från Google (4,8 av 5, 19 recensioner) och Reco.se, där kundrelationen kontrolleras. Google-citaten ordagrant, hämtade 2026-10-09; Reco-rutan visar Recos egna, senaste omdömen.',
+    lank: { href: 'https://www.reco.se/gd-maleri-sthlm', txt: 'Läs alla på Reco' },
     // Levande omdömen (mallens levande.js). Utan nycklar i miljön visas listan ovan oförändrad.
     // Google: GOOGLE_PLACES_KEY i Vercel. placeId saknas än: Text Search på namnet, och cid
     // kontrolleras mot profilen (maps.google.com/?cid=13566570836618556636). Sätt placeId när det är känt.

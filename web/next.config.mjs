@@ -79,6 +79,7 @@ const nextConfig = {
       { source: '/gdmaleri/snickerier-fonster-malning/:rest*', destination: 'https://gdmaleri.se/snickerier-fonster-malning/', statusCode: 301 },
       { source: '/gdmaleri/fasadtvatt/:rest*', destination: 'https://gdmaleri.se/fasadtvatt/', statusCode: 301 },
       { source: '/gdmaleri/taktvatt/:rest*', destination: 'https://gdmaleri.se/taktvatt/', statusCode: 301 },
+      { source: '/gdmaleri/basta-malare-stockholm/:rest*', destination: 'https://gdmaleri.se/basta-malare-stockholm/', statusCode: 301 },
       { source: '/gdmaleri/media/:fil*', destination: 'https://gdmaleri.se/gdmaleri/media/:fil*', statusCode: 301 },
       { source: '/gdmaleri/:path*', destination: 'https://gdmaleri.se/', statusCode: 301 },
       { source: '/pitchdeck.html', destination: '/', permanent: true },
