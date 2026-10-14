@@ -1,0 +1,74 @@
+# Demolänkar — index
+
+Alla demosajter som finns att skicka till prospekt eller visa i content, med
+källa och känslighetsstatus. Byggd 2026-08-26. Uppdatera raden när en ny demo
+skapas eller en lead blir kund (flytta då till `2-kunder/kunder/<kund>/`).
+
+Två tekniska nivåer, båda serveras av `web`-appen (`next start`, se
+`.claude/skills/hemsidor/SKILL.md`):
+- **Next.js-mallar** (`web/app/(demo)/<kund>/`) → `bahkobyra.se/<kund>/`
+- **Statiska demos** (`web/public/cloud/<kund>/`) → `bahkobyra.se/cloud/<kund>/`
+
+🔒 = listad i `docs/heligt.md`, rör inte utan Mathias ja.
+
+| Demo | Nisch | Källa | Äkta lead / generisk | 🔒 | Notis |
+|---|---|---|---|---|---|
+| nordicsnickare | Snickeri, renovering, gips (Stockholm) | `web/app/(demo)/nordicsnickare/` | Äkta lead (IG @nordicsnickare) | | Mallkanon 2026-08-21 → ersatt av golvvision 2026-09-06 (saknar modulerna) |
+| golvvision | Golvavjämning, mattläggning, plattsättning, parkett (Älvsjö, Stockholm) | `web/app/(demo)/golvvision/` | Äkta lead (IG @golvvisionstockholm, golvvision.se) | | **Ny mall-kanon 2026-09-06** — första demon med modulerna (lager-hero, Varför oss-film, omdömen, sociala). Riktigt telefonnummer och e-post på sidan (från deras sajt) — visa INTE offentligt. `1-byran/intern-tillvaxt/leads/golvvision.md` |
+| samflytt | Flytt och flyttstäd (Tranås, Helsingborg m.fl.) | `web/app/(demo)/samflytt/` | Äkta lead (IG @sam_flytt_och_stad_, samflytt.se) | | Byggd 2026-09-07 på golvvision-kanon. Riktigt telefon, mejl, org.nr på sidan — visa INTE offentligt. 137 riktiga Google-recensioner via deras sajt. `1-byran/intern-tillvaxt/leads/samflytt.md` |
+| elvionel | Elektriker: felsökning, elinstallation, laddbox, eljour (Sollentuna) | `web/app/(demo)/elvionel/` | Äkta lead (elvionel.se; IG-kontot reel_innovations är INTE firmans) | | Byggd 2026-09-07 på golvvision-kanon. Riktigt telefon och mejl på sidan — visa INTE offentligt. Omdömen i exempelläge. `1-byran/intern-tillvaxt/leads/elvionel.md` |
+| andrens | Byggfirma: tak, fasad, altan, kök/badrum, tillbyggnad (Lilla Edet, Västsverige) | `web/app/(demo)/andrens/` | Äkta lead (IG @andrensbygg, andrensbygg.com) | | Byggd 2026-09-07 på golvvision-kanon. Riktigt telefon, mejl, org.nr på sidan — visa INTE offentligt. Omdömen i exempelläge. `1-byran/intern-tillvaxt/leads/andrens.md` |
+| hd | Helhetsrenovering, snickeri, om-/tillbyggnad, smarta hem (Norrort, Stockholm) | `web/app/(demo)/hd/` | Äkta lead (IG @hdbyggserviceab, hdbyggservice.se) | | Byggd 2026-09-07. Riktiga mejladresser på sidan — visa INTE offentligt. Omdömen i exempelläge. `1-byran/intern-tillvaxt/leads/hd.md` |
+| romerike | Entreprenør + maskinutleie (Kløfta, NORGE) — sidan på norska | `web/app/(demo)/romerike/` | Äkta lead (IG @romerike.service.utleie, org.nr 937 745 265) | | Byggd 2026-09-07. Deras sajt är NERE (Webador). Platshållartelefon, formulär till Mathias. `1-byran/intern-tillvaxt/leads/romerike.md` |
+| moenhansen | Tømrer: bad, terrasse, kjøkken (Horten, NORGE) — sidan på norska | `web/app/(demo)/moenhansen/` | Äkta lead (IG @moenhansensbygg, org.nr 925 426 237, ENK) | | Byggd 2026-09-08. Ingen hemsida. Platshållartelefon, formulär till Mathias, ordmärke. `1-byran/intern-tillvaxt/leads/moenhansen.md` |
+| rskompakt | Bygg och renovering: altan, kök, badrum, måleri (Norsborg/Stockholm) | `web/app/(demo)/rskompakt/` | Äkta lead (IG @rs_kompakt_ab, rskompakt.com, org.nr 559427-6742) | | Byggd 2026-09-08. Riktigt telefon och mejl på sidan — visa INTE offentligt. Fyra riktiga Offerta-omdömen. `1-byran/intern-tillvaxt/leads/rskompakt.md` |
+| stenborgs | Foto och videoproduktion för företag (Gävle) | `web/app/(demo)/stenborgs/` | Äkta lead (IG @stenborgs.media, stenborgen.se, org.nr 559452-2848) | | Byggd 2026-09-09. Riktigt telefon på sidan — visa INTE offentligt. Ett riktigt omdöme från sajten + två exempel. `1-byran/intern-tillvaxt/leads/stenborgs.md` |
+| swedcro | Måleri, fasad, sockelputs, tapetsering (Eskilstuna) | `web/app/(demo)/swedcro/` | Äkta lead (IG @swedcromaleri, swedcro.se, enskild firma) | | Byggd 2026-09-09. Riktigt telefon och mejl på sidan — visa INTE offentligt. Riktiga Google-omdömen. Egna foton i galleri. `1-byran/intern-tillvaxt/leads/swedcro.md` |
+| johns | Reklam: skyltar, fordonsdekor, tryck, profilkläder (Norrköping) | `web/app/(demo)/johns/` | Äkta lead (IG @johnsreklam, johnsreklam.se, org.nr 559208-0062) | | Byggd 2026-09-09. Riktigt telefon och mejl på sidan — visa INTE offentligt. Omdömen i exempelläge (sajtens är mallplatshållare). Egna foton. `1-byran/intern-tillvaxt/leads/johns.md` |
+| proffsmaskiner | Maskinuthyrning: anläggning, liftar, bodar, håltagning (Sollentuna) | `web/app/(demo)/proffsmaskiner/` | Äkta lead, VARM (IG @proffsmaskinerab, proffsmaskiner.se, org.nr 559154-6329) | | Byggd 2026-09-11. Riktigt telefon och mejl på sidan — visa INTE offentligt. Omdömen i exempelläge. Egna foton i sociala. `1-byran/intern-tillvaxt/leads/proffsmaskiner.md` |
+| shabifix | Bygg + snickeri + måleri (Göteborg) | `web/app/(demo)/shabifix/` | Äkta lead, demo skickad | | `/cloud/shabifix` 301:ar hit — får aldrig brytas |
+| glowingservice | Måleri (Stockholm) | `web/app/(demo)/glowingservice/` | Äkta lead (IG @glowingserviceab) | | Ombyggd 2026-09-14 på golvvision-kanon. Platshållarnummer 070-123 45 67. Omdömen i exempelläge. Ordmärke, logofil saknas. `1-byran/intern-tillvaxt/leads/glowingservice.md` |
+| gardenfix | Trädgårdsskötsel och anläggning (Stockholm) | `web/app/(demo)/gardenfix/` | Äkta lead, VARM (IG @gardenfixstockholm) | | Byggd 2026-09-14. INGEN telefon (mejl + formulär). Omdömen i exempelläge. Ordmärke. ⚠️ Samma nisch som kunden Bromma Trädgårdsservice. `1-byran/intern-tillvaxt/leads/gardenfix.md` |
+| vantooro | Företagsförmedling: köp, sälj, värdering + marknadsföring (ingen ort angiven) | `web/app/(demo)/vantooro/` | Äkta lead (IG @vantooro, tidigare @reel_innovations/"Valora", VD Adrian Alawi) | | Byggd 2026-09-14 som Valora, omklädd till v3 och omdöpt 2026-10-09. `/valora/` 308:ar hit (route-redirect) — får aldrig brytas. RÄTTAD MOTTAGARE: kontot gav tidigare `/elvionel/`. Ingen telefon/e-post/ort publicerad. Ordmärke (logotyp saknas). Omdömen i exempelläge. `1-byran/intern-tillvaxt/leads/vantooro.md` |
+| alltfix | Fönsterbyte, uterum, måleri (Järfälla/Stockholm) | `web/app/(demo)/alltfix/` | Äkta lead, VARM (IG @alltfixstockholm, fixfonster.se, org.nr 559272-2341) | | Byggd 2026-09-14. INGEN telefon (mejl + formulär). Riktiga Offerta-omdömen 4,8/10. Egen logotyp. ⚠️ alltfix.se är en annan städfirma. `1-byran/intern-tillvaxt/leads/alltfix.md` |
+| alltfix-uterum | 3D-konfigurator för uterum (lamelltak/glastak, skjut/vik, färg, glas, sol) åt Alltfix | `web/public/cloud/alltfix-uterum/` | Äkta lead, VARM (Rami bad om 3D-prototyp för uterum 2026-09-28) | | Byggd 2026-09-28, samma teknik som `cloud/planlosning-3d/`. Riktigt telefonnummer på sidan — visa INTE offentligt. Formuläret går till Mathias (demonyckel). Glastak ej bekräftat i deras sortiment. `1-byran/intern-tillvaxt/leads/alltfix.md` |
+| goldring | Byggfirma: uterum, altan, tak, kök/badrum, tillbyggnad (Kågeröd, nordvästra Skåne) | `web/app/(demo)/goldring/` | Äkta lead, VARM (IG @goldringbygg, goldring.se, org.nr 559319-6230; ja till gratis prototyp i DM 2026-09-17) | | Byggd 2026-09-17 på golvvision-kanon i alltfix-utförandet. Riktigt telefon, mejl, org.nr på sidan — visa INTE offentligt. Omdömen i exempelläge. Egna IG-foton i sociala, lånad altanserie (rskompakt) i hero. `1-byran/intern-tillvaxt/leads/goldring.md` |
+| trestad | Byggfirma: badrum, kök, renovering, tillbyggnad, uterum (Vänersborg/Trestad, Västra Götaland) | `web/app/(demo)/trestad/` | Äkta lead, VARM (IG @trestadbyggab, trestadbygg.se, org.nr 559463-5251; ja till gratis prototyp i DM 2026-09-18) | | Byggd 2026-09-18 på golvvision-kanon i alltfix-utförandet, via hd. Riktigt telefon, mejl, org.nr på sidan — visa INTE offentligt. Omdömen i exempelläge. Egna IG-foton i sociala, lånad badrumsserie (hd) i hero — visa inte båda för samma person. `1-byran/intern-tillvaxt/leads/trestad.md` |
+| rolssons | Måleri: inomhus, fasad, tapet, trapphus (Kristinehamn, Karlskoga, Karlstad) | `web/app/(demo)/rolssons/` | Äkta lead (IG @rolssonsmaleri, rolssonsmaleri.se, org.nr 559286-6981) | | Byggd 2026-09-18. Riktigt telefon och mejl på sidan — visa INTE offentligt. Ett Offerta-omdöme + två exempel. Egna jobbilder. `1-byran/intern-tillvaxt/leads/rolssons.md` |
+| projektkompassen | Byggkonsult: byggledning, projektledning, kontrollansvarig (behörighet K), besiktning, skyddsrum (Bankeryd/Jönköping) | `web/app/(demo)/projektkompassen/` | Äkta lead, VARM (IG @projektkompassen, f.d. PHS Byggkonsult AB, org.nr 559374-9509; gratis prototyp utlovad i DM 2026-09-25) | | Byggd 2026-09-25 på demomallen v3. Riktigt telefon, mejl och hemadress på sidan — visa INTE offentligt. Tre riktiga omdömen från phsbyggkonsult.se, utan stjärnor. Egna bildrutor ur hans IG-filmer; hero-filmen genererad (0,38 USD). `1-byran/intern-tillvaxt/leads/projektkompassen.md` |
+| gdmaleri | Måleri inne och ute: invändig målning, fasad, tapetsering, bredspackling, snickerier (Stockholm, säte Södertälje) | `web/app/(demo)/gdmaleri/` | **KUND sedan 2026-10-08** (IG @gdmaleristhlm, gdmaleri.se, org.nr 559468-2444) | | **Kundens egen sida sedan 2026-10-09** (`kund: true`: ingen demo-knapp, modal eller byråtext; Samarbeten som rullande band). Byggd 2026-10-08 på demomallen v3. Riktigt telefon, mejl och org.nr på sidan — visa INTE offentligt. Reco-widget (4,9 av 45) och **Google-omdömen sedan 2026-10-09** (4,8 av 18, bricka med G länkad till profilen, kort utan stjärnor). Egna foton; hero-filmen genererad (ca 0,37 USD). Säljvinkel: sajtens ring-länk är platshållaren 123-456-7890. `1-byran/intern-tillvaxt/leads/gdmaleri.md` |
+| hallgrennord | Bygg, rivning, sanering (asbest/PCB), betonghåltagning, fuktutredning (Stockholm/Sollentuna, Luleå, Piteå) | `web/app/(demo)/hallgrennord/` | Äkta lead (hallgrennord.se, IG @hallgrennord, A Hällgren Nord AB, org.nr 559106-6930) | | Byggd 2026-10-09 på demomallen v3. Riktigt telefon, mejl, adresser och org.nr på sidan — visa INTE offentligt. Ett riktigt omdöme (hitta.se) + två exempel, ingen betygsbricka. Egna IG-foton i tjänster, övre jobbandet och hero (ffmpeg, 0 USD); nedre bandet lånade illustrationer. ⚠️ Systerbolag till Proffsmaskiner (samma ägare). `1-byran/intern-tillvaxt/leads/hallgrennord.md` |
+| soderholms | Thermia värmepumpar, varmvatten, systemrening, el/laddbox och VVS (Bromma; Stockholm och Uppsala) | `web/app/(demo)/soderholms/` | Äkta lead (soderholms.se, IG @soderholms.se, Söderholms El & VVS AB, org.nr 556041-3055, sedan 1942) | | v1 byggd 2026-10-11, **v2 2026-10-12**: svart-guld, omritad logotyp (be om original), egna IG-bilder i tjänster och utvalda jobb, jobband lånade, omdömen i exempelläge. Riktigt telefon, mejl, adress, org.nr — visa INTE offentligt. Närmast i nisch: elvionel — ingen ägarkoppling. `1-byran/intern-tillvaxt/leads/soderholms.md` |
+| hg | Maskinkörning och markjobb för företag (ingen ort angiven) | `web/app/(demo)/hg/` | Äkta lead (IG @hgmaskinentreprenad) | | Byggd 2026-09-18. Ingen telefon/e-post/ort publicerad. Omdömen i exempelläge. Ordmärke. `1-byran/intern-tillvaxt/leads/hg.md` |
+| svhus | Nybyggnation/totalentreprenad (Österåker) | `web/app/(demo)/svhus/` | Äkta företag, verifierat | | Äldre mall — kopiera INTE längre. Org.nr + riktigt telefonnr på sidan |
+| bygg (GRANIT) | Totalentreprenad (Mälardalen) | `web/public/cloud/bygg/` | Fiktivt flaggskepp | | Länkad från bahkobyra.se `/case` — säkrast att visa offentligt |
+| vajjebygg | Nybyggnation & renovering (Skåne) | `web/public/cloud/vajjebygg/` | Redan publik | | Länkad från `/case` |
+| asmar | Relining/rör | `web/public/cloud/asmar/` | Redan publik | | Länkad från `/case` |
+| alfredallservice | Allservice/renovering (Nässjö) | `web/public/cloud/alfredallservice/` | Äkta lead | 🔒 | `1-byran/intern-tillvaxt/leads/alfred_allservice.md` |
+| ekstromsbygg | Golv/parkett | `web/public/cloud/ekstromsbygg/` | Äkta lead, aktiv dialog | | Org.nr, telefon, e-post på sidan — visa INTE offentligt |
+| tryggbyggservice | Badrum & renovering | `web/public/cloud/tryggbyggservice/` | Äkta lead | 🔒 | `1-byran/intern-tillvaxt/leads/tryggbyggservice.md` |
+| alggarden | Tak & fasad (Södertälje) | `web/public/cloud/alggarden/` | Generisk/overifierad | | |
+| galiano | Måleri/renovering (Södertälje) | `web/public/cloud/galiano/` | Real-ish (AB-namn) | | |
+| golvresan (FloorMagic) | Golvslipning/golvläggning | `web/public/cloud/golvresan/` | Troligen fiktiv | | |
+| grontoglanser | Softwash fasad/tak (Eskilstuna) | `web/public/cloud/grontoglanser/` | Generisk | | |
+| k9maleri | Måleri inne/ute (Göteborg) | `web/public/cloud/k9maleri/` | Generisk mall, äkta kontaktuppgifter i texten | | Telefon, e-post, adress, org.nr på sidan — mest exponerad, visa INTE offentligt |
+| kmctransport | Kranbil/transport/bud | `web/public/cloud/kmctransport/` | Generisk | 🔒 | |
+| nordiapartner | Taktvätt | `web/public/cloud/nordiapartner/` | Generisk | | |
+| osterlunds | Jordbyggnad, infra, sprängning, maskintransport (Oravais, FINLAND) | `web/app/(demo)/osterlunds/` | Äkta lead (IG @osterlundsjordbyggnad) | | Byggd om 2026-08-31 på nya mallen. Gamla `/cloud/osterlunds` 301:ar hit — får aldrig brytas. Den gamla demon sålde villamark och låg fel mot nischen |
+| pizzeriamatstugan | Restaurang | `web/public/cloud/pizzeriamatstugan/` | Off-nisch | 🔒 | |
+| solpanelstjejen | Solcellsbesiktning (Värmland) | `web/public/cloud/solpanelstjejen/` | Generisk | | |
+| mugglagret | E-handel, keramikmuggar | `web/public/cloud/mugglagret/` | Off-nisch | | |
+| prismotor | Prissättningsverktyg | `web/public/cloud/prismotor/` | Internt verktyg, ej kunddemo | | |
+| sop-ringa | Ring-SOP | `web/public/cloud/sop-ringa/` | Internt, ej kunddemo | | |
+
+## Riktiga kunder (inte demos — se `2-kunder/kunder/`)
+brommatradgardsservice, smamaleri och maykaskitchen har egna live-sajter i
+`bahkobyra/cloud/` (🔒) och egna mappar i `2-kunder/kunder/` — de listas
+inte här som "demo" eftersom de redan är levererat kundarbete.
+
+**gdmaleri (2026-10-10):** flyttar till egen domän gdmaleri.se via `extern/gdmaleri/` (Vercel-projektet `gdmaleri`). Raden ovan står kvar så länge demon serveras på bahkobyra.se/gdmaleri/ — källan är fortfarande `web/app/(demo)/gdmaleri/`. Se `2-kunder/kunder/gdmaleri/`.
+
+## Platshållarfälla (bifynd 2026-08-26)
+`070-123 45 67` är ett klickbart platshållarnummer på flera demos (bygg,
+golvresan, nordicsnickare; nya osterlunds anvander 040 123 4567 i finskt format). Städa bort/byt till ett tydligt
+"exempel"-nummer innan en demo visas för en riktig prospekt.

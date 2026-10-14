@@ -11,10 +11,10 @@ Producerar content-batchar för **@bahkobyra** som driver top of funnel för byg
 Mål: DM-konversationer → kostnadsfri demo (utkast) → sälj hemsida (engångsköp).
 **Offerten = hemsidor. "Växa på Google"-copy hör ENDAST hemma på bahkobyra.se — aldrig i reels/DM.**
 
-Full SOP: `workflows/instagram_engine.md`. Metodik/formler: `workflows/sales_methodology.md`.
-Byråns eget IG-material: `content/bahkobyra/ig/`. (Den gamla kontentplanen
-`content/ig/kontentplan-bahkobyra.md` RADERADES på Mathias order 2026-08-26 — med den föll
-reglerna "maskoten endast i intro/outro" och credit-taket 30/vecka. Veckans lösning roterar
+Full SOP: `1-byran/content/instagram_engine.md`. Metodik/formler: `1-byran/intern-tillvaxt/sales_methodology.md`.
+Byråns eget IG-material: `1-byran/content/ig/`. (Den gamla kontentplanen i `content/bahkobyra/ig/`
+raderades på Mathias order 2026-08-26. Kopian `1-byran/content/ig/kontentplan-bahkobyra.md` är
+inaktuell (v33–36) och följs inte. Med planen föll reglerna "maskoten endast i intro/outro" och credit-taket 30/vecka. Veckans lösning roterar
 enligt `ig-karusell`-skillen; money-regeln över/under 100 credits är den enda budgetregeln.)
 Mätning: bladet **IG-logg**
 i Google Sheet-arket `V1` (Drive → BahkoByra → Leads), bladet IG-logg. Färdigproducerat: Drive-mappen `Planerat v[nr]/`.
@@ -37,7 +37,7 @@ i Google Sheet-arket `V1` (Drive → BahkoByra → Leads), bladet IG-logg. Färd
      cinematiska läget, maskot-doseringen och caption-reglerna). templates.md:s strukturer
      är bara ämnesfrön.
    - **Story-idéer** (poll, BTS, audit-CTA).
-   - **DM-cadence** (skriven-first dag 1/3/5/7, se `workflows/outreach_cadence.md`).
+   - **DM-cadence** (skriven-first dag 1/3/5/7, se `1-byran/intern-tillvaxt/outreach_cadence.md`).
 4. **Kvalitetskoll:** varje stycke ska vara FOR THEM / REAL / Financial Sense / Easy to say YES.
 5. **Spara** till `.tmp/ig_batch_[trade]_v[vecka].md`. Ev. export till Google Sheets via
    `node tools/export_to_google_docs.js --type=sheets --title="IG [trade] v[vecka]"`.

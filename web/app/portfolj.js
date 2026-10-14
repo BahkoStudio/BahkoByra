@@ -27,7 +27,7 @@ export const PORTFOLJ = [
     typ: 'kund',
     url: 'https://brommatradgardsservice.se/',
     bild: '/img/portfolj/bromma.jpg',
-    // Rapport 1, 30 juli 2026 (skärmbilder i content/kundarbete/bromma/bevis/): plats 1 i
+    // Rapport 1, 30 juli 2026 (skärmbilder i 2-kunder/kunder/bromma/bevis/): plats 1 i
     // Googles Platser-flik och först i ChatGPT:s svar på 'trädgårdsservice i Stockholm'.
     rad: 'Hemsida med en egen sida för BRF-kunder.',
   },

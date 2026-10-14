@@ -1,6 +1,6 @@
 # Instagram-mallbibliotek (bygg & hantverk)
 
-Råmaterial för skillen `instagram-engine`. Byråns eget IG-material: `content/bahkobyra/ig/`.
+Råmaterial för skillen `instagram-engine`. Byråns eget IG-material: `1-byran/content/ig/`.
 (Kontentplanen som stod här raderades 2026-08-26, se `instagram-engine/SKILL.md`.)
 Mätning: bladet **IG-logg** i Google Sheet-arket `V1` (Drive → BahkoByra → Leads), bladet IG-logg (fylls i fredagar). Färdigproducerat läggs i
 Drive-mappen `Planerat v[nr]/`.
@@ -73,14 +73,14 @@ Produceras med Edge-headless-malltekniken (samma som Brommas omdömeskort), i va
 
 Inga tankstreck i meddelanden (repo-regel). Kort: långa DM får inga svar (lärdom 2026-06-12).
 
-Tio färdiga öppnare (v2, med kundbevis och [bransch]-lucka): `content/bahkobyra/dm/oppnare.md`.
+Tio färdiga öppnare (v2, med kundbevis och [bransch]-lucka): `1-byran/content/dm/oppnare.md`.
 
 - **Dag 1:** en av de tio öppnarna. Mönster: [konkret du såg] + "jag bygger hemsidor åt [bransch] och lokala företag, senast en målare i Jönköping, en trädgårdsfirma i Stockholm och en restaurang, hos en av dem blev det tolv procent fler kundförfrågningar" + "vill du att jag bygger ett förslag åt er? Kostar inget, klart inom 48 timmar."
 - **Dag 3:** "Hejsan! Vet inte om meddelandet drunknade. Såg en konkret grej till på er sida som kostar förfrågningar. Vill du att jag bygger förslaget? Kostar inget."
 - **Dag 5:** "Hann du kika? Kostar inget, bara ett konkret förslag på en sajt som drar in fler offertförfrågningar."
 - **Dag 7:** "Sista pingen 🙂 Om en ny sajt inte är prio nu säg bara till."
 
-Svar → boka samtal → kostnadsfri demo (Loom) → sälj hemsida (engångs). Se `workflows/outreach_cadence.md`.
+Svar → boka samtal → kostnadsfri demo (Loom) → sälj hemsida (engångs). Se `1-byran/intern-tillvaxt/outreach_cadence.md`.
 
 ## Vinnande vinklar (fylls på från IG-loggen efter varje 4-veckorsperiod)
 

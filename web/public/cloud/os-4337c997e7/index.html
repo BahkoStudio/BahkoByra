@@ -123,19 +123,28 @@ input.saknas,input.saknas:hover{border-color:var(--fel)}
 /* minmax(0,...) overallt: utan det far grid items min-width:auto och en bred
    tabell tvingar upp HELA sidan i stallet for att scrolla i sin egen container. */
 .ram{display:grid;grid-template-columns:minmax(0,var(--nav-b)) minmax(0,1fr);min-height:calc(100vh - var(--topp-h))}
+/* Med fyra grenar var menyn 895px hog och Ekonomi & admin hamnade under
+   kanten pa en 768px-skarm. Tatare rader och mindre luft mellan grupperna
+   gor att alla fyra grenar ryms; visa() scrollar dessutom den aktiva raden
+   in i bild om menyn anda ar for lang. */
 .nav{
-  border-right:1px solid var(--linje);padding:1.1rem .8rem 2rem;
+  border-right:1px solid var(--linje);padding:.8rem .8rem 1rem;
   position:sticky;top:var(--topp-h);height:calc(100vh - var(--topp-h));overflow-y:auto;
 }
-.nav-grupp{font-size:.64rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text2);margin:1.15rem .5rem .45rem}
+.nav-grupp{font-size:.64rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text2);margin:.7rem .5rem .25rem}
 .nav-grupp:first-child{margin-top:0}
+/* Kvisten ar en underrubrik inom grenen: mindre och indragen, sa grenen
+   (Bahkobyra, Kunder ...) forblir den tydliga nivan. */
+.nav-kvist{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text2);opacity:.8;margin:.45rem .65rem .15rem 2.55rem}
 .nav a{
-  display:flex;align-items:center;gap:.55rem;padding:.5rem .65rem;border-radius:10px;
-  font-size:.92rem;color:var(--text2);transition:background .2s,color .2s;
+  display:flex;align-items:center;gap:.55rem;padding:.32rem .65rem;border-radius:10px;
+  font-size:.9rem;line-height:1.3;color:var(--text2);transition:background .2s,color .2s;
 }
 .nav a:hover{color:var(--text);background:var(--yta)}
 .nav a.on{color:var(--text);background:var(--yta);box-shadow:inset 2px 0 0 var(--acc)}
-.nav a .pr{font-size:1rem;width:1.35rem;text-align:center;flex-shrink:0}
+/* Ikonen arvde radhojden 1.6 och gjorde varje rad 36px hog: den bestamde
+   hela menyns langd. */
+.nav a .pr{font-size:1rem;line-height:1;width:1.35rem;text-align:center;flex-shrink:0}
 .inneh{padding:1.6rem clamp(1rem,3vw,2.6rem) 4rem;max-width:1180px;width:100%;min-width:0}
 @media(max-width:960px){
   .ram{grid-template-columns:minmax(0,1fr)}
@@ -155,6 +164,7 @@ input.saknas,input.saknas:hover{border-color:var(--fel)}
     font-size:.58rem;letter-spacing:.16em;color:var(--text2);opacity:.75;
   }
   .nav-grupp:first-child{display:none}
+  .nav-kvist{display:none}
   .nav a{white-space:nowrap;padding:.42rem .7rem;border:1px solid var(--linje);flex-shrink:0;align-items:center}
   .nav a.on{box-shadow:none;border-color:var(--acc)}
 }
@@ -174,6 +184,9 @@ input.saknas,input.saknas:hover{border-color:var(--fel)}
 /* ...men INTE nar korten star sida vid sida i en grid: da blev det andra kortet
    14,4px lagre an det forsta. */
 .kort-rad > .kort + .kort{margin-top:0}
+/* Kort och kortrader i foljd far samma luft som tva kort: utan den har
+   regeln lag Fakturering kant i kant med Manadsavslutet. */
+.kort + .kort-rad,.kort-rad + .kort,.kort-rad + .kort-rad{margin-top:.9rem}
 .kort h3{margin-bottom:.55rem}
 /* stretch, inte start: kort i samma rad ska dela underkant. Med start slutade
    de tre SOP-korten pa 395/371/285px och raden sag ut att ha ramlat isar. */
@@ -455,6 +468,19 @@ details.ihop summary::before{content:'+';color:var(--acc2);font-weight:700;width
 details.ihop[open] summary::before{content:'\2212'}
 details.ihop .ihop-in{padding:0 .9rem .9rem}
 
+/* kundresan: ett kort per kund, framsteg i summeringen */
+.kund-sum{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;width:100%}
+.kund-namn{color:var(--text);letter-spacing:.04em}
+.kund-bar{flex:1 1 90px;max-width:160px;height:6px;border-radius:var(--rp);background:var(--yta);overflow:hidden}
+.kund-bar i{display:block;height:100%;background:var(--acc)}
+/* Summeringen borjar redan efter plustecknet, sa Nasta-raden ska inte dras in
+   en gang till. Plustecknet star vid namnet, inte mitt emellan raderna. */
+.kund-nasta{flex-basis:100%;font-size:.76rem;font-weight:500;letter-spacing:0;text-transform:none;color:var(--text2);padding-left:0}
+#kund-lista details.ihop summary{align-items:flex-start}
+#kund-lista details.ihop summary::before{margin-top:.05rem}
+.kund-fot{display:flex;justify-content:flex-end;margin-top:.6rem}
+a.steg{color:var(--text2);transition:border-color .2s}
+a.steg:hover{border-color:var(--acc)}
 /* idebank */
 .ide-rad{display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap}
 /* Utan min-width:0 vagrar faltet krympa under sin innehallsbredd (232px) och
@@ -605,6 +631,10 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
         <span class="notis">uppföljningar väntar i CRM:et<br>(nästa åtgärd är i dag eller tidigare)</span>
       </div>
       <p class="notis" id="crm-status" style="margin-top:.4rem"></p>
+      <p class="notis" id="kund-status" style="margin-top:.3rem"></p>
+      <div class="lank-rad" style="margin-top:.5rem">
+        <a class="knapp knapp--ram" href="#kundresan" data-till="kundresan">Öppna Kundresan</a>
+      </div>
       <hr class="delare">
       <h3 style="margin-bottom:.4rem">Veckans XP: inkommande DEMO</h3>
       <div class="kpi-mal"><span class="stor" id="xp-tal">0</span><span class="notis">av målet <b>3 per vecka</b>,
@@ -636,7 +666,7 @@ details.ihop .ihop-in{padding:0 .9rem .9rem}
 <!-- ============ 2. SPELVÄRLDEN ============ -->
 <section class="blad" id="b-spelvarld" data-print="Spelvärlden — varumärkesstrategin">
   <div class="blad-huv">
-    <span class="oga">Världen</span>
+    <span class="oga">Gren 1 · Content</span>
     <h2>Spelvärlden</h2>
     <p>Varumärket som spel: publiken är huvudpersonen, ert content är questlinjen som tar dem
     från fienden till förvandlingen. Det här dokumentet är <b>filtret för allt content på alla
@@ -987,7 +1017,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
 <!-- ============ 7. MANUS ============ -->
 <section class="blad" id="b-manus" data-print="Manus — alla skript">
   <div class="blad-huv">
-    <span class="oga">Arsenalen</span>
+    <span class="oga">Gren 1 · Content</span>
     <h2>Manus</h2>
     <p>Säljmanuset bor här: DEMO-svaren, JA-protokollet, uppföljningen och hookarna. YouTubes och
     LinkedIns plattformsmallar bor på sin egen flik. Skrivreglerna gäller varje mall:
@@ -1030,7 +1060,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     Demolänken levereras alltid.</p>
     <div class="mall"><h4>1. Instruktionen</h4><button class="kopiera" type="button">Kopiera</button>
       <p>Kika på [plats] och se hur [friktion] visar sig.</p>
-      <p class="not">Färdiga friktioner att sätta in, hämtade ur Kundverkstans "Grundfel först":
+      <p class="not">Färdiga friktioner att sätta in, hämtade ur Hemsidor &amp; SEO, "Grundfel först":
       mobilvyn / telefonnumret som försvinner · startsidan / hur lång tid det tar innan man vet vad ni gör ·
       offertknappen / att den ligger bakom två klick · sidan i mobilen / att bilderna är stockfoton.</p></div>
     <div class="mall"><h4>2. Kvalificeringen, binär och låg friktion</h4><button class="kopiera" type="button">Kopiera</button>
@@ -1081,7 +1111,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
 <!-- ============ 8. SOP:ER ============ -->
 <section class="blad" id="b-sop" data-print="SOP:er — rutinerna">
   <div class="blad-huv">
-    <span class="oga">Arsenalen</span>
+    <span class="oga">Gren 1 · Intern tillväxt</span>
     <h2>SOP:er</h2>
     <p>Rutinerna som gör systemet deterministiskt. Dagens checklista bor i Kommandobryggan,
     här står varför varje steg finns.</p>
@@ -1106,7 +1136,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     <div class="kort">
       <h3 style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">Månadsvis<button class="kopiera" data-kop-rutin type="button" style="margin-left:auto">Kopiera</button></h3>
       <div class="t-rull"><table class="t"><tbody>
-        <tr><td><b>1:a</b></td><td>Nyhetsbrevet ur content/email, värde först, en CTA</td></tr>
+        <tr><td><b>1:a</b></td><td>Nyhetsbrevet ur 1-byran/content/email, värde först, en CTA</td></tr>
         <tr><td><b>Var 4:e v</b></td><td>Utvärdera vinnande vinklar ur KPI-raderna, uppdatera Spelvärldens pelare</td></tr>
         <tr><td><b>Säsongsslut</b></td><td>Exportera, arkivera, skriv nästa säsongs tema</td></tr>
       </tbody></table></div>
@@ -1137,38 +1167,44 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     <p class="notis">Dagsloggen bor i Ring-SOP:en och har ett fryst kontrakt. OS:et skriver aldrig dit.</p>
     <div class="lank-rad" style="margin-top:.6rem"><a class="knapp knapp--ram" href="/cloud/sop-ringa/#dagslogg" target="_blank" rel="noopener">Öppna dagsloggen</a></div>
   </div>
+
+  <div class="kort">
+    <h3>Idébanken</h3>
+    <p class="notis">Fånga idén när den kommer, utveckla den i en Claude-session när det passar.</p>
+    <div class="ide-rad">
+      <input id="ide-in" type="text" placeholder="Ny idé, ett projekt, en förbättring, en vinkel" aria-label="Ny idé">
+      <button class="knapp" id="ide-lagg" type="button">Spara</button>
+    </div>
+    <ul class="ide-lista" id="ide-lista" style="margin-top:.5rem"></ul>
+  </div>
 </section>
 
 <!-- ============ 9. KUNDVERKSTAN ============ -->
-<section class="blad" id="b-verkstan" data-print="Kundverkstan — leverans och tillväxt">
+<section class="blad" id="b-tjanster" data-print="Hemsidor & SEO — gren 1">
   <div class="blad-huv">
-    <span class="oga">Arsenalen</span>
-    <h2>Kundverkstan</h2>
-    <p>Det interna arbetet: kundsajterna, mallarna som bygger dem, optimeringsleveransen och
-    idéerna som växer verksamheten.</p>
+    <span class="oga">Gren 1 · Bahkobyrå</span>
+    <h2>Hemsidor &amp; SEO</h2>
+    <p>Det vi säljer: hemsidan som front offer och SEO som månadstjänst efter leverans.
+    Kvistarna i repot: <code>1-byran/hemsidor/</code> och <code>1-byran/seo/</code>. När kunden
+    sagt ja tar gren 2, Kunder, över.</p>
   </div>
 
-  <div class="kort">
-    <h3>Kundsajterna</h3>
-    <div class="t-rull t-rull--vid t-stack"><table class="t">
-      <thead><tr><th>Sajt</th><th>Status</th><th>Ligger i</th><th>Nästa steg</th></tr></thead>
-      <tbody>
-        <tr><td><a href="https://smamaleri.se" target="_blank" rel="noopener"><b>smamaleri.se</b></a></td><td data-etikett="Status">Live, betalande</td><td data-etikett="Ligger i"><code>bahkobyra/cloud/smamaleri</code></td><td data-etikett="Nästa steg">uppsell: löpande optimering efter kanalmatrisen</td></tr>
-        <tr><td><a href="https://brommatradgardsservice.se" target="_blank" rel="noopener"><b>brommatradgardsservice.se</b></a></td><td data-etikett="Status">Live + <b>löpande contentuppdrag</b></td><td data-etikett="Ligger i"><code>bahkobyra/cloud/brommatradgardsservice</code></td><td data-etikett="Nästa steg"><b>2 reels + 3 bilder i veckan</b>, veckorapport till Jens på söndag. Rutin i <code>content/kundarbete/bromma/produktionsrutin.md</code>. AI får aldrig spela Jens riktiga jobb.</td></tr>
-        <tr><td><a href="https://maykaskitchen.se" target="_blank" rel="noopener"><b>maykaskitchen.se</b></a></td><td data-etikett="Status">Live, deployas vid push till main</td><td data-etikett="Ligger i"><code>bahkobyra/cloud/maykaskitchen</code></td><td data-etikett="Nästa steg">underhåll vid behov</td></tr>
-      </tbody>
-    </table></div>
-    <p class="notis" style="margin-top:.5rem">Alla tre kundsajter ligger samlade i
-    <code>bahkobyra/cloud/</code>. Sökvägarna är heliga: smamaleri och bromma har varsitt Vercel-projekt
-    som pekar på exakt sin mapp, och maykaskitchen deployas av GitHub-actionen
-    <code>.github/workflows/deploy.yml</code> vid varje push till main. Flyttas en mapp går kundens sajt
-    ner tills sökvägen ändras på det stället. Ändras aldrig utan uttryckligt beslut.
-    <b>(Uppmätt 2026-08-28. Maykas låg tidigare i en skill-mapp och flyttades hit 2026-08-27.)</b></p>
+  <div class="kort" id="produktion-kort">
+    <h3>Från ja till live, produktionschecklistan</h3>
+    <div class="t-rull"><table class="t"><tbody>
+      <tr><td><b>1</b></td><td>Avtal påskrivet och första betalningen inne (gren 2, Onboarding)</td></tr>
+      <tr><td><b>2</b></td><td>Material: bilder, tjänstelista, domänhost, Google Företagsprofil</td></tr>
+      <tr><td><b>3</b></td><td>Bygg på mallen v3 med <span class="tagg">/hemsidor</span>, aldrig en egen variant i kundens fil</td></tr>
+      <tr><td><b>4</b></td><td>Formulär via Web3Forms med kundens egen nyckel, testat med ett riktigt utskick</td></tr>
+      <tr><td><b>5</b></td><td>QA: mobil, surfplatta och dator, inga döda länkar, sidtitlar och beskrivningar</td></tr>
+      <tr><td><b>6</b></td><td>Kunden godkänner, domänen flyttas, sidan går live</td></tr>
+      <tr><td><b>7</b></td><td>Kunden läggs in i <code>2-kunder/kunder/&lt;kund&gt;/</code> och i Kundresan</td></tr>
+    </tbody></table></div>
   </div>
 
   <div class="kort">
     <h3>Demosajterna, sorterade efter vad du faktiskt får göra med dem</h3>
-    <p class="notis" style="margin-bottom:.7rem">Sanningen bor i <b>content/leads/demolankar.md</b>.
+    <p class="notis" style="margin-bottom:.7rem">Sanningen bor i <b>1-byran/intern-tillvaxt/leads/demolankar.md</b>.
     Grupperna nedan speglar den. Att en demo finns betyder inte att den är skickad, och inte att den
     får visas för någon annan.</p>
 
@@ -1269,14 +1305,494 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     <b>.claude/skills/optimering/reference.md</b>. Kör <span class="tagg">/optimering [kund]</span> i Claude.</p>
   </div>
 
+</section>
+
+<!-- ============ GREN 2. KUNDRESAN ============ -->
+<section class="blad" id="b-kundresan" data-print="Kundresan — gren 2, Kunder">
+  <div class="blad-huv">
+    <span class="oga">Gren 2 · Kunder</span>
+    <h2>Kundresan</h2>
+    <p>Från ja till kund i flera år, i fem steg. Kunden ska aldrig behöva jaga oss, och varje
+    period ska kunden se svart på vitt vad den betalar för. Ingen bindningstid: värdet måste
+    synas varje månad.</p>
+  </div>
+
   <div class="kort">
-    <h3>Idébanken</h3>
-    <p class="notis">Fånga idén när den kommer, utveckla den i en Claude-session när det passar.</p>
-    <div class="ide-rad">
-      <input id="ide-in" type="text" placeholder="Ny idé, ett projekt, en förbättring, en vinkel" aria-label="Ny idé">
-      <button class="knapp" id="ide-lagg" type="button">Spara</button>
+    <h3>De fem stegen</h3>
+    <div class="flode">
+      <a class="steg" href="#onboarding" data-till="onboarding"><b>1 Onboarding &amp; avtal</b>dag 0–2: avtal, faktura, material, tillgångar</a>
+      <a class="steg" href="#tjanster" data-till="tjanster" data-mal="produktion-kort"><b>2 Bygge</b>dag 2–7: sidan live på kundens domän</a>
+      <a class="steg" href="#leverans" data-till="leverans"><b>3 Leverans &amp; support</b>varje månad, ärenden svaras nästa vardag</a>
+      <a class="steg" href="#rapporter" data-till="rapporter"><b>4 Rapporter</b>vecka eller månad, med mejltext</a>
+      <a class="steg" href="#retention" data-till="retention"><b>5 Retention &amp; uppsälj</b>dag 30, månad 3, 6 och 12</a>
     </div>
-    <ul class="ide-lista" id="ide-lista" style="margin-top:.5rem"></ul>
+  </div>
+
+  <div class="kort" id="kund-kort">
+    <h3 style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">Kunderna, var i resan
+      <span class="tagg" id="kund-antal"></span></h3>
+    <p class="notis">En checklista per kund, samma punkter som SOP:erna i <code>2-kunder/</code>.
+    Bocka av när det är gjort. Sparas i den här webbläsaren och åker med i CRM:ets backup.</p>
+    <div id="kund-lista"></div>
+    <div class="ide-rad">
+      <input id="kund-in" type="text" placeholder="Ny kund, till exempel företagsnamnet" aria-label="Ny kund">
+      <button class="knapp" id="kund-lagg" type="button">Lägg till kund</button>
+    </div>
+  </div>
+
+  <div class="kort">
+    <h3>Kundsajterna</h3>
+    <div class="t-rull t-rull--vid t-stack"><table class="t">
+      <thead><tr><th>Sajt</th><th>Uppdrag</th><th>Ligger i</th><th>Rapport</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://brommatradgardsservice.se" target="_blank" rel="noopener"><b>brommatradgardsservice.se</b></a></td><td data-etikett="Uppdrag">Sajt + <b>löpande content</b> (2 reels + 3 bilder i veckan). AI får aldrig spela Jens riktiga jobb.</td><td data-etikett="Ligger i"><code>bahkobyra/cloud/brommatradgardsservice</code> 🔒</td><td data-etikett="Rapport">Söndag, 2 sidor</td></tr>
+        <tr><td><a href="https://gdmaleri.se" target="_blank" rel="noopener"><b>gdmaleri.se</b></a></td><td data-etikett="Uppdrag">Sajt + <b>löpande SEO</b>. Instagram-flödet live på sidan.</td><td data-etikett="Ligger i"><code>extern/gdmaleri</code> (eget Vercel-projekt)</td><td data-etikett="Rapport">Söndag, 1 sida, <code>tools/gd-rapport</code></td></tr>
+        <tr><td><a href="https://smamaleri.se" target="_blank" rel="noopener"><b>smamaleri.se</b></a></td><td data-etikett="Uppdrag">Sajt live, betalande. Uppsälj: löpande optimering.</td><td data-etikett="Ligger i"><code>bahkobyra/cloud/smamaleri</code> 🔒</td><td data-etikett="Rapport">Ingen än</td></tr>
+        <tr><td><a href="https://maykagulo.se" target="_blank" rel="noopener"><b>maykagulo.se</b></a></td><td data-etikett="Uppdrag">Bokens produktsida, underhåll vid behov.</td><td data-etikett="Ligger i"><code>bahkobyra/cloud/maykaskitchen</code> ⚡</td><td data-etikett="Rapport">Ingen</td></tr>
+      </tbody>
+    </table></div>
+    <p class="notis" style="margin-top:.5rem">Sökvägarna med 🔒 är inställda i Vercel. Flyttas en mapp
+    går kundens sajt ner. Allt om varje kund: <code>2-kunder/kunder/&lt;kund&gt;/</code>. Avtal och
+    fakturor: <code>OneDrive/1 Bahko Byrå/Kunder/&lt;kund&gt;/Avtal/</code>, aldrig i repot.</p>
+  </div>
+</section>
+
+<!-- ============ GREN 2. ONBOARDING ============ -->
+<section class="blad" id="b-onboarding" data-print="Onboarding & avtal — gren 2">
+  <div class="blad-huv">
+    <span class="oga">Gren 2 · Kunder</span>
+    <h2>Onboarding &amp; avtal</h2>
+    <p><b>Samma dag som kunden säger ja.</b> På två dagar ska avtalet vara påskrivet, första
+    fakturan skickad och materialet inne, så att bygget kan starta dag 2. Hela SOP:en:
+    <code>2-kunder/onboarding-avtal/SOP.md</code>.</p>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort">
+      <h3>Ordningen</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>1</b></td><td>Avtalet (PDF) och välkomstmejlet, samma dag</td></tr>
+        <tr><td><b>2</b></td><td>Avtalet påskrivet av kunden</td></tr>
+        <tr><td><b>3</b></td><td>Faktura 1 enligt avtalet, nummer <code>BAHKO-</code> + fyra siffror</td></tr>
+        <tr><td><b>4</b></td><td>Uppstartsmöte, 20 minuter</td></tr>
+        <tr><td><b>5</b></td><td>Domänhost: mathias@bahkobyra.se tillagd. Google Företagsprofil: bahkostudio@gmail.com tillagd som ansvarig</td></tr>
+        <tr><td><b>6</b></td><td>Bilder, videor och tjänstelistan inne</td></tr>
+        <tr><td><b>7</b></td><td>Claude lägger upp kunden: mapp ur <code>_mall/</code>, Notion på "Kund", rapportdagen i <code>atagande.json</code></td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="kort">
+      <h3>Om något dröjer</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td>Material saknas dag 2</td><td class="notis">Börja ändå med våra bilder. Bygget stannar aldrig på bilder.</td></tr>
+        <tr><td>Ingen domänhost dag 5</td><td class="notis">Ring, mejla inte. Utan den går sidan inte live.</td></tr>
+        <tr><td>Faktura obetald efter förfallodagen</td><td class="notis">Följ <a href="#ekonomi" data-till="ekonomi" data-mal="paminnelse-kort">påminnelsetrappan under Ekonomi</a>: dag 1 mejl, dag 7 ring, dag 14 paus, räknat från förfallodagen.</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.6rem">Avtalets sex sidor och vad som alltid ska stå med:
+      <code>mallar/avtal-struktur.md</code>. Facit: Proffsmaskiner-avtalet i OneDrive.</p>
+    </div>
+  </div>
+
+  <div class="kort">
+    <h3>Mallarna</h3>
+    <div class="mall"><h4>Välkomstmejlet</h4>
+      <button class="kopiera" type="button">Kopiera</button>
+      <p class="not">Ämnesrad: Välkommen till Bahko Byrå, så här kommer vi igång</p>
+      <p>Hejsan!</p>
+      <p>Tack för förtroendet, vad roligt att vi ska jobba ihop. Avtalet ligger bifogat. När det är påskrivet och första fakturan är betald drar vi igång, och sju dagar senare är sidan live.</p>
+      <p>Vi behöver fyra saker från er:
+1. Era bästa bilder och videor från riktiga jobb, om ni har några. Har ni inga använder vi bilder som visar tjänsten, och byter mot era egna när ni vill.
+2. En snabb titt på tjänsterna i förslaget: vad stämmer, vad ska bort, vad saknas?
+3. Tillgång till er domänhost, där [domän] är registrerad. Lägg till mathias@bahkobyra.se som användare.
+4. Lägg till bahkostudio@gmail.com som ansvarig i er Google Företagsprofil.</p>
+      <p>Skicka aldrig lösenord i mejl. Går något inte att lösa med en inbjudan loggar vi in tillsammans i ett kort samtal.</p>
+      <p>Jag bokar gärna 20 minuter i telefon så går vi igenom allt på en gång. Passar [dag och tid] eller [dag och tid]?</p>
+      <p>Vänliga hälsningar
+Mathias Bahko</p>
+      <p class="not">Ämnesraden följer inte med i kopian. Byt ut det inom hakparentes och ge två tider att välja på. Inga tankstreck.</p>
+    </div>
+    <div class="mall"><h4>Uppstartsmötet, 20 minuter</h4>
+      <button class="kopiera" type="button">Kopiera</button>
+      <p>1. Tack och förväntningar (2 min): live inom 7 dagar från första betalningen, ändringar ingår alltid.
+2. Tjänsterna (5 min): en och en, stämmer, bort, saknas.
+3. Kunderna (5 min): vilka jobb vill de ha mer av, vilket område, vad frågar kunderna alltid om?
+4. Material och tillgångar (5 min): gå igenom listan, boka in det som saknas.
+5. Kontakt framåt (3 min): mejl för ärenden, telefon för det som brådskar, när rapporten kommer.</p>
+      <p class="not">Anteckningarna i <code>kunder/&lt;kund&gt;/hemsida.md</code> under "Uppstart", utan personnummer eller belopp.</p>
+    </div>
+    <details class="ihop"><summary>Materiallistan, vad vi behöver och om det saknas</summary><div class="ihop-in">
+      <div class="t-rull t-rull--vid t-stack"><table class="t">
+        <thead><tr><th>Material</th><th>Varför</th><th>Om det saknas</th></tr></thead>
+        <tbody>
+          <tr><td>Bilder och videor på riktiga jobb</td><td data-etikett="Varför">Äkta bilder säljer</td><td data-etikett="Om det saknas">Vi tar fram bilder som inte påstår sig vara kundens jobb</td></tr>
+          <tr><td>Tjänstelistan, kontrollerad</td><td data-etikett="Varför">Sidan säljer bara det kunden gör</td><td data-etikett="Om det saknas">Förslagets lista, osäkra rader markerade</td></tr>
+          <tr><td>Logga i bästa upplösning</td><td data-etikett="Varför">Skarp på alla skärmar</td><td data-etikett="Om det saknas">Vi ritar om den, kunden godkänner</td></tr>
+          <tr><td>Domänhost</td><td data-etikett="Varför">Koppla domänen och mejlen</td><td data-etikett="Om det saknas">Sidan kan inte gå live, ring</td></tr>
+          <tr><td>Google Företagsprofil</td><td data-etikett="Varför">Lokal SEO och omdömen</td><td data-etikett="Om det saknas">SEO väntar, sidan kan gå live</td></tr>
+          <tr><td>Mejl för förfrågningar</td><td data-etikett="Varför">Formuläret skickar dit</td><td data-etikett="Om det saknas">Kontaktmejlen</td></tr>
+        </tbody>
+      </table></div>
+      <p class="notis" style="margin-top:.5rem">Lösenord skickas aldrig i mejl. Kunden lägger till
+      mathias@bahkobyra.se som användare hos domänhosten och bahkostudio@gmail.com som ansvarig i
+      Google Företagsprofilen, eller loggar in själv i ett kort videosamtal.</p>
+    </div></details>
+  </div>
+</section>
+
+<!-- ============ GREN 2. LEVERANS ============ -->
+<section class="blad" id="b-leverans" data-print="Leverans & support — gren 2">
+  <div class="blad-huv">
+    <span class="oga">Gren 2 · Kunder</span>
+    <h2>Leverans &amp; support</h2>
+    <p>Kunden får det månaden lovar utan att behöva fråga, och varje ändringsönskan blir klar
+    snabbt och syns i loggen. SOP: <code>2-kunder/leverans-support/SOP.md</code>.</p>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort">
+      <h3>Kanalerna</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>Mejl</b></td><td>Ändringar, frågor, material</td><td class="notis">svar nästa vardag</td></tr>
+        <tr><td><b>Telefon</b></td><td>Det som brådskar: sidan nere, fel nummer</td><td class="notis">samma dag</td></tr>
+        <tr><td><b>Rapporten</b></td><td>Vår avstämning</td><td class="notis">rapportdagen</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">Sms och DM tas emot men flyttas till mejlen, så inget försvinner.</p>
+    </div>
+    <div class="kort">
+      <h3>Ett ärende, från önskan till klart</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>1</b></td><td>Svara direkt: mottaget, klart när</td></tr>
+        <tr><td><b>2</b></td><td>En rad i <code>kunder/&lt;kund&gt;/andringar.md</code></td></tr>
+        <tr><td><b>3</b></td><td>Gör ändringen. 🔒-kundsajter: Mathias ja innan push</td></tr>
+        <tr><td><b>4</b></td><td>Öppna sidan EN gång i mobil och dator, aldrig i loop</td></tr>
+        <tr><td><b>5</b></td><td>Mejltext på högst två meningar, med länken</td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+
+  <div class="kort">
+    <h3>Månadens fasta arbete, kunder med månadsavgift</h3>
+    <div class="t-rull"><table class="t"><tbody>
+      <tr><td><b>V1</b></td><td>Kontrollera sidan: formuläret skickar, inga döda länkar, laddtid. Google Företagsprofil: inlägg och bilder.</td></tr>
+      <tr><td><b>V2</b></td><td>En SEO-åtgärd ur kundens <code>seo-geo-aeo.md</code>, till exempel en ny ort- eller tjänstesida.</td></tr>
+      <tr><td><b>V3</b></td><td>Omdömen: påminn kunden att be nöjda kunder om ett Google-omdöme.</td></tr>
+      <tr><td><b>V4</b></td><td>Rapporten och nästa månads plan.</td></tr>
+    </tbody></table></div>
+    <p class="notis" style="margin-top:.6rem"><b>Ingår alltid:</b> förbättringar och ändringar av befintlig
+    sida. <b>Offereras separat:</b> helt nya funktioner, till exempel webbshop. Säg det vänligt och låt kunden välja.</p>
+  </div>
+</section>
+
+<!-- ============ GREN 2. RAPPORTER ============ -->
+<section class="blad" id="b-rapporter" data-print="Rapporter & uppföljning — gren 2">
+  <div class="blad-huv">
+    <span class="oga">Gren 2 · Kunder</span>
+    <h2>Rapporter</h2>
+    <p>Rapporten är det enda bevis kunden ser, så den är lika viktig som arbetet. Varje
+    rapportdag ligger i <code>atagande.json</code> och dashboarden varnar när den förfaller.
+    SOP: <code>2-kunder/rapporter/SOP.md</code>.</p>
+  </div>
+
+  <div class="kort">
+    <h3>Vilken rapport, för vilken kund</h3>
+    <div class="t-rull t-rull--vid t-stack"><table class="t">
+      <thead><tr><th>Kund</th><th>Rapport</th><th>Dag</th><th>Hur</th></tr></thead>
+      <tbody>
+        <tr><td>Bromma Trädgårdsservice</td><td data-etikett="Rapport">Vecka, 2 sidor</td><td data-etikett="Dag">Söndag</td><td data-etikett="Hur">Senaste rapportens HTML är mallen, Edge till PDF, Drive "05 Rapporter och planer"</td></tr>
+        <tr><td>GD Måleri</td><td data-etikett="Rapport">Vecka, 1 sida</td><td data-etikett="Dag">Söndag</td><td data-etikett="Hur"><code>node tools/gd-rapport/hamta.mjs</code> sedan <code>bygg.mjs</code></td></tr>
+        <tr><td>Ny kund med månadsavgift</td><td data-etikett="Rapport">Månad, 1 sida</td><td data-etikett="Dag">Första vardagen</td><td data-etikett="Hur">Samma upplägg som GD-verktyget</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort">
+      <h3>Vad en rapport alltid innehåller</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>1</b></td><td><b>Förfrågningarna</b> mot perioden innan. Kundens viktigaste siffra, den står först.</td></tr>
+        <tr><td><b>2</b></td><td>Google: visningar, klick, sökorden, placering på huvudsökningen</td></tr>
+        <tr><td><b>3</b></td><td>Vad vi gjorde, högst fyra punkter</td></tr>
+        <tr><td><b>4</b></td><td>Vad vi gör nästa, högst tre punkter</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">Inget annat. Inga påhittade siffror, inga förutsägelser om placering.
+      Ögonläs PDF:en: texten kan klippas tyst.</p>
+    </div>
+    <div class="kort">
+      <h3>Mejltexten</h3>
+      <div class="mall"><h4>Två meningar, alltid</h4>
+        <button class="kopiera" type="button">Kopiera</button>
+        <p class="not">Ämnesrad: [Veckans/Månadens] rapport för [kund]</p>
+        <p>Hejsan!</p>
+        <p>Här kommer [veckans/månadens] rapport, den ligger bifogad. [Det enda kunden behöver göra eller veta.]</p>
+        <p>Vänliga hälsningar
+Mathias Bahko</p>
+        <p class="not">Mening ett: vad som ligger bifogat. Mening två: det enda som kräver kunden. Veckans eller månadens efter tabellen ovanför. Behåll kundens tilltal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GREN 2. RETENTION ============ -->
+<section class="blad" id="b-retention" data-print="Retention & uppsälj — gren 2">
+  <div class="blad-huv">
+    <span class="oga">Gren 2 · Kunder</span>
+    <h2>Retention &amp; uppsälj</h2>
+    <p>Ingen bindningstid, så kunden stannar bara så länge den ser värdet. Retention är rapporten
+    plus att vi hör av oss innan kunden hinner undra. SOP: <code>2-kunder/retention-upsell/SOP.md</code>.</p>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort">
+      <h3>Kontrollpunkterna</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>Dag 30</b></td><td>Samtal, 10 min: ringer det mer? Något att ändra?</td></tr>
+        <tr><td><b>Månad 3</b></td><td>Tre rapporter: går förfrågningarna upp? Dags för nästa steg?</td></tr>
+        <tr><td><b>Månad 6</b></td><td>Samtal + ett förslag för nästa halvår</td></tr>
+        <tr><td><b>Månad 12</b></td><td>Årsgenomgång: förfrågningar, jobb, år två</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">Nästa kontrollpunkt läggs som "Nästa samtal" på kundens affär i Notion.</p>
+    </div>
+    <div class="kort">
+      <h3>Varningssignaler, agera samma vecka</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td class="nej-cell">!</td><td>Svarar inte på två rapporter i rad</td></tr>
+        <tr><td class="nej-cell">!</td><td>Förfrågningarna sjunker två perioder i rad</td></tr>
+        <tr><td class="nej-cell">!</td><td>Frågar vad den betalar för, eller nämner en annan byrå</td></tr>
+        <tr><td class="nej-cell">!</td><td>Fakturan betalas sent</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">Ring, mejla inte. Fråga hur det går, visa vad som gjorts,
+      föreslå en konkret förbättring som ingår i månaden.</p>
+    </div>
+  </div>
+
+  <div class="kort">
+    <h3>Stegen, vad som erbjuds efter vad</h3>
+    <div class="flode">
+      <div class="steg"><b>Hemsida</b>engång</div>
+      <div class="steg"><b>SEO + underhåll</b>varje månad</div>
+      <div class="steg"><b>Content</b>inlägg och reels med kundens egna jobb</div>
+      <div class="steg"><b>Fler orter och tjänster</b>en sida per ort eller tjänst</div>
+    </div>
+    <div class="t-rull t-rull--vid t-stack" style="margin-top:.7rem"><table class="t">
+      <thead><tr><th>Kunden har</th><th>Erbjud när</th></tr></thead>
+      <tbody>
+        <tr><td>Bara hemsida</td><td data-etikett="Erbjud när">Sidan har varit live en månad och fått sina första förfrågningar</td></tr>
+        <tr><td>Hemsida + SEO</td><td data-etikett="Erbjud när">Förfrågningarna har ökat två rapporter i rad</td></tr>
+        <tr><td>SEO + content</td><td data-etikett="Erbjud när">Kunden vill ha fler jobb i en ny ort eller en ny tjänst</td></tr>
+      </tbody>
+    </table></div>
+    <p class="notis" style="margin-top:.6rem"><b>Bevis i uppsäljet:</b> bara kundens egna siffror och
+    Brommas belagda bevis. Aldrig en placering som löfte. <b>Säger kunden upp:</b> inga hinder, kunden
+    äger sida och domän, hjälp till med flytten och fråga varför.</p>
+  </div>
+</section>
+
+<!-- ============ GREN 3. BEAST OF AGES ============ -->
+<section class="blad" id="b-boa" data-print="Beast of Ages, gren 3">
+  <div class="blad-huv">
+    <span class="oga">Gren 3 · YouTube &amp; media</span>
+    <h2>Beast of Ages</h2>
+    <p>Egen kanal, egen publik, egna regler. Inte en Bahko Byrå-kund. Engelska manus för vuxna män
+    45–70, samtalet om dem på svenska. <b>Läs <code>3-beast-of-ages/youtube.md</code> först</b>: där står
+    alla regler, och de vinner över kvistarnas README:er. Kvistkartan: <code>3-beast-of-ages/README.md</code>.</p>
+  </div>
+
+  <div class="kort">
+    <h3>Flödet för en video</h3>
+    <p class="notis">En mapp per steg, var och en med en <code>README.md</code> som säger hur steget görs.
+    Klicka på ett steg för att hoppa till kvisten.</p>
+    <div class="flode">
+      <a class="steg" href="#boa" data-till="boa" data-mal="boa-strategi"><b>1 Strategi</b>läget och utliggarna</a>
+      <a class="steg" href="#boa" data-till="boa" data-mal="boa-ideer"><b>2 Grinden</b>idén klarerad</a>
+      <a class="steg" href="#boa" data-till="boa" data-mal="boa-research"><b>3 Research</b>faktabanken</a>
+      <a class="steg" href="#boa" data-till="boa" data-mal="boa-paket"><b>4 Paket</b>före manuset</a>
+      <a class="steg" href="#boa" data-till="boa" data-mal="boa-manus"><b>5 Manus</b>max 3 rundor</a>
+      <a class="steg" href="#boa" data-till="boa" data-mal="boa-produktion"><b>6 Produktion</b>röst, bild, ljud</a>
+      <a class="steg" href="#boa" data-till="boa" data-mal="boa-publicering"><b>7 Publicering</b>och mätningen</a>
+    </div>
+    <p class="notis" style="margin-top:.6rem">Efter publiceringen går siffrorna tillbaka till strategin.
+    Vid sidan av flödet: <a href="#boa" data-till="boa" data-mal="boa-reference">Struktur &amp; regler</a>,
+    <a href="#boa" data-till="boa" data-mal="boa-skills">Skills &amp; verktyg</a> och
+    <a href="#boa" data-till="boa" data-mal="boa-konvertering">Konvertering</a>.
+    <b>Påhittade djurfakta är oacceptabla</b>, i varje steg.</p>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort" id="boa-strategi">
+      <h3>Strategi &amp; vidIQ-data</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>1</b></td><td><b>Mät på median, aldrig på snitt.</b> En nyhetsvåg står för det mesta av kanalens visningar.</td></tr>
+        <tr><td><b>2</b></td><td><b>Utliggarribban 3 000–5 000 visningar.</b> Under den är varje video ett test av ett nytt format.</td></tr>
+        <tr><td><b>3</b></td><td><b>Kärnspåret:</b> de-extinction och istid med ett ikoniskt djur i titeln. Vardagsfrågor bara som undantag.</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">vidIQ via MCP, 5 credits per anrop. Siffror hämtas, gissas aldrig.
+      Mapp: <code>3-beast-of-ages/strategi/</code> (kanalen, konkurrenterna, utliggarna, panelens beslut).</p>
+    </div>
+    <div class="kort" id="boa-ideer">
+      <h3>Idébank &amp; Grinden</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>1</b></td><td>Har vi redan gjort den?</td></tr>
+        <tr><td><b>2</b></td><td>Har någon annan gjort den? Sök med tre formuleringar, aldrig en.</td></tr>
+        <tr><td><b>3</b></td><td>Har en jämförbar kanal nyss lyckats?</td></tr>
+        <tr><td><b>4</b></td><td>Är titel och miniatyr våra egna?</td></tr>
+        <tr><td><b>5</b></td><td>Bär djuret, och betalar titeln?</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem"><b>Grinden körs alltid först</b>, på den valda idén. Cirka 15 credits.
+      Dödade idéer står i <code>ideer/klarerade-ideer.md</code> och föreslås aldrig igen.
+      Reglerna: <code>ideer/modelleringsguide.md</code>, del 3.</p>
+    </div>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort" id="boa-research">
+      <h3>Research</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>1</b></td><td>En faktabank per video, innan manuset. Kopiera <code>research/research-mall.md</code>.</td></tr>
+        <tr><td><b>2</b></td><td><b>Källa per siffra</b>, hellre studien än artikeln om den.</td></tr>
+        <tr><td><b>3</b></td><td>Osäker: skriv om meningen så den inte behöver siffran.</td></tr>
+        <tr><td><b>4</b></td><td>Tidskritiska fakta slås upp live innan paketet låses.</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">Stor research ger långt manus. Källmaterial utanför git:
+      <code>OneDrive/2 Beast of Ages/Research/</code>.</p>
+    </div>
+    <div class="kort" id="boa-paket">
+      <h3>Paketet</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>Titlar</b></td><td>Tio stycken. Titeln lovar bara vad manuset betalar.</td></tr>
+        <tr><td><b>Miniatyr</b></td><td>Ur manusets höjdpunkt, texten i översta tredjedelen (TV-tittarna).</td></tr>
+        <tr><td><b>CTA</b></td><td>Pekar alltid på kanalens senaste video, hämtad med vidIQ.</td></tr>
+        <tr><td><b>Kommentar</b></td><td>Fäst kommentar, högst två meningar.</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">Miniatyrer: <code>node tools/hf-api/hf.mjs bild --modell qwen</code>,
+      en bild i taget, granska stavningen. Sparas i <code>paket/thumbnails/</code>, utanför git.</p>
+    </div>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort" id="boa-manus">
+      <h3>Manus</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>1</b></td><td><b>Engelska</b>, 1 800–2 000 ord. Golvet är hårt.</td></tr>
+        <tr><td><b>2</b></td><td>Bara ur faktabanken. Ett djur har ingen avsikt.</td></tr>
+        <tr><td><b>3</b></td><td><span class="tagg">/manusloop</span> max 3 rundor, sedan redovisa och fråga.</td></tr>
+        <tr><td><b>4</b></td><td>Inga videopromptar i manusfilen.</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">En fil per video, paketet överst. Listan med status:
+      <code>manus/README.md</code>. Tio manus till väntar i huvudmappen och flyttas in efter merge,
+      se <code>3-beast-of-ages/README.md</code>.</p>
+    </div>
+    <div class="kort" id="boa-produktion">
+      <h3>Produktion</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>Röst</b></td><td>Engelska, cirka 150 ord i minuten.</td></tr>
+        <tr><td><b>Bild</b></td><td>Byggd för TV-skärmen. Aldrig en annan art än manuset talar om.</td></tr>
+        <tr><td><b>Ljud</b></td><td>Musiken dränker aldrig rösten.</td></tr>
+        <tr><td><b>Klipp</b></td><td>Första minuten avgör, inget förspel före hooken.</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">Skriv ner kapitlens tidskoder när videon är klippt. Musik och ljud:
+      <code>OneDrive/2 Beast of Ages/Musik och ljud/</code>. <b>Inga videopromptar.</b> Mapp: <code>produktion/</code>.</p>
+    </div>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort" id="boa-publicering">
+      <h3>Publicering &amp; uppföljning</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>Uppladdning</b></td><td>Checklistan: titel, miniatyr, egen beskrivning, kapitel, taggar, slutskärm, CTA.</td></tr>
+        <tr><td><b>48 timmar</b></td><td>Visningar alls? Klickfrekvens, kvar efter första minuten.</td></tr>
+        <tr><td><b>7 dagar</b></td><td>Mot kanalens median. Var trafiken kommer ifrån.</td></tr>
+        <tr><td><b>28 dagar</b></td><td>Domen: under ribban testa nytt, över dubbla ner en gång och mät.</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">Högst 1–3 videor per format. Siffrorna skrivs in i
+      <code>strategi/kanalen.md</code>. Mapp: <code>publicering/</code>.</p>
+    </div>
+    <div class="kort" id="boa-reference">
+      <h3>Struktur &amp; regler</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>Reglerna</b></td><td>Alla regler och index över varje fil, vinner alltid: <code>youtube.md</code></td></tr>
+        <tr><td><b>Testa</b></td><td>Testa eller dubbla ner, källan med fallstudien.</td></tr>
+        <tr><td><b>Modellera</b></td><td>Samma ämne går, samma titel plus miniatyr går inte.</td></tr>
+        <tr><td><b>Miniatyr</b></td><td>50-procentstestet och fråga före relevans.</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">Källdokumenten ligger i <code>reference/</code>
+      (<code>testa-vs-dubbla-ner.md</code>, <code>modellering-vs-kopiering.md</code>,
+      <code>thumbnail-reglerna.md</code>), bevisbilderna i <code>reference/bilder/</code>.</p>
+    </div>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort" id="boa-skills">
+      <h3>Skills &amp; verktyg</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>vidIQ</b></td><td>Siffror, utliggare, Grinden, CTA-målet, uppföljningen.</td></tr>
+        <tr><td><span class="tagg">/youtube-roast</span></td><td>Ett beslut på en kvist, när du behöver emot.</td></tr>
+        <tr><td><span class="tagg">/manusloop</span></td><td>Manuset, max 3 rundor.</td></tr>
+        <tr><td><span class="tagg">/kolla-over</span></td><td>Bred genomlysning av kanalen eller en plan.</td></tr>
+        <tr><td><b>hf.mjs</b></td><td>Miniatyrerna med Qwen.</td></tr>
+      </tbody></table></div>
+      <p class="notis" style="margin-top:.5rem">Används inte: <code>/higgsfield-youtube-thumbnail</code>.
+      Hela listan: <code>3-beast-of-ages/skills.md</code>.</p>
+    </div>
+    <div class="kort" id="boa-konvertering">
+      <h3>Konvertering &amp; tratt <span class="tagg tagg--varning">väntar på beslut</span></h3>
+      <p class="notis">Kanalens publik (engelsktalande män 45–70) är inte byråns kunder (svenska lokala
+      företagare). En CTA om hemsidor i en djurvideo kan sänka tittartiden och når nästan inga
+      företagare. Det som kan bära: lärdomarna om hooks och miniatyrer till byråns eget content,
+      kanalen som trovärdighet i sälj, och kanalens egna intäkter. Se <code>3-beast-of-ages/konvertering.md</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GREN 4. EKONOMI & ADMIN ============ -->
+<section class="blad" id="b-ekonomi" data-print="Ekonomi & admin — gren 4">
+  <div class="blad-huv">
+    <span class="oga">Gren 4 · Ekonomi &amp; admin</span>
+    <h2>Ekonomi &amp; admin</h2>
+    <p>Pengarna in, pengarna ut och pappren. Här står bara rutinerna. Belopp, bankuppgifter och
+    avtal bor i <code>OneDrive/1 Bahko Byrå/Kunder/&lt;kund&gt;/Avtal/</code> och Notion. Filer: <code>4-ekonomi-admin/</code>.</p>
+  </div>
+
+  <div class="kort" id="manad-kort">
+    <h3 style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">Månadsavslut
+      <span class="tagg" id="manad-namn"></span></h3>
+    <p class="notis">Sista vardagen i månaden, 30 minuter. Listan går vidare till nästa månad först när allt är bockat, så att inget ogjort försvinner.</p>
+    <div class="check" id="manad-check" style="margin-top:.5rem"></div>
+  </div>
+
+  <div class="kort-rad k2">
+    <div class="kort">
+      <h3>Fakturering</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>Nummer</b></td><td><code>BAHKO-</code> + fyra siffror, löpande över alla kunder. Hoppa aldrig över, återanvänd aldrig.</td></tr>
+        <tr><td><b>Månad</b></td><td>I förskott, en period i taget.</td></tr>
+        <tr><td><b>Hemsida</b></td><td>Två delar: när avtalet skrivs på, och när sidan är live.</td></tr>
+        <tr><td><b>Moms</b></td><td>25 % på alla belopp. Avtal anges exklusive moms.</td></tr>
+        <tr><td><b>Logg</b></td><td>Nummer, period och betald i Notion-affären.</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="kort" id="paminnelse-kort">
+      <h3>Påminnelser, dagar efter förfallodagen</h3>
+      <div class="t-rull"><table class="t"><tbody>
+        <tr><td><b>Dag 1</b></td><td>Vänlig påminnelse per mejl, fakturan bifogad igen</td></tr>
+        <tr><td><b>Dag 7</b></td><td>Ring kunden</td></tr>
+        <tr><td><b>Dag 14</b></td><td>Avtalet ger rätt att pausa arbetet. Säg det lugnt, en gång.</td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+
+  <div class="kort">
+    <h3>Kostnader &amp; credits</h3>
+    <div class="t-rull t-rull--vid t-stack"><table class="t">
+      <thead><tr><th>Tjänst</th><th>Används till</th><th>Kolla saldot</th></tr></thead>
+      <tbody>
+        <tr><td>Higgsfield</td><td data-etikett="Används till">Bilder och filmer till demos och content</td><td data-etikett="Kolla saldot">MCP <code>balance</code> eller <code>tools/hf-api/</code></td></tr>
+        <tr><td>vidIQ</td><td data-etikett="Används till">Musik och YouTube-analys</td><td data-etikett="Kolla saldot">MCP <code>vidiq_balance</code></td></tr>
+        <tr><td>Vercel</td><td data-etikett="Används till">bahkobyra.se och kundsajterna</td><td data-etikett="Kolla saldot">Dashboarden. Deploytaket delas av alla projekt</td></tr>
+        <tr><td>one.com</td><td data-etikett="Används till">Domänen och mejlen</td><td data-etikett="Kolla saldot">one.com-kontot</td></tr>
+        <tr><td>Notion, Claude</td><td data-etikett="Används till">CRM och arbetet</td><td data-etikett="Kolla saldot">Respektive konto</td></tr>
+      </tbody>
+    </table></div>
+    <p class="notis" style="margin-top:.6rem"><b>Över 100 credits i ett jobb: fråga först.</b> Varje push och
+    merge kostar flera deployer, så allt batchas i en pull request.</p>
   </div>
 </section>
 
@@ -1290,26 +1806,41 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
   /* ================= Router (sop-ringa-mönstret) ================= */
   var BLAD = [
     { g: "Start" },
-    { id: "bryggan",   namn: "Kommandobryggan", pr: "⚑" },
-    { g: "Världen" },
-    { id: "spelvarld", namn: "Spelvärlden",     pr: "♛" },
-    { id: "sasong",    namn: "Säsongen",        pr: "◷" },
-    { g: "Kanaler" },
-    { id: "instagram", namn: "Instagram",       pr: "▣" },
-    { id: "youtube",   namn: "YouTube",         pr: "▷" },
-    { id: "linkedin",  namn: "LinkedIn",        pr: "▤" },
-    { g: "Arsenalen" },
-    { id: "manus",     namn: "Manus",           pr: "✎" },
-    { id: "sop",       namn: "SOP:er",          pr: "✓" },
-    { id: "verkstan",  namn: "Kundverkstan",    pr: "⚒" }
+    { id: "bryggan",    namn: "Kommandobryggan",     pr: "⚑" },
+    { g: "1 · Bahkobyrå" },
+    { id: "tjanster",   namn: "Hemsidor & SEO",      pr: "⌂" },
+    { k: "Content" },
+    { id: "spelvarld",  namn: "Spelvärlden",         pr: "♛" },
+    { id: "sasong",     namn: "Säsongen",            pr: "◷" },
+    { id: "instagram",  namn: "Instagram",           pr: "▣" },
+    { id: "youtube",    namn: "YouTube",             pr: "▷" },
+    { id: "linkedin",   namn: "LinkedIn",            pr: "▤" },
+    { id: "manus",      namn: "Manus",               pr: "✎" },
+    { k: "Intern tillväxt" },
+    { id: "sop",        namn: "SOP:er & idéer",      pr: "✓" },
+    { g: "2 · Kunder" },
+    { id: "kundresan",  namn: "Kundresan",           pr: "⇢" },
+    { id: "onboarding", namn: "Onboarding & avtal",  pr: "✍" },
+    { id: "leverans",   namn: "Leverans & support",  pr: "⚒" },
+    { id: "rapporter",  namn: "Rapporter",           pr: "▥" },
+    { id: "retention",  namn: "Retention & uppsälj", pr: "↻" },
+    { g: "3 · Beast of Ages" },
+    { id: "boa",        namn: "Beast of Ages",       pr: "◆" },
+    { g: "4 · Ekonomi & admin" },
+    { id: "ekonomi",    namn: "Ekonomi & admin",     pr: "¤" }
   ];
+  /* Gamla adresser ska fortfarande landa ratt: Kundverkstan delades
+     2026-10-14 mellan Hemsidor & SEO (gren 1) och Kundresan (gren 2). */
+  var ALIAS = { verkstan: "tjanster" };
   var nav = document.getElementById("nav");
   nav.innerHTML = BLAD.map(function (b) {
     if (b.g) return '<div class="nav-grupp">' + b.g + "</div>";
+    if (b.k) return '<div class="nav-kvist">' + b.k + "</div>";
     return '<a href="#' + b.id + '" data-till="' + b.id + '"><span class="pr" aria-hidden="true">' + b.pr + "</span>" + b.namn + "</a>";
   }).join("");
 
   function visa(id) {
+    if (ALIAS[id]) id = ALIAS[id];
     if (!document.getElementById("b-" + id)) id = "bryggan";
     Array.prototype.forEach.call(document.querySelectorAll(".blad"), function (s) {
       s.classList.toggle("on", s.id === "b-" + id);
@@ -1317,6 +1848,19 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     Array.prototype.forEach.call(nav.querySelectorAll("a"), function (a) {
       a.classList.toggle("on", a.getAttribute("data-till") === id);
     });
+    /* Med fyra grenar ar mobilremsan langre an skarmen: den aktiva fliken
+       ska alltid synas, annars vet man inte var man ar. */
+    var aktiv = nav.querySelector("a.on");
+    if (aktiv && nav.scrollWidth > nav.clientWidth) nav.scrollLeft = aktiv.offsetLeft - (nav.clientWidth - aktiv.offsetWidth) / 2;
+    /* Samma sak pa datorn: ar sidomenyn hogre an fonstret (lag skarm) ska den
+       som landar pa #ekonomi via en lank se den aktiva raden. Bara om raden
+       ligger utanfor bild, annars hoppar menyn vid varje klick. */
+    if (aktiv && nav.scrollHeight > nav.clientHeight) {
+      var topp = aktiv.offsetTop, botten = topp + aktiv.offsetHeight;
+      if (topp < nav.scrollTop || botten > nav.scrollTop + nav.clientHeight) {
+        nav.scrollTop = Math.max(0, topp - (nav.clientHeight - aktiv.offsetHeight) / 2);
+      }
+    }
     document.title = "Bahko OS · " + (BLAD.filter(function (b) { return b.id === id; })[0] || { namn: "" }).namn;
     /* Dolda textareas har scrollHeight 0, sa hojden maste satas om nar bladet
        blir synligt. Samma sak med CRM-siffran: den ska vara farsk vid varje byte. */
@@ -1406,10 +1950,97 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
       return ny;
     }
   }
+  /* bb_os_kund_v1 = kundresan per kund + manadsavslutet (gren 2 och 4).
+     Egen nyckel: kunddata far aldrig riskera spelvarlden eller KPI-loggen. */
+  var K_KUND = "bb_os_kund_v1";
+  /* Standardkunderna ar redan live, sa steg 1 (onboarding) och steg 2 (bygge)
+     ar gjorda. Utan forbockning sa Bryggan "4 med onboarding eller bygge kvar"
+     fran dag ett. "tidigare" = gjort innan Kundresan fanns. Galler bara en
+     webblasare dar nyckeln saknas. RESA_LIVE_ID speglar RESA[0] + RESA[1]
+     langre ner (RESA ar inte definierad an har). */
+  var RESA_LIVE_ID = ["avtal-skickat", "avtal-signerat", "faktura1", "faktura1-betald", "uppstart",
+    "domanhost", "gbp", "material", "upplagd", "byggd", "formular", "qa", "godkand", "live", "faktura2"];
+  function liveChecks() {
+    var c = {};
+    RESA_LIVE_ID.forEach(function (id) { c[id] = "tidigare"; });
+    return c;
+  }
+  function defaultKund() {
+    return {
+      version: 1,
+      kunder: [
+        { id: "bromma", namn: "Bromma Trädgårdsservice", checks: liveChecks() },
+        { id: "gdmaleri", namn: "GD Måleri", checks: liveChecks() },
+        { id: "smamaleri", namn: "Småmåleri", checks: liveChecks() },
+        { id: "maykagulo", namn: "maykagulo.se", checks: liveChecks() }
+      ],
+      manad: { period: "", checks: {} },
+      manadHistorik: []
+    };
+  }
+  /* las() godkanner allt som ar ett objekt, aven en array eller en kund som ar
+     null. Da kastade ritaKunder TypeError, starten avbrots och HELA OS:et blev
+     tomt. Har kontrolleras varje del: ar toppnivan eller kundlistan fel laggs
+     en kopia undan och standarddata anvands; enskilda trasiga kunder och
+     bockar rensas bort (originalet sparas undan aven da). */
+  function rensaChecks(c) {
+    var ut = {};
+    if (!c || typeof c !== "object" || Array.isArray(c)) return ut;
+    Object.keys(c).forEach(function (id) { if (c[id]) ut[id] = String(c[id]); });
+    return ut;
+  }
+  function normaliseraKund(d) {
+    var trasig = false;
+    if (!d || typeof d !== "object" || Array.isArray(d) || !Array.isArray(d.kunder)) {
+      return { data: defaultKund(), trasig: true };
+    }
+    var sedda = {};
+    var giltiga = d.kunder.filter(function (k) {
+      var ok = k && typeof k === "object" && !Array.isArray(k);
+      if (!ok) trasig = true;
+      return ok;
+    });
+    /* Fanns det kunder men ingen gick att lasa ar listan trasig, inte tom. */
+    if (d.kunder.length && !giltiga.length) giltiga = defaultKund().kunder;
+    var kunder = giltiga.map(function (k) {
+      var namn = String(k.namn || "").trim() || "Namnlös kund";
+      var id = String(k.id || "").trim() || namn.toLowerCase().replace(/[^a-z0-9åäö]+/g, "-").replace(/^-|-$/g, "") || "kund";
+      /* Dubbla id gor att oppna kort och bockar blandas ihop. */
+      while (sedda[id]) id += "-2";
+      sedda[id] = true;
+      if (!k.checks || typeof k.checks !== "object" || Array.isArray(k.checks)) { if (k.checks != null) trasig = true; }
+      return { id: id, namn: namn, checks: rensaChecks(k.checks) };
+    });
+    var m = d.manad;
+    if (m != null && (typeof m !== "object" || Array.isArray(m))) trasig = true;
+    m = m && typeof m === "object" && !Array.isArray(m) ? m : {};
+    var period = /^\d{4}-\d{2}$/.test(String(m.period || "")) ? String(m.period) : "";
+    var historik = Array.isArray(d.manadHistorik) ? d.manadHistorik.filter(function (h) {
+      return h && typeof h === "object" && /^\d{4}-\d{2}$/.test(String(h.period || ""));
+    }).map(function (h) { return { period: String(h.period), checks: rensaChecks(h.checks) }; }) : [];
+    return {
+      data: { version: 1, kunder: kunder, manad: { period: period, checks: rensaChecks(m.checks) }, manadHistorik: historik },
+      trasig: trasig
+    };
+  }
+  function lasKund(tyst) {
+    var n = normaliseraKund(las(K_KUND, defaultKund));
+    if (n.trasig) {
+      try {
+        var rad = localStorage.getItem(K_KUND);
+        if (rad) localStorage.setItem(K_KUND + "_korrupt_" + Date.now(), rad);
+        localStorage.setItem(K_KUND, JSON.stringify(n.data));
+      } catch (e) {}
+      if (!tyst) alert("Datat i " + K_KUND + " hade fel form. En kopia är undanlagd och det som gick att rädda laddades.");
+    }
+    return n.data;
+  }
   var VARLD = las(K_VARLD, defaultVarld);
   var LOGG = las(K_LOGG, defaultLogg);
+  var KUND = lasKund();
   function sparaVarld() { try { localStorage.setItem(K_VARLD, JSON.stringify(VARLD)); } catch (e) {} }
   function sparaLogg() { try { localStorage.setItem(K_LOGG, JSON.stringify(LOGG)); } catch (e) {} }
+  function sparaKund() { try { localStorage.setItem(K_KUND, JSON.stringify(KUND)); } catch (e) {} }
 
   function idag() {
     var d = new Date(), p = function (n) { return (n < 10 ? "0" : "") + n; };
@@ -2090,6 +2721,229 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
     LOGG.idebank.splice(+b.getAttribute("data-ide-bort"), 1); sparaLogg(); ritaIdeer();
   });
 
+  /* ================= Kundresan (gren 2) =================
+     Samma punkter som SOP:erna i 2-kunder/. Andras en punkt i en SOP ska den
+     andras har ocksa, annars sager checklistan och dokumentet olika saker.
+     Punkternas id ar kontraktet mot sparad data: byt aldrig ett id, lagg
+     till nya i stallet. Nya punkter i steg 1-2 laggs aven in i RESA_LIVE_ID
+     vid lagringen, annars far standardkunderna en obockad rad. */
+  var RESA = [
+    { steg: "1 Onboarding & avtal", blad: "onboarding", punkter: [
+      { id: "avtal-skickat", text: "Avtal och välkomstmejl skickade" },
+      { id: "avtal-signerat", text: "Avtalet påskrivet" },
+      { id: "faktura1", text: "Faktura 1 skickad" },
+      { id: "faktura1-betald", text: "Faktura 1 betald" },
+      { id: "uppstart", text: "Uppstartsmöte hållet" },
+      { id: "domanhost", text: "Tillgång till domänhosten" },
+      { id: "gbp", text: "Tillgång till Google Företagsprofil" },
+      { id: "material", text: "Bilder, videor och tjänstelista inne" },
+      { id: "upplagd", text: "Upplagd: kundmapp, Notion på Kund, rapportdag i atagande.json" }
+    ] },
+    { steg: "2 Bygge", blad: "tjanster", punkter: [
+      { id: "byggd", text: "Sidan byggd på mallen v3" },
+      { id: "formular", text: "Formuläret testat med ett riktigt utskick" },
+      { id: "qa", text: "QA i mobil, surfplatta och dator" },
+      { id: "godkand", text: "Kunden har godkänt" },
+      { id: "live", text: "Live på kundens domän" },
+      /* Texten sager "eller ej aktuellt" sa att punkten alltid kan bockas:
+         annars kom en kund vars hemsida inte delas i tva aldrig ur steg 2. */
+      { id: "faktura2", text: "Del 2 fakturerad, eller ej aktuellt" }
+    ] },
+    { steg: "3 Leverans & support", blad: "leverans", punkter: [
+      { id: "kanaler", text: "Kunden vet hur den når oss (mejl, telefon, rapport)" },
+      { id: "andringslogg", text: "andringar.md skapad i kundmappen" }
+    ] },
+    { steg: "4 Rapporter", blad: "rapporter", punkter: [
+      { id: "rapport-uppsatt", text: "Rapportdag bestämd och inlagd" },
+      { id: "rapport1", text: "Första rapporten skickad med mejltext" }
+    ] },
+    { steg: "5 Retention & uppsälj", blad: "retention", punkter: [
+      { id: "dag30", text: "Samtal dag 30" },
+      { id: "manad3", text: "Genomgång månad 3" },
+      { id: "manad6", text: "Samtal och förslag månad 6" },
+      { id: "manad12", text: "Årsgenomgång månad 12" }
+    ] }
+  ];
+  var RESA_ALLA = [];
+  RESA.forEach(function (s) { s.punkter.forEach(function (p) { RESA_ALLA.push(p); }); });
+
+  function kundNasta(k) {
+    for (var i = 0; i < RESA.length; i++) {
+      for (var j = 0; j < RESA[i].punkter.length; j++) {
+        var p = RESA[i].punkter[j];
+        if (!k.checks[p.id]) return { steg: RESA[i].steg, text: p.text };
+      }
+    }
+    return null;
+  }
+  function kundKlara(k) {
+    return RESA_ALLA.filter(function (p) { return k.checks[p.id]; }).length;
+  }
+
+  /* Vilka kort som ar oppna overlever en omritning: annars slog varje kryss
+     ihop kortet man just arbetade i. */
+  var kundOppna = {};
+  function ritaKunder() {
+    var lista = document.getElementById("kund-lista");
+    document.getElementById("kund-antal").textContent = KUND.kunder.length + (KUND.kunder.length === 1 ? " kund" : " kunder");
+    if (!KUND.kunder.length) {
+      lista.innerHTML = '<p class="notis" style="margin-top:.6rem">Inga kunder än. Lägg till den första nedan.</p>';
+      ritaKundStatus();
+      return;
+    }
+    lista.innerHTML = KUND.kunder.map(function (k, ki) {
+      var klara = kundKlara(k), alla = RESA_ALLA.length, nasta = kundNasta(k);
+      var pct = Math.round(100 * klara / alla);
+      var steg = RESA.map(function (s) {
+        return '<span class="falt-etikett">' + esc(s.steg) + '</span><div class="check">' +
+          s.punkter.map(function (p) {
+            return '<label><input type="checkbox" data-kund="' + ki + '" data-punkt="' + p.id + '"' +
+              (k.checks[p.id] ? " checked" : "") + "><span>" + esc(p.text) + "</span></label>";
+          }).join("") + "</div>";
+      }).join("");
+      return '<details class="ihop" data-kund-id="' + esc(k.id) + '"' + (kundOppna[k.id] ? " open" : "") + '><summary>' +
+        '<span class="kund-sum"><span class="kund-namn">' + esc(k.namn) + '</span>' +
+        '<span class="kund-bar" aria-hidden="true"><i style="width:' + pct + '%"></i></span>' +
+        '<span class="siffra">' + klara + " av " + alla + "</span>" +
+        '<span class="kund-nasta">' + (nasta ? "Nästa: " + esc(nasta.text) + " (" + esc(nasta.steg) + ")" : "Hela resan klar. Nästa: årsgenomgången igen om ett år.") + "</span>" +
+        '</span></summary><div class="ihop-in">' + steg +
+        '<div class="kund-fot"><button class="bort" type="button" data-kund-bort="' + ki + '">ta bort kund</button></div>' +
+        "</div></details>";
+    }).join("");
+    ritaKundStatus();
+  }
+  document.getElementById("kund-lista").addEventListener("toggle", function (e) {
+    var d = e.target;
+    if (d && d.getAttribute && d.getAttribute("data-kund-id")) kundOppna[d.getAttribute("data-kund-id")] = d.open;
+  }, true);
+  document.getElementById("kund-lista").addEventListener("change", function (e) {
+    var c = e.target.closest("[data-punkt]");
+    if (!c) return;
+    var k = KUND.kunder[+c.getAttribute("data-kund")];
+    if (!k) return;
+    var punkt = c.getAttribute("data-punkt"), ki = c.getAttribute("data-kund");
+    if (c.checked) k.checks[punkt] = idag();
+    else delete k.checks[punkt];
+    /* Omritningen byter ut hela listan, sa fokus hamnade pa body och nasta
+       Tab borjade om fran sidans topp. Lagg tillbaka det pa samma ruta. */
+    var hadeFokus = document.activeElement === c;
+    sparaKund(); ritaKunder();
+    if (hadeFokus) {
+      var ny = document.querySelector('#kund-lista [data-kund="' + ki + '"][data-punkt="' + punkt + '"]');
+      if (ny) ny.focus();
+    }
+  });
+  document.getElementById("kund-lista").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-kund-bort]");
+    if (!b) return;
+    var nr = +b.getAttribute("data-kund-bort"), k = KUND.kunder[nr];
+    if (!k) return;
+    /* Med tva kort med samma namn ska fragan saga vilket av dem som tas bort. */
+    var samma = KUND.kunder.filter(function (x) { return x.namn.trim().toLowerCase() === k.namn.trim().toLowerCase(); }).length > 1;
+    var vilket = samma ? " (kort " + (nr + 1) + " av " + KUND.kunder.length + ", " + kundKlara(k) + " av " + RESA_ALLA.length + " bockade)" : "";
+    if (!confirm("Ta bort " + k.namn + vilket + " ur Kundresan? Bockarna försvinner.")) return;
+    KUND.kunder.splice(+b.getAttribute("data-kund-bort"), 1); sparaKund(); ritaKunder();
+  });
+  document.getElementById("kund-lagg").addEventListener("click", function () {
+    var f = document.getElementById("kund-in"), t = f.value.trim();
+    if (!t) { f.focus(); return; }
+    /* Samma namn tva ganger gav identiska kort som inte gick att skilja at. */
+    if (KUND.kunder.some(function (k) { return k.namn.trim().toLowerCase() === t.toLowerCase(); }) &&
+        !confirm(t + " finns redan i Kundresan. Lägga till en till med samma namn?")) { f.focus(); return; }
+    var id = t.toLowerCase().replace(/[^a-z0-9åäö]+/g, "-").replace(/^-|-$/g, "") || "kund";
+    while (KUND.kunder.some(function (k) { return k.id === id; })) id += "-2";
+    KUND.kunder.push({ id: id, namn: t, checks: {} });
+    kundOppna[id] = true;
+    f.value = ""; sparaKund(); ritaKunder();
+  });
+  document.getElementById("kund-in").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") document.getElementById("kund-lagg").click();
+  });
+  /* Tva flikar oppna: utan lyssnare skrev den inaktuella fliken over den
+     andras bockar vid nasta klick. Nu laser fliken om nar den andra sparar. */
+  window.addEventListener("storage", function (e) {
+    if (e.key !== K_KUND) return;
+    KUND = lasKund(true);
+    ritaKunder(); ritaManad();
+  });
+
+  /* ================= Manadsavslut (gren 4) ================= */
+  var MANAD = [
+    { id: "fakturor", text: "Fakturor ut: varje kund med månadsavgift har nästa periods faktura" },
+    { id: "betalt", text: "Betalningar in: allt förfallet betalt, annars påminnelse" },
+    { id: "kvitton", text: "Månadens kvitton sparade för bokföringen" },
+    { id: "saldon", text: "Higgsfield- och vidIQ-saldot kollat" },
+    { id: "kunder", text: "Alla rapporter skickade, nästa kontrollpunkt inlagd i Notion" },
+    { id: "siffran", text: "Antal betalande kunder och månadens intäkt skrivna i Notion" }
+  ];
+  var MANADSNAMN = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"];
+  function periodNu() { return idag().slice(0, 7); }
+  function periodNamn(p) { return MANADSNAMN[+p.slice(5, 7) - 1] + " " + p.slice(0, 4); }
+  function manadKlar(m) { return MANAD.every(function (u) { return m.checks[u.id]; }); }
+  /* Avslutet gors sista vardagen. Bockar man en del den 30:e och fortsatter
+     den 2:a ska oktober inte forsvinna: en ofardig period ligger kvar och
+     visas som "inte klart" tills allt ar bockat. Forst da byts perioden, och
+     den gamla sparas i manadHistorik. */
+  function bytManadOmKlar() {
+    var nu = periodNu(), m = KUND.manad;
+    if (m.period === nu) return;
+    /* En tom period i framtiden (datorns klocka stod fel) kastas utan vidare. */
+    var tomFramtid = m.period > nu && !Object.keys(m.checks).length;
+    if (m.period && !manadKlar(m) && !tomFramtid) return;
+    if (m.period && Object.keys(m.checks).length) {
+      KUND.manadHistorik.push({ period: m.period, checks: m.checks });
+      if (KUND.manadHistorik.length > 24) KUND.manadHistorik = KUND.manadHistorik.slice(-24);
+    }
+    KUND.manad = { period: nu, checks: {} };
+    sparaKund();
+  }
+  function manadGammal() { return KUND.manad.period && KUND.manad.period !== periodNu(); }
+  function ritaManad() {
+    bytManadOmKlar();
+    var tagg = document.getElementById("manad-namn");
+    tagg.textContent = periodNamn(KUND.manad.period) + (manadGammal() ? ", inte klart" : "");
+    tagg.classList.toggle("tagg--varning", !!manadGammal());
+    document.getElementById("manad-check").innerHTML = MANAD.map(function (u) {
+      return '<label><input type="checkbox" data-manad="' + u.id + '"' + (KUND.manad.checks[u.id] ? " checked" : "") +
+        "><span>" + esc(u.text) + "</span></label>";
+    }).join("");
+    ritaKundStatus();
+  }
+  document.getElementById("manad-check").addEventListener("change", function (e) {
+    var c = e.target.closest("[data-manad]");
+    if (!c) return;
+    if (c.checked) KUND.manad.checks[c.getAttribute("data-manad")] = idag();
+    else delete KUND.manad.checks[c.getAttribute("data-manad")];
+    sparaKund();
+    /* Sista bocken i en gammal period: den arkiveras och manadens lista visas. */
+    if (manadGammal() && manadKlar(KUND.manad)) ritaManad();
+    else ritaKundStatus();
+  });
+
+  /* Kommandobryggan far en rad om kunderna och, de sista tre dagarna i
+     manaden, om manadsavslutet. Utan den syns gren 2 och 4 bara om man
+     redan minns att klicka dit. */
+  function ritaKundStatus() {
+    var rad = document.getElementById("kund-status");
+    if (!rad) return;
+    var oppna = KUND.kunder.filter(function (k) {
+      return RESA[0].punkter.concat(RESA[1].punkter).some(function (p) { return !k.checks[p.id]; });
+    });
+    var txt = "<b>" + KUND.kunder.length + (KUND.kunder.length === 1 ? " kund" : " kunder") + "</b> i Kundresan";
+    if (oppna.length) txt += ", " + oppna.length + " med onboarding eller bygge kvar";
+    var d = new Date(), sista = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+    if (manadGammal()) {
+      var gjort = MANAD.filter(function (u) { return KUND.manad.checks[u.id]; }).length;
+      txt += ". <b>Månadsavslutet för " + esc(periodNamn(KUND.manad.period)) + " är inte klart:</b> " + gjort + " av " + MANAD.length;
+    } else if (sista - d.getDate() < 3) {
+      var klara = MANAD.filter(function (u) { return KUND.manad.checks[u.id]; }).length;
+      txt += ". <b>Månadsavslut:</b> " + klara + " av " + MANAD.length + " klart";
+    }
+    /* Lanken till Kundresan ar en ramknapp i HTML:en under raden: som inline-
+       lank i en notis var den 16px hog pa mobil. */
+    rad.innerHTML = txt + ".";
+  }
+
   /* ================= Autosize =================
      En textarea med fast hojd kapar sitt innehall tyst: ingen ellips, ingen
      wrap, ingen scroll-affordans, och sista raden skars mitt i glyfraden.
@@ -2137,7 +2991,16 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
 
   /* ================= Export + utskrift ================= */
   document.getElementById("exportera").addEventListener("click", function () {
-    var blob = new Blob([JSON.stringify({ exporterad: idag(), bb_os_v1: VARLD, bb_os_logg_v1: LOGG }, null, 2)], { type: "application/json" });
+    /* Samma format som CRM:ets backup: varje bb_-nyckel har sitt varde som
+       JSON-STRANG. CRM:ets Aterstall gor setItem(nyckel, varde) rakt av, sa ett
+       objekt hade blivit "[object Object]" och spelvarlden, loggen och
+       Kundresan hade forsvunnit vid aterlasning. */
+    var blob = new Blob([JSON.stringify({
+      exporterad: idag(),
+      bb_os_v1: JSON.stringify(VARLD),
+      bb_os_logg_v1: JSON.stringify(LOGG),
+      bb_os_kund_v1: JSON.stringify(KUND)
+    }, null, 2)], { type: "application/json" });
     var a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = "bahko-os-" + idag() + ".json";
@@ -2155,7 +3018,7 @@ Jag hjälper svenska bygg- och hantverksfirmor att inte förlora jobb på sina h
   /* ================= Start ================= */
   ritaVeckor(); ritaBryggan(); ritaKanalKapitel(); ritaSopDaglig(); ritaCrm(); ritaGrind();
   Object.keys(KANALER).forEach(ritaKpi);
-  ritaIdeer(); ritaHud(); forifyllVecka(); markeraStart(); autosizeAlla(document); franHash();
+  ritaIdeer(); ritaKunder(); ritaManad(); ritaHud(); forifyllVecka(); markeraStart(); autosizeAlla(document); franHash();
 })();
 </script>
 </body>

@@ -36,4 +36,4 @@ princip som ovan, men `kopiera.mjs` gör tre saker till:
 `next.config.mjs` här 301:ar de gamla WordPress-URL:erna. Den gamla WordPress-sajten flyttas
 till **v1.gdmaleri.se** (egen host, krockar inte med reglerna). Redigera alltid sajten i
 `web/app/(demo)/gdmaleri/` — demon på bahkobyra.se/gdmaleri/ och gdmaleri.se följer med.
-Se `content/kundarbete/gdmaleri/hemsida.md` för Vercel-, DNS- och uppföljningslistan.
+Se `2-kunder/kunder/gdmaleri/hemsida.md` för Vercel-, DNS- och uppföljningslistan.
