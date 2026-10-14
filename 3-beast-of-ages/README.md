@@ -39,12 +39,10 @@ Kvar i huvudmappen `C:/Users/mathi/OneDrive/Skrivbord/test`, undantaget från gi
 
 | Fil (`other-projects/beast-of-ages/…`) | Ska till efter merge | Vad |
 |---|---|---|
-| `analys/medlemsstrategi-cowork.md` | `strategi/` (eller OneDrive, se nedan) | Kanalmedlemmarna och förmånerna, aldrig committad |
 | `thumbnails/` (en mapp per video) | `paket/thumbnails/` | Miniatyrerna, stannar utanför git (`paket/.gitignore`) |
 | övriga undantagna kopior | tas bort när huvudmappen står på main | Samma filer finns nu spårade i kvistmapparna |
 
 Efter merge: byt Beast of Ages-raderna i huvudmappens `.git/info/exclude` till de nya
-mapparna, flytta de två sakerna ovan och kör `git status --short -- 3-beast-of-ages/`.
-Repot är publikt: `medlemsstrategi-cowork.md` beskriver betalda medlemsförmåner, så
-fråga Mathias om den hellre ska ligga i `OneDrive/2 Beast of Ages/`.
+mapparna, flytta miniatyrerna och kör `git status --short -- 3-beast-of-ages/`.
+`medlemsstrategi-cowork.md` ligger sedan 2026-10-14 i `strategi/` (Mathias: den får ligga i repot).
 

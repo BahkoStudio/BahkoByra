@@ -40,6 +40,7 @@ Paketet ligger före manuset i flödet, för paketet skrivs före manuset (se ne
 | `strategi/konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
 | `strategi/utliggare-att-modellera.md` | Tio utliggare värda att modellera, plus stopplistan |
 | `strategi/panelens-beslut.md` | Kolla-over-panelens 15 beslut, tre videor att göra först, vad som skjuts upp |
+| `strategi/medlemsstrategi-cowork.md` | Kanalmedlemmarna: faktabankerna som medlemsförmån |
 | `ideer/README.md` | Idébanken och Grinden, i den ordning de används |
 | `ideer/modelleringsguide.md` | ⭐ **Reglerna före varje ny video** + Mathias femton godkända referenser + egna utliggare (del 2b) |
 | `ideer/klarerade-ideer.md` | Fem unikhetskontrollerade idéer redo att välja bland, plus de dödade |
@@ -48,8 +49,11 @@ Paketet ligger före manuset i flödet, för paketet skrivs före manuset (se ne
 | `research/research-mall.md` | Mallen som fylls i innan ett manus skrivs |
 | `manus/README.md` | ⭐ Manusreglerna + **listan över alla manus med status** |
 | `paket/README.md` | Titlar, miniatyr, beskrivning, fäst kommentar, CTA |
+| `paket/paket-2026-09-25.md` | Fem paket från 2026-09-25 som väntade på Mathias ok innan manus |
 | `produktion/README.md` | Röst, bild och klipp, musik, redigering |
 | `publicering/README.md` | Checklistan vid uppladdning, uppföljningen, testa eller dubbla ner |
+| `publicering/studio-playbook.md` | Inställningarna i YouTube Studio och checklistan per video, byggd på kanalens egen statistik |
+| `publicering/studio-plan-v2.md` | Det som är kvar i Studio, sök och att behålla tittarna |
 | `reference/testa-vs-dubbla-ner.md` | Källdokumentet bakom testa/dubbla ner-ramverket, med Vintage Vehicles-fallstudien |
 | `reference/modellering-vs-kopiering.md` | Var gränsen går mellan att låna och att stjäla, med bevisbilder |
 | `reference/thumbnail-reglerna.md` | 50-procentstestet, fråga före relevans, referensinsamling |

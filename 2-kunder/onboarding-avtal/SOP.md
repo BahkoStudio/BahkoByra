@@ -13,7 +13,7 @@ första fakturan betald och allt material inne, så att bygget kan starta dag 2.
 | 4 | Faktura 1 skickas enligt avtalet (hittills: del 1 av hemsidan + första månaden i samma faktura) | Mathias | fakturanummer `BAHKO-` + fyra siffror, löpande |
 | 5 | Uppstartsmöte, 20 minuter | Båda | `mallar/uppstartsmote.md` |
 | 6 | Tillgång till domänhost | Kunden | se materiallistan |
-| 7 | Tillgång till Google Företagsprofil (Bahko Byrå som ansvarig) | Kunden | se materiallistan |
+| 7 | Tillgång till Google Företagsprofil (bahkostudio@gmail.com som ansvarig) | Kunden | se materiallistan |
 | 7b | Profilen verifierad. Saknas verifieringen startar kunden den från sitt eget konto under uppstartsmötet. Det är det enda steget vi inte kan göra åt kunden, och utan det står SEO-arbetet och garantin still | Kunden | `mallar/uppstartsmote.md` punkt 4 |
 | 7c | GA4 och Search Console skapas under Bahkos Google-konto, rapportverktygets tjänstekonto får läsrätt | Claude | se materiallistan |
 | 8 | Bilder, videor och tjänstelistan inne | Kunden | `mallar/materiallista.md` |

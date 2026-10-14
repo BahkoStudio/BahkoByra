@@ -55,7 +55,7 @@ inklusive Företagsprofilen steg för steg, finns i `cowork-optimering.md`.
 6. GA4 → Admin → Property details → kopiera **Property ID** (siffror) till `tools/gd-rapport/konfig.local.json` enligt README.
 
 ### 4. Google Företagsprofil (Ghandi)
-- Ghandi loggar in på business.google.com → Users → lägger till `mathias@bahkobyra.se` som **Manager** (inte ägare).
+- Ghandi loggar in på business.google.com → Users → lägger till `bahkostudio@gmail.com` som **Manager** (inte ägare).
 - Statistiken (Performance: samtal, webbklick, vägbeskrivningar, sökord) går inte att hämta automatiskt utan Googles godkännande. Mathias läser av den en gång i månaden och skriver siffrorna i rapportens textfil.
 
 ### 5. Förfrågningar, så räknas de

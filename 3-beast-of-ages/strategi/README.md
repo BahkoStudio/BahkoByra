@@ -9,6 +9,7 @@ Reglerna står i `../youtube.md` och vinner om något här säger annat.
 | `konkurrenter.md` | 48 konkurrenter, filtrerade på långform. Vilka som är Shorts i förklädnad |
 | `utliggare-att-modellera.md` | Tio utliggare värda att modellera, plus stopplistan |
 | `panelens-beslut.md` | Kolla-over-panelens 15 beslut, tre videor att göra först, vad som skjuts upp |
+| `medlemsstrategi-cowork.md` | Kanalmedlemmarna: faktabankerna som medlemsförmån |
 
 ## vidIQ-rutinen
 

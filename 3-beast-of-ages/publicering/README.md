@@ -52,3 +52,10 @@ exempel står i `../youtube.md` ("Testa eller dubbla ner") och källdokumentet i
 `../reference/testa-vs-dubbla-ner.md`.
 
 Beslutet skrivs in och nästa idé väljs i `../ideer/`.
+
+## Filer i kvisten
+
+| Fil | Vad |
+|---|---|
+| `studio-playbook.md` | Inställningarna i YouTube Studio och checklistan per video, byggd på kanalens egen statistik |
+| `studio-plan-v2.md` | Det som är kvar i Studio, sök och att behålla tittarna |

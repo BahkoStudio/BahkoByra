@@ -47,3 +47,9 @@ Bilderna sparas i `paket/thumbnails/<video>/`. Mappen är **undantagen från git
 (`paket/.gitignore`), för bilderna är stora och repot är publikt. Fram till att grenen är
 mergad ligger de i huvudmappen under `other-projects/beast-of-ages/thumbnails/`, se
 `../README.md`.
+
+## Filer i kvisten
+
+| Fil | Vad |
+|---|---|
+| `paket-2026-09-25.md` | Fem paket från 2026-09-25 som väntade på Mathias ok innan manus |
