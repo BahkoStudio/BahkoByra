@@ -9,7 +9,7 @@ Bocka av allt innan videon blir offentlig.
 
 - [ ] **Titeln** är den valda ur paketet överst i manusfilen (`../manus/`).
 - [ ] **Miniatyren** är granskad (stavning, rätt djur, texten i översta tredjedelen).
-      Filen ligger i `../paket/thumbnails/<video>/`.
+      Filen ligger i OneDrive, `2 Beast of Ages/Paket/Miniatyrer/<video>/`.
 - [ ] **Beskrivningen** är videons egen. Kanalens standardbeskrivning har tidigare följt
       med av sig själv (honungsbin-videon fick en gammal safaritext om lejon, elefanter och
       tigrar). Läs igenom hela fältet.
