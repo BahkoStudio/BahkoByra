@@ -11,7 +11,7 @@ Struktur i varje DM, **max åtta meningar** plus hälsning och avslut:
 ## Regler
 
 - Alltid **"lokala företag"**, inga branschord (Mathias 2026-09-11).
-- **Positionering:** Bahko Byrå sitter i Huskvarna (Jönköping) och har kunder i hela Sverige,
+- **Positionering:** Bahko Byrå sitter i Jönköping/Huskvarna och har kunder i hela Sverige,
   lokalt för dem. "Stockholm" i beviset är KUNDENS ort, aldrig vår. Skriv aldrig att vi sitter
   i Stockholm.
 - **Google och ChatGPT får nämnas i DM** som del av lösningen och beviset (Mathias beslut
