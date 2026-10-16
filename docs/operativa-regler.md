@@ -60,7 +60,7 @@ Cadence: `1-byran/intern-tillvaxt/outreach_cadence.md`. IG: `1-byran/content/ins
   hantera invändningar, commitment, uppföljning samma dag, exit.
 - **Bevis i outreach:** minst två verkliga kunder i varje öppnare (målaren i Jönköping,
   trädgårdsfirman i Stockholm, restaurangen) och Brommas belagda bevis: plats 1 på Google och i
-  ChatGPT, 25+ förfrågningar via hemsidan inom två månader.
+  ChatGPT, 35+ förfrågningar via hemsidan på två månader.
 - **Branschordet:** deras egen bransch, annars "lokala företag". Aldrig "hantverksföretag" till
   städ, flytt eller restaurang.
 - **Front-offer = bevisa "the wizard"**, inte tjäna pengar. Uppsell kommer sen.

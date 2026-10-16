@@ -156,8 +156,8 @@ export default function BastaWebbyran() {
               <p>
                 Du får ett färdigt förslag på din nya hemsida inom 48 timmar, innan du betalar
                 något. För Bromma Trädgårdsservice gav sidan plats 1 i Googles kartresultat för
-                trädgårdsservice i Stockholm den 30 juli 2026, och minst 30 offertförfrågningar från
-                27 juli till 3 oktober.
+                trädgårdsservice i Stockholm den 30 juli 2026, och 35+ offertförfrågningar på
+                två månader.
               </p>
             </div>
             <Link href="/case/" className="btn btn-primar">

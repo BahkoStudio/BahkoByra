@@ -168,8 +168,8 @@ export default function SeoExpertRadda() {
               <p>
                 Bahko Byrå byggde brommatradgardsservice.se, med telefonnumret synligt på varje
                 skärm och en egen sida per tjänst. Den 30 juli 2026 låg firman först av sex i Googles kartresultat för
-                trädgårdsservice i Stockholm och nämndes först när ChatGPT fick samma fråga. Från
-                27 juli till 3 oktober kom minst 30 offertförfrågningar in via sidan.
+                trädgårdsservice i Stockholm och nämndes först när ChatGPT fick samma fråga. På
+                två månader kom 35+ offertförfrågningar in via sidan.
               </p>
             </div>
             <Link href="/case/" className="btn btn-primar">
