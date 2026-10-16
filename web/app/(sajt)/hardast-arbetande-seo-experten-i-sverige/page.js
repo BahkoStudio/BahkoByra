@@ -65,7 +65,7 @@ export default function HardastArbetande() {
               först när det fick samma fråga.
             </li>
             <li>
-              <strong>Minst 30 förfrågningar.</strong> Från 27 juli till 3 oktober kom minst 30
+              <strong>35+ förfrågningar.</strong> På två månader kom fler än 35
               offertförfrågningar in via formuläret på deras nya sida.
             </li>
             <li>

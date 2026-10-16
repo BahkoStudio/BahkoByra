@@ -38,12 +38,12 @@ const LOKALT = [
 
 /* Bevis: bara verifierat. Plats 1 på Google och först i ChatGPT är skärmbilderna i
    rapport 1, 30 juli 2026 (2-kunder/kunder/bromma/bevis/). Förfrågningarna är
-   räknade i kundens formulärinkorg 27 juli till 3 oktober. Ingen procentsats:
+   35+ på två månader (Mathias 2026-10-17). Ingen procentsats:
    det finns ingen mätning av läget före (Mathias 2026-09-23). */
 const RESULTAT = [
   { tal: '1', etikett: 'Plats på Google', text: 'Bromma Trädgårdsservice i Stockholm låg först av sex firmor i Googles Platser-flik för trädgårdsservice i Stockholm den 30 juli 2026.' },
   { tal: '1', etikett: 'Först i ChatGPT', text: 'Samma firma kom först i ChatGPT:s svar på frågan om trädgårdsservice i Stockholm.' },
-  { tal: '30+', etikett: 'Förfrågningar via sidan', text: 'Minst 30 offertförfrågningar kom in via formuläret på sidan mellan 27 juli och 3 oktober. Ett kundcase, inget löfte.' },
+  { tal: '35+', etikett: 'Förfrågningar via sidan', text: '35+ offertförfrågningar kom in via formuläret på sidan på två månader. Ett kundcase, inget löfte.' },
 ];
 
 /* Vad en sida från Bahko Byrå innehåller. Samma moduler som varje demo byggs med. */
@@ -80,7 +80,7 @@ const STEG = [
 const SEGMENT = [
   {
     h: 'Målerifirmor',
-    p: 'Offertflöde i mobilen, ROT förklarat enligt Skatteverket och bilder på riktiga jobb. Smålands Måleri i Jönköping och GD Måleri i Stockholm har sådana sidor i drift, byggda av Bahko Byrå.',
+    p: 'Offertflöde i mobilen, ROT förklarat enligt Skatteverket och bilder på riktiga jobb. Kunderna Smålands Måleri i Jönköping och GD Måleri i Stockholm har sådana sidor i drift, byggda av Bahko Byrå.',
     lank: { href: '/hemsida-for-malerifirma/', text: 'Hemsida för målerifirma' },
   },
   {

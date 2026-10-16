@@ -104,7 +104,8 @@ export default function Start() {
               Vår kund låg etta i Googles platslista, <span className="accent">före en firma med 117 omdömen.</span>
             </h2>
             <p className="lede" style={{ marginTop: '1.1rem' }}>
-              Bromma Trädgårdsservice i Stockholm fick ny hemsida av oss. Så här såg det ut den
+              Vi sitter i Jönköping/Huskvarna och har kunder i hela Sverige, lokalt för dem. Vår kund Bromma
+              Trädgårdsservice i Stockholm fick ny hemsida av oss. Så här såg det ut den
               30 juli, när man sökte på &quot;trädgårdsservice i Stockholm&quot;.
             </p>
             <BevisSiffror />

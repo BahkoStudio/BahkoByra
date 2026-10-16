@@ -168,7 +168,7 @@ Kortformat-djurvideorna från 2025 (`Skrivbord/Short Djur/`) finns inte längre 
 | Göra en video till scroll-sajt | `/video-to-website` |
 | SEO, lokal SEO, GEO, AEO, Google Företagsprofil | `/optimering` |
 | Konkurrensanalys, klientrapport, lead-profil | `/rapport` |
-| Instagram-content | `/instagram-engine` — handtag **@bahkobyra** |
+| Instagram-content | `/instagram-engine` — handtag **@bahkobyra1** |
 | Animera loggan, reels-intro | `/motion-design` |
 | Stress-testa en plan | `/grill-me` · rita diagram `/excalidraw-diagram` |
 | Spara sessionen före `/clear` | `/rensa` |
@@ -309,7 +309,7 @@ Skills som gäller projektet: `/manusloop` för manus, `/youtube-roast` för bes
 **Positionering** — Offerten = hemsidor, på ALLA kanaler. **"Växa på Google"-copy ENDAST på
 `www.bahkobyra.se`** — aldrig i outreach, DM, reels eller dashboard-skript; local SEO är intern
 leverans och uppsell. Undantag 2026-09-11: i IG-DM får "toppar Google" och Bromma-beviset (nummer ett
-på Google och ChatGPT, 25+ förfrågningar via hemsidan inom två månader) nämnas, se `1-byran/content/dm/oppnare.md`.
+på Google och ChatGPT, 35+ förfrågningar via hemsidan på två månader) nämnas, se `1-byran/content/dm/oppnare.md`.
 Nisch: lokala företag, kärnan bygg, tak, måleri, mark, hantverk; städ, flytt, restaurang ingår.
 I outreach: deras egen bransch, annars "lokala företag", aldrig "hantverksföretag" till en städfirma.
 Bevis i varje öppnare: minst två verkliga kunder och Brommas belagda bevis, aldrig "tolv procent" (bevistabell i

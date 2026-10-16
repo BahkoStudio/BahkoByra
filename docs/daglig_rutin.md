@@ -18,7 +18,7 @@ taket: sväller den, ryker den — precis som reels-kravet gjorde v34.
 
 ## Fästad kommentar (görs vid publicering, inte i rutinen)
 
-Varje nytt inlägg får en fäst kommentar från @bahkobyra:
+Varje nytt inlägg får en fäst kommentar från @bahkobyra1:
 "Vill du se hur det här skulle se ut för din firma? DM:a DEMO."
 Säljet bor i kommentarsfältet — 8-av-10-regeln i flödet bryts inte.
 
