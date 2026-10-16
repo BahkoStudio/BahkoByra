@@ -272,8 +272,8 @@ Samtalet följer Mathias säljstruktur (`1-byran/intern-tillvaxt/sales_methodolo
 4. **Kvantifiera och kvalificera (2 min):** summera symptom, brytpunkt, kostnad. "Om ni låg på
    första sidan och hade en modern sida, hur många fler jobb per månad?" "Hur viktigt är det att
    börja få fler förfrågningar just nu, direkt eller vänta?"
-5. **Värderam (3 min):** "Det riktiga problemet är X, kostnaden är Y. Målet inom 90 dagar är
-   12 % fler kundförfrågningar och första sidan på Google. Vi bygger en SEO-driven hemsida på
+5. **Värderam (3 min):** "Det riktiga problemet är X, kostnaden är Y. Målet är fler
+   kundförfrågningar och en bättre plats på Google, ingen utlovad siffra. Vi bygger en SEO-driven hemsida på
    nyckelord, struktur, trovärdighet och design." Ingår: auto-mejl med direkt svar och kopia till
    er, blixtsnabb hemsida, optimerad för första sidan på Google. Leverans: testversion inom 2
    dagar, dag 2 till 4 jämför vi mot konkurrenterna, live inom 7 dagar. Ni äger allt.

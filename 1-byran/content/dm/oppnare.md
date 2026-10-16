@@ -5,12 +5,15 @@ Struktur i varje DM, **max åtta meningar** plus hälsning och avslut:
 1. **Öppnare**, glad och generell (Tjena :) + en komplimang)
 2. **Problem + vad det kostar** (två till tre meningar)
 3. **Lösningen**: hemsida som är blixtsnabb, strukturerad, trovärdig och toppar Google, där kunden får svar direkt och hittar numret utan att leta
-4. **Beviset**: trädgårdsfirman i Stockholm blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader. Målaren i Jönköping och restaurangen får nämnas som fler kunder.
+4. **Beviset**: kunden trädgårdsfirman i Stockholm blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader. Målaren i Jönköping och restaurangen får nämnas som fler kunder.
 5. **CTA**: "Vill du att jag bygger ett förslag åt er? Kostar inget, klart inom 48 timmar."
 
 ## Regler
 
 - Alltid **"lokala företag"**, inga branschord (Mathias 2026-09-11).
+- **Positionering:** Bahko Byrå sitter i Huskvarna (Jönköping) och har kunder i hela Sverige,
+  lokalt för dem. "Stockholm" i beviset är KUNDENS ort, aldrig vår. Skriv aldrig att vi sitter
+  i Stockholm.
 - **Google och ChatGPT får nämnas i DM** som del av lösningen och beviset (Mathias beslut
   2026-09-11, ersätter den gamla regeln att Google bara sägs på sajten och i samtalet).
 - Beviset (Mathias 2026-09-11): **trädgårdsfirman i Stockholm blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader.** Inga andra siffror, inga
@@ -50,7 +53,7 @@ vinner, inte den som gör bäst jobb. Ligger ni på sida två på Google eller h
 en meny går jobbet till någon annan.
 
 Jag bygger hemsidor som toppar Google, laddar blixtsnabbt och gör att kunden ringer med ett tryck.
-En trädgårdsfirma i Stockholm blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader.
+En av mina kunder, en trädgårdsfirma i Stockholm, blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader.
 
 Vill du se hur er skulle se ut? Jag bygger den gratis, klar inom 48 timmar.
 
@@ -86,7 +89,7 @@ kunden googlar er innan de ringer. Hittar de ingenting, eller en sida som känns
 där.
 
 Jag bygger hemsidor som toppar Google och gör rekommendationens jobb en gång till, snabba,
-strukturerade och trovärdiga. En trädgårdsfirma i Stockholm blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader.
+strukturerade och trovärdiga. En av mina kunder, en trädgårdsfirma i Stockholm, blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader.
 
 Vill du se vad kunden hittar om ni hade en sån? Gratis, klar inom 48 timmar.
 
@@ -104,7 +107,7 @@ tre sekunder gör kunden det inte, de ringer nästa firma i listan. Det händer 
 ni ser det.
 
 Jag bygger hemsidor som klarar testet: blixtsnabba, strukturerade, trovärdiga och överst på
-Google. En trädgårdsfirma i Stockholm hamnade som nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader.
+Google. En av mina kunder, en trädgårdsfirma i Stockholm, hamnade som nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader.
 
 Vill du se er version? Kostar inget, klar inom 48 timmar.
 
@@ -139,7 +142,7 @@ i kväll ser dem aldrig, de ser bara den som ligger först på Google och har en
 jobben.
 
 Jag bygger hemsidor där bilderna gör jobbet dygnet runt, blixtsnabba, strukturerade och överst på
-Google. En trädgårdsfirma i Stockholm blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader.
+Google. En av mina kunder, en trädgårdsfirma i Stockholm, blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader.
 
 Ska jag bygga ett förslag åt er? Gratis, klart inom 48 timmar.
 
@@ -157,7 +160,7 @@ efter får firman att framstå som oorganiserad, fast ni antagligen gör ett bä
 fick uppdraget.
 
 Jag bygger hemsidor som laddar blixtsnabbt, känns trovärdiga och toppar Google, där kunden hittar
-allt på tre sekunder och får svar direkt. En trädgårdsfirma i Stockholm blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader.
+allt på tre sekunder och får svar direkt. En av mina kunder, en trädgårdsfirma i Stockholm, blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader.
 
 Vill du se hur er skulle se ut? Kostar inget, klar inom 48 timmar.
 
@@ -193,7 +196,7 @@ vet inte, och det är oftast för att sidan inte ger några. Kunden hittar er in
 hittar inte numret, och går vidare.
 
 Jag bygger hemsidor som faktiskt ger förfrågningar: blixtsnabba, strukturerade, trovärdiga och
-överst på Google. En trädgårdsfirma i Stockholm blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader.
+överst på Google. En av mina kunder, en trädgårdsfirma i Stockholm, blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader.
 
 Vill du att jag bygger ett förslag åt er? Kostar inget, klart inom 48 timmar.
 

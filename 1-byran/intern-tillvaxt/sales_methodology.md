@@ -32,17 +32,20 @@ Allt sälj utgår från fyra kostnader. Använd dem i diagnosen, kvantifieringen
 
 Ett resultat har alltid **tid, innan, efter och hur**.
 
-> Inom **90 dagar** konverterar ni besökare till kundförfrågningar med minst **12 %**, mätt i hur
-> många som skickar in kontaktformuläret.
+> Ni får en hemsida byggd för att fler besökare ska höra av sig, och vi följer upp hur många
+> som skickar in kontaktformuläret.
+
+**Ingen siffra utlovas** (rättat 2026-10-17): bahkobyra.se säger att vi inte lovar siffror,
+så det gör inte säljsamtalet heller. Det tidigare målet i procent inom 90 dagar är struket.
 
 Fullständig mening (så här sägs den i samtalet):
 
-> Vi bygger en hemsida så att ni inom 90 dagar konverterar besökare till kundförfrågningar med
-> minst 12 %, mätt i hur många som skickar in kontaktformuläret. Det gör vi genom att optimera
+> Vi bygger en hemsida som gör det enkelt för besökarna att höra av sig, och vi följer hur många
+> som skickar in kontaktformuläret. Det gör vi genom att optimera
 > synligheten på Google, bygga trovärdighet, göra kontaktvägen enkel och direkt, och följa upp
 > automatiskt.
 
-12 % är ett MÅL i erbjudandet, inte ett resultat. Det får aldrig sägas som bevis (rättat av Mathias 2026-09-23): Brommas belagda bevis är plats 1 på Google och först i ChatGPT (rapport 1, 30 juli 2026) och 25+ förfrågningar via hemsidan inom två månader. Hitta aldrig på andra siffror.
+Lova aldrig ett procenttal eller en siffra. Brommas belagda bevis är plats 1 på Google och först i ChatGPT (rapport 1, 30 juli 2026) och 25+ förfrågningar via hemsidan inom två månader. Hitta aldrig på andra siffror.
 
 ---
 
@@ -52,7 +55,7 @@ En offert är ett **garanterat resultat**, inte en tjänstebeskrivning ("jag byg
 
 | Del | Innehåll |
 |---|---|
-| **Outcome** (garanterat resultat) | 12 % fler kundförfrågningar inom 90 dagar. |
+| **Outcome** (resultatet vi bygger för) | Fler kundförfrågningar via hemsidan. Ingen siffra utlovas. |
 | **Mechanism** (hur) | Vi optimerar er Google-profil och ser till att ni rankar på första sidan. Vi bygger en SEO-driven hemsida på nyckelord, struktur, trovärdighet och design. Det funkar för att vi följer exakt de kriterier Google använder för att ranka företag. Många kör gamla system som dött ut, konkurrenterna har sega och gamla hemsidor, vi använder system som optimerar. |
 | **Boundaries** (ingår, ingår inte, kundens bidrag, när) | Se listan nedan. |
 | **Pris** | Sätts av Mathias, varierar. Sägs bara i säljsamtalet, aldrig i DM, mejl eller kallt samtal. |
@@ -164,7 +167,7 @@ problemet till tid, pengar, risk och rykte (avsnitt 1).
 
 ### 5.6 Värderam
 > "Baserat på vad du sagt är det riktiga problemet X, och kostnaden för det är Y. Det vi vill
-> uppnå inom 90 dagar är 12 % fler kundförfrågningar och första sidan på Google. Hur vi gör det
+> uppnå är fler kundförfrågningar och en bättre plats på Google, utan att vi lovar en siffra. Hur vi gör det
 > är enkelt: vi bygger en SEO-driven hemsida på nyckelord, struktur, trovärdighet och design."
 
 Sen listan **Ingår** och **Leverans** ur avsnitt 3, ord för ord. Sen priset (Mathias siffra).
@@ -200,7 +203,7 @@ Föreslå nästa korrekta steg och lås det med tydligt ägarskap.
 > ingår, leveransen och tidsplanen. Sedan kommer fakturan på det också."
 
 ### 5.11 Uppföljning efter samtalet (samma dag)
-Mejl med: beslut, siffror (problemet X, kostnaden Y, målet 12 % inom 90 dagar), nästa steg,
+Mejl med: beslut, siffror (problemet X, kostnaden Y, målet: fler förfrågningar via hemsidan, ingen utlovad siffra), nästa steg,
 datum, tid och ansvar. Offert och faktura samma dag. Bygget startar när investeringen är
 säkerställd, live inom 7 dagar.
 
@@ -217,7 +220,7 @@ läget ändras." Logga i CRM och gå vidare.
 
 | Kanal | Bahko Byrå |
 |---|---|
-| Reels och karuseller | 2 maskotreels + 2 karuseller + 1 bildkort + 1 ansiktspost per vecka (@bahkobyra) |
+| Reels och karuseller | 2 maskotreels + 2 karuseller + 1 bildkort + 1 ansiktspost per vecka (@bahkobyra1) |
 | Cold email | 20 per dag |
 | Cold call | 10 till 20 per dag |
 | IG-DM | enligt skriven-cadence, se `1-byran/content/dm/system-prompt-dm.md` och `oppnare.md` |
@@ -287,7 +290,7 @@ städfirma. Klinik-nischen avvecklad 2026-07-28.
 | Kund | Bransch, ort | Vad vi säger |
 |---|---|---|
 | Smålands Måleri | måleri, Jönköping | "en målare i Jönköping" |
-| Bromma Trädgårdsservice | trädgård och mark, Stockholm | "en trädgårdsfirma i Stockholm: nummer ett på Google och först hos ChatGPT, och 25+ förfrågningar via hemsidan inom två månader" (Google/ChatGPT: skärmbilder i rapport 1, 30 juli 2026; förfrågningarna räknade i kundens formulärinkorg 27 juli till 22 september, Mathias egna tester borträknade. Tolv procent är INGET bevis, rättat 2026-09-23) |
+| Bromma Trädgårdsservice | trädgård och mark, Stockholm | "en trädgårdsfirma i Stockholm: nummer ett på Google och först hos ChatGPT, och 25+ förfrågningar via hemsidan inom två månader" (Google/ChatGPT: skärmbilder i rapport 1, 30 juli 2026; förfrågningarna räknade i kundens formulärinkorg 27 juli till 22 september, Mathias egna tester borträknade.) |
 | Mayka's Kitchen | restaurang och catering | "en restaurang" |
 
 Inga andra siffror. Inga påhittade kunder. Demos (GRANIT, Vajje, Asmar, Österlunds) kallas demos.

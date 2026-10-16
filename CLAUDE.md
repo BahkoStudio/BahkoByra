@@ -168,7 +168,7 @@ Kortformat-djurvideorna från 2025 (`Skrivbord/Short Djur/`) finns inte längre 
 | Göra en video till scroll-sajt | `/video-to-website` |
 | SEO, lokal SEO, GEO, AEO, Google Företagsprofil | `/optimering` |
 | Konkurrensanalys, klientrapport, lead-profil | `/rapport` |
-| Instagram-content | `/instagram-engine` — handtag **@bahkobyra** |
+| Instagram-content | `/instagram-engine` — handtag **@bahkobyra1** |
 | Animera loggan, reels-intro | `/motion-design` |
 | Stress-testa en plan | `/grill-me` · rita diagram `/excalidraw-diagram` |
 | Spara sessionen före `/clear` | `/rensa` |

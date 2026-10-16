@@ -80,7 +80,7 @@ const STEG = [
 const SEGMENT = [
   {
     h: 'Målerifirmor',
-    p: 'Offertflöde i mobilen, ROT förklarat enligt Skatteverket och bilder på riktiga jobb. Smålands Måleri i Jönköping och GD Måleri i Stockholm har sådana sidor i drift, byggda av Bahko Byrå.',
+    p: 'Offertflöde i mobilen, ROT förklarat enligt Skatteverket och bilder på riktiga jobb. Kunderna Smålands Måleri i Jönköping och GD Måleri i Stockholm har sådana sidor i drift, byggda av Bahko Byrå.',
     lank: { href: '/hemsida-for-malerifirma/', text: 'Hemsida för målerifirma' },
   },
   {

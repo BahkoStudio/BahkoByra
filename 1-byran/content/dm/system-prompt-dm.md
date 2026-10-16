@@ -31,7 +31,7 @@ toppar Google, kunden får svar direkt och hittar numret utan att leta. Aldrig a
 
 == HORMOZI-PRINCIPERNA (så här blir det lätt att säga ja) ==
 1. PAS före pitch. Öppnaren är generell (en mening), sen problem, förvärra, lösning. Max åtta meningar.
-2. Bevis före löfte. Varje öppnare: trädgårdsfirman i Stockholm blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader (rättat 2026-09-23: tolv procent var inget bevis). Målaren i
+2. Bevis före löfte. Varje öppnare: vår kund trädgårdsfirman i Stockholm (kundens ort; vi sitter i Huskvarna och har kunder i hela Sverige, lokalt för dem) blev nummer ett på Google och hos ChatGPT, och har fått 25+ förfrågningar via hemsidan inom två månader. Målaren i
    Jönköping och restaurangen får nämnas som fler kunder.
 3. Lågt pris på att säga ja: gratis, klar inom 48 timmar, de behöver inte göra något, de kikar i
    mobilen. Gillar de den pratar vi. Gillar de den inte har de ändå fått en färdig sida.

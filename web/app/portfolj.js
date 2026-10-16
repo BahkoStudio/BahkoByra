@@ -1,4 +1,5 @@
-/** Portföljen på startsidan: tre kundsajter i drift och två demos.
+/** Portföljen på startsidan: fyra kundsajter i drift och två demos. Ortsangivelsen är
+    KUNDENS ort; byrån sitter i Huskvarna och har kunder i hela Sverige.
     Vajje Bygg togs bort 2026-09-23: en riktig firma som tackat nej ska inte stå som portfölj.
     Korttexterna är en rad var och säger vad sidan GÖR för firman, inte hur
     den ser ut. Inga siffror som inte är verifierade — case-sidan bär den
@@ -21,7 +22,7 @@ export const PORTFOLJ = [
   },
   {
     namn: 'Bromma Trädgårdsservice',
-    kategori: 'Trädgård · Stockholm',
+    kategori: 'Trädgård · kund i Stockholm',
     kort: 'Trädgård',
     adress: 'brommatradgardsservice.se',
     typ: 'kund',
@@ -30,6 +31,17 @@ export const PORTFOLJ = [
     // Rapport 1, 30 juli 2026 (skärmbilder i 2-kunder/kunder/bromma/bevis/): plats 1 i
     // Googles Platser-flik och först i ChatGPT:s svar på 'trädgårdsservice i Stockholm'.
     rad: 'Hemsida med en egen sida för BRF-kunder.',
+  },
+  {
+    namn: 'GD Måleri',
+    kategori: 'Måleri · kund i Stockholm',
+    kort: 'Måleri',
+    adress: 'gdmaleri.se',
+    typ: 'kund',
+    url: 'https://gdmaleri.se/',
+    // Bild: beskuren ur sajtens egen hero-poster (web/public/gdmaleri/media/poster-hero.jpg).
+    bild: '/img/portfolj/gdmaleri.jpg',
+    rad: 'Next.js-sajt med egna sidor för fasad, tak, invändigt, golv och BRF, och ROT på fakturan.',
   },
   {
     namn: "Mayka's Kitchen",

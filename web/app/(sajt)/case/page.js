@@ -27,10 +27,17 @@ const KUNDER = [
   },
   {
     namn: 'Bromma Trädgårdsservice',
-    bransch: 'Trädgårdsskötsel · Stockholm',
+    bransch: 'Trädgårdsskötsel · kund i Stockholm',
     url: 'https://brommatradgardsservice.se/',
     bild: '/img/demo-bromma-tradgard.webp',
-    lang: 'Bromma Trädgårdsservice sköter trädgårdar i västra Stockholm. Bahko Byrå byggde brommatradgardsservice.se med telefonnumret synligt på varje skärm, egna sidor för häckklippning och trädgårdsskötsel för villaägare och bostadsrättsföreningar, och RUT-beskedet utskrivet per tjänst. För trädgård och hantverk är samtalet det som blir en affär, så hela sidan är byggd runt ringknappen. Den 30 juli 2026 låg Bromma Trädgårdsservice på plats 1 av 6 i Googles Platser-flik för trädgårdsservice i Stockholm, före en konkurrent med 117 omdömen, och nämndes först när ChatGPT fick samma fråga. Från 27 juli till 3 oktober kom minst 30 offertförfrågningar in via formuläret på sajten.',
+    lang: 'Bromma Trädgårdsservice är en kund i Stockholm som sköter trädgårdar i västra Stockholm. Bahko Byrå, med kontor i Huskvarna, byggde brommatradgardsservice.se med telefonnumret synligt på varje skärm, egna sidor för häckklippning och trädgårdsskötsel för villaägare och bostadsrättsföreningar, och RUT-beskedet utskrivet per tjänst. För trädgård och hantverk är samtalet det som blir en affär, så hela sidan är byggd runt ringknappen. Den 30 juli 2026 låg Bromma Trädgårdsservice på plats 1 av 6 i Googles Platser-flik för trädgårdsservice i Stockholm, före en konkurrent med 117 omdömen, och nämndes först när ChatGPT fick samma fråga. Från 27 juli till 3 oktober kom minst 30 offertförfrågningar in via formuläret på sajten.',
+  },
+  {
+    namn: 'GD Måleri',
+    bransch: 'Måleri · kund i Stockholm',
+    url: 'https://gdmaleri.se/',
+    bild: '/img/portfolj/gdmaleri.jpg',
+    lang: 'GD Måleri Sthlm AB är en målerifirma i Stockholmsområdet. Bahko Byrå byggde gdmaleri.se i Next.js, live sedan oktober 2026, med egna sidor för fasadmålning, takmålning, invändig målning, tapetsering, golv och bostadsrättsföreningar, och ROT-avdraget dras direkt på fakturan. Bilderna på sajten är firmans egna jobb.',
   },
   {
     namn: "Mayka's Kitchen",
@@ -56,7 +63,8 @@ export default function Case() {
             Riktiga sajter, <span className="accent">riktiga firmor.</span>
           </h1>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
-            Klicka in i sajterna. Det här är inga mockuper, det är sidor i drift.
+            Klicka in i sajterna. Det här är inga mockuper, det är sidor i drift. Vi sitter i
+            Huskvarna och har kunder i hela Sverige, lokalt för dem.
           </p>
         </div>
       </section>
