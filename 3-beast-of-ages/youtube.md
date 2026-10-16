@@ -197,11 +197,9 @@ Loopar som gäller det här projektet: `/manusloop` för manus, `/kolla-over` f�
 
 ## Äldre manus från 2025 — två lösta konflikter
 
-`OneDrive/2 Beast of Ages/Gamla manus 2025/` (tidigare `OneDrive/Skrivbord/youtube/`)
-innehåller kanalens material från hösten 2025 och januari 2026: fem manus med titel- och
-thumbnailpaket (giant dogs, brown hyena, early humans, porcupine vs komodo) plus mallen
-`SCRIPT_TEMPLATE_UPDATED.txt`. De renderade filerna som låg i `OneDrive/Skrivbord/Short Djur/`
-finns inte längre på disken (kontrollerat 2026-10-14).
+Kanalens material från hösten 2025 och januari 2026 (fem manus med titel- och
+thumbnailpaket plus mallen `SCRIPT_TEMPLATE_UPDATED.txt`, och de renderade kortformatsvideorna)
+raderade Mathias medvetet 2026-10-14. Konflikterna nedan står kvar som regler.
 
 Materialet är sju månader äldre än reglerna ovan och motsäger dem på två punkter. **Det
 här dokumentet vinner:**
