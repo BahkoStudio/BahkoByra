@@ -4,7 +4,7 @@ Beast of Ages. Manus och leveranspaket i samma fil, paketet överst.
 
 **Status: klart att spela in.** 2 053 ord, cirka 13–14 minuter. Paketet godkänt av Mathias 2026-10-18. Tre rundor manusloop (taket); runda 1 underkände alla fyra, runda 2 godkände kroken, i runda 3 godkände alla fyra kritiker och deras sista putsfixar gjordes direkt. Fettmyten (som dodo-hatch-manuset redan har) är nu en rad, Nicobar-studien från 2002 en halv mening, och Japan och den indiska målningen blev två egna fakta. Faktabank: `../research/dodo-15-facts.md` (28 kandidatfakta, källa per rad).
 
-**Grinden körd 2026-10-18, grön** (se `../ideer/klarerade-ideer.md`, "Grind 2026-10-18"). **OBS, egen katalog:** `dodo-hatch-from-a-chicken.md` är skrivet men inte publicerat. Faktabanken undviker dess fakta (fettmyten, dodoträdet, Nicobar-DNA 2002, könscellsvägen, kycklingsurrogaten) eller tar dem på en rad. Två dodovideor tätt efter varandra konkurrerar, så Mathias väljer ordning.
+**Grinden körd 2026-10-18, grön** (se `../ideer/klarerade-ideer.md`, "Grind 2026-10-18"). **OBS, egen katalog:** `dodo-hatch-from-a-chicken.md` är skrivet men inte publicerat. Faktabanken undviker dess fakta (fettmyten, dodoträdet, Nicobar-DNA 2002, könscellsvägen, kycklingsurrogaten) eller tar dem på en rad. Två dodovideor tätt efter varandra konkurrerar. Mathias beslut 2026-10-18: den här går ut först, kycklingmanuset senare med luft emellan.
 
 ---
 
