@@ -2,6 +2,8 @@
 
 Beast of Ages. Manus och leveranspaket i samma fil, paketet överst.
 
+**STOPPAD 2026-10-18: Grinden kördes i efterhand och underkände förpackningen** (steg 3, se tabellen "Dödade av kontrollen" i `../ideer/klarerade-ideer.md`). Spela inte in som rankning. Vinkeln med forskarnas test och fjärilen får räddas med en ny förpackning som går genom Grinden.
+
 **Status: klart att spela in.** 2,162 ord, cirka 14 minuter. Tre rundor manusloop (taket). Runda 1 och 2: alla fyra kritiker underkände. Runda 3: alla fyra godkände, och deras sista putsfixar applicerades direkt utan en fjärde runda, enligt takregeln. Formen är en rankad nedräkning (6 till 1) inramad som en essä: Colossals 23-sekundersvideo som kall öppning, forskarnas tio frågor (Seddon, Moehrenschlager och Ewen 2014) och IUCN:s riktlinjer 2016 som metod, sedan vändningen att det bästa resultatet i forskarnas eget test gick till en fjäril. Faktabanken (`bar-worth-bringing-back.md` i sessionens scratchpad, cirka 8 100 ord) plus en kontroll av colossal.com/dodo och /bluebuck den 2026-10-14.
 
 **Metoden (sägs öppet i videon):** 2014 års artikel testade bara ett av Colossals sex djur, pungvargen. Resten är kanalens egen tillämpning av de publicerade reglerna, i två steg. 1) Finns ett specifikt jobb i naturen på pappret, och gör inget levande djur det redan? Djur utan jobb, eller med en levande ersättare, hamnar längst ner. 2) Hur länge har djuret varit borta, och hur nära originalet kan en kopia bli? **Ordning:** 6 dire wolf (två strykningar), 5 dodo (inget jobb namngivet på Colossals sida), 4 mammut (4 000 år, troligen inga celler), 3 moa (600 år), 2 blåbock (cirka 225 år, Colossal namnger en betesnisch), 1 pungvarg (1936).
