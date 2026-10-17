@@ -105,6 +105,16 @@ Mönstret: idéer som KÄNNS färska är ofta redan tagna av just den anledninge
 De fem klarerade överlevde för att efterfrågan bara bevisats i Shorts eller på andra språk,
 medan engelsk långform står tom. **Det är exakt gapet kanalen kan äga.**
 
+## Grind 2026-10-18: nya idéer i kanalens egen mall (rådets beslut A2, 2026-10-17)
+
+Rådet (YouTube-rådet, OneDrive `2 Beast of Ages/YouTube-rådet/2026-10-17-strategi/`) beslöt att de tre nästa videorna görs i mall E, "15 Facts About the De-Extinct [X]", med ett ikoniskt djur. Pungvargen är redan skriven. Två nya idéer klarar Grinden och en dog:
+
+| Idé | Steg 1 (egen) | Steg 2–3 (andra) | Nyhetsankare | Utfall |
+|---|---|---|---|---|
+| 15 Facts About the De-Extinct Dodo That Make No Sense | Ingen dodovideo | Efter Colossals besked 14 okt 2026 finns bara Shorts från mikrokanaler (Drishti IAS 1 min, Smartbites, Si Tech News m.fl.). Ingen engelsk långform om GenoMorph. Äldre stora: Reece Batts *The REAL reason The Dodo Went Extinct* 10,9 M (2022, utdöendet), annan vinkel. Dr. Dead Dino har dodon som ett av fem djur (aug). | 9/10: GenoMorph-AI, cirka 2 300 kandidatgener för näbb och skalle, genomet cirka 95 procent, Nicobarduvans könsceller, kycklingkimärer (Colossal 14 okt 2026; TIME, TechCrunch, Reuters) | **Grön. Brådskande: fönstret är öppet nu, bara Shorts har tagit nyheten.** |
+| 15 Facts About the Last Two Northern White Rhinos That Make No Sense | Ingen video | Efterfrågan bevisad i Shorts (FactualGuy på indonesiska 2,77 M jun 2026, flera engelska Shorts). Engelsk långform senaste åren: SciShow 109 693 (2024), Our World 462 796 (2022). Ingen jämförbar kanal senaste sex månaderna. | 5/10: 39 rena embryon, nytt embryo från Fatu våren 2026 (Ol Pejeta 22 apr 2026); ingen graviditet ännu | **Grön.** Kolla Ol Pejeta och BioRescue live innan paketet låses. |
+| Dire wolves "something is wrong"-vinkeln | Egna dire wolf-videor finns (kanalens motor) | Spoor Files (3 150) *Dire Wolves Were Brought Back From Extinction — But Scientists Say Something Is Wrong* 402 367 (15 jul 2026); Wilder America (32 700) *Scientists Brought Dire Wolves Back… But Something About Them Isn't Right* 159 271 (16 sep 2026) | Svagt: senaste beskedet om flocken är från februari 2026 | **Dödad.** Jämförbara kanaler har lyckats med vinkeln de senaste sex månaderna. |
+
 ## Förslag 2026-09-12: paradox-mallen (Pack Vibes) + Mall E — LÄTT KONTROLL, inte full Grind
 
 Förlaga: Pack Vibes, *Why Cheetahs Are Friendly (But Never Domesticated)* (nXQD3nPaO-k,
