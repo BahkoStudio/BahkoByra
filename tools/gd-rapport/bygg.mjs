@@ -7,6 +7,7 @@
 //   node tools/gd-rapport/bygg.mjs --exempel       använder exempeldata och text/exempel.md
 //   node tools/gd-rapport/bygg.mjs --ingen-pdf     bara HTML, startar inte Edge
 //   node tools/gd-rapport/bygg.mjs --bara-veckan   ingen jämförelse med veckan före (första veckan, eller när veckorna inte är jämförbara)
+//   node tools/gd-rapport/bygg.mjs --forfragningar=2   verkligt antal förfrågningar enligt inkorgen (statistiken ser bara de som sagt ja till cookies)
 //
 // Inga npm-paket. Node 24.
 
@@ -34,6 +35,10 @@ const arg = process.argv.slice(2);
 const exempel = arg.includes('--exempel');
 const ingenPdf = arg.includes('--ingen-pdf');
 const baraVeckan = arg.includes('--bara-veckan');
+// --forfragningar=N: det verkliga antalet enligt inkorgen/kunden, när statistiken ser färre
+// (besökare som tackat nej till cookies räknas inte i GA4). Mathias 2026-10-18.
+const forfArg = arg.find((a) => a.startsWith('--forfragningar='));
+const forfVerklig = forfArg ? Number(forfArg.split('=')[1]) : null;
 const veckaArg = arg.includes('--vecka') ? arg[arg.indexOf('--vecka') + 1] : null;
 
 function fel(text) {
@@ -226,12 +231,15 @@ const forfragningar = (h) => (h.generate_lead || 0) + (h.tel_klick || 0) + (h.bo
 const h = g.handelser;
 const hf = gf.handelser;
 
-const forfragDetalj = [
+const forfragDetaljStat = [
   `${tal(h.generate_lead)} formulär`,
   `${tal(h.tel_klick)} telefonklick`,
   `${tal(h.bokning_klick)} bokningsklick`,
   `${tal(h.mejl_klick)} mejlklick`,
 ].join(' · ') + `<br>${tal(h.offert_klick)} klick på Begär offert`;
+const forfragDetalj = forfVerklig != null
+  ? `enligt inkorgen, ${tal(Math.min(h.generate_lead || 0, forfVerklig))} av dem syns i besöksstatistiken<br>${tal(h.offert_klick)} klick på Begär offert`
+  : forfragDetaljStat;
 
 // Sidor: slå ihop denna vecka och veckan före per normaliserad sökväg.
 const sidMap = new Map();
@@ -306,7 +314,7 @@ const varden = {
   besok_andring: andring(g.sessioner, gf.sessioner),
   besok_detalj: `${tal(g.anvandare)} personer, ${tal(g.nya)} nya<br>${tal(g.sidvisningar)} sidvisningar${baraVeckan ? '' : ` (${tal(gf.sidvisningar)} veckan före)`}`,
 
-  forfragningar: tal(forfragningar(h)),
+  forfragningar: tal(forfVerklig != null ? forfVerklig : forfragningar(h)),
   forfragningar_andring: andring(forfragningar(h), forfragningar(hf), { somTal: true }),
   forfragningar_detalj: forfragDetalj,
 
