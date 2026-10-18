@@ -1,5 +1,23 @@
 # Fem klarerade idéer — unika, obeprövade, med bevisad efterfrågan
 
+## Omstart 2026-10-18: Remixloopen
+
+Idéstrukturen byggdes om (`README.md`). Från och med nu börjar varje idé i en **utliggare**
+(en bevisad video hos en jämförbar kanal) och byggs om med vinkel A, B eller C. Kön nedan
+från september (de "fem klarerade", prioriterade kön 2026-09-12, topp 10 från 2026-09-25)
+är **parkerad**: de överlevde den gamla kontrollen just för att ingen bevisat dem, och de
+som byggdes floppade. En idé därifrån får bara återupptas om den kan knytas till en
+utliggare enligt steg 1. Tabellen "Dödade av kontrollen" gäller fortfarande för
+kopieringsfall och egna dubbletter; de som dog på gamla steg 3 (en ensam jämförbar kanal)
+får prövas igen som remix.
+
+### Remixloopen: logg
+
+| Datum | Utliggare (kanal, visningar, median) | Vinkel | Vår titel | Grind | Status |
+|---|---|---|---|---|---|
+| | *(första posten fylls i när Mathias lämnar den fungerande videon)* | | | | |
+
+
 *Genererade och unikhetskontrollerade 2026-08-24 med `vidiq_youtube_search`, sorterat på
 visningar. Klarerad = ingen synlig eller färsk video med samma idé i engelsk långform.
 Publiken: män, 82 % över 35, största gruppen 65+.*

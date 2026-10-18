@@ -144,14 +144,21 @@ leta utliggare att modellera (ju nyare desto bättre), gå sedan upp till **150 
 De två högsta talen i senaste körningen (243 och 232) var en filmtrailer och en riktig
 naturfilmsdokumentär. Kolla alltid format och genre innan en titel plockas.
 
-## Unikhetsregeln — före varje ny video
+## Remixregeln — före varje ny video (ersatte Unikhetsregeln 2026-10-18)
 
-**Algoritmen pushar inte liknande idéer: varje idé måste vara unik.** Innan en loop
-startar söks idéns exakta fråga med `vidiq_youtube_search` sorterad på visningar. En
-färsk eller synlig video med samma idé dödar idén — formatet får lånas, idén måste vara
-ny. Pig Milk-manuset byggdes färdigt innan kontrollen gjordes och fick kasseras: Knapp
-hade publicerat exakt samma fråga tolv dagar tidigare. Kontrollen är billig (5 krediter),
-misstaget kostade en hel loop.
+**Varje idé börjar i en bevisad video och byggs om, aldrig i ett tomt ark.** Hela
+rutinen står i `ideer/README.md` (Remixloopen): hitta utliggaren, remixa med vinkel A, B
+eller C, förpacka först, sedan Grinden. Det som fortfarande dödar en idé är kopiering
+(samma titel eller samma miniatyr som förlagan, `reference/modellering-vs-kopiering.md`),
+en egen video om samma sak, och en **full våg**: tre eller fler kanaler i vår storleksklass
+på samma remix inom sex månader. En ensam jämförbar kanal som lyckats är inte längre ett
+stopp. Den är beviset.
+
+*Varför regeln byttes:* den gamla Unikhetsregeln ("varje idé måste vara unik") lät bara
+obevisade idéer överleva. De floppade (hjorten 260, saigan 330, hästköttet 460,
+vardagsfrågorna 64–495) medan beviset slängdes. Pig Milk-läxan står kvar som
+kopieringsfall: Knapp hade publicerat exakt samma fråga tolv dagar tidigare, och vår
+version var ingen remix. Kontrollen är fortfarande billig (5 krediter per sökning).
 
 ## Testa eller dubbla ner — beslutet som styr vilken video som görs
 

@@ -17,8 +17,15 @@ på Mathias ok innan något manus skrivits kan ligga som egen fil här i `paket/
 | **Fäst kommentar** | Högst två meningar |
 | **CTA** | Pekar **alltid** på kanalens senaste video, så kanalen ses som en serie. Hämta vilken den är med `vidiq_channel_videos({ videoFormat: 'long', popular: false })`, gissa aldrig. Kopplingen ska vara ett ämne, inte en artighetsfras |
 
-Förpackningen ska vara vår egen: titel och miniatyr hålls mot referensen i Grindens steg 4
+Förpackningen ska vara vår egen: titel och miniatyr hålls mot utliggarens i Grindens steg 4
 (`../ideer/README.md`). Fulla miniatyrreglerna: `../reference/thumbnail-reglerna.md`.
+
+**Sedan 2026-10-18 skrivs paketet före Grinden**, så att Grinden dömer förpackningen.
+Paketet anger vilket av fyra miniatyrramverk som används (konflikt, ett dominant motiv,
+nyfikenhetsgap, attraktion) och bockar av de två testerna innan bilden går live: zooma
+till 10 procent (syns vinnaren?) och thumbnailpreview.com mot den riktiga startsidan.
+Ladda upp tre miniatyrer när det går, YouTube testar dem mot tittartid. Allt står i
+`../ideer/README.md`, steg 3.
 
 ## Miniatyrerna görs så här
 

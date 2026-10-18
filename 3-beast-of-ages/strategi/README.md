@@ -55,8 +55,17 @@ beslutet står i `../youtube.md` ("Testa eller dubbla ner") och i
 4. **Kolla format och genre innan en titel plockas.** Breakout-talet mäter avvikelse från
    kanalens eget snitt, inte om videon går att kopiera. De två högsta talen i en tidigare
    körning var en filmtrailer och en riktig naturfilmsdokumentär.
-5. Skriv in fynden i `utliggare-att-modellera.md`. Idéer som ska prövas går vidare till
-   `../ideer/`.
+5. **Kolla farten.** `vidiq_video_stats` på kandidaten: drar den visningar per timme
+   fortfarande? En utliggare som slutat dra är ett bevis som gått ut.
+6. Skriv in fynden i `utliggare-att-modellera.md`. Idéer som ska prövas går vidare till
+   `../ideer/` och Remixloopen.
+
+**Konkurrentarket.** Sedan 2026-10-17 finns de 19 konkurrenter som matchar mallen "The
+Ideal Competitor" (faceless, 300 000+ visningar i månaden, startade för under två år sedan,
+under 150 000 prenumeranter, minst 3 långformsvideor i månaden) i Google Sheets:
+*Beast of Ages – konkurrenter 2026-10-17*, med rådets bedömning per rad (Reservmodell,
+Bevaka, Ignorera). Kraven är indata på fliken Metod och räknas om. Underlaget ligger i
+OneDrive, `2 Beast of Ages/YouTube-rådet/2026-10-17-strategi/`.
 
 ## Känd konflikt att ha koll på
 

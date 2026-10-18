@@ -38,10 +38,12 @@ Den här säger vad vi gör med det.
    är billigast att kolla och lättast att missa, eftersom unikhetsregeln bara letar utåt.
    Kör `vidiq_channel_videos` på egna kanalen som steg ett, alltid.
 
-10. **Kolla om en jämförbar kanal gjort det nyligen.** En stor kanal som täckt ämnet är en
-    varning. En **jämförbar** kanal som nyss lyckats är ett stopp. Chronic wasting
-    disease dödades av Pack Vibes: 18 500 prenumeranter, 738 822 visningar, tre månader
-    gammal, nästan exakt konceptet.
+10. **Kolla hur många jämförbara kanaler som gjort det nyligen.** *Omskriven 2026-10-18
+    (Remixloopen, `README.md`).* En jämförbar kanal som nyss lyckats är inte längre ett
+    stopp: det är **utliggaren vi utgår från**. Stoppet är när vågen är full, tre eller
+    fler kanaler i vår storleksklass på samma remix inom sex månader (mammutbenhusen
+    dog så 2026-10-18). Chronic wasting disease hade i dag fått vinkel A eller B mot
+    Pack Vibes (738 822), inte dödats. Gamla formuleringen står i git-historiken.
 
 11. **Sök på ämnet, aldrig på vår egen kategorietikett.** Sökorden "de-extinction" och
     "wild animal biology" gav spelgenomspelningar och barn-djurljud. "extinct animal" och
@@ -436,18 +438,20 @@ och "wild animal biology" gav spelgenomspelningar och barn-djurljud. "extinct an
 **Dödar inte:** efterfrågan bevisad i Shorts eller på andra språk medan engelsk långform
 står tom — *det är exakt gapet kanalen kan äga.*
 
-### Steg 3 — Har en JÄMFÖRBAR kanal nyss lyckats?
+### Steg 3 — Är vågen full? (omskrivet 2026-10-18)
 
-Filtrera träffarna från steg 2 på kanalstorlek och datum.
+Filtrera träffarna från steg 2 på kanalstorlek och datum, och **räkna** dem.
 
 | Vad du hittar | Vad det betyder |
 |---|---|
 | Stor kanal (100k+) har täckt ämnet | Varning. Vinkeln måste vara tydligt annorlunda |
 | Kanal i vår storleksklass, äldre än sex månader | Gå vidare, men läs vad de gjorde |
-| **Kanal i vår storleksklass, lyckad, senaste sex månaderna** | **Stopp. Idén är död.** |
+| **En eller två** kanaler i vår storleksklass, lyckade, senaste sex månaderna | **Grönt.** Det är utliggaren och beviset på efterfrågan. Remixa med vinkel A, B eller C (`README.md`, steg 2) |
+| **Tre eller fler** kanaler i vår storleksklass på samma remix, senaste sex månaderna | **Stopp. Vågen är full.** Vi blir nummer fyra i flödet |
 
-Chronic wasting disease dog här: Pack Vibes, 18 500 prenumeranter, 738 822 visningar,
-tre månader gammal, nästan exakt konceptet.
+Mammutbenhusen dog så 2026-10-18: en hel våg av kanaler i vår storlek hade gjort
+istidsvintern och benhusen sedan maj. Chronic wasting disease (Pack Vibes 738 822, en
+kanal) hade med dagens regel fått en remix i stället för att dödas.
 
 Wilder America (19 500 prenumeranter, fyra månader gammal, cirka 40 videor i månaden)
 ockuperar sedan augusti 2026 thylacin, hybrider, "utdöd art återfunnen",

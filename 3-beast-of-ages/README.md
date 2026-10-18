@@ -21,7 +21,7 @@ En mapp per steg i arbetet. Varje mapp har en `README.md` som säger hur steget 
 | Skills & verktyg | `skills.md` | Vilka skills och verktyg gren 3 använder, och när |
 | Konvertering & tratt | `konvertering.md` | Väntar på beslut, läs varningen där innan något byggs |
 
-Flödet för en video: `strategi/` → `ideer/` (Grinden) → `research/` → `paket/` → `manus/` →
+Flödet för en video: `strategi/` → `ideer/` (Remixloopen, sedan Grinden) → `research/` → `paket/` → `manus/` →
 `produktion/` → `publicering/` → tillbaka till `strategi/`.
 
 Material som inte hör hemma i git ligger i OneDrive under `2 Beast of Ages/`: miniatyrerna
