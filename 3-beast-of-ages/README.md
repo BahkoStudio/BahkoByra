@@ -25,7 +25,7 @@ Flödet för en video: `strategi/` → `ideer/` (Grinden) → `research/` → `p
 `produktion/` → `publicering/` → tillbaka till `strategi/`.
 
 Material som inte hör hemma i git ligger i OneDrive under `2 Beast of Ages/`: `Research/`
-(källmaterial), `Musik och ljud/` och `Gamla manus 2025/`.
+(källmaterial) och `Musik och ljud/`.
 
 ## Lokala filer (inte i git)
 

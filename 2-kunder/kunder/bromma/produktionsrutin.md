@@ -68,7 +68,7 @@ mallen lägger texten), alltid mörkt negativt utrymme upptill (rubriken bor dä
    vägen, musik och ljudeffekter, brandad slutbild). Räkna ~150 credits per reel.
    **Reelen ska ha ljud i filen** — en tyst reel tappar halva effekten i flödet.
 3. **Onsdagsbilden**: rendera från tipsgrafik-mallen (bakgrund finns för v32–35, ny vid behov)
-4. **Lördagsbilden**: omdömeskort (nio omdömen kvar att göra kort av) eller team/maskin-foto
+4. **Lördagsbilden**: omdömeskort (fyra omdömen kvar, men texterna saknas hos oss och måste kopieras ur Google-profilen först) eller team/maskin-foto
 5. Färdigt material → Drive `02 Färdiga inlägg` / `03 Reels` → Jens godkänner (2 min) → publicera
 6. Det bästa återpubliceras i Google Företagsprofilen (Jens/GBP-inloggning)
 
