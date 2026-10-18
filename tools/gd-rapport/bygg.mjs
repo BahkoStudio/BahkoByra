@@ -166,6 +166,18 @@ const SIDNAMN = {
   '/golv': 'Golv',
   '/brf': 'BRF',
   '/integritet': 'Integritet',
+  '/tapetsering': 'Tapetsering',
+  '/snickerier-fonster-malning': 'Fönster och snickerier',
+  '/fasadtvatt': 'Fasadtvätt',
+  '/taktvatt': 'Taktvätt',
+  '/basta-malare-stockholm': 'Guiden: bästa målaren',
+  '/fasadmalning-bromma': 'Bromma',
+  '/fasadmalning-taby': 'Täby',
+  '/malare-sodertalje': 'Södertälje',
+  '/fasadmalning-lidingo': 'Lidingö',
+  '/fasadmalning-sollentuna': 'Sollentuna',
+  '/fasadmalning-huddinge': 'Huddinge',
+  '/fasadmalning-danderyd': 'Danderyd',
 };
 function normSida(s) {
   let p = String(s || '/').split('?')[0].split('#')[0];
