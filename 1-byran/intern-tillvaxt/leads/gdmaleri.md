@@ -387,3 +387,7 @@ Mathias 2026-10-14: "bygg dom andra platserna också". Search Console vecka 41 v
 - Reco-placeringen i Södertälje kan ändras; frågan anger datumet.
 - Täby-inlägget har kampanjtexten (10 % / 30 %); byt när kampanjen är slut.
 - QA-mallens två hero-kontroller ("h1 = firmanamnet" och "heron bär firmanamnet i Bebas Neue") faller på alla sju, som på guidesidan: H1 är orten i text, inte logotypen, med flit.
+
+## Daglig IG-koll: nya inlägg på sajten
+
+- **2026-10-18:** DeoISssEUS9 (2026-10-18, platstagg Stockholm), ordagrant "Från flagande tak och sättningar till fräscha och fina tak..Det blir alltid snyggt och fräsch med armeringsduk och special spackel". Lagt i `jobb.utvalda` på `invandig-malning/` (gdmaleri.se/malning-invandigt/): `invandig-tak-fore-efter.webp` (sammansatt, före överst/efter nederst) och `invandig-tak-efter.webp`; inlägget först bland de inbäddade IG-inläggen där. Sedda inlägg hittills: DeoISssEUS9, DeWGoKZAvjA (sajtlansering, inget jobb), DeNI1zEkcpW, Dd-zVd3ggOI, Dc1IM7Pgpeh, DcmMHrIEbrF, DclWWvti1dw (video utan text, används inte).

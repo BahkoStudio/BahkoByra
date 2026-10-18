@@ -28,6 +28,13 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    (publicerat 2026-10-07, Södertälje), ordagrant: "180 kvm Tak/Vägg målning samt
    microlituppsättning och snobbkant". Bild 1 har inbränd text och används inte.
    Beskurna 4:3, först i övre bandet.
+   NYA BILDER (2026-10-18, daglig IG-koll): inlägget DeoISssEUS9 (publicerat 2026-10-18,
+   platstagg Stockholm), ordagrant: "Från flagande tak och sättningar till fräscha och
+   fina tak..Det blir alltid snyggt och fräsch med armeringsduk och special spackel".
+   Fyra bilder med inbränd text Före/Före/Efter/Efter. invandig-tak-fore-efter.webp är
+   SAMMANSATT: övre halvan bild 1 (före, sprucket innertak), nedre halvan bild 4 (efter);
+   bildtexten säger att det är två foton. invandig-tak-efter.webp = bild 3 (efter).
+   Ingen yta eller ort utöver platstaggen, så ingen står på sidan. Lagt i jobb.utvalda.
    FLAGGOR: alla bilder är GD:s egna foton (samma som huvudsidan). Omdömena här
    är fasta (inte levande), så att de handlar om invändig målning.
    GOOGLE (2026-10-09, se ../_gd.js GOOGLE_OMDOMEN): betygsbrickan 4,8 av 5 (18)
@@ -82,6 +89,11 @@ const data = {
     lead: 'Hallar, vardagsrum, tak och trappor. Alla bilder är från våra egna projekt.',
     not: 'Fler jobb, med ort och yta, finns på vårt Instagram.',
     tid: '70s',
+    // Utvalda (mallfältet jobb.utvalda): senaste innertaksjobbet, se NYA BILDER 2026-10-18 ovan.
+    utvalda: [
+      { src: `${M}/invandig-tak-fore-efter.webp`, w: 900, h: 1200, etikett: 'Före och efter', txt: 'Flagnande innertak med sprickor, lagat med armeringsduk och specialspackel. Två foton: före överst, efter nederst.', alt: 'Sammansatt före/efter-bild av ett innertak: övre halvan visar ett flagnande, sprucket tak runt en rund taklampa, nedre halvan ett slätt, nymålat vitt tak med taklampa ovanför ett fönster', lank: { href: 'https://www.instagram.com/p/DeoISssEUS9/', txt: 'Se jobbet på Instagram' } },
+      { src: `${M}/invandig-tak-efter.webp`, w: 900, h: 1200, etikett: 'Efter', txt: 'Slätt och nymålat tak, klart i oktober 2026.', alt: 'Ljust rum med slätt, nymålat vitt innertak, taklampa, bokhylla och trägolv efter jobbet', lank: { href: 'https://www.instagram.com/p/DeoISssEUS9/', txt: 'Se jobbet på Instagram' } },
+    ],
     rad1: [
       { src: `${M}/invandig-sodertalje-1.webp`, alt: 'Nymålat rum med ljusa väggar, vit taklist och skrivbord vid fönstret i Södertälje', txt: 'Södertälje: tak och väggar, 180 kvm' },
       { src: `${M}/invandig-sodertalje-2.webp`, alt: 'Nymålat vitt tak med taklampa och bred taklist mot ljusgrå väggar, en öppen dörr med glasrutor, i Södertälje', txt: 'Södertälje: nymålat tak' },
@@ -123,7 +135,7 @@ const data = {
     lank: RECO,
   },
 
-  instagram: { ...instagramBas, koder: ['DeNI1zEkcpW', 'DcmMHrIEbrF', 'Dd-zVd3ggOI'] },
+  instagram: { ...instagramBas, koder: ['DeoISssEUS9', 'DeNI1zEkcpW', 'Dd-zVd3ggOI'] },
 
   fragor: {
     eyebrow: 'Vanliga frågor om invändig målning',
