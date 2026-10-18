@@ -11,7 +11,7 @@ En mapp per steg i arbetet. Varje mapp har en `README.md` som säger hur steget 
 | Kvist | Mapp | Innehåll |
 |---|---|---|
 | Strategi & vidIQ-data | `strategi/` | `kanalen.md`, `konkurrenter.md`, `utliggare-att-modellera.md`, `panelens-beslut.md`. README: vidIQ-rutinen, mät på median, utliggarribban, hur nya utliggare hittas |
-| Idébank & Grinden | `ideer/` | `modelleringsguide.md` (⭐ reglerna och Grinden), `klarerade-ideer.md`, `dubbla-ner-ideer.md`. README: idébanken och Grindens fem steg, körs alltid först |
+| Idébank & Grinden | `ideer/` | `modelleringsguide.md` (⭐ reglerna och Grinden), `klarerade-ideer.md`, `dubbla-ner-ideer.md`. README: Remixloopen (sedan 2026-10-18): utliggare → vinkel A/B/C → förpackning → Grinden |
 | Research | `research/` | En faktabank per video innan manuset skrivs. README: källreglerna och tidskritiska fakta. `research-mall.md` = mallen |
 | Manus | `manus/` | En fil per video, paketet överst. README: manusreglerna och listan över alla manus med status |
 | Paketet | `paket/` | README: titlar, miniatyr, beskrivning, fäst kommentar, CTA, miniatyrerna med `hf.mjs`. Miniatyrerna ligger i OneDrive `2 Beast of Ages/Paket/Miniatyrer/` (inte i git) |
