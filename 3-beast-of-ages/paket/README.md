@@ -43,10 +43,10 @@ Två godkända stilar:
 
 ## Lokala miniatyrer
 
-Bilderna sparas i `paket/thumbnails/<video>/`. Mappen är **undantagen från git**
-(`paket/.gitignore`), för bilderna är stora och repot är publikt. Fram till att grenen är
-mergad ligger de i huvudmappen under `other-projects/beast-of-ages/thumbnails/`, se
-`../README.md`.
+Bilderna sparas sedan 2026-10-15 i OneDrive, i
+`C:/Users/mathi/OneDrive/2 Beast of Ages/Paket/Miniatyrer/<video>/` (Mathias: allt han
+laddar upp ska ligga i `2 Beast of Ages`). De är inte med i git, för bilderna är stora och
+repot är publikt. `paket/thumbnails/` står kvar i `paket/.gitignore` men används inte längre.
 
 ## Filer i kvisten
 

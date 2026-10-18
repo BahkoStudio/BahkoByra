@@ -67,7 +67,7 @@ Skrivbord/test/                     github.com/BahkoStudio/BahkoByra
 │   │   └── modelleringsguide.md  ⭐ reglerna + GRINDEN före varje ny video
 │   ├── research/ ............. en faktabank per video innan manus (research-mall.md)
 │   ├── manus/ ................ en fil per video: paketet överst, manuset under · README = listan
-│   ├── paket/ ................ titel, miniatyr, beskrivning, CTA · thumbnails/ utanför git
+│   ├── paket/ ................ titel, miniatyr, beskrivning, CTA · miniatyrerna i OneDrive 2 Beast of Ages/Paket/Miniatyrer
 │   ├── produktion/ ........... röst, bild, musik, klipp (inga videopromptar)
 │   ├── publicering/ .......... checklistan vid uppladdning + uppföljning 48 h / 7 / 28 dagar
 │   ├── reference/ ............ källdokumenten bakom reglerna, med bevisbilder

@@ -124,7 +124,7 @@ Varje idé: EN sökning i `vidiq_youtube_search` + vidIQ-titelpoäng. Full Grind
 | 6 | 15 Facts About the De-Extinct Dodo That Make No Sense (91) | Colossals egna 1,6 M/1,1 M, ingen listvideo | klar (Mall E) |
 | 7 | 15 Facts About the Last Two Northern White Rhinos That Make No Sense (91) | bara nyhetsklipp | klar (Mall E) |
 | 8 | 15 Facts About the Passenger Pigeon Comeback That Make No Sense (85) | TIFO 280 k (2017, utdöendet), ingen lista | klar (Mall E) |
-| 9 | 15 Facts About the De-Extinct Thylacine That Make No Sense (83) | Galante 506 k, GroovyGavin 2,4 M, ingen lista; kanalen har redan thylacine-publik (23 k) | klar (Mall E) |
+| 9 | 15 Facts About the De-Extinct Thylacine That Make No Sense (83) | Galante 506 k, GroovyGavin 2,4 M, ingen lista; kanalen har redan thylacine-publik (23 k) | ✅ SKRIVEN 2026-10-14 som *15 Facts About the Tasmanian Tiger That Make No Sense*, full Grind (steg 1 gul, 2–5 gröna), se `manus/tasmanian-tiger-15-facts.md` |
 | 10 | 15 Cheetah Facts That Make No Sense (79) | Lindsay Nikole 1,5 M (2023, flaskhalsen), vågen bildas nu | rid-vågen-spel, bara om snabbt |
 
 Dödade i samma kontroll: **katter** ("domesticated themselves": PBS Eons 13,6 M, Anton

@@ -14,7 +14,7 @@ En mapp per steg i arbetet. Varje mapp har en `README.md` som säger hur steget 
 | Idébank & Grinden | `ideer/` | `modelleringsguide.md` (⭐ reglerna och Grinden), `klarerade-ideer.md`, `dubbla-ner-ideer.md`. README: idébanken och Grindens fem steg, körs alltid först |
 | Research | `research/` | En faktabank per video innan manuset skrivs. README: källreglerna och tidskritiska fakta. `research-mall.md` = mallen |
 | Manus | `manus/` | En fil per video, paketet överst. README: manusreglerna och listan över alla manus med status |
-| Paketet | `paket/` | README: titlar, miniatyr, beskrivning, fäst kommentar, CTA, miniatyrerna med `hf.mjs`. Lokala miniatyrer i `paket/thumbnails/` (inte i git) |
+| Paketet | `paket/` | README: titlar, miniatyr, beskrivning, fäst kommentar, CTA, miniatyrerna med `hf.mjs`. Miniatyrerna ligger i OneDrive `2 Beast of Ages/Paket/Miniatyrer/` (inte i git) |
 | Produktion | `produktion/` | README: röst, bild och klipp, musik, redigering. Inga videopromptar |
 | Publicering & uppföljning | `publicering/` | README: checklistan vid uppladdning, uppföljning efter 48 timmar, 7 och 28 dagar, testa eller dubbla ner |
 | Struktur & regler | `reference/` | Källdokumenten bakom reglerna: `testa-vs-dubbla-ner.md`, `modellering-vs-kopiering.md`, `thumbnail-reglerna.md`, med bevisbilder i `bilder/` |
@@ -24,8 +24,10 @@ En mapp per steg i arbetet. Varje mapp har en `README.md` som säger hur steget 
 Flödet för en video: `strategi/` → `ideer/` (Grinden) → `research/` → `paket/` → `manus/` →
 `produktion/` → `publicering/` → tillbaka till `strategi/`.
 
-Material som inte hör hemma i git ligger i OneDrive under `2 Beast of Ages/`: `Research/`
-(källmaterial), `Musik och ljud/` och `Gamla manus 2025/`.
+Material som inte hör hemma i git ligger i OneDrive under `2 Beast of Ages/`: miniatyrerna
+(`Paket/Miniatyrer/`), `Research/` (källmaterial) och `Musik och ljud/`. Varje kvistmapp där
+har en genväg "Öppna i repot (…)" till kvisten här, och toppnivån en genväg till `youtube.md`,
+så Mathias når allt från ett ställe. Text (manus, faktabanker, idéer, paket) bor kvar här.
 
 ## Lokala filer (inte i git)
 
@@ -39,7 +41,7 @@ Kvar i huvudmappen `C:/Users/mathi/OneDrive/Skrivbord/test`, undantaget från gi
 
 | Fil (`other-projects/beast-of-ages/…`) | Ska till efter merge | Vad |
 |---|---|---|
-| `thumbnails/` (en mapp per video) | `paket/thumbnails/` | Miniatyrerna, stannar utanför git (`paket/.gitignore`) |
+| `thumbnails/` (en mapp per video) | OneDrive `2 Beast of Ages/Paket/Miniatyrer/` (flyttade 2026-10-15) | Miniatyrerna, utanför git |
 | övriga undantagna kopior | tas bort när huvudmappen står på main | Samma filer finns nu spårade i kvistmapparna |
 
 Efter merge: byt Beast of Ages-raderna i huvudmappens `.git/info/exclude` till de nya
