@@ -32,7 +32,7 @@
 
 Allt är deras egna foton: roosbygg.com (Wix-media, 3024–4032 px) + bilder ur IG-embed (1080 px). Varje fil används en gång, 28 filer, 28 unika md5.
 
-- **Hero** = deras foto av takbytet (gul trävilla, rött plåttak, blå himmel; samma bild som IG DQXeZ-QAq9p bild 2) i långsam inzoomning, ffmpeg, 0 kr. **Ingen genererad förvandling**: Higgsfield-nyckeln (`tools/hf-api/.env.local`) saknas på lådan. Kan ersättas med Kling-förvandling (~0,25–0,4 USD) när nyckeln finns.
+- **Hero** = deras foto av takbytet (gul trävilla, rött plåttak, blå himmel; samma bild som IG DQXeZ-QAq9p bild 2) animerat med **Higgsfield Wan 3.0 Prime bild-till-film** (1080p, 6 s, utan ljud, start- och slutbild = fotot), kostnad **0,67 USD (≈10,75 API-krediter)**, request 7bbccb9d-63c3-4bdf-b1bc-f1519da6ee3b. Lugn kameraglidning och lätt vind i trädet; spelas fram och tillbaka till en 12 s slinga. Mobil = samma klipp beskuret till 9:16 (720x1280). Kontaktfilmen och affischerna är gjorda om ur den nya hero-filmen. Ingen text, logga eller person tillagd.
 - **Varför** = samma hus från andra hållet (IG DQXeZ-QAq9p bild 1) + logokort. **Kontakt** = heron suddad.
 - Uppskalade till 960 px: `jobb-forvaring.jpg` (900 px), `jobb-stalreglar-kallare.jpg` och `jobb-innervaggar-kallare.jpg` (768 px).
 - **Inga lånade bilder.**
