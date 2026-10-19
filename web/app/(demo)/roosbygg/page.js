@@ -50,8 +50,10 @@ import DemoSida from '../_mall/DemoSida';
    omdömen, altanprojekt (bara en FAQ-rubrik, inga bilder), Facebook.
 
    FLAGGOR: formuläret går till mathias@bahkobyra.se (demonyckeln). Hero-filmen
-   är INTE en genererad förvandling (Higgsfield-nyckeln saknas på lådan): deras
-   eget foto av takbytet i Borlänge i långsam rörelse, ffmpeg, 0 kr.
+   är GENERERAD (Higgsfield, Wan 3.0 Prime bild-till-film, 1080p, 6 s, utan ljud,
+   0,67 USD) ur deras eget foto av takbytet i Borlänge: lugn kameraglidning och
+   träd i vind, spelad fram och tillbaka till en 12 s slinga. Mobil = samma klipp
+   beskuret till 9:16. Huset är deras, rörelsen är genererad.
    LOGOTYPEN är återskapad som vektor av oss ur deras egen grafik (IG-inlägget
    Dc4HSGBDRi8 och profilbilden): R-märket spårat, texten satt i Montserrat.
    Be om originalfilen. Accent = logotypens röda #D80E22, resten svart-vitt.
