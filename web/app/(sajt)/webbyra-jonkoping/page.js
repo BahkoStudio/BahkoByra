@@ -323,9 +323,10 @@ export default function Jonkoping() {
               ingen bindningstid, och ni äger sidan och domänen även om ni en dag slutar hos oss.
             </p>
             <p>
-              Priset beror på hur många tjänster och sidor er firma behöver, så det står i
-              förslaget i stället för här. Då vet ni exakt vad det blir, med sidan framför er,
-              innan ni bestämmer er. Säger ni nej har det inte kostat något.
+              Hemsidan finns i tre paket med fast pris: Basic 8 000 kr, Standard 12 000 kr
+              och Premium 20 000 kr, alla ex moms. Vilket som passar er beror på hur många
+              tjänster och sidor firman behöver, och det ser ni i förslaget, med sidan framför
+              er, innan ni bestämmer er. Säger ni nej har det inte kostat något.
             </p>
             <p>
               Vill ni förstå vad som brukar driva priset upp eller ner? Läs{' '}
