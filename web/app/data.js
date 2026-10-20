@@ -7,8 +7,57 @@ export const TJANSTER = [
     tagg: 'Design · Bygg',
     kort: 'Hemsidor som gör att fler hör av sig, inte bara ser snyggare ut.',
     rubrik: 'Hemsidor som ger fler jobb',
+    // SEO/AEO-briefen 2026-10-20: tjänsten och sökordet först, sloganen som underrubrik.
+    title: 'Hemsida för hantverkare, fast pris från 8 000 kr',
+    h1: 'Hemsida för hantverkare till fast pris',
+    slogan: 'Hemsidor som ger fler jobb',
     ingress:
-      'Det vi är bäst på. Ni får ett färdigt förslag på er nya hemsida inom 48 timmar och ser exakt hur den blir innan ni bestämmer er.',
+      'Hos Bahko Byrå i Huskvarna och Jönköping köper ni en hemsida för ert hantverks- eller lokala företag till fast pris: tre paket från 8 000 kr ex moms. Innan ni bestämmer er får ni ett färdigt förslag på er nya hemsida, kostnadsfritt och inom 48 timmar, så att ni ser exakt hur den blir.',
+    meta:
+      'Köp en hemsida för hantverkare och lokala företag. Tre paket med fast pris från 8 000 kr ex moms. Kostnadsfritt färdigt förslag inom 48 timmar.',
+    // Paketen, Mathias text 2026-10-20 (lätt putsad). Alla belopp ex moms.
+    paket: [
+      {
+        namn: 'Basic',
+        pris: '8 000 kr',
+        kort: 'En snygg och tydlig hemsida.',
+        ingar: ['Fungerar i mobilen, med ringknapp och kontaktformulär', 'Era bilder och er logga', 'Er egen domän, ni äger sidan'],
+      },
+      {
+        namn: 'Standard',
+        pris: '12 000 kr',
+        kort: 'Hemsidan som ska hittas på Google.',
+        markerad: true,
+        ingar: ['Allt i Basic', 'Egna landningssidor för varje tjänst, så många som behövs', 'Automatiserade mejl som svarar kunden direkt', 'Optimerad för att ranka på Google'],
+      },
+      {
+        namn: 'Premium',
+        pris: '20 000 kr',
+        kort: 'Allt i Standard, plus att vi sköter Google.',
+        ingar: ['Allt i Standard', 'Google-hantering', 'Garanti: Googles första sida inom 90 dagar', 'Underhåll och optimering ingår i 90 dagar'],
+      },
+    ],
+    tillagg: [
+      { namn: 'Underhåll och optimering', pris: '500 kr i månaden', not: 'Ingår i Premium i 90 dagar.' },
+      { namn: 'Google-hantering med garanti för första sidan', pris: '2 000 kr i månaden', not: 'Ingår i Premium i 90 dagar.' },
+    ],
+    fragor: [
+      {
+        fraga: 'Vad kostar det att köpa en hemsida hos er?',
+        svar:
+          'Tre paket med fast pris: Basic 8 000 kr, Standard 12 000 kr och Premium 20 000 kr, alla ex moms. Underhåll och Google-hantering finns som tillägg per månad, och ingår i Premium de första 90 dagarna.',
+      },
+      {
+        fraga: 'Hur snabbt kan jag se hur min hemsida blir?',
+        svar: 'Ni får ett färdigt förslag inom 48 timmar, kostnadsfritt och utan förpliktelse.',
+      },
+      {
+        fraga: 'Gör ni hemsidor för hantverkare?',
+        svar:
+          'Ja, hantverkare och lokala företag är vår huvudsakliga målgrupp. Hemsidan byggs för att ge fler förfrågningar och jobb.',
+      },
+    ],
+    schema: { typ: 'Webbdesign', namn: 'Hemsida för hantverkare och lokala företag' },
     // De tio granskningspunkterna, ordagrant desamma som pa gratis-granskning.html
     // sa att sidorna sager samma sak. Beslutat av Mathias 2026-08-09.
     punkter: [
@@ -110,8 +159,29 @@ export const TJANSTER = [
     tagg: 'iOS · Android',
     kort: 'Bokningsappar och kundportaler när sidan inte räcker.',
     rubrik: 'När en sida inte räcker',
+    title: 'App till företag, byggd för hantverkare',
+    h1: 'App till företag, när en hemsida inte räcker',
     ingress:
-      'Har ni återkommande kunder, avtal eller bokningar som sköts i telefonen kan en app spara timmar varje vecka. Vi bygger bara när det faktiskt lönar sig.',
+      'Bahko Byrå i Huskvarna bygger appar till företag, främst hantverkare och lokala företag med återkommande kunder, serviceavtal eller bokningar som i dag sköts per telefon. En egen app kan låta kunderna boka, se sina avtal och få påminnelser själva. Vi börjar alltid med att räkna på om en app faktiskt lönar sig för er, och avråder om en bra hemsida räcker.',
+    meta:
+      'Egen app till företaget för bokningar, avtal och återkommande kunder. Vi i Huskvarna och Jönköping bygger bara när det lönar sig. Fråga oss om er idé.',
+    fragor: [
+      {
+        fraga: 'Behöver mitt företag en app eller räcker en hemsida?',
+        svar:
+          'För de flesta lokala företag räcker en bra hemsida. En app lönar sig när ni har återkommande kunder, avtal eller bokningar som tar tid att hantera manuellt. Vi hjälper er att bedöma det innan något byggs.',
+      },
+      {
+        fraga: 'Vad kan en app för hantverkare göra?',
+        svar:
+          'Till exempel låta kunder boka tid, se serviceavtal, få påminnelser och skicka bilder på jobbet. Allt det som annars blir telefonsamtal och sms.',
+      },
+      {
+        fraga: 'Vad kostar en app till företag?',
+        svar: 'Det beror på vad appen ska göra. Vi ger ett besked efter ett första samtal.',
+      },
+    ],
+    schema: { typ: 'Apputveckling', namn: 'App till företag' },
     punkter: [
       { h: 'Bokning och avtal', p: 'Kunden bokar, ni ser allt i en vy.' },
       { h: 'Kundportal', p: 'Historik, dokument och nästa besök på ett ställe.' },
@@ -125,8 +195,29 @@ export const TJANSTER = [
     tagg: 'Video · UGC',
     kort: 'Rörligt som stannar i minnet och funkar i flödet.',
     rubrik: 'Film som stoppar tummen',
+    title: 'Reklamfilm för hantverkare och lokala företag',
+    h1: 'Reklamfilm för hantverkare och lokala företag',
+    slogan: 'Film som stoppar tummen',
     ingress:
-      'Kort video till sociala medier och YouTube. Före och efter, ert arbete på nära håll, ansiktet bakom företaget.',
+      'Bahko Byrå i Huskvarna och Jönköping gör reklamfilm för hantverkare och lokala företag: korta videor för sociala medier och YouTube. Vi filmar före och efter, ert arbete på nära håll och människorna bakom företaget, så att tittaren stannar upp och förstår vad ni gör.',
+    meta:
+      'Reklamfilm för hantverkare och lokala företag: korta videor till sociala medier och YouTube. Före och efter, ert arbete på nära håll. Hör av er.',
+    fragor: [
+      {
+        fraga: 'Vilken sorts reklamfilm passar en hantverkare?',
+        svar:
+          'Korta filmer som visar före och efter, arbetet på nära håll och ansiktet bakom företaget fungerar bra i sociala medier.',
+      },
+      {
+        fraga: 'Var kan filmerna användas?',
+        svar: 'I sociala medier, på YouTube, på er hemsida och i annonser.',
+      },
+      {
+        fraga: 'Kan ni även köra annonser med filmen?',
+        svar: 'Ja, vi gör också annonser på Google, se vår tjänst Google Ads.',
+      },
+    ],
+    schema: { typ: 'Reklamfilm och videoproduktion', namn: 'Reklamfilm för hantverkare' },
     punkter: [
       { h: 'Före och efter', p: 'Den starkaste sortens bevis ni kan visa.' },
       { h: 'Format för flödet', p: 'Vertikalt, textat, begripligt utan ljud.' },
@@ -140,7 +231,7 @@ export const FRAGOR = [
   {
     fraga: 'Vad kostar en ny hemsida?',
     svar:
-      'Det beror på hur mycket ni behöver. Ni får ett fast pris svart på vitt i förslaget, och förslaget är kostnadsfritt.',
+      'Tre paket med fast pris: Basic 8 000 kr, Standard 12 000 kr och Premium 20 000 kr, alla ex moms. Ni får ett färdigt förslag kostnadsfritt innan ni väljer.',
   },
   {
     fraga: 'Sitter vi fast i ett avtal?',

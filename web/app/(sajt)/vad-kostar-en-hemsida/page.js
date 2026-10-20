@@ -16,9 +16,9 @@ const PIL = (
   </svg>
 );
 
-/* Sidan svarar på frågan utan att publicera priser: prislistan hör hemma i
-   offerten enligt positioneringen. Det här är förklaringen av VAD som avgör,
-   plus vägen till ett exakt pris som inte kostar något att få. */
+/* Sidan förklarar VAD som avgör priset. Paketen med fasta priser står på
+   /tjanster/hemsidor/ (publicerade 2026-10-20), och det exakta priset för en
+   firma står i det kostnadsfria förslaget. */
 
 const AVGOR = [
   {
@@ -60,9 +60,9 @@ const FALLOR = [
 
 const FRAGOR_PRIS = [
   {
-    fraga: 'Varför står det inget pris här?',
+    fraga: 'Vad kostar en hemsida hos er?',
     svar:
-      'För att ett pris utan att ha sett er firma vore en gissning, och gissningar brukar sluta med tillägg på fakturan. Ni får ett exakt fast pris i det kostnadsfria förslaget i stället, och det priset gäller. Där står också månadsavgiften för underhåll och SEO. Ingen bindningstid.',
+      'Tre paket med fast pris: Basic 8 000 kr, Standard 12 000 kr och Premium 20 000 kr, alla ex moms. Vilket som passar er ser ni i det kostnadsfria förslaget, och det priset gäller. Underhåll och Google-hantering finns som tillägg per månad. Ingen bindningstid.',
   },
   {
     fraga: 'Vad ingår i priset hos er?',
