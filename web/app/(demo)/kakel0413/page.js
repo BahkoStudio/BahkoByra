@@ -1,4 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
+import BildUpload from './BildUpload';
 
 /* ===========================================================================
    KAKEL 0413 AB — hemsida för en betalande kund (12 000 kr-paketet), Bahko Byrå
@@ -119,15 +120,14 @@ const data = {
 
   hero: {
     h1: ['Kakel', { txt: '0413', liten: true }],
-    ort: 'Eslöv · Skåne',
+    // ort borttagen (Nuh v2): Eslöv och Skåne står redan i tejpen under heron.
     // Nuhs budskap i heron (Mathias 2026-10-22). Mallen har ingen rubrik/ingress-plats i standardheron,
     // så rubriken och underraden ligger som block först i tjänsteraden: rubrik + underrad + "Kakel & Badrum."
     tjanster: [(
       <>
         <span style={{ display: 'block', maxWidth: '36rem', marginInline: 'auto', marginTop: '0.2rem', marginBottom: '0.9rem', fontFamily: 'var(--f-text, inherit)', fontStyle: 'normal', fontWeight: 500, color: '#F5F1E8', fontSize: 'clamp(1rem, 1.6vw, 1.15rem)', lineHeight: 1.5 }}>Att renovera ett badrum är ett stort beslut. Därför är det viktigt att du känner dig trygg med den som utför arbetet.</span>
-        Kakel
       </>
-    ), 'Badrum'],
+    ), ''],
     video: `${M}/video-hero.mp4`,
     videoMobil: `${M}/video-hero-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
@@ -150,16 +150,17 @@ const data = {
     rad2: [{ src: `${M}/logo-original.jpg`, alt: '', txt: '' }],
   },
 
+  // Därför oss (Nuh v2): Nuhs egen introtext ordagrant (samma stycken som om.stycken nedan),
+  // bara uppdelad i ingress + punkter. Punktrubrikerna är korta etiketter, texterna är hans.
   varfor: {
-    eyebrow: 'Varför Kakel 0413',
-    rubrik: ['Det som betyder mest:', 'att hålla det man lovar'],
-    lead: 'Efter många år i branschen valde Nuh att starta eget för att kunna fokusera ännu mer på det som betyder mest.',
-    // Förtroenderaden: Nuhs siffror (kundens egen text).
+    eyebrow: 'Därför oss',
+    rubrik: ['Att alltid hålla', 'det man lovar'],
+    lead: 'Efter många år i branschen valde Nuh att starta eget för att kunna fokusera ännu mer på det som betyder mest, hög kvalitet, noggrant arbete, tydlig kommunikation och att alltid hålla det man lovar.',
     punkter: [
-      { rubrik: '17+ år i branschen', text: 'Kakelsättning och badrumsrenoveringar, ända upp till stora byggprojekt.' },
-      { rubrik: 'Upp till 7 projekt samtidigt', text: 'Nuh har haft ansvar för sju stora projekt på en gång.' },
-      { rubrik: 'Ca 800 nya toaletter', text: 'Sammanlagt, i projekten han har ansvarat för.' },
-      { rubrik: 'Skanska, NCC och Peab', text: 'Välkända byggföretag som han har arbetat tillsammans med.' },
+      { rubrik: 'Över 17 års erfarenhet', text: 'Bakom företaget står Nuh, som har över 17 års erfarenhet inom byggbranschen. Han har arbetat med allt från kakelsättning och badrumsrenoveringar till stora byggprojekt.' },
+      { rubrik: 'Upp till sju stora projekt samtidigt', text: 'Under sin karriär har Nuh ansvarat för upp till sju stora projekt samtidigt, med arbeten som omfattat totalt cirka 800 nya toaletter. Utöver detta har han även utfört kakel- och klinkerarbeten i trapphus, hallar och kök.' },
+      { rubrik: 'Skanska, NCC och Peab', text: 'Han har arbetat tillsammans med välkända byggföretag som Skanska, NCC och Peab.' },
+      { rubrik: 'Samma mål, varje jobb', text: 'Oavsett om du behöver hjälp med en hel badrumsrenovering, kakelsättning eller ett mindre arbete är målet alltid detsamma: att leverera ett resultat som du som kund kan känna dig riktigt nöjd med.' },
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
@@ -225,6 +226,8 @@ const data = {
     video: `${M}/video-kontakt.mp4`,
     poster: `${M}/poster-kontakt.jpg`,
     formRubrik: 'Berätta kort om jobbet',
+    // "Vad gäller det?" utan Mindre arbeten (Nuh v2). Mallen lägger till Annat sist.
+    typer: ['Badrumsrenovering', 'Kakel i kök', 'Hallar och trapphus'],
     placeholder: 'Vad vill du ha hjälp med (badrum, kakel i kök, hall …) och ungefär hur stort är det?',
     formNot: 'Skriv kort om jobbet, då blir första samtalet mer konkret. Inga massutskick, ingen säljlista.',
   },
@@ -249,8 +252,12 @@ export default function Kakel0413Demo() {
   return (
     <>
       {/* Om Nuh flyttade till /kakel0413/om-oss (Mathias 2026-10-22), länkad i footern. Jobbanden och omdömena döljs tills Nuh har egna foton och riktiga omdömen (se FLAGGOR). */}
-      <style>{'#jobb,#omdomen,#om{display:none!important}'}</style>
+      {/* Nuh v2: ingen stor logotyp i heron (h1 finns kvar för skärmläsare/SEO, visuellt dold; headerns logga kvar)
+          och inget telefonnummer i heron (Ring-knappen i headern kvar). Raden "Kakel & Badrum." struken: mallen skriver alltid " & " och ".",
+          så tjänsteraden får font-size 0 och bara Nuhs mening (egen fontstorlek) syns. */}
+      <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}'}</style>
       <DemoSida data={data} />
+      <BildUpload epost={data.kontakt.epost} />
     </>
   );
 }
