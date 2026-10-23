@@ -1,14 +1,24 @@
-.marquee {
+/* Kundbältet: loggor på rad direkt under heron, en belagd rad under varje. */
+.balte {
   background: var(--sektion);
   border-block: 1px solid var(--linje-mork);
   overflow: hidden;
-  padding: 0.95rem 0;
+  padding: 1.4rem 0 1.6rem;
+}
+
+.etikett {
+  margin: 0 0 1.1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-lag);
 }
 
 .spar {
   display: flex;
   width: max-content;
-  animation: rulla 38s linear infinite;
+  animation: rulla 44s linear infinite;
   animation-play-state: paused;
 }
 
@@ -18,30 +28,88 @@
 
 .set {
   display: flex;
-  align-items: center;
-  gap: 2.6rem;
-  padding-right: 2.6rem;
+  align-items: flex-start;
+  gap: 3.2rem;
+  padding: 0 1.6rem;
+  margin: 0;
+  list-style: none;
 }
 
-.set span {
+.kund {
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+  min-width: 190px;
+}
+
+/* Loggan: fast höjd så raden blir jämn, bredden följer märket */
+.logga {
+  display: grid;
+  place-items: center;
+  height: 48px;
+}
+
+.logga img {
+  display: block;
+  height: 44px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+}
+
+/* GD:s märke är nästan kvadratiskt, det får vara lite större för att väga lika */
+.logga img.kvadrat {
+  height: 48px;
+}
+
+.ord {
   display: inline-flex;
   align-items: center;
-  gap: 2.6rem;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
   white-space: nowrap;
-  font-size: clamp(1rem, 1.6vw, 1.3rem);
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.86);
 }
 
-.set i {
-  color: var(--em-lt);
-  font-style: normal;
-  font-size: 0.8em;
+.ord svg {
+  width: 30px;
+  height: 30px;
+}
+
+.rad {
+  font-size: 0.86rem;
+  color: var(--text-lag);
+  white-space: nowrap;
 }
 
 @keyframes rulla {
   to {
     transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 640px) {
+  .balte {
+    padding: 1.1rem 0 1.3rem;
+  }
+  .set {
+    gap: 2.2rem;
+  }
+  .kund {
+    min-width: 150px;
+  }
+  .logga,
+  .logga img,
+  .logga img.kvadrat {
+    height: 38px;
+  }
+  .ord {
+    font-size: 1.05rem;
+  }
+  .rad {
+    font-size: 0.78rem;
   }
 }
 

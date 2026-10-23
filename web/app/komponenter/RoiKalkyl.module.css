@@ -417,3 +417,71 @@
     transform: none;
   }
 }
+
+/* ── Kompakt: kalkylen i heron (2026-10-23). Samma delar, tätare, så att hela
+   verktyget får plats bredvid rubriken på en datorskärm. ── */
+.kompakt {
+  padding: clamp(1.2rem, 2.4vw, 1.7rem);
+}
+
+.kompakt .rubrik {
+  font-size: clamp(1.4rem, 2.1vw, 1.7rem);
+}
+
+.kompakt .resa {
+  --nod: 38px;
+  margin-top: 1.3rem;
+  gap: 1.1rem;
+}
+
+.kompakt .resa::before,
+.kompakt .resa::after {
+  bottom: 1.6rem;
+}
+
+.kompakt .etikett {
+  font-size: 0.92rem;
+}
+
+.kompakt .varde {
+  font-size: 1.05rem;
+}
+
+.kompakt .resultat {
+  padding: 1rem 1.1rem 1.1rem;
+}
+
+.kompakt .resGrid {
+  margin-top: 0.9rem;
+  padding-top: 0.8rem;
+  gap: 0.8rem;
+}
+
+.kompakt .resTal {
+  font-size: clamp(1.5rem, 2vw, 1.9rem);
+  white-space: nowrap;
+}
+
+.kompakt .resUnder {
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+.kompakt .resAr {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.kompakt .fot {
+  margin-top: 1.1rem;
+  padding-left: calc(38px + 1rem);
+}
+
+@media (max-width: 560px) {
+  .kompakt .resa {
+    --nod: 34px;
+  }
+  .kompakt .fot {
+    padding-left: 0;
+  }
+}

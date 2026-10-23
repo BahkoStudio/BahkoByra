@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import HeroBygge from '../komponenter/HeroBygge';
 import HeroVideo from '../komponenter/HeroVideo';
 import Maskot from '../komponenter/Maskot';
 import MaskotScen from '../komponenter/MaskotScen';
@@ -7,9 +6,9 @@ import Marquee from '../komponenter/Marquee';
 import RoiKalkyl from '../komponenter/RoiKalkyl';
 import Portfolj from '../komponenter/Portfolj';
 import BevisBromma, { BevisSiffror } from '../komponenter/BevisBromma';
-import TjanstIkon from '../komponenter/TjanstIkon';
+import Nischer from '../komponenter/Nischer';
 import Faq from '../komponenter/Faq';
-import { TJANSTER, FRAGOR } from '../data';
+import { FRAGOR } from '../data';
 import styles from './page.module.css';
 
 /* Startsidan nås som /, med parametrar och via www-varianter — den behöver
@@ -24,30 +23,21 @@ const PIL = (
   </svg>
 );
 
-/* Tjänsterna som en resa: ordningen är den vi bygger i, texten talar om vad steget ger. */
-/* Tjänsterna: korta texter i kundens perspektiv, och en länk som säger vad man får se. */
-const TJANSTTEXT = {
-  hemsidor: { text: 'Kunden ser vad ni gör och hur man når er, redan på första skärmen i mobilen.', lank: 'Så gör vi hemsidan' },
-  seo: { text: 'Ni kan komma upp när någon i er stad söker på det ni gör.', lank: 'Så syns ni i er stad' },
-  'google-ads': { text: 'Annonser som kan ligga ovanför träffarna redan första veckan.', lank: 'Så fungerar annonserna' },
-  reklamfilmer: { text: 'Film på ert arbete, så att kunden ser skillnaden innan priserna jämförs.', lank: 'Se en reklamfilm' },
-  appar: { text: 'Bokning direkt på sidan, så att förfrågningarna inte drunknar bland samtalen.', lank: 'Så bokar kunden själv' },
-};
-
-/* Hur vi jobbar, som en resa i fyra stationer */
+/* Hur vi jobbar, som en väg i fem steg (Mathias 2026-10-23: enklare, tydligare).
+   Regel ur bar.md: rubrik på högst tre ord, en mening på högst tolv ord. */
 const RESAN = [
-  { nr: '01', h: 'Ni får ett förslag', p: 'En färdig sida för er firma och er stad, inom 48 timmar.' },
-  { nr: '02', h: 'Ni tittar och säger till', p: 'Gillar ni den fyller vi på med era bilder och kontaktuppgifter.' },
-  { nr: '03', h: 'Sidan kommer ut', p: 'På er egen domän, normalt inom sju dagar.' },
-  { nr: '04', h: 'Kunderna hittar in', p: 'Snabb i mobilen, med en kontaktknapp på varje skärm. Vill ni ändra något når ni samma person hela vägen.' },
+  { nr: '01', h: 'Berätta om firman', p: 'Vad ni gör och var. Det tar två minuter.' },
+  { nr: '02', h: 'Se förslaget', p: 'Inom 48 timmar har ni en färdig sida att klicka i.' },
+  { nr: '03', h: 'Säg ja eller nej', p: 'Ja: vi fyller på med era bilder. Nej: det kostade inget.' },
+  { nr: '04', h: 'Sidan går live', p: 'På er egen domän, normalt inom sju dagar.' },
+  { nr: '05', h: 'Kunderna ringer', p: 'Snabb i mobilen, ringknapp på varje skärm. Vi finns kvar.' },
 ];
 
 export default function Start() {
   return (
     <>
-      {/* ── HERO "Bygget live": text vänster, maskoten bygger till höger.
-             Höjden kommer ur innehållet; filmen spelar på alla skärmar.
-             Mobil: text → knappar → scen → siffror. ── */}
+      {/* ── HERO: text vänster, kalkylen "Räkna på jobben ni missar" till höger
+             (Mathias 2026-10-23, ersätter B-videon). Mobil: text → knapp → kalkyl → siffror. ── */}
       <section className={`mork ${styles.heroBygge}`} id="top">
         <div className={`wrap ${styles.heroGrid}`}>
           <div className={styles.heroText} data-trapp>
@@ -64,20 +54,21 @@ export default function Start() {
               <Link href="/kontakt/" className="btn btn-primar">
                 Visa hur min hemsida kan se ut {PIL}
               </Link>
-              <a href="/foretag/gratis-guide.html" className="btn btn-sekundar">
-                Kostnadsfri guide {PIL}
+              <a href="/foretag/gratis-guide.html" className={styles.heroLank}>
+                Eller hämta den kostnadsfria guiden {PIL}
               </a>
             </div>
-            <p className={styles.heroBevis}>
-              <strong>Ni har ett färdigt förslag inom 48 timmar.</strong> Sen bestämmer ni.
-            </p>
           </div>
 
-          <div className={styles.heroScen}>
-            <HeroBygge />
+          <div className={styles.heroScen} id="rakna">
+            <RoiKalkyl className={styles.heroKalkyl} kompakt />
           </div>
 
           <div className={styles.heroSiffror} data-trapp>
+            <div>
+              <strong>48 tim</strong>
+              <span>Till ett färdigt förslag</span>
+            </div>
             <div>
               <strong>7 dagar</strong>
               <span>Normalt tills sidan är live</span>
@@ -86,13 +77,12 @@ export default function Start() {
               <strong>Ingen</strong>
               <span>Bindningstid</span>
             </div>
-            <div>
-              <strong>1</strong>
-              <span>Kontaktperson, hela vägen</span>
-            </div>
           </div>
         </div>
       </section>
+
+      {/* ── KUNDBÄLTET: alla kunder med logga, direkt efter heron (Mathias 2026-10-23) ── */}
+      <Marquee />
 
       {/* ── BEVISET: Brommas skärmbilder från 30 juli, direkt efter heron.
              Ersätter synlighetspanelen, vars graf var en illustration. ── */}
@@ -128,9 +118,6 @@ export default function Start() {
         </div>
       </section>
 
-      {/* ── BEVISREMSAN: står still tills man scrollat ── */}
-      <Marquee />
-
       {/* ── PORTFÖLJEN: riktiga sajter och demos i ett rutnät ── */}
       <section className={`mork ${styles.caseYta}`} id="case">
         <div className="wrap">
@@ -151,22 +138,6 @@ export default function Start() {
         </div>
       </section>
 
-      {/* ── ROI-KALKYLEN: maskoten pekar på kalkylen, besökaren räknar på sina egna siffror ── */}
-      <section className={`mork ${styles.siffrorYta}`} id="rakna">
-        <div className={`wrap ${styles.siffrorRad}`}>
-          <MaskotScen
-            className={styles.siffrorScen}
-            src="/img/maskot-scener/pekar-stoppur.webp"
-            alt="Bahko-maskoten i bygghjälm pekar på kalkylen med ett stoppur i handen"
-            oga={{ x: 74.8, y: 43.9, rx: 6.0, ry: 4.8, gron: 'rgb(22,114,77)' }}
-            index={0}
-          />
-          <div className={styles.kalkylKolumn} data-trapp>
-            <RoiKalkyl />
-          </div>
-        </div>
-      </section>
-
       {/* ── VIDEON: två minuter, rakt på sak ── */}
       <section className={`mork ${styles.videoYta}`} id="video">
         <div className={`wrap ${styles.videoInner}`} data-trapp>
@@ -182,61 +153,27 @@ export default function Start() {
         </div>
       </section>
 
-      {/* ── TJÄNSTER: en resa i fem steg, ikonerna binds ihop av en linje ── */}
-      <section id="tjanster">
-        <div className="wrap">
-          <div className={styles.tjanstIntro} data-trapp>
-            <div>
-              <span className="eyebrow">Våra tjänster</span>
-              <h2>
-                Allt som får kunden <span className="accent">att ringa er.</span>
-              </h2>
-              <p className="lede" style={{ marginTop: '1rem' }}>
-                Börja med hemsidan. Resten lägger vi till när det lönar sig.
-              </p>
-            </div>
-            <div className={styles.tjanstMaskot}>
-              <MaskotScen
-                src="/img/maskot-scener/ringer.webp"
-                alt="Bahko-maskoten i bygghjälm håller upp en mobil som ringer"
-                oga={{ x: 65.9, y: 38.4, rx: 4.7, ry: 3.7, gron: 'rgb(33,127,94)' }}
-                index={2}
-              />
-            </div>
-          </div>
+      {/* ── BRANSCHRESAN: sex nischkort som stationer på vägen (ersätter tjänstekorten) ── */}
+      <Nischer />
 
-          <div className={styles.tjanstNat} data-trapp>
-            {TJANSTER.map((t) => (
-              <Link key={t.slug} href={`/tjanster/${t.slug}/`} className={styles.tjanstKort}>
-                <TjanstIkon slug={t.slug} />
-                <h3>{t.namn}</h3>
-                <p>{TJANSTTEXT[t.slug].text}</p>
-                <span className={styles.tjanstFot}>
-                  <span className={styles.tagg}>{TJANSTTEXT[t.slug].lank}</span>
-                  <span className={styles.tjanstPil}>{PIL}</span>
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PROCESS: resan i fyra stationer med en streckad väg emellan ── */}
+      {/* ── PROCESS: resan som en väg i fem steg, noderna sitter på linjen ── */}
       <section className={`mork ${styles.process}`} id="process">
         <div className="wrap">
           <span className="eyebrow">Hur vi jobbar</span>
           <h2>
-            Ni ser er nya sida
+            Fem steg. Ni ser sidan
             <br />
-            <span className="accent">innan ni bestämmer er.</span>
+            innan ni bestämmer er.
           </h2>
 
-          <ol className={styles.resa} data-trapp>
-            {RESAN.map((r) => (
-              <li key={r.nr} className={styles.resaSteg}>
-                <span className={styles.resaNod}>{r.nr}</span>
-                <h3>{r.h}</h3>
-                <p>{r.p}</p>
+          <ol className={styles.vag} data-trapp>
+            {RESAN.map((r, i) => (
+              <li key={r.nr} className={`${styles.vagSteg} ${i === RESAN.length - 1 ? styles.vagMal : ''}`}>
+                <span className={styles.vagNod} aria-hidden="true">{r.nr}</span>
+                <div className={styles.vagKort}>
+                  <h3>{r.h}</h3>
+                  <p>{r.p}</p>
+                </div>
               </li>
             ))}
           </ol>

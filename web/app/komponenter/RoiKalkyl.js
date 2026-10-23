@@ -50,7 +50,7 @@ function useRull(mal) {
   return visat;
 }
 
-export default function RoiKalkyl() {
+export default function RoiKalkyl({ className = '', kompakt = false }) {
   const [v, setV] = useState(() => Object.fromEntries(STEG.map((s) => [s.id, s.start])));
   const [igang, setIgang] = useState(false);
   const [aktiv, setAktiv] = useState(null);
@@ -77,7 +77,7 @@ export default function RoiKalkyl() {
   const idagBredd = (idag / ny) * 100;
 
   return (
-    <div ref={rot} className={`${styles.kort} ${igang ? styles.igang : ''}`}>
+    <div ref={rot} className={`${styles.kort} ${igang ? styles.igang : ''} ${kompakt ? styles.kompakt : ''} ${className}`}>
       <h2 className={styles.rubrik}>
         Räkna på jobben <span className={styles.accent}>ni missar.</span>
       </h2>

@@ -704,7 +704,7 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1;
-  color: var(--em);
+  color: var(--text); /* vitt: grönt bara i knappen och ett ord (bar.md 3) */
   font-variant-numeric: tabular-nums;
 }
 
@@ -922,4 +922,137 @@
   margin-top: 0.5rem;
   font-weight: 700;
   color: var(--em);
+}
+
+/* ── Runda 1 (2026-10-23): kalkylen i heron ─────────────────────────── */
+.heroLank {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-lag);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--linje-mork);
+}
+
+.heroLank:hover {
+  color: var(--text);
+}
+
+.heroLank svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Kalkylen i heron: tätare än på den gamla egna raden, så första skärmen räcker */
+.heroKalkyl {
+  padding: clamp(1.2rem, 2.6vw, 1.8rem);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(16, 185, 129, 0.15);
+}
+
+/* ── Hur vi jobbar: en väg med fem noder ──
+   Dator: linjen går lodrätt i mitten, stegen växlar sida. Mobil: linjen till vänster. */
+.vag {
+  --vagNod: 52px;
+  position: relative;
+  list-style: none;
+  margin: 2.8rem auto 0;
+  padding: 0;
+  max-width: 920px;
+  display: grid;
+  row-gap: 1.6rem;
+}
+
+.vag::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--vagNod) / 2);
+  bottom: calc(var(--vagNod) / 2);
+  left: 50%;
+  border-left: 2px dashed rgba(255, 255, 255, 0.22);
+  transform: translateX(-50%);
+}
+
+.vagSteg {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr var(--vagNod) 1fr;
+  column-gap: 1.6rem;
+  align-items: center;
+}
+
+.vagNod {
+  grid-column: 2;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: var(--vagNod);
+  height: var(--vagNod);
+  border-radius: 50%;
+  background: var(--bas);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  color: var(--text);
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+}
+
+.vagKort {
+  grid-column: 3;
+  grid-row: 1;
+  padding: 1.2rem 1.4rem;
+  background: var(--yta);
+  border: 1px solid var(--linje-mork);
+  border-radius: var(--r-lg);
+}
+
+.vagSteg:nth-child(even) .vagKort {
+  grid-column: 1;
+  text-align: right;
+}
+
+.vagKort h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.1rem;
+}
+
+.vagKort p {
+  margin: 0;
+  color: var(--text-lag);
+  font-size: 0.95rem;
+}
+
+/* Målet: sista noden är grön, så vägen slutar i det kunden vill ha */
+.vagMal .vagNod {
+  background: var(--em);
+  border-color: var(--em);
+  color: var(--bas);
+  box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.16);
+}
+
+@media (max-width: 760px) {
+  .vag {
+    --vagNod: 40px;
+    row-gap: 1.1rem;
+  }
+  .vag::before {
+    left: calc(var(--vagNod) / 2);
+    transform: none;
+  }
+  .vagSteg {
+    grid-template-columns: var(--vagNod) 1fr;
+    column-gap: 1rem;
+  }
+  .vagNod {
+    grid-column: 1;
+    font-size: 0.82rem;
+  }
+  .vagKort,
+  .vagSteg:nth-child(even) .vagKort {
+    grid-column: 2;
+    text-align: left;
+    padding: 1rem 1.1rem;
+  }
 }
