@@ -62,14 +62,14 @@ export default function Start() {
             {/* Rubriken talar till firman (Mathias 2026-09-23). Tjänst + ort ligger som första rad
                 I H1 (Mathias 2026-10-01): synlig text, samma som Google-profilens kategori och ort. */}
             <h1>
-              <span className="eyebrow" style={{ display: 'flex' }}>Webbdesign i Jönköping &amp; Huskvarna</span>
-              Google ljuger aldrig.
+              <span className={`eyebrow ${styles.heroTagg}`}>Webbdesign i Jönköping &amp; Huskvarna</span>
+              Bli firman kunderna
               <br />
-              <span className="accent">Våra kunder ligger etta.</span>
+              <span className="accent">ringer först.</span>
             </h1>
             <p className={styles.heroLede}>
-              Vi bygger hemsidan och sköter Google åt snickare, målare, restauranger, e-handlare och
-              andra lokala företag. Ni ser förslaget innan ni betalar en krona.
+              Hemsidor och Google åt snickare, målare, elektriker och andra lokala firmor som vill ha
+              fler förfrågningar.
             </p>
             <div className={styles.heroKnappar}>
               <Link href="/kontakt/" className="btn btn-primar">

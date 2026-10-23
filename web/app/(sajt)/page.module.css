@@ -1081,8 +1081,43 @@
   }
 }
 
-/* Mathias 2026-10-23 kväll: heron utan siffertrion, rubriken i två meningar */
+/* Mathias 2026-10-23 kväll: heron utan siffertrion. Rubriken stor på två rader,
+   etiketten som en liten bricka i stället för streck + text. */
 .heroText h1 {
-  font-size: clamp(2rem, 4.6vw, 3.5rem);
-  text-wrap: balance;
+  font-size: clamp(2.3rem, 5.4vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+.heroText .heroTagg {
+  display: flex;
+  width: fit-content;
+  margin-bottom: 1.1rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--linje-mork);
+  color: var(--text-lag);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+}
+
+.heroText .heroTagg::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--em);
+}
+
+.heroText .heroLede {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.55;
+  max-width: 38ch;
+}
+
+@media (max-width: 899px) {
+  .heroText .heroTagg {
+    margin-bottom: 0.9rem;
+  }
 }
