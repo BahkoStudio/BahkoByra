@@ -1,4 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
+import { arKunddoman } from './kunddoman';
 import BildUpload from './BildUpload';
 
 /* ===========================================================================
@@ -45,12 +46,21 @@ import BildUpload from './BildUpload';
      Web3Forms-nyckel med info@kakel0413.se, kund: true, ta bort modal.
    =========================================================================== */
 
-export const metadata = {
+const META = {
   title: 'Kakel 0413 AB — kakelsättare och badrumsrenovering i Eslöv och Skåne',
   description:
     'Kakelsättare i Eslöv för hela Skåne: badrumsrenovering, kakel- och klinkersättning i badrum, kök, hallar och trapphus. Över 17 års erfarenhet. Kostnadsfri genomgång.',
-  robots: { index: false, follow: false },
 };
+
+// Kunddomänen (Mathias 2026-10-23): på kakel0413.se/www indexeras sidan, canonical pekar på
+// https://kakel0413.se/ och demorutan "Om det här förslaget" är borta (kund: true).
+// På bahkobyra.se/kakel0413/ är allt som förut: noindex och demoruta.
+
+export async function generateMetadata() {
+  return (await arKunddoman())
+    ? { ...META, alternates: { canonical: 'https://kakel0413.se/' }, robots: { index: true, follow: true } }
+    : { ...META, robots: { index: false, follow: false } };
+}
 
 const M = '/kakel0413/media';
 
@@ -254,7 +264,8 @@ const data = {
   },
 };
 
-export default function Kakel0413Demo() {
+export default async function Kakel0413Demo() {
+  const kund = await arKunddoman();
   return (
     <>
       {/* Om Nuh flyttade till /kakel0413/om-oss (Mathias 2026-10-22), länkad i footern. Jobbanden och omdömena döljs tills Nuh har egna foton och riktiga omdömen (se FLAGGOR). */}
@@ -262,7 +273,7 @@ export default function Kakel0413Demo() {
           och inget telefonnummer i heron (Ring-knappen i headern kvar). Raden "Kakel & Badrum." struken: mallen skriver alltid " & " och ".",
           så tjänsteraden får font-size 0 och bara Nuhs mening (egen fontstorlek) syns. */}
       <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}'}</style>
-      <DemoSida data={data} />
+      <DemoSida data={kund ? { ...data, kund: true } : data} />
       <BildUpload epost={data.kontakt.epost} />
     </>
   );

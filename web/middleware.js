@@ -9,6 +9,15 @@ const BAS = '/kakel0413';
 
 export function middleware(req) {
   const { pathname } = req.nextUrl;
+  // Egen robots.txt och sitemap för kunddomänen (annars visas bahkobyra.se:s).
+  if (pathname === '/robots.txt') {
+    return new NextResponse('User-agent: *\nAllow: /\nSitemap: https://kakel0413.se/sitemap.xml\n', { headers: { 'content-type': 'text/plain; charset=utf-8' } });
+  }
+  if (pathname === '/sitemap.xml') {
+    const sidor = ['https://kakel0413.se/', 'https://kakel0413.se/om-oss/'];
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sidor.map((u) => `<url><loc>${u}</loc></url>`).join('')}</urlset>\n`;
+    return new NextResponse(xml, { headers: { 'content-type': 'application/xml; charset=utf-8' } });
+  }
   // Redan under /kakel0413 (t.ex. media, gamla länkar), Next-filer eller filer med ändelse: orört.
   if (pathname === BAS || pathname.startsWith(`${BAS}/`) || pathname.startsWith('/_next') || /\.[a-z0-9]+$/i.test(pathname)) {
     return NextResponse.next();
