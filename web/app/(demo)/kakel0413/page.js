@@ -64,10 +64,10 @@ export async function generateMetadata() {
 
 const M = '/kakel0413/media';
 
-// Web3Forms-nyckel för info@kakel0413.se. PLATSHÅLLARE: tom tills Mathias skapat nyckeln på
-// web3forms.com med info@kakel0413.se och bekräftat mejlet i den inkorgen. Tom = demonyckeln
-// (mathias@bahkobyra.se) som förut. Nyckeln är publik av design (se app/formular.js).
-const KUND_NYCKEL = '';
+// Web3Forms-nyckel för info@kakel0413.se (Nuhs, verifierad, Mathias 2026-10-23). Gäller både kakel0413.se och bahkobyra.se/kakel0413.
+// Gratisplan: inga filbilagor (BILAGOR_PA = false i BildUpload.js). Tom = demonyckeln
+// (mathias@bahkobyra.se). Nyckeln är publik av design (se app/formular.js).
+const KUND_NYCKEL = '3f13101e-b99a-4276-87cb-c8645caf27a9';
 
 // Lägg till fler tjänster här när Nuh breddar utbudet: ett kort per tjänst (bild 4:3).
 const tjanster = [
