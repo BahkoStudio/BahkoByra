@@ -7,7 +7,6 @@ import RoiKalkyl from '../komponenter/RoiKalkyl';
 import Portfolj from '../komponenter/Portfolj';
 import BevisBromma, { BevisSiffror } from '../komponenter/BevisBromma';
 import Nischer from '../komponenter/Nischer';
-import TjanstIkon from '../komponenter/TjanstIkon';
 import Faq from '../komponenter/Faq';
 import { TJANSTER, FRAGOR } from '../data';
 import styles from './page.module.css';
@@ -59,6 +58,14 @@ export default function Start() {
       <section className={`mork ${styles.heroBygge}`} id="top">
         <div className={`wrap ${styles.heroGrid}`}>
           <div className={styles.heroText} data-trapp>
+            {/* Maskoten fyller ytan ovanför rubriken på dator, ögat följer musen (Mathias 2026-10-23) */}
+            <MaskotScen
+              className={styles.heroMaskot}
+              src="/img/maskot-scener/visar-sajten.webp"
+              alt="Bahko-maskoten visar upp ett hemsideförslag på en surfplatta"
+              oga={{ x: 73.3, y: 38.9, rx: 6.45, ry: 5.0, gron: 'rgb(20,112,75)' }}
+              index={0}
+            />
             {/* Rubriken talar till firman (Mathias 2026-09-23). Tjänst + ort ligger som första rad
                 I H1 (Mathias 2026-10-01): synlig text, samma som Google-profilens kategori och ort. */}
             <h1>
@@ -135,7 +142,10 @@ export default function Start() {
           <div className={styles.tjanstNat} data-trapp>
             {TJANSTER.map((t) => (
               <Link key={t.slug} href={`/tjanster/${t.slug}/`} className={styles.tjanstKort}>
-                <TjanstIkon slug={t.slug} />
+                {/* Samma runda 3D-märken som i "För vem" (GPT Image 2.5, Mathias 2026-10-23) */}
+                <span className={styles.tjanstMarke}>
+                  <img src={`/img/tjanster/${t.slug}-3d.webp`} alt="" width="640" height="640" loading="lazy" decoding="async" />
+                </span>
                 <h3>{t.namn}</h3>
                 <p>{TJANSTTEXT[t.slug].text}</p>
                 <span className={styles.tjanstFot}>
@@ -232,9 +242,9 @@ export default function Start() {
             </div>
             <MaskotScen
               className={styles.processScen}
-              src="/img/maskot-scener/visar-sajten.webp"
-              alt="Bahko-maskoten visar upp ett hemsideförslag på en surfplatta"
-              oga={{ x: 73.3, y: 38.9, rx: 6.45, ry: 5.0, gron: 'rgb(20,112,75)' }}
+              src="/img/maskot-scener/pekar-stoppur.webp"
+              alt="Bahko-maskoten i bygghjälm pekar på texten med ett stoppur i handen"
+              oga={{ x: 74.8, y: 43.9, rx: 6.0, ry: 4.8, gron: 'rgb(22,114,77)' }}
               index={3}
             />
             <Link href="/kontakt/" className={`btn btn-primar ${styles.processKnapp}`}>

@@ -106,6 +106,12 @@ export const TJANSTER = [
     relaterat: [
       { href: '/hemsida-for-malerifirma/', namn: 'Hemsida för målerifirma', kort: 'ROT rätt, era jobb som bevis och offert i mobilen.' },
       { href: '/hemsida-for-tradgardsfirma/', namn: 'Hemsida för trädgårdsfirma', kort: 'RUT per tjänst, egna tjänstesidor och ringknapp överallt.' },
+      { href: '/hemsida-for-snickare/', namn: 'Hemsida för snickare', kort: 'ROT 2026 rätt, jobben sorterade som kunden söker.' },
+      { href: '/hemsida-for-elektriker/', namn: 'Hemsida för elektriker', kort: 'Registreringen hos Elsäkerhetsverket synlig, akutnummer överst.' },
+      { href: '/hemsida-for-rormokare/', namn: 'Hemsida för rörmokare', kort: 'Akutnumret först, Säker Vatten synligt, ROT rätt.' },
+      { href: '/hemsida-for-byggfirma/', namn: 'Hemsida för byggfirma', kort: 'Projekten som egna sidor, ROT och fast pris i klartext.' },
+      { href: '/hemsida-for-restaurang/', namn: 'Hemsida för restaurang', kort: 'Menyn som text, Google-profilen skött, bokning överst.' },
+      { href: '/hemsida-for-e-handel/', namn: 'Hemsida för e-handel', kort: 'En produkt, köpknapp på varje skärm, ångerrätt rätt.' },
       { href: '/vad-kostar-en-hemsida/', namn: 'Vad kostar en hemsida?', kort: 'Ärligt svar på vad som avgör priset, och fällorna att undvika.' },
     ],
   },

@@ -37,9 +37,11 @@ export default function NischSida({ nisch }) {
             <Link href="/kontakt/" className="btn btn-primar">
               Få kostnadsfritt förslag {PIL}
             </Link>
-            <a href={nisch.bevis.url} target="_blank" rel="noopener" className="btn btn-sekundar">
-              Se leveransen
-            </a>
+            {nisch.bevis.url ? (
+              <a href={nisch.bevis.url} target="_blank" rel="noopener" className="btn btn-sekundar">
+                {nisch.bevis.typ === 'demo' ? 'Se demon' : 'Se leveransen'}
+              </a>
+            ) : null}
           </div>
         </div>
       </section>
@@ -66,29 +68,38 @@ export default function NischSida({ nisch }) {
 
       <section className={styles.bevisYta}>
         <div className="wrap">
-          <span className="eyebrow">Riktig leverans</span>
-          <h2>Inte ett exempel. En kund.</h2>
-          <div className={styles.bevis}>
-            <a
-              href={nisch.bevis.url}
-              target="_blank"
-              rel="noopener"
-              className={styles.bevisBild}
-              aria-label={`Öppna ${nisch.bevis.namn}`}
-            >
-              <img
-                src={nisch.bevis.bild}
-                alt={`Förhandsvisning av ${nisch.bevis.namn}`}
-                loading="lazy"
-              />
-            </a>
+          {/* Beviset är ärligt märkt: riktig kund, vår egen demo eller en Google-profil vi sköter */}
+          <span className="eyebrow">
+            {nisch.bevis.typ === 'demo' ? 'Demo' : nisch.bevis.typ === 'google' ? 'Riktig kund, Google-profilen' : 'Riktig leverans'}
+          </span>
+          <h2>
+            {nisch.bevis.typ === 'demo'
+              ? 'Så här kan det se ut. En demo, inte en kund.'
+              : nisch.bevis.typ === 'google'
+                ? 'Inte ett exempel. En kund i Google.'
+                : 'Inte ett exempel. En kund.'}
+          </h2>
+          <div className={`${styles.bevis} ${nisch.bevis.bild ? '' : styles.bevisUtanBild}`}>
+            {nisch.bevis.bild ? (
+              <a
+                href={nisch.bevis.url}
+                target="_blank"
+                rel="noopener"
+                className={styles.bevisBild}
+                aria-label={`Öppna ${nisch.bevis.namn}`}
+              >
+                <img src={nisch.bevis.bild} alt={`Förhandsvisning av ${nisch.bevis.namn}`} loading="lazy" />
+              </a>
+            ) : null}
             <div className={styles.bevisKropp}>
               <h3>{nisch.bevis.namn}</h3>
               <em>{nisch.bevis.ort}</em>
               <p>{nisch.bevis.text}</p>
-              <a href={nisch.bevis.url} target="_blank" rel="noopener" className={styles.lank}>
-                Öppna sajten {PIL}
-              </a>
+              {nisch.bevis.url ? (
+                <a href={nisch.bevis.url} target="_blank" rel="noopener" className={styles.lank}>
+                  {nisch.bevis.typ === 'demo' ? 'Öppna demon' : 'Öppna sajten'} {PIL}
+                </a>
+              ) : null}
             </div>
           </div>
         </div>

@@ -1121,3 +1121,53 @@
     margin-bottom: 0.9rem;
   }
 }
+
+/* Maskoten i heron: bara på dator, i luften ovanför rubriken, surfplattan vänd mot kalkylen */
+.heroMaskot {
+  display: block;
+  width: clamp(170px, 15vw, 220px);
+  height: auto;
+  margin: 0 0 -0.6rem -0.6rem;
+}
+
+
+@media (max-width: 899px) {
+  .heroMaskot {
+    display: none;
+  }
+}
+
+/* Tjänstekorten: runt 3D-märke med vit kant, som branschmärkena i "För vem" */
+.tjanstMarke {
+  display: block;
+  width: 120px;
+  aspect-ratio: 1;
+  margin: -2.9rem auto 1rem;
+  padding: 6px;
+  border-radius: 50%;
+  background: var(--vit);
+  box-shadow: 0 12px 28px rgba(10, 22, 40, 0.14);
+  transition: transform 0.35s var(--studs);
+}
+
+.tjanstMarke img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--lt-2);
+}
+
+.tjanstKort:hover .tjanstMarke {
+  transform: translateY(-6px) rotate(-4deg);
+}
+
+.tjanstKort {
+  margin-top: 2.9rem;
+  text-align: center;
+}
+
+.tjanstKort .tjanstFot {
+  text-align: left;
+}

@@ -12,14 +12,14 @@ import styles from './Nischer.module.css';
    Länkarna går till nischsidan där en finns, annars till en öppen demo eller kontakt. */
 
 const NISCHER = [
-  { slug: 'snickare', namn: 'Snickare', soker: 'snickare Huskvarna', href: '/kontakt/' },
-  { slug: 'elektriker', namn: 'Elektriker', soker: 'elektriker Jönköping', href: '/kontakt/' },
-  { slug: 'rormokare', namn: 'Rörmokare', soker: 'rörmokare akut Växjö', href: '/cloud/asmar/' },
+  { slug: 'snickare', namn: 'Snickare', soker: 'snickare Huskvarna', href: '/hemsida-for-snickare/' },
+  { slug: 'elektriker', namn: 'Elektriker', soker: 'elektriker Jönköping', href: '/hemsida-for-elektriker/' },
+  { slug: 'rormokare', namn: 'Rörmokare', soker: 'rörmokare akut Växjö', href: '/hemsida-for-rormokare/' },
   { slug: 'malare', namn: 'Målare', soker: 'målare Linköping', href: '/hemsida-for-malerifirma/' },
   { slug: 'tradgard', namn: 'Trädgård', soker: 'trädgårdsservice Stockholm', href: '/hemsida-for-tradgardsfirma/' },
-  { slug: 'bygg', namn: 'Byggfirma', soker: 'byggfirma Nässjö', href: '/cloud/bygg/' },
-  { slug: 'restaurang', namn: 'Restaurang', soker: 'buffé i Huskvarna', href: '/kontakt/' },
-  { slug: 'ehandel', namn: 'E-handel', soker: 'köp kokbok online', href: 'https://maykaskitchen.se/' },
+  { slug: 'bygg', namn: 'Byggfirma', soker: 'byggfirma Nässjö', href: '/hemsida-for-byggfirma/' },
+  { slug: 'restaurang', namn: 'Restaurang', soker: 'buffé i Huskvarna', href: '/hemsida-for-restaurang/' },
+  { slug: 'ehandel', namn: 'E-handel', soker: 'köp kokbok online', href: '/hemsida-for-e-handel/' },
 ];
 
 const LUPP = (
