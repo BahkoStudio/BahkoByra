@@ -10,6 +10,7 @@ import { arKunddoman } from '../kunddoman';
    kvalitet och att hålla det man lovar. Inget annat påstås. */
 
 const META = {
+  icons: { icon: [{ url: '/kakel0413/media/favicon-32.png', sizes: '32x32', type: 'image/png' }, { url: '/kakel0413/media/favicon-192.png', sizes: '192x192', type: 'image/png' }], apple: '/kakel0413/media/apple-touch-icon.png' },
   title: 'Om oss — Kakel 0413 AB, kakelsättare i Eslöv',
   description: 'Bakom Kakel 0413 står Nuh: över 17 år i byggbranschen, upp till sju projekt samtidigt och kakel i hela Skåne.',
 };
