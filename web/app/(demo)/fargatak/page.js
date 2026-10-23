@@ -34,9 +34,12 @@ import DemoSida from '../_mall/DemoSida';
      ska stämmas av med ägaren.
    - JOBB, OMDÖMEN OCH OM OSS är dolda (stilblocket nedan): inga jobbfoton,
      inga omdömen, ingen ägarberättelse ännu. Inget påhittat.
-   - HERO-FILMEN, VARFÖR-FILMEN OCH TJÄNSTEBILDERNA ÄR GENERERADE (Higgsfield:
-     Qwen Image 3 för stillbilderna, Wan 3.0 Prime bild-till-film 1080p utan ljud,
-     tre klipp). Illustrationer, INTE kundens egna jobb.
+   - VARFÖR- OCH KONTAKTFILMEN ÄR GENERERADE (Higgsfield: Qwen Image 3 + Wan 3.0
+     Prime). TJÄNSTEBILDERNA OCH HERONS FÖRE/EFTER (2026-10-23) är gjorda med GPT
+     Image 2.5 Sunburst (Higgsfield marketing-studio/image/sunburst, 2k high);
+     efter-bilden är en redigering av före-bilden, så tak och vinkel är desamma.
+     Hero-filmen ligger kvar i media men visas inte när foreEfter är satt.
+     Illustrationer, INTE kundens egna jobb.
    - Formuläret går till demonyckeln (Mathias). Vid leverans: egen nyckel.
    =========================================================================== */
 
@@ -53,8 +56,8 @@ const tjanster = [
   {
     id: 'takmalning',
     namn: 'Takmålning',
-    bild: `${M}/tjanst-malning.jpg`,
-    alt: 'Illustration: takmålare i sele sprutar svart takfärg över ett tak med betongpannor',
+    bild: `${M}/foto-malning.jpg`,
+    alt: 'Illustration: takmålare i sele sprutar svart takfärg över ett mossigt tak med betongpannor, halva taket redan målat',
     text: 'Taket målas jämnt över hela ytan, från nock till takfot.',
     punkter: ['Hela takytan', 'Jämnt och noggrant', 'Villor och hus i hela Sverige'],
     ritning: (<><path d="M20 90l80-55 80 55" /><path d="M120 30l25-15M145 15l10 10M150 20l-10 30" /><path d="M20 105h160" /></>),
@@ -62,8 +65,8 @@ const tjanster = [
   {
     id: 'fargval',
     namn: 'Färgval',
-    bild: `${M}/tjanst-farg.jpg`,
-    alt: 'Illustration: nymålat antracitsvart tak på en gul trävilla',
+    bild: `${M}/foto-farg.jpg`,
+    alt: 'Illustration: kulörprover för takfärg i svart, grått, tegelrött och brunt bredvid en gammal takpanna',
     text: 'Du väljer kulör till taket. Vi går igenom valet med dig innan arbetet börjar.',
     punkter: ['Kulör till taket', 'Bestäms tillsammans', 'Innan arbetet börjar'],
     ritning: (<><circle cx="100" cy="60" r="35" /><path d="M100 25v70M65 60h70" /><path d="M20 105h160" /></>),
@@ -71,8 +74,8 @@ const tjanster = [
   {
     id: 'klart',
     namn: 'Ett tak som ser nytt ut',
-    bild: `${M}/tjanst-klart.jpg`,
-    alt: 'Illustration: samma villa med ett nymålat, blankt svart tak i kvällssol',
+    bild: `${M}/foto-klart.jpg`,
+    alt: 'Illustration: takmålare och husägare tittar upp på ett nymålat svart tak på en röd trävilla',
     text: 'När jobbet är klart går vi igenom resultatet tillsammans med dig.',
     punkter: ['Nymålat tak', 'Genomgång när det är klart', 'Fräscht hus igen'],
     ritning: (<><path d="M20 90l80-55 80 55" /><path d="M75 75l15 15 35-35" /><path d="M20 105h160" /></>),
@@ -109,6 +112,8 @@ const data = {
     videoMobil: `${M}/video-hero-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
+    // Före/efter (illustration): samma villa och vinkel, vänster halva före, höger halva nymålad.
+    foreEfter: { src: `${M}/hero-fore-efter.jpg`, alt: 'Illustration: samma villatak före och efter, till vänster mossigt och blekt, till höger nymålat i matt svart', w: 1200, h: 900, txt: 'Före · Efter (illustration)' },
   },
   tejp: ['Takmålning', 'Nymålat tak', 'Färgval', 'Nytt utseende', 'Villor', 'Hela Sverige', 'Färga Tak'],
 
