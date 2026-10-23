@@ -42,8 +42,8 @@ import BildUpload from './BildUpload';
      (Higgsfield: Qwen Image 3 för stillbilderna, Wan 3.0 Prime bild-till-film
      1080p utan ljud för de tre klippen). Illustrationer, INTE Nuhs egna jobb.
      Tjänstekortens bilder märks i tjanster.lead-noten nedan.
-   - Formuläret går till mathias@bahkobyra.se (demonyckeln). Vid leverans:
-     Web3Forms-nyckel med info@kakel0413.se, kund: true, ta bort modal.
+   - Formuläret går till info@kakel0413.se (Nuhs Web3Forms-nyckel, PRO, KUND_NYCKEL nedan),
+     både på kakel0413.se och bahkobyra.se/kakel0413. Bilder följer med som bilagor (BildUpload.js).
    =========================================================================== */
 
 const META = {
@@ -64,10 +64,10 @@ export async function generateMetadata() {
 
 const M = '/kakel0413/media';
 
-// Web3Forms-nyckel för info@kakel0413.se. PLATSHÅLLARE: tom tills Mathias skapat nyckeln på
-// web3forms.com med info@kakel0413.se och bekräftat mejlet i den inkorgen. Tom = demonyckeln
-// (mathias@bahkobyra.se) som förut. Nyckeln är publik av design (se app/formular.js).
-const KUND_NYCKEL = '';
+// Web3Forms-nyckel för info@kakel0413.se (Nuhs, verifierad, Mathias 2026-10-23). Gäller både kakel0413.se och bahkobyra.se/kakel0413.
+// PRO: filbilagor på (BILAGOR_PA = true i BildUpload.js). Tom = demonyckeln
+// (mathias@bahkobyra.se). Nyckeln är publik av design (se app/formular.js).
+const KUND_NYCKEL = '3f13101e-b99a-4276-87cb-c8645caf27a9';
 
 // Lägg till fler tjänster här när Nuh breddar utbudet: ett kort per tjänst (bild 4:3).
 const tjanster = [
