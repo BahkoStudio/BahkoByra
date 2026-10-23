@@ -47,6 +47,7 @@ import BildUpload from './BildUpload';
    =========================================================================== */
 
 const META = {
+  icons: { icon: [{ url: '/kakel0413/media/favicon-32.png', sizes: '32x32', type: 'image/png' }, { url: '/kakel0413/media/favicon-192.png', sizes: '192x192', type: 'image/png' }], apple: '/kakel0413/media/apple-touch-icon.png' },
   title: 'Kakel 0413 AB — kakelsättare och badrumsrenovering i Eslöv och Skåne',
   description:
     'Kakelsättare i Eslöv för hela Skåne: badrumsrenovering, kakel- och klinkersättning i badrum, kök, hallar och trapphus. Över 17 års erfarenhet. Kostnadsfri genomgång.',
