@@ -7,8 +7,15 @@ import { NextResponse } from 'next/server';
    www.kakel0413.se 308-omdirigeras till apex i Vercels domäninställningar. */
 const BAS = '/kakel0413';
 
+// STÄNGD (Mathias 2026-10-23): Nuh vill ha sajten nere tills företaget öppnar. Sätt till false för att öppna igen.
+const STANGD = true;
+
 export function middleware(req) {
   const { pathname } = req.nextUrl;
+  if (STANGD) {
+    if (pathname === '/robots.txt') return new NextResponse('User-agent: *\nDisallow: /\n', { headers: { 'content-type': 'text/plain; charset=utf-8' } });
+    return new NextResponse('', { status: 503, headers: { 'retry-after': '86400', 'x-robots-tag': 'noindex, nofollow', 'cache-control': 'no-store' } });
+  }
   // Egen robots.txt och sitemap för kunddomänen (annars visas bahkobyra.se:s).
   if (pathname === '/robots.txt') {
     return new NextResponse('User-agent: *\nAllow: /\nSitemap: https://kakel0413.se/sitemap.xml\n', { headers: { 'content-type': 'text/plain; charset=utf-8' } });
