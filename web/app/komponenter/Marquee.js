@@ -14,7 +14,7 @@ const KUNDER = [
   {
     namn: 'Bromma Trädgårdsservice',
     bild: { src: '/img/kunder/bromma.svg', w: 1080, h: 320 },
-    rad: 'Etta på "trädgårdsservice i Stockholm", 30 juli',
+    rad: 'Etta på "trädgårdsservice i Stockholm", 30 juli 2026',
   },
   {
     namn: 'GD Måleri, Stockholm',
@@ -75,9 +75,7 @@ export default function Marquee() {
   return (
     <section className={`${styles.balte} ${igang ? styles.igang : ''}`} aria-label="Våra kunder">
       <div className="wrap">
-        <p className={styles.etikett}>
-          Kunder vi sköter sidan och Google åt
-        </p>
+        <p className={styles.etikett}>Våra kunder</p>
       </div>
       <div className={styles.fonster}>
       <div className={styles.spar}>

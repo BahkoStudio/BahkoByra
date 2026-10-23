@@ -25,9 +25,11 @@ export default function StickyBokning() {
        innan dess låg den över spelknappen. Saknas videosektionen gäller heron. */
     const video = document.getElementById('video');
     const vidScroll = () => {
-      forbiHero = video
-        ? video.getBoundingClientRect().bottom < window.innerHeight * 0.5
-        : window.scrollY > window.innerHeight * 0.9;
+      /* Design-loopen 2026-10-23: raden kommer så fort heron lämnats (annars är det fyra
+         skärmar till nästa knapp på mobil), men göms medan filmen är i bild. */
+      const vr = video ? video.getBoundingClientRect() : null;
+      const overFilmen = vr ? vr.top < window.innerHeight && vr.bottom > 0 : false;
+      forbiHero = window.scrollY > window.innerHeight * 0.9 && !overFilmen;
       uppdatera();
     };
     vidScroll();

@@ -76,7 +76,7 @@ export default function Header() {
             <Maskot pose="vinkar" stil="mini" alt="" stilla />
           </span>
           <a href="tel:+46762540951" className={styles.ringaText}>076-254 09 51</a>
-          <Link href="/kontakt/" className={`btn btn-primar ${styles.headerKnapp}`}>
+          <Link href="/kontakt/" className={`btn btn-sekundar ${styles.headerKnapp}`}>
             Kostnadsfritt förslag
           </Link>
           {/* Mobilen: numret ska gå att trycka på utan att öppna menyn. */}

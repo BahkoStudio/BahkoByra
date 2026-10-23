@@ -58,10 +58,6 @@
   gap: 0.9rem;
 }
 
-.station:nth-child(even) .kort {
-  margin-top: 1.4rem;
-}
-
 .nod {
   position: relative;
   z-index: 1;
@@ -117,9 +113,7 @@
   right: 0.6rem;
   bottom: 0.6rem;
   display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  column-gap: 0.4rem;
+  gap: 0.15rem;
   padding: 0.7rem 0.8rem;
   background: var(--vit);
   color: var(--ink);
@@ -128,34 +122,31 @@
 }
 
 .etikett strong {
-  grid-column: 1;
   font-size: 0.98rem;
   line-height: 1.2;
 }
 
 .etikett > span {
-  grid-column: 1;
-  margin-top: 0.15rem;
   font-size: 0.74rem;
   line-height: 1.35;
   color: var(--ink-3);
 }
 
+/* Verbet säger vad trycket gör */
 .pil {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--lt-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.3rem;
+  font-style: normal;
+  font-size: 0.74rem;
+  font-weight: 700;
   color: var(--ink);
 }
 
 .pil svg {
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
 }
 
 .fot {
@@ -181,9 +172,6 @@
   /* I två rader går vägen bara längs den översta raden */
   .vag::before {
     display: none;
-  }
-  .station:nth-child(even) .kort {
-    margin-top: 0;
   }
 }
 
@@ -222,9 +210,8 @@
   .station {
     flex: 0 0 62%;
     scroll-snap-align: start;
-  }
-  .station:nth-child(even) .kort {
-    margin-top: 0;
+    /* Snäppet ska landa i linje med textens vänsterkant, inte vid skärmkanten */
+    scroll-margin-left: clamp(1.1rem, 4vw, 2rem);
   }
   .fot {
     flex-direction: column;

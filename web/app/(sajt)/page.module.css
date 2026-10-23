@@ -700,7 +700,7 @@
 
 .heroSiffror strong {
   display: block;
-  font-size: clamp(1.6rem, 2.6vw, 2rem);
+  font-size: 1.2rem;
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -1025,11 +1025,22 @@
   text-wrap: pretty;
 }
 
-/* Målet: sista noden är fylld, vägen slutar tydligt */
-.vagMal .vagNod {
-  background: var(--text);
-  border-color: var(--text);
-  color: var(--bas);
+/* Knapptexten: kort på mobil så den ryms på en rad */
+.kortText {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .processKnapp {
+    width: 100%;
+    justify-content: center;
+  }
+  .langt {
+    display: none;
+  }
+  .kortText {
+    display: inline;
+  }
 }
 
 @media (max-width: 760px) {

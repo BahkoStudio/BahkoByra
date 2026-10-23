@@ -28,7 +28,7 @@ const PIL = (
 const RESAN = [
   { nr: '01', h: 'Berätta om firman', p: 'Vad ni gör och var, det tar två minuter.' },
   { nr: '02', h: 'Se förslaget', p: 'Inom 48 timmar har ni en färdig sida att klicka i.' },
-  { nr: '03', h: 'Ja eller nej', p: 'Ja ger era bilder på sidan, nej kostar ingenting.' },
+  { nr: '03', h: 'Ja eller nej', p: 'Säger ni ja lägger vi in era bilder, nej kostar inget.' },
   { nr: '04', h: 'Sidan går live', p: 'På er egen domän, normalt inom sju dagar.' },
   { nr: '05', h: 'Vi finns kvar', p: 'Underhåll, Google och ändringar när ni behöver dem.' },
 ];
@@ -178,7 +178,7 @@ export default function Start() {
 
           <div className={styles.processCta} data-avsloja="upp">
             <div>
-              <h3>Berätta vad ni gör och var. Vi tar fram förslaget.</h3>
+              <h3>Redo? Då tar vi fram förslaget.</h3>
               <p>Sidan och domänen är era, och vi jobbar utan bindningstid.</p>
             </div>
             <MaskotScen
@@ -188,8 +188,9 @@ export default function Start() {
               oga={{ x: 73.3, y: 38.9, rx: 6.45, ry: 5.0, gron: 'rgb(20,112,75)' }}
               index={3}
             />
-            <Link href="/kontakt/" className="btn btn-primar">
-              Visa hur min hemsida kan se ut {PIL}
+            <Link href="/kontakt/" className={`btn btn-primar ${styles.processKnapp}`}>
+              <span className={styles.langt}>Visa hur min hemsida kan se ut</span>
+              <span className={styles.kortText}>Visa min hemsida</span> {PIL}
             </Link>
           </div>
         </div>

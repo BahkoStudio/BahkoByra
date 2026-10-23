@@ -23,7 +23,7 @@ const kr = new Intl.NumberFormat('sv-SE', { maximumFractionDigits: 0 });
 const STEG = [
   { id: 'jobb', fraga: 'I dag får ni', min: 1, max: 40, steg: 1, start: 8, visa: (v) => `${v} jobb i månaden` },
   { id: 'varde', fraga: 'Ett jobb är värt i snitt', min: 2000, max: 150000, steg: 1000, start: 25000, visa: (v) => `${kr.format(v)} kr` },
-  { id: 'okning', fraga: 'Säg att ny hemsida ger', min: 5, max: 20, steg: 1, start: 10, visa: (v) => `${v} % fler kunder` },
+  { id: 'okning', fraga: 'Ny hemsida ger', min: 5, max: 20, steg: 1, start: 10, visa: (v) => `${v} % fler kunder` },
 ];
 
 /* Rullar ett tal mot målvärdet. Första renderingen visar målvärdet direkt (servern). */
@@ -131,7 +131,7 @@ export default function RoiKalkyl({ className = '', kompakt = false }) {
                 <span className={styles.stapelTal}>{kr.format(visIdag)} kr/mån</span>
               </div>
               <div className={styles.stapel}>
-                <span className={styles.stapelNamn}>Med ny hemsida</span>
+                <span className={styles.stapelNamn}>Med {v.okning} % fler</span>
                 <div className={styles.bana}>
                   <i className={styles.nyBana} style={{ width: '100%' }}>
                     <em style={{ width: `${100 - idagBredd}%` }} />

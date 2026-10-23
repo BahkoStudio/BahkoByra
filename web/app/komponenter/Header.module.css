@@ -104,6 +104,14 @@
   min-height: 42px;
   padding: 0.55rem 1.2rem;
   font-size: 0.74rem;
+  /* Kontur på mörk header: sektionernas egna knappar ska vara ensamma om grönt */
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.headerKnapp:hover {
+  color: var(--text);
+  border-color: var(--em);
 }
 
 .burgare {
