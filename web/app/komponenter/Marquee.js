@@ -12,6 +12,16 @@ import styles from './Marquee.module.css';
    stället för bildloggor, så de sätts i text. */
 const KUNDER = [
   {
+    namn: 'Matboden i Huskvarna',
+    bild: { src: '/img/kunder/matboden.webp', w: 410, h: 140 },
+    rad: 'Etta på "buffé i Huskvarna", 23 oktober 2026',
+  },
+  {
+    namn: 'Smålands Måleri AB',
+    bild: { src: '/img/kunder/smamaleri.webp', w: 340, h: 168 },
+    rad: 'Ny hemsida, målare i Jönköping',
+  },
+  {
     namn: 'Bromma Trädgårdsservice',
     bild: { src: '/img/kunder/bromma.svg', w: 1080, h: 320 },
     rad: 'Etta på "trädgårdsservice i Stockholm", 30 juli 2026',
@@ -19,17 +29,7 @@ const KUNDER = [
   {
     namn: 'GD Måleri, Stockholm',
     bild: { src: '/img/kunder/gdmaleri.webp', w: 341, h: 320, kvadrat: true },
-    rad: 'Hemsida och Google, målare i Stockholm',
-  },
-  {
-    namn: 'Matboden i Huskvarna',
-    bild: { src: '/img/kunder/matboden.webp', w: 410, h: 140 },
-    rad: 'Etta på "buffé i Huskvarna", oktober 2026',
-  },
-  {
-    namn: 'Smålands Måleri AB',
-    bild: { src: '/img/kunder/smamaleri.webp', w: 340, h: 168 },
-    rad: 'Ny hemsida, målare i Jönköping',
+    rad: 'GD Måleri: hemsida och Google, Stockholm',
   },
   {
     namn: 'CK Måleri & Golv',

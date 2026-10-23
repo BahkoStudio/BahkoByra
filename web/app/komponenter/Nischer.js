@@ -12,12 +12,12 @@ import styles from './Nischer.module.css';
    söker, inte mätta volymer. */
 
 const NISCHER = [
-  { slug: 'snickare', namn: 'Snickare', soker: 'snickare Huskvarna', href: '/kontakt/', verb: 'Be om förslag' },
-  { slug: 'elektriker', namn: 'Elektriker', soker: 'elektriker Jönköping', href: '/kontakt/', verb: 'Be om förslag' },
-  { slug: 'rormokare', namn: 'Rörmokare', soker: 'rörmokare akut Växjö', href: '/cloud/asmar/', verb: 'Se exempel' },
-  { slug: 'malare', namn: 'Målare', soker: 'målare Linköping', href: '/hemsida-for-malerifirma/', verb: 'Läs mer' },
-  { slug: 'tradgard', namn: 'Trädgård', soker: 'trädgårdsservice Stockholm', href: '/hemsida-for-tradgardsfirma/', verb: 'Läs mer' },
-  { slug: 'bygg', namn: 'Byggfirma', soker: 'byggfirma Nässjö', href: '/cloud/bygg/', verb: 'Se exempel' },
+  { slug: 'snickare', namn: 'Snickare', soker: 'snickare Huskvarna', href: '/kontakt/', verb: 'Se hur det kan se ut' },
+  { slug: 'elektriker', namn: 'Elektriker', soker: 'elektriker Jönköping', href: '/kontakt/', verb: 'Se hur det kan se ut' },
+  { slug: 'rormokare', namn: 'Rörmokare', soker: 'rörmokare akut Växjö', href: '/cloud/asmar/', verb: 'Se hur det kan se ut' },
+  { slug: 'malare', namn: 'Målare', soker: 'målare Linköping', href: '/hemsida-for-malerifirma/', verb: 'Se hur det kan se ut' },
+  { slug: 'tradgard', namn: 'Trädgård', soker: 'trädgårdsservice Stockholm', href: '/hemsida-for-tradgardsfirma/', verb: 'Se hur det kan se ut' },
+  { slug: 'bygg', namn: 'Byggfirma', soker: 'byggfirma Nässjö', href: '/cloud/bygg/', verb: 'Se hur det kan se ut' },
 ];
 
 const PIL = (

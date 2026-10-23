@@ -97,7 +97,7 @@ export default function StickyBokning() {
         </a>
         <Link href="/kontakt/" className={`btn btn-primar ${styles.knapp}`} tabIndex={synlig ? 0 : -1}>
           <span className={styles.langt}>Visa hur min hemsida kan se ut</span>
-          <span className={styles.kort}>Visa min hemsida</span>
+          <span className={styles.kort}>Se mitt förslag</span>
         </Link>
       </div>
     </div>

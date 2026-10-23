@@ -23,7 +23,7 @@ const kr = new Intl.NumberFormat('sv-SE', { maximumFractionDigits: 0 });
 const STEG = [
   { id: 'jobb', fraga: 'I dag får ni', min: 1, max: 40, steg: 1, start: 8, visa: (v) => `${v} jobb i månaden` },
   { id: 'varde', fraga: 'Ett jobb är värt i snitt', min: 2000, max: 150000, steg: 1000, start: 25000, visa: (v) => `${kr.format(v)} kr` },
-  { id: 'okning', fraga: 'Ny hemsida ger', min: 5, max: 20, steg: 1, start: 10, visa: (v) => `${v} % fler kunder` },
+  { id: 'okning', fraga: 'Om ny sida ger', min: 5, max: 20, steg: 1, start: 10, visa: (v) => `${v} % fler kunder` },
 ];
 
 /* Rullar ett tal mot målvärdet. Första renderingen visar målvärdet direkt (servern). */

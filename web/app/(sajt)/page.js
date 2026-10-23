@@ -27,7 +27,7 @@ const PIL = (
    Regel ur bar.md: rubrik på högst tre ord, en mening på högst tolv ord. */
 const RESAN = [
   { nr: '01', h: 'Berätta om firman', p: 'Vad ni gör och var, det tar två minuter.' },
-  { nr: '02', h: 'Se förslaget', p: 'Inom 48 timmar har ni en färdig sida att klicka i.' },
+  { nr: '02', h: 'Se förslaget', p: 'Inom 48 timmar har ni ett färdigt förslag att klicka i.' },
   { nr: '03', h: 'Ja eller nej', p: 'Säger ni ja lägger vi in era bilder, nej kostar inget.' },
   { nr: '04', h: 'Sidan går live', p: 'På er egen domän, normalt inom sju dagar.' },
   { nr: '05', h: 'Vi finns kvar', p: 'Underhåll, Google och ändringar när ni behöver dem.' },
@@ -190,7 +190,7 @@ export default function Start() {
             />
             <Link href="/kontakt/" className={`btn btn-primar ${styles.processKnapp}`}>
               <span className={styles.langt}>Visa hur min hemsida kan se ut</span>
-              <span className={styles.kortText}>Visa min hemsida</span> {PIL}
+              <span className={styles.kortText}>Se mitt förslag</span> {PIL}
             </Link>
           </div>
         </div>
