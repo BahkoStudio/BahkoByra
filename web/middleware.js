@@ -18,6 +18,13 @@ export function middleware(req) {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sidor.map((u) => `<url><loc>${u}</loc></url>`).join('')}</urlset>\n`;
     return new NextResponse(xml, { headers: { 'content-type': 'application/xml; charset=utf-8' } });
   }
+  // Rena adresser: /kakel0413/<sida> → 308 till /<sida> på kunddomänen. Media och filer med ändelse
+  // (t.ex. /kakel0413/media/logo.webp) lämnas orörda nedan.
+  if ((pathname === BAS || pathname.startsWith(`${BAS}/`)) && !pathname.startsWith(`${BAS}/media/`) && !/\.[a-z0-9]+$/i.test(pathname)) {
+    const url = req.nextUrl.clone();
+    url.pathname = pathname.slice(BAS.length) || '/';
+    return NextResponse.redirect(url, 308);
+  }
   // Redan under /kakel0413 (t.ex. media, gamla länkar), Next-filer eller filer med ändelse: orört.
   if (pathname === BAS || pathname.startsWith(`${BAS}/`) || pathname.startsWith('/_next') || /\.[a-z0-9]+$/i.test(pathname)) {
     return NextResponse.next();
