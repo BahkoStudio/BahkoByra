@@ -227,8 +227,24 @@
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  background: var(--em);
-  color: var(--bas);
+  border: 1px solid var(--linje-mork);
+  color: var(--text);
+}
+
+/* Bred dator: numret som text bredvid knappen, så kontakt är ett tryck bort utan meny */
+.ringaText {
+  display: none;
+  margin-right: 1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+@media (min-width: 1180px) {
+  .ringaText {
+    display: inline;
+  }
 }
 
 .ringa svg {

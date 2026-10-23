@@ -38,7 +38,7 @@ export default function Nischer() {
             </h2>
             <p className="lede" style={{ marginTop: '1rem' }}>
               Snickare, elektriker, rörmokare, målare och fler. Vi vet vad era kunder skriver i
-              Google, och bygger sidan så att de hittar just er.
+              Google, och bygger sidan runt de orden.
             </p>
           </div>
           <div className={styles.maskot}>

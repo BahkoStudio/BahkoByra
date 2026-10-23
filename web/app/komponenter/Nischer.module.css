@@ -5,6 +5,11 @@
   background: var(--lt-2);
 }
 
+/* Etiketten gråblå: grönt bara i det markerade ordet och knappen (bar.md 3) */
+.yta :global(.eyebrow) {
+  color: var(--ink-3);
+}
+
 .intro {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -185,6 +190,10 @@
 @media (max-width: 900px) {
   .intro {
     grid-template-columns: 1fr;
+  }
+  /* Mobil: korten ska börja direkt under ingressen, maskoten tog en hel skärm */
+  .maskot {
+    display: none;
   }
 }
 

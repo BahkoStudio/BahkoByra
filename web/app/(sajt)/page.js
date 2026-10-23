@@ -26,11 +26,11 @@ const PIL = (
 /* Hur vi jobbar, som en väg i fem steg (Mathias 2026-10-23: enklare, tydligare).
    Regel ur bar.md: rubrik på högst tre ord, en mening på högst tolv ord. */
 const RESAN = [
-  { nr: '01', h: 'Berätta om firman', p: 'Vad ni gör och var. Det tar två minuter.' },
+  { nr: '01', h: 'Berätta om firman', p: 'Vad ni gör och var, det tar två minuter.' },
   { nr: '02', h: 'Se förslaget', p: 'Inom 48 timmar har ni en färdig sida att klicka i.' },
-  { nr: '03', h: 'Säg ja eller nej', p: 'Ja: vi fyller på med era bilder. Nej: det kostade inget.' },
+  { nr: '03', h: 'Ja eller nej', p: 'Ja ger era bilder på sidan, nej kostar ingenting.' },
   { nr: '04', h: 'Sidan går live', p: 'På er egen domän, normalt inom sju dagar.' },
-  { nr: '05', h: 'Kunderna ringer', p: 'Snabb i mobilen, ringknapp på varje skärm. Vi finns kvar.' },
+  { nr: '05', h: 'Vi finns kvar', p: 'Underhåll, Google och ändringar när ni behöver dem.' },
 ];
 
 export default function Start() {
@@ -48,7 +48,7 @@ export default function Start() {
               Bli firman kunderna <span className="accent">ringer först.</span>
             </h1>
             <p className={styles.heroLede}>
-              Hemsidor och Google-optimering åt lokala företag som vill ha fler förfrågningar.
+              Hemsidor och Google åt snickare, målare, elektriker och andra lokala firmor som vill ha fler förfrågningar.
             </p>
             <div className={styles.heroKnappar}>
               <Link href="/kontakt/" className="btn btn-primar">
@@ -170,10 +170,8 @@ export default function Start() {
             {RESAN.map((r, i) => (
               <li key={r.nr} className={`${styles.vagSteg} ${i === RESAN.length - 1 ? styles.vagMal : ''}`}>
                 <span className={styles.vagNod} aria-hidden="true">{r.nr}</span>
-                <div className={styles.vagKort}>
-                  <h3>{r.h}</h3>
-                  <p>{r.p}</p>
-                </div>
+                <h3>{r.h}</h3>
+                <p>{r.p}</p>
               </li>
             ))}
           </ol>

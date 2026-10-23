@@ -239,7 +239,7 @@
 }
 
 .kort .resEtikett {
-  margin: 0;
+  margin: 0 0 0.8rem;
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -484,4 +484,14 @@
   .kompakt .fot {
     padding-left: 0;
   }
+}
+
+/* I heron finns redan knappen ovanför: kalkylens egen fot tas bort, och rubriken är helvit
+   så att grönt bara står i reglagen och resultatet (bar.md 3). */
+.kompakt .fot {
+  display: none;
+}
+
+.kompakt .accent {
+  color: inherit;
 }

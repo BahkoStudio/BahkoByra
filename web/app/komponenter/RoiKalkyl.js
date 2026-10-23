@@ -123,6 +123,7 @@ export default function RoiKalkyl({ className = '', kompakt = false }) {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 21V4" /><path d="M5 4h11l-2 4 2 4H5" /></svg>
           </span>
           <div className={styles.resultat} aria-live="polite">
+            <p className={styles.resEtikett}>Räkneexempel med era siffror</p>
             <div className={styles.staplar}>
               <div className={styles.stapel}>
                 <span className={styles.stapelNamn}>I dag</span>
@@ -150,7 +151,7 @@ export default function RoiKalkyl({ className = '', kompakt = false }) {
                 <span className={styles.resUnder}>mer om året</span>
               </div>
             </div>
-            <p className={styles.resAr}>Så mycket är fler kunder värda för er.</p>
+            <p className={styles.resAr}>10 % är ett antagande ni ändrar själva, inte ett löfte.</p>
           </div>
         </li>
       </ol>

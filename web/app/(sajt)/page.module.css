@@ -952,39 +952,53 @@
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(16, 185, 129, 0.15);
 }
 
+/* Grönt högst två gånger per skärm (bar.md 3): på startsidans mörka sektioner är
+   etiketten gråblå, så att knappen och det markerade ordet får vara ensamma om grönt. */
+.heroBygge :global(.eyebrow),
+.panelYta :global(.eyebrow),
+.caseYta :global(.eyebrow),
+.videoYta :global(.eyebrow),
+.process :global(.eyebrow) {
+  color: var(--text-lag);
+}
+
+.heroSiffror span {
+  font-size: 0.74rem;
+}
+
 /* ── Hur vi jobbar: en väg med fem noder ──
-   Dator: linjen går lodrätt i mitten, stegen växlar sida. Mobil: linjen till vänster. */
+   Dator: en vågrät linje, fem stationer på rad, text under varje nod (samma
+   formspråk som branschresan). Mobil: linjen lodrät till vänster. Inga kortramar:
+   nummer, rubrik, mening. */
 .vag {
-  --vagNod: 52px;
+  --vagNod: 44px;
   position: relative;
   list-style: none;
-  margin: 2.8rem auto 0;
+  margin: 2.8rem 0 0;
   padding: 0;
-  max-width: 920px;
   display: grid;
-  row-gap: 1.6rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: 1.6rem;
 }
 
 .vag::before {
   content: '';
   position: absolute;
+  left: calc(var(--vagNod) / 2);
+  right: calc(var(--vagNod) / 2);
   top: calc(var(--vagNod) / 2);
-  bottom: calc(var(--vagNod) / 2);
-  left: 50%;
-  border-left: 2px dashed rgba(255, 255, 255, 0.22);
-  transform: translateX(-50%);
+  border-top: 2px dashed rgba(255, 255, 255, 0.22);
 }
 
 .vagSteg {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr var(--vagNod) 1fr;
-  column-gap: 1.6rem;
-  align-items: center;
+  gap: 0.9rem;
+  align-content: start;
 }
 
 .vagNod {
-  grid-column: 2;
+  position: relative;
   z-index: 1;
   display: grid;
   place-items: center;
@@ -994,65 +1008,58 @@
   background: var(--bas);
   border: 2px solid rgba(255, 255, 255, 0.35);
   color: var(--text);
-  font-weight: 800;
-  font-size: 0.95rem;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
 }
 
-.vagKort {
-  grid-column: 3;
-  grid-row: 1;
-  padding: 1.2rem 1.4rem;
-  background: var(--yta);
-  border: 1px solid var(--linje-mork);
-  border-radius: var(--r-lg);
-}
-
-.vagSteg:nth-child(even) .vagKort {
-  grid-column: 1;
-  text-align: right;
-}
-
-.vagKort h3 {
-  margin: 0 0 0.35rem;
+.vagSteg h3 {
+  margin: 0.2rem 0 0;
   font-size: 1.1rem;
 }
 
-.vagKort p {
-  margin: 0;
+.vagSteg p {
+  margin: -0.4rem 0 0;
   color: var(--text-lag);
   font-size: 0.95rem;
+  text-wrap: pretty;
 }
 
-/* Målet: sista noden är grön, så vägen slutar i det kunden vill ha */
+/* Målet: sista noden är fylld, vägen slutar tydligt */
 .vagMal .vagNod {
-  background: var(--em);
-  border-color: var(--em);
+  background: var(--text);
+  border-color: var(--text);
   color: var(--bas);
-  box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.16);
 }
 
 @media (max-width: 760px) {
   .vag {
-    --vagNod: 40px;
-    row-gap: 1.1rem;
+    --vagNod: 36px;
+    grid-template-columns: 1fr;
+    row-gap: 1.5rem;
   }
   .vag::before {
     left: calc(var(--vagNod) / 2);
-    transform: none;
+    right: auto;
+    top: calc(var(--vagNod) / 2);
+    bottom: calc(var(--vagNod) / 2);
+    border-top: 0;
+    border-left: 2px dashed rgba(255, 255, 255, 0.22);
+    transform: translateX(-50%);
   }
   .vagSteg {
     grid-template-columns: var(--vagNod) 1fr;
     column-gap: 1rem;
+    row-gap: 0.25rem;
+    align-items: start;
   }
   .vagNod {
-    grid-column: 1;
-    font-size: 0.82rem;
+    grid-row: 1 / span 2;
   }
-  .vagKort,
-  .vagSteg:nth-child(even) .vagKort {
-    grid-column: 2;
-    text-align: left;
-    padding: 1rem 1.1rem;
+  .vagSteg h3 {
+    margin: 0.45rem 0 0;
+  }
+  .vagSteg p {
+    margin: 0;
   }
 }

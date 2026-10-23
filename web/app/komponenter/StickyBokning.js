@@ -18,7 +18,8 @@ export default function StickyBokning() {
     let footerSyns = false;
     let lager = false;
 
-    const uppdatera = () => setSynlig(forbiHero && !footerSyns && !lager);
+    let knappSyns = false;
+    const uppdatera = () => setSynlig(forbiHero && !footerSyns && !lager && !knappSyns);
 
     /* Raden kommer först när besökaren lämnat videon (design-loopen runda 3):
        innan dess låg den över spelknappen. Saknas videosektionen gäller heron. */
@@ -45,6 +46,23 @@ export default function StickyBokning() {
       obs.observe(footer);
     }
 
+    /* Två gröna knappar med samma ärende på samma skärm är en för mycket (design-loopen
+       2026-10-23): raden göms så länge någon av sidans egna primärknappar är i bild. */
+    const knappar = document.querySelectorAll('main .btn-primar');
+    let knappObs = null;
+    if (knappar.length && 'IntersectionObserver' in window) {
+      const synliga = new Set();
+      knappObs = new IntersectionObserver(
+        (poster) => {
+          poster.forEach((p) => (p.isIntersecting ? synliga.add(p.target) : synliga.delete(p.target)));
+          knappSyns = synliga.size > 0;
+          uppdatera();
+        },
+        { threshold: 0.5 }
+      );
+      knappar.forEach((k) => knappObs.observe(k));
+    }
+
     /* Popup och mobilmeny sätter data-lager på body när de öppnar */
     const mo = new MutationObserver(() => {
       lager = document.body.hasAttribute('data-lager');
@@ -55,6 +73,7 @@ export default function StickyBokning() {
     return () => {
       window.removeEventListener('scroll', vidScroll);
       if (obs) obs.disconnect();
+      if (knappObs) knappObs.disconnect();
       mo.disconnect();
     };
   }, []);

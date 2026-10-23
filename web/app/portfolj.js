@@ -41,7 +41,7 @@ export const PORTFOLJ = [
     url: 'https://gdmaleri.se/',
     // Bild: beskuren ur sajtens egen hero-poster (web/public/gdmaleri/media/poster-hero.jpg).
     bild: '/img/portfolj/gdmaleri.jpg',
-    rad: 'Next.js-sajt med egna sidor för fasad, tak, invändigt, golv och BRF, och ROT på fakturan.',
+    rad: 'Egna sidor för fasad, tak, invändigt, golv och BRF, och ROT på fakturan.',
   },
   {
     namn: "Mayka's Kitchen",

@@ -14,27 +14,27 @@ const KUNDER = [
   {
     namn: 'Bromma Trädgårdsservice',
     bild: { src: '/img/kunder/bromma.svg', w: 1080, h: 320 },
-    rad: 'Etta på "trädgårdsservice i Stockholm"',
-  },
-  {
-    namn: 'Matboden i Huskvarna',
-    bild: { src: '/img/kunder/matboden.webp', w: 410, h: 140 },
-    rad: 'Etta på "buffé i Huskvarna"',
+    rad: 'Etta på "trädgårdsservice i Stockholm", 30 juli',
   },
   {
     namn: 'GD Måleri, Stockholm',
     bild: { src: '/img/kunder/gdmaleri.webp', w: 341, h: 320, kvadrat: true },
-    rad: 'Hemsida och Google varje månad',
+    rad: 'Hemsida och Google, målare i Stockholm',
+  },
+  {
+    namn: 'Matboden i Huskvarna',
+    bild: { src: '/img/kunder/matboden.webp', w: 410, h: 140 },
+    rad: 'Etta på "buffé i Huskvarna", oktober 2026',
   },
   {
     namn: 'Smålands Måleri AB',
     bild: { src: '/img/kunder/smamaleri.webp', w: 340, h: 168 },
-    rad: 'Ny hemsida, smamaleri.se',
+    rad: 'Ny hemsida, målare i Jönköping',
   },
   {
     namn: 'CK Måleri & Golv',
     ord: 'CK Måleri & Golv',
-    rad: 'Hemsida och Google varje månad',
+    rad: 'Hemsida och Google, golv i Uddevalla',
   },
   {
     namn: 'Mayka Gulo',
@@ -79,6 +79,7 @@ export default function Marquee() {
           Kunder vi sköter sidan och Google åt
         </p>
       </div>
+      <div className={styles.fonster}>
       <div className={styles.spar}>
         {[0, 1].map((k) => (
           <ul key={k} className={styles.set} aria-hidden={k === 1 ? 'true' : undefined}>
@@ -107,6 +108,7 @@ export default function Marquee() {
             ))}
           </ul>
         ))}
+      </div>
       </div>
     </section>
   );

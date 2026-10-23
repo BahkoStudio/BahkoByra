@@ -58,7 +58,7 @@
   height: 44px;
   border-radius: 50%;
   border: 1px solid var(--linje-mork);
-  color: var(--em-lt);
+  color: var(--text);
   align-items: center;
   justify-content: center;
   transition: transform 0.16s var(--ease-out-strong, var(--ease));
