@@ -104,6 +104,14 @@
   min-height: 42px;
   padding: 0.55rem 1.2rem;
   font-size: 0.74rem;
+  /* Kontur på mörk header: sektionernas egna knappar ska vara ensamma om grönt */
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.headerKnapp:hover {
+  color: var(--text);
+  border-color: var(--em);
 }
 
 .burgare {
@@ -227,8 +235,24 @@
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  background: var(--em);
-  color: var(--bas);
+  border: 1px solid var(--linje-mork);
+  color: var(--text);
+}
+
+/* Bred dator: numret som text bredvid knappen, så kontakt är ett tryck bort utan meny */
+.ringaText {
+  display: none;
+  margin-right: 1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+@media (min-width: 1180px) {
+  .ringaText {
+    display: inline;
+  }
 }
 
 .ringa svg {

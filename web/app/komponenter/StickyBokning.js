@@ -18,15 +18,18 @@ export default function StickyBokning() {
     let footerSyns = false;
     let lager = false;
 
-    const uppdatera = () => setSynlig(forbiHero && !footerSyns && !lager);
+    let knappSyns = false;
+    const uppdatera = () => setSynlig(forbiHero && !footerSyns && !lager && !knappSyns);
 
     /* Raden kommer först när besökaren lämnat videon (design-loopen runda 3):
        innan dess låg den över spelknappen. Saknas videosektionen gäller heron. */
     const video = document.getElementById('video');
     const vidScroll = () => {
-      forbiHero = video
-        ? video.getBoundingClientRect().bottom < window.innerHeight * 0.5
-        : window.scrollY > window.innerHeight * 0.9;
+      /* Design-loopen 2026-10-23: raden kommer så fort heron lämnats (annars är det fyra
+         skärmar till nästa knapp på mobil), men göms medan filmen är i bild. */
+      const vr = video ? video.getBoundingClientRect() : null;
+      const overFilmen = vr ? vr.top < window.innerHeight && vr.bottom > 0 : false;
+      forbiHero = window.scrollY > window.innerHeight * 0.9 && !overFilmen;
       uppdatera();
     };
     vidScroll();
@@ -45,6 +48,23 @@ export default function StickyBokning() {
       obs.observe(footer);
     }
 
+    /* Två gröna knappar med samma ärende på samma skärm är en för mycket (design-loopen
+       2026-10-23): raden göms så länge någon av sidans egna primärknappar är i bild. */
+    const knappar = document.querySelectorAll('main .btn-primar');
+    let knappObs = null;
+    if (knappar.length && 'IntersectionObserver' in window) {
+      const synliga = new Set();
+      knappObs = new IntersectionObserver(
+        (poster) => {
+          poster.forEach((p) => (p.isIntersecting ? synliga.add(p.target) : synliga.delete(p.target)));
+          knappSyns = synliga.size > 0;
+          uppdatera();
+        },
+        { threshold: 0.5 }
+      );
+      knappar.forEach((k) => knappObs.observe(k));
+    }
+
     /* Popup och mobilmeny sätter data-lager på body när de öppnar */
     const mo = new MutationObserver(() => {
       lager = document.body.hasAttribute('data-lager');
@@ -55,6 +75,7 @@ export default function StickyBokning() {
     return () => {
       window.removeEventListener('scroll', vidScroll);
       if (obs) obs.disconnect();
+      if (knappObs) knappObs.disconnect();
       mo.disconnect();
     };
   }, []);
@@ -76,7 +97,7 @@ export default function StickyBokning() {
         </a>
         <Link href="/kontakt/" className={`btn btn-primar ${styles.knapp}`} tabIndex={synlig ? 0 : -1}>
           <span className={styles.langt}>Visa hur min hemsida kan se ut</span>
-          <span className={styles.kort}>Visa min hemsida</span>
+          <span className={styles.kort}>Se mitt förslag</span>
         </Link>
       </div>
     </div>

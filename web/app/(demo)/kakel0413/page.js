@@ -1,4 +1,6 @@
 import DemoSida from '../_mall/DemoSida';
+import { arKunddoman } from './kunddoman';
+import BildUpload from './BildUpload';
 
 /* ===========================================================================
    KAKEL 0413 AB — hemsida för en betalande kund (12 000 kr-paketet), Bahko Byrå
@@ -40,18 +42,32 @@ import DemoSida from '../_mall/DemoSida';
      (Higgsfield: Qwen Image 3 för stillbilderna, Wan 3.0 Prime bild-till-film
      1080p utan ljud för de tre klippen). Illustrationer, INTE Nuhs egna jobb.
      Tjänstekortens bilder märks i tjanster.lead-noten nedan.
-   - Formuläret går till mathias@bahkobyra.se (demonyckeln). Vid leverans:
-     Web3Forms-nyckel med info@kakel0413.se, kund: true, ta bort modal.
+   - Formuläret går till info@kakel0413.se (Nuhs Web3Forms-nyckel, PRO, KUND_NYCKEL nedan),
+     både på kakel0413.se och bahkobyra.se/kakel0413. Bilder följer med som bilagor (BildUpload.js).
    =========================================================================== */
 
-export const metadata = {
+const META = {
   title: 'Kakel 0413 AB — kakelsättare och badrumsrenovering i Eslöv och Skåne',
   description:
     'Kakelsättare i Eslöv för hela Skåne: badrumsrenovering, kakel- och klinkersättning i badrum, kök, hallar och trapphus. Över 17 års erfarenhet. Kostnadsfri genomgång.',
-  robots: { index: false, follow: false },
 };
 
+// Kunddomänen (Mathias 2026-10-23): på kakel0413.se/www indexeras sidan, canonical pekar på
+// https://kakel0413.se/ och demorutan "Om det här förslaget" är borta (kund: true).
+// På bahkobyra.se/kakel0413/ är allt som förut: noindex och demoruta.
+
+export async function generateMetadata() {
+  return (await arKunddoman())
+    ? { ...META, alternates: { canonical: 'https://kakel0413.se/' }, robots: { index: true, follow: true } }
+    : { ...META, robots: { index: false, follow: false } };
+}
+
 const M = '/kakel0413/media';
+
+// Web3Forms-nyckel för info@kakel0413.se (Nuhs, verifierad, Mathias 2026-10-23). Gäller både kakel0413.se och bahkobyra.se/kakel0413.
+// PRO: filbilagor på (BILAGOR_PA = true i BildUpload.js). Tom = demonyckeln
+// (mathias@bahkobyra.se). Nyckeln är publik av design (se app/formular.js).
+const KUND_NYCKEL = '3f13101e-b99a-4276-87cb-c8645caf27a9';
 
 // Lägg till fler tjänster här när Nuh breddar utbudet: ett kort per tjänst (bild 4:3).
 const tjanster = [
@@ -86,7 +102,7 @@ const tjanster = [
     id: 'mindre',
     namn: 'Mindre arbeten',
     bild: `${M}/tjanst-mindre.jpg`,
-    alt: 'Illustration: händer i arbetshandskar sätter en kakelplatta med kakelkryss och vattenpass',
+    alt: 'Illustration: nykaklad duschnisch med guldlist och verktyg på en duk',
     text: 'Inget jobb är för litet. Berätta vad du behöver hjälp med, gärna med bilder.',
     punkter: ['Mindre kakelarbeten', 'Skicka gärna bilder', 'Kostnadsfri genomgång'],
     ritning: (<><path d="M50 30h45v45H50zM105 30h45v45h-45zM50 85h45v20M105 85h45v20" /></>),
@@ -105,6 +121,7 @@ const data = {
     accentLjus: '#D9B867',
     paAccent: '#0F172A',
   },
+  ...(KUND_NYCKEL ? { formular: { nyckel: KUND_NYCKEL, amne: 'Ny förfrågan från kakel0413.se', fran: 'Kakel 0413 AB' } } : {}),
   kontakt: {
     tel: '073-875 27 25',
     telHref: 'tel:+46738752725',
@@ -119,15 +136,14 @@ const data = {
 
   hero: {
     h1: ['Kakel', { txt: '0413', liten: true }],
-    ort: 'Eslöv · Skåne',
+    // ort borttagen (Nuh v2): Eslöv och Skåne står redan i tejpen under heron.
     // Nuhs budskap i heron (Mathias 2026-10-22). Mallen har ingen rubrik/ingress-plats i standardheron,
     // så rubriken och underraden ligger som block först i tjänsteraden: rubrik + underrad + "Kakel & Badrum."
     tjanster: [(
       <>
         <span style={{ display: 'block', maxWidth: '36rem', marginInline: 'auto', marginTop: '0.2rem', marginBottom: '0.9rem', fontFamily: 'var(--f-text, inherit)', fontStyle: 'normal', fontWeight: 500, color: '#F5F1E8', fontSize: 'clamp(1rem, 1.6vw, 1.15rem)', lineHeight: 1.5 }}>Att renovera ett badrum är ett stort beslut. Därför är det viktigt att du känner dig trygg med den som utför arbetet.</span>
-        Kakel
       </>
-    ), 'Badrum'],
+    ), ''],
     video: `${M}/video-hero.mp4`,
     videoMobil: `${M}/video-hero-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
@@ -150,16 +166,17 @@ const data = {
     rad2: [{ src: `${M}/logo-original.jpg`, alt: '', txt: '' }],
   },
 
+  // Därför oss (Nuh v2): Nuhs egen introtext ordagrant (samma stycken som om.stycken nedan),
+  // bara uppdelad i ingress + punkter. Punktrubrikerna är korta etiketter, texterna är hans.
   varfor: {
-    eyebrow: 'Varför Kakel 0413',
-    rubrik: ['Det som betyder mest:', 'att hålla det man lovar'],
-    lead: 'Efter många år i branschen valde Nuh att starta eget för att kunna fokusera ännu mer på det som betyder mest.',
-    // Förtroenderaden: Nuhs siffror (kundens egen text).
+    eyebrow: 'Därför oss',
+    rubrik: ['Att alltid hålla', 'det man lovar'],
+    lead: 'Efter många år i branschen valde Nuh att starta eget för att kunna fokusera ännu mer på det som betyder mest, hög kvalitet, noggrant arbete, tydlig kommunikation och att alltid hålla det man lovar.',
     punkter: [
-      { rubrik: '17+ år i branschen', text: 'Kakelsättning och badrumsrenoveringar, ända upp till stora byggprojekt.' },
-      { rubrik: 'Upp till 7 projekt samtidigt', text: 'Nuh har haft ansvar för sju stora projekt på en gång.' },
-      { rubrik: 'Ca 800 nya toaletter', text: 'Sammanlagt, i projekten han har ansvarat för.' },
-      { rubrik: 'Skanska, NCC och Peab', text: 'Välkända byggföretag som han har arbetat tillsammans med.' },
+      { rubrik: 'Över 17 års erfarenhet', text: 'Bakom företaget står Nuh, som har över 17 års erfarenhet inom byggbranschen. Han har arbetat med allt från kakelsättning och badrumsrenoveringar till stora byggprojekt.' },
+      { rubrik: 'Upp till sju stora projekt samtidigt', text: 'Under sin karriär har Nuh ansvarat för upp till sju stora projekt samtidigt, med arbeten som omfattat totalt cirka 800 nya toaletter. Utöver detta har han även utfört kakel- och klinkerarbeten i trapphus, hallar och kök.' },
+      { rubrik: 'Skanska, NCC och Peab', text: 'Han har arbetat tillsammans med välkända byggföretag som Skanska, NCC och Peab.' },
+      { rubrik: 'Samma mål, varje jobb', text: 'Oavsett om du behöver hjälp med en hel badrumsrenovering, kakelsättning eller ett mindre arbete är målet alltid detsamma: att leverera ett resultat som du som kund kan känna dig riktigt nöjd med.' },
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
@@ -225,6 +242,8 @@ const data = {
     video: `${M}/video-kontakt.mp4`,
     poster: `${M}/poster-kontakt.jpg`,
     formRubrik: 'Berätta kort om jobbet',
+    // "Vad gäller det?" utan Mindre arbeten (Nuh v2). Mallen lägger till Annat sist.
+    typer: ['Badrumsrenovering', 'Kakel i kök', 'Hallar och trapphus'],
     placeholder: 'Vad vill du ha hjälp med (badrum, kakel i kök, hall …) och ungefär hur stort är det?',
     formNot: 'Skriv kort om jobbet, då blir första samtalet mer konkret. Inga massutskick, ingen säljlista.',
   },
@@ -245,12 +264,17 @@ const data = {
   },
 };
 
-export default function Kakel0413Demo() {
+export default async function Kakel0413Demo() {
+  const kund = await arKunddoman();
   return (
     <>
       {/* Om Nuh flyttade till /kakel0413/om-oss (Mathias 2026-10-22), länkad i footern. Jobbanden och omdömena döljs tills Nuh har egna foton och riktiga omdömen (se FLAGGOR). */}
-      <style>{'#jobb,#omdomen,#om{display:none!important}'}</style>
-      <DemoSida data={data} />
+      {/* Nuh v2: ingen stor logotyp i heron (h1 finns kvar för skärmläsare/SEO, visuellt dold; headerns logga kvar)
+          och inget telefonnummer i heron (Ring-knappen i headern kvar). Raden "Kakel & Badrum." struken: mallen skriver alltid " & " och ".",
+          så tjänsteraden får font-size 0 och bara Nuhs mening (egen fontstorlek) syns. */}
+      <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}'}</style>
+      <DemoSida data={kund ? { ...data, kund: true, footer: { ...data.footer, lankar: [{ href: '/om-oss/', txt: 'Om oss' }] } } : data} />
+      <BildUpload epost={data.kontakt.epost} />
     </>
   );
 }
