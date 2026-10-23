@@ -1,0 +1,32 @@
+import { NextResponse } from 'next/server';
+
+/* Kunddomän kakel0413.se (Mathias 2026-10-23): samma projekt (bahko-byra), ingen kopia.
+   Besök på kakel0413.se/<sökväg> serveras från /kakel0413/<sökväg> (startsidan, /om-oss/ …).
+   Matchern nedan kräver host kakel0413.se, så middleware körs INTE alls för
+   bahkobyra.se, bahkobyra.cloud eller någon annan domän. next.config.mjs (🔒) är orörd.
+   www.kakel0413.se 308-omdirigeras till apex i Vercels domäninställningar. */
+const BAS = '/kakel0413';
+
+export function middleware(req) {
+  const { pathname } = req.nextUrl;
+  // Egen robots.txt och sitemap för kunddomänen (annars visas bahkobyra.se:s).
+  if (pathname === '/robots.txt') {
+    return new NextResponse('User-agent: *\nAllow: /\nSitemap: https://kakel0413.se/sitemap.xml\n', { headers: { 'content-type': 'text/plain; charset=utf-8' } });
+  }
+  if (pathname === '/sitemap.xml') {
+    const sidor = ['https://kakel0413.se/', 'https://kakel0413.se/om-oss/'];
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sidor.map((u) => `<url><loc>${u}</loc></url>`).join('')}</urlset>\n`;
+    return new NextResponse(xml, { headers: { 'content-type': 'application/xml; charset=utf-8' } });
+  }
+  // Redan under /kakel0413 (t.ex. media, gamla länkar), Next-filer eller filer med ändelse: orört.
+  if (pathname === BAS || pathname.startsWith(`${BAS}/`) || pathname.startsWith('/_next') || /\.[a-z0-9]+$/i.test(pathname)) {
+    return NextResponse.next();
+  }
+  const url = req.nextUrl.clone();
+  url.pathname = `${BAS}${pathname}`;
+  return NextResponse.rewrite(url);
+}
+
+export const config = {
+  matcher: [{ source: '/:path*', has: [{ type: 'host', value: '(www\\.)?kakel0413\\.se' }] }],
+};

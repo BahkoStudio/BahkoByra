@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { fontKlasser } from '../../_mall/fonter';
 import s from '../../_mall/mall.module.css';
+import { arKunddoman } from '../kunddoman';
 
 /* Kakel 0413 AB — Om oss (länkad från footern på huvudsidan).
    Mathias 2026-10-22: Om Nuh bort från huvudsidan, kortare och roligare text i
@@ -8,11 +9,17 @@ import s from '../../_mall/mall.module.css';
    17+ år, upp till sju projekt samtidigt, ca 800 nya toaletter, Skanska/NCC/Peab,
    kvalitet och att hålla det man lovar. Inget annat påstås. */
 
-export const metadata = {
+const META = {
   title: 'Om oss — Kakel 0413 AB, kakelsättare i Eslöv',
   description: 'Bakom Kakel 0413 står Nuh: över 17 år i byggbranschen, upp till sju projekt samtidigt och kakel i hela Skåne.',
-  robots: { index: false, follow: false },
 };
+
+// Kunddomänen: indexeras med canonical https://kakel0413.se/om-oss/; på bahkobyra.se noindex som förut.
+export async function generateMetadata() {
+  return (await arKunddoman())
+    ? { ...META, alternates: { canonical: 'https://kakel0413.se/om-oss/' }, robots: { index: true, follow: true } }
+    : { ...META, robots: { index: false, follow: false } };
+}
 
 const M = '/kakel0413/media';
 const tema = { '--mork': '#16130E', '--accent': '#C29B48', '--accent-hover': '#A9832F', '--accent-text': '#7A5A16', '--accent-ljus': '#D9B867', '--pa-accent': '#0F172A' };
