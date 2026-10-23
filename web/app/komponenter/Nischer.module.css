@@ -1,223 +1,333 @@
-/* Branschresan: sex stående fotokort som stationer på en väg. Ljus yta, så att
-   korten står ut mot resten av den mörka sidan. Grönt bara i knappen och ett ord. */
+/* Kundens väg till er: ljus yta med mjuka gröna fläckar, en slingrande streckad väg
+   och åtta runda klistermärken längs den. Grönt bara i ett ord, knappen och maskoten. */
 
 .yta {
-  background: var(--lt-2);
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 50% at 8% 20%, rgba(16, 185, 129, 0.12), transparent 70%),
+    radial-gradient(50% 45% at 92% 75%, rgba(16, 185, 129, 0.1), transparent 70%),
+    var(--lt-2);
 }
 
-/* Etiketten gråblå: grönt bara i det markerade ordet och knappen (bar.md 3) */
 .yta :global(.eyebrow) {
   color: var(--ink-3);
 }
 
+.inner {
+  position: relative;
+}
+
 .intro {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
+  max-width: 640px;
 }
 
-.maskot {
-  display: flex;
-  justify-content: center;
+.intro h2 {
+  margin: 0;
 }
 
-.maskot :global(.maskot-scen) {
-  display: block;
-  width: clamp(200px, 22vw, 300px);
-  height: auto;
+.intro .lede {
+  margin-top: 1rem;
 }
 
-/* Vägen: en streckad linje bakom noderna, korten hänger under den. Udda stationer
-   står lite lägre, så raden läses som en väg och inte som ett rutnät. */
-.vag {
-  --nod: 36px;
+/* ── Kartan ── */
+.karta {
   position: relative;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 1rem;
-  margin: 2.8rem 0 0;
-  padding: 0;
-}
-
-.vag::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(var(--nod) / 2);
-  border-top: 2px dashed var(--linje-mork-ljus, rgba(10, 22, 40, 0.22));
-}
-
-.station {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.9rem;
-}
-
-.nod {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  width: var(--nod);
-  height: var(--nod);
-  border-radius: 50%;
-  background: var(--bas);
-  color: var(--vit);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  box-shadow: 0 0 0 4px var(--lt-2);
-}
-
-/* Kortet: fotot fyller, etiketten är en vit ruta i nederkant som i referensen */
-.kort {
-  position: relative;
-  display: block;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  background: var(--yta);
-  box-shadow: 0 14px 34px rgba(10, 22, 40, 0.14);
-  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
-}
-
-.kort:hover,
-.kort:focus-visible {
-  transform: translateY(-6px);
-  box-shadow: 0 22px 44px rgba(10, 22, 40, 0.2);
-}
-
-.kort img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s var(--ease);
-}
-
-.kort:hover img {
-  transform: scale(1.04);
-}
-
-.etikett {
-  position: absolute;
-  left: 0.6rem;
-  right: 0.6rem;
-  bottom: 0.6rem;
-  display: grid;
-  gap: 0.15rem;
-  padding: 0.7rem 0.8rem;
-  background: var(--vit);
-  color: var(--ink);
-  border-radius: 12px;
-  text-align: left;
-}
-
-.etikett strong {
-  font-size: 0.98rem;
-  line-height: 1.2;
-}
-
-.etikett > span {
-  font-size: 0.74rem;
-  line-height: 1.35;
-  color: var(--ink-3);
-}
-
-/* Verbet säger vad trycket gör */
-.pil {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  margin-top: 0.3rem;
-  font-style: normal;
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.pil svg {
-  width: 12px;
-  height: 12px;
-}
-
-.fot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem 2rem;
   margin-top: 2.6rem;
 }
 
-.fot p {
-  max-width: 54ch;
+/* Startpunkten: Googles sökruta */
+.start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.sokruta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1.3rem 0.85rem 1.1rem;
+  background: var(--vit);
+  border: 1px solid rgba(10, 22, 40, 0.1);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(10, 22, 40, 0.1);
   color: var(--ink-3);
+  font-size: 1rem;
+}
+
+.sokruta svg {
+  width: 20px;
+  height: 20px;
+  color: var(--ink);
+}
+
+.sokruta b {
+  color: var(--ink);
+}
+
+/* Vägen: åtta stopp i fyra kolumner, varannan rad växlar höjd så att det slingrar.
+   Linjen ritas med en SVG-bakgrund (streckad kurva) bakom stoppen. */
+.vag {
+  position: relative;
+  list-style: none;
+  margin: 1.4rem 0 0;
+  padding: 2.2rem 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 1.2rem;
+  row-gap: 2.4rem;
+}
+
+/* Rad två läses från höger, så att vägen slingrar: 1 2 3 4 → 8 7 6 5 */
+.stopp:nth-child(5) { order: 8; }
+.stopp:nth-child(6) { order: 7; }
+.stopp:nth-child(7) { order: 6; }
+.stopp:nth-child(8) { order: 5; }
+
+/* Varannat stopp lite lägre, så raden följer kurvan */
+.stopp:nth-child(2),
+.stopp:nth-child(4),
+.stopp:nth-child(5),
+.stopp:nth-child(7) {
+  margin-top: 2.4rem;
+}
+
+.marke {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.8rem;
+  text-align: center;
+  color: var(--ink);
+  transform: rotate(calc((var(--i) - 3.5) * 0.6deg));
+  transition: transform 0.35s var(--ease);
+}
+
+.marke:hover,
+.marke:focus-visible {
+  transform: translateY(-8px) rotate(0deg);
+}
+
+/* Klistermärket: rund bild med tjock vit kant, som ett märke på en resväska */
+.bild {
+  position: relative;
+  display: block;
+  width: min(100%, 190px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 7px;
+  background: var(--vit);
+  box-shadow: 0 16px 36px rgba(10, 22, 40, 0.16);
+}
+
+.bild img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--lt-2);
+}
+
+.text {
+  display: grid;
+  justify-items: center;
+  gap: 0.4rem;
+}
+
+.text strong {
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+/* Sökfrasen som en liten Google-ruta */
+.sok {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: 100%;
+  padding: 0.36rem 0.7rem;
+  border-radius: 999px;
+  background: var(--vit);
+  border: 1px solid rgba(10, 22, 40, 0.1);
+  font-size: 0.78rem;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.sok svg {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  color: var(--ink-3);
+}
+
+.sok > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Pilen kommer fram när man pekar */
+.pil {
+  position: absolute;
+  top: 6px;
+  right: calc(50% - 95px);
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--bas);
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.pil svg {
+  width: 13px;
+  height: 13px;
+}
+
+.marke:hover .pil,
+.marke:focus-visible .pil {
+  opacity: 1;
+  transform: none;
+}
+
+/* Målet: maskoten med telefonen, texten och knappen */
+.mal {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.4rem 2rem;
+  margin-top: 2rem;
+  padding: 1.2rem 1.8rem 1.2rem 1rem;
+  background: var(--vit);
+  border: 1px solid rgba(10, 22, 40, 0.08);
+  border-radius: var(--r-lg);
+  box-shadow: 0 16px 40px rgba(10, 22, 40, 0.08);
+}
+
+.malFigur {
+  display: block;
+}
+
+.kortText {
+  display: none;
+}
+
+.mal :global(.maskot-scen) {
+  display: block;
+  width: clamp(120px, 12vw, 170px);
+  height: auto;
+  margin: -2.2rem 0 -1.4rem;
+}
+
+.mal p {
+  margin: 0;
+  color: var(--ink-3);
+  max-width: 46ch;
   text-wrap: pretty;
+}
+
+.mal p strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 1.15rem;
+  color: var(--ink);
 }
 
 @media (max-width: 1080px) {
   .vag {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     row-gap: 2rem;
   }
-  /* I två rader går vägen bara längs den översta raden */
-  .vag::before {
-    display: none;
+  .stopp:nth-child(n) {
+    margin-top: 0;
   }
-}
-
-@media (max-width: 900px) {
-  .intro {
-    grid-template-columns: 1fr;
+  .stopp:nth-child(even) {
+    margin-top: 2.4rem;
   }
-  /* Mobil: korten ska börja direkt under ingressen, maskoten tog en hel skärm */
-  .maskot {
-    display: none;
+  .mal {
+    grid-template-columns: auto 1fr;
+  }
+  .mal a {
+    grid-column: 1 / -1;
+    justify-self: start;
   }
 }
 
 @media (max-width: 640px) {
-  /* Mobil: en väg i sidled som man drar i, två kort i bild */
+  /* Mobil: vägen går lodrätt i mitten, stoppen växlar sida */
   .vag {
-    display: flex;
-    gap: 0.9rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 0 0 0.8rem;
-    margin-left: calc(-1 * clamp(1.1rem, 4vw, 2rem));
-    margin-right: calc(-1 * clamp(1.1rem, 4vw, 2rem));
-    padding-left: clamp(1.1rem, 4vw, 2rem);
-    padding-right: clamp(1.1rem, 4vw, 2rem);
-    scrollbar-width: none;
-  }
-  .vag::-webkit-scrollbar {
-    display: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 1.4rem;
+    padding: 1.6rem 0 0.6rem;
   }
   .vag::before {
+    content: '';
+    position: absolute;
     display: block;
-    left: clamp(1.1rem, 4vw, 2rem);
-    right: 0;
+    inset: 0 auto 0 50%;
+    width: 2px;
+    background: repeating-linear-gradient(180deg, rgba(10, 22, 40, 0.22) 0 8px, transparent 8px 18px);
+    transform: translateX(-50%);
   }
-  .station {
-    flex: 0 0 62%;
-    scroll-snap-align: start;
-    /* Snäppet ska landa i linje med textens vänsterkant, inte vid skärmkanten */
-    scroll-margin-left: clamp(1.1rem, 4vw, 2rem);
+  .stopp:nth-child(n) {
+    margin-top: 0;
   }
-  .fot {
-    flex-direction: column;
-    align-items: stretch;
+  .marke {
+    grid-template-columns: 1fr 1fr;
+    justify-items: start;
+    align-items: center;
+    column-gap: 1.2rem;
+    text-align: left;
+    transform: none;
   }
-  .fot a {
+  .stopp:nth-child(even) .marke .bild {
+    order: 2;
+    justify-self: start;
+  }
+  .stopp:nth-child(even) .marke .text {
+    order: 1;
+    justify-items: end;
+    text-align: right;
+  }
+  .stopp:nth-child(odd) .marke .bild {
+    justify-self: end;
+  }
+  .bild {
+    width: min(100%, 150px);
+  }
+  .text {
+    justify-items: start;
+  }
+  .pil {
+    display: none;
+  }
+  .mal {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    padding: 1.4rem 1.2rem;
+  }
+  .mal :global(.maskot-scen) {
+    margin: -2.6rem 0 0;
+  }
+  .mal a {
+    justify-self: stretch;
     justify-content: center;
+  }
+  .langt {
+    display: none;
+  }
+  .kortText {
+    display: inline;
+  }
+  .stopp:nth-child(n) {
+    order: 0;
   }
 }

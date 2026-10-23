@@ -7,8 +7,9 @@ import RoiKalkyl from '../komponenter/RoiKalkyl';
 import Portfolj from '../komponenter/Portfolj';
 import BevisBromma, { BevisSiffror } from '../komponenter/BevisBromma';
 import Nischer from '../komponenter/Nischer';
+import TjanstIkon from '../komponenter/TjanstIkon';
 import Faq from '../komponenter/Faq';
-import { FRAGOR } from '../data';
+import { TJANSTER, FRAGOR } from '../data';
 import styles from './page.module.css';
 
 /* Startsidan nås som /, med parametrar och via www-varianter — den behöver
@@ -23,14 +24,31 @@ const PIL = (
   </svg>
 );
 
-/* Hur vi jobbar, som en väg i fem steg (Mathias 2026-10-23: enklare, tydligare).
-   Regel ur bar.md: rubrik på högst tre ord, en mening på högst tolv ord. */
+/* Tjänsterna: en rad var, i kundens ord */
+const TJANSTTEXT = {
+  hemsidor: { text: 'Kunden ser vad ni gör och hur man når er, redan på första skärmen i mobilen.', lank: 'Så gör vi hemsidan' },
+  seo: { text: 'Ni kan komma upp när någon i er stad söker på det ni gör.', lank: 'Så syns ni i er stad' },
+  'google-ads': { text: 'Annonser som kan ligga ovanför träffarna redan första veckan.', lank: 'Så fungerar annonserna' },
+  reklamfilmer: { text: 'Film på ert arbete, så att kunden ser skillnaden innan priserna jämförs.', lank: 'Se en reklamfilm' },
+  appar: { text: 'Bokning direkt på sidan, så att förfrågningarna inte drunknar bland samtalen.', lank: 'Så bokar kunden själv' },
+};
+
+/* Hur vi jobbar: fem steg med en ikon var, inga nummer (Mathias 2026-10-23).
+   Rubrik på högst tre ord, en mening på högst tolv ord. */
+const IKON = {
+  prat: <path d="M4 5h16v10H9l-5 4z" />,
+  skarm: <><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></>,
+  tumme: <path d="M7 11v9H4v-9zM7 11l4-7c1.5 0 2.5 1 2.5 2.5V10H19a2 2 0 0 1 2 2l-1.5 6.5A2 2 0 0 1 17.5 20H7" />,
+  raket: <><path d="M12 15 9 12c0-5 3-8 7-9 1 4-2 7-4 12z" /><path d="M9 12H6l2-3M12 15v3l3-2M7 17c-1 1-1 3-1 3s2 0 3-1" /></>,
+  telefon: <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2z" />,
+};
+
 const RESAN = [
-  { nr: '01', h: 'Berätta om firman', p: 'Vad ni gör och var, det tar två minuter.' },
-  { nr: '02', h: 'Se förslaget', p: 'Inom 48 timmar har ni ett färdigt förslag att klicka i.' },
-  { nr: '03', h: 'Ja eller nej', p: 'Säger ni ja lägger vi in era bilder, nej kostar inget.' },
-  { nr: '04', h: 'Sidan går live', p: 'På er egen domän, normalt inom sju dagar.' },
-  { nr: '05', h: 'Vi finns kvar', p: 'Underhåll, Google och ändringar när ni behöver dem.' },
+  { ikon: 'prat', h: 'Berätta om firman', p: 'Vad ni gör och var, det tar två minuter.' },
+  { ikon: 'skarm', h: 'Se förslaget', p: 'Inom 48 timmar har ni ett färdigt förslag att klicka i.' },
+  { ikon: 'tumme', h: 'Ja eller nej', p: 'Säger ni ja lägger vi in era bilder, nej kostar inget.' },
+  { ikon: 'raket', h: 'Sidan går live', p: 'På er egen domän, normalt inom sju dagar.' },
+  { ikon: 'telefon', h: 'Vi finns kvar', p: 'Underhåll, Google och ändringar när ni behöver dem.' },
 ];
 
 export default function Start() {
@@ -45,10 +63,13 @@ export default function Start() {
                 I H1 (Mathias 2026-10-01): synlig text, samma som Google-profilens kategori och ort. */}
             <h1>
               <span className="eyebrow" style={{ display: 'flex' }}>Webbdesign i Jönköping &amp; Huskvarna</span>
-              Bli firman kunderna <span className="accent">ringer först.</span>
+              Google ljuger aldrig.
+              <br />
+              <span className="accent">Våra kunder ligger etta.</span>
             </h1>
             <p className={styles.heroLede}>
-              Hemsidor och Google åt snickare, målare, elektriker och andra lokala firmor som vill ha fler förfrågningar.
+              Vi bygger hemsidan och sköter Google åt snickare, målare, restauranger, e-handlare och
+              andra lokala företag. Ni ser förslaget innan ni betalar en krona.
             </p>
             <div className={styles.heroKnappar}>
               <Link href="/kontakt/" className="btn btn-primar">
@@ -64,28 +85,70 @@ export default function Start() {
             <RoiKalkyl className={styles.heroKalkyl} kompakt />
           </div>
 
-          <div className={styles.heroSiffror} data-trapp>
-            <div>
-              <strong>48 tim</strong>
-              <span>Till ett färdigt förslag</span>
-            </div>
-            <div>
-              <strong>7 dagar</strong>
-              <span>Normalt tills sidan är live</span>
-            </div>
-            <div>
-              <strong>Ingen</strong>
-              <span>Bindningstid</span>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* ── KUNDBÄLTET: alla kunder med logga, direkt efter heron (Mathias 2026-10-23) ── */}
       <Marquee />
 
-      {/* ── BEVISET: Brommas skärmbilder från 30 juli, direkt efter heron.
-             Ersätter synlighetspanelen, vars graf var en illustration. ── */}
+      {/* ── 2. FILMEN: två minuter, rakt på sak ── */}
+      <section className={`mork ${styles.videoYta}`} id="video">
+        <div className={`wrap ${styles.videoInner}`} data-trapp>
+          <h2>
+            Därför ringer kunden <span className="accent">en annan firma.</span>
+          </h2>
+          <p className={`lede ${styles.videoLede}`}>
+            Kunden googlar och ringer den som syns först. Syns ni inte där får ni köpa
+            förfrågningar i stället, som nummer fem i kön. Och säljaren som lovade guld och gröna
+            skogar binder er gärna i två år.
+          </p>
+          <HeroVideo />
+        </div>
+      </section>
+
+      {/* ── 3. FÖR VEM: åtta branschkort ── */}
+      <Nischer />
+
+      {/* ── VÅRA TJÄNSTER: fem kort, hemsidan först ── */}
+      <section id="vara-tjanster">
+        <div className="wrap">
+          <div className={styles.tjanstIntro} data-trapp>
+            <div>
+              <span className="eyebrow">Våra tjänster</span>
+              <h2>
+                Allt som får kunden <span className="accent">att ringa er.</span>
+              </h2>
+              <p className="lede" style={{ marginTop: '1rem' }}>
+                Börja med hemsidan. Resten lägger vi till när det lönar sig.
+              </p>
+            </div>
+            <div className={styles.tjanstMaskot}>
+              <MaskotScen
+                src="/img/maskot-scener/ringer.webp"
+                alt="Bahko-maskoten i bygghjälm håller upp en mobil som ringer"
+                oga={{ x: 65.9, y: 38.4, rx: 4.7, ry: 3.7, gron: 'rgb(33,127,94)' }}
+                index={2}
+              />
+            </div>
+          </div>
+
+          <div className={styles.tjanstNat} data-trapp>
+            {TJANSTER.map((t) => (
+              <Link key={t.slug} href={`/tjanster/${t.slug}/`} className={styles.tjanstKort}>
+                <TjanstIkon slug={t.slug} />
+                <h3>{t.namn}</h3>
+                <p>{TJANSTTEXT[t.slug].text}</p>
+                <span className={styles.tjanstFot}>
+                  <span className={styles.tagg}>{TJANSTTEXT[t.slug].lank}</span>
+                  <span className={styles.tjanstPil}>{PIL}</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 5. KUNDCASE: Brommas skärmbilder från 30 juli ── */}
       <section className={`mork ${styles.panelYta}`} id="bevis">
         <div className={`wrap ${styles.panelInner}`} data-trapp>
           <div>
@@ -118,7 +181,7 @@ export default function Start() {
         </div>
       </section>
 
-      {/* ── PORTFÖLJEN: riktiga sajter och demos i ett rutnät ── */}
+      {/* ── 6. KUNDER OCH DEMOS ── */}
       <section className={`mork ${styles.caseYta}`} id="case">
         <div className="wrap">
           <div data-trapp>
@@ -138,25 +201,7 @@ export default function Start() {
         </div>
       </section>
 
-      {/* ── VIDEON: två minuter, rakt på sak ── */}
-      <section className={`mork ${styles.videoYta}`} id="video">
-        <div className={`wrap ${styles.videoInner}`} data-trapp>
-          <h2>
-            Därför ringer kunden <span className="accent">en annan firma.</span>
-          </h2>
-          <p className={`lede ${styles.videoLede}`}>
-            Kunden googlar och ringer den som syns först. Syns ni inte där får ni köpa
-            förfrågningar i stället, som nummer fem i kön. Och säljaren som lovade guld och gröna
-            skogar binder er gärna i två år.
-          </p>
-          <HeroVideo />
-        </div>
-      </section>
-
-      {/* ── BRANSCHRESAN: sex nischkort som stationer på vägen (ersätter tjänstekorten) ── */}
-      <Nischer />
-
-      {/* ── PROCESS: resan som en väg i fem steg, noderna sitter på linjen ── */}
+      {/* ── HUR VI JOBBAR: fem steg på en väg, ikoner i stället för nummer ── */}
       <section className={`mork ${styles.process}`} id="process">
         <div className="wrap">
           <span className="eyebrow">Hur vi jobbar</span>
@@ -168,8 +213,12 @@ export default function Start() {
 
           <ol className={styles.vag} data-trapp>
             {RESAN.map((r, i) => (
-              <li key={r.nr} className={`${styles.vagSteg} ${i === RESAN.length - 1 ? styles.vagMal : ''}`}>
-                <span className={styles.vagNod} aria-hidden="true">{r.nr}</span>
+              <li key={r.ikon} className={`${styles.vagSteg} ${i === RESAN.length - 1 ? styles.vagMal : ''}`}>
+                <span className={styles.vagNod} aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    {IKON[r.ikon]}
+                  </svg>
+                </span>
                 <h3>{r.h}</h3>
                 <p>{r.p}</p>
               </li>

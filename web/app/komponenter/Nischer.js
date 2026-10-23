@@ -1,24 +1,33 @@
 import Link from 'next/link';
 import MaskotScen from './MaskotScen';
+import Vagen from './Vagen';
 import styles from './Nischer.module.css';
 
-/* Branschresan (Mathias 2026-10-23, efter referensbilden "För firmor som jobbar med händerna"):
-   sex stående fotokort med branschen och det kunden faktiskt skriver i Google. Korten står som
-   stationer på resans väg, samma formspråk som "Hur vi jobbar".
+/* Kundens väg till er (Mathias 2026-10-23 kväll: "mer som en resa, kreativare, bättre bilder").
+   En slingrande streckad väg börjar i en Google-sökruta och slutar hos maskoten med telefonen.
+   Längs vägen sitter åtta branscher som runda klistermärken: en liten 3D-scen per bransch
+   (GPT Image 2.5, samma glansiga stil som maskoten) och under varje det kunden skriver i Google.
 
-   Fotona är kategoribilder (Qwen Image 3, händer och verktyg, inga ansikten, inga loggor) och
-   påstår inget om kundjobb; de riktiga jobben står i portföljen. Länkarna går till nischsidan
-   där en finns, annars till en öppen demo eller kontakt. Sökfraserna är exempel på hur kunder
-   söker, inte mätta volymer. */
+   Bilderna är illustrationer, inte kundjobb. Sökfraserna är exempel, inte mätta volymer.
+   Länkarna går till nischsidan där en finns, annars till en öppen demo eller kontakt. */
 
 const NISCHER = [
-  { slug: 'snickare', namn: 'Snickare', soker: 'snickare Huskvarna', href: '/kontakt/', verb: 'Se hur det kan se ut' },
-  { slug: 'elektriker', namn: 'Elektriker', soker: 'elektriker Jönköping', href: '/kontakt/', verb: 'Se hur det kan se ut' },
-  { slug: 'rormokare', namn: 'Rörmokare', soker: 'rörmokare akut Växjö', href: '/cloud/asmar/', verb: 'Se hur det kan se ut' },
-  { slug: 'malare', namn: 'Målare', soker: 'målare Linköping', href: '/hemsida-for-malerifirma/', verb: 'Se hur det kan se ut' },
-  { slug: 'tradgard', namn: 'Trädgård', soker: 'trädgårdsservice Stockholm', href: '/hemsida-for-tradgardsfirma/', verb: 'Se hur det kan se ut' },
-  { slug: 'bygg', namn: 'Byggfirma', soker: 'byggfirma Nässjö', href: '/cloud/bygg/', verb: 'Se hur det kan se ut' },
+  { slug: 'snickare', namn: 'Snickare', soker: 'snickare Huskvarna', href: '/kontakt/' },
+  { slug: 'elektriker', namn: 'Elektriker', soker: 'elektriker Jönköping', href: '/kontakt/' },
+  { slug: 'rormokare', namn: 'Rörmokare', soker: 'rörmokare akut Växjö', href: '/cloud/asmar/' },
+  { slug: 'malare', namn: 'Målare', soker: 'målare Linköping', href: '/hemsida-for-malerifirma/' },
+  { slug: 'tradgard', namn: 'Trädgård', soker: 'trädgårdsservice Stockholm', href: '/hemsida-for-tradgardsfirma/' },
+  { slug: 'bygg', namn: 'Byggfirma', soker: 'byggfirma Nässjö', href: '/cloud/bygg/' },
+  { slug: 'restaurang', namn: 'Restaurang', soker: 'buffé i Huskvarna', href: '/kontakt/' },
+  { slug: 'ehandel', namn: 'E-handel', soker: 'köp kokbok online', href: 'https://maykaskitchen.se/' },
 ];
+
+const LUPP = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.5-3.5" />
+  </svg>
+);
 
 const PIL = (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -29,60 +38,75 @@ const PIL = (
 export default function Nischer() {
   return (
     <section id="tjanster" className={styles.yta}>
-      <div className="wrap">
+      <div className={`wrap ${styles.inner}`}>
         <div className={styles.intro} data-trapp>
-          <div>
-            <span className="eyebrow">För vem</span>
-            <h2>
-              För firmor som jobbar <span className="accent">med händerna.</span>
-            </h2>
-            <p className="lede" style={{ marginTop: '1rem' }}>
-              Snickare, elektriker, rörmokare, målare och fler. Vi vet vad era kunder skriver i
-              Google, och bygger sidan runt de orden.
-            </p>
+          <span className="eyebrow">För vem</span>
+          <h2>
+            Kundens väg <span className="accent">till er.</span>
+          </h2>
+          <p className="lede">
+            Snickare, målare, restauranger, e-handlare och alla andra som kunden googlar fram.
+            Vi vet vad era kunder skriver i rutan, och bygger sidan runt de orden.
+          </p>
+        </div>
+
+        {/* Vägen: ritas av CSS på dator (slingrande), lodrät på mobil */}
+        <div className={styles.karta}>
+          <Vagen />
+          <div className={styles.start} data-avsloja="upp">
+            <span className={styles.sokruta} data-start>
+              {LUPP}
+              <span>
+                <b>kunden googlar</b> …
+              </span>
+            </span>
           </div>
-          <div className={styles.maskot}>
+
+          <ol className={styles.vag} data-trapp>
+            {NISCHER.map((n, i) => (
+              <li key={n.slug} className={styles.stopp} style={{ '--i': i }}>
+                <Link href={n.href} className={styles.marke}>
+                  <span className={styles.bild} data-stopp>
+                    <img
+                      src={`/img/nischer/${n.slug}-3d.webp`}
+                      alt=""
+                      width="640"
+                      height="640"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
+                  <span className={styles.text}>
+                    <strong>{n.namn}</strong>
+                    <span className={styles.sok}>
+                      {LUPP}
+                      <span>{n.soker}</span>
+                    </span>
+                  </span>
+                  <span className={styles.pil} aria-hidden="true">{PIL}</span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+
+          <div className={styles.mal} data-avsloja="upp">
+            <span className={styles.malFigur} data-mal>
             <MaskotScen
               src="/img/maskot-scener/ringer.webp"
               alt="Bahko-maskoten i bygghjälm håller upp en mobil som ringer"
               oga={{ x: 65.9, y: 38.4, rx: 4.7, ry: 3.7, gron: 'rgb(33,127,94)' }}
               index={2}
             />
+            </span>
+            <p>
+              <strong>… och ringer er.</strong>
+              Det är hela resan. Vi bygger sidan som gör att den slutar hos er.
+            </p>
+            <Link href="/kontakt/" className="btn btn-primar">
+              <span className={styles.langt}>Visa hur min hemsida kan se ut</span>
+              <span className={styles.kortText}>Se mitt förslag</span> {PIL}
+            </Link>
           </div>
-        </div>
-
-        {/* Stationerna: vägen ritas av listan, varje kort har sin nod */}
-        <ol className={styles.vag} data-trapp>
-          {NISCHER.map((n, i) => (
-            <li key={n.slug} className={styles.station}>
-              <span className={styles.nod} aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-              <Link href={n.href} className={styles.kort}>
-                <img
-                  src={`/img/nischer/${n.slug}.webp`}
-                  alt=""
-                  width="900"
-                  height="1200"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className={styles.etikett}>
-                  <strong>{n.namn}</strong>
-                  <span>Kunden söker: &quot;{n.soker}&quot;</span>
-                  <i className={styles.pil}>{n.verb} {PIL}</i>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ol>
-
-        <div className={styles.fot} data-avsloja="upp">
-          <p>
-            Er bransch saknas? Det är samma sak för alla lokala företag: kunden googlar, och ringer
-            den som syns och svarar snabbt.
-          </p>
-          <Link href="/kontakt/" className="btn btn-primar">
-            Visa hur min hemsida kan se ut {PIL}
-          </Link>
         </div>
       </div>
     </section>
