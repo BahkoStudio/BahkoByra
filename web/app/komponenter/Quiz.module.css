@@ -1,0 +1,356 @@
+/* Var läcker jobben: en mörk ruta, en fråga i taget, stora knappar. */
+
+.rot {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+  background:
+    radial-gradient(120% 70% at 100% 0%, rgba(16, 185, 129, 0.14), transparent 60%),
+    var(--yta);
+  border: 1px solid var(--linje-mork);
+  border-radius: 22px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.framsteg {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.4rem;
+}
+
+.framsteg span {
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  transition: background 0.3s var(--ease);
+}
+
+.framsteg .gjord {
+  background: var(--em);
+}
+
+.framsteg .nu {
+  background: rgba(16, 185, 129, 0.5);
+}
+
+.rot .raknare {
+  margin: 0.9rem 0 0;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-lag);
+}
+
+/* Skärmen glider in från höger (framåt) eller vänster (tillbaka) */
+.skarm {
+  margin-top: 0.6rem;
+  animation: in 0.38s var(--ease) both;
+}
+
+.inHoger {
+  --fran: 28px;
+}
+
+.inVanster {
+  --fran: -28px;
+}
+
+@keyframes in {
+  from {
+    opacity: 0;
+    transform: translateX(var(--fran, 28px));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fraga {
+  margin: 0 0 1.3rem;
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Branschmärkena: tre i bredd, runda bilder */
+.branscher {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.bransch {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 0.5rem 0.9rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--linje-mork);
+  border-radius: 16px;
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.bransch:hover,
+.knapp:hover {
+  border-color: rgba(16, 185, 129, 0.6);
+  background: rgba(16, 185, 129, 0.08);
+  transform: translateY(-2px);
+}
+
+.marke {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--vit);
+  overflow: hidden;
+}
+
+.marke img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.plus {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--bas);
+}
+
+/* Vanliga svar: en rad var, hela bredden */
+.val {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.knapp {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 1.1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--linje-mork);
+  border-radius: 14px;
+  color: var(--text);
+  font: inherit;
+  font-size: 1.02rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.vald {
+  border-color: var(--em);
+  background: rgba(16, 185, 129, 0.16);
+}
+
+.pil {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pil svg {
+  width: 14px;
+  height: 14px;
+}
+
+.tillbaka {
+  margin-top: 1.2rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--text-lag);
+  font: inherit;
+  font-size: 0.92rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+/* Resultatet */
+.diagnos {
+  margin: 0;
+  font-size: clamp(1.6rem, 3.6vw, 2.3rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.rot .diagnosText {
+  margin: 0.9rem 0 0;
+  color: var(--text-lag);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.steg {
+  margin: 1.2rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.steg li {
+  position: relative;
+  padding-left: 1.7rem;
+  font-weight: 600;
+}
+
+.steg li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--em);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='12' fill='black'/><path d='M7 12.5l3 3 7-7' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='12' fill='black'/><path d='M7 12.5l3 3 7-7' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
+}
+
+.form {
+  margin-top: 1.6rem;
+  padding: 1.3rem 1.3rem 1.2rem;
+  background: var(--bas);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  border-radius: 16px;
+}
+
+.rot .formRubrik {
+  margin: 0 0 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.falt {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.falt label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-lag);
+}
+
+.falt input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid var(--linje-mork);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.falt input:focus-visible {
+  outline: 2px solid var(--em);
+  outline-offset: 1px;
+}
+
+.bred {
+  grid-column: 1 / -1;
+}
+
+.formKnappar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem 1.2rem;
+  margin-top: 1rem;
+}
+
+.ring {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.rot .finstilt {
+  margin: 0.9rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-lag);
+}
+
+.rot .fel {
+  margin: 0.8rem 0 0;
+  color: #fca5a5;
+  font-size: 0.92rem;
+}
+
+.rot .nischLank {
+  margin: 1.2rem 0 0;
+  color: var(--text-lag);
+  font-size: 0.95rem;
+}
+
+.nischLank a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--em-lt);
+  font-weight: 600;
+}
+
+.nischLank svg {
+  width: 14px;
+  height: 14px;
+}
+
+.tack :global(.btn) {
+  margin-top: 1.4rem;
+}
+
+@media (max-width: 560px) {
+  .branscher {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .marke {
+    width: 64px;
+    height: 64px;
+  }
+  .falt {
+    grid-template-columns: 1fr;
+  }
+  .formKnappar :global(.btn) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skarm {
+    animation: none;
+  }
+}

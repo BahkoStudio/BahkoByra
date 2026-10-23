@@ -80,8 +80,8 @@ export default function StickyBokning() {
     };
   }, []);
 
-  // På kontakt- och tacksidan leder knappen bara till sidan man redan står på.
-  if (/^[/](kontakt|tack)/.test(sokvag)) return null;
+  // På kontakt-, tack- och quizsidan finns redan en egen knapp; raden skulle bara ligga i vägen.
+  if (/^[/](kontakt|tack|var-lacker-jobben)/.test(sokvag)) return null;
 
   return (
     <div className={`${styles.rad} ${synlig ? styles.synlig : ''}`} aria-hidden={!synlig}>

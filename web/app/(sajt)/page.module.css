@@ -443,7 +443,7 @@
 
 .gratisNat {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.1rem;
   margin-top: 2.4rem;
 }
@@ -1170,4 +1170,30 @@
 
 .tjanstKort .tjanstFot {
   text-align: left;
+}
+
+/* Quizkortet: mörkt, så det sticker ut som den snabbaste vägen */
+.gratisQuiz {
+  background: var(--bas);
+  border-color: var(--bas);
+  color: #fff;
+}
+
+.gratisQuiz h3,
+.gratisQuiz .gratisLank {
+  color: #fff;
+}
+
+.gratisQuiz p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.gratisQuiz:hover {
+  border-color: var(--em);
+}
+
+@media (max-width: 900px) {
+  .gratisNat {
+    grid-template-columns: 1fr;
+  }
 }
