@@ -3,13 +3,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import styles from './Popup.module.css';
-import Maskot from './Maskot';
+import Quiz from './Quiz';
 
 // Sekunder innan popupen visas. Den visas högst en gång per besök, aldrig på
-// sidorna där besökaren redan är på väg att höra av sig, och aldrig mitt i ett formulär.
+// sidorna där besökaren redan är på väg att höra av sig (eller redan står i quizen),
+// och aldrig mitt i ett formulär. Innehållet är quizen Var läcker jobben.
 const FORDROJNING = 30;
 const NYCKEL = 'bb_popup_sedd';
-const TYST = /^[/](kontakt|tack|integritet)/;
+const TYST = /^[/](kontakt|tack|integritet|var-lacker-jobben)/;
 
 function sedd() {
   try {
@@ -74,7 +75,7 @@ export default function Popup() {
         className={styles.kort}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="popup-rubrik"
+        aria-label="Var läcker jobben? Fem frågor"
         ref={kortRef}
         tabIndex={-1}
       >
@@ -83,19 +84,8 @@ export default function Popup() {
             <path d="M18 6 6 18M6 6l12 12" />
           </svg>
         </button>
-
-        <Maskot pose="pekar" stil="popup" alt="Bahko-maskoten pekar på erbjudandet" />
-
-        <span className={styles.tagg}>Kostnadsfritt förslag</span>
-        <h2 id="popup-rubrik">Se er nya hemsida innan ni bestämmer er.</h2>
-        <p>
-          Vi bygger ett förslag på er nya hemsida inom 48 timmar. Ni ser exakt vad ni får,
-          innan ni bestämmer något. Kostar inget.
-        </p>
-
-        <a href="/kontakt/" className="btn btn-primar">
-          Visa hur min hemsida kan se ut
-        </a>
+        {/* Quizen "Var läcker jobben?" (Mathias 2026-10-23): fem tryck, diagnos, förslag */}
+        <Quiz />
         <button className={styles.senare} onClick={stang}>
           Inte nu
         </button>

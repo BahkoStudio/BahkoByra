@@ -3,6 +3,7 @@
 .rot {
   max-width: 720px;
   margin: 0 auto;
+  scroll-margin-top: 96px;
   padding: clamp(1.4rem, 3vw, 2.2rem);
   background:
     radial-gradient(120% 70% at 100% 0%, rgba(16, 185, 129, 0.14), transparent 60%),

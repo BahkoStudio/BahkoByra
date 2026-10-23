@@ -113,12 +113,12 @@ export default function Quiz() {
   const rot = useRef(null);
   const klar = steg >= FRAGOR.length;
 
-  /* Varje ny skärm rullas in i bild, men bara om toppen hamnat ovanför rutan */
+  /* Varje ny skärm rullas in i bild om toppen hamnat ovanför rutan. scrollIntoView
+     rullar närmaste rullbara förälder, så det funkar både på sidan och i popupen. */
   useEffect(() => {
     const r = rot.current;
-    if (!r) return;
-    const topp = r.getBoundingClientRect().top;
-    if (topp < 80) window.scrollTo({ top: window.scrollY + topp - 96, behavior: 'smooth' });
+    if (!r || steg === 0) return;
+    if (r.getBoundingClientRect().top < 80) r.scrollIntoView({ block: 'start', behavior: 'smooth' });
   }, [steg]);
 
   const valj = (id, varde) => {
