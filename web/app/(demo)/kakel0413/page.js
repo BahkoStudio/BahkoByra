@@ -54,6 +54,11 @@ export const metadata = {
 
 const M = '/kakel0413/media';
 
+// Web3Forms-nyckel för info@kakel0413.se. PLATSHÅLLARE: tom tills Mathias skapat nyckeln på
+// web3forms.com med info@kakel0413.se och bekräftat mejlet i den inkorgen. Tom = demonyckeln
+// (mathias@bahkobyra.se) som förut. Nyckeln är publik av design (se app/formular.js).
+const KUND_NYCKEL = '';
+
 // Lägg till fler tjänster här när Nuh breddar utbudet: ett kort per tjänst (bild 4:3).
 const tjanster = [
   {
@@ -106,6 +111,7 @@ const data = {
     accentLjus: '#D9B867',
     paAccent: '#0F172A',
   },
+  ...(KUND_NYCKEL ? { formular: { nyckel: KUND_NYCKEL, amne: 'Ny förfrågan från kakel0413.se', fran: 'Kakel 0413 AB' } } : {}),
   kontakt: {
     tel: '073-875 27 25',
     telHref: 'tel:+46738752725',
