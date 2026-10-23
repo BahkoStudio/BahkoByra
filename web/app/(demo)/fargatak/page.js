@@ -1,4 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
+import ForeEfterReglage from './ForeEfterReglage';
 
 /* ===========================================================================
    FÄRGA TAK — kostnadsfritt hemsideförslag från Bahko Byrå (ny lead)
@@ -39,6 +40,7 @@ import DemoSida from '../_mall/DemoSida';
      Image 2.5 Sunburst (Higgsfield marketing-studio/image/sunburst, 2k high);
      efter-bilden är en redigering av före-bilden, så tak och vinkel är desamma.
      Hero-filmen ligger kvar i media men visas inte när foreEfter är satt.
+     Heron: hero-fore.webp + hero-efter.webp i en dragbar jämförelse (ForeEfterReglage.js).
      Illustrationer, INTE kundens egna jobb.
    - Formuläret går till demonyckeln (Mathias). Vid leverans: egen nyckel.
    =========================================================================== */
@@ -112,8 +114,8 @@ const data = {
     videoMobil: `${M}/video-hero-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
-    // Före/efter (illustration): samma villa och vinkel, vänster halva före, höger halva nymålad.
-    foreEfter: { src: `${M}/hero-fore-efter.jpg`, alt: 'Illustration: samma villatak före och efter, till vänster mossigt och blekt, till höger nymålat i matt svart', w: 1200, h: 900, txt: 'Före · Efter (illustration)' },
+    // Före/efter: samma villa och vinkel. Mallen visar före-bilden; ForeEfterReglage lägger den dragbara jämförelsen ovanpå.
+    foreEfter: { src: `${M}/hero-fore.webp`, alt: 'Villatak före målning: mossigt och blekt', w: 900, h: 1200, txt: 'Dra i handtaget för att se före och efter' },
   },
   tejp: ['Takmålning', 'Nymålat tak', 'Färgval', 'Nytt utseende', 'Villor', 'Hela Sverige', 'Färga Tak'],
 
@@ -241,6 +243,7 @@ export default function FargaTakDemo() {
       {/* Jobbanden, omdömena och Om oss döljs tills det finns egna foton, riktiga omdömen och en ägartext (se PLATSHÅLLARE). */}
       <style>{STIL}</style>
       <DemoSida data={data} />
+      <ForeEfterReglage fore={`${M}/hero-fore.webp`} efter={`${M}/hero-efter.webp`} altFore="Villatak före målning: mossigt och blekt" altEfter="Samma villatak efter målning: nymålat i matt svart" />
     </>
   );
 }
