@@ -23,13 +23,14 @@ import ForeEfterReglage from './ForeEfterReglage';
      Svart text på korallknappar (ca 7:1), vit text på svart. Rubriker i Outfit 800
      versaler (geometrisk sans, nära logans typsnitt). Stilen ligger i STIL nedan.
 
-   INTE verifierat, och finns därför INTE på sidan: telefon, e-post, ort,
+   VERIFIERAT 2026-10-23: telefon 070-789 45 61, e-post info@fargatak.se.
+
+   INTE verifierat, och finns därför INTE på sidan: ort,
    hemsida, Instagram, org.nr, F-skatt, ROT-avdrag, priser, garantier,
    ledtider, omdömen, jobbfoton.
 
    PLATSHÅLLARE (för Mathias):
-   - TELEFON: '07X-XXX XX XX' är en tydlig platshållare, länken går till #kontakt
-     (inte ett nummer som går att ringa). Byt tel + telHref när numret finns.
+   - (Telefon 070-789 45 61 och e-post info@fargatak.se från kunden via Mathias 2026-10-23.)
    - Tjänstekorten (Takmålning / Färgval / Ett tak som ser nytt ut) beskriver bara
      takmålningen (Mathias 2026-10-22: ingen rengöring på sidan). Stegen och frågorna är generella och
      ska stämmas av med ägaren.
@@ -97,9 +98,9 @@ const data = {
     paAccent: '#0A0A0A',
   },
   kontakt: {
-    // PLATSHÅLLARE: inget telefonnummer än. Länken går till formuläret, inte till ett nummer.
-    tel: '07X-XXX XX XX',
-    telHref: '#kontakt',
+    tel: '070-789 45 61',
+    telHref: 'tel:+46707894561',
+    epost: 'info@fargatak.se',
     adress: 'Hela Sverige',
   },
   cta: { txt: 'Begär offert', kort: 'Begär offert', lank: 'Begär offert' },
@@ -211,7 +212,7 @@ const data = {
 
   modal: {
     rubrik: 'Så här kan Färga Tak se ut på nätet',
-    text: 'Det här är en förhandsvisning av hemsidan. Bilderna och filmen är illustrationer, inte egna jobb. Telefon och kontaktuppgifter fylls i när de finns, och formuläret landar ännu inte i Färga Taks inkorg.',
+    text: 'Det här är en förhandsvisning av hemsidan. Bilderna och filmen är illustrationer, inte egna jobb. Formuläret landar ännu inte i Färga Taks inkorg.',
   },
 };
 
