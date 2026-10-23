@@ -82,9 +82,9 @@ export default function Start() {
               <Link href="/kontakt/" className="btn btn-primar">
                 Visa hur min hemsida kan se ut {PIL}
               </Link>
-              <a href="/foretag/gratis-guide.html" className={styles.heroLank}>
-                Eller hämta den kostnadsfria guiden {PIL}
-              </a>
+              <Link href="/var-lacker-jobben/" className={styles.heroLank}>
+                Eller svara på fem frågor: var läcker jobben? {PIL}
+              </Link>
             </div>
           </div>
 
@@ -263,7 +263,7 @@ export default function Start() {
             Se först var <span className="accent">jobben läcker.</span>
           </h2>
           <p className={styles.gratisMaskot}>
-            <span>Två vägar om ni vill titta innan ni ber om ett förslag.</span>
+            <span>Tre vägar om ni vill titta innan ni ber om ett förslag.</span>
             <MaskotScen
               className={styles.gratisScen}
               src="/img/maskot-scener/fikar.webp"
@@ -274,6 +274,12 @@ export default function Start() {
           </p>
 
           <div className={styles.gratisNat} data-trapp>
+            <Link href="/var-lacker-jobben/" className={`${styles.gratisKort} ${styles.gratisQuiz}`}>
+              <span className={styles.gratisTagg}>Fem frågor, inget att skriva</span>
+              <h3>Var läcker jobben?</h3>
+              <p>Ett tryck per fråga. Ni får svaret i klartext direkt, och ett förslag om ni vill.</p>
+              <span className={styles.gratisLank}>Starta {PIL}</span>
+            </Link>
             <a href="/foretag/gratis-granskning.html" className={styles.gratisKort}>
               <span className={styles.gratisTagg}>Kostnadsfri analys</span>
               <h3>10-punktsanalys av er hemsida</h3>
