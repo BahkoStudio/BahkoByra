@@ -1,0 +1,21 @@
+.yta {
+  padding: clamp(2.4rem, 5vw, 4rem) 0 clamp(3rem, 6vw, 5rem);
+}
+
+.intro {
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.intro h1 {
+  margin: 0.6rem 0 0;
+}
+
+.intro :global(.eyebrow) {
+  color: var(--text-lag);
+}
+
+.intro :global(.lede) {
+  margin-top: 1rem;
+}
