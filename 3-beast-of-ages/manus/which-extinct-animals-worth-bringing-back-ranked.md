@@ -2,7 +2,9 @@
 
 Beast of Ages. Manus och leveranspaket i samma fil, paketet överst.
 
-**STOPPAD 2026-10-18: Grinden kördes i efterhand och underkände förpackningen** (steg 3, se tabellen "Dödade av kontrollen" i `../ideer/klarerade-ideer.md`). Spela inte in som rankning. Vinkeln med forskarnas test och fjärilen får räddas med en ny förpackning som går genom Grinden.
+**PUBLICERAD ÄNDÅ 2026-10-22** (`K8wzUzHEzQk`). Efter två dygn (2026-10-24, vidIQ): 1 776 visningar, 56 visningar i timmen, breakout 8,4; YouTube Studio: CTR 3,23 % (kanalens normal 1,9–3,0), tittad andel 21,5 % (3:01), 93 % från startsidan, 72 % kvar vid 25 s, 50 % vid 1 min, toppar vid mammuten (5:20) och slutavslöjandet (8:36). Bäst på kanalen sedan moan 12 sept. Lärdom för Remixloopen: den bevisade formen slog alla "färska" idéer trots att Grindens gamla steg 3 stoppade den. Mät dag 7 och dag 30. 
+
+**Tidigare: STOPPAD 2026-10-18: Grinden kördes i efterhand och underkände förpackningen** (steg 3, se tabellen "Dödade av kontrollen" i `../ideer/klarerade-ideer.md`). Spela inte in som rankning. Vinkeln med forskarnas test och fjärilen får räddas med en ny förpackning som går genom Grinden.
 
 **Status: klart att spela in.** 2,162 ord, cirka 14 minuter. Tre rundor manusloop (taket). Runda 1 och 2: alla fyra kritiker underkände. Runda 3: alla fyra godkände, och deras sista putsfixar applicerades direkt utan en fjärde runda, enligt takregeln. Formen är en rankad nedräkning (6 till 1) inramad som en essä: Colossals 23-sekundersvideo som kall öppning, forskarnas tio frågor (Seddon, Moehrenschlager och Ewen 2014) och IUCN:s riktlinjer 2016 som metod, sedan vändningen att det bästa resultatet i forskarnas eget test gick till en fjäril. Faktabanken (`bar-worth-bringing-back.md` i sessionens scratchpad, cirka 8 100 ord) plus en kontroll av colossal.com/dodo och /bluebuck den 2026-10-14.
 
