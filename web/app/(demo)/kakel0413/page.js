@@ -261,7 +261,6 @@ const data = {
     formRubrik: 'Berätta kort om jobbet',
     // "Vad gäller det?" utan Mindre arbeten (Nuh v2). Mallen lägger till Annat sist. Tvättstuga: revision 3.
     typer: ['Badrumsrenovering', 'Kakel i kök', 'Hallar och trapphus', 'Tvättstuga'],
-    placeholder: 'Vad vill du ha hjälp med (badrum, kakel i kök, hall …) och ungefär hur stort är det?',
     formNot: 'Skriv kort om jobbet, då blir första samtalet mer konkret. Inga massutskick, ingen säljlista.',
   },
 
