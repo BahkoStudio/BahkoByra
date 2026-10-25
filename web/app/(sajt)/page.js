@@ -43,7 +43,7 @@ const IKON = {
 };
 
 const RESAN = [
-  { ikon: 'prat', h: 'Berätta om firman', p: 'Vad ni gör och var, det tar två minuter.' },
+  { ikon: 'prat', h: 'Berätta om företaget', p: 'Vad ni gör och var, det tar två minuter.' },
   { ikon: 'skarm', h: 'Se förslaget', p: 'Inom 48 timmar har ni ett färdigt förslag att klicka i.' },
   { ikon: 'tumme', h: 'Ja eller nej', p: 'Säger ni ja lägger vi in era bilder, nej kostar inget.' },
   { ikon: 'raket', h: 'Sidan går live', p: 'På er egen domän, normalt inom sju dagar.' },
@@ -75,8 +75,8 @@ export default function Start() {
               <span className="accent">lokala marknad.</span>
             </h1>
             <p className={styles.heroLede}>
-              <strong>Byggt för lokala firmor.</strong> Hemsidor och Google åt snickare, målare, elektriker
-              och andra firmor som vill ha fler förfrågningar.
+              <strong>Byggt för lokala företag.</strong> Hemsidor och Google åt snickare, målare, elektriker
+              och andra företag som vill ha fler förfrågningar.
             </p>
             <div className={styles.heroKnappar}>
               <Link href="/kontakt/" className="btn btn-primar">
@@ -102,7 +102,7 @@ export default function Start() {
       <section className={`mork ${styles.videoYta}`} id="video">
         <div className={`wrap ${styles.videoInner}`} data-trapp>
           <h2>
-            Därför ringer kunden <span className="accent">en annan firma.</span>
+            Därför ringer kunden <span className="accent">ett annat företag.</span>
           </h2>
           <p className={`lede ${styles.videoLede}`}>
             Kunden googlar och ringer den som syns först. Syns ni inte där får ni köpa
@@ -164,7 +164,7 @@ export default function Start() {
           <div>
             <span className="eyebrow">Kundcase</span>
             <h2>
-              Etta på Google. <span className="accent">Före firman med 117 omdömen.</span>
+              Etta på Google. <span className="accent">Före företaget med 117 omdömen.</span>
             </h2>
             <p className="lede" style={{ marginTop: '1.1rem' }}>
               Bromma Trädgårdsservice fick ny hemsida av oss. Så här såg det ut på Google den 30 juli.
