@@ -75,8 +75,8 @@ export default function Start() {
               <span className="accent">lokala marknad.</span>
             </h1>
             <p className={styles.heroLede}>
-              <strong>Byggt för lokala företag.</strong> Hemsidor och Google åt snickare, målare, elektriker
-              och andra företag som vill ha fler förfrågningar.
+              <strong>Byggt för lokala företag.</strong> Få mer trafik från Google, ranka på första sidan
+              och bli det självklara valet för kunden.
             </p>
             <div className={styles.heroKnappar}>
               <Link href="/kontakt/" className="btn btn-primar">
