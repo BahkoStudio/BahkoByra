@@ -63,7 +63,7 @@ const META = {
 
 // Kunddomänen (Mathias 2026-10-23): på kakel0413.se/www indexeras sidan, canonical pekar på
 // https://kakel0413.se/ och demorutan "Om det här förslaget" är borta (kund: true).
-// På bahkobyra.se/kakel0413/ är allt som förut: noindex och demoruta.
+// På bahkobyra.se/kakel0413/: noindex, men ingen demoruta heller (kund: true, Mathias 2026-10-25).
 
 export async function generateMetadata() {
   return (await arKunddoman())
@@ -290,7 +290,7 @@ export default async function Kakel0413Demo() {
           och inget telefonnummer i heron (Ring-knappen i headern kvar). Raden "Kakel & Badrum." struken: mallen skriver alltid " & " och ".",
           så tjänsteraden får font-size 0 och bara Nuhs mening (egen fontstorlek) syns. */}
       <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}'}</style>
-      <DemoSida data={kund ? { ...data, kund: true, footer: { ...data.footer, lankar: [{ href: '/om-oss/', txt: 'Om oss' }] } } : data} />
+      <DemoSida data={kund ? { ...data, kund: true, footer: { ...data.footer, lankar: [{ href: '/om-oss/', txt: 'Om oss' }] } } : { ...data, kund: true }} />
       <KontaktFalt />
       <BildUpload epost={data.kontakt.epost} />
     </>
