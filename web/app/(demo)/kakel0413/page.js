@@ -243,7 +243,7 @@ const data = {
     lista: [
       { q: 'Kostar genomgången något?', a: 'Nej. Genomgången är kostnadsfri och du får möjlighet att ställa alla dina frågor.' },
       { q: 'Vet jag vad det kostar innan ni börjar?', a: 'Ja. Efter genomgången får du en tydlig offert, och vi går igenom vad som ingår så att du vet vad du betalar för innan arbetet börjar.' },
-      { q: 'Vad hjälper ni till med?', a: 'Hela badrumsrenoveringar, kakel- och klinkersättning i badrum, kök, hallar, trapphus och tvättstugor, och mindre arbeten.' },
+      { q: 'Vad hjälper ni till med?', a: 'Hela badrumsrenoveringar, kakel och klinker i badrum, kök, hallar, trapphus och tvättstugor, och mindre arbeten.' },
       { q: 'Kan jag skicka bilder?', a: 'Gärna. Bilder gör att vi får en bättre bild av jobbet redan från början.' },
       { q: 'Var arbetar ni?', a: 'Vi utgår från Eslöv och arbetar i hela Skåne.' },
       { q: 'Kommer ni ut och tittar?', a: 'Ja, vi kommer alltid ut och tittar på plats.' },
