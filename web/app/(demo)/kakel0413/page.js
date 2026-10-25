@@ -122,8 +122,8 @@ const tjanster = [
     namn: 'Mindre arbeten',
     bild: `${M}/tjanst-mindre.jpg`,
     alt: 'Illustration: nykaklad duschnisch med guldlist och verktyg på en duk',
-    text: 'Inget jobb är för litet. Berätta vad du behöver hjälp med, gärna med bilder.',
-    punkter: ['Mindre kakelarbeten', 'Skicka gärna bilder', 'Kostnadsfri genomgång'],
+    text: 'Inget jobb är för litet.',
+    punkter: ['Mindre kakelarbeten'],
     ritning: (<><path d="M50 30h45v45H50zM105 30h45v45h-45zM50 85h45v20M105 85h45v20" /></>),
   },
 ];
@@ -168,7 +168,7 @@ const data = {
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
   },
-  tejp: ['Badrumsrenovering', 'Kakel', 'Klinker', 'Kök', 'Trapphus', 'Tvättstuga', 'Mindre arbeten', 'Eslöv', 'Skåne'],
+  tejp: ['Badrumsrenovering', 'Golv', 'Kök', 'Trapphus', 'Tvättstuga', 'Eslöv', 'Skåne'],
 
   tjanster: {
     eyebrow: 'Tjänster',
@@ -224,10 +224,10 @@ const data = {
     lead: 'Vi vill att det ska kännas enkelt och tryggt att anlita oss. Därför får du veta vad som händer från första kontakt tills arbetet är klart.',
     lista: [
       { namn: 'Kontakt', ikon: 'kontakt', text: 'Du kontaktar oss och berättar kort vad du vill ha hjälp med. Det kan vara en badrumsrenovering, nytt kakel eller ett mindre arbete. Du kan gärna skicka bilder så att vi får en bättre bild av jobbet.' },
-      { namn: 'Kostnadsfri genomgång', ikon: 'besok', text: 'Vi går igenom vad du vill göra och tittar på vilka möjligheter som finns. Vid behov kommer vi ut och tittar på plats. Genomgången är kostnadsfri och du får möjlighet att ställa alla dina frågor.' },
+      { namn: 'Kostnadsfri genomgång', ikon: 'besok', text: 'Vi går igenom vad du vill göra och tittar på vilka möjligheter som finns. Vi kommer alltid ut och tittar på plats. Genomgången är kostnadsfri och du får möjlighet att ställa alla dina frågor.' },
       { namn: 'Offert', ikon: 'offert', text: 'Efter genomgången får du en tydlig offert på arbetet. Vi går igenom vad som ingår så att du vet vad du betalar för innan arbetet börjar. Inga onödiga överraskningar.' },
       { namn: 'Planering', ikon: 'plan', text: 'När du har godkänt offerten planerar vi arbetet tillsammans. Vi går igenom när vi kan börja, hur arbetet ska utföras och andra viktiga detaljer. Du ska känna dig trygg med planen innan vi sätter igång.' },
-      { namn: 'Arbetet utförs', ikon: 'arbete', text: 'Nu börjar vi arbetet. Vi arbetar noggrant och håller dig informerad under projektets gång. Om något oväntat dyker upp pratar vi med dig innan vi går vidare.' },
+      { namn: 'Arbetet utförs', ikon: 'arbete', text: 'Nu börjar vi arbetet. Vi arbetar noggrant och håller dig informerad under projektets gång.' },
       { namn: 'Genomgång med kunden', ikon: 'klart', text: 'När arbetet är färdigt går vi igenom resultatet tillsammans med dig. Vi ser till att arbetet är klart enligt det vi har kommit överens om och att du får möjlighet att ställa frågor.' },
     ],
   },
@@ -238,16 +238,14 @@ const data = {
   fragor: {
     eyebrow: 'Vanliga frågor',
     rubrik: ['Det du kanske', 'undrar först'],
-    lead: 'Kort om hur det fungerar.',
     kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring och fråga, så får du besked om just ditt jobb.' },
     lista: [
       { q: 'Kostar genomgången något?', a: 'Nej. Genomgången är kostnadsfri och du får möjlighet att ställa alla dina frågor.' },
       { q: 'Vet jag vad det kostar innan ni börjar?', a: 'Ja. Efter genomgången får du en tydlig offert, och vi går igenom vad som ingår så att du vet vad du betalar för innan arbetet börjar.' },
-      { q: 'Vad hjälper ni till med?', a: 'Hela badrumsrenoveringar, kakel- och klinkersättning i badrum, kök, hallar, trapphus och tvättstugor, och mindre arbeten.' },
+      { q: 'Vad hjälper ni till med?', a: 'Hela badrumsrenoveringar, kakel och klinker i badrum, kök, hallar, trapphus och tvättstugor, och mindre arbeten.' },
       { q: 'Kan jag skicka bilder?', a: 'Gärna. Bilder gör att vi får en bättre bild av jobbet redan från början.' },
       { q: 'Var arbetar ni?', a: 'Vi utgår från Eslöv och arbetar i hela Skåne.' },
-      { q: 'Kommer ni ut och tittar?', a: 'Ja, vid behov kommer vi ut och tittar på plats.' },
-      { q: 'Vad händer om något oväntat dyker upp?', a: 'Då pratar vi med dig innan vi går vidare.' },
+      { q: 'Kommer ni ut och tittar?', a: 'Ja, vi kommer alltid ut och tittar på plats.' },
     ],
   },
 
@@ -262,7 +260,7 @@ const data = {
     // "Vad gäller det?" utan Mindre arbeten (Nuh v2). Mallen lägger till Annat sist. Tvättstuga: revision 3.
     typer: ['Badrumsrenovering', 'Kakel i kök', 'Hallar och trapphus', 'Tvättstuga'],
     placeholder: 'Vad vill du ha hjälp med (badrum, kakel i kök, hall …) och ungefär hur stort är det?',
-    formNot: 'Skriv kort om jobbet, då blir första samtalet mer konkret. Inga massutskick, ingen säljlista.',
+    formNot: '',
   },
 
   popup: {
@@ -272,7 +270,7 @@ const data = {
 
   footer: {
     lankar: [{ href: '/kakel0413/om-oss/', txt: 'Om oss' }],
-    text: 'Badrumsrenovering, kakel- och klinkersättning och mindre arbeten i Eslöv och hela Skåne. Över 16 års erfarenhet i byggbranschen.',
+    text: '',
   },
 
   modal: {
@@ -289,7 +287,7 @@ export default async function Kakel0413Demo() {
       {/* Nuh v2: ingen stor logotyp i heron (h1 finns kvar för skärmläsare/SEO, visuellt dold; headerns logga kvar)
           och inget telefonnummer i heron (Ring-knappen i headern kvar). Raden "Kakel & Badrum." struken: mallen skriver alltid " & " och ".",
           så tjänsteraden får font-size 0 och bara Nuhs mening (egen fontstorlek) syns. */}
-      <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}'}</style>
+      <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}#kontakt form button[type=submit]{font-size:0!important}#kontakt form button[type=submit]::after{content:"Skicka förfrågan";font-size:var(--tx-m)}'}</style>
       <DemoSida data={kund ? { ...data, kund: true, footer: { ...data.footer, lankar: [{ href: '/om-oss/', txt: 'Om oss' }] } } : { ...data, kund: true }} />
       <KontaktFalt />
       <BildUpload epost={data.kontakt.epost} />
