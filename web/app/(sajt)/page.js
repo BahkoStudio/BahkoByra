@@ -167,7 +167,9 @@ export default function Start() {
               Etta på Google. <span className="accent">Före företaget med 117 omdömen.</span>
             </h2>
             <p className="lede" style={{ marginTop: '1.1rem' }}>
-              Bromma Trädgårdsservice fick ny hemsida av oss. Så här såg det ut på Google den 30 juli.
+              <a href="https://brommatradgardsservice.se" target="_blank" rel="noopener" className="accent">
+                brommatradgardsservice.se {PIL}
+              </a>
             </p>
             <BevisSiffror lista={[{ tal: '1:a', text: 'på Google' }, { tal: '1:a', text: 'på ChatGPT' }]} />
             <div className={styles.panelKnapp}>
