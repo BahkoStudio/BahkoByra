@@ -122,8 +122,8 @@ const tjanster = [
     namn: 'Mindre arbeten',
     bild: `${M}/tjanst-mindre.jpg`,
     alt: 'Illustration: nykaklad duschnisch med guldlist och verktyg på en duk',
-    text: 'Inget jobb är för litet. Berätta vad du behöver hjälp med, gärna med bilder.',
-    punkter: ['Mindre kakelarbeten', 'Skicka gärna bilder', 'Kostnadsfri genomgång'],
+    text: 'Inget jobb är för litet.',
+    punkter: ['Mindre kakelarbeten'],
     ritning: (<><path d="M50 30h45v45H50zM105 30h45v45h-45zM50 85h45v20M105 85h45v20" /></>),
   },
 ];
