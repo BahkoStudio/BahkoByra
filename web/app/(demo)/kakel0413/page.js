@@ -168,7 +168,7 @@ const data = {
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
   },
-  tejp: ['Badrumsrenovering', 'Kakel', 'Klinker', 'Kök', 'Trapphus', 'Tvättstuga', 'Mindre arbeten', 'Eslöv', 'Skåne'],
+  tejp: ['Badrumsrenovering', 'Golv', 'Kök', 'Trapphus', 'Tvättstuga', 'Mindre arbeten', 'Eslöv', 'Skåne'],
 
   tjanster: {
     eyebrow: 'Tjänster',
@@ -224,7 +224,7 @@ const data = {
     lead: 'Vi vill att det ska kännas enkelt och tryggt att anlita oss. Därför får du veta vad som händer från första kontakt tills arbetet är klart.',
     lista: [
       { namn: 'Kontakt', ikon: 'kontakt', text: 'Du kontaktar oss och berättar kort vad du vill ha hjälp med. Det kan vara en badrumsrenovering, nytt kakel eller ett mindre arbete. Du kan gärna skicka bilder så att vi får en bättre bild av jobbet.' },
-      { namn: 'Kostnadsfri genomgång', ikon: 'besok', text: 'Vi går igenom vad du vill göra och tittar på vilka möjligheter som finns. Vid behov kommer vi ut och tittar på plats. Genomgången är kostnadsfri och du får möjlighet att ställa alla dina frågor.' },
+      { namn: 'Kostnadsfri genomgång', ikon: 'besok', text: 'Vi går igenom vad du vill göra och tittar på vilka möjligheter som finns. Vi kommer alltid ut och tittar på plats. Genomgången är kostnadsfri och du får möjlighet att ställa alla dina frågor.' },
       { namn: 'Offert', ikon: 'offert', text: 'Efter genomgången får du en tydlig offert på arbetet. Vi går igenom vad som ingår så att du vet vad du betalar för innan arbetet börjar. Inga onödiga överraskningar.' },
       { namn: 'Planering', ikon: 'plan', text: 'När du har godkänt offerten planerar vi arbetet tillsammans. Vi går igenom när vi kan börja, hur arbetet ska utföras och andra viktiga detaljer. Du ska känna dig trygg med planen innan vi sätter igång.' },
       { namn: 'Arbetet utförs', ikon: 'arbete', text: 'Nu börjar vi arbetet. Vi arbetar noggrant och håller dig informerad under projektets gång. Om något oväntat dyker upp pratar vi med dig innan vi går vidare.' },
@@ -246,8 +246,7 @@ const data = {
       { q: 'Vad hjälper ni till med?', a: 'Hela badrumsrenoveringar, kakel- och klinkersättning i badrum, kök, hallar, trapphus och tvättstugor, och mindre arbeten.' },
       { q: 'Kan jag skicka bilder?', a: 'Gärna. Bilder gör att vi får en bättre bild av jobbet redan från början.' },
       { q: 'Var arbetar ni?', a: 'Vi utgår från Eslöv och arbetar i hela Skåne.' },
-      { q: 'Kommer ni ut och tittar?', a: 'Ja, vid behov kommer vi ut och tittar på plats.' },
-      { q: 'Vad händer om något oväntat dyker upp?', a: 'Då pratar vi med dig innan vi går vidare.' },
+      { q: 'Kommer ni ut och tittar?', a: 'Ja, vi kommer alltid ut och tittar på plats.' },
     ],
   },
 
