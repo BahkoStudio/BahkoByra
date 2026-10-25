@@ -168,7 +168,7 @@ export default function Start() {
             </h2>
             <p className="lede" style={{ marginTop: '1.1rem' }}>
               <a href="https://brommatradgardsservice.se" target="_blank" rel="noopener" className="accent">
-                brommatradgardsservice.se {PIL}
+                brommatradgardsservice.se ↗
               </a>
             </p>
             <BevisSiffror lista={[{ tal: '1:a', text: 'på Google' }, { tal: '1:a', text: 'på ChatGPT' }]} />
