@@ -168,7 +168,7 @@ const data = {
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
   },
-  tejp: ['Badrumsrenovering', 'Golv', 'Kök', 'Trapphus', 'Tvättstuga', 'Mindre arbeten', 'Eslöv', 'Skåne'],
+  tejp: ['Badrumsrenovering', 'Golv', 'Kök', 'Trapphus', 'Tvättstuga', 'Eslöv', 'Skåne'],
 
   tjanster: {
     eyebrow: 'Tjänster',
