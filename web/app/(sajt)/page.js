@@ -66,17 +66,17 @@ export default function Start() {
               oga={{ x: 73.3, y: 38.9, rx: 6.45, ry: 5.0, gron: 'rgb(20,112,75)' }}
               index={0}
             />
-            {/* Rubriken talar till firman (Mathias 2026-09-23). Tjänst + ort ligger som första rad
+            {/* Rubriken "Ta över din lokala marknad." (Mathias 2026-10-25). Rubriken talar till firman (Mathias 2026-09-23). Tjänst + ort ligger som första rad
                 I H1 (Mathias 2026-10-01): synlig text, samma som Google-profilens kategori och ort. */}
             <h1>
               <span className={`eyebrow ${styles.heroTagg}`}>Webbdesign i Jönköping &amp; Huskvarna</span>
-              Bli firman kunderna
+              Ta över din
               <br />
-              <span className="accent">ringer först.</span>
+              <span className="accent">lokala marknad.</span>
             </h1>
             <p className={styles.heroLede}>
-              Hemsidor och Google åt snickare, målare, elektriker och andra lokala firmor som vill ha
-              fler förfrågningar.
+              <strong>Byggt för lokala firmor.</strong> Hemsidor och Google åt snickare, målare, elektriker
+              och andra firmor som vill ha fler förfrågningar.
             </p>
             <div className={styles.heroKnappar}>
               <Link href="/kontakt/" className="btn btn-primar">
@@ -164,17 +164,15 @@ export default function Start() {
           <div>
             <span className="eyebrow">Kundcase</span>
             <h2>
-              Vår kund låg etta i Googles platslista, <span className="accent">före en firma med 117 omdömen.</span>
+              Etta på Google. <span className="accent">Före firman med 117 omdömen.</span>
             </h2>
             <p className="lede" style={{ marginTop: '1.1rem' }}>
-              Vi sitter i Jönköping/Huskvarna och har kunder i hela Sverige, lokalt för dem. Vår kund Bromma
-              Trädgårdsservice i Stockholm fick ny hemsida av oss. Så här såg det ut den
-              30 juli, när man sökte på &quot;trädgårdsservice i Stockholm&quot;.
+              Bromma Trädgårdsservice fick ny hemsida av oss. Så här såg det ut på Google den 30 juli.
             </p>
-            <BevisSiffror />
+            <BevisSiffror lista={[{ tal: '1:a', text: 'på Google' }, { tal: '1:a', text: 'på ChatGPT' }]} />
             <div className={styles.panelKnapp}>
               <Link href="/case/" className="btn btn-sekundar">
-                Se sajten vi gjorde åt dem {PIL}
+                Se sajten {PIL}
               </Link>
             </div>
             {/* Ögat sitter bakom luppen — Mathias egen render, som den är */}
@@ -196,9 +194,6 @@ export default function Start() {
         <div className="wrap">
           <div data-trapp>
             <span className="eyebrow">Kunder och demos</span>
-            <h2>
-              Här är sidorna vi gjort. <span className="accent">Öppna dem i mobilen.</span>
-            </h2>
           </div>
 
           <Portfolj />
