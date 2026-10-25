@@ -6,12 +6,12 @@ import { arKunddoman } from '../kunddoman';
 /* Kakel 0413 AB — Om oss (länkad från footern på huvudsidan).
    Mathias 2026-10-22: Om Nuh bort från huvudsidan, kortare och roligare text i
    footerns Om oss. Samma fakta som kundens egen text (se VERIFIERAT i ../page.js):
-   17+ år, upp till sju projekt samtidigt, ca 800 nya toaletter, Skanska/NCC/Peab,
+   16+ år, upp till sju projekt samtidigt, ca 800 nya toaletter, Skanska/NCC/Peab/MVB/Tornstad,
    kvalitet och att hålla det man lovar. Inget annat påstås. */
 
 const META = {
   title: 'Om oss — Kakel 0413 AB, kakelsättare i Eslöv',
-  description: 'Bakom Kakel 0413 står Nuh: över 17 år i byggbranschen, upp till sju projekt samtidigt och kakel i hela Skåne.',
+  description: 'Bakom Kakel 0413 står Nuh: över 16 år i byggbranschen, upp till sju projekt samtidigt och kakel i hela Skåne.',
 };
 
 // Kunddomänen: indexeras med canonical https://kakel0413.se/om-oss/; på bahkobyra.se noindex som förut.
@@ -46,15 +46,15 @@ export default async function OmOss() {
               </div>
               <div className={s.omTxt}>
                 <p className={s.eyebrow}>Om oss</p>
-                <h1 className={s.h2}>Sjutton år i branschen. <em>Nu med eget namn på dörren.</em></h1>
+                <h1 className={s.h2}>Sexton år i branschen. <em>Nu med eget namn på dörren.</em></h1>
                 <div className={s.stycken}>
-                  <p>Bakom Kakel 0413 står Nuh. Han har jobbat i byggbranschen i över 17 år, med allt från kakel och badrum till riktigt stora byggprojekt.</p>
-                  <p>Som mest har han haft ansvar för sju stora projekt samtidigt. Sammanlagt blev det runt 800 nya toaletter. Däremellan har han lagt kakel och klinker i trapphus, hallar och kök, och jobbat ihop med Skanska, NCC och Peab.</p>
+                  <p>Bakom Kakel 0413 står Nuh. Han har jobbat i byggbranschen i över 16 år, med allt från kakel och badrum till riktigt stora byggprojekt.</p>
+                  <p>Som mest har han haft ansvar för sju stora projekt samtidigt. Sammanlagt blev det runt 800 nya toaletter. Däremellan har han lagt kakel och klinker i trapphus, hallar och kök, och jobbat ihop med Skanska, NCC, Peab, MVB och Tornstad.</p>
                   <p>Varför starta eget? För att få lägga all tid på det som faktiskt spelar roll: hög kvalitet, noggrant arbete, tydlig kommunikation och att alltid hålla det man lovar.</p>
                   <p>Helt nytt badrum eller ett mindre jobb, målet är detsamma: att du ska bli riktigt nöjd.</p>
                 </div>
                 <div className={s.omBevis}>
-                  <div><b>17+ år</b><span>i byggbranschen</span></div>
+                  <div><b>16+ år</b><span>i byggbranschen</span></div>
                   <div><b>Upp till 7</b><span>projekt samtidigt</span></div>
                   <div><b>Ca 800</b><span>nya toaletter</span></div>
                 </div>

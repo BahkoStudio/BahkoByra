@@ -1,6 +1,7 @@
 import DemoSida from '../_mall/DemoSida';
 import { arKunddoman } from './kunddoman';
 import BildUpload from './BildUpload';
+import KontaktFalt from './KontaktFalt';
 
 /* ===========================================================================
    KAKEL 0413 AB — hemsida för en betalande kund (12 000 kr-paketet), Bahko Byrå
@@ -9,7 +10,7 @@ import BildUpload from './BildUpload';
    (kvalitetsnivå efter velebitmaleri).
 
    Bärande idé: trygghet. Ett badrum är ett stort beslut, och bakom firman står
-   en hantverkare med 17+ år i branschen som håller det han lovar.
+   en hantverkare med 16+ år i branschen som håller det han lovar.
 
    VERIFIERAT (2026-10-22, kundens egen text via Mathias):
    - Firmanamn och logotyp: "KAKEL 0413 AB" (logofilen från kunden).
@@ -18,10 +19,11 @@ import BildUpload from './BildUpload';
    - Introtexten (heron + Om Nuh) och "Så går det till" (intro + sex steg)
      är kundens ordagranna text, bara lätta stavfel rättade
      ("Han arbetat" → "Han har arbetat", "byggöretag" → "byggföretag").
-   - Siffrorna: över 17 års erfarenhet, upp till sju stora projekt samtidigt,
-     totalt cirka 800 nya toaletter, har arbetat med Skanska, NCC och Peab.
+   - Siffrorna: över 16 års erfarenhet (rättat i revision 3, Mathias 2026-10-25),
+     upp till sju stora projekt samtidigt, totalt cirka 800 nya toaletter, har arbetat
+     med Skanska, NCC, Peab, MVB och Tornstad.
    - Tjänster i dag: badrumsrenovering, kakel- och klinkersättning (badrum,
-     kök, hallar, trapphus) och mindre arbeten. Fler tjänster kan tillkomma:
+     kök, hallar, trapphus, tvättstuga) och mindre arbeten. Fler tjänster kan tillkomma:
      lägg bara till ett kort i tjanster.kort (och ett ord i tejp).
 
    INTE verifierat, och finns därför inte på sidan: gatuadress,
@@ -41,20 +43,27 @@ import BildUpload from './BildUpload';
    - HERO-FILMEN, VARFÖR-FILMEN OCH ALLA TJÄNSTEBILDER ÄR GENERERADE
      (Higgsfield: Qwen Image 3 för stillbilderna, Wan 3.0 Prime bild-till-film
      1080p utan ljud för de tre klippen). Illustrationer, INTE Nuhs egna jobb.
-     Tjänstekortens bilder märks i tjanster.lead-noten nedan.
+     Tjänstekortens bilder märks i tjanster.lead-noten nedan. Undantag: tvättstugebilden
+     (revision 3) är genererad med GPT Image via Higgsfield, samma stil som de andra.
    - Formuläret går till info@kakel0413.se (Nuhs Web3Forms-nyckel, PRO, KUND_NYCKEL nedan),
      både på kakel0413.se och bahkobyra.se/kakel0413. Bilder följer med som bilagor (BildUpload.js).
+   - REVISION 3 (Mathias 2026-10-25): nytt kort Tvättstuga, nya punkter i Kök och Hallar,
+     Därför oss med två punkter och utan ingress, 16 års erfarenhet överallt, MVB och Tornstad tillagda.
+     Mobilmenyn: mallen lägger alltid till "Vanliga frågor" (fragor.eyebrow), så nav-länken
+     "Frågor" döljs bara i mobilmenyn (stilblocket nedan); desktop-pillret har den kvar.
+     Formuläret: "Kontaktar som" (kontaktar_som) och "Stadsdel/Kommun" (kommun) monteras
+     före namnfälten av KontaktFalt.js, på samma sätt som BildUpload.js.
    =========================================================================== */
 
 const META = {
   title: 'Kakel 0413 AB — kakelsättare och badrumsrenovering i Eslöv och Skåne',
   description:
-    'Kakelsättare i Eslöv för hela Skåne: badrumsrenovering, kakel- och klinkersättning i badrum, kök, hallar och trapphus. Över 17 års erfarenhet. Kostnadsfri genomgång.',
+    'Kakelsättare i Eslöv för hela Skåne: badrumsrenovering, kakel- och klinkersättning i badrum, kök, hallar och trapphus. Över 16 års erfarenhet. Kostnadsfri genomgång.',
 };
 
 // Kunddomänen (Mathias 2026-10-23): på kakel0413.se/www indexeras sidan, canonical pekar på
 // https://kakel0413.se/ och demorutan "Om det här förslaget" är borta (kund: true).
-// På bahkobyra.se/kakel0413/ är allt som förut: noindex och demoruta.
+// På bahkobyra.se/kakel0413/: noindex, men ingen demoruta heller (kund: true, Mathias 2026-10-25).
 
 export async function generateMetadata() {
   return (await arKunddoman())
@@ -86,7 +95,7 @@ const tjanster = [
     bild: `${M}/tjanst-kok.jpg`,
     alt: 'Illustration: vitt kakel i fiskbensmönster bakom en blandare i mässing',
     text: 'Kakel- och klinkerarbeten i kök, till exempel kakel ovanför bänkskivan.',
-    punkter: ['Kakel- och klinkersättning', 'Kök', 'Noggrant och rent'],
+    punkter: ['Kakel och klinker', 'Noggrant och rent'],
     ritning: (<><path d="M30 25h140v50H30z" /><path d="M65 25v50M100 25v50M135 25v50M30 50h140" /><path d="M20 85h160v10H20z" /></>),
   },
   {
@@ -94,9 +103,19 @@ const tjanster = [
     namn: 'Hallar och trapphus',
     bild: `${M}/tjanst-trapp.jpg`,
     alt: 'Illustration: ljus hall med klinkergolv och trappa',
-    text: 'Kakel- och klinkerarbeten i hallar och trapphus.',
-    punkter: ['Hallar', 'Trapphus', 'Klinker på golv'],
+    text: 'Kakel och klinker i hallar och trapphus.',
+    punkter: ['Hallar', 'Trapphus', 'Golv'],
     ritning: (<><path d="M20 105h40V85h30V65h30V45h30V25h30" /><path d="M20 105h160" /></>),
+  },
+  {
+    id: 'tvatt',
+    namn: 'Tvättstuga',
+    bild: `${M}/tjanst-tvatt.jpg`,
+    alt: 'Illustration: ljus tvättstuga med marmorkakel, tvättmaskin och torktumlare under en bänkskiva i ek och blandare i mässing',
+    text: 'Kakel och klinker i tvättstugan, på vägg och golv.',
+    punkter: ['Kakel på vägg', 'Klinker på golv'],
+    // Tvättmaskin: skåp, lucka och reglage.
+    ritning: (<><path d="M65 12h70v100H65z" /><path d="M65 32h70" /><circle cx="100" cy="72" r="24" /><circle cx="100" cy="72" r="14" /><path d="M75 22h14M120 22h4" /></>),
   },
   {
     id: 'mindre',
@@ -149,7 +168,7 @@ const data = {
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
   },
-  tejp: ['Badrumsrenovering', 'Kakel', 'Klinker', 'Kök', 'Trapphus', 'Mindre arbeten', 'Eslöv', 'Skåne'],
+  tejp: ['Badrumsrenovering', 'Kakel', 'Klinker', 'Kök', 'Trapphus', 'Tvättstuga', 'Mindre arbeten', 'Eslöv', 'Skåne'],
 
   tjanster: {
     eyebrow: 'Tjänster',
@@ -166,16 +185,14 @@ const data = {
     rad2: [{ src: `${M}/logo-original.jpg`, alt: '', txt: '' }],
   },
 
-  // Därför oss (Nuh v2): Nuhs egen introtext ordagrant (samma stycken som om.stycken nedan),
-  // bara uppdelad i ingress + punkter. Punktrubrikerna är korta etiketter, texterna är hans.
+  // Därför oss (revision 3, Mathias 2026-10-25, ordagrant): ingen ingress (mallens Rubrik
+  // ritar inget lead-element när lead är tomt), exakt två punkter.
   varfor: {
     eyebrow: 'Därför oss',
     rubrik: ['Att alltid hålla', 'det man lovar'],
-    lead: 'Efter många år i branschen valde Nuh att starta eget för att kunna fokusera ännu mer på det som betyder mest, hög kvalitet, noggrant arbete, tydlig kommunikation och att alltid hålla det man lovar.',
+    lead: '',
     punkter: [
-      { rubrik: 'Över 17 års erfarenhet', text: 'Bakom företaget står Nuh, som har över 17 års erfarenhet inom byggbranschen. Han har arbetat med allt från kakelsättning och badrumsrenoveringar till stora byggprojekt.' },
-      { rubrik: 'Upp till sju stora projekt samtidigt', text: 'Under sin karriär har Nuh ansvarat för upp till sju stora projekt samtidigt, med arbeten som omfattat totalt cirka 800 nya toaletter. Utöver detta har han även utfört kakel- och klinkerarbeten i trapphus, hallar och kök.' },
-      { rubrik: 'Skanska, NCC och Peab', text: 'Han har arbetat tillsammans med välkända byggföretag som Skanska, NCC och Peab.' },
+      { rubrik: 'Över 16 års erfarenhet', text: '16 års erfarenhet inom byggbranschen. Vi har arbetat med välkända byggföretag som Skanska, NCC, Peab, MVB, Tornstad.' },
       { rubrik: 'Samma mål, varje jobb', text: 'Oavsett om du behöver hjälp med en hel badrumsrenovering, kakelsättning eller ett mindre arbete är målet alltid detsamma: att leverera ett resultat som du som kund kan känna dig riktigt nöjd med.' },
     ],
     video: `${M}/video-varfor.mp4`,
@@ -185,17 +202,17 @@ const data = {
 
   om: {
     eyebrow: 'Om Nuh',
-    rubrik: ['Över 17 år', 'i byggbranschen'],
-    kortRad: 'Skanska · NCC · Peab',
+    rubrik: ['Över 16 år', 'i byggbranschen'],
+    kortRad: 'Skanska · NCC · Peab · MVB · Tornstad',
     stycken: [
-      'Bakom företaget står Nuh, som har över 17 års erfarenhet inom byggbranschen. Han har arbetat med allt från kakelsättning och badrumsrenoveringar till stora byggprojekt.',
+      'Bakom företaget står Nuh, som har över 16 års erfarenhet inom byggbranschen. Han har arbetat med allt från kakelsättning och badrumsrenoveringar till stora byggprojekt.',
       'Under sin karriär har Nuh ansvarat för upp till sju stora projekt samtidigt, med arbeten som omfattat totalt cirka 800 nya toaletter. Utöver detta har han även utfört kakel- och klinkerarbeten i trapphus, hallar och kök.',
-      'Han har arbetat tillsammans med välkända byggföretag som Skanska, NCC och Peab.',
+      'Han har arbetat tillsammans med välkända byggföretag som Skanska, NCC, Peab, MVB och Tornstad.',
       'Efter många år i branschen valde Nuh att starta eget för att kunna fokusera ännu mer på det som betyder mest, hög kvalitet, noggrant arbete, tydlig kommunikation och att alltid hålla det man lovar.',
       'Oavsett om du behöver hjälp med en hel badrumsrenovering, kakelsättning eller ett mindre arbete är målet alltid detsamma: att leverera ett resultat som du som kund kan känna dig riktigt nöjd med.',
     ],
     bevis: [
-      { ord: '17+ år', text: 'i byggbranschen' },
+      { ord: '16+ år', text: 'i byggbranschen' },
       { ord: 'Upp till 7', text: 'stora projekt samtidigt' },
       { ord: 'Ca 800', text: 'nya toaletter' },
     ],
@@ -226,7 +243,7 @@ const data = {
     lista: [
       { q: 'Kostar genomgången något?', a: 'Nej. Genomgången är kostnadsfri och du får möjlighet att ställa alla dina frågor.' },
       { q: 'Vet jag vad det kostar innan ni börjar?', a: 'Ja. Efter genomgången får du en tydlig offert, och vi går igenom vad som ingår så att du vet vad du betalar för innan arbetet börjar.' },
-      { q: 'Vad hjälper ni till med?', a: 'Hela badrumsrenoveringar, kakel- och klinkersättning i badrum, kök, hallar och trapphus, och mindre arbeten.' },
+      { q: 'Vad hjälper ni till med?', a: 'Hela badrumsrenoveringar, kakel- och klinkersättning i badrum, kök, hallar, trapphus och tvättstugor, och mindre arbeten.' },
       { q: 'Kan jag skicka bilder?', a: 'Gärna. Bilder gör att vi får en bättre bild av jobbet redan från början.' },
       { q: 'Var arbetar ni?', a: 'Vi utgår från Eslöv och arbetar i hela Skåne.' },
       { q: 'Kommer ni ut och tittar?', a: 'Ja, vid behov kommer vi ut och tittar på plats.' },
@@ -242,8 +259,8 @@ const data = {
     video: `${M}/video-kontakt.mp4`,
     poster: `${M}/poster-kontakt.jpg`,
     formRubrik: 'Berätta kort om jobbet',
-    // "Vad gäller det?" utan Mindre arbeten (Nuh v2). Mallen lägger till Annat sist.
-    typer: ['Badrumsrenovering', 'Kakel i kök', 'Hallar och trapphus'],
+    // "Vad gäller det?" utan Mindre arbeten (Nuh v2). Mallen lägger till Annat sist. Tvättstuga: revision 3.
+    typer: ['Badrumsrenovering', 'Kakel i kök', 'Hallar och trapphus', 'Tvättstuga'],
     placeholder: 'Vad vill du ha hjälp med (badrum, kakel i kök, hall …) och ungefär hur stort är det?',
     formNot: 'Skriv kort om jobbet, då blir första samtalet mer konkret. Inga massutskick, ingen säljlista.',
   },
@@ -255,7 +272,7 @@ const data = {
 
   footer: {
     lankar: [{ href: '/kakel0413/om-oss/', txt: 'Om oss' }],
-    text: 'Badrumsrenovering, kakel- och klinkersättning och mindre arbeten i Eslöv och hela Skåne. Över 17 års erfarenhet i byggbranschen.',
+    text: 'Badrumsrenovering, kakel- och klinkersättning och mindre arbeten i Eslöv och hela Skåne. Över 16 års erfarenhet i byggbranschen.',
   },
 
   modal: {
@@ -272,8 +289,9 @@ export default async function Kakel0413Demo() {
       {/* Nuh v2: ingen stor logotyp i heron (h1 finns kvar för skärmläsare/SEO, visuellt dold; headerns logga kvar)
           och inget telefonnummer i heron (Ring-knappen i headern kvar). Raden "Kakel & Badrum." struken: mallen skriver alltid " & " och ".",
           så tjänsteraden får font-size 0 och bara Nuhs mening (egen fontstorlek) syns. */}
-      <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}'}</style>
-      <DemoSida data={kund ? { ...data, kund: true, footer: { ...data.footer, lankar: [{ href: '/om-oss/', txt: 'Om oss' }] } } : data} />
+      <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}'}</style>
+      <DemoSida data={kund ? { ...data, kund: true, footer: { ...data.footer, lankar: [{ href: '/om-oss/', txt: 'Om oss' }] } } : { ...data, kund: true }} />
+      <KontaktFalt />
       <BildUpload epost={data.kontakt.epost} />
     </>
   );
