@@ -147,7 +147,7 @@ const data = {
     epost: 'info@kakel0413.se',
     adress: 'Eslöv · hela Skåne',
   },
-  cta: { txt: 'Boka kostnadsfri genomgång', kort: 'Boka genomgång', lank: 'Boka genomgång' },
+  cta: { txt: 'Skicka förfrågan', kort: 'Skicka förfrågan', lank: 'Skicka förfrågan' },
   nav: {
     vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#process', txt: 'Så går det till' }],
     hoger: [{ href: '#varfor', txt: 'Därför oss' }, { href: '#fragor', txt: 'Frågor' }],
@@ -287,7 +287,7 @@ export default async function Kakel0413Demo() {
       {/* Nuh v2: ingen stor logotyp i heron (h1 finns kvar för skärmläsare/SEO, visuellt dold; headerns logga kvar)
           och inget telefonnummer i heron (Ring-knappen i headern kvar). Raden "Kakel & Badrum." struken: mallen skriver alltid " & " och ".",
           så tjänsteraden får font-size 0 och bara Nuhs mening (egen fontstorlek) syns. */}
-      <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}#kontakt form button[type=submit]{font-size:0!important}#kontakt form button[type=submit]::after{content:"Skicka förfrågan";font-size:var(--tx-m)}'}</style>
+      <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}'}</style>
       <DemoSida data={kund ? { ...data, kund: true, footer: { ...data.footer, lankar: [{ href: '/om-oss/', txt: 'Om oss' }] } } : { ...data, kund: true }} />
       <KontaktFalt />
       <BildUpload epost={data.kontakt.epost} />

@@ -59,7 +59,7 @@ export default async function OmOss() {
                   <div><b>Ca 800</b><span>nya toaletter</span></div>
                 </div>
                 <p style={{ marginTop: '2rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                  <a className={s.btn} href={`${hem}#kontakt`}>Boka kostnadsfri genomgång</a>
+                  <a className={s.btn} href={`${hem}#kontakt`}>Skicka förfrågan</a>
                   <a className={s.btn} style={{ background: '#fff', color: 'var(--text)', boxShadow: 'none', border: '1px solid #D6CFC2' }} href={`${hem}#process`}>Så går det till</a>
                 </p>
               </div>
