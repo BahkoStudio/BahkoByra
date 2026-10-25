@@ -257,7 +257,7 @@ export const FRAGOR = [
   {
     fraga: 'Är det inte enklare att köpa förfrågningar från en offertsajt?',
     svar:
-      'Där betalar ni för förfrågan och delar den med flera firmor, ofta på pris. Från er egen hemsida kommer den bara till er. En del kör båda en tid.',
+      'Där betalar ni för förfrågan och delar den med flera företag, ofta på pris. Från er egen hemsida kommer den bara till er. En del kör båda en tid.',
   },
   {
     fraga: 'Hur snabbt kan den vara klar?',
@@ -267,7 +267,7 @@ export const FRAGOR = [
   {
     fraga: 'Måste jag kunna något tekniskt?',
     svar:
-      'Nej. Vi sköter domän, publicering och texterna. Ni berättar om firman och skickar bilder från jobb ni gjort.',
+      'Nej. Vi sköter domän, publicering och texterna. Ni berättar om företaget och skickar bilder från jobb ni gjort.',
   },
   {
     fraga: 'Jag har redan en hemsida, är det lönt att byta?',

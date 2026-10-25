@@ -14,10 +14,11 @@ export const BEVIS = [
   { tal: '35+', text: 'förfrågningar via hemsidan på 2 månader' },
 ];
 
-export function BevisSiffror({ className }) {
+/* Valfritt lista: egna siffror (startsidans kundcase visar bara två, Mathias 2026-10-25). */
+export function BevisSiffror({ className, lista = BEVIS }) {
   return (
     <ul className={`${styles.siffror} ${className || ''}`}>
-      {BEVIS.map((b) => (
+      {lista.map((b) => (
         <li key={b.text}>
           <strong>{b.tal}</strong>
           <span>{b.text}</span>

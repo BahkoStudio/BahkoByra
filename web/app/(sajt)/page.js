@@ -43,7 +43,7 @@ const IKON = {
 };
 
 const RESAN = [
-  { ikon: 'prat', h: 'Berätta om firman', p: 'Vad ni gör och var, det tar två minuter.' },
+  { ikon: 'prat', h: 'Berätta om företaget', p: 'Vad ni gör och var, det tar två minuter.' },
   { ikon: 'skarm', h: 'Se förslaget', p: 'Inom 48 timmar har ni ett färdigt förslag att klicka i.' },
   { ikon: 'tumme', h: 'Ja eller nej', p: 'Säger ni ja lägger vi in era bilder, nej kostar inget.' },
   { ikon: 'raket', h: 'Sidan går live', p: 'På er egen domän, normalt inom sju dagar.' },
@@ -66,17 +66,17 @@ export default function Start() {
               oga={{ x: 73.3, y: 38.9, rx: 6.45, ry: 5.0, gron: 'rgb(20,112,75)' }}
               index={0}
             />
-            {/* Rubriken talar till firman (Mathias 2026-09-23). Tjänst + ort ligger som första rad
+            {/* Rubriken "Ta över din lokala marknad." (Mathias 2026-10-25). Rubriken talar till firman (Mathias 2026-09-23). Tjänst + ort ligger som första rad
                 I H1 (Mathias 2026-10-01): synlig text, samma som Google-profilens kategori och ort. */}
             <h1>
               <span className={`eyebrow ${styles.heroTagg}`}>Webbdesign i Jönköping &amp; Huskvarna</span>
-              Bli firman kunderna
+              Ta över din
               <br />
-              <span className="accent">ringer först.</span>
+              <span className="accent">lokala marknad.</span>
             </h1>
             <p className={styles.heroLede}>
-              Hemsidor och Google åt snickare, målare, elektriker och andra lokala firmor som vill ha
-              fler förfrågningar.
+              <strong>Byggt för lokala företag.</strong> Få mer trafik från Google, ranka på första sidan
+              och bli det självklara valet för kunden.
             </p>
             <div className={styles.heroKnappar}>
               <Link href="/kontakt/" className="btn btn-primar">
@@ -102,7 +102,7 @@ export default function Start() {
       <section className={`mork ${styles.videoYta}`} id="video">
         <div className={`wrap ${styles.videoInner}`} data-trapp>
           <h2>
-            Därför ringer kunden <span className="accent">en annan firma.</span>
+            Därför ringer kunden <span className="accent">ett annat företag.</span>
           </h2>
           <p className={`lede ${styles.videoLede}`}>
             Kunden googlar och ringer den som syns först. Syns ni inte där får ni köpa
@@ -164,17 +164,17 @@ export default function Start() {
           <div>
             <span className="eyebrow">Kundcase</span>
             <h2>
-              Vår kund låg etta i Googles platslista, <span className="accent">före en firma med 117 omdömen.</span>
+              Etta på Google. <span className="accent">Före företaget med 117 omdömen.</span>
             </h2>
             <p className="lede" style={{ marginTop: '1.1rem' }}>
-              Vi sitter i Jönköping/Huskvarna och har kunder i hela Sverige, lokalt för dem. Vår kund Bromma
-              Trädgårdsservice i Stockholm fick ny hemsida av oss. Så här såg det ut den
-              30 juli, när man sökte på &quot;trädgårdsservice i Stockholm&quot;.
+              <a href="https://brommatradgardsservice.se" target="_blank" rel="noopener" className="accent">
+                brommatradgardsservice.se ↗
+              </a>
             </p>
-            <BevisSiffror />
+            <BevisSiffror lista={[{ tal: '1:a', text: 'på Google' }, { tal: '1:a', text: 'på ChatGPT' }]} />
             <div className={styles.panelKnapp}>
               <Link href="/case/" className="btn btn-sekundar">
-                Se sajten vi gjorde åt dem {PIL}
+                Se sajten {PIL}
               </Link>
             </div>
             {/* Ögat sitter bakom luppen — Mathias egen render, som den är */}
@@ -196,9 +196,6 @@ export default function Start() {
         <div className="wrap">
           <div data-trapp>
             <span className="eyebrow">Kunder och demos</span>
-            <h2>
-              Här är sidorna vi gjort. <span className="accent">Öppna dem i mobilen.</span>
-            </h2>
           </div>
 
           <Portfolj />
