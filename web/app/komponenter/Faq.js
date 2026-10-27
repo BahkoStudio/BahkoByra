@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import styles from './Faq.module.css';
 
 /**
@@ -33,7 +34,18 @@ export default function Faq({ frager, mork = false }) {
                 CSS sköter både utfällningen och att stängt svar tas ur läsordningen. */}
             <div id={`faq-svar-${i}`} className={styles.svarYta} role="region">
               <div className={styles.svarInner}>
-                <p>{f.svar}</p>
+                <p>
+                  {f.svar}
+                  {/* Valfri länk efter svaret. FAQ-schemat tar med länktexten, så text och schema är lika. */}
+                  {f.lank && (
+                    <>
+                      {' '}
+                      <Link href={f.lank.href} className="textlank">
+                        {f.lank.text}
+                      </Link>
+                    </>
+                  )}
+                </p>
               </div>
             </div>
           </div>

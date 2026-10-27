@@ -7,7 +7,7 @@ import { PRISMODELL } from '../../data.js';
 export const metadata = {
   title: 'Vad kostar en hemsida?',
   description:
-    'Ärligt svar på vad en hemsida kostar för en hantverksfirma: vad som avgör priset, vilka fällor du ska se upp med och hur du får ett exakt fast pris utan att betala något.',
+    'Vad en hemsida kostar för ett företag: vad som avgör priset, fällorna att se upp med och hur ni får ett exakt fast pris utan att betala något.',
   alternates: { canonical: '/vad-kostar-en-hemsida/' },
 };
 

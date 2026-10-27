@@ -4,7 +4,7 @@ import Maskot from '../../komponenter/Maskot';
 import styles from './jonkoping.module.css';
 // Paketkorten delar stil med /tjanster/hemsidor/, så att priserna ser likadana ut på båda sidorna.
 import paketStil from '../tjanster/[slug]/tjanst.module.css';
-import { TJANSTER, GARANTI, GARANTI_PREMIUM, PRISMODELL } from '../../data.js';
+import { TJANSTER, GARANTI, GARANTI_VILLKOR, GARANTI_PREMIUM_VILLKOR, PRISMODELL } from '../../data.js';
 
 /* Priser och tillägg läses ur TJANSTER (hemsidor) i data.js, en plats att ändra på. */
 const HEMSIDOR = TJANSTER.find((t) => t.slug === 'hemsidor');
@@ -184,11 +184,12 @@ const FRAGOR_JKPG = [
   {
     fraga: 'Kan ni hjälpa oss att synas på Google och i AI-svar i Jönköping?',
     svar:
-      `Ja, som tillägg: lokal SEO, Google Företagsprofil, synlighet i AI-svar och Google Ads. Tillägget ${GOOGLE.namn} kostar ${GOOGLE.pris}, är valfritt och ingår i Premium de första 3 månaderna. ${GARANTI} Det som går att visa är vad som hänt för andra kunder, som Bromma Trädgårdsservice på den här sidan.`,
+      `Ja, som tillägg: lokal SEO, Google Företagsprofil, synlighet i AI-svar och Google Ads. Tillägget ${GOOGLE.namn} kostar ${GOOGLE.pris}, är valfritt och ingår i Premium de första 3 månaderna. ${GARANTI} Ett exempel är Bromma Trädgårdsservice, med 35+ förfrågningar via hemsidan på 2 månader.`,
+    lank: { href: '/case/', text: 'Läs caset om Bromma Trädgårdsservice.' },
   },
   {
     fraga: 'Hur fungerar garantin om Googles första sida?',
-    svar: `Garantin gäller tillägget ${GOOGLE.namn}. ${GARANTI} ${GARANTI_PREMIUM}`,
+    svar: `Garantin gäller tillägget ${GOOGLE.namn}: ${GARANTI_VILLKOR} I Premium gäller: ${GARANTI_PREMIUM_VILLKOR}`,
   },
 ];
 
@@ -222,7 +223,8 @@ const SIDSCHEMA = {
       mainEntity: FRAGOR_JKPG.map((f) => ({
         '@type': 'Question',
         name: f.fraga,
-        acceptedAnswer: { '@type': 'Answer', text: f.svar },
+        // Svaret plus länktexten, exakt så som det står på sidan.
+        acceptedAnswer: { '@type': 'Answer', text: f.lank ? `${f.svar} ${f.lank.text}` : f.svar },
       })),
     },
   ],

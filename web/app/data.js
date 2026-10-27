@@ -2,17 +2,20 @@
 
 /** Garantivillkoren för Google-tillägget, Mathias ordalydelse 2026-10-27 (v3). Ska stå
  *  överallt där garantin nämns (Premium, tilläggskortet, FAQ och FAQ-schemat). */
-export const GARANTI =
-  'Garanti: första sidan på Google inom 90 dagar från start, på de lokala sökord vi skriftligt kommer överens om (till exempel "målare Jönköping"). Når vi inte dit får ni tillbaka det ni betalat för tillägget under perioden. Efter de 90 dagarna gäller ingen garanti.';
+/* Villkoren utan rubrikord, för meningar som redan säger "garantin" (så att ordet inte står dubbelt). */
+export const GARANTI_VILLKOR =
+  'första sidan på Google inom 90 dagar från start, på de lokala sökord vi skriftligt kommer överens om (till exempel "målare Jönköping"). Når vi inte dit får ni tillbaka det ni betalat för tillägget under perioden. Efter de 90 dagarna gäller ingen garanti.';
+export const GARANTI = `Garanti: ${GARANTI_VILLKOR}`;
 /* Premiumpriset står här en gång, så att paketkortet och Premium-garantin alltid visar samma belopp. */
 const PREMIUM_PRIS = '25 000 kr';
-export const GARANTI_PREMIUM =
-  `Garanti i Premium: når vi inte första sidan på Google inom 90 dagar från start, på de lokala sökord vi skriftligt kommer överens om, får ni tillbaka hela beloppet på ${PREMIUM_PRIS}. Efter de 90 dagarna gäller ingen garanti.`;
+export const GARANTI_PREMIUM_VILLKOR =
+  `når vi inte första sidan på Google inom 90 dagar från start, på de lokala sökord vi skriftligt kommer överens om, får ni tillbaka hela beloppet på ${PREMIUM_PRIS}. Efter de 90 dagarna gäller ingen garanti.`;
+export const GARANTI_PREMIUM = `Garanti i Premium: ${GARANTI_PREMIUM_VILLKOR}`;
 
 /* Paket och tillägg för hemsidor. Ligger här uppe så att PRISMODELL nedan byggs ur
    samma belopp som korten visar. Alla belopp ex moms. */
 const TILLAGG_HEMSIDOR = [
-  { namn: 'Underhåll och grundläggande SEO', pris: '500 kr i månaden', not: 'Valfritt tillägg. Ingår i Premium de första 3 månaderna.' },
+  { namn: 'Underhåll och grundläggande SEO', pris: '500 kr i månaden', not: 'Valfritt tillägg. Ingår i Premium de första 3 månaderna. Efter de 3 månaderna i Premium väljer ni själva: Google-tillägget (2 470 kr i månaden, med underhållet), bara underhållet (500 kr i månaden) eller inget tillägg.' },
   { namn: 'Ranking på Google och optimering av Google-profilen', pris: '2 470 kr i månaden', not: `Valfritt tillägg som inkluderar underhållet. Ingår i Premium de första 3 månaderna. ${GARANTI}` },
 ];
 
@@ -288,8 +291,7 @@ export const FRAGOR = [
   },
   {
     fraga: 'Hur vet jag att det ger fler förfrågningar?',
-    svar:
-      'Ingen kan lova en plats på Google. Men titta på Bromma. Etta i platslistan och först i ChatGPT den 30 juli. Ett 30-tal förfrågningar via sidan på två månader.',
+    svar: `Med tillägget ${TILLAGG_HEMSIDOR[1].namn} får ni en garanti, på villkor som står i förslaget: ${GARANTI_VILLKOR} Titta också på Bromma Trädgårdsservice: etta i platslistan och först i ChatGPT den 30 juli, och 35+ förfrågningar via hemsidan på 2 månader.`,
   },
   {
     fraga: 'Är det inte enklare att köpa förfrågningar från en offertsajt?',
