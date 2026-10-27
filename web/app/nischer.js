@@ -21,7 +21,7 @@ export const NISCHER = [
     namn: 'Måleri',
     title: 'Hemsida för målerifirma',
     beskrivning:
-      'Vad en målerifirmas hemsida måste klara: ROT förklarat rätt, era jobb som bevis och offert i mobilen. Se en riktig leverans och få ett eget förslag inom 48 timmar.',
+      'Vad en målerifirmas hemsida måste klara: ROT förklarat rätt, era jobb som bevis och offert i mobilen. Se en riktig leverans och få ett förslag inom 48 timmar.',
     h1: 'Hemsida för målerifirma',
     ingress:
       'En hemsida för en målerifirma ska göra tre saker: visa era jobb, förklara ROT-avdraget rätt och göra det enkelt att begära offert i mobilen. Så här bygger Bahko Byrå den, med en riktig leverans ni kan klicka in i.',
@@ -83,7 +83,7 @@ export const NISCHER = [
     namn: 'Trädgård',
     title: 'Hemsida för trädgårdsfirma',
     beskrivning:
-      'Vad en trädgårdsfirmas hemsida måste klara: RUT utskrivet per tjänst, egna sidor per tjänst och ringknapp på varje skärm. Se en riktig leverans och få ett förslag inom 48 timmar.',
+      'Vad en trädgårdsfirmas hemsida måste klara: RUT och egen sida per tjänst, ringknapp på varje skärm. Se en riktig leverans och få ett förslag inom 48 timmar.',
     h1: 'Hemsida för trädgårdsfirma',
     ingress:
       'En hemsida för en trädgårdsfirma ska svara på tre frågor innan kunden ringer: gör ni det jag behöver, jobbar ni där jag bor och vad gäller med RUT. Så här bygger Bahko Byrå den, med en riktig leverans ni kan klicka in i.',
@@ -144,7 +144,7 @@ export const NISCHER = [
     yrke: 'snickare',
     namn: 'Snickare',
     title: 'Hemsida för snickare',
-    beskrivning: 'Vad en snickares hemsida måste klara: ROT förklarat rätt, era jobb som bevis per ort och offert i mobilen. Se hur det kan se ut och få ett förslag inom 48 timmar.',
+    beskrivning: 'Vad en snickares hemsida måste klara: ROT förklarat rätt, era jobb som bevis per ort och offert i mobilen. Se hur det ser ut och få ett förslag inom 48 timmar.',
     h1: 'Hemsida för snickare',
     ingress: 'En hemsida för en snickare ska svara på tre saker innan kunden ringer: vad ni bygger, var ni jobbar och vad ROT gör med priset. Så här bygger Bahko Byrå den.',
     punkter: [
