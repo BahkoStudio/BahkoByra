@@ -145,7 +145,7 @@ export default function RapportHantverkareJonkoping() {
               <h3>Hur syns ert företag?</h3>
               <p>
                 Få en kostnadsfri granskning av er hemsida mot samma punkter. Bahko Byrå i
-                Huskvarna/Jönköping skickar svaret inom 24 timmar.
+                Huskvarna, nära Jönköping, skickar svaret inom 24 timmar.
               </p>
             </div>
             <Link href="/foretag/gratis-granskning.html" className="btn btn-primar">
