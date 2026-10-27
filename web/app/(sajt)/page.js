@@ -85,7 +85,7 @@ export default function Start() {
                 Visa hur min hemsida kan se ut {PIL}
               </Link>
               <Link href="/var-lacker-jobben/" className={styles.heroLank}>
-                Eller svara på fem frågor: var läcker jobben? {PIL}
+                Tappar du kunder? Gör testet på 1 minut {PIL}
               </Link>
             </div>
           </div>

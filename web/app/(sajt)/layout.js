@@ -30,7 +30,7 @@ export const metadata = {
     template: '%s | Bahko Byrå',
   },
   description:
-    'Webbyrå i Huskvarna, nära Jönköping. Vi bygger hemsidor åt hantverkare och lokala företag. Ni får ett färdigt förslag inom 48 timmar och ser sidan innan ni bestämmer er.',
+    'Webbyrå i Huskvarna/Jönköping. Vi bygger hemsidor åt hantverkare och lokala företag. Ni får ett färdigt förslag inom 48 timmar och ser sidan innan ni bestämmer er.',
   openGraph: {
     type: 'website',
     locale: 'sv_SE',
@@ -85,7 +85,7 @@ const organisationsSchema = {
     closes: '22:00',
   },
   description:
-    'Webbyrå i Huskvarna, nära Jönköping, som bygger hemsidor åt hantverkare och lokala företag.',
+    'Webbyrå i Huskvarna/Jönköping som bygger hemsidor åt hantverkare och lokala företag.',
   hasMap: 'https://g.page/r/CY8e778hr3z7EAE',
   knowsAbout: ['Webbdesign', 'Hemsidor för hantverkare', 'Lokal SEO', 'Google Företagsprofil', 'Google Ads'],
   slogan: 'Synlighet som säljer.',
