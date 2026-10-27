@@ -8,44 +8,44 @@ export const TJANSTER = [
     kort: 'Hemsidor som gör att fler hör av sig, inte bara ser snyggare ut.',
     rubrik: 'Hemsidor som ger fler jobb',
     // SEO/AEO-briefen 2026-10-20: tjänsten och sökordet först, sloganen som underrubrik.
-    title: 'Hemsida för hantverkare, fast pris från 8 000 kr',
+    title: 'Hemsida för hantverkare, fast pris från 10 000 kr',
     h1: 'Hemsida för hantverkare till fast pris',
     slogan: 'Hemsidor som ger fler jobb',
     ingress:
-      'Hos Bahko Byrå i Huskvarna och Jönköping köper ni en hemsida för ert hantverks- eller lokala företag till fast pris: tre paket från 8 000 kr ex moms. Innan ni bestämmer er får ni ett färdigt förslag på er nya hemsida, kostnadsfritt och inom 48 timmar, så att ni ser exakt hur den blir.',
+      'Hos Bahko Byrå i Huskvarna och Jönköping köper ni en hemsida för ert hantverks- eller lokala företag till fast pris: tre paket från 10 000 kr ex moms. Innan ni bestämmer er får ni ett färdigt förslag på er nya hemsida, kostnadsfritt och inom 48 timmar, så att ni ser exakt hur den blir.',
     meta:
-      'Köp en hemsida för hantverkare och lokala företag. Tre paket med fast pris från 8 000 kr ex moms. Kostnadsfritt färdigt förslag inom 48 timmar.',
+      'Köp en hemsida för hantverkare och lokala företag. Tre paket med fast pris från 10 000 kr ex moms. Kostnadsfritt färdigt förslag inom 48 timmar.',
     // Paketen, Mathias text 2026-10-20 (lätt putsad). Alla belopp ex moms.
     paket: [
       {
         namn: 'Basic',
-        pris: '8 000 kr',
+        pris: '10 000 kr',
         kort: 'En snygg och tydlig hemsida.',
         ingar: ['Fungerar i mobilen, med ringknapp och kontaktformulär', 'Era bilder och er logga', 'Er egen domän, ni äger sidan'],
       },
       {
         namn: 'Standard',
-        pris: '12 000 kr',
+        pris: '13 000 kr',
         kort: 'Hemsidan som ska hittas på Google.',
         markerad: true,
         ingar: ['Allt i Basic', 'Egna landningssidor för varje tjänst, så många som behövs', 'Automatiserade mejl som svarar kunden direkt', 'Optimerad för att ranka på Google'],
       },
       {
         namn: 'Premium',
-        pris: '20 000 kr',
+        pris: '25 000 kr',
         kort: 'Allt i Standard, plus att vi sköter Google.',
-        ingar: ['Allt i Standard', 'Google-hantering', 'Garanti: Googles första sida inom 90 dagar', 'Underhåll och optimering ingår i 90 dagar'],
+        ingar: ['Allt i Standard', 'Ranking på Google och optimering av Google-profilen', 'Garanti: Googles första sida', 'Ingår i 3 månader, även underhåll och grundläggande SEO'],
       },
     ],
     tillagg: [
-      { namn: 'Underhåll och optimering', pris: '500 kr i månaden', not: 'Ingår i Premium i 90 dagar.' },
-      { namn: 'Google-hantering med garanti för första sidan', pris: '2 000 kr i månaden', not: 'Ingår i Premium i 90 dagar.' },
+      { namn: 'Underhåll och grundläggande SEO', pris: '500 kr i månaden', not: 'Ingår i Premium i 3 månader.' },
+      { namn: 'Ranking på Google och optimering av Google-profilen, garanterat första sidan', pris: '2 500 kr i månaden', not: 'Ingår i Premium i 3 månader.' },
     ],
     fragor: [
       {
         fraga: 'Vad kostar det att köpa en hemsida hos er?',
         svar:
-          'Tre paket med fast pris: Basic 8 000 kr, Standard 12 000 kr och Premium 20 000 kr, alla ex moms. Underhåll och Google-hantering finns som tillägg per månad, och ingår i Premium de första 90 dagarna.',
+          'Tre paket med fast pris: Basic 10 000 kr, Standard 13 000 kr och Premium 25 000 kr, alla ex moms. Underhåll och grundläggande SEO (500 kr i månaden) och ranking på Google (2 500 kr i månaden) finns som tillägg, och ingår i Premium de första 3 månaderna.',
       },
       {
         fraga: 'Hur snabbt kan jag se hur min hemsida blir?',
@@ -237,7 +237,7 @@ export const FRAGOR = [
   {
     fraga: 'Vad kostar en ny hemsida?',
     svar:
-      'Tre paket med fast pris: Basic 8 000 kr, Standard 12 000 kr och Premium 20 000 kr, alla ex moms. Ni får ett färdigt förslag kostnadsfritt innan ni väljer.',
+      'Tre paket med fast pris: Basic 10 000 kr, Standard 13 000 kr och Premium 25 000 kr, alla ex moms. Ni får ett färdigt förslag kostnadsfritt innan ni väljer.',
   },
   {
     fraga: 'Sitter vi fast i ett avtal?',

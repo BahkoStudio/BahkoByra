@@ -323,8 +323,8 @@ export default function Jonkoping() {
               ingen bindningstid, och ni äger sidan och domänen även om ni en dag slutar hos oss.
             </p>
             <p>
-              Hemsidan finns i tre paket med fast pris: Basic 8 000 kr, Standard 12 000 kr
-              och Premium 20 000 kr, alla ex moms. Vilket som passar er beror på hur många
+              Hemsidan finns i tre paket med fast pris: Basic 10 000 kr, Standard 13 000 kr
+              och Premium 25 000 kr, alla ex moms. Vilket som passar er beror på hur många
               tjänster och sidor firman behöver, och det ser ni i förslaget, med sidan framför
               er, innan ni bestämmer er. Säger ni nej har det inte kostat något.
             </p>
