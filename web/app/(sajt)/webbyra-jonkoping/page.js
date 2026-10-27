@@ -185,7 +185,12 @@ const FRAGOR_JKPG = [
   {
     fraga: 'Kan ni hjälpa oss att synas på Google och i AI-svar i Jönköping?',
     svar:
-      `Ja, som tillägg: lokal SEO, Google Företagsprofil, synlighet i AI-svar och Google Ads. Tillägget ${TILLAGG[1].namn}, kostar ${TILLAGG[1].pris} och ingår i Premium de första 3 månaderna. Det som går att visa är vad som hänt för andra kunder, som Bromma Trädgårdsservice på den här sidan.`,
+      `Ja, som tillägg: lokal SEO, Google Företagsprofil, synlighet i AI-svar och Google Ads. Tillägget ${TILLAGG[1].namn} kostar ${TILLAGG[1].pris} och ingår i Premium de första 3 månaderna. Det som går att visa är vad som hänt för andra kunder, som Bromma Trädgårdsservice på den här sidan.`,
+  },
+  {
+    fraga: 'Hur fungerar garantin om Googles första sida?',
+    svar:
+      'Vi kommer överens om vilka lokala sökord det gäller, till exempel er tjänst och er ort. Ligger ni inte på Googles första sida på dem inom 90 dagar får ni tillbaka pengarna för tillägget Ranking på Google och optimering av Google-profilen.',
   },
 ];
 
