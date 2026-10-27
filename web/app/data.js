@@ -39,13 +39,13 @@ export const TJANSTER = [
     ],
     tillagg: [
       { namn: 'Underhåll och grundläggande SEO', pris: '500 kr i månaden', not: 'Ingår i Premium i 3 månader.' },
-      { namn: 'Ranking på Google och optimering av Google-profilen, garanterat första sidan', pris: '2 500 kr i månaden', not: 'Ingår i Premium i 3 månader.' },
+      { namn: 'Ranking på Google och optimering av Google-profilen, garanterat första sidan', pris: '2 470 kr i månaden', not: 'Ingår i Premium i 3 månader.' },
     ],
     fragor: [
       {
         fraga: 'Vad kostar det att köpa en hemsida hos er?',
         svar:
-          'Tre paket med fast pris: Basic 10 000 kr, Standard 13 000 kr och Premium 25 000 kr, alla ex moms. Underhåll och grundläggande SEO (500 kr i månaden) och ranking på Google (2 500 kr i månaden) finns som tillägg, och ingår i Premium de första 3 månaderna.',
+          'Tre paket med fast pris: Basic 10 000 kr, Standard 13 000 kr och Premium 25 000 kr, alla ex moms. Underhåll och grundläggande SEO (500 kr i månaden) och ranking på Google (2 470 kr i månaden) finns som tillägg, och ingår i Premium de första 3 månaderna.',
       },
       {
         fraga: 'Hur snabbt kan jag se hur min hemsida blir?',
