@@ -4,7 +4,7 @@ import Maskot from '../../komponenter/Maskot';
 import styles from './jonkoping.module.css';
 // Paketkorten delar stil med /tjanster/hemsidor/, så att priserna ser likadana ut på båda sidorna.
 import paketStil from '../tjanster/[slug]/tjanst.module.css';
-import { TJANSTER } from '../../data.js';
+import { TJANSTER, GARANTI } from '../../data.js';
 
 /* Priser och tillägg läses ur TJANSTER (hemsidor) i data.js, en plats att ändra på. */
 const HEMSIDOR = TJANSTER.find((t) => t.slug === 'hemsidor');
@@ -175,7 +175,7 @@ const FRAGOR_JKPG = [
   },
   {
     fraga: 'Tillkommer det några månadskostnader efteråt?',
-    svar: `Det löpande är tillägg: ${tillaggText}, ex moms. Båda ingår i Premium de första 3 månaderna. Byter ni domän tillkommer en kostnad för det. Allt står i förslaget innan ni bestämmer er, och det finns ingen bindningstid.`,
+    svar: `Ja. Utöver det fasta priset tillkommer en månadsavgift för det löpande: ${tillaggText}, ex moms. Båda ingår i Premium de första 3 månaderna. ${GARANTI} Byter ni domän tillkommer en kostnad för det. Allt står i förslaget innan ni bestämmer er, och det finns ingen bindningstid.`,
   },
   {
     fraga: 'Äger vi hemsidan och domänen?',
@@ -185,12 +185,11 @@ const FRAGOR_JKPG = [
   {
     fraga: 'Kan ni hjälpa oss att synas på Google och i AI-svar i Jönköping?',
     svar:
-      `Ja, som tillägg: lokal SEO, Google Företagsprofil, synlighet i AI-svar och Google Ads. Tillägget ${TILLAGG[1].namn} kostar ${TILLAGG[1].pris} och ingår i Premium de första 3 månaderna. Det som går att visa är vad som hänt för andra kunder, som Bromma Trädgårdsservice på den här sidan.`,
+      `Ja, som tillägg: lokal SEO, Google Företagsprofil, synlighet i AI-svar och Google Ads. Tillägget ${TILLAGG[1].namn} kostar ${TILLAGG[1].pris} och ingår i Premium de första 3 månaderna. ${GARANTI} Det som går att visa är vad som hänt för andra kunder, som Bromma Trädgårdsservice på den här sidan.`,
   },
   {
     fraga: 'Hur fungerar garantin om Googles första sida?',
-    svar:
-      'Vi kommer överens om vilka lokala sökord det gäller, till exempel er tjänst och er ort. Ligger ni inte på Googles första sida på dem inom 90 dagar får ni tillbaka pengarna för tillägget Ranking på Google och optimering av Google-profilen.',
+    svar: `${GARANTI} Vi kommer överens om vilka lokala sökord det gäller, till exempel er tjänst och er ort. Garantin gäller tillägget ${TILLAGG[1].namn.split(',')[0]}.`,
   },
 ];
 
@@ -341,7 +340,7 @@ export default function Jonkoping() {
           <h2>Vad kostar en hemsida i Jönköping?</h2>
           <div className={styles.brodtext}>
             <p>
-              En hemsida från Bahko Byrå i Huskvarna/Jönköping har ett fast pris, från {BAS.pris} ex
+              En hemsida från Bahko Byrå i Huskvarna, nära Jönköping, har ett fast pris, från {BAS.pris} ex
               moms. Det finns tre paket, och vilket som passar ert företag beror på hur många tjänster
               och sidor ni behöver. Det ser ni i förslaget, med sidan framför er, innan ni bestämmer
               er. Säger ni nej har det inte kostat något.
@@ -382,8 +381,8 @@ export default function Jonkoping() {
             ))}
           </div>
           <p className={paketStil.momsNot}>
-            Alla priser är exklusive moms. Hemsidan är ett engångspris, och ni äger sidan och domänen
-            även om ni en dag slutar hos oss. Byter ni domän tillkommer en kostnad för det. Ingen
+            Alla priser är exklusive moms. Hemsidan har ett fast pris, och månadsavgiften för det
+            löpande står i förslaget. Ni äger sidan och domänen även om ni en dag slutar hos oss. Byter ni domän tillkommer en kostnad för det. Ingen
             bindningstid på tilläggen.
           </p>
           <div className={styles.brodtext}>

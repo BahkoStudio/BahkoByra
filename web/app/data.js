@@ -1,5 +1,10 @@
 /** Innehållskälla för tjänstesidorna och FAQ. En plats att ändra på. */
 
+/** Garantivillkoren för Ranking på Google, Mathias ordalydelse 2026-10-27. Ska stå
+ *  överallt där garantin nämns (Premium, tilläggskortet, FAQ och FAQ-schemat). */
+export const GARANTI =
+  'Garanti: första sidan på Google inom 90 dagar på de lokala sökord vi kommer överens om, annars får ni pengarna för tillägget tillbaka.';
+
 export const TJANSTER = [
   {
     slug: 'hemsidor',
@@ -41,12 +46,12 @@ export const TJANSTER = [
         namn: 'Premium',
         pris: '25 000 kr',
         kort: 'Allt i Standard, plus att vi sköter Google.',
-        ingar: ['Allt i Standard', 'Ranking på Google och optimering av Google-profilen', 'Garanti: Googles första sida inom 90 dagar, annars pengarna tillbaka', 'Ingår i 3 månader, även underhåll och grundläggande SEO'],
+        ingar: ['Allt i Standard', 'Ranking på Google och optimering av Google-profilen', GARANTI, 'Ingår i 3 månader, även underhåll och grundläggande SEO'],
       },
     ],
     tillagg: [
       { namn: 'Underhåll och grundläggande SEO', pris: '500 kr i månaden', not: 'Ingår i Premium i 3 månader.' },
-      { namn: 'Ranking på Google och optimering av Google-profilen, garanterat första sidan', pris: '2 470 kr i månaden', not: 'Ingår i Premium i 3 månader. Garanti: första sidan på Google inom 90 dagar på de lokala sökord vi kommer överens om, annars får ni pengarna för tillägget tillbaka.' },
+      { namn: 'Ranking på Google och optimering av Google-profilen, garanterat första sidan', pris: '2 470 kr i månaden', not: `Ingår i Premium i 3 månader. ${GARANTI}` },
     ],
     fragor: [
       {

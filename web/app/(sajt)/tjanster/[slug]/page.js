@@ -180,7 +180,8 @@ export default async function Tjanst({ params }) {
               </>
             )}
             <p className={styles.momsNot}>
-              Alla priser är exklusive moms. Hemsidan är ett engångspris, och ni äger sidan och domänen.
+              Alla priser är exklusive moms. Hemsidan har ett fast pris, och månadsavgiften för det
+              löpande står i förslaget. Ni äger sidan och domänen.
               Ingen bindningstid på tilläggen.
             </p>
           </div>
