@@ -31,8 +31,9 @@ E-post, gatuadress (registret: Erikslundsvägen 13, eniro: Trangången 65, kan v
 
 - Jobbfoton: 9 IG-bilder (1080 px; `jobb-nytt-fonster` är 497 px förhandsbild uppskalad). Två arkitekturbilder från sajten (`jobb-villa-glasparti`, `jobb-glasparti-tra`) **kan vara tillverkarens marknadsbilder**, fråga.
 - PVC-kortet: beskuret ur deras infografik. Trä-alu-kortet: deras IG-produktbild.
-- Hero: tre IG-foton (färdiga vita fönster → montör vid fönstret → montör i ny dörr), långsam zoom + övertoning i ffmpeg. Ingen genererad rörelse.
-- Varför-film: inzoomning över deras altandörrar + logokort. Kontaktfilm: heron suddad.
+- Hero: ett IG-foto (montör i nymonterad dörr), långsam in- och utzoomning i ffmpeg. Ingen genererad rörelse.
+- Varför-film: inzoomning över färdiga vita fönster + logokort. Kontaktfilm: heron suddad.
+- Designloop 2026-10-27: varje foto har en huvudplats (hero, tjänstekort, Varför-film eller jobband). Upprepning finns bara kvar i Instagram-inbäddningarna, som visar deras senaste inlägg.
 - `logo.png` = vita originalet omfärgat till marin för vit header, inte omritat. Be om vektorfil.
 
 ## Säljvinklar (varför sajten inte ger leads)

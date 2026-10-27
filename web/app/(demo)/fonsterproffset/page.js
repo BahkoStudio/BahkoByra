@@ -61,7 +61,7 @@ import DemoSida from '../_mall/DemoSida';
      jobb-glasparti-tra) från deras sajt: kan vara tillverkarens bilder, fråga.
      jobb-nytt-fonster är förhandsbilden (497 px) uppskalad.
      PVC-kortets bild är beskuren ur deras egen infografik.
-   - Hero-filmen är tre egna IG-foton (färdiga fönster → montör vid fönstret → montör i ny dörr) med
+   - Hero-filmen är ett eget IG-foto (montör i en nymonterad dörr) med långsam in- och utzoomning; Varför-filmen ett annat (färdiga vita fönster) med
      långsam inzoomning och övertoning i ffmpeg, ingen genererad rörelse.
    - Mörka logotypen (logo.png) är den vita originalfilen omfärgad till marin,
      inte omritad. Be om originalet i vektor.
@@ -135,7 +135,7 @@ const data = {
   tjanster: {
     eyebrow: 'Fönsterbyte i Nyköping',
     rubrik: ['Nya fönster,', 'monterade och klara'],
-    lead: 'Svensktillverkade fönster i PVC och trä-alu, måttanpassade efter ditt hus. Vi mäter, levererar och monterar, i Nyköping och runt omkring.',
+    lead: 'Svensktillverkade fönster i PVC och trä‑alu, måttanpassade efter ditt hus. Vi mäter, levererar och monterar, i Nyköping och runt omkring.',
     kort: [
       {
         id: 'fonsterbyte',
@@ -184,15 +184,13 @@ const data = {
     tid: '60s',
     rad1: [
       { src: `${M}/jobb-leverans.jpg`, alt: 'Inplastade fönster på pall utanför ett grått trähus', txt: 'Levererat till huset' },
-      { src: `${M}/jobb-montage.jpg`, alt: 'Ny vit dörr med glas i en tegelfasad, texten Montage på gång', txt: 'Montage på gång' },
-      { src: `${M}/jobb-dorr.jpg`, alt: 'Montör står i en ny dörr i ett glasparti med utsikt över stan', txt: 'Ny dörr i glaspartiet' },
-      { src: `${M}/jobb-svart-karm.jpg`, alt: 'Nytt fönster med svart karm öppet inåt i ett ljust rum', txt: 'Svart karm' },
+      { src: `${M}/jobb-montage.jpg`, alt: 'Ny vit dörr med glas i en tegelfasad, texten Montage på gång', txt: 'Ny dörr i tegelfasad' },
+      { src: `${M}/jobb-vardagsrum.jpg`, alt: 'Svartvit bild av nytt fönster och altandörr i ett vardagsrum', txt: 'Fönster och altandörr' },
       { src: `${M}/jobb-villa-glasparti.jpg`, alt: 'Villa med mörk panel och stort glasparti mot ett upplyst matrum', txt: 'Stora glaspartier' },
     ],
     rad2: [
-      { src: `${M}/jobb-vita-fonster.jpg`, alt: 'Två nya vita fönster och en vit dörr på ett hus med ljusgul panel', txt: 'Monterat och klart' },
+      { src: `${M}/jobb-svart-karm.jpg`, alt: 'Nytt fönster med svart karm öppet inåt i ett ljust rum', txt: 'Svart karm' },
       { src: `${M}/jobb-leverans-bw.jpg`, alt: 'Svartvit bild av inplastade fönster och dörr utanför ett tegelhus', txt: 'Fönsterbyte på gång' },
-      { src: `${M}/jobb-vardagsrum.jpg`, alt: 'Svartvit bild av nytt fönster och altandörr i ett vardagsrum', txt: 'Fönster och altandörr' },
       { src: `${M}/jobb-nytt-fonster.jpg`, alt: 'Nytt vitt fönster med ett öppet fönsterparti i ett ljust rum', txt: 'Nytt och ljust' },
       { src: `${M}/jobb-glasparti-tra.jpg`, alt: 'Stort fönsterparti i en träfasad med utsikt mot vatten', txt: 'Fönster efter huset' },
     ],
@@ -200,7 +198,7 @@ const data = {
 
   varfor: {
     eyebrow: 'Varför Fönsterproffset',
-    rubrik: ['En kontakt från hembesök', 'till färdigt fönster'],
+    rubrik: ['Hela vägen,', 'från hembesök till klart'],
     lead: 'Vi gör hela jobbet: hembesök, mätning, leverans, montering och slutkontroll. Du får ett fast pris på en komplett lösning med montage, och slipper samordna någon själv.',
     punkter: [
       { rubrik: 'Gratis hembesök', text: 'Vi tittar på huset och fönstren på plats. Det kostar ingenting.' },
@@ -210,7 +208,7 @@ const data = {
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Långsam inzoomning över nya vita altandörrar i ett vardagsrum. Filmen slutar med Fönsterproffsets logotyp.',
+    videoAlt: 'Långsam inzoomning över nya vita fönster och en vit dörr på ett hus med ljusgul panel. Filmen slutar med Fönsterproffsets logotyp.',
   },
 
   om: {
@@ -218,13 +216,13 @@ const data = {
     rubrik: ['Ett klassiskt hantverk,', 'från Nyköping'],
     kortRad: 'Nyköping med omnejd',
     stycken: [
-      'Fönsterproffset säljer och monterar svensktillverkade fönster i PVC och trä-alu. Vi utgår från Nyköping och byter fönster i bland annat Oxelösund, Flen, Trosa, Katrineholm och Stigtomta.',
+      'Fönsterproffset säljer och monterar svensktillverkade fönster i PVC och trä‑alu. Vi utgår från Nyköping och byter fönster i bland annat Oxelösund, Flen, Trosa, Katrineholm och Stigtomta.',
       'Att tillverka fönster är ett av de mest klassiska hantverken i Sverige. Varje fönster måttanpassas efter just din fastighet, och vi står för hela vägen: inmätning, leverans, montering och besiktning.',
     ],
     bevis: [
       { ord: 'Svensktillverkat', text: 'måttanpassat efter ditt hus' },
-      { ord: 'Underhållsfria', text: 'energifönster' },
-      { ord: 'Höga garantier', text: 'fråga oss om villkoren' },
+      { ord: 'Fast pris', text: 'på hela lösningen med montage' },
+      { ord: '1 arbetsdag', text: 'så snabbt svarar vi vanligen' },
     ],
   },
 
@@ -257,7 +255,7 @@ const data = {
     rubrik: ['Följ fönsterbytena', 'på Instagram'],
     lead: 'Montage, leveranser och färdiga fönster i Nyköping med omnejd, direkt från vårt konto.',
     bio: 'Underhållsfria, svensktillverkade energifönster byggda efter just er fastighet. Monterat och klart.',
-    koder: ['Dema4K0NQ7K', 'DKETVA1MKSQ', 'De4G-Nqt_F9'],
+    koder: ['De4G-Nqt_F9', 'DexGLsGN4gc', 'Dema4K0NQ7K'],
   },
 
   fragor: {
@@ -279,14 +277,17 @@ const data = {
 
   kontaktSektion: {
     eyebrow: 'Kontakt',
-    rubrik: ['Dags att byta fönster?', 'Boka ett gratis hembesök'],
+    rubrik: ['Boka ett', 'gratis hembesök'],
     lead: 'Skriv var huset ligger och ungefär hur många fönster det gäller, eller ring. Vi svarar vanligen inom en arbetsdag.',
     checkar: ['Gratis hembesök i Nyköping med omnejd', 'Fast pris med montage', 'Svensktillverkade, måttanpassade fönster'],
     video: `${M}/video-kontakt.mp4`,
     poster: `${M}/poster-kontakt.jpg`,
     formRubrik: 'Berätta kort om fönstren',
     placeholder: 'Ort (t.ex. Nyköping, Oxelösund), ungefär hur många fönster, och om du funderar på PVC eller trä-alu',
-    formNot: 'Ju mer du skriver om huset och fönstren, desto bättre kan vi förbereda hembesöket. Inga massutskick, ingen säljlista.',
+    typer: ['Gratis hembesök', 'Pris på fönsterbyte', 'PVC eller trä-alu?'],
+    meddelandeEtikett: 'Ort och fönster',
+    formNot: 'Vi svarar vanligen inom en arbetsdag. Inga massutskick, ingen säljlista.',
+    formNotBock: true,
   },
 
   popup: {
