@@ -1,0 +1,76 @@
+/* Case-undersidan. Grundmönstren lånas från webbyra-jonkoping/jonkoping.module.css,
+   här ligger bara det som är unikt: bild bredvid listan, platshållarna och citatet. */
+
+.bygge {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 2.2rem;
+}
+
+.bygge ul {
+  grid-template-columns: 1fr;
+  margin-top: 0;
+}
+
+.bild {
+  display: block;
+  border: 2px solid var(--linje);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--vit);
+}
+
+.bild img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Platshållare ska synas som platshållare, så att ingen tar dem för resultat. */
+.platsNot {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.platsKort {
+  border-style: dashed;
+}
+
+.platsTal {
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem) !important;
+  line-height: 1.2 !important;
+}
+
+.citat {
+  margin: 2rem 0 0;
+  max-width: 62ch;
+  padding: 1.6rem 1.8rem;
+  border: 2px dashed var(--linje);
+  border-left: 4px solid var(--em);
+  border-radius: var(--r-lg);
+  background: var(--lt-2);
+}
+
+.citat blockquote {
+  margin: 0;
+}
+
+.citat blockquote p {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.citat figcaption {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: var(--ink-3);
+}
+
+@media (max-width: 860px) {
+  .bygge {
+    grid-template-columns: 1fr;
+  }
+}

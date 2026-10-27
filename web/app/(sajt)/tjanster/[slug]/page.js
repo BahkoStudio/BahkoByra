@@ -114,6 +114,16 @@ export default async function Tjanst({ params }) {
           {/* Introstycket står direkt under H1 som vanlig text, så att det kan citeras av AI-svar. */}
           <p className="lede" style={{ marginTop: '1.1rem' }}>
             {t.ingress}
+            {t.ingressLank && (
+              <>
+                {' '}
+                {t.ingressLank.fore}
+                <Link href={t.ingressLank.href} className="textlank">
+                  {t.ingressLank.text}
+                </Link>
+                {t.ingressLank.efter}
+              </>
+            )}
           </p>
           <div className={styles.toppKnappar}>
             <Link href="/kontakt/" className="btn btn-primar">
