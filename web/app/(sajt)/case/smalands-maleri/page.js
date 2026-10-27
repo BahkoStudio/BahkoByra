@@ -12,7 +12,7 @@ import styles from './caseSida.module.css';
 export const metadata = {
   title: { absolute: 'Case: Smålands Måleri i Jönköping | Bahko Byrå' },
   description:
-    'Så byggde Bahko Byrå smamaleri.se åt Smålands Måleri AB i Jönköping: offertflöde i mobilen, ROT-avdraget förklarat enligt Skatteverket och en sida byggd för sökningen målare i Jönköping.',
+    'Så byggde Bahko Byrå smamaleri.se åt Smålands Måleri i Jönköping: offertflöde i mobilen, ROT enligt Skatteverket och sidan för "målare Jönköping".',
   alternates: { canonical: '/case/smalands-maleri/' },
   robots: { index: false, follow: true },
 };
@@ -69,7 +69,8 @@ const CITAT = {
 };
 
 const SIDA = 'https://www.bahkobyra.se/case/smalands-maleri/';
-/* Bara fakta i schemat, inga platshållare. schema.org saknar en egen
+/* TODO: lägg till datePublished (och dateModified) med det verkliga datumet när noindex tas bort.
+   Bara fakta i schemat, inga platshållare. schema.org saknar en egen
    CaseStudy-typ, så sidan är en Article med genre "Case study". */
 const SIDSCHEMA = {
   '@context': 'https://schema.org',
@@ -124,7 +125,7 @@ export default function CaseSmalandsMaleri() {
             Smålands Måleri: <span className="accent">en hemsida för målare i Jönköping.</span>
           </h1>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
-            Bahko Byrå i Huskvarna/Jönköping byggde smamaleri.se åt Smålands Måleri AB, ett
+            Bahko Byrå i Huskvarna, nära Jönköping, byggde smamaleri.se åt Smålands Måleri AB, ett
             måleriföretag i Jönköping. Offertflöde i mobilen, ROT-avdraget förklarat enligt
             Skatteverkets regler och en sida byggd för sökningen målare i Jönköping.
           </p>
@@ -217,8 +218,8 @@ export default function CaseSmalandsMaleri() {
               <h3>Vill ni ha en sådan sida för ert företag?</h3>
               <p>Vi bygger ett färdigt förslag inom 48 timmar. Kostnadsfritt.</p>
               <p className={jkp.ctaSmall}>
-                Företag i Jönköpingstrakten? Läs om vår{' '}
-                <Link href="/webbyra-jonkoping/">webbdesign i Jönköping</Link>.
+                Företag i Jönköpingstrakten? Se{' '}
+                <Link href="/webbyra-jonkoping/">fler hemsidor i Jönköping</Link>.
               </p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">
