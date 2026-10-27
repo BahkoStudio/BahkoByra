@@ -51,8 +51,8 @@ export default function Kontakt() {
             Hellre prata direkt? Ring <a href="tel:+46762540951">076-254 09 51</a> eller mejla{' '}
             <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a>. Vi svarar alla dagar 8–22,
             och möten på kontoret på Kungsängsvägen 27 i Huskvarna bokar vi gärna. Är ni i
-            Jönköpingstrakten? Läs mer om vår{' '}
-            <Link href="/webbyra-jonkoping/">webbdesign i Jönköping</Link>.
+            Jönköpingstrakten? Läs om{' '}
+            <Link href="/webbyra-jonkoping/">vår webbyrå för företag i Jönköping</Link>.
           </p>
         </div>
 

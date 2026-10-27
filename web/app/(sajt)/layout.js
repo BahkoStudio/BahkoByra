@@ -26,11 +26,11 @@ export const metadata = {
   title: {
     /* Startsidan bär inte "Jönköping" i titeln längre: orten ägs av /webbyra-jonkoping/
        (SEO-disken 2026-10-27, kannibalisering). Default används bara av startsidan. */
-    default: 'Hemsidor för hantverkare – fast pris från 10 000 kr | Bahko Byrå',
+    default: 'Webbyrå för hantverkare – hemsidor som ger jobb | Bahko Byrå',
     template: '%s | Bahko Byrå',
   },
   description:
-    'Webbyrå i Huskvarna/Jönköping. Vi bygger hemsidor åt hantverkare och lokala företag. Ni får ett färdigt förslag inom 48 timmar och ser sidan innan ni bestämmer er.',
+    'Bahko Byrå bygger hemsidor åt hantverkare och lokala företag. Fast pris från 10 000 kr ex moms. Färdigt förslag inom 48 timmar, innan ni bestämmer er.',
   openGraph: {
     type: 'website',
     locale: 'sv_SE',
@@ -85,7 +85,7 @@ const organisationsSchema = {
     closes: '22:00',
   },
   description:
-    'Webbyrå i Huskvarna/Jönköping som bygger hemsidor åt hantverkare och lokala företag.',
+    'Webbyrå i Huskvarna, nära Jönköping, som bygger hemsidor åt hantverkare och lokala företag.',
   hasMap: 'https://g.page/r/CY8e778hr3z7EAE',
   knowsAbout: ['Webbdesign', 'Hemsidor för hantverkare', 'Lokal SEO', 'Google Företagsprofil', 'Google Ads'],
   slogan: 'Synlighet som säljer.',
