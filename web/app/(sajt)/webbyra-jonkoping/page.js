@@ -63,7 +63,7 @@ const STEG = [
   {
     h: 'Ni berättar om firman',
     p: 'Via formuläret, ett samtal eller på kontoret i Huskvarna. Har ni redan en sida kan ni börja med en',
-    lank: { href: '/foretag/gratis-granskning.html', text: 'kostnadsfri granskning av er nuvarande hemsida' },
+    lank: { href: '/foretag/gratis-granskning-jonkoping.html', text: 'kostnadsfri granskning av er nuvarande hemsida' },
   },
   {
     h: 'Färdigt förslag inom 48 timmar',
@@ -427,7 +427,7 @@ export default function Jonkoping() {
               <p>Förslaget byggs inom 48 timmar. Ni bestämmer sen.</p>
               <p className={styles.ctaSmall}>
                 Har ni redan en sida?{' '}
-                <Link href="/foretag/gratis-granskning.html">Börja med en kostnadsfri granskning</Link>.
+                <Link href="/foretag/gratis-granskning-jonkoping.html">Börja med en kostnadsfri granskning för företag i Jönköpings län</Link>.
               </p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">
