@@ -4,9 +4,10 @@ import Maskot from '../../komponenter/Maskot';
 import styles from './jonkoping.module.css';
 
 export const metadata = {
-  title: 'Webbyrå i Jönköping & Huskvarna, förslag inom 48 h',
+  /* absolute: layoutens mall lägger annars till "| Bahko Byrå" en gång till. */
+  title: { absolute: 'Webbyrå & webbdesign i Jönköping – från 10 000 kr | Bahko Byrå' },
   description:
-    'Webbyrå med kontor i Huskvarna, Jönköping. Köp en hemsida till fast pris: färdigt förslag inom 48 timmar, live inom sju dagar. Kom förbi på kaffe.',
+    'Webbyrå och webbdesign för företag i Jönköping, med kontor i Huskvarna. Fast pris från 10 000 kr ex moms, färdigt förslag inom 48 timmar.',
   alternates: { canonical: '/webbyra-jonkoping/' },
 };
 
@@ -27,7 +28,7 @@ const LOKALT = [
     p: 'Bahko Byrå sitter på Kungsängsvägen 27 i Huskvarna, strax öster om centrala Jönköping. Vi svarar alla dagar 8 till 22, och det går utmärkt att boka ett möte där, före ett beslut eller mitt i ett bygge. Ring 076-254 09 51 innan så står kaffet framme.',
   },
   {
-    h: 'Kund i stan, i drift',
+    h: 'Kund i Jönköping, i drift',
     p: 'Smålands Måleri i Jönköping fick sin sida byggd av Bahko Byrå, med offertflöde i mobilen och ROT-texten skriven enligt Skatteverkets regler. Sidan är i drift och går att syna innan ni hör av er.',
   },
   {
@@ -137,7 +138,7 @@ const FRAGOR_JKPG = [
   {
     fraga: 'Jobbar ni bara med företag i Jönköping?',
     svar:
-      'Nej. Bahko Byrå bygger för bygg- och hantverksfirmor i hela Sverige och arbetet sker digitalt. Kontoret i Jönköping är för er som föredrar att ses, inte en gräns för var kunderna finns.',
+      'Nej. Bahko Byrå bygger för bygg- och hantverksfirmor i hela Sverige och arbetet sker digitalt. Kontoret i Huskvarna, nära Jönköping, är för er som föredrar att ses, inte en gräns för var kunderna finns.',
   },
   {
     fraga: 'Vad kostar en hemsida hos en webbyrå i Jönköping?',
@@ -182,7 +183,7 @@ const SIDSCHEMA = {
       '@type': 'WebPage',
       '@id': SIDA + '#webpage',
       url: SIDA,
-      name: 'Webbyrå i Jönköping & Huskvarna',
+      name: 'Webbyrå och webbdesign i Jönköping',
       inLanguage: 'sv-SE',
       about: { '@id': 'https://www.bahkobyra.se/#organization' },
       breadcrumb: { '@id': SIDA + '#breadcrumb' },
@@ -223,13 +224,13 @@ export default function Jonkoping() {
           </nav>
           <h1>
             <Maskot pose="vinkar" stil="liten" alt="Bahko-maskoten hälsar" />{' '}
-            Webbyrå i Jönköping &amp; Huskvarna
+            Webbyrå och webbdesign i Jönköping
           </h1>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
-            Bahko Byrå är en webbyrå med kontor i Huskvarna, Jönköping, som bygger hemsidor för bygg- och
-            hantverksfirmor och andra lokala företag. Vill ni köpa en hemsida i Jönköping får ni ett
-            färdigt förslag med fast pris inom 48 timmar, live inom sju dagar, och en kund här i stan
-            vars sajt ni kan syna innan ni hör av er.
+            Bahko Byrå är en webbyrå med kontor i Huskvarna, nära Jönköping, som gör webbdesign och
+            bygger hemsidor för bygg- och hantverksföretag och andra lokala företag. Vill ni köpa en
+            hemsida i Jönköping får ni ett färdigt förslag med fast pris inom 48 timmar, live inom sju
+            dagar, och en kund i Jönköping vars sajt ni kan syna innan ni hör av er.
           </p>
           <div className={styles.toppKnappar}>
             <Link href="/kontakt/" className="btn btn-primar">
@@ -245,7 +246,7 @@ export default function Jonkoping() {
       <section>
         <div className="wrap">
           <span className="eyebrow">Lokalt</span>
-          <h2>På plats i Jönköping</h2>
+          <h2>På plats i Huskvarna, nära Jönköping</h2>
           <div className={styles.punktNat}>
             {LOKALT.map((p) => (
               <div key={p.h} className="kort">
@@ -377,7 +378,7 @@ export default function Jonkoping() {
       <section className={styles.ytaLjus}>
         <div className="wrap">
           <span className="eyebrow">För vem</span>
-          <h2>Hemsidor för hantverkare och lokala företag i Jönköping</h2>
+          <h2>Webbdesign för hantverkare och lokala företag i Jönköping</h2>
           <div className={`${styles.punktNat} ${styles.fyra}`}>
             {SEGMENT.map((sg) => (
               <div key={sg.h} className="kort">

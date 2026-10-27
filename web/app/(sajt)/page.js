@@ -66,26 +66,34 @@ export default function Start() {
               oga={{ x: 73.3, y: 38.9, rx: 6.45, ry: 5.0, gron: 'rgb(20,112,75)' }}
               index={0}
             />
-            {/* Rubriken "Ta över din lokala marknad." (Mathias 2026-10-25). Rubriken talar till firman (Mathias 2026-09-23). Tjänst + ort ligger som första rad
-                I H1 (Mathias 2026-10-01): synlig text, samma som Google-profilens kategori och ort. */}
-            <h1>
-              <span className={`eyebrow ${styles.heroTagg}`}>Webbdesign i Jönköping &amp; Huskvarna</span>
+            {/* Slogan "Ta över din lokala marknad." (Mathias 2026-10-25) ser ut som rubriken men är
+                INTE H1 (SEO-disken 2026-10-27): H1 är den lilla brickan "Hemsidor för hantverkare".
+                Orten ligger inte här längre, "Jönköping" ägs av /webbyra-jonkoping/ (kannibalisering).
+                .heroRubrik bär exakt samma stil som H1:an hade, så heron ser likadan ut. */}
+            <div className={styles.heroRubrik}>
+              <h1 className={`eyebrow ${styles.heroTagg}`}>Hemsidor för hantverkare</h1>
               Ta över din
               <br />
               <span className="accent">lokala marknad.</span>
-            </h1>
+            </div>
             <p className={styles.heroLede}>
-              <strong>Byggt för lokala företag.</strong> Få mer trafik från Google, ranka på första sidan
-              och bli det självklara valet för kunden.
+              <strong>Byggt för lokala företag.</strong> Få mer trafik från Google, synas högre upp när
+              kunden söker och bli det självklara valet för kunden.
             </p>
             <div className={styles.heroKnappar}>
               <Link href="/kontakt/" className="btn btn-primar">
                 Visa hur min hemsida kan se ut {PIL}
               </Link>
               <Link href="/var-lacker-jobben/" className={styles.heroLank}>
-                Eller svara på fem frågor: var läcker jobben? {PIL}
+                Tappar du kunder? Gör testet på 1 minut {PIL}
               </Link>
             </div>
+            {/* Entitetsmening (SEO-disken 2026-10-27): vem Bahko Byrå är, i en mening som
+                tål att lyftas ut. Liten rad under knapparna så att heron ser likadan ut. */}
+            <p className={styles.heroEntitet}>
+              Bahko Byrå är en webbyrå i Huskvarna som bygger hemsidor åt hantverkare och lokala
+              företag i hela Sverige, till fast pris från 10 000 kr ex moms.
+            </p>
           </div>
 
           <div className={styles.heroScen} id="rakna">
@@ -126,7 +134,9 @@ export default function Start() {
                 Allt som får kunden <span className="accent">att ringa er.</span>
               </h2>
               <p className="lede" style={{ marginTop: '1rem' }}>
-                Börja med hemsidan. Resten lägger vi till när det lönar sig.
+                Börja med hemsidan. Resten lägger vi till när det lönar sig. Söker ni en{' '}
+                <Link href="/webbyra-jonkoping/" className="textlank">webbyrå i Jönköping</Link> kan
+                vi också ses på kontoret i Huskvarna.
               </p>
             </div>
             <div className={styles.tjanstMaskot}>

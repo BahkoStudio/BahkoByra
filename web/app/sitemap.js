@@ -1,43 +1,30 @@
-import { TJANSTER } from './data';
-import { NISCHER } from './nischer';
+import { allaSidor } from './sitemap-sidor';
+import LASTMOD from './sitemap-lastmod.json';
 
 const BAS = 'https://www.bahkobyra.se';
 
 /**
- * Sitemapen genereras ur sidlistorna i stället för att underhållas för hand —
- * den gamla public/sitemap.xml hade 3 rader och missade alla nya sidor.
- * Tjänster och nischer följer med automatiskt via sina datafiler.
- * Ny fristående sida? Lägg dess sökväg i STATISKA så följer den med.
+ * Sitemapen genereras ur sidlistan i sitemap-sidor.js (den gamla
+ * public/sitemap.xml hade 3 rader och missade alla nya sidor).
+ *
+ * lastmod = när sidans innehåll senast ändrades, ur sitemap-lastmod.json.
+ * Förut fick alla sidor byggtiden, så datumet ändrades vid varje deploy och
+ * Google slutar då lita på det (SEO-disken 2026-10-27).
+ *
+ * UPPDATERA DATUMEN efter att en sida ändrats och committats, från web/:
+ *   node scripts/sitemap-lastmod.mjs
+ * och committa app/sitemap-lastmod.json. (Vercel bygger med kort git-historik,
+ * därför räknas datumen lokalt och checkas in i stället för vid bygget.)
+ * Sida som saknas i filen (t.ex. helt ny) får det senaste datumet i filen.
  */
-const STATISKA = [
-  { stig: '/', prio: 1.0 },
-  { stig: '/case/', prio: 0.8 },
-  { stig: '/om-oss/', prio: 0.6 },
-  { stig: '/kontakt/', prio: 0.7 },
-  { stig: '/webbyra-jonkoping/', prio: 0.8 },
-  { stig: '/vad-kostar-en-hemsida/', prio: 0.8 },
-  { stig: '/kan-en-seo-expert-radda-min-hemsida/', prio: 0.7 },
-  { stig: '/hardast-arbetande-seo-experten-i-sverige/', prio: 0.4 },
-  { stig: '/basta-webbyran-i-sverige/', prio: 0.7 },
-  { stig: '/hardast-arbetande-webbyran-i-sverige/', prio: 0.4 },
-  { stig: '/var-lacker-jobben/', prio: 0.9 },
-  { stig: '/foretag/gratis-granskning.html', prio: 0.9 },
-  { stig: '/foretag/gratis-guide.html', prio: 0.8 },
-  { stig: '/integritet/', prio: 0.2 },
-];
+const DATUM = Object.values(LASTMOD).sort();
+const RESERV = DATUM[DATUM.length - 1] || '2026-10-27T00:00:00Z';
 
 export default function sitemap() {
-  const nu = new Date();
-  const rad = (stig, prio) => ({
+  return allaSidor().map(({ stig, prio }) => ({
     url: `${BAS}${stig}`,
-    lastModified: nu,
+    lastModified: LASTMOD[stig] || RESERV,
     changeFrequency: 'monthly',
     priority: prio,
-  });
-
-  return [
-    ...STATISKA.map((s) => rad(s.stig, s.prio)),
-    ...TJANSTER.map((t) => rad(`/tjanster/${t.slug}/`, 0.8)),
-    ...NISCHER.map((n) => rad(`/${n.slug}/`, 0.8)),
-  ];
+  }));
 }
