@@ -143,9 +143,8 @@ export default function Prisguide() {
                 Bahko Byrå bygger ett färdigt förslag på er nya sida inom 48 timmar, med exakt
                 fast pris, och med månadsavgiften för underhåll och SEO utskriven. Ingen
                 bindningstid. Kostar ingenting att se, och ni bestämmer sen. Har ni ert företag i
-                Jönköpingstrakten? Läs om{' '}
-                <Link href="/webbyra-jonkoping/" className="textlank">webbdesign i Jönköping</Link> och
-                vad en hemsida kostar där.
+                Jönköpingstrakten? Se{' '}
+                <Link href="/webbyra-jonkoping/#pris" className="textlank">vad en hemsida kostar i Jönköping</Link>.
               </p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">
