@@ -670,6 +670,16 @@
   justify-content: flex-start;
 }
 
+.heroEntitet {
+  margin: 0;
+  max-width: 52ch;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--text-lag);
+  opacity: 0.85;
+  text-wrap: pretty;
+}
+
 .videoKnapp svg {
   width: 14px;
   height: 14px;
