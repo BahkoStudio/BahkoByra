@@ -23,6 +23,13 @@ const KUNDER = [
     bransch: 'Måleri · Jönköping',
     url: 'https://smamaleri.se/',
     bild: '/img/demo-smalands-maleri.webp',
+    // Kontextuell länk till ortssidan, under kortet (SEO-disken 2026-10-27)
+    ortLank: {
+      fore: 'Har ni också ett företag i Jönköpingstrakten? Läs om vår ',
+      text: 'webbdesign i Jönköping',
+      href: '/webbyra-jonkoping/',
+      efter: '.',
+    },
     lang: 'Smålands Måleri är en målerifirma i Jönköping som saknade en egen plats på nätet. Bahko Byrå byggde smamaleri.se med ett offertflöde som funkar i mobilen och en ROT-sektion som förklarar avdraget enligt Skatteverkets regler, med länk direkt till källan. Den som ska anlita en målare vill förstå avdraget innan de hör av sig, och det är förvånansvärt många sajter som förklarar det fel.',
   },
   {
@@ -30,7 +37,7 @@ const KUNDER = [
     bransch: 'Trädgårdsskötsel · kund i Stockholm',
     url: 'https://brommatradgardsservice.se/',
     bild: '/img/demo-bromma-tradgard.webp',
-    lang: 'Bromma Trädgårdsservice är en kund i Stockholm som sköter trädgårdar i västra Stockholm. Bahko Byrå, med kontor i Jönköping/Huskvarna, byggde brommatradgardsservice.se med telefonnumret synligt på varje skärm, egna sidor för häckklippning och trädgårdsskötsel för villaägare och bostadsrättsföreningar, och RUT-beskedet utskrivet per tjänst. För trädgård och hantverk är samtalet det som blir en affär, så hela sidan är byggd runt ringknappen. Den 30 juli 2026 låg Bromma Trädgårdsservice på plats 1 av 6 i Googles Platser-flik för trädgårdsservice i Stockholm, före en konkurrent med 117 omdömen, och nämndes först när ChatGPT fick samma fråga. På två månader kom 35+ offertförfrågningar in via formuläret på sajten.',
+    lang: 'Bromma Trädgårdsservice är en kund i Stockholm som sköter trädgårdar i västra Stockholm. Bahko Byrå, med kontor i Huskvarna, nära Jönköping, byggde brommatradgardsservice.se med telefonnumret synligt på varje skärm, egna sidor för häckklippning och trädgårdsskötsel för villaägare och bostadsrättsföreningar, och RUT-beskedet utskrivet per tjänst. För trädgård och hantverk är samtalet det som blir en affär, så hela sidan är byggd runt ringknappen. Den 30 juli 2026 låg Bromma Trädgårdsservice på plats 1 av 6 i Googles Platser-flik för trädgårdsservice i Stockholm, före en konkurrent med 117 omdömen, och nämndes först när ChatGPT fick samma fråga. På två månader kom 35+ offertförfrågningar in via formuläret på sajten.',
   },
   {
     namn: 'GD Måleri',
@@ -63,7 +70,7 @@ export default function Case() {
             Riktiga sajter, <span className="accent">riktiga firmor.</span>
           </h1>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
-            Klicka in i sajterna. Det här är inga mockuper, det är sidor i drift. Vi sitter i Jönköping/Huskvarna
+            Klicka in i sajterna. Det här är inga mockuper, det är sidor i drift. Vi sitter i Huskvarna, nära Jönköping,
             och har kunder i hela Sverige, lokalt för dem.
           </p>
         </div>
@@ -75,17 +82,30 @@ export default function Case() {
           <h2>Sajter i drift</h2>
           <div className={styles.nat}>
             {KUNDER.map((k) => (
-              <a key={k.namn} href={k.url} target="_blank" rel="noopener" className={styles.kort}>
-                <span className={styles.bild}>
-                  <img src={k.bild} alt={`Förhandsvisning av ${k.namn}`} loading="lazy" />
-                </span>
-                <span className={styles.kropp}>
-                  <strong>{k.namn}</strong>
-                  <em>{k.bransch}</em>
-                  <span className={styles.text}>{k.lang}</span>
-                  <span className={styles.oppna}>Öppna sajt {PIL}</span>
-                </span>
-              </a>
+              /* Kortet är en div med länken inuti, så att ortLank kan ligga i samma kort
+                 utan att en länk hamnar inne i en annan. */
+              <div key={k.namn} className={styles.kort}>
+                <a href={k.url} target="_blank" rel="noopener" className={styles.kortYta}>
+                  <span className={styles.bild}>
+                    <img src={k.bild} alt={`Förhandsvisning av ${k.namn}`} loading="lazy" />
+                  </span>
+                  <span className={styles.kropp}>
+                    <strong>{k.namn}</strong>
+                    <em>{k.bransch}</em>
+                    <span className={styles.text}>{k.lang}</span>
+                    <span className={styles.oppna}>Öppna sajt {PIL}</span>
+                  </span>
+                </a>
+                {k.ortLank && (
+                  <p className={styles.ortRad}>
+                    {k.ortLank.fore}
+                    <Link href={k.ortLank.href} className="textlank">
+                      {k.ortLank.text}
+                    </Link>
+                    {k.ortLank.efter}
+                  </p>
+                )}
+              </div>
             ))}
           </div>
         </div>
