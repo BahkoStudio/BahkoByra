@@ -27,7 +27,7 @@ import KontaktFalt from './KontaktFalt';
      lägg bara till ett kort i tjanster.kort (och ett ord i tejp).
 
    INTE verifierat, och finns därför inte på sidan: gatuadress,
-   hemsida, Instagram, org.nr, F-skatt, ROT-avdrag, garantier, priser,
+   hemsida, Instagram, org.nr, F-skatt, garantier, priser,
    ledtider, omdömen, projektbilder.
 
    FLAGGOR (för Mathias):
@@ -58,7 +58,7 @@ import KontaktFalt from './KontaktFalt';
 const META = {
   title: 'Kakel 0413 AB — kakelsättare och badrumsrenovering i Eslöv och Skåne',
   description:
-    'Kakelsättare i Eslöv för hela Skåne: badrumsrenovering, kakel- och klinkersättning i badrum, kök, hallar och trapphus. Över 16 års erfarenhet. Kostnadsfri genomgång.',
+    'Kakelsättare i Eslöv för hela Skåne: badrumsrenovering, kakel- och klinkersättning i badrum, kök, hallar och trapphus. Över 16 års erfarenhet. Kostnadsfri genomgång och ROT-avdrag.',
 };
 
 // Kunddomänen (Mathias 2026-10-23): på kakel0413.se/www indexeras sidan, canonical pekar på
@@ -168,7 +168,7 @@ const data = {
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
   },
-  tejp: ['Badrumsrenovering', 'Golv', 'Kök', 'Trapphus', 'Tvättstuga', 'Eslöv', 'Skåne'],
+  tejp: ['Badrumsrenovering', 'Golv', 'Kök', 'Trapphus', 'Tvättstuga', 'ROT-avdrag', 'Eslöv', 'Skåne'],
 
   tjanster: {
     eyebrow: 'Tjänster',
@@ -242,6 +242,8 @@ const data = {
     lista: [
       { q: 'Kostar genomgången något?', a: 'Nej. Genomgången är kostnadsfri och du får möjlighet att ställa alla dina frågor.' },
       { q: 'Vet jag vad det kostar innan ni börjar?', a: 'Ja. Efter genomgången får du en tydlig offert, och vi går igenom vad som ingår så att du vet vad du betalar för innan arbetet börjar.' },
+      // ROT (Nuh 2026-10-27, hans formulering).
+      { q: 'Kan jag få ROT-avdrag?', a: 'Ja. Med ROT-avdrag sänker du arbetskostnaden med upp till 50 000 kr per person och år.' },
       { q: 'Vad hjälper ni till med?', a: 'Hela badrumsrenoveringar, kakel och klinker i badrum, kök, hallar, trapphus och tvättstugor, och mindre arbeten.' },
       { q: 'Kan jag skicka bilder?', a: 'Gärna. Bilder gör att vi får en bättre bild av jobbet redan från början.' },
       { q: 'Var arbetar ni?', a: 'Vi utgår från Eslöv och arbetar i hela Skåne.' },
@@ -253,7 +255,7 @@ const data = {
     eyebrow: 'Kontakt',
     rubrik: ['Berätta vad du vill göra,', 'genomgången är kostnadsfri'],
     lead: 'Ring, eller skriv kort vad du vill ha hjälp med. Vi utgår från Eslöv och arbetar i hela Skåne. Du kan gärna skicka bilder.',
-    checkar: ['Kostnadsfri genomgång', 'Tydlig offert innan arbetet börjar', 'Badrum, kök, hallar och trapphus'],
+    checkar: ['Kostnadsfri genomgång', 'Tydlig offert innan arbetet börjar', 'ROT-avdrag – sänk arbetskostnaden med upp till 50 000 kr/person och år', 'Badrum, kök, hallar och trapphus'],
     video: `${M}/video-kontakt.mp4`,
     poster: `${M}/poster-kontakt.jpg`,
     formRubrik: 'Berätta kort om jobbet',
@@ -265,7 +267,7 @@ const data = {
 
   popup: {
     rubrik: 'Dags för nytt badrum?',
-    text: 'Genomgången är kostnadsfri, och du får en tydlig offert innan arbetet börjar.',
+    text: 'Genomgången är kostnadsfri, du får en tydlig offert innan arbetet börjar och ROT-avdrag på arbetskostnaden.',
   },
 
   footer: {
