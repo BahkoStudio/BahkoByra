@@ -4,8 +4,10 @@
  *  överallt där garantin nämns (Premium, tilläggskortet, FAQ och FAQ-schemat). */
 export const GARANTI =
   'Garanti: första sidan på Google inom 90 dagar från start, på de lokala sökord vi skriftligt kommer överens om (till exempel "målare Jönköping"). Når vi inte dit får ni tillbaka det ni betalat för tillägget under perioden. Efter de 90 dagarna gäller ingen garanti.';
+/* Premiumpriset står här en gång, så att paketkortet och Premium-garantin alltid visar samma belopp. */
+const PREMIUM_PRIS = '25 000 kr';
 export const GARANTI_PREMIUM =
-  'Garanti i Premium: når vi inte första sidan på Google inom 90 dagar får ni tillbaka allt ni betalat. Efter de 90 dagarna gäller ingen garanti.';
+  `Garanti i Premium: når vi inte första sidan på Google inom 90 dagar från start, på de lokala sökord vi skriftligt kommer överens om, får ni tillbaka hela beloppet på ${PREMIUM_PRIS}. Efter de 90 dagarna gäller ingen garanti.`;
 
 /* Paket och tillägg för hemsidor. Ligger här uppe så att PRISMODELL nedan byggs ur
    samma belopp som korten visar. Alla belopp ex moms. */
@@ -30,7 +32,7 @@ const PAKET_HEMSIDOR = [
   },
   {
     namn: 'Premium',
-    pris: '25 000 kr',
+    pris: PREMIUM_PRIS,
     kort: 'Allt i Standard, plus att vi sköter Google.',
     ingar: [
       'Allt i Standard',
