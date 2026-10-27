@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Faq from '../../../komponenter/Faq';
-import { TJANSTER, FRAGOR } from '../../../data';
+import { TJANSTER, FRAGOR, PRISMODELL } from '../../../data';
 import Maskot from '../../../komponenter/Maskot';
 import styles from './tjanst.module.css';
 
@@ -62,7 +62,7 @@ function schema(t) {
                 priceCurrency: 'SEK',
                 valueAddedTaxIncluded: false,
               },
-              description: 'Engångspris ex moms',
+              description: 'Fast pris ex moms för bygget',
             })),
           }
         : {}),
@@ -179,10 +179,10 @@ export default async function Tjanst({ params }) {
                 </div>
               </>
             )}
+            {/* Prismodellen ordagrant som i FAQ:n och FAQ-schemat (PRISMODELL i data.js). */}
             <p className={styles.momsNot}>
-              Alla priser är exklusive moms. Hemsidan har ett fast pris, och månadsavgiften för det
-              löpande står i förslaget. Ni äger sidan och domänen.
-              Ingen bindningstid på tilläggen.
+              Alla priser är exklusive moms. {t.slug === 'hemsidor' && <>{PRISMODELL} </>}Ni äger sidan
+              och domänen. Ingen bindningstid på tilläggen.
             </p>
           </div>
         </section>

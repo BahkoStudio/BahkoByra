@@ -4,15 +4,14 @@ import Maskot from '../../komponenter/Maskot';
 import styles from './jonkoping.module.css';
 // Paketkorten delar stil med /tjanster/hemsidor/, så att priserna ser likadana ut på båda sidorna.
 import paketStil from '../tjanster/[slug]/tjanst.module.css';
-import { TJANSTER, GARANTI } from '../../data.js';
+import { TJANSTER, GARANTI, GARANTI_PREMIUM, PRISMODELL } from '../../data.js';
 
 /* Priser och tillägg läses ur TJANSTER (hemsidor) i data.js, en plats att ändra på. */
 const HEMSIDOR = TJANSTER.find((t) => t.slug === 'hemsidor');
 const PAKET = HEMSIDOR.paket;
 const TILLAGG = HEMSIDOR.tillagg;
 const BAS = PAKET[0];
-const paketText = PAKET.map((p) => `${p.namn} ${p.pris}`).join(', ').replace(/, ([^,]*)$/, ' och $1');
-const tillaggText = TILLAGG.map((x) => `${x.namn} (${x.pris})`).join(' och ');
+const [UNDERHALL, GOOGLE] = TILLAGG;
 
 export const metadata = {
   /* absolute: layoutens mall lägger annars till "| Bahko Byrå" en gång till. */
@@ -153,7 +152,7 @@ const FRAGOR_JKPG = [
   },
   {
     fraga: 'Vad kostar en hemsida i Jönköping hos Bahko Byrå?',
-    svar: `Tre paket med fast pris: ${paketText}, alla ex moms. Vilket paket som passar ert företag ser ni i det kostnadsfria förslaget, innan ni bestämmer er.`,
+    svar: `${PRISMODELL} Vilket paket som passar ert företag ser ni i det kostnadsfria förslaget, innan ni bestämmer er.`,
   },
   {
     fraga: 'Vad är baspriset för en hemsida?',
@@ -175,7 +174,7 @@ const FRAGOR_JKPG = [
   },
   {
     fraga: 'Tillkommer det några månadskostnader efteråt?',
-    svar: `Ja. Utöver det fasta priset tillkommer en månadsavgift för det löpande: ${tillaggText}, ex moms. Båda ingår i Premium de första 3 månaderna. ${GARANTI} Byter ni domän tillkommer en kostnad för det. Allt står i förslaget innan ni bestämmer er, och det finns ingen bindningstid.`,
+    svar: `Bara om ni väljer ett tillägg. Båda är valfria: ${UNDERHALL.namn} (${UNDERHALL.pris}) och ${GOOGLE.namn} (${GOOGLE.pris}), som inkluderar underhållet, ex moms. I Premium ingår Google-tillägget de första 3 månaderna, sedan ${GOOGLE.pris} om ni vill fortsätta. Byter ni domän tillkommer en kostnad för det. Allt står i förslaget innan ni bestämmer er, och det finns ingen bindningstid.`,
   },
   {
     fraga: 'Äger vi hemsidan och domänen?',
@@ -185,11 +184,11 @@ const FRAGOR_JKPG = [
   {
     fraga: 'Kan ni hjälpa oss att synas på Google och i AI-svar i Jönköping?',
     svar:
-      `Ja, som tillägg: lokal SEO, Google Företagsprofil, synlighet i AI-svar och Google Ads. Tillägget ${TILLAGG[1].namn} kostar ${TILLAGG[1].pris} och ingår i Premium de första 3 månaderna. ${GARANTI} Det som går att visa är vad som hänt för andra kunder, som Bromma Trädgårdsservice på den här sidan.`,
+      `Ja, som tillägg: lokal SEO, Google Företagsprofil, synlighet i AI-svar och Google Ads. Tillägget ${GOOGLE.namn} kostar ${GOOGLE.pris}, är valfritt och ingår i Premium de första 3 månaderna. ${GARANTI} Det som går att visa är vad som hänt för andra kunder, som Bromma Trädgårdsservice på den här sidan.`,
   },
   {
     fraga: 'Hur fungerar garantin om Googles första sida?',
-    svar: `${GARANTI} Vi kommer överens om vilka lokala sökord det gäller, till exempel er tjänst och er ort. Garantin gäller tillägget ${TILLAGG[1].namn.split(',')[0]}.`,
+    svar: `Garantin gäller tillägget ${GOOGLE.namn}. ${GARANTI} ${GARANTI_PREMIUM}`,
   },
 ];
 
@@ -381,9 +380,9 @@ export default function Jonkoping() {
             ))}
           </div>
           <p className={paketStil.momsNot}>
-            Alla priser är exklusive moms. Hemsidan har ett fast pris, och månadsavgiften för det
-            löpande står i förslaget. Ni äger sidan och domänen även om ni en dag slutar hos oss. Byter ni domän tillkommer en kostnad för det. Ingen
-            bindningstid på tilläggen.
+            {/* Prismodellen ordagrant som i FAQ:n och FAQ-schemat (PRISMODELL i data.js). */}
+            Alla priser är exklusive moms. {PRISMODELL} Ni äger sidan och domänen även om ni en dag
+            slutar hos oss. Byter ni domän tillkommer en kostnad för det. Ingen bindningstid på tilläggen.
           </p>
           <div className={styles.brodtext}>
             <p>

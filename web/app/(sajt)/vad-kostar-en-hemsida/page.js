@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Faq from '../../komponenter/Faq';
 import Maskot from '../../komponenter/Maskot';
 import styles from './prisguide.module.css';
+import { PRISMODELL } from '../../data.js';
 
 export const metadata = {
   title: 'Vad kostar en hemsida?',
@@ -35,7 +36,7 @@ const AVGOR = [
   },
   {
     h: 'Bygget och det löpande',
-    p: 'Hos oss har bygget ett fast pris och sidan blir er, med domän och innehåll. Underhåll och SEO efter lanseringen har en månadsavgift, och byter ni domän kostar det extra. Allt står i förslaget, och ingen bindningstid låser fast er.',
+    p: 'Hos oss har bygget ett fast pris och sidan blir er, med domän och innehåll. Underhåll och grundläggande SEO och ranking på Google är valfria tillägg med ett pris i månaden, och byter ni domän kostar det extra. Allt står i förslaget, och ingen bindningstid låser fast er.',
   },
 ];
 
@@ -61,8 +62,7 @@ const FALLOR = [
 const FRAGOR_PRIS = [
   {
     fraga: 'Vad kostar en hemsida hos er?',
-    svar:
-      'Tre paket med fast pris: Basic 10 000 kr, Standard 13 000 kr och Premium 25 000 kr, alla ex moms. Vilket som passar er ser ni i det kostnadsfria förslaget, och det priset gäller. Utöver det fasta priset tillkommer en månadsavgift för underhåll och grundläggande SEO (500 kr i månaden), och ranking på Google (2 470 kr i månaden) finns som tillägg. Ingen bindningstid.',
+    svar: `${PRISMODELL} Vilket paket som passar er ser ni i det kostnadsfria förslaget, och det priset gäller. Ingen bindningstid.`,
   },
   {
     fraga: 'Vad ingår i priset hos er?',
@@ -141,7 +141,7 @@ export default function Prisguide() {
               <h3>Så får ni ert pris, svart på vitt</h3>
               <p>
                 Bahko Byrå bygger ett färdigt förslag på er nya sida inom 48 timmar, med exakt
-                fast pris, och med månadsavgiften för underhåll och SEO utskriven. Ingen
+                fast pris för bygget och priserna för de valfria tilläggen utskrivna. Ingen
                 bindningstid. Kostar ingenting att se, och ni bestämmer sen. Har ni ert företag i
                 Jönköpingstrakten? Se{' '}
                 <Link href="/webbyra-jonkoping/#pris" className="textlank">vad en hemsida kostar i Jönköping</Link>.
