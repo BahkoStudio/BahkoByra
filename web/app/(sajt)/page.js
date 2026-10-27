@@ -88,6 +88,12 @@ export default function Start() {
                 Tappar du kunder? Gör testet på 1 minut {PIL}
               </Link>
             </div>
+            {/* Entitetsmening (SEO-disken 2026-10-27): vem Bahko Byrå är, i en mening som
+                tål att lyftas ut. Liten rad under knapparna så att heron ser likadan ut. */}
+            <p className={styles.heroEntitet}>
+              Bahko Byrå är en webbyrå i Huskvarna som bygger hemsidor åt hantverkare och lokala
+              företag i hela Sverige, till fast pris från 10 000 kr ex moms.
+            </p>
           </div>
 
           <div className={styles.heroScen} id="rakna">
@@ -128,8 +134,8 @@ export default function Start() {
                 Allt som får kunden <span className="accent">att ringa er.</span>
               </h2>
               <p className="lede" style={{ marginTop: '1rem' }}>
-                Börja med hemsidan. Resten lägger vi till när det lönar sig. Söker ni{' '}
-                <Link href="/webbyra-jonkoping/" className="textlank">webbdesign i Jönköping</Link> kan
+                Börja med hemsidan. Resten lägger vi till när det lönar sig. Söker ni en{' '}
+                <Link href="/webbyra-jonkoping/" className="textlank">webbyrå i Jönköping</Link> kan
                 vi också ses på kontoret i Huskvarna.
               </p>
             </div>
