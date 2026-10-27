@@ -66,14 +66,16 @@ export default function Start() {
               oga={{ x: 73.3, y: 38.9, rx: 6.45, ry: 5.0, gron: 'rgb(20,112,75)' }}
               index={0}
             />
-            {/* Rubriken "Ta över din lokala marknad." (Mathias 2026-10-25). Rubriken talar till firman (Mathias 2026-09-23). Tjänst + ort ligger som första rad
-                I H1 (Mathias 2026-10-01): synlig text, samma som Google-profilens kategori och ort. */}
-            <h1>
-              <span className={`eyebrow ${styles.heroTagg}`}>Webbdesign i Jönköping &amp; Huskvarna</span>
+            {/* Slogan "Ta över din lokala marknad." (Mathias 2026-10-25) ser ut som rubriken men är
+                INTE H1 (SEO-disken 2026-10-27): H1 är den lilla brickan "Hemsidor för hantverkare".
+                Orten ligger inte här längre, "Jönköping" ägs av /webbyra-jonkoping/ (kannibalisering).
+                .heroRubrik bär exakt samma stil som H1:an hade, så heron ser likadan ut. */}
+            <div className={styles.heroRubrik}>
+              <h1 className={`eyebrow ${styles.heroTagg}`}>Hemsidor för hantverkare</h1>
               Ta över din
               <br />
               <span className="accent">lokala marknad.</span>
-            </h1>
+            </div>
             <p className={styles.heroLede}>
               <strong>Byggt för lokala företag.</strong> Få mer trafik från Google, ranka på första sidan
               och bli det självklara valet för kunden.
@@ -126,7 +128,9 @@ export default function Start() {
                 Allt som får kunden <span className="accent">att ringa er.</span>
               </h2>
               <p className="lede" style={{ marginTop: '1rem' }}>
-                Börja med hemsidan. Resten lägger vi till när det lönar sig.
+                Börja med hemsidan. Resten lägger vi till när det lönar sig. Söker ni{' '}
+                <Link href="/webbyra-jonkoping/" className="textlank">webbdesign i Jönköping</Link> kan
+                vi också ses på kontoret i Huskvarna.
               </p>
             </div>
             <div className={styles.tjanstMaskot}>

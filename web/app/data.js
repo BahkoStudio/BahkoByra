@@ -11,8 +11,15 @@ export const TJANSTER = [
     title: 'Hemsida för hantverkare, fast pris från 10 000 kr',
     h1: 'Hemsida för hantverkare till fast pris',
     slogan: 'Hemsidor som ger fler jobb',
+    // Kontextuell länk till ortssidan, renderas efter ingressen (SEO-disken 2026-10-27).
+    ingressLank: {
+      fore: 'Har ni ert företag i Jönköpingstrakten? Läs mer om vår ',
+      text: 'webbdesign i Jönköping',
+      href: '/webbyra-jonkoping/',
+      efter: '.',
+    },
     ingress:
-      'Hos Bahko Byrå i Huskvarna och Jönköping köper ni en hemsida för ert hantverks- eller lokala företag till fast pris: tre paket från 10 000 kr ex moms. Innan ni bestämmer er får ni ett färdigt förslag på er nya hemsida, kostnadsfritt och inom 48 timmar, så att ni ser exakt hur den blir.',
+      'Hos Bahko Byrå i Huskvarna, nära Jönköping, köper ni en hemsida för ert hantverks- eller lokala företag till fast pris: tre paket från 10 000 kr ex moms. Innan ni bestämmer er får ni ett färdigt förslag på er nya hemsida, kostnadsfritt och inom 48 timmar, så att ni ser exakt hur den blir.',
     meta:
       'Köp en hemsida för hantverkare och lokala företag. Tre paket med fast pris från 10 000 kr ex moms. Kostnadsfritt färdigt förslag inom 48 timmar.',
     // Paketen, Mathias text 2026-10-20 (lätt putsad). Alla belopp ex moms.
@@ -170,7 +177,7 @@ export const TJANSTER = [
     ingress:
       'Bahko Byrå i Huskvarna bygger appar till företag, främst hantverkare och lokala företag med återkommande kunder, serviceavtal eller bokningar som i dag sköts per telefon. En egen app kan låta kunderna boka, se sina avtal och få påminnelser själva. Vi börjar alltid med att räkna på om en app faktiskt lönar sig för er, och avråder om en bra hemsida räcker.',
     meta:
-      'Egen app till företaget för bokningar, avtal och återkommande kunder. Vi i Huskvarna och Jönköping bygger bara när det lönar sig. Fråga oss om er idé.',
+      'Egen app till företaget för bokningar, avtal och återkommande kunder. Vi i Huskvarna, nära Jönköping, bygger bara när det lönar sig. Fråga oss om er idé.',
     fragor: [
       {
         fraga: 'Behöver mitt företag en app eller räcker en hemsida?',
@@ -205,7 +212,7 @@ export const TJANSTER = [
     h1: 'Reklamfilm för hantverkare och lokala företag',
     slogan: 'Film som stoppar tummen',
     ingress:
-      'Bahko Byrå i Huskvarna och Jönköping gör reklamfilm för hantverkare och lokala företag: korta videor för sociala medier och YouTube. Vi filmar före och efter, ert arbete på nära håll och människorna bakom företaget, så att tittaren stannar upp och förstår vad ni gör.',
+      'Bahko Byrå i Huskvarna, nära Jönköping, gör reklamfilm för hantverkare och lokala företag: korta videor för sociala medier och YouTube. Vi filmar före och efter, ert arbete på nära håll och människorna bakom företaget, så att tittaren stannar upp och förstår vad ni gör.',
     meta:
       'Reklamfilm för hantverkare och lokala företag: korta videor till sociala medier och YouTube. Före och efter, ert arbete på nära håll. Hör av er.',
     fragor: [

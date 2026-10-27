@@ -1083,7 +1083,11 @@
 
 /* Mathias 2026-10-23 kväll: heron utan siffertrion. Rubriken stor på två rader,
    etiketten som en liten bricka i stället för streck + text. */
-.heroText h1 {
+/* .heroRubrik = sloganen, en div som ser ut exakt som H1:an gjorde (font-weight och
+   text-wrap kom förut från den globala h1-regeln). H1 är brickan .heroTagg inuti. */
+.heroText .heroRubrik {
+  font-weight: 800;
+  text-wrap: balance;
   font-size: clamp(2.3rem, 5.4vw, 4.4rem);
   line-height: 1.02;
   letter-spacing: -0.035em;
@@ -1100,6 +1104,7 @@
   color: var(--text-lag);
   font-size: 0.7rem;
   letter-spacing: 0.12em;
+  line-height: inherit; /* brickan är nu H1: ärv sloganens radavstånd, inte den globala h1-regelns */
 }
 
 .heroText .heroTagg::before {

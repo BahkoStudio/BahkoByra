@@ -25,6 +25,21 @@
   transform: translateY(-4px);
 }
 
+/* Kundkortens klickyta: bild + text. Kortet själv är en div (se case/page.js). */
+.kortYta {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ortRad {
+  padding: 0.85rem 1.3rem 1.1rem;
+  border-top: 1px solid var(--linje);
+  font-size: 0.9rem;
+  color: var(--ink-3);
+  text-wrap: pretty;
+}
+
 .bild {
   display: block;
   aspect-ratio: 16 / 10;
