@@ -91,7 +91,7 @@ export default function Start() {
             {/* Entitetsmening (SEO-disken 2026-10-27): vem Bahko Byrå är, i en mening som
                 tål att lyftas ut. Liten rad under knapparna så att heron ser likadan ut. */}
             <p className={styles.heroEntitet}>
-              Bahko Byrå är en webbyrå i Huskvarna som bygger hemsidor åt hantverkare och lokala
+              Bahko Byrå är en webbyrå i Huskvarna, nära Jönköping, som bygger hemsidor åt hantverkare och lokala
               företag i hela Sverige, till fast pris från 10 000 kr ex moms.
             </p>
           </div>

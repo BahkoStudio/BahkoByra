@@ -1,5 +1,62 @@
 /** Innehållskälla för tjänstesidorna och FAQ. En plats att ändra på. */
 
+/** Garantivillkoren för Google-tillägget, Mathias ordalydelse 2026-10-27 (v3). Ska stå
+ *  överallt där garantin nämns (Premium, tilläggskortet, FAQ och FAQ-schemat). */
+/* Villkoren utan rubrikord, för meningar som redan säger "garantin" (så att ordet inte står dubbelt). */
+export const GARANTI_VILLKOR =
+  'första sidan på Google inom 90 dagar från start, på de lokala sökord vi skriftligt kommer överens om (till exempel "målare Jönköping"). Når vi inte dit får ni tillbaka det ni betalat för tillägget under perioden. Efter de 90 dagarna gäller ingen garanti.';
+export const GARANTI = `Garanti: ${GARANTI_VILLKOR}`;
+/* Premiumpriset står här en gång, så att paketkortet och Premium-garantin alltid visar samma belopp. */
+const PREMIUM_PRIS = '25 000 kr';
+export const GARANTI_PREMIUM_VILLKOR =
+  `når vi inte första sidan på Google inom 90 dagar från start, på de lokala sökord vi skriftligt kommer överens om, får ni tillbaka hela beloppet på ${PREMIUM_PRIS}. Efter de 90 dagarna gäller ingen garanti.`;
+export const GARANTI_PREMIUM = `Garanti i Premium: ${GARANTI_PREMIUM_VILLKOR}`;
+
+/* Paket och tillägg för hemsidor. Ligger här uppe så att PRISMODELL nedan byggs ur
+   samma belopp som korten visar. Alla belopp ex moms. */
+const TILLAGG_HEMSIDOR = [
+  { namn: 'Underhåll och grundläggande SEO', pris: '500 kr i månaden', not: 'Valfritt tillägg. Ingår i Premium de första 3 månaderna. Efter de 3 månaderna i Premium väljer ni själva: Google-tillägget (2 470 kr i månaden, med underhållet), bara underhållet (500 kr i månaden) eller inget tillägg.' },
+  { namn: 'Ranking på Google och optimering av Google-profilen', pris: '2 470 kr i månaden', not: `Valfritt tillägg som inkluderar underhållet. Ingår i Premium de första 3 månaderna. ${GARANTI}` },
+];
+
+const PAKET_HEMSIDOR = [
+  {
+    namn: 'Basic',
+    pris: '10 000 kr',
+    kort: 'En snygg och tydlig hemsida.',
+    ingar: ['Fungerar i mobilen, med ringknapp och kontaktformulär', 'Era bilder och er logga', 'Er egen domän, ni äger sidan'],
+  },
+  {
+    namn: 'Standard',
+    pris: '13 000 kr',
+    kort: 'Hemsidan som ska hittas på Google.',
+    markerad: true,
+    ingar: ['Allt i Basic', 'Egna landningssidor för varje tjänst, så många som behövs', 'Automatiserade mejl som svarar kunden direkt', 'Optimerad för att ranka på Google'],
+  },
+  {
+    namn: 'Premium',
+    pris: PREMIUM_PRIS,
+    kort: 'Allt i Standard, plus att vi sköter Google.',
+    ingar: [
+      'Allt i Standard',
+      'Ranking på Google och optimering av Google-profilen ingår de första 3 månaderna, med underhåll och grundläggande SEO',
+      `Sedan ${TILLAGG_HEMSIDOR[1].pris}, om ni vill fortsätta`,
+      GARANTI_PREMIUM,
+    ],
+  },
+];
+
+const [BASIC, STANDARD, PREMIUM] = PAKET_HEMSIDOR;
+const [UNDERHALL, GOOGLE] = TILLAGG_HEMSIDOR;
+
+/** Prismodellen i en beskrivning, ordagrant samma på /tjanster/hemsidor/,
+ *  /vad-kostar-en-hemsida/ och /webbyra-jonkoping/ (prissektion, FAQ och FAQ-schema). */
+export const PRISMODELL =
+  `Bygget har ett fast pris ex moms: ${BASIC.namn} ${BASIC.pris}, ${STANDARD.namn} ${STANDARD.pris} och ${PREMIUM.namn} ${PREMIUM.pris}. ` +
+  `${UNDERHALL.namn}, ${UNDERHALL.pris}, är ett valfritt tillägg. ` +
+  `${GOOGLE.namn}, ${GOOGLE.pris}, är ett valfritt tillägg som inkluderar underhållet. ` +
+  `I ${PREMIUM.namn} ingår Google-tillägget de första 3 månaderna, sedan ${GOOGLE.pris} om ni vill fortsätta.`;
+
 export const TJANSTER = [
   {
     slug: 'hemsidor',
@@ -22,37 +79,13 @@ export const TJANSTER = [
       'Hos Bahko Byrå i Huskvarna, nära Jönköping, köper ni en hemsida för ert hantverks- eller lokala företag till fast pris: tre paket från 10 000 kr ex moms. Innan ni bestämmer er får ni ett färdigt förslag på er nya hemsida, kostnadsfritt och inom 48 timmar, så att ni ser exakt hur den blir.',
     meta:
       'Köp en hemsida för hantverkare och lokala företag. Tre paket med fast pris från 10 000 kr ex moms. Kostnadsfritt färdigt förslag inom 48 timmar.',
-    // Paketen, Mathias text 2026-10-20 (lätt putsad). Alla belopp ex moms.
-    paket: [
-      {
-        namn: 'Basic',
-        pris: '10 000 kr',
-        kort: 'En snygg och tydlig hemsida.',
-        ingar: ['Fungerar i mobilen, med ringknapp och kontaktformulär', 'Era bilder och er logga', 'Er egen domän, ni äger sidan'],
-      },
-      {
-        namn: 'Standard',
-        pris: '13 000 kr',
-        kort: 'Hemsidan som ska hittas på Google.',
-        markerad: true,
-        ingar: ['Allt i Basic', 'Egna landningssidor för varje tjänst, så många som behövs', 'Automatiserade mejl som svarar kunden direkt', 'Optimerad för att ranka på Google'],
-      },
-      {
-        namn: 'Premium',
-        pris: '25 000 kr',
-        kort: 'Allt i Standard, plus att vi sköter Google.',
-        ingar: ['Allt i Standard', 'Ranking på Google och optimering av Google-profilen', 'Garanti: Googles första sida', 'Ingår i 3 månader, även underhåll och grundläggande SEO'],
-      },
-    ],
-    tillagg: [
-      { namn: 'Underhåll och grundläggande SEO', pris: '500 kr i månaden', not: 'Ingår i Premium i 3 månader.' },
-      { namn: 'Ranking på Google och optimering av Google-profilen, garanterat första sidan', pris: '2 470 kr i månaden', not: 'Ingår i Premium i 3 månader.' },
-    ],
+    // Paketen (Mathias text 2026-10-20) och tilläggen ligger överst i filen.
+    paket: PAKET_HEMSIDOR,
+    tillagg: TILLAGG_HEMSIDOR,
     fragor: [
       {
         fraga: 'Vad kostar det att köpa en hemsida hos er?',
-        svar:
-          'Tre paket med fast pris: Basic 10 000 kr, Standard 13 000 kr och Premium 25 000 kr, alla ex moms. Underhåll och grundläggande SEO (500 kr i månaden) och ranking på Google (2 470 kr i månaden) finns som tillägg, och ingår i Premium de första 3 månaderna.',
+        svar: PRISMODELL,
       },
       {
         fraga: 'Hur snabbt kan jag se hur min hemsida blir?',
@@ -258,8 +291,7 @@ export const FRAGOR = [
   },
   {
     fraga: 'Hur vet jag att det ger fler förfrågningar?',
-    svar:
-      'Ingen kan lova en plats på Google. Men titta på Bromma. Etta i platslistan och först i ChatGPT den 30 juli. Ett 30-tal förfrågningar via sidan på två månader.',
+    svar: `Med tillägget ${TILLAGG_HEMSIDOR[1].namn} får ni en garanti, på villkor som står i förslaget: ${GARANTI_VILLKOR} Titta också på Bromma Trädgårdsservice: etta i platslistan och först i ChatGPT den 30 juli, och 35+ förfrågningar via hemsidan på 2 månader.`,
   },
   {
     fraga: 'Är det inte enklare att köpa förfrågningar från en offertsajt?',
