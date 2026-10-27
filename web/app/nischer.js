@@ -170,7 +170,7 @@ export const NISCHER = [
       { fraga: 'Vi har fullt med jobb via kontakter. Varför en hemsida?', svar: 'För att välja jobben i stället för att ta dem som kommer. Den som googlar "snickare" plus er ort och hittar en sida med riktiga altaner och tydligt ROT-besked ringer med ett konkret jobb, inte för att pruta.' },
       { fraga: 'Hur mycket är rotavdraget 2026?', svar: '30 procent av arbetskostnaden, högst 50 000 kronor per person och år. Material och resor ingår inte, och bostaden ska vara äldre än fem år. Under 2025 var avdraget tillfälligt höjt, och många sajter har inte uppdaterat sin text. Vi skriver er mot Skatteverkets aktuella regler.' },
       { fraga: 'Vad behöver ni från oss?', svar: 'Bilder från jobb ni gjort, vilka orter ni jobbar i och hur ni tar betalt. Texterna skriver vi. Ni äger sidan och domänen när den är klar.' },
-      { fraga: 'Vad kostar en hemsida för en snickare?', svar: 'Hemsidan kostar 8 000, 12 000 eller 20 000 kronor beroende på paket. Underhåll kostar 500 kronor i månaden och Google-hantering 2 000 kronor i månaden, båda utan bindningstid. Ni får ett exakt pris i det kostnadsfria förslaget innan ni bestämmer er.' },
+      { fraga: 'Vad kostar en hemsida för en snickare?', svar: 'Hemsidan kostar 10 000, 13 000 eller 25 000 kronor beroende på paket. Underhåll och grundläggande SEO kostar 500 kronor i månaden och Google-ranking 2 470 kronor i månaden, båda utan bindningstid. Ni får ett exakt pris i det kostnadsfria förslaget innan ni bestämmer er.' },
     ],
   },
   {
@@ -204,7 +204,7 @@ export const NISCHER = [
       { fraga: 'Måste vi visa registreringen hos Elsäkerhetsverket?', svar: 'Ni måste vara registrerade för att få göra elinstallationer åt andra, men ingen tvingar er att visa det på sidan. Vi gör det ändå, med länk till Kolla elföretaget, eftersom kunden som kontrollerar det väljer den firma som gjorde kontrollen enkel.' },
       { fraga: 'Ger elarbete rotavdrag?', svar: 'Ja, elarbete i en bostad äldre än fem år ger rotavdrag på arbetskostnaden: 30 procent, högst 50 000 kronor per person och år. Material som kablar, elcentral och laddbox ingår inte. Vi skriver det rätt på er sida, med Skatteverket som källa.' },
       { fraga: 'Kan sidan ta akutsamtal och planerade jobb samtidigt?', svar: 'Ja. Ringknappen ligger överst för den som har bråttom, och tjänstesidorna med offertformulär ligger under för den som planerar. Två vägar, en sida.' },
-      { fraga: 'Vad kostar en hemsida för en elfirma?', svar: 'Hemsidan kostar 8 000, 12 000 eller 20 000 kronor beroende på paket. Underhåll kostar 500 kronor i månaden och Google-hantering 2 000 kronor i månaden, båda utan bindningstid. Ni får ett exakt pris i det kostnadsfria förslaget innan ni bestämmer er.' },
+      { fraga: 'Vad kostar en hemsida för en elfirma?', svar: 'Hemsidan kostar 10 000, 13 000 eller 25 000 kronor beroende på paket. Underhåll och grundläggande SEO kostar 500 kronor i månaden och Google-ranking 2 470 kronor i månaden, båda utan bindningstid. Ni får ett exakt pris i det kostnadsfria förslaget innan ni bestämmer er.' },
     ],
   },
   {
@@ -238,7 +238,7 @@ export const NISCHER = [
       { fraga: 'Vi får akutjobben via Google redan. Vad tillför sidan?', svar: 'De planerade jobben, som betalar bättre. Badrum, värmepump och stambyte söks i lugn och ro, och då jämför kunden sidor. Den som visar auktorisation, omdömen och riktiga bilder får samtalet.' },
       { fraga: 'Vad är Säker Vatten och ska det stå på sidan?', svar: 'Säker Vatten är branschens regelverk för VVS-installationer, och auktoriserade företag får utfärda intyg om Säker Vatteninstallation. Är ni auktoriserade ska det stå på första skärmen med länk till registret. Är ni inte det skriver vi inget om det, påhittade märkningar gör mer skada än nytta.' },
       { fraga: 'Ger VVS-arbete rotavdrag?', svar: 'Ja, arbetskostnaden för VVS-arbete i en bostad äldre än fem år ger rotavdrag: 30 procent, högst 50 000 kronor per person och år. Material ingår inte. Vi skriver det rätt på er sida med Skatteverket som källa.' },
-      { fraga: 'Vad kostar en hemsida för en VVS-firma?', svar: 'Hemsidan kostar 8 000, 12 000 eller 20 000 kronor beroende på paket. Underhåll kostar 500 kronor i månaden och Google-hantering 2 000 kronor i månaden, båda utan bindningstid. Ni får ett exakt pris i det kostnadsfria förslaget innan ni bestämmer er.' },
+      { fraga: 'Vad kostar en hemsida för en VVS-firma?', svar: 'Hemsidan kostar 10 000, 13 000 eller 25 000 kronor beroende på paket. Underhåll och grundläggande SEO kostar 500 kronor i månaden och Google-ranking 2 470 kronor i månaden, båda utan bindningstid. Ni får ett exakt pris i det kostnadsfria förslaget innan ni bestämmer er.' },
     ],
   },
   {
@@ -272,7 +272,7 @@ export const NISCHER = [
       { fraga: 'Våra kunder kommer via rekommendationer. Behövs en sida?', svar: 'Rekommendationen ger er namnet, sidan ger er jobbet. Den som fått ert namn googlar er innan de ringer, och ett sexsiffrigt beslut tas inte på en Facebook-sida med tre bilder.' },
       { fraga: 'Hur mycket rotavdrag får kunden på ett byggprojekt?', svar: '30 procent av arbetskostnaden, högst 50 000 kronor per person och år, så två ägare kan få 100 000 kronor. Material, resor och maskinhyra ingår inte, och huset ska vara äldre än fem år. Vi skriver det rätt på er sida, med Skatteverket som källa.' },
       { fraga: 'Kan vi visa pågående projekt?', svar: 'Ja. Sidan byggs så att ni kan lägga upp ett projekt med några bilder och en rad text från mobilen, utan att något byggs om. Pågående projekt är det bästa beviset på att ni har jobb.' },
-      { fraga: 'Vad kostar en hemsida för en byggfirma?', svar: 'Hemsidan kostar 8 000, 12 000 eller 20 000 kronor beroende på paket. Underhåll kostar 500 kronor i månaden och Google-hantering 2 000 kronor i månaden, båda utan bindningstid. Ni får ett exakt pris i det kostnadsfria förslaget innan ni bestämmer er.' },
+      { fraga: 'Vad kostar en hemsida för en byggfirma?', svar: 'Hemsidan kostar 10 000, 13 000 eller 25 000 kronor beroende på paket. Underhåll och grundläggande SEO kostar 500 kronor i månaden och Google-ranking 2 470 kronor i månaden, båda utan bindningstid. Ni får ett exakt pris i det kostnadsfria förslaget innan ni bestämmer er.' },
     ],
   },
   {
@@ -306,7 +306,7 @@ export const NISCHER = [
       { fraga: 'Räcker inte Google Maps och Instagram?', svar: 'Google Maps är där gästen hittar er, men profilen länkar vidare till en sida, och saknas den eller visar den fel tider tappar ni gästen där. Instagram når de som redan följer er. Sidan är det som fångar den som söker "lunch" i er stad för första gången.' },
       { fraga: 'Kan ni sköta vår Google-profil?', svar: 'Ja, det är en månadstjänst: öppettider, foton, inlägg, svar på omdömen och kontroll av att kategorin och området stämmer. Det är så Matboden i Huskvarna ligger etta på "buffé i Huskvarna".' },
       { fraga: 'Vi byter meny ofta. Blir det dyrt?', svar: 'Nej. Menyn ligger som text som ni eller vi byter på några minuter. Det ingår i underhållet, inga projekt för en ny lunchmeny.' },
-      { fraga: 'Vad kostar en hemsida för en restaurang?', svar: 'Hemsidan kostar 8 000, 12 000 eller 20 000 kronor beroende på paket. Underhåll kostar 500 kronor i månaden och Google-hantering 2 000 kronor i månaden, båda utan bindningstid. Ni får ett exakt pris i det kostnadsfria förslaget innan ni bestämmer er.' },
+      { fraga: 'Vad kostar en hemsida för en restaurang?', svar: 'Hemsidan kostar 10 000, 13 000 eller 25 000 kronor beroende på paket. Underhåll och grundläggande SEO kostar 500 kronor i månaden och Google-ranking 2 470 kronor i månaden, båda utan bindningstid. Ni får ett exakt pris i det kostnadsfria förslaget innan ni bestämmer er.' },
     ],
   },
   {
@@ -340,7 +340,7 @@ export const NISCHER = [
       { fraga: 'Vi säljer redan via en återförsäljare. Varför en egen sida?', svar: 'För att äga sökningen på ert eget namn och kunna berätta om produkten på ert sätt. Återförsäljaren visar er bredvid hundra andra. Er sida visar bara er, och skickar köparen vidare till återförsäljaren när beslutet är taget.' },
       { fraga: 'Behöver vi varukorg och betalning på sidan?', svar: 'Inte om ni redan säljer genom en butik eller återförsäljare, då länkar köpknappen dit. Vill ni sälja direkt kopplar vi en betalning som Stripe eller Klarna, och då skriver vi också villkor, ångerrätt och leveransinformation enligt distansavtalslagen.' },
       { fraga: 'Vad gäller med ångerrätt på nätet?', svar: 'Kunden har 14 dagars ångerrätt vid köp på distans enligt distansavtalslagen, och ni måste informera om den före köpet. Informerar ni inte förlängs fristen. Vissa varor är undantagna, till exempel livsmedel som snabbt blir dåliga. Vi skriver villkoren rätt och länkar till Konsumentverket.' },
-      { fraga: 'Vad kostar en säljsida?', svar: 'Hemsidan kostar 8 000, 12 000 eller 20 000 kronor beroende på paket. Underhåll kostar 500 kronor i månaden och Google-hantering 2 000 kronor i månaden, båda utan bindningstid. Ni får ett exakt pris i det kostnadsfria förslaget innan ni bestämmer er.' },
+      { fraga: 'Vad kostar en säljsida?', svar: 'Hemsidan kostar 10 000, 13 000 eller 25 000 kronor beroende på paket. Underhåll och grundläggande SEO kostar 500 kronor i månaden och Google-ranking 2 470 kronor i månaden, båda utan bindningstid. Ni får ett exakt pris i det kostnadsfria förslaget innan ni bestämmer er.' },
     ],
   },
 ];

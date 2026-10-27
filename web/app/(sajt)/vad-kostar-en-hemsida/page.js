@@ -62,7 +62,7 @@ const FRAGOR_PRIS = [
   {
     fraga: 'Vad kostar en hemsida hos er?',
     svar:
-      'Tre paket med fast pris: Basic 8 000 kr, Standard 12 000 kr och Premium 20 000 kr, alla ex moms. Vilket som passar er ser ni i det kostnadsfria förslaget, och det priset gäller. Underhåll och Google-hantering finns som tillägg per månad. Ingen bindningstid.',
+      'Tre paket med fast pris: Basic 10 000 kr, Standard 13 000 kr och Premium 25 000 kr, alla ex moms. Vilket som passar er ser ni i det kostnadsfria förslaget, och det priset gäller. Underhåll och grundläggande SEO (500 kr i månaden) och ranking på Google (2 470 kr i månaden) finns som tillägg. Ingen bindningstid.',
   },
   {
     fraga: 'Vad ingår i priset hos er?',
@@ -142,7 +142,9 @@ export default function Prisguide() {
               <p>
                 Bahko Byrå bygger ett färdigt förslag på er nya sida inom 48 timmar, med exakt
                 fast pris, och med månadsavgiften för underhåll och SEO utskriven. Ingen
-                bindningstid. Kostar ingenting att se, och ni bestämmer sen.
+                bindningstid. Kostar ingenting att se, och ni bestämmer sen. Har ni ert företag i
+                Jönköpingstrakten? Se{' '}
+                <Link href="/webbyra-jonkoping/#pris" className="textlank">vad en hemsida kostar i Jönköping</Link>.
               </p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">
