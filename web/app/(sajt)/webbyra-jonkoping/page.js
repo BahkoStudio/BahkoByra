@@ -30,6 +30,7 @@ const LOKALT = [
   {
     h: 'Kund i Jönköping, i drift',
     p: 'Smålands Måleri i Jönköping fick sin sida byggd av Bahko Byrå, med offertflöde i mobilen och ROT-texten skriven enligt Skatteverkets regler. Sidan är i drift och går att syna innan ni hör av er.',
+    lank: { href: '/case/smalands-maleri/', text: 'Läs caset om Smålands Måleri' },
   },
   {
     h: 'Hela Sverige, digitalt',
@@ -252,6 +253,11 @@ export default function Jonkoping() {
               <div key={p.h} className="kort">
                 <h3>{p.h}</h3>
                 <p>{p.p}</p>
+                {p.lank && (
+                  <Link href={p.lank.href} className={styles.kortLank}>
+                    {p.lank.text} {PIL}
+                  </Link>
+                )}
               </div>
             ))}
           </div>

@@ -23,6 +23,8 @@ const KUNDER = [
     bransch: 'Måleri · Jönköping',
     url: 'https://smamaleri.se/',
     bild: '/img/demo-smalands-maleri.webp',
+    // Hela caset på en egen undersida (noindex tills resultat och citat är ifyllda)
+    caseSida: { href: '/case/smalands-maleri/', text: 'Läs hela caset om Smålands Måleri' },
     // Kontextuell länk till ortssidan, under kortet (SEO-disken 2026-10-27)
     ortLank: {
       fore: 'Har ni också ett företag i Jönköpingstrakten? Läs om vår ',
@@ -96,6 +98,13 @@ export default function Case() {
                     <span className={styles.oppna}>Öppna sajt {PIL}</span>
                   </span>
                 </a>
+                {k.caseSida && (
+                  <p className={styles.ortRad}>
+                    <Link href={k.caseSida.href} className="textlank">
+                      {k.caseSida.text}
+                    </Link>
+                  </p>
+                )}
                 {k.ortLank && (
                   <p className={styles.ortRad}>
                     {k.ortLank.fore}
