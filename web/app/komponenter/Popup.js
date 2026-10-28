@@ -10,7 +10,7 @@ import Quiz from './Quiz';
 // och aldrig mitt i ett formulär. Innehållet är quizen Var läcker jobben.
 const FORDROJNING = 30;
 const NYCKEL = 'bb_popup_sedd';
-const TYST = /^[/](kontakt|tack|integritet|var-lacker-jobben)/;
+const TYST = /^[/](kontakt|tack|integritet|var-lacker-jobben|forslag)/;
 
 function sedd() {
   try {
