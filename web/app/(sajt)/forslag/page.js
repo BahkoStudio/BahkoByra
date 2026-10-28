@@ -1,4 +1,3 @@
-import Maskot from '../../komponenter/Maskot';
 import ForslagFormular from './ForslagFormular';
 import kontaktStil from '../kontakt/kontakt.module.css';
 import styles from './forslag.module.css';
@@ -123,8 +122,16 @@ export default function Forslag() {
       <section>
         <div className="wrap">
           <div className={styles.jag}>
-            {/* Foto på Mathias (samma som LinkedIn) saknas i repot. Maskoten står där tills fotot finns. */}
-            <Maskot pose="vinkar" stil="stor" alt="Bahko-maskoten vinkar" />
+            {/* Mathias valde fotot 2026-10-28 (stillbild ur hans video). 800x1000 webp, visas cirka 220 px brett. */}
+            <img
+              src="/img/mathias-bahko.webp"
+              alt="Mathias Bahko, Bahkobyrå"
+              width="800"
+              height="1000"
+              loading="lazy"
+              decoding="async"
+              className={styles.foto}
+            />
             <div>
               <h2 className={styles.jagRubrik}>Vem jag är</h2>
               <p>
