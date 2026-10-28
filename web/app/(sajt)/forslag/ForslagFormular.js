@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import DemoFormular from '../../komponenter/DemoFormular';
 import { NYCKEL_KONTAKT } from '../../formular';
 import kontaktStil from '../kontakt/kontakt.module.css';
@@ -115,7 +116,8 @@ export default function ForslagFormular() {
       <p className={styles.integritet}>
         Jag använder uppgifterna bara för att skicka ditt förslag. Inget nyhetsbrev, och jag delar
         dem inte med någon. Vill du att jag raderar dem räcker ett mejl till{' '}
-        <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a>.
+        <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a>.{' '}
+        <Link href="/integritet/">Så hanterar jag uppgifterna</Link>.
       </p>
     </DemoFormular>
   );

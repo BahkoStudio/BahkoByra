@@ -28,10 +28,10 @@ const TITTAR = [
 ];
 
 const FAR = [
-  { h: 'Video först.', p: 'Kunden ser ert jobb innan hen läser ett ord.' },
+  { h: 'Video först.', p: 'Kunden ser ditt jobb innan hen läser ett ord.' },
   { h: 'Snabb i mobilen.', p: 'Sidan laddar direkt.' },
-  { h: 'Byggd som kunden bestämmer sig.', p: 'Det som får hen att välja just er står högst upp.' },
-  { h: 'Orden folk skriver i Google.', p: 'Så att ni syns där de letar.' },
+  { h: 'Byggd som kunden bestämmer sig.', p: 'Det som får hen att välja just dig står högst upp.' },
+  { h: 'Orden folk skriver i Google.', p: 'Så att du syns där de letar.' },
   { h: 'Mejl som jobbar efteråt.', p: 'Den som frågade blir kund. Den som blev kund kommer tillbaka.' },
   { h: 'Underhåll varje månad.', p: 'Jag sköter sidan och håller den uppdaterad.' },
 ];
