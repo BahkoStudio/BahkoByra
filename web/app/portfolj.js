@@ -1,4 +1,4 @@
-/** Portföljen på startsidan: fyra kundsajter i drift och två demos. Ortsangivelsen är
+/** Portföljen på startsidan: fem kundsajter och två demos. Ortsangivelsen är
     KUNDENS ort; byrån sitter i Huskvarna, nära Jönköping, och har kunder i hela Sverige.
     Vajje Bygg togs bort 2026-09-23: en riktig firma som tackat nej ska inte stå som portfölj.
     Korttexterna är en rad var och säger vad sidan GÖR för firman, inte hur
@@ -42,6 +42,18 @@ export const PORTFOLJ = [
     // Bild: beskuren ur sajtens egen hero-poster (web/public/gdmaleri/media/poster-hero.jpg).
     bild: '/img/portfolj/gdmaleri.jpg',
     rad: 'Egna sidor för fasad, tak, invändigt, golv och BRF, och ROT på fakturan.',
+  },
+  {
+    namn: 'Proffsmaskiner',
+    kategori: 'Maskinuthyrning · kund i Sollentuna',
+    kort: 'Maskiner',
+    adress: 'proffsmaskiner.se',
+    typ: 'kund',
+    // Kund sedan 2026-10-28. Pekar på bahkobyra.se/proffsmaskiner/ tills DNS för proffsmaskiner.se
+    // är omlagt till Vercel; byt då till 'https://proffsmaskiner.se/'.
+    url: '/proffsmaskiner/',
+    bild: '/img/portfolj/proffsmaskiner.jpg',
+    rad: 'Rätt maskin levererad till arbetsplatsen, med offert i mobilen.',
   },
   {
     namn: "Mayka's Kitchen",

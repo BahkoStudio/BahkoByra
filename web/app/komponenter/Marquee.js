@@ -27,6 +27,11 @@ const KUNDER = [
     rad: 'Etta på "trädgårdsservice i Stockholm", 30 juli 2026',
   },
   {
+    namn: 'Proffsmaskiner Sverige AB',
+    bild: { src: '/img/kunder/proffsmaskiner.svg', w: 255, h: 142 },
+    rad: 'Ny hemsida, maskinuthyrning i Sollentuna',
+  },
+  {
     namn: 'GD Måleri, Stockholm',
     bild: { src: '/img/kunder/gdmaleri.webp', w: 341, h: 320, kvadrat: true },
     rad: 'GD Måleri: hemsida och Google, Stockholm',

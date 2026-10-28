@@ -2,12 +2,16 @@ import Image from 'next/image';
 import localFont from 'next/font/local';
 import styles from './proffsmaskiner.module.css';
 import DemoFormular from '../../komponenter/DemoFormular';
+import { arKunddoman } from './kunddoman';
 
 /* ===========================================================================
-   PROFFSMASKINER SVERIGE AB — kostnadsfritt hemsideförslag från Bahko Byrå
-   Lead: instagram.com/proffsmaskinerab · Sollentuna · VARM: bad om förslag i
-   DM 2026-09-09 · HAR hemsida (proffsmaskiner.se, WordPress/Elementor av
-   Weblab, stockfoton) — förslaget ska slå den.
+   PROFFSMASKINER SVERIGE AB — hemsida för en betalande kund (avtal 2026-10-06,
+   kund 2026-10-28: 15 000 kr i två delar + 3 500 kr/mån), Bahko Byrå.
+   Byggd som förslag 2026-09-11 (lead från instagram.com/proffsmaskinerab, Sollentuna);
+   Peter är nöjd med sidan som den är, bilder och filmer byts bara på hans begäran.
+   Kunddomänen proffsmaskiner.se serveras härifrån via web/middleware.js när DNS pekats om
+   (gamla sajten: WordPress/Elementor av Weblab). På kunddomänen indexeras sidan med canonical
+   https://proffsmaskiner.se/ och utan demorutan; på bahkobyra.se/proffsmaskiner/ noindex.
    Byggd på golvvision-kanon (via rskompakt) med hero som före/efter-effekt.
 
    Bärande idé: deras egen mening "Alltid rätt maskin när du behöver den".
@@ -73,12 +77,23 @@ const ui = localFont({
   variable: '--pm-ui',
 });
 
-export const metadata = {
+const META = {
   title: 'Proffsmaskiner Sverige AB — maskinuthyrning i Sollentuna och Stockholm',
   description:
-    'Hyr minigrävare, liftar, bodar, håltagning, elförsörjning och byggmaskiner i Sollentuna. Leverans till arbetsplatsen, rengöring ingår, 0 kr i dolda avgifter. Förslag på hemsida från Bahko Byrå.',
-  robots: { index: false, follow: false },
+    'Hyr minigrävare, liftar, bodar, elverk och håltagningsmaskiner i Sollentuna och Stockholm. Levererat till arbetsplatsen, servat före varje uthyrning, ersättningsmaskin om något går sönder.',
 };
+
+// Kunddomänen: indexeras med canonical proffsmaskiner.se. På bahkobyra.se/proffsmaskiner/: noindex.
+export async function generateMetadata() {
+  return (await arKunddoman())
+    ? { ...META, alternates: { canonical: 'https://proffsmaskiner.se/' }, robots: { index: true, follow: true } }
+    : { ...META, robots: { index: false, follow: false } };
+}
+
+// Web3Forms-nyckel för info@proffsmaskiner.se. TOM tills Peter verifierat sin egen nyckel
+// (web3forms.com med info@proffsmaskiner.se, bekräftelselänken går till den adressen); tom = demonyckeln,
+// så förfrågningarna landar hos Mathias och vidarebefordras tills dess. Nyckeln är publik av design.
+const KUND_NYCKEL = '';
 
 const TEL = '08-545 899 90';
 const TEL_HREF = 'tel:+46854589990';
@@ -290,7 +305,12 @@ export default function ProffsmaskinerDemo() {
                 <a className={styles.kontaktRad} href={IG} target="_blank" rel="noopener"><span>Instagram</span><b>@proffsmaskinerab</b></a>
               </div>
             </div>
-            <DemoFormular className={styles.form} amne="Proffsmaskiner - hyresförfrågan">
+            <DemoFormular
+              className={styles.form}
+              amne={KUND_NYCKEL ? null : 'Proffsmaskiner - hyresförfrågan (kundsajt)'}
+              fran={KUND_NYCKEL ? 'Proffsmaskiner Sverige AB' : undefined}
+              nyckel={KUND_NYCKEL || undefined}
+            >
               <label>Företag<input type="text" name="foretag" autoComplete="organization" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valfritt)<input type="email" name="epost" autoComplete="email" /></label>
@@ -318,8 +338,7 @@ export default function ProffsmaskinerDemo() {
       <span className={styles.stangdAnkare} id="stangd" />
       <input type="checkbox" id="popup-bort" className={styles.popupBort} aria-hidden="true" tabIndex={-1} />
       <aside className={styles.popup} aria-label="Kontakta Proffsmaskiner"><label className={styles.popupX} htmlFor="popup-bort" role="button" aria-label="Stäng" tabIndex={0}>✕</label><p className={styles.popupEyebrow}>Maskin till måndag?</p><p className={styles.popupTxt}>Ring så säger vi vad vi kan leverera, och när. Inget konto, inga dolda avgifter.</p><a className={`${styles.btn} ${styles.popupCta}`} href={TEL_HREF}>Ring {TEL}</a><a className={styles.popupAlt} href="#kontakt">Eller skriv några rader →</a></aside>
-      <a className={styles.demoKnapp} href="#bahko-demo">Om det här förslaget</a>
-      <div className={styles.modalLager} id="bahko-demo"><a className={styles.modalSkugga} href="#stangd" tabIndex={-1} aria-hidden="true" /><section className={styles.modal} aria-labelledby="bahko-rubrik"><a className={styles.modalX} href="#stangd" aria-label="Stäng">✕</a><span className={styles.modalBadge}>Förslag av Bahko Byrå</span><h3 id="bahko-rubrik">Så här kan Proffsmaskiner se ut på nätet</h3><p>Det här är ett kostnadsfritt förslag, byggt på det ni själva visar på proffsmaskiner.se och Instagram. Ingen beställning, inget åtagande. Vill ni se den skarpt med era egna maskiner, kundportalen inkopplad och ett formulär som landar i inkorgen? Boka ett kostnadsfritt 15-minuterssamtal med Mathias.</p><a className={styles.modalCta} href="https://cal.eu/bahkobyra/15min" target="_blank" rel="noopener">Boka 15 min kostnadsfritt samtal →</a><a className={styles.modalAlt} href="mailto:mathias@bahkobyra.se?subject=Proffsmaskiner%20-%20f%C3%B6rslag%20p%C3%A5%20hemsida">Eller mejla → mathias@bahkobyra.se</a><span className={styles.modalFot}>Bahko Byrå · Synlighet som säljer.</span></section></div>
+      {/* Demorutan "Om det här förslaget" är borta: Proffsmaskiner är kund sedan 2026-10-28 (samma beslut som för Kakel 0413). */}
     </div>
   );
 }
