@@ -32,13 +32,13 @@ import DemoSida from '../_mall/DemoSida';
    - Formuläret går till mathias@bahkobyra.se (demonyckeln).
    - ALLA BILDER ÄR FRIA BILDBANKSFOTON (Pexels), inte deras egna och inte
      genererade. Märkt under jobbanden. Personerna är modeller, inte personal.
-   - Hero: långsam zoom (ffmpeg) över ett Pexels-foto, ingen Higgsfield (0 USD).
+   - Hero: långsam zoom (ffmpeg) över ett Pexels-foto (6197121), Varför-film över Pexels 7533927, ingen Higgsfield (0 USD).
      Stående mobilfilm = utsnitt av den liggande.
    - Ingen logotyp: ordmärke. Inga omdömen: sektionen visar inga kort.
    =========================================================================== */
 
 export const metadata = {
-  title: 'Byggstädning och lokalvård i Malmö — Golden Städservice',
+  title: 'Byggstädning och lokalvård i Malmö | Golden Städservice',
   description:
     'Byggstädning och lokalvård i Malmö. Golden Städservice städar bort byggdamm och skräp efter bygget och håller lokalen ren. Ring 070-665 60 03 eller be om offert.',
   robots: { index: false, follow: false },
@@ -81,7 +81,7 @@ const data = {
   cta: { txt: 'Be om offert', kort: 'Be om offert', lank: 'Be om offert' },
   nav: {
     vanster: [{ href: '#tjanster', txt: 'Städning' }, { href: '#process', txt: 'Så går det till' }],
-    hoger: [{ href: '#fragor', txt: 'Frågor' }, { href: '#kontakt', txt: 'Kontakt' }],
+    hoger: [{ href: '#om', txt: 'Om oss' }, { href: '#fragor', txt: 'Frågor' }],
   },
 
   hero: {
@@ -92,7 +92,7 @@ const data = {
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
   },
-  tejp: ['Byggstädning', 'Malmö', 'Lokalvård', 'Efter bygget', 'Städfirma Malmö', 'Rena lokaler', 'Byggdamm bort', 'Skåne'],
+  tejp: ['Byggstädning', 'Malmö', 'Lokalvård', 'Efter bygget', 'Städföretag Malmö', 'Rena lokaler', 'Byggdamm bort', 'F-skatt'],
 
   tjanster: {
     eyebrow: 'Städning i Malmö',
@@ -137,19 +137,20 @@ const data = {
     not: 'Illustrationsbilder från bildbank. Byts mot era egna foton.',
     tid: '60s',
     rad1: [
-      { src: `${M}/jobb-a0.jpg`, alt: 'Städare i orange arbetskläder fyller en hink vid en köksö', txt: 'Kök' },
-      { src: `${M}/jobb-a1.jpg`, alt: 'Städare moppar golvet i ett ljust kök', txt: 'Golv' },
-      { src: `${M}/jobb-a2.jpg`, alt: 'Städare torkar glas i ett kök med matbord', txt: 'Glasytor' },
-      { src: `${M}/jobb-a3.jpg`, alt: 'Person i handskar torkar av ett träbord', txt: 'Ytor' },
-      { src: `${M}/jobb-a4.jpg`, alt: 'Gul handske torkar en duschvägg', txt: 'Badrum' },
+      { src: `${M}/jobb-rum-under-renovering.jpg`, alt: 'Rum under renovering med stege, verktyg och nytt trägolv', txt: 'Under bygget' },
+      { src: `${M}/jobb-renovering-dammsugare.jpg`, alt: 'Grovdammsugare och verktyg på golvet i ett rum som renoveras', txt: 'Byggdamm' },
+      { src: `${M}/jobb-efter-renovering.jpg`, alt: 'Nyrenoverat badrum med rör och lite skräp kvar på golvet', txt: 'Efter renoveringen' },
+      { src: `${M}/jobb-hink-mopp.jpg`, alt: 'Orange hink med en blå trasa och en mopp mot en ljusblå vägg', txt: 'Golv' },
+      { src: `${M}/jobb-fonster-spray.jpg`, alt: 'Händer i gummihandskar sprayar och torkar en fönsterruta', txt: 'Glas' },
+      { src: `${M}/jobb-handskar-svamp.jpg`, alt: 'Händer i gula handskar håller en svamp och en sprayflaska', txt: 'Detaljer' },
     ],
     rad2: [
-      { src: `${M}/jobb-b0.jpg`, alt: 'Städare med städvagn i en stor ljus hall', txt: 'Lokaler' },
-      { src: `${M}/jobb-b1.jpg`, alt: 'Städare moppar golvet i ett lager', txt: 'Stora golv' },
-      { src: `${M}/jobb-b2.jpg`, alt: 'Städare torkar ett högt fönster med skaft', txt: 'Höga fönster' },
-      { src: `${M}/jobb-b3.jpg`, alt: 'Städare torkar en fönsterkarm', txt: 'Karmar' },
-      { src: `${M}/jobb-b4.jpg`, alt: 'Man drar en skrapa över ett skyltfönster', txt: 'Skyltfönster' },
-      { src: `${M}/jobb-b5.jpg`, alt: 'Städare med mopp i ett ljust rum', txt: 'Slutstäd' },
+      { src: `${M}/jobb-stadvagn-hall.jpg`, alt: 'Städare med städvagn i en stor ljus hall', txt: 'Lokaler' },
+      { src: `${M}/jobb-mopp-lager.jpg`, alt: 'Städare moppar golvet i ett lager', txt: 'Stora golv' },
+      { src: `${M}/jobb-torka-bord.jpg`, alt: 'Person i handskar torkar av ett träbord', txt: 'Ytor' },
+      { src: `${M}/jobb-sovrum-spray.jpg`, alt: 'Man torkar en glasvägg med sprayflaska och svamp', txt: 'Glasväggar' },
+      { src: `${M}/jobb-dusch.jpg`, alt: 'Gul handske torkar en duschvägg', txt: 'Badrum' },
+      { src: `${M}/jobb-skyltfonster.jpg`, alt: 'Man drar en skrapa över ett skyltfönster', txt: 'Skyltfönster' },
     ],
   },
 
@@ -165,7 +166,7 @@ const data = {
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Långsam inzoomning över ett städteam i ett ljust vardagsrum. Filmen slutar med namnet Golden Städservice.',
+    videoAlt: 'Långsam inzoomning över ett tomt, rent rum med ljust golv. Filmen slutar med namnet Golden Städservice.',
   },
 
   om: {
@@ -197,9 +198,10 @@ const data = {
 
   omdomen: {
     eyebrow: 'Omdömen',
-    rubrik: ['Vad kunderna', 'säger'],
+    rubrik: ['Omdömen', 'från våra kunder'],
+    lead: 'Vill du veta hur vi jobbar? Ring oss, så berättar vi om tidigare uppdrag.',
     lista: [],
-    not: 'Här visas era riktiga Google-omdömen när profilen är kopplad.',
+    not: 'Omdömen publiceras här när de finns.',
   },
 
   fragor: {

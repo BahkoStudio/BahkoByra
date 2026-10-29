@@ -25,9 +25,10 @@ Egen hemsida, Instagram, Facebook, Google-profil, e-post, logotyp, omdömen, ort
 
 ## Media
 
-- **Inga egna bilder finns.** Alla bilder är fria Pexels-foton (id 6197121, 6195125, 7641552, 36303748, 10567236, 6195111, 6197116, 6197117, 9462157, 4239099, 34516670, 209271, 6197122, 6197124, 8811390, 6197123), märkta "Illustrationsbilder från bildbank" under jobbanden. Personerna är modeller, inte personal.
+- **Inga egna bilder finns.** Alla bilder är fria Pexels-foton, märkta "Illustrationsbilder från bildbank" under jobbanden. Hero 6197121, Varför-film 7533927 (tomt rent rum), tjänster 7641552, 36303748, 10567236, jobband 12585524, 28576636, 4440540, 9462157, 3616746, 9908376, 34516670, 209271, 7641244, 5691486, 8811390, 4239099. Varierade i designloopen 2026-10-29 så att samma orange team bara syns i heron.
 - gbygg24.se har bara byggjobb (tak, kök, golv, måleri, snickeri) plus en byggstädbild som ser ut som bildbank. Inte lånade.
-- Hero: långsam ffmpeg-zoom över Pexels 6197121, mobil = stående utsnitt av samma klipp. Varför-film: zoom över 6195125 + ordmärkeskort. Ingen Higgsfield (inget eget foto att animera).
+- Hero: långsam ffmpeg-zoom över Pexels 6197121, mobil = stående utsnitt av samma klipp. Varför-film: zoom över 7533927 + ordmärkeskort.
+- Designloop 2026-10-29 (3 varv): tankstreck i titeln och ordet "Städfirma" bort, Kontakt-dubblett i menyn bytt mot Om oss, "Skåne" (overifierat) bort ur bandet, jobbanden varierade, omdömessektionen fick ärlig copy utan påhittade omdömen. Ingen Higgsfield (inget eget foto att animera).
 - Ingen logotyp: ordmärke "Golden Städservice". Färg guld/marin i linje med Golden Byggservices logga.
 
 ## Säljvinklar
