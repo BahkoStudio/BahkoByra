@@ -166,7 +166,7 @@ const data = {
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Långsam inzoomning över ett tomt, rent rum med ljust golv. Filmen slutar med namnet Golden Städservice.',
+    videoAlt: 'Långsam inzoomning över ett tomt, rent rum med ljust golv. Filmen slutar med Golden Städservice logotyp.',
   },
 
   om: {
