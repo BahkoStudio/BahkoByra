@@ -30,8 +30,9 @@ import DemoSida from '../_mall/DemoSida';
 
    FLAGGOR:
    - Formuläret går till mathias@bahkobyra.se (demonyckeln).
-   - ALLA BILDER ÄR FRIA BILDBANKSFOTON (Pexels), inte deras egna och inte
-     genererade. Märkt under jobbanden. Personerna är modeller, inte personal.
+   - ALLA BILDER UTOM HERO-VIDEON ÄR FRIA BILDBANKSFOTON (Pexels), inte deras
+     egna. Hero-videon är AI-genererad (Wan 3.0 Prime) från ett Pexels-foto.
+     Märkt under jobbanden. Personerna är modeller, inte personal.
    - Hero: AI-film, Higgsfield Wan 3.0 Prime (1080p, 5 s, image-to-video från Pexels-foto 6197121), 0,56 USD. Varför-film över Pexels 7533927.
      Stående mobilfilm = stående utsnitt (ffmpeg, centrerat på städaren) av den liggande.
    - Ingen logotyp: ordmärke. Inga omdömen: sektionen visar inga kort.
