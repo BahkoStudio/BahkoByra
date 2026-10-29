@@ -50,8 +50,10 @@ import DemoSida from '../_mall/DemoSida';
 
    FLAGGOR:
    - Formuläret går till mathias@bahkobyra.se (demonyckeln).
-   - Hero-filmen är den gamla demons genererade förvandling (rostigt rör → relinat rör),
-     4 + 4 sekunder med kort övergång. Illustration, inte deras rör. Står inte på sidan.
+   - Hero-filmen är en genererad förvandling (Qwen A→B + Wan 3.0 Prime 5 s, 2026-10-29,
+     0,71 USD): ett uppsågat gjutjärnsrör i en källare där strumpan förs in och härdar till
+     ett nytt rör. Illustration, inte deras rör. Står inte på sidan. Den gamla demons klipp
+     ratades av Mathias ("heros videon är inte bra").
    - Varför-filmen: deras eget foto (verkstadsbilen) i långsam inzoomning + logokort.
      Kontaktfilmen: heron nedskalad och suddad. 0 USD i media.
    - Alla stillbilder är deras egna (foton och bildrutor ur deras filmklipp). Ansikten
