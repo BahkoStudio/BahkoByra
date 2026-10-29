@@ -63,7 +63,7 @@ const schema = {
 
 const data = {
   namn: 'Golden Städservice',
-  ordmarke: 'Golden Städservice',
+  logo: { src: `${M}/logo.svg`, ljus: `${M}/logo-ljus.svg`, w: 1067, h: 270, alt: 'Golden Städservice 24', topp: 'fri' },
   tema: {
     mork: '#0E1A2B',
     accent: '#E8B23A',
