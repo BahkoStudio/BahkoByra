@@ -230,7 +230,7 @@ export const NISCHER = [
       typ: 'demo',
       namn: 'Asmar Relining',
       ort: 'Demo, relining och VVS',
-      url: 'https://www.bahkobyra.se/cloud/asmar/',
+      url: 'https://www.bahkobyra.se/asmar/',
       bild: '/img/portfolj/asmar.jpg',
       text: 'Asmar Relining är en demo vi byggt för att visa hur en VVS-sida kan se ut: ett rör inifrån, före och efter, utan att gräva, med offertknappen synlig hela vägen. Ingen riktig kund står bakom den, det står utskrivet. Ert förslag byggs på samma sätt, med era jobb, er auktorisation och er ort.',
     },

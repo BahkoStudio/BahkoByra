@@ -57,7 +57,7 @@ const KUNDER = [
 
 const DEMOS = [
   { namn: 'GRANIT Bygg', bransch: 'Bygg & entreprenad', url: '/cloud/bygg/', bild: '/img/demo-granit-bygg.webp' },
-  { namn: 'Asmar Relining', bransch: 'Relining & VVS', url: '/cloud/asmar/', bild: '/img/demo-asmar-relining.webp' },
+  { namn: 'Asmar Relining', bransch: 'Relining & VVS', url: '/asmar/', bild: '/img/demo-asmar-relining.webp' },
 ];
 
 export default function Case() {

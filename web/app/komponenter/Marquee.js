@@ -8,8 +8,8 @@ import styles from './Marquee.module.css';
    det vi gör åt dem. Inga procent, inga löften. Bältet står still tills besökaren
    scrollat (design-loopen runda 4: på första skärmen får inget vibrera).
 
-   Loggorna kommer från kundernas egna sajter. CK Måleri och Mayka Gulo har ordmärken i
-   stället för bildloggor, så de sätts i text. */
+   Loggorna kommer från kundernas egna sajter. Mayka Gulo har ett ordmärke i stället för
+   bildlogga, så det sätts i text. (CK Måleri togs bort 2026-10-29: backade i sista stund.) */
 const KUNDER = [
   {
     namn: 'Matboden i Huskvarna',
@@ -27,14 +27,14 @@ const KUNDER = [
     rad: 'Etta på "trädgårdsservice i Stockholm", 30 juli 2026',
   },
   {
+    namn: 'Proffsmaskiner Sverige AB',
+    bild: { src: '/img/kunder/proffsmaskiner.svg', w: 255, h: 142 },
+    rad: 'Ny hemsida, maskinuthyrning i Sollentuna',
+  },
+  {
     namn: 'GD Måleri, Stockholm',
     bild: { src: '/img/kunder/gdmaleri.webp', w: 341, h: 320, kvadrat: true },
     rad: 'GD Måleri: hemsida och Google, Stockholm',
-  },
-  {
-    namn: 'CK Måleri & Golv',
-    ord: 'CK Måleri & Golv',
-    rad: 'Hemsida och Google, golv i Uddevalla',
   },
   {
     namn: 'Mayka Gulo',
