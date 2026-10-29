@@ -32,8 +32,8 @@ import DemoSida from '../_mall/DemoSida';
    - Formuläret går till mathias@bahkobyra.se (demonyckeln).
    - ALLA BILDER ÄR FRIA BILDBANKSFOTON (Pexels), inte deras egna och inte
      genererade. Märkt under jobbanden. Personerna är modeller, inte personal.
-   - Hero: långsam zoom (ffmpeg) över ett Pexels-foto (6197121), Varför-film över Pexels 7533927, ingen Higgsfield (0 USD).
-     Stående mobilfilm = utsnitt av den liggande.
+   - Hero: AI-film, Higgsfield Wan 3.0 Prime (1080p, 5 s, image-to-video från Pexels-foto 6197121), 0,56 USD. Varför-film över Pexels 7533927.
+     Stående mobilfilm = stående utsnitt (ffmpeg, centrerat på städaren) av den liggande.
    - Ingen logotyp: ordmärke. Inga omdömen: sektionen visar inga kort.
    =========================================================================== */
 
