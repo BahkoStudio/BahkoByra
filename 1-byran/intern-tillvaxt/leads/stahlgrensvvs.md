@@ -22,35 +22,44 @@ Mathias skrev `fredik@stahlgrensvvs.se`. Rätt stavning är **fredrik@stahlgrens
 | Certifiering | **Säker Vatten:** "Vi följer 'branschregler säker vatteninstallation' och är ett Auktoriserat VVS företag" + märket "Auktoriserat VVS-företag" på sajten; Säker Vattens register: "Auktoriserad sedan 2013" | sajten, sakervatten.se |
 | IVT | "auktoriserad återförsäljare och installatör för hela IVTs sortiment av värmepumpar", behovsanalys, installation och service | sajten |
 | Tjänster | Badrumsrenovering; privat: service, nybyggnad/ombyggnad, ROT; BRF/fastighet: stambyte, nyproduktion, renoveringar, tillbyggnation, service- och underhållsavtal; entreprenad (underentreprenör); värmesystem: IVT-pumpar (berg, sjö, ytjord, luft/vatten, frånluft), fjärrvärme, sol, ved och pellets | sajten |
-| Historia | "auktoriserat service- och installationsföretag med 50-åriga anor", "Vi började redan under tidigt 70-tal med installationer av kompletta värmesystem", firmabilen "EST. 1972" | sajten, IG |
+| Historia | "auktoriserat service- och installationsföretag med 50-åriga anor", "Vi började redan under tidigt 70-tal med installationer av kompletta värmesystem", Vår historia: "1972 valde Toivo att gå sin egen väg och startade då sin egna firma Ståhlgrens VVS Service", "1987 registrerades bolaget som Ståhlgrens VVS Service AB", "2022 var det dags för 50-års jubileum"; firmabilen "EST. 1972" | sajten (om-oss/var-historia), IG |
+| Pris och hembesök (ordagrant) | "Om det gäller mindre servicearbeten kan man oftast få svar direkt via en kontakt med oss. Större installationer kräver kanske ett kostnadsfritt hembesök för att vi skall kunna leverera en korrekt prisbild." · "kontakta oss gärna för kostnadsfri rådgivning. Konsultation genom hembesök går även att boka mot vår gällande timdebitering." | sajten, Frågor & svar |
 | Egna fraser | "Ståhlgrens VVS, med finess", "Vi installerar dessutom allt vi säljer … vår garanti gäller både tjänsten och produkterna i en installation", "moderna och välutrustade servicebilar", kostnadsfri rådgivning, kostnadsfritt hembesök vid större installationer, faktura med 10 dagars kredit, ROT direktreglerat | sajten |
 | Omdömen | **Google 4,6 av 5, 12 recensioner** (10 × 5, 1 × 4, 1 × 1), läst 2026-10-30 med Playwright. På sidan: John Enoch, Ivan Letterfors, Thomas Gunnarsson (alla 5), ordagrant eller kortade | Google Maps |
 
 ## Inte verifierat → inte på sidan
 
-Öppettider (Google säger bara "öppnar kl. 07"), jour, priser (erbjudandena på sajten, blandare 4 900 kr och wc-stol 6 950 kr, är från 2024), antal anställda (sajten 10/7 montörer, Säker Vatten 8/6, allabolag 9), ledtider, garantitider, Facebook (sajtens Facebook- och Twitter-ikoner går bara till facebook.com och twitter.com). "Sedan 1972" är deras egen uppgift; aktiebolaget registrerades 1987.
+Öppettider (Google säger bara "öppnar kl. 07"), jour, priser (erbjudandena på sajten, blandare 4 900 kr och wc-stol 6 950 kr, är från 2024), antal anställda (sajten 10/7 montörer, Säker Vatten 8/6, allabolag 9), ledtider, garantitider, Facebook (sajtens Facebook- och Twitter-ikoner går bara till facebook.com och twitter.com). Startåret 1972 står i deras historia (Toivo startade firman, AB 1987) och nämns bara så, i Om oss. Rubriker, bandet och bevisen säger "50-åriga anor" och "tidigt 70-tal".
 
 ## Media (0,43 USD)
 
 - **Herofilmen är GENERERAD** (illustration, ingen not på sidan): Qwen Image 3 A (gammalt 70-talsbadrum med korroderade kopparrör) 0,075 USD → Qwen B (samma rum, nytt badrum) 0,075 USD → Wan 3.0 Prime 720p 5 s 0,28 USD (rör ut, nya rör i väggen, kakel, inredning). Uppskalad till 1920 lokalt, 1,5 s stillbild på slutet. Mobil = stående utsnitt. Kontaktfilmen = samma film suddad.
 - **Varför-filmen:** deras eget gruppfoto vid Vättern (`wp-content/uploads/2022/12/Gruppfoto-Farg`, ligger i sajtens mediabibliotek men länkas inte i menyn) i långsam inzoomning + logokort.
 - **Jobbilder (3 utvalda + 10 i banden) och badrumskortet:** från fyra **samarbetsinlägg** på Instagram som ägs av **@sandinselservice** (elektriker) och ligger på Ståhlgrens flöde ("Ännu ett trevligt projekt tillsammans med @stahlgrens_vvs"). Märkt i `jobb.not`. Fråga Fredrik att det är okej och om de har egna bilder.
-- **Servicekortet, BRF-kortet och servicebilen i bandet:** deras egna foton ur sajtens mediabibliotek (montör under diskbänk, montör med borrmaskin, montör vid servicebilen).
-- **Värmekortet (termostat):** ligger på deras sajt men är en Pixabay-bild.
-- **Instagram-sektionen:** tre samarbetsinlägg (DaFohOlCO_G, DWHfnyOjVx9, DU_VK_7jRa0). Inbäddningen visar "sandinselservice and stahlgren…" överst. Ståhlgrens egna inlägg är jobbannonser, semesterstängt och en IVT-kampanj, inga arbetsbilder.
+- **Tjänstekorten (runda 1 i kundloopen):** bara deras egna foton ur sajtens mediabibliotek. Service = montör i Ståhlgrens-tröja med tång (`2025/04/20250423_112043`), Värme = montör med borrmaskin vid ett element (förut BRF-kortet), BRF = montör med hörselskydd under rören (`2022/12/DSC00064-2`). Termostaten (Pixabay) och Robin-porträttet (såg bildbank ut) är borta. Servicebilen i jobbandet är också deras egen.
+- **Instagram-sektionen är borttagen** (runda 1): inbäddningarna visade @sandinselservice som avsändare, och Ståhlgrens egna inlägg är AI-gjorda bilder (superhjälte- och rymdannonser för jobb, semesterskylt) plus ett foto av firmabilen. Inga egna arbetsbilder att visa i IG-ram. Profilen länkas i kontaktsektionen och sidfoten. QA körs med `ingen`.
 - **Logotypen** finns bara som 282×74 px på sajten: uppskalad 4×, kanter skärpta, färgerna låsta till svart och blått (#0097D8). Ljus variant: vit text, VVS-skuggan mörk. Å-ringen flyter ihop i originalet. **Be om vektorfilen.**
 - Inga lånade bilder ur andra demos. 27 filer, 27 unika md5.
 
 ## Sidan
 
-- **Bärande idé:** "Snyggt utanpå, säkert bakom väggen". Det som syns i ett nytt badrum är kakel och spegel, det som avgör om det håller är rören bakom väggen. Auktoriserat VVS-företag enligt Säker Vatten, VVS och värme sedan början av 70-talet. Herofilmen visar just det.
+- **Bärande idé:** "Snyggt utanpå, säkert bakom väggen". Det som syns i ett nytt badrum är kakel och spegel, det som avgör om det håller är rören bakom väggen. Auktoriserat VVS-företag enligt Säker Vatten, värmesystem sedan tidigt 70-tal. Herofilmen visar just det. Sedan runda 1 står idén som tjänsternas rubrik (skärm 2), med Google 4,6 (12) och Säker Vatten sedan 2013 i första meningen; Varför-rubriken är "Det som håller sitter bakom kaklet".
+- **Tjänstebandet:** bevis i stället för lösa ord: 4,6 av 5 på Google · Badrum · Säker Vatten sedan 2013 · Värmepumpar · IVT-auktoriserad · Jönköping · VVS sedan tidigt 70-tal · Huskvarna (bevisen på de fyllda platserna).
+- **Mobilmenyn** har "Ring 036-14 16 29" (`nav.extra`).
 - **Hero:** logotypen, "Jönköping & Huskvarna", "VVS & Badrum.". CTA "Begär offert".
 - **Tema** ur logotypens blå: mork #0A1A2A (lum 0,0097), accent #0072AE (vit text 5,23:1), accentText #006BA6 (5,24:1 mot kräm), accentLjus #38B6F0 (7,64:1 mot mork).
 - Google-brickan 4,6 / 12 länkar till Google-profilen. JSON-LD `Plumber` med org.nr och adress.
 
 ## QA 2026-10-30
 
-`qa.mjs stahlgrensvvs/ 3045 "Ståhlgrens" "Delles|Golden|Maximum Platt|lorem" ja inbaddat`: **109 OK, 0 fel** (dator, mobil, 768, 1100, minskad rörelse). Skärmbilderna granskade (hero 1440/390, tjänster, jobb, Varför + slutbild, Om, omdömen, Instagram). Efter granskningen byggdes den ljusa logotypen om (VVS-skuggan mörk i stället för vit), sedan nytt bygge och ny QA.
+`qa.mjs stahlgrensvvs/ 3045 "Ståhlgrens" "Delles|Golden|Maximum Platt|lorem" ja inbaddat` (första bygget; från runda 1 `ingen`): **109 OK, 0 fel** (dator, mobil, 768, 1100, minskad rörelse). Skärmbilderna granskade (hero 1440/390, tjänster, jobb, Varför + slutbild, Om, omdömen, Instagram). Efter granskningen byggdes den ljusa logotypen om (VVS-skuggan mörk i stället för vit), sedan nytt bygge och ny QA.
+
+## Mallfel för Mathias
+
+Upptäckta i kundloopen 2026-10-30 (Friktion). Ligger i mallen `web/app/(demo)/_mall/`, så de rättas inte här (en ny lead rör inga andra demos). Gäller alla demos på mallen.
+
+1. **Popupen ligger kvar över formuläret.** Efter "Eller skriv några rader" (hopp till #kontakt) syns popupen fortfarande nere till höger och täcker en del av formuläret. Förslag: dölj popupen när `#kontakt` är i bild eller är `:target`.
+2. **Bahko-brickan täcker Namn-fältet på mobil** efter hopp till #kontakt (390 px). Förslag: `scroll-margin` / luft under formulärets första fält, eller flytta brickan när kontaktsektionen är i bild.
 
 ## Säljvinklar (vad som är dåligt med stahlgrensvvs.se)
 

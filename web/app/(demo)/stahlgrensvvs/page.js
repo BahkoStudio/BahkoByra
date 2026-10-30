@@ -10,8 +10,9 @@ import DemoSida from '../_mall/DemoSida';
    Bärande idé: det som syns i ett nytt badrum är kakel och spegel, det som
    avgör om det håller är rören bakom väggen. De är ett auktoriserat
    VVS-företag som följer Branschregler Säker Vatteninstallation, och har
-   jobbat med VVS och värme sedan början av 70-talet. Herofilmen visar just
-   det: gamla rör ut, nya in i väggen, nytt badrum.
+   installerat värmesystem sedan tidigt 70-tal. Herofilmen visar just
+   det: gamla rör ut, nya in i väggen, nytt badrum. Idén står redan i
+   tjänsternas ingress (skärm 2), med Google-betyget och Säker Vatten först.
 
    VERIFIERAT (2026-10-30):
    - stahlgrensvvs.se, alla undersidor lästa: "Ståhlgrens VVS Service AB,
@@ -34,6 +35,23 @@ import DemoSida from '../_mall/DemoSida';
      faktura med 10 dagars kredit, egna material, vattenläcka, "säkervatten
      installationer som avsevärt minskar risken för vattenskador". ROT:
      "direktreglerar er reduktionen mot Skatteverket".
+     Ordagrant ur Frågor & svar (styr texterna om pris och hembesök):
+     "Om det gäller mindre servicearbeten kan man oftast få svar direkt via en
+     kontakt med oss. Större installationer kräver kanske ett kostnadsfritt
+     hembesök för att vi skall kunna leverera en korrekt prisbild." ·
+     "kontakta oss gärna för kostnadsfri rådgivning. Konsultation genom
+     hembesök går även att boka mot vår gällande timdebitering." · eget
+     material: "Om det inte finns en godkänd svensk monteringsanvisning till
+     produkten kan vi som installatör neka installationen. Om vi anser att det
+     går att göra en godkänd installation kan vi utföra den och bifoga en
+     avvikelserapport". Helhetslösningar: "vi erbjuder oss också som komplett
+     helhetsleverantör att ta hand om allt, från idé till ert nya färdiga
+     badrum", "Vi samarbetar gärna med era sedan tidigare trygga leverantörer".
+     Vår historia (om-oss/var-historia): "1972 valde Toivo att gå sin egen väg
+     och startade då sin egna firma Ståhlgrens VVS Service", "1987 registrerades
+     bolaget som Ståhlgrens VVS Service AB", "2022 var det dags för 50-års
+     jubileum". Säker Vatten-sidan: regelverket ska "minska risken för
+     vattenskador, legionellaspridning, brännskador och förgiftning".
    - sakervatten.se/company/500835: Ståhlgrens VVS-Service Aktiebolag, org.nr
      556312-0962, Källebacksvägen 15, Jönköping, "Auktoriserad sedan 2013".
    - allabolag.se/5563120962: aktivt AB, registrerat 1987-11-20, SNI 43221
@@ -54,23 +72,28 @@ import DemoSida from '../_mall/DemoSida';
    bara "öppnar 07"), jour, priser (erbjudandena på sajten är från 2024),
    antal anställda (sajten 10, Säker Vatten 8, allabolag 9), ledtider,
    garantitider, Facebook (sajtens länk går bara till facebook.com).
-   "Sedan 1972" är deras egen uppgift (firmabilen + "tidigt 70-tal");
-   aktiebolaget är registrerat 1987.
+   Startåret: 1972 står bara i berättelsen i Om oss (Toivo startade firman,
+   AB 1987), aldrig som rubrik, band eller bevis. Där står deras egna ord
+   "50-åriga anor" och "tidigt 70-tal".
 
    FLAGGOR:
    - Herofilmen (gammalt badrum → nytt) är en GENERERAD illustration: Qwen
      Image 3 (A och B) + Wan 3.0 Prime 720p 5 s, uppskalad lokalt. 0,43 USD.
-     Kontaktfilmen är samma film suddad.
-   - Varför-filmen: deras eget gruppfoto vid Vättern (wp-content/uploads/2022/12,
-     ligger i sajtens mediabibliotek men länkas inte i menyn) + logokort.
+     Kontaktfilmen är samma film suddad. Ingen not på sidan (Mathias regel),
+     sägs i förslagsrutan (modal).
+   - Varför-filmen: deras eget gruppfoto på en strand (wp-content/uploads/
+     2022/12/Gruppfoto-Farg, ligger i sajtens mediabibliotek men länkas inte i
+     menyn) + logokort.
    - Jobbilderna och badrumskortet: från samarbetsinläggen med Sandins El
-     Service (se ovan). Servicekortet (montör under en diskbänk), kortet för
-     BRF och fastighet (montör med borrmaskin) och servicebilen: deras egna
-     foton från sajtens mediabibliotek. Värmekortet (termostat) ligger på
-     deras sajt men är en bildbanksbild (Pixabay).
-   - Instagram-inbäddningarna visar @sandinselservice som avsändare
-     (samarbetsinlägg). Ståhlgrens egna inlägg är jobbannonser, semester och
-     en IVT-kampanj.
+     Service (se ovan), märkta i jobb.not. Tjänstekorten, deras egna foton ur
+     sajtens mediabibliotek: Service = montör i Ståhlgrens-tröja med tång
+     (2025/04/20250423_112043), Värme = montör med borrmaskin vid ett element
+     (2019, tidigare BRF-kortet), BRF = montör med hörselskydd under rören
+     (2022/12/DSC00064-2). Termostaten (Pixabay) och Robin-porträttet är borta.
+   - Instagram-sektionen är BORTTAGEN (runda 1): inbäddningarna visade
+     @sandinselservice som avsändare, och Ståhlgrens egna inlägg är
+     AI-gjorda jobbannonser, semesterskylt och ett foto av firmabilen, inga
+     arbetsbilder. Profilen länkas i kontaktsektionen och sidfoten.
    - Logotypen finns bara som 282×74 px på sajten: uppskalad 4× och
      rensad (svart och blått), ljus variant med vit text. Be om vektorfilen.
    - Formuläret går till mathias@bahkobyra.se (demonyckeln).
@@ -131,6 +154,7 @@ const data = {
   nav: {
     vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#jobb', txt: 'Våra jobb' }],
     hoger: [{ href: '#om', txt: 'Om oss' }, { href: '#omdomen', txt: 'Omdömen' }],
+    extra: [{ href: 'tel:+4636141629', txt: `Ring ${TEL}` }],
   },
 
   hero: {
@@ -141,37 +165,38 @@ const data = {
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
   },
-  tejp: ['Badrumsrenovering', 'Jönköping', 'Säker Vatten', 'Huskvarna', 'IVT värmepumpar', 'Stambyte', 'Service', 'Sedan 1972'],
+  // Udda platser fylls (bevisen), jämna är kontur (tjänster och orter).
+  tejp: ['4,6 av 5 på Google', 'Badrum', 'Säker Vatten sedan 2013', 'Värmepumpar', 'IVT-auktoriserad', 'Jönköping', 'VVS sedan tidigt 70-tal', 'Huskvarna'],
 
   tjanster: {
     eyebrow: 'Vad vi gör',
-    rubrik: ['Vatten, värme', 'och sanitet'],
-    lead: 'Renovering, tillbyggnad eller service: där det behövs VVS-kompetens har vi den. För privatpersoner, föreningar, fastighetsägare och entreprenörer.',
+    rubrik: ['Snyggt utanpå,', 'säkert bakom väggen'],
+    lead: '4,6 av 5 på Google från 12 omdömen, och auktoriserat VVS-företag enligt Säker Vatten sedan 2013. Badrum, service och IVT-värmepumpar: vi installerar det vi säljer, så vår garanti gäller både tjänsten och produkterna.',
     kort: [
       {
         id: 'badrum',
         namn: 'Badrumsrenovering',
         bild: `${M}/tjanst-badrum.jpg`,
         alt: 'Nytt badrum med rund upplyst spegel, vitt handfat och duschvägg i glas',
-        text: 'Från första idén till färdigt badrum och wc. Rören drar vi enligt Branschregler Säker Vatteninstallation, så att visionen också håller.',
-        punkter: ['Badrum och wc', 'Säker Vatten-installation', 'ROT-avdrag på arbetet'],
+        text: 'Vi tar hand om allt från idé till ert nya färdiga badrum, eller samarbetar med hantverkare ni redan litar på. Rören drar vi enligt Branschregler Säker Vatteninstallation.',
+        punkter: ['Badrum och wc', 'Säker Vatten-installation', 'ROT-avdraget sköter vi mot Skatteverket'],
         ritning: (<><path d="M24 70h152v14c0 14-12 24-26 24H50c-14 0-26-10-26-24z" /><path d="M44 70V24c0-8 6-12 12-12s12 4 12 12" /><path d="M60 108v6M140 108v6" /></>),
       },
       {
         id: 'service',
         namn: 'Service och reparationer',
         bild: `${M}/tjanst-service.jpg`,
-        alt: 'VVS-montör från Ståhlgrens arbetar med rören under en diskbänk',
-        text: 'Droppande blandare, ny wc-stol, stopp i avloppet eller luft i elementen. Våra välutrustade servicebilar tar sig snabbt hem till dig.',
-        punkter: ['Byte av blandare och wc', 'Avloppsstopp', 'Element och värmesystem'],
+        alt: 'VVS-montör i Ståhlgrens-tröja med en tång i handen, svartvitt foto',
+        text: 'Ny blandare i köket, byte av wc-stol, stopp i avloppet eller luft i elementen. Med våra välutrustade servicebilar tar vi oss snabbt hem till dig.',
+        punkter: ['Kostnadsfri rådgivning', 'Faktura med 10 dagars kredit', 'Avloppsstopp och element'],
         ritning: (<><path d="M30 96h60V56h40" /><path d="M130 44v24h20V44z" /><path d="M140 68v14" /><path d="M136 92c0-6 4-10 4-10s4 4 4 10a4 4 0 0 1-8 0z" /></>),
       },
       {
         id: 'varme',
         namn: 'Värmepumpar och värme',
         bild: `${M}/tjanst-varme.jpg`,
-        alt: 'Termostatventil på ett element, närbild',
-        text: 'Vi är auktoriserad återförsäljare och installatör av hela IVTs sortiment, och hjälper dig från behovsanalys till installation och service.',
+        alt: 'VVS-montör från Ståhlgrens skruvar fast ett element på en kaklad vägg',
+        text: 'Vi är auktoriserad återförsäljare och installatör av hela IVTs sortiment. Samma firma hjälper dig med behovsanalys, installation och service av värmepumpen.',
         punkter: ['IVT: berg, luft/vatten, frånluft', 'Fjärrvärme, sol och pellets', 'Service på värmepumpen'],
         ritning: (<><path d="M30 104V44l70-30 70 30v60z" /><path d="M78 104V70h44v34" /><path d="M86 58c6-6 10 6 16 0s10 6 16 0" /></>),
       },
@@ -179,8 +204,8 @@ const data = {
         id: 'fastighet',
         namn: 'BRF, fastighet och entreprenad',
         bild: `${M}/tjanst-fastighet.jpg`,
-        alt: 'VVS-montör från Ståhlgrens borrar i en kaklad vägg vid ett element',
-        text: 'Stambyten, renoveringar, nyproduktion och tillbyggnad. Vi upprättar också service- och underhållsavtal, och jobbar gärna som underentreprenör.',
+        alt: 'VVS-montör från Ståhlgrens med hörselskydd under rören i ett källarutrymme, svartvitt foto',
+        text: 'Stambyten, renoveringar, nyproduktion och tillbyggnad. Vi upprättar service- och underhållsavtal, och jobbar som underentreprenör åt general- och totalentreprenörer.',
         punkter: ['Stambyte och renovering', 'Nyproduktion och tillbyggnad', 'Service- och underhållsavtal'],
         ritning: (<><path d="M40 108V20h120v88" /><path d="M20 108h160" /><path d="M60 36h20v16H60zM120 36h20v16h-20zM60 66h20v16H60zM120 66h20v16h-20z" /><path d="M100 20v88" /></>),
       },
@@ -189,9 +214,9 @@ const data = {
 
   jobb: {
     eyebrow: 'Våra jobb',
-    rubrik: ['Badrum vi har', 'gjort klart'],
-    lead: 'Badrum och en tvättstuga från vårt Instagram, och en av servicebilarna.',
-    not: 'Badrumsbilderna kommer från vårt Instagram, jobb gjorda tillsammans med Sandins El Service. Servicebilen är från vår hemsida.',
+    rubrik: ['Badrum där vi', 'gjort VVS:en'],
+    lead: 'Badrum och en tvättstuga från samarbetsprojekt med Sandins El Service, där vi gjort VVS:en. Och en av våra servicebilar.',
+    not: 'Badrums- och tvättstugebilderna kommer från samarbetsinlägg på Instagram med Sandins El Service, där Ståhlgrens gjort VVS:en. Servicebilen är från vår hemsida.',
     tid: '60s',
     utvalda: [
       { src: `${M}/utvald-vindsbadrum.jpg`, w: 900, h: 1200, alt: 'Vindsbadrum med dubbelt handfat i ljus ek, rund upplyst spegel och vägghängd wc', etikett: 'Badrum', txt: 'Vindsbadrum med dubbla handfat' },
@@ -216,44 +241,43 @@ const data = {
 
   varfor: {
     eyebrow: 'Varför Ståhlgrens',
-    rubrik: ['Snyggt utanpå,', 'säkert bakom väggen'],
-    lead: 'Det du ser i ett nytt badrum är kakel och spegel. Det som avgör om det håller är rören bakom. Vi är ett auktoriserat VVS-företag och installerar enligt Säker Vatten, och har jobbat med VVS och värme i Jönköping sedan början av 70-talet.',
+    rubrik: ['Det som håller', 'sitter bakom kaklet'],
+    lead: 'Det du ser i ett nytt badrum är kakel och spegel. Det som avgör om det håller är rören bakom. Vi är ett auktoriserat VVS-företag och installerar enligt Säker Vatten, och har installerat värmesystem sedan tidigt 70-tal.',
     punkter: [
       { rubrik: 'Auktoriserat VVS-företag', text: 'Vi följer Branschregler Säker Vatteninstallation och har varit auktoriserade sedan 2013.' },
-      { rubrik: 'Vi installerar det vi säljer', text: 'Därför gäller vår garanti både arbetet och produkterna i installationen.' },
+      { rubrik: 'Vi installerar det vi säljer', text: 'Därför gäller vår garanti både tjänsten och produkterna i installationen.' },
       { rubrik: 'IVT-återförsäljare', text: 'Auktoriserad återförsäljare och installatör av hela IVTs sortiment av värmepumpar.' },
-      { rubrik: 'Rakt besked om ditt material', text: 'Har du köpt eget material säger vi ärligt om det går att installera godkänt, innan vi börjar.' },
+      { rubrik: 'Rakt besked om ditt material', text: 'Saknas en godkänd svensk monteringsanvisning kan vi neka installationen. Går den att göra godkänd bifogar vi en avvikelserapport.' },
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Långsam inzoomning mot Ståhlgrens VVS-gäng på en strand vid Vättern. Filmen slutar med Ståhlgrens VVS logotyp.',
+    videoAlt: 'Långsam inzoomning mot Ståhlgrens VVS-gäng på en strand. Filmen slutar med Ståhlgrens VVS logotyp.',
   },
 
   om: {
     eyebrow: 'Om Ståhlgrens',
-    rubrik: ['VVS med finess,', 'sedan 1972'],
+    rubrik: ['50-åriga anor,', 'VVS med finess'],
     kortRad: 'Jönköping & Huskvarna',
     stycken: [
-      'Ståhlgrens VVS är ett auktoriserat service- och installationsföretag i Jönköping. Vi började med kompletta värmesystem redan i början av 70-talet, när el och olja var de stora energikällorna, och har följt utvecklingen sedan dess.',
-      'Våra kunder är privatpersoner, bostadsrättsföreningar, fastighetsägare, skolor, industrier och företag, stora som små. Vi jobbar främst i Jönköpings län, och kontoret och lagret har vi på Källebacksvägen i Jönköping.',
+      'Ståhlgrens VVS är ett auktoriserat service- och installationsföretag i Jönköping. Toivo Ståhlgren startade firman 1972, och redan under tidigt 70-tal installerade vi kompletta värmesystem, när el och olja var de stora energikällorna. 1987 blev firman aktiebolag.',
+      'Våra kunder är privatpersoner, bostadsrättsföreningar, fastighetsägare, fastighetsbolag, skolor, industrier och företag, stora som små. Vi jobbar främst i Jönköpings län, och entreprenaduppdrag tar vi även utanför länet. Adressen är Källebacksvägen 15 i Jönköping.',
     ],
     bevis: [
-      { ord: 'Sedan 1972', text: 'VVS och värme i Jönköping' },
+      { ord: '50-åriga anor', text: 'värmesystem sedan tidigt 70-tal' },
       { ord: 'Säker Vatten', text: 'auktoriserat VVS-företag sedan 2013' },
-      { ord: 'IVT', text: 'auktoriserad återförsäljare' },
+      { ord: 'IVT', text: 'auktoriserad återförsäljare och installatör' },
     ],
   },
 
   steg: {
     eyebrow: 'Så går det till',
     rubrik: ['Från första samtalet', 'till klart jobb'],
-    lead: 'Samma ordning för en ny blandare som för ett helt badrum.',
     lista: [
       { namn: 'Ring eller skriv', ikon: 'kontakt', text: `Ring ${TEL} eller skicka några rader om vad som ska göras.` },
-      { namn: 'Rådgivning', ikon: 'besok', text: 'Rådgivningen är kostnadsfri. Större installationer börjar med ett kostnadsfritt hembesök.' },
-      { namn: 'Pris', ikon: 'offert', text: 'Mindre servicejobb kan vi ofta prissätta direkt. Större jobb får en offert efter hembesöket.' },
-      { namn: 'Installation', ikon: 'arbete', text: 'Våra montörer installerar enligt Säker Vatten, med produkter vi själva valt ut.' },
-      { namn: 'Klart', ikon: 'klart', text: 'Faktura med 10 dagars kredit. ROT-avdraget drar vi direkt och sköter resten mot Skatteverket.' },
+      { namn: 'Rådgivning', ikon: 'besok', text: 'Rådgivningen är kostnadsfri. Större installationer kräver kanske ett kostnadsfritt hembesök. Annars kan hembesök bokas mot vår timdebitering.' },
+      { namn: 'Pris', ikon: 'offert', text: 'Mindre servicearbeten får du oftast svar på direkt. Vid större installationer ger hembesöket en korrekt prisbild.' },
+      { namn: 'Installation', ikon: 'arbete', text: 'Våra montörer installerar enligt Säker Vatten, med produkter utvalda för funktion, kvalitet och design.' },
+      { namn: 'Klart', ikon: 'klart', text: 'Faktura med 10 dagars kredit. ROT-avdraget direktreglerar vi mot Skatteverket.' },
     ],
   },
 
@@ -269,27 +293,20 @@ const data = {
     not: 'Tre av 12 recensioner på Google, ordagrant eller kortade utan att ändra innebörd.',
   },
 
-  instagram: {
-    eyebrow: 'Instagram',
-    rubrik: ['Följ jobben', 'på Instagram'],
-    lead: 'Badrum och tvättstugor vi gjort tillsammans med Sandins El Service, direkt från Instagram.',
-    bio: 'VVS i Jönköping & Huskvarna',
-    koder: ['DaFohOlCO_G', 'DWHfnyOjVx9', 'DU_VK_7jRa0'],
-  },
-
   fragor: {
     eyebrow: 'Vanliga frågor',
     rubrik: ['Det du brukar', 'undra först'],
     lead: 'Pengar och risk först, det praktiska sedan.',
-    kort: { rubrik: 'Hittar du inte svaret?', text: `Ring ${TEL} eller mejla info@stahlgrensvvs.se, så svarar vi på det som gäller just ditt hus.` },
+    kort: { rubrik: 'Hittar du inte svaret?', text: `Ring ${TEL} eller mejla info@stahlgrensvvs.se.` },
     lista: [
-      { q: 'Vad kostar det?', a: 'Mindre servicejobb kan vi oftast ge pris på direkt när du hör av dig. Större installationer kräver ett kostnadsfritt hembesök, så att du får en korrekt prisbild.' },
-      { q: 'Kan jag använda ROT-avdraget?', a: (<>Ja, på arbetskostnaden vid renovering, underhåll, ombyggnad och tillbyggnad i småhus och bostadsrätt. Vi drar avdraget direkt på fakturan och sköter resten mot Skatteverket. Reglerna står hos <a href="https://www.skatteverket.se/privat/fastigheterochbostad/rotarbeteochrutarbete.4.2e56d4ba1202f95012080002966.html" target="_blank" rel="noopener">Skatteverket</a>.</>) },
+      { q: 'Vad kostar det?', a: 'Gäller det mindre servicearbeten kan du oftast få svar direkt när du hör av dig. Större installationer kräver kanske ett kostnadsfritt hembesök, så att vi kan ge en korrekt prisbild.' },
+      { q: 'Är rådgivningen gratis?', a: 'Ja, rådgivningen är kostnadsfri. Konsultation genom hembesök går också att boka mot vår gällande timdebitering.' },
+      { q: 'Kan jag använda ROT-avdraget?', a: (<>Ja, på arbetskostnaden vid renovering, underhåll, ombyggnad och tillbyggnad, om du äger småhuset eller bostadsrätten. Vi tar hand om resten och direktreglerar avdraget mot Skatteverket. Reglerna står hos <a href="https://www.skatteverket.se/privat/fastigheterochbostad/rotarbeteochrutarbete.4.2e56d4ba1202f95012080002966.html" target="_blank" rel="noopener">Skatteverket</a>.</>) },
       { q: 'Hur betalar jag?', a: 'Med faktura och 10 dagars kredit, både för privatpersoner och företag.' },
       { q: 'Det sprutar vatten! Vad gör jag?', a: `Har du kommunalt vatten: stäng huvudkranen vid vattenmätaren. Har du eget vatten: stäng av strömbrytaren till vattenpumpen. Ring oss sedan direkt på ${TEL}.` },
-      { q: 'Vad betyder Säker Vatten?', a: (<>Branschregler Säker Vatteninstallation är VVS-branschens regler för att förebygga vattenskador. Vi är auktoriserade sedan 2013, se <a href={SV} target="_blank" rel="noopener">Säker Vatten</a>.</>) },
+      { q: 'Vad betyder Säker Vatten?', a: (<>Branschregler Säker Vatteninstallation är ett regelverk framtaget av branschen för att minska risken för vattenskador, legionellaspridning, brännskador och förgiftning. Vi är auktoriserade sedan 2013, se <a href={SV} target="_blank" rel="noopener">Säker Vatten</a>.</>) },
       { q: 'Får jag skruva med rören själv?', a: 'Ja, det får man. Men försäkringsbolagen ersätter sällan skador som uppstår av amatörinstallationer.' },
-      { q: 'Jag har köpt eget material. Kan ni installera det?', a: 'Kontrollera först att det finns en godkänd svensk monteringsanvisning. Saknas den kan vi behöva neka. Går det att göra en godkänd installation gör vi den och bifogar en avvikelserapport om produkt- och funktionsgarantin.' },
+      { q: 'Jag har köpt eget material. Kan ni installera det?', a: 'Kontrollera först att det finns en monteringsanvisning. Finns ingen godkänd svensk monteringsanvisning kan vi som installatör neka installationen. Går det att göra en godkänd installation kan vi utföra den och bifoga en avvikelserapport om produkt- och funktionsgarantin.' },
       { q: 'Var jobbar ni?', a: 'Främst i Jönköping, Huskvarna och resten av Jönköpings län. Entreprenaduppdrag tar vi även utanför länet.' },
     ],
   },
@@ -303,13 +320,13 @@ const data = {
     poster: `${M}/poster-kontakt.jpg`,
     formRubrik: 'Begär offert',
     placeholder: 'Vad som ska göras (t.ex. badrum, blandare, värmepump, stambyte) och var huset står',
-    formNot: 'Skriv kort om jobbet, så kan vi ge ett vettigt svar redan i första samtalet.',
+    formNot: 'Rådgivningen är kostnadsfri, och mindre servicearbeten får du oftast svar på direkt.',
     kundtyp: ['Privatperson', 'BRF/Fastighet', 'Företag'],
   },
 
   popup: {
     rubrik: 'Dags för nytt badrum?',
-    text: 'Rådgivningen är kostnadsfri, och vi installerar enligt Säker Vatten. Berätta vad du vill göra.',
+    text: 'Auktoriserade enligt Säker Vatten sedan 2013, och ROT-avdraget direktreglerar vi mot Skatteverket. Rådgivningen är kostnadsfri.',
   },
 
   footer: {
@@ -318,7 +335,7 @@ const data = {
 
   modal: {
     rubrik: 'Så här kan Ståhlgrens VVS se ut på nätet',
-    text: 'Det här är ett kostnadsfritt förslag, byggt på det ni själva visar på stahlgrensvvs.se och Instagram, med era egna bilder och era omdömen från Google. Formuläret landar ännu inte i er inkorg. Vill ni se den skarpt? Boka ett kostnadsfritt 15-minuterssamtal med Mathias.',
+    text: 'Det här är ett kostnadsfritt förslag, byggt på det ni själva skriver på stahlgrensvvs.se, era omdömen från Google och er auktorisation hos Säker Vatten. Bilderna kommer från er sajt och från samarbetsinlägg med Sandins El Service på Instagram, och filmen överst är en illustration. Formuläret landar ännu inte i er inkorg. Vill ni se den skarpt? Boka ett kostnadsfritt 15-minuterssamtal med Mathias.',
   },
 };
 
