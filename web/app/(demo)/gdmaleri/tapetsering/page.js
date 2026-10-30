@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida TAPETSERING (/gdmaleri/tapetsering/), 2026-10-13.
@@ -39,7 +39,9 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    tapetjobb, tapetmärken, specifika spackelprodukter, egna tapeter i lager.
    FLAGGOR: inga foton av en tapetborttagning finns. Kortet "Tapetborttagning"
    visar en slät, nymålad vägg (jobb-panelvagg.jpg) och alt-texten säger det.
-   Alla bilder är GD:s egna foton (inga genererade). Omdömena är fasta, inte
+   Alla bilder är GD:s egna foton (inga genererade). NYA 2026-10-30 (Ghandi via Mathias):
+   ett bredspacklingsjobb på Östermalm 2026-10-24 (Mathias 2026-10-30), nio foton i kundmappen: kortet Bredspackling
+   visar spackling-slat.webp, banden spackling-fonster/-stege/-balkong.webp (_gd.js BAND). Omdömena är fasta, inte
    levande, så att de handlar om tapet, spackel och väggar inomhus.
    OPTIMERING: egen titel och beskrivning, JSON-LD Service → HousePainter
    (@id gdmaleri.se/#business), inget betygsschema. Raden robots: index:false
@@ -47,7 +49,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Tapetsering och bredspackling i Stockholm | GD Måleri Sthlm AB',
+  title: 'Tapetsering och bredspackling i Stockholm | GD Måleri',
   description:
     'Tapetsering, bredspackling och tapetborttagning i Stockholm: gammal tapet bort, väggen slät, ny tapet eller färg upp. Kostnadsfri offert, ROT direkt på fakturan och 4,9 av 5 på Reco.',
   robots: { index: false, follow: false },
@@ -69,7 +71,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/tapetsering/') },
 
-  hero: { ...hero, ort: 'Tapet i Stockholm', tjanster: ['Tapetsering', 'Spackling'] },
+  hero: { ...hero, rubrik: { fraga: 'Tapetsering i Stockholm', svar: 'Tapet & Spackling.' } },
   tejp: ['Tapetsering', 'Bredspackling', 'Tapetborttagning', 'Papperstapet, non-woven och vinyl', 'Mönsterpassning', '4,9 av 5 på Reco', 'ROT direkt på fakturan', 'Kostnadsfri offert'],
 
   tjanster: {
@@ -80,7 +82,7 @@ const data = {
     kolumner: 3,
     kort: [
       { id: 'tapetsering', namn: 'Tapetsering', bild: `${M}/tjanst-tapet.jpg`, alt: 'Nyuppsatt mönstrad tapet runt en dörr', text: 'Papperstapet, non-woven eller vinyl, med mönsterpassning.', punkter: ['Alla typer av tapet', 'Grundning innan tapeten', 'Hjälp med val av tapet'], ritning: (<><path d="M40 16h50v88H40zM90 16h50v88H90z" /><path d="M140 16h20v88h-20" /><path d="M56 40l10 10M106 60l10 10M56 80l10 10" /></>) },
-      { id: 'bredspackling', namn: 'Bredspackling', bild: `${M}/jobb-bredspackling.jpg`, alt: 'Vägg under bredspackling, golvet täckt med papper', text: 'Ojämnheter jämnas ut tills väggen är helt slät.', punkter: ['Före tapet eller färg', 'Golv och möbler täcks', 'ROT på arbetet'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M72 70l20-14 20 14 20-14" /></>) },
+      { id: 'bredspackling', namn: 'Bredspackling', bild: `${M}/spackling-slat.webp`, alt: 'Slät bredspacklad vägg, grå före målning, med färghinkar på golvet, i en lägenhet på Östermalm', text: 'Ojämnheter jämnas ut tills väggen är helt slät.', punkter: ['Före tapet eller färg', 'Golv och möbler täcks', 'ROT på arbetet'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M72 70l20-14 20 14 20-14" /></>) },
       { id: 'tapetborttagning', namn: 'Tapetborttagning', bild: `${M}/jobb-panelvagg.jpg`, alt: 'Slät ljusgrön vägg ovanför en vitmålad bröstpanel, färdigt resultat efter spackling och målning', text: 'Gammal tapet bort utan att skada väggen, även flera lager.', punkter: ['Rätt verktyg och teknik', 'Flera lager går bra', 'Sedan tapet eller färg'], ritning: (<><path d="M30 26h140v72H30z" /><path d="M30 26l22 16h96l22-16" /><path d="M52 42v56M148 42v56" /><path d="M100 42c-10 14 10 20 0 34c-8 10 8 14 0 22" /></>) },
     ],
   },
@@ -94,12 +96,16 @@ const data = {
     rad1: [
       { src: `${M}/invandig-sodertalje-1.webp`, alt: 'Nymålat rum med ljusa väggar, vit taklist och skrivbord vid fönstret i Södertälje', txt: 'Södertälje: tak och väggar, 180 kvm' },
       { src: `${M}/jobb-spackel-tak.jpg`, alt: 'Målare i vit t-shirt spacklar ett innertak', txt: 'Innertak spacklas' },
+      BAND.spacklingFonster,
+      BAND.spacklingStege,
       { src: `${M}/jobb-vardagsrum.jpg`, alt: 'Tomt vardagsrum med ljusrosa väggar och tre fönster', txt: 'Vardagsrum målat ljusrosa' },
       { src: `${M}/jobb-gul-hall.jpg`, alt: 'Hall i varmgul kulör med vita snickerier och balkongdörr', txt: 'Hall målad i gult' },
       { src: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', txt: 'Rum målat i ljust' },
       { src: `${M}/tjanst-invandig.jpg`, alt: 'Rum med mörkblått målat tak, ljusa väggar och vitt fönster', txt: 'Tak målat mörkblått' },
     ],
     rad2: [
+      BAND.spacklingBalkong,
+      { src: `${M}/jobb-bredspackling.jpg`, alt: 'Vägg under bredspackling, golvet täckt med papper', txt: 'Vägg bredspacklas före målning' },
       { src: `${M}/invandig-sodertalje-2.webp`, alt: 'Nymålat vitt tak med taklampa och bred taklist mot ljusgrå väggar, en öppen dörr med glasrutor, i Södertälje', txt: 'Södertälje: nymålat tak' },
       { src: `${M}/jobb-trapphus.jpg`, alt: 'Trappa i ett hem med mörkrosa nederdel och ljus vägg ovanför', txt: 'Trappa målad i två kulörer' },
       { src: `${M}/jobb-bla-tak.jpg`, alt: 'Ljusblått målat tak med spotlightskena och bokhylla', txt: 'Tak målat ljusblått' },

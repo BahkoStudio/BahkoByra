@@ -36,7 +36,7 @@ Rör INTE: MX (5 mx1 / 10 mx2.hostinger.com), TXT SPF (`v=spf1 include:_spf.mail
 ## Uppföljning
 1. ~~noindex~~ **Klart 2026-10-11:** kopiera.mjs byter sidornas noindex mot self-canonical i extern-bygget (källan i web/ har kvar noindex, men nås inte — 301).
 2. **Klart 2026-10-11:** 301 från bahkobyra.se/gdmaleri/* → gdmaleri.se i 🔒 `web/next.config.mjs` (Mathias ja), med slug-kartan.
-3. Ghandi bekräftar: AAA-betyg + licens och Måleriföretagen-medlemskap (Samarbeten-bandet), att kontaktuppgifterna får synas offentligt.
+3. Ghandi bekräftar: AAA-betyg + licens och Måleriföretagen-medlemskap (Samarbeten-bandet). SEO-auditen 2026-10-27 kunde inte belägga dem och ville ta bort märkena; **Mathias beslut 2026-10-30: de står kvar**, bevis efterfrågas. Kontaktuppgifterna får synas offentligt (de står på sajten sedan 2026-10-11).
 4. Search Console (domänegendom, TXT finns), lämna in sitemap; Bing Webmaster. **Koden klar 2026-10-13, Cowork-stegen i `matning.md`** (GA4 bakom samtycke, integritetssida, söndagsrapport i `tools/gd-rapport/`).
 5. Stäng staging-kopian på hostingersite.com.
 6. Ortssidorna (Bromma, Täby …) 301:as till /fasad-malning/ tills riktiga sidor finns (1-byran/intern-tillvaxt/leads/gdmaleri.md punkt 6).

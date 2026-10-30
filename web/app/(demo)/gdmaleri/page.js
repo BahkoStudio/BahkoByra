@@ -1,5 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, samarbeten, RECO_IFRAME, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from './_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, samarbeten, RECO_IFRAME, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, SKV_ROT, BAND } from './_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — KUND hos Bahko Byrå sedan 2026-10-08 (byggd som förslag 2026-10-08,
@@ -107,7 +107,11 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerB
    Viktor E) är inte med. Samarbeten sist på sidan är sedan 2026-10-09 kväll ett
    rullande band (_gd.js samarbeten, band: true) med kundens egna samarbeten enligt
    bandet på gdmaleri.se och Mathias 2026-10-09: Måleriföretagen, Flügger färg, AAA,
-   Trygg-Hansa och Recos fyra märken. AAA är inte kontrollerat mot D&B (se _gd.js).
+   Trygg-Hansa och Recos fyra märken. AAA är inte kontrollerat mot D&B (se _gd.js);
+   SEO-auditen 2026-10-27 ville ta bort Måleriföretagen och AAA, Mathias behöll dem 2026-10-30.
+   NYA BILDER 2026-10-30 (Ghandi via Mathias): golvkortet visar ett riktigt slipat golv
+   (golv-slipat-foto.webp) i stället för illustrationen, och banden har fått ett slipat
+   golv och ett bredspacklat rum (_gd.js BAND; Östermalm 2026-10-24 enligt Mathias 2026-10-30).
 
    GOOGLE-OMDÖMEN (2026-10-09, Mathias klistrade in Googles recensionssida ur
    Maps-profilen cid 13566570836618556636): 4,8 av 5, 18 recensioner, inklusive
@@ -170,7 +174,7 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerB
    dem som inte ryms i pillret (nav.extra).
    GOLV är ny tjänst (Mathias på Ghandis vägnar 2026-10-08; Bolagsverket:
    "golvläggning"; två Reco-omdömen om golvslipning, se golv/page.js). Golvkortets
-   bild (golv-slipat.jpg) är en GENERERAD illustration: alt-texten börjar med
+   bild var t.o.m. 2026-10-29 en GENERERAD illustration (golv-slipat.jpg): alt-texten började med
    "Illustrationsbild" och jobb.not säger det. "Snickerier och fönster" är inte
    längre ett eget kort (rutnätet håller fyra kort): fönster står i fasadkortet
    och dörrar/lister i invändig-kortet, och bilden ligger i jobbandet.
@@ -192,9 +196,9 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerB
    =========================================================================== */
 
 export const metadata = {
-  title: 'Målare i Stockholm – fasad, tak och invändig målning | GD Måleri Sthlm AB',
+  title: 'Målare i Stockholm – fasad, tak och invändig målning | GD Måleri',
   description:
-    'GD Måleri Sthlm AB är målare i Stockholm: fasadtvätt och fasadmålning, taktvätt och takmålning, invändig målning, tapetsering, bredspackling och golv. Kostnadsfri offert, ROT direkt på fakturan och 4,9 av 5 på Reco.',
+    'Målare i Stockholm: fasadmålning, taktvätt, invändig målning, tapetsering och golv. Kostnadsfri offert, ROT direkt på fakturan och 4,9 av 5 på Reco.',
   robots: { index: false, follow: false },
 };
 
@@ -273,8 +277,8 @@ const data = {
   },
 
   hero: {
-    ort: 'Stockholm',
-    tjanster: ['Måleri', 'Fasad'],
+    // h1 är texten (mallfältet hero.rubrik), inte logotypen (SEO-auditen 2026-10-27, punkt 4).
+    rubrik: { fraga: 'Målare i Stockholm', svar: 'Måleri & Fasad.' },
     video: `${M}/video-hero.mp4`,
     videoMobil: `${M}/video-hero-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
@@ -297,7 +301,7 @@ const data = {
       { id: 'tak', namn: 'Takmålning', bild: `${M}/tjanst-tak.jpg`, alt: 'Grått betongpannetak efter taktvätt, med en vit villa och tallar i bakgrunden', text: 'Taket målas om efter tvätten, med takfot och vindskivor.', punkter: ['Tvätt först', 'Takfot och vindskivor', 'ROT på småhus'], lank: { href: '/gdmaleri/tak/', txt: 'Allt om takmålning' }, ritning: (<><path d="M16 76L100 24l84 52" /><path d="M36 64v40h128V64" /><path d="M58 52l84 0M46 62h108" /><path d="M136 30v18" /></>) },
       { id: 'taktvatt', namn: 'Taktvätt', bild: `${M}/jobb-tak-fore.jpg`, alt: 'Betongpannetak med mossa och gul lav före taktvätt', text: 'Mossa, alger och smuts tvättas bort från takpannorna.', punkter: ['Mossa och lav bort', 'För sig eller före målning', 'ROT på småhus'], lank: { href: '/gdmaleri/taktvatt/', txt: 'Allt om taktvätt' }, ritning: (<><path d="M16 76L100 24l84 52" /><path d="M36 64v40h128V64" /><path d="M70 50c4 6 4 10 0 14M100 40c4 6 4 10 0 14M130 50c4 6 4 10 0 14" /></>) },
       { id: 'fonster', namn: 'Fönster och snickerier', bild: `${M}/jobb-rod-fonster.jpg`, alt: 'Vitmålat spröjsat fönster i en röd träfasad', text: 'Fönster, karmar, foder och dörrar skrapas, slipas och målas.', punkter: ['Fönster och karmar', 'Dörrar och foder', 'Inne och ute'], lank: { href: '/gdmaleri/snickerier-fonster-malning/', txt: 'Allt om fönster och snickerier' }, ritning: (<><path d="M54 16h92v88H54z" /><path d="M100 16v88M54 60h92" /><path d="M44 104h112" /></>) },
-      { id: 'golv', namn: 'Golvläggning och golvslipning', bild: `${M}/golv-slipat.jpg`, alt: 'Illustrationsbild: trägolv halvvägs slipat, ljust där golvslipen har gått och mörkt och slitet bredvid', text: 'Nytt golv, eller det gamla slipat eller målat.', punkter: ['Golvläggning', 'Golvslipning', 'Golvmålning'], lank: { href: '/gdmaleri/golv/', txt: 'Allt om golv' }, ritning: (<><path d="M14 100h172" /><path d="M40 100l22-62h76l22 62" /><path d="M74 100l8-62M126 100l-8-62M100 100V38" /></>) },
+      { id: 'golv', namn: 'Golvläggning och golvslipning', bild: `${M}/golv-slipat-foto.webp`, alt: 'Nyslipat ljust trägolv med breda brädor i ett tomt rum', text: 'Nytt golv, eller det gamla slipat eller målat.', punkter: ['Golvläggning', 'Golvslipning', 'Golvmålning'], lank: { href: '/gdmaleri/golv/', txt: 'Allt om golv' }, ritning: (<><path d="M14 100h172" /><path d="M40 100l22-62h76l22 62" /><path d="M74 100l8-62M126 100l-8-62M100 100V38" /></>) },
     ],
   },
 
@@ -305,7 +309,7 @@ const data = {
     eyebrow: 'Våra jobb',
     rubrik: ['Hus och hem vi', 'har målat om'],
     lead: 'Fasader, tak, fönster, trappor och rum. Bilderna i banden är från våra egna projekt.',
-    not: 'Golvbilden under Tjänster är en illustrationsbild. Fler jobb, med ort och yta, finns på vårt Instagram.',
+    not: 'Fler jobb, med ort och yta, finns på vårt Instagram.',
     tid: '70s',
     rad1: [
       { src: `${M}/jobb-taby-43.webp`, alt: 'Nymålad grå träfasad på ett modernt tvåvåningshus i Täby kyrkby, sedd från tomten', txt: 'Täby kyrkby, 350 kvm' },
@@ -314,6 +318,7 @@ const data = {
       { src: `${M}/jobb-fonsterbleck.jpg`, alt: 'Närbild på vitmålad fönsterbåge och svart fönsterbleck mot panel', txt: 'Fönsterbåge målad' },
       { src: `${M}/jobb-fonster-maskerade.jpg`, alt: 'Spröjsade fönster maskerade med blå tejp inför målning', txt: 'Fönster maskade före målning' },
       { src: `${M}/jobb-spackel-tak.jpg`, alt: 'Målare i vit t-shirt spacklar ett innertak', txt: 'Innertak spacklas' },
+      BAND.golvRumEfter,
       { src: `${M}/tjanst-snickerier.jpg`, alt: 'Spegeldörr målad i mörkgrönt i en ljus lägenhet', txt: 'Dörr målad mörkgrön' },
     ],
     rad2: [
@@ -325,6 +330,7 @@ const data = {
       { src: `${M}/jobb-trapphus.jpg`, alt: 'Trapphus med mörkrosa nederdel och ljus vägg ovanför', txt: 'Trapphus målat i två kulörer' },
       { src: `${M}/jobb-vardagsrum.jpg`, alt: 'Tomt vardagsrum med ljusrosa väggar och tre fönster', txt: 'Vardagsrum målat ljusrosa' },
       { src: `${M}/jobb-bredspackling.jpg`, alt: 'Vägg under bredspackling, golvet täckt med papper', txt: 'Vägg bredspacklas före målning' },
+      BAND.spacklingFonster,
     ],
   },
 
@@ -416,7 +422,7 @@ const data = {
     kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring oss och fråga rakt ut om just ditt hus eller din lägenhet.' },
     lista: [
       { q: 'Vad kostar det?', a: 'Det beror på ytan, skicket och vad som ska göras. Därför börjar vi med en offert, och den är kostnadsfri. Offerten tar med material, arbete, förarbete som tvätt och skrapning, städning och bortforsling.' },
-      { q: 'Hur fungerar ROT-avdraget?', a: 'Vi drar av ROT direkt på fakturan och sköter resten, så du behöver inte göra något själv. Hur stort avdraget blir beror på arbetskostnaden och hur mycket avdrag du redan har använt i år. På ett småhus gäller det också taktvätt och takmålning: Skatteverket räknar rengöring och underhåll av tak och takpannor som rotarbete.' },
+      { q: 'Hur fungerar ROT-avdraget?', a: <>Vi drar av ROT direkt på fakturan och sköter resten, så du behöver inte göra något själv. Avdraget är 30 procent av arbetskostnaden, högst 50 000 kronor per person och år (rot och rut tillsammans högst 75 000 kronor), och material ger inget avdrag. På ett småhus gäller det också taktvätt och takmålning: Skatteverket räknar rengöring och underhåll av tak och takpannor som rotarbete. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
       { q: 'När betalar jag?', a: 'Du får fakturan när arbetet är klart, ingen förskottsbetalning. På stora jobb över 500 kvm betalas halva arbetskostnaden när halva jobbet är gjort.' },
       { q: 'Vad händer om något oväntat dyker upp?', a: 'Då hör vi av oss direkt och föreslår en lösning. Vi gör inga extraarbeten utan ditt godkännande.' },
       { q: 'Har ni garanti?', a: 'Ja, ett år på måleriarbetet. Behöver något åtgärdas under den tiden gör vi det utan extra kostnad.' },

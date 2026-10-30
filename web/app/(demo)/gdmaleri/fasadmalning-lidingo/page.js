@@ -29,7 +29,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning på Lidingö – målare för fasad och hus | GD Måleri Sthlm AB',
+  title: 'Fasadmålning på Lidingö – målare för fasad och hus | GD Måleri',
   description:
     'Fasadmålning på Lidingö: tvätt, skrapning och ny färg på trä, puts, tegel och plåt. Kostnadsfritt hembesök, offert med allt inräknat, faktura när jobbet är klart och ROT på fakturan.',
   robots: { index: false, follow: false },

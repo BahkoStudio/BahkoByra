@@ -40,7 +40,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Taktvätt och takmålning i Stockholm | GD Måleri Sthlm AB',
+  title: 'Takmålning i Stockholm | GD Måleri',
   description:
     'Taktvätt och takmålning i Stockholm: mossa och lav bort, och taket målat om. ROT på småhus dras direkt på fakturan. Kostnadsfri offert och 4,9 av 5 på Reco.',
   robots: { index: false, follow: false },
@@ -62,7 +62,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/tak/') },
 
-  hero: { ...hero, ort: 'Tak i Stockholm', tjanster: ['Tvätt', 'Målning'] },
+  hero: { ...hero, rubrik: { fraga: 'Takmålning i Stockholm', svar: 'Tvätt & Målning.' } },
   tejp: ['Taktvätt', 'Takmålning', 'Mossa och lav bort', 'Takfot och vindskivor', 'ROT på småhus', '4,9 av 5 på Reco', 'Rekommenderat tre år i rad', 'Kostnadsfri offert'],
 
   tjanster: {
@@ -131,7 +131,7 @@ const data = {
     kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring och berätta om taket, så svarar vi på just ditt.' },
     lista: [
       { q: 'Vad kostar taktvätt eller takmålning?', a: 'Det beror på takets storlek, lutning och skick. Därför börjar vi med en offert, och den är kostnadsfri. Offerten tar med material, arbete, städning och bortforsling.' },
-      { q: 'Får jag ROT-avdrag för taket?', a: <>På ett småhus, ja: Skatteverket räknar rengöring av tak och takpannor och underhåll av takpannor som rotarbete, och vi drar av det direkt på fakturan. Avdraget gäller bara arbetskostnaden. I en bostadsrättsförening är taket en gemensam yta och ger inget avdrag. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
+      { q: 'Får jag ROT-avdrag för taket?', a: <>På ett småhus, ja: Skatteverket räknar rengöring av tak och takpannor och underhåll av takpannor som rotarbete, och vi drar av det direkt på fakturan. Avdraget är 30 procent av arbetskostnaden, högst 50 000 kronor per person och år (rot och rut tillsammans högst 75 000 kronor). Material ger inget avdrag. I en bostadsrättsförening är taket en gemensam yta och ger inget avdrag. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
       { q: 'Kan jag beställa bara taktvätt?', a: 'Ja. Taktvätt går att beställa för sig, och ska taket målas görs tvätten först.' },
       { q: 'Målar ni takfot och vindskivor?', a: 'Ja. Takfot och vindskivor kan ingå i samma offert som taket eller fasaden.' },
       { q: 'När betalar jag?', a: 'Du får fakturan när arbetet är klart, ingen förskottsbetalning.' },

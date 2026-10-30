@@ -30,7 +30,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning i Sollentuna – målare för fasad och villa | GD Måleri Sthlm AB',
+  title: 'Fasadmålning i Sollentuna – målare för villa | GD Måleri',
   description:
     'Fasadmålning i Sollentuna: genomgång, tvätt, skrapning och ny färg på villan. I grannkommunen Täby kan vi visa 350 kvm träfasad. Kostnadsfri offert och ROT på fakturan.',
   robots: { index: false, follow: false },
@@ -104,7 +104,7 @@ const data = {
       { q: 'Tar GD Måleri jobb i Sollentuna?', a: 'Ja. GD Måleri Sthlm AB tar uppdrag i hela Stockholm, och Sollentuna ingår. Första steget är ett hembesök där vi tittar på fasaden, och det kostar ingenting.' },
       { q: 'Vilket är närmaste jobb ni kan visa?', a: <>Vi har inga bilder från Sollentuna på sidan än. I grannkommunen Täby kan vi visa fasaden på 350 kvm i Täby kyrkby, klar i september 2026. Vi har också en fasad på 234 kvm i Bromma. Läs mer om <a href="/gdmaleri/fasadmalning-taby/">fasadmålning i Täby</a>.</> },
       { q: 'Hur bokar jag hembesök i Sollentuna?', a: 'Boka en tid direkt i kalendern på sidan, eller ring 073-729 88 89 om du hellre pratar först. Vi har öppet alla dagar 08 till 17.' },
-      { q: 'Vad kostar det att måla om en villa i Sollentuna?', a: <>Det avgörs av ytan, materialet och fasadens skick, så du får priset i offerten efter besöket. Offerten tar med material, förarbete, städning och bortforsling. Äger och bor du i huset dras ROT direkt på fakturan, 30 procent av arbetskostnaden. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
+      { q: 'Vad kostar det att måla om en villa i Sollentuna?', a: <>Det avgörs av ytan, materialet och fasadens skick, så du får priset i offerten efter besöket. Offerten tar med material, förarbete, städning och bortforsling. Äger och bor du i huset dras ROT direkt på fakturan: 30 procent av arbetskostnaden, högst 50 000 kronor per person och år. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
       { q: 'Kan ni bara tvätta fasaden?', a: <>Ja, fasadtvätt går att beställa för sig. Ska fasaden målas ingår tvätten i förarbetet. Läs mer om <a href="/gdmaleri/fasadtvatt/">fasadtvätt</a>.</> },
       { q: 'När betalar jag?', a: 'När jobbet är klart och vi har gått igenom resultatet tillsammans. Ingen förskottsbetalning; på stora jobb över 500 kvm betalas halva arbetskostnaden när halva jobbet är gjort.' },
     ],

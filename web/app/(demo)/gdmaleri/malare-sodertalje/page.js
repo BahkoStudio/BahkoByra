@@ -30,7 +30,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Målare i Södertälje – fasad, tak och invändig målning | GD Måleri Sthlm AB',
+  title: 'Målare i Södertälje – 180 kvm klart okt 2026 | GD Måleri',
   description:
     'Målare i Södertälje, där GD Måleri Sthlm AB har sitt säte: invändig målning, fasad och tak. Senast 180 kvm tak och väggar. 4,9 av 5 på Reco, kostnadsfri offert och ROT på fakturan.',
   robots: { index: false, follow: false },

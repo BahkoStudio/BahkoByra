@@ -34,7 +34,7 @@ cpSync(path.join(WEB, 'public/gdmaleri'), path.join(HAR, 'public/gdmaleri'), { r
 
 // /gdmaleri/<demo-mapp>/ → /<slug>/ (längsta först, så att '/gdmaleri/' tas sist). Media (/gdmaleri/media/) rörs inte.
 const byten = Object.entries(SLUGS).filter(([d]) => d).map(([d, s]) => [`/gdmaleri/${d}/`, `/${s}/`]);
-byten.push([`'/gdmaleri/'`, `'/'`], ['`/gdmaleri/`', '`/`']);
+byten.push([`'/gdmaleri/'`, `'/'`], ['`/gdmaleri/`', '`/`'], ['"/gdmaleri/"', '"/"']); // dubbla citattecken: integritet/page.js gav 404 på gdmaleri.se (auditen 2026-10-27)
 const skrivOm = (txt, slug) => {
   for (const [fran, till] of byten) txt = txt.split(fran).join(till);
   // Indexering på (Mathias ja 2026-10-11): bara här, demon på bahkobyra.se 301:as bort. Self-canonical per sida.

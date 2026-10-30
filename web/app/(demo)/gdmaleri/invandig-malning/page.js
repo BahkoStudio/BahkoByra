@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida INVÄNDIG MÅLNING (/gdmaleri/invandig-malning/), 2026-10-08.
@@ -45,7 +45,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Invändig målning i Stockholm | GD Måleri Sthlm AB',
+  title: 'Invändig målning i Stockholm | GD Måleri',
   description:
     'Invändig målning i Stockholm: väggar, innertak, tapetsering, bredspackling, dörrar och snickerier. Kostnadsfri offert med allt inräknat, ROT direkt på fakturan och 4,9 av 5 på Reco.',
   robots: { index: false, follow: false },
@@ -67,7 +67,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/invandig-malning/') },
 
-  hero: { ...hero, ort: 'Stockholm', tjanster: ['Invändig målning', 'Tapet'] },
+  hero: { ...hero, rubrik: { fraga: 'Målare inomhus i Stockholm', svar: 'Invändig målning & Tapet.' } },
   tejp: ['Väggar', 'Innertak', 'Tapetsering', 'Bredspackling', 'Tapetborttagning', 'Dörrar och lister', '4,9 av 5 på Reco', 'ROT direkt på fakturan'],
 
   tjanster: {
@@ -103,6 +103,8 @@ const data = {
       { src: `${M}/jobb-panelvagg.jpg`, alt: 'Vitmålad bröstpanel under en ljusgrön vägg', txt: 'Bröstpanel målad vit' },
       { src: `${M}/jobb-trapphus.jpg`, alt: 'Trappa i ett hem med mörkrosa nederdel och ljus vägg ovanför', txt: 'Trappa målad i två kulörer' },
       { src: `${M}/jobb-spackel-tak.jpg`, alt: 'Målare i vit t-shirt spacklar ett innertak', txt: 'Innertak spacklas' },
+      BAND.spacklingFonster,
+      BAND.golvRumEfter,
       { src: `${M}/jobb-bredspackling.jpg`, alt: 'Vägg under bredspackling, golvet täckt med papper', txt: 'Vägg bredspacklas före målning' },
     ],
     rad2: [
@@ -144,7 +146,7 @@ const data = {
     kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring och berätta om rummen, så svarar vi på just ditt hem.' },
     lista: [
       { q: 'Vad kostar det att måla om inne?', a: 'Det beror på ytan, skicket och vad som ska göras. Därför börjar vi med en offert, och den är kostnadsfri. Offerten tar med material, arbete, förarbete som spackling och slipning, städning och bortforsling.' },
-      { q: 'Får jag ROT-avdrag?', a: <>Ja, på arbetskostnaden. Skatteverket räknar att måla väggar, tak, dörrar och fönster och att tapetsera som rotarbete. Vi drar av det direkt på fakturan. Bor du i bostadsrätt gäller det arbete inne i lägenheten. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
+      { q: 'Får jag ROT-avdrag?', a: <>Ja, på arbetskostnaden. Skatteverket räknar att måla väggar, tak, dörrar och fönster och att tapetsera som rotarbete. Vi drar av det direkt på fakturan. Avdraget är 30 procent av arbetskostnaden, högst 50 000 kronor per person och år (rot och rut tillsammans högst 75 000 kronor). Material ger inget avdrag. Bor du i bostadsrätt gäller det arbete inne i lägenheten. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
       { q: 'Hur skyddar ni hemmet?', a: 'Allt som inte ska målas täcks med plast eller papper, och vi skyddar möbler och golv innan vi börjar.' },
       { q: 'Hjälper ni till med färgval?', a: 'Ja. Vi hjälper till med färgval och kulörer, och färgen är Flügger. Miljövänliga alternativ finns.' },
       { q: 'När betalar jag?', a: 'Du får fakturan när arbetet är klart, ingen förskottsbetalning.' },
