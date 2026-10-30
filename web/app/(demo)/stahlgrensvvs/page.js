@@ -117,7 +117,7 @@ const data = {
     accentLjus: '#38B6F0',
     paAccent: '#fff',
   },
-  logo: { src: `${M}/logo-stahlgrens.png`, ljus: `${M}/logo-stahlgrens-ljus.png`, w: 1136, h: 304, alt: 'Ståhlgrens VVS', topp: 'fri' },
+  logo: { src: `${M}/logo-stahlgrens.png`, ljus: `${M}/logo-stahlgrens-ljus.png`, w: 1128, h: 296, alt: 'Ståhlgrens VVS', topp: 'fri' },
   kontakt: {
     tel: TEL,
     telHref: 'tel:+4636141629',
