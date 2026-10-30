@@ -43,7 +43,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Taktvätt i Stockholm | GD Måleri Sthlm AB',
+  title: 'Taktvätt i Stockholm | GD Måleri',
   description:
     'Taktvätt i Stockholm: mossa, alger och smuts tvättas bort från takpannorna, för sig eller inför takmålning. ROT på småhus dras direkt på fakturan. Kostnadsfri offert och 4,9 av 5 på Reco.',
   robots: { index: false, follow: false },
@@ -65,7 +65,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/taktvatt/') },
 
-  hero: { ...hero, ort: 'Taktvätt i Stockholm', tjanster: ['Mossa bort', 'Rent tak'] },
+  hero: { ...hero, rubrik: { fraga: 'Taktvätt i Stockholm', svar: 'Mossa bort & Rent tak.' } },
   tejp: ['Taktvätt', 'Mossa och alger bort', 'Tvätt för sig', 'Eller inför takmålning', 'Takfot och vindskivor', 'ROT på småhus', '4,9 av 5 på Reco', 'Kostnadsfri offert'],
 
   tjanster: {

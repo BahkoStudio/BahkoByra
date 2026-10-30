@@ -32,7 +32,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning i Bromma – 234 kvm klart 2026 | GD Måleri Sthlm AB',
+  title: 'Fasadmålning i Bromma – 234 kvm klart 2026 | GD Måleri',
   description:
     'Fasadmålning i Bromma: senast 234 kvm väggar, vindskivor, takfot och fönsterkarmar, klart hösten 2026. Kostnadsfritt hembesök, ROT direkt på fakturan och 4,9 av 5 på Reco.',
   robots: { index: false, follow: false },

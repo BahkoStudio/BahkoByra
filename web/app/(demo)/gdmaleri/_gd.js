@@ -228,7 +228,10 @@ export const instagramBas = {
    AAA kräver normalt mer än två års historik) och filen är bara 100×44 px — be om en skarp fil.
    AAA länkas inte (ingen belagd sida att peka på). Cal.com är ett verktyg, inte ett samarbete.
    Reco-kortet reco-kort.png ligger kvar i Om oss (huvud- och tjänstesidorna) respektive heron
-   (BRF): varje bildfil en gång per sida. */
+   (BRF): varje bildfil en gång per sida.
+   SEO-auditen 2026-10-27 ville ta bort Måleriföretagen och AAA (inget belägg, Hitta/D&B visar
+   "Okänd kreditvärdighet"). MATHIAS BESLUT 2026-10-30: märkena står kvar, de är kundens egna
+   samarbeten enligt gdmaleri.se. Bevis (medlemsbevis, certifikat) efterfrågas hos Ghandi. */
 export const samarbeten = {
   band: true,
   eyebrow: 'Samarbeten',
@@ -363,6 +366,16 @@ export const BAND = {
   panelvagg: bb('jobb-panelvagg.jpg', 'Vitmålad bröstpanel under en ljusgrön vägg', 'Bröstpanel målad vit'),
   spackelTak: bb('jobb-spackel-tak.jpg', 'Målare i vit t-shirt spacklar ett innertak', 'Innertak spacklas'),
   dorrGron: bb('tjanst-snickerier.jpg', 'Spegeldörr målad i mörkgrönt i en ljus lägenhet', 'Dörr målad mörkgrön'),
+  /* Ghandis foton 2026-10-30 (via Mathias, 22 bilder i kundmappen): ett golvjobb (slipning, byte av
+     golvbrädor) och ett bredspacklingsjobb. Ort och datum enligt Mathias 2026-10-30: Östermalm,
+     2026-10-24 (inga EXIF-datum i filerna, ytan okänd). Beskurna till 4:3 ur stående originalbilder. */
+  golvKokFore: bb('golv-kok-fore.webp', 'Gulnat trägolv i ett kök på Östermalm före slipning, med köksskåp och spis på båda sidor', 'Östermalm: köksgolv före slipning'),
+  golvRumEfter: bb('golv-rum-efter.webp', 'Nyslipat ljust trägolv i ett rum med vita väggar, i en lägenhet på Östermalm', 'Östermalm: trägolv efter slipning'),
+  golvHallEfter: bb('golv-hall-efter.webp', 'Slipat ljust trägolv i en hall med öppna dörrar, i en lägenhet på Östermalm', 'Östermalm: hall med nyslipat golv'),
+  spacklingFonster: bb('spackling-fonster.webp', 'Bredspacklade grå väggar i ett rum med fönster och öppen dörr, golvet täckt med papp, i en lägenhet på Östermalm', 'Östermalm: väggar bredspacklade före målning'),
+  spacklingStege: bb('spackling-stege.webp', 'Bredspacklat rum på Östermalm med en stege mot väggen och golvet täckt med papp', 'Östermalm: rum spacklat, redo för färg'),
+  spacklingSlat: bb('spackling-slat.webp', 'Slät bredspacklad vägg, grå före målning, med färghinkar på golvet, i en lägenhet på Östermalm', 'Östermalm: vägg bredspacklad'),
+  spacklingBalkong: bb('spackling-balkong.webp', 'Bredspacklade väggar runt en balkongdörr med utsikt mot gården, i en lägenhet på Östermalm', 'Östermalm: spacklat runt balkongdörren'),
 };
 
 // Utvalda jobb (stående 3:4) med belagd ort, för ortssidorna.

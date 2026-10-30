@@ -31,7 +31,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning i Danderyd – målare för fasad och villa | GD Måleri Sthlm AB',
+  title: 'Fasadmålning i Danderyd – målare för fasad och villa | GD Måleri',
   description:
     'Fasadmålning i Danderyd, Djursholm, Stocksund och Enebyberg: villans fasad, takfot och dörrar. Ingen förskottsbetalning, ett års garanti och ROT direkt på fakturan.',
   robots: { index: false, follow: false },
@@ -106,7 +106,7 @@ const data = {
       { q: 'Vilket är närmaste jobb ni kan visa?', a: <>Vi har inga bilder från Danderyd på sidan än. I grannkommunen Täby, norr om Danderyd, kan vi visa en träfasad på 350 kvm i Täby kyrkby, klar i september 2026, och i Bromma en fasad på 234 kvm. Läs mer om <a href="/gdmaleri/fasadmalning-taby/">fasadmålning i Täby</a>.</> },
       { q: 'Hur bokar jag ett hembesök i Danderyd?', a: 'Boka en tid i kalendern på sidan, eller ring 073-729 88 89. Vi har öppet alla dagar 08 till 17, och efter besöket får du en skriftlig offert.' },
       { q: 'Kan ni måla fasaden på en äldre villa?', a: 'Ja. Vi målar trä, puts, tegel och plåt, och före målningen går vi igenom fasadens skick: tvätt, skrapning av lös färg och de lagningar som behövs. Vad just din fasad behöver ser vi vid hembesöket.' },
-      { q: 'Behöver jag betala något i förskott?', a: <>Nej. Fakturan kommer när jobbet är klart och vi har gått igenom resultatet; på stora jobb över 500 kvm betalas halva arbetskostnaden vid halva jobbet. ROT är redan avdraget på fakturan om du äger och bor i huset. Källa för ROT: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
+      { q: 'Behöver jag betala något i förskott?', a: <>Nej. Fakturan kommer när jobbet är klart och vi har gått igenom resultatet; på stora jobb över 500 kvm betalas halva arbetskostnaden vid halva jobbet. ROT är redan avdraget på fakturan om du äger och bor i huset: 30 procent av arbetskostnaden, högst 50 000 kronor per person och år. Källa för ROT: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
       { q: 'Har ni garanti och försäkring?', a: 'Ja. Ett års garanti på måleriarbetet, F-skatt och fullt försäkrade via Trygg-Hansa. Behöver något åtgärdas under det första året gör vi det utan extra kostnad.' },
     ],
   },
