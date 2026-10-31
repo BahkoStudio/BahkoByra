@@ -10,11 +10,24 @@ const TITEL = 'Sveriges värdefullaste hemsidor: så mäter vi affärsvärde | B
 const BESKRIVNING =
   'Sveriges värdefullaste hemsidor är en lista över svenska småföretags hemsidor, bedömda efter affärsvärde och inte trafik. Öppen metod med sju kriterier och 0 till 100 poäng.';
 
+const OG_BILD = '/og/sveriges-vardefullaste-hemsidor.png';
+
 export const metadata = {
   title: { absolute: TITEL },
   description: BESKRIVNING,
   alternates: { canonical: '/sveriges-vardefullaste-hemsidor/' },
-  openGraph: { title: TITEL, description: BESKRIVNING, url: '/sveriges-vardefullaste-hemsidor/' },
+  openGraph: {
+    title: TITEL,
+    description: BESKRIVNING,
+    url: '/sveriges-vardefullaste-hemsidor/',
+    images: [{ url: OG_BILD, width: 1200, height: 630, alt: 'Sveriges värdefullaste hemsidor' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITEL,
+    description: BESKRIVNING,
+    images: [OG_BILD],
+  },
 };
 
 const DEFINITION =
