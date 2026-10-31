@@ -20,6 +20,7 @@ export const STATISKA = [
   { stig: '/hardast-arbetande-webbyran-i-sverige/', prio: 0.4 },
   { stig: '/var-lacker-jobben/', prio: 0.9 },
   { stig: '/forslag/', prio: 0.8 },
+  { stig: '/sveriges-vardefullaste-hemsidor/', prio: 0.7 },
   { stig: '/foretag/gratis-granskning.html', prio: 0.9 },
   { stig: '/foretag/gratis-guide.html', prio: 0.8 },
   { stig: '/integritet/', prio: 0.2 },
