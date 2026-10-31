@@ -76,6 +76,9 @@ export default function Footer() {
               <li>
                 <Link href="/var-lacker-jobben/">Var läcker jobben?</Link>
               </li>
+              <li>
+                <Link href="/sveriges-vardefullaste-hemsidor/">Sveriges värdefullaste hemsidor</Link>
+              </li>
             </ul>
           </nav>
 
