@@ -10,11 +10,24 @@ const TITEL = 'Sveriges värdefullaste hemsidor: så mäter vi affärsvärde | B
 const BESKRIVNING =
   'Sveriges värdefullaste hemsidor är en lista över svenska småföretags hemsidor, bedömda efter affärsvärde och inte trafik. Öppen metod med sju kriterier och 0 till 100 poäng.';
 
+const OG_BILD = '/og/sveriges-vardefullaste-hemsidor.png';
+
 export const metadata = {
   title: { absolute: TITEL },
   description: BESKRIVNING,
   alternates: { canonical: '/sveriges-vardefullaste-hemsidor/' },
-  openGraph: { title: TITEL, description: BESKRIVNING, url: '/sveriges-vardefullaste-hemsidor/' },
+  openGraph: {
+    title: TITEL,
+    description: BESKRIVNING,
+    url: '/sveriges-vardefullaste-hemsidor/',
+    images: [{ url: OG_BILD, width: 1200, height: 630, alt: 'Sveriges värdefullaste hemsidor' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITEL,
+    description: BESKRIVNING,
+    images: [OG_BILD],
+  },
 };
 
 const DEFINITION =
@@ -140,6 +153,9 @@ export default function VardefullasteHemsidor() {
           <p className={styles.brodtext}>
             Vill du att din hemsida ska bedömas? Hör av dig så tittar vi på den med samma sju kriterier.
             Du behöver inte länka till oss för att komma med.
+          </p>
+          <p className={styles.brodtext}>
+            Du kan nominera din sajt genom att skriva ”nominera” på vårt LinkedIn-inlägg eller via kontaktsidan.
           </p>
           <p className={styles.brodtext}>
             <Link href="/kontakt/" className="btn btn-primar">Nominera via kontakt</Link>
