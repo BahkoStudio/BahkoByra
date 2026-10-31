@@ -142,6 +142,9 @@ export default function VardefullasteHemsidor() {
             Du behöver inte länka till oss för att komma med.
           </p>
           <p className={styles.brodtext}>
+            Du kan nominera din sajt genom att skriva ”nominera” på vårt LinkedIn-inlägg eller via kontaktsidan.
+          </p>
+          <p className={styles.brodtext}>
             <Link href="/kontakt/" className="btn btn-primar">Nominera via kontakt</Link>
           </p>
         </div>
