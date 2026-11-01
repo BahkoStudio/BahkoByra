@@ -1,7 +1,7 @@
 import DemoSida from '../_mall/DemoSida';
 
 /* ===========================================================================
-   PB INDUSTRISERVICE (PBService AB) · kostnadsfritt hemsideförslag från Bahko Byrå
+   BROTTOM.SE (Persson Brothers Service AB, tidigare PB Industriservice) · kostnadsfritt hemsideförslag från Bahko Byrå
    Lead: instagram.com/pb_industriservice · Malmö (Husie) · HAR hemsida (pbservice.se,
    inriktad på bygg och renovering). Byggd 2026-11-01 på demomallen v3 (kanon: swedcro).
    Ingen befintlig demo i nischen industrisvets/stål, därför nybygge (demo-recopy gav 0 träffar).
@@ -41,16 +41,30 @@ import DemoSida from '../_mall/DemoSida';
    FLAGGOR: hero-filmen är GENERERAD (Higgsfield Wan 3.0 Prime, 5 s 1080p, ur
    deras eget fartygsfoto DcDa2k0CNfA; svetsljuset i bogporten är tillagt).
    Mobilversionen är beskuren ur den liggande. Varför-filmen = deras nattfoto
-   (DbxVOsJi2ao) i långsam rörelse + logokort. Logotypen = "Ny-logga-svart" från
-   pbservice.se (kugghjulet), ljusa varianten inverterad av oss. Omdömen i
+   (DbxVOsJi2ao) i långsam rörelse + logokort. Logotypen = kundens nya Brottom.se-logga
+   (se NAMNBYTE nedan), frilagd till transparent PNG. Omdömen i
    exempelläge. Formuläret går till mathias@bahkobyra.se (demonyckeln).
+   NAMNBYTE 2026-11-01: kunden svarade på IG att sidan ska heta "Brottom.se" och ha
+   deras nya logga (kugghjul, svetsare vid bro i solnedgång). Loggan frilagd av oss
+   från deras jpg (vit bakgrund bort). Varför-filmens logokort omrenderat med ffmpeg.
+   Accent flyttad från gult till orange som i loggan. brottom.se svarade inte vid
+   bygget, därför pekar url/sameAs fortfarande på pbservice.se.
    =========================================================================== */
 
 export const metadata = {
-  title: 'PB Industriservice | Industrisvets och stålkonstruktion i Malmö',
+  title: 'Brottom.se | Industrisvets och stålkonstruktion i Malmö',
   description:
     'Svetsning, reparation, underhåll, tillverkning och montage av stålkonstruktion. Industriservice från Malmö, på plats i hela Sverige. Förslag på hemsida från Bahko Byrå.',
   robots: { index: false, follow: false },
+  icons: { icon: '/pbindustriservice/media/icon-brottom.png', apple: '/pbindustriservice/media/apple-icon-brottom.png' },
+  openGraph: {
+    title: 'Brottom.se | Industrisvets och stålkonstruktion i Malmö',
+    description: 'Svetsning, reparation, underhåll, tillverkning och montage av stålkonstruktion. Från Malmö, på plats i hela Sverige.',
+    siteName: 'Brottom.se',
+    locale: 'sv_SE',
+    type: 'website',
+    images: [{ url: '/pbindustriservice/media/og-brottom.jpg', width: 1200, height: 630, alt: 'Brottom.se' }],
+  },
 };
 
 const M = '/pbindustriservice/media';
@@ -58,7 +72,9 @@ const M = '/pbindustriservice/media';
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: 'PB Industriservice',
+  name: 'Brottom.se',
+  logo: 'https://www.bahkobyra.se/pbindustriservice/media/logo-brottom.png',
+  image: 'https://www.bahkobyra.se/pbindustriservice/media/og-brottom.jpg',
   legalName: 'Persson Brothers Service AB',
   url: 'https://www.pbservice.se/',
   telephone: '+46729917734',
@@ -74,16 +90,16 @@ const schema = {
 };
 
 const data = {
-  namn: 'PB Industriservice',
+  namn: 'Brottom.se',
   tema: {
     mork: '#0E1116',
-    accent: '#F5B301',
-    accentHover: '#D99A00',
-    accentText: '#7A5000',
-    accentLjus: '#FFC83D',
+    accent: '#EE7A22',
+    accentHover: '#D0620F',
+    accentText: '#9A4308',
+    accentLjus: '#F7A35C',
     paAccent: '#0F172A',
   },
-  logo: { src: `${M}/logo-pbservice.png`, w: 800, h: 804, alt: 'PB Industriservice', topp: 'vit', ljus: `${M}/logo-pbservice-ljus.png` },
+  logo: { src: `${M}/logo-brottom.png`, w: 800, h: 807, alt: 'Brottom.se' },
   kontakt: {
     tel: '072 991 77 34',
     telHref: 'tel:+46729917734',
@@ -146,7 +162,7 @@ const data = {
   },
 
   varfor: {
-    eyebrow: 'Varför PB Industriservice',
+    eyebrow: 'Varför Brottom.se',
     rubrik: ['Vi kommer ut', 'och löser det'],
     lead: 'Står något still kostar varje timme. Vi kommer dit där jobbet är, på fartyget, i fabriken eller på taket, och gör det klart. Dag som natt.',
     punkter: [
@@ -165,7 +181,7 @@ const data = {
     rubrik: ['Från resemontör', 'till eget företag'],
     kortRad: 'Husie, Malmö · sedan 2017',
     stycken: [
-      'PBService startades 2017 av Patrik Persson. Resan inom bygg och industri började för ungefär 17 år sedan som resemontör, och sedan dess har det blivit jobb som snickare, plattsättare, murare och montör.',
+      'Brottom.se drivs av Persson Brothers Service AB, som Patrik Persson startade 2017. Resan inom bygg och industri började för ungefär 17 år sedan som resemontör, och sedan dess har det blivit jobb som snickare, plattsättare, murare och montör.',
       'I dag har vi verkstad i Husie i Malmö och tar uppdrag inom svets, underhåll och montage av stålkonstruktion i hela Sverige. Vi trivs bäst på plats, mitt i jobbet.',
     ],
     bevis: [
@@ -245,12 +261,12 @@ const data = {
   },
 
   modal: {
-    rubrik: 'Så här kan PB Industriservice se ut på nätet',
-    text: 'Det här är ett kostnadsfritt förslag, byggt på det ni själva visar på Instagram och pbservice.se, med era egna bilder. Filmen överst är en illustration gjord ur ert eget fartygsfoto. Formuläret landar ännu inte i er inkorg. Vill ni se den skarpt? Boka ett kostnadsfritt 15-minuterssamtal med Mathias.',
+    rubrik: 'Så här kan Brottom.se se ut på nätet',
+    text: 'Det här är ett kostnadsfritt förslag, byggt på det ni själva visar på Instagram och pbservice.se, med era egna bilder och er nya logga. Filmen överst är en illustration gjord ur ert eget fartygsfoto. Formuläret landar ännu inte i er inkorg. Vill ni se den skarpt? Boka ett kostnadsfritt 15-minuterssamtal med Mathias.',
   },
 };
 
-export default function PbIndustriserviceDemo() {
+export default function BrottomDemo() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
