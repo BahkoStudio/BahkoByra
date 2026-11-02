@@ -13,6 +13,7 @@ export const STATISKA = [
   { stig: '/om-oss/', prio: 0.6 },
   { stig: '/kontakt/', prio: 0.7 },
   { stig: '/webbyra-jonkoping/', prio: 0.8 },
+  { stig: '/seo-jonkoping/', prio: 0.8 },
   { stig: '/vad-kostar-en-hemsida/', prio: 0.8 },
   { stig: '/kan-en-seo-expert-radda-min-hemsida/', prio: 0.7 },
   { stig: '/hardast-arbetande-seo-experten-i-sverige/', prio: 0.4 },

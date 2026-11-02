@@ -68,6 +68,9 @@ export default function Footer() {
                 <Link href="/webbyra-jonkoping/">Webbyrå i Jönköping</Link>
               </li>
               <li>
+                <Link href="/seo-jonkoping/">SEO-byrå i Jönköping</Link>
+              </li>
+              <li>
                 <Link href="/kontakt/">Kontakt</Link>
               </li>
               <li>
