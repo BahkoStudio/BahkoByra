@@ -35,6 +35,11 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    SAMMANSATT: övre halvan bild 1 (före, sprucket innertak), nedre halvan bild 4 (efter);
    bildtexten säger att det är två foton. invandig-tak-efter.webp = bild 3 (efter).
    Ingen yta eller ort utöver platstaggen, så ingen står på sidan. Lagt i jobb.utvalda.
+   NYA BILDER (2026-11-02, daglig IG-koll): inlägget DfMZ0jGkSyx (publicerat 2026-11-01,
+   platstagg Östermalm), ordagrant: "Väggar Tak Golvlister karmar Golvslipning Furugolv
+   från gammalt till nytt". Samma lägenhet som golvjobbet på golv/ (klart 2026-10-24).
+   invandig-ostermalm-1/-2/-3.webp = bild 4, 2 och 1 ur inlägget, beskurna 4:3, först i
+   övre bandet. Ingen yta i inlägget, så ingen står på sidan.
    FLAGGOR: alla bilder är GD:s egna foton (samma som huvudsidan). Omdömena här
    är fasta (inte levande), så att de handlar om invändig målning.
    GOOGLE (2026-10-09, se ../_gd.js GOOGLE_OMDOMEN): betygsbrickan 4,8 av 5 (18)
@@ -95,6 +100,9 @@ const data = {
       { src: `${M}/invandig-tak-efter.webp`, w: 900, h: 1200, etikett: 'Efter', txt: 'Slätt och nymålat tak, klart i oktober 2026.', alt: 'Ljust rum med slätt, nymålat vitt innertak, taklampa, bokhylla och trägolv efter jobbet', lank: { href: 'https://www.instagram.com/p/DeoISssEUS9/', txt: 'Se jobbet på Instagram' } },
     ],
     rad1: [
+      { src: `${M}/invandig-ostermalm-1.webp`, alt: 'Nymålat rum med ljusa väggar och vita snickerier, balkongdörrar och slipat trägolv, i en lägenhet på Östermalm', txt: 'Östermalm: väggar och snickerier' },
+      { src: `${M}/invandig-ostermalm-2.webp`, alt: 'Ljus hall med nymålade väggar och vita listor, en glasad vit dörr och slipat trägolv, på Östermalm', txt: 'Östermalm: väggar, lister, karmar' },
+      { src: `${M}/invandig-ostermalm-3.webp`, alt: 'Nymålat vitt innertak med spotlights ovanför ljusa väggar och en radiator, i en lägenhet på Östermalm', txt: 'Östermalm: tak och väggar' },
       { src: `${M}/invandig-sodertalje-1.webp`, alt: 'Nymålat rum med ljusa väggar, vit taklist och skrivbord vid fönstret i Södertälje', txt: 'Södertälje: tak och väggar, 180 kvm' },
       { src: `${M}/invandig-sodertalje-2.webp`, alt: 'Nymålat vitt tak med taklampa och bred taklist mot ljusgrå väggar, en öppen dörr med glasrutor, i Södertälje', txt: 'Södertälje: nymålat tak' },
       { src: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', txt: 'Rum målat i ljust' },
