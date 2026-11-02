@@ -113,7 +113,7 @@ const SYNAS = [
   {
     h: 'Lokal SEO och Google Företagsprofil',
     p: 'Rätt uppgifter överallt, en profil som sköts och sidor som svarar på det folk i Jönköping faktiskt söker på.',
-    lank: { href: '/tjanster/seo/', text: 'Lokal SEO' },
+    lank: { href: '/seo-jonkoping/', text: 'SEO-byrå i Jönköping' },
   },
   {
     h: 'Synas i AI-svar',

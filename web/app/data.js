@@ -161,8 +161,17 @@ export const TJANSTER = [
     tagg: 'Lokal · Teknisk',
     kort: 'Synas när någon i er stad söker efter det ni gör.',
     rubrik: 'Synas när kunden söker',
+    /* Ortsneutral (SEO-desk 2026-11-02): /seo-jonkoping/ äger alla "seo + jönköping"-termer. */
+    title: 'Lokal SEO för hantverkare i hela Sverige',
+    h1: 'Lokal SEO för hantverkare i hela Sverige',
     ingress:
-      'Svenskar söker "målare Jönköping", inte "målning". Lokal SEO handlar om att finnas där, med rätt uppgifter, när någon i närheten behöver er.',
+      'Svenskar söker "tjänst + ort", som "målare Örebro", inte "målning". Lokal SEO handlar om att finnas där, med rätt uppgifter, när någon i närheten behöver er.',
+    ingressLank: {
+      fore: 'Jobbar du i Jönköpingstrakten? Läs om vår ',
+      text: 'SEO-byrå i Jönköping',
+      href: '/seo-jonkoping/',
+      efter: '.',
+    },
     punkter: [
       {
         h: 'Google Företagsprofil',
