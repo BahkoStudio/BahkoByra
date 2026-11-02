@@ -295,7 +295,8 @@ export default function SeoJonkoping() {
               <div className="kort">
                 <h3>Matboden i Huskvarna: etta på "buffe huskvarna"</h3>
                 <p>
-                  Sök "buffe huskvarna" på Google. Den 2 november 2026 låg Matboden i Huskvarna först i
+                  Sök "buffe huskvarna" på Google. Den 2 november 2026 låg{' '}
+                  <a href="https://www.matbodens.nu/" target="_blank" rel="noopener">Matboden i Huskvarna</a> först i
                   Googles platslista. Skärmdumpen bredvid är tagen samma dag.
                 </p>
               </div>
