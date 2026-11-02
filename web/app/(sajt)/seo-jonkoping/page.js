@@ -302,8 +302,8 @@ export default function SeoJonkoping() {
               <div className="kort">
                 <h3>Smålands Måleri AB i Jönköping: plats 3</h3>
                 <p>
-                  Smålands Måleri AB ligger nu på plats 3 på sin huvudsökning. Två månader tidigare hade
-                  företaget ingen placering alls där.
+                  Smålands Måleri AB ligger nu på plats 3 när man söker "måleri jönköping" på Google. Två månader tidigare
+                  hade företaget ingen placering alls där.
                 </p>
               </div>
             </div>
