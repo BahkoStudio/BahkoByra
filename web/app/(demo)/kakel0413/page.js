@@ -2,6 +2,8 @@ import DemoSida from '../_mall/DemoSida';
 import { arKunddoman } from './kunddoman';
 import BildUpload from './BildUpload';
 import KontaktFalt from './KontaktFalt';
+import Galleri from './Galleri';
+import { jobb } from './jobb';
 
 /* ===========================================================================
    KAKEL 0413 AB — hemsida för en betalande kund (12 000 kr-paketet), Bahko Byrå
@@ -185,15 +187,24 @@ const data = {
     rad2: [{ src: `${M}/logo-original.jpg`, alt: '', txt: '' }],
   },
 
-  // Därför oss (revision 3, Mathias 2026-10-25, ordagrant): ingen ingress (mallens Rubrik
-  // ritar inget lead-element när lead är tomt), exakt två punkter.
+  // Därför oss (Mathias 2026-11-03, kundens text ordagrant, ersätter revision 3): rubrik + tre stycken
+  // i ingressen, fyra bockar, och slutmeningen som sista punkt utan bock/ruta (stilblocket nedan).
   varfor: {
     eyebrow: 'Därför oss',
-    rubrik: ['Att alltid hålla', 'det man lovar'],
-    lead: '',
+    rubrik: ['Har du ett projekt på gång?', 'Vi hjälper dig gärna!'],
+    lead: (
+      <>
+        <span style={{ display: 'block' }}>Oavsett om du är privatperson, byggföretag eller entreprenör är du välkommen att kontakta oss.</span>
+        <span style={{ display: 'block', marginTop: '0.8em' }}>Berätta kort om ditt projekt eller skicka ritningar och bilder, så tittar vi på hur vi kan hjälpa dig.</span>
+        <span style={{ display: 'block', marginTop: '0.8em' }}>Vi utgår från Eslöv och arbetar i hela Skåne. Vi tar oss an både mindre uppdrag och större entreprenadprojekt inom kakel och klinker.</span>
+      </>
+    ),
     punkter: [
-      { rubrik: 'Över 16 års erfarenhet', text: '16 års erfarenhet inom byggbranschen. Vi har arbetat med välkända byggföretag som Skanska, NCC, Peab, MVB, Tornstad.' },
-      { rubrik: 'Samma mål, varje jobb', text: 'Oavsett om du behöver hjälp med en hel badrumsrenovering, kakelsättning eller ett mindre arbete är målet alltid detsamma: att leverera ett resultat som du som kund kan känna dig riktigt nöjd med.' },
+      { rubrik: 'Kostnadsfri offert', text: '' },
+      { rubrik: 'Tydliga offerter och överenskommelser', text: '' },
+      { rubrik: 'ROT-avdrag för privatpersoner enligt gällande regler', text: '' },
+      { rubrik: 'Badrum, kök, hallar, trapphus och större entreprenader', text: '' },
+      { rubrik: '', text: 'Vi värdesätter kvalitet, pålitlighet och goda samarbeten – från första kontakt till färdigt arbete.' },
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
@@ -289,8 +300,9 @@ export default async function Kakel0413Demo() {
       {/* Nuh v2: ingen stor logotyp i heron (h1 finns kvar för skärmläsare/SEO, visuellt dold; headerns logga kvar)
           och inget telefonnummer i heron (Ring-knappen i headern kvar). Raden "Kakel & Badrum." struken: mallen skriver alltid " & " och ".",
           så tjänsteraden får font-size 0 och bara Nuhs mening (egen fontstorlek) syns. */}
-      <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}'}</style>
+      <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}#varfor ul[class*="varforPunkter"]{gap:0.6rem}#varfor ul[class*="varforPunkter"] li{padding:0.75rem 1.1rem}#varfor ul[class*="varforPunkter"] li:last-child{display:block;padding:0.6rem 0 0;background:none;border:0;box-shadow:none;color:rgba(255,255,255,.85)}#varfor ul[class*="varforPunkter"] li:last-child svg{display:none}'}</style>
       <DemoSida data={kund ? { ...data, kund: true, footer: { ...data.footer, lankar: [{ href: '/om-oss/', txt: 'Om oss' }] } } : { ...data, kund: true }} />
+      <Galleri jobb={jobb} />
       <KontaktFalt />
       <BildUpload epost={data.kontakt.epost} />
     </>

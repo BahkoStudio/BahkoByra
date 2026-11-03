@@ -49,3 +49,16 @@
 - Om Nuh bort från huvudsidan → egen sida `/kakel0413/om-oss/` (länk i footern), omskriven kortare text med samma fakta.
 - Siffrorna (17+ år, upp till 7 projekt, ca 800 toaletter, Skanska/NCC/Peab) står som förtroendepunkter i Varför-sektionen och på Om oss.
 - Hero-copy (Mathias 14:25): Nuhs egna två meningar ordagrant ("Att renovera ett badrum är ett stort beslut. Därför …") under Eslöv · Skåne, före "Kakel & Badrum." Ingen rubrik.
+
+## 2026-11-03: Därför oss ny text + jobbgalleri (dolt)
+
+- **Därför oss** (`data.varfor` i `web/app/(demo)/kakel0413/page.js`) ersatt med Nuhs text "Har du ett projekt på gång? Vi hjälper dig gärna!" ordagrant: tre stycken, fyra bockar från "Kostnadsfri offert", slutmeningen sist. Filmen ligger kvar.
+- **Jobbgalleri "Våra jobb"** (`Galleri.js`) är byggt men DOLT: listan i `jobb.js` är tom, och då renderas ingenting. Mallens jobband (🔒 `_mall`) är kvar dolda.
+
+### Så lägger du till ett jobb
+1. Lägg Nuhs EGNA foton (aldrig stock eller AI) i `web/public/kakel0413/jobb/`, t.ex. `eslov-fore.jpg` + `eslov-efter.jpg` (samma format, gärna 4:3, ca 1600 px).
+2. Lägg en post i listan i `web/app/(demo)/kakel0413/jobb.js`:
+   - före/efter: `{ titel: 'Badrum i Eslöv', plats: 'Eslöv', typ: 'fore-efter', bilder: { fore: '/kakel0413/jobb/eslov-fore.jpg', efter: '/kakel0413/jobb/eslov-efter.jpg' }, alt: 'Badrum före och efter' }`
+   - en bild: `{ titel: 'Trapphus i Lund', typ: 'bild', src: '/kakel0413/jobb/lund.jpg', alt: 'Nylagt klinker i trapphus' }`
+   - valfritt `bredd`/`hojd` (proportioner, standard 4:3).
+3. Sektionen dyker upp av sig själv före Vanliga frågor. Före/efter får ett dragreglage (touch + piltangenter) med etiketterna Före/Efter.
