@@ -1,3 +1,4 @@
+import Faq from '../../komponenter/Faq';
 import ForslagFormular from './ForslagFormular';
 import kontaktStil from '../kontakt/kontakt.module.css';
 import styles from './forslag.module.css';
@@ -35,8 +36,16 @@ const FAR = [
   { h: 'Underhåll varje månad.', p: 'Jag sköter sidan och håller den uppdaterad.' },
 ];
 
-/* Strukturerad data: bara sidan själv. Organisationen finns i layouten (@id #organization).
-   Ingen FAQ på sidan, alltså inget FAQPage-schema. */
+/* Vanliga frågor under formuläret (Mathias 2026-11-04). Texten ordagrant, samma i FAQPage-schemat. */
+const FRAGOR = [
+  { fraga: 'Kostar det något?', svar: 'Nej. Förslaget är gratis.' },
+  { fraga: 'Måste jag köpa något sen?', svar: 'Nej. Du får förslaget och bestämmer själv om du vill prata vidare.' },
+  { fraga: 'Vad behöver du från mig?', svar: 'Adressen till sidan. Inget mer.' },
+  { fraga: 'Kan jag visa förslaget för min kompanjon?', svar: 'Ja, skicka det bara vidare.' },
+  { fraga: 'Vem är du?', svar: 'Mathias Bahko. Jag driver Bahkobyrå i Huskvarna och bygger hemsidor åt småföretag i hela Sverige.' },
+];
+
+/* Strukturerad data: sidan + FAQPage. Organisationen finns i layouten (@id #organization). */
 const SIDA = 'https://www.bahkobyra.se/forslag/';
 const SIDSCHEMA = {
   '@context': 'https://schema.org',
@@ -48,11 +57,22 @@ const SIDSCHEMA = {
   inLanguage: 'sv-SE',
   about: { '@id': 'https://www.bahkobyra.se/#organization' },
 };
+const FAQSCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': SIDA + '#faq',
+  mainEntity: FRAGOR.map((f) => ({
+    '@type': 'Question',
+    name: f.fraga,
+    acceptedAnswer: { '@type': 'Answer', text: f.svar },
+  })),
+};
 
 export default function Forslag() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SIDSCHEMA) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQSCHEMA) }} />
 
       <section className={`mork ${styles.topp}`}>
         <div className={`wrap ${kontaktStil.inner}`}>
@@ -74,6 +94,15 @@ export default function Forslag() {
 
           <div className={kontaktStil.formYta} id="formular" data-avsloja="upp">
             <ForslagFormular />
+          </div>
+        </div>
+      </section>
+
+      <section id="vanliga-fragor">
+        <div className="wrap">
+          <h2>Vanliga frågor</h2>
+          <div style={{ marginTop: '2rem' }}>
+            <Faq frager={FRAGOR} />
           </div>
         </div>
       </section>
