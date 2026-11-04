@@ -13,8 +13,15 @@ import styles from './page.module.css';
 
 /* Startsidan nås som /, med parametrar och via www-varianter — den behöver
    peka ut sig själv. Undersidorna har redan canonical via sina metadata. */
+const HEM_TITEL = 'Hemsidor för hantverkare i Huskvarna/Jönköping: hemsida, Google och annonser | Bahko Byrå';
+const HEM_META =
+  'Bahko Byrå i Huskvarna/Jönköping bygger hemsidor åt hantverkare och lokala företag i hela Sverige. Fast pris från 10 000 kr ex moms och färdigt förslag inom 48 timmar.';
 export const metadata = {
+  // Ort och tjänster i titeln (SEO-disken 2026-11-04). og hålls i synk.
+  title: { absolute: HEM_TITEL },
+  description: HEM_META,
   alternates: { canonical: '/' },
+  openGraph: { title: HEM_TITEL, description: HEM_META, url: '/' },
 };
 
 const PIL = (

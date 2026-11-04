@@ -32,6 +32,8 @@ export default function NischSida({ nisch }) {
           </h1>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
             {nisch.ingress}
+            {/* Ort i första stycket (SEO-disken 2026-11-04) */}
+            {' '}Vi sitter i Huskvarna och bygger åt företag i Jönköping och hela Sverige.
           </p>
           <div className={styles.toppKnappar}>
             <Link href="/kontakt/" className="btn btn-primar">
