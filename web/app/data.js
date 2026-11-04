@@ -65,7 +65,7 @@ export const TJANSTER = [
     kort: 'Hemsidor som gör att fler hör av sig, inte bara ser snyggare ut.',
     rubrik: 'Hemsidor som ger fler jobb',
     // SEO/AEO-briefen 2026-10-20: tjänsten och sökordet först, sloganen som underrubrik.
-    title: 'Hemsida för hantverkare, fast pris från 10 000 kr',
+    title: 'Hemsida för hantverkare i Jönköping och hela Sverige, från 10 000 kr',
     h1: 'Hemsida för hantverkare till fast pris',
     slogan: 'Hemsidor som ger fler jobb',
     // Kontextuell länk till ortssidan, renderas efter ingressen (SEO-disken 2026-10-27).
@@ -78,7 +78,7 @@ export const TJANSTER = [
     ingress:
       'Hos Bahko Byrå i Huskvarna, nära Jönköping, köper ni en hemsida för ert hantverks- eller lokala företag till fast pris: tre paket från 10 000 kr ex moms. Innan ni bestämmer er får ni ett färdigt förslag på er nya hemsida, kostnadsfritt och inom 48 timmar, så att ni ser exakt hur den blir.',
     meta:
-      'Köp en hemsida för hantverkare och lokala företag. Tre paket med fast pris från 10 000 kr ex moms. Kostnadsfritt färdigt förslag inom 48 timmar.',
+      'Köp en hemsida för ditt hantverks- eller lokala företag hos Bahko Byrå i Huskvarna/Jönköping. Tre paket med fast pris från 10 000 kr ex moms, förslag inom 48 timmar.',
     // Paketen (Mathias text 2026-10-20) och tilläggen ligger överst i filen.
     paket: PAKET_HEMSIDOR,
     tillagg: TILLAGG_HEMSIDOR,

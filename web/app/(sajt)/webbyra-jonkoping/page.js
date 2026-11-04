@@ -15,9 +15,9 @@ const [UNDERHALL, GOOGLE] = TILLAGG;
 
 export const metadata = {
   /* absolute: layoutens mall lägger annars till "| Bahko Byrå" en gång till. */
-  title: { absolute: `Webbyrå & webbdesign i Jönköping – från ${BAS.pris} | Bahko Byrå` },
+  title: { absolute: `Webbyrå i Jönköping: hemsidor och webbdesign från ${BAS.pris} | Bahko Byrå` },
   description:
-    'Webbyrå och webbdesign för företag i Jönköping, med kontor i Huskvarna. Fast pris från 10 000 kr ex moms, färdigt förslag inom 48 timmar.',
+    'Webbyrå i Jönköping med kontor i Huskvarna. Hemsidor och webbdesign för företag till fast pris från 10 000 kr ex moms. Färdigt förslag inom 48 timmar.',
   alternates: { canonical: '/webbyra-jonkoping/' },
 };
 
