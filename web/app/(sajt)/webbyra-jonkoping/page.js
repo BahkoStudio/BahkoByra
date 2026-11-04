@@ -391,6 +391,12 @@ export default function Jonkoping() {
               Vill ni förstå vad som brukar driva priset upp eller ner? Läs{' '}
               <Link href="/vad-kostar-en-hemsida/">vad som avgör priset på en hemsida</Link>.
             </p>
+            {/* Interna länkar till sidor Google inte indexerat än (SEO-disken 2026-11-04) */}
+            <p>
+              Vill du testa din nuvarande sida först? Gör{' '}
+              <Link href="/mobiltestet/">mobiltestet</Link>. Jämför du byråer kan du läsa{' '}
+              <Link href="/basta-webbyran-i-sverige/">hur du väljer webbyrå som lokal företagare</Link>.
+            </p>
           </div>
         </div>
       </section>

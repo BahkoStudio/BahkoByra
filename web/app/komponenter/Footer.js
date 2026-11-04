@@ -80,6 +80,12 @@ export default function Footer() {
                 <Link href="/var-lacker-jobben/">Var läcker jobben?</Link>
               </li>
               <li>
+                <Link href="/mobiltestet/">Mobiltestet</Link>
+              </li>
+              <li>
+                <Link href="/basta-webbyran-i-sverige/">Så väljer du webbyrå</Link>
+              </li>
+              <li>
                 <Link href="/sveriges-vardefullaste-hemsidor/">Sveriges värdefullaste hemsidor</Link>
               </li>
             </ul>

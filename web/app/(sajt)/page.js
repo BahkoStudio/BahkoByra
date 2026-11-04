@@ -319,6 +319,13 @@ export default function Start() {
               <span className={styles.gratisLank}>Hämta guiden {PIL}</span>
             </a>
           </div>
+          {/* Interna länkar till sidor Google inte indexerat än (SEO-disken 2026-11-04) */}
+          <p style={{ marginTop: '1.6rem', color: 'var(--ink-3)' }}>
+            Fler sätt att titta själv: läs{' '}
+            <Link href="/vad-kostar-en-hemsida/" className="textlank">vad en hemsida kostar</Link>, gör{' '}
+            <Link href="/mobiltestet/" className="textlank">mobiltestet</Link> på din nuvarande sida eller se{' '}
+            <Link href="/basta-webbyran-i-sverige/" className="textlank">hur du väljer webbyrå</Link>.
+          </p>
         </div>
       </section>
 
