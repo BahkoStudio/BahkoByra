@@ -200,6 +200,15 @@ export default async function Tjanst({ params }) {
               </div>
             ))}
           </div>
+          {t.seoLank && (
+            <p style={{ marginTop: '1.6rem' }}>
+              {t.seoLank.fore}
+              <Link href={t.seoLank.href} className="textlank">
+                {t.seoLank.text}
+              </Link>
+              {t.seoLank.efter}
+            </p>
+          )}
         </div>
       </section>
 

@@ -1212,3 +1212,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Lokal länk under tjänstekorten (SEO-disken 2026-11-04) */
+.tjanstLokal {
+  margin-top: 1.6rem;
+  color: var(--ink-3);
+}
