@@ -153,6 +153,8 @@ export const TJANSTER = [
       { href: '/hemsida-for-restaurang/', namn: 'Hemsida för restaurang', kort: 'Menyn som text, Google-profilen skött, bokning överst.' },
       { href: '/hemsida-for-e-handel/', namn: 'Hemsida för e-handel', kort: 'En produkt, köpknapp på varje skärm, ångerrätt rätt.' },
       { href: '/vad-kostar-en-hemsida/', namn: 'Vad kostar en hemsida?', kort: 'Ärligt svar på vad som avgör priset, och fällorna att undvika.' },
+      { href: '/mobiltestet/', namn: 'Mobiltestet', kort: 'Se hur din nuvarande sida klarar mobilen.' },
+      { href: '/basta-webbyran-i-sverige/', namn: 'Så väljer du webbyrå', kort: 'Sju saker att kontrollera innan du väljer.' },
     ],
   },
   {
