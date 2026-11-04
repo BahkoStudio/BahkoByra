@@ -165,6 +165,13 @@ export default function Start() {
               </Link>
             ))}
           </div>
+          {/* Ortssidan äger "seo jönköping" (SEO-disken 2026-11-04). Kortet går till den
+              ortsneutrala tjänstesidan, den här raden till ortssidan. */}
+          <p className={styles.tjanstLokal}>
+            Har du ditt företag i Jönköpingstrakten? Läs om{' '}
+            <Link href="/seo-jonkoping/" className="textlank">SEO i Jönköping</Link>, hur vi får dig att
+            synas när kunder i närheten söker.
+          </p>
         </div>
       </section>
 

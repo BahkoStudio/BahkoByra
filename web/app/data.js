@@ -98,6 +98,13 @@ export const TJANSTER = [
       },
     ],
     schema: { typ: 'Webbdesign', namn: 'Hemsida för hantverkare och lokala företag' },
+    // Lokal länk till ortssidan för SEO, renderas under "Det som gör skillnaden" (SEO-disken 2026-11-04).
+    seoLank: {
+      fore: 'Vill du också synas när någon söker lokalt? Läs om ',
+      text: 'SEO i Jönköping',
+      href: '/seo-jonkoping/',
+      efter: ' och hur hemsidan och Google-profilen jobbar ihop.',
+    },
     // De tio granskningspunkterna, ordagrant desamma som pa gratis-granskning.html
     // sa att sidorna sager samma sak. Beslutat av Mathias 2026-08-09.
     punkter: [

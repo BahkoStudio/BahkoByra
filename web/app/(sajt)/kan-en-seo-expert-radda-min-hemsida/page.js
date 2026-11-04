@@ -111,6 +111,11 @@ export default function SeoExpertRadda() {
             inte ringer. Då behöver sidan göras om, och ingen mängd SEO ändrar på det. Så här ser
             du vilket läge din hemsida är i.
           </p>
+          <p style={{ marginTop: '0.8rem' }}>
+            Har du ditt företag runt Jönköping? Då kan du läsa mer om{' '}
+            <Link href="/seo-jonkoping/" className="textlank">SEO i Jönköping</Link> och hur vi jobbar med lokala
+            sökningar där.
+          </p>
           <div className={styles.toppKnappar}>
             <Link href="/foretag/gratis-granskning.html" className="btn btn-primar">
               Få din hemsida granskad gratis {PIL}
