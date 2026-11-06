@@ -44,6 +44,10 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    ingen platstagg), ordagrant: "Hotell Projekt 6 rum Grundmålade..Fortsättning Följer".
    Pågående jobb: panelväggar och dörrar grundmålade. invandig-hotell-1/-2/-3.webp =
    bild 1, 2 och 11 ur inlägget, beskurna 4:3, först i övre bandet. Ingen ort, så ingen står.
+   NYA BILDER (2026-11-06, daglig IG-koll): inlägget DfY1r9VAmW4 (publicerat 2026-11-06,
+   ingen platstagg), ordagrant: "Hotell projekt..Nu kör vi boys👍". Fortsättning på samma
+   hotelljobb. invandig-hotell-4/-5.webp = bild 1 och 2 ur inlägget, beskurna 4:3, först i
+   övre bandet. Ingen ort, så ingen står.
    FLAGGOR: alla bilder är GD:s egna foton (samma som huvudsidan). Omdömena här
    är fasta (inte levande), så att de handlar om invändig målning.
    GOOGLE (2026-10-09, se ../_gd.js GOOGLE_OMDOMEN): betygsbrickan 4,8 av 5 (18)
@@ -104,6 +108,8 @@ const data = {
       { src: `${M}/invandig-tak-efter.webp`, w: 900, h: 1200, etikett: 'Efter', txt: 'Slätt och nymålat tak, klart i oktober 2026.', alt: 'Ljust rum med slätt, nymålat vitt innertak, taklampa, bokhylla och trägolv efter jobbet', lank: { href: 'https://www.instagram.com/p/DeoISssEUS9/', txt: 'Se jobbet på Instagram' } },
     ],
     rad1: [
+      { src: `${M}/invandig-hotell-4.webp`, alt: 'Hotellkorridor med vita pelare, färgburkar och dammsugare på golvet under pågående målning', txt: 'Hotellprojekt: korridor under arbete' },
+      { src: `${M}/invandig-hotell-5.webp`, alt: 'Rum med uppsatt dammspärr och TEBO-zipp, arbetsbänk och spruta framför en vit pelare', txt: 'Hotellprojekt: dammspärr uppsatt' },
       { src: `${M}/invandig-hotell-1.webp`, alt: 'Hotellrum med grundmålade panelväggar och fyllningsfält, skyddspapp på golvet', txt: 'Hotellprojekt, 6 rum: panelväggar grundmålade' },
       { src: `${M}/invandig-hotell-2.webp`, alt: 'Grundmålad vit spegeldörr och panelade väggar i ett hotellrum under arbete', txt: 'Hotellprojekt: dörrar och paneler' },
       { src: `${M}/invandig-hotell-3.webp`, alt: 'Lång panelvägg med fyllningar och stuckatur i taket, grundmålad, med arbetslampa i rummet', txt: 'Hotellprojekt: fortsättning följer' },
