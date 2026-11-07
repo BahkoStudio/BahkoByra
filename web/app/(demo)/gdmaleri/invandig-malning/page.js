@@ -48,6 +48,10 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    ingen platstagg), ordagrant: "Hotell projekt..Nu kör vi boys👍". Fortsättning på samma
    hotelljobb. invandig-hotell-4/-5.webp = bild 1 och 2 ur inlägget, beskurna 4:3, först i
    övre bandet. Ingen ort, så ingen står.
+   NYA BILDER (2026-11-07, daglig IG-koll): inlägget DfalV-RERKA (publicerat 2026-11-06,
+   platstagg Stockholm), ordagrant: "Hotell projekt alla rum Kompletterade och fogade..Nästa
+   steg slipning sen ifyllning av kompletteringar". Samma hotelljobb, 15 bilder.
+   invandig-hotell-6/-7/-8.webp = bild 3, 8 och 9 ur inlägget, beskurna 4:3, först i övre bandet.
    FLAGGOR: alla bilder är GD:s egna foton (samma som huvudsidan). Omdömena här
    är fasta (inte levande), så att de handlar om invändig målning.
    GOOGLE (2026-10-09, se ../_gd.js GOOGLE_OMDOMEN): betygsbrickan 4,8 av 5 (18)
@@ -108,6 +112,9 @@ const data = {
       { src: `${M}/invandig-tak-efter.webp`, w: 900, h: 1200, etikett: 'Efter', txt: 'Slätt och nymålat tak, klart i oktober 2026.', alt: 'Ljust rum med slätt, nymålat vitt innertak, taklampa, bokhylla och trägolv efter jobbet', lank: { href: 'https://www.instagram.com/p/DeoISssEUS9/', txt: 'Se jobbet på Instagram' } },
     ],
     rad1: [
+      { src: `${M}/invandig-hotell-6.webp`, alt: 'Panelvägg med fyllningsfält i ett hotellrum, kompletterad och fogad, inplastat rundbågefönster i hörnet', txt: 'Hotellprojekt: alla rum kompletterade och fogade' },
+      { src: `${M}/invandig-hotell-7.webp`, alt: 'Höga panelade väggar och dörr i ett hotellrum med spacklade och fogade skarvar, skyddspapp på golvet', txt: 'Hotellprojekt: paneler fogade' },
+      { src: `${M}/invandig-hotell-8.webp`, alt: 'Fyllningsdörr i hotellrum med nyspacklade lagningar på väggen bredvid, inför slipning', txt: 'Hotellprojekt: nästa steg slipning' },
       { src: `${M}/invandig-hotell-4.webp`, alt: 'Hotellkorridor med vita pelare, färgburkar och dammsugare på golvet under pågående målning', txt: 'Hotellprojekt: korridor under arbete' },
       { src: `${M}/invandig-hotell-5.webp`, alt: 'Rum med uppsatt dammspärr och TEBO-zipp, arbetsbänk och spruta framför en vit pelare', txt: 'Hotellprojekt: dammspärr uppsatt' },
       { src: `${M}/invandig-hotell-1.webp`, alt: 'Hotellrum med grundmålade panelväggar och fyllningsfält, skyddspapp på golvet', txt: 'Hotellprojekt, 6 rum: panelväggar grundmålade' },
