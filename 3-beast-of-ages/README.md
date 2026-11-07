@@ -17,7 +17,7 @@ En mapp per steg i arbetet. Varje mapp har en `README.md` som säger hur steget 
 | Paketet | `paket/` | README: titlar, miniatyr, beskrivning, fäst kommentar, CTA, miniatyrerna med `hf.mjs`. Miniatyrerna ligger i OneDrive `2 Beast of Ages/Paket/Miniatyrer/` (inte i git) |
 | Produktion | `produktion/` | README: röst, bild och klipp, musik, redigering. Inga videopromptar |
 | Publicering & uppföljning | `publicering/` | README: checklistan vid uppladdning, uppföljning efter 48 timmar, 7 och 28 dagar, testa eller dubbla ner |
-| Struktur & regler | `reference/` | Källdokumenten bakom reglerna: `testa-vs-dubbla-ner.md`, `modellering-vs-kopiering.md`, `thumbnail-reglerna.md`, med bevisbilder i `bilder/` |
+| Struktur & regler | `reference/` | Källdokumenten bakom reglerna: `testa-vs-dubbla-ner.md`, `modellering-vs-kopiering.md`, `thumbnail-reglerna.md`, `youtube-ordlista.md` (Grow Channels A–Z och vad den ändrar hos oss), med bevisbilder i `bilder/` |
 | Skills & verktyg | `skills.md` | Vilka skills och verktyg gren 3 använder, och när |
 | Konvertering & tratt | `konvertering.md` | Väntar på beslut, läs varningen där innan något byggs |
 

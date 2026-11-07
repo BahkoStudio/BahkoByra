@@ -21,6 +21,11 @@ Bocka av allt innan videon blir offentlig.
 - [ ] **Fäst kommentar**, högst två meningar, ur paketet.
 - [ ] **CTA:n** i videon pekar på kanalens senaste video, kontrollerad med
       `vidiq_channel_videos({ videoFormat: 'long', popular: false })` samma dag.
+- [ ] **Rutan "Altered or synthetic content"** är ikryssad. Våra miniatyrer och klipp är
+      AI-bilder av djur och platser som kan tas för verkliga; att hoppa över rutan kan ge
+      straff (`../reference/youtube-ordlista.md`).
+- [ ] **Tre miniatyrer** uppladdade till Test & Compare när det går. YouTube utser vinnaren
+      på **tittartidsandel, inte klick**, så döm inte testet på CTR.
 
 ## Uppföljning
 
@@ -29,8 +34,8 @@ Siffrorna hämtas via vidIQ (MCP, 5 credits per anrop), aldrig ur minnet. Skriv 
 
 | När | Vad du tittar på |
 |---|---|
-| **48 timmar** | Har videon fått visningar alls? Klickfrekvens på miniatyren, och hur många som är kvar efter första minuten. Stämmer titel, miniatyr, beskrivning, kapitel och taggar? |
-| **7 dagar** | Visningar mot kanalens median (inte snittet). Var trafiken kommer ifrån: startsidan, sök eller förslag |
+| **48 timmar** | Har videon fått visningar alls? Klickfrekvens på miniatyren (ribban 7–10 %), hur många som är kvar vid **30 sekunder** (YouTube rapporterar det direkt; över 70 %, över 80 % är "killer intro") och vid första minuten. Stämmer titel, miniatyr, beskrivning, kapitel och taggar? |
+| **7 dagar** | Visningar mot kanalens median (inte snittet). **Tittad andel** (average percentage viewed, ribban 45 %), inte tittad tid, som beror på längden. Var trafiken kommer ifrån: startsidan, sök eller förslag |
 | **28 dagar** | Domen. Visningar mot utliggarribban, se nedan. Döm inte ett format före dag 30 |
 
 ## Beslutet: testa eller dubbla ner
