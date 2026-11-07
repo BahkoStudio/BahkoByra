@@ -204,7 +204,7 @@ Good question. [One-sentence answer with the source's name.] We cover it in more
 
 ## 10. Publiceringsschema
 
-Schemalägg alltid (**Synlighet → Schemalägg**), publicera aldrig direkt vid uppladdning. Tiden sätts efter skärmdumpen av **Statistik → Målgrupp → När dina tittare är på YouTube** (alla tittare, inte bara prenumeranter; skärmdumpen läggs i OneDrive `2 Beast of Ages/Strategi/`). Saknas tydlig topp: söndag 02:00 och onsdag 02:00 svensk tid (lördag respektive tisdag kväll i USA, 55 % av publiken). Två videor aldrig inom 24 timmar. Ordningen står i `ko.md`.
+Schemalägg alltid (**Synlighet → Schemalägg**), publicera aldrig direkt vid uppladdning. Publiceringsfönster enligt Studio 2026-11-07 (alla tittare, 28 dagar, svensk tid): mörkast lördag 14:00 till söndag 04:00 och söndag 15:00 till 24:00; vardagskvällar 18:00 till 24:00 näst mörkast. Video A schemaläggs lördag 17:00, video B onsdag 19:00. Tiden sätts efter skärmdumpen av **Statistik → Målgrupp → När dina tittare är på YouTube** (alla tittare, inte bara prenumeranter; skärmdumpen läggs i OneDrive `2 Beast of Ages/Strategi/`). Saknas tydlig topp: lördag 17:00 och onsdag 19:00 svensk tid (lördag respektive tisdag kväll i USA, 55 % av publiken). Två videor aldrig inom 24 timmar. Ordningen står i `ko.md`.
 
 ---
 

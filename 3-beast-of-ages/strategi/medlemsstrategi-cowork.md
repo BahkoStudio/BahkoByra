@@ -15,6 +15,8 @@
 | 3b Script & Sources (dodon) | Skapa inlägg → Endast medlemmar | | |
 | 3c Tackrutan | I klippet, sista 5 sekunderna | | |
 
+**Läge 2026-11-07 (Cowork):** 1a/5a medlemmens namn hämtat (@MrC.Boxill-Harris), Fakta 16 för dodon postat offentligt. Inlägget till medlemmen, Script & Sources, förmånstexterna och välkomstmeddelandet är INTE gjorda ännu (Cowork saknade manusfilen). Early Access står alltså kvar i Studio tills uppföljningsinstruktionen körts.
+
 ## Principen
 
 En medlem stannar om han **varje vecka ser något han inte hade fått utan att betala**, och om det känns som att kanalen märker att han finns. Förmånerna ska vara lätta att leverera varje vecka, högst en timme. Lova hellre lite och leverera allt än tvärtom.

@@ -10,11 +10,11 @@ i veckan. Kan onsdagsfönstret inte fyllas en vecka utgår video B; planen bryts
 | Måndag | Mathias | Ja eller nej till paketet | 10 min | paketet överst i manusfilen |
 | Tisdag | Claude | `/manusloop` (max 3 rundor), tre miniatyrer med `hf.mjs` | | `../manus/README.md`, `../paket/README.md` |
 | Tisdag | Mathias | Dag 1–2-blocket för helgens video: svarsutkasten in i Studio, Fakta 16 offentligt, Script & Sources till medlemmarna | 15 min | `README.md` ("Dag 1–2") |
-| Onsdag 02:00 | | Video B går ut (schemalagd) | | `studio-playbook.md` §10 |
+| Onsdag 19:00 | | Video B går ut (schemalagd) | | `studio-playbook.md` §10 |
 | Torsdag | Mathias | Spela in och klipp. Kapiteltiderna skrivs in i manusfilen. CTA-meningen som eget ljudklipp | 3–4 h | `../produktion/README.md` |
-| Fredag | Mathias | Ladda upp enligt checklistan och schemalägg söndag 02:00 | 30 min | `README.md` (checklistan), `ko.md` |
+| Fredag | Mathias | Ladda upp enligt checklistan och schemalägg lördag 17:00 | 30 min | `README.md` (checklistan), `ko.md` |
 | Fredag | Claude | Kontrollerar CTA-målet (ett anrop) | | `../paket/README.md` |
-| Söndag 02:00 | | Video A går ut (schemalagd) | | `studio-playbook.md` §10 |
+| Lördag 17:00 | | Video A går ut (schemalagd) | | `studio-playbook.md` §10 |
 | Söndag kväll | Mathias | Fyller i `uppfoljning.md` för videor som är 7 och 28 dagar gamla | 15 min | `uppfoljning.md` |
 
 ## Budget

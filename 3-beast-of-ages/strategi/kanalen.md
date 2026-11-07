@@ -117,7 +117,11 @@ Spellistor (7): De-Extinction Facts · Ice Age Mysteries · Coming Back... But �
 De-Extinct Animals · The Moa Project · The Woolly Mammoth Files · De-Extinct: Bringing Back the
 Dire Wolf.
 
-**Policygranskning 2026-11: __ Shorts och __ långvideor privata (Mathias fyller i).**
+**Policygranskning 2026-11-07 (Cowork): 40 Shorts privata (alla före 2026-02-01; pungvargs-Shorten från 24 okt kvar). Långvideorna *Crocodile vs Baby Elephant* (26 jan 2026, 236), *King Cobra mongoose* (14 feb 2026, 250) och *King Cobra Baboon* (7 mars 2026, 393) orörda, Mathias avgör om klippen är egna.**
+
+Publiceringsfönster enligt Studio 2026-11-07 (alla tittare, 28 dagar, svensk tid): mörkast lördag 14:00 till söndag 04:00 och söndag 15:00 till 24:00; vardagskvällar 18:00 till 24:00 näst mörkast. Video A schemaläggs lördag 17:00, video B onsdag 19:00.
+
+**Gjort i Studio 2026-11-07 (Cowork):** serielistan "15 Facts That Make No Sense" (fd De-Extinction Facts, officiell serie, först på kanalsidan; "15 Facts About De-Extinct Animals" privat), kanalbeskrivningen bytt, de fem dire wolf-videorna pekar på dodon (slutskärm, kort, beskrivningsrad, fäst kommentar), mid-rolls var redan på, dodons slutskärm pekar på moan, Fakta 16 postat offentligt. Medlem: @MrC.Boxill-Harris (Fossil Hunter). Kvar: medlemsinlägg, Script & Sources, förmånstexter och välkomstmeddelande (Early Access ligger kvar tills dess); kortmeddelanden (max 30 tecken); serielistans länk i beskrivningen är avklippt och måste bytas.
 
 ### Varifrån visningarna kom (90 dagar, YouTube Analytics, insightTrafficSourceType)
 
