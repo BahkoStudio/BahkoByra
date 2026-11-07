@@ -55,3 +55,15 @@ priser, magasinering, ledtider, garantier.
 - Logotypen är uppskalad från 266 px — be om originalfil/vektor.
 - Galleri och två sociala-bilder är illustrationer, märkta en gång. Be om egna bilder — de har 106 inlägg med bilarna.
 - Lagrets ort "Tranås & Helsingborg": säte + IG-höjdpunkt. Fråga vilken ort de vill leda med.
+
+## 2026-09-19: demovideo före/efter (Instagram-format)
+
+Sam ville ha en demovideo. Stående 9:16, 1080×1920, 9,8 s: flyttdagen i ett nytt hem.
+Rummet fullt av kartonger och inplastade möbler blir uppackat och ombonat i
+kvällsljus (timelapse med flyttare i svarta t-shirts), med skyltarna FÖRE och
+EFTER och ett slutkort med deras logga, 072-010 32 36, samflytt.se och "Flytt ·
+Städ · Transport, Östergötland & Småland" (från deras egen reel-text).
+Före- och efterbilden är genererade (nano_banana_2), filmen Seedance 2.5 1080p.
+~49 credits. Fil: Skrivbord/sam-flytt-fore-efter.mp4 (källor i .tmp/samflytt/film/).
+Illustration — rummet är inte ett av deras jobb. Loggan är deras 266 px-fil, uppskalad:
+be om originalet om videon ska användas skarpt.

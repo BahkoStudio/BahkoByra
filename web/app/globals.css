@@ -171,6 +171,20 @@ h4 {
   color: var(--em-deep);
 }
 
+/* Länk mitt i brödtext (t.ex. de kontextuella länkarna till /webbyra-jonkoping/,
+   SEO-disken 2026-10-27). Globala a-regeln tar bort understrykningen, så den här
+   gör länken synlig utan att ändra stycket runt den. */
+.textlank {
+  color: var(--em-deep);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mork .textlank {
+  color: var(--em-lt);
+}
+
 .mork .accent {
   color: var(--em-lt);
 }

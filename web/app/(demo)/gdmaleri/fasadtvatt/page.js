@@ -46,7 +46,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadtvätt i Stockholm | GD Måleri Sthlm AB',
+  title: 'Fasadtvätt i Stockholm | GD Måleri',
   description:
     'Fasadtvätt i Stockholm: smuts, alger och lös färg bort från trä, puts, tegel och plåt, som egen tjänst eller inför målning. Kostnadsfri offert, ROT på småhus och 4,9 av 5 på Reco.',
   robots: { index: false, follow: false },
@@ -68,7 +68,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/fasadtvatt/') },
 
-  hero: { ...hero, ort: 'Fasadtvätt i Stockholm', tjanster: ['Tvätt', 'Förarbete'] },
+  hero: { ...hero, rubrik: { fraga: 'Fasadtvätt i Stockholm', svar: 'Tvätt & Förarbete.' } },
   tejp: ['Fasadtvätt', 'Trä, puts, tegel och plåt', 'Tvätt för sig', 'Eller inför målning', 'Skrapning av lös färg', 'ROT på småhus', '4,9 av 5 på Reco', 'Kostnadsfri offert'],
 
   tjanster: {

@@ -8,9 +8,22 @@
   html,body{width:1080px;height:1920px;overflow:hidden;background:transparent}
   img{position:absolute;top:62px;left:62px;width:340px;display:block;
     filter:drop-shadow(0 4px 18px rgba(0,0,0,.55))}
+  .ord{position:absolute;top:66px;left:66px;display:none;font-family:'Bricolage Grotesque',sans-serif;
+    color:#F7F4EE;text-shadow:0 3px 16px rgba(0,0,0,.6)}
+  .ord b{display:block;font-weight:800;font-size:46px;letter-spacing:.06em;line-height:1}
+  .ord span{display:block;font-family:'Instrument Serif',serif;font-style:italic;font-size:34px;color:#B5EFA0;margin-top:4px}
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 </head>
 <body>
-  <img src="../logo.svg" alt="Bromma Trädgårdsservice">
+  <img src="../logo.svg" alt="Bromma Trädgårdsservice" id="logga">
+  <div class="ord" id="ord"><b>BROMMA</b><span>Trädgårdsservice</span></div>
+<script>
+// ?logo=text: namnet i text i stället för loggan (används tills ny logga är bestämd, 2026-10-13)
+if (new URLSearchParams(location.search).get('logo') === 'text') {
+  document.getElementById('logga').style.display = 'none';
+  document.getElementById('ord').style.display = 'block';
+}
+</script>
 </body>
 </html>

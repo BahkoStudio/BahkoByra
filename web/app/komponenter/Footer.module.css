@@ -100,3 +100,61 @@
   display: block;
   margin-top: 1.4rem;
 }
+
+/* Quizraden överst i sidfoten */
+.quiz {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem 1.6rem;
+  margin-bottom: clamp(2.4rem, 5vw, 4rem);
+  padding: 1.3rem 1.5rem;
+  background: var(--yta);
+  border: 1px solid var(--linje-mork);
+  border-radius: var(--r-lg);
+  color: var(--text);
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.quiz:hover {
+  border-color: var(--em);
+  transform: translateY(-2px);
+}
+
+.quizTagg {
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.14);
+  color: var(--em-lt);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.quizText {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.quizText strong {
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+
+.quizText span {
+  color: var(--text-lag);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 760px) {
+  .quiz {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+  .quiz :global(.btn) {
+    width: 100%;
+    justify-content: center;
+  }
+}

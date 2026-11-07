@@ -29,7 +29,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning i Huddinge – målare för fasad och hus | GD Måleri Sthlm AB',
+  title: 'Fasadmålning i Huddinge – målare för fasad och hus | GD Måleri',
   description:
     'Fasadmålning i Huddinge: fasad och tak på villan, offererat vid ett hembesök utan kostnad. Inget extra utan ditt ja, faktura när jobbet är klart och ROT direkt på fakturan.',
   robots: { index: false, follow: false },

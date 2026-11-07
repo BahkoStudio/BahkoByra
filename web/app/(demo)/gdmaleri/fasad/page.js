@@ -49,7 +49,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning och fasadtvätt i Stockholm | GD Måleri Sthlm AB',
+  title: 'Fasadmålning i Stockholm – trä, puts och fönster | GD Måleri',
   description:
     'Fasadtvätt och fasadmålning i Stockholm: trä, puts, tegel och plåt, med fönster, vindskivor och takfot. Senast 234 kvm i Bromma. Kostnadsfri offert, ROT på småhus och 4,9 av 5 på Reco.',
   robots: { index: false, follow: false },
@@ -71,7 +71,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/fasad/') },
 
-  hero: { ...hero, ort: 'Fasad i Stockholm', tjanster: ['Tvätt', 'Målning'] },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Stockholm', svar: 'Tvätt & Målning.' } },
   tejp: ['Fasadtvätt', 'Fasadmålning', 'Trä, puts, tegel och plåt', 'Vindskivor och takfot', 'Fönsterkarmar', 'Färg från Flügger', '4,9 av 5 på Reco', 'ROT på småhus'],
 
   tjanster: {
@@ -147,7 +147,7 @@ const data = {
     kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring och berätta om huset, så svarar vi på just din fasad.' },
     lista: [
       { q: 'Vad kostar det att måla fasaden?', a: 'Det beror på ytan, materialet och skicket. Därför börjar vi med en offert, och den är kostnadsfri. Offerten tar med material, arbete, förarbete som tvätt och skrapning, städning och bortforsling.' },
-      { q: 'Får jag ROT-avdrag?', a: <>På ett småhus, ja: Skatteverket räknar att tvätta och måla fasaden som rotarbete, och vi drar av det direkt på fakturan. I en bostadsrätt ger fasadmålning inget avdrag. Avdraget gäller bara arbetskostnaden. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
+      { q: 'Får jag ROT-avdrag?', a: <>På ett småhus, ja: Skatteverket räknar att tvätta och måla fasaden som rotarbete, och vi drar av det direkt på fakturan. I en bostadsrätt ger fasadmålning inget avdrag. Avdraget är 30 procent av arbetskostnaden, högst 50 000 kronor per person och år (rot och rut tillsammans högst 75 000 kronor). Material ger inget avdrag. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
       { q: 'Vilka fasader målar ni?', a: 'Trä, puts, tegel och plåt. Vi går igenom fasadens skick först: tvätt, skrapning av lös färg och de lagningar som behövs.' },
       { q: 'Kan ni bara tvätta fasaden?', a: 'Ja, fasadtvätt går att beställa för sig. Ska fasaden målas ingår tvätten i förarbetet.' },
       { q: 'Målar ni fönster och vindskivor också?', a: 'Ja. Fönster, fönsterkarmar, vindskivor, takfot och dörrar kan ingå i samma offert som fasaden.' },

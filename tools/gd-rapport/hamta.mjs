@@ -69,6 +69,7 @@ async function main() {
   // ---------- konfig ----------
   const konfig = lasKonfig();
   propertyId = process.env.GD_GA4_PROPERTY || konfig.ga4Property;
+  if (Array.isArray(konfig.uteslutOrter)) UTESLUT_ORTER = konfig.uteslutOrter;
   scSajt = process.env.GD_SC_SAJT || konfig.scSajt || SC_SAJT_STANDARD;
   const nyckelSokvag = process.env.GD_RAPPORT_NYCKEL || konfig.nyckel || STANDARD_NYCKEL;
 
@@ -189,8 +190,16 @@ async function postJson(url, body, token, vad) {
 
 const GA4_URL = () => `https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`;
 
+// Vår egen trafik räknas inte (2026-10-18: två telefonklick och ett offertklick kom från Jönköping,
+// alltså från oss när vi testade sidan). Orterna kan ändras med "uteslutOrter" i konfig.local.json.
+let UTESLUT_ORTER = ['Jonkoping', 'Huskvarna'];
+function medUteslutning(body) {
+  if (!UTESLUT_ORTER.length) return body;
+  const inte = { notExpression: { filter: { fieldName: 'city', inListFilter: { values: UTESLUT_ORTER } } } };
+  return { ...body, dimensionFilter: body.dimensionFilter ? { andGroup: { expressions: [body.dimensionFilter, inte] } } : inte };
+}
 async function ga4(token, body, vad) {
-  return postJson(GA4_URL(), body, token, 'GA4 ' + vad);
+  return postJson(GA4_URL(), medUteslutning(body), token, 'GA4 ' + vad);
 }
 
 function ga4Rader(svar) {
@@ -252,12 +261,12 @@ async function hamtaGa4Vecka(token, v) {
     const svar = await fetch(GA4_URL(), {
       method: 'POST',
       headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+      body: JSON.stringify(medUteslutning({
         dateRanges,
         dimensions: [{ name: 'customEvent:formular' }],
         metrics: [{ name: 'eventCount' }],
         dimensionFilter: { filter: { fieldName: 'eventName', stringFilter: { value: 'generate_lead' } } },
-      }),
+      })),
     });
     if (svar.ok) {
       formular = {};

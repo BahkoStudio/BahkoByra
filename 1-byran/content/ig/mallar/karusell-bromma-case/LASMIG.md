@@ -2,7 +2,7 @@
 
 Byggd med ig-karusell i Brand-läge, 0 credits (Higgsfield-saldot var 0). Sex slides:
 omslag "10 omdömen slog 117." med maskoten och förstoringsglaset, före, det vi gjorde, Google,
-ChatGPT med 25+, och CTA med den färdiga DM:a DEMO-bilden.
+ChatGPT med 35+, och CTA med den färdiga DM:a DEMO-bilden.
 
 **Beviset får aldrig AI-genereras.** `g-topp.png`, `g-veravi.png` och `c-svar.png` är utklipp ur
 de riktiga skärmbilderna i `2-kunder/kunder/bromma/bevis/` (rapport 1, 30 juli 2026, trots

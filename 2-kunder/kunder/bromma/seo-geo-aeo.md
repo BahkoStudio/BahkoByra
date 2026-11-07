@@ -830,3 +830,15 @@ verkligheten.
 
 Frågor till Jens: har du hyresavtal på lokalen i Vikingshill, vilken adress står
 profilen på i dag och är den dold, och finns någon bas i Bromma?
+
+## Verifieringen: läget 2026-09-28
+
+- **21 september:** verifieringsförsöket med Nacka-adressen fick avslag. Profilen är
+  overifierad, och ett nytt försök kan bara startas från Jens eget Google-konto.
+- **28 september, Mathias beslut:** vi driver inte verifieringen varje vecka längre.
+  Jens har påmints många gånger. Den ligger hos honom och han säger till när den är
+  klar. Rapporterna blir contentrapporter från och med rapport 10.
+- Så länge profilen är overifierad: inget rankingarbete i profilen, BRF-nivåerna och
+  de extra listningarna ligger pausade, garantin vilar, och profilens visningar och
+  interaktioner går inte att läsa ut. Mätningen mot nollpunkten görs om när
+  verifieringen är klar.

@@ -67,6 +67,10 @@
   margin-top: 2.2rem;
 }
 
+.bevisUtanBild {
+  grid-template-columns: 1fr;
+}
+
 .bevisBild {
   display: block;
   border-radius: var(--r-lg);

@@ -45,14 +45,14 @@ Cadence: `1-byran/intern-tillvaxt/outreach_cadence.md`. IG: `1-byran/content/ins
 
 ### Offer-stegen (lokala företag, kärnan bygg & hantverk, alla kanaler)
 
-| | Lokala företag (Instagram @bahkobyra, cold email/call/LinkedIn/IRL) |
+| | Lokala företag (Instagram @bahkobyra1, cold email/call/LinkedIn/IRL) |
 |--|----------------------------------------------------------------|
 | Front (gratis) | Gratis hemsideförslag (utkast, ev. 2-min Loom) |
 | Core (betalt) | Hemsida engångs (12 000 kr ex moms) |
 | Uppsell | Löpande optimering / motion design efter levererad sajt |
 
-- **Offer-regel (struktur v2, 2026-09-11):** Outcome (12 % fler kundförfrågningar inom 90 dagar,
-  mätt i kontaktformulär) + Mechanism + Boundaries (ingår, ingår inte, kundens bidrag, leverans:
+- **Offer-regel (struktur v2, 2026-09-11):** Outcome (fler kundförfrågningar via hemsidan,
+  följs i kontaktformuläret; ingen siffra utlovas, 2026-10-17) + Mechanism + Boundaries (ingår, ingår inte, kundens bidrag, leverans:
   testversion 2 dagar, live 7 dagar) + pris (varierar, bara i säljsamtalet). FOR THEM / REAL /
   Financial Sense / Easy YES.
 - **Säljsamtalet** följer tolv steg i `1-byran/intern-tillvaxt/sales_methodology.md` avsnitt 5: kontrollera,
@@ -60,7 +60,7 @@ Cadence: `1-byran/intern-tillvaxt/outreach_cadence.md`. IG: `1-byran/content/ins
   hantera invändningar, commitment, uppföljning samma dag, exit.
 - **Bevis i outreach:** minst två verkliga kunder i varje öppnare (målaren i Jönköping,
   trädgårdsfirman i Stockholm, restaurangen) och Brommas belagda bevis: plats 1 på Google och i
-  ChatGPT, 25+ förfrågningar via hemsidan inom två månader. Tolv procent är ett mål i erbjudandet, aldrig ett bevis (2026-09-23).
+  ChatGPT, 35+ förfrågningar via hemsidan på två månader.
 - **Branschordet:** deras egen bransch, annars "lokala företag". Aldrig "hantverksföretag" till
   städ, flytt eller restaurang.
 - **Front-offer = bevisa "the wizard"**, inte tjäna pengar. Uppsell kommer sen.

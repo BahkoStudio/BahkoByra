@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida GOLV (/gdmaleri/golv/), 2026-10-08.
@@ -26,12 +26,15 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    ledtider, garanti på golvarbete (ett års garanti gäller måleriarbetet och
    nämns bara i Varför-sektionen som på huvudsidan), antal golvjobb.
 
-   FLAGGOR: INGA EGNA GOLVBILDER. Tjänstekortens tre bilder är GENERERADE
-   illustrationer (Higgsfield API, Qwen Image 3, 2k, 4:3, 2026-10-08, 0,075 USD
-   styck): golv-lagt.jpg (nylagt ljust ekgolv), golv-slipat.jpg (trägolv halvvägs
-   slipat med golvslip), golv-malat.jpg (ljusgrått målat trägolv). Alt-texterna
-   börjar med "Illustrationsbild" och jobb.not säger det. Ghandi bör skicka riktiga
-   golvbilder (se content/leads/gdmaleri.md). Banden är egna målningsfoton.
+   EGNA GOLVBILDER SEDAN 2026-10-30 (Ghandi via Mathias, foton i kundmappen
+   2-kunder/kunder/gdmaleri/; Östermalm, klart 2026-10-24 enligt Mathias 2026-10-30,
+   ytan okänd, inga EXIF-datum i filerna): ett
+   golv slipat (före/efter, golv-fore-efter.webp, golv-slipat-efter.webp,
+   golv-slipat-foto.webp, band golv-kok-fore/golv-rum-efter/golv-hall-efter.webp)
+   och golvbrädor bytta (golv-brador-byte.webp, golv-lagt-foto.webp). Kortet
+   Golvmålning har kvar den GENERERADE illustrationen golv-malat.jpg (Higgsfield
+   API, Qwen Image 3, 2026-10-08), alt-texten börjar med "Illustrationsbild" och
+   jobb.not säger det. golv-lagt.jpg och golv-slipat.jpg används inte längre.
    Omdömena här är fasta (inte levande), så att de handlar om golv.
    GOOGLE (2026-10-09, se ../_gd.js GOOGLE_OMDOMEN): betygsbrickan 4,8 av 5 (18)
    och Patrik L som Google-kort utan stjärnor. anneli nordberg och Jonas Persson
@@ -44,7 +47,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Golvläggning och golvslipning i Stockholm | GD Måleri Sthlm AB',
+  title: 'Golvläggning och golvslipning i Stockholm | GD Måleri',
   description:
     'GD Måleri Sthlm AB lägger, slipar och målar golv i Stockholm, gärna i samma jobb som väggar och tak. Kostnadsfri offert, ROT direkt på fakturan och 4,9 av 5 på Reco.',
   robots: { index: false, follow: false },
@@ -66,7 +69,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/golv/') },
 
-  hero: { ...hero, ort: 'Golv i Stockholm', tjanster: ['Läggning', 'Slipning'] },
+  hero: { ...hero, rubrik: { fraga: 'Golv i Stockholm', svar: 'Läggning & Slipning.' } },
   tejp: ['Golvläggning', 'Golvslipning', 'Golvmålning', 'Golv och väggar i samma jobb', '4,9 av 5 på Reco', 'Rekommenderat tre år i rad', 'ROT direkt på fakturan', 'Kostnadsfri offert'],
 
   tjanster: {
@@ -76,19 +79,27 @@ const data = {
     lattKort: true,
     kolumner: 3,
     kort: [
-      { id: 'golvlaggning', namn: 'Golvläggning', bild: `${M}/golv-lagt.jpg`, alt: 'Illustrationsbild: nylagt ljust trägolv i ett tomt rum med vita socklar och ett högt fönster', text: 'Nytt golv, i ett rum eller i hela bostaden.', punkter: ['Kostnadsfri offert', 'Material och städning ingår', 'ROT på arbetet'], ritning: (<><path d="M14 100h172" /><path d="M40 100l22-62h76l22 62" /><path d="M74 100l8-62M126 100l-8-62M100 100V38" /></>) },
-      { id: 'golvslipning', namn: 'Golvslipning', bild: `${M}/golv-slipat.jpg`, alt: 'Illustrationsbild: trägolv halvvägs slipat, ljust där golvslipen har gått och mörkt och slitet bredvid', text: 'Slitna trägolv slipas, gärna i samma jobb som rummet målas.', punkter: ['Slipning av trägolv', 'Samma offert som målningen', 'ROT på arbetet'], ritning: (<><path d="M14 100h172" /><path d="M58 98V70h52v28" /><path d="M110 76l34-34" /><path d="M140 38l12 12" /><path d="M66 98a8 8 0 0016 0M90 98a8 8 0 0016 0" /></>) },
+      { id: 'golvlaggning', namn: 'Golvläggning', bild: `${M}/golv-lagt-foto.webp`, alt: 'Nya golvbrädor lagda i en hall på Östermalm, med ett ljust trägolv som fortsätter in i rummet', text: 'Nytt golv, i ett rum eller i hela bostaden.', punkter: ['Kostnadsfri offert', 'Material och städning ingår', 'ROT på arbetet'], ritning: (<><path d="M14 100h172" /><path d="M40 100l22-62h76l22 62" /><path d="M74 100l8-62M126 100l-8-62M100 100V38" /></>) },
+      { id: 'golvslipning', namn: 'Golvslipning', bild: `${M}/golv-slipat-foto.webp`, alt: 'Nyslipat ljust trägolv med breda brädor i ett tomt rum', text: 'Slitna trägolv slipas, gärna i samma jobb som rummet målas.', punkter: ['Slipning av trägolv', 'Samma offert som målningen', 'ROT på arbetet'], ritning: (<><path d="M14 100h172" /><path d="M58 98V70h52v28" /><path d="M110 76l34-34" /><path d="M140 38l12 12" /><path d="M66 98a8 8 0 0016 0M90 98a8 8 0 0016 0" /></>) },
       { id: 'golvmalning', namn: 'Golvmålning', bild: `${M}/golv-malat.jpg`, alt: 'Illustrationsbild: trägolv målat ljusgrått i ett tomt rum, med en färgburk på en skyddsduk', text: 'Golvet målas i den kulör du väljer.', punkter: ['Förarbete ingår', 'Inget extra utan ditt ja', 'ROT på arbetet'], ritning: (<><path d="M14 100h172" /><path d="M30 100l18-40h104l18 40" /><path d="M120 30h44v18h-44z" /><path d="M142 48v22" /></>) },
     ],
   },
 
   jobb: {
     eyebrow: 'Våra jobb',
-    rubrik: ['Rum vi har', 'gjort klara'],
-    lead: 'Väggar, tak och snickerier inne, och fasader ute. Bilderna i banden är från våra egna projekt.',
-    not: 'Golvbilderna under Tjänster är illustrationsbilder. Fler egna jobb finns på vårt Instagram.',
+    rubrik: ['Golv vi har', 'slipat och lagt'],
+    lead: 'Ett slitet trägolv i en lägenhet på Östermalm slipat ljust i oktober 2026, och skadade golvbrädor bytta mot nya. Bilderna är från våra egna jobb.',
+    not: 'Golvmålningskortet under Tjänster är en illustrationsbild. Fler egna jobb finns på vårt Instagram.',
     tid: '70s',
+    // Utvalda (mallfältet jobb.utvalda): Ghandis golvfoton 2026-10-30. Östermalm, klart 2026-10-24 (Mathias 2026-10-30).
+    utvalda: [
+      { src: `${M}/golv-fore-efter.webp`, w: 900, h: 1200, etikett: 'Östermalm, före och efter', txt: 'Slitet, gulnat trägolv slipat ljust, klart 24 oktober 2026. Två foton: före överst, efter nederst.', alt: 'Sammansatt före/efter-bild av ett trägolv i en lägenhet på Östermalm: övre halvan ett slitet och gulnat golv i ett rum med fönster och radiator, nedre halvan ett nyslipat ljust trägolv i ett rum med radiator' },
+      { src: `${M}/golv-slipat-efter.webp`, w: 900, h: 1200, etikett: 'Östermalm, efter slipning', txt: 'Breda brädor, nyslipade och ljusa, oktober 2026.', alt: 'Nyslipat ljust trägolv med breda brädor i ett tomt rum med vita väggar, i en lägenhet på Östermalm' },
+      { src: `${M}/golv-brador-byte.webp`, w: 900, h: 1200, etikett: 'Östermalm, byte av golvbrädor', txt: 'Skadade brädor byttes mot nya i samma lägenhet. Under arbetet överst, klart nederst.', alt: 'Sammansatt bild från en lägenhet på Östermalm: övre halvan ett öppnat trägolv med bjälkar, isolering och nya brädor på väg in, nedre halvan det färdiga golvet med nya brädor i en hall' },
+    ],
     rad1: [
+      BAND.golvKokFore,
+      BAND.golvRumEfter,
       { src: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', txt: 'Rum målat i ljust' },
       { src: `${M}/jobb-vardagsrum.jpg`, alt: 'Tomt vardagsrum med ljusrosa väggar och tre fönster', txt: 'Vardagsrum målat ljusrosa' },
       { src: `${M}/jobb-gul-hall.jpg`, alt: 'Hall i varmgul kulör med vita snickerier och balkongdörr', txt: 'Hall målad i gult' },
@@ -98,6 +109,7 @@ const data = {
       { src: `${M}/tjanst-snickerier.jpg`, alt: 'Spegeldörr målad i mörkgrönt i en ljus lägenhet', txt: 'Dörr målad mörkgrön' },
     ],
     rad2: [
+      BAND.golvHallEfter,
       { src: `${M}/jobb-trapphus.jpg`, alt: 'Trappa i ett hem med mörkrosa nederdel och ljus vägg ovanför', txt: 'Trappa målad i två kulörer' },
       { src: `${M}/jobb-spackel-tak.jpg`, alt: 'Målare i vit t-shirt spacklar ett innertak', txt: 'Innertak spacklas' },
       { src: `${M}/tjanst-tapet.jpg`, alt: 'Nyuppsatt mönstrad tapet runt en dörr', txt: 'Mönstrad tapet uppsatt' },
@@ -134,7 +146,7 @@ const data = {
     kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring och berätta om golvet, så svarar vi på just ditt.' },
     lista: [
       { q: 'Vad kostar det?', a: 'Det beror på ytan, golvet och vad som ska göras. Därför börjar vi med en offert, och den är kostnadsfri. Offerten tar med material, arbete, städning och bortforsling.' },
-      { q: 'Får jag ROT-avdrag för golvet?', a: <>Ja, på arbetskostnaden. Skatteverket räknar att slipa, byta och måla golv som rotarbete, och vi drar av det direkt på fakturan. Materialet ger inget avdrag. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
+      { q: 'Får jag ROT-avdrag för golvet?', a: <>Ja, på arbetskostnaden. Skatteverket räknar att slipa, byta och måla golv som rotarbete, och vi drar av det direkt på fakturan. Avdraget är 30 procent av arbetskostnaden, högst 50 000 kronor per person och år (rot och rut tillsammans högst 75 000 kronor). Material ger inget avdrag. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
       { q: 'Kan ni slipa golvet och måla rummet i samma jobb?', a: 'Ja, och det har vi gjort förut: en villa i två plan där golvet slipades och alla väggar och tak målades, och en lägenhet på 80 kvm där vardagsrumsgolvet slipades. Då blir det en offert för allt.' },
       { q: 'Vilka golv lägger ni?', a: 'Berätta vad du har i dag och vad du vill ha, och skicka gärna en bild på sms eller mejl. Då får du en offert på just ditt golv.' },
       { q: 'När betalar jag?', a: 'Du får fakturan när arbetet är klart, ingen förskottsbetalning.' },

@@ -6,6 +6,8 @@
 //   node tools/gd-rapport/bygg.mjs --vecka 2026-W42
 //   node tools/gd-rapport/bygg.mjs --exempel       använder exempeldata och text/exempel.md
 //   node tools/gd-rapport/bygg.mjs --ingen-pdf     bara HTML, startar inte Edge
+//   node tools/gd-rapport/bygg.mjs --bara-veckan   ingen jämförelse med veckan före (första veckan, eller när veckorna inte är jämförbara)
+//   node tools/gd-rapport/bygg.mjs --forfragningar=2   verkligt antal förfrågningar enligt inkorgen (statistiken ser bara de som sagt ja till cookies)
 //
 // Inga npm-paket. Node 24.
 
@@ -32,6 +34,11 @@ const A4_HOJD = 1123;
 const arg = process.argv.slice(2);
 const exempel = arg.includes('--exempel');
 const ingenPdf = arg.includes('--ingen-pdf');
+const baraVeckan = arg.includes('--bara-veckan');
+// --forfragningar=N: det verkliga antalet enligt inkorgen/kunden, när statistiken ser färre
+// (besökare som tackat nej till cookies räknas inte i GA4). Mathias 2026-10-18.
+const forfArg = arg.find((a) => a.startsWith('--forfragningar='));
+const forfVerklig = forfArg ? Number(forfArg.split('=')[1]) : null;
 const veckaArg = arg.includes('--vecka') ? arg[arg.indexOf('--vecka') + 1] : null;
 
 function fel(text) {
@@ -140,6 +147,7 @@ function procent(andel) {
 
 // Pil och procentändring mot veckan före. lagreArBattre: true för snittposition på Google.
 function andring(nu, fore, { lagreArBattre = false, somTal = false } = {}) {
+  if (baraVeckan) return '';
   nu = Number(nu) || 0;
   fore = Number(fore) || 0;
   if (nu === fore) return '<span class="noll">±0</span>';
@@ -166,6 +174,18 @@ const SIDNAMN = {
   '/golv': 'Golv',
   '/brf': 'BRF',
   '/integritet': 'Integritet',
+  '/tapetsering': 'Tapetsering',
+  '/snickerier-fonster-malning': 'Fönster och snickerier',
+  '/fasadtvatt': 'Fasadtvätt',
+  '/taktvatt': 'Taktvätt',
+  '/basta-malare-stockholm': 'Guiden: bästa målaren',
+  '/fasadmalning-bromma': 'Bromma',
+  '/fasadmalning-taby': 'Täby',
+  '/malare-sodertalje': 'Södertälje',
+  '/fasadmalning-lidingo': 'Lidingö',
+  '/fasadmalning-sollentuna': 'Sollentuna',
+  '/fasadmalning-huddinge': 'Huddinge',
+  '/fasadmalning-danderyd': 'Danderyd',
 };
 function normSida(s) {
   let p = String(s || '/').split('?')[0].split('#')[0];
@@ -211,12 +231,15 @@ const forfragningar = (h) => (h.generate_lead || 0) + (h.tel_klick || 0) + (h.bo
 const h = g.handelser;
 const hf = gf.handelser;
 
-const forfragDetalj = [
+const forfragDetaljStat = [
   `${tal(h.generate_lead)} formulär`,
   `${tal(h.tel_klick)} telefonklick`,
   `${tal(h.bokning_klick)} bokningsklick`,
   `${tal(h.mejl_klick)} mejlklick`,
 ].join(' · ') + `<br>${tal(h.offert_klick)} klick på Begär offert`;
+const forfragDetalj = forfVerklig != null
+  ? `enligt inkorgen, ${tal(Math.min(h.generate_lead || 0, forfVerklig))} av dem syns i besöksstatistiken<br>${tal(h.offert_klick)} klick på Begär offert`
+  : forfragDetaljStat;
 
 // Sidor: slå ihop denna vecka och veckan före per normaliserad sökväg.
 const sidMap = new Map();
@@ -236,9 +259,9 @@ const sidRader = [...sidMap.entries()]
   .map(
     ([p, v]) =>
       `<tr><td class="k">${esc(sidnamn(p))}${SIDNAMN[p] ? `<span class="sti">${esc(p)}</span>` : ''}</td>` +
-      `<td class="h">${tal(v.nu)}</td><td class="h">${tal(v.fore)}</td><td class="h">${andring(v.nu, v.fore)}</td></tr>`,
+      `<td class="h">${tal(v.nu)}</td>` + (baraVeckan ? '</tr>' : `<td class="h">${tal(v.fore)}</td><td class="h">${andring(v.nu, v.fore)}</td></tr>`),
   );
-if (!sidRader.length) sidRader.push('<tr><td colspan="4" class="tom">Inga sidvisningar registrerade.</td></tr>');
+if (!sidRader.length) sidRader.push(`<tr><td colspan="${baraVeckan ? 2 : 4}" class="tom">Inga sidvisningar registrerade.</td></tr>`);
 
 const sokRader = (s.sokord || [])
   .slice(0, 10)
@@ -281,24 +304,25 @@ const varden = {
   vecka_kort: veckaKort,
   sondag: 'söndag ' + sondagText,
   datumintervall: datumintervall(vecka),
-  datumintervall_fore: datumintervall(data.veckaFore),
+  jamfor_text: baraVeckan ? '' : ` · jämfört med veckan före (${datumintervall(data.veckaFore)})`,
+  sidor_huvud: baraVeckan ? '<tr><th>Sida</th><th class="h">Visningar</th></tr>' : '<tr><th>Sida</th><th class="h">Visningar</th><th class="h">Före</th><th class="h">Ändring</th></tr>',
   typsnitt_url: existsSync(TYPSNITT)
     ? `"data:font/woff2;base64,${readFileSync(TYPSNITT).toString('base64')}"`
     : '"outfit-saknas.woff2"',
 
   besok: tal(g.sessioner),
   besok_andring: andring(g.sessioner, gf.sessioner),
-  besok_detalj: `${tal(g.anvandare)} personer, ${tal(g.nya)} nya<br>${tal(g.sidvisningar)} sidvisningar (${tal(gf.sidvisningar)} veckan före)`,
+  besok_detalj: `${tal(g.anvandare)} personer, ${tal(g.nya)} nya<br>${tal(g.sidvisningar)} sidvisningar${baraVeckan ? '' : ` (${tal(gf.sidvisningar)} veckan före)`}`,
 
-  forfragningar: tal(forfragningar(h)),
+  forfragningar: tal(forfVerklig != null ? forfVerklig : forfragningar(h)),
   forfragningar_andring: andring(forfragningar(h), forfragningar(hf), { somTal: true }),
   forfragningar_detalj: forfragDetalj,
 
   klick: tal(s.klick),
   klick_andring: andring(s.klick, sf.klick),
   klick_detalj:
-    `${tal(s.visningar)} visningar (${tal(sf.visningar)} veckan före)<br>` +
-    `snittplats ${decimal(s.position)} (${decimal(sf.position)}) · klickandel ${procent(s.ctr)}`,
+    `${tal(s.visningar)} visningar${baraVeckan ? '' : ` (${tal(sf.visningar)} veckan före)`}<br>` +
+    `snittplats ${decimal(s.position)}${baraVeckan ? '' : ` (${decimal(sf.position)})`} · klickandel ${procent(s.ctr)}`,
 
   sidor_rader: sidRader.join('\n        '),
   sokord_rader: sokRader.join('\n        '),
@@ -306,7 +330,7 @@ const varden = {
   enheter:
     (enheter ? 'Enheter: ' + enheter + '. ' : '') +
     `Besök från AI-tjänster: ${tal(aiNu)}` +
-    (aiFore !== aiNu ? ` (${tal(aiFore)} veckan före).` : '.'),
+    (!baraVeckan && aiFore !== aiNu ? ` (${tal(aiFore)} veckan före).` : '.'),
 
   text_gjorde: text.gjorde,
   text_nasta: text.nasta,

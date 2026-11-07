@@ -2,11 +2,12 @@ import Link from 'next/link';
 import Faq from '../../komponenter/Faq';
 import Maskot from '../../komponenter/Maskot';
 import styles from './prisguide.module.css';
+import { PRISMODELL } from '../../data.js';
 
 export const metadata = {
   title: 'Vad kostar en hemsida?',
   description:
-    'Ärligt svar på vad en hemsida kostar för en hantverksfirma: vad som avgör priset, vilka fällor du ska se upp med och hur du får ett exakt fast pris utan att betala något.',
+    'Vad en hemsida kostar för ett företag: vad som avgör priset, fällorna att se upp med och hur ni får ett exakt fast pris utan att betala något.',
   alternates: { canonical: '/vad-kostar-en-hemsida/' },
 };
 
@@ -16,9 +17,9 @@ const PIL = (
   </svg>
 );
 
-/* Sidan svarar på frågan utan att publicera priser: prislistan hör hemma i
-   offerten enligt positioneringen. Det här är förklaringen av VAD som avgör,
-   plus vägen till ett exakt pris som inte kostar något att få. */
+/* Sidan förklarar VAD som avgör priset. Paketen med fasta priser står på
+   /tjanster/hemsidor/ (publicerade 2026-10-20), och det exakta priset för en
+   firma står i det kostnadsfria förslaget. */
 
 const AVGOR = [
   {
@@ -35,7 +36,7 @@ const AVGOR = [
   },
   {
     h: 'Bygget och det löpande',
-    p: 'Hos oss har bygget ett fast pris och sidan blir er, med domän och innehåll. Underhåll och SEO efter lanseringen har en månadsavgift, och byter ni domän kostar det extra. Allt står i förslaget, och ingen bindningstid låser fast er.',
+    p: 'Hos oss har bygget ett fast pris och sidan blir er, med domän och innehåll. Underhåll och grundläggande SEO och ranking på Google är valfria tillägg med ett pris i månaden, och byter ni domän kostar det extra. Allt står i förslaget, och ingen bindningstid låser fast er.',
   },
 ];
 
@@ -60,9 +61,8 @@ const FALLOR = [
 
 const FRAGOR_PRIS = [
   {
-    fraga: 'Varför står det inget pris här?',
-    svar:
-      'För att ett pris utan att ha sett er firma vore en gissning, och gissningar brukar sluta med tillägg på fakturan. Ni får ett exakt fast pris i det kostnadsfria förslaget i stället, och det priset gäller. Där står också månadsavgiften för underhåll och SEO. Ingen bindningstid.',
+    fraga: 'Vad kostar en hemsida hos er?',
+    svar: `${PRISMODELL} Vilket paket som passar er ser ni i det kostnadsfria förslaget, och det priset gäller. Ingen bindningstid.`,
   },
   {
     fraga: 'Vad ingår i priset hos er?',
@@ -141,8 +141,10 @@ export default function Prisguide() {
               <h3>Så får ni ert pris, svart på vitt</h3>
               <p>
                 Bahko Byrå bygger ett färdigt förslag på er nya sida inom 48 timmar, med exakt
-                fast pris, och med månadsavgiften för underhåll och SEO utskriven. Ingen
-                bindningstid. Kostar ingenting att se, och ni bestämmer sen.
+                fast pris för bygget och priserna för de valfria tilläggen utskrivna. Ingen
+                bindningstid. Kostar ingenting att se, och ni bestämmer sen. Har ni ert företag i
+                Jönköpingstrakten? Se{' '}
+                <Link href="/webbyra-jonkoping/#pris" className="textlank">vad en hemsida kostar i Jönköping</Link>.
               </p>
             </div>
             <Link href="/kontakt/" className="btn btn-primar">

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import HeroBygge from '../komponenter/HeroBygge';
 import HeroVideo from '../komponenter/HeroVideo';
 import Maskot from '../komponenter/Maskot';
 import MaskotScen from '../komponenter/MaskotScen';
@@ -7,15 +6,22 @@ import Marquee from '../komponenter/Marquee';
 import RoiKalkyl from '../komponenter/RoiKalkyl';
 import Portfolj from '../komponenter/Portfolj';
 import BevisBromma, { BevisSiffror } from '../komponenter/BevisBromma';
-import TjanstIkon from '../komponenter/TjanstIkon';
+import Nischer from '../komponenter/Nischer';
 import Faq from '../komponenter/Faq';
 import { TJANSTER, FRAGOR } from '../data';
 import styles from './page.module.css';
 
 /* Startsidan nås som /, med parametrar och via www-varianter — den behöver
    peka ut sig själv. Undersidorna har redan canonical via sina metadata. */
+const HEM_TITEL = 'Hemsidor för hantverkare i Huskvarna/Jönköping: hemsida, Google och annonser | Bahko Byrå';
+const HEM_META =
+  'Bahko Byrå i Huskvarna/Jönköping bygger hemsidor åt hantverkare och lokala företag i hela Sverige. Fast pris från 10 000 kr ex moms och färdigt förslag inom 48 timmar.';
 export const metadata = {
+  // Ort och tjänster i titeln (SEO-disken 2026-11-04). og hålls i synk.
+  title: { absolute: HEM_TITEL },
+  description: HEM_META,
   alternates: { canonical: '/' },
+  openGraph: { title: HEM_TITEL, description: HEM_META, url: '/' },
 };
 
 const PIL = (
@@ -24,8 +30,7 @@ const PIL = (
   </svg>
 );
 
-/* Tjänsterna som en resa: ordningen är den vi bygger i, texten talar om vad steget ger. */
-/* Tjänsterna: korta texter i kundens perspektiv, och en länk som säger vad man får se. */
+/* Tjänsterna: en rad var, i kundens ord */
 const TJANSTTEXT = {
   hemsidor: { text: 'Kunden ser vad ni gör och hur man når er, redan på första skärmen i mobilen.', lank: 'Så gör vi hemsidan' },
   seo: { text: 'Ni kan komma upp när någon i er stad söker på det ni gör.', lank: 'Så syns ni i er stad' },
@@ -34,83 +39,166 @@ const TJANSTTEXT = {
   appar: { text: 'Bokning direkt på sidan, så att förfrågningarna inte drunknar bland samtalen.', lank: 'Så bokar kunden själv' },
 };
 
-/* Hur vi jobbar, som en resa i fyra stationer */
+/* Hur vi jobbar: fem steg med en ikon var, inga nummer (Mathias 2026-10-23).
+   Rubrik på högst tre ord, en mening på högst tolv ord. */
+const IKON = {
+  prat: <path d="M4 5h16v10H9l-5 4z" />,
+  skarm: <><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></>,
+  tumme: <path d="M7 11v9H4v-9zM7 11l4-7c1.5 0 2.5 1 2.5 2.5V10H19a2 2 0 0 1 2 2l-1.5 6.5A2 2 0 0 1 17.5 20H7" />,
+  raket: <><path d="M12 15 9 12c0-5 3-8 7-9 1 4-2 7-4 12z" /><path d="M9 12H6l2-3M12 15v3l3-2M7 17c-1 1-1 3-1 3s2 0 3-1" /></>,
+  telefon: <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2z" />,
+};
+
 const RESAN = [
-  { nr: '01', h: 'Ni får ett förslag', p: 'En färdig sida för er firma och er stad, inom 48 timmar.' },
-  { nr: '02', h: 'Ni tittar och säger till', p: 'Gillar ni den fyller vi på med era bilder och kontaktuppgifter.' },
-  { nr: '03', h: 'Sidan kommer ut', p: 'På er egen domän, normalt inom sju dagar.' },
-  { nr: '04', h: 'Kunderna hittar in', p: 'Snabb i mobilen, med en kontaktknapp på varje skärm. Vill ni ändra något når ni samma person hela vägen.' },
+  { ikon: 'prat', h: 'Berätta om företaget', p: 'Vad ni gör och var, det tar två minuter.' },
+  { ikon: 'skarm', h: 'Se förslaget', p: 'Inom 48 timmar har ni ett färdigt förslag att klicka i.' },
+  { ikon: 'tumme', h: 'Ja eller nej', p: 'Säger ni ja lägger vi in era bilder, nej kostar inget.' },
+  { ikon: 'raket', h: 'Sidan går live', p: 'På er egen domän, normalt inom sju dagar.' },
+  { ikon: 'telefon', h: 'Vi finns kvar', p: 'Underhåll, Google och ändringar när ni behöver dem.' },
 ];
 
 export default function Start() {
   return (
     <>
-      {/* ── HERO "Bygget live": text vänster, maskoten bygger till höger.
-             Höjden kommer ur innehållet; filmen spelar på alla skärmar.
-             Mobil: text → knappar → scen → siffror. ── */}
+      {/* ── HERO: text vänster, kalkylen "Räkna på jobben ni missar" till höger
+             (Mathias 2026-10-23, ersätter B-videon). Mobil: text → knapp → kalkyl → siffror. ── */}
       <section className={`mork ${styles.heroBygge}`} id="top">
         <div className={`wrap ${styles.heroGrid}`}>
           <div className={styles.heroText} data-trapp>
-            {/* Rubriken talar till firman (Mathias 2026-09-23). Tjänst + ort ligger som första rad
-                I H1 (Mathias 2026-10-01): synlig text, samma som Google-profilens kategori och ort. */}
-            <h1>
-              <span className="eyebrow" style={{ display: 'flex' }}>Webbdesign i Jönköping &amp; Huskvarna</span>
-              Bli firman kunderna <span className="accent">ringer först.</span>
-            </h1>
+            {/* Maskoten fyller ytan ovanför rubriken på dator, ögat följer musen (Mathias 2026-10-23) */}
+            <MaskotScen
+              className={styles.heroMaskot}
+              src="/img/maskot-scener/visar-sajten.webp"
+              alt="Bahko-maskoten visar upp ett hemsideförslag på en surfplatta"
+              oga={{ x: 73.3, y: 38.9, rx: 6.45, ry: 5.0, gron: 'rgb(20,112,75)' }}
+              index={0}
+            />
+            {/* Slogan "Ta över din lokala marknad." (Mathias 2026-10-25) ser ut som rubriken men är
+                INTE H1 (SEO-disken 2026-10-27): H1 är den lilla brickan "Hemsidor för hantverkare".
+                Orten ligger inte här längre, "Jönköping" ägs av /webbyra-jonkoping/ (kannibalisering).
+                .heroRubrik bär exakt samma stil som H1:an hade, så heron ser likadan ut. */}
+            <div className={styles.heroRubrik}>
+              <h1 className={`eyebrow ${styles.heroTagg}`}>Hemsidor för hantverkare</h1>
+              Ta över din
+              <br />
+              <span className="accent">lokala marknad.</span>
+            </div>
             <p className={styles.heroLede}>
-              Hemsidor och Google-optimering åt lokala företag som vill ha fler förfrågningar.
+              <strong>Byggt för lokala företag.</strong> Få mer trafik från Google, synas högre upp när
+              kunden söker och bli det självklara valet för kunden.
             </p>
             <div className={styles.heroKnappar}>
               <Link href="/kontakt/" className="btn btn-primar">
                 Visa hur min hemsida kan se ut {PIL}
               </Link>
-              <a href="/foretag/gratis-guide.html" className="btn btn-sekundar">
-                Kostnadsfri guide {PIL}
-              </a>
+              <Link href="/var-lacker-jobben/" className={styles.heroLank}>
+                Tappar du kunder? Gör testet på 1 minut {PIL}
+              </Link>
             </div>
-            <p className={styles.heroBevis}>
-              <strong>Ni har ett färdigt förslag inom 48 timmar.</strong> Sen bestämmer ni.
+            {/* Entitetsmening (SEO-disken 2026-10-27): vem Bahko Byrå är, i en mening som
+                tål att lyftas ut. Liten rad under knapparna så att heron ser likadan ut. */}
+            <p className={styles.heroEntitet}>
+              Bahko Byrå är en webbyrå i Huskvarna, nära Jönköping, som bygger hemsidor åt hantverkare och lokala
+              företag i hela Sverige, till fast pris från 10 000 kr ex moms.
             </p>
           </div>
 
-          <div className={styles.heroScen}>
-            <HeroBygge />
+          <div className={styles.heroScen} id="rakna">
+            <RoiKalkyl className={styles.heroKalkyl} kompakt />
           </div>
 
-          <div className={styles.heroSiffror} data-trapp>
-            <div>
-              <strong>7 dagar</strong>
-              <span>Normalt tills sidan är live</span>
-            </div>
-            <div>
-              <strong>Ingen</strong>
-              <span>Bindningstid</span>
-            </div>
-            <div>
-              <strong>1</strong>
-              <span>Kontaktperson, hela vägen</span>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* ── BEVISET: Brommas skärmbilder från 30 juli, direkt efter heron.
-             Ersätter synlighetspanelen, vars graf var en illustration. ── */}
+      {/* ── KUNDBÄLTET: alla kunder med logga, direkt efter heron (Mathias 2026-10-23) ── */}
+      <Marquee />
+
+      {/* ── 2. FILMEN: två minuter, rakt på sak ── */}
+      <section className={`mork ${styles.videoYta}`} id="video">
+        <div className={`wrap ${styles.videoInner}`} data-trapp>
+          <h2>
+            Därför ringer kunden <span className="accent">ett annat företag.</span>
+          </h2>
+          <p className={`lede ${styles.videoLede}`}>
+            Kunden googlar och ringer den som syns först. Syns ni inte där får ni köpa
+            förfrågningar i stället, som nummer fem i kön. Och säljaren som lovade guld och gröna
+            skogar binder er gärna i två år.
+          </p>
+          <HeroVideo />
+        </div>
+      </section>
+
+      {/* ── 3. FÖR VEM: åtta branschkort ── */}
+      <Nischer />
+
+      {/* ── VÅRA TJÄNSTER: fem kort, hemsidan först ── */}
+      <section id="vara-tjanster">
+        <div className="wrap">
+          <div className={styles.tjanstIntro} data-trapp>
+            <div>
+              <span className="eyebrow">Våra tjänster</span>
+              <h2>
+                Allt som får kunden <span className="accent">att ringa er.</span>
+              </h2>
+              <p className="lede" style={{ marginTop: '1rem' }}>
+                Börja med hemsidan. Resten lägger vi till när det lönar sig. Söker ni en{' '}
+                <Link href="/webbyra-jonkoping/" className="textlank">webbyrå i Jönköping</Link> kan
+                vi också ses på kontoret i Huskvarna.
+              </p>
+            </div>
+            <div className={styles.tjanstMaskot}>
+              <MaskotScen
+                src="/img/maskot-scener/ringer.webp"
+                alt="Bahko-maskoten i bygghjälm håller upp en mobil som ringer"
+                oga={{ x: 65.9, y: 38.4, rx: 4.7, ry: 3.7, gron: 'rgb(33,127,94)' }}
+                index={2}
+              />
+            </div>
+          </div>
+
+          <div className={styles.tjanstNat} data-trapp>
+            {TJANSTER.map((t) => (
+              <Link key={t.slug} href={`/tjanster/${t.slug}/`} className={styles.tjanstKort}>
+                {/* Samma runda 3D-märken som i "För vem" (GPT Image 2.5, Mathias 2026-10-23) */}
+                <span className={styles.tjanstMarke}>
+                  <img src={`/img/tjanster/${t.slug}-3d.webp`} alt="" width="640" height="640" loading="lazy" decoding="async" />
+                </span>
+                <h3>{t.namn}</h3>
+                <p>{TJANSTTEXT[t.slug].text}</p>
+                <span className={styles.tjanstFot}>
+                  <span className={styles.tagg}>{TJANSTTEXT[t.slug].lank}</span>
+                  <span className={styles.tjanstPil}>{PIL}</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+          {/* Ortssidan äger "seo jönköping" (SEO-disken 2026-11-04). Kortet går till den
+              ortsneutrala tjänstesidan, den här raden till ortssidan. */}
+          <p className={styles.tjanstLokal}>
+            Har du ditt företag i Jönköpingstrakten? Läs om{' '}
+            <Link href="/seo-jonkoping/" className="textlank">SEO i Jönköping</Link>, hur vi får dig att
+            synas när kunder i närheten söker.
+          </p>
+        </div>
+      </section>
+
+      {/* ── 5. KUNDCASE: Brommas skärmbilder från 30 juli ── */}
       <section className={`mork ${styles.panelYta}`} id="bevis">
         <div className={`wrap ${styles.panelInner}`} data-trapp>
           <div>
             <span className="eyebrow">Kundcase</span>
             <h2>
-              Vår kund låg etta i Googles platslista, <span className="accent">före en firma med 117 omdömen.</span>
+              Etta på Google. <span className="accent">Före företaget med 117 omdömen.</span>
             </h2>
             <p className="lede" style={{ marginTop: '1.1rem' }}>
-              Bromma Trädgårdsservice i Stockholm fick ny hemsida av oss. Så här såg det ut den
-              30 juli, när man sökte på &quot;trädgårdsservice i Stockholm&quot;.
+              <a href="https://brommatradgardsservice.se" target="_blank" rel="noopener" className="accent">
+                brommatradgardsservice.se ↗
+              </a>
             </p>
-            <BevisSiffror />
+            <BevisSiffror lista={[{ tal: '1:a', text: 'på Google' }, { tal: '1:a', text: 'på ChatGPT' }]} />
             <div className={styles.panelKnapp}>
               <Link href="/case/" className="btn btn-sekundar">
-                Se sajten vi gjorde åt dem {PIL}
+                Se sajten {PIL}
               </Link>
             </div>
             {/* Ögat sitter bakom luppen — Mathias egen render, som den är */}
@@ -127,17 +215,11 @@ export default function Start() {
         </div>
       </section>
 
-      {/* ── BEVISREMSAN: står still tills man scrollat ── */}
-      <Marquee />
-
-      {/* ── PORTFÖLJEN: riktiga sajter och demos i ett rutnät ── */}
+      {/* ── 6. KUNDER OCH DEMOS ── */}
       <section className={`mork ${styles.caseYta}`} id="case">
         <div className="wrap">
           <div data-trapp>
             <span className="eyebrow">Kunder och demos</span>
-            <h2>
-              Här är sidorna vi gjort. <span className="accent">Öppna dem i mobilen.</span>
-            </h2>
           </div>
 
           <Portfolj />
@@ -150,90 +232,24 @@ export default function Start() {
         </div>
       </section>
 
-      {/* ── ROI-KALKYLEN: maskoten pekar på kalkylen, besökaren räknar på sina egna siffror ── */}
-      <section className={`mork ${styles.siffrorYta}`} id="rakna">
-        <div className={`wrap ${styles.siffrorRad}`}>
-          <MaskotScen
-            className={styles.siffrorScen}
-            src="/img/maskot-scener/pekar-stoppur.webp"
-            alt="Bahko-maskoten i bygghjälm pekar på kalkylen med ett stoppur i handen"
-            oga={{ x: 74.8, y: 43.9, rx: 6.0, ry: 4.8, gron: 'rgb(22,114,77)' }}
-            index={0}
-          />
-          <div className={styles.kalkylKolumn} data-trapp>
-            <RoiKalkyl />
-          </div>
-        </div>
-      </section>
-
-      {/* ── VIDEON: två minuter, rakt på sak ── */}
-      <section className={`mork ${styles.videoYta}`} id="video">
-        <div className={`wrap ${styles.videoInner}`} data-trapp>
-          <h2>
-            Därför ringer kunden <span className="accent">en annan firma.</span>
-          </h2>
-          <p className={`lede ${styles.videoLede}`}>
-            Kunden googlar och ringer den som syns först. Syns ni inte där får ni köpa
-            förfrågningar i stället, som nummer fem i kön. Och säljaren som lovade guld och gröna
-            skogar binder er gärna i två år.
-          </p>
-          <HeroVideo />
-        </div>
-      </section>
-
-      {/* ── TJÄNSTER: en resa i fem steg, ikonerna binds ihop av en linje ── */}
-      <section id="tjanster">
-        <div className="wrap">
-          <div className={styles.tjanstIntro} data-trapp>
-            <div>
-              <span className="eyebrow">Våra tjänster</span>
-              <h2>
-                Allt som får kunden <span className="accent">att ringa er.</span>
-              </h2>
-              <p className="lede" style={{ marginTop: '1rem' }}>
-                Börja med hemsidan. Resten lägger vi till när det lönar sig.
-              </p>
-            </div>
-            <div className={styles.tjanstMaskot}>
-              <MaskotScen
-                src="/img/maskot-scener/ringer.webp"
-                alt="Bahko-maskoten i bygghjälm håller upp en mobil som ringer"
-                oga={{ x: 65.9, y: 38.4, rx: 4.7, ry: 3.7, gron: 'rgb(33,127,94)' }}
-                index={2}
-              />
-            </div>
-          </div>
-
-          <div className={styles.tjanstNat} data-trapp>
-            {TJANSTER.map((t) => (
-              <Link key={t.slug} href={`/tjanster/${t.slug}/`} className={styles.tjanstKort}>
-                <TjanstIkon slug={t.slug} />
-                <h3>{t.namn}</h3>
-                <p>{TJANSTTEXT[t.slug].text}</p>
-                <span className={styles.tjanstFot}>
-                  <span className={styles.tagg}>{TJANSTTEXT[t.slug].lank}</span>
-                  <span className={styles.tjanstPil}>{PIL}</span>
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PROCESS: resan i fyra stationer med en streckad väg emellan ── */}
+      {/* ── HUR VI JOBBAR: fem steg på en väg, ikoner i stället för nummer ── */}
       <section className={`mork ${styles.process}`} id="process">
         <div className="wrap">
           <span className="eyebrow">Hur vi jobbar</span>
           <h2>
-            Ni ser er nya sida
+            Fem steg. Ni ser sidan
             <br />
-            <span className="accent">innan ni bestämmer er.</span>
+            innan ni bestämmer er.
           </h2>
 
-          <ol className={styles.resa} data-trapp>
-            {RESAN.map((r) => (
-              <li key={r.nr} className={styles.resaSteg}>
-                <span className={styles.resaNod}>{r.nr}</span>
+          <ol className={styles.vag} data-trapp>
+            {RESAN.map((r, i) => (
+              <li key={r.ikon} className={`${styles.vagSteg} ${i === RESAN.length - 1 ? styles.vagMal : ''}`}>
+                <span className={styles.vagNod} aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    {IKON[r.ikon]}
+                  </svg>
+                </span>
                 <h3>{r.h}</h3>
                 <p>{r.p}</p>
               </li>
@@ -242,18 +258,19 @@ export default function Start() {
 
           <div className={styles.processCta} data-avsloja="upp">
             <div>
-              <h3>Berätta vad ni gör och var. Vi tar fram förslaget.</h3>
+              <h3>Redo? Då tar vi fram förslaget.</h3>
               <p>Sidan och domänen är era, och vi jobbar utan bindningstid.</p>
             </div>
             <MaskotScen
               className={styles.processScen}
-              src="/img/maskot-scener/visar-sajten.webp"
-              alt="Bahko-maskoten visar upp ett hemsideförslag på en surfplatta"
-              oga={{ x: 73.3, y: 38.9, rx: 6.45, ry: 5.0, gron: 'rgb(20,112,75)' }}
+              src="/img/maskot-scener/pekar-stoppur.webp"
+              alt="Bahko-maskoten i bygghjälm pekar på texten med ett stoppur i handen"
+              oga={{ x: 74.8, y: 43.9, rx: 6.0, ry: 4.8, gron: 'rgb(22,114,77)' }}
               index={3}
             />
-            <Link href="/kontakt/" className="btn btn-primar">
-              Visa hur min hemsida kan se ut {PIL}
+            <Link href="/kontakt/" className={`btn btn-primar ${styles.processKnapp}`}>
+              <span className={styles.langt}>Visa hur min hemsida kan se ut</span>
+              <span className={styles.kortText}>Se mitt förslag</span> {PIL}
             </Link>
           </div>
         </div>
@@ -267,7 +284,7 @@ export default function Start() {
             Se först var <span className="accent">jobben läcker.</span>
           </h2>
           <p className={styles.gratisMaskot}>
-            <span>Två vägar om ni vill titta innan ni ber om ett förslag.</span>
+            <span>Tre vägar om ni vill titta innan ni ber om ett förslag.</span>
             <MaskotScen
               className={styles.gratisScen}
               src="/img/maskot-scener/fikar.webp"
@@ -278,6 +295,12 @@ export default function Start() {
           </p>
 
           <div className={styles.gratisNat} data-trapp>
+            <Link href="/var-lacker-jobben/" className={`${styles.gratisKort} ${styles.gratisQuiz}`}>
+              <span className={styles.gratisTagg}>Fem frågor, inget att skriva</span>
+              <h3>Var läcker jobben?</h3>
+              <p>Ett tryck per fråga. Ni får svaret i klartext direkt, och ett förslag om ni vill.</p>
+              <span className={styles.gratisLank}>Starta {PIL}</span>
+            </Link>
             <a href="/foretag/gratis-granskning.html" className={styles.gratisKort}>
               <span className={styles.gratisTagg}>Kostnadsfri analys</span>
               <h3>10-punktsanalys av er hemsida</h3>
@@ -296,6 +319,13 @@ export default function Start() {
               <span className={styles.gratisLank}>Hämta guiden {PIL}</span>
             </a>
           </div>
+          {/* Interna länkar till sidor Google inte indexerat än (SEO-disken 2026-11-04) */}
+          <p style={{ marginTop: '1.6rem', color: 'var(--ink-3)' }}>
+            Fler sätt att titta själv: läs{' '}
+            <Link href="/vad-kostar-en-hemsida/" className="textlank">vad en hemsida kostar</Link>, gör{' '}
+            <Link href="/mobiltestet/" className="textlank">mobiltestet</Link> på din nuvarande sida eller se{' '}
+            <Link href="/basta-webbyran-i-sverige/" className="textlank">hur du väljer webbyrå</Link>.
+          </p>
         </div>
       </section>
 

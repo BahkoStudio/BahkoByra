@@ -155,3 +155,148 @@
     width: 100%;
   }
 }
+
+/* Underrubriken (sloganen) under H1 */
+.slogan {
+  margin-top: 0.6rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--em-lt);
+}
+
+/* Paketen: tre kort, mittenkortet markerat */
+.paketYta {
+  background: var(--lt-2);
+}
+
+.paketNat {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2.2rem;
+}
+
+.paket {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--vit);
+  border: 1px solid var(--linje);
+  border-radius: var(--r-lg);
+  padding: 1.6rem 1.5rem 1.5rem;
+}
+
+.paket.markerad {
+  border: 2px solid var(--em);
+  box-shadow: 0 18px 44px rgba(16, 185, 129, 0.14);
+}
+
+.paket .bricka {
+  position: absolute;
+  top: -0.8rem;
+  left: 1.5rem;
+  background: var(--em);
+  color: var(--bas);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+}
+
+.paket h3 {
+  font-size: 1.1rem;
+}
+
+.paket .pris {
+  display: block;
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0.5rem 0 0.15rem;
+}
+
+.paket .pris small {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink-3);
+  margin-left: 0.4rem;
+  letter-spacing: 0;
+}
+
+.paket .kort {
+  color: var(--ink-3);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.paket ul {
+  list-style: none;
+  margin: 0 0 1.4rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  flex: 1;
+}
+
+.paket li {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.paket li span {
+  flex: none;
+  font-weight: 800;
+  color: var(--em-deep);
+}
+
+.tillagg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+.tillagg div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.3rem 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--vit);
+  border: 1px solid var(--linje);
+  border-radius: var(--r-lg);
+}
+
+.tillagg strong {
+  font-size: 0.98rem;
+}
+
+.tillagg b {
+  font-weight: 800;
+  color: var(--em-deep);
+}
+
+.tillagg small {
+  flex-basis: 100%;
+  color: var(--ink-3);
+  font-size: 0.86rem;
+}
+
+.momsNot {
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--ink-3);
+}
+
+@media (max-width: 860px) {
+  .paketNat {
+    grid-template-columns: 1fr;
+  }
+}

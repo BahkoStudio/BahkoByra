@@ -51,10 +51,10 @@ Bild/video/3D/ljud-generering via Higgsfield AI.
 | `demo-recopy` | **Pensionerad 2026-08-21** — pekar nu till `hemsidor`s återbruksläge. |
 | `scroll-cinematic` | **Pensionerad 2026-08-21** — pekar nu till `hemsidor`. |
 
-## Content för @bahkobyra
+## Content för @bahkobyra1
 | Skill | Vad den gör |
 |---|---|
-| `ig-karusell` | 6-slides Instagram-karuseller för @bahkobyra (Brand- eller Cinematiskt läge). |
+| `ig-karusell` | 6-slides Instagram-karuseller för @bahkobyra1 (Brand- eller Cinematiskt läge). |
 | `reel` | Reels/TikTok-manus för hantverkare, barton-ton, dunder hook, dubbel CTA. |
 | `bahko-reel` | Gör om ett rått 9:16-klipp till en färdig Bahko-reel med grafik och maskot. |
 | `famous-reel-editor` | Grön-glas "Ambra"-stil reel-redigering, delad ram + AI-b-roll. |

@@ -7,7 +7,7 @@
 
 | Kund | Rapport | Dag | Hur |
 |---|---|---|---|
-| Bromma Trädgårdsservice | Veckorapport, 2 sidor PDF. **Sista rapporten 2026-10-18** (rapport 12, täcker v41–v42), samarbetet slutar efter vecka 42 | Söndag | Mallen är `rapport10-bromma.html`, som ligger ospårad i huvudkopian (`Skrivbord/test/content/kundarbete/bromma/rapporter/`). Edge till PDF, till Drive "05 Rapporter och planer" |
+| Bromma Trädgårdsservice | Veckorapport, 2 sidor PDF. **Sista rapporten 2026-10-18** (rapport 12, täcker v41–v42), samarbetet slutar efter vecka 42 | Söndag | Mallen är `rapport10-bromma.html` i `OneDrive/1 Bahko Byrå/Kunder/Bromma Trädgårdsservice/Rapporter/HTML-källor/` (med teaserbilderna bredvid). Edge till PDF, till Drive "05 Rapporter och planer" |
 | GD Måleri | Veckorapport, 1 sida PDF | Söndag | `node tools/gd-rapport/hamta.mjs` och `bygg.mjs`, se `tools/gd-rapport/README.md` |
 | Ny kund med månadsavgift | Månadsrapport, 1 sida PDF | Första vardagen i månaden | GD-verktyget är byggt bara för GD. Det måste först göras generellt (kunden som parameter), annars görs månadsrapporten för hand |
 

@@ -44,7 +44,7 @@ import { M, DOMAN, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot
    =========================================================================== */
 
 export const metadata = {
-  title: 'Bästa målaren i Stockholm? Så väljer du rätt målerifirma | GD Måleri Sthlm AB',
+  title: 'Bästa målaren i Stockholm? Så väljer du rätt | GD Måleri',
   description:
     'Så väljer du rätt målare i Stockholm: jämför verifierade omdömen, F-skatt, försäkring och vad offerten ska innehålla. Checklista från GD Måleri Sthlm AB.',
   robots: { index: false, follow: false },

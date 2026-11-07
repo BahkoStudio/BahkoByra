@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Slutbild</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{width:1080px;height:1920px;overflow:hidden;background:transparent}
-  body{font-family:'Archivo','Segoe UI',sans-serif;color:#F2EFE9}
+  body{font-family:'Archivo','Segoe UI',sans-serif;color:#F7F4EE;font-variant-ligatures:none;font-feature-settings:'liga' 0,'clig' 0,'dlig' 0,'calt' 0;}
 
   /* Mörk scrim med grön glöd - läggs över den frysta trädgårdsbilden */
   .scrim{position:absolute;inset:0;background:
-    radial-gradient(circle at 50% 46%, rgba(43,92,38,.55) 0%, rgba(11,11,13,.86) 46%, rgba(11,11,13,.96) 100%)}
+    radial-gradient(circle at 50% 46%, rgba(43,92,38,.45) 0%, rgba(14,18,15,.9) 46%, rgba(14,18,15,.98) 100%)}
 
   .mitt{position:absolute;inset:0;display:flex;flex-direction:column;
     align-items:center;justify-content:center;text-align:center;padding:0 90px}
   .mitt img{width:640px;display:block;margin-bottom:78px;
     filter:drop-shadow(0 10px 40px rgba(0,0,0,.6))}
-  h1{font-size:78px;line-height:1.08;font-weight:900;letter-spacing:-.02em;margin-bottom:26px}
-  h1 em{font-style:normal;color:#9FE08A}
+  h1{font-size:86px;line-height:1.04;font-weight:800;letter-spacing:-.012em;margin-bottom:26px}
+  h1 em{font-style:normal;color:#8FD16A}
   p.under{font-size:34px;font-weight:500;color:rgba(242,239,233,.72);margin-bottom:70px}
 
   .tel{display:inline-flex;align-items:center;gap:20px;
-    background:linear-gradient(135deg,#9FE08A,#3F8F3D);color:#0B0B0D;
-    font-size:52px;font-weight:900;letter-spacing:.01em;
+    background:#9CE589;color:#10261A;
+    font-size:54px;font-weight:800;letter-spacing:.01em;
     padding:30px 62px;border-radius:100px;
-    box-shadow:0 18px 50px rgba(63,143,61,.45)}
+    box-shadow:0 18px 50px rgba(0,0,0,.35)}
   .webb{margin-top:56px;font-size:34px;font-weight:700;letter-spacing:.12em;
     text-transform:lowercase;color:rgba(242,239,233,.82)}
   .rut{margin-top:34px;display:inline-block;font-size:26px;font-weight:800;
@@ -36,12 +36,27 @@
 <body>
   <div class="scrim"></div>
   <div class="mitt">
-    <img src="../logo.svg" alt="Bromma Trädgårdsservice">
+    <img src="../logo.svg" alt="Bromma Trädgårdsservice" id="logga">
+    <div id="ord" style="display:none;font-family:'Bricolage Grotesque',sans-serif;margin-bottom:64px">
+      <div style="font-weight:800;font-size:112px;letter-spacing:.06em;line-height:1">BROMMA</div>
+      <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:64px;color:#B5EFA0;margin-top:6px">Trädgårdsservice</div>
+    </div>
     <h1>Vi tar hand om<br><em>hela trädgården.</em></h1>
     <p class="under">Gräsklippning · Häckklippning · Trädgårdsskötsel</p>
     <span class="tel">070-766 65 14</span>
     <span class="webb">brommatradgardsservice.se</span>
     <span class="rut">✓ Ger rutavdrag</span>
   </div>
+<script>
+// ?logo=text: namnet i text i stället för loggan (tills ny logga är bestämd, 2026-10-13)
+if (new URLSearchParams(location.search).get('logo') === 'text') {
+  document.getElementById('logga').style.display = 'none';
+  document.getElementById('ord').style.display = 'block';
+}
+// ?rut=0 döljer badgen - för reels vars ämne inte ger rutavdrag (t.ex. markarbete, fallfrukt)
+if (new URLSearchParams(location.search).get('rut') === '0') {
+  document.querySelector('.rut').style.display = 'none';
+}
+</script>
 </body>
 </html>

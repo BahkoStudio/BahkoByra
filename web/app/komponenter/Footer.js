@@ -8,6 +8,16 @@ export default function Footer() {
   return (
     <footer className={styles.foot}>
       <div className={styles.inner}>
+        {/* Quizen överst i sidfoten (Mathias 2026-10-23): sista chansen på varje sida */}
+        <Link href="/var-lacker-jobben/" className={styles.quiz}>
+          <span className={styles.quizTagg}>Fem frågor, inget att skriva</span>
+          <span className={styles.quizText}>
+            <strong>Var läcker jobben?</strong>
+            <span>Ett tryck per fråga. Svaret i klartext direkt, och ett kostnadsfritt förslag om ni vill.</span>
+          </span>
+          <span className="btn btn-primar">Starta</span>
+        </Link>
+
         <div className={styles.kolumner}>
           <div>
             <Link href="/" className={styles.marke}>
@@ -55,13 +65,28 @@ export default function Footer() {
                 <Link href="/om-oss/">Om oss</Link>
               </li>
               <li>
-                <Link href="/webbyra-jonkoping/">Kontor i Jönköping</Link>
+                <Link href="/webbyra-jonkoping/">Webbyrå i Jönköping</Link>
+              </li>
+              <li>
+                <Link href="/seo-jonkoping/">SEO-byrå i Jönköping</Link>
               </li>
               <li>
                 <Link href="/kontakt/">Kontakt</Link>
               </li>
               <li>
                 <a href="/foretag/gratis-guide.html">Kostnadsfri guide</a>
+              </li>
+              <li>
+                <Link href="/var-lacker-jobben/">Var läcker jobben?</Link>
+              </li>
+              <li>
+                <Link href="/mobiltestet/">Mobiltestet</Link>
+              </li>
+              <li>
+                <Link href="/basta-webbyran-i-sverige/">Så väljer du webbyrå</Link>
+              </li>
+              <li>
+                <Link href="/sveriges-vardefullaste-hemsidor/">Sveriges värdefullaste hemsidor</Link>
               </li>
             </ul>
           </nav>

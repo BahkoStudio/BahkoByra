@@ -5,6 +5,9 @@
   display: grid;
   place-items: center;
   padding: 1.2rem;
+  /* Quizen kan vara högre än skärmen på mobil: lagret rullar, sidan bakom står still */
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 /* Scrim: dämpar bakgrunden så uppmärksamheten hamnar på kortet. */
@@ -21,19 +24,21 @@
 .kort {
   position: relative;
   width: 100%;
-  max-width: 430px;
-  background: var(--vit);
-  color: var(--ink);
-  border-radius: var(--r-lg);
-  padding: 2rem 1.8rem 1.6rem;
-  text-align: center;
+  max-width: 720px;
+  margin: auto 0;
+  background: transparent;
+  color: var(--text);
+  border-radius: 22px;
+  padding: 0;
+  text-align: left;
   /* Materialiseras in: skala plus toning, inte bara opacitet. */
   animation: kortIn 0.34s var(--ease) both;
 }
 
+/* Fokus flyttas hit med skript när popupen öppnar; ingen ram runt hela kortet */
+.kort:focus,
 .kort:focus-visible {
-  outline: 2px solid var(--em-deep);
-  outline-offset: 4px;
+  outline: none;
 }
 
 .tagg {
@@ -69,23 +74,24 @@
 
 .stang {
   position: absolute;
-  top: 0.7rem;
-  right: 0.7rem;
+  z-index: 2;
+  top: -12px;
+  right: -12px;
+  border: 1px solid var(--linje-mork) !important;
   display: grid;
   place-items: center;
   width: 38px;
   height: 38px;
   border: 0;
   border-radius: 50%;
-  background: transparent;
-  color: var(--ink-3);
+  background: var(--bas);
+  color: var(--text);
   cursor: pointer;
   transition: background 0.2s var(--ease), color 0.2s var(--ease);
 }
 
 .stang:hover {
-  background: var(--lt-2);
-  color: var(--ink);
+  background: var(--yta);
 }
 
 .stang:active {
@@ -106,14 +112,14 @@
   background: transparent;
   font: inherit;
   font-size: 0.88rem;
-  color: var(--ink-3);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .senare:hover {
-  color: var(--ink);
+  color: #fff;
 }
 
 @keyframes tona {

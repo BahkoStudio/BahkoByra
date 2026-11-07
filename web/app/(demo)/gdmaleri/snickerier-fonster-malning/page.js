@@ -45,7 +45,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Måla fönster, dörrar och snickerier i Stockholm | GD Måleri Sthlm AB',
+  title: 'Måla fönster, dörrar och snickerier i Stockholm | GD Måleri',
   description:
     'Fönstermålning och målning av dörrar, karmar, foder och snickerier i Stockholm, inne och ute. Gammal färg skrapas bort, ytan slipas och grundas. Kostnadsfri offert, ROT på fakturan och 4,9 av 5 på Reco.',
   robots: { index: false, follow: false },
@@ -67,7 +67,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/snickerier-fonster-malning/') },
 
-  hero: { ...hero, ort: 'Fönster i Stockholm', tjanster: ['Fönster', 'Snickerier'] },
+  hero: { ...hero, rubrik: { fraga: 'Fönstermålning i Stockholm', svar: 'Fönster & Snickerier.' } },
   tejp: ['Fönstermålning', 'Dörrar', 'Karmar och foder', 'Lister och vindskivor', 'Träfönster och metallfönster', 'Inne och ute', '4,9 av 5 på Reco', 'ROT direkt på fakturan'],
 
   tjanster: {

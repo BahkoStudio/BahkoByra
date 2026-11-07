@@ -17,7 +17,7 @@ import { M, kontakt, tema } from '../_gd';
      iframe från instagram.com bara som reserv.
    =========================================================================== */
 export const metadata = {
-  title: 'Integritet och cookies | GD Måleri Sthlm AB',
+  title: 'Integritet och cookies | GD Måleri',
   description: 'Så hanterar GD Måleri Sthlm AB uppgifterna du lämnar i formuläret och bokningen på gdmaleri.se, och vilka cookies sidan använder.',
   robots: { index: false, follow: false },
 };

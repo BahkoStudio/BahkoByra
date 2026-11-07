@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida INVÄNDIG MÅLNING (/gdmaleri/invandig-malning/), 2026-10-08.
@@ -28,6 +28,30 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    (publicerat 2026-10-07, Södertälje), ordagrant: "180 kvm Tak/Vägg målning samt
    microlituppsättning och snobbkant". Bild 1 har inbränd text och används inte.
    Beskurna 4:3, först i övre bandet.
+   NYA BILDER (2026-10-18, daglig IG-koll): inlägget DeoISssEUS9 (publicerat 2026-10-18,
+   platstagg Stockholm), ordagrant: "Från flagande tak och sättningar till fräscha och
+   fina tak..Det blir alltid snyggt och fräsch med armeringsduk och special spackel".
+   Fyra bilder med inbränd text Före/Före/Efter/Efter. invandig-tak-fore-efter.webp är
+   SAMMANSATT: övre halvan bild 1 (före, sprucket innertak), nedre halvan bild 4 (efter);
+   bildtexten säger att det är två foton. invandig-tak-efter.webp = bild 3 (efter).
+   Ingen yta eller ort utöver platstaggen, så ingen står på sidan. Lagt i jobb.utvalda.
+   NYA BILDER (2026-11-02, daglig IG-koll): inlägget DfMZ0jGkSyx (publicerat 2026-11-01,
+   platstagg Östermalm), ordagrant: "Väggar Tak Golvlister karmar Golvslipning Furugolv
+   från gammalt till nytt". Samma lägenhet som golvjobbet på golv/ (klart 2026-10-24).
+   invandig-ostermalm-1/-2/-3.webp = bild 4, 2 och 1 ur inlägget, beskurna 4:3, först i
+   övre bandet. Ingen yta i inlägget, så ingen står på sidan.
+   NYA BILDER (2026-11-04, daglig IG-koll): inlägget DfS6foSEcmT (publicerat 2026-11-03,
+   ingen platstagg), ordagrant: "Hotell Projekt 6 rum Grundmålade..Fortsättning Följer".
+   Pågående jobb: panelväggar och dörrar grundmålade. invandig-hotell-1/-2/-3.webp =
+   bild 1, 2 och 11 ur inlägget, beskurna 4:3, först i övre bandet. Ingen ort, så ingen står.
+   NYA BILDER (2026-11-06, daglig IG-koll): inlägget DfY1r9VAmW4 (publicerat 2026-11-06,
+   ingen platstagg), ordagrant: "Hotell projekt..Nu kör vi boys👍". Fortsättning på samma
+   hotelljobb. invandig-hotell-4/-5.webp = bild 1 och 2 ur inlägget, beskurna 4:3, först i
+   övre bandet. Ingen ort, så ingen står.
+   NYA BILDER (2026-11-07, daglig IG-koll): inlägget DfalV-RERKA (publicerat 2026-11-06,
+   platstagg Stockholm), ordagrant: "Hotell projekt alla rum Kompletterade och fogade..Nästa
+   steg slipning sen ifyllning av kompletteringar". Samma hotelljobb, 15 bilder.
+   invandig-hotell-6/-7/-8.webp = bild 3, 8 och 9 ur inlägget, beskurna 4:3, först i övre bandet.
    FLAGGOR: alla bilder är GD:s egna foton (samma som huvudsidan). Omdömena här
    är fasta (inte levande), så att de handlar om invändig målning.
    GOOGLE (2026-10-09, se ../_gd.js GOOGLE_OMDOMEN): betygsbrickan 4,8 av 5 (18)
@@ -38,7 +62,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Invändig målning i Stockholm | GD Måleri Sthlm AB',
+  title: 'Invändig målning i Stockholm | GD Måleri',
   description:
     'Invändig målning i Stockholm: väggar, innertak, tapetsering, bredspackling, dörrar och snickerier. Kostnadsfri offert med allt inräknat, ROT direkt på fakturan och 4,9 av 5 på Reco.',
   robots: { index: false, follow: false },
@@ -60,7 +84,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/invandig-malning/') },
 
-  hero: { ...hero, ort: 'Stockholm', tjanster: ['Invändig målning', 'Tapet'] },
+  hero: { ...hero, rubrik: { fraga: 'Målare inomhus i Stockholm', svar: 'Invändig målning & Tapet.' } },
   tejp: ['Väggar', 'Innertak', 'Tapetsering', 'Bredspackling', 'Tapetborttagning', 'Dörrar och lister', '4,9 av 5 på Reco', 'ROT direkt på fakturan'],
 
   tjanster: {
@@ -82,7 +106,23 @@ const data = {
     lead: 'Hallar, vardagsrum, tak och trappor. Alla bilder är från våra egna projekt.',
     not: 'Fler jobb, med ort och yta, finns på vårt Instagram.',
     tid: '70s',
+    // Utvalda (mallfältet jobb.utvalda): senaste innertaksjobbet, se NYA BILDER 2026-10-18 ovan.
+    utvalda: [
+      { src: `${M}/invandig-tak-fore-efter.webp`, w: 900, h: 1200, etikett: 'Före och efter', txt: 'Flagnande innertak med sprickor, lagat med armeringsduk och specialspackel. Två foton: före överst, efter nederst.', alt: 'Sammansatt före/efter-bild av ett innertak: övre halvan visar ett flagnande, sprucket tak runt en rund taklampa, nedre halvan ett slätt, nymålat vitt tak med taklampa ovanför ett fönster', lank: { href: 'https://www.instagram.com/p/DeoISssEUS9/', txt: 'Se jobbet på Instagram' } },
+      { src: `${M}/invandig-tak-efter.webp`, w: 900, h: 1200, etikett: 'Efter', txt: 'Slätt och nymålat tak, klart i oktober 2026.', alt: 'Ljust rum med slätt, nymålat vitt innertak, taklampa, bokhylla och trägolv efter jobbet', lank: { href: 'https://www.instagram.com/p/DeoISssEUS9/', txt: 'Se jobbet på Instagram' } },
+    ],
     rad1: [
+      { src: `${M}/invandig-hotell-6.webp`, alt: 'Panelvägg med fyllningsfält i ett hotellrum, kompletterad och fogad, inplastat rundbågefönster i hörnet', txt: 'Hotellprojekt: alla rum kompletterade och fogade' },
+      { src: `${M}/invandig-hotell-7.webp`, alt: 'Höga panelade väggar och dörr i ett hotellrum med spacklade och fogade skarvar, skyddspapp på golvet', txt: 'Hotellprojekt: paneler fogade' },
+      { src: `${M}/invandig-hotell-8.webp`, alt: 'Fyllningsdörr i hotellrum med nyspacklade lagningar på väggen bredvid, inför slipning', txt: 'Hotellprojekt: nästa steg slipning' },
+      { src: `${M}/invandig-hotell-4.webp`, alt: 'Hotellkorridor med vita pelare, färgburkar och dammsugare på golvet under pågående målning', txt: 'Hotellprojekt: korridor under arbete' },
+      { src: `${M}/invandig-hotell-5.webp`, alt: 'Rum med uppsatt dammspärr och TEBO-zipp, arbetsbänk och spruta framför en vit pelare', txt: 'Hotellprojekt: dammspärr uppsatt' },
+      { src: `${M}/invandig-hotell-1.webp`, alt: 'Hotellrum med grundmålade panelväggar och fyllningsfält, skyddspapp på golvet', txt: 'Hotellprojekt, 6 rum: panelväggar grundmålade' },
+      { src: `${M}/invandig-hotell-2.webp`, alt: 'Grundmålad vit spegeldörr och panelade väggar i ett hotellrum under arbete', txt: 'Hotellprojekt: dörrar och paneler' },
+      { src: `${M}/invandig-hotell-3.webp`, alt: 'Lång panelvägg med fyllningar och stuckatur i taket, grundmålad, med arbetslampa i rummet', txt: 'Hotellprojekt: fortsättning följer' },
+      { src: `${M}/invandig-ostermalm-1.webp`, alt: 'Nymålat rum med ljusa väggar och vita snickerier, balkongdörrar och slipat trägolv, i en lägenhet på Östermalm', txt: 'Östermalm: väggar och snickerier' },
+      { src: `${M}/invandig-ostermalm-2.webp`, alt: 'Ljus hall med nymålade väggar och vita listor, en glasad vit dörr och slipat trägolv, på Östermalm', txt: 'Östermalm: väggar, lister, karmar' },
+      { src: `${M}/invandig-ostermalm-3.webp`, alt: 'Nymålat vitt innertak med spotlights ovanför ljusa väggar och en radiator, i en lägenhet på Östermalm', txt: 'Östermalm: tak och väggar' },
       { src: `${M}/invandig-sodertalje-1.webp`, alt: 'Nymålat rum med ljusa väggar, vit taklist och skrivbord vid fönstret i Södertälje', txt: 'Södertälje: tak och väggar, 180 kvm' },
       { src: `${M}/invandig-sodertalje-2.webp`, alt: 'Nymålat vitt tak med taklampa och bred taklist mot ljusgrå väggar, en öppen dörr med glasrutor, i Södertälje', txt: 'Södertälje: nymålat tak' },
       { src: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', txt: 'Rum målat i ljust' },
@@ -91,6 +131,8 @@ const data = {
       { src: `${M}/jobb-panelvagg.jpg`, alt: 'Vitmålad bröstpanel under en ljusgrön vägg', txt: 'Bröstpanel målad vit' },
       { src: `${M}/jobb-trapphus.jpg`, alt: 'Trappa i ett hem med mörkrosa nederdel och ljus vägg ovanför', txt: 'Trappa målad i två kulörer' },
       { src: `${M}/jobb-spackel-tak.jpg`, alt: 'Målare i vit t-shirt spacklar ett innertak', txt: 'Innertak spacklas' },
+      BAND.spacklingFonster,
+      BAND.golvRumEfter,
       { src: `${M}/jobb-bredspackling.jpg`, alt: 'Vägg under bredspackling, golvet täckt med papper', txt: 'Vägg bredspacklas före målning' },
     ],
     rad2: [
@@ -123,7 +165,7 @@ const data = {
     lank: RECO,
   },
 
-  instagram: { ...instagramBas, koder: ['DeNI1zEkcpW', 'DcmMHrIEbrF', 'Dd-zVd3ggOI'] },
+  instagram: { ...instagramBas, koder: ['DeoISssEUS9', 'DeNI1zEkcpW', 'Dd-zVd3ggOI'] },
 
   fragor: {
     eyebrow: 'Vanliga frågor om invändig målning',
@@ -132,7 +174,7 @@ const data = {
     kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring och berätta om rummen, så svarar vi på just ditt hem.' },
     lista: [
       { q: 'Vad kostar det att måla om inne?', a: 'Det beror på ytan, skicket och vad som ska göras. Därför börjar vi med en offert, och den är kostnadsfri. Offerten tar med material, arbete, förarbete som spackling och slipning, städning och bortforsling.' },
-      { q: 'Får jag ROT-avdrag?', a: <>Ja, på arbetskostnaden. Skatteverket räknar att måla väggar, tak, dörrar och fönster och att tapetsera som rotarbete. Vi drar av det direkt på fakturan. Bor du i bostadsrätt gäller det arbete inne i lägenheten. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
+      { q: 'Får jag ROT-avdrag?', a: <>Ja, på arbetskostnaden. Skatteverket räknar att måla väggar, tak, dörrar och fönster och att tapetsera som rotarbete. Vi drar av det direkt på fakturan. Avdraget är 30 procent av arbetskostnaden, högst 50 000 kronor per person och år (rot och rut tillsammans högst 75 000 kronor). Material ger inget avdrag. Bor du i bostadsrätt gäller det arbete inne i lägenheten. Källa: <a href={SKV_ROT} target="_blank" rel="noopener">Skatteverket, Ger arbetet rätt till rotavdrag?</a></> },
       { q: 'Hur skyddar ni hemmet?', a: 'Allt som inte ska målas täcks med plast eller papper, och vi skyddar möbler och golv innan vi börjar.' },
       { q: 'Hjälper ni till med färgval?', a: 'Ja. Vi hjälper till med färgval och kulörer, och färgen är Flügger. Miljövänliga alternativ finns.' },
       { q: 'När betalar jag?', a: 'Du får fakturan när arbetet är klart, ingen förskottsbetalning.' },

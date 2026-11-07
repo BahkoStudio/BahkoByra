@@ -51,6 +51,11 @@ const nextConfig = {
       // prospektet och får aldrig brytas — den pekas om hit.
       { source: '/cloud/shabifix', destination: '/shabifix/', permanent: true },
       { source: '/cloud/shabifix/:path*', destination: '/shabifix/', permanent: true },
+      // Asmar Relining byggdes om på demomallen v3 2026-10-29 (varm lead, mejl med länken
+      // går ut samma dag). Gamla statiska demon under /cloud/asmar/ är borttagen; länken
+      // kan vara skickad och pekas om hit.
+      { source: '/cloud/asmar', destination: '/asmar/', permanent: true },
+      { source: '/cloud/asmar/:path*', destination: '/asmar/', permanent: true },
       // Glowing Service byggdes om som måleri-demo 2026-08-19 (första var fel
       // nisch — städ). Gamla länken är skickad till Yoro och pekas om hit.
       // Statiska filen ligger kvar som scroll-cinematic-kodreferens men serveras

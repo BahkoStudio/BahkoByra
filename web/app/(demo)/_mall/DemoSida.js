@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { fontKlasser } from './fonter';
+import { HeroFilmer, LatFilm } from './Film';
 import s from './mall.module.css';
 import DemoFormular from '../../komponenter/DemoFormular';
 import { googleOmdomen, recoOmdomen, instagramInlagg, kortaText } from './levande';
@@ -418,7 +419,7 @@ function Kontakt({ d, t, k, harTel }) {
       {/* 10. Kontakt: formulär över suddig film */}
       <section className={s.kontakt} id="kontakt">
         <figure className={s.kontaktFilm} aria-hidden="true">
-          <video autoPlay muted loop playsInline preload="metadata" poster={d.kontaktSektion.poster}><source src={d.kontaktSektion.video} type="video/mp4" /></video>
+          <LatFilm src={d.kontaktSektion.video} poster={d.kontaktSektion.poster} />
         </figure>
         <div className={s.wrap}>
           <div className={s.kontaktGrid}>
@@ -698,10 +699,8 @@ export default function DemoSida({ data: d }) {
         {/* Valfritt: hero.foreEfter = kundens egen före/efter-bild bredvid texten i stället för film (Söderholms 2026-10-12). */}
         <section className={d.hero.foreEfter ? `${s.hero} ${s.heroDelad}` : s.hero} id="top">
           {d.hero.foreEfter ? null : (
-          <figure className={s.heroFilm} aria-hidden="true">
-            <video className={s.heroLiggande} autoPlay muted loop playsInline preload="metadata" poster={d.hero.poster}><source src={d.hero.video} type="video/mp4" /></video>
-            <video className={s.heroStaende} autoPlay muted loop playsInline preload="metadata" poster={d.hero.posterMobil}><source src={d.hero.videoMobil} type="video/mp4" /></video>
-          </figure>
+            // Filmerna hämtas först efter montering, bara den som visas (Film.js, 2026-10-30).
+            <HeroFilmer klass={{ figur: s.heroFilm, liggande: s.heroLiggande, staende: s.heroStaende }} liggande={d.hero.video} staende={d.hero.videoMobil} poster={d.hero.poster} posterMobil={d.hero.posterMobil} />
           )}
           <div className={d.hero.foreEfter ? `${s.wrap} ${s.heroDeladGrid}` : s.wrap}>
             <div className={s.heroIn}>
@@ -814,7 +813,7 @@ export default function DemoSida({ data: d }) {
               </div>
               <div className={s.varforMedia}>
                 <figure className={s.varforFilm}>
-                  <video autoPlay muted loop playsInline preload="metadata" poster={d.varfor.poster} aria-label={d.varfor.videoAlt}><source src={d.varfor.video} type="video/mp4" /></video>
+                  <LatFilm src={d.varfor.video} poster={d.varfor.poster} aria-label={d.varfor.videoAlt} />
                 </figure>
               </div>
             </div>

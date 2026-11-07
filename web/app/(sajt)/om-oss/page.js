@@ -3,9 +3,9 @@ import Maskot from '../../komponenter/Maskot';
 import styles from './om.module.css';
 
 export const metadata = {
-  title: 'Om Bahko Byrå',
+  title: 'Om Bahko Byrå, webbyrå i Huskvarna/Jönköping för hemsidor och Google-synlighet',
   description:
-    'Vi bygger hemsidor för bygg- och hantverksfirmor i Sverige. Du ser sidan innan du betalar och äger allt när den är levererad.',
+    'Bahko Byrå är en webbyrå i Huskvarna/Jönköping som bygger hemsidor åt hantverkare och lokala företag i hela Sverige. Du ser sidan innan du betalar och äger allt.',
   alternates: { canonical: '/om-oss/' },
 };
 

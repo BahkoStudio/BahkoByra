@@ -3,57 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <title>Reel-overlay</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
+  /* Design v5 (2026-10-13): samma som karusellerna. ?i=N = textruta N, ?panel=1 = den fasta panelen
+     med loggan (ligger under texten hela reelen). Texten hålls ovanför Instagrams knappar längst ner. */
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{width:1080px;height:1920px;overflow:hidden;background:transparent}
-  body{font-family:'Archivo','Segoe UI',sans-serif}
-
-  /* Mörk sammetsband bakom texten så den är läsbar mot rörligt gräs */
-  .band{position:absolute;left:0;right:0;bottom:0;height:1020px;
-    background:linear-gradient(180deg,
-      rgba(11,11,13,0) 0%,
-      rgba(11,11,13,.16) 26%,
-      rgba(11,11,13,.60) 62%,
-      rgba(11,11,13,.86) 100%)}
-
-  .block{position:absolute;left:88px;right:88px;bottom:430px}
-  .kicker{display:inline-block;font-size:30px;font-weight:800;letter-spacing:.3em;
-    text-transform:uppercase;color:#9FE08A;border-left:8px solid #6BBF59;
-    padding-left:22px;margin-bottom:30px}
-  h1{font-size:96px;line-height:1.04;font-weight:900;letter-spacing:-.02em;color:#F2EFE9;
-    text-shadow:0 6px 34px rgba(0,0,0,.75), 0 2px 6px rgba(0,0,0,.5)}
-  h1 em{font-style:normal;color:#9FE08A}
-  h1 span{display:block;white-space:nowrap}
+  body{font-family:'Archivo','Segoe UI',sans-serif;color:#FFFFFF;
+    font-variant-ligatures:none;font-feature-settings:'liga' 0,'clig' 0,'calt' 0}
+  .panel{position:absolute;left:0;right:0;top:1040px;bottom:0;
+    background:linear-gradient(180deg,rgba(14,18,15,0) 0,rgba(14,18,15,.9) 140px,#0E120F 230px)}
+  .fot{position:absolute;left:72px;right:72px;top:1590px;border-top:2px solid #232A25;padding-top:28px;
+    display:flex;justify-content:space-between;align-items:center}
+  .fot img{height:80px}
+  .fot span{color:#8FD16A;font-weight:800;font-size:32px}
+  .text{position:absolute;left:72px;right:72px;bottom:356px}
+  .etikett{display:flex;align-items:center;gap:16px;color:#8FD16A;font-weight:800;font-size:28px;
+    letter-spacing:.2em;text-transform:uppercase}
+  .etikett:before{content:"";width:6px;height:32px;background:#8FD16A;border-radius:2px}
+  h1{margin-top:22px;font-weight:800;font-size:84px;line-height:1.05;letter-spacing:-.012em;text-wrap:balance}
+  p{margin-top:20px;color:#C9CFC6;font-weight:500;font-size:38px;line-height:1.32;text-wrap:pretty}
 </style>
 </head>
 <body>
-  <div class="band" id="band"></div>
-  <div class="block">
-    <span class="kicker" id="k"></span>
-    <h1 id="t"></h1>
-  </div>
+<div id="panel" style="display:none">
+  <div class="panel"></div>
+  <div class="fot"><img src="../logo.svg" alt="Bromma Trädgårdsservice"><span>070-766 65 14</span></div>
+</div>
+<div class="text" id="text" style="display:none">
+  <div class="etikett" id="k"></div>
+  <h1 id="h"></h1>
+  <p id="b"></p>
+</div>
 <script>
 const BEATS = [
-  { k:'Packad jord',       t:'Gräsmattan kan inte andas.<br><em>Rötterna kvävs underifrån.</em>' },
-  { k:'Orsaken',           t:'Mycket lek, bilar<br><em>eller bara år av gång.</em>' },
-  { k:'Lösningen',         t:'Vi luftar jorden.<br><em>Syre ner till rötterna.</em>' },
-  { k:'Rätt tid',          t:'September–oktober.<br><em>Vi sköter det åt dig.</em>' }
+  { k:'Första snön', h:'Kommer snart. Är trädgården klar?', b:'Fem saker att hinna före snön.' },
+  { k:'Löven', h:'Ta upp dem före snön.', b:'Annars kväver de gräset till våren.' },
+  { k:'Häcken', h:'Blöt snö tynger ner den.', b:'En hög och gles häck böjs och knäcks.' },
+  { k:'Klipp den rätt', h:'Smalare upptill.', b:'Då glider snön av i stället för att ligga kvar.' },
+  { k:'Grenarna', h:'Döda grenar över taket.', b:'Ska bort innan snön lägger sig på dem.' },
+  { k:'Vi tar det', h:'Löv, klipp, häck och grenar.', b:'Skötsel ger rutavdrag.' }
 ];
-const i = parseInt(new URLSearchParams(location.search).get('i') || '0', 10);
-const b = BEATS[i];
-document.getElementById('k').textContent = b.k;
-const t = document.getElementById('t');
-// Varje rad är en egen nowrap-rad. Fontstorleken krymper tills den bredaste
-// raden får plats - annars bryter webbläsaren raden en extra gång och rytmen dör.
-t.innerHTML = b.t.split('<br>').map(r => '<span>' + r + '</span>').join('');
-const rader = [...t.querySelectorAll('span')];
-const maxbredd = t.clientWidth;
-let px = 96;
-t.style.fontSize = px + 'px';
-while (px > 52 && rader.some(r => r.scrollWidth > maxbredd)) {
-  px -= 2;
-  t.style.fontSize = px + 'px';
+const q = new URLSearchParams(location.search);
+if (q.get('panel') === '1') {
+  document.getElementById('panel').style.display = 'block';
+} else {
+  const b = BEATS[parseInt(q.get('i') || '0', 10)];
+  document.getElementById('text').style.display = 'block';
+  document.getElementById('k').textContent = b.k;
+  document.getElementById('b').textContent = b.b;
+  const h = document.getElementById('h');
+  h.textContent = b.h;
+  // Rubriken får vara högst två rader: krymp tills den ryms.
+  let px = 84;
+  while (px > 56 && h.getBoundingClientRect().height > px * 1.05 * 2.2) { px -= 2; h.style.fontSize = px + 'px'; }
 }
 </script>
 </body>

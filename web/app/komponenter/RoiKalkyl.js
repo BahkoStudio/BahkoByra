@@ -23,7 +23,7 @@ const kr = new Intl.NumberFormat('sv-SE', { maximumFractionDigits: 0 });
 const STEG = [
   { id: 'jobb', fraga: 'I dag får ni', min: 1, max: 40, steg: 1, start: 8, visa: (v) => `${v} jobb i månaden` },
   { id: 'varde', fraga: 'Ett jobb är värt i snitt', min: 2000, max: 150000, steg: 1000, start: 25000, visa: (v) => `${kr.format(v)} kr` },
-  { id: 'okning', fraga: 'Säg att ny hemsida ger', min: 5, max: 20, steg: 1, start: 10, visa: (v) => `${v} % fler kunder` },
+  { id: 'okning', fraga: 'Om ny sida ger', min: 5, max: 20, steg: 1, start: 10, visa: (v) => `${v} % fler kunder` },
 ];
 
 /* Rullar ett tal mot målvärdet. Första renderingen visar målvärdet direkt (servern). */
@@ -50,7 +50,7 @@ function useRull(mal) {
   return visat;
 }
 
-export default function RoiKalkyl() {
+export default function RoiKalkyl({ className = '', kompakt = false }) {
   const [v, setV] = useState(() => Object.fromEntries(STEG.map((s) => [s.id, s.start])));
   const [igang, setIgang] = useState(false);
   const [aktiv, setAktiv] = useState(null);
@@ -77,7 +77,7 @@ export default function RoiKalkyl() {
   const idagBredd = (idag / ny) * 100;
 
   return (
-    <div ref={rot} className={`${styles.kort} ${igang ? styles.igang : ''}`}>
+    <div ref={rot} className={`${styles.kort} ${igang ? styles.igang : ''} ${kompakt ? styles.kompakt : ''} ${className}`}>
       <h2 className={styles.rubrik}>
         Räkna på jobben <span className={styles.accent}>ni missar.</span>
       </h2>
@@ -123,6 +123,7 @@ export default function RoiKalkyl() {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 21V4" /><path d="M5 4h11l-2 4 2 4H5" /></svg>
           </span>
           <div className={styles.resultat} aria-live="polite">
+            <p className={styles.resEtikett}>Räkneexempel med era siffror</p>
             <div className={styles.staplar}>
               <div className={styles.stapel}>
                 <span className={styles.stapelNamn}>I dag</span>
@@ -130,7 +131,7 @@ export default function RoiKalkyl() {
                 <span className={styles.stapelTal}>{kr.format(visIdag)} kr/mån</span>
               </div>
               <div className={styles.stapel}>
-                <span className={styles.stapelNamn}>Med ny hemsida</span>
+                <span className={styles.stapelNamn}>Med {v.okning} % fler</span>
                 <div className={styles.bana}>
                   <i className={styles.nyBana} style={{ width: '100%' }}>
                     <em style={{ width: `${100 - idagBredd}%` }} />
@@ -150,7 +151,7 @@ export default function RoiKalkyl() {
                 <span className={styles.resUnder}>mer om året</span>
               </div>
             </div>
-            <p className={styles.resAr}>Så mycket är fler kunder värda för er.</p>
+            <p className={styles.resAr}>10 % är ett antagande ni ändrar själva, inte ett löfte.</p>
           </div>
         </li>
       </ol>

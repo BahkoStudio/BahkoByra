@@ -5,9 +5,9 @@ import { NYCKEL_KONTAKT } from '../../formular';
 import styles from './kontakt.module.css';
 
 export const metadata = {
-  title: 'Få ett kostnadsfritt hemsideförslag',
+  title: 'Kontakt: kostnadsfritt hemsideförslag från webbyrån i Huskvarna/Jönköping',
   description:
-    'Berätta kort om er firma så bygger vi ett förslag på er nya hemsida och skickar det inom 48 timmar. Kostnadsfritt och utan krav.',
+    'Berätta kort om ditt företag så bygger vi ett förslag på din nya hemsida inom 48 timmar, kostnadsfritt. Bahko Byrå, Kungsängsvägen 27 i Huskvarna, 076-254 09 51.',
   alternates: { canonical: '/kontakt/' },
 };
 
@@ -50,7 +50,9 @@ export default function Kontakt() {
           <p className={styles.direkt}>
             Hellre prata direkt? Ring <a href="tel:+46762540951">076-254 09 51</a> eller mejla{' '}
             <a href="mailto:mathias@bahkobyra.se">mathias@bahkobyra.se</a>. Vi svarar alla dagar 8–22,
-            och möten på kontoret på Kungsängsvägen 27 i Huskvarna bokar vi gärna.
+            och möten på kontoret på Kungsängsvägen 27 i Huskvarna bokar vi gärna. Är ni i
+            Jönköpingstrakten? Läs om{' '}
+            <Link href="/webbyra-jonkoping/">vår webbyrå för företag i Jönköping</Link>.
           </p>
         </div>
 

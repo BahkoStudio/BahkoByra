@@ -97,7 +97,7 @@ export default function DemoFormular({ className, amne, children, nyckel = DEMO_
           Något gick fel och förfrågan skickades inte. Försök igen, eller ring oss direkt
           {tel ? (
             <>
-              {' '}på <a href={`tel:${tel.replace(/[^+d]/g, '')}`}>{tel}</a>
+              {' '}på <a href={`tel:${tel.replace(/[^+\d]/g, '')}`}>{tel}</a>
             </>
           ) : null}
           .

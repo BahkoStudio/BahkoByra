@@ -88,7 +88,7 @@ td.k{font-weight:600}
   </div>
 
   <h1>Veckorapport <em>{{vecka_kort}}</em> · GD Måleri Sthlm AB</h1>
-  <p class="under">{{datumintervall}} · gdmaleri.se · jämfört med veckan före ({{datumintervall_fore}})</p>
+  <p class="under">{{datumintervall}} · gdmaleri.se{{jamfor_text}}</p>
 
   <div class="block3">
     <div class="kort">
@@ -112,7 +112,7 @@ td.k{font-weight:600}
     <div>
       <div class="rubrik">Sidor</div>
       <table>
-        <tr><th>Sida</th><th class="h">Besök</th><th class="h">Före</th><th class="h">Ändring</th></tr>
+        {{sidor_huvud}}
         {{sidor_rader}}
       </table>
     </div>

@@ -4,7 +4,8 @@ Pengarna in, pengarna ut och pappren. Den här grenen saknades i den ursprunglig
 men utan den går inget av de andra: en kund som aldrig faktureras är ingen kund.
 
 **Repot är publikt.** Här står bara rutinerna. Belopp, bankuppgifter, avtal, fakturor och
-kunduppgifter bor i `OneDrive/1 Bahko Byrå/Kunder/<kund>/Avtal/` och i Notion-CRM:et, aldrig här.
+kunduppgifter bor i `OneDrive/1 Bahko Byrå/Kunder/<kund>/Avtal/` och i Notion-CRM:et, kvitton i
+`OneDrive/1 Bahko Byrå/Ekonomi och admin/Kvitton/`, aldrig här.
 
 | Kvist | Fil | Vad |
 |---|---|---|

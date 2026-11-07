@@ -10,7 +10,9 @@
                     den som ska vara nyckelhändelse i GA4.
    - form_forsok    när någon trycker på skicka, oavsett om det gick fram
    - cta_klick      klick till /kontakt/, analysen eller guiden, med sida
-   - tel_klick, mejl_klick */
+   - tel_klick, mejl_klick
+   - kontakt_klick  samlat event för tel: och mailto: (metod telefon/mejl, sida),
+                    tänkt som nyckelhändelse i GA4 (SEO-disken 2026-11-04) */
 (function () {
   var GA_ID = 'G-N15N9G69B7';
   if (!GA_ID) return;
@@ -63,6 +65,13 @@
       var href = a.getAttribute('href') || '';
       var sektion = a.closest('section[id], header, footer');
       var plats = sektion ? (sektion.id || sektion.tagName.toLowerCase()) : '';
+      // Samlat kontaktevent, med skydd om gtag saknas.
+      if ((href.indexOf('tel:') === 0 || href.indexOf('mailto:') === 0) && typeof window.gtag === 'function') {
+        window.gtag('event', 'kontakt_klick', {
+          metod: href.indexOf('tel:') === 0 ? 'telefon' : 'mejl',
+          sida: location.pathname,
+        });
+      }
       if (href.indexOf('tel:') === 0) {
         gtag('event', 'tel_klick', { nummer: href, sida: location.pathname, plats: plats });
       } else if (href.indexOf('mailto:') === 0) {

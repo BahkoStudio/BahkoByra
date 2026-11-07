@@ -148,7 +148,7 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerB
    =========================================================================== */
 
 export const metadata = {
-  title: 'Målare för BRF i Stockholm – trapphus och fasad | GD Måleri Sthlm AB',
+  title: 'Målare för BRF i Stockholm – trapphus och fasad | GD Måleri',
   description:
     'GD Måleri Sthlm AB tar uppdrag åt bostadsrättsföreningar i Stockholm: trapphus, entréer, fasader och fönster. Rekommenderat företag på Reco tre år i rad, 4,9 av 5. Kostnadsfri offert med allt inräknat.',
   robots: { index: false, follow: false },
