@@ -15,7 +15,8 @@ på Mathias ok innan något manus skrivits kan ligga som egen fil här i `paket/
 | **Miniatyr** | Motivet hämtas ur manusets höjdpunkt, inte ur titeln. Texten ligger i översta tredjedelen. Bilden ska klara 50-procentstestet: publiken tittar på TV, där bara övre delen syns innan man trycker ned |
 | **Beskrivning** | Skriven för just den här videon. Kontrollera att kanalens standardbeskrivning inte följt med (det har hänt, se `../publicering/README.md`) |
 | **Fäst kommentar** | Högst två meningar |
-| **CTA** | Pekar **alltid** på kanalens senaste video, så kanalen ses som en serie. Hämta vilken den är med `vidiq_channel_videos({ videoFormat: 'long', popular: false })`, gissa aldrig. Kopplingen ska vara ett ämne, inte en artighetsfras |
+| **CTA** | Pekar **alltid** på kanalens senaste video, så kanalen ses som en serie. Hämta vilken den är med `vidiq_channel_videos({ videoFormat: 'long', popular: false })`, gissa aldrig. Kopplingen ska vara ett ämne, inte en artighetsfras. (Panelen 2026-11-07 föreslår "senaste avsnittet i samma serie"; ändras här först när Mathias sagt ja till `../youtube.md`-paketet) |
+| **F. Fakta 16** (obligatorisk) | Ett oanvänt fakta ur faktabanken med källa, färdig engelsk text till community-inlägget dag 1 (`../publicering/README.md`, "Dag 1–2"), och tre till som Script & Sources-bilaga (`../strategi/medlemsstrategi-cowork.md`) |
 
 Förpackningen ska vara vår egen: titel och miniatyr hålls mot utliggarens i Grindens steg 4
 (`../ideer/README.md`). Fulla miniatyrreglerna: `../reference/thumbnail-reglerna.md`.
@@ -24,7 +25,7 @@ Förpackningen ska vara vår egen: titel och miniatyr hålls mot utliggarens i G
 Paketet anger vilket av fyra miniatyrramverk som används (konflikt, ett dominant motiv,
 nyfikenhetsgap, attraktion) och bockar av de två testerna innan bilden går live: zooma
 till 10 procent (syns vinnaren?) och thumbnailpreview.com mot den riktiga startsidan.
-Ladda upp tre miniatyrer när det går, YouTube testar dem mot tittartid. Allt står i
+Ladda upp tre miniatyrer, alltid, YouTube testar dem mot tittartid. Allt står i
 `../ideer/README.md`, steg 3.
 
 ## Miniatyrerna görs så här
@@ -39,6 +40,8 @@ Körs från repots rot. Qwen Image 3 i 2k, sparas som 1280×720 jpg. Nyckeln lig
 - **Granska varje bild innan den lämnas över.** Qwen stavar ibland fel (dubblerad text,
   avklippta ord).
 - **Ordet "DEAD" stoppas av filtret.** Använd "GONE".
+- **Högst 6 bilder per video** (3 valda + 3 omtag); skriv dollarbeloppet ur hf.mjs-utskriften
+  i raden första gången (`../skills.md`, Budget per video).
 - `/higgsfield-youtube-thumbnail` används **inte**, se `../skills.md`.
 
 Två godkända stilar:

@@ -1,6 +1,8 @@
 # Panelens beslut — Beast of Ages
 *Kolla-over-panel körd 2026-08-22. Fem perspektiv plus beslutsfattare, 64 fynd.*
 
+*Takten i beslut 1 ("12 longform i månaden") gäller inte sedan 2026-11-07: vi släpper två i veckan (25 på 90 dagar), se `../publicering/veckoplan.md`. Dag 30 i beslut 7 är dag 28 (vidIQ rapporterar dag 28), loggen är `../publicering/uppfoljning.md`. Texten nedan står kvar som historik.*
+
 ## Sammanfattningen
 
 KORT VERSION: Premissen i uppdraget stämmer inte riktigt, och det är den viktigaste upptäckten. Beast of Ages är inte sämre per video än konkurrenterna. Han gör bara mycket färre videor. Räknat på mittenvideon (median) ligger han på ca 1 300 visningar, Species Decoder på ca 1 300 och Apex Paleo på ca 3 200. "Snitt per video" i tabellen är ett trasigt mått — det mäter hur många lotter man köpt, inte hur bra man är. Edmund Extinction har 90 procent av sina visningar i tre videor. Deras vanliga augustivideo gör 46–138 visningar, alltså SÄMRE än Mathias botten. Skillnaden: de släppte 26 videor på 30 dagar. Han släppte 4.

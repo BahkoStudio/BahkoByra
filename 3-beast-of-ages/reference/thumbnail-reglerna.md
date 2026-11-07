@@ -95,6 +95,13 @@ bakgrund.
 **A/B-testa texten.** Den billigaste förbättring som finns. Lägg fem minuter på alternativa
 ord och fraser varje gång text sätts i bild.
 
+## 5. Ingen AI-bild som efterliknar ett specifikt verkligt dokument eller föremål
+
+Ingen AI-bild som efterliknar ett specifikt verkligt dokument eller föremål (skanningar,
+röntgen, namngivna museiexemplar). Sådant visas som tydlig illustration eller inte alls.
+Djuret i miljö är tillåtet. Bakgrund: mastodontpaketets AI-tand hade för spetsiga knölar
+mot en riktig molar, och faktakollarna i kommentarerna dömer sådant (panelen 2026-11-07).
+
 ---
 
 ## Vad kanalen redan gör rätt

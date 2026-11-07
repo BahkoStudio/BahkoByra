@@ -116,7 +116,8 @@ den går live:**
 1. **Zooma till 10 procent.** Syns vinnaren fortfarande? Blir det gröt, rensa.
 2. **thumbnailpreview.com**, mot den riktiga startsidan, bredvid konkurrenternas.
 
-Ladda upp **tre miniatyrer** när det går: YouTube testar dem mot tittartid (Morena, 6.1).
+Ladda upp **tre miniatyrer**, alltid: YouTube testar dem mot tittartid (Morena, 6.1). Döm på
+tittartidsandel, inte klick.
 
 **Grinden** körs sedan på den färdiga idén, med förpackning. Fem steg, fulla texten i
 `modelleringsguide.md` del 3. Det som ändrades 2026-10-18 är steg 3:
@@ -126,11 +127,15 @@ Ladda upp **tre miniatyrer** när det går: YouTube testar dem mot tittartid (Mo
 | 1 | Har vi redan gjort den? Läs **hela** kanalens lista (`vidiq_channel_videos`) | Ämnet finns i en egen video, även som avsnitt i en lista |
 | 2 | Finns vår **remix** redan? `vidiq_youtube_search`, tre formuleringar på vår vinkel | En färsk engelsk långformsvideo med **samma vinkel** (inte samma djur: djuret är utliggarens, och det ska det vara) |
 | 3 | **Är vågen full?** Räkna kanalerna i vår storleksklass som gjort remixen de senaste sex månaderna | **Tre eller fler** = vågen är full (mammutbenhusen dog så). En eller två = grönt, det är beviset vi vill ha |
-| 4 | Är förpackningen vår egen? Titel och miniatyr bredvid utliggarens | Titeln går att lägga bredvid utliggarens och man ser släktskapet, eller miniatyren delar komposition, färg eller textplacering |
+| 4 | Är förpackningen vår egen? Titel och miniatyr bredvid utliggarens | Titeln går att lägga bredvid utliggarens och man ser släktskapet, eller miniatyren delar komposition, färg eller textplacering. **Miniatyrtexten får inte vara en omskrivning av utliggarens titel.** Test: lägg vår text bredvid deras titel (mastodonten 2026-11-07: NOBODY WANTS IT BACK mot *Why Scientists Don't Want To Bring the Mastodon Back*, därför går NOT A MAMMOTH först) |
 | 5 | Bär djuret och betalar titeln? | Djuret är inte stort, farligt eller ritbart, eller titeln lovar något manuset inte levererar |
 
 **Först när alla fem är gröna:** research (`../research/`), paketet färdigt (`../paket/`),
 `/manusloop` (`../manus/`). Inget där ändras.
+
+**Ett manus som väntar mer än 7 dagar efter Grinden får steg 3 omkört (ett anrop) före
+uppladdning.** Resultatet skrivs i Remixloopens logg och i manusets statusrad (mastodonten
+2026-11-07: 16 dagar efter Grinden, omkörd, vågen inte full).
 
 **Dokumentera.** Varje utliggare, vald vinkel och Grind-utfall skrivs in i
 `klarerade-ideer.md` under "Remixloopen", med siffrorna. Dödade idéer i tabellen över
@@ -138,16 +143,17 @@ dödade, med skälet.
 
 ## Mäta och besluta efteråt
 
-Siffrorna hämtas i `../publicering/README.md` dag 7 och dag 30. Ribborna, från Morenas
+Siffrorna hämtas i `../publicering/README.md` dag 7 och dag 28 (vidIQ rapporterar dag 28).
+Ribborna, från Morenas
 kurs och anpassade till en TV-publik:
 
 | Mått | Ribban | Vad det säger |
 |---|---|---|
 | Behållning vid 30 sekunder | över 70 %, över 80 % är en "killer intro" | Hooken och förpackningen stämde överens |
-| Behållning vid 60 sekunder | slå moans 36 % | Rådets nål 2026-10-17 |
+| Behållning vid 60 sekunder | över 55 % (dodon 3 nov: 60 % vid 50 s, 54 % vid 80 s) | Rådets nål 2026-10-17, ribban höjd 2026-11-07 |
 | Genomsnittlig tittad andel | över 45 % | Manuset håller; 45 % är Morenas gräns för "almost guaranteed a viral video" |
 | Klickfrekvens | över 7–8 %, helst 10 % | Miniatyr och titel fungerar |
-| Visningar dag 30 | över utliggarribban 3 000–5 000 | Formatet går att dubbla ner på |
+| Visningar dag 28 (vidIQ rapporterar dag 28) | över utliggarribban 3 000–5 000, och tittad andel över 40 % för att räknas som utliggare (`../publicering/README.md`) | Formatet går att dubbla ner på |
 
 Går en remix över ribban: dubbla ner **en gång** på samma utliggare med nästa vinkel
 (A → B → C) och mät igen. Morena mjölkar en vinnare i åtta delar; `../youtube.md` säger
@@ -156,7 +162,8 @@ högst tre och sluta när nedslagningen inte slår originalet. **youtube.md gäl
 ## Vad vi inte tar från kursen
 
 - **Återanvända andras klipp.** Kanalen bygger egna bilder; hans källmetod gäller inte.
-- **Två videor i veckan.** Vi släpper fyra i månaden tills manuspipelinen bär mer.
+- **Hans publiceringstakt som mål i sig.** Vi släpper två i veckan (25 på 90 dagar), inte
+  fler, för inspelningen är flaskhalsen (`../publicering/veckoplan.md`).
 - **"Milka" en titel i åtta delar.** Dire wolf-spåret visade nedgången: nio steg, 464 165 →
   9 677. Regeln "dubbla ner en gång och mät" står kvar.
 - **Vilken nisch som helst.** Kärnspåret är de-extinction och istid med ett ikoniskt djur

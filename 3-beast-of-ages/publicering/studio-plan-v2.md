@@ -1,21 +1,27 @@
 # Plan v2: SEO och att behålla tittarna
 
+*Gällande rutin: `README.md` och `veckoplan.md` (2026-11-07). Del D är avförd och Del E ersatt, se nedan.*
+
 *2026-09-30. Bygger på Cowork-körningen, kanalens egen sök- och förslagsstatistik (vidIQ, jul–sep 2026) och YouTubes egen beskrivning av hur sökningen fungerar. Ersätter inte `studio-playbook.md`; den här filen säger vad som är kvar och vad som ska göras härnäst.*
 
 ## Läget efter Cowork
 
-| Klart | Kvar |
+| Klart | Kvar (läge 2026-11-07) |
 |---|---|
-| Kanalbeskrivning | Startsidan: trailer, utvald video och avsnitt |
-| Nyckelord | Slutskärm och kort på fem dire wolf-videor |
-| Standardbeskrivning (utan spellistlänkarna) | Spellistan *De-Extinction Facts* finns inte |
-| Fästa kommentarer | Spellistlänkarna tillbaka i standardbeskrivningen |
+| Kanalbeskrivning (två sista raderna byts igen 2026-11-07, `studio-playbook.md` §2a) | Startsidan: utvald video och avsnitt pekar på serielistan |
+| Nyckelord | Slutskärm, kort, beskrivningsrad och fäst kommentar på fem dire wolf-videor mot dodon (A4) |
+| Standardbeskrivning (utan spellistlänkarna) | Sju spellistor finns 2026-11-07 (De-Extinction Facts, Ice Age Mysteries, Coming Back... But, 15 Facts About De-Extinct Animals, The Moa Project, The Woolly Mammoth Files, De-Extinct: Bringing Back the Dire Wolf); två överlappar och slås ihop till serielistan *15 Facts That Make No Sense* (`studio-playbook.md` §3) |
+| Fästa kommentarer (september, mot moan) | Spellistlänkarna tillbaka i standardbeskrivningen |
+
+Rättelse 2026-11-07: raden "Spellistan *De-Extinction Facts* finns inte" var fel, listan finns.
 
 ---
 
 ## Del A. Det som är kvar i Studio, i den här ordningen
 
-### A1. Skapa spellistan (5 minuter)
+### A1. Serielistan (10 minuter)
+
+**Gäller sedan 2026-11-07:** skapa ingen ny lista. Döp om den större av *De-Extinction Facts* och *15 Facts About De-Extinct Animals* till **15 Facts That Make No Sense**, flytta över videorna, sätt den tomma till Privat, ange som officiell serie. Exakta texter och ordning: `studio-playbook.md` §3. Texten nedan är den gamla instruktionen.
 
 **Innehåll → Spellistor → Ny spellista** (eller på youtube.com: **Skapa → Ny spellista**).
 
@@ -44,15 +50,37 @@ Ice Age Mysteries: [länk]
 
 ### A3. Startsidan
 
+Gräns (2026-11-07): kanalsidan gav 571 visningar på 90 dagar. Ingen mer tid på trailer och layout utöver serielistan förrän kanalsidan passerar 2 000 visningar per 90 dagar.
+
 **Anpassning → Layout.**
 1. **Videospotlight → Kanaltrailer för personer som inte prenumererar → Lägg till:** *15 Mindblowing Facts About De-Extinct Dire-Wolf Pups*
-2. **Utvald video för återkommande prenumeranter → Lägg till:** *15 Facts About the De-Extinct Moa That Make No Sense* (byt till den senaste uppladdningen varje gång en ny kommer upp)
-3. **Utvalda avsnitt → Lägg till avsnitt → Enskild spellista:** De-Extinction Facts. Upprepa för Coming Back… But och Ice Age Mysteries. Lägg sist **Populära videor**.
+2. **Utvald video för återkommande prenumeranter → Lägg till:** Spellista = *15 Facts That Make No Sense* (2026-11-07)
+3. **Utvalda avsnitt → Lägg till avsnitt → Enskild spellista:** 15 Facts That Make No Sense först. Upprepa för Coming Back… But och Ice Age Mysteries. Lägg sist **Populära videor**.
 4. Klicka **Publicera** uppe till höger.
 
-### A4. Slutskärm och kort när det krånglar
+### A4. De fem dire wolf-videorna: slutskärm, kort, beskrivning, fäst kommentar (stående punkt)
 
-Kolla det här i ordning på den första dire wolf-videon:
+De fem (*15 Mindblowing Facts About De-Extinct Dire-Wolf Pups*, *Three Direwolf Pups Survived…*, *The "Dire Wolf" Pups Are Learning…*, *When Dire Wolves Breed With Other Wolves*, *If They're Not Dire Wolves…*) gav 74 606 av 115 945 visningar och 137 av 160 nya prenumeranter på 90 dagar. Slutskärmstittare ser 62,6 % av videon. Sedan 2026-11-07 pekar de på dodon, inte moan:
+
+1. **Slutskärm på första videon:** mall "1 video, 1 spellista, 1 prenumerera". Video = *15 Facts About the De-Extinct Dodo That Make No Sense* (Välj en viss video, inte Bäst för tittaren). Spellista = *15 Facts That Make No Sense* (A1 först). Sedan på de fyra andra: Slutskärm → Importera från video → den första.
+2. **Kort** cirka en tredjedel in på alla fem: Video = dodon, meddelande:
+```
+Colossal's next animal is a bird. Here's what makes no sense about it.
+```
+3. **Översta raden i beskrivningen** på alla fem:
+```
+Update, November 2026: Colossal's next de-extinction is the dodo, and the only dodo head left on Earth was shot. 15 facts that make no sense: [LÄNK till dodovideon]
+```
+4. **Fäst kommentar** på alla fem (⋮ → Fäst, ta bort den gamla från september):
+```
+Colossal's next bird: in October 2026 its AI flagged about 2,300 genetic switches for the dodo's beak, and the only dodo head left on Earth was shot. 15 facts that make no sense: [LÄNK]. Which extinct animal should get the next list?
+```
+5. **Stående punkt:** varje gång en ny Mall E-video är ute byts slutskärmens video på de fem till den nya (Importera från video, 5 minuter). Först mastodonten.
+6. Kontrollera samtidigt att **Tjäna pengar → mid-rolls** är på för de fem (64 % av visningarna).
+
+Mätgrind: slutskärmsvisningar i Statistik → Trafikkälla från 350 till över 1 000 per 90 dagar, läses av vid mastodontens dag 28.
+
+**När det krånglar**, kolla det här i ordning på den första dire wolf-videon:
 1. **Målgrupp:** **Innehåll → videon → Information → Målgrupp.** Står det "Ja, den är gjord för barn" är slutskärmar och kort avstängda. Välj **"Nej, den är inte gjord för barn"** och spara.
 2. **Moa-videon hittas inte i väljaren:** välj **Video → Välj en viss video** och sök på `moa`. Bara offentliga videor syns.
 3. **Elementen får inte plats:** alla element måste ligga inom de sista 5–20 sekunderna och får inte täcka varandra. Välj **Mall** längst till vänster (en video, en spellista, prenumerera) i stället för att dra ut dem för hand.
@@ -142,7 +170,9 @@ Förbjudet de första 60 sekunderna: logga, kanalnamn, "welcome back", musik fö
 
 ---
 
-## Del D. Nästa video (dire wolf-vågen)
+## Del D. Nästa video (dire wolf-vågen): AVFÖRD 2026-11-07
+
+Vinkeln dödad i Grinden 2026-10-18 och `../youtube.md` säger att spåret är slut; nästa video väljs i Remixloopen (`../ideer/README.md`), kön står i `ko.md`. En ny dire wolf-video kräver levande nyhetsankare (A0 minst 6) och Grinden, tidigast när kön är tom. Texten nedan är historik.
 
 **Förslag till titel:**
 ```
@@ -158,10 +188,4 @@ Det kräver paket, faktabank och granskning som de andra manusen. Mathias säger
 
 ## Del E. Varje vecka
 
-| Dag | Vad |
-|---|---|
-| Måndag | Kolla nyheter om Colossal, dire wolves, mammut, thylacin, dodo, moa. Finns något nytt: skriv en video om det. |
-| Tisdag | Publicera. Fäst kommentaren. Community-inlägg med länk. |
-| Onsdag | Community-omröstning. |
-| Fredag | Publicera. Fäst kommentaren. |
-| Söndag | Anteckna dag 7- och dag 28-siffrorna, skärmdump av publikbehållningen till Claude. |
+Se `veckoplan.md` (ersatte tabellen här 2026-11-07).

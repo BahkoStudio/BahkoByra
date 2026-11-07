@@ -73,4 +73,4 @@ OneDrive, `2 Beast of Ages/YouTube-rådet/2026-10-17-strategi/`.
 spår utan de-extinction. Utfallet i september motbevisade det: vardagsfrågorna floppade och
 moa-faktavideon (de-extinction med ett ikoniskt djur) var enda träffen. I första hand gäller
 därför de-extinction och istid med ett ikoniskt djur i titeln. Vardagsfrågor bara som
-undantag. Mät dag 30 innan ett format döms.
+undantag. Mät dag 28 (vidIQ rapporterar dag 28) innan ett format döms.

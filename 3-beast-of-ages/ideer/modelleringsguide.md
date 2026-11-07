@@ -182,7 +182,7 @@ det första — byt före publicering.**
 
 *Volymvarningen:* deras träffprocent är kanske en av tre (7 Alaska 1 034, 10 Ridges 2 265,
 7 Texas 2 722, kaninerna 3 928, kaspisk tiger 6 515). De sprayar mallen över varje djur
-och plats och låter algoritmen välja. Vi släpper fyra i månaden och måste träffa djuret
+och plats och låter algoritmen välja. Vi släpper två i veckan (25 på 90 dagar) och måste träffa djuret
 första gången. Det är därför Grinden finns.
 
 *Grindens steg 3 — spår Wilder America ockuperat sedan mitten av augusti 2026:* thylacin

@@ -23,3 +23,8 @@ kanalen lever på) och når nästan inga svenska företagare.
 3. **Kanalens egna intäkter** (annonser, sponsorer) som en egen inkomstgren.
 
 Beslut behövs från Mathias innan den här kvisten fylls.
+
+Uppmätt 2026-11-07: Sverige 352 av 115 945 visningar på 90 dagar (0,3 %). Medlemskapen
+(Fossil Hunters) är den första intäktsgrenen som faktiskt finns, se
+`strategi/medlemsstrategi-cowork.md`. Kopplingen omprövas först om svenska visningar
+passerar 5 % eller kanalen kan visa en serie över utliggarribban som bevis i byråns sälj.

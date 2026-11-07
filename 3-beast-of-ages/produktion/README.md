@@ -15,6 +15,10 @@ för videoklipp (Mathias 2026-10-14: "vi behöver ingen veo-prompt"). Den gamla 
   ska den fortfarande stå i faktabanken (`../research/`).
 - Hur rösten görs (verktyg, inställningar) är inte nedskrivet än. Skriv in det här när
   det är bestämt.
+- Läs in CTA-meningen som ett separat ljudklipp sist, så den kan bytas utan att läsa om
+  manuset (panelen 2026-11-07).
+- Tackrutan sista 5 sekunderna före slutskärmen: "Thank you to our Fossil Hunters:" plus
+  medlemsnamnet från Studio → Tjäna pengar → Medlemskap → Medlemmar.
 
 ## Bild och klipp
 

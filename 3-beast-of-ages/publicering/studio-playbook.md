@@ -1,5 +1,7 @@
 # Studio-playbook för Beast of Ages
 
+**Gällande rutin: `README.md` och `veckoplan.md`. Resten här är inställningar som görs en gång.** Utgångna avsnitt ligger sist under "Utgånget" (2026-11-07).
+
 *Byggd 2026-09-30 på kanalens egen statistik (vidIQ, juli–september 2026), vidIQ:s sökordsdata och nischens utliggare de senaste tre månaderna. Allt som ska klistras in i YouTube Studio står på engelska i grå rutor. Förklaringarna är på svenska.*
 
 ## 0. Siffrorna allt bygger på
@@ -20,43 +22,6 @@ Fel som hittades i Studio: honungsbin-videon hade den gamla safaribeskrivningen,
 
 ---
 
-## 1. Akut: rid på dire wolf-vågen (i dag)
-
-### 1a. Fäst den här kommentaren på alla fem dire wolf-videor
-
-Byt ut `[LINK]` mot länken till moa-videon. Kommentaren läggs från kanalens konto, och sedan väljer du **⋮ → Fäst**.
-
-```
-Update, September 2026: Romulus, Remus and Khaleesi are now fully grown and hunting together as a pack. Colossal's team says they are good at the chase and bad at the kill: their first catch was a rabbit they brought back alive.
-
-Colossal's next big animal is a 12-foot bird with no wings at all. Here's what makes no sense about it: [LINK]
-
-Would you want to see a dire wolf in the wild?
-```
-
-Videorna: *15 Mindblowing Facts About De-Extinct Dire-Wolf Pups*, *The "Dire Wolf" Pups Are Learning.. That's the Problem*, *Three Direwolf Pups Survived… and Scientists Are Terrified*, *When Dire Wolves Breed With Other Wolves… Everything Changes*, *If They're Not Dire Wolves… Then What Are They?*
-
-### 1b. Slutskärm på samma fem videor (sista 20 sekunderna)
-
-**Innehåll → video → Slutskärm → Lägg till element:**
-1. **Video → Välj en viss video:** moa-videon.
-2. **Spellista:** *De-Extinction Facts* (skapas i steg 3).
-3. **Prenumerera.**
-
-### 1c. Kort på samma fem videor
-
-**Innehåll → video → Kort → Video:** moa-videon, placerad när videon är ungefär en tredjedel in. Kortets text:
-
-```
-The next animal Colossal wants back
-```
-
-### 1d. Nästa video att göra
-
-*The Dire Wolves Are Fully Grown… But Something's Wrong* (kanalens egen "Coming back… but"-mall, samma som thylacinen med 23 000 visningar). Paketet och faktabanken byggs först, enligt manusreglerna.
-
----
-
 ## 2. Kanalinställningar (en gång)
 
 ### 2a. Kanalbeskrivning
@@ -68,10 +33,11 @@ Beast of Ages is about the animals we lost, and the scientists trying to bring t
 
 Dire wolves, woolly mammoths, thylacines, dodos and moa: we follow every de-extinction project, from Colossal Biosciences to the museum labs reading DNA from 100-year-old skins, and we check every claim against the published research. No hype and no made-up numbers. Every video lists its sources.
 
-New long-form videos every Tuesday and Friday.
+New long-form videos every week.
 
-Start here: 15 Mindblowing Facts About De-Extinct Dire-Wolf Pups.
+Start here: the 15 Facts That Make No Sense playlist: [LÄNK till serielistan]
 ```
+De två sista raderna bytta 2026-11-07 (panelen): "every week" lovar mindre än två i veckan och hålls alltid; serielistan är den officiella serien (§3). Trailern lämnas: kanalsidan gav 571 visningar på 90 dagar.
 
 ### 2b. Kanalens nyckelord
 
@@ -85,20 +51,28 @@ de-extinction, dire wolf, woolly mammoth, thylacine, tasmanian tiger, dodo, moa,
 
 **Anpassning → Layout:**
 - **Kanaltrailer för tittare som inte prenumererar:** *15 Mindblowing Facts About De-Extinct Dire-Wolf Pups*
-- **Utvald video för återkommande prenumeranter:** den senaste uppladdningen
-- **Utvalda avsnitt, i den här ordningen:** De-Extinction Facts · Coming Back… But · Ice Age Mysteries · Populära uppladdningar
+- **Utvald video för återkommande prenumeranter:** Spellista = *15 Facts That Make No Sense* (2026-11-07)
+- **Utvalda avsnitt, i den här ordningen:** 15 Facts That Make No Sense · Coming Back… But · Ice Age Mysteries · Populära uppladdningar
 
 ---
 
 ## 3. Spellistor (en gång)
 
-**Innehåll → Spellistor → Ny spellista.** Namn och beskrivning:
+**Serielistan, 2026-11-07.** Kanalen har sju spellistor, och två överlappar (*De-Extinction Facts* och *15 Facts About De-Extinct Animals*). Spellista och slutskärm är kanalens bäst behållna källor (64,4 % och 62,6 % tittad andel) men ger bara 209 + 350 visningar på 90 dagar; två listor delar den lilla trafiken. 49 % av visningarna sker på TV, där en officiell serielista spelar nästa video automatiskt.
 
-**De-Extinction Facts**
+**Innehåll → Spellistor.** Öppna båda, behåll den med flest videor och visningar (URL:en behålls), byt dess namn till exakt:
 ```
-Fact by fact, what the de-extinction projects actually did: the dire wolf pups, the woolly mammoth, the moa. Every claim is sourced.
+15 Facts That Make No Sense
 ```
-Innehåll: 15 Mindblowing Facts About De-Extinct Dire-Wolf Pups · 15 De-Extinct Mammoth Facts · 15 Facts About the De-Extinct Moa That Make No Sense · Nothing About The Dire Wolf Was Normal
+Beskrivning:
+```
+Fifteen facts about one extinct animal, every one of them sourced. Dire wolves, mammoths, moa, dodos, mastodons and the animals science is trying to bring back. New episode every week.
+```
+Ordning: 15 Facts About the De-Extinct Dodo That Make No Sense · 15 Facts About the De-Extinct Moa That Make No Sense · 15 Mindblowing Facts About De-Extinct Dire-Wolf Pups · 15 De-Extinct Mammoth Facts. Mastodonten läggs först när den är ute, sedan varje ny Mall E-video överst.
+
+Flytta över videorna från den andra listan och sätt den tomma till **Privat**. Radera inget. Spellistans **⋮ → Ange som officiell serie**. **Anpassning → Layout → Utvalda avsnitt:** lägg listan först. **Utvald video för återkommande prenumeranter:** Spellista = denna lista. De tre endjurslistorna (The Moa Project, The Woolly Mammoth Files, De-Extinct: Bringing Back the Dire Wolf) lämnas orörda. Mätgrind: spellisttrafik i Statistik → Trafikkälla över 209 per 90 dagar vid mastodontens dag 28.
+
+De två andra listorna som redan finns, texter om de behöver skrivas om:
 
 **Coming Back… But**
 ```
@@ -129,7 +103,7 @@ Sources:
 - 
 
 More from Beast of Ages:
-De-Extinction Facts: [playlist link]
+15 Facts That Make No Sense: [playlist link]
 Coming Back… But: [playlist link]
 Ice Age Mysteries: [playlist link]
 
@@ -173,7 +147,7 @@ Första kapitlet måste stå på `00:00`, och det behövs minst tre kapitel. Var
 Formel: en konkret detalj ur videon plus en fråga. Max 80 ord. Varje paket i `manus/` har en färdig.
 
 ### 5f. Slutskärm och kort
-- **Slutskärm:** nästa video i samma spellista, spellistan och prenumerera-knappen.
+- **Slutskärm:** mallen "en video, en spellista, prenumerera": videon är exakt den CTA:n i ljudet säger, spellistan är *15 Facts That Make No Sense* (`README.md`).
 - **Kort:** där manuset nämner en annan video, och ett kort ungefär 30 procent in som pekar på videon i CTA:n.
 
 ### 5g. Undertexter
@@ -199,7 +173,9 @@ Bilderna under första minuten ska visa exakt det som berättas. Allmänna djurb
 
 ---
 
-## 7. Community-fliken (två inlägg i veckan)
+## 7. Community-fliken
+
+*Sedan 2026-11-07 gäller Dag 1–2-blocket i `README.md`: Fakta 16 offentligt dagen efter varje video, Script & Sources som medlemsinlägg (`../strategi/medlemsstrategi-cowork.md`). Omröstningen gäller ordningen i kön, inte nya djur. Texterna nedan är de gamla exemplen.*
 
 **Omröstning, måndag:**
 ```
@@ -219,27 +195,76 @@ In May 2026, a lab in Texas hatched 26 chicks inside shells no bird ever laid. T
 
 ## 8. Kommentarer
 
-Svara på varje kommentar under det första dygnet. Ge ett hjärta till de bästa. Mall för svar på en faktafråga:
+*Rutinen står i `README.md`, Dag 1–2: Claude hämtar kommentarerna en gång, Mathias klistrar in svaren och hjärtar de tre bästa.* Svara på varje kommentar under det första dygnet. Ge ett hjärta till de bästa. Mall för svar på en faktafråga:
 ```
 Good question. [One-sentence answer with the source's name.] We cover it in more detail here: [LINK]
 ```
 
 ---
 
-## 9. Shorts (test i fyra veckor)
+## 10. Publiceringsschema
+
+Schemalägg alltid (**Synlighet → Schemalägg**), publicera aldrig direkt vid uppladdning. Tiden sätts efter skärmdumpen av **Statistik → Målgrupp → När dina tittare är på YouTube** (alla tittare, inte bara prenumeranter; skärmdumpen läggs i OneDrive `2 Beast of Ages/Strategi/`). Saknas tydlig topp: söndag 02:00 och onsdag 02:00 svensk tid (lördag respektive tisdag kväll i USA, 55 % av publiken). Två videor aldrig inom 24 timmar. Ordningen står i `ko.md`.
+
+---
+
+## 11. Varje vecka
+
+Se `veckoplan.md` (ersatte det här avsnittet 2026-11-07). Loggen förs i `uppfoljning.md`.
+
+---
+
+## Utgånget (gjort eller avfört, rör inte)
+
+- **1a–1c (fäst kommentar, slutskärm och kort på de fem dire wolf-videorna mot moan):** gjorda sept 2026. Sedan 2026-11-07 pekar de fem på dodon och serielistan i stället (`studio-plan-v2.md` A4, panelens beslut 2).
+- **1d och plan-v2 Del D (ny dire wolf-video):** avförda. Vinkeln dödad i Grinden 2026-10-18 och `../youtube.md` säger att spåret är slut; nästa video väljs i Remixloopen (`../ideer/README.md`). Villkor för en ny dire wolf-video: levande nyhetsankare (A0 minst 6) och Grinden, tidigast när kön är tom.
+- **§9 Shorts (test i fyra veckor):** avförd 2026-11-07. Shorts gav 424 visningar och 61 minuter på 90 dagar.
+- **§10:s "tisdag och fredag" och "17:00":** strukna 2026-11-07, ingen av dem hade stöd i datan.
+
+<details>
+<summary>Originaltexten till §1 och §9 (bara som historik)</summary>
+
+### Gamla §1. Akut: rid på dire wolf-vågen (i dag)
+
+#### 1a. Fäst den här kommentaren på alla fem dire wolf-videor
+
+Byt ut `[LINK]` mot länken till moa-videon. Kommentaren läggs från kanalens konto, och sedan väljer du **⋮ → Fäst**.
+
+```
+Update, September 2026: Romulus, Remus and Khaleesi are now fully grown and hunting together as a pack. Colossal's team says they are good at the chase and bad at the kill: their first catch was a rabbit they brought back alive.
+
+Colossal's next big animal is a 12-foot bird with no wings at all. Here's what makes no sense about it: [LINK]
+
+Would you want to see a dire wolf in the wild?
+```
+
+Videorna: *15 Mindblowing Facts About De-Extinct Dire-Wolf Pups*, *The "Dire Wolf" Pups Are Learning.. That's the Problem*, *Three Direwolf Pups Survived… and Scientists Are Terrified*, *When Dire Wolves Breed With Other Wolves… Everything Changes*, *If They're Not Dire Wolves… Then What Are They?*
+
+#### 1b. Slutskärm på samma fem videor (sista 20 sekunderna)
+
+**Innehåll → video → Slutskärm → Lägg till element:**
+1. **Video → Välj en viss video:** moa-videon.
+2. **Spellista:** *De-Extinction Facts* (skapas i steg 3).
+3. **Prenumerera.**
+
+#### 1c. Kort på samma fem videor
+
+**Innehåll → video → Kort → Video:** moa-videon, placerad när videon är ungefär en tredjedel in. Kortets text:
+
+```
+The next animal Colossal wants back
+```
+
+#### 1d. Nästa video att göra
+
+*The Dire Wolves Are Fully Grown… But Something's Wrong* (kanalens egen "Coming back… but"-mall, samma som thylacinen med 23 000 visningar). Paketet och faktabanken byggs först, enligt manusreglerna.
+
+---
+
+### Gamla §9. Shorts (test i fyra veckor)
 
 Klipp ut 30–45 sekunder ur det mest överraskande stycket i varje långvideo. Välj den långa videon som **Relaterad video** när du laddar upp. Just nu ger Shorts kanalen nästan inga visningar (6 på två månader), så det här är ett test. Mät om fler tittare hittar till långvideorna.
 
 ---
 
-## 10. Publiceringsschema
-
-- Två fasta dagar i veckan, till exempel tisdag och fredag.
-- Tid: läs av **Statistik → Målgrupp → När dina tittare är på YouTube** och publicera en timme före topptiden. Syns inget diagram, publicera 17:00 svensk tid.
-- Ordning: dire wolf-videon (så fort den är klar), mammuten 2028, geparderna, råttan och havsminken, Tasmanien, fölet, mammutplatsen (20 minuter, långt test för TV-tittarna).
-
----
-
-## 11. Varje vecka (15 minuter)
-
-Anteckna för varje video som är 7 och 28 dagar gammal: visningar, genomsnittlig visningstid, procent sett, klickfrekvens för visningar och nya prenumeranter. Ta en skärmdump av **Publikbehållning** och skicka den. Jämför medianen, inte snittet. Mål: slå medianen 170 från augusti–september.
+</details>

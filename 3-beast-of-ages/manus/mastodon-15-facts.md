@@ -2,7 +2,7 @@
 
 Beast of Ages. Manus och leveranspaket i samma fil, paketet överst.
 
-**Status: klart att spela in.** 2 225 ord (cirka 14 minuter). Paketet godkänt av Mathias 2026-10-24. Tre rundor manusloop (taket); runda 1 och 2 underkände, i runda 3 godkände alla fyra kritiker och deras sista putsfixar gjordes direkt. Runda 1 flyttade tanden och bildsökningen till de två första meningarna och bytte ett läroboksfakta mot mjölkbudet i Manhattan 1925; runda 2 bytte plats på tuberkulosen och mjölkbudet så att det levande djuret kommer in efter London-bluffen. CTA pekar på rankningsvideon (kanalens senaste, kontrollerad med vidIQ 2026-10-24). Nyhetskroken kollad live 2026-10-24: ingen koldatering från Stanford publicerad ännu. Faktabank: `../research/mastodon-15-facts.md` (32 kandidatfakta, källa per rad, byggd 2026-10-22).
+**Status: klart att spela in.** 2 240 ord (cirka 15 minuter), räknat 2026-11-07. Paketet godkänt av Mathias 2026-10-24. Tre rundor manusloop (taket); runda 1 och 2 underkände, i runda 3 godkände alla fyra kritiker och deras sista putsfixar gjordes direkt. Runda 1 flyttade tanden och bildsökningen till de två första meningarna och bytte ett läroboksfakta mot mjölkbudet i Manhattan 1925; runda 2 bytte plats på tuberkulosen och mjölkbudet så att det levande djuret kommer in efter London-bluffen. CTA pekar på dodon (2026-11-07). Öppningen oförändrad (Mathias 2026-11-07), prenumerationsmening efter fakta tre. Grinden steg 3 omkörd 2026-11-07: utliggaren (Facts Machine) ligger på 1 468 858 visningar; senaste 30 dagarna finns bara en annan engelsk långvideo om mastodont och de-extinction (Interesting insights, 466 prenumeranter, 112 visningar), vågen är inte full, GO. Koldatering: Stanford har inte publicerat någon radiokoldatering av bäcktanden per 2026-11-07, beskrivningen står kvar. Faktabank: `../research/mastodon-15-facts.md` (32 kandidatfakta, källa per rad, byggd 2026-10-22).
 
 **Första videon ur Remixloopen** (`../ideer/README.md`). Utliggaren: Facts Machine (109 000 prenumeranter, median cirka 3 000), *Why Scientists Don't Want To Bring the Mastodon Back*, publicerad 2026-10-18, **885 229 visningar på fyra dygn**, 5 600 visningar i timmen dag fyra, breakout 79. Samma kanal körde samma form nio dagar tidigare (*…the Cave Lion Back*, 270 943). Vinkel **B**: samma djur, vårt format. Tanken: deras video har gjort 885 000 människor nyfikna på mastodonten den här veckan, och en "15 Facts"-lista är den naturliga nästa videon i deras förslagsflöde. Så gick det för dire wolf-listan (76 720) på vargvågen.
 
@@ -58,7 +58,27 @@ Beast of Ages. Manus och leveranspaket i samma fil, paketet överst.
 **E. Fäst kommentar**
 > The mastodon's scientific name is Mammut. It literally means "mammoth", and it was given to the wrong animal first. Which of the 15 did you not know?
 
-**CTA:** *Watch "15 Facts About the De-Extinct Dodo That Make No Sense" next* om dodon är ute före; annars kanalens senaste långvideo, kontrollera med `vidiq_channel_videos` före uppladdning.
+**CTA:** Watch '15 Facts About the De-Extinct Dodo That Make No Sense' next. Dodon publicerad 2026-11-03, kontrollerad 2026-11-07.
+
+**Kapitel** (tiderna fylls i av Mathias efter klippningen, `../produktion/README.md`)
+```
+00:00 The tooth in the creek
+Fact 1: Upside down
+Fact 2: A quarter-pint of rum
+Fact 3: The president's bones
+Fact 4: Sixty years in Paris
+Fact 5: The wrong name won
+Fact 6: The London giant
+Fact 7: Written in the feet
+Fact 8: Every spring, a fight
+Fact 9: The milkman
+Fact 10: Still alive inside
+Fact 11: Arctic vacation
+Fact 12: Half a million years
+Fact 13: Named in 2019
+Fact 14: Meat at the bottom
+Fact 15: The one nobody can settle
+```
 
 **Ärlighetsregler:** faktabankens §4 (Konflikter, 20 rader) och §5 (Använd inte) gäller. Dessutom: Facts Machines material (Manis, Fred, de fem problemen, 25 miljoner år, DNA-halveringstid) får användas men bara **en mening var** och aldrig bära ett eget fakta; minst tio av de femton ska vara saker deras video inte har. Ingen livslängd eller dräktighetstid för mastodonten (går inte att belägga). "Nipple tooth" sägs som Cuviers grekiska, inte som skämt vi hittat på. TIME:s "early 2030s" är TIME:s ord. Kolla `manus/de-extinction-eras.md` för överlapp om Cuvier och Jefferson innan manuset skrivs.
 
@@ -75,6 +95,8 @@ Fact one. The first fossil skeleton ever mounted in America was built by a portr
 Fact two. The first mastodon tooth on record was bought for a quarter-pint of rum and sent to London as proof of giants. On 30 July 1705, the Boston News-Letter reported a giant's teeth dug up at Claverack, New York. Lord Cornbury, the governor of New York, wrote to the Royal Society that a local politician had bought one from a Dutch countryman for a gill of rum, a quarter of a pint. The Boston preacher Cotton Mather took it as proof of the giants of Genesis. Eighty years later, a Virginia lawyer wrote that the animal might still be walking around somewhere.
 
 Fact three. Thomas Jefferson believed the mastodon might still be alive out West. In his 1785 book Notes on the State of Virginia, he called it a mammoth and suggested it might survive in the unexplored north and west of the continent. The French naturalist Buffon had claimed New World animals were smaller and weaker. The longest chapter of Jefferson's only book answers Buffon with numbers. The mastodon, which he called "the largest of all terrestrial beings", meaning land animals, was his strongest card. Monticello's historians say Jefferson told Lewis and Clark to look for mastodons. In 1807 he paid for William Clark to dig at Big Bone Lick, Kentucky, and some 300 bones and teeth arrived in three boxes. Jefferson laid them out in the President's House, today's White House. Duplicates went to Paris.
+
+If you want the next fifteen, subscribe. There is a new list every week.
 
 Fact four. Paris had mastodon bones for sixty years before anyone knew what they were, and filed them as an elephant's leg with a hippo's teeth. The bones came from Big Bone Lick, Kentucky, in 1739, collected by the Native guides of a French expedition on the Ohio. In 1762 the naturalist Daubenton decided the thigh bone and tusk were an elephant's, but the molars, the big back teeth, unlike any elephant tooth, must belong to a giant hippopotamus. In 1768 William Hunter told the Royal Society the Ohio animal differed from living elephants and must therefore be extinct. Georges Cuvier, in 1796, compared living elephants with the Siberian mammoth and the "animal of Ohio", and argued the fossil ones no longer existed. Ten years later Cuvier named it "mastodonte", from the Greek for nipple and tooth, after the rounded bumps on its molars. He also asked Americans to stop calling it a mammoth. He was seven years too late.
 
@@ -100,4 +122,4 @@ Fact fourteen. Ice Age hunters stored mastodon meat at the bottom of ponds, and 
 
 Fact fifteen. A mastodon in San Diego is the evidence for the claim that humans were in America 130,000 years ago. In 1992, as a state highway was being widened, Richard Cerutti of the San Diego Natural History Museum found mastodon bones, and a team under Thomas Deméré excavated them. A method that measures how much of the bone's uranium has turned into thorium gave about 130,700 years, give or take 9,400. In 2017, in the journal Nature, Steven Holen and colleagues argued that rounded stones lying with the broken bones were hammers and anvils. The twisting breaks, the kind only fresh bone makes, showed the bones had been smashed for marrow, they said. If so, people were in the Americas more than 110,000 years before the oldest widely accepted sites. Most archaeologists who have answered say no. The archaeologist Michael Waters said there are no clear stone tools and the site "is likely just an interesting paleontological locality". Deméré answered that his critics relied on "long-distance interpretations of our data".
 
-In August 2026 Colossal, the company trying to revive the mammoth, told TIME its first mammoth is now expected in the "early 2030s", and the article never mentions the mastodon. Brigid Lynch's tooth is at Stanford now, where curator Christine Garcia's team will carbon-date it and 3D-print a copy for the preserve. Radiocarbon runs out at about 50,000 years. If Thompson is right about the age, the machine may come back with no answer at all. Three hundred and twenty-one years after a Dutch countryman sold one of these teeth for a quarter-pint of rum, the newest one is sitting in a lab, waiting for a date. Watch "Which Extinct Animals Are Actually Worth Bringing Back? (Ranked)" next.
+In August 2026 Colossal, the company trying to revive the mammoth, told TIME its first mammoth is now expected in the "early 2030s", and the article never mentions the mastodon. Brigid Lynch's tooth is at Stanford now, where curator Christine Garcia's team will carbon-date it and 3D-print a copy for the preserve. Radiocarbon runs out at about 50,000 years. If Thompson is right about the age, the machine may come back with no answer at all. Three hundred and twenty-one years after a Dutch countryman sold one of these teeth for a quarter-pint of rum, the newest one is sitting in a lab, waiting for a date. Watch "15 Facts About the De-Extinct Dodo That Make No Sense" next.

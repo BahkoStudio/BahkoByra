@@ -22,11 +22,26 @@ globalt på Mathias dator, inte i repot. Kontrollerat på disk 2026-10-14.
 4. **Paketet** i `paket/`, miniatyren med `hf.mjs`.
 5. **`/manusloop`** i `manus/`, max 3 rundor, sedan webbsökning på tidskritiska fakta.
 6. **Produktion** i `produktion/`.
-7. **Publicering** och uppföljning efter 48 timmar, 7 och 28 dagar med vidIQ i
-   `publicering/`.
+7. **Publicering** och uppföljning efter 48 timmar, 7 och 28 dagar i `publicering/`
+   (`uppfoljning.md`, siffrorna ur Studio).
 
 Står Mathias inför ett vägval på någon kvist: **`/youtube-roast`**. Vill han ha en bred
 genomlysning av allt: **`/kolla-over`**.
+
+## Budget per video (vidIQ-credits, 2026-11-07)
+
+| Steg | Anrop | Credits |
+|---|---|---|
+| Remixloopen steg 1 | `vidiq_outliers` eller `vidiq_channel_videos` | 5 |
+| Grinden steg 1–3 | `vidiq_channel_videos`, `vidiq_youtube_search` | högst 15 |
+| CTA-kontroll före uppladdning | `vidiq_channel_videos` | 5 |
+| Kommentarer vid 48 h | `vidiq_video_comments` | 5 |
+| Uppföljning dag 7 och 28 | Studio, inget vidIQ | 0 |
+| **Tak** | | **30 per video, 60 per vecka** |
+
+Månadsrunda `vidiq_outliers`: högst 2 anrop. Allt över taket frågas Mathias om först. Inga
+svep (klarerade-ideer.md: "Trendrunda 2026-09-23 (40-tal anrop)" är exemplet på vad som inte
+görs). Bilder: högst 6 per video med `hf.mjs` (`paket/README.md`).
 
 ## Skills som INTE hör till gren 3
 
