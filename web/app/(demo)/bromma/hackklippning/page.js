@@ -14,6 +14,7 @@ const fragor = [
   { q: 'Får jag rutavdrag på häckbyte?', a: <>Borttagningen av den gamla häcken ger rutavdrag, planteringen av den nya gör det inte, och bortforslingen räknas inte in. Vi delar upp posterna på fakturan. Källa: <a href={SKV_RUT} target="_blank" rel="noopener">Skatteverket</a>.</> },
   { q: 'Tar ni rötterna när en gammal häck ska bort?', a: 'Ja, vi tar häcken med rothalsen och kör bort allt samma dag. Lämnas rötterna kvar skjuter många arter nya skott.' },
   { q: 'Vad kostar en häck?', a: 'Det beror på art, höjd, antal meter och åtkomst. Vi kommer ut, mäter och ger ett pris med plantor, jord, täckmaterial, arbete och bortforsling inräknat.' },
+  { q: 'Tar ni hand om hela häckbytet?', a: 'Ja. Vi beställer plantorna, tar emot leveransen av jord och täckmaterial, tar bort den gamla häcken och kör bort allt. Du har en kontaktperson hela vägen.' },
 ];
 
 export default function Sida() {
