@@ -29,6 +29,12 @@ export default function Sida() {
         { id: 'sommar', namn: 'Gräs, häck och rabatter', bild: `${M}/efter-klippt-grasmatta-rabatter.webp`, alt: 'Skött gård med gräsmatta och rabatter', text: 'Fast intervall genom säsongen, fri sikt vid infarter.', punkter: ['Gräsytor', 'Häckar', 'Rabatter'] },
         { id: 'host', namn: 'Löv och bortforsling', bild: `${M}/anlagd-tradgard-planteringar.webp`, alt: 'Trädgård med planteringar', text: 'Löv bort innan snön kommer. Ingen container att boka.', punkter: ['Höststädning', 'Bortforsling', 'Egna maskiner'] },
       ] },
+    steg: { eyebrow: 'Så fungerar avtalet', rubrik: ['Ett avtal,', 'en kontaktperson'], lista: [
+      { namn: 'Genomgång av ytorna', text: 'Vi går igenom föreningens gård, gångar och parkeringar med styrelsen. Genomgången är kostnadsfri.', ikon: 'kontakt' },
+      { namn: 'Avtalsförslag', text: 'Styrelsen väljer vilka delar som ska ingå, sommar som vinter. Bruttopris, eftersom föreningar inte får rutavdrag.', ikon: 'offert' },
+      { namn: 'Fast månadsavgift', text: 'Tolv månaders avtal med tre månaders uppsägning. Snöröjning och halkbekämpning ingår i samma avtal.', ikon: 'arbete' },
+      { namn: 'Samma person året om', text: 'Ni har en kontaktperson som svarar både i juli och i januari.', ikon: 'klart' },
+    ] },
     fragor: { ...bas.fragor, eyebrow: 'Frågor från styrelser', lista: fragor },
     kontaktSektion: { ...bas.kontaktSektion, rubrik: ['Begär', 'avtalsförslag'], placeholder: 'Föreningens namn, ytor och om snöröjning ska ingå' },
   }} />;
