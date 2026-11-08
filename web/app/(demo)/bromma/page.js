@@ -24,7 +24,7 @@ import { skapadAv } from '../gdmaleri/_gd';
    (snorojning-illustration.webp, Qwen, 2026-11-08), alt-texten säger det.
    Byt mot Jens egna vinterfoton när de finns. Inga priser, inga
    jourtider, ingen utryckningstid för snö: inget sådant är belagt.
-   Hero, Varför och kontakt är Brommas egna två filmer (före/efter).
+   Hero = GENERERAD vinterfilm (Wan 3.0 Prime ur snöbilden, 5 s, Mathias ja 2026-11-08). Gamla heron (egen film) finns i 615f2f1. Varför och kontakt är Brommas egna filmer.
    =========================================================================== */
 
 export const metadata = {
@@ -102,7 +102,7 @@ const data = {
       { src: `${M}/f-efter-4.webp`, alt: 'Klippt gräsmatta och raka kanter', txt: 'Raka kanter' },
       { src: `${M}/f-efter-7.webp`, alt: 'Tomten färdig och städad', txt: 'Klart och bortkört' },
       { src: `${M}/poster-varfor.jpg`, alt: 'Klippt trädgård efter arbetet', txt: 'Efter skötsel' },
-      { src: `${M}/poster-hero.jpg`, alt: 'Igenvuxen trädgård från ovan', txt: 'Före, från ovan' },
+      { src: `${M}/jobb-fore-ovan.jpg`, alt: 'Igenvuxen trädgård från ovan', txt: 'Före, från ovan' },
     ],
   },
 
