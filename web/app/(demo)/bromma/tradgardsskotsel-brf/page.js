@@ -21,21 +21,34 @@ const fragor = [
 
 export default function Sida() {
   return <Landning schema={{ namn: 'Skötselavtal för BRF och fastighetsägare', typ: 'Utemiljöskötsel och snöröjning', beskrivning: metadata.description }} sida={{
-    hero: { ...bas.hero, rubrik: { fraga: 'Skötselavtal för BRF i Stockholm', svar: 'Sommar & Vinter.' } },
-    tejp: ['Skötselavtal för BRF', 'Snöröjning ingår', 'Halkbekämpning', 'Gräs och häckar', 'Löv och höststädning', 'En kontaktperson', 'Fast månadsavgift'],
+    hero: { ...bas.hero, rubrik: { fraga: 'BRF-avtal i Stockholm', svar: 'Gård & Snö.' } },
+    tejp: ['BRF-avtal', 'Snöröjning ingår', 'Halkbekämpning', 'Gräs och häckar', 'Löv och höststädning', 'En kontaktperson', 'Fast månadsavgift'],
     tjanster: { ...bas.tjanster, eyebrow: 'BRF och fastighet', rubrik: ['Ett avtal,', 'hela året'], lead: 'Två leverantörer betyder två avtal och två parter att ringa. Vi tar både sommaren och snön, och det är samma person som svarar i juli och i januari.', kolumner: 3,
       kort: [
         { id: 'vinter', namn: 'Snöröjning och halka', bild: `${M}/snorojning-illustration.webp`, alt: 'Illustrationsbild: nyskottad gång en vintermorgon', text: 'Uppfarter, gångar, entréer och parkeringar genom vintern.', punkter: ['Entréer', 'Parkeringar', 'Halkbekämpning'], lank: { href: '/bromma/snorojning/', txt: 'Allt om snöröjning' } },
         { id: 'sommar', namn: 'Gräs, häck och rabatter', bild: `${M}/efter-klippt-grasmatta-rabatter.webp`, alt: 'Skött gård med gräsmatta och rabatter', text: 'Fast intervall genom säsongen, fri sikt vid infarter.', punkter: ['Gräsytor', 'Häckar', 'Rabatter'] },
         { id: 'host', namn: 'Löv och bortforsling', bild: `${M}/anlagd-tradgard-planteringar.webp`, alt: 'Trädgård med planteringar', text: 'Löv bort innan snön kommer. Ingen container att boka.', punkter: ['Höststädning', 'Bortforsling', 'Egna maskiner'] },
       ] },
-    steg: { eyebrow: 'Så fungerar avtalet', rubrik: ['Ett avtal,', 'en kontaktperson'], lista: [
+    steg: { eyebrow: 'Så fungerar avtalet', rubrik: ['Så blir det', 'ett avtal'], lista: [
       { namn: 'Genomgång av ytorna', text: 'Vi går igenom föreningens gård, gångar och parkeringar med styrelsen. Genomgången är kostnadsfri.', ikon: 'kontakt' },
-      { namn: 'Avtalsförslag', text: 'Styrelsen väljer vilka delar som ska ingå, sommar som vinter. Bruttopris, eftersom föreningar inte får rutavdrag.', ikon: 'offert' },
-      { namn: 'Fast månadsavgift', text: 'Tolv månaders avtal med tre månaders uppsägning. Snöröjning och halkbekämpning ingår i samma avtal.', ikon: 'arbete' },
-      { namn: 'Samma person året om', text: 'Ni har en kontaktperson som svarar både i juli och i januari.', ikon: 'klart' },
+      { namn: 'Avtalsförslag', text: 'Ni får ett förslag med delarna var för sig, så styrelsen kan ta bort eller lägga till. Priset är brutto, föreningar får inte rutavdrag.', ikon: 'offert' },
+      { namn: 'Fast månadsavgift', text: 'Ett pris per månad för det som ingår, sommar som vinter. Inga tillägg utan att styrelsen sagt ja.', ikon: 'arbete' },
+      { namn: 'Rapport till styrelsen', text: 'Ni har ett nummer att ringa, och vi hör av oss när något på gården behöver ett beslut.', ikon: 'klart' },
     ] },
+    // Design-loop struktur 2026-11-09: egna rubriker och texter i Varför och Om, inga sektioner som kopierar startsidan.
+    varfor: { ...bas.varfor, eyebrow: 'Varför oss för föreningen', rubrik: ['En leverantör,', 'inte två'], lead: 'Styrelsen slipper hålla isär sommarfirman och snöfirman. Samma person ansvarar för gården året om.',
+      punkter: [
+        { rubrik: 'En kontaktperson', text: 'Jens leder arbetet och är den styrelsen ringer, oavsett årstid.' },
+        { rubrik: 'Fyra personer', text: 'Blir någon sjuk sätts en ersättare in. Gården blir inte liggande.' },
+        { rubrik: 'Ansvarsförsäkrade', text: 'Händer något på gården är det vår försäkring som gäller.' },
+        { rubrik: 'Egna maskiner', text: 'Kompaktlastare för parkeringarna, minigrävare för planteringarna. Inget inhyrt.' },
+      ] },
+    om: { ...bas.om, rubrik: ['Gårdar vi sköter', 'året om'], stycken: [
+      'Bromma Trädgårdsservice sköter utemiljön åt bostadsrättsföreningar och fastighetsägare i Bromma och hela Storstockholm.',
+      'Vi jobbar lika mycket åt villaägare, så vi vet vad de boende ser när de kommer hem: klippta kanter, rensade rabatter och en röjd entré.',
+    ] },
+    instagram: null,
     fragor: { ...bas.fragor, eyebrow: 'Frågor från styrelser', lista: fragor },
-    kontaktSektion: { ...bas.kontaktSektion, rubrik: ['Begär', 'avtalsförslag'], placeholder: 'Föreningens namn, ytor och om snöröjning ska ingå' },
+    kontaktSektion: { ...bas.kontaktSektion, rubrik: ['Begär', 'avtalsförslag'], lead: 'Skriv föreningens namn och vilka ytor det gäller, så bokar vi en genomgång med styrelsen och skickar ett förslag.', checkar: ['Fast månadsavgift', 'Snöröjning ingår', 'En kontaktperson'], formNot: 'Förslaget är kostnadsfritt och binder inte föreningen.', placeholder: 'Föreningens namn, ytor och om snöröjning ska ingå' },
   }} />;
 }
