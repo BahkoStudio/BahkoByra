@@ -319,6 +319,8 @@ Bevis i varje öppnare: minst två verkliga kunder och Brommas belagda bevis, al
 **Allt som går till en prospekt eller kund** — mänsklig, naturlig svenska. **ALDRIG tankstreck (—)
 i ett meddelande.** Börja med "Hejsan!", avsluta med "Vänliga hälsningar / Mathias Bahko". Kort:
 långa DM får inga svar (lärdom 2026-06-12), uppföljning max 40 ord. Ingen kontakt utan Mathias.
+Skrivsättet står i `1-byran/content/skriv-som-en-manniska.md` (Mathias stilguide 2026-11-09, samma fil i
+`.claude/skills/design-loop/references/`): ögonblick först, korta stycken, specifikt, inga AI-fraser, checklistan i avsnitt 7 före leverans.
 
 **Varumärke** — `brand.json` är källan, beskriv aldrig varumärket ur minnet. Genererade filer byggs
 med `python3 tools/assets/build_mascot.py`, rör dem aldrig för hand. **KNAPP-REGEL: smaragd yta med
