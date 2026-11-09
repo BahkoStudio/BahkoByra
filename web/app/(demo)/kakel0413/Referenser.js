@@ -28,7 +28,7 @@ export default function Referenser() {
           Kakel 0413 erbjuder tjänster inom kakel och klinker för både privatpersoner och företag.
         </p>
         <p style={{ margin: '0.85rem 0 0', fontSize: 'clamp(1.05rem, 1.5vw, 1.2rem)', lineHeight: 1.55, color: 'var(--text, #1a1610)' }}>
-          Med många års erfarenhet i branschen har vi arbetat med flera av Sveriges större byggföretag, bland annat Skanska, NCC, MVB, Peab och Tornstaden.
+          Bakom företaget finns många års erfarenhet inom branschen. Företagets ägare har tidigare arbetat med flera av Sveriges ledande byggföretag, bland annat Skanska, NCC, MVB, Peab och Tornstaden.
         </p>
         <ul style={{
           listStyle: 'none', margin: '1.4rem 0 0', padding: 0,
