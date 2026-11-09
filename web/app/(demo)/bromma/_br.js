@@ -71,7 +71,8 @@ export const bas = {
     kvittens: ['Tack! Din förfrågan är skickad.', 'Du får svar inom 24 timmar. Har du bråttom, ring 070-766 65 14.'],
   },
   nav: {
-    vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#jobb', txt: 'Våra jobb' }],
+    // Mathias 2026-11-09 ("var är BRF-sidan"): BRF-avtalet ska gå att hitta direkt i menyn.
+    vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '/bromma/tradgardsskotsel-brf/', txt: 'BRF-avtal' }],
     hoger: [{ href: '#omdomen', txt: 'Omdömen' }, { href: '#fragor', txt: 'Frågor' }],
   },
 
@@ -128,9 +129,10 @@ export const bas = {
       { rubrik: 'Pris innan start', text: 'Vi kommer ut och räknar. Tillkommer något hör vi av oss innan vi gör det.' },
       { rubrik: 'Egna maskiner', text: 'Minigrävare, Avant kompaktlastare och Husqvarna. Ingen väntan på inhyrd utrustning.' },
     ],
-    video: `${M}/video-varfor.mp4`,
-    poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Brommas egen film: en klippt och städad trädgård efter arbetet.',
+    // Mathias 2026-11-09: Brommas tidigare herofilm (egen film, gammal/video-hero.mp4) med loggan som slutbild.
+    video: `${M}/video-varfor-hero.mp4`,
+    poster: `${M}/poster-varfor-hero.jpg`,
+    videoAlt: 'Brommas egen film från ett jobb, avslutad med företagets logotyp.',
   },
 
   om: {
@@ -176,6 +178,18 @@ export const bas = {
     ],
     not: 'Omdömen märkta med Google kommer från företagets Google-profil och återges i original.',
     lank: { href: GOOGLE, txt: 'Läs alla på Google' },
+  },
+
+  /* Instagram (Mathias 2026-11-09: sektionen ska tillbaka). Tre riktiga reels från
+     @brommatradgardsservice, hämtade via vidIQ 2026-11-09: halka på uppfarten (DdjgpN0MVLL),
+     rutavdraget på fakturan (De6idNLM3A9), första snön (Dej2dQDsmle). Bion ordagrant från profilen.
+     Byt koderna när nya inlägg ska visas, eller gå över till levande flöde som GD (instagram.levande). */
+  instagram: {
+    eyebrow: 'Instagram',
+    rubrik: ['Följ oss', 'på Instagram'],
+    lead: 'Tips inför vintern och glimtar från jobben, några gånger i veckan.',
+    bio: 'Trädgårdsskötsel & underhåll · Stockholm',
+    koder: ['DdjgpN0MVLL', 'De6idNLM3A9', 'Dej2dQDsmle'],
   },
 
   fragor: {
