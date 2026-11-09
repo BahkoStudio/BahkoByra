@@ -31,9 +31,9 @@ import ForeEfterReglage from './ForeEfterReglage';
      används som både logo.src och logo.ljus på den vita sidan. logo.webp (vit text) sparad.
    - Tjänstekorten visar ritning/ikon i stället för foto (mallen ritar ritning ovanpå bild;
      fotot är en transparent platshållare och döljs i STIL).
-   - Varför-filmen genererad 2026-11-09 (illustration, Qwen Image 3 2k + Wan 3.0 Prime
-     5 s 720p): faluröd svensk villa, nymålat matt kolsvart tak, gyllene ljus, långsam
-     drone. Gamla filen i media/gammal/.
+   - Varför-filmen omgjord 2026-11-09 (Mathias: Wan såg för AI-aktig ut): Marketing Studio
+     Sunburst still + Kling 4.0 5 s 720p. Vardaglig svensk 70-talsvilla, nymålat matt
+     svart betongpannetak, mulet ljus, DJI-dolly. Wan-versionen i media/gammal/video-varfor-wan.mp4.
 
    INTE verifierat, och finns därför INTE på sidan: ort,
    hemsida, Instagram, org.nr, F-skatt, ROT-avdrag, priser, garantier,
@@ -47,7 +47,7 @@ import ForeEfterReglage from './ForeEfterReglage';
      ska stämmas av med ägaren.
    - JOBB, OMDÖMEN OCH OM OSS är dolda (stilblocket nedan): inga jobbfoton,
      inga omdömen, ingen ägarberättelse ännu. Inget påhittat.
-   - VARFÖR-FILMEN NY 2026-11-09 (Qwen Image 3 2k + Wan 3.0 Prime 5 s 720p, illustration).
+   - VARFÖR-FILMEN NY 2026-11-09 (Sunburst + Kling 4.0 5 s 720p, illustration; Wan-version arkiverad).
      KONTAKTFILMEN ÄR GENERERAD (Higgsfield). TJÄNSTEBILDERNA OCH HERONS FÖRE/EFTER (2026-10-23) är gjorda med GPT
      Image 2.5 Sunburst (Higgsfield marketing-studio/image/sunburst, 2k high);
      efter-bilden är en redigering av före-bilden, så tak och vinkel är desamma.
@@ -158,7 +158,7 @@ const data = {
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Illustration: faluröd svensk villa med nymålat matt kolsvart tak i gyllene ljus',
+    videoAlt: 'Illustration: svensk 70-talsvilla med nymålat matt svart betongpannetak, filmad som drone',
   },
 
   // Dold (se PLATSHÅLLARE): ingen ägarberättelse ännu. Mallen kräver fältet.
