@@ -19,13 +19,13 @@ const fragor = [
 
 export default function Sida() {
   return <Landning schema={{ namn: 'Häckklippning och häckplantering', typ: 'Häckklippning', beskrivning: metadata.description }} sida={{
-    hero: { ...bas.hero, rubrik: { fraga: 'Häck i Bromma och Stockholm', svar: 'Klipp & Plantering.' } },
+    hero: { ...bas.hero, rubrik: { fraga: 'Häckklippning i Bromma och Stockholm', svar: 'Klipp, plantering & borttagning.' } },
     tejp: ['Häckklippning', 'Häckplantering', 'Tuja och liguster', 'Borttagning med rothals', 'Plantor och jord ingår', 'Bortforsling samma dag'],
     tjanster: { ...bas.tjanster, eyebrow: 'Häck', rubrik: ['Tre olika jobb', 'på samma häck'], lead: 'Klippa, plantera och ta bort skiljer sig i tid, pris och rutavdrag. Vi går igenom skillnaden innan du bestämmer dig.', kolumner: 3,
       kort: [
-        { id: 'klipp', namn: 'Häckklippning', bild: `${M}/nyplanterad-hack-raka-linjer.webp`, alt: 'Häck i raka linjer', text: 'I form uppåt och på sidorna, riset bortkört samma dag.', punkter: ['Formklippning', 'Bortforsling', 'Rutavdrag'] },
+        { id: 'klipp', namn: 'Häckklippning', bild: `${M}/nyplanterad-hack-raka-linjer.webp`, alt: 'Häck i raka linjer', text: 'I form uppåt och på sidorna, så att den tätnar nedtill.', punkter: ['Formklippning', 'Bortforsling', 'Rutavdrag'] },
         { id: 'plantera', namn: 'Häckplantering', bild: `${M}/anlagd-tradgard-planteringar.webp`, alt: 'Nyanlagd trädgård med planteringar', text: 'Rätt djup, rätt jord, täckmaterial. Vi beställer plantorna.', punkter: ['Tuja och liguster', 'Jord och täckmaterial', 'Leverans tas emot'] },
-        { id: 'bort', namn: 'Ta bort gammal häck', bild: `${M}/fore-igenvuxen-tradgard.webp`, alt: 'Igenvuxen trädgård före arbetet', text: 'Med rothalsen, inte bara det som syns. Allt bort samma dag.', punkter: ['Rothalsen med', 'Bortforsling', 'Rutavdrag på borttagningen'] },
+        { id: 'bort', namn: 'Ta bort gammal häck', bild: `${M}/fore-igenvuxen-tradgard.webp`, alt: 'Igenvuxen trädgård före arbetet', text: 'Med rothalsen, inte bara det som syns, så att den inte skjuter igen.', punkter: ['Rothalsen med', 'Bortforsling', 'Rutavdrag på borttagningen'] },
       ] },
     omdomen: { ...bas.omdomen, rubrik: ['Kunder om', 'sina häckar'], googleLista: [bas.omdomen.googleLista[0], ...bas.omdomen.googleLista.slice(2)], lista: [bas.omdomen.lista[0]] },
     // Design-loop struktur 2026-11-09: egna rubriker och texter i Varför, Om och Kontakt, inga sektioner som kopierar startsidan.

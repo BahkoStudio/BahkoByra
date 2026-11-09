@@ -9,7 +9,7 @@ const FILBAS = 'https://www.bahkobyra.se';
 // samma som på nuvarande brommatradgardsservice.se, så inga URL:er försvinner vid domänbytet.
 export const SIDOR = [
   { href: '/bromma/snorojning/', txt: 'Snöröjning och halkbekämpning' },
-  { href: '/bromma/tradgardsskotsel-brf/', txt: 'Skötselavtal för BRF' },
+  { href: '/bromma/tradgardsskotsel-brf/', txt: 'BRF-avtal' },
   { href: '/bromma/tradgardsskotsel/', txt: 'Trädgårdsskötsel' },
   { href: '/bromma/hackklippning/', txt: 'Häckklippning och häckplantering' },
 ];
@@ -79,30 +79,30 @@ export const bas = {
   },
 
   hero: {
-    rubrik: { fraga: 'Snöröjning i Bromma och Stockholm', svar: 'Snö & Trädgård.' },
+    rubrik: { fraga: 'Snöröjning och trädgård i Bromma', svar: 'Året om.' },
     video: `${M}/video-hero.mp4`,
     videoMobil: `${M}/video-hero-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
   },
-  tejp: ['Snöröjning', 'Halkbekämpning', 'Uppfarter och gångar', 'Parkeringar', 'Skötselavtal för BRF', 'Trädgårdsskötsel', 'Häckklippning', 'Fem stjärnor på Google'],
+  tejp: ['Snöröjning', 'Halkbekämpning', 'Uppfarter och gångar', 'Parkeringar', 'BRF-avtal', 'Trädgårdsskötsel', 'Häckklippning', 'Fem stjärnor på Google'],
 
   tjanster: {
     eyebrow: 'Vad vi gör',
     rubrik: ['Det här gör vi:', 'snö, BRF, trädgård och häck'],
-    lead: 'Fyra tjänster, fyra sidor. Snön tar vi hela vintern, resten av året klipper, planterar och anlägger samma team.',
+    lead: 'Fyra tjänster, fyra sidor. Välj den som gäller dig.',
     lattKort: true,
     kort: [
       { id: 'sno', lank: { href: '/bromma/snorojning/', txt: 'Allt om snöröjning' }, namn: 'Snöröjning och halkbekämpning', bild: `${M}/snorojning-illustration.webp`, alt: 'Illustrationsbild: nyskottad uppfart framför en röd villa en vintermorgon', text: 'Uppfarter, gångar och parkeringar röjs genom hela vintern.', punkter: ['Uppfarter och gångar', 'Parkeringar', 'Halkbekämpning vid behov'], ritning: (<><path d="M100 14v92M60 37l80 46M60 83l80-46" /><path d="M88 22l12 10 12-10M88 98l12-10 12 10" /></>) },
-      { id: 'brf', lank: { href: '/bromma/tradgardsskotsel-brf/', txt: 'Allt om BRF-avtal' }, namn: 'Skötselavtal för BRF', bild: `${M}/f-efter-4.webp`, alt: 'Klippt gräsmatta med raka kanter på en gård', text: 'Snöröjning på vintern, gräs, häck och löv på sommaren. Ett avtal.', punkter: ['Bostadsrättsföreningar', 'Fastighetsägare', 'Fast månadsavgift'], ritning: (<><path d="M30 100V40h60v60M110 100V20h60v80M20 100h160" /></>) },
+      { id: 'brf', lank: { href: '/bromma/tradgardsskotsel-brf/', txt: 'Allt om BRF-avtal' }, namn: 'BRF-avtal', bild: `${M}/f-efter-4.webp`, alt: 'Klippt gräsmatta med raka kanter på en gård', text: 'Snöröjning på vintern, gräs, häck och löv på sommaren. Ett avtal.', punkter: ['Bostadsrättsföreningar', 'Fastighetsägare', 'Fast månadsavgift'], ritning: (<><path d="M30 100V40h60v60M110 100V20h60v80M20 100h160" /></>) },
       { id: 'skotsel', lank: { href: '/bromma/tradgardsskotsel/', txt: 'Allt om trädgårdsskötsel' }, namn: 'Trädgårdsskötsel', bild: `${M}/efter-klippt-grasmatta-rabatter.webp`, alt: 'Nyklippt gräsmatta och rensade rabatter', text: 'Gräs, rabatter, beskärning och anläggning, med fast intervall eller efter behov.', punkter: ['Gräsklippning och rabatter', 'Beskärning och löv', 'Anläggning och rullgräs'], ritning: (<><path d="M20 100h160M40 100V60M70 100V50M100 100V45M130 100V50M160 100V60" /></>) },
-      { id: 'hack', lank: { href: '/bromma/hackklippning/', txt: 'Allt om häck' }, namn: 'Häckklippning och häckplantering', bild: `${M}/nyplanterad-hack-raka-linjer.webp`, alt: 'Nyplanterad häck i raka linjer', text: 'Klippa, plantera eller ta bort. Riset och den gamla häcken körs bort samma dag.', punkter: ['Formklippning', 'Tuja och liguster', 'Borttagning med rothals'], ritning: (<><path d="M14 100h172M30 100c20-30 40-30 60 0M90 100c20-40 50-40 80 0" /></>) },
+      { id: 'hack', lank: { href: '/bromma/hackklippning/', txt: 'Allt om häck' }, namn: 'Häckklippning och häckplantering', bild: `${M}/nyplanterad-hack-raka-linjer.webp`, alt: 'Nyplanterad häck i raka linjer', text: 'Klippa, plantera eller ta bort, med plantor, jord och bortforsling.', punkter: ['Formklippning', 'Tuja och liguster', 'Borttagning med rothals'], ritning: (<><path d="M14 100h172M30 100c20-30 40-30 60 0M90 100c20-40 50-40 80 0" /></>) },
     ],
   },
 
   jobb: {
     eyebrow: 'Våra jobb',
-    rubrik: ['Före och efter,', 'med egna maskiner'],
+    rubrik: ['Före och efter', 'på våra jobb'],
     lead: 'Bilderna är från våra egna jobb i Storstockholm.',
     tid: '60s',
     rad1: [
@@ -142,7 +142,7 @@ export const bas = {
     rubrik: ['Ett litet företag', 'från Bromma'],
     stycken: [
       'Bromma Trädgårdsservice drivs av Jens Amnesten och jobbar åt villaägare, bostadsrättsföreningar och fastighetsägare i hela Storstockholm.',
-      'Sommarhalvåret går till gräs, häckar, rabatter och anläggning. Från första frosten är det snön som gäller.',
+      'Vi utgår från Bromma och kör i hela Storstockholm, från Ekerö i väster till Lidingö och Nacka i öster.',
     ],
     bevis: [
       { ord: '5 av 5', text: 'på varje omdöme på Google' },
@@ -153,7 +153,7 @@ export const bas = {
 
   steg: {
     eyebrow: 'Så går det till',
-    rubrik: ['Fyra steg,', 'inga överraskningar'],
+    rubrik: ['Fyra steg från', 'samtal till klart'],
     lista: [
       { namn: 'Du hör av dig', text: 'Ring eller skicka en förfrågan. Svar inom 24 timmar från den som gör jobbet.', ikon: 'kontakt' },
       { namn: 'Vi kommer ut', text: 'Vi går igenom tomten eller uppfarten med dig. Besöket är gratis.', ikon: 'offert' },
@@ -201,7 +201,7 @@ export const bas = {
     lista: [
       { q: 'Vad röjer ni på vintern?', a: 'Uppfarter, gångar och parkeringar, genom hela vintersäsongen. Halkbekämpning gör vi vid behov.' },
       { q: 'Kan en BRF få snöröjning och sommarskötsel i samma avtal?', a: 'Ja. Gräs, häckar, rabatter och löv genom säsongen och snöröjning genom vintern, i samma avtal och med samma kontaktperson.' },
-      { q: 'Vad kostar det?', a: 'Det beror på ytan och åtkomsten. Därför ger vi inget pris per telefon. Vi kommer ut gratis, räknar och du får ett pris med allt inräknat innan vi börjar.' },
+      { q: 'Vad kostar det?', a: 'Det beror på ytan och åtkomsten. Vi kommer ut, räknar och du får ett pris med allt inräknat innan vi börjar.' },
       { q: 'Får jag rutavdrag på trädgårdsarbete?', a: 'På skötsel, ja: gräsklippning, häckklippning, ogräsrensning, krattning och beskärning. På nyanläggning, nej. Vi delar upp posterna på fakturan så att avdraget hamnar rätt.' },
       { q: 'Måste jag vara hemma när ni jobbar?', a: 'Nej. Vi går igenom jobbet vid hembesöket och sköter resten själva.' },
       { q: 'Vilka områden kör ni till?', a: 'Vi utgår från Bromma och tar jobb i hela Storstockholm, bland annat Västerort, Täby, Lidingö, Nacka, Saltsjö-Boo, Ekerö, Salem, Rönninge, Solna och Sundbyberg.' },
@@ -210,7 +210,7 @@ export const bas = {
 
   kontaktSektion: {
     eyebrow: 'Kontakt',
-    rubrik: ['Boka innan', 'snön kommer'],
+    rubrik: ['Boka besök', 'eller begär offert'],
     lead: 'Skriv några rader om uppfarten, gången eller tomten. Du får svar inom 24 timmar med ett pris eller en tid för hembesök.',
     checkar: ['Ingen bindning', 'Rutavdrag på skötsel', 'Jens svarar själv'],
     video: `${M}/video-kontakt.mp4`,
