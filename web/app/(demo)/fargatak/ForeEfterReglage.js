@@ -6,7 +6,8 @@
    Mus och touch: egna pekarhändelser. Reglaget flyttas FÖRST när draget är vågrätt
    (|dx| > |dy| efter en liten tröskel); ett lodrätt svep skrollar sidan som vanligt
    (touch-action: pan-y). Tangentbord och skärmläsare: ett visuellt dolt <input type="range">.
-   Färger: svart handtag och vit linje (Philip 2026-11-09: ingen korall som yta). */
+   Färger: svart handtag och vit linje (Philip 2026-11-09: ingen korall som yta).
+   Ingen synlig "Illustration"-lapp (Mathias 2026-11-09, runda 3): det står i alt och aria-label. */
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -24,7 +25,6 @@ const CSS = `
 .feR .feEtikett{position:absolute;padding:.35rem .7rem;border-radius:999px;font:700 .75rem/1 var(--f-rubrik,sans-serif);letter-spacing:.08em;text-transform:uppercase;pointer-events:none}
 .feR .feEtikett.v{top:14px;left:14px;background:rgba(10,10,10,.78);color:#fff}
 .feR .feEtikett.h{top:14px;right:14px;background:rgba(255,255,255,.94);color:#0A0A0A}
-.feR .feEtikett.i{bottom:14px;left:14px;background:rgba(10,10,10,.78);color:#fff;font-weight:600;letter-spacing:.06em}
 `;
 
 function Reglage({ fore, efter, altFore, altEfter }) {
@@ -79,7 +79,6 @@ function Reglage({ fore, efter, altFore, altEfter }) {
       <img className="feFore" src={fore} alt={altFore} draggable={false} />
       <span className="feEtikett v" aria-hidden="true">Före</span>
       <span className="feEtikett h" aria-hidden="true">Efter</span>
-      <span className="feEtikett i">Illustration</span>
       <input
         type="range" min="0" max="100" step="1" value={pos}
         onChange={(e) => setPos(Number(e.target.value))}

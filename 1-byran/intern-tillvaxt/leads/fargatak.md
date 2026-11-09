@@ -20,10 +20,16 @@
 ## Platshållare / antaganden på sidan
 
 - **Telefon och e-post** finns sedan 2026-10-23 (se ovan). **Ort/adress, Instagram, hemsida:** saknas → visas inte ("Hela Sverige" som adressrad).
-- **Tjänstekorten** (Takmålning / Hela Sverige / Ett tak som ser nytt ut) beskriver bara takmålningen. Rengöring står inte på sidan (Mathias 2026-10-22), färgval är ingen egen tjänst (kundloopen 2026-11-09).
-- **Stegen** (kontakt → vi tittar på taket → offert → målning) och **de fem frågorna** är allmän information utan åtaganden: inga pris-, metod-, planerings- eller genomgångslöften, inget "bara tak", inget "villor". Ingen "kostnadsfri", inga priser, inga ledtider, inga garantier.
-- **Dolda sektioner:** Jobb, Omdömen och Om oss (stilblock i page.js), som på kakel0413. Inget påhittat galleri, inga exempelomdömen, ingen ägartext.
+- **Huvudblocket** (Varför-sektionen, rubrik "Takmålning") = allmän fakta om tak + "Ny firma" (belagt). Tjänstesektionen är dold sedan runda 3. Rengöring och färgval står inte på sidan.
+- **Stegen** (Ring eller skriv → Berätta om taket → Offert) och **de tre frågorna** (pris, Norrland, bilder) är allmän information utan åtaganden: inga pris-, metod-, besiktnings- eller planeringslöften, inget "bara tak", inget "villor". Ingen "kostnadsfri", inga priser, inga ledtider, inga garantier.
+- **Dolda sektioner:** Tjänster, Jobb, Omdömen och Om oss (stilblock i page.js). Inget påhittat galleri, inga exempelomdömen, ingen ägartext.
 - Inte på sidan: org.nr, F-skatt, ROT-avdrag, priser, garantier, omdömen, jobbfoton.
+
+## FLAGGOR (läs före leverans)
+
+- **Sidan är byggd som kundens egen hemsida** (`kund: true`, Mathias 2026-11-09: "ta bort detta är ett förslag, gör det som en kund som ska ha hemsida"): ingen Bahko-knapp, ingen förslagsruta, footern säger "Hemsida skapad av bahkobyra.se".
+- **Bilderna och filmen är GENERERADE ILLUSTRATIONER, inte Färga Taks egna jobb:** före/efter-bilden i heron (`hero-fore.webp` / `hero-efter.webp`) och filmen i Takmålning-blocket (`video-varfor.mp4`, villa med nymålat svart tak). Det står INTE som synlig text på sidan (Mathias: "filmen ska vara kvar utan illustration text"), bara i alt- och aria-texterna ("Illustration: …"). **Kunden ska byta till egna jobbfoton** så snart de finns, och det ska sägas till kunden vid leverans.
+- Formuläret går fortfarande till demonyckeln (landar hos Mathias, ämne "Färga Tak: ny förfrågan från hemsidan"). Vid leverans: kundens egen Web3Forms-nyckel i `formular.nyckel`.
 
 ## Media (genererad, ILLUSTRATIV — inte kundens egna jobb)
 
@@ -47,7 +53,7 @@
 
 ## DM-utkast (högst två meningar)
 
-Hej! Nu är förslaget vitt rakt igenom med lugnare knappar i loggans färg, utan neon, som ni bad om: bahkobyra.se/fargatak/. Skicka gärna några egna jobbilder när ni har dem, så byter jag ut illustrationerna.
+Hej! Nu är sidan kortare och vit rakt igenom, med lugna knappar i loggans färg och telefonnumret ett tryck bort överallt: bahkobyra.se/fargatak/. Skicka några egna jobbilder när ni har dem, så byter jag ut bilderna och filmen.
 
 ## Revision 2026-10-22 (Mathias feedback)
 
@@ -64,3 +70,13 @@ Hej! Nu är förslaget vitt rakt igenom med lugnare knappar i loggans färg, uta
 - Före/efter märkt "Illustration" i bilden och i alt-texterna. Reglaget flyttas bara av vågräta drag.
 - Popupen avstängd på den här sidan (den låg över formuläret). Mobilmenyn: Kontakt som egen rad, ingen dubblett.
 - Copyn rensad från löften utanför VERIFIERAT (se Platshållare ovan).
+
+## Revision 2026-11-09 (kundloop runda 3, alla tre kritiker + Mathias)
+
+- **Kortare sida, varje sak sägs en gång.** Ordning: hero → band → Takmålning (Varför-sektionen med filmen) → Så går det till (3 steg) → Frågor (3) → Kontakt → footer. Tjänstesektionen dold.
+- **Hero:** h1 "Takmålning i hela Sverige" i stället för "Takmålning & Nytt utseende."; den stora loggan i heron dold (headern bär loggan). Ingen synlig "Illustration"-lapp på före/efter (bara i alt).
+- **Bandet:** Takmålning · Hela Sverige · Färga Tak.
+- **Kund i stället för förslag:** `kund: true`, `skapadAv`, modalen borttagen, popupen fortsatt av.
+- **Mobilmenyn:** egen rad "Ring 070-789 45 61" (tel-länk), raderna Kontakt och Vanliga frågor bort (Begär offert och Frågor når samma mål).
+- **Footern:** kolumnen Tjänster bort (Takmålning stod två gånger), Kontakt en gång. Sidfliken på datorn vit med mörk text och tunn kant.
+- Text enligt `design-loop/references/skriv-som-en-manniska.md`: inga tankstreck, inga garderingar, "du".
