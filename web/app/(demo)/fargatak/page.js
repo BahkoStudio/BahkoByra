@@ -25,6 +25,16 @@ import ForeEfterReglage from './ForeEfterReglage';
 
    VERIFIERAT 2026-10-23: telefon 070-789 45 61, e-post info@fargatak.se.
 
+   ÄNDRAT 2026-11-09 (Philip via Mathias):
+   - Vit bakgrund i stället för den mörka neon/glow-stilen. Korall #FE504F som accent.
+   - logo-mork.webp = vit text i logo.png ominfärgad till svart med PIL (koralltaket orört);
+     används som både logo.src och logo.ljus på den vita sidan. logo.webp (vit text) sparad.
+   - Tjänstekorten visar ritning/ikon i stället för foto (mallen ritar ritning ovanpå bild;
+     fotot är en transparent platshållare och döljs i STIL).
+   - Varför-filmen omgjord 2026-11-09 (Mathias: Wan såg för AI-aktig ut): Marketing Studio
+     Sunburst still + Kling 4.0 5 s 720p. Vardaglig svensk 70-talsvilla, nymålat matt
+     svart betongpannetak, mulet ljus, DJI-dolly. Wan-versionen i media/gammal/video-varfor-wan.mp4.
+
    INTE verifierat, och finns därför INTE på sidan: ort,
    hemsida, Instagram, org.nr, F-skatt, ROT-avdrag, priser, garantier,
    ledtider, omdömen, jobbfoton.
@@ -32,12 +42,13 @@ import ForeEfterReglage from './ForeEfterReglage';
    PLATSHÅLLARE (för Mathias):
    - (Telefon 070-789 45 61 och e-post info@fargatak.se från kunden via Mathias 2026-10-23.)
    - Tjänstekorten (Takmålning / Färgval / Ett tak som ser nytt ut) beskriver bara
-     takmålningen (Mathias 2026-10-22: ingen rengöring på sidan). Stegen och frågorna är generella och
+     takmålningen (Mathias 2026-10-22: ingen rengöring på sidan). Sedan 2026-11-09 visas
+     ikoner (ritning) i stället för tjänstefoton. Stegen och frågorna är generella och
      ska stämmas av med ägaren.
    - JOBB, OMDÖMEN OCH OM OSS är dolda (stilblocket nedan): inga jobbfoton,
      inga omdömen, ingen ägarberättelse ännu. Inget påhittat.
-   - VARFÖR- OCH KONTAKTFILMEN ÄR GENERERADE (Higgsfield: Qwen Image 3 + Wan 3.0
-     Prime). TJÄNSTEBILDERNA OCH HERONS FÖRE/EFTER (2026-10-23) är gjorda med GPT
+   - VARFÖR-FILMEN NY 2026-11-09 (Sunburst + Kling 4.0 5 s 720p, illustration; Wan-version arkiverad).
+     KONTAKTFILMEN ÄR GENERERAD (Higgsfield). TJÄNSTEBILDERNA OCH HERONS FÖRE/EFTER (2026-10-23) är gjorda med GPT
      Image 2.5 Sunburst (Higgsfield marketing-studio/image/sunburst, 2k high);
      efter-bilden är en redigering av före-bilden, så tak och vinkel är desamma.
      Hero-filmen ligger kvar i media men visas inte när foreEfter är satt.
@@ -59,8 +70,9 @@ const tjanster = [
   {
     id: 'takmalning',
     namn: 'Takmålning',
-    bild: `${M}/foto-malning.jpg`,
-    alt: 'Illustration: takmålare i sele sprutar svart takfärg över ett mossigt tak med betongpannor, halva taket redan målat',
+    // Mallen kräver bild; transparent platshållare. Ritningen visas som ikon (STIL döljer fotot).
+    bild: `${M}/transparent.png`,
+    alt: '',
     text: 'Taket målas jämnt över hela ytan, från nock till takfot.',
     punkter: ['Hela takytan', 'Jämnt och noggrant', 'Villor och hus i hela Sverige'],
     ritning: (<><path d="M20 90l80-55 80 55" /><path d="M120 30l25-15M145 15l10 10M150 20l-10 30" /><path d="M20 105h160" /></>),
@@ -68,8 +80,8 @@ const tjanster = [
   {
     id: 'fargval',
     namn: 'Färgval',
-    bild: `${M}/foto-farg.jpg`,
-    alt: 'Illustration: kulörprover för takfärg i svart, grått, tegelrött och brunt bredvid en gammal takpanna',
+    bild: `${M}/transparent.png`,
+    alt: '',
     text: 'Du väljer kulör till taket. Vi går igenom valet med dig innan arbetet börjar.',
     punkter: ['Kulör till taket', 'Bestäms tillsammans', 'Innan arbetet börjar'],
     ritning: (<><circle cx="100" cy="60" r="35" /><path d="M100 25v70M65 60h70" /><path d="M20 105h160" /></>),
@@ -77,8 +89,8 @@ const tjanster = [
   {
     id: 'klart',
     namn: 'Ett tak som ser nytt ut',
-    bild: `${M}/foto-klart.jpg`,
-    alt: 'Illustration: takmålare och husägare tittar upp på ett nymålat svart tak på en röd trävilla',
+    bild: `${M}/transparent.png`,
+    alt: '',
     text: 'När jobbet är klart går vi igenom resultatet tillsammans med dig.',
     punkter: ['Nymålat tak', 'Genomgång när det är klart', 'Fräscht hus igen'],
     ritning: (<><path d="M20 90l80-55 80 55" /><path d="M75 75l15 15 35-35" /><path d="M20 105h160" /></>),
@@ -87,8 +99,8 @@ const tjanster = [
 
 const data = {
   namn: 'Färga Tak',
-  // Kundens nya logga (2026-10-23): svart bakgrund gjord transparent, beskuren. Vit text + korall, för mörk botten.
-  logo: { src: `${M}/logo.webp`, ljus: `${M}/logo.webp`, w: 1504, h: 648, alt: 'Färga Tak', topp: 'fri' },
+  // Kundens logga: svart text + korall (logo-mork) på vit sida. logo.webp (vit text) ligger kvar i media för mörk hero.
+  logo: { src: `${M}/logo-mork.webp`, ljus: `${M}/logo-mork.webp`, w: 1504, h: 648, alt: 'Färga Tak', topp: 'fri' },
   tema: {
     mork: '#0A0A0A',
     accent: '#FE504F',
@@ -123,7 +135,7 @@ const data = {
   tjanster: {
     eyebrow: 'Takmålning',
     rubrik: ['Från blekt och trött', 'till nymålat'],
-    lead: 'Vi gör en sak: vi målar tak, i hela Sverige. Bilderna är illustrationer.',
+    lead: 'Vi gör en sak: vi målar tak, i hela Sverige.',
     kort: tjanster,
   },
 
@@ -146,7 +158,7 @@ const data = {
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Illustration: ett nymålat, blankt tak på en svensk villa, som slutar med Färga Taks logotyp',
+    videoAlt: 'Illustration: svensk 70-talsvilla med nymålat matt svart betongpannetak, filmad som drone',
   },
 
   // Dold (se PLATSHÅLLARE): ingen ägarberättelse ännu. Mallen kräver fältet.
@@ -216,26 +228,45 @@ const data = {
   },
 };
 
-/* STIL: loggans uttryck — svart bas, vitt, korall, kraftig geometrisk versal-rubrik och
-   takvinkeln som motiv. Bara variabler och kundens egna överstyrningar; mallen (🔒) är orörd. */
+/* STIL: vit bas, korall accent, kraftig geometrisk versal-rubrik och takvinkeln som motiv.
+   2026-11-09: Philip bad om vitt i stället för neon/mörkt. Mallen (🔒) är orörd. */
 const STIL = `
 #jobb,#omdomen,#om{display:none!important}
-[class*="sida"]{--vit:#0A0A0A;--mjuk:#141414;--kram:#111;--text:#fff;--text-2:#C9C9C9;--linje:#2A2A2A;--kort:#161616;--f-kursiv:var(--f-rubrik)}
-body:has([class*="sida"]){background:#0A0A0A}
-[class*="sida"] header{background:rgba(10,10,10,calc(var(--bahko-hdr-t) * .94))!important;box-shadow:0 1px 0 rgba(254,80,79,calc(var(--bahko-hdr-t) * .5))!important}
-[class*="sida"] header nav{border-color:rgba(255,255,255,.14)!important;background:rgba(255,255,255,.04)!important}
-[class*="sida"] [class*="heroTjanster"]{font-family:var(--f-rubrik);font-style:normal;font-weight:800;text-transform:uppercase;letter-spacing:.03em}
+[class*="sida"]{--vit:#fff;--mjuk:#F5F7FA;--kram:#F7F4EE;--text:#0A0A0A;--text-2:#475569;--linje:#E2E8F0;--f-kursiv:var(--f-rubrik)}
+body:has([class*="sida"]){background:#fff}
+[class*="sida"] header{background:rgba(255,255,255,calc(0.72 + var(--bahko-hdr-t) * .26))!important;box-shadow:0 1px 0 rgba(10,10,10,calc(var(--bahko-hdr-t) * .08))!important}
+/* Hero: vitt i stället för mörk neon. Ingen korall-glow bakom före/efter. */
+[class*="sida"] [class*="hero"]{background:#fff!important;color:var(--text)}
+[class*="sida"] [class*="hero"]::before{background:none!important}
+[class*="sida"] [class*="hero"] :is([class*="h1"],[class*="heroOrt"],[class*="heroTjanster"]){text-shadow:none!important;filter:none}
+[class*="sida"] [class*="hero"] [class*="h1"] img{filter:none!important}
+[class*="sida"] [class*="heroTjanster"]{font-family:var(--f-rubrik);font-style:normal;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--accent)!important}
+[class*="sida"] [class*="hero"] [class*="btnKontur"]{color:var(--text)!important;border-color:rgba(10,10,10,.28)!important;background:transparent!important}
+[class*="sida"] [class*="heroForeEfter"] figcaption{color:var(--text-2)!important}
+[class*="sida"] [class*="heroForeEfterBild"]{border-color:rgba(10,10,10,.12)!important;box-shadow:0 18px 40px rgba(10,10,10,.12)!important}
+/* Tejp: korallband i stället för svart neonkant */
+[class*="sida"] [class*="tejp"]{background:var(--accent)!important;border-block:none!important;color:#0A0A0A}
+[class*="sida"] [class*="tejp"] span{color:#0A0A0A!important;-webkit-text-stroke:0!important}
 [class*="sida"] :is(h2,h3){font-family:var(--f-rubrik);font-weight:800;text-transform:uppercase;letter-spacing:.01em}
 [class*="sida"] :is(h1,h2,p) :is(em,i),[class*="sida"] [class*="hero"] em{font-style:normal;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
 [class*="sida"] h2 :is(em,i){color:var(--accent)}
-[class*="sida"] :is([class*="tjanst_"],[class*="tjanst "],[class*="resaNod"],[class*="fragaKort"],[class*="fraga_"],[class*="fragaIkon"],[class*="form_"],[class*="mobilMenyPanel"],[class*="popup"],[class*="btnLjus"]){background:var(--kort)!important;color:#fff;border-color:#2A2A2A}
-[class*="sida"] [class*="form"] :is(input,textarea,select){background:#0F0F0F!important;color:#fff;border-color:#3A3A3A}
-[class*="sida"] [class*="form"] ::placeholder{color:#9A9A9A}
-[class*="sida"] [class*="form"] label{background:transparent}
-[class*="sida"] [class*="tjanstBild"]{background:#111!important}
-[class*="sida"] footer{background:#000!important;color:#fff;border-top:3px solid var(--accent)}
 [class*="sida"] [class*="eyebrow"]::before{content:"";display:inline-block;width:.9em;height:.5em;margin-right:.45em;vertical-align:.1em;background:var(--accent);clip-path:polygon(0 100%,50% 0,100% 100%,82% 100%,50% 36%,18% 100%)}
-[class*="sida"] section+section{border-top:1px solid #1E1E1E}
+[class*="sida"] footer{border-top:3px solid var(--accent)}
+/* Varför: vitt i stället för mörk sektion + korall-glow (neon). */
+[class*="sida"] [class*="varfor"]{background:#fff!important;color:var(--text)}
+[class*="sida"] [class*="varfor"]::before{display:none!important}
+[class*="sida"] [class*="varfor"] [class*="paMork"],
+[class*="sida"] [class*="varfor"] [class*="sekHuvud"]{color:var(--text)!important}
+[class*="sida"] [class*="varfor"] :is([class*="eyebrow"],[class*="h2"],[class*="sekLead"]){color:inherit!important}
+[class*="sida"] [class*="varforPunkter"] li{background:#fff!important;border-color:var(--linje)!important;color:var(--text-2)!important}
+[class*="sida"] [class*="varforPunkter"] b{color:var(--text)!important}
+[class*="sida"] [class*="varfor"] [class*="btnKontur"]{color:var(--text)!important;border-color:rgba(10,10,10,.28)!important}
+[class*="sida"] [class*="varforFilm"]{box-shadow:0 18px 40px rgba(10,10,10,.12)!important;outline:1px solid var(--linje)!important;background:#f3f4f6!important}
+/* Tjänster: ikon i stället för foto. Mallen kräver bild + ritar ritning ovanpå; vi döljer fotot och centrerar ikonen. */
+[class*="sida"] [class*="tjanstBildIn"]{display:none!important}
+[class*="sida"] [class*="tjanstBild"]{aspect-ratio:auto;background:transparent!important;min-height:0;display:flex;justify-content:center;align-items:flex-end;padding:1.6rem 0 0;overflow:visible}
+[class*="sida"] [class*="tjanstIkon"]{position:static;left:auto;bottom:auto;width:78px;height:66px;margin:0;box-shadow:0 10px 24px -12px rgba(254,80,79,.45)}
+[class*="sida"] [class*="tjanstTxt"]{padding-top:1.35rem}
 `;
 
 export default function FargaTakDemo() {
