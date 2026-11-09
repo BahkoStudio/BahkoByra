@@ -3,6 +3,7 @@ import { arKunddoman } from './kunddoman';
 import BildUpload from './BildUpload';
 import KontaktFalt from './KontaktFalt';
 import Galleri from './Galleri';
+import Referenser from './Referenser';
 import { jobb } from './jobb';
 
 /* ===========================================================================
@@ -21,6 +22,9 @@ import { jobb } from './jobb';
    - Introtexten (heron + Om Nuh) och "Så går det till" (intro + sex steg)
      är kundens ordagranna text, bara lätta stavfel rättade
      ("Han arbetat" → "Han har arbetat", "byggöretag" → "byggföretag").
+   - Intro efter heron (Nuh SMS 2026-11-09, Mathias vidarebefordrade): kakel och klinker
+     för privatpersoner och företag, samt namnen Skanska, NCC, MVB, Peab och Tornstaden
+     (hans stavning). Portas in före #tjanster via Referenser.js. Inga logotyper.
    - Siffrorna: över 16 års erfarenhet (rättat i revision 3, Mathias 2026-10-25),
      upp till sju stora projekt samtidigt, totalt cirka 800 nya toaletter, har arbetat
      med Skanska, NCC, Peab, MVB och Tornstad.
@@ -60,7 +64,7 @@ import { jobb } from './jobb';
 const META = {
   title: 'Kakel 0413 AB — kakelsättare och badrumsrenovering i Eslöv och Skåne',
   description:
-    'Kakelsättare i Eslöv för hela Skåne: badrumsrenovering, kakel- och klinkersättning i badrum, kök, hallar och trapphus. Över 16 års erfarenhet. Kostnadsfri genomgång och ROT-avdrag.',
+    'Kakel och klinker för privatpersoner och företag i Eslöv och hela Skåne: badrumsrenovering, kakel- och klinkersättning i badrum, kök, hallar och trapphus. Över 16 års erfarenhet. Kostnadsfri genomgång och ROT-avdrag.',
 };
 
 // Kunddomänen (Mathias 2026-10-23): på kakel0413.se/www indexeras sidan, canonical pekar på
@@ -302,6 +306,7 @@ export default async function Kakel0413Demo() {
           så tjänsteraden får font-size 0 och bara Nuhs mening (egen fontstorlek) syns. */}
       <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}#varfor ul[class*="varforPunkter"]{gap:0.6rem}#varfor ul[class*="varforPunkter"] li{padding:0.75rem 1.1rem}#varfor ul[class*="varforPunkter"] li:last-child{display:block;padding:0.6rem 0 0;background:none;border:0;box-shadow:none;color:rgba(255,255,255,.85)}#varfor ul[class*="varforPunkter"] li:last-child svg{display:none}'}</style>
       <DemoSida data={kund ? { ...data, kund: true, footer: { ...data.footer, lankar: [{ href: '/om-oss/', txt: 'Om oss' }] } } : { ...data, kund: true }} />
+      <Referenser />
       <Galleri jobb={jobb} />
       <KontaktFalt />
       <BildUpload epost={data.kontakt.epost} />
