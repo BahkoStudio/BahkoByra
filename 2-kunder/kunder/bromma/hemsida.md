@@ -32,5 +32,9 @@ Koden ligger i `extern/bromma/`. Själva bytet görs i Vercel-dashboarden (Root 
 Efter bytet: lämna in sitemapen i Search Console igen, och 301:a `bahkobyra.se/bromma/*` till domänen
 i 🔒 `web/next.config.mjs` (egen PR, först när domänen visar v3). Tills dess har demon kvar noindex.
 
-Mätning: den gamla sajten hade GA4 (G-1EKF0NFE5M) bakom samtyckesbanner. Mallen v3 har ingen GA4,
-så efter bytet räknas leads bara i Web3Forms (samma nyckel och mottagare som förut).
+Mätning (Mathias 2026-11-09): GA4 G-1EKF0NFE5M finns kvar på domänen via `extern/bromma/app/Matning.js`,
+med samma samtyckesbanner och text som den gamla sajten. Ingen mätkod och inga kakor före Acceptera, valet
+sparas i `bts-consent` (samma nyckel som förut). Samma händelsenamn: `ring_klick` (plats), `reservvag_mejl`,
+`reservvag_sms`, `offert_oppnad` (första fokus i formuläret), `offert_skickad` / `offert_reservlage`
+(utfallet av Web3Forms-anropet, med tjanst och kundtyp), `google_profil_klick`, `omdome_lamna_klick`.
+Demon på bahkobyra.se/bromma har ingen GA4.

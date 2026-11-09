@@ -1,3 +1,5 @@
+import Matning from './Matning';
+
 // Rot-layout för brommatradgardsservice.se. Ikonerna och delningsbilden är samma filer som på den gamla sajten.
 export const metadata = {
   metadataBase: new URL('https://brommatradgardsservice.se'),
@@ -8,7 +10,10 @@ export const metadata = {
 export default function Layout({ children }) {
   return (
     <html lang="sv">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Matning />
+      </body>
     </html>
   );
 }
