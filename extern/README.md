@@ -9,6 +9,7 @@ det bara:
 | `extern/hg/` | `hg-maskinentreprenad` | `web/app/(demo)/hg/` + `web/public/hg/` |
 | `extern/rolssons/` | `rolssons-maleri` | `web/app/(demo)/rolssons/` + `web/public/rolssons/` |
 | `extern/gdmaleri/` | `gdmaleri` | `web/app/(demo)/gdmaleri/` (alla sex sidorna) + `web/public/gdmaleri/` — **kundsajt på gdmaleri.se** |
+| `extern/bromma/` | `bromma` (skapas av Mathias) | `web/app/(demo)/bromma/` (fem sidor) + `web/public/bromma/` + ikoner och `llms.txt` ur den gamla sajten: **kundsajt på brommatradgardsservice.se** |
 
 **Här finns ingen egen kopia av sidan.** `kopiera.mjs` körs före varje bygge och
 hämtar demomallen (`web/app/(demo)/_mall/`), kundens `page.js` och kundens media
@@ -37,3 +38,16 @@ princip som ovan, men `kopiera.mjs` gör tre saker till:
 till **v1.gdmaleri.se** (egen host, krockar inte med reglerna). Redigera alltid sajten i
 `web/app/(demo)/gdmaleri/` — demon på bahkobyra.se/gdmaleri/ och gdmaleri.se följer med.
 Se `2-kunder/kunder/gdmaleri/hemsida.md` för Vercel-, DNS- och uppföljningslistan.
+
+## bromma: kundsajt på brommatradgardsservice.se (Mathias "Byt domän" 2026-11-09)
+
+Samma upplägg som gdmaleri. `kopiera.mjs` hämtar mallen, `(demo)/bromma/` och
+`gdmaleri/_gd.js` (raden "Hemsida skapad av") och skriver om sökvägarna: `/bromma/` blir `/`,
+undersidorna behåller samma slugs som den gamla statiska sajten (`tradgardsskotsel`,
+`hackklippning`, `tradgardsskotsel-brf`) plus nya `snorojning`. Mediasökvägen `/bromma/media/`
+behålls. noindex byts mot self-canonical på domänen och `FILBAS` mot `https://brommatradgardsservice.se`.
+
+Den gamla statiska sajten i `bahkobyra/cloud/brommatradgardsservice/` rörs inte. Härifrån läses bara
+logotyper, ikoner, `og-image.png` och `llms.txt` så att de ligger kvar i domänroten.
+`next.config.mjs` här 301:ar de gamla `index.html`-adresserna och `/media/*.jpg`.
+Se `2-kunder/kunder/bromma/hemsida.md` för Vercel-steget.

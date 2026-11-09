@@ -1,0 +1,9 @@
+node_modules/
+.next/
+app/_mall/
+app/gdmaleri/
+app/(br)/
+public/
+typsnitt/
+komponenter/
+formular.js
