@@ -32,6 +32,7 @@ const BAS = 'https://api.higgsfield.ai';
 const FILM = {
   kling: { ep: 'kling-video/v3.0/std/image-to-video', slut: 'last_image_url', ljud: (p) => ({ sound: p ? 'on' : 'off' }), res: false, format: false, not: 'Kling 3.0 Standard · ~$0,23 per 5 s utan ljud (debiterat 2026-09-25) · 3–15 s · billigast' },
   'kling-pro': { ep: 'kling-video/v3.0/pro/image-to-video', slut: 'last_image_url', ljud: (p) => ({ sound: p ? 'on' : 'off' }), res: false, format: false, not: 'Kling 3.0 Pro · $0,48 per 5 s utan ljud · högre kvalitet · 3–15 s' },
+  kling4: { ep: 'kling-video/v4.0/image-to-video', slut: 'end_image_url', ljud: () => ({}), res: ['720p', '1080p'], format: false, not: 'Kling 4.0 · ~$0,55 per 5 s 720p · 3–30 s · Mathias godkände 2026-11-09 för Färga Tak varför-film' },
   wan: { ep: 'alibaba/wan-3.0/image-to-video', slut: 'end_image_url', ljud: (p) => ({ generate_audio: p }), res: ['480p', '720p', '1080p'], format: ['16:9', '4:3', '1:1', '3:4', '9:16', 'adaptive'], not: 'Wan 3.0 · 480p $0,05 · 720p $0,10 · 1080p $0,20 per s · 2–30 s' },
   'wan-prime': { ep: 'alibaba/wan-3.0-prime/image-to-video', slut: 'end_image_url', ljud: (p) => ({ generate_audio: p }), res: ['480p', '720p', '1080p'], format: ['16:9', '4:3', '1:1', '3:4', '9:16', 'adaptive'], not: 'Wan 3.0 Prime · 2–30 s' },
   minimax: { ep: 'minimax/h3/image-to-video', slut: 'end_image_url', ljud: () => ({}), res: false, format: ['auto', 'adaptive', '21:9', '16:9', '4:3', '1:1', '3:4', '9:16'], not: 'MiniMax H3 · $0,55 per 5 s · 5–15 s · 2K' },
@@ -40,6 +41,7 @@ const FILM = {
 // Bild: med --ref redigeras referensbilden (A → B), utan --ref skapas en ny bild.
 const BILD = {
   qwen: { ny: 'alibaba/qwen-image-3/text-to-image', red: 'alibaba/qwen-image-3/edit', refFalt: 'image_urls', extra: (a) => ({ resolution: a.upplosning || '2k', aspect_ratio: a.format || '16:9' }), not: 'Qwen Image 3 · $0,075 i 2k, $0,04 i 1k (--upplosning 1k) · skapar och redigerar' },
+  sunburst: { ny: 'marketing-studio/image/sunburst', red: 'marketing-studio/image/sunburst', refFalt: 'image_urls', extra: (a) => ({ resolution: a.upplosning || '2k', aspect_ratio: a.format || '16:9', quality: a.quality || 'high', enhance_prompt: false }), not: 'Marketing Studio 2.5 Sunburst (GPT Image) · ~$0,016/bild i 2k high · text-to-image och edit' },
   grok: { ny: 'xai/grok-imagine-image-2.0', red: 'xai/grok-imagine-image-2.0', refFalt: 'image_urls', extra: (a) => ({ resolution: a.upplosning || '2k', aspect_ratio: a.format || '16:9', quality: 'medium' }), not: 'Grok Imagine 2.0 · $0,08 i 2k, $0,06 i 1k · skapar och redigerar' },
   ideogram: { ny: 'ideogram/v4.0', red: 'ideogram/v4.0', refFalt: 'image_url', enRef: true, extra: (a) => ({ aspect_ratio: a.format || '16:9', rendering_speed: 'QUALITY', ...(a.ref ? { image_weight: Number(a.vikt || 70) } : {}) }), not: 'Ideogram 4.0 · $0,03 · bra på text i bild' },
   soul: { ny: 'higgsfield-ai/soul/v2/standard', red: null, extra: () => ({}), not: 'Soul 2 · $0,003 · bara nya bilder, billigast' },
