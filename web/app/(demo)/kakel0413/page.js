@@ -27,7 +27,7 @@ import { jobb } from './jobb';
      (hans stavning). Portas in före #tjanster via Referenser.js. Inga logotyper.
    - Siffrorna: över 16 års erfarenhet (rättat i revision 3, Mathias 2026-10-25),
      upp till sju stora projekt samtidigt, totalt cirka 800 nya toaletter, har arbetat
-     med Skanska, NCC, Peab, MVB och Tornstad.
+     med Skanska, NCC, Peab, MVB och Tornstaden.
    - Tjänster i dag: badrumsrenovering, kakel- och klinkersättning (badrum,
      kök, hallar, trapphus, tvättstuga) och mindre arbeten. Fler tjänster kan tillkomma:
      lägg bara till ett kort i tjanster.kort (och ett ord i tejp).
@@ -54,7 +54,7 @@ import { jobb } from './jobb';
    - Formuläret går till info@kakel0413.se (Nuhs Web3Forms-nyckel, PRO, KUND_NYCKEL nedan),
      både på kakel0413.se och bahkobyra.se/kakel0413. Bilder följer med som bilagor (BildUpload.js).
    - REVISION 3 (Mathias 2026-10-25): nytt kort Tvättstuga, nya punkter i Kök och Hallar,
-     Därför oss med två punkter och utan ingress, 16 års erfarenhet överallt, MVB och Tornstad tillagda.
+     Därför oss med två punkter och utan ingress, 16 års erfarenhet överallt, MVB och Tornstaden tillagda.
      Mobilmenyn: mallen lägger alltid till "Vanliga frågor" (fragor.eyebrow), så nav-länken
      "Frågor" döljs bara i mobilmenyn (stilblocket nedan); desktop-pillret har den kvar.
      Formuläret: "Kontaktar som" (kontaktar_som) och "Stadsdel/Kommun" (kommun) monteras
@@ -218,11 +218,11 @@ const data = {
   om: {
     eyebrow: 'Om Nuh',
     rubrik: ['Över 16 år', 'i byggbranschen'],
-    kortRad: 'Skanska · NCC · Peab · MVB · Tornstad',
+    kortRad: 'Skanska · NCC · Peab · MVB · Tornstaden',
     stycken: [
       'Bakom företaget står Nuh, som har över 16 års erfarenhet inom byggbranschen. Han har arbetat med allt från kakelsättning och badrumsrenoveringar till stora byggprojekt.',
       'Under sin karriär har Nuh ansvarat för upp till sju stora projekt samtidigt, med arbeten som omfattat totalt cirka 800 nya toaletter. Utöver detta har han även utfört kakel- och klinkerarbeten i trapphus, hallar och kök.',
-      'Han har arbetat tillsammans med välkända byggföretag som Skanska, NCC, Peab, MVB och Tornstad.',
+      'Han har arbetat tillsammans med välkända byggföretag som Skanska, NCC, Peab, MVB och Tornstaden.',
       'Efter många år i branschen valde Nuh att starta eget för att kunna fokusera ännu mer på det som betyder mest, hög kvalitet, noggrant arbete, tydlig kommunikation och att alltid hålla det man lovar.',
       'Oavsett om du behöver hjälp med en hel badrumsrenovering, kakelsättning eller ett mindre arbete är målet alltid detsamma: att leverera ett resultat som du som kund kan känna dig riktigt nöjd med.',
     ],
