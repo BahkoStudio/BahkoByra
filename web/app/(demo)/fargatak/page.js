@@ -135,7 +135,7 @@ const data = {
     rubrik: ['Taket är det första', 'man ser av huset'],
     lead: 'Sol och regn bleker färgen år för år, och mossan tar resten. Ett blekt tak drar ner hela huset. Det syns från gatan.',
     punkter: [
-      { rubrik: 'Ny firma', text: 'Färga Tak är nystartat, så här finns inga omdömen än. Undrar du något? Ring 070-789 45 61.' },
+      { rubrik: 'Ny firma', text: 'Färga Tak är nystartad, så här finns inga omdömen än. Undrar du något? Ring oss.' },
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
@@ -168,7 +168,7 @@ const data = {
 
   fragor: {
     eyebrow: 'Vanliga frågor',
-    rubrik: ['Tre frågor', 'innan du ringer'],
+    rubrik: ['Innan', 'du ringer'],
     lead: '',
     // Knappen i kortet är mallens Ring-knapp; texten pekar också till formuläret, så båda vägarna syns.
     kort: { rubrik: 'Hittar du inte svaret?', text: (<>Ring, eller <a href="#kontakt">skriv några rader i formuläret</a>.</>) },
@@ -195,7 +195,7 @@ const data = {
 
   // Ämnesraden i mejlet (dolt fält i formuläret): ingen förslagstext i sidans HTML. Nyckeln är fortfarande
   // demonyckeln (förfrågan landar hos Mathias); vid leverans: formular.nyckel med kundens egen nyckel.
-  formular: { amne: 'Färga Tak: ny förfrågan från hemsidan' },
+  formular: { amne: 'Färga Tak: ny förfrågan från hemsidan', fran: 'Färga Tak hemsida' },
 
   // Dold i STIL: popupen låg över formuläret på både mobil och dator. Mallen kräver fältet.
   popup: {
@@ -302,7 +302,8 @@ export default function FargaTakDemo() {
   return (
     <>
       {/* Tjänster, jobbanden, omdömena och Om oss döljs tills det finns egna foton, riktiga omdömen och en ägartext (se PLATSHÅLLARE). */}
-      <style>{STIL}</style>
+      {/* Kommentarerna i STIL är interna anteckningar: de rensas bort så att de inte följer med i kundens HTML. */}
+      <style>{STIL.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\n\s*\n/g, '\n')}</style>
       <DemoSida data={data} />
       <ForeEfterReglage fore={`${M}/hero-fore.webp`} efter={`${M}/hero-efter.webp`} altFore="Illustration: tak före målning, mossigt och blekt" altEfter="Illustration: taket efter målning, nymålat i matt svart" />
     </>
