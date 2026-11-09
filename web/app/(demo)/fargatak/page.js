@@ -2,13 +2,13 @@ import DemoSida from '../_mall/DemoSida';
 import ForeEfterReglage from './ForeEfterReglage';
 
 /* ===========================================================================
-   FÄRGA TAK — kostnadsfritt hemsideförslag från Bahko Byrå (ny lead)
+   FÄRGA TAK: hemsida på demomallen v3, byggd som kundens egen sida (kund: true)
    Takmålning i hela Sverige. Ägaren startar AB vid årsskiftet: inget org.nr än.
    Byggd 2026-10-22 på demomallen v3 (hero exakt som velebitmaleri, placeholders
    och dolda sektioner som kakel0413).
 
    Bärande idé: ett trött, mossigt tak kan se ut som nytt igen. Heron visar
-   det: mossigt och blekt → målaren sprutar färg → blankt, nymålat tak.
+   det: mossigt och blekt → nymålat tak, i en dragbar före/efter.
 
    VERIFIERAT (Mathias 2026-10-22):
    - Namn och NY logotyp "FÄRGA TAK" (kundens filer 2026-10-23: rund och fyrkantig,
@@ -19,9 +19,9 @@ import ForeEfterReglage from './ForeEfterReglage';
      Logans slogan "VI MÅLAR TAK I HELA SVERGIE" (sic) står kvar i filen; i
      sidtexten skrivs "Sverige".
    - Tjänst: takmålning. Område: hela Sverige (logans slogan).
+   - Firman är ny (AB startas vid årsskiftet).
    - Färger ur nya logon: svart bas, vitt, korall #FE504F (uppmätt ur bilden).
-     Svart text på korallknappar (ca 7:1), vit text på svart. Rubriker i Outfit 800
-     versaler (geometrisk sans, nära logans typsnitt). Stilen ligger i STIL nedan.
+     Rubriker i Outfit 800 versaler (geometrisk sans, nära logans typsnitt). Stilen ligger i STIL nedan.
 
    VERIFIERAT 2026-10-23: telefon 070-789 45 61, e-post info@fargatak.se.
 
@@ -29,85 +29,66 @@ import ForeEfterReglage from './ForeEfterReglage';
    - Vit bakgrund i stället för den mörka neon/glow-stilen. Korall #FE504F som accent.
    - logo-mork.webp = vit text i logo.png ominfärgad till svart med PIL (koralltaket orört);
      används som både logo.src och logo.ljus på den vita sidan. logo.webp (vit text) sparad.
-   - Tjänstekorten visar ritning/ikon i stället för foto (mallen ritar ritning ovanpå bild;
-     fotot är en transparent platshållare och döljs i STIL).
    - Varför-filmen omgjord 2026-11-09 (Mathias: Wan såg för AI-aktig ut): Marketing Studio
      Sunburst still + Kling 4.0 5 s 720p. Vardaglig svensk 70-talsvilla, nymålat matt
      svart betongpannetak, mulet ljus, DJI-dolly. Wan-versionen i media/gammal/video-varfor-wan.mp4.
 
+   KUNDLOOP RUNDA 1 2026-11-09 (Philip via Mathias, hårda krav i docs/design/fargatak-kund-bar.md):
+   - Inga neonknappar men loggans färg (Mathias): tema.accent = dämpad korall #B5433E (vit text 5,47:1),
+     hover #9F3A36, ingen glöd. Ljus korall #FE504F bara som detalj (logga, takvinkeln i eyebrow, tunn
+     linje i footern). Band, processen och före/efter-handtaget neutrala (svart/vitt/ljusgrått).
+   - Vit kontaktsektion (ingen film, ingen slöja), neutralt ljusgrått band under heron, popupen av
+     (den täckte formuläret), headern vit med mörk text från start.
+
+   KUNDLOOP RUNDA 3 2026-11-09 (alla tre kritiker + Mathias):
+   - kund: true (Mathias: "ta bort detta är ett förslag, gör det som en kund som ska ha hemsida"):
+     ingen Bahko-knapp, ingen förslagsruta, kreditraden "Hemsida skapad av bahkobyra.se" i footern.
+   - Kortare sida där varje sak sägs en gång: tjänstesektionen dold, Varför-sektionen med filmen
+     är huvudblocket ("Takmålning"). Process i tre steg, tre frågor. Heron: h1 "Takmålning i hela
+     Sverige" (hero.rubrik), den stora loggan i heron dold (headern bär loggan).
+   - Ingen synlig illustrationstext (Mathias: "filmen ska vara kvar utan illustration text").
+     Alt- och aria-texterna säger "Illustration:". Se leadfilens FLAGGOR.
+   - Texten enligt design-loop/references/skriv-som-en-manniska.md, inom VERIFIERAT.
+
    INTE verifierat, och finns därför INTE på sidan: ort,
    hemsida, Instagram, org.nr, F-skatt, ROT-avdrag, priser, garantier,
-   ledtider, omdömen, jobbfoton.
+   ledtider, omdömen, jobbfoton, taktyper, metoder, vem som svarar i telefon.
 
    PLATSHÅLLARE (för Mathias):
-   - (Telefon 070-789 45 61 och e-post info@fargatak.se från kunden via Mathias 2026-10-23.)
-   - Tjänstekorten (Takmålning / Färgval / Ett tak som ser nytt ut) beskriver bara
-     takmålningen (Mathias 2026-10-22: ingen rengöring på sidan). Sedan 2026-11-09 visas
-     ikoner (ritning) i stället för tjänstefoton. Stegen och frågorna är generella och
-     ska stämmas av med ägaren.
-   - JOBB, OMDÖMEN OCH OM OSS är dolda (stilblocket nedan): inga jobbfoton,
+   - Stegen (tre) och frågorna (tre) är allmän information utan åtaganden och ska stämmas av med ägaren.
+   - TJÄNSTER, JOBB, OMDÖMEN OCH OM OSS är dolda (stilblocket nedan): inga jobbfoton,
      inga omdömen, ingen ägarberättelse ännu. Inget påhittat.
-   - VARFÖR-FILMEN NY 2026-11-09 (Sunburst + Kling 4.0 5 s 720p, illustration; Wan-version arkiverad).
-     KONTAKTFILMEN ÄR GENERERAD (Higgsfield). TJÄNSTEBILDERNA OCH HERONS FÖRE/EFTER (2026-10-23) är gjorda med GPT
-     Image 2.5 Sunburst (Higgsfield marketing-studio/image/sunburst, 2k high);
-     efter-bilden är en redigering av före-bilden, så tak och vinkel är desamma.
-     Hero-filmen ligger kvar i media men visas inte när foreEfter är satt.
-     Heron: hero-fore.webp + hero-efter.webp i en dragbar jämförelse (ForeEfterReglage.js).
-     Illustrationer, INTE kundens egna jobb.
+   - VARFÖR-FILMEN (Sunburst + Kling 4.0 5 s 720p) och HERONS FÖRE/EFTER (GPT Image 2.5 Sunburst,
+     efter-bilden en redigering av före-bilden) är GENERERADE ILLUSTRATIONER, INTE kundens egna jobb.
+     Byts mot egna jobbfoton. Hero- och kontaktfilmen ligger kvar i media men visas inte.
    - Formuläret går till demonyckeln (Mathias). Vid leverans: egen nyckel.
    =========================================================================== */
 
 export const metadata = {
-  title: 'Färga Tak — takmålning i hela Sverige',
-  description: 'Färga Tak målar tak i hela Sverige. Ett blekt, trött tak blir nymålat igen. Berätta om ditt tak och begär en offert.',
+  title: 'Färga Tak: takmålning i hela Sverige',
+  description: 'Färga Tak är en ny firma som målar tak i hela Sverige. Ring 070-789 45 61 eller begär en offert.',
   robots: { index: false, follow: false },
   icons: { icon: '/fargatak/media/ikon.png', apple: '/fargatak/media/apple-ikon.png' },
 };
 
 const M = '/fargatak/media';
 
-const tjanster = [
-  {
-    id: 'takmalning',
-    namn: 'Takmålning',
-    // Mallen kräver bild; transparent platshållare. Ritningen visas som ikon (STIL döljer fotot).
-    bild: `${M}/transparent.png`,
-    alt: '',
-    text: 'Taket målas jämnt över hela ytan, från nock till takfot.',
-    punkter: ['Hela takytan', 'Jämnt och noggrant', 'Villor och hus i hela Sverige'],
-    ritning: (<><path d="M20 90l80-55 80 55" /><path d="M120 30l25-15M145 15l10 10M150 20l-10 30" /><path d="M20 105h160" /></>),
-  },
-  {
-    id: 'fargval',
-    namn: 'Färgval',
-    bild: `${M}/transparent.png`,
-    alt: '',
-    text: 'Du väljer kulör till taket. Vi går igenom valet med dig innan arbetet börjar.',
-    punkter: ['Kulör till taket', 'Bestäms tillsammans', 'Innan arbetet börjar'],
-    ritning: (<><circle cx="100" cy="60" r="35" /><path d="M100 25v70M65 60h70" /><path d="M20 105h160" /></>),
-  },
-  {
-    id: 'klart',
-    namn: 'Ett tak som ser nytt ut',
-    bild: `${M}/transparent.png`,
-    alt: '',
-    text: 'När jobbet är klart går vi igenom resultatet tillsammans med dig.',
-    punkter: ['Nymålat tak', 'Genomgång när det är klart', 'Fräscht hus igen'],
-    ritning: (<><path d="M20 90l80-55 80 55" /><path d="M75 75l15 15 35-35" /><path d="M20 105h160" /></>),
-  },
-];
-
 const data = {
   namn: 'Färga Tak',
-  // Kundens logga: svart text + korall (logo-mork) på vit sida. logo.webp (vit text) ligger kvar i media för mörk hero.
+  // Kundens egen sida (runda 3, Mathias): ingen demo-knapp, ingen förslagsruta, kreditrad i footern.
+  kund: true,
+  skapadAv: 'Hemsida skapad av',
+  // Kundens logga: svart text + korall (logo-mork) på vit sida. logo.webp (vit text) ligger kvar i media.
   logo: { src: `${M}/logo-mork.webp`, ljus: `${M}/logo-mork.webp`, w: 1504, h: 648, alt: 'Färga Tak', topp: 'fri' },
+  // Philip/Mathias 2026-11-09: knapparna matchar loggan men utan neon = dämpad, matt korall (loggans #FE504F
+  // mörkad). Vit text 5,47:1. Hover mörkare, aldrig ljusare. Ingen glöd (STIL).
   tema: {
     mork: '#0A0A0A',
-    accent: '#FE504F',
-    accentHover: '#FF6B6A',
-    accentText: '#FF6B6A',
+    accent: '#B5433E',
+    accentHover: '#9F3A36',
+    accentText: '#B5433E',
     accentLjus: '#FF8A89',
-    paAccent: '#0A0A0A',
+    paAccent: '#FFFFFF',
   },
   kontakt: {
     tel: '070-789 45 61',
@@ -117,27 +98,29 @@ const data = {
   },
   cta: { txt: 'Begär offert', kort: 'Begär offert', lank: 'Begär offert' },
   nav: {
-    vanster: [{ href: '#tjanster', txt: 'Takmålning' }, { href: '#process', txt: 'Så går det till' }],
-    hoger: [{ href: '#varfor', txt: 'Därför oss' }, { href: '#fragor', txt: 'Frågor' }],
+    vanster: [{ href: '#varfor', txt: 'Takmålning' }, { href: '#process', txt: 'Så går det till' }],
+    hoger: [{ href: '#fragor', txt: 'Frågor' }, { href: '#kontakt', txt: 'Kontakt' }],
+    // Mobilmenyn: panelen täcker headerns Ring-knapp, så numret står i menyn. Raden "Kontakt" och
+    // mallens "Vanliga frågor" döljs där (STIL): Begär offert-knappen och "Frågor" når samma mål.
+    extra: [{ href: 'tel:+46707894561', txt: 'Ring 070-789 45 61' }],
   },
 
   hero: {
-    tjanster: ['Takmålning', 'Nytt utseende'],
+    // h1 = texten (hero.rubrik). Den stora loggan i heron döljs i STIL: headern bär loggan.
+    rubrik: { fraga: 'Takmålning', svar: 'i hela Sverige' },
+    tjanster: ['Takmålning', 'Hela Sverige'],
     video: `${M}/video-hero.mp4`,
     videoMobil: `${M}/video-hero-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
     posterMobil: `${M}/poster-hero-mobil.jpg`,
-    // Före/efter: samma villa och vinkel. Mallen visar före-bilden; ForeEfterReglage lägger den dragbara jämförelsen ovanpå.
-    foreEfter: { src: `${M}/hero-fore.webp`, alt: 'Villatak före målning: mossigt och blekt', w: 900, h: 1200, txt: 'Dra i handtaget för att se före och efter' },
+    // Före/efter: samma tak och vinkel, illustration (bara i alt). ForeEfterReglage lägger den dragbara jämförelsen ovanpå.
+    foreEfter: { src: `${M}/hero-fore.webp`, alt: 'Illustration: tak före målning, mossigt och blekt', w: 900, h: 1200, txt: 'Dra i handtaget: före och efter' },
   },
-  tejp: ['Takmålning', 'Nymålat tak', 'Färgval', 'Nytt utseende', 'Villor', 'Hela Sverige', 'Färga Tak'],
+  tejp: ['Takmålning', 'Hela Sverige', 'Färga Tak'],
 
-  tjanster: {
-    eyebrow: 'Takmålning',
-    rubrik: ['Från blekt och trött', 'till nymålat'],
-    lead: 'Vi gör en sak: vi målar tak, i hela Sverige.',
-    kort: tjanster,
-  },
+  // Dold i STIL (runda 3): Varför-sektionen med filmen är huvudblocket. Inga kort: formulärets
+  // val kommer ur kontaktSektion.typer och footern ur footer.tjanster.
+  tjanster: { eyebrow: '', rubrik: [''], lead: '', kort: [] },
 
   // Dold (se PLATSHÅLLARE): inga jobbfoton än. Banden får inte vara tomma, så en dold post var.
   jobb: {
@@ -146,41 +129,37 @@ const data = {
     rad2: [{ src: `${M}/logo.webp`, alt: '', txt: '' }],
   },
 
+  // Huvudblocket: allmän fakta om tak + det enda om firman som är belagt (ny). Filmen utan synlig not.
   varfor: {
-    eyebrow: 'Varför Färga Tak',
+    eyebrow: 'Takmålning',
     rubrik: ['Taket är det första', 'man ser av huset'],
-    lead: 'Ett mossigt, blekt tak får hela huset att se trött ut. Nymålat ser det ut som nytt igen.',
+    lead: 'Sol och regn bleker färgen år för år, och mossan tar resten. Ett blekt tak drar ner hela huset. Det syns från gatan.',
     punkter: [
-      { rubrik: 'Bara tak', text: 'Takmålning är det enda vi gör. Hela fokus ligger på ditt tak.' },
-      { rubrik: 'Du väljer kulör', text: 'Vi går igenom färgvalet med dig innan arbetet börjar.' },
-      { rubrik: 'Hela Sverige', text: 'Vi målar tak i hela landet. Berätta var huset ligger.' },
-      { rubrik: 'Tydlig offert', text: 'Du vet vad som ingår innan arbetet börjar.' },
+      { rubrik: 'Ny firma', text: 'Färga Tak är nystartad, så här finns inga omdömen än. Undrar du något? Ring oss.' },
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Illustration: svensk 70-talsvilla med nymålat matt svart betongpannetak, filmad som drone',
+    videoAlt: 'Illustration: hus med nymålat svart tak, filmat från luften',
   },
 
-  // Dold (se PLATSHÅLLARE): ingen ägarberättelse ännu. Mallen kräver fältet.
+  // Dold (se PLATSHÅLLARE): ingen ägarberättelse ännu. Mallen kräver fältet; inga stycken.
   om: {
     eyebrow: 'Om oss',
     rubrik: ['Färga Tak', ''],
-    kortRad: 'Hela Sverige',
-    stycken: ['[Platshållare: kort om ägaren och firman.]'],
+    kortRad: '',
+    stycken: [],
     bevis: [],
   },
 
+  // Allmän information utan åtaganden: inga besiktnings-, planerings- eller genomgångslöften.
   steg: {
     eyebrow: 'Så går det till',
-    rubrik: ['Från första kontakt', 'till nymålat tak'],
-    lead: 'Det ska vara enkelt att få taket målat. Så här går det till.',
+    rubrik: ['Tre steg', 'till en offert'],
+    lead: '',
     lista: [
-      { namn: 'Kontakt', ikon: 'kontakt', text: 'Berätta kort om taket och var huset ligger. Skicka gärna bilder på taket.' },
-      { namn: 'Vi tittar på taket', ikon: 'besok', text: 'Vi går igenom taket och vad som behöver göras innan det målas.' },
-      { namn: 'Offert', ikon: 'offert', text: 'Du får en tydlig offert, så att du vet vad som ingår innan arbetet börjar.' },
-      { namn: 'Planering', ikon: 'plan', text: 'Vi bestämmer tillsammans när arbetet ska göras.' },
-      { namn: 'Målning', ikon: 'arbete', text: 'Taket målas. Om något oväntat dyker upp pratar vi med dig först.' },
-      { namn: 'Genomgång', ikon: 'klart', text: 'När taket är klart går vi igenom resultatet tillsammans med dig.' },
+      { namn: 'Ring eller skriv', ikon: 'kontakt', text: 'Ring, eller fyll i formuläret längre ner.' },
+      { namn: 'Berätta om taket', ikon: 'besok', text: 'Vad det är för tak och var huset ligger. Har du bilder, mejla dem till info@fargatak.se.' },
+      { namn: 'Offert', ikon: 'offert', text: 'Sedan får du en offert på ditt tak.' },
     ],
   },
 
@@ -189,93 +168,144 @@ const data = {
 
   fragor: {
     eyebrow: 'Vanliga frågor',
-    rubrik: ['Det du kanske', 'undrar först'],
-    lead: 'Kort om hur det fungerar.',
-    kort: { rubrik: 'Hittar du inte svaret?', text: 'Skriv till oss, så får du besked om just ditt tak.' },
+    rubrik: ['Innan', 'du ringer'],
+    lead: '',
+    // Knappen i kortet är mallens Ring-knapp; texten pekar också till formuläret, så båda vägarna syns.
+    kort: { rubrik: 'Hittar du inte svaret?', text: (<>Ring, eller <a href="#kontakt">skriv några rader i formuläret</a>.</>) },
     lista: [
-      { q: 'Var arbetar ni?', a: 'Vi målar tak i hela Sverige.' },
-      { q: 'Vad gör ni?', a: 'Takmålning. Det är det enda vi gör.' },
-      { q: 'Kan jag skicka bilder på taket?', a: 'Gärna. Bilder gör att vi får en bättre bild av taket redan från början.' },
-      { q: 'Vet jag vad det kostar innan ni börjar?', a: 'Ja. Du får en offert och vi går igenom vad som ingår innan arbetet börjar.' },
-      { q: 'Vad händer om något oväntat dyker upp?', a: 'Då pratar vi med dig innan vi går vidare.' },
+      { q: 'Vad kostar det att måla taket?', a: 'Det beror på hur stort taket är och vilket skick det är i. Priset står i offerten.' },
+      { q: 'Huset står i Norrland. Kommer ni dit?', a: 'Ja. Vi tar jobb i hela Sverige.' },
+      { q: 'Måste jag skicka bilder?', a: 'Nej. Men ett par foton säger mer än en lång beskrivning.' },
     ],
   },
 
   kontaktSektion: {
     eyebrow: 'Kontakt',
-    rubrik: ['Berätta om ditt tak,', 'så hör vi av oss'],
-    lead: 'Skriv kort om taket och var huset ligger. Skicka gärna bilder. Vi målar tak i hela Sverige.',
-    checkar: ['Takmålning i hela Sverige', 'Färgval tillsammans med dig', 'Tydlig offert innan arbetet börjar'],
+    rubrik: ['Hör av dig', 'om ditt tak'],
+    lead: 'Skriv några rader här, eller ring om du hellre pratar.',
+    checkar: [],
+    // Ingen film i den vita kontaktsektionen (STIL döljer den); mallen kräver fälten.
     video: `${M}/video-kontakt.mp4`,
     poster: `${M}/poster-kontakt.jpg`,
-    formRubrik: 'Berätta kort om taket',
-    placeholder: 'Var ligger huset, vilken sorts tak är det (t.ex. betongpannor) och ungefär hur stort är det?',
-    formNot: 'Skriv kort om taket, då blir första kontakten mer konkret. Inga massutskick, ingen säljlista.',
+    formRubrik: 'Din förfrågan',
+    placeholder: 'Till exempel ort, typ av tak och ungefär hur stort det är.',
+    formNot: 'Namn och telefon räcker. Resten fyller du i om du vill.',
+    typer: ['Takmålning'],
   },
 
+  // Ämnesraden i mejlet (dolt fält i formuläret): ingen förslagstext i sidans HTML. Nyckeln är fortfarande
+  // demonyckeln (förfrågan landar hos Mathias); vid leverans: formular.nyckel med kundens egen nyckel.
+  formular: { amne: 'Färga Tak: ny förfrågan från hemsidan', fran: 'Färga Tak hemsida' },
+
+  // Dold i STIL: popupen låg över formuläret på både mobil och dator. Mallen kräver fältet.
   popup: {
     rubrik: 'Ser taket trött ut?',
-    text: 'Berätta om ditt tak, så får du en offert innan arbetet börjar.',
+    text: 'Ring eller skriv några rader om ditt tak.',
   },
 
   footer: {
-    text: 'Färga Tak målar tak i hela Sverige. Ett blekt, trött tak blir nymålat.',
-  },
-
-  modal: {
-    rubrik: 'Så här kan Färga Tak se ut på nätet',
-    text: 'Det här är en förhandsvisning av hemsidan. Bilderna och filmen är illustrationer, inte egna jobb. Formuläret landar ännu inte i Färga Taks inkorg.',
+    text: '',
+    // Kolumnen Tjänster döljs i STIL ("Takmålning" står redan under Sidan).
+    tjanster: [{ href: '#varfor', txt: 'Takmålning' }],
   },
 };
 
-/* STIL: vit bas, korall accent, kraftig geometrisk versal-rubrik och takvinkeln som motiv.
-   2026-11-09: Philip bad om vitt i stället för neon/mörkt. Mallen (🔒) är orörd. */
+/* STIL: vit bas, knappar i dämpad korall (tema.accent), kraftig geometrisk versal-rubrik och takvinkeln som detalj.
+   2026-11-09: Philip bad om vitt och inga neonknappar; Mathias: knapparna i loggans färg, fast matt. Stora ytor
+   (band, processlinjen, handtaget) är neutrala. Mallen (🔒) är orörd. */
+const K = '#FE504F'; // loggans korall: bara detalj (takvinkel, tunn linje), aldrig yta eller text
 const STIL = `
-#jobb,#omdomen,#om{display:none!important}
+#tjanster,#jobb,#omdomen,#om{display:none!important}
 [class*="sida"]{--vit:#fff;--mjuk:#F5F7FA;--kram:#F7F4EE;--text:#0A0A0A;--text-2:#475569;--linje:#E2E8F0;--f-kursiv:var(--f-rubrik)}
 body:has([class*="sida"]){background:#fff}
-[class*="sida"] header{background:rgba(255,255,255,calc(0.72 + var(--bahko-hdr-t) * .26))!important;box-shadow:0 1px 0 rgba(10,10,10,calc(var(--bahko-hdr-t) * .08))!important}
-/* Hero: vitt i stället för mörk neon. Ingen korall-glow bakom före/efter. */
+/* Header: vit med mörk text från start (telefonnumret, menypillret och "Meny" syns direkt på vitt). */
+[class*="sida"] header{--bahko-hdr-t:1!important;background:rgba(255,255,255,.96)!important;box-shadow:0 1px 0 rgba(10,10,10,.08)!important}
+/* Knappar: dämpad korall, vit text, ingen glöd (mallens korallskugga bort). */
+[class*="sida"] [class*="btn"]:not(:focus-visible){box-shadow:none!important}
+/* Hero: vitt. Den stora loggan döljs (headern bär den); h1 är "Takmålning i hela Sverige". */
 [class*="sida"] [class*="hero"]{background:#fff!important;color:var(--text)}
 [class*="sida"] [class*="hero"]::before{background:none!important}
-[class*="sida"] [class*="hero"] :is([class*="h1"],[class*="heroOrt"],[class*="heroTjanster"]){text-shadow:none!important;filter:none}
-[class*="sida"] [class*="hero"] [class*="h1"] img{filter:none!important}
-[class*="sida"] [class*="heroTjanster"]{font-family:var(--f-rubrik);font-style:normal;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--accent)!important}
+[class*="sida"] #top p[class*="h1"]{display:none!important}
+[class*="sida"] [class*="hero"] :is([class*="heroOrt"],[class*="heroTjanster"]){text-shadow:none!important;filter:none}
+[class*="sida"] #top [class*="heroOrt"]{margin-top:0;color:var(--text)}
+[class*="sida"] #top [class*="heroTjanster"]{font-family:var(--f-rubrik);font-style:normal;font-weight:700;letter-spacing:0;text-transform:none;color:var(--text)!important}
 [class*="sida"] [class*="hero"] [class*="btnKontur"]{color:var(--text)!important;border-color:rgba(10,10,10,.28)!important;background:transparent!important}
 [class*="sida"] [class*="heroForeEfter"] figcaption{color:var(--text-2)!important}
 [class*="sida"] [class*="heroForeEfterBild"]{border-color:rgba(10,10,10,.12)!important;box-shadow:0 18px 40px rgba(10,10,10,.12)!important}
-/* Tejp: korallband i stället för svart neonkant */
-[class*="sida"] [class*="tejp"]{background:var(--accent)!important;border-block:none!important;color:#0A0A0A}
-[class*="sida"] [class*="tejp"] span{color:#0A0A0A!important;-webkit-text-stroke:0!important}
+/* Tejp: ljusgrått band med mörk text och tunna linjer (Mathias: korallen passade inte in). */
+[class*="sida"] [role="group"][class*="tejp"]{background:#F5F5F4!important;border-block:1px solid #E7E5E4!important}
+[class*="sida"] [class*="tejpGrupp"] span{color:#0A0A0A!important;-webkit-text-stroke:0!important}
+[class*="sida"] [class*="tejpGrupp"] span::after{background:#A8A29E!important}
+/* Rubriker */
 [class*="sida"] :is(h2,h3){font-family:var(--f-rubrik);font-weight:800;text-transform:uppercase;letter-spacing:.01em}
-[class*="sida"] :is(h1,h2,p) :is(em,i),[class*="sida"] [class*="hero"] em{font-style:normal;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
-[class*="sida"] h2 :is(em,i){color:var(--accent)}
-[class*="sida"] [class*="eyebrow"]::before{content:"";display:inline-block;width:.9em;height:.5em;margin-right:.45em;vertical-align:.1em;background:var(--accent);clip-path:polygon(0 100%,50% 0,100% 100%,82% 100%,50% 36%,18% 100%)}
-[class*="sida"] footer{border-top:3px solid var(--accent)}
-/* Varför: vitt i stället för mörk sektion + korall-glow (neon). */
+[class*="sida"] :is(h2,p) :is(em,i){font-style:normal;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+[class*="sida"] h2 :is(em,i){color:var(--text)!important}
+[class*="sida"] [class*="eyebrow"]{color:var(--text)!important}
+[class*="sida"] [class*="eyebrow"]::before{content:"";display:inline-block;width:.9em;height:.5em;margin-right:.45em;vertical-align:.1em;background:${K}!important;clip-path:polygon(0 100%,50% 0,100% 100%,82% 100%,50% 36%,18% 100%)}
+[class*="sida"] [class*="bock"]{color:var(--text)!important}
+[class*="sida"] footer{border-top:2px solid ${K}}
+/* Tätare: mindre luft under heron och mellan sektionerna (inga stora hål på telefon eller dator). */
+[class*="sida"] #top{padding-bottom:clamp(2rem,5vh,3.5rem)!important}
+[class*="sida"] main > section[class*="sek"]{padding-block:clamp(3.5rem,7vw,5.5rem)}
+@media (min-width:901px){[class*="sida"] [class*="fragorGrid"]{align-items:center}[class*="sida"] [class*="fragorSida"]{position:static}}
+/* Alla sektioner vita; tunna linjer skiljer dem åt. */
+[class*="sida"] #process,[class*="sida"] #fragor{background:#fff!important;border-top:1px solid var(--linje)}
+/* Mobilmenyn: Ring-raden (nav.extra) som konturknapp; dubbletterna till #fragor och #kontakt bort. */
+[class*="mobilMenyPanel"] a[href="#fragor"] ~ a[href="#fragor"],
+[class*="mobilMenyPanel"] a[href="#kontakt"]:not([class*="btn"]){display:none!important}
+[class*="mobilMenyPanel"] a[href^="tel:"]{justify-content:center;gap:.5rem;margin-top:1rem;min-height:52px;border:1.5px solid rgba(10,10,10,.28)!important;border-radius:12px;color:var(--text)}
+/* Popupen av: den låg över formuläret på mobil och dator. Ring finns i headern, sidfliken och frågekortet. */
+[class*="sida"] aside[class*="popup"]{display:none!important}
+/* Sidfliken (dator): nedtonad, vit med mörk text och tunn kant. */
+[class*="sida"] a[class*="sidflik"]{background:#fff!important;box-shadow:none!important;color:var(--text)!important;border:1px solid #D6D3D1;border-right:0;padding:.9rem .55rem;font-size:var(--tx-s);font-weight:600;letter-spacing:.08em}
+[class*="sida"] a[class*="sidflik"]:hover{background:#F5F5F4!important}
+/* Frågekortet: länken till formuläret i texten. */
+[class*="sida"] [class*="fragaKort"] p a{color:var(--text);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+/* Varför = huvudblocket "Takmålning": vitt, ingen glow. Text och film centrerade mot varandra, inget hål under filmen. */
 [class*="sida"] [class*="varfor"]{background:#fff!important;color:var(--text)}
 [class*="sida"] [class*="varfor"]::before{display:none!important}
 [class*="sida"] [class*="varfor"] [class*="paMork"],
 [class*="sida"] [class*="varfor"] [class*="sekHuvud"]{color:var(--text)!important}
 [class*="sida"] [class*="varfor"] :is([class*="eyebrow"],[class*="h2"],[class*="sekLead"]){color:inherit!important}
+[class*="sida"] [class*="varfor"] [class*="sekLead"]{color:var(--text-2)!important}
 [class*="sida"] [class*="varforPunkter"] li{background:#fff!important;border-color:var(--linje)!important;color:var(--text-2)!important}
 [class*="sida"] [class*="varforPunkter"] b{color:var(--text)!important}
 [class*="sida"] [class*="varfor"] [class*="btnKontur"]{color:var(--text)!important;border-color:rgba(10,10,10,.28)!important}
 [class*="sida"] [class*="varforFilm"]{box-shadow:0 18px 40px rgba(10,10,10,.12)!important;outline:1px solid var(--linje)!important;background:#f3f4f6!important}
-/* Tjänster: ikon i stället för foto. Mallen kräver bild + ritar ritning ovanpå; vi döljer fotot och centrerar ikonen. */
-[class*="sida"] [class*="tjanstBildIn"]{display:none!important}
-[class*="sida"] [class*="tjanstBild"]{aspect-ratio:auto;background:transparent!important;min-height:0;display:flex;justify-content:center;align-items:flex-end;padding:1.6rem 0 0;overflow:visible}
-[class*="sida"] [class*="tjanstIkon"]{position:static;left:auto;bottom:auto;width:78px;height:66px;margin:0;box-shadow:0 10px 24px -12px rgba(254,80,79,.45)}
-[class*="sida"] [class*="tjanstTxt"]{padding-top:1.35rem}
+[class*="sida"] [class*="varforGrid"]{align-items:center}
+[class*="sida"] [class*="varforMedia"]{position:static;margin-top:0}
+/* Processen: alla hållplatser likadana (vit cirkel, svart kant och ikon), linjen svart. */
+[class*="sida"] ol[class*="resa"]::after{background:#0A0A0A!important}
+[class*="sida"] [class*="resaNod"]{border-color:#0A0A0A!important;color:#0A0A0A!important;background:#fff!important}
+/* Frågornas öppna-ikon och kant: neutrala. */
+[class*="sida"] details[open] [class*="fragaIkon"]{background:#0A0A0A!important}
+[class*="sida"] details[open][class*="fraga"]{border-color:#CBD5E1!important}
+/* Kontakt: vit sektion, ingen film och ingen slöja; formuläret på vitt kort med tunn kant. */
+[class*="sida"] #kontakt{background:#fff!important;color:var(--text)!important;border-top:1px solid var(--linje);padding-block:clamp(3.5rem,7vw,5.5rem)}
+[class*="sida"] #kontakt::before,[class*="sida"] #kontakt [class*="kontaktFilm"]{display:none!important}
+[class*="sida"] #kontakt [class*="paMork"]{color:var(--text)!important}
+[class*="sida"] #kontakt [class*="sekLead"]{color:var(--text-2)!important}
+[class*="sida"] #kontakt ul[class*="kontaktCheckar"]:empty{display:none}
+[class*="sida"] #kontakt [class*="kontaktRad"]{background:#fff!important;border-color:var(--linje)!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+[class*="sida"] #kontakt a[class*="kontaktRad"]:hover{background:var(--mjuk)!important}
+[class*="sida"] #kontakt [class*="kontaktRad"] span{color:var(--text-2)!important}
+[class*="sida"] #kontakt form{border:1px solid var(--linje);box-shadow:0 24px 60px -30px rgba(10,10,10,.22)!important}
+@media (min-width:901px){[class*="sida"] #kontakt [class*="kontaktGrid"]{align-items:center}}
+/* Footer: ingen tom text, kolumnen Tjänster bort (Takmålning står under Sidan), Kontakt en gång. */
+[class*="sida"] footer p[class*="ftrText"]:empty{display:none}
+[class*="sida"] footer [class*="ftrGrid"] > div[class*="ftrKol"]:not(:last-child){display:none}
+@media (min-width:901px){[class*="sida"] footer [class*="ftrGrid"]{grid-template-columns:minmax(0,1.5fr) repeat(2,minmax(0,1fr))}}
+[class*="sida"] footer nav li:has(a[href="#kontakt"]) ~ li:has(a[href="#kontakt"]){display:none}
 `;
 
 export default function FargaTakDemo() {
   return (
     <>
-      {/* Jobbanden, omdömena och Om oss döljs tills det finns egna foton, riktiga omdömen och en ägartext (se PLATSHÅLLARE). */}
-      <style>{STIL}</style>
+      {/* Tjänster, jobbanden, omdömena och Om oss döljs tills det finns egna foton, riktiga omdömen och en ägartext (se PLATSHÅLLARE). */}
+      {/* Kommentarerna i STIL är interna anteckningar: de rensas bort så att de inte följer med i kundens HTML. */}
+      <style>{STIL.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\n\s*\n/g, '\n')}</style>
       <DemoSida data={data} />
-      <ForeEfterReglage fore={`${M}/hero-fore.webp`} efter={`${M}/hero-efter.webp`} altFore="Villatak före målning: mossigt och blekt" altEfter="Samma villatak efter målning: nymålat i matt svart" />
+      <ForeEfterReglage fore={`${M}/hero-fore.webp`} efter={`${M}/hero-efter.webp`} altFore="Illustration: tak före målning, mossigt och blekt" altEfter="Illustration: taket efter målning, nymålat i matt svart" />
     </>
   );
 }
