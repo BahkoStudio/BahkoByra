@@ -27,6 +27,21 @@ export default function Sida() {
         { id: 'hack', namn: 'Häck och buskar', bild: `${M}/nyplanterad-hack-raka-linjer.webp`, alt: 'Häck i raka linjer', text: 'Klippt i form, riset bortkört.', punkter: ['Häckklippning', 'Beskärning', 'Bortforsling'], lank: { href: '/bromma/hackklippning/', txt: 'Allt om häck' } },
         { id: 'lov', namn: 'Löv och rabatter', bild: `${M}/anlagd-tradgard-planteringar.webp`, alt: 'Trädgård med planteringar', text: 'Rabatter rensade, löven bort innan snön kommer.', punkter: ['Ogräsrensning', 'Krattning', 'Höststädning'] },
       ] },
+    // Design-loop struktur 2026-11-09: egna rubriker och texter i Varför, Om och Kontakt, inga sektioner som kopierar startsidan.
+    varfor: { ...bas.varfor, eyebrow: 'Varför oss för skötseln', rubrik: ['Samma händer', 'varje gång'], lead: 'Skötsel blir bra när samma person ser tomten vecka efter vecka och märker vad som ändras.',
+      punkter: [
+        { rubrik: 'Fast intervall eller vid behov', text: 'Varannan vecka, en gång i månaden eller när du ringer. Du väljer.' },
+        { rubrik: 'Rutavdrag på arbetet', text: 'Klippning, rensning, krattning och beskärning ger avdrag. Vi drar det på fakturan.' },
+        { rubrik: 'Allt körs bort', text: 'Klipp, ris och löv följer med oss samma dag. Ingen hög vid tomtgränsen.' },
+        { rubrik: 'Egna maskiner', text: 'Husqvarna för gräs och häck, minigrävare när rabatten ska göras om.' },
+      ] },
+    om: { ...bas.om, rubrik: ['Trädgårdar är', 'där vi började'], stycken: [
+      'Bromma Trädgårdsservice började med gräsklippning och häckar åt villaägare i Bromma, och det är fortfarande kärnan i verksamheten.',
+      'I dag sköter vi trädgårdar åt villor och föreningar i hela Storstockholm, och tar snön på samma tomter när vintern kommer.',
+    ] },
+    steg: null,
+    instagram: null,
     fragor: { ...bas.fragor, eyebrow: 'Frågor om skötsel', lista: fragor },
+    kontaktSektion: { ...bas.kontaktSektion, rubrik: ['Boka', 'trädgårdshjälp'], lead: 'Skriv några rader om tomten och vad som ska göras. Du får ett pris eller en tid för hembesök inom 24 timmar.', placeholder: 'Gräs, häck, rabatter eller löv, ungefärlig yta och var du bor' },
   }} />;
 }
