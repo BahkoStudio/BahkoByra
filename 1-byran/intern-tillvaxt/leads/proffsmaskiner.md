@@ -42,3 +42,5 @@ Google-betyg (inga hittade), antal maskiner, priser, ledtider, "95 % kundnöjdhe
 - Riktigt telefon och mejl på sidan — visa inte offentligt. Formuläret går till mathias@bahkobyra.se.
 - Omdömen i exempelläge — inga riktiga hittade. Be om Google-profilen.
 - Före/efter och galleri är illustrationer, märkt. Sociala är deras egna foton.
+
+- 2026-11-10: Kontaktformuläret skickar till peter@proffsmaskiner.se via Web3Forms (formulär "proffsmaskiner", Peter verifierade adressen).
