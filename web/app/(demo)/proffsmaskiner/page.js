@@ -43,8 +43,8 @@ import { arKunddoman } from './kunddoman';
    maskiner, priser, ledtider, "95 % kundnöjdhet" (sajtens räknare).
    Snöskotrarna ("i Norrbotten med omnejd" enligt sajten) nämns inte.
 
-   FLAGGOR: formuläret går till peter@proffsmaskiner.se (Web3Forms, 2026-11-10); omdömen i exempelläge;
-   före/efter och galleri är illustrationer (märkt); sociala är deras egna.
+   FLAGGOR: formuläret går till peter@proffsmaskiner.se (Web3Forms, 2026-11-10); omdömessektionen och illustrationstexten borttagna (Mathias 2026-11-10);
+   före/efter och galleri är illustrationer; sociala är deras egna.
    =========================================================================== */
 
 const display = localFont({
@@ -78,7 +78,7 @@ const ui = localFont({
 });
 
 const META = {
-  title: 'Proffsmaskiner Sverige AB — maskinuthyrning i Sollentuna och Stockholm',
+  title: 'Proffsmaskiner Sverige AB | Maskinuthyrning i Sollentuna och Stockholm',
   description:
     'Hyr minigrävare, liftar, bodar, elverk och håltagningsmaskiner i Sollentuna och Stockholm. Levererat till arbetsplatsen, servat före varje uthyrning, ersättningsmaskin om något går sönder.',
 };
@@ -151,12 +151,6 @@ const VARFOR = [
   'Räcker en mindre grävare för jobbet säger vi det. Även när en större hade gett oss mer betalt.',
 ];
 
-/* Inga riktiga omdömen hittade — exempelläge, märkt. */
-const OMDOMEN = [
-  { namn: 'Exempel', ort: 'Byggfirma, Sollentuna', text: 'Exempel: här står ett riktigt omdöme från en kund, med namn och företag som de själva skrivit det.' },
-  { namn: 'Exempel', ort: 'Markentreprenad, Stockholm', text: 'Exempel: ett andra kort, hämtat ur er Google-profil när den är på plats.' },
-  { namn: 'Exempel', ort: 'Fastighetsbolag, Upplands Väsby', text: 'Exempel: ett tredje kort. Tre riktiga omdömen räcker för att sidan ska kännas sann.' },
-];
 
 const FRAGOR = [
   { q: 'Måste jag ha ett konto för att hyra?', a: 'Nej. Ring eller skriv så får du offert eller bokning direkt. Kundportalen är ett tillval för dig som vill hantera bokningar och fakturor själv.' },
@@ -169,7 +163,6 @@ const FRAGOR = [
   { q: 'Var finns ni?', a: 'Bäckvägen 20 i Sollentuna, med leverans i Stockholm med omnejd. Ligger jobbet längre bort får du säga var, så säger vi om vi kan ta det.' },
 ];
 
-const Stjarnor = ({ tom }) => (<span className={`${styles.stjarnor}${tom ? ` ${styles.stjarnorTomma}` : ''}`} role="img" aria-label={tom ? 'Stjärnor, exempel' : 'Fem stjärnor'}>{[0, 1, 2, 3, 4].map((i) => (<svg viewBox="0 0 24 24" aria-hidden="true" key={i}><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3l-5.9 3.2 1.3-6.5L2.5 9.4l6.6-.8z" /></svg>))}</span>);
 
 export default function ProffsmaskinerDemo() {
   return (
@@ -224,7 +217,6 @@ export default function ProffsmaskinerDemo() {
             <figure><Image src="/proffsmaskiner/media/galleri-haltagning.jpg" alt="Borrigg för betonghåltagning monterad på en betongvägg" width={1200} height={1200} /><figcaption>Betonghåltagning.</figcaption></figure>
             <figure><Image src="/proffsmaskiner/media/galleri-elforsorjning.jpg" alt="Generator på släp som matar en upplyst byggbod i skymningen" width={1200} height={1200} /><figcaption>Elförsörjning till boden och bygget.</figcaption></figure>
           </div>
-          <p className={styles.forvandlingNot}>Illustrationsbilder — byts mot era egna maskiner och etableringar.</p>
         </div>
       </section>
 
@@ -253,16 +245,6 @@ export default function ProffsmaskinerDemo() {
             <figure className={styles.varforFilm}><video autoPlay muted loop playsInline preload="metadata" poster="/proffsmaskiner/media/poster-varfor.jpg" aria-label="Långsam åkning längs maskinerna på den etablerade tomten"><source src="/proffsmaskiner/media/video-varfor-maskinerna.mp4" type="video/mp4" /></video></figure>
             <ul className={styles.varforPunkter}>{VARFOR.map((p) => <li key={p}>{p}</li>)}</ul>
           </div>
-        </div>
-      </section>
-
-      <section className={`${styles.sek} ${styles.sekLjus}`} id="omdomen">
-        <div className={styles.wrap}>
-          <div className={styles.sekHuvud}><p className={styles.eyebrow}>Omdömen</p><h2 className={styles.h2}>Vad kunderna säger</h2><p className={styles.googleRad}><svg className={styles.googleG} viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 01-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.4z" /><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0012 22z" /><path fill="#FBBC04" d="M6.4 14a6 6 0 010-3.8V7.6H3.1a10 10 0 000 9l3.3-2.6z" /><path fill="#EA4335" d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 003.1 7.6L6.4 10c.8-2.3 3-4 5.6-4z" /></svg><span>Här står ert Google-betyg när profilen är på plats</span></p></div>
-          <div className={styles.recensioner}>
-            {OMDOMEN.map((o, i) => (<figure className={styles.recension} key={i}><div className={styles.recensionHuvud}><span className={styles.avatar} aria-hidden="true">E</span><figcaption><b>{o.namn}</b><span>{o.ort}</span></figcaption></div><Stjarnor tom /><blockquote>{o.text}</blockquote></figure>))}
-          </div>
-          <div className={styles.recensionerFot}><p className={styles.recensionerNot}>Exempel — byts mot era riktiga omdömen. Inget betyg påstås förrän det finns.</p><a className={`${styles.btn} ${styles.btnMork}`} href="https://www.google.com/maps/search/Proffsmaskiner+Sverige+AB+Sollentuna" target="_blank" rel="noopener">Se alla recensioner</a></div>
         </div>
       </section>
 
@@ -317,7 +299,7 @@ export default function ProffsmaskinerDemo() {
               <label>Kort om jobbet<textarea name="meddelande" rows={4} placeholder="Vad som ska göras, var, hur länge, och om ni vill ha maskinen levererad" /></label>
               <button className={styles.btn} type="submit">Få offert på maskin</button>
               <a className={`${styles.btn} ${styles.btnGhost}`} href={TEL_HREF}>Eller ring {TEL}</a>
-              <p className={styles.formNot} id="form-not">Skriv kort om jobbet — då kan vi föreslå rätt maskin redan i första samtalet. Inga massutskick, ingen säljlista.</p>
+              <p className={styles.formNot} id="form-not">Skriv kort om jobbet, så kan vi föreslå rätt maskin redan i första samtalet. Inga massutskick, ingen säljlista.</p>
             </DemoFormular>
           </div>
         </div>
@@ -329,7 +311,7 @@ export default function ProffsmaskinerDemo() {
             <div><span className={styles.brandTxt}><b>Proffsmaskiner Sverige AB</b><i>Maskinuthyrning</i></span><p className={styles.ftrText}>Anläggning, liftar, bodar, elförsörjning, håltagning och rivning för bygg- och markprojekt i Stockholm med omnejd. Leverans till arbetsplatsen.</p></div>
             <div className={styles.ftrLankar}>{LANKAR.map((l) => <a href={l.href} key={l.href}>{l.txt}</a>)}<a href={TEL_HREF}>{TEL}</a><a href={`mailto:${EPOST}`}>{EPOST}</a><a href={IG} target="_blank" rel="noopener">@proffsmaskinerab</a><a href="#top">Till toppen</a></div>
           </div>
-          <div className={styles.ftrBar}><span>Proffsmaskiner Sverige AB · Org.nr 559154-6329 · {ADRESS}</span><span>Förslag byggt av <a href="https://www.bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span></div>
+          <div className={styles.ftrBar}><span>Proffsmaskiner Sverige AB · Org.nr 559154-6329 · {ADRESS}</span><span>Hemsida av <a href="https://www.bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span></div>
         </div>
       </footer>
 
