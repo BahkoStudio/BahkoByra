@@ -20,9 +20,10 @@
 ## Platshållare / antaganden på sidan
 
 - **Telefon och e-post** finns sedan 2026-10-23 (se ovan). **Ort/adress, Instagram, hemsida:** saknas → visas inte ("Hela Sverige" som adressrad).
-- **Huvudblocket** (Varför-sektionen, rubrik "Takmålning") = allmän fakta om tak + "Ny firma" (belagt). Tjänstesektionen är dold sedan runda 3. Rengöring och färgval står inte på sidan.
+- **Tjänstesektionen** är synlig igen (Philip via Mathias 2026-11-10): tre kort med runda linjeikoner i samma anda som bahkobyra.se. Korten är Takmålning, Färgval och Ett tak som ser nytt ut (ur sidans historia). Ingen ny tjänst.
+- **Varför-sektionen** visar bara filmen och knapparna. Texten togs bort 2026-11-10 (Mathias): leaden "Sol och regn bleker färgen år för år, och mossan tar resten. Ett blekt tak drar ner hela huset. Det syns från gatan.", rubriken "Taket är det första man ser av huset" och kortet "Ny firma".
 - **Stegen** (Ring eller skriv → Berätta om taket → Offert) och **de tre frågorna** (pris, Norrland, bilder) är allmän information utan åtaganden: inga pris-, metod-, besiktnings- eller planeringslöften, inget "bara tak", inget "villor". Ingen "kostnadsfri", inga priser, inga ledtider, inga garantier.
-- **Dolda sektioner:** Tjänster, Jobb, Omdömen och Om oss (stilblock i page.js). Inget påhittat galleri, inga exempelomdömen, ingen ägartext.
+- **Dolda sektioner:** Jobb, Omdömen och Om oss (stilblock i page.js). Inget påhittat galleri, inga exempelomdömen, ingen ägartext.
 - Inte på sidan: org.nr, F-skatt, ROT-avdrag, priser, garantier, omdömen, jobbfoton.
 
 ## FLAGGOR (läs före leverans)
@@ -80,3 +81,9 @@ Hej! Nu är sidan kortare och vit rakt igenom, med lugna knappar i loggans färg
 - **Mobilmenyn:** egen rad "Ring 070-789 45 61" (tel-länk), raderna Kontakt och Vanliga frågor bort (Begär offert och Frågor når samma mål).
 - **Footern:** kolumnen Tjänster bort (Takmålning stod två gånger), Kontakt en gång. Sidfliken på datorn vit med mörk text och tunn kant.
 - Text enligt `design-loop/references/skriv-som-en-manniska.md`: inga tankstreck, inga garderingar, "du".
+
+## Revision 2026-11-10 (Philip via Mathias: tjänster med ikoner, och två texter bort)
+
+- Tjänstesektionen visad igen. Tre kort med runda linjeikoner, i samma anda som tjänstekorten på bahkobyra.se, anpassade till den vita sidan. Korten är Takmålning, Färgval och Ett tak som ser nytt ut.
+- Borttaget ur Varför-sektionen: leaden om sol, regn och mossa, rubriken "Taket är det första man ser av huset", och kortet "Ny firma". Filmen är kvar, centrerad, med knapparna under.
+- Menyn: Tjänster pekar på tjänstesektionen. Länken till #varfor är bort.

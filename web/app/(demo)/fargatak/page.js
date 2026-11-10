@@ -43,8 +43,7 @@ import ForeEfterReglage from './ForeEfterReglage';
    KUNDLOOP RUNDA 3 2026-11-09 (alla tre kritiker + Mathias):
    - kund: true (Mathias: "ta bort detta är ett förslag, gör det som en kund som ska ha hemsida"):
      ingen Bahko-knapp, ingen förslagsruta, kreditraden "Hemsida skapad av bahkobyra.se" i footern.
-   - Kortare sida där varje sak sägs en gång: tjänstesektionen dold, Varför-sektionen med filmen
-     är huvudblocket ("Takmålning"). Process i tre steg, tre frågor. Heron: h1 "Takmålning i hela
+   - Kortare sida där varje sak sägs en gång. Process i tre steg, tre frågor. Heron: h1 "Takmålning i hela
      Sverige" (hero.rubrik), den stora loggan i heron dold (headern bär loggan).
    - Ingen synlig illustrationstext (Mathias: "filmen ska vara kvar utan illustration text").
      Alt- och aria-texterna säger "Illustration:". Se leadfilens FLAGGOR.
@@ -56,7 +55,11 @@ import ForeEfterReglage from './ForeEfterReglage';
 
    PLATSHÅLLARE (för Mathias):
    - Stegen (tre) och frågorna (tre) är allmän information utan åtaganden och ska stämmas av med ägaren.
-   - TJÄNSTER, JOBB, OMDÖMEN OCH OM OSS är dolda (stilblocket nedan): inga jobbfoton,
+   - 2026-11-10 (Philip via Mathias): tjänstesektionen visad igen, med runda linjeikoner i samma
+     anda som bahkobyra.se. Tre kort ur sidans historia: Takmålning, Färgval, Ett tak som ser nytt ut.
+   - Samma dag (Mathias): Varför-texten bort (leaden om sol och mossa, rubriken "Taket är det första
+     man ser av huset", och kortet "Ny firma"). Filmen är kvar.
+   - JOBB, OMDÖMEN OCH OM OSS är dolda (stilblocket nedan): inga jobbfoton,
      inga omdömen, ingen ägarberättelse ännu. Inget påhittat.
    - VARFÖR-FILMEN (Sunburst + Kling 4.0 5 s 720p) och HERONS FÖRE/EFTER (GPT Image 2.5 Sunburst,
      efter-bilden en redigering av före-bilden) är GENERERADE ILLUSTRATIONER, INTE kundens egna jobb.
@@ -98,7 +101,7 @@ const data = {
   },
   cta: { txt: 'Begär offert', kort: 'Begär offert', lank: 'Begär offert' },
   nav: {
-    vanster: [{ href: '#varfor', txt: 'Takmålning' }, { href: '#process', txt: 'Så går det till' }],
+    vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#process', txt: 'Så går det till' }],
     hoger: [{ href: '#fragor', txt: 'Frågor' }, { href: '#kontakt', txt: 'Kontakt' }],
     // Mobilmenyn: panelen täcker headerns Ring-knapp, så numret står i menyn. Raden "Kontakt" och
     // mallens "Vanliga frågor" döljs där (STIL): Begär offert-knappen och "Frågor" når samma mål.
@@ -118,9 +121,42 @@ const data = {
   },
   tejp: ['Takmålning', 'Hela Sverige', 'Färga Tak'],
 
-  // Dold i STIL (runda 3): Varför-sektionen med filmen är huvudblocket. Inga kort: formulärets
-  // val kommer ur kontaktSektion.typer och footern ur footer.tjanster.
-  tjanster: { eyebrow: '', rubrik: [''], lead: '', kort: [] },
+  // Tjänstekorten tillbaka (Philip via Mathias 2026-11-10): ikoner i samma anda som bahkobyra.se
+  // (runt märke överst, kort med rubrik och en mening). Bara det som redan stått på sidan:
+  // Takmålning, Färgval och Ett tak som ser nytt ut. Inga foton, ingen ny tjänst.
+  // Formulärets val kommer ur kontaktSektion.typer.
+  tjanster: {
+    eyebrow: 'Tjänster',
+    rubrik: ['Det här', 'gör vi'],
+    lead: 'Takmålning i hela Sverige.',
+    kolumner: 3,
+    kort: [
+      {
+        id: 'takmalning',
+        namn: 'Takmålning',
+        bild: `${M}/transparent.png`,
+        alt: '',
+        text: 'Vi målar tak i hela Sverige.',
+        ritning: (<><path d="M36 78l64-46 64 46" /><path d="M52 66v36h96V66" /><path d="M118 32v-16h16" /></>),
+      },
+      {
+        id: 'fargval',
+        namn: 'Färgval',
+        bild: `${M}/transparent.png`,
+        alt: '',
+        text: 'Du väljer kulör till taket.',
+        ritning: (<><path d="M100 22c26 34 38 50 38 68a38 38 0 1 1-76 0c0-18 12-34 38-68z" /></>),
+      },
+      {
+        id: 'klart',
+        namn: 'Ett tak som ser nytt ut',
+        bild: `${M}/transparent.png`,
+        alt: '',
+        text: 'Ett nymålat tak syns från gatan.',
+        ritning: (<><circle cx="100" cy="60" r="40" /><path d="M80 62l14 14 30-32" /></>),
+      },
+    ],
+  },
 
   // Dold (se PLATSHÅLLARE): inga jobbfoton än. Banden får inte vara tomma, så en dold post var.
   jobb: {
@@ -129,14 +165,14 @@ const data = {
     rad2: [{ src: `${M}/logo.webp`, alt: '', txt: '' }],
   },
 
-  // Huvudblocket: allmän fakta om tak + det enda om firman som är belagt (ny). Filmen utan synlig not.
+  // Filmen är kvar. Texten togs bort 2026-11-10 (Mathias): leaden om sol, regn och mossa,
+  // rubriken "Taket är det första man ser av huset" och kortet "Ny firma". Tomma fält + STIL
+  // döljer rubrik och punktlista, så bara filmen och knapparna syns.
   varfor: {
-    eyebrow: 'Takmålning',
-    rubrik: ['Taket är det första', 'man ser av huset'],
-    lead: 'Sol och regn bleker färgen år för år, och mossan tar resten. Ett blekt tak drar ner hela huset. Det syns från gatan.',
-    punkter: [
-      { rubrik: 'Ny firma', text: 'Färga Tak är nystartad, så här finns inga omdömen än. Undrar du något? Ring oss.' },
-    ],
+    eyebrow: '',
+    rubrik: [''],
+    lead: '',
+    punkter: [],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
     videoAlt: 'Illustration: hus med nymålat svart tak, filmat från luften',
@@ -206,7 +242,7 @@ const data = {
   footer: {
     text: '',
     // Kolumnen Tjänster döljs i STIL ("Takmålning" står redan under Sidan).
-    tjanster: [{ href: '#varfor', txt: 'Takmålning' }],
+    tjanster: [{ href: '#tjanster', txt: 'Takmålning' }],
   },
 };
 
@@ -215,7 +251,7 @@ const data = {
    (band, processlinjen, handtaget) är neutrala. Mallen (🔒) är orörd. */
 const K = '#FE504F'; // loggans korall: bara detalj (takvinkel, tunn linje), aldrig yta eller text
 const STIL = `
-#tjanster,#jobb,#omdomen,#om{display:none!important}
+#jobb,#omdomen,#om{display:none!important}
 [class*="sida"]{--vit:#fff;--mjuk:#F5F7FA;--kram:#F7F4EE;--text:#0A0A0A;--text-2:#475569;--linje:#E2E8F0;--f-kursiv:var(--f-rubrik)}
 body:has([class*="sida"]){background:#fff}
 /* Header: vit med mörk text från start (telefonnumret, menypillret och "Meny" syns direkt på vitt). */
@@ -249,7 +285,7 @@ body:has([class*="sida"]){background:#fff}
 [class*="sida"] main > section[class*="sek"]{padding-block:clamp(3.5rem,7vw,5.5rem)}
 @media (min-width:901px){[class*="sida"] [class*="fragorGrid"]{align-items:center}[class*="sida"] [class*="fragorSida"]{position:static}}
 /* Alla sektioner vita; tunna linjer skiljer dem åt. */
-[class*="sida"] #process,[class*="sida"] #fragor{background:#fff!important;border-top:1px solid var(--linje)}
+[class*="sida"] #process,[class*="sida"] #fragor,[class*="sida"] #varfor{background:#fff!important;border-top:1px solid var(--linje)}
 /* Mobilmenyn: Ring-raden (nav.extra) som konturknapp; dubbletterna till #fragor och #kontakt bort. */
 [class*="mobilMenyPanel"] a[href="#fragor"] ~ a[href="#fragor"],
 [class*="mobilMenyPanel"] a[href="#kontakt"]:not([class*="btn"]){display:none!important}
@@ -261,7 +297,7 @@ body:has([class*="sida"]){background:#fff}
 [class*="sida"] a[class*="sidflik"]:hover{background:#F5F5F4!important}
 /* Frågekortet: länken till formuläret i texten. */
 [class*="sida"] [class*="fragaKort"] p a{color:var(--text);font-weight:600;text-decoration:underline;text-underline-offset:3px}
-/* Varför = huvudblocket "Takmålning": vitt, ingen glow. Text och film centrerade mot varandra, inget hål under filmen. */
+/* Varför: vitt, ingen glow. Texten är borta, filmen ligger centrerad. */
 [class*="sida"] [class*="varfor"]{background:#fff!important;color:var(--text)}
 [class*="sida"] [class*="varfor"]::before{display:none!important}
 [class*="sida"] [class*="varfor"] [class*="paMork"],
@@ -274,6 +310,22 @@ body:has([class*="sida"]){background:#fff}
 [class*="sida"] [class*="varforFilm"]{box-shadow:0 18px 40px rgba(10,10,10,.12)!important;outline:1px solid var(--linje)!important;background:#f3f4f6!important}
 [class*="sida"] [class*="varforGrid"]{align-items:center}
 [class*="sida"] [class*="varforMedia"]{position:static;margin-top:0}
+/* Tjänster: runda linjeikoner överst på korten, i samma anda som bahkobyra.se (cirkelmärke, kort med kant). */
+#tjanster{background:#fff!important;border-top:1px solid var(--linje)}
+[class*="sida"] [class*="tjanstBildIn"]{display:none!important}
+[class*="sida"] [class*="tjanstBild"]{aspect-ratio:auto;background:transparent!important;min-height:0;display:flex;justify-content:center;align-items:center;padding:1.7rem 0 0;overflow:visible}
+[class*="sida"] [class*="tjanstIkon"]{position:static;left:auto;bottom:auto;width:104px;height:104px;margin:0;padding:22px;border-radius:50%;background:#fff;color:#0A0A0A;border:1px solid #E7E5E4;box-shadow:0 12px 28px rgba(10,10,10,.10);transition:transform .35s}
+[class*="sida"] [class*="tjanst"]:hover [class*="tjanstIkon"]{transform:translateY(-6px) rotate(-4deg)}
+[class*="sida"] [class*="tjanst"]{text-align:center;box-shadow:none!important;border:2px solid var(--linje)}
+[class*="sida"] [class*="tjanst"]:hover{border-color:#B5433E;box-shadow:none!important}
+[class*="sida"] [class*="tjanstTxt"]{padding:1.1rem 1.4rem 1.4rem;align-items:center}
+[class*="sida"] [class*="tjanstTxt"] p{text-wrap:pretty}
+/* Varför: bara filmen och knapparna, ingen tom textkolumn efter att lead och Ny firma tagits bort. */
+[class*="sida"] [class*="varfor"] [class*="sekHuvud"],
+[class*="sida"] [class*="varforPunkter"]{display:none!important}
+[class*="sida"] [class*="varforGrid"]{grid-template-columns:1fr;justify-items:center}
+[class*="sida"] [class*="varforMedia"]{position:static;margin-top:0;width:min(100%,56rem);order:-1}
+[class*="sida"] [class*="varforCta"]{justify-content:center;margin-top:1.6rem}
 /* Processen: alla hållplatser likadana (vit cirkel, svart kant och ikon), linjen svart. */
 [class*="sida"] ol[class*="resa"]::after{background:#0A0A0A!important}
 [class*="sida"] [class*="resaNod"]{border-color:#0A0A0A!important;color:#0A0A0A!important;background:#fff!important}
@@ -301,7 +353,7 @@ body:has([class*="sida"]){background:#fff}
 export default function FargaTakDemo() {
   return (
     <>
-      {/* Tjänster, jobbanden, omdömena och Om oss döljs tills det finns egna foton, riktiga omdömen och en ägartext (se PLATSHÅLLARE). */}
+      {/* Jobbanden, omdömena och Om oss döljs tills det finns egna foton, riktiga omdömen och en ägartext (se PLATSHÅLLARE). */}
       {/* Kommentarerna i STIL är interna anteckningar: de rensas bort så att de inte följer med i kundens HTML. */}
       <style>{STIL.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\n\s*\n/g, '\n')}</style>
       <DemoSida data={data} />
