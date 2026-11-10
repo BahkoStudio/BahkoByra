@@ -43,7 +43,7 @@ import { arKunddoman } from './kunddoman';
    maskiner, priser, ledtider, "95 % kundnöjdhet" (sajtens räknare).
    Snöskotrarna ("i Norrbotten med omnejd" enligt sajten) nämns inte.
 
-   FLAGGOR: formuläret går till mathias@bahkobyra.se; omdömen i exempelläge;
+   FLAGGOR: formuläret går till peter@proffsmaskiner.se (Web3Forms, 2026-11-10); omdömen i exempelläge;
    före/efter och galleri är illustrationer (märkt); sociala är deras egna.
    =========================================================================== */
 
@@ -90,10 +90,9 @@ export async function generateMetadata() {
     : { ...META, robots: { index: false, follow: false } };
 }
 
-// Web3Forms-nyckel för info@proffsmaskiner.se. TOM tills Peter verifierat sin egen nyckel
-// (web3forms.com med info@proffsmaskiner.se, bekräftelselänken går till den adressen); tom = demonyckeln,
-// så förfrågningarna landar hos Mathias och vidarebefordras tills dess. Nyckeln är publik av design.
-const KUND_NYCKEL = '';
+// Web3Forms-nyckel för peter@proffsmaskiner.se (formuläret "proffsmaskiner" i Bahkos Web3Forms-konto,
+// Pro, Peter verifierade adressen 2026-11-10). Mottagare i panelen: bara peter@. Nyckeln är publik av design.
+const KUND_NYCKEL = '9eef7e83-b068-40b9-96f9-93e62e449990';
 
 const TEL = '08-545 899 90';
 const TEL_HREF = 'tel:+46854589990';
@@ -307,7 +306,7 @@ export default function ProffsmaskinerDemo() {
             </div>
             <DemoFormular
               className={styles.form}
-              amne={KUND_NYCKEL ? null : 'Proffsmaskiner - hyresförfrågan (kundsajt)'}
+              amne={KUND_NYCKEL ? 'Ny förfrågan från {foretag} via proffsmaskiner.se' : 'Proffsmaskiner - hyresförfrågan (kundsajt)'}
               fran={KUND_NYCKEL ? 'Proffsmaskiner Sverige AB' : undefined}
               nyckel={KUND_NYCKEL || undefined}
             >
