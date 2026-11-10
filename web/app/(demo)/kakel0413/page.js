@@ -59,6 +59,9 @@ import { jobb } from './jobb';
      "Frågor" döljs bara i mobilmenyn (stilblocket nedan); desktop-pillret har den kvar.
      Formuläret: "Kontaktar som" (kontaktar_som) och "Stadsdel/Kommun" (kommun) monteras
      före namnfälten av KontaktFalt.js, på samma sätt som BildUpload.js.
+   - RÄTTNING (Mathias 2026-11-10, kundens skärmdumpar): Badrumsrenovering säger nu
+     "Kakel på vägg och klinker på golv". Om oss (Om Nuh på startsidan och /om-oss/) borttagen helt,
+     /om-oss/ går med 308 till startsidan och är struken ur kakel0413.se:s sitemap. Logga överallt: logo.webp.
    =========================================================================== */
 
 const META = {
@@ -92,7 +95,7 @@ const tjanster = [
     bild: `${M}/tjanst-badrum.jpg`,
     alt: 'Illustration: ljust kaklat badrum med duschvägg i glas och mässingsblandare',
     text: 'En hel badrumsrenovering, från genomgång och offert till färdigt badrum.',
-    punkter: ['Hela badrummet', 'Kakel på vägg och golv', 'Genomgång när det är klart'],
+    punkter: ['Hela badrummet', 'Kakel på vägg och klinker på golv', 'Genomgång när det är klart'],
     ritning: (<><path d="M30 70h140v15a25 25 0 01-25 25H55a25 25 0 01-25-25z" /><path d="M45 70V30a12 12 0 0124 0" /><path d="M60 110l-6 8M140 110l6 8" /></>),
   },
   {
@@ -215,23 +218,9 @@ const data = {
     videoAlt: 'Illustration: ett färdigt badrum i vit marmor och borstad guld, som slutar med Kakel 0413:s logotyp',
   },
 
-  om: {
-    eyebrow: 'Om Nuh',
-    rubrik: ['Över 16 år', 'i byggbranschen'],
-    kortRad: 'Skanska · NCC · Peab · MVB · Tornstaden',
-    stycken: [
-      'Bakom företaget står Nuh, som har över 16 års erfarenhet inom byggbranschen. Han har arbetat med allt från kakelsättning och badrumsrenoveringar till stora byggprojekt.',
-      'Under sin karriär har Nuh ansvarat för upp till sju stora projekt samtidigt, med arbeten som omfattat totalt cirka 800 nya toaletter. Utöver detta har han även utfört kakel- och klinkerarbeten i trapphus, hallar och kök.',
-      'Han har arbetat tillsammans med välkända byggföretag som Skanska, NCC, Peab, MVB och Tornstaden.',
-      'Efter många år i branschen valde Nuh att starta eget för att kunna fokusera ännu mer på det som betyder mest, hög kvalitet, noggrant arbete, tydlig kommunikation och att alltid hålla det man lovar.',
-      'Oavsett om du behöver hjälp med en hel badrumsrenovering, kakelsättning eller ett mindre arbete är målet alltid detsamma: att leverera ett resultat som du som kund kan känna dig riktigt nöjd med.',
-    ],
-    bevis: [
-      { ord: '16+ år', text: 'i byggbranschen' },
-      { ord: 'Upp till 7', text: 'stora projekt samtidigt' },
-      { ord: 'Ca 800', text: 'nya toaletter' },
-    ],
-  },
+  // Om oss borttagen helt (Mathias 2026-11-10, "Allt detta skulle bort"). Mallen kräver fältet,
+  // så det står tomt och sektionen #om döljs i stilblocket nedan. Ingen text, inget loggkort.
+  om: { eyebrow: '', rubrik: [''], stycken: [], bevis: [] },
 
   steg: {
     eyebrow: 'Så går det till',
@@ -285,8 +274,8 @@ const data = {
     text: 'Genomgången är kostnadsfri, du får en tydlig offert innan arbetet börjar och ROT-avdrag på arbetskostnaden.',
   },
 
+  // Ingen Om oss-länk längre (sidan borttagen 2026-11-10, /om-oss/ går med 308 till startsidan).
   footer: {
-    lankar: [{ href: '/kakel0413/om-oss/', txt: 'Om oss' }],
     text: '',
   },
 
@@ -297,15 +286,14 @@ const data = {
 };
 
 export default async function Kakel0413Demo() {
-  const kund = await arKunddoman();
   return (
     <>
-      {/* Om Nuh flyttade till /kakel0413/om-oss (Mathias 2026-10-22), länkad i footern. Jobbanden och omdömena döljs tills Nuh har egna foton och riktiga omdömen (se FLAGGOR). */}
+      {/* Om oss borttagen helt (Mathias 2026-11-10): #om döljs och är tom, /om-oss/ omdirigeras till startsidan. Jobbanden och omdömena döljs tills Nuh har egna foton och riktiga omdömen (se FLAGGOR). */}
       {/* Nuh v2: ingen stor logotyp i heron (h1 finns kvar för skärmläsare/SEO, visuellt dold; headerns logga kvar)
           och inget telefonnummer i heron (Ring-knappen i headern kvar). Raden "Kakel & Badrum." struken: mallen skriver alltid " & " och ".",
           så tjänsteraden får font-size 0 och bara Nuhs mening (egen fontstorlek) syns. */}
       <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}#varfor ul[class*="varforPunkter"]{gap:0.6rem}#varfor ul[class*="varforPunkter"] li{padding:0.75rem 1.1rem}#varfor ul[class*="varforPunkter"] li:last-child{display:block;padding:0.6rem 0 0;background:none;border:0;box-shadow:none;color:rgba(255,255,255,.85)}#varfor ul[class*="varforPunkter"] li:last-child svg{display:none}'}</style>
-      <DemoSida data={kund ? { ...data, kund: true, footer: { ...data.footer, lankar: [{ href: '/om-oss/', txt: 'Om oss' }] } } : { ...data, kund: true }} />
+      <DemoSida data={{ ...data, kund: true }} />
       <Referenser />
       <Galleri jobb={jobb} />
       <KontaktFalt />

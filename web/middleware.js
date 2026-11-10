@@ -11,7 +11,8 @@ const KUNDER = {
     bas: '/kakel0413',
     // Öppnad igen (Mathias 2026-11-10). Var stängd 2026-10-23 till 2026-11-10 på Nuhs begäran.
     stangd: false,
-    sidor: ['https://kakel0413.se/', 'https://kakel0413.se/om-oss/'],
+    // /om-oss/ borttagen 2026-11-10 (omdirigeras till startsidan), därför inte i sitemapen.
+    sidor: ['https://kakel0413.se/'],
   },
   'proffsmaskiner.se': {
     bas: '/proffsmaskiner',
