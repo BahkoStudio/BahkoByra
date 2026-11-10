@@ -666,25 +666,10 @@ html:has(.sida) {
   text-transform: uppercase;
   color: var(--ljus-58);
 }
-/* I mellanspannet ligger ritningen annars rakt bakom rubriken — den flyttas
-   längre ut i högerkanten i stället. */
-@media (min-width: 781px) and (max-width: 1100px) {
-  .ritning {
-    right: -18%;
-    width: 62%;
-  }
-}
+/* Mallens hero-ritning (opacity 0.12, width 128 %) är borttagen här: klassen
+   .ritning används bara i tjänstekorten, och regeln gjorde ritningarna nästan
+   osynliga på mobil och för smala på surfplatta (designloop 2026-11-10). */
 @media (max-width: 780px) {
-  /* Ritningen får inte konkurrera med brödtexten på en liten skärm: den
-     sjunker ner under CTA-blocket i stället för att ligga bakom texten. */
-  .ritning {
-    top: auto;
-    bottom: -4%;
-    right: -22%;
-    translate: none;
-    width: 128%;
-    opacity: 0.12;
-  }
   .heroIn {
     padding-bottom: 4.5rem;
   }
@@ -777,7 +762,8 @@ html:has(.sida) {
   margin: 0 0 1.4rem;
   overflow: visible;
 }
-.ritning path {
+.ritning path,
+.ritning circle {
   fill: none;
   stroke: var(--stal);
   stroke-width: 1.6;
@@ -1021,7 +1007,8 @@ html:has(.sida) {
   height: auto;
   overflow: visible;
 }
-.stegRitning path {
+.stegRitning path,
+.stegRitning circle {
   fill: none;
   stroke: var(--stal);
   stroke-width: 1.6;
@@ -2124,4 +2111,95 @@ a.kontaktRad b {
 }
 .socialaRutnat a {
   display: block;
+}
+
+/* ===========================================================================
+   Designloop 2026-11-10, runda 1
+   =========================================================================== */
+
+/* Omdömessektionen (ljus) låg mellan Varför och Instagram. Utan den möts två
+   mörka sektioner med 2 x 7 rem tom yta emellan. Instagramraden blir i stället
+   avslutningen på Varför: tät topp och en tunn linje som skiljer dem åt. */
+.sekVarfor {
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.sociala {
+  padding-top: 0;
+}
+/* Linjen sitter i innehållsbredden, inte över wrapens sidmarginaler. */
+.sociala > .wrap::before {
+  content: '';
+  display: block;
+  border-top: 1px solid var(--linje);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* Fem stegflikar bröts i tre ojämna rader på mobil. Två jämna kolumner, sista
+   fliken över hela bredden, texten centrerad. */
+@media (max-width: 700px) {
+  .stegVal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .stegKnapp {
+    justify-content: center;
+    text-align: center;
+    padding: 0 0.6rem;
+  }
+  .stegKnapp:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Kontaktraderna: på smal skärm bröts etiketten i två rader och adressen
+   högerställdes över två rader. Etikett ovanför värdet i stället. */
+@media (max-width: 520px) {
+  .kontaktRad {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+}
+
+/* Footern: åtta länkar i en kolumn med 44 px träffyta blev en 380 px hög
+   stapel bredvid en kort text. Två kolumner länkar, samma träffyta. */
+.ftrLankar {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  column-gap: clamp(2rem, 5vw, 4rem);
+  row-gap: 0;
+  align-content: start;
+}
+
+/* ===========================================================================
+   Designloop 2026-11-10, runda 2
+   =========================================================================== */
+
+/* Två mörka sektioner i rad (Leveransen, Maskiner) gav 2 x 7 rem tom yta
+   mellan galleriet och nästa rubrik. Den andra börjar tätare. */
+.sek:not(.sekLjus) + .sek:not(.sekLjus):not(.sociala) {
+  padding-top: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* Strecket före varje punkt i tjänstekorten satt för högt: mitt på raden. */
+.tjanst li::before {
+  top: 0.8em;
+}
+
+/* ===========================================================================
+   Designloop 2026-11-10, runda 3
+   =========================================================================== */
+
+/* Andraknappen ("Ring 08-545 899 90") hade en kant i --linje (#30363D), som
+   försvann helt mot hero-filmen. Ljus kant med 40 % täckning syns mot både
+   film och kolyta, och knappen läses fortfarande som sekundär. */
+.btnGhost {
+  outline-color: rgba(238, 241, 243, 0.4);
+}
+
+/* Instagramrutnätet var 900 px brett och centrerat, smalare än allt annat på
+   sidan. Nu följer det innehållsbredden, så kanterna linjerar med Varför. */
+.socialaRutnat {
+  max-width: none;
+  gap: clamp(0.6rem, 1.2vw, 0.9rem);
 }

@@ -238,7 +238,7 @@ export default function ProffsmaskinerDemo() {
         </div>
       </section>
 
-      <section className={styles.sek} id="varfor">
+      <section className={`${styles.sek} ${styles.sekVarfor}`} id="varfor">
         <div className={styles.wrap}>
           <div className={styles.sekHuvud}><p className={styles.eyebrow}>Varför oss</p><h2 className={styles.h2}>Proffs jobbar <em>med proffs</em></h2></div>
           <div className={styles.varforModul}>
