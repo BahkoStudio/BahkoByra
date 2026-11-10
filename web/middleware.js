@@ -9,8 +9,8 @@ import { NextResponse } from 'next/server';
 const KUNDER = {
   'kakel0413.se': {
     bas: '/kakel0413',
-    // STÄNGD (Mathias 2026-10-23): Nuh vill ha sajten nere tills företaget öppnar. Sätt till false för att öppna igen.
-    stangd: true,
+    // Öppnad igen (Mathias 2026-11-10). Var stängd 2026-10-23 till 2026-11-10 på Nuhs begäran.
+    stangd: false,
     sidor: ['https://kakel0413.se/', 'https://kakel0413.se/om-oss/'],
   },
   'proffsmaskiner.se': {
