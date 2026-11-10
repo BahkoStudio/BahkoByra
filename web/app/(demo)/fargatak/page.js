@@ -1,5 +1,6 @@
 import DemoSida from '../_mall/DemoSida';
 import ForeEfterReglage from './ForeEfterReglage';
+import Tjanster from './Tjanster';
 
 /* ===========================================================================
    FÄRGA TAK: hemsida på demomallen v3, byggd som kundens egen sida (kund: true)
@@ -55,8 +56,9 @@ import ForeEfterReglage from './ForeEfterReglage';
 
    PLATSHÅLLARE (för Mathias):
    - Stegen (tre) och frågorna (tre) är allmän information utan åtaganden och ska stämmas av med ägaren.
-   - 2026-11-10 (Philip via Mathias): tjänstesektionen visad igen, med runda linjeikoner i samma
-     anda som bahkobyra.se. Tre kort ur sidans historia: Takmålning, Färgval, Ett tak som ser nytt ut.
+   - 2026-11-10 (Philip via Mathias): tjänstesektionen visad igen, med samma kortmönster som
+     "Våra tjänster" på bahkobyra.se (runda 3D-märken som hänger över korten, tagg och pil).
+     Tre kort ur sidans historia: Takmålning, Färgval, Ett tak som ser nytt ut.
    - Samma dag (Mathias): Varför-texten bort (leaden om sol och mossa, rubriken "Taket är det första
      man ser av huset", och kortet "Ny firma"). Filmen är kvar.
    - JOBB, OMDÖMEN OCH OM OSS är dolda (stilblocket nedan): inga jobbfoton,
@@ -121,42 +123,9 @@ const data = {
   },
   tejp: ['Takmålning', 'Hela Sverige', 'Färga Tak'],
 
-  // Tjänstekorten tillbaka (Philip via Mathias 2026-11-10): ikoner i samma anda som bahkobyra.se
-  // (runt märke överst, kort med rubrik och en mening). Bara det som redan stått på sidan:
-  // Takmålning, Färgval och Ett tak som ser nytt ut. Inga foton, ingen ny tjänst.
-  // Formulärets val kommer ur kontaktSektion.typer.
-  tjanster: {
-    eyebrow: 'Tjänster',
-    rubrik: ['Det här', 'gör vi'],
-    lead: 'Takmålning i hela Sverige.',
-    kolumner: 3,
-    kort: [
-      {
-        id: 'takmalning',
-        namn: 'Takmålning',
-        bild: `${M}/transparent.png`,
-        alt: '',
-        text: 'Vi målar tak i hela Sverige.',
-        ritning: (<><path d="M36 78l64-46 64 46" /><path d="M52 66v36h96V66" /><path d="M118 32v-16h16" /></>),
-      },
-      {
-        id: 'fargval',
-        namn: 'Färgval',
-        bild: `${M}/transparent.png`,
-        alt: '',
-        text: 'Du väljer kulör till taket.',
-        ritning: (<><path d="M100 22c26 34 38 50 38 68a38 38 0 1 1-76 0c0-18 12-34 38-68z" /></>),
-      },
-      {
-        id: 'klart',
-        namn: 'Ett tak som ser nytt ut',
-        bild: `${M}/transparent.png`,
-        alt: '',
-        text: 'Ett nymålat tak syns från gatan.',
-        ritning: (<><circle cx="100" cy="60" r="40" /><path d="M80 62l14 14 30-32" /></>),
-      },
-    ],
-  },
+  // Tjänstekorten renderas av Tjanster.js (samma mönster som bahkobyra.se),
+  // portaleras in i #tjanster. Mallens kort är tomma; formulärets val kommer ur kontaktSektion.typer.
+  tjanster: { eyebrow: '', rubrik: [''], lead: '', kort: [] },
 
   // Dold (se PLATSHÅLLARE): inga jobbfoton än. Banden får inte vara tomma, så en dold post var.
   jobb: {
@@ -252,6 +221,11 @@ const data = {
 const K = '#FE504F'; // loggans korall: bara detalj (takvinkel, tunn linje), aldrig yta eller text
 const STIL = `
 #jobb,#omdomen,#om{display:none!important}
+#tjanster{overflow:visible!important;background:#F5F7FA!important;border-top:1px solid #E2E8F0}
+#tjanster>[class*="wrap"]{display:none!important}
+#tjanster h2,#tjanster h3{text-transform:none!important;color:#0A0A0A!important;font-family:var(--f-rubrik);font-weight:800}
+#tjanster h2{letter-spacing:-.022em!important}
+#tjanster h3{letter-spacing:-.008em!important}
 [class*="sida"]{--vit:#fff;--mjuk:#F5F7FA;--kram:#F7F4EE;--text:#0A0A0A;--text-2:#475569;--linje:#E2E8F0;--f-kursiv:var(--f-rubrik)}
 body:has([class*="sida"]){background:#fff}
 /* Header: vit med mörk text från start (telefonnumret, menypillret och "Meny" syns direkt på vitt). */
@@ -310,16 +284,6 @@ body:has([class*="sida"]){background:#fff}
 [class*="sida"] [class*="varforFilm"]{box-shadow:0 18px 40px rgba(10,10,10,.12)!important;outline:1px solid var(--linje)!important;background:#f3f4f6!important}
 [class*="sida"] [class*="varforGrid"]{align-items:center}
 [class*="sida"] [class*="varforMedia"]{position:static;margin-top:0}
-/* Tjänster: runda linjeikoner överst på korten, i samma anda som bahkobyra.se (cirkelmärke, kort med kant). */
-#tjanster{background:#fff!important;border-top:1px solid var(--linje)}
-[class*="sida"] [class*="tjanstBildIn"]{display:none!important}
-[class*="sida"] [class*="tjanstBild"]{aspect-ratio:auto;background:transparent!important;min-height:0;display:flex;justify-content:center;align-items:center;padding:1.7rem 0 0;overflow:visible}
-[class*="sida"] [class*="tjanstIkon"]{position:static;left:auto;bottom:auto;width:104px;height:104px;margin:0;padding:22px;border-radius:50%;background:#fff;color:#0A0A0A;border:1px solid #E7E5E4;box-shadow:0 12px 28px rgba(10,10,10,.10);transition:transform .35s}
-[class*="sida"] [class*="tjanst"]:hover [class*="tjanstIkon"]{transform:translateY(-6px) rotate(-4deg)}
-[class*="sida"] [class*="tjanst"]{text-align:center;box-shadow:none!important;border:2px solid var(--linje)}
-[class*="sida"] [class*="tjanst"]:hover{border-color:#B5433E;box-shadow:none!important}
-[class*="sida"] [class*="tjanstTxt"]{padding:1.1rem 1.4rem 1.4rem;align-items:center}
-[class*="sida"] [class*="tjanstTxt"] p{text-wrap:pretty}
 /* Varför: bara filmen och knapparna, ingen tom textkolumn efter att lead och Ny firma tagits bort. */
 [class*="sida"] [class*="varfor"] [class*="sekHuvud"],
 [class*="sida"] [class*="varforPunkter"]{display:none!important}
@@ -357,6 +321,7 @@ export default function FargaTakDemo() {
       {/* Kommentarerna i STIL är interna anteckningar: de rensas bort så att de inte följer med i kundens HTML. */}
       <style>{STIL.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\n\s*\n/g, '\n')}</style>
       <DemoSida data={data} />
+      <Tjanster />
       <ForeEfterReglage fore={`${M}/hero-fore.webp`} efter={`${M}/hero-efter.webp`} altFore="Illustration: tak före målning, mossigt och blekt" altEfter="Illustration: taket efter målning, nymålat i matt svart" />
     </>
   );
