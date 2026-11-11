@@ -2243,7 +2243,7 @@ a.kontaktRad b {
 }
 .samRubrik {
   font-family: var(--ui);
-  font-size: var(--tx-xs);
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;

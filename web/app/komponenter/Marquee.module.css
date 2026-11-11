@@ -7,8 +7,8 @@
 }
 
 .etikett {
-  margin: 0 0 1.1rem;
-  font-size: 0.78rem;
+  margin: 0 0 1.2rem;
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
