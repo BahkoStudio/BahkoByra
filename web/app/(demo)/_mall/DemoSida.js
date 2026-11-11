@@ -9,7 +9,7 @@ import { googleOmdomen, recoOmdomen, instagramInlagg, kortaText } from './levand
    DEMOMALLEN v3 — en serverkomponent, noll eget klient-JS.
    Varje demo (app/(demo)/<kund>/page.js) exporterar metadata och skickar ett
    data-objekt hit. Sektionsordningen är fast:
-   1 hero · 2 tjänster (kort med bild) · 3 jobb (två band) · 4 varför (mörk,
+   1 hero · 2 tjänster (kort med bild) · 2b priser (valfri prislista) · 3 jobb (två band) · 4 varför (mörk,
    förvandlingsfilm med logotypen i slutet) · 5 om oss (med logotypen) ·
    6 så går det till · 7 omdömen (Google-stil) · 8 Instagram · 9 frågor ·
    10 kontakt (formulär över suddig film) · 10b samarbeten (valfri logotypremsa,
@@ -770,6 +770,33 @@ export default function DemoSida({ data: d }) {
             </div>
           </div>
         </section>
+
+        {/* 2b. Valfritt d.priser { eyebrow, rubrik, lead, kort: [{ namn, pris, villkor?, ingar[], ingarEj?[], utvald?, etikett? }], not? }:
+            prislista som kort direkt efter tjänsterna (Rena Rör 2026-11-11, Mathias: "gör det"). Bara priser kunden själv
+            publicerat (källa i VERIFIERAT). utvald = accentram + etikett. Utan fältet renderas sidan exakt som förut. */}
+        {d.priser ? (
+          <section className={s.sek} id="priser">
+            <div className={s.wrap}>
+              <Rubrik r={d.priser} />
+              <ul className={`${s.priser}${d.priser.kort.length === 2 ? ` ${s.priser2}` : d.priser.kort.length >= 4 ? ` ${s.priser4}` : ''}`}>
+                {d.priser.kort.map((p) => (
+                  <li className={p.utvald ? `${s.prisKort} ${s.prisUtvald}` : s.prisKort} key={p.namn}>
+                    {p.etikett ? <span className={s.prisEtikett}>{p.etikett}</span> : null}
+                    <h3>{p.namn}</h3>
+                    <p className={s.prisTal}>{p.pris}</p>
+                    {p.villkor ? <p className={s.prisVillkor}>{p.villkor}</p> : null}
+                    <ul className={s.prisLista}>
+                      {p.ingar.map((r) => <li key={r}><Bock />{r}</li>)}
+                      {(p.ingarEj || []).map((r) => <li className={s.prisEj} key={r}><span aria-hidden="true">–</span><span>{r}</span></li>)}
+                    </ul>
+                    <a className={p.utvald ? s.btn : `${s.btn} ${s.btnKontur} ${s.prisKnapp}`} href="#kontakt" aria-label={`${d.cta.lank} – ${p.namn}`}>{d.cta.lank}</a>
+                  </li>
+                ))}
+              </ul>
+              {d.priser.not ? <p className={s.prisNot}>{d.priser.not}</p> : null}
+            </div>
+          </section>
+        ) : null}
 
         {/* 3. Jobb: två band, första åt vänster, andra åt höger */}
         <section className={`${s.sek} ${s.jobb}`} id="jobb">

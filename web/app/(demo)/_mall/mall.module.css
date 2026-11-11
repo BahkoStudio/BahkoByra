@@ -786,6 +786,74 @@ html:has(.sida) {
   inset: 0;
 }
 
+/* ---------- 2b. priser: valfri prislista som kort (data: priser). Rena Rör 2026-11-11. ---------- */
+.priser {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.6rem);
+  align-items: stretch;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.priser.priser2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 52rem; }
+.priser.priser4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1100px) { .priser.priser4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 900px) { .priser, .priser.priser2, .priser.priser4 { grid-template-columns: 1fr; max-width: 36rem; margin-inline: auto; } }
+.prisKort {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 2.4vw, 2rem);
+  border-radius: var(--r);
+  background: #fff;
+  border: 1px solid var(--linje);
+  box-shadow: var(--skugga);
+  color: var(--text);
+}
+.prisUtvald { border: 2px solid var(--accent); box-shadow: var(--skugga-stor); }
+.prisEtikett {
+  align-self: flex-start;
+  margin-bottom: 0.9rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--pa-accent);
+  font-family: var(--f-rubrik);
+  font-size: var(--tx-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.prisKort h3 { font-size: var(--tx-l); line-height: 1.25; }
+.prisTal {
+  margin-top: 0.9rem;
+  font-family: var(--f-rubrik);
+  font-size: clamp(2.2rem, 3.6vw, 2.9rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.prisVillkor { margin-top: 0.45rem; font-size: var(--tx-s); color: var(--text-2); }
+.prisLista {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1.4rem 0 1.6rem;
+  padding: 1.3rem 0 0;
+  border-top: 1px solid var(--linje);
+  list-style: none;
+  font-size: var(--tx-m);
+}
+.prisLista li { display: flex; align-items: flex-start; gap: 0.55rem; line-height: 1.4; }
+.prisLista .bock { flex: none; width: 18px; height: 18px; margin-top: 0.15rem; color: var(--accent-text); }
+.prisEj { color: var(--text-2); }
+.prisEj > span:first-child { flex: none; width: 18px; text-align: center; }
+.prisKort .btn { margin-top: auto; width: 100%; }
+.btn.btnKontur.prisKnapp { border-color: rgba(15, 23, 42, 0.28); color: var(--text); }
+.btn.btnKontur.prisKnapp:hover { background: var(--text); border-color: var(--text); color: #fff; }
+.prisNot { margin-top: 1.4rem; font-size: var(--tx-s); color: var(--text-2); max-width: 46rem; }
+
 /* ---------- 3. jobb: två band som rullar åt var sitt håll ---------- */
 .jobb { overflow: hidden; }
 .band {
