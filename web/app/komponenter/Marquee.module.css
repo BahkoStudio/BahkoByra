@@ -13,6 +13,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-lag);
+  text-align: center;
 }
 
 /* Fönstret tonar ut kanterna med bakgrundsfärgen, så ingen text klipps hårt */

@@ -2249,6 +2249,7 @@ a.kontaktRad b {
   text-transform: uppercase;
   color: var(--stal);
   margin: 0 0 1.2rem;
+  text-align: center;
 }
 .samFonster {
   position: relative;
