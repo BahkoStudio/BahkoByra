@@ -128,13 +128,13 @@ export const priser = {
     { namn: 'Spolning och filmning', pris: '3 500 kr', villkor: 'inkl. moms, efter ROT', ingar: [...ING, 'Kamera efteråt'], utvald: true, etikett: 'När stoppet kommer tillbaka' },
     { namn: 'Spolning, filmning och dokumentation', pris: '4 750 kr', villkor: 'inkl. moms, efter ROT', ingar: [...ING, 'Kamera efteråt', 'Dokumentation', 'Filmfilerna till dig'] },
   ],
-  not: 'Föreningar och företag: stamspolning 995 kr per lägenhet exklusive moms vid 5–10 lägenheter. Större fastigheter får offert.',
+  not: 'Jour kvällar och helger: priset får du i telefon innan vi åker. Föreningar och företag: stamspolning 995 kr per lägenhet exklusive moms vid 5–10 lägenheter, större fastigheter får offert.',
 };
 
 export const jobb = {
   eyebrow: 'Våra jobb',
   rubrik: ['Riktiga jobb,', 'riktiga rör'],
-  lead: 'Bilder från jobben i Göteborgstrakten.',
+  lead: '',
   not: 'Bilderna i bandet är från våra egna jobb.',
   tid: '60s',
   rad1: [
@@ -212,10 +212,10 @@ export const omdomen = {
   lappar: true,
   lista: [
     { namn: 'Lennart Skoglund', kalla: 'Google', google: true, betyg: 5, text: 'Ett fantastiskt bra jobb med mitt avlopp i köket, snabbt och snyggt. Nu fungerar det perfekt, var helt täppt.' },
-    { namn: 'Julia Stuxgren', kalla: 'Kund', stjarnor: false, text: 'Fick stopp i avloppet. De löste problemet på 15 min samma dag! Imponerande och trevliga att ha att göra med.' },
+    { namn: 'Julia Stuxgren', kalla: '', stjarnor: false, text: 'Fick stopp i avloppet. De löste problemet på 15 min samma dag! Imponerande och trevliga att ha att göra med.' },
     { namn: 'Kjell Hellström', kalla: 'Google', google: true, betyg: 5, text: 'Fick en perfekt videogenomgång av rörsystemet. Fick åtgärdat det som behövdes och känner mig nu helt trygg.' },
-    { namn: 'Fredrik Sjölin', kalla: 'Kund', stjarnor: false, text: 'Man vet hur man beter sig i privata hem och man sköter arbetsplatsen med omsorg.' },
-    { namn: 'David Ljunggren', kalla: 'Kund', stjarnor: false, text: 'Snabb service och bra återkoppling. Trevlig och proffsig personal. Rekommenderas!' },
+    { namn: 'Fredrik Sjölin', kalla: '', stjarnor: false, text: 'Man vet hur man beter sig i privata hem och man sköter arbetsplatsen med omsorg.' },
+    { namn: 'David Ljunggren', kalla: '', stjarnor: false, text: 'Snabb service och bra återkoppling. Trevlig och proffsig personal. Rekommenderas!' },
   ],
   not: 'Betyget 4,7 av 5 bygger på 14 recensioner på Google.',
 };

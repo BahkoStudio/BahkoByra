@@ -21,7 +21,7 @@ export default function DemoFormular({ className, amne, children, nyckel = DEMO_
   // på telefon (Rena Rör 2026-11-11, mätt top -159 px). Skrolla dit och flytta fokus.
   const kvittoRef = useRef(null);
   useEffect(() => {
-    if (lage !== 'klar' || !kvittoRef.current) return;
+    if ((lage !== 'klar' && lage !== 'fel') || !kvittoRef.current) return;
     kvittoRef.current.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     kvittoRef.current.focus({ preventScroll: true });
   }, [lage]);
@@ -101,7 +101,7 @@ export default function DemoFormular({ className, amne, children, nyckel = DEMO_
       </fieldset>
       {lage === 'skickar' ? <p role="status" aria-live="polite">Skickar...</p> : null}
       {lage === 'fel' ? (
-        <p role="alert" style={{ fontWeight: 600 }}>
+        <p role="alert" style={{ fontWeight: 600 }} ref={kvittoRef} tabIndex={-1}>
           Något gick fel och förfrågan skickades inte. Försök igen, eller ring oss direkt
           {tel ? (
             <>

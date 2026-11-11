@@ -489,7 +489,7 @@ function Kontakt({ d, t, k, harTel }) {
               ) : null}
               <div className={s.formRad}>
                 <label>{t.namn}<input type="text" name="namn" autoComplete="name" required /></label>
-                <label>{t.telefon}<input type="tel" name="telefon" autoComplete="tel" inputMode="tel" pattern="[0-9 +()-]{6,}" title={d.sprak === 'nb' ? 'Skriv et telefonnummer' : 'Skriv ett telefonnummer'} required /></label>
+                <label>{t.telefon}<input type="tel" name="telefon" autoComplete="tel" inputMode="tel" pattern={String.raw`[0-9 +\(\)\-]{6,}`} title={d.sprak === 'nb' ? 'Skriv et telefonnummer' : 'Skriv ett telefonnummer'} required /></label>
               </div>
               {/* Valfritt kontaktSektion.epostNamn: fältnamnet för e-post, t.ex. 'email' (Web3Forms autosvar går bara till fältet email). */}
               <label>{t.epost}<input type="email" name={d.kontaktSektion.epostNamn || 'epost'} autoComplete="email" /></label>

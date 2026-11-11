@@ -50,7 +50,7 @@ const SIDOR = {
     hero: {
       eyebrow: 'Rörinspektion i Göteborg',
       h1: ['Se felet', 'innan du gräver.'],
-      ingress: 'Kameran åker in i röret och visar var det sitter. Spolning och filmning 3 500 kr efter ROT. Med filmfilerna till dig 4 750 kr.',
+      ingress: 'Kameran åker in i röret och visar var det sitter. Du ser felet innan någon gräver.',
       bevis: ['3 500 kr efter ROT', 'Filmfiler om du vill', 'Rötter, sprickor, läckor'],
       bild: B('jobb-kamera-falt.jpg', 'Rörkamerans skärm visar insidan av ett avloppsrör, ute på en gårdsplan'),
     },
@@ -73,7 +73,7 @@ const SIDOR = {
     hero: {
       eyebrow: 'Stamspolning i Göteborg',
       h1: ['Hela huset', 'på en gång.'],
-      ingress: 'Varje lägenhet först, sedan de utgående stammarna. 995 kr per lägenhet exklusive moms vid 5–10 lägenheter.',
+      ingress: 'Varje lägenhet först, sedan de utgående stammarna. Ett pris per lägenhet.',
       bevis: ['995 kr/lgh ex moms', '5–10 lägenheter', 'Större hus: offert'],
       bild: B('tjanst-stam.jpg', 'Avloppstekniker drar ut den blå spolslangen ur spolbilen'),
     },
@@ -110,8 +110,8 @@ const SIDOR = {
     rader: ['avloppsspolning', 'rorinspektion', 'avloppsbrunn'],
     fragor: [
       { q: 'När svarar ni?', a: `Dygnet runt, året runt. Ring ${TEL}.` },
-      { q: 'Vad kostar jouren?', a: 'Ring, så berättar vi.' },
-      { q: 'Tinar ni frusna avlopp?', a: 'Ja.' },
+      { q: 'Vad kostar jouren?', a: 'Kvällar och helger får du priset i telefon innan vi åker.' },
+      { q: 'Tinar ni frusna avlopp?', a: 'Ja. Ring, så kommer vi med spolbilen.' },
       { q: 'Jag har hällt i propplösare. Gör det något?', a: 'Säg det när du ringer. Det är för vår säkerhet.' },
       { q: 'Kan jag hälla kokande vatten i toaletten?', a: 'Nej. Porslinet kan spricka.' },
     ],
@@ -145,7 +145,7 @@ const SIDOR = {
     hero: {
       eyebrow: 'Byta avlopp i Göteborg',
       h1: ['När spolning', 'inte räcker längre.'],
-      ingress: 'Vi filmar först. Sedan får du en offert. Sist gräver vi och lägger nytt, och återställer tomten.',
+      ingress: 'Vi filmar först. Sedan får du en offert. Sist gräver vi och lägger nytt.',
       bevis: ['Filmning först', 'Offert innan vi gräver', 'ROT-avdrag'],
       bild: B('tjanst-byte.jpg', 'Uppgrävd grop där ett gammalt avloppsrör ligger blottat i leran'),
     },
@@ -153,7 +153,7 @@ const SIDOR = {
       { namn: 'Filmning', text: 'Kameran visar vad som är trasigt och om allt behöver bytas.' },
       { namn: 'Offert', text: 'Du får en offert innan något grävs.' },
       { namn: 'Grävning och nya rör', text: 'Vi tar bort det gamla och lägger nytt.' },
-      { namn: 'Tomten återställs', text: 'Vi fyller igen och återställer trädgården.' }],
+      { namn: 'Tomten återställs', text: 'Vi fyller igen och återställer trädgården så gott det går.' }],
     rader: ['rorinspektion', 'avloppsbrunn', 'avloppsspolning'],
     fragor: [
       { q: 'Hur vet jag att det är dags?', a: 'Stoppen kommer tillbaka, det luktar, det är fuktigt. Gjutjärnsrör över 40 år och vita plaströr i 60- och 70-talsvillor är vanliga syndare.' },
@@ -187,7 +187,7 @@ const SIDOR = {
       { q: 'Vad ingår?', a: 'Kök, golvbrunnar och tvättställ i varje lägenhet, kontroll av vattenlåsen och spolning av de utgående stammarna.' },
       { q: 'Har ni jobbat åt föreningar?', a: 'Ja. Hos en förening i Gårda spolade vi en liggande ledning i garaget och hittade ett genomrostat rör. Röret byttes.' },
       { q: 'Har ni jour för de boende?', a: `Ja, dygnet runt på ${TEL}.` },
-      { q: 'Kan ni filma stammarna?', a: 'Ja. Med dokumentation och filmfiler till styrelsen.' },
+      { q: 'Kan ni filma stammarna?', a: 'Ja, med rörkamera.' },
     ],
     kundtypVald: 'BRF',
   },
@@ -215,8 +215,12 @@ const ORTSIDOR = Object.fromEntries(ORTER.map(({ ort, slug }, i) => {
       { namn: 'Rena rör', text: 'Vi spolar loss stoppet och kontrollerar vattenlåset.' }],
     rader: ['avloppsspolning', 'rorinspektion', 'avloppsjour'],
     fragor: [
-      { q: `Kommer ni till ${ort}?`, a: `Ja. Vi jobbar i ${ort} och i ${lista}.` },
-      { q: 'Kostar det extra att köra hit?', a: 'Inte för spolningen. Framkörningen ingår i 2 250 kr efter ROT.' },
+      ort === 'Göteborg'
+        ? { q: 'Var i Göteborg jobbar ni?', a: `I hela Göteborg, till exempel Tuve, Eriksberg och Gårda. Och i ${lista}.` }
+        : { q: `Kommer ni till ${ort}?`, a: `Ja. Vi jobbar i ${ort} och i ${lista}.` },
+      ort === 'Göteborg'
+        ? { q: 'Vad ingår i spolningen?', a: 'Framkörning, en timmes arbete, hetvatten och kontroll av vattenlåset. 2 250 kr efter ROT.' }
+        : { q: 'Kostar det extra att köra hit?', a: 'Inte för spolningen. Framkörningen ingår i 2 250 kr efter ROT.' },
       { q: `Har ni jour i ${ort}?`, a: `Ja, dygnet runt. Ring ${TEL}.` },
       { q: 'Får jag priset innan ni kommer?', a: 'Ja, när vi bekräftar tiden.' },
       { q: 'Vad kostar filmning?', a: '3 500 kr med spolning, efter ROT. Med dokumentation och filmfiler 4 750 kr.' },
@@ -305,7 +309,7 @@ const VARFOR = {
     ],
     [
       "Offert innan grävning",
-      "Inga överraskningar på fakturan."
+      "Du vet vilka kostnader du kan förvänta dig."
     ],
     [
       "ROT-avdrag",
@@ -315,7 +319,7 @@ const VARFOR = {
   "brf": [
     [
       "Ett pris per lägenhet",
-      "995 kr exklusive moms vid 5–10 lägenheter. Större föreningar får offert."
+      "995 kr exklusive moms vid 5–10 lägenheter."
     ],
     [
       "Jour för de boende",
@@ -323,7 +327,7 @@ const VARFOR = {
     ],
     [
       "Kamera när ni vill se",
-      "Filmade stammar med dokumentation till styrelsen."
+      "Vill styrelsen se skicket filmar vi stammarna."
     ],
     [
       "Nöjda, annars fortsätter vi",
@@ -333,7 +337,7 @@ const VARFOR = {
 };
 const varforFor = (slug, p) => {
   if (VARFOR[slug]) return VARFOR[slug];
-  return [['Framkörning ingår', `Spolningen kostar 2 250 kr efter ROT, även i ${p.ort}.`], ['Jour dygnet runt', `Stopp i ${p.ort} en söndagskväll? Ring.`], ['Små spolbilar', 'Kommer in på trånga uppfarter.']];
+  return [['Framkörning ingår', p.ort === 'Göteborg' ? 'Spolningen kostar 2 250 kr efter ROT, med framkörning.' : `Spolningen kostar 2 250 kr efter ROT, även i ${p.ort}.`], ['Jour dygnet runt', `Stopp i ${p.ort} en söndagskväll? Ring.`], ['Små spolbilar', 'Kommer in på trånga uppfarter.']];
 };
 
 // BRF-sidans kontaktdel och rader är skrivna för styrelsen.
@@ -347,7 +351,7 @@ const BRF_KONTAKT = {
 };
 const BRF_RADER = {
   stamspolning: { text: 'Kök, golvbrunnar och tvättställ i varje lägenhet. Sist de utgående stammarna.', punkter: ['995 kr/lgh ex moms', 'Vattenlåsen kontrolleras'] },
-  rorinspektion: { text: 'Se skicket på stammarna innan styrelsen bestämmer något.', punkter: ['Dokumentation', 'Filmfiler till styrelsen'] },
+  rorinspektion: { text: 'Se skicket på stammarna innan styrelsen bestämmer något.', punkter: ['Kamera i stammarna', 'Se innan ni beslutar'] },
   avloppsjour: { text: 'Ett nummer de boende kan ringa när det stoppar.', punkter: ['Dygnet runt', 'Året runt'] },
 };
 
@@ -377,13 +381,13 @@ export default async function RenaRorSida({ params }) {
     varfor: { ...sida().varfor, rubrik: slug === 'brf' ? ['Det här kan', 'styrelsen räkna med'] : ['Det här kan', 'du räkna med'], lead: '', punkter: varforFor(slug, p).map(([rubrik, text]) => ({ rubrik, text })) },
     nav: {
       vanster: [{ href: `${BAS}/`, txt: 'Startsida' }, { href: '#process', txt: 'Så går det till' }],
-      hoger: [{ href: '#omdomen', txt: 'Omdömen' }, { href: `${BAS}/#priser`, txt: 'Priser' }],
+      hoger: [{ href: '#omdomen', txt: 'Omdömen' }, slug === 'brf' ? { href: '#kontakt', txt: 'Begär pris' } : { href: `${BAS}/#priser`, txt: 'Priser' }],
       extra: [...(slug === 'brf' ? [] : [{ href: href('brf'), txt: 'För BRF' }]), { href: TELHREF, txt: `Ring ${TEL}` }],
     },
     fragor: {
       eyebrow: 'Vanliga frågor',
       rubrik: ['Det du undrar', 'innan du ringer'],
-      kort: { rubrik: 'Akut stopp?', text: `Ring ${TEL}. Vi svarar dygnet runt.` },
+      kort: slug === 'brf' ? { rubrik: 'Sitter du i styrelsen?', text: `Ring ${TEL} och berätta hur många lägenheter föreningen har.` } : { rubrik: 'Akut stopp?', text: `Ring ${TEL}. Vi svarar dygnet runt.` },
       lista: p.fragor,
     },
     kontaktSektion: { ...kontaktSektion(p.ort, TJ_FORST[slug] || slug), ...(slug === 'brf' ? BRF_KONTAKT : {}), ...(p.kundtypVald ? { kundtypVald: p.kundtypVald } : {}) },
