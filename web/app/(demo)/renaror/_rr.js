@@ -121,11 +121,11 @@ export const siffror = [
 const ING = ['Framkörning ingår', 'En timmes arbete', 'Hetvatten 60 °C', 'Kontroll av vattenlåset'];
 export const priser = {
   eyebrow: 'Prislista',
-  rubrik: ['Fasta priser.', 'Inga överraskningar'],
+  rubrik: ['Fast pris', 'på spolning'],
   lead: 'För privatpersoner. Inklusive moms, efter ROT-avdrag.',
   kort: [
-    { namn: 'Spolning med efterkontroll', pris: '2 250 kr', villkor: 'inkl. moms, efter ROT', ingar: ING, ingarEj: ['Filmning ingår inte'] },
-    { namn: 'Spolning och filmning', pris: '3 500 kr', villkor: 'inkl. moms, efter ROT', ingar: [...ING, 'Kamera efteråt'], ingarEj: ['Filmfiler ingår inte'], utvald: true, etikett: 'När stoppet kommer tillbaka' },
+    { namn: 'Spolning med efterkontroll', pris: '2 250 kr', villkor: 'inkl. moms, efter ROT', ingar: ING },
+    { namn: 'Spolning och filmning', pris: '3 500 kr', villkor: 'inkl. moms, efter ROT', ingar: [...ING, 'Kamera efteråt'], utvald: true, etikett: 'När stoppet kommer tillbaka' },
     { namn: 'Spolning, filmning och dokumentation', pris: '4 750 kr', villkor: 'inkl. moms, efter ROT', ingar: [...ING, 'Kamera efteråt', 'Dokumentation', 'Filmfilerna till dig'] },
   ],
   not: 'Föreningar och företag: stamspolning 995 kr per lägenhet exklusive moms vid 5–10 lägenheter. Större fastigheter får offert.',
@@ -156,12 +156,12 @@ export const jobb = {
 export const varfor = {
   eyebrow: 'Varför Rena Rör',
   rubrik: ['Du vet priset', 'innan vi åker'],
-  lead: 'Avloppsfirmor har rykte om sig att ta betalt i efterhand. Vi gör tvärtom.',
+  lead: 'Priset står i listan. Du får det innan vi åker.',
   punkter: [
     { rubrik: 'Fast pris', text: '2 250 kr efter ROT. Framkörning och första timmen ingår.' },
-    { rubrik: 'Kamera bara vid behov', text: 'Filmning kostar mer. Vi föreslår den när stoppet kommer tillbaka.' },
-    { rubrik: 'Små spolbilar', text: 'Kommer in på trånga uppfarter. Lägre drift, lägre pris.' },
-    { rubrik: 'Nöjd, annars fortsätter vi', text: 'Kundnöjdhetsgaranti på jobben.' },
+    { rubrik: 'Kamera bara när den behövs', text: 'Filmning kostar mer. Vi rekommenderar den inte i onödan.' },
+    { rubrik: 'Små spolbilar', text: 'Kommer in på trånga uppfarter och drar mindre bränsle. Det håller nere priset.' },
+    { rubrik: 'Nöjd, annars fortsätter vi', text: 'Vi jobbar tills du är nöjd. Det är vår kundnöjdhetsgaranti.' },
   ],
   video: `${M}/video-varfor.mp4`,
   poster: `${M}/poster-varfor.jpg`,
@@ -172,14 +172,13 @@ export const om = {
   eyebrow: 'Om oss',
   rubrik: ['Litet team,', 'egna spolbilar'],
   kortRad: 'Göteborg med omnejd',
-  bild: { src: `${M}/om-agaren.jpg`, w: 750, h: 900, alt: 'Ägaren till Rena Rör i Väst i arbetströja med logotypen', rundad: true },
   stycken: [
-    'Ett avloppsföretag i Göteborg, startat 2013. Tre avloppstekniker, egna spolbilar och jour dygnet runt.',
-    'Villor, föreningar och företag från Kungälv till Kungsbacka. Målet är enkelt: hjälp på utsatt tid, minsta möjliga stök, bra pris.',
+    'Tre avloppstekniker med egna spolbilar. Vi har jobbat med avlopp i 14 år.',
+    'Villor, föreningar och företag från Kungälv till Kungsbacka. Vi kommer på utsatt tid och ställer till så lite som möjligt.',
   ],
   bevis: [
-    { ord: 'Jour 24/7', text: 'året runt' },
-    { ord: 'Fasta priser', text: 'efter ROT-avdrag' },
+    { ord: '14 år', text: 'med avlopp' },
+    { ord: 'Fast pris', text: 'på spolning' },
     { ord: '4,7 av 5', text: 'på Google' },
   ],
 };
@@ -189,26 +188,35 @@ export const steg = {
   rubrik: ['Från stopp', 'till rena rör'],
   lista: [
     { namn: 'Ring eller boka', ikon: 'kontakt', text: `Dygnet runt på ${TEL}.` },
-    { namn: 'Vi hittar felet', ikon: 'besok', text: 'Ofta räcker ett samtal. Annars tittar vi på plats.' },
+    { namn: 'Vi hittar felet', ikon: 'besok', text: 'Per telefon eller på plats.' },
     { namn: 'Pris innan vi åker', ikon: 'offert', text: 'Du får priset när vi bekräftar tiden.' },
     { namn: 'Rena rör', ikon: 'klart', text: 'Vi spolar, kollar vattenlåset och åker.' },
   ],
 };
 
+export const team = {
+  eyebrow: 'Vårt team',
+  rubrik: ['Möt teamet', 'i Rena Rör'],
+  lista: [
+    { namn: 'Claudio Congiu', roll: 'Ägare och avloppstekniker', bild: `${M}/team-claudio.jpg` },
+    { namn: 'Martin Andersson', roll: 'Avloppstekniker', bild: `${M}/team-martin.jpg` },
+    { namn: 'Vahid Rostami', roll: 'Avloppstekniker', bild: `${M}/team-vahid.jpg` },
+  ],
+};
+
 export const omdomen = {
   eyebrow: 'Omdömen',
-  rubrik: ['”Löst på 15 minuter,', 'samma dag”'],
+  rubrik: ['Löst på 15 minuter.', 'Samma dag.'],
   betyg: { varde: 4.7, antal: 14, href: GOOGLE },
   lappar: true,
   lista: [
     { namn: 'Lennart Skoglund', kalla: 'Google', google: true, betyg: 5, text: 'Ett fantastiskt bra jobb med mitt avlopp i köket, snabbt och snyggt. Nu fungerar det perfekt, var helt täppt.' },
-    { namn: 'Julia Stuxgren', kalla: 'renaror.se', stjarnor: false, text: 'Fick stopp i avloppet. De löste problemet på 15 min samma dag! Imponerande och trevliga att ha att göra med.' },
+    { namn: 'Julia Stuxgren', kalla: 'Kund', stjarnor: false, text: 'Fick stopp i avloppet. De löste problemet på 15 min samma dag! Imponerande och trevliga att ha att göra med.' },
     { namn: 'Kjell Hellström', kalla: 'Google', google: true, betyg: 5, text: 'Fick en perfekt videogenomgång av rörsystemet. Fick åtgärdat det som behövdes och känner mig nu helt trygg.' },
-    { namn: 'Fredrik Sjölin', kalla: 'renaror.se', stjarnor: false, text: 'Man vet hur man beter sig i privata hem och man sköter arbetsplatsen med omsorg.' },
-    { namn: 'David Ljunggren', kalla: 'renaror.se', stjarnor: false, text: 'Snabb service och bra återkoppling. Trevlig och proffsig personal. Rekommenderas!' },
-    { namn: 'Tom Vujnovac', kalla: 'renaror.se', stjarnor: false, text: "Excellent service! These guys are as nice as they're professional." },
+    { namn: 'Fredrik Sjölin', kalla: 'Kund', stjarnor: false, text: 'Man vet hur man beter sig i privata hem och man sköter arbetsplatsen med omsorg.' },
+    { namn: 'David Ljunggren', kalla: 'Kund', stjarnor: false, text: 'Snabb service och bra återkoppling. Trevlig och proffsig personal. Rekommenderas!' },
   ],
-  not: 'Två av 14 recensioner på Google och fyra omdömen från vår hemsida, ordagrant eller kortade.',
+  not: 'Betyget 4,7 av 5 bygger på 14 recensioner på Google.',
 };
 
 export const instagram = {
@@ -222,7 +230,7 @@ export const kontaktSektion = (ort) => ({
   eyebrow: 'Kontakt',
   rubrik: ['Stopp nu?', 'Ring direkt'],
   lead: `Akut: ring ${TEL}, dygnet runt. Annars skriver du några rader, så bekräftar vi tid och pris.`,
-  checkar: ['Pris innan vi kommer', ort ? `Vi kommer till ${ort}` : 'Jour dygnet runt', 'Priser efter ROT-avdrag'],
+  checkar: ['Pris innan vi kommer', ort ? `Vi kommer till ${ort}` : 'Svar dygnet runt', 'Priser efter ROT-avdrag'],
   video: `${M}/video-kontakt.mp4`,
   poster: `${M}/poster-kontakt.jpg`,
   formRubrik: 'Boka tid',
@@ -231,11 +239,20 @@ export const kontaktSektion = (ort) => ({
   kundtyp: ['Privatperson', 'BRF', 'Företag'],
 });
 
-export const popup = { rubrik: 'Stopp i avloppet?', text: 'Spolning 2 250 kr efter ROT. Framkörning ingår.' };
+// Popupen är avstängd (runda 1: den täckte prislistan och formuläret på mobil). Mallen: popup: false.
+export const popup = false;
+
+// Bokning (Mathias 2026-11-11: "lägg som ett förslag men länka nu till vår mejl bahkostudio@gmail.com").
+// Ingen Cal.com-kalender hos Rena Rör än; knappen går till Bahkos mejl tills de har en egen.
+export const bokning = {
+  url: 'mailto:bahkostudio@gmail.com?subject=Boka%20tid%20hos%20Rena%20R%C3%B6r',
+  txt: 'Boka en tid',
+  kortTxt: 'Boka en tid',
+};
 
 export const footer = {
   text: 'Avlopp i Göteborg med omnejd. Jour dygnet runt, året runt.',
-  tjanster: [...TJANSTER.map((t) => ({ href: href(t.slug), txt: t.kort })), { href: href('brf'), txt: 'För BRF' }, { href: `${BAS}/#priser`, txt: 'Prislista' }],
+  tjanster: [...TJANSTER.map((t) => ({ href: href(t.slug), txt: t.kort })), { href: `${BAS}/#priser`, txt: 'Prislista' }],
   orter: { rubrik: 'Här jobbar vi', lankar: ORTER.map((o) => ({ href: href(o.slug), txt: o.ort })) },
   bild: {
     src: `${M}/ftr-goteborg.jpg`,
@@ -254,7 +271,7 @@ export const hero = {
   posterMobil: `${M}/poster-hero-mobil.jpg`,
 };
 
-export const tejp = ['Jour dygnet runt', 'Avloppsspolning', '4,7 av 5 på Google', 'Rörinspektion', 'Pris innan vi kommer', 'Stamspolning', 'Fasta priser', 'Byta avlopp'];
+export const tejp = ['Jour dygnet runt', 'Spolning 2 250 kr', '4,7 av 5 på Google', 'Rörinspektion', 'Pris innan vi kommer', 'Stamspolning', '14 år med avlopp', 'Byta avlopp'];
 
 /** Grunddata för alla sidor. över = det som skiljer en sida från startsidan. */
 export const sida = (over = {}) => ({
@@ -266,6 +283,7 @@ export const sida = (over = {}) => ({
   kontakt,
   cta,
   formular,
+  bokning,
   nav: {
     vanster: [{ href: `${BAS}/#tjanster`, txt: 'Tjänster' }, { href: `${BAS}/#priser`, txt: 'Priser' }],
     hoger: [{ href: href('brf'), txt: 'För BRF' }, { href: `${BAS}/#omdomen`, txt: 'Omdömen' }],
@@ -276,12 +294,12 @@ export const sida = (over = {}) => ({
   siffror,
   tjanster: { eyebrow: 'Tjänster', rubrik: ['Stopp?', 'Vi löser det'], lead: 'Kök, toalett, golvbrunn eller brunnen på tomten. Vi spolar, filmar och byter.', kolumner: 3, kort: tjanstKort() },
   priser,
+  priserForst: true,
   jobb,
   varfor,
   om,
-  steg,
+  team,
   omdomen,
-  instagram,
   kontaktSektion: kontaktSektion(),
   popup,
   footer,

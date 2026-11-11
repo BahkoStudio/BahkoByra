@@ -627,7 +627,7 @@ function StyrelseMain({ d, t, k, harTel, andraVag }) {
               <article className={`${s.stRad}${i % 2 ? ` ${s.stRadVand}` : ''}`} key={tj.id}>
                 <div className={s.stRadBild}><Image src={tj.bild} alt={tj.alt} width={800} height={600} sizes="(max-width: 900px) 92vw, 560px" loading={i ? 'lazy' : undefined} /></div>
                 <div className={s.stRadTxt}>
-                  {tj.ritning ? <span className={s.stRadIkon} aria-hidden="true"><svg viewBox="0 0 200 120">{tj.ritning}</svg></span> : null}
+                  {tj.marke ? <span className={s.stRadMarke} aria-hidden="true"><Image src={tj.marke} alt="" width={240} height={240} sizes="80px" loading="lazy" /></span> : tj.ritning ? <span className={s.stRadIkon} aria-hidden="true"><svg viewBox="0 0 200 120">{tj.ritning}</svg></span> : null}
                   <h3>{tj.namn}</h3>
                   <p>{tj.text}</p>
                   {tj.punkter?.length ? <ul>{tj.punkter.map((p) => <li key={p}><Bock />{p}</li>)}</ul> : null}
@@ -680,6 +680,32 @@ export default function DemoSida({ data: d }) {
   const h1Rader = d.hero.h1 || [d.namn];
   const HeroLogoTagg = d.hero.rubrik ? 'p' : 'h1';
   const h1Tecken = Math.max(...h1Rader.map((rad) => (rad.txt ? rad.txt.length * (rad.liten ? 0.62 : 1) : rad.length))).toFixed(1);
+  // 2b. Valfritt d.priser { eyebrow, rubrik, lead, kort: [{ namn, pris, villkor?, ingar[], ingarEj?[], utvald?, etikett? }], not? }:
+  // prislista som kort (Rena Rör 2026-11-11). Bara priser kunden själv publicerat. Står efter tjänsterna,
+  // eller före dem med d.priserForst. Utan fältet renderas sidan exakt som förut.
+  const priserBlock = d.priser ? (
+          <section className={s.sek} id="priser">
+            <div className={s.wrap}>
+              <Rubrik r={d.priser} />
+              <ul className={`${s.priser}${d.priser.kort.length === 2 ? ` ${s.priser2}` : d.priser.kort.length >= 4 ? ` ${s.priser4}` : ''}`}>
+                {d.priser.kort.map((p) => (
+                  <li className={p.utvald ? `${s.prisKort} ${s.prisUtvald}` : s.prisKort} key={p.namn}>
+                    {p.etikett ? <span className={s.prisEtikett}>{p.etikett}</span> : null}
+                    <h3>{p.namn}</h3>
+                    <p className={s.prisTal}>{p.pris}</p>
+                    {p.villkor ? <p className={s.prisVillkor}>{p.villkor}</p> : null}
+                    <ul className={s.prisLista}>
+                      {p.ingar.map((r) => <li key={r}><Bock />{r}</li>)}
+                      {(p.ingarEj || []).map((r) => <li className={s.prisEj} key={r}><span aria-hidden="true">–</span><span>{r}</span></li>)}
+                    </ul>
+                    <a className={p.utvald ? s.btn : `${s.btn} ${s.btnKontur} ${s.prisKnapp}`} href="#kontakt" aria-label={`${d.cta.lank} – ${p.namn}`}>{d.cta.lank}</a>
+                  </li>
+                ))}
+              </ul>
+              {d.priser.not ? <p className={s.prisNot}>{d.priser.not}</p> : null}
+            </div>
+          </section>
+        ) : null;
   // Bandet under heron: egna ord i d.tejp, annars tjänsternas namn och punkter.
   const tejp = d.tejp || [...new Set(d.tjanster.kort.flatMap((tj) => [tj.namn, ...(tj.punkter || [])]))].slice(0, 10);
   const tema = {
@@ -695,7 +721,7 @@ export default function DemoSida({ data: d }) {
     : { href: k.ig, txt: t.folj, ikon: <IgIkon />, ny: true };
 
   return (
-    <div className={`${fontKlasser} ${s.sida}${d.kund ? ` ${s.kund}` : ''}`} style={tema}>
+    <div data-popup={d.popup === false ? 'av' : undefined} className={`${fontKlasser} ${s.sida}${d.kund ? ` ${s.kund}` : ''}`} style={tema}>
       <header className={d.layout === 'styrelse' ? `${s.hdr} ${s.hdrLjus}` : s.hdr}>
         <div className={s.hdrIn}>
           {harTel
@@ -785,6 +811,9 @@ export default function DemoSida({ data: d }) {
           </div>
         ) : null}
 
+        {/* Valfritt d.priserForst: true (Rena Rör 2026-11-11): prislistan före tjänsterna, så priset syns inom två skrollar. */}
+        {d.priserForst ? priserBlock : null}
+
         {/* 2. Tjänster: kort med bild */}
         <section className={`${s.sek} ${s.sekMjuk}${d.tjanster.lattKort ? ` ${s.lattKort}` : ''}`} id="tjanster">
           <div className={s.wrap}>
@@ -814,32 +843,7 @@ export default function DemoSida({ data: d }) {
           </div>
         </section>
 
-        {/* 2b. Valfritt d.priser { eyebrow, rubrik, lead, kort: [{ namn, pris, villkor?, ingar[], ingarEj?[], utvald?, etikett? }], not? }:
-            prislista som kort direkt efter tjänsterna (Rena Rör 2026-11-11, Mathias: "gör det"). Bara priser kunden själv
-            publicerat (källa i VERIFIERAT). utvald = accentram + etikett. Utan fältet renderas sidan exakt som förut. */}
-        {d.priser ? (
-          <section className={s.sek} id="priser">
-            <div className={s.wrap}>
-              <Rubrik r={d.priser} />
-              <ul className={`${s.priser}${d.priser.kort.length === 2 ? ` ${s.priser2}` : d.priser.kort.length >= 4 ? ` ${s.priser4}` : ''}`}>
-                {d.priser.kort.map((p) => (
-                  <li className={p.utvald ? `${s.prisKort} ${s.prisUtvald}` : s.prisKort} key={p.namn}>
-                    {p.etikett ? <span className={s.prisEtikett}>{p.etikett}</span> : null}
-                    <h3>{p.namn}</h3>
-                    <p className={s.prisTal}>{p.pris}</p>
-                    {p.villkor ? <p className={s.prisVillkor}>{p.villkor}</p> : null}
-                    <ul className={s.prisLista}>
-                      {p.ingar.map((r) => <li key={r}><Bock />{r}</li>)}
-                      {(p.ingarEj || []).map((r) => <li className={s.prisEj} key={r}><span aria-hidden="true">–</span><span>{r}</span></li>)}
-                    </ul>
-                    <a className={p.utvald ? s.btn : `${s.btn} ${s.btnKontur} ${s.prisKnapp}`} href="#kontakt" aria-label={`${d.cta.lank} – ${p.namn}`}>{d.cta.lank}</a>
-                  </li>
-                ))}
-              </ul>
-              {d.priser.not ? <p className={s.prisNot}>{d.priser.not}</p> : null}
-            </div>
-          </section>
-        ) : null}
+        {d.priserForst ? null : priserBlock}
 
         {/* 3. Jobb: två band, första åt vänster, andra åt höger */}
         <section className={`${s.sek} ${s.jobb}`} id="jobb">
@@ -908,6 +912,21 @@ export default function DemoSida({ data: d }) {
                 <a className={s.pilLank} href="#kontakt">{d.cta.lank}</a>
               </div>
             </div>
+            {/* Valfritt d.team { eyebrow, rubrik, lista: [{ namn, roll, bild }] } (Rena Rör 2026-11-11, Mathias: "möt teamet"):
+                porträtt med namn och roll på en ljus etikett, under Om oss. Bara riktiga anställda med egna foton. */}
+            {d.team ? (
+              <div className={s.team}>
+                <Rubrik r={d.team} />
+                <ul className={s.teamLista}>
+                  {d.team.lista.map((p) => (
+                    <li className={s.teamKort} key={p.namn}>
+                      <Image src={p.bild} alt={`${p.namn}, ${p.roll.toLowerCase()}`} width={600} height={720} sizes="(max-width: 700px) 92vw, 380px" loading="lazy" />
+                      <div className={s.teamEtikett}><b>{p.namn}</b><span>{p.roll}</span></div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
           </div>
         </section>
 
@@ -1024,6 +1043,7 @@ export default function DemoSida({ data: d }) {
       </div>
       <span className={s.stangdAnkare} id="stangd" />
 
+      {d.popup === false ? null : (<>
       <input type="checkbox" id="popup-bort" className={s.popupBort} aria-hidden="true" tabIndex={-1} />
       <aside className={s.popup} aria-label={`${t.kontakt} ${d.namn}`}>
         <label className={s.popupX} htmlFor="popup-bort" role="button" aria-label={t.stangKort} tabIndex={0}>✕</label>
@@ -1032,6 +1052,7 @@ export default function DemoSida({ data: d }) {
         <a className={`${s.btn} ${s.popupCta}`} href={harTel ? k.telHref : '#kontakt'}>{harTel ? `${t.ring} ${k.tel}` : d.cta.txt}</a>
         {harTel ? <a className={s.popupAlt} href="#kontakt">{t.ellerSkriv}</a> : null}
       </aside>
+      </>)}
 
       {/* Bahkos demo-knapp och modal: bara i förslag. En kunds egen sida (d.kund) har ingen av dem. */}
       {d.kund ? null : (

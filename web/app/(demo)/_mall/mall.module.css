@@ -874,6 +874,18 @@ html:has(.sida) {
 .tjanstMarke img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 .tjanst:hover .tjanstMarke { transform: translateY(-6px) rotate(-4deg); }
 .tjanstMedMarke .tjanstTxt { padding-top: 3.6rem; }
+/* ---------- Valfritt: Möt teamet under Om oss (data: team). Rena Rör 2026-11-11. ---------- */
+.team { margin-top: clamp(3.5rem, 7vw, 5.5rem); }
+.teamLista { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: clamp(1rem, 2.4vw, 1.8rem); list-style: none; margin: 0; padding: 0; }
+.teamKort { position: relative; border-radius: var(--r); overflow: hidden; aspect-ratio: 5 / 6; background: var(--mork); box-shadow: var(--skugga); }
+.teamKort img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+.teamKort:hover img { transform: scale(1.04); }
+.teamEtikett { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; display: grid; gap: 0.15rem; padding: 1rem 1.2rem; border-radius: 16px; background: color-mix(in srgb, var(--accent) 62%, #fff); color: #111827; text-align: center; box-shadow: 0 10px 24px -10px rgba(15, 23, 42, 0.45); }
+.teamEtikett b { font-family: var(--f-rubrik); font-size: var(--tx-l); font-weight: 700; }
+.teamEtikett span { font-size: var(--tx-s); color: #1F2937; }
+/* Samma märke i den andra layoutens rader (tjanster.kort[].marke). */
+.stRadMarke { display: block; width: 76px; aspect-ratio: 1; margin-bottom: 0.9rem; padding: 4px; border-radius: 50%; background: #fff; box-shadow: 0 10px 24px rgba(10, 22, 40, 0.16); }
+.stRadMarke img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
 /* ---------- Valfritt: sifferrad efter bandet (data: siffror). Rena Rör 2026-11-11. Talen räknas upp
    med en registrerad heltalsegenskap på en view()-tidslinje. Utan stöd: slutsiffran står direkt. ---------- */
