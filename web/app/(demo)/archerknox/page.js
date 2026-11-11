@@ -110,6 +110,7 @@ const data = {
   nav: {
     vanster: [{ href: '#tjanster', txt: 'Produkter' }, { href: '#jobb', txt: 'På taken' }],
     hoger: [{ href: '#om', txt: 'Om oss' }, { href: '#kontakt', txt: 'Kontakt' }],
+    extra: [{ href: '/archerknox/butik/', txt: 'Webbutik' }],
   },
 
   hero: {
@@ -255,6 +256,14 @@ const data = {
 
   footer: {
     text: 'Fågelskydd för solpaneler från BirdBlocker, nockband, takmembran och taksäkerhet. Lager och lagershop i Kungsängen. Leverans i hela Sverige.',
+    // Webbutiken som egen landningssida (2026-11-11, ecome-hemsida): först i Tjänster-kolumnen.
+    tjanster: [
+      { href: '/archerknox/butik/', txt: 'Webbutik' },
+      { href: '/archerknox/butik/#birdblocker', txt: 'BirdBlocker' },
+      { href: '/archerknox/butik/#nockband', txt: 'Nockband' },
+      { href: '/archerknox/butik/#takmembran', txt: 'Takmembran' },
+      { href: '/archerknox/butik/#taksakerhet', txt: 'Taksäkerhet' },
+    ],
   },
 
   modal: {
