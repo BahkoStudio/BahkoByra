@@ -3,16 +3,18 @@
   background: var(--sektion);
   border-block: 1px solid var(--linje-mork);
   overflow: hidden;
-  padding: 1.4rem 0 1.6rem;
+  padding: 1.1rem 0 1.3rem;
 }
 
 .etikett {
-  margin: 0 0 1.1rem;
-  font-size: 0.78rem;
+  margin: 0 0 0.9rem;
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-lag);
+  /* Grön som varumärket (Mathias 2026-11-11), så rubriken skiljer sig från raderna under loggorna. */
+  color: var(--em-lt);
+  text-align: center;
 }
 
 /* Fönstret tonar ut kanterna med bakgrundsfärgen, så ingen text klipps hårt */

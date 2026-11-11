@@ -43,6 +43,15 @@ import { arKunddoman } from './kunddoman';
    maskiner, priser, ledtider, "95 % kundnöjdhet" (sajtens räknare).
    Snöskotrarna ("i Norrbotten med omnejd" enligt sajten) nämns inte.
 
+   PETERS UPPDATERING 2026-11-11 (mejl till Mathias): tjänsterna är Bygg (sågar, fräsar,
+   stoftavskiljare), Rivning (bilningshammare, mattstrippers, luftrenare), Sanering (plast, tejp,
+   skyddsutrustning) och Håltagning (kärnborrar, klingor, golvsågar). Ägs av ett företag från
+   branschen inom just de kategorierna. Hyr ut OCH återförsäljare av maskiner, handverktyg,
+   förbrukningsmaterial och betongbearbetning. Leverantörer: Flex, Stanley, DeWalt (samma koncern),
+   Hilti, JLM Group, Husqvarna Construction, Brokk. Logotyperna visas inte, bara namnen som text.
+   Heron, Leveransen-sektionen och galleriet visar fortfarande grävare, liftar och bodar: fråga
+   Peter innan de byts (bilder byts bara på hans begäran).
+
    FLAGGOR: formuläret går till peter@proffsmaskiner.se (Web3Forms, 2026-11-10); omdömessektionen och illustrationstexten borttagna (Mathias 2026-11-10);
    före/efter och galleri är illustrationer; sociala är deras egna.
    =========================================================================== */
@@ -80,7 +89,7 @@ const ui = localFont({
 const META = {
   title: 'Proffsmaskiner Sverige AB | Maskinuthyrning i Sollentuna och Stockholm',
   description:
-    'Hyr minigrävare, liftar, bodar, elverk och håltagningsmaskiner i Sollentuna och Stockholm. Levererat till arbetsplatsen, servat före varje uthyrning, ersättningsmaskin om något går sönder.',
+    'Hyr och köp maskiner för bygg, rivning, sanering och håltagning i Sollentuna och Stockholm. Leverantörer som Hilti, Husqvarna Construction och Brokk. Levererat till arbetsplatsen, servat före varje uthyrning.',
 };
 
 // Kunddomänen: indexeras med canonical proffsmaskiner.se. På bahkobyra.se/proffsmaskiner/: noindex.
@@ -102,23 +111,43 @@ const IG = 'https://www.instagram.com/proffsmaskinerab/';
 
 const LANKAR = [
   { href: '#tjanster', txt: 'Maskiner' },
+  { href: '#om', txt: 'Om oss' },
   { href: '#process', txt: 'Så går det till' },
   { href: '#varfor', txt: 'Varför oss' },
   { href: '#fragor', txt: 'Vanliga frågor' },
 ];
 
+// Linjeritningar i samma stil som stegen: 200 x 120, bara streck. Bygg = cirkelsåg,
+// Rivning = bilningshammare, Sanering = plastvägg med dragkedja och tejprulle,
+// Håltagning = kärnborr på stativ.
 const RITNINGAR = {
-  anlaggning: (<><path d="M20 96h160" /><path d="M36 96V70h44l16-30h30l10 30h10v26" /><circle cx="56" cy="96" r="10" /><circle cx="126" cy="96" r="10" /><path d="M96 40l40-22 30 18" /><path d="M166 36l12 20-10 4" /></>),
-  lift: (<><path d="M40 100h120" /><path d="M56 100V90h88v10" /><path d="M64 90l72-24M136 90L64 66M64 66l72-24M136 66L64 42" /><path d="M56 42h88v-8H56z" /><path d="M60 34v-10h80v10" /></>),
-  bod: (<><path d="M24 44h152v56H24z" /><path d="M24 44l76-20 76 20" /><path d="M48 62h24v20H48zM128 62h24v20h-24z" /><path d="M88 100V64h24v36" /><path d="M24 108h152" /></>),
-  el: (<><path d="M30 40h140v56H30z" /><path d="M30 60h140" /><path d="M46 78h24M130 78h24" /><path d="M104 44l-14 24h20l-14 24" /><path d="M60 104v10M140 104v10" /></>),
+  bygg: (<><path d="M24 98h152" /><path d="M58 98a34 34 0 0 1 68 0" /><path d="M70 98a22 22 0 0 1 44 0" /><path d="M118 70h40v16h-34" /><path d="M134 70l8-20h22" /></>),
+  rivning: (<><path d="M64 22h72" /><path d="M76 22v14M124 22v14" /><path d="M84 36h32v40H84z" /><path d="M96 76h8v20l-4 8-4-8z" /><path d="M28 110h144M52 106l6-6 6 6M136 106l6-6 6 6" /></>),
+  sanering: (<><path d="M26 18h118" /><path d="M32 18c6 28-6 58 2 88M138 18c-6 28 6 58-2 88" /><path d="M85 28v78" /><path d="M78 40h14M78 56h14M78 72h14M78 88h14" /><circle cx="166" cy="88" r="16" /><circle cx="166" cy="88" r="7" /></>),
+  haltagning: (<><path d="M40 104h120" /><path d="M66 104V16" /><path d="M58 40h44v22H58z" /><path d="M102 44h26v14h-26" /><path d="M76 62v30M90 62v30M76 92h14" /></>),
 };
 
 const TJANSTER = [
-  { id: 'anlaggning', ritning: 'anlaggning', namn: 'Anläggning', text: 'Minigrävare, grävmaskiner, vibrationsplattor och markvibratorer. Rätt storlek för tomten, kontrollerad och servad innan den lämnar oss.', punkter: ['Grävmaskiner och minigrävare', 'Vibrationsplattor', 'Markvibratorer'] },
-  { id: 'lift', ritning: 'lift', namn: 'Liftar och ställningar', text: 'Saxliftar, bomliftar och ställning för fasad, tak och installation inomhus. Vi hjälper er välja höjd och räckvidd efter jobbet, inte efter listan.', punkter: ['Saxliftar', 'Bomliftar', 'Ställningar'] },
-  { id: 'bod', ritning: 'bod', namn: 'Bodar och rastvagnar', text: 'Personalbod, kontorsbod och rastvagn levererade och uppställda. Från förbrukningsmaterial till hela bodetableringen, från samma leverantör.', punkter: ['Bodetablering', 'Rastvagnar', 'Förbrukningsmaterial'] },
-  { id: 'el', ritning: 'el', namn: 'El, håltagning och rivning', text: 'Generatorer och kompressorer, borriggar för betonghåltagning och rivningsmaskiner. Specialmaskinerna som gör att jobbet inte stannar.', punkter: ['Elförsörjning', 'Betonghåltagning', 'Rivningsmaskiner'] },
+  { id: 'bygg', ritning: 'bygg', namn: 'Bygg', text: 'Sågar, fräsar och stoftavskiljare för bygget. Kontrollerade och servade innan de lämnar oss.', punkter: ['Sågar', 'Fräsar', 'Stoftavskiljare'] },
+  { id: 'rivning', ritning: 'rivning', namn: 'Rivning', text: 'Bilningshammare och mattstrippers för rivningen, och luftrenare som håller dammet nere medan ni jobbar.', punkter: ['Bilningshammare', 'Mattstrippers', 'Luftrenare'] },
+  { id: 'sanering', ritning: 'sanering', namn: 'Sanering', text: 'Plast, tejp och skyddsutrustning för att stänga av och skydda arbetsplatsen. Materialet finns på samma ställe som maskinerna.', punkter: ['Plast', 'Tejp', 'Skyddsutrustning'] },
+  { id: 'haltagning', ritning: 'haltagning', namn: 'Håltagning', text: 'Kärnborrar, klingor och golvsågar för håltagning och sågning i betong.', punkter: ['Kärnborrar', 'Klingor', 'Golvsågar'] },
+];
+
+// Peters lista 2026-11-11. Stanley och DeWalt är samma koncern men egna märken.
+// Samarbetsbandet är byggt som kundbältet på bahkobyra.se (Mathias 2026-11-11): logga och en
+// rad under om vad märket står för. Flex, Stanley, DeWalt och Hilti i egna färger (rutorna syns
+// mot mörkt), JLM:s egen röd-vita logga, Husqvarna och Brokk i ljus enfärgad version.
+// Källor: Flex, JLM och Brokk från märkenas sajter, övriga från Wikimedia Commons.
+// hojd = visad höjd i px, satt per logga så att de väger lika.
+const LEVERANTORER = [
+  { namn: 'Flex', url: 'https://www.flex-tools.com/sv-se', logo: 'flex.svg', w: 121, h: 56, hojd: 36, rad: 'Elverktyg' },
+  { namn: 'Stanley', url: 'https://www.stanleyworks.se/sv-se', logo: 'stanley.svg', w: 67, h: 32, hojd: 36, rad: 'Handverktyg' },
+  { namn: 'DeWalt', url: 'https://www.dewalt.se/sv-se', logo: 'dewalt.svg', w: 886, h: 272, hojd: 34, rad: 'Elverktyg och handverktyg' },
+  { namn: 'Hilti', url: 'https://www.hilti.se/', logo: 'hilti.svg', w: 482, h: 113, hojd: 30, rad: 'Borrning, håltagning och infästning' },
+  { namn: 'JLM Group', url: 'https://jlmgroup.se/', logo: 'jlm-ljus.png', w: 640, h: 177, hojd: 38, rad: 'Diamantverktyg, klingor och kärnborr' },
+  { namn: 'Husqvarna Construction', url: 'https://www.husqvarnaconstruction.com/se/', logo: 'husqvarna-ljus.png', w: 653, h: 120, hojd: 30, rad: 'Maskiner för sågning och borrning i betong' },
+  { namn: 'Brokk', url: 'https://www.brokk.com/sv/', logo: 'brokk-ljus.png', w: 468, h: 120, hojd: 27, rad: 'Rivningsrobotar' },
 ];
 
 const STEGRITNINGAR = {
@@ -141,14 +170,14 @@ const STATS = [
   { tal: 2018, prefix: '', etikett: 'Grundat' },
   { tal: 0, prefix: '', etikett: 'Kronor i dolda avgifter' },
   { tal: 0, prefix: '', etikett: 'Konton som krävs för att hyra' },
-  { tal: 1, prefix: '', etikett: 'Leverantör, från material till bod' },
+  { tal: 1, prefix: '', etikett: 'Ställe för hyra, köp och material' },
 ];
 
 const VARFOR = [
   'Proffs jobbar med proffs. Vi har själva stått på fältet och sålt maskinerna.',
   'Varje maskin är kontrollerad och servad innan den lämnar oss.',
   'Går den sönder får ni en ersättningsmaskin. Projektet stannar inte.',
-  'Räcker en mindre grävare för jobbet säger vi det. Även när en större hade gett oss mer betalt.',
+  'Räcker en mindre maskin för jobbet säger vi det. Även när en större hade gett oss mer betalt.',
 ];
 
 
@@ -157,7 +186,8 @@ const FRAGOR = [
   { q: 'Levererar ni, eller hämtar jag själv?', a: 'Det väljer du. Vi levererar direkt till arbetsplatsen, eller så hämtar du hos oss på Bäckvägen 20 i Sollentuna. Behöver du den snabbt säger du det.' },
   { q: 'Vad händer om maskinen går sönder?', a: 'Kontakta oss direkt. Vi hjälper till med felsökning, reparation eller ersättningsmaskin så att projektet inte behöver stanna.' },
   { q: 'Vad kostar det?', a: 'Det beror på maskin och hyrestid. Du får ett pris innan du bokar, och fakturan har inga dolda avgifter. Rengöringen ingår.' },
-  { q: 'Vilka maskiner har ni?', a: 'Grävmaskiner och minigrävare, liftar och ställningar, kompressorer och generatorer, vibrationsplattor, bodar och rastvagnar, borriggar för håltagning och rivningsmaskiner. Saknas något: fråga.' },
+  { q: 'Vilka maskiner har ni?', a: 'För bygg, rivning, sanering och håltagning: sågar, fräsar, stoftavskiljare, bilningshammare, mattstrippers, luftrenare, kärnborrar och golvsågar. Förbrukningsmaterial som plast, tejp, klingor och skyddsutrustning finns också. Saknas något: fråga.' },
+  { q: 'Säljer ni maskiner också?', a: 'Ja. Vi hyr ut, och vi är återförsäljare av maskiner och handverktyg, förbrukningsmaterial och betongbearbetning. Vi jobbar bland annat med Hilti, Husqvarna Construction, Brokk, DeWalt, Stanley, Flex och JLM Group.' },
   { q: 'Hyr ni ut till privatpersoner?', a: 'Vi är byggda för företag och proffs, men hör av dig så säger vi vad som går.' },
   { q: 'Kan jag ladda elbilen hos er?', a: 'Ja. Kunder laddar gratis när de besöker oss på Bäckvägen.' },
   { q: 'Var finns ni?', a: 'Bäckvägen 20 i Sollentuna, med leverans i Stockholm med omnejd. Ligger jobbet längre bort får du säga var, så säger vi om vi kan ta det.' },
@@ -184,7 +214,7 @@ export default function ProffsmaskinerDemo() {
         <div className={styles.heroLager}>
           <div className={styles.heroLagerIn}>
             <h1 className={styles.heroLogo}><Image src="/proffsmaskiner/media/logo-proffsmaskiner-vit.svg" alt="Proffsmaskiner Sverige AB" width={255} height={142} priority unoptimized /></h1>
-            <p className={styles.heroTjanster}>Anläggning · Liftar · Bodar</p>
+            <p className={styles.heroTjanster}>Bygg · Rivning · Sanering · Håltagning</p>
             <p className={styles.heroOrt}>Sollentuna · Stockholm</p>
             <div className={styles.heroCta}>
               <a className={styles.btn} href="#kontakt">Få offert på maskin</a>
@@ -195,7 +225,7 @@ export default function ProffsmaskinerDemo() {
       </section>
 
       <div className={styles.tejp} role="group" aria-label="Det här hyr vi ut">
-        <div className={styles.tejpSpar}>{[false, true].map((kopia) => (<div className={styles.tejpIn} aria-hidden={kopia || undefined} key={kopia ? 'b' : 'a'}><span>Anläggning</span><span>Bodar och rastvagnar</span><span>Byggmaskiner</span><span>Betonghåltagning</span><span>Elförsörjning</span><span>Liftar</span><span>Rivningsmaskiner</span><span>Leverans till arbetsplatsen</span></div>))}</div>
+        <div className={styles.tejpSpar}>{[false, true].map((kopia) => (<div className={styles.tejpIn} aria-hidden={kopia || undefined} key={kopia ? 'b' : 'a'}><span>Bygg</span><span>Rivning</span><span>Sanering</span><span>Håltagning</span><span>Uthyrning och försäljning</span><span>Förbrukningsmaterial</span><span>Betongbearbetning</span><span>Leverans till arbetsplatsen</span></div>))}</div>
       </div>
 
       <div className={styles.wrap}>
@@ -222,8 +252,41 @@ export default function ProffsmaskinerDemo() {
 
       <section className={styles.sek} id="tjanster">
         <div className={styles.wrap}>
-          <div className={styles.sekHuvud}><p className={styles.eyebrow}>Maskiner</p><h2 className={styles.h2}>Från förbrukningsmaterial <em>till bodetablering</em></h2><p className={styles.sekLead}>Stort som smått, för bygg-, rivnings- och markprojekt. Alla maskiner är kontrollerade och servade innan varje uthyrning.</p></div>
+          <div className={styles.sekHuvud}><p className={styles.eyebrow}>Maskiner</p><h2 className={styles.h2}>Bygg, rivning, sanering <em>och håltagning</em></h2><p className={styles.sekLead}>Hyr eller köp. Alla maskiner är kontrollerade och servade innan varje uthyrning, och förbrukningsmaterialet finns på samma ställe.</p></div>
           <div className={styles.tjanster}>{TJANSTER.map((t) => (<article className={styles.tjanst} key={t.id}><svg className={styles.ritning} viewBox="0 0 200 120" aria-hidden="true">{RITNINGAR[t.ritning]}</svg><h3>{t.namn}</h3><p>{t.text}</p><ul>{t.punkter.map((p) => <li key={p}>{p}</li>)}</ul></article>))}</div>
+        </div>
+      </section>
+
+      <section className={`${styles.sek} ${styles.om}`} id="om">
+        <div className={styles.wrap}>
+          <div className={styles.omGrid}>
+            <div><p className={styles.eyebrow}>Om oss</p><h2 className={styles.h2}>Vi hyr ut. <em>Vi säljer också.</em></h2></div>
+            <div className={styles.omText}>
+              <p>Proffsmaskiner ägs av ett företag som själva kommer från branschen, från just bygg, rivning, sanering och håltagning.</p>
+              <p>Därför hyr vi inte bara ut maskiner. Vi är också återförsäljare av maskiner och handverktyg, förbrukningsmaterial och betongbearbetning.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Samarbeten: rullande band som kundbältet på bahkobyra.se, mellan Om oss och Så går det till. */}
+      <section className={styles.samarbeten} aria-labelledby="samarbeten-rubrik">
+        <div className={styles.wrap}><h2 className={styles.samRubrik} id="samarbeten-rubrik">Samarbeten</h2></div>
+        <div className={styles.samFonster}>
+          <div className={styles.samSpar}>
+            {[false, true].map((kopia) => (
+              <ul className={styles.samIn} aria-hidden={kopia || undefined} key={kopia ? 'b' : 'a'}>
+                {LEVERANTORER.map((l) => (
+                  <li key={l.namn}>
+                    <a href={l.url} target="_blank" rel="noopener" tabIndex={kopia ? -1 : undefined}>
+                      <span className={styles.samLogga}><Image src={`/proffsmaskiner/media/partner/${l.logo}`} alt={kopia ? '' : l.namn} width={l.w} height={l.h} style={{ height: l.hojd, width: 'auto' }} unoptimized /></span>
+                      <span className={styles.samRad}>{l.rad}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -295,7 +358,7 @@ export default function ProffsmaskinerDemo() {
               <label>Företag<input type="text" name="foretag" autoComplete="organization" required /></label>
               <label>Telefon<input type="tel" name="telefon" autoComplete="tel" required /></label>
               <label>E-post (valfritt)<input type="email" name="epost" autoComplete="email" /></label>
-              <label>Vad behöver ni?<select name="typ" defaultValue="Anläggning"><option>Anläggning</option><option>Liftar och ställningar</option><option>Bodar och rastvagnar</option><option>Elförsörjning</option><option>Betonghåltagning</option><option>Rivningsmaskiner</option><option>Något annat</option></select></label>
+              <label>Vad behöver ni?<select name="typ" defaultValue="Bygg"><option>Bygg</option><option>Rivning</option><option>Sanering</option><option>Håltagning</option><option>Köpa maskin eller verktyg</option><option>Något annat</option></select></label>
               <label>Kort om jobbet<textarea name="meddelande" rows={4} placeholder="Vad som ska göras, var, hur länge, och om ni vill ha maskinen levererad" /></label>
               <button className={styles.btn} type="submit">Få offert på maskin</button>
               <a className={`${styles.btn} ${styles.btnGhost}`} href={TEL_HREF}>Eller ring {TEL}</a>
@@ -308,7 +371,7 @@ export default function ProffsmaskinerDemo() {
       <footer className={styles.ftr}>
         <div className={styles.wrap}>
           <div className={styles.ftrGrid}>
-            <div><span className={styles.brandTxt}><b>Proffsmaskiner Sverige AB</b><i>Maskinuthyrning</i></span><p className={styles.ftrText}>Anläggning, liftar, bodar, elförsörjning, håltagning och rivning för bygg- och markprojekt i Stockholm med omnejd. Leverans till arbetsplatsen.</p></div>
+            <div><span className={styles.brandTxt}><b>Proffsmaskiner Sverige AB</b><i>Maskinuthyrning</i></span><p className={styles.ftrText}>Uthyrning och försäljning för bygg, rivning, sanering och håltagning i Stockholm med omnejd. Återförsäljare av maskiner, handverktyg och förbrukningsmaterial. Leverans till arbetsplatsen.</p></div>
             <div className={styles.ftrLankar}>{LANKAR.map((l) => <a href={l.href} key={l.href}>{l.txt}</a>)}<a href={TEL_HREF}>{TEL}</a><a href={`mailto:${EPOST}`}>{EPOST}</a><a href={IG} target="_blank" rel="noopener">@proffsmaskinerab</a><a href="#top">Till toppen</a></div>
           </div>
           <div className={styles.ftrBar}><span>Proffsmaskiner Sverige AB · Org.nr 559154-6329 · {ADRESS}</span><span>Hemsida av <a href="https://www.bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span></div>

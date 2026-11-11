@@ -2203,3 +2203,146 @@ a.kontaktRad b {
   max-width: none;
   gap: clamp(0.6rem, 1.2vw, 0.9rem);
 }
+
+/* ===========================================================================
+   Om oss och Samarbeten (Peter 2026-11-11). Om oss är en egen sektion: rubrik
+   till vänster, texten till höger. Samarbeten är ett ljust band över hela
+   bredden där märkenas logotyper rullar i sina egna färger, som tejpen.
+   =========================================================================== */
+.omGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(1.4rem, 5vw, 4.5rem);
+  align-items: end;
+}
+.omGrid .h2 {
+  margin-bottom: 0;
+}
+.omText {
+  display: grid;
+  gap: 1rem;
+  font-size: var(--tx-l);
+  color: var(--ljus-70);
+  max-width: 56ch;
+}
+@media (max-width: 900px) {
+  .omGrid {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}
+
+/* Samarbeten: byggt som kundbältet på bahkobyra.se. Ett eget band över hela
+   bredden mellan Om oss och Så går det till, rubriken i bandet, logga med en rad
+   under, kanterna tonar ut i bandets färg. */
+.samarbeten {
+  background: var(--yta);
+  border-block: 1px solid var(--linje);
+  padding: 1.5rem 0 1.7rem;
+  overflow: hidden;
+}
+.samRubrik {
+  font-family: var(--ui);
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--stal);
+  margin: 0 0 1.2rem;
+  text-align: center;
+}
+.samFonster {
+  position: relative;
+  overflow: hidden;
+}
+.samFonster::before,
+.samFonster::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(56px, 10vw, 140px);
+  z-index: 1;
+  pointer-events: none;
+}
+.samFonster::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--yta), transparent);
+}
+.samFonster::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--yta), transparent);
+}
+.samSpar {
+  display: flex;
+  width: max-content;
+  animation: tejpRull 44s linear infinite;
+}
+.samIn {
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+  padding: 0 1.5rem;
+  margin: 0;
+  list-style: none;
+}
+.samIn li {
+  flex: none;
+  width: 200px;
+}
+.samIn a {
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+  color: inherit;
+  text-decoration: none;
+}
+.samLogga {
+  display: grid;
+  place-items: center;
+  height: 46px;
+}
+.samLogga img {
+  display: block;
+  max-width: 200px;
+}
+.samRad {
+  max-width: 200px;
+  font-size: var(--tx-s);
+  line-height: 1.35;
+  color: var(--ljus-70);
+  text-align: center;
+  text-wrap: balance;
+}
+@media (hover: hover) {
+  .samFonster:hover .samSpar { animation-play-state: paused; }
+  .samIn a:hover .samRad { color: var(--ljus); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .samSpar { animation: none; }
+  .samFonster { overflow-x: auto; }
+}
+@media (max-width: 640px) {
+  .samarbeten {
+    padding: 1.15rem 0 1.35rem;
+  }
+  .samIn {
+    gap: 2rem;
+  }
+  .samIn li {
+    width: 168px;
+  }
+  .samLogga {
+    height: 40px;
+  }
+  .samLogga img {
+    scale: 0.86;
+  }
+  .samRad {
+    font-size: var(--tx-xs);
+  }
+}
+.om {
+  padding-bottom: clamp(2.6rem, 5vw, 4.2rem);
+}
