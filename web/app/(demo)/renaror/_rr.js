@@ -52,7 +52,7 @@ export const TJANSTER = [
   { slug: 'avloppsspolning', namn: 'Avloppsspolning', kort: 'Spolning', marke: 'spolning', bild: 'tjanst-spolning.jpg' },
   { slug: 'rorinspektion', namn: 'Rörinspektion med kamera', kort: 'Rörinspektion', marke: 'kamera', bild: 'tjanst-kamera.jpg' },
   { slug: 'stamspolning', namn: 'Stamspolning', kort: 'Stamspolning', marke: 'stam', bild: 'tjanst-stam.jpg' },
-  { slug: 'avloppsjour', namn: 'Avloppsjour dygnet runt', kort: 'Jour', marke: 'jour', bild: 'tjanst-jour.jpg' },
+  { slug: 'avloppsjour', namn: 'Avloppsjour dygnet runt', kort: 'Avloppsjour', marke: 'jour', bild: 'tjanst-jour.jpg' },
   { slug: 'avloppsbrunn', namn: 'Avloppsbrunnar och pumpbrunnar', kort: 'Brunnar', marke: 'brunn', bild: 'tjanst-brunn.jpg' },
   { slug: 'byta-avlopp', namn: 'Byta avlopp', kort: 'Byta avlopp', marke: 'byte', bild: 'tjanst-byte.jpg' },
 ];
@@ -133,9 +133,9 @@ export const priser = {
 
 export const jobb = {
   eyebrow: 'Våra jobb',
-  rubrik: ['Rost, rötter och', 'en gräsklippare'],
-  lead: 'Riktiga jobb i Göteborgstrakten. På en biltvätt hade någon tvättat gräsklipparen i båset.',
-  not: 'Alla bilder är våra egna, från jobben.',
+  rubrik: ['Riktiga jobb,', 'riktiga rör'],
+  lead: 'Bilder från jobben i Göteborgstrakten.',
+  not: 'Bilderna i bandet är från våra egna jobb.',
   tid: '60s',
   rad1: [
     { src: `${M}/jobb-relining.jpg`, alt: 'Nytt foder på väg ner i ett avloppsrör i marken', txt: 'Relining i Eriksberg' },
@@ -170,14 +170,15 @@ export const varfor = {
 
 export const om = {
   eyebrow: 'Om oss',
-  rubrik: ['Litet team,', 'egna spolbilar'],
+  rubrik: ['Ett litet företag', 'med egna spolbilar'],
   kortRad: 'Göteborg med omnejd',
+  bild: { src: `${M}/om-bilen.jpg`, w: 800, h: 600, alt: 'Ägaren vid en av Rena Rörs spolbilar', rundad: true },
   stycken: [
-    'Tre avloppstekniker med egna spolbilar. Vi har jobbat med avlopp i 14 år.',
+    'Vi är tre avloppstekniker, och bilarna är våra egna.',
     'Villor, föreningar och företag från Kungälv till Kungsbacka. Vi kommer på utsatt tid och ställer till så lite som möjligt.',
   ],
   bevis: [
-    { ord: '14 år', text: 'med avlopp' },
+    { ord: 'Jour', text: 'dygnet runt, året runt' },
     { ord: 'Fast pris', text: 'på spolning' },
     { ord: '4,7 av 5', text: 'på Google' },
   ],
@@ -206,7 +207,7 @@ export const team = {
 
 export const omdomen = {
   eyebrow: 'Omdömen',
-  rubrik: ['Löst på 15 minuter.', 'Samma dag.'],
+  rubrik: ['Kunderna', 'om oss'],
   betyg: { varde: 4.7, antal: 14, href: GOOGLE },
   lappar: true,
   lista: [
@@ -226,11 +227,13 @@ export const instagram = {
   koder: ['DY9oEj5jcBb', 'DYW4IANDQN5', 'DZN8G7vDYgJ'],
 };
 
-export const kontaktSektion = (ort) => ({
+export const kontaktSektion = (ort, forst) => ({
   eyebrow: 'Kontakt',
   rubrik: ['Stopp nu?', 'Ring direkt'],
   lead: `Akut: ring ${TEL}, dygnet runt. Annars skriver du några rader, så bekräftar vi tid och pris.`,
-  checkar: ['Pris innan vi kommer', ort ? `Vi kommer till ${ort}` : 'Svar dygnet runt', 'Priser efter ROT-avdrag'],
+  checkar: ['Fast pris på spolning', ort ? `Vi kommer till ${ort}` : 'Svar dygnet runt', 'Priser efter ROT-avdrag'],
+  // Formulärets val: alla tjänster, sidans egen först (runda 2: valet visade fel tjänst på tjänstesidorna).
+  typer: [...TJANSTER.filter((t) => t.slug === forst), ...TJANSTER.filter((t) => t.slug !== forst)].map((t) => t.namn),
   video: `${M}/video-kontakt.mp4`,
   poster: `${M}/poster-kontakt.jpg`,
   formRubrik: 'Boka tid',
@@ -246,8 +249,8 @@ export const popup = false;
 // Ingen Cal.com-kalender hos Rena Rör än; knappen går till Bahkos mejl tills de har en egen.
 export const bokning = {
   url: 'mailto:bahkostudio@gmail.com?subject=Boka%20tid%20hos%20Rena%20R%C3%B6r',
-  txt: 'Boka en tid',
-  kortTxt: 'Boka en tid',
+  txt: 'Föreslå en tid',
+  kortTxt: 'Föreslå en tid',
 };
 
 export const footer = {
@@ -271,7 +274,7 @@ export const hero = {
   posterMobil: `${M}/poster-hero-mobil.jpg`,
 };
 
-export const tejp = ['Jour dygnet runt', 'Spolning 2 250 kr', '4,7 av 5 på Google', 'Rörinspektion', 'Pris innan vi kommer', 'Stamspolning', '14 år med avlopp', 'Byta avlopp'];
+export const tejp = ['Jour dygnet runt', 'Spolning 2 250 kr', '4,7 av 5 på Google', 'Rörinspektion', 'Egna spolbilar', 'Stamspolning', '14 år med avlopp', 'Byta avlopp'];
 
 /** Grunddata för alla sidor. över = det som skiljer en sida från startsidan. */
 export const sida = (over = {}) => ({
@@ -287,7 +290,7 @@ export const sida = (over = {}) => ({
   nav: {
     vanster: [{ href: `${BAS}/#tjanster`, txt: 'Tjänster' }, { href: `${BAS}/#priser`, txt: 'Priser' }],
     hoger: [{ href: href('brf'), txt: 'För BRF' }, { href: `${BAS}/#omdomen`, txt: 'Omdömen' }],
-    extra: [{ href: `${BAS}/#jobb`, txt: 'Våra jobb' }, { href: `${BAS}/#fragor`, txt: 'Frågor' }, { href: TELHREF, txt: `Ring ${TEL}` }],
+    extra: [{ href: `${BAS}/#jobb`, txt: 'Våra jobb' }, { href: TELHREF, txt: `Ring ${TEL}` }],
   },
   hero,
   tejp,

@@ -126,12 +126,12 @@ const SKV = 'https://www.skatteverket.se/privat/fastigheterochbostad/rotarbeteoc
 const data = sida({
   fragor: {
     eyebrow: 'Vanliga frågor',
-    rubrik: ['Pengarna först,', 'resten sen'],
+    rubrik: ['Det du undrar', 'innan du ringer'],
     kort: { rubrik: 'Akut stopp?', text: `Ring ${TEL}. Vi svarar dygnet runt, året runt.` },
     lista: [
       { q: 'Vad kostar en spolning?', a: '2 250 kr efter ROT-avdrag, inklusive moms. Framkörning, en timmes arbete och hetvatten ingår.' },
       { q: 'Får jag veta priset innan ni kommer?', a: 'Ja. Du får priset när vi bekräftar tiden.' },
-      { q: 'Måste ni filma?', a: (<>Nej, oftast räcker spolningen. Kameran föreslår vi när stoppet kommer tillbaka. <a href={href('rorinspektion')}>Mer om rörinspektion</a>.</>) },
+      { q: 'Måste ni filma?', a: (<>Nej. Kameran rekommenderar vi bara när den behövs, till exempel när stoppet kommer tillbaka. <a href={href('rorinspektion')}>Mer om rörinspektion</a>.</>) },
       { q: 'Hur funkar ROT-avdraget?', a: (<>Priserna är redan efter ROT. Ha fastighetsbeteckningen till hands när du bokar, så sköter vi resten. Regler hos <a href={SKV} target="_blank" rel="noopener">Skatteverket</a>.</>) },
       { q: 'Jobbar ni med föreningar?', a: (<>Ja. Stamspolning kostar 995 kr per lägenhet exklusive moms. <a href={href('brf')}>För BRF</a>.</>) },
       { q: 'Kan jag lösa stoppet själv?', a: 'Ibland. Vaskrensare eller bakpulver och ättika kan räcka i köket. Häll aldrig kokande vatten i toaletten: porslinet kan spricka.' },

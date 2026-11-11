@@ -64,7 +64,7 @@ const SIDOR = {
       { q: 'När behövs kamera?', a: 'När stoppet kommer tillbaka, när det luktar, inför en renovering. Eller när en fläck av gräsmattan växer fortare än resten.' },
       { q: 'Vad hittar ni?', a: 'Rötter, sprickor, trasiga fogar, läckor och rör med fel fall.' },
       { q: 'Slipper jag gräva?', a: 'Kameran visar var felet sitter. Då gräver ingen på chans.' },
-      { q: 'Kan jag få filmen till försäkringsbolaget?', a: 'Du får dokumentation och filmfilerna i paketet för 4 750 kr.' },
+      { q: 'Kan jag få filmen?', a: 'Ja. Dokumentation och filmfilerna ingår i paketet för 4 750 kr.' },
     ],
   },
   stamspolning: {
@@ -96,9 +96,9 @@ const SIDOR = {
     besk: `Akut stopp i toalett, kök eller golvbrunn? Avloppsjour dygnet runt, året runt i Göteborg med omnejd. Ring ${TEL}.`,
     hero: {
       eyebrow: 'Avloppsjour i Göteborg',
-      h1: ['Stopp en söndagkväll?', 'Vi svarar.'],
+      h1: ['Stopp en söndagskväll?', 'Vi svarar.'],
       ingress: 'Stopp kommer sällan på kontorstid. Därför svarar vi dygnet runt, året runt.',
-      bevis: ['Dygnet runt', 'Året runt', 'Pris innan vi åker'],
+      bevis: ['Dygnet runt', 'Året runt', 'Frusna avlopp tinas'],
       bild: B('tjanst-jour.jpg', 'Avloppstekniker från Rena Rör framför spolbilen'),
     },
     steg: [
@@ -110,7 +110,7 @@ const SIDOR = {
     rader: ['avloppsspolning', 'rorinspektion', 'avloppsbrunn'],
     fragor: [
       { q: 'När svarar ni?', a: `Dygnet runt, året runt. Ring ${TEL}.` },
-      { q: 'Vad kostar jouren?', a: 'Du får priset innan vi åker.' },
+      { q: 'Vad kostar jouren?', a: 'Ring, så berättar vi.' },
       { q: 'Tinar ni frusna avlopp?', a: 'Ja.' },
       { q: 'Jag har hällt i propplösare. Gör det något?', a: 'Säg det när du ringer. Det är för vår säkerhet.' },
       { q: 'Kan jag hälla kokande vatten i toaletten?', a: 'Nej. Porslinet kan spricka.' },
@@ -129,11 +129,11 @@ const SIDOR = {
     steg: [STEG_RING, STEG_PRIS,
       { namn: 'Spolning', text: 'Vi spolar brunnen och ledningen ren.' },
       { namn: 'Slamsugning', text: 'Slam och grus sugs upp.' },
-      { namn: 'Byte vid behov', text: 'En brunn på 50–60 år går inte alltid att rädda. Då byter vi den.' }],
+      { namn: 'Byte vid behov', text: 'Går brunnen inte att rädda sätter vi en ny.' }],
     rader: ['avloppsspolning', 'byta-avlopp', 'rorinspektion'],
     fragor: [
       { q: 'Varför blir brunnen igensatt?', a: 'Kvistar, grus, löv och slam samlas med åren.' },
-      { q: 'Går den att rädda?', a: 'Oftast. En brunn på 50–60 år går inte alltid. Då byter vi den.' },
+      { q: 'Går den att rädda?', a: 'En brunn på 50–60 år går inte alltid att rädda med spolning. Då byter vi den.' },
       { q: 'Byter ni pumpbrunnar?', a: 'Ja. Vi har bytt en egenbyggd pumpbrunn från 80-talet mot en ny, godkänd av kommunen.' },
       { q: 'Slamsuger ni?', a: 'Ja.' },
       { q: 'Får jag ROT-avdrag?', a: 'Ja, på arbetskostnaden.' },
@@ -171,7 +171,7 @@ const SIDOR = {
       h1: ['Avlopp för föreningen.', 'Ett pris per lägenhet.'],
       ingress: 'Stamspolning för 995 kr per lägenhet exklusive moms. Kamera när ni behöver se, rörbyten när det är dags och jour för de boende.',
       bevis: ['995 kr/lgh ex moms', 'Jour för de boende', '4,7 av 5 på Google'],
-      bild: { src: `${M}/brf-hero.jpg`, w: 1440, h: 1080, alt: 'Spolbil med Rena Rörs logotyp utanför ett landshövdingehus, spolslangen dragen in i källaren' },
+      bild: { src: `${M}/brf-hero.jpg`, w: 1440, h: 1080, alt: 'Illustration: spolbil med Rena Rörs logotyp utanför ett landshövdingehus, spolslangen dragen in i källaren' },
     },
     steg: [
       { namn: 'Styrelsen hör av sig', text: `Ring ${TEL} eller skriv. Berätta hur många lägenheter föreningen har.` },
@@ -180,10 +180,10 @@ const SIDOR = {
       { namn: 'Stammarna', text: 'Sist spolar vi de utgående stammarna.' },
       { namn: 'Kamera vid behov', text: 'Vill styrelsen se skicket på rören filmar vi dem.' }],
     rader: ['stamspolning', 'rorinspektion', 'avloppsjour'],
-    raderRubrik: { eyebrow: 'Tjänster för föreningen', rubrik: ['Stammar, kamera', 'och jour'], lead: 'Hos en förening i Gårda hittade vi ett genomrostat rör i garaget, i ett hus från 2007. Röret byttes.' },
+    raderRubrik: { eyebrow: 'Tjänster för föreningen', rubrik: ['Allt föreningen', 'behöver för avloppen'] },
     fragor: [
       { q: 'Vad kostar stamspolning?', a: '995 kr per lägenhet exklusive moms vid 5–10 lägenheter. Större fastigheter får offert.' },
-      { q: 'Får föreningen ROT-avdrag?', a: 'Nej. ROT gäller privatpersoner, inte föreningens gemensamma stammar. Räkna med priset exklusive moms.' },
+      { q: 'Får föreningen ROT-avdrag?', a: 'Nej. ROT gäller privatpersoner, inte föreningens gemensamma stammar. Priset 995 kr är exklusive moms.' },
       { q: 'Vad ingår?', a: 'Kök, golvbrunnar och tvättställ i varje lägenhet, kontroll av vattenlåsen och spolning av de utgående stammarna.' },
       { q: 'Har ni jobbat åt föreningar?', a: 'Ja. Hos en förening i Gårda spolade vi en liggande ledning i garaget och hittade ett genomrostat rör. Röret byttes.' },
       { q: 'Har ni jour för de boende?', a: `Ja, dygnet runt på ${TEL}.` },
@@ -193,7 +193,7 @@ const SIDOR = {
   },
 };
 
-const ORTBILD = ['jobb-projekt.jpg', 'jobb-slangar.jpg', 'jobb-glimra.jpg', 'jobb-vattenledning.jpg', 'jobb-andalen.jpg', 'brf-hero.jpg', 'jobb-relining.jpg'];
+const ORTBILD = ['jobb-projekt.jpg', 'jobb-slangar.jpg', 'jobb-vattenledning.jpg', 'jobb-andalen.jpg', 'brf-hero.jpg', 'jobb-relining.jpg', 'jobb-kamera-falt.jpg'];
 const ORTSIDOR = Object.fromEntries(ORTER.map(({ ort, slug }, i) => {
   const andra = ORTNAMN.filter((o) => o !== ort);
   const lista = `${andra.slice(0, -1).join(', ')} och ${andra[andra.length - 1]}`;
@@ -225,6 +225,131 @@ const ORTSIDOR = Object.fromEntries(ORTER.map(({ ort, slug }, i) => {
 }));
 
 const ALLA = { ...SIDOR, ...ORTSIDOR };
+const TJ_FORST = { brf: 'stamspolning' };
+
+// Egna Därför-punkter per sida (runda 2: landningssidorna var för lika startsidan).
+const VARFOR = {
+  "avloppsspolning": [
+    [
+      "Fast pris",
+      "2 250 kr efter ROT. Framkörning och första timmen ingår."
+    ],
+    [
+      "Bara vatten",
+      "Hetvatten och munstycken. Inga kemikalier som skadar gamla rör."
+    ],
+    [
+      "Kamera bara när den behövs",
+      "Filmning kostar mer. Vi rekommenderar den inte i onödan."
+    ]
+  ],
+  "rorinspektion": [
+    [
+      "Du ser själv",
+      "Kameran visar röret inifrån. Inga gissningar."
+    ],
+    [
+      "Filmen blir din",
+      "Dokumentation och filmfiler i paketet för 4 750 kr."
+    ],
+    [
+      "Gräv bara där det behövs",
+      "Felet syns innan någon tar fram spaden."
+    ]
+  ],
+  "stamspolning": [
+    [
+      "Ett pris per lägenhet",
+      "995 kr exklusive moms vid 5–10 lägenheter."
+    ],
+    [
+      "Varje vattenlås",
+      "Tas isär och kontrolleras, lägenhet för lägenhet."
+    ],
+    [
+      "Jour för de boende",
+      "Dygnet runt, året runt."
+    ]
+  ],
+  "avloppsjour": [
+    [
+      "Dygnet runt",
+      "Året runt, även helger."
+    ],
+    [
+      "Frusna avlopp", "Vi tinar dem."
+    ],
+    [
+      "Små spolbilar",
+      "Kommer in på trånga uppfarter och smala gator."
+    ]
+  ],
+  "avloppsbrunn": [
+    [
+      "Spola eller byta",
+      "Vi säger vad som behövs. En gammal brunn går inte alltid att rädda."
+    ],
+    [
+      "Pumpbrunnar",
+      "Nya brunnar som kommunen godkänner."
+    ],
+    [
+      "Slamsugning",
+      "Slam och grus sugs upp på plats."
+    ]
+  ],
+  "byta-avlopp": [
+    [
+      "Filmning först",
+      "Du ser vad som är trasigt innan något grävs."
+    ],
+    [
+      "Offert innan grävning",
+      "Inga överraskningar på fakturan."
+    ],
+    [
+      "ROT-avdrag",
+      "På arbetet. Vi hjälper dig med pappren."
+    ]
+  ],
+  "brf": [
+    [
+      "Ett pris per lägenhet",
+      "995 kr exklusive moms vid 5–10 lägenheter. Större föreningar får offert."
+    ],
+    [
+      "Jour för de boende",
+      "Ett nummer att ge de boende: dygnet runt, året runt."
+    ],
+    [
+      "Kamera när ni vill se",
+      "Filmade stammar med dokumentation till styrelsen."
+    ],
+    [
+      "Nöjda, annars fortsätter vi",
+      "Vår kundnöjdhetsgaranti gäller föreningen också."
+    ]
+  ]
+};
+const varforFor = (slug, p) => {
+  if (VARFOR[slug]) return VARFOR[slug];
+  return [['Framkörning ingår', `Spolningen kostar 2 250 kr efter ROT, även i ${p.ort}.`], ['Jour dygnet runt', `Stopp i ${p.ort} en söndagskväll? Ring.`], ['Små spolbilar', 'Kommer in på trånga uppfarter.']];
+};
+
+// BRF-sidans kontaktdel och rader är skrivna för styrelsen.
+const BRF_KONTAKT = {
+  rubrik: ['Pris för', 'föreningen'],
+  lead: 'Berätta hur många lägenheter föreningen har, så får ni pris.',
+  checkar: ['995 kr/lgh ex moms', 'Större föreningar: offert', 'Jour för de boende'],
+  formRubrik: 'Begär pris',
+  placeholder: 'Föreningens namn och adress, antal lägenheter och vad ni vill ha gjort.',
+  formNot: 'Vi återkommer med pris till styrelsen.',
+};
+const BRF_RADER = {
+  stamspolning: { text: 'Kök, golvbrunnar och tvättställ i varje lägenhet. Sist de utgående stammarna.', punkter: ['995 kr/lgh ex moms', 'Vattenlåsen kontrolleras'] },
+  rorinspektion: { text: 'Se skicket på stammarna innan styrelsen bestämmer något.', punkter: ['Dokumentation', 'Filmfiler till styrelsen'] },
+  avloppsjour: { text: 'Ett nummer de boende kan ringa när det stoppar.', punkter: ['Dygnet runt', 'Året runt'] },
+};
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -243,17 +368,17 @@ export default async function RenaRorSida({ params }) {
   const p = ALLA[slug];
   if (!p) notFound();
   const alla = tjanstKort();
-  const rader = p.rader.map((r) => alla.find((k) => k.id === r));
+  const rader = p.rader.map((r) => ({ ...alla.find((k) => k.id === r), ...(slug === 'brf' ? BRF_RADER[r] : {}) }));
   const data = sida({
     layout: 'styrelse',
     hero: { ...p.hero, knapp: { href: '#kontakt', txt: 'Boka tid' } },
     steg: { eyebrow: 'Så går det till', rubrik: ['Från samtal', 'till rena rör'], lista: p.steg },
     tjanster: { ...(p.raderRubrik || { eyebrow: 'Mer vi gör', rubrik: ['Det här', 'gör vi också'] }), kort: rader },
-    varfor: { ...sida().varfor, rubrik: ['Fyra saker du', 'kan räkna med'] },
+    varfor: { ...sida().varfor, rubrik: slug === 'brf' ? ['Det här kan', 'styrelsen räkna med'] : ['Det här kan', 'du räkna med'], lead: '', punkter: varforFor(slug, p).map(([rubrik, text]) => ({ rubrik, text })) },
     nav: {
       vanster: [{ href: `${BAS}/`, txt: 'Startsida' }, { href: '#process', txt: 'Så går det till' }],
-      hoger: [{ href: '#fragor', txt: 'Frågor' }, { href: `${BAS}/#priser`, txt: 'Priser' }],
-      extra: [{ href: href('brf'), txt: 'För BRF' }, { href: TELHREF, txt: `Ring ${TEL}` }],
+      hoger: [{ href: '#omdomen', txt: 'Omdömen' }, { href: `${BAS}/#priser`, txt: 'Priser' }],
+      extra: [...(slug === 'brf' ? [] : [{ href: href('brf'), txt: 'För BRF' }]), { href: TELHREF, txt: `Ring ${TEL}` }],
     },
     fragor: {
       eyebrow: 'Vanliga frågor',
@@ -261,7 +386,7 @@ export default async function RenaRorSida({ params }) {
       kort: { rubrik: 'Akut stopp?', text: `Ring ${TEL}. Vi svarar dygnet runt.` },
       lista: p.fragor,
     },
-    kontaktSektion: { ...kontaktSektion(p.ort), ...(p.kundtypVald ? { kundtypVald: p.kundtypVald } : {}) },
+    kontaktSektion: { ...kontaktSektion(p.ort, TJ_FORST[slug] || slug), ...(slug === 'brf' ? BRF_KONTAKT : {}), ...(p.kundtypVald ? { kundtypVald: p.kundtypVald } : {}) },
   });
   delete data.priser;
   delete data.priserForst;
