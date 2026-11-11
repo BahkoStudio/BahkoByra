@@ -888,8 +888,7 @@ html:has(.sida) {
 .stRadMarke img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
 /* ---------- Valfritt: sifferrad efter bandet (data: siffror). Rena Rör 2026-11-11. Talen räknas upp
-   med en registrerad heltalsegenskap på en view()-tidslinje. Utan stöd: slutsiffran står direkt. ---------- */
-@property --n { syntax: '<integer>'; inherits: false; initial-value: 0; }
+   och glider upp på plats när raden skrollas in (Raknare.js). Utan JavaScript: slutsiffran står direkt. ---------- */
 .siffror { background: var(--mork); color: #fff; padding-block: clamp(2.6rem, 6vw, 4.2rem); }
 .siffrorLista {
   display: grid;
@@ -911,27 +910,9 @@ html:has(.sida) {
   font-variant-numeric: tabular-nums;
 }
 .siffraEtikett { font-size: var(--tx-l); color: #CBD5E1; }
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .siffraTal {
-      --n: var(--mal);
-      counter-reset: n var(--n);
-      animation: raknaUpp linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 100%;
-    }
-    .siffraTal::before { content: counter(n) attr(data-efter); }
-    .siffraText {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      white-space: nowrap;
-    }
-  }
-}
-@keyframes raknaUpp { from { --n: 0; } to { --n: var(--mal); } }
+.siffraTal > span { display: inline-block; }
+@media (prefers-reduced-motion: no-preference) { .siffraIn { animation: siffraUpp 0.9s var(--ease) both; } }
+@keyframes siffraUpp { from { opacity: 0; transform: translateY(0.55em); } to { opacity: 1; transform: none; } }
 
 /* ---------- Valfritt: en stillsam länk under heroknapparna (data: hero.lank). Rena Rör 2026-11-11. ---------- */
 .heroLank {
@@ -2761,3 +2742,26 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
 /* Recos egen widget som iframe (valfritt omdomen.recoIframe, GD Måleri 2026-10-14). Recos kod: höjd 225, full bredd, ingen kant. */
 .recoRam { margin-top: 1.5rem; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 1px 2px rgba(13,27,42,.06), 0 8px 24px rgba(13,27,42,.06); }
 .recoRam iframe { display: block; width: 100%; border: 0; overflow: hidden; }
+
+/* ---------- Heron kommer in med rörelse (Mathias 2026-11-11: "heros sektion logga och copy vill jag
+   att det kommer in som en motion transition, på alla framtida hemsidor"). Logotypen zoomar fram ur
+   oskärpa, sedan orten, tjänsteraden, knapparna och länken i tur och ordning, nedifrån. Bara CSS, en
+   gång vid laddning, klart inom 1,5 s. Vid minskad rörelse står allt på plats direkt. ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .heroIn > * { animation: heroUpp 0.75s var(--ease) both; }
+  .heroIn > :nth-child(1) { animation: heroLogga 0.9s var(--ease) both; }
+  .heroIn > :nth-child(2) { animation-delay: 0.25s; }
+  .heroIn > :nth-child(3) { animation-delay: 0.4s; }
+  .heroIn > :nth-child(4) { animation-delay: 0.55s; }
+  .heroIn > :nth-child(5) { animation-delay: 0.7s; }
+  .heroIn > :nth-child(n + 6) { animation-delay: 0.8s; }
+  .stHeroTxt > * { animation: heroUpp 0.7s var(--ease) both; }
+  .stHeroTxt > :nth-child(2) { animation-delay: 0.12s; }
+  .stHeroTxt > :nth-child(3) { animation-delay: 0.24s; }
+  .stHeroTxt > :nth-child(4) { animation-delay: 0.36s; }
+  .stHeroTxt > :nth-child(n + 5) { animation-delay: 0.48s; }
+  .stHeroBild { animation: heroBild 0.9s var(--ease) 0.2s both; }
+}
+@keyframes heroUpp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes heroLogga { from { opacity: 0; transform: scale(0.86); filter: blur(10px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes heroBild { from { opacity: 0; transform: translateX(32px) scale(0.97); } to { opacity: 1; transform: none; } }

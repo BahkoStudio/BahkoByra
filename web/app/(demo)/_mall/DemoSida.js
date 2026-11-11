@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { fontKlasser } from './fonter';
 import { HeroFilmer, LatFilm } from './Film';
+import Raknare from './Raknare';
 import s from './mall.module.css';
 import DemoFormular from '../../komponenter/DemoFormular';
 import { googleOmdomen, recoOmdomen, instagramInlagg, kortaText } from './levande';
@@ -803,7 +804,7 @@ export default function DemoSida({ data: d }) {
             <ul className={`${s.wrap} ${s.siffrorLista}`}>
               {d.siffror.map((x) => (
                 <li key={x.text}>
-                  <b className={s.siffraTal} style={{ '--mal': x.tal }} data-efter={x.efter || ''}><span className={s.siffraText}>{x.tal}{x.efter || ''}</span></b>
+                  <b className={s.siffraTal}><Raknare tal={x.tal} efter={x.efter || ''} klassIn={s.siffraIn} /></b>
                   <span className={s.siffraEtikett}>{x.text}</span>
                 </li>
               ))}
