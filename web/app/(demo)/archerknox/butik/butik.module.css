@@ -185,7 +185,7 @@
 
 /* Entrén (Mathias 2026-11-11: hero-copy kommer in med rörelse på alla sidor). */
 @media (prefers-reduced-motion: no-preference) {
-  .hero .eyebrow { animation: upp 0.8s var(--ease) both; }
+  .vy0 .eyebrow { animation: upp 0.8s var(--ease) both; }
   .bokstav { animation: namn 1s var(--ease) both; animation-delay: calc(0.08s + var(--i) * 0.06s); transform-origin: 50% 100%; }
   .lager { animation: lager 1.3s var(--ease) 0.75s both; }
   .heroText > * { animation: upp 0.8s var(--ease) both; }
@@ -297,3 +297,52 @@
 .kalkylSvar .knapp { width: 100%; padding-inline: 1rem; }
 .fot nav a, .fot p a { min-height: 44px; display: inline-flex; align-items: center; }
 .sida *, .sida *::before, .sida *::after { box-sizing: border-box; }
+
+/* ---------- Omgång 3: den fastnålade scenen (Scen.js), som maykaskitchen.se ---------- */
+.scen { position: relative; }
+.scenInre { position: relative; background: #FBF1FC; }
+.duk { display: none; }
+.vy0 { position: relative; display: grid; justify-items: center; text-align: center; padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1rem, 4vw, 3rem) clamp(2.5rem, 5vw, 4rem); isolation: isolate; }
+.vyText, .fagel { display: none; }
+
+/* Aktiv: hög sektion, inre lagret fastnålat, vyerna ovanpå varandra. */
+.scenAktiv { height: 430vh; }
+.scenAktiv .scenInre { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.scenAktiv .duk { display: block; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+.scenAktiv .vy { position: absolute; inset: 0; will-change: opacity, transform; }
+.scenAktiv .vy0 { display: flex; flex-direction: column; align-items: center; padding: clamp(5.5rem, 13vh, 8rem) clamp(1rem, 4vw, 3rem) clamp(1.5rem, 5vh, 3rem); }
+.scenAktiv .vy0 .namn { position: relative; z-index: 1; }
+.scenAktiv .vy0 .eyebrow { position: relative; z-index: 3; }
+.scenAktiv .lager { display: none; }
+.scenAktiv .heroText { position: relative; z-index: 3; margin-top: auto; }
+.scenAktiv .vyText { display: flex; align-items: center; z-index: 3; padding: 6rem clamp(1.2rem, 7vw, 7rem) 3rem; opacity: 0; }
+.vyText > div { max-width: 30rem; display: grid; gap: 1rem; justify-items: start; }
+.vyText h2 { margin: 0; font-family: var(--mall-rubrik); font-weight: 800; font-size: clamp(2.6rem, 6.2vw, 5.2rem); line-height: 0.98; letter-spacing: -0.035em; }
+.vyText h2 em { display: block; font-family: var(--mall-kursiv); font-style: italic; font-weight: 600; letter-spacing: -0.01em; }
+.vyText p { margin: 0; font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.5; }
+.vyNr { font-family: var(--mall-hero); font-size: 1.6rem !important; letter-spacing: 0.1em; opacity: 0.7; }
+.vyVanster { justify-content: flex-start; }
+.vyHoger { justify-content: flex-end; }
+.vyMitt { justify-content: center; align-items: flex-start !important; text-align: center; padding-top: clamp(6rem, 15vh, 9rem) !important; }
+.vyMitt > div { justify-items: center; }
+.paFarg { color: #fff; }
+.paFarg h2 em { color: #140A18; }
+.paMork { color: #fff; }
+.paMork h2 em { color: #F08AF5; }
+.paMork p { color: #E7DDEA; }
+.vyMitt h2 em { color: var(--acc-text); }
+.vyMitt p { color: var(--text-2); }
+.knappVit { background: #fff; color: #140A18 !important; box-shadow: 0 12px 28px -12px rgba(20, 10, 24, 0.6); }
+.knappVit:hover { background: #140A18; color: #fff !important; }
+.scenAktiv .fagel { display: block; position: absolute; left: 0; top: 0; z-index: 4; width: clamp(54px, 7vw, 96px); fill: #140A18; opacity: 0; pointer-events: none; will-change: transform, opacity; }
+@media (max-width: 800px) {
+  .scenAktiv .vyText { align-items: flex-start; justify-content: center; text-align: center; padding: 5.5rem 1.2rem 0; }
+  .vyText > div { justify-items: center; }
+  .scenAktiv .vy0 { padding-top: 5.2rem; }
+  .scenAktiv .vy0 .ingress { font-size: 1rem; }
+}
+
+/* Telefon: i vy 2–4 gör den fasta köpraden jobbet, så knappen i vyn döljs (annars två likadana). */
+@media (max-width: 700px) { .scenAktiv .vyText .knapp { display: none; } .scenAktiv .vy0 .heroPris { display: none; } }
+@media (max-width: 700px) { .mobilKop { border: 2px solid #fff; } }
+.vy0 { isolation: auto; }

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { fontKlasser } from '../../_mall/fonter';
 import { PRODUKTER } from '../butik-produkter';
 import Kalkyl from './Kalkyl';
+import Scen from './Scen';
 import s from './butik.module.css';
 
 /* ===========================================================================
@@ -105,25 +106,61 @@ export default function ArcherKnoxButik() {
       </header>
 
       <main>
-        {/* Första skärmen: namnet stort i två färger, produkten framför som ett lager (ecome-hemsida). */}
-        <section className={s.hero}>
-          <p className={s.eyebrow}>Webbutik · i lager · leverans på 1–2 dagar</p>
-          <h1 className={s.namn} aria-label="BirdBlocker">
-            <span aria-hidden="true"><Bokstaver ord="Bird" start={0} /></span>
-            <span aria-hidden="true"><Bokstaver ord="Blocker" start={4} /></span>
-          </h1>
-          <div className={s.lager} aria-hidden="true">
-            <Image src={`${M}/butik/fagelband-bb200.webp`} alt="" width={640} height={640} priority sizes="(max-width: 700px) 80vw, 560px" />
-          </div>
-          <div className={s.heroText}>
-            <p className={s.ingress}>Fågelskydd för solpaneler. Hela sortimentet i lager, skickat i hela Sverige eller hämtat i Kungsängen.</p>
-            <div className={s.knappar}>
-              <a className={s.knapp} href={`${BUTIK}/collections/birdblocker`} target="_blank" rel="noopener">Köp BirdBlocker</a>
-              <a className={`${s.knapp} ${s.knappLjus}`} href="#rakna">Räkna ut hur mycket</a>
+        {/* Scenen: namnet stort i två färger, fågelbandet i 3D framför som ett lager, fyra vyer vid skroll
+            (ecome-hemsida, som maykaskitchen.se). Utan 3D står första vyn kvar som en vanlig hero med fotot. */}
+        <Scen klass={s}>
+          <div className={`${s.vy} ${s.vy0}`} data-vy>
+            <p className={s.eyebrow}>Webbutik · i lager · leverans på 1–2 dagar</p>
+            <h1 className={s.namn} aria-label="BirdBlocker">
+              <span aria-hidden="true"><Bokstaver ord="Bird" start={0} /></span>
+              <span aria-hidden="true"><Bokstaver ord="Blocker" start={4} /></span>
+            </h1>
+            <div className={s.lager} aria-hidden="true">
+              <Image src={`${M}/butik/fagelband-bb200.webp`} alt="" width={640} height={640} priority sizes="(max-width: 700px) 80vw, 560px" />
             </div>
-            <p className={s.heroPris}>Fågelband från <b>{kr(pris('kopia-av-fagelband-bb125'))}</b></p>
+            <div className={s.heroText}>
+              <p className={s.ingress}>Fågelskydd för solpaneler. Hela sortimentet i lager, skickat i hela Sverige eller hämtat i Kungsängen.</p>
+              <div className={s.knappar}>
+                <a className={s.knapp} href={`${BUTIK}/collections/birdblocker`} target="_blank" rel="noopener">Köp BirdBlocker</a>
+                <a className={`${s.knapp} ${s.knappLjus}`} href="#rakna">Räkna ut hur mycket</a>
+              </div>
+              <p className={s.heroPris}>Fågelband från <b>{kr(pris('kopia-av-fagelband-bb125'))}</b></p>
+            </div>
           </div>
-        </section>
+
+          <div className={`${s.vy} ${s.vyText} ${s.vyVanster} ${s.paFarg}`} data-vy>
+            <div>
+              <p className={s.vyNr}>01</p>
+              <h2>Fåglarna <em>stannar ute</em></h2>
+              <p>Fågelbandet stänger kanten runt panelerna, så att fåglar inte kan häcka under dem.</p>
+              <a className={`${s.knapp} ${s.knappVit}`} href={`${BUTIK}/collections/birdblocker`} target="_blank" rel="noopener">Köp BirdBlocker</a>
+            </div>
+          </div>
+
+          <div className={`${s.vy} ${s.vyText} ${s.vyHoger} ${s.paMork}`} data-vy>
+            <div>
+              <p className={s.vyNr}>02</p>
+              <h2>På nya och <em>gamla anläggningar</em></h2>
+              <p>Sätts upp när panelerna monteras, eller i efterhand på en anläggning som redan sitter på taket.</p>
+              <a className={s.knapp} href={`${BUTIK}/collections/birdblocker`} target="_blank" rel="noopener">Köp BirdBlocker</a>
+            </div>
+          </div>
+
+          <div className={`${s.vy} ${s.vyText} ${s.vyMitt}`} data-vy>
+            <div>
+              <p className={s.vyNr}>03</p>
+              <h2>Skadar inte <em>fåglarna</em></h2>
+              <p>De hålls ute. Inget mer än så.</p>
+              <a className={s.knapp} href={`${BUTIK}/collections/birdblocker`} target="_blank" rel="noopener">Köp BirdBlocker</a>
+            </div>
+          </div>
+
+          {[0, 1, 2].map((k) => (
+            <svg className={s.fagel} data-fagel viewBox="0 0 64 40" aria-hidden="true" key={k}>
+              <path d="M2 22c8-2 12-9 20-12 4-8 12-10 18-8-5 2-8 6-9 10 6 0 12 2 16 6 4 0 9 1 15 4-6 1-11 1-15 0-6 6-16 8-26 5-6 3-12 3-17 2 3-1 6-3 8-5-4 0-7-1-10-2z" />
+            </svg>
+          ))}
+        </Scen>
 
         <ul className={s.loften} aria-label="Leverans">
           <li><b>1–2 dagar</b><span>Leverans i hela Sverige</span></li>
