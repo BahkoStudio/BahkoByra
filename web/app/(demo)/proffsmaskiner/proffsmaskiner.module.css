@@ -2245,9 +2245,14 @@ a.kontaktRad b {
   margin: 0 0 1.2rem;
 }
 .samBand {
-  background: #FFFFFF;
+  /* Samma mörka band som tejpen under heron: loggorna är ljusa och enfärgade,
+     så bandet hör till sidan i stället för att se ut som en inklistrad remsa. */
+  background: var(--yta);
   overflow: hidden;
   border-block: 1px solid var(--linje);
+  /* Kanterna tonar ut så loggorna glider in och ut i stället för att klippas. */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 .samSpar {
   display: flex;
@@ -2268,19 +2273,26 @@ a.kontaktRad b {
 .samIn a {
   display: flex;
   align-items: center;
-  height: clamp(88px, 9vw, 112px);
-  padding-inline: clamp(1.8rem, 3.5vw, 3rem);
+  height: clamp(84px, 8vw, 104px);
+  padding-inline: clamp(1.8rem, 3.6vw, 3.2rem);
 }
 .samIn img {
   display: block;
   max-width: none;
+  opacity: 0.62;
+  transition: opacity 0.3s var(--ease);
+}
+.samIn a:hover img,
+.samIn a:focus-visible img {
+  opacity: 1;
 }
 @media (max-width: 620px) {
   .samIn img {
-    scale: 0.82;
+    scale: 0.85;
   }
   .samIn a {
-    padding-inline: 1.2rem;
+    height: 80px;
+    padding-inline: 1.1rem;
   }
 }
 @media (hover: hover) {
