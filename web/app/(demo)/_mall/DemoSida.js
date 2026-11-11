@@ -765,8 +765,9 @@ export default function DemoSida({ data: d }) {
                 <h1 className={s.heroRubrik}><span className={s.heroOrt}>{d.hero.rubrik.fraga}</span> <span className={s.heroTjanster}>{d.hero.rubrik.svar}</span></h1>
               ) : (
                 <>
-                  {d.hero.ort ? <p className={s.heroOrt}>{d.hero.ort}</p> : null}
-                  <p className={s.heroTjanster}>{d.hero.tjanster[0]} &amp; {d.hero.tjanster[1]}.</p>
+                  {/* Entrén (Mathias 2026-11-11): orten bokstav för bokstav, tjänsteraden ord för ord. Spannen bär bara fördröjningen (--i). */}
+                  {d.hero.ort ? <p className={s.heroOrt}>{[...d.hero.ort].map((tkn, i) => (tkn === ' ' ? ' ' : <span className={s.heroBokstav} style={{ '--i': i }} key={i}>{tkn}</span>))}</p> : null}
+                  <p className={s.heroTjanster}><span className={s.heroOrd} style={{ '--i': 0 }}>{d.hero.tjanster[0]}</span> <span className={s.heroOrd} style={{ '--i': 1 }}>&amp;</span> <span className={s.heroOrd} style={{ '--i': 2 }}>{d.hero.tjanster[1]}.</span></p>
                 </>
               )}
               <div className={s.heroCta}>
