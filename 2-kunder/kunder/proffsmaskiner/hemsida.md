@@ -47,10 +47,12 @@ Peter mejlade nya tjänster och leverantörer. Sidan ändrad samma dag:
 - Tjänstekorten är nu **Bygg** (sågar, fräsar, stoftavskiljare), **Rivning** (bilningshammare,
   mattstrippers, luftrenare), **Sanering** (plast, tejp, skyddsutrustning) och **Håltagning**
   (kärnborrar, klingor, golvsågar), med nya linjeritningar i samma stil.
-- Ny sektion **Om oss** (#om): ägs av ett företag från branschen inom just de fyra kategorierna,
+- Egen sektion **Om oss** (#om): ägs av ett företag från branschen inom just de fyra kategorierna,
   hyr ut och är återförsäljare av maskiner, handverktyg, förbrukningsmaterial och betongbearbetning.
-- **Leverantörer** som textrutor med länk (inga logotyper): Flex, Stanley, DeWalt, Hilti, JLM Group,
-  Husqvarna Construction, Brokk.
+- **Samarbeten:** eget ljust band under Om oss där leverantörernas logotyper rullar i egna färger
+  (Flex, Stanley, DeWalt, Hilti, JLM Group, Husqvarna Construction, Brokk), varje logga länkar till
+  märkets sajt. Filerna ligger i web/public/proffsmaskiner/media/partner/ (Flex, JLM och Brokk från
+  märkenas sajter, JLM:s vita text omfärgad till mörk; övriga från Wikimedia Commons).
 - Heroraden, tejpen, FAQ, formulärets val, sidfoten och metabeskrivningen följer de nya tjänsterna.
 - **Öppet hos Peter:** heron, Leveransen-sektionen och galleriet visar fortfarande grävare, liftar
   och bodar. Hyr de ut det fortfarande? Om inte: nya bilder och film (bara på hans begäran).

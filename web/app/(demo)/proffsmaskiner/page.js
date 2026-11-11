@@ -135,14 +135,17 @@ const TJANSTER = [
 ];
 
 // Peters lista 2026-11-11. Stanley och DeWalt är samma koncern men egna märken.
+// Logotyperna i public/proffsmaskiner/media/partner/: Flex och JLM från märkenas egna sajter
+// (JLM:s vita text omfärgad till mörk för den ljusa bandet), Brokk från brokk.com, övriga från
+// Wikimedia Commons. hojd = visad höjd i px, satt per logga så att de väger lika i bandet.
 const LEVERANTORER = [
-  { namn: 'Flex', url: 'https://www.flex-tools.com/sv-se', visas: 'flex-tools.com' },
-  { namn: 'Stanley', url: 'https://www.stanleyworks.se/sv-se', visas: 'stanleyworks.se' },
-  { namn: 'DeWalt', url: 'https://www.dewalt.se/sv-se', visas: 'dewalt.se' },
-  { namn: 'Hilti', url: 'https://www.hilti.se/', visas: 'hilti.se' },
-  { namn: 'JLM Group', url: 'https://jlmgroup.se/', visas: 'jlmgroup.se' },
-  { namn: 'Husqvarna Construction', url: 'https://www.husqvarnaconstruction.com/se/', visas: 'husqvarnaconstruction.com' },
-  { namn: 'Brokk', url: 'https://www.brokk.com/sv/', visas: 'brokk.com' },
+  { namn: 'Flex', url: 'https://www.flex-tools.com/sv-se', logo: 'flex.svg', w: 121, h: 56, hojd: 40 },
+  { namn: 'Stanley', url: 'https://www.stanleyworks.se/sv-se', logo: 'stanley.svg', w: 67, h: 32, hojd: 40 },
+  { namn: 'DeWalt', url: 'https://www.dewalt.se/sv-se', logo: 'dewalt.svg', w: 886, h: 272, hojd: 38 },
+  { namn: 'Hilti', url: 'https://www.hilti.se/', logo: 'hilti.svg', w: 482, h: 113, hojd: 32 },
+  { namn: 'JLM Group', url: 'https://jlmgroup.se/', logo: 'jlm.png', w: 640, h: 177, hojd: 40 },
+  { namn: 'Husqvarna Construction', url: 'https://www.husqvarnaconstruction.com/se/', logo: 'husqvarna.svg', w: 255, h: 50, hojd: 34 },
+  { namn: 'Brokk', url: 'https://www.brokk.com/sv/', logo: 'brokk.png', w: 300, h: 77, hojd: 30 },
 ];
 
 const STEGRITNINGAR = {
@@ -255,14 +258,26 @@ export default function ProffsmaskinerDemo() {
       <section className={`${styles.sek} ${styles.om}`} id="om">
         <div className={styles.wrap}>
           <div className={styles.omGrid}>
-            <div className={styles.sekHuvud}><p className={styles.eyebrow}>Om oss</p><h2 className={styles.h2}>Vi hyr ut. <em>Vi säljer också.</em></h2><p className={styles.sekLead}>Proffsmaskiner ägs av ett företag som själva kommer från branschen, från just bygg, rivning, sanering och håltagning. Därför hyr vi inte bara ut maskiner. Vi är också återförsäljare av maskiner och handverktyg, förbrukningsmaterial och betongbearbetning.</p></div>
-            <div>
-              <h3 className={styles.levRubrik}>Leverantörer vi jobbar med</h3>
-              <ul className={styles.leverantorer}>
-                {LEVERANTORER.map((l) => <li key={l.namn}><a href={l.url} target="_blank" rel="noopener"><b>{l.namn}</b><span>{l.visas}</span></a></li>)}
-                <li><a className={styles.levFraga} href="#kontakt"><b>Ett annat märke?</b><span>Fråga oss</span></a></li>
-              </ul>
+            <div><p className={styles.eyebrow}>Om oss</p><h2 className={styles.h2}>Vi hyr ut. <em>Vi säljer också.</em></h2></div>
+            <div className={styles.omText}>
+              <p>Proffsmaskiner ägs av ett företag som själva kommer från branschen, från just bygg, rivning, sanering och håltagning.</p>
+              <p>Därför hyr vi inte bara ut maskiner. Vi är också återförsäljare av maskiner och handverktyg, förbrukningsmaterial och betongbearbetning.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.samarbeten} aria-labelledby="samarbeten-rubrik">
+        <div className={styles.wrap}><h2 className={styles.samRubrik} id="samarbeten-rubrik">Samarbeten</h2></div>
+        <div className={styles.samBand}>
+          <div className={styles.samSpar}>
+            {[false, true].map((kopia) => (
+              <ul className={styles.samIn} aria-hidden={kopia || undefined} key={kopia ? 'b' : 'a'}>
+                {LEVERANTORER.map((l) => (
+                  <li key={l.namn}><a href={l.url} target="_blank" rel="noopener" tabIndex={kopia ? -1 : undefined} aria-label={kopia ? undefined : l.namn}><Image src={`/proffsmaskiner/media/partner/${l.logo}`} alt="" width={l.w} height={l.h} style={{ height: l.hojd, width: 'auto' }} unoptimized /></a></li>
+                ))}
+              </ul>
+            ))}
           </div>
         </div>
       </section>
