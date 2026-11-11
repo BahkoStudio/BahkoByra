@@ -75,7 +75,8 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   const ordning = await page.evaluate(() => [...document.querySelectorAll('main > section')].map((s) => s.id));
   const alla = st ? ['top', 'process', 'tjanster', 'varfor', 'omdomen', 'fragor', 'boka', 'kontakt', 'samarbeten'] : ['top', 'tjanster', 'priser', 'jobb', 'varfor', 'om', 'process', 'omdomen', 'instagram', 'fragor', 'boka', 'kontakt', 'samarbeten']; // priser: valfri prislista efter tjänsterna (Rena Rör 2026-11-11) · samarbeten: valfri logotypremsa SIST (GD Måleri 2026-10-09)
   const kravs = st ? ['top', 'process', 'tjanster', 'varfor', 'omdomen', 'fragor', 'kontakt'] : ['top', 'tjanster', 'jobb', 'varfor', 'om', 'omdomen', 'fragor', 'kontakt'];
-  const vantad = alla.filter((id) => ordning.includes(id));
+  const alla2 = ordning.indexOf('priser') >= 0 && ordning.indexOf('priser') < ordning.indexOf('tjanster') ? alla.filter((id) => id !== 'priser').flatMap((id) => (id === 'tjanster' ? ['priser', 'tjanster'] : [id])) : alla; // priserForst (Rena Rör 2026-11-11)
+  const vantad = alla2.filter((id) => ordning.includes(id));
   ok(JSON.stringify(ordning) === JSON.stringify(vantad) && kravs.every((id) => ordning.includes(id)), `sektionsordning (${ordning.join(' ')})`);
   ok((await page.locator('[class*="stat"]').count()) === 0, 'ingen siffer-rad (utdöd)');
 
@@ -180,7 +181,7 @@ for (const [namn, vp, dev] of [['desktop', { width: 1440, height: 900 }, {}], ['
   // --- uppmaningar: minst tre + popup + sidflik ---
   const cta = await page.locator('main a[href="#kontakt"][class*="btn"]').count();
   ok(cta >= 3, `minst tre knappar till formuläret i innehållet (${cta})`);
-  ok((await page.locator('aside[class*="popup"]').count()) === 1, 'popup finns');
+  ok((await page.locator('[data-popup="av"]').count()) === 1 ? (await page.locator('aside[class*="popup"]').count()) === 0 : (await page.locator('aside[class*="popup"]').count()) === 1, 'popup finns (eller avstängd med popup: false)');
   const flik = page.locator('a[class*="sidflik"]');
   if (namn === 'desktop') {
     const f = await flik.evaluate((e) => ({ skrift: getComputedStyle(e).writingMode, hoger: Math.round(innerWidth - e.getBoundingClientRect().right), synlig: getComputedStyle(e).display !== 'none' }));

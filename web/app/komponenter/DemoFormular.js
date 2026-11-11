@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { DEMO_NYCKEL, TACK } from '../formular';
 
 /* Formuläret i ett hemsideförslag.
@@ -17,6 +17,14 @@ import { DEMO_NYCKEL, TACK } from '../formular';
 
 export default function DemoFormular({ className, amne, children, nyckel = DEMO_NYCKEL, fran = 'Bahko-förslag', tack, kvittens, reserv = 'mailto:mathias@bahkobyra.se', tel }) {
   const [lage, setLage] = useState('redo');
+  // Kvittensen är mycket kortare än formuläret: utan det här hamnade tacket ovanför skärmen
+  // på telefon (Rena Rör 2026-11-11, mätt top -159 px). Skrolla dit och flytta fokus.
+  const kvittoRef = useRef(null);
+  useEffect(() => {
+    if ((lage !== 'klar' && lage !== 'fel') || !kvittoRef.current) return;
+    kvittoRef.current.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    kvittoRef.current.focus({ preventScroll: true });
+  }, [lage]);
 
   async function skicka(e) {
     const form = e.currentTarget;
@@ -56,7 +64,7 @@ export default function DemoFormular({ className, amne, children, nyckel = DEMO_
 
   if (lage === 'klar') {
     return (
-      <div className={className} role="status" aria-live="polite">
+      <div className={className} role="status" aria-live="polite" ref={kvittoRef} tabIndex={-1}>
         {kvittens || (
           <>
             <p style={{ fontWeight: 700, fontSize: '1.15rem' }}>Tack! Din förfrågan är skickad.</p>
@@ -93,7 +101,7 @@ export default function DemoFormular({ className, amne, children, nyckel = DEMO_
       </fieldset>
       {lage === 'skickar' ? <p role="status" aria-live="polite">Skickar...</p> : null}
       {lage === 'fel' ? (
-        <p role="alert" style={{ fontWeight: 600 }}>
+        <p role="alert" style={{ fontWeight: 600 }} ref={kvittoRef} tabIndex={-1}>
           Något gick fel och förfrågan skickades inte. Försök igen, eller ring oss direkt
           {tel ? (
             <>

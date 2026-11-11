@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { fontKlasser } from './fonter';
 import { HeroFilmer, LatFilm } from './Film';
+import Raknare from './Raknare';
 import s from './mall.module.css';
 import DemoFormular from '../../komponenter/DemoFormular';
 import { googleOmdomen, recoOmdomen, instagramInlagg, kortaText } from './levande';
@@ -280,9 +281,31 @@ function Omdomen({ d, t, levande }) {
           <div className={s.recoRam}>
             <iframe src={d.omdomen.recoIframe.src} title={d.omdomen.recoIframe.titel} height={d.omdomen.recoIframe.hojd || 225} loading="lazy" />
           </div>
-        ) : d.omdomen.reco ? <RecoWidget d={d} lista={lista} /> : <div className={s.recensioner}>
+        ) : d.omdomen.reco ? <RecoWidget d={d} lista={lista} /> : d.omdomen.lappar ? null : <div className={s.recensioner}>
           {lista.map((o, i) => <Kort o={o} i={i} key={o.id || o.namn} />)}
         </div>}
+        {/* Valfritt omdomen.lappar: true (Rena Rör 2026-11-11, Mathias: "klisterlappar som går som ett band"): omdömena som
+            lappar i olika pappersfärger, lätt snedställda med en tejpbit, i ett band som rullar åt vänster. Paus vid hover,
+            stilla och sidledsskroll vid minskad rörelse. Samma innehåll som korten. */}
+        {d.omdomen.lappar && !d.omdomen.reco && !d.omdomen.recoIframe ? (
+          <div className={s.lappBand}>
+            <div className={s.lappSpar}>
+              {[false, true].map((kopia) => (
+                <ul className={`${s.lappGrupp} ${kopia ? s.bandKopia : ''}`} aria-hidden={kopia || undefined} key={kopia ? 'b' : 'a'}>
+                  {fyllUt(lista).map((o, i) => (
+                    <li className={s.lapp} style={{ '--lapp': i % 4 }} key={`${o.namn}-${i}`} aria-hidden={(!kopia && o.utfyllnad) || undefined}>
+                      <blockquote>{o.text}</blockquote>
+                      <p className={s.lappFot}>
+                        <b>{o.namn}</b>
+                        <span>{o.google ? <><GoogleG className={s.lappG} />{typeof o.betyg === 'number' ? <Stjarnor antal={o.betyg} etikett={`${o.betyg} ${t.stjarnorAv}`} /> : null}</> : o.kalla}</span>
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
+          </div>
+        ) : null}
         <div className={s.recensionerFot}>
           <p className={s.recensionerNot}>{not}</p>
           <div className={s.recensionerKnappar}>
@@ -467,7 +490,7 @@ function Kontakt({ d, t, k, harTel }) {
               ) : null}
               <div className={s.formRad}>
                 <label>{t.namn}<input type="text" name="namn" autoComplete="name" required /></label>
-                <label>{t.telefon}<input type="tel" name="telefon" autoComplete="tel" required /></label>
+                <label>{t.telefon}<input type="tel" name="telefon" autoComplete="tel" inputMode="tel" pattern={String.raw`[0-9 +\(\)\-]{6,}`} title={d.sprak === 'nb' ? 'Skriv et telefonnummer' : 'Skriv ett telefonnummer'} required /></label>
               </div>
               {/* Valfritt kontaktSektion.epostNamn: fältnamnet för e-post, t.ex. 'email' (Web3Forms autosvar går bara till fältet email). */}
               <label>{t.epost}<input type="email" name={d.kontaktSektion.epostNamn || 'epost'} autoComplete="email" /></label>
@@ -605,7 +628,7 @@ function StyrelseMain({ d, t, k, harTel, andraVag }) {
               <article className={`${s.stRad}${i % 2 ? ` ${s.stRadVand}` : ''}`} key={tj.id}>
                 <div className={s.stRadBild}><Image src={tj.bild} alt={tj.alt} width={800} height={600} sizes="(max-width: 900px) 92vw, 560px" loading={i ? 'lazy' : undefined} /></div>
                 <div className={s.stRadTxt}>
-                  {tj.ritning ? <span className={s.stRadIkon} aria-hidden="true"><svg viewBox="0 0 200 120">{tj.ritning}</svg></span> : null}
+                  {tj.marke ? <span className={s.stRadMarke} aria-hidden="true"><Image src={tj.marke} alt="" width={240} height={240} sizes="80px" loading="lazy" /></span> : tj.ritning ? <span className={s.stRadIkon} aria-hidden="true"><svg viewBox="0 0 200 120">{tj.ritning}</svg></span> : null}
                   <h3>{tj.namn}</h3>
                   <p>{tj.text}</p>
                   {tj.punkter?.length ? <ul>{tj.punkter.map((p) => <li key={p}><Bock />{p}</li>)}</ul> : null}
@@ -658,6 +681,32 @@ export default function DemoSida({ data: d }) {
   const h1Rader = d.hero.h1 || [d.namn];
   const HeroLogoTagg = d.hero.rubrik ? 'p' : 'h1';
   const h1Tecken = Math.max(...h1Rader.map((rad) => (rad.txt ? rad.txt.length * (rad.liten ? 0.62 : 1) : rad.length))).toFixed(1);
+  // 2b. Valfritt d.priser { eyebrow, rubrik, lead, kort: [{ namn, pris, villkor?, ingar[], ingarEj?[], utvald?, etikett? }], not? }:
+  // prislista som kort (Rena Rör 2026-11-11). Bara priser kunden själv publicerat. Står efter tjänsterna,
+  // eller före dem med d.priserForst. Utan fältet renderas sidan exakt som förut.
+  const priserBlock = d.priser ? (
+          <section className={s.sek} id="priser">
+            <div className={s.wrap}>
+              <Rubrik r={d.priser} />
+              <ul className={`${s.priser}${d.priser.kort.length === 2 ? ` ${s.priser2}` : d.priser.kort.length >= 4 ? ` ${s.priser4}` : ''}`}>
+                {d.priser.kort.map((p) => (
+                  <li className={p.utvald ? `${s.prisKort} ${s.prisUtvald}` : s.prisKort} key={p.namn}>
+                    {p.etikett ? <span className={s.prisEtikett}>{p.etikett}</span> : null}
+                    <h3>{p.namn}</h3>
+                    <p className={s.prisTal}>{p.pris}</p>
+                    {p.villkor ? <p className={s.prisVillkor}>{p.villkor}</p> : null}
+                    <ul className={s.prisLista}>
+                      {p.ingar.map((r) => <li key={r}><Bock />{r}</li>)}
+                      {(p.ingarEj || []).map((r) => <li className={s.prisEj} key={r}><span aria-hidden="true">–</span><span>{r}</span></li>)}
+                    </ul>
+                    <a className={p.utvald ? s.btn : `${s.btn} ${s.btnKontur} ${s.prisKnapp}`} href="#kontakt" aria-label={`${d.cta.lank} – ${p.namn}`}>{d.cta.lank}</a>
+                  </li>
+                ))}
+              </ul>
+              {d.priser.not ? <p className={s.prisNot}>{d.priser.not}</p> : null}
+            </div>
+          </section>
+        ) : null;
   // Bandet under heron: egna ord i d.tejp, annars tjänsternas namn och punkter.
   const tejp = d.tejp || [...new Set(d.tjanster.kort.flatMap((tj) => [tj.namn, ...(tj.punkter || [])]))].slice(0, 10);
   const tema = {
@@ -673,7 +722,7 @@ export default function DemoSida({ data: d }) {
     : { href: k.ig, txt: t.folj, ikon: <IgIkon />, ny: true };
 
   return (
-    <div className={`${fontKlasser} ${s.sida}${d.kund ? ` ${s.kund}` : ''}`} style={tema}>
+    <div data-popup={d.popup === false ? 'av' : undefined} className={`${fontKlasser} ${s.sida}${d.kund ? ` ${s.kund}` : ''}`} style={tema}>
       <header className={d.layout === 'styrelse' ? `${s.hdr} ${s.hdrLjus}` : s.hdr}>
         <div className={s.hdrIn}>
           {harTel
@@ -716,14 +765,17 @@ export default function DemoSida({ data: d }) {
                 <h1 className={s.heroRubrik}><span className={s.heroOrt}>{d.hero.rubrik.fraga}</span> <span className={s.heroTjanster}>{d.hero.rubrik.svar}</span></h1>
               ) : (
                 <>
-                  {d.hero.ort ? <p className={s.heroOrt}>{d.hero.ort}</p> : null}
-                  <p className={s.heroTjanster}>{d.hero.tjanster[0]} &amp; {d.hero.tjanster[1]}.</p>
+                  {/* Entrén (Mathias 2026-11-11): orten bokstav för bokstav, tjänsteraden ord för ord. Spannen bär bara fördröjningen (--i). */}
+                  {d.hero.ort ? <p className={s.heroOrt}>{[...d.hero.ort].map((tkn, i) => (tkn === ' ' ? ' ' : <span className={s.heroBokstav} style={{ '--i': i }} key={i}>{tkn}</span>))}</p> : null}
+                  <p className={s.heroTjanster}><span className={s.heroOrd} style={{ '--i': 0 }}>{d.hero.tjanster[0]}</span> <span className={s.heroOrd} style={{ '--i': 1 }}>&amp;</span> <span className={s.heroOrd} style={{ '--i': 2 }}>{d.hero.tjanster[1]}.</span></p>
                 </>
               )}
               <div className={s.heroCta}>
                 <a className={s.btn} href="#kontakt">{d.cta.txt}</a>
                 <a className={`${s.btn} ${s.btnKontur}`} href={andraVag.href} {...(andraVag.ny ? { target: '_blank', rel: 'noopener' } : {})}>{andraVag.ikon}{andraVag.txt}</a>
               </div>
+              {/* Valfritt hero.lank { href, txt } (Rena Rör 2026-11-11): en tredje, stillsam väg under knapparna, t.ex. prislistan. */}
+              {d.hero.lank ? <a className={s.heroLank} href={d.hero.lank.href}>{d.hero.lank.txt}</a> : null}
             </div>
             {d.hero.foreEfter ? (
               <figure className={s.heroForeEfter}>
@@ -745,16 +797,38 @@ export default function DemoSida({ data: d }) {
           </div>
         </div>
 
+        {/* Valfritt d.siffror [{ tal, efter?, text }] (Rena Rör 2026-11-11, Mathias: "ha med detta efter heron, animerat efter skroll"):
+            kundens EGNA siffror (källa i VERIFIERAT) som räknas upp när raden skrollas in. Bara CSS (scroll-tidslinje);
+            utan stöd eller vid minskad rörelse står slutsiffran direkt. Utan fältet renderas sidan exakt som förut. */}
+        {d.siffror ? (
+          <div className={s.siffror}>
+            <ul className={`${s.wrap} ${s.siffrorLista}`}>
+              {d.siffror.map((x) => (
+                <li key={x.text}>
+                  <b className={s.siffraTal}><Raknare tal={x.tal} efter={x.efter || ''} klassIn={s.siffraIn} /></b>
+                  <span className={s.siffraEtikett}>{x.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
+        {/* Valfritt d.priserForst: true (Rena Rör 2026-11-11): prislistan före tjänsterna, så priset syns inom två skrollar. */}
+        {d.priserForst ? priserBlock : null}
+
         {/* 2. Tjänster: kort med bild */}
         <section className={`${s.sek} ${s.sekMjuk}${d.tjanster.lattKort ? ` ${s.lattKort}` : ''}`} id="tjanster">
           <div className={s.wrap}>
             <Rubrik r={d.tjanster} />
             <div className={`${s.tjanster}${d.tjanster.kolumner === 3 ? ` ${s.tjKol3}` : ''}`}>
               {d.tjanster.kort.map((tj) => (
-                <article className={s.tjanst} key={tj.id}>
+                <article className={tj.marke ? `${s.tjanst} ${s.tjanstMedMarke}` : s.tjanst} key={tj.id}>
                   <div className={s.tjanstBild}>
                     <div className={s.tjanstBildIn}><Image src={tj.bild} alt={tj.alt} width={800} height={600} sizes="(max-width: 640px) 92vw, (max-width: 1100px) 46vw, 300px" /></div>
-                    {tj.ritning ? <span className={s.tjanstIkon} aria-hidden="true"><svg viewBox="0 0 200 120">{tj.ritning}</svg></span> : null}
+                    {/* Valfritt tj.marke (bildfil): runt 3D-märke på bildkanten i stället för linjeikonen, som tjänsterna på bahkobyra.se (Mathias 2026-11-11). */}
+                    {tj.marke
+                      ? <span className={s.tjanstMarke} aria-hidden="true"><Image src={tj.marke} alt="" width={240} height={240} sizes="112px" loading="lazy" /></span>
+                      : tj.ritning ? <span className={s.tjanstIkon} aria-hidden="true"><svg viewBox="0 0 200 120">{tj.ritning}</svg></span> : null}
                   </div>
                   <div className={s.tjanstTxt}>
                     <h3>{tj.namn}</h3>
@@ -771,32 +845,7 @@ export default function DemoSida({ data: d }) {
           </div>
         </section>
 
-        {/* 2b. Valfritt d.priser { eyebrow, rubrik, lead, kort: [{ namn, pris, villkor?, ingar[], ingarEj?[], utvald?, etikett? }], not? }:
-            prislista som kort direkt efter tjänsterna (Rena Rör 2026-11-11, Mathias: "gör det"). Bara priser kunden själv
-            publicerat (källa i VERIFIERAT). utvald = accentram + etikett. Utan fältet renderas sidan exakt som förut. */}
-        {d.priser ? (
-          <section className={s.sek} id="priser">
-            <div className={s.wrap}>
-              <Rubrik r={d.priser} />
-              <ul className={`${s.priser}${d.priser.kort.length === 2 ? ` ${s.priser2}` : d.priser.kort.length >= 4 ? ` ${s.priser4}` : ''}`}>
-                {d.priser.kort.map((p) => (
-                  <li className={p.utvald ? `${s.prisKort} ${s.prisUtvald}` : s.prisKort} key={p.namn}>
-                    {p.etikett ? <span className={s.prisEtikett}>{p.etikett}</span> : null}
-                    <h3>{p.namn}</h3>
-                    <p className={s.prisTal}>{p.pris}</p>
-                    {p.villkor ? <p className={s.prisVillkor}>{p.villkor}</p> : null}
-                    <ul className={s.prisLista}>
-                      {p.ingar.map((r) => <li key={r}><Bock />{r}</li>)}
-                      {(p.ingarEj || []).map((r) => <li className={s.prisEj} key={r}><span aria-hidden="true">–</span><span>{r}</span></li>)}
-                    </ul>
-                    <a className={p.utvald ? s.btn : `${s.btn} ${s.btnKontur} ${s.prisKnapp}`} href="#kontakt" aria-label={`${d.cta.lank} – ${p.namn}`}>{d.cta.lank}</a>
-                  </li>
-                ))}
-              </ul>
-              {d.priser.not ? <p className={s.prisNot}>{d.priser.not}</p> : null}
-            </div>
-          </section>
-        ) : null}
+        {d.priserForst ? null : priserBlock}
 
         {/* 3. Jobb: två band, första åt vänster, andra åt höger */}
         <section className={`${s.sek} ${s.jobb}`} id="jobb">
@@ -865,6 +914,21 @@ export default function DemoSida({ data: d }) {
                 <a className={s.pilLank} href="#kontakt">{d.cta.lank}</a>
               </div>
             </div>
+            {/* Valfritt d.team { eyebrow, rubrik, lista: [{ namn, roll, bild }] } (Rena Rör 2026-11-11, Mathias: "möt teamet"):
+                porträtt med namn och roll på en ljus etikett, under Om oss. Bara riktiga anställda med egna foton. */}
+            {d.team ? (
+              <div className={s.team}>
+                <Rubrik r={d.team} />
+                <ul className={s.teamLista}>
+                  {d.team.lista.map((p) => (
+                    <li className={s.teamKort} key={p.namn}>
+                      <Image src={p.bild} alt={`${p.namn}, ${p.roll.toLowerCase()}`} width={600} height={720} sizes="(max-width: 700px) 92vw, 380px" loading="lazy" />
+                      <div className={s.teamEtikett}><b>{p.namn}</b><span>{p.roll}</span></div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
           </div>
         </section>
 
@@ -981,6 +1045,7 @@ export default function DemoSida({ data: d }) {
       </div>
       <span className={s.stangdAnkare} id="stangd" />
 
+      {d.popup === false ? null : (<>
       <input type="checkbox" id="popup-bort" className={s.popupBort} aria-hidden="true" tabIndex={-1} />
       <aside className={s.popup} aria-label={`${t.kontakt} ${d.namn}`}>
         <label className={s.popupX} htmlFor="popup-bort" role="button" aria-label={t.stangKort} tabIndex={0}>✕</label>
@@ -989,6 +1054,7 @@ export default function DemoSida({ data: d }) {
         <a className={`${s.btn} ${s.popupCta}`} href={harTel ? k.telHref : '#kontakt'}>{harTel ? `${t.ring} ${k.tel}` : d.cta.txt}</a>
         {harTel ? <a className={s.popupAlt} href="#kontakt">{t.ellerSkriv}</a> : null}
       </aside>
+      </>)}
 
       {/* Bahkos demo-knapp och modal: bara i förslag. En kunds egen sida (d.kund) har ingen av dem. */}
       {d.kund ? null : (

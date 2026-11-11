@@ -58,3 +58,12 @@ Hej Claudio! Såg inlägget från brf:en i Gårda, röret som rostat igenom i et
 ## Mejltext (max två meningar)
 
 Hej Claudio, jag har byggt ett kostnadsfritt förslag på ny hemsida åt Rena Rör, med era egna jobb från Instagram och prislistan längst fram: https://www.bahkobyra.se/renaror/. Säg till om du vill gå igenom det på en kvart.
+
+## Omgång 2 (2026-11-11 kväll): riktig sida + kundloop 3 rundor
+
+- `kund: true` (ingen Bahko-knapp), sex tjänstesidor, BRF-sidan (GD-BRF-stil, layout styrelse) och sju ortssidor i `[sida]/page.js`, delad data i `_rr.js`.
+- Ny herofilm: 3D-illustration med deras logga på bilen (GPT Image 2.5 + Wan 3.0 Prime). BRF-bilden och Göteborgsbilden i footern är också genererade.
+- Sifferraden 14 år / 3400+ / 8000+ (Mathias bekräftade 14), 3D-märken på tjänsterna, omdömen som klisterlappar, Möt teamet, prislistan före tjänsterna, popup och Instagram borta.
+- "Föreslå en tid" går till bahkostudio@gmail.com tills Rena Rör har en egen kalender (Mathias).
+- Kundloop: runda 3 Kund GODKÄND; Trovärdighet och Friktion hade småfel kvar som rättades efteråt (telefonmönster, jourpris, Göteborgssidan).
+- Öppet: Google-profilen säger "Stängt · Öppnar tors kl. 09" fast de har jour dygnet runt; ortssidorna saknar lokala jobb (be Claudio om bilder från Mölndal, Partille, Kungälv, Kungsbacka, Ale, Mölnlycke).

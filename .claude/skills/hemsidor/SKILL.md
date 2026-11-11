@@ -41,8 +41,9 @@ inte omklädd än (se läget Omklädnad).
   igen 2026-09-19. Stegen är en resa med ikoner.
 - **Illustrationsnot under filmen** ("Filmen är en illustration av …").
   Struken av Mathias 2026-09-19.
-- **Siffer-raden** (uppräknande tal under heron). Mathias 2026-09-18: "den
-  delen ska bort, har ingen påverkan alls." Gäller även löftessiffror.
+- ~~Siffer-raden~~ (2026-09-18 "ingen påverkan alls"). **Återinförd som valfritt fält
+  `siffror` 2026-11-11** (Rena Rör, Mathias: "ha med detta efter heron, animerat efter
+  skroll"): bara kundens EGNA siffror ur deras kanaler, aldrig löftessiffror.
 - **Förvandlingen** (före/efter-par + kvadratiskt galleri),
   **klickbara steg**, **sociala rutnätet med platshållare**, **en CSS-fil per
   kund**, **en egen palett av tio variabler per kund**.
@@ -122,6 +123,23 @@ storlekar innan skalan fanns.
 knappar och fält 12 px, formulärkortet 24 px, piller 999. Inga andra radier. Neutrala höjdskuggor,
 aldrig färgat glöd runt kort. Knappen får en mjuk skugga i sin egen färg —
 det är det enda undantaget. Luft: sektioner `clamp(4,5rem, 9vw, 7,5rem)`.
+
+## Tjänsternas ikoner: runda 3D-märken (alltid, sedan 2026-11-11)
+
+Mathias 2026-11-11: "tjänsternas ikoner ska vara som bahkobyra.se tjänster, spara detta alltid
+på skillen". Varje tjänstekort får fältet `marke` (en bildfil): ett runt 3D-märke på vit rundel som
+sticker upp över bildkanten och lyfts och vrids lite vid hover, som "Våra tjänster" på bahkobyra.se.
+Linjeritningen (`ritning`) är reserv för äldre demos.
+
+- Generera med **GPT Image 2.5** (`hf.mjs bild --modell sunburst --format 1:1 --upplosning 1k`),
+  ett märke per tjänst, samma stilprompt för alla: "Glossy 3D diorama icon, a single object on a
+  round low pedestal in deep navy with a thin gold rim, soft studio light, warm off-white background,
+  centred, square. Palette: <kundens accent>, <kundens neutrala>, deep navy, small gold accents. No
+  text, no letters, no numbers, no logos, no people." + ett föremål ur nischen (munstycke, rörkamera,
+  pensel, gräsklippare …). Ca 0,02 USD styck.
+- Skala till 240×240 webp (`marke-<tjänst>.webp`). Titta på alla tillsammans: samma piedestal,
+  samma ljus, inga bokstäver.
+- Bilder generellt: **GPT Image 2.5**, inte Qwen (Mathias 2026-11-11). Film: alltid Wan 3.0 Prime.
 
 ## Lägen — skiljer sig bara i mediakostnad
 
@@ -412,8 +430,11 @@ Kopiera `swedcro/page.js` och byt innehållet. Fälten:
 | `nav` | `vanster` och `hoger`, två länkar var (logotypen hamnar emellan) · valfritt `extra: [{ href, txt }]` = fler länkar bara i mobilmenyn, t.ex. tjänstesidor som inte ryms i pillret (GD Måleri 2026-10-08) |
 | `hero` | `ort`, `tjanster: ['Ett', 'Två']`, `video`, `videoMobil`, `poster`, `posterMobil` — och `h1` (rader) bara när logotyp saknas |
 | `tejp` | Åtta korta ord till bandet under heron (valfri) |
-| `tjanster` | `eyebrow`, `rubrik`, `lead`, `kort[]`: `id`, `namn`, `bild`, `alt`, `text`, `punkter`, `ritning` (JSX-paths, viewBox 200×120), valfri `lank: { href, txt }` = kortet leder till tjänstens egen sida i stället för formuläret (texten säger vart, t.ex. "Allt om fasaden", aldrig "Läs mer") · valfritt `kolumner: 3` = tre kort i rad, 3 → 3 → 1 (för en undersida med tre kort; utan fältet 4 → 2 → 1) · valfritt `lattKort: true` = kortrubriker i `accentText` vikt 600 och punkter grå vikt 400 (GD Måleri 2026-10-08, kundens önskemål) |
+| `tjanster` | `eyebrow`, `rubrik`, `lead`, `kort[]`: `id`, `namn`, `bild`, `alt`, `text`, `punkter`, **`marke`** (runt 3D-märke, se Tjänsternas ikoner; ALLTID på nya demos), `ritning` (JSX-paths, viewBox 200×120, bara reserv), valfri `lank: { href, txt }` = kortet leder till tjänstens egen sida i stället för formuläret (texten säger vart, t.ex. "Allt om fasaden", aldrig "Läs mer") · valfritt `kolumner: 3` = tre kort i rad, 3 → 3 → 1 (för en undersida med tre kort; utan fältet 4 → 2 → 1) · valfritt `lattKort: true` = kortrubriker i `accentText` vikt 600 och punkter grå vikt 400 (GD Måleri 2026-10-08, kundens önskemål) |
 | `priser` | Valfritt (Rena Rör 2026-11-11, Mathias: "gör det"): `{ eyebrow, rubrik, lead, kort: [{ namn, pris, villkor?, ingar[], ingarEj?[], utvald?, etikett? }], not? }` = **prislista som kort** i egen sektion `#priser` direkt efter tjänsterna (2 → två kolumner, 3 → tre, 4+ → fyra; en kolumn under 900 px). `utvald: true` = accentram, fylld knapp och `etikett` som piller. `ingarEj` = grå rader med streck. **Bara priser kunden själv publicerat** (källa och datum i VERIFIERAT, och säg om moms/ROT som kunden gör). Knappen bär `cta.lank`. Utan fältet renderas sidan exakt som förut (QA grön på swedcro och stahlgrensvvs). Lägg gärna `#priser` i `nav.vanster` |
+| `siffror` | Valfritt (Rena Rör 2026-11-11): `[{ tal, efter?, text }]` = mörk rad direkt efter tjänstebandet där talen **räknas upp från noll på 1,8 s och glider upp på plats när raden skrollas in** (`_mall/Raknare.js`, liten klientkomponent med IntersectionObserver, Mathias: "siffrorna ska gå uppåt som en rörelse"; en scroll-bunden CSS-räknare stannade på fel siffra och ratades; utan JavaScript eller vid minskad rörelse står slutsiffran direkt, skärmläsare får slutsiffran). Bara kundens egna siffror med källa i VERIFIERAT |
+| `omdomen.lappar` | Valfritt (Rena Rör 2026-11-11, Mathias: "klisterlappar som går som ett band"): `true` = omdömena som **klisterlappar** i fyra pappersfärger, lätt snedställda med en tejpbit, i ett band som rullar åt vänster (paus vid hover, stilla med sidledsskroll vid minskad rörelse). Samma `lista[]` som korten |
+| `hero.lank` | Valfritt (Rena Rör 2026-11-11): `{ href, txt }` = en stillsam understruken länk under heroknapparna, t.ex. "Se prislistan" |
 | `jobb` | rubrikfält + `rad1[]`, `rad2[]`: `src`, `alt`, `txt` · `not` · `tid` (varvtid, ~10 s per bild) · valfritt `utvalda: [{ src, w, h, alt, etikett?, txt, lank? }]` = upp till tre stående bilder (3:4) med bildtext ovanför banden, t.ex. en **före/efter-bild** först (GD Måleri 2026-10-09). Före/efter: två egna foton av samma yta, perspektivjusterade mot varandra (OpenCV, passpunkter i fönsterhörn), vänster halva före och höger halva efter, små etiketter inbrända, webp; alt-texten och `not` säger att bilden är sammansatt |
 | `varfor` | rubrikfält + `punkter[]`, `video`, `poster`, `videoAlt` |
 | `om` | `eyebrow`, `rubrik`, `kortRad` (orten under logotypen), `stycken[]`, `bevis[]` · valfri `bild: { src, w, h, alt, rundad? }` visar en bild (t.ex. ett Reco-märke) i stället för logotypen på Om-kortet; `rundad: true` = bilden ÄR ett kort (Recos hela märkeskort): hela bilden upp till 440 px, 18 px radie och kortskugga, ingen beskärning · valfritt `utanKort: true` = märket står fritt utan det vita kortet (GD Måleri 2026-10-08: `reco-kort.png` med `rundad` + `utanKort`, ingen `kortRad`) |
@@ -478,6 +499,7 @@ på **kanon och minst en demo till**.
 | Mönster | Så | Fallgrop |
 |---|---|---|
 | Header-toning | `@property --bahko-hdr-t` (0→1) animerad på `scroll(root)`, `animation-range: 0 120px`. Färg, glas, pillerfärg och loggans filter räknas ur den med `color-mix`/`calc` | Utan stöd för scroll-tidslinjer står värdet på 1 = vit header från start, aldrig en oläslig. **Pillret är MÖRKT glas högst upp** — ljust glas över ljus film gav oläsliga länkar. |
+| Hero-entrén | **Alltid, på alla sidor** (Mathias 2026-11-11: "logga och copy ska komma in som en motion transition, på alla framtida hemsidor"). Första försöket (allt tonar upp nedifrån) ratades: "ingen bra motion, gör det vackert och häpnadsväckande". Koreografin i mallen, ca 2 s: logotypen landar stor, ljus och oskarp och faller i fokus (`heroLogga`) · orten reser sig **bokstav för bokstav** bakom en osynlig kant medan spärrningen drar ihop sig (`heroBokstav`, `heroSparr`) · tjänsteraden sveper in **ord för ord** från vänster ur oskärpa (`heroOrd`) · knapparna studsar på plats (`heroStuds`) · länken sist. Andra layouten: rubriken reser sig, den kursiva delen sveper in, bilden öppnas som en ridå. Bara CSS, en gång vid laddning | Vid minskad rörelse står allt på plats direkt. Lägg aldrig entrén på filmen eller slöjan, bara på innehållet. Skärmdumpa heron först efter 2 s. |
 | Hero-logotypen | h1 omsluter loggan (`alt` = firmanamnet). Bredden räknas ur `--logo-ar` så en bred och en hög logga får samma optiska höjd, och en liten fil skalas upp | Över filmen: `ljus`-varianten om den finns · annars `topp: 'vit'` → vit siluett · `topp: 'bricka'` → loggan i egna färger med ett mjukt ljussken bakom (ingen platta med kant). Utan logotyp: firmanamnet i Bebas Neue, storleken räknad ur `--h1-tecken`. |
 | Tjänstebandet | Samma `rulla`-loop som jobbanden, kopian `aria-hidden` | Konturorden har fyllning i bandets egen färg och `paint-order: stroke fill` — med genomskinlig fyllning syns typsnittets överlappande konturer inne i bokstäverna. |
 | Resan | `::after`-linjen skalas 0→1 på `animation-timeline: view()`; `--n` = antal steg | Utan stöd står hela linjen ritad. Ikonerna är mallens egna (sex stycken) — rita inga nya per kund. |

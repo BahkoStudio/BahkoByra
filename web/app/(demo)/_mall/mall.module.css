@@ -854,6 +854,141 @@ html:has(.sida) {
 .btn.btnKontur.prisKnapp:hover { background: var(--text); border-color: var(--text); color: #fff; }
 .prisNot { margin-top: 1.4rem; font-size: var(--tx-s); color: var(--text-2); max-width: 46rem; }
 
+/* ---------- Valfritt: 3D-märke på tjänstekortet (data: tjanster.kort[].marke). Rena Rör 2026-11-11,
+   Mathias: "tjänsternas ikoner ska vara som bahkobyra.se tjänster". Runt märke på vit rundel som sticker
+   upp över bildkanten, lyfts och vrids lite vid hover. ---------- */
+.tjanstMarke {
+  position: absolute;
+  left: 1.1rem;
+  bottom: -48px;
+  z-index: 1;
+  display: block;
+  width: 96px;
+  aspect-ratio: 1;
+  padding: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(10, 22, 40, 0.18);
+  transition: transform 0.35s var(--ease);
+}
+.tjanstMarke img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.tjanst:hover .tjanstMarke { transform: translateY(-6px) rotate(-4deg); }
+.tjanstMedMarke .tjanstTxt { padding-top: 3.6rem; }
+/* ---------- Valfritt: Möt teamet under Om oss (data: team). Rena Rör 2026-11-11. ---------- */
+.team { margin-top: clamp(3.5rem, 7vw, 5.5rem); }
+.teamLista { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: clamp(1rem, 2.4vw, 1.8rem); list-style: none; margin: 0; padding: 0; }
+.teamKort { position: relative; border-radius: var(--r); overflow: hidden; aspect-ratio: 5 / 6; background: var(--mork); box-shadow: var(--skugga); }
+.teamKort img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+.teamKort:hover img { transform: scale(1.04); }
+.teamEtikett { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; display: grid; gap: 0.15rem; padding: 1rem 1.2rem; border-radius: 16px; background: color-mix(in srgb, var(--accent) 62%, #fff); color: #111827; text-align: center; box-shadow: 0 10px 24px -10px rgba(15, 23, 42, 0.45); }
+.teamEtikett b { font-family: var(--f-rubrik); font-size: var(--tx-l); font-weight: 700; }
+.teamEtikett span { font-size: var(--tx-s); color: #1F2937; }
+/* Samma märke i den andra layoutens rader (tjanster.kort[].marke). */
+.stRadMarke { display: block; width: 76px; aspect-ratio: 1; margin-bottom: 0.9rem; padding: 4px; border-radius: 50%; background: #fff; box-shadow: 0 10px 24px rgba(10, 22, 40, 0.16); }
+.stRadMarke img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+
+/* ---------- Valfritt: sifferrad efter bandet (data: siffror). Rena Rör 2026-11-11. Talen räknas upp
+   och glider upp på plats när raden skrollas in (Raknare.js). Utan JavaScript: slutsiffran står direkt. ---------- */
+.siffror { background: var(--mork); color: #fff; padding-block: clamp(2.6rem, 6vw, 4.2rem); }
+.siffrorLista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: clamp(1.6rem, 4vw, 3rem);
+  list-style: none;
+  margin-block: 0;
+  text-align: center;
+}
+.siffrorLista li { display: grid; gap: 0.35rem; }
+.siffraTal {
+  display: block;
+  font-family: var(--f-rubrik);
+  font-size: clamp(3rem, 7vw, 4.8rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--accent-ljus);
+  font-variant-numeric: tabular-nums;
+}
+.siffraEtikett { font-size: var(--tx-l); color: #CBD5E1; }
+.siffraTal > span { display: inline-block; }
+@media (prefers-reduced-motion: no-preference) { .siffraIn { animation: siffraUpp 0.9s var(--ease) both; } }
+@keyframes siffraUpp { from { opacity: 0; transform: translateY(0.55em); } to { opacity: 1; transform: none; } }
+
+/* ---------- Valfritt: en stillsam länk under heroknapparna (data: hero.lank). Rena Rör 2026-11-11. ---------- */
+.heroLank {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  margin-top: 0.9rem;
+  color: #fff;
+  font-family: var(--f-rubrik);
+  font-size: var(--tx-m);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+.heroLank::after { content: '→'; transition: transform 0.2s var(--ease); }
+.heroLank:hover::after { transform: translateX(4px); }
+
+/* ---------- Valfritt: omdömen som klisterlappar i ett band (data: omdomen.lappar). Rena Rör 2026-11-11,
+   Mathias: "klisterlappar som går som ett band". Fyra pappersfärger, lätt snedställda, tejpbit upptill. ---------- */
+.lappBand {
+  margin-inline: calc(50% - 50vw);
+  padding-block: 1.6rem 2.2rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+.lappSpar { display: flex; width: max-content; animation: rulla var(--lapptid, 80s) linear infinite; }
+.lappBand:hover .lappSpar,
+.lappBand:focus-within .lappSpar { animation-play-state: paused; }
+.lappGrupp { display: flex; gap: 1.6rem; padding: 0 1.6rem 0 0; margin: 0; list-style: none; }
+.lapp {
+  --papper: #FFF4B8;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.2rem;
+  flex: none;
+  width: clamp(250px, 24vw, 300px);
+  min-height: 250px;
+  padding: 2rem 1.4rem 1.3rem;
+  background: var(--papper);
+  color: #1F2937;
+  border-radius: 4px 4px 18px 4px;
+  box-shadow: 0 1px 1px rgba(15, 23, 42, 0.08), 0 14px 28px -12px rgba(15, 23, 42, 0.35);
+  transform: rotate(calc((var(--lapp) - 1.5) * 1.4deg));
+  transition: transform 0.3s var(--ease);
+}
+.lapp:nth-child(4n + 2) { --papper: #FFE3C8; }
+.lapp:nth-child(4n + 3) { --papper: #DDF3E4; }
+.lapp:nth-child(4n + 4) { --papper: #DCEBFF; }
+.lapp:hover { transform: rotate(0deg) translateY(-4px); }
+.lapp::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 92px;
+  height: 26px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+}
+.lapp blockquote { margin: 0; font-size: var(--tx-l); line-height: 1.45; font-weight: 500; }
+.lappFot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.4rem 0.8rem; margin: 0; font-size: var(--tx-s); color: #374151; }
+.lappFot b { font-family: var(--f-rubrik); font-size: var(--tx-m); color: #111827; }
+.lappFot > span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.lappG { width: 18px; height: 18px; }
+@media (prefers-reduced-motion: reduce) {
+  .lappSpar { animation: none; }
+  .lappBand { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+}
+
 /* ---------- 3. jobb: två band som rullar åt var sitt håll ---------- */
 .jobb { overflow: hidden; }
 .band {
@@ -1995,7 +2130,7 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
 }
 .ftrOrter h3 { font-family: var(--f-rubrik); font-size: var(--tx-s); font-weight: 700; color: var(--text); }
 .ftrOrter ul { display: flex; flex-wrap: wrap; gap: 0 1.2rem; }
-.ftrOrter a { display: inline-block; padding-block: 0.75rem; }
+.ftrOrter a { display: inline-block; min-width: 44px; padding-block: 0.75rem; text-align: center; }
 .ftrOrter a:hover { color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; }
 .ftrOrter + .ftrBar { margin-top: 1rem; }
 @media (max-width: 900px) {
@@ -2607,3 +2742,62 @@ a.kontaktRad:hover { background: rgba(255, 255, 255, 0.14); }
 /* Recos egen widget som iframe (valfritt omdomen.recoIframe, GD Måleri 2026-10-14). Recos kod: höjd 225, full bredd, ingen kant. */
 .recoRam { margin-top: 1.5rem; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 1px 2px rgba(13,27,42,.06), 0 8px 24px rgba(13,27,42,.06); }
 .recoRam iframe { display: block; width: 100%; border: 0; overflow: hidden; }
+
+/* ---------- Heron kommer in med rörelse (Mathias 2026-11-11: "logga och copy ska komma in som en motion
+   transition, på alla framtida hemsidor", och efter första försöket: "gör det vackert och häpnadsväckande").
+   Koreografi på ca 2 s, bara CSS, en gång vid laddning:
+   1 logotypen landar: stor, ljus och oskarp, och faller i fokus
+   2 orten reser sig bokstav för bokstav bakom en osynlig kant, med spärrningen som drar ihop sig
+   3 tjänsteraden sveper in ord för ord från vänster, ur oskärpa
+   4 knapparna studsar på plats, länken tonar in sist.
+   Andra layouten: rubriken reser sig rad för rad, bilden öppnas som en ridå.
+   Vid minskad rörelse står allt på plats direkt. ---------- */
+.heroBokstav, .heroOrd { display: inline-block; }
+@media (prefers-reduced-motion: no-preference) {
+  .heroIn > .h1 { animation: heroLogga 1.25s cubic-bezier(0.16, 1, 0.3, 1) both; transform-origin: 50% 60%; }
+  .heroOrt { animation: heroSparr 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both; }
+  .heroBokstav {
+    animation: heroBokstav 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(0.5s + var(--i) * 0.055s);
+    transform-origin: 50% 100%;
+  }
+  .heroOrd {
+    animation: heroOrd 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(1.05s + var(--i) * 0.16s);
+  }
+  .heroCta > * { animation: heroStuds 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+  .heroCta > :nth-child(1) { animation-delay: 1.55s; }
+  .heroCta > :nth-child(2) { animation-delay: 1.68s; }
+  .heroLank { animation: heroUpp 0.8s var(--ease) 1.95s both; }
+  .heroRubrik { animation: heroUpp 0.9s var(--ease) 0.5s both; }
+  .heroForeEfter { animation: heroBild 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both; }
+
+  .stHeroTxt > .eyebrow { animation: heroUpp 0.7s var(--ease) both; }
+  .stHeroTxt > .stH1 { animation: heroRad 1s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both; }
+  .stHeroTxt > .stH1 em { display: inline-block; animation: heroOrd 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both; }
+  .stHeroTxt > .stIngress { animation: heroUpp 0.8s var(--ease) 0.75s both; }
+  .stHeroTxt > .stHeroCta > * { animation: heroStuds 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+  .stHeroTxt > .stHeroCta > :nth-child(1) { animation-delay: 0.95s; }
+  .stHeroTxt > .stHeroCta > :nth-child(2) { animation-delay: 1.08s; }
+  .stHeroTxt > .stBevis { animation: heroUpp 0.8s var(--ease) 1.3s both; }
+  .stHeroBild { animation: heroBild 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both; }
+}
+@keyframes heroLogga {
+  0% { opacity: 0; transform: scale(1.35); filter: blur(22px) brightness(2.4); }
+  55% { opacity: 1; filter: blur(0) brightness(1.5); }
+  100% { opacity: 1; transform: none; filter: none; }
+}
+@keyframes heroSparr { from { letter-spacing: 0.55em; } }
+@keyframes heroBokstav {
+  0% { opacity: 0; transform: translateY(85%) rotate(9deg) scaleY(1.25); clip-path: inset(0 0 100% 0); }
+  60% { opacity: 1; }
+  100% { opacity: 1; transform: none; clip-path: inset(-30%); }
+}
+@keyframes heroOrd {
+  0% { opacity: 0; transform: translateX(-0.9em) skewX(-14deg); filter: blur(12px); clip-path: inset(0 100% 0 0); }
+  100% { opacity: 1; transform: none; filter: none; clip-path: inset(-30%); }
+}
+@keyframes heroStuds { 0% { opacity: 0; transform: translateY(22px) scale(0.82); } 100% { opacity: 1; transform: none; } }
+@keyframes heroUpp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes heroRad { 0% { opacity: 0; transform: translateY(0.6em); clip-path: inset(0 0 100% 0); } 100% { opacity: 1; transform: none; clip-path: inset(-30%); } }
+@keyframes heroBild { 0% { opacity: 0; transform: scale(1.06); clip-path: inset(0 0 0 100% round 18px); } 100% { opacity: 1; transform: none; clip-path: inset(-30%); } }
