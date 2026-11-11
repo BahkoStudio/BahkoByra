@@ -74,9 +74,10 @@ import DemoSida from '../_mall/DemoSida';
    Facebook.
 
    FLAGGOR:
-   - PRISERNA är från "Prislista 2025". ROT-avdraget var tillfälligt 50 % under
-     2025 och är åter 30 % från 2026: fråga Claudio om priserna "efter ROT"
-     gäller än, innan förslaget blir skarpt.
+   - PRISERNA: sidan heter "Prislista 2025" men underhålls (ändrad 2026-07). 3 500, 4 750
+     och 995 kr/lgh stod redan i "Prislista 2024" (web.archive.org 2024-08, 2025-04,
+     2025-09), alltså satta när ROT var 30 %, som nu 2026. 2 250-paketet är nyare. Be
+     ändå Claudio bekräfta listan innan förslaget blir skarpt.
    - Herofilmen (igensatt brunn på en uppfart spolas ren) är en GENERERAD
      illustration: Qwen Image 3 (A och B) + Wan 3.0 Prime 5 s. Kontaktfilmen
      är samma film suddad. Ingen not på sidan (Mathias regel), sägs i
@@ -147,9 +148,9 @@ const data = {
   },
   cta: { txt: 'Boka tid', kort: 'Boka tid', lank: 'Boka tid' },
   nav: {
-    vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#jobb', txt: 'Våra jobb' }],
+    vanster: [{ href: '#tjanster', txt: 'Tjänster' }, { href: '#priser', txt: 'Priser' }],
     hoger: [{ href: '#om', txt: 'Om oss' }, { href: '#omdomen', txt: 'Omdömen' }],
-    extra: [{ href: '#fragor', txt: 'Priser och frågor' }, { href: TELHREF, txt: `Ring ${TEL}` }],
+    extra: [{ href: '#jobb', txt: 'Våra jobb' }, { href: '#fragor', txt: 'Frågor' }, { href: TELHREF, txt: `Ring ${TEL}` }],
   },
 
   hero: {
@@ -224,6 +225,38 @@ const data = {
         ritning: (<><path d="M20 44h60l20 30h80" /><path d="M20 64h50l20 30h90" /><path d="M150 20l-14 20h28z" /></>),
       },
     ],
+  },
+
+  // Prislistan: ordagrant ur renaror.se/prislista och /avloppsspolning ("Prislista 2025"). Se FLAGGOR om ROT.
+  priser: {
+    eyebrow: 'Prislista',
+    rubrik: ['Fasta priser,', 'inga överraskningar'],
+    lead: 'Tre paket för stopp i kök, toalett eller avloppsbrunn. Priserna är för privatpersoner, inklusive moms och efter ROT-avdrag.',
+    kort: [
+      {
+        namn: 'Avloppsspolning med efterkontroll',
+        pris: '2 250 kr',
+        villkor: 'inkl. moms, efter ROT-avdrag',
+        ingar: ['Framkörning ingår', 'En timmes arbete', 'Hetvatten 60 °C, roterande munstycken', 'Kontroll av vattenlåset'],
+        ingarEj: ['Filmning ingår inte'],
+      },
+      {
+        namn: 'Spolning och filmning',
+        pris: '3 500 kr',
+        villkor: 'inkl. moms, efter ROT-avdrag',
+        ingar: ['Framkörning ingår', 'En timmes arbete', 'Hetvatten 60 °C, roterande munstycken', 'Kontroll av vattenlåset', 'Kamera efteråt, för att hitta felet'],
+        ingarEj: ['Dokumentation och filmfiler ingår inte'],
+        utvald: true,
+        etikett: 'När stoppet kommer tillbaka',
+      },
+      {
+        namn: 'Spolning, filmning och dokumentation',
+        pris: '4 750 kr',
+        villkor: 'inkl. moms, efter ROT-avdrag',
+        ingar: ['Framkörning ingår', 'En timmes arbete', 'Hetvatten 60 °C, roterande munstycken', 'Kontroll av vattenlåset', 'Kamera efteråt, för att hitta felet', 'Dokumentation', 'Filmfilerna till dig'],
+      },
+    ],
+    not: 'Föreningar och företag: stamspolning 995 kr per lägenhet exklusive moms vid 5–10 lägenheter. Fler än 10 lägenheter får offert.',
   },
 
   jobb: {
@@ -318,9 +351,9 @@ const data = {
   },
 
   fragor: {
-    eyebrow: 'Priser och frågor',
-    rubrik: ['Vad kostar det,', 'och vad ingår?'],
-    lead: 'Pengarna först. Det praktiska sedan.',
+    eyebrow: 'Vanliga frågor',
+    rubrik: ['Det du undrar', 'innan du ringer'],
+    lead: 'Pengarna först, det praktiska sedan.',
     kort: { rubrik: 'Akut stopp?', text: `Ring ${TEL}. Vi svarar dygnet runt, året runt.` },
     lista: [
       { q: 'Vad kostar en avloppsspolning?', a: '2 250 kr efter ROT-avdrag, inklusive moms. Då ingår framkörning, en timmes arbete, hetvattenspolning på 60 grader med roterande munstycken och kontroll av vattenlåset. Gäller kök, toalett och avloppsbrunn.' },

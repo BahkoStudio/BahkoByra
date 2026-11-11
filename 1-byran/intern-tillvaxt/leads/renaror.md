@@ -1,7 +1,7 @@
 # Rena Rör i Väst AB (Göteborg) · avlopp: spolning, kamera, jour, avloppsbyte
 
 **Hemsida:** [renaror.se](https://www.renaror.se/) (WordPress, 13 sidor, alla lästa 2026-11-11) · **Instagram:** [@renaror](https://www.instagram.com/renaror/) ("Claudio", 159 följare, 49 inlägg)
-**Demo:** https://www.bahkobyra.se/renaror/ (källa: `web/app/(demo)/renaror/`). Gren `demo/renaror`, committad lokalt, inte pushad.
+**Demo:** https://www.bahkobyra.se/renaror/ (källa: `web/app/(demo)/renaror/`). Live sedan 2026-11-11 (PR #338).
 **Status:** byggd 2026-11-11 på demomallen v3. Media ca 0,45 USD. Inte skickad. Kontaktperson: **Claudio Congiu**, ägare.
 
 ## Vem han är
@@ -30,13 +30,13 @@ Inställelsetid, jourpris och vad som gäller efter första timmen, garantitider
 
 ## FLAGGOR
 
-- **Priserna är från "Prislista 2025".** ROT var tillfälligt 50 % under 2025 och är 30 % igen 2026. Fråga Claudio om priserna "efter ROT" gäller än.
+- **Priserna (kollat 2026-11-11):** ROT är 30 % igen från 2026-01-01 (50 % gällde 12 maj–31 dec 2025). Rena Rörs 3 500, 4 750 och 995 kr/lgh stod redan i "Prislista 2024" (web.archive.org aug 2024, apr och sep 2025) och är oförändrade, alltså satta med 30 % ROT. 2 250-paketet är nyare. Sidan ändrades senast juli 2026. Låg risk, men be Claudio bekräfta listan.
 - **En 1-stjärnig Google-recension** (Gordana Mahmutovic, reklamation om en garageinfart) ingår i 4,7. Den visas inte på sidan, men betyget är det riktiga.
 - **Herofilmen är GENERERAD** (igensatt brunn på en uppfart spolas ren): Qwen Image 3 A + B, Wan 3.0 Prime 5 s. Kontaktfilmen = samma film suddad. Ingen not på sidan, sägs i förslagsrutan.
 - **Alla andra bilder är hans egna:** 12 jobbfoton från Instagram, resten från renaror.se. Flera av sajtens foton är små (250–560 px) och uppskalade. Sajtens bildbanks- och AI-bilder är inte använda.
 - **Logotypen:** sajtens fil är 180×77 px. Byggd ur en äldre fil på 400×184 px (samma form, röd skrift) med skriften i dagens grå. Be om vektorfilen.
 - **Accentfärgen** är sajtens gula (#FFBB00). Logotypen är grå.
-- **Ingen prissektion i mallen:** priserna står i tjänstekorten, Varför-punkterna, frågorna (rubriken "Priser och frågor") och popupen.
+- **Prissektion:** tre priskort direkt efter tjänsterna (nytt valfritt fält `priser` i mallen, 2026-11-11 på Mathias ord), stamspolningen i noten under.
 - Formuläret går till mathias@bahkobyra.se (demonyckeln). Riktiga kontaktuppgifter på sidan: noindex, visas inte publikt.
 
 ## Bärande idé
