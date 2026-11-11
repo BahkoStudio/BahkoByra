@@ -59,8 +59,9 @@
   font-size: clamp(5.5rem, 21vw, 19rem); letter-spacing: 0.01em;
   display: flex; flex-wrap: wrap; justify-content: center;
 }
-.namn span:first-child { color: var(--mork); }
-.namn span:last-child { color: var(--acc); }
+.namn > span:first-child { color: var(--mork); }
+.namn > span:last-child { color: var(--acc); }
+.bokstav { display: inline-block; }
 /* Produkten framför namnet som ett lager (dator); under namnet på telefon. */
 .lager {
   position: relative; z-index: 2;
@@ -185,16 +186,15 @@
 /* Entrén (Mathias 2026-11-11: hero-copy kommer in med rörelse på alla sidor). */
 @media (prefers-reduced-motion: no-preference) {
   .hero .eyebrow { animation: upp 0.8s var(--ease) both; }
-  .namn span { display: inline-block; animation: namn 1.1s var(--ease) both; }
-  .namn span:first-child { animation-delay: 0.1s; }
-  .namn span:last-child { animation-delay: 0.28s; }
-  .lager { animation: lager 1.3s var(--ease) 0.45s both; }
+  .bokstav { animation: namn 1s var(--ease) both; animation-delay: calc(0.08s + var(--i) * 0.06s); transform-origin: 50% 100%; }
+  .lager { animation: lager 1.3s var(--ease) 0.75s both; }
   .heroText > * { animation: upp 0.8s var(--ease) both; }
-  .heroText > :nth-child(1) { animation-delay: 0.9s; }
-  .heroText > :nth-child(2) { animation-delay: 1.05s; }
+  .heroText > :nth-child(1) { animation-delay: 1.2s; }
+  .heroText > :nth-child(2) { animation-delay: 1.35s; }
+  .heroText > :nth-child(3) { animation-delay: 1.5s; }
 }
 @keyframes upp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-@keyframes namn { 0% { opacity: 0; transform: translateY(40%) scale(0.92); filter: blur(14px); clip-path: inset(0 0 100% 0); } 100% { opacity: 1; transform: none; filter: none; clip-path: inset(-20%); } }
+@keyframes namn { 0% { opacity: 0; transform: translateY(70%) rotate(8deg) scaleY(1.2); clip-path: inset(0 0 100% 0); } 100% { opacity: 1; transform: none; clip-path: inset(-20%); } }
 @keyframes lager { 0% { opacity: 0; transform: translateY(80px) rotate(-6deg) scale(0.85); } 100% { opacity: 1; transform: none; } }
 
 /* Mobilens köprad syns först när man skrollat förbi heroknapparna (annars två likadana knappar på första skärmen). */
@@ -204,3 +204,96 @@
   }
 }
 @keyframes kopIn { from { opacity: 0; transform: translateY(120%); pointer-events: none; } to { opacity: 1; transform: none; } }
+
+/* ---------- Omgång 2 (2026-11-11, "gör den bättre") ---------- */
+.heroPris { margin: 0; font-family: var(--mall-rubrik); color: var(--text-2); }
+.heroPris b { color: var(--mork); font-size: 1.15rem; }
+.pris small { font-size: 0.8rem; font-weight: 600; color: var(--text-2); }
+/* Produkten vrider sig och växer lite när man skrollar förbi heron. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .lager img { animation: vrid linear both; animation-timeline: scroll(root); animation-range: 0 700px; }
+  }
+}
+@keyframes vrid { to { transform: rotate(9deg) scale(1.12) translateY(30px); } }
+
+/* Berättelsen */
+.berattelse { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.4vw, 1.8rem); margin: 1.6rem 0 0; padding: 0; list-style: none; }
+@media (max-width: 800px) { .berattelse { grid-template-columns: 1fr; } }
+.berBild { position: relative; border-radius: var(--r); overflow: hidden; aspect-ratio: 4 / 3; }
+.berBild img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+.berattelse li:hover .berBild img { transform: scale(1.05); }
+.berBild span { position: absolute; left: 0.9rem; top: 0.9rem; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--acc); color: #fff; font-family: var(--mall-rubrik); font-weight: 800; }
+.berattelse li:last-child .berBild { outline: 3px solid var(--acc); outline-offset: 3px; }
+.berattelse h3 { margin: 1rem 0 0.3rem; font-family: var(--mall-rubrik); font-size: 1.2rem; font-weight: 700; }
+.berattelse p { margin: 0; color: var(--text-2); line-height: 1.5; }
+
+/* Räknaren */
+.rakna {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center;
+  margin: 0 clamp(1rem, 4vw, 3rem); padding: clamp(2rem, 5vw, 3.5rem); border-radius: 24px;
+  background: var(--mork); color: #fff; scroll-margin-top: 90px;
+  background-image: radial-gradient(circle at 85% 20%, rgba(204, 0, 204, 0.35), transparent 50%);
+}
+@media (max-width: 860px) { .rakna { grid-template-columns: 1fr; } }
+.rakna .eyebrow { color: #F08AF5; }
+.rakna .h2 { color: #fff; }
+.rakna .h2 em { color: #F08AF5; }
+.rakna .lead { color: #E7DDEA; }
+.kalkyl { display: grid; gap: 1.2rem; padding: clamp(1.2rem, 3vw, 1.8rem); border-radius: var(--r); background: #fff; color: var(--text); }
+.kalkylFalt { display: grid; gap: 0.6rem; font-family: var(--mall-rubrik); font-weight: 700; }
+.kalkylRad { display: flex; align-items: center; gap: 0.8rem; }
+.kalkylRad input[type="range"] { flex: 1; min-width: 0; height: 44px; accent-color: var(--acc); }
+.kalkylRad input[type="number"] { width: 5.2rem; min-height: 48px; padding: 0 0.6rem; border: 2px solid var(--mork); border-radius: 10px; font: inherit; font-size: 1.2rem; text-align: center; }
+.kalkylSvar { display: grid; gap: 0.5rem; padding-top: 1.1rem; border-top: 1px solid var(--linje); }
+.kalkylSvar p { margin: 0; color: var(--text-2); }
+.kalkylSvar strong { color: var(--text); }
+.kalkylStor { font-family: var(--mall-rubrik); font-size: clamp(2.2rem, 5vw, 3.2rem) !important; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--acc-text) !important; }
+.kalkylSvar .knapp { margin-top: 0.5rem; }
+
+/* Avdelning med foto */
+.medFoto { display: grid; grid-template-columns: 1fr minmax(0, 440px); align-items: center; gap: clamp(1.2rem, 4vw, 3rem); }
+@media (max-width: 800px) { .medFoto { grid-template-columns: 1fr; } }
+.katFoto { border-radius: var(--r); overflow: hidden; aspect-ratio: 16 / 10; box-shadow: 0 24px 50px -28px rgba(20, 10, 24, 0.5); }
+.katFoto img { width: 100%; height: 100%; object-fit: cover; }
+.alla { display: inline-block; margin-top: 0.4rem; }
+
+/* Bildband */
+.band { overflow: hidden; padding-block: clamp(1.5rem, 4vw, 3rem); -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.bandSpar { display: flex; width: max-content; animation: rulla 55s linear infinite; }
+.band:hover .bandSpar { animation-play-state: paused; }
+.bandGrupp { display: flex; gap: 1rem; padding-right: 1rem; }
+.bandGrupp img { width: clamp(220px, 24vw, 320px); height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--r); }
+@keyframes rulla { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .bandSpar { animation: none; } .band { overflow-x: auto; -webkit-mask-image: none; mask-image: none; } .bandGrupp[aria-hidden] { display: none; } }
+
+.massor { margin: 1.6rem 0 0; color: var(--text-2); }
+.massor b { color: var(--text); font-family: var(--mall-rubrik); }
+
+/* Frågor */
+.fragor { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: start; }
+@media (max-width: 800px) { .fragor { grid-template-columns: 1fr; } }
+.fragor .knapp { margin-top: 0.8rem; }
+.fraga { border-bottom: 1px solid #DDD3E0; }
+.fraga summary { display: flex; justify-content: space-between; gap: 1rem; min-height: 60px; align-items: center; cursor: pointer; list-style: none; font-family: var(--mall-rubrik); font-size: 1.1rem; font-weight: 600; }
+.fraga summary::-webkit-details-marker { display: none; }
+.fraga summary::after { content: '+'; flex: none; font-size: 1.5rem; color: var(--acc-text); transition: transform 0.2s; }
+.fraga[open] summary::after { transform: rotate(45deg); }
+.fraga p { margin: 0 0 1.2rem; color: var(--text-2); line-height: 1.55; max-width: 38rem; }
+
+/* Rättningar efter egen granskning (telefon 390 och 320 px, tryckytor). */
+.rakna > * { min-width: 0; }
+.kalkylRad input[type="number"] { flex: none; }
+.logo, .fotLogo { display: inline-flex; align-items: center; min-height: 44px; }
+.meny a, .alla { display: inline-flex; align-items: center; min-height: 44px; }
+@media (max-width: 700px) {
+  .lager { margin-top: -1.6rem; margin-bottom: -1.6rem; }
+  .rakna { margin-inline: 1rem; padding: 1.4rem; }
+}
+.kalkyl { grid-template-columns: minmax(0, 1fr); }
+.kalkylFalt, .kalkylSvar { grid-template-columns: minmax(0, 1fr); min-width: 0; }
+.kalkylRad { min-width: 0; }
+.kalkylRad input[type="range"] { width: 100%; }
+.kalkylSvar .knapp { width: 100%; padding-inline: 1rem; }
+.fot nav a, .fot p a { min-height: 44px; display: inline-flex; align-items: center; }
+.sida *, .sida *::before, .sida *::after { box-sizing: border-box; }
