@@ -62,6 +62,9 @@ export default function Start() {
     <>
       {/* ── HERO: text vänster, kalkylen "Räkna på jobben ni missar" till höger
              (Mathias 2026-10-23, ersätter B-videon). Mobil: text → knapp → kalkyl → siffror. ── */}
+      {/* Första skärmen: hero + kundbälte fyller exakt fönstrets höjd på dator, så att bältet
+          slutar precis vid skärmens nederkant (Mathias 2026-11-11). Ingen effekt på mobil. */}
+      <div className={styles.forstaSkarm}>
       <section className={`mork ${styles.heroBygge}`} id="top">
         <div className={`wrap ${styles.heroGrid}`}>
           <div className={styles.heroText} data-trapp>
@@ -112,6 +115,7 @@ export default function Start() {
 
       {/* ── KUNDBÄLTET: alla kunder med logga, direkt efter heron (Mathias 2026-10-23) ── */}
       <Marquee />
+      </div>
 
       {/* ── 2. FILMEN: två minuter, rakt på sak ── */}
       <section className={`mork ${styles.videoYta}`} id="video">
