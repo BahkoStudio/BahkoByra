@@ -49,9 +49,8 @@ export const PORTFOLJ = [
     kort: 'Maskiner',
     adress: 'proffsmaskiner.se',
     typ: 'kund',
-    // Kund sedan 2026-10-28. Pekar på bahkobyra.se/proffsmaskiner/ tills DNS för proffsmaskiner.se
-    // är omlagt till Vercel; byt då till 'https://proffsmaskiner.se/'.
-    url: '/proffsmaskiner/',
+    // Kunddomänen live på Vercel (DNS omlagd 2026-11-10).
+    url: 'https://proffsmaskiner.se/',
     bild: '/img/portfolj/proffsmaskiner.jpg',
     rad: 'Rätt maskin levererad till arbetsplatsen, med offert i mobilen.',
   },
