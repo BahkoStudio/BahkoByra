@@ -18,7 +18,9 @@ import { jobb } from './jobb';
    VERIFIERAT (2026-10-22, kundens egen text via Mathias):
    - Firmanamn och logotyp: "KAKEL 0413 AB" (logofilen från kunden).
    - E-post: Nuh@kakel0413.se och Info@kakel0413.se.
-   - Telefon 073-875 27 25. Utgår från Eslöv, arbetar i hela Skåne (Mathias 2026-10-22).
+   - Telefon 073-875 27 25. Utgår från Eslöv, arbetar i hela Skåne (Mathias 2026-10-22). Orterna Nuh nämner
+     (2026-11-11): Malmö, Lund, Eslöv, Höör, Hörby, Landskrona, Svalöv, Helsingborg, Trelleborg, Kristianstad.
+     Bolaget registrerat: org.nr 559611-8546 (allabolag, 2026-11-11). Öppettider 08–16 alla dagar.
    - Introtexten (heron + Om Nuh) och "Så går det till" (intro + sex steg)
      är kundens ordagranna text, bara lätta stavfel rättade
      ("Han arbetat" → "Han har arbetat", "byggöretag" → "byggföretag").
@@ -37,8 +39,9 @@ import { jobb } from './jobb';
    ledtider, omdömen, projektbilder.
 
    FLAGGOR (för Mathias):
-   - LOGOTYP: Mathias frilagda fil (2026-10-22) som logo.webp. Kundens första
-     fil på vit botten ligger kvar som logo-original.jpg (bara i dolda jobbanden).
+   - LOGOTYP (ny 2026-11-11): K i silverram med marmor och orange linje, frilagd ur Nuhs bild.
+     logo-ljus.webp över filmen, logo.webp (mörka toner) på vit header och footer. Kundens bild
+     ligger som logo-original.jpg (bara i dolda jobbanden). Varför-filmen slutar på den nya loggan.
    - HERO-COPY: rubrik + underrad ligger i hero.tjanster[1] som JSX (mallen har
      ingen plats för det utan att röra 🔒 DemoSida). Föreslå ett valfritt
      hero.slogan-fält i mallen om Mathias vill ha det permanent.
@@ -61,7 +64,7 @@ import { jobb } from './jobb';
      före namnfälten av KontaktFalt.js, på samma sätt som BildUpload.js.
    - RÄTTNING (Mathias 2026-11-10, kundens skärmdumpar): Badrumsrenovering säger nu
      "Kakel på vägg och klinker på golv". Om oss (Om Nuh på startsidan och /om-oss/) borttagen helt,
-     /om-oss/ går med 308 till startsidan och är struken ur kakel0413.se:s sitemap. Logga överallt: logo.webp.
+     /om-oss/ går med 308 till startsidan och är struken ur kakel0413.se:s sitemap. Logga överallt: logo.webp / logo-ljus.webp.
    =========================================================================== */
 
 const META = {
@@ -139,15 +142,19 @@ const tjanster = [
 
 const data = {
   namn: 'Kakel 0413 AB',
-  // Mathias egen loggfil (frilagd PNG, 2026-10-22) → logo.webp 1000 px bred (@2x för heron).
-  logo: { src: `${M}/logo.webp`, w: 1000, h: 502, alt: 'Kakel 0413 AB' },
+  // Ny logga (Nuh via Mathias 2026-11-11, K i silverram, orange linje), frilagd ur kundens bild på skiffervägg.
+  // logo-ljus.webp = originalets vita och grå toner, över filmen högst upp. logo.webp = samma logga med de
+  // neutrala tonerna mörka, för vit header efter skroll och vit footer. Den gamla guldloggan är borttagen.
+  logo: { src: `${M}/logo.webp`, ljus: `${M}/logo-ljus.webp`, topp: 'fri', w: 1000, h: 265, alt: 'Kakel 0413 AB' },
+  // Färgerna följer nya loggan (Nuh 2026-11-11): loggans orange linje som accent, skiffergrått i
+  // stället för varmt svart. Mörk text på orange knapp 6,3:1, orange text på vitt 5,3:1 (accentText).
   tema: {
-    mork: '#16130E',
-    accent: '#C29B48',
-    accentHover: '#A9832F',
-    accentText: '#7A5A16',
-    accentLjus: '#D9B867',
-    paAccent: '#0F172A',
+    mork: '#151719',
+    accent: '#F86E09',
+    accentHover: '#DB5E05',
+    accentText: '#B54A00',
+    accentLjus: '#FF8A3D',
+    paAccent: '#141414',
   },
   ...(KUND_NYCKEL ? { formular: { nyckel: KUND_NYCKEL, amne: 'Ny förfrågan från kakel0413.se', fran: 'Kakel 0413 AB' } } : {}),
   kontakt: {
@@ -169,7 +176,7 @@ const data = {
     // så rubriken och underraden ligger som block först i tjänsteraden: rubrik + underrad + "Kakel & Badrum."
     tjanster: [(
       <>
-        <span style={{ display: 'block', maxWidth: '36rem', marginInline: 'auto', marginTop: '0.2rem', marginBottom: '0.9rem', fontFamily: 'var(--f-text, inherit)', fontStyle: 'normal', fontWeight: 500, color: '#F5F1E8', fontSize: 'clamp(1rem, 1.6vw, 1.15rem)', lineHeight: 1.5 }}>Att renovera ett badrum är ett stort beslut. Därför är det viktigt att du känner dig trygg med den som utför arbetet.</span>
+        <span style={{ display: 'block', maxWidth: '36rem', marginInline: 'auto', marginTop: '0.2rem', marginBottom: '0.9rem', fontFamily: 'var(--f-text, inherit)', fontStyle: 'normal', fontWeight: 500, color: '#F3F4F5', fontSize: 'clamp(1rem, 1.6vw, 1.15rem)', lineHeight: 1.5 }}>Att renovera ett badrum är ett stort beslut. Därför är det viktigt att du känner dig trygg med den som utför arbetet.</span>
       </>
     ), ''],
     video: `${M}/video-hero.mp4`,
@@ -215,7 +222,7 @@ const data = {
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Illustration: ett färdigt badrum i vit marmor och borstad guld, som slutar med Kakel 0413:s logotyp',
+    videoAlt: 'Illustration: ett färdigt badrum i vit marmor och borstad guld, som slutar med Kakel 0413:s logotyp på en mörk kakelvägg',
   },
 
   // Om oss borttagen helt (Mathias 2026-11-10, "Allt detta skulle bort"). Mallen kräver fältet,
@@ -250,7 +257,7 @@ const data = {
       { q: 'Kan jag få ROT-avdrag?', a: 'Ja. Med ROT-avdrag sänker du arbetskostnaden med upp till 50 000 kr per person och år.' },
       { q: 'Vad hjälper ni till med?', a: 'Hela badrumsrenoveringar, kakel och klinker i badrum, kök, hallar, trapphus och tvättstugor, och mindre arbeten.' },
       { q: 'Kan jag skicka bilder?', a: 'Gärna. Bilder gör att vi får en bättre bild av jobbet redan från början.' },
-      { q: 'Var arbetar ni?', a: 'Vi utgår från Eslöv och arbetar i hela Skåne.' },
+      { q: 'Var arbetar ni?', a: 'Vi utgår från Eslöv och arbetar i hela Skåne, bland annat i Malmö, Lund, Helsingborg, Landskrona, Höör, Hörby, Svalöv, Trelleborg och Kristianstad.' },
       { q: 'Kommer ni ut och tittar?', a: 'Ja, vi kommer alltid ut och tittar på plats.' },
     ],
   },

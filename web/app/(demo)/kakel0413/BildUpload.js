@@ -64,7 +64,7 @@ export default function BildUpload({ epost }) {
         accept="image/*"
         multiple
         onChange={valj}
-        style={{ padding: '0.6rem', border: '1px dashed #C9BFAE', borderRadius: 10, background: '#fff', font: 'inherit', fontSize: '0.95rem', cursor: 'pointer' }}
+        style={{ padding: '0.6rem', border: '1px dashed #C8CCD1', borderRadius: 10, background: '#fff', font: 'inherit', fontSize: '0.95rem', cursor: 'pointer' }}
       />
       <span style={{ fontSize: '0.85rem', fontWeight: 400, opacity: 0.8 }} aria-live="polite">
         {fel || (filer.length ? `${filer.length} ${filer.length === 1 ? 'bild vald' : 'bilder valda'}.` : `Upp till ${MAX_ANTAL} bilder, högst ${MAX_MB} MB styck.`)}
