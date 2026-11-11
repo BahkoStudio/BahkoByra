@@ -41,3 +41,16 @@ server (142.93.225.191, nginx), troligen Weblabs. Mejlen går via Microsoft 365.
 Gamla sajten har sidan `/hyra-snoskoter/` (uthyrning "i Norrbotten med omnejd"). Den nya sidan
 nämner inte snöskotrar. Fråga Peter om den verksamheten ska vara med; i så fall en egen sektion
 eller sida, annars räcker 301 till startsidan.
+
+## Peters uppdatering 2026-11-11
+Peter mejlade nya tjänster och leverantörer. Sidan ändrad samma dag:
+- Tjänstekorten är nu **Bygg** (sågar, fräsar, stoftavskiljare), **Rivning** (bilningshammare,
+  mattstrippers, luftrenare), **Sanering** (plast, tejp, skyddsutrustning) och **Håltagning**
+  (kärnborrar, klingor, golvsågar), med nya linjeritningar i samma stil.
+- Ny sektion **Om oss** (#om): ägs av ett företag från branschen inom just de fyra kategorierna,
+  hyr ut och är återförsäljare av maskiner, handverktyg, förbrukningsmaterial och betongbearbetning.
+- **Leverantörer** som textrutor med länk (inga logotyper): Flex, Stanley, DeWalt, Hilti, JLM Group,
+  Husqvarna Construction, Brokk.
+- Heroraden, tejpen, FAQ, formulärets val, sidfoten och metabeskrivningen följer de nya tjänsterna.
+- **Öppet hos Peter:** heron, Leveransen-sektionen och galleriet visar fortfarande grävare, liftar
+  och bodar. Hyr de ut det fortfarande? Om inte: nya bilder och film (bara på hans begäran).
