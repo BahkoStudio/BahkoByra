@@ -37,8 +37,9 @@ import { jobb } from './jobb';
    ledtider, omdömen, projektbilder.
 
    FLAGGOR (för Mathias):
-   - LOGOTYP: Mathias frilagda fil (2026-10-22) som logo.webp. Kundens första
-     fil på vit botten ligger kvar som logo-original.jpg (bara i dolda jobbanden).
+   - LOGOTYP (ny 2026-11-11): K i silverram med marmor och orange linje, frilagd ur Nuhs bild.
+     logo-ljus.webp över filmen, logo.webp (mörka toner) på vit header och footer. Kundens bild
+     ligger som logo-original.jpg (bara i dolda jobbanden). Varför-filmen slutar på den nya loggan.
    - HERO-COPY: rubrik + underrad ligger i hero.tjanster[1] som JSX (mallen har
      ingen plats för det utan att röra 🔒 DemoSida). Föreslå ett valfritt
      hero.slogan-fält i mallen om Mathias vill ha det permanent.
@@ -61,7 +62,7 @@ import { jobb } from './jobb';
      före namnfälten av KontaktFalt.js, på samma sätt som BildUpload.js.
    - RÄTTNING (Mathias 2026-11-10, kundens skärmdumpar): Badrumsrenovering säger nu
      "Kakel på vägg och klinker på golv". Om oss (Om Nuh på startsidan och /om-oss/) borttagen helt,
-     /om-oss/ går med 308 till startsidan och är struken ur kakel0413.se:s sitemap. Logga överallt: logo.webp.
+     /om-oss/ går med 308 till startsidan och är struken ur kakel0413.se:s sitemap. Logga överallt: logo.webp / logo-ljus.webp.
    =========================================================================== */
 
 const META = {
@@ -139,8 +140,10 @@ const tjanster = [
 
 const data = {
   namn: 'Kakel 0413 AB',
-  // Mathias egen loggfil (frilagd PNG, 2026-10-22) → logo.webp 1000 px bred (@2x för heron).
-  logo: { src: `${M}/logo.webp`, w: 1000, h: 502, alt: 'Kakel 0413 AB' },
+  // Ny logga (Nuh via Mathias 2026-11-11, K i silverram, orange linje), frilagd ur kundens bild på skiffervägg.
+  // logo-ljus.webp = originalets vita och grå toner, över filmen högst upp. logo.webp = samma logga med de
+  // neutrala tonerna mörka, för vit header efter skroll och vit footer. Den gamla guldloggan är borttagen.
+  logo: { src: `${M}/logo.webp`, ljus: `${M}/logo-ljus.webp`, topp: 'fri', w: 1000, h: 265, alt: 'Kakel 0413 AB' },
   tema: {
     mork: '#16130E',
     accent: '#C29B48',
@@ -215,7 +218,7 @@ const data = {
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Illustration: ett färdigt badrum i vit marmor och borstad guld, som slutar med Kakel 0413:s logotyp',
+    videoAlt: 'Illustration: ett färdigt badrum i vit marmor och borstad guld, som slutar med Kakel 0413:s logotyp på en mörk kakelvägg',
   },
 
   // Om oss borttagen helt (Mathias 2026-11-10, "Allt detta skulle bort"). Mallen kräver fältet,

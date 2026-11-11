@@ -11,7 +11,7 @@
 |---|---|---|
 | Namn | Kakel 0413 AB | Mathias + logofilen |
 | Ägare | Nuh | kundens text |
-| Logotyp | Guld (borstad metall) + vit marmor, "KAKEL 0413 AB" | kundens fil → `web/public/kakel0413/media/logo-original.jpg` (visas oförändrad på vitt; ordmärke i text i header/hero/footer) |
+| Logotyp | NY 2026-11-11: K i silverram med marmortriangel, "KAKEL" vitt, "0413 AB" grått, orange linje (gamla guldloggan ersatt) | kundens fil → `web/public/kakel0413/media/logo-original.jpg` (visas oförändrad på vitt; ordmärke i text i header/hero/footer) |
 | E-post | Nuh@kakel0413.se · Info@kakel0413.se (sidan visar info@) | Mathias |
 | Tjänster | Badrumsrenovering, kakel- och klinkersättning (badrum, kök, hallar, trapphus), mindre arbeten | kundens text |
 | Erfarenhet | 17+ år i byggbranschen, upp till sju stora projekt samtidigt, ca 800 nya toaletter, har arbetat med Skanska, NCC och Peab | kundens text |
@@ -46,6 +46,7 @@
 - Hero enligt mallen: logotypen som h1, "Eslöv · Skåne", "Kakel & Badrum.", standardknappar. Kundens långa text ligger inte i heron.
 - Telefon 073-875 27 25 (tel:+46738752725). Bas Eslöv, arbetar i hela Skåne (hero, FAQ, kontakt, meta).
 - Logotyp: Mathias egen frilagda PNG (14:12) → `logo.webp` (1000 px, @2x) överallt: header, hero, footer, Om oss, slutkortet. SVG-versionen borttagen.
+- Ny logotyp 2026-11-11 (Nuh via Mathias, WhatsApp-bild på skiffervägg): frilagd i två varianter, `logo-ljus.webp` över filmen och `logo.webp` med mörka toner på vit header/footer (topp: 'fri'). Varför-filmens slutkort är nu kundens bild med långsam zoom. Kundens bild = `logo-original.jpg`.
 - Om Nuh bort från huvudsidan → egen sida `/kakel0413/om-oss/` (länk i footern), omskriven kortare text med samma fakta.
 - Siffrorna (17+ år, upp till 7 projekt, ca 800 toaletter, Skanska/NCC/Peab) står som förtroendepunkter i Varför-sektionen och på Om oss.
 - Hero-copy (Mathias 14:25): Nuhs egna två meningar ordagrant ("Att renovera ett badrum är ett stort beslut. Därför …") under Eslöv · Skåne, före "Kakel & Badrum." Ingen rubrik.
