@@ -280,9 +280,31 @@ function Omdomen({ d, t, levande }) {
           <div className={s.recoRam}>
             <iframe src={d.omdomen.recoIframe.src} title={d.omdomen.recoIframe.titel} height={d.omdomen.recoIframe.hojd || 225} loading="lazy" />
           </div>
-        ) : d.omdomen.reco ? <RecoWidget d={d} lista={lista} /> : <div className={s.recensioner}>
+        ) : d.omdomen.reco ? <RecoWidget d={d} lista={lista} /> : d.omdomen.lappar ? null : <div className={s.recensioner}>
           {lista.map((o, i) => <Kort o={o} i={i} key={o.id || o.namn} />)}
         </div>}
+        {/* Valfritt omdomen.lappar: true (Rena Rör 2026-11-11, Mathias: "klisterlappar som går som ett band"): omdömena som
+            lappar i olika pappersfärger, lätt snedställda med en tejpbit, i ett band som rullar åt vänster. Paus vid hover,
+            stilla och sidledsskroll vid minskad rörelse. Samma innehåll som korten. */}
+        {d.omdomen.lappar && !d.omdomen.reco && !d.omdomen.recoIframe ? (
+          <div className={s.lappBand}>
+            <div className={s.lappSpar}>
+              {[false, true].map((kopia) => (
+                <ul className={`${s.lappGrupp} ${kopia ? s.bandKopia : ''}`} aria-hidden={kopia || undefined} key={kopia ? 'b' : 'a'}>
+                  {fyllUt(lista).map((o, i) => (
+                    <li className={s.lapp} style={{ '--lapp': i % 4 }} key={`${o.namn}-${i}`} aria-hidden={(!kopia && o.utfyllnad) || undefined}>
+                      <blockquote>{o.text}</blockquote>
+                      <p className={s.lappFot}>
+                        <b>{o.namn}</b>
+                        <span>{o.google ? <><GoogleG className={s.lappG} />{typeof o.betyg === 'number' ? <Stjarnor antal={o.betyg} etikett={`${o.betyg} ${t.stjarnorAv}`} /> : null}</> : o.kalla}</span>
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
+          </div>
+        ) : null}
         <div className={s.recensionerFot}>
           <p className={s.recensionerNot}>{not}</p>
           <div className={s.recensionerKnappar}>
@@ -724,6 +746,8 @@ export default function DemoSida({ data: d }) {
                 <a className={s.btn} href="#kontakt">{d.cta.txt}</a>
                 <a className={`${s.btn} ${s.btnKontur}`} href={andraVag.href} {...(andraVag.ny ? { target: '_blank', rel: 'noopener' } : {})}>{andraVag.ikon}{andraVag.txt}</a>
               </div>
+              {/* Valfritt hero.lank { href, txt } (Rena Rör 2026-11-11): en tredje, stillsam väg under knapparna, t.ex. prislistan. */}
+              {d.hero.lank ? <a className={s.heroLank} href={d.hero.lank.href}>{d.hero.lank.txt}</a> : null}
             </div>
             {d.hero.foreEfter ? (
               <figure className={s.heroForeEfter}>
@@ -745,16 +769,35 @@ export default function DemoSida({ data: d }) {
           </div>
         </div>
 
+        {/* Valfritt d.siffror [{ tal, efter?, text }] (Rena Rör 2026-11-11, Mathias: "ha med detta efter heron, animerat efter skroll"):
+            kundens EGNA siffror (källa i VERIFIERAT) som räknas upp när raden skrollas in. Bara CSS (scroll-tidslinje);
+            utan stöd eller vid minskad rörelse står slutsiffran direkt. Utan fältet renderas sidan exakt som förut. */}
+        {d.siffror ? (
+          <div className={s.siffror}>
+            <ul className={`${s.wrap} ${s.siffrorLista}`}>
+              {d.siffror.map((x) => (
+                <li key={x.text}>
+                  <b className={s.siffraTal} style={{ '--mal': x.tal }} data-efter={x.efter || ''}><span className={s.siffraText}>{x.tal}{x.efter || ''}</span></b>
+                  <span className={s.siffraEtikett}>{x.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
         {/* 2. Tjänster: kort med bild */}
         <section className={`${s.sek} ${s.sekMjuk}${d.tjanster.lattKort ? ` ${s.lattKort}` : ''}`} id="tjanster">
           <div className={s.wrap}>
             <Rubrik r={d.tjanster} />
             <div className={`${s.tjanster}${d.tjanster.kolumner === 3 ? ` ${s.tjKol3}` : ''}`}>
               {d.tjanster.kort.map((tj) => (
-                <article className={s.tjanst} key={tj.id}>
+                <article className={tj.marke ? `${s.tjanst} ${s.tjanstMedMarke}` : s.tjanst} key={tj.id}>
                   <div className={s.tjanstBild}>
                     <div className={s.tjanstBildIn}><Image src={tj.bild} alt={tj.alt} width={800} height={600} sizes="(max-width: 640px) 92vw, (max-width: 1100px) 46vw, 300px" /></div>
-                    {tj.ritning ? <span className={s.tjanstIkon} aria-hidden="true"><svg viewBox="0 0 200 120">{tj.ritning}</svg></span> : null}
+                    {/* Valfritt tj.marke (bildfil): runt 3D-märke på bildkanten i stället för linjeikonen, som tjänsterna på bahkobyra.se (Mathias 2026-11-11). */}
+                    {tj.marke
+                      ? <span className={s.tjanstMarke} aria-hidden="true"><Image src={tj.marke} alt="" width={240} height={240} sizes="112px" loading="lazy" /></span>
+                      : tj.ritning ? <span className={s.tjanstIkon} aria-hidden="true"><svg viewBox="0 0 200 120">{tj.ritning}</svg></span> : null}
                   </div>
                   <div className={s.tjanstTxt}>
                     <h3>{tj.namn}</h3>

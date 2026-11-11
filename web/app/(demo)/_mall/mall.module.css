@@ -854,6 +854,148 @@ html:has(.sida) {
 .btn.btnKontur.prisKnapp:hover { background: var(--text); border-color: var(--text); color: #fff; }
 .prisNot { margin-top: 1.4rem; font-size: var(--tx-s); color: var(--text-2); max-width: 46rem; }
 
+/* ---------- Valfritt: 3D-märke på tjänstekortet (data: tjanster.kort[].marke). Rena Rör 2026-11-11,
+   Mathias: "tjänsternas ikoner ska vara som bahkobyra.se tjänster". Runt märke på vit rundel som sticker
+   upp över bildkanten, lyfts och vrids lite vid hover. ---------- */
+.tjanstMarke {
+  position: absolute;
+  left: 1.1rem;
+  bottom: -48px;
+  z-index: 1;
+  display: block;
+  width: 96px;
+  aspect-ratio: 1;
+  padding: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(10, 22, 40, 0.18);
+  transition: transform 0.35s var(--ease);
+}
+.tjanstMarke img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.tjanst:hover .tjanstMarke { transform: translateY(-6px) rotate(-4deg); }
+.tjanstMedMarke .tjanstTxt { padding-top: 3.6rem; }
+
+/* ---------- Valfritt: sifferrad efter bandet (data: siffror). Rena Rör 2026-11-11. Talen räknas upp
+   med en registrerad heltalsegenskap på en view()-tidslinje. Utan stöd: slutsiffran står direkt. ---------- */
+@property --n { syntax: '<integer>'; inherits: false; initial-value: 0; }
+.siffror { background: var(--mork); color: #fff; padding-block: clamp(2.6rem, 6vw, 4.2rem); }
+.siffrorLista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: clamp(1.6rem, 4vw, 3rem);
+  list-style: none;
+  margin-block: 0;
+  text-align: center;
+}
+.siffrorLista li { display: grid; gap: 0.35rem; }
+.siffraTal {
+  display: block;
+  font-family: var(--f-rubrik);
+  font-size: clamp(3rem, 7vw, 4.8rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--accent-ljus);
+  font-variant-numeric: tabular-nums;
+}
+.siffraEtikett { font-size: var(--tx-l); color: #CBD5E1; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .siffraTal {
+      --n: var(--mal);
+      counter-reset: n var(--n);
+      animation: raknaUpp linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+    .siffraTal::before { content: counter(n) attr(data-efter); }
+    .siffraText {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+  }
+}
+@keyframes raknaUpp { from { --n: 0; } to { --n: var(--mal); } }
+
+/* ---------- Valfritt: en stillsam länk under heroknapparna (data: hero.lank). Rena Rör 2026-11-11. ---------- */
+.heroLank {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  margin-top: 0.9rem;
+  color: #fff;
+  font-family: var(--f-rubrik);
+  font-size: var(--tx-m);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+.heroLank::after { content: '→'; transition: transform 0.2s var(--ease); }
+.heroLank:hover::after { transform: translateX(4px); }
+
+/* ---------- Valfritt: omdömen som klisterlappar i ett band (data: omdomen.lappar). Rena Rör 2026-11-11,
+   Mathias: "klisterlappar som går som ett band". Fyra pappersfärger, lätt snedställda, tejpbit upptill. ---------- */
+.lappBand {
+  margin-inline: calc(50% - 50vw);
+  padding-block: 1.6rem 2.2rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+.lappSpar { display: flex; width: max-content; animation: rulla var(--lapptid, 80s) linear infinite; }
+.lappBand:hover .lappSpar,
+.lappBand:focus-within .lappSpar { animation-play-state: paused; }
+.lappGrupp { display: flex; gap: 1.6rem; padding: 0 1.6rem 0 0; margin: 0; list-style: none; }
+.lapp {
+  --papper: #FFF4B8;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.2rem;
+  flex: none;
+  width: clamp(250px, 24vw, 300px);
+  min-height: 250px;
+  padding: 2rem 1.4rem 1.3rem;
+  background: var(--papper);
+  color: #1F2937;
+  border-radius: 4px 4px 18px 4px;
+  box-shadow: 0 1px 1px rgba(15, 23, 42, 0.08), 0 14px 28px -12px rgba(15, 23, 42, 0.35);
+  transform: rotate(calc((var(--lapp) - 1.5) * 1.4deg));
+  transition: transform 0.3s var(--ease);
+}
+.lapp:nth-child(4n + 2) { --papper: #FFE3C8; }
+.lapp:nth-child(4n + 3) { --papper: #DDF3E4; }
+.lapp:nth-child(4n + 4) { --papper: #DCEBFF; }
+.lapp:hover { transform: rotate(0deg) translateY(-4px); }
+.lapp::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 92px;
+  height: 26px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+}
+.lapp blockquote { margin: 0; font-size: var(--tx-l); line-height: 1.45; font-weight: 500; }
+.lappFot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.4rem 0.8rem; margin: 0; font-size: var(--tx-s); color: #374151; }
+.lappFot b { font-family: var(--f-rubrik); font-size: var(--tx-m); color: #111827; }
+.lappFot > span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.lappG { width: 18px; height: 18px; }
+@media (prefers-reduced-motion: reduce) {
+  .lappSpar { animation: none; }
+  .lappBand { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+}
+
 /* ---------- 3. jobb: två band som rullar åt var sitt håll ---------- */
 .jobb { overflow: hidden; }
 .band {
