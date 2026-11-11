@@ -49,10 +49,11 @@ Peter mejlade nya tjänster och leverantörer. Sidan ändrad samma dag:
   (kärnborrar, klingor, golvsågar), med nya linjeritningar i samma stil.
 - Egen sektion **Om oss** (#om): ägs av ett företag från branschen inom just de fyra kategorierna,
   hyr ut och är återförsäljare av maskiner, handverktyg, förbrukningsmaterial och betongbearbetning.
-- **Samarbeten:** eget mörkt band under Om oss där leverantörernas logotyper rullar, ljusa och
-  enfärgade (rutlogotyperna med urstansade bokstäver), och varje logga länkar till märkets sajt.
-  Filerna: web/public/proffsmaskiner/media/partner/*-ljus.png. Källor: Flex, JLM och Brokk från
-  märkenas sajter, övriga från Wikimedia Commons. Byt om Peter har officiella loggor.
+- **Samarbeten:** ett vitt kort mitt på skarven mellan Om oss (mörk) och Så går det till (ljus),
+  där leverantörernas logotyper rullar i egna färger och länkar till märkenas sajter (Mathias
+  2026-11-11: färgerna var bättre, kortet ska ligga på båda sektionerna). Filerna i
+  web/public/proffsmaskiner/media/partner/. Källor: Flex, JLM och Brokk från märkenas sajter
+  (JLM:s vita text omfärgad till mörk), övriga från Wikimedia Commons. Byt om Peter har officiella.
 - Heroraden, tejpen, FAQ, formulärets val, sidfoten och metabeskrivningen följer de nya tjänsterna.
 - **Öppet hos Peter:** heron, Leveransen-sektionen och galleriet visar fortfarande grävare, liftar
   och bodar. Hyr de ut det fortfarande? Om inte: nya bilder och film (bara på hans begäran).

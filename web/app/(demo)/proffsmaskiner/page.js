@@ -135,18 +135,17 @@ const TJANSTER = [
 ];
 
 // Peters lista 2026-11-11. Stanley och DeWalt är samma koncern men egna märken.
-// Logotyperna i public/proffsmaskiner/media/partner/*-ljus.png är enfärgade ljusa versioner
-// för den mörka sidan: rutlogotyper (Flex, Stanley, DeWalt, Hilti) med bokstäverna urstansade,
-// ordmärken helt ljusa. Källor: Flex, JLM och Brokk från märkenas egna sajter, övriga från
+// Logotyperna i public/proffsmaskiner/media/partner/: Flex och JLM från märkenas egna sajter
+// (JLM:s vita text omfärgad till mörk för den ljusa bandet), Brokk från brokk.com, övriga från
 // Wikimedia Commons. hojd = visad höjd i px, satt per logga så att de väger lika i bandet.
 const LEVERANTORER = [
-  { namn: 'Flex', url: 'https://www.flex-tools.com/sv-se', logo: 'flex', w: 260, hojd: 30 },
-  { namn: 'Stanley', url: 'https://www.stanleyworks.se/sv-se', logo: 'stanley', w: 247, hojd: 30 },
-  { namn: 'DeWalt', url: 'https://www.dewalt.se/sv-se', logo: 'dewalt', w: 390, hojd: 29 },
-  { namn: 'Hilti', url: 'https://www.hilti.se/', logo: 'hilti', w: 510, hojd: 25 },
-  { namn: 'JLM Group', url: 'https://jlmgroup.se/', logo: 'jlm', w: 434, hojd: 34 },
-  { namn: 'Husqvarna Construction', url: 'https://www.husqvarnaconstruction.com/se/', logo: 'husqvarna', w: 653, hojd: 30 },
-  { namn: 'Brokk', url: 'https://www.brokk.com/sv/', logo: 'brokk', w: 468, hojd: 27 },
+  { namn: 'Flex', url: 'https://www.flex-tools.com/sv-se', logo: 'flex.svg', w: 121, h: 56, hojd: 40 },
+  { namn: 'Stanley', url: 'https://www.stanleyworks.se/sv-se', logo: 'stanley.svg', w: 67, h: 32, hojd: 40 },
+  { namn: 'DeWalt', url: 'https://www.dewalt.se/sv-se', logo: 'dewalt.svg', w: 886, h: 272, hojd: 38 },
+  { namn: 'Hilti', url: 'https://www.hilti.se/', logo: 'hilti.svg', w: 482, h: 113, hojd: 32 },
+  { namn: 'JLM Group', url: 'https://jlmgroup.se/', logo: 'jlm.png', w: 640, h: 177, hojd: 40 },
+  { namn: 'Husqvarna Construction', url: 'https://www.husqvarnaconstruction.com/se/', logo: 'husqvarna.svg', w: 255, h: 50, hojd: 34 },
+  { namn: 'Brokk', url: 'https://www.brokk.com/sv/', logo: 'brokk.png', w: 300, h: 77, hojd: 30 },
 ];
 
 const STEGRITNINGAR = {
@@ -268,17 +267,23 @@ export default function ProffsmaskinerDemo() {
         </div>
       </section>
 
+      {/* Samarbeten: ett vitt kort som ligger mitt på skarven mellan Om oss (mörk) och
+          Så går det till (ljus), halva kortet i varje sektion. */}
       <section className={styles.samarbeten} aria-labelledby="samarbeten-rubrik">
-        <div className={styles.wrap}><h2 className={styles.samRubrik} id="samarbeten-rubrik">Samarbeten</h2></div>
-        <div className={styles.samBand}>
-          <div className={styles.samSpar}>
-            {[false, true].map((kopia) => (
-              <ul className={styles.samIn} aria-hidden={kopia || undefined} key={kopia ? 'b' : 'a'}>
-                {LEVERANTORER.map((l) => (
-                  <li key={l.namn}><a href={l.url} target="_blank" rel="noopener" tabIndex={kopia ? -1 : undefined} aria-label={kopia ? undefined : l.namn}><Image src={`/proffsmaskiner/media/partner/${l.logo}-ljus.png`} alt="" width={l.w} height={120} style={{ height: l.hojd, width: 'auto' }} unoptimized /></a></li>
+        <div className={styles.wrap}>
+          <div className={styles.samKort}>
+            <h2 className={styles.samRubrik} id="samarbeten-rubrik">Samarbeten</h2>
+            <div className={styles.samBand}>
+              <div className={styles.samSpar}>
+                {[false, true].map((kopia) => (
+                  <ul className={styles.samIn} aria-hidden={kopia || undefined} key={kopia ? 'b' : 'a'}>
+                    {LEVERANTORER.map((l) => (
+                      <li key={l.namn}><a href={l.url} target="_blank" rel="noopener" tabIndex={kopia ? -1 : undefined} aria-label={kopia ? undefined : l.namn}><Image src={`/proffsmaskiner/media/partner/${l.logo}`} alt="" width={l.w} height={l.h} style={{ height: l.hojd, width: 'auto' }} unoptimized /></a></li>
+                    ))}
+                  </ul>
                 ))}
-              </ul>
-            ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

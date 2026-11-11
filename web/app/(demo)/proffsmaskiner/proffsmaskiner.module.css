@@ -2232,27 +2232,40 @@ a.kontaktRad b {
   }
 }
 
+/* Samarbeten: vitt kort mitt på skarven mellan den mörka Om oss och den ljusa
+   Så går det till. Sektionens bakgrund är mörk till hälften och ljus till hälften,
+   så skarven går exakt genom kortets mitt. Loggorna i egna färger. */
 .samarbeten {
-  padding-bottom: clamp(3.5rem, 8vw, 7rem);
+  background: linear-gradient(to bottom, var(--ink) 50%, var(--sten) 50%);
+}
+.samKort {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 4px;
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 }
 .samRubrik {
   font-family: var(--ui);
-  font-size: var(--tx-s);
+  font-size: var(--tx-xs);
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--stal);
-  margin: 0 0 1.2rem;
+  color: var(--stal-mork);
+  margin: 0;
+  padding: 0 clamp(1.4rem, 2.6vw, 2.2rem);
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid #E1E5E8;
 }
 .samBand {
-  /* Samma mörka band som tejpen under heron: loggorna är ljusa och enfärgade,
-     så bandet hör till sidan i stället för att se ut som en inklistrad remsa. */
-  background: var(--yta);
   overflow: hidden;
-  border-block: 1px solid var(--linje);
-  /* Kanterna tonar ut så loggorna glider in och ut i stället för att klippas. */
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  /* Loggorna tonar in och ut mot kortets kanter i stället för att klippas. */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
 .samSpar {
   display: flex;
@@ -2273,27 +2286,12 @@ a.kontaktRad b {
 .samIn a {
   display: flex;
   align-items: center;
-  height: clamp(84px, 8vw, 104px);
-  padding-inline: clamp(1.8rem, 3.6vw, 3.2rem);
+  height: clamp(92px, 8.5vw, 112px);
+  padding-inline: clamp(1.6rem, 3vw, 2.6rem);
 }
 .samIn img {
   display: block;
   max-width: none;
-  opacity: 0.62;
-  transition: opacity 0.3s var(--ease);
-}
-.samIn a:hover img,
-.samIn a:focus-visible img {
-  opacity: 1;
-}
-@media (max-width: 620px) {
-  .samIn img {
-    scale: 0.85;
-  }
-  .samIn a {
-    height: 80px;
-    padding-inline: 1.1rem;
-  }
 }
 @media (hover: hover) {
   .samBand:hover .samSpar { animation-play-state: paused; }
@@ -2302,6 +2300,28 @@ a.kontaktRad b {
   .samSpar { animation: none; }
   .samBand { overflow-x: auto; }
 }
+@media (max-width: 620px) {
+  .samKort {
+    grid-template-columns: 1fr;
+  }
+  .samRubrik {
+    border-right: 0;
+    border-bottom: 1px solid #E1E5E8;
+    padding: 0.85rem 1.1rem;
+    justify-content: center;
+  }
+  .samIn a {
+    height: 80px;
+    padding-inline: 1.1rem;
+  }
+  .samIn img {
+    scale: 0.82;
+  }
+}
+/* Kortets nedre halva ligger redan i den ljusa sektionen: den börjar tätare. */
+.samarbeten + .sekLjus {
+  padding-top: clamp(2.6rem, 5vw, 4.2rem);
+}
 .om {
-  padding-bottom: clamp(2.2rem, 4vw, 3.2rem);
+  padding-bottom: clamp(2.6rem, 5vw, 4.2rem);
 }
