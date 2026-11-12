@@ -228,7 +228,7 @@ Varje tjänstesida får eget `Service`-schema som pekar tillbaka på huvudentite
 
 **Ordning vid uppsättning**
 1. Primärkategori, exakt matchande huvudtjänsten
-2. Max tre underkategorier
+2. Totalt 5–6 kategorier som stämmer med vad kunden gör (SOP 2026-11-06, se SKILL.md Steg 3)
 3. Fullständig NAP, identisk med sajt och kataloger
 4. Tjänsteområden som orter, bara där kunden faktiskt jobbar
 5. Öppettider
