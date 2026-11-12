@@ -15,8 +15,10 @@ import { arKunddoman } from './kunddoman';
    Byggd på golvvision-kanon (via rskompakt) med hero som före/efter-effekt.
 
    Bärande idé: deras egen mening "Alltid rätt maskin när du behöver den".
-   Heron visar exakt det: en tom byggarbetsplats i gryningen som fylls med
-   minigrävare, vibratorplatta, lift och bod — levererat, på plats, klart.
+   Heron visar exakt det: ett tomt, urrivet betongrum som fylls med plastvägg, kärnborr,
+   stoftavskiljare, golvsåg, bilningshammare och luftrenare — levererat, på plats, klart.
+   (Nya filmer 2026-11-12 på Peters begäran, Wan 3.0 Prime ur GPT Image 2.5-bilder. Gamla
+   filmerna med grävare, lift och bod ligger kvar i media/ men används inte.)
    Sidan argumenterar för att det är leveransen och servicen som avgör, inte
    maskinlistan.
 
@@ -49,8 +51,8 @@ import { arKunddoman } from './kunddoman';
    branschen inom just de kategorierna. Hyr ut OCH återförsäljare av maskiner, handverktyg,
    förbrukningsmaterial och betongbearbetning. Leverantörer: Flex, Stanley, DeWalt (samma koncern),
    Hilti, JLM Group, Husqvarna Construction, Brokk. Logotyperna visas inte, bara namnen som text.
-   Heron, Leveransen-sektionen och galleriet visar fortfarande grävare, liftar och bodar: fråga
-   Peter innan de byts (bilder byts bara på hans begäran).
+   Heron, varför-filmen och 07:00/08:00-paret visar sedan 2026-11-12 bygg, rivning, sanering
+   och håltagning. Galleriet under paret (hydraulik, liftar, elförsörjning) är kvar: fråga Peter.
 
    FLAGGOR: formuläret går till peter@proffsmaskiner.se (Web3Forms, 2026-11-10); omdömessektionen och illustrationstexten borttagna (Mathias 2026-11-10);
    före/efter och galleri är illustrationer; sociala är deras egna.
@@ -208,8 +210,8 @@ export default function ProffsmaskinerDemo() {
 
       <section className={styles.hero} id="top">
         <figure className={styles.heroFilm}>
-          <video className={styles.heroLiggande} autoPlay muted loop playsInline preload="metadata" poster="/proffsmaskiner/media/poster-hero.jpg"><source src="/proffsmaskiner/media/video-hero-fore-efter-etablering.mp4" type="video/mp4" /></video>
-          <video className={styles.heroStaende} autoPlay muted loop playsInline preload="metadata" poster="/proffsmaskiner/media/poster-hero-mobil.jpg"><source src="/proffsmaskiner/media/video-hero-fore-efter-etablering-mobil.mp4" type="video/mp4" /></video>
+          <video className={styles.heroLiggande} autoPlay muted loop playsInline preload="metadata" poster="/proffsmaskiner/media/poster-hero-renovering.jpg"><source src="/proffsmaskiner/media/video-hero-renovering.mp4" type="video/mp4" /></video>
+          <video className={styles.heroStaende} autoPlay muted loop playsInline preload="metadata" poster="/proffsmaskiner/media/poster-hero-renovering-mobil.jpg"><source src="/proffsmaskiner/media/video-hero-renovering-mobil.mp4" type="video/mp4" /></video>
         </figure>
         <div className={styles.heroLager}>
           <div className={styles.heroLagerIn}>
@@ -236,10 +238,10 @@ export default function ProffsmaskinerDemo() {
 
       <section className={styles.sek} id="forvandling">
         <div className={styles.wrap}>
-          <div className={styles.sekHuvud}><p className={styles.eyebrow}>Leveransen</p><h2 className={styles.h2}>Alltid rätt maskin <em>när du behöver den.</em></h2><p className={styles.sekLead}>Klockan sju är tomten tom. Klockan åtta står grävaren, plattan, liften och boden där jobbet ska göras. Det är skillnaden mellan en maskinlista och en leverantör.</p></div>
+          <div className={styles.sekHuvud}><p className={styles.eyebrow}>Leveransen</p><h2 className={styles.h2}>Alltid rätt maskin <em>när du behöver den.</em></h2><p className={styles.sekLead}>Klockan sju är rummet tomt. Klockan åtta står plastväggen, kärnborren, golvsågen och stoftavskiljaren där jobbet ska göras. Det är skillnaden mellan en maskinlista och en leverantör.</p></div>
           <div className={styles.forvandling}>
-            <figure><Image src="/proffsmaskiner/media/galleri-fore-tom-tomt.jpg" alt="Inhägnad tom byggarbetsplats i gryningen, grus och lera, inga maskiner" width={1200} height={1200} /><figcaption><b>07:00</b></figcaption></figure>
-            <figure><Image src="/proffsmaskiner/media/galleri-efter-etablerad.jpg" alt="Samma tomt med minigrävare, vibratorplatta, saxlift och byggbod på plats" width={1200} height={1200} /><figcaption><b>08:00</b></figcaption></figure>
+            <figure><Image src="/proffsmaskiner/media/galleri-fore-tomt-rum.jpg" alt="Tomt, urrivet rum med betongväggar och betonggolv, inga maskiner" width={1200} height={1200} /><figcaption><b>07:00</b></figcaption></figure>
+            <figure><Image src="/proffsmaskiner/media/galleri-efter-utrustat-rum.jpg" alt="Samma rum med plastvägg, kärnborr, stoftavskiljare, golvsåg, bilningshammare och luftrenare på plats" width={1200} height={1200} /><figcaption><b>08:00</b></figcaption></figure>
           </div>
           <div className={styles.galleri}>
             <figure><Image src="/proffsmaskiner/media/galleri-makro-hydraulik.jpg" alt="Närbild på minigrävarens hydraulikkoppling och nya slangar" width={1200} height={1200} /><figcaption>Servad innan den lämnar oss.</figcaption></figure>
@@ -305,7 +307,7 @@ export default function ProffsmaskinerDemo() {
         <div className={styles.wrap}>
           <div className={styles.sekHuvud}><p className={styles.eyebrow}>Varför oss</p><h2 className={styles.h2}>Proffs jobbar <em>med proffs</em></h2></div>
           <div className={styles.varforModul}>
-            <figure className={styles.varforFilm}><video autoPlay muted loop playsInline preload="metadata" poster="/proffsmaskiner/media/poster-varfor.jpg" aria-label="Långsam åkning längs maskinerna på den etablerade tomten"><source src="/proffsmaskiner/media/video-varfor-maskinerna.mp4" type="video/mp4" /></video></figure>
+            <figure className={styles.varforFilm}><video autoPlay muted loop playsInline preload="metadata" poster="/proffsmaskiner/media/poster-varfor-utrustningen.jpg" aria-label="Långsam åkning genom rummet förbi golvsågen, plastväggen och kärnborren"><source src="/proffsmaskiner/media/video-varfor-utrustningen.mp4" type="video/mp4" /></video></figure>
             <ul className={styles.varforPunkter}>{VARFOR.map((p) => <li key={p}>{p}</li>)}</ul>
           </div>
         </div>
