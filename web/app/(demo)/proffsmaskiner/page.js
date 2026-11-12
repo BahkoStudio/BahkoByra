@@ -52,7 +52,8 @@ import { arKunddoman } from './kunddoman';
    förbrukningsmaterial och betongbearbetning. Leverantörer: Flex, Stanley, DeWalt (samma koncern),
    Hilti, JLM Group, Husqvarna Construction, Brokk. Logotyperna visas inte, bara namnen som text.
    Heron, varför-filmen och 07:00/08:00-paret visar sedan 2026-11-12 bygg, rivning, sanering
-   och håltagning. Galleriet under paret (hydraulik, liftar, elförsörjning) är kvar: fråga Peter.
+   och håltagning. Galleriet under paret byttes 2026-11-12 på Peters begäran mot bygg, rivning, sanering och
+   håltagning (GPT Image 2.5). Gamla galleribilderna ligger kvar i media/ men används inte.
 
    FLAGGOR: formuläret går till peter@proffsmaskiner.se (Web3Forms, 2026-11-10); omdömessektionen och illustrationstexten borttagna (Mathias 2026-11-10);
    före/efter och galleri är illustrationer; sociala är deras egna.
@@ -244,10 +245,10 @@ export default function ProffsmaskinerDemo() {
             <figure><Image src="/proffsmaskiner/media/galleri-efter-utrustat-rum.jpg" alt="Samma rum med plastvägg, kärnborr, stoftavskiljare, golvsåg, bilningshammare och luftrenare på plats" width={1200} height={1200} /><figcaption><b>08:00</b></figcaption></figure>
           </div>
           <div className={styles.galleri}>
-            <figure><Image src="/proffsmaskiner/media/galleri-makro-hydraulik.jpg" alt="Närbild på minigrävarens hydraulikkoppling och nya slangar" width={1200} height={1200} /><figcaption>Servad innan den lämnar oss.</figcaption></figure>
-            <figure><Image src="/proffsmaskiner/media/galleri-liftar.jpg" alt="Rad av saxliftar och en bomlift i en uthyrningshall" width={1200} height={1200} /><figcaption>Liftar: sax och bom, rätt höjd för jobbet.</figcaption></figure>
-            <figure><Image src="/proffsmaskiner/media/galleri-haltagning.jpg" alt="Borrigg för betonghåltagning monterad på en betongvägg" width={1200} height={1200} /><figcaption>Betonghåltagning.</figcaption></figure>
-            <figure><Image src="/proffsmaskiner/media/galleri-elforsorjning.jpg" alt="Generator på släp som matar en upplyst byggbod i skymningen" width={1200} height={1200} /><figcaption>Elförsörjning till boden och bygget.</figcaption></figure>
+            <figure><Image src="/proffsmaskiner/media/galleri-bygg.jpg" alt="Cirkelsåg med stoftavskiljare som sågar en plywoodskiva på bockar, en fräs bredvid" width={1200} height={1200} /><figcaption>Bygg: sågar, fräsar och stoftavskiljare.</figcaption></figure>
+            <figure><Image src="/proffsmaskiner/media/galleri-rivning.jpg" alt="Bilningshammare som river kakel i ett badrum, luftrenare och mattstripper i bakgrunden" width={1200} height={1200} /><figcaption>Rivning: bilningshammare, mattstrippers och luftrenare.</figcaption></figure>
+            <figure><Image src="/proffsmaskiner/media/galleri-sanering.jpg" alt="Plastvägg med dragkedja, undertrycksaggregat, tejp, skyddsoverall och andningsskydd" width={1200} height={1200} /><figcaption>Sanering: plast, tejp och skyddsutrustning.</figcaption></figure>
+            <figure><Image src="/proffsmaskiner/media/galleri-haltagning-golvsag.jpg" alt="Golvsåg som sågar i betonggolv, diamantklingor och en utborrad betongkärna bredvid hålet" width={1200} height={1200} /><figcaption>Håltagning: golvsågar, klingor och kärnborrar.</figcaption></figure>
           </div>
         </div>
       </section>
