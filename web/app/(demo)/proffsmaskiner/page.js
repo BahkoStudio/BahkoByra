@@ -265,8 +265,9 @@ export default function ProffsmaskinerDemo() {
           <div className={styles.omGrid}>
             <div><p className={styles.eyebrow}>Om oss</p><h2 className={styles.h2}>Vi hyr ut. <em>Vi säljer också.</em></h2></div>
             <div className={styles.omText}>
-              <p>Proffsmaskiner ägs av ett företag som själva kommer från branschen, från just bygg, rivning, sanering och håltagning.</p>
-              <p>Därför hyr vi inte bara ut maskiner. Vi är också återförsäljare av maskiner och handverktyg, förbrukningsmaterial och betongbearbetning.</p>
+              <p>Bakom Proffsmaskiner finns en gedigen branschkunskap med rötter i ett företag verksamt inom bygg, rivning, sanering och håltagning.</p>
+              <p>Det är genom den erfarenheten vi har byggt upp vår förståelse för branschens behov och utmaningar. Därför erbjuder vi mer än bara maskinuthyrning. Vi är även återförsäljare av maskiner, handverktyg och förbrukningsmaterial samt produkter för betongbearbetning.</p>
+              <p>Vi vet vad som krävs ute på arbetsplatserna och vill göra det enkelt för våra kunder att hitta rätt utrustning och lösningar.</p>
             </div>
           </div>
         </div>
