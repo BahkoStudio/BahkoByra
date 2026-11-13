@@ -116,6 +116,8 @@ const data = {
   hero: {
     ort: 'Kungsängen',
     tjanster: ['Fågelskydd', 'Nockband'],
+    // Vägen till webbutiken direkt i heron (Mathias 2026-11-11), utöver footern och mobilmenyn.
+    lank: { href: '/archerknox/butik/', txt: 'Till webbutiken' },
     video: `${M}/video-hero.mp4`,
     videoMobil: `${M}/video-hero-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
