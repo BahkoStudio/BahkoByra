@@ -81,7 +81,7 @@ export function Fot() {
         <a href={`${BAS}/#kontakt`}>Kontakt</a>
       </nav>
       <p className={styles.fotDemo}>
-        Förslag från Bahko Byrå. Bilar, priser, tjänster, adress och öppettider är exempel, och alla bilder är illustrationer.
+        Förslag från Bahko Byrå. Bilar, priser, tjänster och öppettider är exempel, och alla bilder är illustrationer.
       </p>
       <p className={styles.fotCopy}>© 2026 Erikson Bil</p>
     </footer>
