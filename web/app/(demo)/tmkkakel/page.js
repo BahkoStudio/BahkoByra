@@ -255,7 +255,7 @@ const data = {
     rubrik: ['Följ jobben', 'på Instagram'],
     lead: 'Det senaste från vårt konto, direkt från Instagram.',
     bio: 'TMK Kakel AB · Trollhättan',
-    koder: ['DfaL3utI18N', 'DfB7A57oHgy', 'DclnVTCCF_M'],
+    koder: ['DclnVTCCF_M', 'DfB7A57oHgy', 'DfaL3utI18N'],
   },
 
   fragor: {
@@ -302,8 +302,10 @@ const data = {
   },
 };
 
-/* STIL: omdömena döljs (inga riktiga finns, se FLAGGOR). Mallen (🔒) är orörd. */
-const STIL = '#omdomen{display:none!important}';
+/* STIL: omdömena döljs (inga riktiga finns, se FLAGGOR). På mobil visas bara det första
+   Instagram-inlägget: tre inbäddningar på rad blev nästan två skärmar tom scroll (designloop runda 2).
+   Mallen (🔒) är orörd. */
+const STIL = '#omdomen{display:none!important}@media (max-width:700px){#instagram [class*="igRutnat"]>div:nth-child(n+2){display:none!important}}';
 
 export default function TmkKakelDemo() {
   return (
