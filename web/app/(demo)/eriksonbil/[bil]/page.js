@@ -1,11 +1,13 @@
 import { notFound } from 'next/navigation';
 import styles from '../eriksonbil.module.css';
 import { BAS, MEDIA, BILAR, LANEVILLKOR, hittaBil } from '../_bilar';
-import { fontKlasser, Bild, Topp, Fot, Exempel } from '../_delar';
+import { fontKlasser, Topp, Fot, Exempel } from '../_delar';
 import DemoForm from '../_form';
+import Studio from '../_studio';
 
-/* En sida per exempelbil: galleri, plats för film, specar, servicehistorik,
-   månadskostnad och boka visning. Allt om bilarna är påhittat (se _bilar.js). */
+/* En sida per exempelbil, byggd som Teslas designsida (se _studio.js): bild med
+   punkter till vänster, panel till höger, fast rad längst ner.
+   Allt om bilarna är påhittat (se _bilar.js). */
 
 export const dynamicParams = false;
 
@@ -30,65 +32,13 @@ export default async function BilSida({ params }) {
   const b = hittaBil(bil);
   if (!b) notFound();
   const andra = BILAR.filter((x) => x.slug !== b.slug);
-  const galleri = [
-    { namn: `${b.bild}-1280.webp`, stor: `${b.bild}-1920.webp`, alt: b.alt },
-    { namn: `${b.bild}-bak-960.webp`, stor: `${b.bild}-bak-1600.webp`, alt: `${b.marke} ${b.modell} bakifrån` },
-    { namn: `${b.bild}-inne-960.webp`, stor: `${b.bild}-inne-1600.webp`, alt: `Förarplats och instrumentbräda i ${b.marke} ${b.modell}` },
-    { namn: `${b.bild}-detalj-960.webp`, stor: `${b.bild}-detalj-1600.webp`, alt: `Framhjul och strålkastare på ${b.marke} ${b.modell}` },
-  ];
 
   return (
-    <div className={`${fontKlasser} ${styles.sida}`}>
+    <div className={`${fontKlasser} ${styles.sida} ${styles.studioSida}`}>
       <a href="#fakta" className={styles.hoppa}>Hoppa till fakta</a>
       <Topp />
       <main>
-        <section className={styles.skarm} aria-labelledby="bil-rubrik">
-          <Bild namn={b.bild} alt={b.alt} prio className={`${styles.bg} ${styles.kenburns}`} />
-          <div className={styles.sloja} />
-          <div className={styles.skarmTopp}>
-            <Exempel />
-            <h1 id="bil-rubrik" className={styles.bilRubrik}>{b.marke} {b.modell}</h1>
-            <p className={styles.bilVersion}>{b.version}</p>
-            <ul className={styles.bilFakta} aria-label="Fakta">
-              <li><b>{b.ar}</b><span>Årsmodell</span></li>
-              <li><b>{b.mil} mil</b><span>Miltal</span></li>
-              <li><b>{b.pris} kr</b><span>Pris</span></li>
-            </ul>
-            <p className={styles.manad}>eller från <b>{b.manad} kr/mån</b></p>
-          </div>
-          <div className={styles.skarmBotten}>
-            <div className={styles.knappar}>
-              <a href="#boka" className={styles.knappGuld}>Boka visning</a>
-              <a href="#ring" className={styles.knappGlas}>Ring oss</a>
-            </div>
-            <p className={styles.illustration}>Bilden är en illustration</p>
-          </div>
-        </section>
-
-        <section className={styles.innehall} id="fakta" aria-label="Om bilen">
-          <p className={styles.ingress}>{b.ingress}</p>
-
-          <h2 className={styles.delRubrik}>Bilder</h2>
-          <ul className={styles.galleri}>
-            {galleri.map((g, i) => (
-              <li key={g.namn} className={i === 0 ? styles.galleriStor : undefined}>
-                <a href={`${MEDIA}/${g.stor}`} target="_blank" rel="noopener" aria-label={`Öppna bilden större i en ny flik: ${g.alt}`}>
-                  <img src={`${MEDIA}/${g.namn}`} alt={g.alt} width={960} height={638} loading="lazy" decoding="async" />
-                </a>
-              </li>
-            ))}
-          </ul>
-          <p className={styles.bildNot}>Alla bilder är illustrationer. Den riktiga bilen fotograferas när den kommer in.</p>
-
-          <h2 className={styles.delRubrik}>Film</h2>
-          <div className={styles.film}>
-            <img src={`${MEDIA}/${b.bild}-detalj-960.webp`} alt="" width={960} height={638} loading="lazy" decoding="async" />
-            <div className={styles.filmText}>
-              <p className={styles.filmRubrik}>Här kommer filmen</p>
-              <p>En lugn runda runt bilen, motorn i gång och en titt under huven. Ungefär 40 sekunder.</p>
-            </div>
-          </div>
-
+        <Studio b={b} villkor={LANEVILLKOR}>
           <h2 className={styles.delRubrik}>Specifikationer</h2>
           <dl className={styles.specar}>
             {b.specar.map(([k, v]) => (
@@ -98,7 +48,7 @@ export default async function BilSida({ params }) {
 
           <h2 className={styles.delRubrik}>Utrustning</h2>
           <ul className={styles.utrustning}>
-            {b.utrustning.map((u) => <li key={u}>{u}</li>)}
+            {[...b.ute, ...b.inne].map((u) => <li key={u}>{u}</li>)}
           </ul>
 
           <h2 className={styles.delRubrik}>Servicehistorik</h2>
@@ -113,15 +63,12 @@ export default async function BilSida({ params }) {
           </ol>
           <p className={styles.bildNot}>Servicehäftet ligger i bilen. Läs det själv vid visningen.</p>
 
-          <div className={styles.pengar}>
-            <div>
-              <p className={styles.etikett}>Pris</p>
-              <p className={styles.pengarStor}>{b.pris} kr</p>
-            </div>
-            <div>
-              <p className={styles.etikett}>Eller per månad</p>
-              <p className={styles.pengarStor}>från {b.manad} kr/mån</p>
-              <p className={styles.pengarNot}>{LANEVILLKOR} Kontantinsats {b.kontant} kr.</p>
+          <h2 className={styles.delRubrik}>Film</h2>
+          <div className={styles.film}>
+            <img src={`${MEDIA}/${b.bild}-detalj-960.webp`} alt="" width={960} height={638} loading="lazy" decoding="async" />
+            <div className={styles.filmText}>
+              <p className={styles.filmRubrik}>Här kommer filmen</p>
+              <p>En lugn runda runt bilen, motorn i gång och en titt under huven. Ungefär 40 sekunder.</p>
             </div>
           </div>
 
@@ -155,8 +102,10 @@ export default async function BilSida({ params }) {
             <h2 className={styles.rutaRubrik}>Hellre ringa?</h2>
             <p className={styles.rutaText}>Numret kommer här när firman är registrerad. Tills dess bokar du visning med formuläret ovanför.</p>
           </div>
+        </Studio>
 
-          <h2 className={styles.delRubrik}>Fler bilar</h2>
+        <section className={styles.innehall} aria-labelledby="fler-rubrik">
+          <h2 id="fler-rubrik" className={styles.delRubrik}>Fler bilar</h2>
           <ul className={styles.andra}>
             {andra.map((x) => (
               <li key={x.slug}>

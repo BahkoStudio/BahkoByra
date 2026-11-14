@@ -8,7 +8,7 @@ import DemoForm from './_form';
 
 export const metadata = {
   title: 'Erikson Bil | Begagnade bilar och egen verkstad',
-  description: 'Erikson Bil säljer få, genomgångna begagnade bilar och har en egen verkstad för service, bromsar och däck. Förslag med exempelbilar.',
+  description: 'Erikson Bil i Sollentuna säljer få, genomgångna begagnade bilar och har en egen verkstad för service, bromsar och däck. Förslag med exempelbilar.',
   robots: { index: false, follow: false },
   icons: { icon: '/eriksonbil/media/mark.svg' },
 };
@@ -24,7 +24,7 @@ export default function Start() {
           <div className={styles.slojaHero} />
           <div className={styles.skarmTopp}>
             <h1 className={styles.heroRubrik}>Få bilar. Rätt bilar.</h1>
-            <p className={styles.heroText}>Begagnade bilar och en egen verkstad. Vi säljer bara bilar vi själva skulle köra.</p>
+            <p className={styles.heroText}>Begagnade bilar och en egen verkstad i Sollentuna. Vi säljer bara bilar vi själva skulle köra.</p>
           </div>
           <div className={styles.skarmBotten}>
             <div className={styles.knappar}>
@@ -38,6 +38,8 @@ export default function Start() {
         <div id="bilar">
           {BILAR.map((b, i) => (
             <section key={b.slug} className={styles.skarm} aria-labelledby={`bil-${b.slug}`}>
+              {/* Hela bilden går att trycka på. Knappen "Se bilen" är samma länk för tangentbord och skärmläsare. */}
+              <a href={`${BAS}/${b.slug}/`} className={styles.skarmLank} tabIndex={-1} aria-hidden="true" />
               <Bild namn={b.bild} alt={b.alt} className={styles.bg} prio={false} />
               <div className={styles.sloja} />
               <div className={styles.skarmTopp}>
@@ -122,7 +124,7 @@ export default function Start() {
           <h2 id="kontakt-rubrik" className={styles.sektionRubrik}>Kom förbi.</h2>
           <p className={styles.kontaktText}>Ring innan, så står kaffet på och bilen du vill se står framme.</p>
           <dl className={styles.kontaktLista}>
-            <div><dt>Adress</dt><dd>Verkstadsvägen 4, 123 45 Exempelby <Exempel>Exempel</Exempel></dd></div>
+            <div><dt>Adress</dt><dd>Sollentuna. Gatuadressen kommer när lokalen är klar.</dd></div>
             <div><dt>Telefon</dt><dd>Numret kommer när firman är registrerad</dd></div>
             <div><dt>E-post</dt><dd>Adressen kommer med domänen</dd></div>
             <div><dt>Öppet</dt><dd>Vardagar 17 till 20, lördagar 10 till 14 <Exempel>Exempel</Exempel></dd></div>

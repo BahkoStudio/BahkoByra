@@ -1,15 +1,19 @@
 /* ===========================================================================
    ERIKSON BIL · kostnadsfritt hemsideförslag från Bahko Byrå
-   Lead: Peter (Mathias 2026-11-14). Peter och en kompanjon startar bilförsäljning och
-   verkstad som sidoprojekt. Firman är INTE startad, ingen hemsida, ingen verkstad än.
+   Lead: Peter Winqvist (Mathias 2026-11-14). Peter och en kompanjon startar bilförsäljning
+   och verkstad som sidoprojekt. Firman är INTE startad, ingen hemsida, ingen verkstad än.
+   Peters svar 2026-11-14: övre medelklass, 3 till 4 bilar åt gången, Sollentuna.
    Loggan: Peters egen (guldsköld med EB), omritad som SVG av Bahko Byrå 2026-11-14.
 
-   ALLT PÅ SIDAN ÄR EXEMPEL utom namnet Erikson Bil och loggan:
+   ALLT PÅ SIDAN ÄR EXEMPEL utom namnet Erikson Bil, loggan och orten Sollentuna:
    - De tre bilarna, deras årsmodell, miltal, pris, specifikationer, utrustning och
      servicehistorik är påhittade. Varje bil bär märket "Exempelbil".
    - Månadskostnaden är ett räkneexempel med påhittade villkor (20 % kontant, 72 mån,
      6,95 % ränta, annuitet, inga avgifter).
-   - Verkstadens tjänster och "från"priser, öppettiderna och adressen är påhittade.
+   - Verkstadens tjänster och "från"priser och öppettiderna är påhittade. Gatuadress
+     finns inte än, sidan säger bara Sollentuna.
+   - Punkterna på bilbilden (punkter: x, y och etikettens höjd i procent av 16:9-bilden)
+     är handsatta per bild. Byts bilden måste de sättas om.
    - Telefon och e-post finns inte än. Inget tel: och inget mailto: på sidan.
    - Formulären skickar ingenting (se _form.js).
    - Alla bilder är genererade illustrationer (GPT Image via Higgsfield, 2026-11-14).
@@ -49,7 +53,15 @@ export const BILAR = [
       ['Ägare', '2 st'],
       ['Besiktigad', 'Oktober 2026'],
     ],
-    utrustning: ['Dragkrok, elektrisk', 'Vinterhjul på fälg', 'Panoramatak', 'Adaptiv farthållare', 'Backkamera', 'Värmare med app'],
+    ute: ['Dragkrok, elektrisk', 'Vinterhjul på fälg', 'Panoramatak'],
+    inne: ['Adaptiv farthållare', 'Backkamera', 'Värmare med app'],
+    teknik: 'Laddhybrid med fyrhjulsdrift. El i veckan, bensin när det blir långt.',
+    punkter: [
+      { id: 'teknik', x: 38, y: 54, etikett: 20 },
+      { id: 'interior', x: 64, y: 46, etikett: 14 },
+      { id: 'exterior', x: 30, y: 66, etikett: 92 },
+      { id: 'historik', x: 73, y: 69, etikett: 92 },
+    ],
     service: [
       ['Augusti 2026', '6 100 mil', 'Service och bromsvätska. Volvoverkstad.'],
       ['September 2025', '4 600 mil', 'Service. Volvoverkstad.'],
@@ -83,9 +95,17 @@ export const BILAR = [
       ['Ägare', '1 st'],
       ['Besiktigad', 'Augusti 2026'],
     ],
-    utrustning: ['S line exteriör och interiör', 'Matrix LED', 'Dragkrok', 'Sätesvärme fram och bak', 'Apple CarPlay', 'Nya sommardäck 2026'],
+    ute: ['S line exteriör', 'Matrix LED', 'Dragkrok', 'Nya sommardäck 2026'],
+    inne: ['S line interiör', 'Sätesvärme fram och bak', 'Apple CarPlay'],
+    teknik: 'Diesel och quattro. Byggd för att äta mil.',
+    punkter: [
+      { id: 'interior', x: 34, y: 52, etikett: 20 },
+      { id: 'teknik', x: 64, y: 61, etikett: 14 },
+      { id: 'historik', x: 26.5, y: 70, etikett: 92 },
+      { id: 'exterior', x: 66, y: 72, etikett: 92 },
+    ],
     service: [
-      ['Juni 2026', '8 800 mil', 'Service och kamrem. Audiverkstad.'],
+      ['Juni 2026', '8 800 mil', 'Service och bromsklossar bak. Audiverkstad.'],
       ['Maj 2025', '7 100 mil', 'Service och bromsskivor fram. Audiverkstad.'],
       ['April 2024', '5 200 mil', 'Service. Audiverkstad.'],
       ['Mars 2023', '3 300 mil', 'Service. Audiverkstad.'],
@@ -118,7 +138,15 @@ export const BILAR = [
       ['Ägare', '1 st'],
       ['Besiktigad', 'Juni 2026'],
     ],
-    utrustning: ['M Sport paket', 'Sportstolar med värme', 'Laddkabel typ 2', 'Head up display', 'Parkeringssensorer runt om', 'Vinterhjul på fälg'],
+    ute: ['M Sport paket', 'Parkeringssensorer runt om', 'Vinterhjul på fälg'],
+    inne: ['Sportstolar med värme', 'Head up display', 'Laddkabel typ 2'],
+    teknik: 'Laddhybrid med bakhjulsdrift. Tyst i stan, pigg på landsvägen.',
+    punkter: [
+      { id: 'teknik', x: 38, y: 57, etikett: 20 },
+      { id: 'interior', x: 62, y: 52, etikett: 14 },
+      { id: 'exterior', x: 31, y: 71, etikett: 92 },
+      { id: 'historik', x: 67.5, y: 69, etikett: 92 },
+    ],
     service: [
       ['Maj 2026', '5 300 mil', 'Service och bromsvätska. BMW-verkstad.'],
       ['April 2025', '3 900 mil', 'Service. BMW-verkstad.'],

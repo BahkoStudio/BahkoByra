@@ -103,8 +103,9 @@ html:has(.sida) { scroll-padding-top: 72px; scroll-behavior: smooth; }
   color: #111; background: var(--guldLjus); border-radius: 999px; padding: .2rem .6rem; line-height: 1.4;
 }
 .illustration { font-size: .75rem; color: rgba(255, 255, 255, .62); text-shadow: 0 1px 8px rgba(0, 0, 0, .8); }
-.manad { margin-top: .5rem !important; font-size: 1rem; color: #e6e6e3; text-shadow: 0 1px 12px rgba(0, 0, 0, .7); }
-.manad b { color: var(--guldLjus); font-weight: 500; }
+/* Hela bilskärmen är en länk till bilen. Knapparna ligger ovanpå. */
+.skarmLank { position: absolute; inset: 0; z-index: 0; }
+.skarmBotten { position: relative; z-index: 1; }
 
 /* ---------- knappar ---------- */
 .knappar { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; width: 100%; }
@@ -184,15 +185,127 @@ html:has(.sida) { scroll-padding-top: 72px; scroll-behavior: smooth; }
 .kontaktLista dt { font-family: var(--eb-rubrik), sans-serif; font-size: .75rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--guld); margin-bottom: .5rem; }
 .kontaktLista dd { color: var(--text); display: flex; flex-direction: column; align-items: flex-start; gap: .5rem; }
 
-/* ---------- bilsidan ---------- */
-.ingress { font-family: var(--eb-rubrik), sans-serif; font-weight: 400; font-size: clamp(1.25rem, 2.6vw, 1.75rem); line-height: 1.4; max-width: 46rem; padding-top: var(--luft); margin: 0 auto !important; text-align: center; }
+/* ---------- bilsidan (Teslas designsida som förebild) ---------- */
+.studioSida { --topp: 64px; --rad: 76px; padding-top: var(--topp); }
+.studioSida .topp { background: var(--svart); }
+.studioSida .fot { padding-bottom: calc(2.5rem + var(--rad)); }
+.studio { display: grid; grid-template-columns: minmax(0, 1fr) 27rem; align-items: start; }
+
+.scen {
+  position: sticky; top: var(--topp);
+  height: calc(100vh - var(--topp) - var(--rad)); height: calc(100svh - var(--topp) - var(--rad));
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .9rem;
+  padding: 1rem clamp(1rem, 2vw, 2rem);
+}
+.scen .illustration { text-align: center; }
+/* Ramen är alltid 16:9, så punkternas procent träffar samma ställe på bilen i alla bredder. */
+.ram {
+  position: relative; flex: none;
+  width: min(100%, calc((100svh - var(--topp) - var(--rad) - 8rem) * 16 / 9));
+  aspect-ratio: 16 / 9; border-radius: var(--radie); overflow: hidden; background: var(--kol);
+}
+.spar { display: flex; height: 100%; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.spar::-webkit-scrollbar { display: none; }
+.spar:focus-visible { outline-offset: -3px; }
+.bildruta { position: relative; flex: 0 0 100%; height: 100%; scroll-snap-align: start; scroll-snap-stop: always; }
+.bildruta img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Punkt på bilden: en tunn lodrät linje från etiketten till stället på bilen. */
+.punkt {
+  position: absolute; display: flex; align-items: flex-start;
+  margin: 0; padding: 0; background: none; border: 0; cursor: pointer;
+  color: #fff; font-family: var(--eb-rubrik), sans-serif; font-weight: 500; font-size: .9375rem; line-height: 1;
+}
+.punktNer { align-items: flex-end; }
+.punkt::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: rgba(255, 255, 255, .75); box-shadow: 0 0 6px rgba(0, 0, 0, .7); }
+.punkt::after { content: ''; position: absolute; left: -3px; bottom: -3px; width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, .25); }
+.punktNer::after { bottom: auto; top: -3px; }
+.punktEtikett { display: inline-flex; align-items: center; gap: .55rem; padding-left: .65rem; white-space: nowrap; text-shadow: 0 1px 10px rgba(0, 0, 0, .9), 0 0 2px rgba(0, 0, 0, .8); }
+.plus { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 4px; background: rgba(255, 255, 255, .94); color: #111; font-size: 1.125rem; text-shadow: none; transition: background .2s; }
+.punkt:hover .plus, .punkt:focus-visible .plus { background: var(--guldLjus); }
+
+.reglage { display: flex; align-items: center; gap: .75rem; }
+.pil, .prickar { height: 44px; border-radius: var(--radie); background: var(--kol2); }
+.pil { display: grid; place-items: center; width: 48px; border: 0; color: var(--text); cursor: pointer; transition: background .2s; }
+.pil:hover { background: #242427; }
+.prickar { display: flex; align-items: center; padding: 0 .5rem; }
+.prick { width: 26px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.prick::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: #5a5a5d; transition: background .2s; }
+.prickAktiv::before { background: var(--guldLjus); }
+
+.panel { padding: 1.75rem clamp(1.25rem, 2vw, 2rem) 3rem; border-left: 1px solid var(--linje); min-height: calc(100svh - var(--topp) - var(--rad)); }
+.panelRubrik { font-family: var(--eb-rubrik), sans-serif; font-weight: 500; font-size: 2.25rem; line-height: 1.1; letter-spacing: -.01em; margin-top: .75rem !important; }
+.panelVersion { color: var(--dampad); margin-top: .25rem !important; }
+.nyckeltal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.75rem !important; }
+.nyckeltal li { display: flex; flex-direction: column; gap: .15rem; }
+.nyckeltal b { font-family: var(--eb-rubrik), sans-serif; font-weight: 500; font-size: 1.625rem; line-height: 1.1; white-space: nowrap; }
+.nyckeltal small { font-size: .9375rem; font-weight: 500; }
+.nyckeltal span { color: var(--dampad); font-size: .875rem; }
+
+.val { display: grid; grid-template-columns: 1fr 1fr; margin-top: 1.75rem; border-bottom: 1px solid var(--linje); }
+.val button { min-height: 48px; background: none; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; color: var(--dampad); cursor: pointer; font-family: var(--eb-rubrik), sans-serif; font-weight: 500; font-size: 1rem; transition: color .2s, border-color .2s; }
+.val button:hover { color: var(--text); }
+.val .valAktiv { color: var(--text); border-bottom-color: var(--guld); }
+.prisKort { margin-top: 1.25rem; padding: 1.1rem 1.25rem; border: 2px solid var(--guld); border-radius: var(--radie); background: var(--kol); min-height: 6.25rem; }
+.prisRad { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-family: var(--eb-rubrik), sans-serif; font-weight: 500; font-size: 1.0625rem; }
+.prisRad b { font-weight: 500; color: var(--guldLjus); white-space: nowrap; }
+.prisNot { color: var(--dampad); font-size: .8125rem; margin-top: .4rem !important; }
+.panelKnappar { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: 1rem; }
+.panelKnappar a { min-width: 0; }
+.panelIngress { color: #dcdcd8; font-size: 1.0625rem; margin-top: 2rem !important; }
+
+.panel .delRubrik { font-size: 1.375rem; margin: 2.75rem 0 1rem !important; }
+.panel .specar { grid-template-columns: 1fr 1fr; }
+.panel .specar div { padding: 1rem; }
+.panel .utrustning { grid-template-columns: 1fr; }
+.panel .service li { grid-template-columns: 1fr auto; }
+.panel .serviceVad { grid-column: 1 / -1; }
+.panel .bokaRuta { margin-top: 2.75rem; padding: 1.5rem; }
+.panel .ring { padding: 1.5rem; }
+.panel .form { grid-template-columns: 1fr; }
+.panel .form > button { justify-self: stretch; }
+
+/* Fast rad längst ner. Ingen köpknapp, bara "Boka visning". */
+.rad {
+  position: fixed; inset: auto 0 0 0; z-index: 20;
+  min-height: var(--rad); padding: .5rem clamp(1rem, 3vw, 2.5rem) calc(.5rem + env(safe-area-inset-bottom));
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  background: rgba(8, 8, 8, .94); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-top: 1px solid var(--linje);
+}
+.radVanster { min-width: 0; }
+.radNamn { font-family: var(--eb-rubrik), sans-serif; font-weight: 500; font-size: 1.375rem; line-height: 1.2; }
+.radInfo { color: var(--dampad); font-size: .8125rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.radHoger { display: flex; align-items: center; gap: 1.5rem; flex: none; }
+.radPris { display: flex; flex-direction: column; line-height: 1.2; }
+.radPris b { font-family: var(--eb-rubrik), sans-serif; font-weight: 500; font-size: 1.375rem; white-space: nowrap; }
+.radPris span { color: var(--dampad); font-size: .8125rem; }
+.rad .knappGuld { min-width: 10rem; }
+
+/* Rutan som öppnas från en punkt på bilden. */
+.ruta {
+  width: min(100% - 2rem, 60rem); max-width: none; max-height: min(100dvh - 2rem, 42rem);
+  padding: 0; border: 1px solid var(--linje); border-radius: 12px; overflow: auto;
+  background: var(--kol); color: var(--text);
+}
+.ruta::backdrop { background: rgba(0, 0, 0, .72); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.rutaInre { position: relative; display: grid; grid-template-columns: 1.15fr 1fr; min-height: 26rem; }
+.rutaBild img { width: 100%; height: 100%; object-fit: cover; }
+.rutaInfo { padding: 2.5rem 2rem 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+.rutaInfo .utrustning { grid-template-columns: 1fr; width: 100%; }
+.rutaInfo .service { align-self: stretch; gap: 1rem; }
+.rutaInfo .service li { grid-template-columns: 1fr auto; }
+.rutaInfo .serviceVad { grid-column: 1 / -1; font-size: .875rem; }
+.rutaInfo .knappGuld { margin-top: auto; }
+.rutaIngress { color: #dcdcd8; }
+.rutaRader { width: 100%; border-top: 1px solid var(--linje); }
+.rutaRader div { display: flex; justify-content: space-between; gap: 1rem; padding: .7rem 0; border-bottom: 1px solid var(--linje); }
+.rutaRader dt { color: var(--dampad); }
+.rutaRader dd { text-align: right; }
+.rutaStang { position: absolute; top: .5rem; right: .5rem; width: 44px; height: 44px; display: grid; place-items: center; border: 0; border-radius: 50%; background: rgba(0, 0, 0, .55); color: #fff; cursor: pointer; }
+.rutaStang:hover { background: rgba(60, 60, 60, .8); }
+
 .delRubrik { font-family: var(--eb-rubrik), sans-serif; font-weight: 500; font-size: clamp(1.5rem, 3vw, 2rem); margin: clamp(3.5rem, 8vw, 6rem) 0 1.5rem !important; }
-.galleri { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
-.galleri li { border-radius: var(--radie); overflow: hidden; background: var(--kol); aspect-ratio: 3 / 2; }
-.galleri .galleriStor { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
-.galleri a { display: block; height: 100%; }
-.galleri img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-.galleri a:hover img { transform: scale(1.03); }
 .bildNot { color: var(--dampad); font-size: .8125rem; margin-top: .75rem !important; }
 
 .film { position: relative; aspect-ratio: 16 / 9; border-radius: var(--radie); overflow: hidden; background: var(--kol); border: 1px solid var(--linje); display: grid; place-items: center; }
@@ -215,11 +328,6 @@ html:has(.sida) { scroll-padding-top: 72px; scroll-behavior: smooth; }
 .serviceNar { font-family: var(--eb-rubrik), sans-serif; font-weight: 500; }
 .serviceMil { color: var(--guldLjus); }
 .serviceVad { color: var(--dampad); }
-
-.pengar { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: clamp(3.5rem, 8vw, 6rem); background: var(--linje); border: 1px solid var(--linje); border-radius: var(--radie); overflow: hidden; }
-.pengar > div { background: var(--kol); padding: clamp(1.5rem, 4vw, 2.5rem); display: flex; flex-direction: column; gap: .4rem; }
-.pengarStor { font-family: var(--eb-rubrik), sans-serif; font-weight: 500; font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.1; }
-.pengarNot { color: var(--dampad); font-size: .8125rem; }
 
 .andra { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
 .andra a { display: flex; flex-direction: column; gap: .35rem; align-items: flex-start; text-decoration: none; }
@@ -245,8 +353,28 @@ html:has(.sida) { scroll-padding-top: 72px; scroll-behavior: smooth; }
   .utrustning { grid-template-columns: 1fr 1fr; }
   .service li { grid-template-columns: 1fr auto; }
   .serviceVad { grid-column: 1 / -1; }
+  .studio { grid-template-columns: 1fr; }
+  .scen { position: static; height: auto; padding: 0 0 .75rem; }
+  .scen .illustration { padding: 0 1.25rem; }
+  .ram { width: 100%; border-radius: 0; }
+  .panel { border-left: 0; min-height: 0; padding-top: 1.25rem; }
 }
 @media (max-width: 600px) {
+  .studioSida { --topp: 56px; --rad: 68px; }
+  .punkt { font-size: .8125rem; }
+  .punktEtikett { gap: .4rem; padding-left: .45rem; }
+  .plus { width: 20px; height: 20px; font-size: 1rem; }
+  .panelRubrik { font-size: 2rem; }
+  .radInfo, .radPris span { display: none; }
+  .radNamn, .radPris b { font-size: 1.0625rem; }
+  .radHoger { gap: .75rem; }
+  .rad .knappGuld { width: auto; min-width: 0; padding-inline: 1rem; }
+  .panelKnappar a { width: auto; }
+  .ruta { width: 100%; max-height: 100dvh; height: 100dvh; margin: 0; border: 0; border-radius: 0; }
+  .rutaInre { grid-template-columns: 1fr; min-height: 100%; align-content: start; }
+  .rutaBild { aspect-ratio: 16 / 9; }
+  .rutaInfo { padding: 1.5rem 1.25rem 2rem; }
+  .rutaInfo .knappGuld { margin-top: .5rem; }
   .sloja { background: linear-gradient(to bottom, rgba(0, 0, 0, .7) 0%, rgba(0, 0, 0, .15) 30%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .78) 100%); }
   .tjanster li { padding: 1.25rem; }
   .topp { height: 56px; }
@@ -260,8 +388,6 @@ html:has(.sida) { scroll-padding-top: 72px; scroll-behavior: smooth; }
   .form { grid-template-columns: 1fr; }
   .form > button { justify-self: stretch; }
   .nyhetForm > button { width: 100%; }
-  .galleri { grid-template-columns: 1fr 1fr; gap: .5rem; }
-  .galleri li:last-child { grid-column: 1 / -1; }
 }
 @media (max-width: 360px) {
   .toppNav a:last-child { display: none; }
