@@ -48,7 +48,7 @@ import DemoSida from '../_mall/DemoSida';
      WPGT7482. Den riktiga ska göras med Wan 3.0 Prime när Mathias godkänt kostnaden
      (prompt och kostnad i leadfilen). Filvägarna är desamma, så bara filerna byts.
    - Kontaktfilmen = platshållar-heron suddad. Görs om när heron byts.
-   - Varför-filmen = deras foto VMPM9543 (Badrum i Vargön) i långsam rörelse + logokort.
+   - Varför-filmen = deras foto ULRX1838 (Ljust badrum i Skoftebyn) i långsam rörelse + logokort.
    - 3D-märkena på tjänsterna är GENERERADE (GPT Image 2.5 / Sunburst, 4 st, ca 0,07 USD).
    - Logotypen = deras logo.png från tmkkakel.se (gråskala). Ljus variant gjord av oss
      (svart blir vitt, bokstäverna mörka) till heron och headern över filmen.
@@ -217,16 +217,16 @@ const data = {
     ],
     video: `${M}/video-varfor.mp4`,
     poster: `${M}/poster-varfor.jpg`,
-    videoAlt: 'Långsam inzoomning i ett färdigt badrum i Vargön. Filmen slutar med logotypen.',
+    videoAlt: 'Långsam inzoomning över ljus klinker som är kapad i kil runt golvbrunnen, i ett badrum i Skoftebyn. Filmen slutar med logotypen.',
   },
 
   om: {
     eyebrow: 'Om oss',
     rubrik: ['Tomi står', 'bakom firman'],
-    kortRad: 'Trollhättan · aktiebolag sedan 2018',
+    kortRad: 'Trollhättan · sedan 2018',
     stycken: [
       'Bakom TMK Kakel står Tomi Määttä, VD och grundare. Han har lagt kakel och klinker i 15 år och fått sin erfarenhet från många olika uppdrag och firmor.',
-      'Firman har sitt säte i Trollhättan. Badrum i Vargön, Sjuntorp, Skoftebyn och Egna hem, ett teknikrum i Vänersnäs och tegel bakom en kamin i Kode. Det är några av jobben.',
+      'Firman finns i Trollhättan. Jobben syns runt om: badrum i Vargön, Sjuntorp, Skoftebyn och Egna hem, ett teknikrum i Vänersnäs och tegel bakom en kamin i Kode.',
     ],
     bevis: [
       { ord: '15 år', text: 'med kakel och klinker' },
