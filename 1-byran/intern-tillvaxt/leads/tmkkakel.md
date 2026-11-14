@@ -70,3 +70,13 @@ Förvandling A → B ur deras eget badrum i Sjuntorp (AFRU1268, 1200×1600, svar
 ## DM-utkast (skickas av Mathias, inte av oss)
 
 Hej Tomi! Såg badrummet i Sjuntorp med svart marmor på golvet. Snyggt jobb. Vi bygger sidor åt hantverkare, bland annat en kakelfirma i Skåne och en målare i Stockholm. Jag har gjort ett förslag åt TMK Kakel med dina egna bilder och "en offert på hela projektet" längst fram. Vill du se det?
+
+## Designloop (2026-11-14, 3 rundor)
+
+Ribban i `docs/design/bar.md` gäller bahkobyra.se, så loopen var skärmdump (390 och 1280), granskning mot mallens regler i `hemsidor` och rättning, som Proffsmaskiner.
+
+1. Varför-filmen bytt till hans ljusa foto ULRX1838 (kilkapad klinker runt golvbrunnen) i stället för det mörkgrå. Logoradens text kortad ("Trollhättan · sedan 2018"), Om oss andra stycket omskrivet, footern utan dubbel Kontakt-länk (navet har Frågor i stället).
+2. På mobil visas bara det första Instagram-inlägget (tre inbäddningar var nästan två skärmar scroll), och inlägget med stenbadrummet ligger först.
+3. Tjänstekortens texter jämnlånga så punktlistorna linjerar. Rubriken "Kakel och klinker, från rivning till fog".
+
+Kvar: herofilmen (platshållare), Instagram-inlägget DfaL3utI18N är ett samarbetsinlägg med ett annat konto (wargonskakeloch). Be Tomi bekräfta att det är hans jobb.

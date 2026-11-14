@@ -139,7 +139,7 @@ const data = {
 
   tjanster: {
     eyebrow: 'Vad vi gör',
-    rubrik: ['Plattor på vägg och golv,', 'hela vägen'],
+    rubrik: ['Kakel och klinker,', 'från rivning till fog'],
     lead: 'Badrum, WC, kök, hall och teknikrum. I hemmet eller på jobbet. Du får en offert på hela projektet.',
     kort: [
       {
@@ -148,7 +148,7 @@ const data = {
         bild: `${M}/tjanst-badrum.jpg`,
         alt: 'Färdigt badrum i Sjuntorp med vitt kakel på väggarna och svart marmorklinker på golvet',
         marke: `${M}/marke-badrum.webp`,
-        text: 'Badrum eller WC från rivning till färdigt rum. Vi river, lägger plattor, snickrar och monterar badrumsmöblerna tillsammans med våra samarbetspartners.',
+        text: 'Badrum eller WC från rivning till färdigt rum, med möblerna på plats. Snickeri och montage gör vi med våra samarbetspartners.',
         punkter: ['Rivning av det gamla', 'Kakel och klinker', 'Snickeri och montage av möbler'],
       },
       {
@@ -157,7 +157,7 @@ const data = {
         bild: `${M}/tjanst-kakel.jpg`,
         alt: 'Rött och vitt schackmönstrat klinkergolv med golvbrunn i ett badrum i Skoftebyn',
         marke: `${M}/marke-kakel.webp`,
-        text: 'Kakel på vägg och klinker på golv, i alla rum där du vill ha plattor. Schackmönster, diagonalt, stora stenplattor eller enkelt vitt.',
+        text: 'Kakel på vägg och klinker på golv, i alla rum där du vill ha plattor. Schackmönster, diagonalt, stora stenplattor eller vitt.',
         punkter: ['Badrum och WC', 'Kök och hall', 'Mönster och stora format'],
       },
       {
@@ -166,8 +166,8 @@ const data = {
         bild: `${M}/tjanst-teknikrum.jpg`,
         alt: 'Ljust klinkergolv och kaklad bänk i ett teknikrum i Vänersnäs',
         marke: `${M}/marke-teknikrum.webp`,
-        text: 'Ett golv som tål vatten och är lätt att hålla rent. Vi lägger klinker och kakel i teknikrum och andra rum där det blir blött.',
-        punkter: ['Klinker på golv', 'Kakel på vägg', 'Lätt att hålla rent'],
+        text: 'Ett golv som tål vatten och är lätt att hålla rent. Klinker och kakel i teknikrum och andra rum där det blir blött.',
+        punkter: ['Klinker på golv', 'Kakel på vägg', 'Golv och vägg i samma jobb'],
       },
       {
         id: 'kamin',
@@ -175,7 +175,7 @@ const data = {
         bild: `${M}/tjanst-kamin.jpg`,
         alt: 'Svart braskamin framför en vägg i rött tegel i Kode',
         marke: `${M}/marke-kamin.webp`,
-        text: 'Tegelplattor på väggen bakom braskaminen. Det gjorde vi i Kode, i samma jobb som ett nytt badrum.',
+        text: 'Tegelplattor på väggen bakom braskaminen. Det gjorde vi i Kode, i samma jobb som ett nytt badrum i huset.',
         punkter: ['Tegel på vägg', 'Runt kamin och rökrör', 'Samma firma som badrummet'],
       },
     ],
