@@ -2,7 +2,7 @@
 
 **Hemsida:** [tmkkakel.se](https://www.tmkkakel.se/) (WordPress/Divi, start + /referenser/, lästa 2026-11-14) · **Instagram:** [@tmk_kakel](https://www.instagram.com/tmk_kakel/) ("TMK Kakel AB", 341 följare, 33 inlägg)
 **Demo:** https://www.bahkobyra.se/tmkkakel/ (källa: `web/app/(demo)/tmkkakel/`, noindex, visas bara i DM).
-**Status:** byggd 2026-11-14 på demomallen v3 med 3D-märken på tjänsterna. **Herofilmen är en platshållare** tills Mathias godkänt Wan 3.0 Prime (se Hero nedan). Inte skickad. Kontaktperson: **Tomi Määttä**, VD och grundare.
+**Status:** byggd 2026-11-14 på demomallen v3 med 3D-märken på tjänsterna. Herofilmen genererad 2026-11-14 (Wan 3.0 Prime, se Hero nedan). Inte skickad. Kontaktperson: **Tomi Määttä**, VD och grundare.
 
 ## Vem han är
 
@@ -28,7 +28,7 @@ Google-profil och omdömen (inga hittade; Hantverkskollen "Inga omdömen än"), 
 
 ## FLAGGOR
 
-- **Herofilmen är en PLATSHÅLLARE** (gratis ffmpeg-zoom över deras foto WPGT7482). Kontaktfilmen är samma film suddad. Båda byts när Wan Prime-filmen är gjord. Filvägarna är desamma.
+- **Herofilmen är GENERERAD** ur deras eget badrum i Sjuntorp (se Hero). Rummet är deras, arbetet och händerna är genererade. Kontaktfilmen är samma film suddad. Modalen säger att filmen är en illustration.
 - **3D-märkena** (badrum, kakel, teknikrum, kamin) är genererade med GPT Image 2.5 (Sunburst, 1k, 4 st, ca 0,016 USD styck = ca 0,07 USD, ungefär 1 API-kredit). Teknikrum-märket visar tvättmaskin och varmvattenberedare: illustration, inte en tjänst vi påstår.
 - **Bild till ort** på tjänstekorten (Sjuntorp, Skoftebyn, Kode, Vänersnäs) är läst ur ordningen på /referenser/. Låg risk, men be Tomi bekräfta.
 - **Accenten** #0F766E (petrol) är vald av oss, loggan är gråskala. Ljus logovariant gjord av oss.
@@ -36,7 +36,7 @@ Google-profil och omdömen (inga hittade; Hantverkskollen "Inga omdömen än"), 
 - "Du pratar med ägaren / Tomi svarar själv": han är ende anställd och numret står under hans namn på sajten. Be honom bekräfta.
 - Formuläret går till mathias@bahkobyra.se (demonyckeln).
 
-## Hero (väntar på Mathias ja)
+## Hero (gjord 2026-11-14 efter Mathias ja)
 
 Förvandling A → B ur deras eget badrum i Sjuntorp (AFRU1268, 1200×1600, svart marmorklinker, vitt kakel):
 
@@ -79,4 +79,13 @@ Ribban i `docs/design/bar.md` gäller bahkobyra.se, så loopen var skärmdump (3
 2. På mobil visas bara det första Instagram-inlägget (tre inbäddningar var nästan två skärmar scroll), och inlägget med stenbadrummet ligger först.
 3. Tjänstekortens texter jämnlånga så punktlistorna linjerar. Rubriken "Kakel och klinker, från rivning till fog".
 
-Kvar: herofilmen (platshållare), Instagram-inlägget DfaL3utI18N är ett samarbetsinlägg med ett annat konto (wargonskakeloch). Be Tomi bekräfta att det är hans jobb.
+Kvar (herofilmen gjord 2026-11-14): Instagram-inlägget DfaL3utI18N är ett samarbetsinlägg med ett annat konto (wargonskakeloch). Be Tomi bekräfta att det är hans jobb.
+
+## Herofilmen, körningen 2026-11-14
+
+- Mathias: "Ja, kör herovideon med Wan Prime". En körning per steg, ingen omkörning.
+- B: sunburst edit, 2688×1520 (request 01a1d9ef-d9fb-77af-b642-17329da5d677). A: sunburst edit av B (01a1d9f0-bb72-71e5-96f6-925329075d18). Granskade mot varandra: samma fönster, rör, ventilation och golvbrunn.
+- Film: Wan 3.0 Prime 5 s 1080p 16:9, utan ljud (01a1d9f1-8c53-776a-bcf5-4a91f291585f), 1920×1080.
+- Kostnad: verktygets prisuppslag svarar "NaN" och verktyget har inget saldokommando, så den faktiska debiteringen syns bara i console.higgsfield.ai. Väntat: ca 1,40 USD (22,4 krediter) för filmen + ca 0,03 USD för bilderna ≈ 23 krediter.
+- Bildrutor granskade: fästmassa kammas ut på betongen, svart marmor läggs från golvbrunnen, vitt kakel går upp rad för rad med blå nivåklipp, slutar på det färdiga rummet. Ingen glöd, inga ansikten (bara handskar). Svagheter: i golvfasen glider murslev och borrmaskin utan synlig hand, och plattorna sprids fortare än verkligt arbete. Ser ut som arbete, inte som uttoning.
+- Webb: video-hero.mp4 1,4 MB (24 fps, crf 27, 6,5 s), video-hero-mobil.mp4 0,7 MB (720×1280 utsnitt), postrar = sista bildrutan, kontaktfilmen suddad.

@@ -44,10 +44,12 @@ import DemoSida from '../_mall/DemoSida';
    arbetsområde utöver orterna i referenserna, Facebook.
 
    FLAGGOR:
-   - HERO-FILMEN ÄR EN PLATSHÅLLARE: långsam inzoomning (ffmpeg, gratis) över deras eget foto
-     WPGT7482. Den riktiga ska göras med Wan 3.0 Prime när Mathias godkänt kostnaden
-     (prompt och kostnad i leadfilen). Filvägarna är desamma, så bara filerna byts.
-   - Kontaktfilmen = platshållar-heron suddad. Görs om när heron byts.
+   - HERO-FILMEN ÄR GENERERAD (2026-11-14, Mathias ja): förvandling ur deras eget badrum i
+     Sjuntorp (AFRU1268). B = fotot utökat till 16:9 med GPT Image 2.5, A = samma rum före
+     kakling (betong och tätskikt) med GPT Image 2.5, film = Wan 3.0 Prime 5 s 1080p A till B,
+     1,5 s stillbild på slutet. Rummet är deras, arbetet och händerna i filmen är genererade.
+     Mobil = 9:16 utsnitt ur samma klipp. Ingen not på sidan, sägs i modalen och leadfilen.
+   - Kontaktfilmen = herofilmen suddad.
    - Varför-filmen = deras foto ULRX1838 (Ljust badrum i Skoftebyn) i långsam rörelse + logokort.
    - 3D-märkena på tjänsterna är GENERERADE (GPT Image 2.5 / Sunburst, 4 st, ca 0,07 USD).
    - Logotypen = deras logo.png från tmkkakel.se (gråskala). Ljus variant gjord av oss
@@ -298,7 +300,7 @@ const data = {
 
   modal: {
     rubrik: 'Så här kan TMK Kakel se ut på nätet',
-    text: 'Det här är ett kostnadsfritt förslag, byggt på det ni själva visar på tmkkakel.se och Instagram, med era egna bilder och er logga. Formuläret landar ännu inte i er inkorg. Vill ni se den skarpt? Boka ett kostnadsfritt samtal på 15 minuter med Mathias.',
+    text: 'Det här är ett kostnadsfritt förslag, byggt på det ni själva visar på tmkkakel.se och Instagram, med era egna bilder och er logga. Filmen överst är en illustration gjord ur ert eget badrum i Sjuntorp. Formuläret landar ännu inte i er inkorg. Vill ni se den skarpt? Boka ett kostnadsfritt samtal på 15 minuter med Mathias.',
   },
 };
 
