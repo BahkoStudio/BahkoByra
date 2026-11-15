@@ -3,12 +3,11 @@
 import { useState } from 'react';
 import styles from './HeroVideo.module.css';
 
-const ID = 'ZjvHsth4NJM';
-
 /**
- * Facade: posterbilden visas direkt, YouTube-iframen laddas först vid klick.
- * Embeden drar ~860 kB JS och låste huvudtråden i gamla sajten, så den får
- * inte ligga i sidladdningen.
+ * Facade: posterbilden visas direkt, filmen laddas först vid klick (19 MB får inte
+ * ligga i sidladdningen). Filmen är Mathias egen "Topp 3 på Google" (2026-11-15), 2 min 12 s,
+ * 1080p (19 MB), och ligger på sajten i stället för på YouTube. Den har inbrända ord i bild,
+ * så inget textspår behövs.
  */
 export default function HeroVideo() {
   const [spelar, setSpelar] = useState(false);
@@ -16,21 +15,24 @@ export default function HeroVideo() {
   return (
     <div className={styles.ruta}>
       {spelar ? (
-        <iframe
+        <video
           className={styles.ram}
-          src={`https://www.youtube-nocookie.com/embed/${ID}?autoplay=1&rel=0&modestbranding=1&playsinline=1&color=white`}
-          title="Därför syns inte ditt företag på Google, Bahko Byrå"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
+          src="/video/topp3-pa-google.mp4"
+          poster="/img/video-poster-topp3.webp"
+          controls
+          autoPlay
+          playsInline
+          preload="auto"
+          aria-label="Därför ringer kunden ett annat företag: så hamnar du i topp 3 på Google, Bahko Byrå"
         />
       ) : (
         <button
           type="button"
           className={styles.knapp}
           onClick={() => setSpelar(true)}
-          aria-label="Spela videon: därför syns inte ditt företag på Google"
+          aria-label="Spela videon: så hamnar du i topp 3 på Google"
         >
-          <img src="/img/video-poster.webp" alt="" width="1280" height="720" />
+          <img src="/img/video-poster-topp3.webp" alt="" width="1600" height="900" loading="lazy" decoding="async" />
           <span className={styles.spela}>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M8 5v14l11-7z" fill="currentColor" />

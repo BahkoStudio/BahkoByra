@@ -118,17 +118,12 @@ export default function Start() {
       <Marquee />
       </div>
 
-      {/* ── 2. FILMEN: två minuter, rakt på sak ── */}
+      {/* ── 2. FILMEN: två minuter, rakt på sak. Ny film "Topp 3" 2026-11-15, utan text under rubriken (Mathias). ── */}
       <section className={`mork ${styles.videoYta}`} id="video">
         <div className={`wrap ${styles.videoInner}`} data-trapp>
           <h2>
             Därför ringer kunden <span className="accent">ett annat företag.</span>
           </h2>
-          <p className={`lede ${styles.videoLede}`}>
-            Kunden googlar och ringer den som syns först. Syns ni inte där får ni köpa
-            förfrågningar i stället, som nummer fem i kön. Och säljaren som lovade guld och gröna
-            skogar binder er gärna i två år.
-          </p>
           <HeroVideo />
         </div>
       </section>
