@@ -7,6 +7,7 @@ import RoiKalkyl from '../komponenter/RoiKalkyl';
 import Portfolj from '../komponenter/Portfolj';
 import BevisBromma, { BevisSiffror } from '../komponenter/BevisBromma';
 import Nischer from '../komponenter/Nischer';
+import Omdomen from '../komponenter/Omdomen';
 import Faq from '../komponenter/Faq';
 import { TJANSTER, FRAGOR } from '../data';
 import styles from './page.module.css';
@@ -218,6 +219,9 @@ export default function Start() {
           </div>
         </div>
       </section>
+
+      {/* ── OMDÖMEN: Google-omdömena som klisterlappar i ett band, höger till vänster (Mathias 2026-11-14) ── */}
+      <Omdomen />
 
       {/* ── 6. KUNDER OCH DEMOS ── */}
       <section className={`mork ${styles.caseYta}`} id="case">
