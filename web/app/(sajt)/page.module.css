@@ -820,12 +820,6 @@
   font-weight: 700;
 }
 
-.videoLede {
-  max-width: 58ch;
-  margin: 1rem auto 0;
-  text-wrap: pretty;
-}
-
 /* ── HUR VI JOBBAR: RESAN ──
    Fyra stationer på en streckad väg. Vågrätt på bred skärm, lodrätt i mobilen.
    Noden är ett klistermärke i smaragd med hård skugga, som knapparna. */
