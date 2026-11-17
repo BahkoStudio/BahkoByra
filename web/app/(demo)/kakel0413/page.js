@@ -1,10 +1,10 @@
 import DemoSida from '../_mall/DemoSida';
-import { arKunddoman } from './kunddoman';
 import BildUpload from './BildUpload';
 import KontaktFalt from './KontaktFalt';
 import Galleri from './Galleri';
 import Referenser from './Referenser';
 import { jobb } from './jobb';
+import Matning from './Matning';
 
 /* ===========================================================================
    KAKEL 0413 AB — hemsida för en betalande kund (12 000 kr-paketet), Bahko Byrå
@@ -69,20 +69,58 @@ import { jobb } from './jobb';
 
 const META = {
   // Lokal SEO-SOP steg 4.1 (2026-11-17): huvudkategorin och orten först, firmanamnet sist. Inget tankstreck.
-  title: 'Kakelsättare i Eslöv och Skåne | Badrumsrenovering, kakel och klinker | Kakel 0413 AB',
+  // Kortad 2026-11-17 (Mathias): under 60 tecken så att Google inte kapar den.
+  // 2026-11-18 (Mathias: "kakelarbete Eslöv och eller kakel Eslöv"): "kakel i Eslöv" in i titeln, kakelarbete i
+  // beskrivningen. Undersidan /kakelarbete-eslov/ (./kund/kakelarbete-eslov/) tar den exakta frasen kakelarbete i Eslöv.
+  title: 'Kakelsättare och kakel i Eslöv och Skåne | Kakel 0413 AB',
   description:
-    'Kakel och klinker för privatpersoner och företag i Eslöv och hela Skåne: badrumsrenovering, kakel- och klinkersättning i badrum, kök, hallar och trapphus. Över 16 års erfarenhet. Kostnadsfri genomgång och ROT-avdrag.',
+    'Kakel och kakelarbete i Eslöv och hela Skåne: badrum, kök, hallar, trapphus och tvättstugor. Kostnadsfri genomgång, tydlig offert och ROT-avdrag.',
 };
 
-// Kunddomänen (Mathias 2026-10-23): på kakel0413.se/www indexeras sidan, canonical pekar på
-// https://kakel0413.se/ och demorutan "Om det här förslaget" är borta (kund: true).
-// På bahkobyra.se/kakel0413/: noindex, men ingen demoruta heller (kund: true, Mathias 2026-10-25).
+const OG_BILD = {
+  url: '/kakel0413/media/og.jpg',
+  width: 1200,
+  height: 630,
+  alt: 'Illustration: färdigt badrum i ljus marmor med duschvägg i glas och mässingsdetaljer',
+};
 
-export async function generateMetadata() {
-  return (await arKunddoman())
-    ? { ...META, alternates: { canonical: 'https://kakel0413.se/' }, robots: { index: true, follow: true } }
-    : { ...META, robots: { index: false, follow: false } };
-}
+const OPEN_GRAPH = {
+  title: META.title,
+  description: META.description,
+  siteName: 'Kakel 0413 AB',
+  locale: 'sv_SE',
+  type: 'website',
+  images: [OG_BILD],
+};
+
+const ICONS = {
+  icon: [
+    { url: '/kakel0413/media/icon.png', type: 'image/png' },
+    { url: '/kakel0413/media/favicon.ico' },
+  ],
+  apple: '/kakel0413/media/apple-touch-icon.png',
+};
+
+const TWITTER = { card: 'summary_large_image', title: META.title, description: META.description, images: [OG_BILD.url] };
+
+/* Metadatan är statisk (SEO 2026-11-17). Förut läste generateMetadata request headers (kunddoman.js),
+   och då strömmar Next 15.5 metadatan in i <body> i stället för <head>: Google ser då ingen canonical.
+   Nu finns två statiska sidor med samma innehåll (demorutan är borta på båda, kund: true):
+   - bahkobyra.se/kakel0413/ (den här filen): noindex, ingen canonical, ingen Search Console-tagg.
+   - kakel0413.se/ serveras från ./kund/page.js (middleware skriver om / dit): index, canonical
+     https://kakel0413.se/, Search Console-taggen och GA4 med samtycke. */
+export const metadata = { ...META, robots: { index: false, follow: false }, icons: ICONS, openGraph: OPEN_GRAPH, twitter: TWITTER };
+
+export const KUND_METADATA = {
+  ...META,
+  metadataBase: new URL('https://kakel0413.se'),
+  alternates: { canonical: 'https://kakel0413.se/' },
+  robots: { index: true, follow: true },
+  verification: { google: 'mYz-GokIfzG1cH0TA1qeZ1UZWDLiIr1dAYkZ7HZOnc4' },
+  icons: ICONS,
+  openGraph: { ...OPEN_GRAPH, url: 'https://kakel0413.se/' },
+  twitter: TWITTER,
+};
 
 const M = '/kakel0413/media';
 
@@ -99,7 +137,8 @@ const FORETAG_SCHEMA = {
   telephone: '+46738752725',
   email: 'info@kakel0413.se',
   taxID: '559611-8546',
-  description: 'Kakel och klinker åt privatpersoner och företag i Eslöv och hela Skåne: badrumsrenovering, kakel i kök, hallar, trapphus och tvättstugor, och mindre arbeten.',
+  description: 'Kakel och klinker åt privatpersoner och företag i Eslöv och hela Skåne: kakelarbete och badrumsrenovering, kakel i kök, hallar, trapphus och tvättstugor, och mindre arbeten.',
+  knowsAbout: ['Kakel', 'Klinker', 'Kakelsättning', 'Kakelarbete', 'Badrumsrenovering'],
   address: { '@type': 'PostalAddress', addressLocality: 'Eslöv', addressRegion: 'Skåne län', addressCountry: 'SE' },
   areaServed: ['Eslöv', 'Malmö', 'Lund', 'Helsingborg', 'Landskrona', 'Höör', 'Hörby', 'Svalöv', 'Trelleborg', 'Kristianstad'].map((name) => ({ '@type': 'City', name })),
 };
@@ -190,14 +229,17 @@ const data = {
 
   hero: {
     h1: ['Kakel', { txt: '0413', liten: true }],
-    // ort borttagen (Nuh v2): Eslöv och Skåne står redan i tejpen under heron.
-    // Nuhs budskap i heron (Mathias 2026-10-22). Mallen har ingen rubrik/ingress-plats i standardheron,
-    // så rubriken och underraden ligger som block först i tjänsteraden: rubrik + underrad + "Kakel & Badrum."
-    tjanster: [(
-      <>
-        <span style={{ display: 'block', maxWidth: '36rem', marginInline: 'auto', marginTop: '0.2rem', marginBottom: '0.9rem', fontFamily: 'var(--f-text, inherit)', fontStyle: 'normal', fontWeight: 500, color: '#F3F4F5', fontSize: 'clamp(1rem, 1.6vw, 1.15rem)', lineHeight: 1.5 }}>Att renovera ett badrum är ett stort beslut. Därför är det viktigt att du känner dig trygg med den som utför arbetet.</span>
-      </>
-    ), ''],
+    // Nuhs budskap i heron (Mathias 2026-10-22), samma stil som förut.
+    // SEO 2026-11-17 (Mathias ja): text-H1 med tjänst och ort. Mallens valfria hero.rubrik gör h1 till text
+    // och logotypen till <p>, som inte visas (Nuh v2: ingen stor logotyp i heron; headerns logga kvar, se stilblocket).
+    // Frågan blir H1-raden, svaret är Nuhs mening. hero.tjanster används inte när rubrik finns.
+    rubrik: {
+      fraga: 'Kakelsättare i Eslöv och Skåne',
+      svar: (
+        <span style={{ display: 'block', maxWidth: '36rem', marginInline: 'auto', marginTop: '0.9rem', marginBottom: '0.9rem', fontFamily: 'var(--f-text, inherit)', fontStyle: 'normal', fontWeight: 500, color: '#F3F4F5', fontSize: 'clamp(1rem, 1.6vw, 1.15rem)', lineHeight: 1.5 }}>Att renovera ett badrum är ett stort beslut. Därför är det viktigt att du känner dig trygg med den som utför arbetet.</span>
+      ),
+    },
+    tjanster: ['', ''],
     video: `${M}/video-hero.mp4`,
     videoMobil: `${M}/video-hero-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
@@ -207,8 +249,9 @@ const data = {
 
   tjanster: {
     eyebrow: 'Tjänster',
-    rubrik: ['Kakel och klinker,', 'från golv till tak'],
-    lead: 'Hela badrumsrenoveringar, kakelsättning och mindre arbeten. Bilderna är illustrationer.',
+    // 2026-11-18: orten i H2 och ingress (kakel Eslöv). Länken till undersidan läggs bara på kakel0413.se (Kakel0413Sida nedan).
+    rubrik: ['Kakel och klinker i Eslöv,', 'från golv till tak'],
+    lead: 'Kakelarbete i Eslöv och hela Skåne: hela badrumsrenoveringar, kakelsättning och mindre arbeten. Bilderna är illustrationer.',
     kort: tjanster,
   },
 
@@ -276,6 +319,8 @@ const data = {
       { q: 'Kan jag få ROT-avdrag?', a: 'Ja. Med ROT-avdrag sänker du arbetskostnaden med upp till 50 000 kr per person och år.' },
       { q: 'Vad hjälper ni till med?', a: 'Hela badrumsrenoveringar, kakel och klinker i badrum, kök, hallar, trapphus och tvättstugor, och mindre arbeten.' },
       { q: 'Kan jag skicka bilder?', a: 'Gärna. Bilder gör att vi får en bättre bild av jobbet redan från början.' },
+      // 2026-11-18: frågan om Eslöv (bara uppgifter som redan står på sidan).
+      { q: 'Gör ni kakelarbete i Eslöv?', a: 'Ja. Vi utgår från Eslöv och gör kakelarbete där, från hela badrum till mindre jobb. Vi arbetar också i hela Skåne.' },
       { q: 'Var arbetar ni?', a: 'Vi utgår från Eslöv och arbetar i hela Skåne, bland annat i Malmö, Lund, Helsingborg, Landskrona, Höör, Hörby, Svalöv, Trelleborg och Kristianstad.' },
       { q: 'Kommer ni ut och tittar?', a: 'Ja, vi kommer alltid ut och tittar på plats.' },
     ],
@@ -311,20 +356,59 @@ const data = {
   },
 };
 
-export default async function Kakel0413Demo() {
+// FAQPage för de 8 frågorna i #fragor (SEO 2026-11-17, samma text som på sidan).
+const FAQ_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: data.fragor.lista.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+// kakel0413.se: länken till undersidan kakelarbete i Eslöv (2026-11-18) i tjänsteingressen och i footerns ortsrad,
+// plus Cookieinställningar. Inte på bahkobyra.se/kakel0413/, där undersidan inte finns.
+const LANK_ESLOV = '/kakelarbete-eslov/';
+const KUND_DATA = {
+  ...data,
+  kund: true,
+  tjanster: {
+    ...data.tjanster,
+    lead: (
+      <>Kakelarbete i Eslöv och hela Skåne: hela badrumsrenoveringar, kakelsättning och mindre arbeten. Läs mer om vårt <a href={LANK_ESLOV} style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '0.2em' }}>kakelarbete i Eslöv</a>. Bilderna är illustrationer.</>
+    ),
+  },
+  footer: {
+    ...data.footer,
+    orter: { rubrik: 'Områden', lankar: [{ href: LANK_ESLOV, txt: 'Kakelarbete i Eslöv' }] },
+    lankar: [{ href: '#cookieval', txt: 'Cookieinställningar' }],
+  },
+};
+
+// Startsidans innehåll, samma på båda adresserna. kund = besöket kommer på kakel0413.se (./kund/page.js):
+// bara då laddas samtyckesrutan och GA4, och footern får länken Cookieinställningar.
+export function Kakel0413Sida({ kund = false }) {
   return (
     <>
       {/* Om oss borttagen helt (Mathias 2026-11-10): #om döljs och är tom, /om-oss/ omdirigeras till startsidan. Jobbanden och omdömena döljs tills Nuh har egna foton och riktiga omdömen (se FLAGGOR). */}
-      {/* Nuh v2: ingen stor logotyp i heron (h1 finns kvar för skärmläsare/SEO, visuellt dold; headerns logga kvar)
-          och inget telefonnummer i heron (Ring-knappen i headern kvar). Raden "Kakel & Badrum." struken: mallen skriver alltid " & " och ".",
-          så tjänsteraden får font-size 0 och bara Nuhs mening (egen fontstorlek) syns. */}
-      <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}#varfor ul[class*="varforPunkter"]{gap:0.6rem}#varfor ul[class*="varforPunkter"] li{padding:0.75rem 1.1rem}#varfor ul[class*="varforPunkter"] li:last-child{display:block;padding:0.6rem 0 0;background:none;border:0;box-shadow:none;color:rgba(255,255,255,.85)}#varfor ul[class*="varforPunkter"] li:last-child svg{display:none}'}</style>
+      {/* Nuh v2: ingen stor logotyp i heron (den stora logotypen visas inte, headerns logga kvar)
+          och inget telefonnummer i heron (Ring-knappen i headern kvar). H1 är texten i hero.rubrik (SEO 2026-11-17),
+          i mindre storlek än mallens ortrad, och Nuhs mening står under den. */}
+      <style>{'#jobb,#omdomen,#om{display:none!important}#top p:has(>img){display:none!important}#top a[href^="tel:"]{display:none!important}#top h1[class*="heroRubrik"] span[class*="heroOrt"]{margin-top:clamp(1.2rem,3vh,2rem);font-size:clamp(1.6rem,4vw,3rem);letter-spacing:.04em;line-height:1.1}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}#varfor ul[class*="varforPunkter"]{gap:0.6rem}#varfor ul[class*="varforPunkter"] li{padding:0.75rem 1.1rem}#varfor ul[class*="varforPunkter"] li:last-child{display:block;padding:0.6rem 0 0;background:none;border:0;box-shadow:none;color:rgba(255,255,255,.85)}#varfor ul[class*="varforPunkter"] li:last-child svg{display:none}'}</style>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FORETAG_SCHEMA) }} />
-      <DemoSida data={{ ...data, kund: true }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }} />
+      <DemoSida data={kund ? KUND_DATA : { ...data, kund: true }} />
       <Referenser />
       <Galleri jobb={jobb} />
       <KontaktFalt />
       <BildUpload epost={data.kontakt.epost} />
+      {kund ? <Matning /> : null}
     </>
   );
+}
+
+// bahkobyra.se/kakel0413/: noindex-kopian (metadata ovan), utan mätning.
+export default function Kakel0413Demo() {
+  return <Kakel0413Sida />;
 }
