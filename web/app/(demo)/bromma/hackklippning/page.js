@@ -4,9 +4,10 @@ import { bas, M, SKV_RUT } from '../_br';
 /* HÄCK (/bromma/hackklippning/), samma slug som nuvarande sajt. Text ur nuvarande
    brommatradgardsservice.se/hackklippning/ (2026-11-08). Omdömen: Marta (tujahäck) och Sifat (häckbyte). */
 export const metadata = {
-  title: 'Häckklippning, häckplantering och borttagning i Bromma | Bromma Trädgårdsservice',
+  title: 'Häckklippning och plantering i Bromma | Bromma Trädgårdsservice',
   description: 'Vi klipper häckar, planterar nya på rätt djup och tar bort gamla med rothalsen. Plantor, jord och bortforsling ingår. Planera vårens häck under vintern.',
   robots: { index: false, follow: false },
+  openGraph: { url: 'https://brommatradgardsservice.se/hackklippning/' },
 };
 
 const fragor = [
@@ -18,7 +19,7 @@ const fragor = [
 ];
 
 export default function Sida() {
-  return <Landning schema={{ namn: 'Häckklippning och häckplantering', typ: 'Häckklippning', beskrivning: metadata.description }} sida={{
+  return <Landning schema={{ slug: 'hackklippning', namn: 'Häckklippning och häckplantering', typ: 'Häckklippning', beskrivning: metadata.description }} sida={{
     hero: { ...bas.hero, rubrik: { fraga: 'Häckklippning i Bromma och Stockholm', svar: 'Klipp, plantering & borttagning.' } },
     tejp: ['Häckklippning', 'Häckplantering', 'Tuja och liguster', 'Borttagning med rothals', 'Plantor och jord ingår', 'Bortforsling samma dag'],
     tjanster: { ...bas.tjanster, eyebrow: 'Häck', rubrik: ['Tre olika jobb', 'på samma häck'], lead: 'Klippa, plantera och ta bort skiljer sig i tid, pris och rutavdrag. Vi går igenom skillnaden innan du bestämmer dig.', kolumner: 3,

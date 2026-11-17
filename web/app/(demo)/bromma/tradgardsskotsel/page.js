@@ -7,6 +7,7 @@ export const metadata = {
   title: 'Trädgårdsskötsel i Bromma och Storstockholm | Bromma Trädgårdsservice',
   description: 'Gräsklippning, häckklippning, ogräsrensning, beskärning och löv genom säsongen, snöröjning på vintern. Rutavdrag på arbetet och kostnadsfritt hembesök.',
   robots: { index: false, follow: false },
+  openGraph: { url: 'https://brommatradgardsservice.se/tradgardsskotsel/' },
 };
 
 const fragor = [
@@ -18,7 +19,7 @@ const fragor = [
 ];
 
 export default function Sida() {
-  return <Landning schema={{ namn: 'Trädgårdsskötsel', typ: 'Trädgårdsskötsel', beskrivning: metadata.description }} sida={{
+  return <Landning schema={{ slug: 'tradgardsskotsel', namn: 'Trädgårdsskötsel', typ: 'Trädgårdsskötsel', beskrivning: metadata.description }} sida={{
     hero: { ...bas.hero, rubrik: { fraga: 'Trädgårdsskötsel i Bromma', svar: 'Gräs & Häck.' } },
     tejp: ['Gräsklippning', 'Häckklippning', 'Ogräsrensning', 'Beskärning', 'Löv och krattning', 'Snöröjning', 'Rutavdrag på arbetet'],
     tjanster: { ...bas.tjanster, eyebrow: 'Skötsel', rubrik: ['Tomten i skick', 'år efter år'], lead: 'Skötsel är det som håller tomten jämn. Du väljer fast intervall eller att vi kommer när det behövs.', kolumner: 3,

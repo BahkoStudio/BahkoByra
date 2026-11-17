@@ -42,6 +42,14 @@ export const faqSchema = (lista) => ({
   '@context': 'https://schema.org', '@type': 'FAQPage',
   mainEntity: lista.filter((f) => typeof f.a === 'string').map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
 });
+export const smulorSchema = (slug, namn) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Startsida', item: `${DOMAN}/` },
+    ...(slug ? [{ '@type': 'ListItem', position: 2, name: namn, item: `${DOMAN}/${slug}/` }] : []),
+  ],
+});
 // Undersidorna: samma fyra tjänstesidor plus Startsida (loggan i headern länkar bara till sidtoppen).
 export const navUndersida = {
   vanster: [{ href: '/bromma/', txt: 'Startsida' }, { href: '/bromma/snorojning/', txt: 'Snöröjning' }, { href: '/bromma/tradgardsskotsel-brf/', txt: 'BRF-avtal' }],

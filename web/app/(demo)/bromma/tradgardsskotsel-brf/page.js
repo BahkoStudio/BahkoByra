@@ -6,9 +6,10 @@ import { bas, M, SKV_BRF } from '../_br';
    halkbekämpning i samma avtal, BRF Körsbärsdalen i Bromma som tidigare uppdrag, fast månadsavgift,
    tolv månaders avtal med tre månaders uppsägning, ingen rut för förening (Skatteverket, länk). */
 export const metadata = {
-  title: 'Skötselavtal för BRF och fastighetsägare i Stockholm, snöröjning ingår | Bromma Trädgårdsservice',
+  title: 'Skötselavtal för BRF med snöröjning | Bromma Trädgårdsservice',
   description: 'Gräs, häckar, rabatter och löv på sommaren, snöröjning och halkbekämpning på vintern, i ett avtal med en kontaktperson. Kostnadsfri genomgång av föreningens ytor.',
   robots: { index: false, follow: false },
+  openGraph: { url: 'https://brommatradgardsservice.se/tradgardsskotsel-brf/' },
 };
 
 const fragor = [
@@ -20,7 +21,7 @@ const fragor = [
 ];
 
 export default function Sida() {
-  return <Landning schema={{ namn: 'Skötselavtal för BRF och fastighetsägare', typ: 'Utemiljöskötsel och snöröjning', beskrivning: metadata.description }} sida={{
+  return <Landning schema={{ slug: 'tradgardsskotsel-brf', namn: 'Skötselavtal för BRF och fastighetsägare', typ: 'Utemiljöskötsel och snöröjning', beskrivning: metadata.description }} sida={{
     hero: { ...bas.hero, rubrik: { fraga: 'BRF-avtal i Stockholm', svar: 'Gård & Snö.' } },
     tejp: ['BRF-avtal', 'Snöröjning ingår', 'Halkbekämpning', 'Gräs och häckar', 'Löv och höststädning', 'En kontaktperson', 'Fast månadsavgift'],
     tjanster: { ...bas.tjanster, eyebrow: 'BRF och fastighet', rubrik: ['Ett avtal,', 'hela året'], lead: 'Två leverantörer betyder två avtal och två parter att ringa. Vi tar både sommaren och snön, och det är samma person som svarar i juli och i januari.', kolumner: 3,
