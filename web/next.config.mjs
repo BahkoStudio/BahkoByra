@@ -40,6 +40,10 @@ const nextConfig = {
       // Kliniker-eran: sidorna bytte katalog, länkarna lever kvar.
       { source: '/kliniker/gratis-granskning.html', destination: '/foretag/gratis-granskning.html', permanent: true },
       { source: '/kliniker/gratis-guide.html', destination: '/foretag/gratis-guide.html', permanent: true },
+      // Granskningen för företag i Jönköpings län är en statisk .html-fil. Adressen utan
+      // .html (med eller utan snedstreck) ska landa på filen, inte på 404.
+      { source: '/foretag/gratis-granskning-jonkoping', destination: '/foretag/gratis-granskning-jonkoping.html', permanent: true },
+      { source: '/foretag/gratis-granskning-jonkoping/', destination: '/foretag/gratis-granskning-jonkoping.html', permanent: true },
       // Kundsajterna bor på egna domäner. Den lokala kopian får aldrig serveras
       // som duplicate content bredvid kundens riktiga sajt.
       { source: '/cloud/brommatradgardsservice', destination: 'https://brommatradgardsservice.se/', permanent: true },
