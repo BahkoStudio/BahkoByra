@@ -18,6 +18,7 @@ const KUNDER = {
     bas: '/proffsmaskiner',
     stangd: false,
     sidor: ['https://proffsmaskiner.se/'],
+    lastmod: '2026-11-17',
     // Enkelsida: gamla WordPress-adresser (/om-oss/, /maskiner/, /kontakt/, /hyra-snoskoter/)
     // och allt annat utan filändelse går med 301 till startsidan.
     enkelsida: true,
@@ -40,8 +41,19 @@ export function middleware(req) {
     return new NextResponse(`User-agent: *\nAllow: /\nSitemap: https://${host}/sitemap.xml\n`, { headers: { 'content-type': 'text/plain; charset=utf-8' } });
   }
   if (pathname === '/sitemap.xml') {
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${kund.sidor.map((u) => `<url><loc>${u}</loc></url>`).join('')}</urlset>\n`;
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${kund.sidor.map((u) => `<url><loc>${u}</loc>${kund.lastmod ? `<lastmod>${kund.lastmod}</lastmod>` : ''}</url>`).join('')}</urlset>\n`;
     return new NextResponse(xml, { headers: { 'content-type': 'application/xml; charset=utf-8' } });
+  }
+  // Bara proffsmaskiner.se: llms.txt och favicon i roten (filerna ligger under /proffsmaskiner/).
+  if (host === 'proffsmaskiner.se' && pathname === '/llms.txt') {
+    const url = req.nextUrl.clone();
+    url.pathname = '/proffsmaskiner/llms.txt';
+    return NextResponse.rewrite(url);
+  }
+  if (host === 'proffsmaskiner.se' && (pathname === '/favicon.ico' || pathname === '/icon.png' || pathname === '/apple-touch-icon.png')) {
+    const url = req.nextUrl.clone();
+    url.pathname = `/proffsmaskiner/media${pathname}`;
+    return NextResponse.rewrite(url);
   }
   // Rena adresser: /<mapp>/<sida> → 308 till /<sida> på kunddomänen. Media och filer med ändelse
   // (t.ex. /<mapp>/media/logo.webp) lämnas orörda nedan.

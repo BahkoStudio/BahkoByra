@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import styles from './proffsmaskiner.module.css';
 import DemoFormular from '../../komponenter/DemoFormular';
 import { arKunddoman } from './kunddoman';
+import Matning from './Matning';
 
 /* ===========================================================================
    PROFFSMASKINER SVERIGE AB — hemsida för en betalande kund (avtal 2026-10-06,
@@ -92,14 +93,54 @@ const ui = localFont({
 const META = {
   title: 'Proffsmaskiner Sverige AB | Maskinuthyrning i Sollentuna och Stockholm',
   description:
-    'Hyr och köp maskiner för bygg, rivning, sanering och håltagning i Sollentuna och Stockholm. Leverantörer som Hilti, Husqvarna Construction och Brokk. Levererat till arbetsplatsen, servat före varje uthyrning.',
+    'Hyr och köp maskiner för bygg, rivning, sanering och håltagning i Sollentuna och Stockholm. Leverans till arbetsplatsen, servat före varje uthyrning.',
+};
+
+const ICONS = {
+  icon: [
+    { url: '/proffsmaskiner/media/icon.png', type: 'image/png' },
+    { url: '/proffsmaskiner/media/favicon.ico' },
+  ],
+  apple: '/proffsmaskiner/media/apple-touch-icon.png',
+};
+
+const OG_BILD = {
+  url: '/proffsmaskiner/media/og.jpg',
+  width: 1200,
+  height: 630,
+  alt: 'Maskiner för bygg, rivning, sanering och håltagning från Proffsmaskiner i Sollentuna',
 };
 
 // Kunddomänen: indexeras med canonical proffsmaskiner.se. På bahkobyra.se/proffsmaskiner/: noindex.
+// Search Console-taggen får bara synas på proffsmaskiner.se, inte på bahkobyra.se/proffsmaskiner/.
 export async function generateMetadata() {
-  return (await arKunddoman())
-    ? { ...META, alternates: { canonical: 'https://proffsmaskiner.se/' }, robots: { index: true, follow: true } }
-    : { ...META, robots: { index: false, follow: false } };
+  const openGraph = {
+    title: META.title,
+    description: META.description,
+    siteName: 'Proffsmaskiner Sverige AB',
+    locale: 'sv_SE',
+    type: 'website',
+    images: [OG_BILD],
+  };
+  const twitter = {
+    card: 'summary_large_image',
+    title: META.title,
+    description: META.description,
+    images: [OG_BILD.url],
+  };
+  if (await arKunddoman()) {
+    return {
+      ...META,
+      metadataBase: new URL('https://proffsmaskiner.se'),
+      alternates: { canonical: 'https://proffsmaskiner.se/' },
+      robots: { index: true, follow: true },
+      verification: { google: 'LeRDFrGYgt9P87Tg0a5ONPO9OHKHFRPYTz23H7cwSDs' },
+      icons: ICONS,
+      openGraph: { ...openGraph, url: 'https://proffsmaskiner.se/' },
+      twitter,
+    };
+  }
+  return { ...META, robots: { index: false, follow: false }, icons: ICONS, openGraph, twitter };
 }
 
 // Web3Forms-nyckel för peter@proffsmaskiner.se (formuläret "proffsmaskiner" i Bahkos Web3Forms-konto,
@@ -198,10 +239,48 @@ const FRAGOR = [
   { q: 'Var finns ni?', a: 'Bäckvägen 20 i Sollentuna, med leverans i Stockholm med omnejd. Ligger jobbet längre bort får du säga var, så säger vi om vi kan ta det.' },
 ];
 
+const FORETAG_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'Store'],
+  '@id': 'https://proffsmaskiner.se/#business',
+  name: 'Proffsmaskiner Sverige AB',
+  legalName: 'Proffsmaskiner Sverige AB',
+  url: 'https://proffsmaskiner.se/',
+  logo: 'https://proffsmaskiner.se/proffsmaskiner/media/logo-proffsmaskiner-vit.svg',
+  image: 'https://proffsmaskiner.se/proffsmaskiner/media/og.jpg',
+  telephone: '+46854589990',
+  email: 'info@proffsmaskiner.se',
+  taxID: '559154-6329',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Bäckvägen 20',
+    postalCode: '192 54',
+    addressLocality: 'Sollentuna',
+    addressCountry: 'SE',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Sollentuna' },
+    { '@type': 'City', name: 'Stockholm' },
+  ],
+  sameAs: ['https://www.instagram.com/proffsmaskinerab/'],
+};
 
-export default function ProffsmaskinerDemo() {
+const FAQ_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FRAGOR.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+export default async function ProffsmaskinerDemo() {
+  const kund = await arKunddoman();
   return (
     <div className={`${display.variable} ${displayKursiv.variable} ${ui.variable} ${styles.sida}`}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FORETAG_SCHEMA) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }} />
       <header className={styles.hdr}>
         <div className={styles.hdrIn}>
           <a className={styles.brand} href="#top"><span className={styles.brandTxt}><b>Proffsmaskiner</b><i>Sollentuna</i></span></a>
@@ -218,9 +297,9 @@ export default function ProffsmaskinerDemo() {
         </figure>
         <div className={styles.heroLager}>
           <div className={styles.heroLagerIn}>
-            <h1 className={styles.heroLogo}><Image src="/proffsmaskiner/media/logo-proffsmaskiner-vit.svg" alt="Proffsmaskiner Sverige AB" width={255} height={142} priority unoptimized /></h1>
+            <p className={styles.heroLogo}><Image src="/proffsmaskiner/media/logo-proffsmaskiner-vit.svg" alt="Proffsmaskiner Sverige AB" width={255} height={142} priority unoptimized /></p>
             <p className={styles.heroTjanster}>Bygg · Rivning · Sanering · Håltagning</p>
-            <p className={styles.heroOrt}>Sollentuna · Stockholm</p>
+            <h1 className={styles.heroRubrik}>Maskinuthyrning i Sollentuna och Stockholm</h1>
             <div className={styles.heroCta}>
               <a className={styles.btn} href="#kontakt">Få offert på maskin</a>
               <a className={`${styles.btn} ${styles.btnGhost}`} href={TEL_HREF}>Ring {TEL}</a>
@@ -301,7 +380,7 @@ export default function ProffsmaskinerDemo() {
           <div className={styles.sekHuvud}><p className={styles.eyebrow}>Så går det till</p><h2 className={styles.h2}>Fem steg, och rengöringen <em>ingår i det sista</em></h2><p className={styles.sekLead}>Inget konto, inga dolda avgifter. Så här enkelt är det att hyra hos oss.</p></div>
           <div className={styles.stegBlock}>
             {STEG.map((s, i) => <input type="radio" name="steg" id={`steg-${s.nr}`} className={styles.stegRadio} defaultChecked={i === 0} key={`r-${s.nr}`} />)}
-            <div className={styles.stegVal} role="tablist" aria-label="Så går det till">{STEG.map((s) => <label className={styles.stegKnapp} htmlFor={`steg-${s.nr}`} key={`l-${s.nr}`}><span>{s.namn}</span></label>)}</div>
+            <div className={styles.stegVal} aria-label="Så går det till">{STEG.map((s) => <label className={styles.stegKnapp} htmlFor={`steg-${s.nr}`} key={`l-${s.nr}`}><span>{s.namn}</span></label>)}</div>
             <div className={styles.stegKort}>{STEG.map((s) => (<article className={styles.stegPanel} key={`p-${s.nr}`}><svg className={styles.stegRitning} viewBox="0 0 200 120" aria-hidden="true">{STEGRITNINGAR[s.ritning]}</svg><div><h3>{s.namn}</h3><p>{s.text}</p></div></article>))}</div>
           </div>
         </div>
@@ -378,7 +457,7 @@ export default function ProffsmaskinerDemo() {
         <div className={styles.wrap}>
           <div className={styles.ftrGrid}>
             <div><span className={styles.brandTxt}><b>Proffsmaskiner Sverige AB</b><i>Maskinuthyrning</i></span><p className={styles.ftrText}>Uthyrning och försäljning för bygg, rivning, sanering och håltagning i Stockholm med omnejd. Återförsäljare av maskiner, handverktyg och förbrukningsmaterial. Leverans till arbetsplatsen.</p></div>
-            <div className={styles.ftrLankar}>{LANKAR.map((l) => <a href={l.href} key={l.href}>{l.txt}</a>)}<a href={TEL_HREF}>{TEL}</a><a href={`mailto:${EPOST}`}>{EPOST}</a><a href={IG} target="_blank" rel="noopener">@proffsmaskinerab</a><a href="#top">Till toppen</a></div>
+            <div className={styles.ftrLankar}>{LANKAR.map((l) => <a href={l.href} key={l.href}>{l.txt}</a>)}<a href={TEL_HREF}>{TEL}</a><a href={`mailto:${EPOST}`}>{EPOST}</a><a href={IG} target="_blank" rel="noopener">@proffsmaskinerab</a><a href="#top">Till toppen</a>{kund ? <a href="#cookieval">Cookieinställningar</a> : null}</div>
           </div>
           <div className={styles.ftrBar}><span>Proffsmaskiner Sverige AB · Org.nr 559154-6329 · {ADRESS}</span><span>Hemsida av <a href="https://www.bahkobyra.se" target="_blank" rel="noopener">Bahko Byrå</a></span></div>
         </div>
@@ -389,6 +468,7 @@ export default function ProffsmaskinerDemo() {
       <input type="checkbox" id="popup-bort" className={styles.popupBort} aria-hidden="true" tabIndex={-1} />
       <aside className={styles.popup} aria-label="Kontakta Proffsmaskiner"><label className={styles.popupX} htmlFor="popup-bort" role="button" aria-label="Stäng" tabIndex={0}>✕</label><p className={styles.popupEyebrow}>Maskin till måndag?</p><p className={styles.popupTxt}>Ring så säger vi vad vi kan leverera, och när. Inget konto, inga dolda avgifter.</p><a className={`${styles.btn} ${styles.popupCta}`} href={TEL_HREF}>Ring {TEL}</a><a className={styles.popupAlt} href="#kontakt">Eller skriv några rader →</a></aside>
       {/* Demorutan "Om det här förslaget" är borta: Proffsmaskiner är kund sedan 2026-10-28 (samma beslut som för Kakel 0413). */}
+      {kund ? <Matning /> : null}
     </div>
   );
 }
