@@ -2396,3 +2396,16 @@ a.kontaktRad b {
   background: transparent;
   color: var(--ljus);
 }
+
+/* Google-profilens karta under kontaktformuläret (lokal SEO-SOP steg 4.6). Raka hörn som formuläret. */
+.karta {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border: 1px solid var(--linje);
+  background: var(--yta);
+}
+.karta iframe {
+  display: block;
+  width: 100%;
+  height: clamp(260px, 32vw, 380px);
+  border: 0;
+}

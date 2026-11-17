@@ -68,7 +68,8 @@ import { jobb } from './jobb';
    =========================================================================== */
 
 const META = {
-  title: 'Kakel 0413 AB — kakelsättare och badrumsrenovering i Eslöv och Skåne',
+  // Lokal SEO-SOP steg 4.1 (2026-11-17): huvudkategorin och orten först, firmanamnet sist. Inget tankstreck.
+  title: 'Kakelsättare i Eslöv och Skåne | Badrumsrenovering, kakel och klinker | Kakel 0413 AB',
   description:
     'Kakel och klinker för privatpersoner och företag i Eslöv och hela Skåne: badrumsrenovering, kakel- och klinkersättning i badrum, kök, hallar och trapphus. Över 16 års erfarenhet. Kostnadsfri genomgång och ROT-avdrag.',
 };
@@ -84,6 +85,24 @@ export async function generateMetadata() {
 }
 
 const M = '/kakel0413/media';
+
+// Företagsschema (lokal SEO-SOP, easy-win-checken punkt 4, 2026-11-17). Bara uppgifter som redan står på sidan.
+// Ingen gatuadress: Nuh har ingen butik och adressen är dold i Google-profilen. Inget betyg, inga omdömen.
+const FORETAG_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  '@id': 'https://kakel0413.se/#business',
+  name: 'Kakel 0413 AB',
+  legalName: 'Kakel 0413 AB',
+  url: 'https://kakel0413.se/',
+  image: `https://kakel0413.se${M}/poster-hero.jpg`,
+  telephone: '+46738752725',
+  email: 'info@kakel0413.se',
+  taxID: '559611-8546',
+  description: 'Kakel och klinker åt privatpersoner och företag i Eslöv och hela Skåne: badrumsrenovering, kakel i kök, hallar, trapphus och tvättstugor, och mindre arbeten.',
+  address: { '@type': 'PostalAddress', addressLocality: 'Eslöv', addressRegion: 'Skåne län', addressCountry: 'SE' },
+  areaServed: ['Eslöv', 'Malmö', 'Lund', 'Helsingborg', 'Landskrona', 'Höör', 'Hörby', 'Svalöv', 'Trelleborg', 'Kristianstad'].map((name) => ({ '@type': 'City', name })),
+};
 
 // Web3Forms-nyckel för info@kakel0413.se (Nuhs, verifierad, Mathias 2026-10-23). Gäller både kakel0413.se och bahkobyra.se/kakel0413.
 // PRO: filbilagor på (BILAGOR_PA = true i BildUpload.js). Tom = demonyckeln
@@ -300,6 +319,7 @@ export default async function Kakel0413Demo() {
           och inget telefonnummer i heron (Ring-knappen i headern kvar). Raden "Kakel & Badrum." struken: mallen skriver alltid " & " och ".",
           så tjänsteraden får font-size 0 och bara Nuhs mening (egen fontstorlek) syns. */}
       <style>{'#jobb,#omdomen,#om{display:none!important}#top h1{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}#top a[href^="tel:"]{display:none!important}#top p[class*="heroTjanster"]{font-size:0!important;line-height:0!important}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}#varfor ul[class*="varforPunkter"]{gap:0.6rem}#varfor ul[class*="varforPunkter"] li{padding:0.75rem 1.1rem}#varfor ul[class*="varforPunkter"] li:last-child{display:block;padding:0.6rem 0 0;background:none;border:0;box-shadow:none;color:rgba(255,255,255,.85)}#varfor ul[class*="varforPunkter"] li:last-child svg{display:none}'}</style>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FORETAG_SCHEMA) }} />
       <DemoSida data={{ ...data, kund: true }} />
       <Referenser />
       <Galleri jobb={jobb} />

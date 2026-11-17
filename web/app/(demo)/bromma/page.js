@@ -37,7 +37,8 @@ export const metadata = {
 };
 
 
-const data = bas;
+// Google-profilens karta under formuläret, bara på startsidan (SOP steg 4.6). Samma cid som GOOGLE i _br.js.
+const data = { ...bas, kontaktSektion: { ...bas.kontaktSektion, karta: { cid: '3748114357443815533', titel: 'Bromma Trädgårdsservice på Google Maps' } } };
 
 export default function BrommaVinter() {
   return (

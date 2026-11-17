@@ -505,6 +505,13 @@ function Kontakt({ d, t, k, harTel }) {
               <p className={s.formNot} id="form-not">{d.kontaktSektion.formNotBock ? <Bock /> : null}{d.kontaktSektion.formNot}</p>
             </DemoFormular>
           </div>
+          {/* Valfritt kontaktSektion.karta { cid, titel } (lokal SEO-SOP 2026-11-13, steg 4.6): Google-profilens karta inbäddad,
+              under formuläret. cid är profilens nummer ur maps.google.com/?cid=…. Utan fältet: ingen karta. */}
+          {d.kontaktSektion.karta ? (
+            <div className={s.kontaktKarta}>
+              <iframe src={`https://maps.google.com/maps?cid=${d.kontaktSektion.karta.cid}&hl=${d.sprak === 'nb' ? 'no' : 'sv'}&output=embed`} title={d.kontaktSektion.karta.titel} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+            </div>
+          ) : null}
         </div>
       </section>
     </>

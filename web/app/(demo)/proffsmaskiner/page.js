@@ -91,7 +91,8 @@ const ui = localFont({
 });
 
 const META = {
-  title: 'Proffsmaskiner Sverige AB | Maskinuthyrning i Sollentuna och Stockholm',
+  // SOP steg 4.1 (2026-11-17): huvudsökordet först, sedan de mest hyrda maskinerna, sist firmanamnet.
+  title: 'Maskinuthyrning i Sollentuna | Hyr sågar, kärnborrar och bilningshammare | Proffsmaskiner Sverige AB',
   description:
     'Hyr och köp maskiner för bygg, rivning, sanering och håltagning i Sollentuna och Stockholm. Leverans till arbetsplatsen, servat före varje uthyrning.',
 };
@@ -449,6 +450,10 @@ export default async function ProffsmaskinerDemo() {
               <a className={`${styles.btn} ${styles.btnGhost}`} href={TEL_HREF}>Eller ring {TEL}</a>
               <p className={styles.formNot} id="form-not">Skriv kort om jobbet, så kan vi föreslå rätt maskin redan i första samtalet. Inga massutskick, ingen säljlista.</p>
             </DemoFormular>
+          </div>
+          {/* Google-profilens karta (SOP steg 4.6). Numret är profilens cid, samma profil som omdömeslänken pekar på. */}
+          <div className={styles.karta}>
+            <iframe src="https://maps.google.com/maps?cid=9932286260790513300&hl=sv&output=embed" title="Proffsmaskiner Sverige AB på Google Maps, Bäckvägen 20 i Sollentuna" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
           </div>
         </div>
       </section>

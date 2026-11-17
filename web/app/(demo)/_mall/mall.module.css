@@ -1827,6 +1827,15 @@ a.betyg { color: var(--text); }
   gap: clamp(2rem, 5vw, 5rem);
   align-items: center;
 }
+/* Valfri karta under formuläret (kontaktSektion.karta): Google-profilens karta, lugn ram på den mörka ytan. */
+.kontaktKarta {
+  margin-top: clamp(2.2rem, 4vw, 3.2rem);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+}
+.kontaktKarta iframe { display: block; width: 100%; height: clamp(260px, 32vw, 380px); border: 0; }
 .kontaktCheckar { display: grid; gap: 0.8rem; margin-top: 1.8rem; font-family: var(--f-rubrik); font-size: var(--tx-l); font-weight: 500; }
 .kontaktCheckar li { display: flex; align-items: center; gap: 0.7rem; }
 .kontaktCheckar .bock { width: 24px; height: 24px; }
