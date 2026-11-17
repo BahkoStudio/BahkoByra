@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, recoKort, BAND, UTVALDA, RITNING } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, recoKort, BAND, UTVALDA, RITNING, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — ortssida FASADMÅLNING I TÄBY (/gdmaleri/fasadmalning-taby/), 2026-10-14.
@@ -22,13 +22,16 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    FLAGGOR: Täby-inlägget har en kampanjtext (10 % / 30 %) i bildtexten; byt inlägg i Instagram-
    sektionen när kampanjen är slut. Inga omdömen med ort Täby.
    OPTIMERING: egen titel, beskrivning, hero-rad, kort och frågor. JSON-LD Service med areaServed
-   Täby → HousePainter (@id gdmaleri.se/#business), inget betygsschema, inget FAQPage.
+   Täby → HousePainter (@id gdmaleri.se/#business), inget betygsschema, FAQPage och BreadcrumbList tillagda 2026-11-17.
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning i Täby – 350 kvm i Täby kyrkby | GD Måleri',
-  description:
-    'Fasadmålning i Täby: 350 kvm träfasad i Täby kyrkby, klar i september 2026. Tvätt, skrapning och målning i samma offert, kostnadsfritt hembesök och ROT på fakturan.',
+  ...sidaMeta({
+    title: 'Fasadmålning i Täby – 350 kvm i Täby kyrkby | GD Måleri',
+    description:
+      'Fasadmålning i Täby: 350 kvm träfasad i Täby kyrkby, klar i september 2026. Tvätt, skrapning och målning i samma offert, och ROT på fakturan.',
+    sokvag: '/fasadmalning-taby/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -144,7 +147,7 @@ const data = {
 export default function GdMaleriFasadTaby() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Fasadmålning i Stockholm', url: 'https://gdmaleri.se/fasad-malning/' }, { namn: 'Fasadmålning i Täby', url: 'https://gdmaleri.se/fasadmalning-taby/' }]} />
       <DemoSida data={data} />
     </>
   );

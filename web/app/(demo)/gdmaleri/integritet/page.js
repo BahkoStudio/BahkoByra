@@ -1,4 +1,4 @@
-import { M, kontakt, tema } from '../_gd';
+import { M, kontakt, tema, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — integritet och cookies (/gdmaleri/integritet/ → gdmaleri.se/integritet/).
@@ -17,8 +17,12 @@ import { M, kontakt, tema } from '../_gd';
      iframe från instagram.com bara som reserv.
    =========================================================================== */
 export const metadata = {
-  title: 'Integritet och cookies | GD Måleri',
-  description: 'Så hanterar GD Måleri Sthlm AB uppgifterna du lämnar i formuläret och bokningen på gdmaleri.se, och vilka cookies sidan använder.',
+  ...sidaMeta({
+    title: 'Integritet och cookies | GD Måleri',
+    description:
+      'Så hanterar GD Måleri Sthlm AB uppgifterna du lämnar i formuläret och bokningen på gdmaleri.se, och vilka cookies sidan använder.',
+    sokvag: '/integritet/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -41,6 +45,7 @@ export default function GdMaleriIntegritet() {
   const k = kontakt;
   return (
     <div style={stil.sida}>
+      <SeoSkript smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Integritet och cookies', url: 'https://gdmaleri.se/integritet/' }]} />
       <header style={stil.topp}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <a href="/gdmaleri/" aria-label="GD Måleri Sthlm AB – till startsidan"><img src={`${M}/logo-gdmaleri.png`} alt="GD Måleri Sthlm AB" style={stil.logo} /></a>

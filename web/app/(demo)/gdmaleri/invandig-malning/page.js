@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida INVÄNDIG MÅLNING (/gdmaleri/invandig-malning/), 2026-10-08.
@@ -62,9 +62,12 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Invändig målning i Stockholm | GD Måleri',
-  description:
-    'Invändig målning i Stockholm: väggar, innertak, tapetsering, bredspackling, dörrar och snickerier. Kostnadsfri offert med allt inräknat, ROT direkt på fakturan och 4,9 av 5 på Reco.',
+  ...sidaMeta({
+    title: 'Invändig målning i Stockholm | GD Måleri',
+    description:
+      'Invändig målning i Stockholm: väggar, innertak, tapetsering, bredspackling, dörrar och snickerier. Kostnadsfri offert, ROT på fakturan och 4,9 av 5 på Reco.',
+    sokvag: '/malning-invandigt/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -221,7 +224,7 @@ const data = {
 export default function GdMaleriInvandig() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Invändig målning i Stockholm', url: 'https://gdmaleri.se/malning-invandigt/' }]} />
       <DemoSida data={data} />
     </>
   );

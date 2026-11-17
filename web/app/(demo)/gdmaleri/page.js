@@ -1,5 +1,5 @@
 import DemoSida from '../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, samarbeten, RECO_IFRAME, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, SKV_ROT, BAND } from './_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, samarbeten, RECO_IFRAME, RECO_LISTA, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, SKV_ROT, BAND, sidaMeta, SeoSkript } from './_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — KUND hos Bahko Byrå sedan 2026-10-08 (byggd som förslag 2026-10-08,
@@ -196,9 +196,12 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerB
    =========================================================================== */
 
 export const metadata = {
-  title: 'Målare i Stockholm – fasad, tak och invändig målning | GD Måleri',
-  description:
-    'Målare i Stockholm: fasadmålning, taktvätt, invändig målning, tapetsering och golv. Kostnadsfri offert, ROT direkt på fakturan och 4,9 av 5 på Reco.',
+  ...sidaMeta({
+    title: 'Målare i Stockholm – fasad, tak och invändig målning | GD Måleri',
+    description:
+      'Målare i Stockholm: fasadmålning, taktvätt, invändig målning, tapetsering och golv. Kostnadsfri offert, ROT direkt på fakturan och 4,9 av 5 på Reco.',
+    sokvag: '/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -470,7 +473,7 @@ const data = {
 export default function GdMaleriDemo() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={null} />
       <DemoSida data={data} />
     </>
   );

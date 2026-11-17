@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida TAK (/gdmaleri/tak/), 2026-10-08. YTTERTAK.
@@ -40,9 +40,12 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Takmålning i Stockholm | GD Måleri',
-  description:
-    'Taktvätt och takmålning i Stockholm: mossa och lav bort, och taket målat om. ROT på småhus dras direkt på fakturan. Kostnadsfri offert och 4,9 av 5 på Reco.',
+  ...sidaMeta({
+    title: 'Takmålning i Stockholm | GD Måleri',
+    description:
+      'Taktvätt och takmålning i Stockholm: mossa och lav bort, och taket målat om. ROT på småhus dras direkt på fakturan. Kostnadsfri offert och 4,9 av 5 på Reco.',
+    sokvag: '/takmalning/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -178,7 +181,7 @@ const data = {
 export default function GdMaleriTak() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Takmålning i Stockholm', url: 'https://gdmaleri.se/takmalning/' }]} />
       <DemoSida data={data} />
     </>
   );

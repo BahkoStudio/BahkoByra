@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, RECO_IFRAME, RECO_LISTA, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND, UTVALDA, RITNING } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, RECO_IFRAME, RECO_LISTA, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND, UTVALDA, RITNING, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — ortssida FASADMÅLNING PÅ LIDINGÖ (/gdmaleri/fasadmalning-lidingo/), 2026-10-14.
@@ -24,14 +24,17 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    INTE verifierat, och finns därför inte på sidan: jobb, kunder, ytor eller år på Lidingö,
    restid eller avstånd, priser, ledtider, typiska fasader på ön utöver källan ovan.
    OPTIMERING: egen titel, beskrivning, hero-rad, kort och frågor. JSON-LD Service med areaServed
-   Lidingö → HousePainter (@id gdmaleri.se/#business), inget betygsschema, inget FAQPage. Lidingö
+   Lidingö → HousePainter (@id gdmaleri.se/#business), inget betygsschema, FAQPage och BreadcrumbList tillagda 2026-11-17. Lidingö
    läggs INTE till i startsidans areaServed (inget belagt jobb).
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning på Lidingö – målare för fasad och hus | GD Måleri',
-  description:
-    'Fasadmålning på Lidingö: tvätt, skrapning och ny färg på trä, puts, tegel och plåt. Kostnadsfritt hembesök, offert med allt inräknat, faktura när jobbet är klart och ROT på fakturan.',
+  ...sidaMeta({
+    title: 'Fasadmålning på Lidingö – målare för fasad och hus | GD Måleri',
+    description:
+      'Fasadmålning på Lidingö: tvätt, skrapning och ny färg på trä, puts, tegel och plåt. Kostnadsfritt hembesök, faktura när jobbet är klart och ROT på fakturan.',
+    sokvag: '/fasadmalning-lidingo/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -149,7 +152,7 @@ const data = {
 export default function GdMaleriFasadLidingo() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Fasadmålning i Stockholm', url: 'https://gdmaleri.se/fasad-malning/' }, { namn: 'Fasadmålning på Lidingö', url: 'https://gdmaleri.se/fasadmalning-lidingo/' }]} />
       <DemoSida data={data} />
     </>
   );

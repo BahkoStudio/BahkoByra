@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida GOLV (/gdmaleri/golv/), 2026-10-08.
@@ -55,9 +55,12 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Golvläggning och golvslipning i Stockholm | GD Måleri',
-  description:
-    'GD Måleri Sthlm AB lägger, slipar och målar golv i Stockholm, gärna i samma jobb som väggar och tak. Kostnadsfri offert, ROT direkt på fakturan och 4,9 av 5 på Reco.',
+  ...sidaMeta({
+    title: 'Golvläggning och golvslipning i Stockholm | GD Måleri',
+    description:
+      'Golvläggning, golvslipning och golvmålning i Stockholm, gärna i samma jobb som väggar och tak. Kostnadsfri offert, ROT på fakturan och 4,9 av 5 på Reco.',
+    sokvag: '/golv/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -203,7 +206,7 @@ const data = {
 export default function GdMaleriGolv() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Golvläggning och golvslipning', url: 'https://gdmaleri.se/golv/' }]} />
       <DemoSida data={data} />
     </>
   );

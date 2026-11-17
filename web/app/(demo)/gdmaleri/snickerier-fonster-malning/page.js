@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida FÖNSTER OCH SNICKERIER
@@ -45,9 +45,12 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Måla fönster, dörrar och snickerier i Stockholm | GD Måleri',
-  description:
-    'Fönstermålning och målning av dörrar, karmar, foder och snickerier i Stockholm, inne och ute. Gammal färg skrapas bort, ytan slipas och grundas. Kostnadsfri offert, ROT på fakturan och 4,9 av 5 på Reco.',
+  ...sidaMeta({
+    title: 'Måla fönster, dörrar och snickerier i Stockholm | GD Måleri',
+    description:
+      'Målning av fönster, dörrar, karmar, foder och snickerier i Stockholm, inne och ute. Gammal färg skrapas, ytan slipas och grundas. Kostnadsfri offert och ROT.',
+    sokvag: '/snickerier-fonster-malning/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -181,7 +184,7 @@ const data = {
 export default function GdMaleriSnickerierFonster() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Fönster och snickerier', url: 'https://gdmaleri.se/snickerier-fonster-malning/' }]} />
       <DemoSida data={data} />
     </>
   );

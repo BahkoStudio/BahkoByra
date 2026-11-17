@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida TAKTVÄTT (/gdmaleri/taktvatt/), 2026-10-13. YTTERTAK.
@@ -43,9 +43,12 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Taktvätt i Stockholm | GD Måleri',
-  description:
-    'Taktvätt i Stockholm: mossa, alger och smuts tvättas bort från takpannorna, för sig eller inför takmålning. ROT på småhus dras direkt på fakturan. Kostnadsfri offert och 4,9 av 5 på Reco.',
+  ...sidaMeta({
+    title: 'Taktvätt i Stockholm | GD Måleri',
+    description:
+      'Taktvätt i Stockholm: mossa, alger och smuts tvättas bort från takpannorna, för sig eller inför takmålning. Kostnadsfri offert och ROT på fakturan.',
+    sokvag: '/taktvatt/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -178,7 +181,7 @@ const data = {
 export default function GdMaleriTaktvatt() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Taktvätt i Stockholm', url: 'https://gdmaleri.se/taktvatt/' }]} />
       <DemoSida data={data} />
     </>
   );

@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, DOMAN, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, hero, varfor, om, steg, instagramBas, RECO, RECO_IFRAME, RECO_LISTA, SKV_ROT, samarbeten, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
+import { M, DOMAN, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, hero, varfor, om, steg, instagramBas, RECO, RECO_IFRAME, RECO_LISTA, SKV_ROT, samarbeten, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — guidesida "Så väljer du målare" (/gdmaleri/basta-malare-stockholm/),
@@ -36,7 +36,7 @@ import { M, DOMAN, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot
    200 och 180 kvm, de står inte i leadfilen eller _gd.js), priser, ledtider, antal jobb,
    Måleriföretagen och AAA. Inga påståenden om konkurrenter.
    OPTIMERING: egen titel och beskrivning, JSON-LD WebPage med about → HousePainter
-   (@id gdmaleri.se/#business), inget betygsschema, inget FAQPage. Raden robots: index:false byts
+   (@id gdmaleri.se/#business), inget betygsschema, FAQPage och BreadcrumbList tillagda 2026-11-17. Raden robots: index:false byts
    av extern/gdmaleri/kopiera.mjs mot canonical gdmaleri.se/basta-malare-stockholm/.
    Internlänkar hit: footerns bottenrad på alla GD-sidor (GUIDE i _gd.js) och ett stycke i
    startsidans Om oss. Inte i mobilmenyn. Mallfält som bara den här sidan använder:
@@ -44,9 +44,12 @@ import { M, DOMAN, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot
    =========================================================================== */
 
 export const metadata = {
-  title: 'Bästa målaren i Stockholm? Så väljer du rätt | GD Måleri',
-  description:
-    'Så väljer du rätt målare i Stockholm: jämför verifierade omdömen, F-skatt, försäkring och vad offerten ska innehålla. Checklista från GD Måleri Sthlm AB.',
+  ...sidaMeta({
+    title: 'Bästa målaren i Stockholm? Så väljer du rätt | GD Måleri',
+    description:
+      'Så väljer du rätt målare i Stockholm: jämför verifierade omdömen, F-skatt, försäkring och vad offerten ska innehålla. Checklista från GD Måleri Sthlm AB.',
+    sokvag: '/basta-malare-stockholm/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -252,7 +255,7 @@ const data = {
 export default function GdMaleriBastaMalare() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Så väljer du målare', url: 'https://gdmaleri.se/basta-malare-stockholm/' }]} />
       <DemoSida data={data} />
     </>
   );
