@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, samarbeten, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
+import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, samarbeten, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — undersida för bostadsrättsföreningar (/gdmaleri/brf/)
@@ -148,9 +148,12 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerB
    =========================================================================== */
 
 export const metadata = {
-  title: 'Målare för BRF i Stockholm – trapphus och fasad | GD Måleri',
-  description:
-    'GD Måleri Sthlm AB tar uppdrag åt bostadsrättsföreningar i Stockholm: trapphus, entréer, fasader och fönster. Rekommenderat företag på Reco tre år i rad, 4,9 av 5. Kostnadsfri offert med allt inräknat.',
+  ...sidaMeta({
+    title: 'Målare för BRF i Stockholm – trapphus och fasad | GD Måleri',
+    description:
+      'Målning för bostadsrättsföreningar i Stockholm: trapphus, entréer, fasader och fönster. Rekommenderat på Reco tre år i rad, 4,9 av 5. Kostnadsfri offert.',
+    sokvag: '/brf/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -339,7 +342,7 @@ const data = {
 export default function GdMaleriBrf() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Målning för bostadsrättsföreningar', url: 'https://gdmaleri.se/brf/' }]} />
       <DemoSida data={data} />
     </>
   );

@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida TAPETSERING (/gdmaleri/tapetsering/), 2026-10-13.
@@ -49,9 +49,12 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Tapetsering och bredspackling i Stockholm | GD Måleri',
-  description:
-    'Tapetsering, bredspackling och tapetborttagning i Stockholm: gammal tapet bort, väggen slät, ny tapet eller färg upp. Kostnadsfri offert, ROT direkt på fakturan och 4,9 av 5 på Reco.',
+  ...sidaMeta({
+    title: 'Tapetsering och bredspackling i Stockholm | GD Måleri',
+    description:
+      'Tapetsering, bredspackling och tapetborttagning i Stockholm. Gammal tapet bort, väggen slät, ny tapet eller färg. Kostnadsfri offert och ROT på fakturan.',
+    sokvag: '/tapetsering/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -189,7 +192,7 @@ const data = {
 export default function GdMaleriTapetsering() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Tapetsering och bredspackling', url: 'https://gdmaleri.se/tapetsering/' }]} />
       <DemoSida data={data} />
     </>
   );

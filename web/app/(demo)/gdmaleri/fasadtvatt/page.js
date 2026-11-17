@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida FASADTVÄTT (/gdmaleri/fasadtvatt/), 2026-10-13.
@@ -46,9 +46,12 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadtvätt i Stockholm | GD Måleri',
-  description:
-    'Fasadtvätt i Stockholm: smuts, alger och lös färg bort från trä, puts, tegel och plåt, som egen tjänst eller inför målning. Kostnadsfri offert, ROT på småhus och 4,9 av 5 på Reco.',
+  ...sidaMeta({
+    title: 'Fasadtvätt i Stockholm | GD Måleri',
+    description:
+      'Fasadtvätt i Stockholm: smuts, alger och lös färg bort från trä, puts, tegel och plåt, för sig eller inför målning. Kostnadsfri offert och ROT på småhus.',
+    sokvag: '/fasadtvatt/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -185,7 +188,7 @@ const data = {
 export default function GdMaleriFasadtvatt() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Fasadtvätt i Stockholm', url: 'https://gdmaleri.se/fasadtvatt/' }]} />
       <DemoSida data={data} />
     </>
   );

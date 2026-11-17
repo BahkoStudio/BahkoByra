@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, RECO_IFRAME, RECO_LISTA, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND, UTVALDA, RITNING } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, RECO_IFRAME, RECO_LISTA, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND, UTVALDA, RITNING, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — ortssida FASADMÅLNING I HUDDINGE (/gdmaleri/fasadmalning-huddinge/), 2026-10-14.
@@ -24,14 +24,17 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    INTE verifierat, och finns därför inte på sidan: jobb, kunder, ytor eller år i Huddinge, restid
    eller avstånd, priser, ledtider, vilka kommundelar som har vilka hus utöver källan.
    OPTIMERING: egen titel, beskrivning, hero-rad, kort och frågor. JSON-LD Service med areaServed
-   Huddinge → HousePainter (@id gdmaleri.se/#business), inget betygsschema, inget FAQPage.
+   Huddinge → HousePainter (@id gdmaleri.se/#business), inget betygsschema, FAQPage och BreadcrumbList tillagda 2026-11-17.
    Huddinge läggs INTE till i startsidans areaServed (inget belagt jobb).
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning i Huddinge – målare för fasad och hus | GD Måleri',
-  description:
-    'Fasadmålning i Huddinge: fasad och tak på villan, offererat vid ett hembesök utan kostnad. Inget extra utan ditt ja, faktura när jobbet är klart och ROT direkt på fakturan.',
+  ...sidaMeta({
+    title: 'Fasadmålning i Huddinge – målare för fasad och hus | GD Måleri',
+    description:
+      'Fasadmålning i Huddinge: fasad och tak på villan, offererat vid ett hembesök utan kostnad. Inget extra utan ditt ja, och ROT direkt på fakturan.',
+    sokvag: '/fasadmalning-huddinge/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -149,7 +152,7 @@ const data = {
 export default function GdMaleriFasadHuddinge() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Fasadmålning i Stockholm', url: 'https://gdmaleri.se/fasad-malning/' }, { namn: 'Fasadmålning i Huddinge', url: 'https://gdmaleri.se/fasadmalning-huddinge/' }]} />
       <DemoSida data={data} />
     </>
   );

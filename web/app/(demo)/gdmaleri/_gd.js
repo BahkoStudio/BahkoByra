@@ -398,3 +398,77 @@ export const RITNING = {
   innertak: (<><path d="M20 30h160" /><path d="M20 30l30 24h100l30-24" /><path d="M50 54v46M150 54v46" /><path d="M70 40l10 6M110 38l-6 8" /></>),
   maskering: (<><path d="M20 100V48l80-34 80 34v52" /><path d="M20 100h160" /><path d="M56 70h88M56 84h88" /><path d="M72 56l8 8M100 50l8 8M128 56l-6 8" /></>),
 };
+
+/* SEO-hjälpare 2026-11-17: Open Graph, FAQPage och BreadcrumbList på GD:s sidor.
+   kopiera.mjs behåller raden robots: { index: false, follow: false }, oförändrad
+   och byter den mot canonical på gdmaleri.se. */
+export const OG_BILD = {
+  url: `${DOMAN}${M}/poster-hero.jpg`,
+  width: 1920,
+  height: 1080,
+  alt: 'GD Måleri Sthlm AB, målare i Stockholm',
+};
+
+export const sidaMeta = ({ title, description, sokvag, bild } = {}) => {
+  const url = `${DOMAN}${sokvag || '/'}`;
+  const img = bild || OG_BILD;
+  const bildUrl = img.url.startsWith('http') ? img.url : `${DOMAN}${img.url}`;
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: 'GD Måleri',
+      locale: 'sv_SE',
+      type: 'website',
+      images: [{ url: bildUrl, width: img.width || 1920, height: img.height || 1080, alt: img.alt || OG_BILD.alt }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [bildUrl],
+    },
+  };
+};
+
+function textFranNod(nod) {
+  if (nod == null || typeof nod === 'boolean') return '';
+  if (typeof nod === 'string' || typeof nod === 'number') return String(nod);
+  if (Array.isArray(nod)) return nod.map(textFranNod).join('');
+  if (typeof nod === 'object' && nod.props) return textFranNod(nod.props.children);
+  return '';
+}
+
+export const faqSchema = (lista) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: (lista || []).map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: textFranNod(f.a).replace(/\s+/g, ' ').trim() },
+  })),
+});
+
+export const brodsmulor = (...led) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: led.map((l, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: l.namn,
+    item: l.url,
+  })),
+});
+
+export function SeoSkript({ schema, fragor, smulor }) {
+  return (
+    <>
+      {schema ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /> : null}
+      {fragor?.length ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(fragor)) }} /> : null}
+      {smulor?.length ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(brodsmulor(...smulor)) }} /> : null}
+    </>
+  );
+}

@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — tjänstesida FASAD (/gdmaleri/fasad/), 2026-10-08.
@@ -49,9 +49,12 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning i Stockholm – trä, puts och fönster | GD Måleri',
-  description:
-    'Fasadtvätt och fasadmålning i Stockholm: trä, puts, tegel och plåt, med fönster, vindskivor och takfot. Senast 234 kvm i Bromma. Kostnadsfri offert, ROT på småhus och 4,9 av 5 på Reco.',
+  ...sidaMeta({
+    title: 'Fasadmålning i Stockholm – trä, puts och fönster | GD Måleri',
+    description:
+      'Fasadtvätt och fasadmålning i Stockholm på trä, puts, tegel och plåt, med fönster och takfot. Senast 234 kvm i Bromma. Kostnadsfri offert och ROT på småhus.',
+    sokvag: '/fasad-malning/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -195,7 +198,7 @@ const data = {
 export default function GdMaleriFasad() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Fasadmålning i Stockholm', url: 'https://gdmaleri.se/fasad-malning/' }]} />
       <DemoSida data={data} />
     </>
   );

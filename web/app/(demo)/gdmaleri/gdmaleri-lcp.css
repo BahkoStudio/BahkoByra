@@ -1,0 +1,14 @@
+/* Visa hero-texten direkt. Animera bara dekor (logotyp, knappar, bild).
+   Klassnamnen kommer från mallens CSS-moduler, därför attributväljare.
+   Mallen själv lämnas orörd. */
+@media (prefers-reduced-motion: no-preference) {
+  [class*="heroRubrik"],
+  [class*="heroOrt"],
+  [class*="heroTjanster"],
+  [class*="heroBokstav"],
+  [class*="heroOrd"],
+  [class*="stH1"],
+  [class*="stIngress"] {
+    animation: none !important;
+  }
+}

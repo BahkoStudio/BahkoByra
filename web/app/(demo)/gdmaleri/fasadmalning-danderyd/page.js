@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, recoKort, BAND, UTVALDA, RITNING } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, recoKort, BAND, UTVALDA, RITNING, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — ortssida FASADMÅLNING I DANDERYD (/gdmaleri/fasadmalning-danderyd/), 2026-10-14.
@@ -26,14 +26,17 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    INTE verifierat, och finns därför inte på sidan: jobb, kunder, ytor eller år i Danderyd, restid
    eller avstånd, priser, ledtider, kulturhistoriska krav eller bygglov för fasadfärg.
    OPTIMERING: egen titel, beskrivning, hero-rad, kort och frågor. JSON-LD Service med areaServed
-   Danderyd → HousePainter (@id gdmaleri.se/#business), inget betygsschema, inget FAQPage.
+   Danderyd → HousePainter (@id gdmaleri.se/#business), inget betygsschema, FAQPage och BreadcrumbList tillagda 2026-11-17.
    Danderyd läggs INTE till i startsidans areaServed (inget belagt jobb).
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning i Danderyd – målare för fasad och villa | GD Måleri',
-  description:
-    'Fasadmålning i Danderyd, Djursholm, Stocksund och Enebyberg: villans fasad, takfot och dörrar. Ingen förskottsbetalning, ett års garanti och ROT direkt på fakturan.',
+  ...sidaMeta({
+    title: 'Fasadmålning i Danderyd – målare för fasad och villa | GD Måleri',
+    description:
+      'Fasadmålning i Danderyd, Djursholm, Stocksund och Enebyberg: fasad, takfot och dörrar. Ingen förskottsbetalning, ett års garanti och ROT på fakturan.',
+    sokvag: '/fasadmalning-danderyd/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -149,7 +152,7 @@ const data = {
 export default function GdMaleriFasadDanderyd() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Fasadmålning i Stockholm', url: 'https://gdmaleri.se/fasad-malning/' }, { namn: 'Fasadmålning i Danderyd', url: 'https://gdmaleri.se/fasadmalning-danderyd/' }]} />
       <DemoSida data={data} />
     </>
   );

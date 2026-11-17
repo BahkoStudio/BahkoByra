@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, recoKort, BAND, UTVALDA, RITNING } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, recoKort, BAND, UTVALDA, RITNING, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — ortssida FASADMÅLNING I SOLLENTUNA (/gdmaleri/fasadmalning-sollentuna/),
@@ -25,14 +25,17 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    INTE verifierat, och finns därför inte på sidan: jobb, kunder, ytor eller år i Sollentuna,
    restid eller avstånd, priser, ledtider.
    OPTIMERING: egen titel, beskrivning, hero-rad, kort och frågor. JSON-LD Service med areaServed
-   Sollentuna → HousePainter (@id gdmaleri.se/#business), inget betygsschema, inget FAQPage.
+   Sollentuna → HousePainter (@id gdmaleri.se/#business), inget betygsschema, FAQPage och BreadcrumbList tillagda 2026-11-17.
    Sollentuna läggs INTE till i startsidans areaServed (inget belagt jobb).
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning i Sollentuna – målare för villa | GD Måleri',
-  description:
-    'Fasadmålning i Sollentuna: genomgång, tvätt, skrapning och ny färg på villan. I grannkommunen Täby kan vi visa 350 kvm träfasad. Kostnadsfri offert och ROT på fakturan.',
+  ...sidaMeta({
+    title: 'Fasadmålning i Sollentuna – målare för villa | GD Måleri',
+    description:
+      'Fasadmålning i Sollentuna: genomgång, tvätt, skrapning och ny färg på villan. I Täby kan vi visa 350 kvm träfasad. Kostnadsfri offert och ROT på fakturan.',
+    sokvag: '/fasadmalning-sollentuna/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -148,7 +151,7 @@ const data = {
 export default function GdMaleriFasadSollentuna() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Fasadmålning i Stockholm', url: 'https://gdmaleri.se/fasad-malning/' }, { namn: 'Fasadmålning i Sollentuna', url: 'https://gdmaleri.se/fasadmalning-sollentuna/' }]} />
       <DemoSida data={data} />
     </>
   );

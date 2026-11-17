@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, RECO_IFRAME, RECO_LISTA, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND, RITNING } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, RECO_IFRAME, RECO_LISTA, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, BAND, RITNING, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — ortssida MÅLARE I SÖDERTÄLJE (/gdmaleri/malare-sodertalje/), 2026-10-14.
@@ -26,13 +26,16 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    FLAGGOR: Reco-placeringen kan ändras; frågan säger datumet. Inget fasad- eller takfoto från
    Södertälje; korten Fasad och Tak visar foton utan ort.
    OPTIMERING: egen titel, beskrivning, hero-rad, kort och frågor. JSON-LD Service med areaServed
-   Södertälje → HousePainter (@id gdmaleri.se/#business), inget betygsschema, inget FAQPage.
+   Södertälje → HousePainter (@id gdmaleri.se/#business), inget betygsschema, FAQPage och BreadcrumbList tillagda 2026-11-17.
    =========================================================================== */
 
 export const metadata = {
-  title: 'Målare i Södertälje – 180 kvm klart okt 2026 | GD Måleri',
-  description:
-    'Målare i Södertälje, där GD Måleri Sthlm AB har sitt säte: invändig målning, fasad och tak. Senast 180 kvm tak och väggar. 4,9 av 5 på Reco, kostnadsfri offert och ROT på fakturan.',
+  ...sidaMeta({
+    title: 'Målare i Södertälje – 180 kvm klart okt 2026 | GD Måleri',
+    description:
+      'Målare i Södertälje, där GD Måleri har sitt säte: invändig målning, fasad och tak. Senast 180 kvm tak och väggar. Kostnadsfri offert och ROT på fakturan.',
+    sokvag: '/malare-sodertalje/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -155,7 +158,7 @@ const data = {
 export default function GdMaleriSodertalje() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Målare i Södertälje', url: 'https://gdmaleri.se/malare-sodertalje/' }]} />
       <DemoSida data={data} />
     </>
   );

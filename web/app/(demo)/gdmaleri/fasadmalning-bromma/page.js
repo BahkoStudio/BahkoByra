@@ -1,5 +1,5 @@
 import DemoSida from '../../_mall/DemoSida';
-import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, recoKort, BAND, UTVALDA, RITNING } from '../_gd';
+import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epostNamn, SIDOR, footerTjanster, footerBild, footerLankar, footerOrter, menyExtra, navUndersida, hero, varfor, om, steg, instagramBas, RECO, SKV_ROT, samarbeten, tjanstSchema, GOOGLE_BETYG, GOOGLE_OMDOMEN, skapadAv, recoKort, BAND, UTVALDA, RITNING, sidaMeta, SeoSkript } from '../_gd';
 
 /* ===========================================================================
    GD MÅLERI STHLM AB — ortssida FASADMÅLNING I BROMMA (/gdmaleri/fasadmalning-bromma/), 2026-10-14.
@@ -27,14 +27,17 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    FLAGGOR: inga omdömen med ort Bromma; be Ghandi om kundens tillstånd att visa adressområdet eller
    ett omdöme från jobbet.
    OPTIMERING: egen titel, beskrivning, hero-rad, kort och frågor. JSON-LD Service med areaServed
-   Bromma → HousePainter (@id gdmaleri.se/#business), inget betygsschema, inget FAQPage. Raden
+   Bromma → HousePainter (@id gdmaleri.se/#business), inget betygsschema, FAQPage och BreadcrumbList tillagda 2026-11-17. Raden
    robots: index:false byts av extern/gdmaleri/kopiera.mjs mot canonical gdmaleri.se/fasadmalning-bromma/.
    =========================================================================== */
 
 export const metadata = {
-  title: 'Fasadmålning i Bromma – 234 kvm klart 2026 | GD Måleri',
-  description:
-    'Fasadmålning i Bromma: senast 234 kvm väggar, vindskivor, takfot och fönsterkarmar, klart hösten 2026. Kostnadsfritt hembesök, ROT direkt på fakturan och 4,9 av 5 på Reco.',
+  ...sidaMeta({
+    title: 'Fasadmålning i Bromma – 234 kvm klart 2026 | GD Måleri',
+    description:
+      'Fasadmålning i Bromma: senast 234 kvm väggar, vindskivor, takfot och fönsterkarmar, klart hösten 2026. Kostnadsfritt hembesök och ROT på fakturan.',
+    sokvag: '/fasadmalning-bromma/',
+  }),
   robots: { index: false, follow: false },
 };
 
@@ -153,7 +156,7 @@ const data = {
 export default function GdMaleriFasadBromma() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <SeoSkript schema={schema} fragor={data.fragor.lista} smulor={[{ namn: 'GD Måleri', url: 'https://gdmaleri.se/' }, { namn: 'Fasadmålning i Stockholm', url: 'https://gdmaleri.se/fasad-malning/' }, { namn: 'Fasadmålning i Bromma', url: 'https://gdmaleri.se/fasadmalning-bromma/' }]} />
       <DemoSida data={data} />
     </>
   );
