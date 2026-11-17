@@ -8,7 +8,7 @@ argument-hint: [kund eller sajt, t.ex. "proffsmaskiner"]
 
 Två delar:
 
-- **Del A, Lokal SEO-SOP** (version 2026-11-06). Arbetsordningen. Den uppdateras varje fredag i kursen.
+- **Del A, Lokal SEO-SOP** (version 2026-11-13). Arbetsordningen. Den uppdateras varje fredag i kursen.
 - **Del B, Våra noteringar.** Bahkos egna regler, evidens och lärdomar. Det är vår "My Notes" och den överlever alla SOP-uppdateringar.
 
 **När en ny SOP-version kommer:** de nya stegen ersätter Del A helt. Del B behålls. Visa Mathias vad som ändrades. Står något i nya SOP:en som krockar med Del B (lag, Googles riktlinjer, våra fasta regler), behåll Del B-regeln och säg till.
@@ -32,8 +32,8 @@ Två nivåer: **Grund** och **Avancerat**. Gör varje Grund-steg först. Når ku
 
 ## Det här behövs först
 
-- Åtkomst till kundens sajt och Google Företagsprofil. Kolla att åtkomsten faktiskt fungerar innan du börjar. Vi ska vara **Ansvarig** (Manager), inte Ägare.
-- Ett heatmap-verktyg. SOP:en använder Leadsnap. **Bahko:** vi har inget konto än, fråga Mathias innan något köps.
+- Åtkomst till kundens sajt och Google Företagsprofil. Kolla att åtkomsten faktiskt fungerar innan du börjar. Kunden lägger till oss som **Ansvarig** (Manager) från vårt eget Google-konto. **Logga aldrig in med kundens konto och bli aldrig Ägare.** Delade inloggningar bryter mot Googles regler och utlöser enligt rapporter QR-kods- och ansiktskontroller. En kund som lämnar behåller profilen och omdömena. **Bahko:** vårt konto är bahkostudio@gmail.com.
+- Ett heatmap-verktyg. SOP:en använder Leadsnap. **Bahko:** vi kör gratisplanen i GTrack (gtrack.wiremo.co) på bahkostudio@gmail.com: 200 poäng i månaden, ett rutnät på 5 x 5 kostar 25 poäng per sökord, större rutnät kräver betalplan (kollat på deras prissida 2026-11-17). Det räcker till en mätning per kund och månad. Reserv: Local Falcon ger 100 poäng en gång vid nytt konto. Fråga Mathias innan något köps.
 - GMB Everywhere (webbläsartillägg som visar konkurrenternas kategorier, tjänster och profilfunktioner). **Bahko:** installerat i Mathias Chrome, syns som "AI Tools" i Google-panelen.
 - En AI-chatt för listor och texter.
 
@@ -72,7 +72,7 @@ Kör först huvudsökordet i GMB Everywheres lokala skanning. Den visar vad topp
 2. **Kategorier:** sikta på 5–6 totalt, 1 primär plus extra, men bara kategorier som stämmer med vad företaget verkligen gör. Titta på vad topp 20 använder. En kategori för något kunden inte gör drar fel sökare som klickar och lämnar. Ta bort den. (Ersätter vår gamla regel "max tre underkategorier", som saknade källa.)
 3. **Fyll i profilen** tills fullständighetscirkeln bredvid namnet är helt grön. Minst: full adress, webbplats, telefon, kontaktsidan under Bookings. Lägg in **särskilda öppettider för varje helgdag i förväg**. **Bahko:** jul, nyår, trettondagen, påsk, 1 maj, Kristi himmelfärd, nationaldagen, midsommar. Tiderna kommer från kunden, gissa aldrig.
 4. **Attribut:** fyll i de som stämmer, men räkna inte med mycket (de flesta i topp 10 har inga). Matställen: kostattribut på menyrätter, och tredjepartslänkar för beställning går att slå av/på och prioritera i profilen.
-5. **Bookings:** länka kontaktsidan (eller kontaktsektionen, t.ex. `/#kontakt`).
+5. **Bookings:** länka kontaktsidan (eller kontaktsektionen, t.ex. `/#kontakt`). Det ger nu enligt rapporter en knapp "Boka online" på profilen (Rapporterat). Klicka på knappen en gång och kolla att den öppnar en sida som fungerar.
 6. **Webbplatslänk:** till sidan som är optimerad för sökordet. Den ska matcha på kategori, ort och namn/adress/telefon.
 7. **Samtalsspårning:** har kunden ett spårningsnummer blir det primär telefon i profilen och det riktiga numret extra telefon. Sajt, schema och kataloger behåller det riktiga numret.
 8. **Tjänster:** sikta på 30–40 (taket är 99). Topp 20 har ofta nära 30 var. Fler tjänster ger Google mer att jobba med och fångar långa sökningar (Rapporterat). Bygg listan:
@@ -84,6 +84,7 @@ Kör först huvudsökordet i GMB Everywheres lokala skanning. Den visar vad topp
    - Låt AI skriva en beskrivning på högst 300 tecken för de 20 viktigaste.
    Det är tråkig kopiera-klistra. Nästan ingen gör det, därför vinner det.
 9. **AI på profilen:** Google rullar ut AI-meddelanden på profiler (bara inbjudan) och visar enligt rapporter en AI-sammanfattning byggd på profil, omdömen och sajt. Innan AI-meddelanden slås på: kolla att tjänster, priser, öppettider, helgtider och tjänsteområde stämmer med sajten, skicka ett testmeddelande och läs svaret.
+10. **Meddelanden:** Google Maps visar nu en knapp "Meddelande" bredvid "Ring", på iPhone och Android. Chatten går till den kanal som är kopplad i profilen, WhatsApp eller sms. Koppla en, och kom överens med kunden om vem som svarar. **Bahko:** Cowork-regeln "hoppa över Add chat" gäller tills kunden sagt vilken kanal och vem som svarar.
 
 Prompt för att rensa tjänstelistan:
 
@@ -153,7 +154,10 @@ De mest relevanta extra:
 
 1. **Inlägg** i profilen varje vecka, skrivet som en jobbrapport: vad jobbet var, orten, materialet, vad som var svårt. Ett erbjudande ibland är ok. AI skriver utkastet, vi putsar lätt. (Rapporterat: sådana inlägg citeras i Googles AI-svar och ChatGPT.)
 2. **Foton** varje vecka. **Bara riktiga foton**, aldrig AI-genererade (inte heller våra AI-filmer och AI-bilder från kundsajten). Kunden tar dem med mobilen: före och efter, teamet, bilen, platsen.
-3. **Säg två saker till kunden:** be varje kund om omdöme, och fota varje jobb och skicka till oss varje vecka. Postar de på Instagram eller Facebook varje vecka kan vi ta därifrån.
+3. **Säg tre saker till kunden:**
+   - Be varje kund om ett omdöme när jobbet är klart, så att omdömena kommer in jämnt. Mejla aldrig hela kundlistan på en gång: en plötslig skur av omdömen raderas enligt rapporter (Rapporterat).
+   - Svara på varje omdöme inom 48 timmar, och skriv svaret för nästa kund som läser det.
+   - Fota varje jobb och skicka till oss varje vecka. Postar de på Instagram eller Facebook varje vecka kan vi ta därifrån.
 
 ## Avancerat
 
@@ -286,6 +290,24 @@ Heatmap före, heatmap efter och en enkel lista över vad vi gjort.
 
 # Del B: Våra noteringar
 
+## Kunder vi kör SOP:en på
+
+Mathias 2026-11-17: det är de här fem vi jobbar med (Kakel 0413 lades till samma dag: "vi hanterar deras Google också"). Var varje kund står i stegen skrivs i kundens mapp (`2-kunder/kunder/<kund>/seo-geo-aeo.md`), inte här.
+
+| Kund | Sajt | Huvudsökord | Att veta |
+|---|---|---|---|
+| Proffsmaskiner Sverige AB | proffsmaskiner.se | maskinuthyrning Sollentuna | Kund sedan 2026-10-28. Garanti i avtalet: första sidan inom 90 dagar. Cowork-uppdraget var skillens första användning |
+| GD Måleri Sthlm AB | gdmaleri.se | fasadmålning Stockholm (Mathias 2026-11-17: "fasadmålning") | Kund sedan 2026-10-09, löpande SEO. Jobbar i hela Stockholm och Södertälje. SEO-audit 2026-10-27, sajtfixarna gjorda 2026-10-30. Mallen för Cowork-uppdrag är deras |
+| Bromma Trädgårdsservice | brommatradgardsservice.se | trädgårdsservice Stockholm | Belagt: etta i Googles platslista och först i ChatGPT (30 juli 2026). Ny sajt live 2026-11-09 |
+| Kakel 0413 AB | kakel0413.se | kakelsättare Eslöv (vårt förslag ur primärkategorin, inte bekräftat av Mathias eller Nuh) | Vi sköter Google-profilen. Nuh (kakel0413@gmail.com) ska stå som Ägare, vi som Ansvarig. Ingen butik: adressen är dold. Sajtens bilder är illustrationer och får aldrig upp på Google |
+| Bahko Byrå | bahkobyra.se | webbyrå Jönköping (Mathias ja 2026-11-17). Målet är fler kunder | Vår egen sajt. Samma SOP, samma regler. Kontoret ligger i Huskvarna, och kartrankning utgår från adressen |
+
+Ingen av dem har en heatmap-baslinje än (2026-11-17). Den tas i GTrack, se "Det här behövs först".
+
+Cowork-uppdragen för varv två (2026-11-17) ligger i `OneDrive/1 Bahko Byrå/SEO/Cowork-uppdrag 2026-11-17/`, ett per kund, och i kundmapparna som `cowork-sop-2026-11-17.md`.
+
+**Kartan på sajten (Steg 4.6):** bädda in profilens egen karta med `https://maps.google.com/maps?cid=<cid>&hl=sv&output=embed`. cid står i profilens Maps-länk, eller räknas ur omdömeslänken (`g.page/r/<kod>`: base64-avkoda koden, byte 2 till 9 som little-endian-tal). Demomallen har fältet `kontaktSektion.karta { cid, titel }`. Fungerar även för företag med dold adress: då visas tjänsteområdet.
+
 ## Cowork-uppdrag för Google-profilen
 
 Ändringar i kundens Google-profil görs av Cowork (Claude i webbläsaren) som är inloggad som bahkostudio@gmail.com. Vi skriver uppdraget, Mathias klistrar in det.
@@ -369,3 +391,5 @@ Rangordnad lista där varje punkt har: vad, evidensgrad, uppskattad effekt och v
 
 - 2026-07: första versionen, korsgranskad kartläggning (fyra utredningar plus skeptiker).
 - 2026-11-12: Lokal SEO-SOP version 2026-11-06 inlagd som Del A (baslinje med heatmap och topp 3-punkter, easy-win-check, 5–6 kategorier, 30–40 tjänster med promptar och kundmejl, sajtens grunder, citeringar, veckorutin, tjänste- och ortssidor, interna länkar, falska profiler). Gamla innehållet blev Del B. Ändrat mot förr: "max tre underkategorier" borta, Q&A i profilen ersatt av FAQ på sajten, ny evidensgrad "Rapporterat". Svensk anpassning: inget "Bäst" i title, svenska kataloger i stället för Data Axle, helgdagar i Sverige, Cowork-uppdragen.
+- 2026-11-17: Del A uppdaterad till SOP-version 2026-11-13. Nytt: åtkomst som Ansvarig från eget Google-konto, aldrig kundens inloggning och aldrig Ägare; knappen Meddelande på Maps (Steg 3.10); kontroll att bokningslänken ger en fungerande Boka online-knapp; omdömen jämnt och aldrig i en skur från ett utskick, svar inom 48 timmar (veckorutinen har nu tre saker till kunden). Del B: ny tabell över de fyra kunder vi kör SOP:en på. Våra egna regler är oförändrade: fortfarande inget "Bäst" i title.
+- 2026-11-17 (kväll): Kakel 0413 tillagd som femte kund. Heatmap: GTrack gratisplan. Karta via cid inlagd på Proffsmaskiner, GD, Bromma och bahkobyra.se/webbyra-jonkoping/, och som valfritt fält i demomallen.

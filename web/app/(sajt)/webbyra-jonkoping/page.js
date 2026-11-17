@@ -303,6 +303,16 @@ export default function Jonkoping() {
               </a>
             </div>
           </div>
+
+          {/* Google-profilens karta (lokal SEO-SOP steg 4.6). Numret är profilens cid, samma profil som g.page-länken i layout.js. */}
+          <div className={styles.karta}>
+            <iframe
+              src="https://maps.google.com/maps?cid=18121551560120934031&hl=sv&output=embed"
+              title="Bahko Byrå på Google Maps, Kungsängsvägen 27 i Huskvarna"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
       </section>
 

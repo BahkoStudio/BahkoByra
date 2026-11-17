@@ -448,6 +448,8 @@ const data = {
     formNot,
     epostNamn,
     formNotBock: true,
+    // Google-profilens karta (SOP steg 4.6). Samma cid som GOOGLE_LANK i _gd.js.
+    karta: { cid: '13566570836618556636', titel: 'GD Måleri Sthlm AB på Google Maps' },
   },
 
   popup: {

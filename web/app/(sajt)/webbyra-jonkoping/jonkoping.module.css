@@ -283,3 +283,18 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Google-profilens karta under "Hitta hit" (lokal SEO-SOP steg 4.6). */
+.karta {
+  margin-top: 1.2rem;
+  border: 1px solid var(--linje);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--vit);
+}
+.karta iframe {
+  display: block;
+  width: 100%;
+  height: clamp(260px, 34vw, 400px);
+  border: 0;
+}
