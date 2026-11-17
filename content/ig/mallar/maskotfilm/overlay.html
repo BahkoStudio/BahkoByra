@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="sv"><head><meta charset="utf-8">
+<title>Maskotfilm overlay</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent}
+body{font-family:'Outfit',sans-serif;position:relative}
+.blob{position:absolute;left:60px;right:60px;bottom:290px;background:rgba(10,22,40,.80);border-radius:28px;padding:42px 46px;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.kick{font-weight:800;font-size:34px;letter-spacing:.16em;color:#34D399;text-transform:uppercase;margin-bottom:18px}
+.t{font-weight:800;font-size:76px;line-height:1.12;color:#FFF}
+.t em{font-style:normal;color:#34D399}
+.t span{display:block;white-space:nowrap}
+.blob.punch{text-align:center;padding:60px 46px}
+.blob.punch .t{font-size:150px;line-height:1}
+.outro{position:absolute;left:60px;right:60px;bottom:150px;text-align:center;font-weight:700;font-size:40px;color:rgba(255,255,255,.88);text-shadow:0 2px 18px rgba(0,0,0,.8)}
+.wm{position:absolute;top:64px;left:60px}
+.wm img{height:74px;display:block;filter:drop-shadow(0 4px 18px rgba(0,0,0,.65))}
+</style></head><body>
+<script>
+const T=[
+ {k:'Köksbordet',    t:'Tre offerter<br>på <em>köksbordet</em>.'},
+ {k:'Alla lika',     t:'Alla lovar <em>noggrant</em><br>och <em>pålitligt</em>.'},
+ {k:'Jämförelsen',   t:'Då jämför kunden<br>det enda som <em>skiljer</em>.'},
+ {k:'',              t:'<em>Siffran.</em>', punch:true},
+ {k:'Lösningen',     t:'Visa jobbet ingen<br>katalog kan <em>prissätta</em>.'},
+ {k:'Bättre betalt', t:'Då slutar priset<br>vara <em>det enda</em>.'}
+];
+const q=new URLSearchParams(location.search);
+if(q.get('wm')==='1'){
+  document.write('<div class="wm"><img src="logo.svg" alt="Bahko Byrå"></div>');
+}else if(q.get('o')==='1'){
+  document.write('<div class="outro">Kostnadsfri demo av er nya hemsida.</div>');
+}else{
+  const i=parseInt(q.get('i')||'0',10), b=T[i];
+  const rows=b.t.split('<br>').map(r=>'<span>'+r+'</span>').join('');
+  document.write('<div class="blob'+(b.punch?' punch':'')+'">'+(b.k?'<div class="kick">'+b.k+'</div>':'')+'<div class="t" id="t">'+rows+'</div></div>');
+  const t=document.getElementById('t'); const sp=[...t.querySelectorAll('span')];
+  let px=b.punch?150:76; t.style.fontSize=px+'px';
+  while(px>48 && sp.some(r=>r.scrollWidth>t.clientWidth)){px-=2;t.style.fontSize=px+'px';}
+}
+</script>
+</body></html>
