@@ -30,9 +30,9 @@ export default function HeroVideo() {
           type="button"
           className={styles.knapp}
           onClick={() => setSpelar(true)}
-          aria-label="Spela videon: så hamnar du i topp 3 på Google"
+          aria-label="Spela videon (2 min): så hamnar du i topp 3 på Google"
         >
-          <img src="/img/video-poster-topp3.webp" alt="" width="1600" height="900" loading="lazy" decoding="async" />
+          <img src="/img/video-poster-topp3.webp" alt="Bild ur filmen så hamnar du i topp 3 på Google" width="1600" height="900" loading="lazy" decoding="async" />
           <span className={styles.spela}>
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M8 5v14l11-7z" fill="currentColor" />

@@ -14,15 +14,27 @@ import styles from './page.module.css';
 
 /* Startsidan nås som /, med parametrar och via www-varianter — den behöver
    peka ut sig själv. Undersidorna har redan canonical via sina metadata. */
-const HEM_TITEL = 'Hemsidor för hantverkare i Huskvarna/Jönköping: hemsida, Google och annonser | Bahko Byrå';
+const HEM_TITEL = 'Hemsidor för hantverkare, Google och annonser | Bahko Byrå';
 const HEM_META =
-  'Bahko Byrå i Huskvarna/Jönköping bygger hemsidor åt hantverkare och lokala företag i hela Sverige. Fast pris från 10 000 kr ex moms och färdigt förslag inom 48 timmar.';
+  'Bahko Byrå i Huskvarna bygger hemsidor åt hantverkare och lokala företag i hela Sverige. Fast pris från 10 000 kr ex moms och förslag inom 48 timmar.';
+const OG_BILD = '/brand/logo-raster-16x9.png';
 export const metadata = {
-  // Ort och tjänster i titeln (SEO-disken 2026-11-04). og hålls i synk.
+  // Kortad under 65/160 tecken (SEO-granskning 2026-11-17). og hålls i synk, med bild.
   title: { absolute: HEM_TITEL },
   description: HEM_META,
   alternates: { canonical: '/' },
-  openGraph: { title: HEM_TITEL, description: HEM_META, url: '/' },
+  openGraph: { title: HEM_TITEL, description: HEM_META, url: '/', images: [OG_BILD] },
+};
+
+const FAQSCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://www.bahkobyra.se/#faq',
+  mainEntity: FRAGOR.map((f) => ({
+    '@type': 'Question',
+    name: f.fraga,
+    acceptedAnswer: { '@type': 'Answer', text: f.svar },
+  })),
 };
 
 const PIL = (
@@ -61,6 +73,7 @@ const RESAN = [
 export default function Start() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQSCHEMA) }} />
       {/* ── HERO: text vänster, kalkylen "Räkna på jobben ni missar" till höger
              (Mathias 2026-10-23, ersätter B-videon). Mobil: text → knapp → kalkyl → siffror. ── */}
       {/* Första skärmen: hero + kundbälte fyller exakt fönstrets höjd på dator, så att bältet
@@ -68,7 +81,9 @@ export default function Start() {
       <div className={styles.forstaSkarm}>
       <section className={`mork ${styles.heroBygge}`} id="top">
         <div className={`wrap ${styles.heroGrid}`}>
-          <div className={styles.heroText} data-trapp>
+          {/* data-trapp borttaget: animationen dolde hero-texten tills JS körde
+              och gav LCP på 4,8 s (SEO-granskning 2026-11-17). Texten ska vara synlig direkt. */}
+          <div className={styles.heroText}>
             {/* Maskoten fyller ytan ovanför rubriken på dator, ögat följer musen (Mathias 2026-10-23) */}
             <MaskotScen
               className={styles.heroMaskot}
@@ -161,7 +176,7 @@ export default function Start() {
               <Link key={t.slug} href={`/tjanster/${t.slug}/`} className={styles.tjanstKort}>
                 {/* Samma runda 3D-märken som i "För vem" (GPT Image 2.5, Mathias 2026-10-23) */}
                 <span className={styles.tjanstMarke}>
-                  <img src={`/img/tjanster/${t.slug}-3d.webp`} alt="" width="640" height="640" loading="lazy" decoding="async" />
+                  <img src={`/img/tjanster/${t.slug}-3d.webp`} alt={`3D-ikon för ${t.namn}`} width="640" height="640" loading="lazy" decoding="async" />
                 </span>
                 <h3>{t.namn}</h3>
                 <p>{TJANSTTEXT[t.slug].text}</p>

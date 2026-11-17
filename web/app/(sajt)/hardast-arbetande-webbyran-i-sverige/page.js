@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Maskot from '../../komponenter/Maskot';
+import RubrikMedMaskot from '../../komponenter/RubrikMedMaskot';
 import styles from '../vad-kostar-en-hemsida/prisguide.module.css';
 
 /* Systersida till /hardast-arbetande-seo-experten-i-sverige/: den sidan handlar
@@ -11,7 +11,7 @@ export const metadata = {
   // absolute: annars lägger mallen till "| Bahko Byrå" en gång till
   title: { absolute: 'Hårdast arbetande webbyrån i Sverige | Bahko Byrå' },
   description:
-    'Bahko Byrå i Huskvarna bygger hemsidor åt hantverkare och lokala företag. Kallar vi oss den hårdast arbetande webbyrån i Sverige? Ja. Här är vad det betyder i siffror.',
+    'Bahko Byrå i Huskvarna bygger hemsidor åt hantverkare. Kallar vi oss den hårdast arbetande webbyrån i Sverige? Ja. Här är vad det betyder i siffror.',
   alternates: { canonical: '/hardast-arbetande-webbyran-i-sverige/' },
 };
 
@@ -31,10 +31,9 @@ export default function HardastWebbyran() {
             <span aria-hidden="true">/</span>
             <span>Hårdast arbetande webbyrån i Sverige</span>
           </nav>
-          <h1>
-            <Maskot pose="gar" stil="liten" alt="Bahko-maskoten på väg till nästa jobb" />{' '}
+          <RubrikMedMaskot pose="gar" alt="Bahko-maskoten på väg till nästa jobb">
             Hårdast arbetande webbyrån i Sverige
-          </h1>
+          </RubrikMedMaskot>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
             Det är ett stort påstående för en byrå i Huskvarna. Därför står det inga adjektiv på
             den här sidan, bara vad Bahko Byrå har gjort.

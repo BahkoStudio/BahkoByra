@@ -69,7 +69,7 @@ export default function Nischer() {
                   <span className={styles.bild} data-stopp>
                     <img
                       src={`/img/nischer/${n.slug}-3d.webp`}
-                      alt=""
+                      alt={`3D-ikon för ${n.namn}`}
                       width="640"
                       height="640"
                       loading="lazy"
