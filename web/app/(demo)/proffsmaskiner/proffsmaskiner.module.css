@@ -1716,8 +1716,8 @@ a.kontaktRad b {
   align-content: stretch;
 }
 /* (lagret sjalvt)
-   Lagret är sidans första vy: logotyp, två tjänster, ort, knapparna. Ingen
-   rubrik. Filmen ligger bakom och tonas in först när skrollen börjar. */
+   Lagret är sidans första vy: logotyp, tjänster, text-H1 med tjänst och ort,
+   knapparna. Filmen ligger bakom och tonas in först när skrollen börjar. */
 .heroLager {
   position: relative;
   z-index: 2;
@@ -1735,7 +1735,7 @@ a.kontaktRad b {
   gap: 1.1rem;
   max-width: 40rem;
 }
-/* h1 omsluter logotypen: heron har ingen rubrik, och sidan måste ha exakt en. */
+/* Logotypen ligger kvar som bild, men är inte längre H1. */
 .heroLogo {
   margin: 0;
   font-size: 0;
@@ -1755,11 +1755,14 @@ a.kontaktRad b {
   text-transform: uppercase;
   color: var(--stal-lj);
 }
-.heroOrt {
+/* Synlig text-H1: tjänst + ort, under tjänsteraden. */
+.heroRubrik {
   margin: 0;
   font-family: var(--disp);
-  font-size: var(--tx-xl);
-  color: var(--ljus-70);
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ljus);
 }
 .heroLager .heroCta {
   margin-top: 1.2rem;
@@ -2345,4 +2348,51 @@ a.kontaktRad b {
 }
 .om {
   padding-bottom: clamp(2.6rem, 5vw, 4.2rem);
+}
+
+
+/* Samtyckesruta för GA4. Fast kort nederst, ovanför kontaktpopupen. */
+.samtycke {
+  position: fixed;
+  left: 50%;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 110;
+  max-width: 28rem;
+  width: calc(100% - 32px);
+  background: var(--yta);
+  color: var(--ljus);
+  border: 1px solid var(--linje);
+  padding: 1rem 1.1rem;
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  font-family: var(--ui);
+  font-size: var(--tx-s);
+  line-height: 1.5;
+}
+.samtycke p {
+  margin: 0 0 0.8rem;
+}
+.samtyckeKnappar {
+  display: flex;
+  gap: 0.6rem;
+}
+.samtyckeJa,
+.samtyckeNej {
+  flex: 1;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  padding: 0.65rem 0.9rem;
+  border-radius: 6px;
+}
+.samtyckeJa {
+  border: 0;
+  background: var(--stal);
+  color: var(--ink);
+}
+.samtyckeNej {
+  border: 1px solid rgba(238, 241, 243, 0.3);
+  background: transparent;
+  color: var(--ljus);
 }
