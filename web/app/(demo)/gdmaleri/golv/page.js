@@ -41,6 +41,14 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    på Google har samma text som Reco-korten Anneli N och Susanne P här, så de
    visas bara en gång (som Reco-kort).
 
+   NYTT GOLVJOBB I BROMMA (Ghandi via Mathias 2026-11-17, chatten: "Golvläggning",
+   "2026-11-16 Bromma", två foton i kundmappen OneDrive/1 Bahko Byrå/Kunder/GD Måleri/
+   Material/Golv Bromma 2026-11-16/): nytt golv lagt i ett kök, klart 2026-11-16.
+   golv-bromma-kok.webp (utvalt jobb) och golv-bromma-passage.webp (kortet Golvläggning).
+   Golvtyp, material och yta är INTE kända och står därför inte i texterna.
+   golv-slipat-efter.webp flyttade från de utvalda till bildbandet så att de utvalda
+   fortfarande är tre.
+
    OPTIMERING: egen titel och beskrivning, JSON-LD Service som pekar på samma
    HousePainter-entitet (@id gdmaleri.se/#business), inget betygsschema, noindex
    som huvudsidan tills flytten till gdmaleri.se.
@@ -79,7 +87,7 @@ const data = {
     lattKort: true,
     kolumner: 3,
     kort: [
-      { id: 'golvlaggning', namn: 'Golvläggning', bild: `${M}/golv-lagt-foto.webp`, alt: 'Nya golvbrädor lagda i en hall på Östermalm, med ett ljust trägolv som fortsätter in i rummet', text: 'Nytt golv, i ett rum eller i hela bostaden.', punkter: ['Kostnadsfri offert', 'Material och städning ingår', 'ROT på arbetet'], ritning: (<><path d="M14 100h172" /><path d="M40 100l22-62h76l22 62" /><path d="M74 100l8-62M126 100l-8-62M100 100V38" /></>) },
+      { id: 'golvlaggning', namn: 'Golvläggning', bild: `${M}/golv-bromma-passage.webp`, alt: 'Nylagt ljust golv med grå ådring i en passage mellan köksskåp och tvättmaskin, i ett kök i Bromma', text: 'Nytt golv, i ett rum eller i hela bostaden. Senast ett kök i Bromma, november 2026.', punkter: ['Kostnadsfri offert', 'Material och städning ingår', 'ROT på arbetet'], ritning: (<><path d="M14 100h172" /><path d="M40 100l22-62h76l22 62" /><path d="M74 100l8-62M126 100l-8-62M100 100V38" /></>) },
       { id: 'golvslipning', namn: 'Golvslipning', bild: `${M}/golv-slipat-foto.webp`, alt: 'Nyslipat ljust trägolv med breda brädor i ett tomt rum', text: 'Slitna trägolv slipas, gärna i samma jobb som rummet målas.', punkter: ['Slipning av trägolv', 'Samma offert som målningen', 'ROT på arbetet'], ritning: (<><path d="M14 100h172" /><path d="M58 98V70h52v28" /><path d="M110 76l34-34" /><path d="M140 38l12 12" /><path d="M66 98a8 8 0 0016 0M90 98a8 8 0 0016 0" /></>) },
       { id: 'golvmalning', namn: 'Golvmålning', bild: `${M}/golv-malat.jpg`, alt: 'Illustrationsbild: trägolv målat ljusgrått i ett tomt rum, med en färgburk på en skyddsduk', text: 'Golvet målas i den kulör du väljer.', punkter: ['Förarbete ingår', 'Inget extra utan ditt ja', 'ROT på arbetet'], ritning: (<><path d="M14 100h172" /><path d="M30 100l18-40h104l18 40" /><path d="M120 30h44v18h-44z" /><path d="M142 48v22" /></>) },
     ],
@@ -87,17 +95,19 @@ const data = {
 
   jobb: {
     eyebrow: 'Våra jobb',
-    rubrik: ['Golv vi har', 'slipat och lagt'],
-    lead: 'Ett slitet trägolv i en lägenhet på Östermalm slipat ljust i oktober 2026, och skadade golvbrädor bytta mot nya. Bilderna är från våra egna jobb.',
+    rubrik: ['Golv vi har', 'lagt och slipat'],
+    lead: 'Senast ett nytt golv i ett kök i Bromma, klart 16 november 2026. Innan dess ett slitet trägolv på Östermalm som slipades ljust i oktober, där skadade golvbrädor också byttes mot nya. Bilderna är från våra egna jobb.',
     not: 'Golvmålningskortet under Tjänster är en illustrationsbild. Fler egna jobb finns på vårt Instagram.',
     tid: '70s',
-    // Utvalda (mallfältet jobb.utvalda): Ghandis golvfoton 2026-10-30. Östermalm, klart 2026-10-24 (Mathias 2026-10-30).
+    // Utvalda (mallfältet jobb.utvalda): Bromma 2026-11-16 (Ghandi via Mathias 2026-11-17) först,
+    // sedan Ghandis golvfoton 2026-10-30, Östermalm, klart 2026-10-24 (Mathias 2026-10-30).
     utvalda: [
+      { src: `${M}/golv-bromma-kok.webp`, w: 720, h: 960, etikett: 'Bromma, nytt golv i köket', txt: 'Nytt golv lagt i ett kök i Bromma, klart 16 november 2026.', alt: 'Nylagt ljust golv med grå ådring i ett kök i Bromma, med tvättmaskin, ljusa köksluckor och träbänkskiva under två fönster' },
       { src: `${M}/golv-fore-efter.webp`, w: 900, h: 1200, etikett: 'Östermalm, före och efter', txt: 'Slitet, gulnat trägolv slipat ljust, klart 24 oktober 2026. Två foton: före överst, efter nederst.', alt: 'Sammansatt före/efter-bild av ett trägolv i en lägenhet på Östermalm: övre halvan ett slitet och gulnat golv i ett rum med fönster och radiator, nedre halvan ett nyslipat ljust trägolv i ett rum med radiator' },
-      { src: `${M}/golv-slipat-efter.webp`, w: 900, h: 1200, etikett: 'Östermalm, efter slipning', txt: 'Breda brädor, nyslipade och ljusa, oktober 2026.', alt: 'Nyslipat ljust trägolv med breda brädor i ett tomt rum med vita väggar, i en lägenhet på Östermalm' },
       { src: `${M}/golv-brador-byte.webp`, w: 900, h: 1200, etikett: 'Östermalm, byte av golvbrädor', txt: 'Skadade brädor byttes mot nya i samma lägenhet. Under arbetet överst, klart nederst.', alt: 'Sammansatt bild från en lägenhet på Östermalm: övre halvan ett öppnat trägolv med bjälkar, isolering och nya brädor på väg in, nedre halvan det färdiga golvet med nya brädor i en hall' },
     ],
     rad1: [
+      { src: `${M}/golv-slipat-efter.webp`, alt: 'Nyslipat ljust trägolv med breda brädor i ett tomt rum med vita väggar, i en lägenhet på Östermalm', txt: 'Östermalm: breda brädor efter slipning' },
       BAND.golvKokFore,
       BAND.golvRumEfter,
       { src: `${M}/jobb-sekelskifte.jpg`, alt: 'Ljust rum med två höga spröjsade fönster och radiatorer', txt: 'Rum målat i ljust' },
