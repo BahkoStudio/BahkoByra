@@ -8,9 +8,10 @@ import { bas, M } from '../_br';
    INTE belagt, därför inte på sidan: utryckningstider, snödjup för utryckning, priser, säsongsavtalets villkor
    för villor, rutavdrag på snöskottning (står inte på nuvarande sajt). FLAGGOR: kortbilden är genererad. */
 export const metadata = {
-  title: 'Snöröjning och halkbekämpning i Bromma och Stockholm | Bromma Trädgårdsservice',
+  title: 'Snöröjning och halkbekämpning i Bromma | Bromma Trädgårdsservice',
   description: 'Snöröjning av uppfarter, gångar, entréer och parkeringar i Bromma och Storstockholm, med halkbekämpning vid behov. Villor, BRF och fastigheter. Kostnadsfritt besök.',
   robots: { index: false, follow: false },
+  openGraph: { url: 'https://brommatradgardsservice.se/snorojning/' },
 };
 
 const fragor = [
@@ -22,7 +23,7 @@ const fragor = [
 ];
 
 export default function Sida() {
-  return <Landning schema={{ namn: 'Snöröjning och halkbekämpning', typ: 'Snöröjning', beskrivning: metadata.description }} sida={{
+  return <Landning schema={{ slug: 'snorojning', namn: 'Snöröjning och halkbekämpning', typ: 'Snöröjning', beskrivning: metadata.description }} sida={{
     hero: { ...bas.hero, rubrik: { fraga: 'Snöröjning i Bromma och Stockholm', svar: 'Snö & Halka.' } },
     tejp: ['Snöröjning', 'Halkbekämpning', 'Uppfarter', 'Gångar och entréer', 'Parkeringar', 'Villor och BRF', 'Samma kontaktperson året om'],
     tjanster: { ...bas.tjanster, eyebrow: 'Snöröjning', rubrik: ['Snö i vinter,', 'trädgård när den smält'], lead: 'En uppfart som är röjd när du ska till jobbet. En entré där ingen halkar. Vi tar snön genom hela säsongen, och halkan när det behövs.', kolumner: 3,

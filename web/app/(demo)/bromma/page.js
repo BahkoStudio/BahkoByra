@@ -1,5 +1,6 @@
 import DemoSida from '../_mall/DemoSida';
-import { bas, foretag, faqSchema } from './_br';
+import { bas, foretag, faqSchema, smulorSchema } from './_br';
+import SynligHero from './_synlig-hero';
 
 /* ===========================================================================
    BROMMA TRÄDGÅRDSSERVICE — KUND. Vinterdesign på mall v3 (2026-11-08).
@@ -32,6 +33,7 @@ export const metadata = {
   description:
     'Snöröjning och halkbekämpning av uppfarter, gångar och parkeringar i Bromma och Storstockholm. Skötselavtal för BRF året om. Kostnadsfritt hembesök.',
   robots: { index: false, follow: false },
+  openGraph: { url: 'https://brommatradgardsservice.se/' },
 };
 
 
@@ -40,8 +42,10 @@ const data = bas;
 export default function BrommaVinter() {
   return (
     <>
+      <SynligHero />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(foretag) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(bas.fragor.lista)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(smulorSchema()) }} />
       <DemoSida data={data} />
     </>
   );
