@@ -1,0 +1,89 @@
+/* Rapportmallen. Grundmönstren lånas från webbyra-jonkoping/jonkoping.module.css. */
+
+.utkast {
+  display: inline-block;
+  margin-top: 1.4rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px dashed var(--em-lt);
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.nyckelNat {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.plats {
+  border-style: dashed;
+}
+
+.diagram {
+  margin: 2rem 0 0;
+  padding: 1.6rem;
+  background: var(--vit);
+  border: 2px dashed var(--linje);
+  border-radius: var(--r-lg);
+}
+
+.staplar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  align-items: end;
+  height: 260px;
+}
+
+.stapelKol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  height: 100%;
+}
+
+.stapel {
+  display: block;
+  width: 100%;
+  max-width: 90px;
+  height: 60%;
+  border-radius: 8px 8px 0 0;
+  background: repeating-linear-gradient(135deg, var(--lt-2) 0 10px, var(--linje) 10px 20px);
+}
+
+.stapelVarde,
+.stapelEtikett {
+  font-size: 0.8rem;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+.diagram figcaption {
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--ink-3);
+}
+
+.slutsatser {
+  max-width: 62ch;
+  margin: 2rem 0 0;
+  padding-left: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  color: var(--ink-3);
+}
+
+@media (max-width: 620px) {
+  .staplar {
+    gap: 0.4rem;
+    height: 200px;
+  }
+  .stapelVarde,
+  .stapelEtikett {
+    font-size: 0.68rem;
+  }
+}
