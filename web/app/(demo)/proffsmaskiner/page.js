@@ -141,7 +141,8 @@ const TJANSTER = [
 // Samarbetsbandet är byggt som kundbältet på bahkobyra.se (Mathias 2026-11-11): logga och en
 // rad under om vad märket står för. Flex, Stanley, DeWalt och Hilti i egna färger (rutorna syns
 // mot mörkt), JLM:s egen röd-vita logga, Husqvarna och Brokk i ljus enfärgad version.
-// Källor: Flex, JLM och Brokk från märkenas sajter, övriga från Wikimedia Commons.
+// Källor: Flex, JLM, Brokk och Drome från märkenas sajter, övriga från Wikimedia Commons.
+// Drome (Peter 2026-11-17): märkets egen vita logga från sidfoten på drome.se, beskuren.
 // hojd = visad höjd i px, satt per logga så att de väger lika.
 const LEVERANTORER = [
   { namn: 'Flex', url: 'https://www.flex-tools.com/sv-se', logo: 'flex.svg', w: 121, h: 56, hojd: 36, rad: 'Elverktyg' },
@@ -151,6 +152,7 @@ const LEVERANTORER = [
   { namn: 'JLM Group', url: 'https://jlmgroup.se/', logo: 'jlm-ljus.png', w: 640, h: 177, hojd: 38, rad: 'Diamantverktyg, klingor och kärnborr' },
   { namn: 'Husqvarna Construction', url: 'https://www.husqvarnaconstruction.com/se/', logo: 'husqvarna-ljus.png', w: 653, h: 120, hojd: 30, rad: 'Maskiner för sågning och borrning i betong' },
   { namn: 'Brokk', url: 'https://www.brokk.com/sv/', logo: 'brokk-ljus.png', w: 468, h: 120, hojd: 27, rad: 'Rivningsrobotar' },
+  { namn: 'Drome', url: 'https://drome.se/', logo: 'drome-ljus.png', w: 274, h: 55, hojd: 24, rad: 'Diamantverktyg, luftrenare och stoftavskiljare' },
 ];
 
 const STEGRITNINGAR = {
@@ -190,7 +192,7 @@ const FRAGOR = [
   { q: 'Vad händer om maskinen går sönder?', a: 'Kontakta oss direkt. Vi hjälper till med felsökning, reparation eller ersättningsmaskin så att projektet inte behöver stanna.' },
   { q: 'Vad kostar det?', a: 'Det beror på maskin och hyrestid. Du får ett pris innan du bokar, och fakturan har inga dolda avgifter. Rengöringen ingår.' },
   { q: 'Vilka maskiner har ni?', a: 'För bygg, rivning, sanering och håltagning: sågar, fräsar, stoftavskiljare, bilningshammare, mattstrippers, luftrenare, kärnborrar och golvsågar. Förbrukningsmaterial som plast, tejp, klingor och skyddsutrustning finns också. Saknas något: fråga.' },
-  { q: 'Säljer ni maskiner också?', a: 'Ja. Vi hyr ut, och vi är återförsäljare av maskiner och handverktyg, förbrukningsmaterial och betongbearbetning. Vi jobbar bland annat med Hilti, Husqvarna Construction, Brokk, DeWalt, Stanley, Flex och JLM Group.' },
+  { q: 'Säljer ni maskiner också?', a: 'Ja. Vi hyr ut, och vi är återförsäljare av maskiner och handverktyg, förbrukningsmaterial och betongbearbetning. Vi jobbar bland annat med Hilti, Husqvarna Construction, Brokk, DeWalt, Stanley, Flex, JLM Group och Drome.' },
   { q: 'Hyr ni ut till privatpersoner?', a: 'Vi är byggda för företag och proffs, men hör av dig så säger vi vad som går.' },
   { q: 'Kan jag ladda elbilen hos er?', a: 'Ja. Kunder laddar gratis när de besöker oss på Bäckvägen.' },
   { q: 'Var finns ni?', a: 'Bäckvägen 20 i Sollentuna, med leverans i Stockholm med omnejd. Ligger jobbet längre bort får du säga var, så säger vi om vi kan ta det.' },
