@@ -67,6 +67,26 @@ från bahkobyra.cloud (samma /cloud/-rewrite serverar båda värdarna).
   nytt tema och nya kapitel i Säsongen → uppdatera startdatum. OS:et vet
   själv om säsongen inte börjat, pågår, eller är slut (`sasongslage()`).
 
+## Intern tillväxt: SOP:er & idéer
+
+### Vad kunden får av oss (gäller alltid, Mathias 2026-10-28)
+Mina sidor har ett mål: kunden ska känna att du är det självklara valet.
+- Video först. Kunden ser ditt jobb innan hen läser ett ord.
+- Blixtsnabb sida som laddar direkt i mobilen.
+- Strukturerad efter det som får kunden att välja just dig, i den ordning en kund bestämmer sig.
+- Nyckelord som folk faktiskt söker på, så att du rankar på Google.
+- Mejlautomatisering: direkt svar på förfrågan, uppföljning så att förfrågan blir kund och att kunden kommer tillbaka.
+- Gratis förslag först: den som skriver "förslag" får ett gratis förslag i DM på hur hemsidan kan ge fler kunder, inom 48 timmar.
+- Löpande skötsel och SEO varje månad.
+
+Priser (står på bahkobyra.se sedan PR #289): Basic 10 000, Standard 13 000, Premium 25 000 kr ex moms. Tillägg: underhåll 500 kr/mån och Google-ranking 2 470 kr/mån. Inga priser eller procent i inlägg och kommentarer på LinkedIn/X.
+
+### Leadflöde "förslag" (gäller alltid, Mathias 2026-10-28)
+1. Någon skriver "förslag" under ett inlägg eller i en kommentar.
+2. Tillväxtskribenten skickar direkt leadet till Demobyggaren: namn, företag, hemsida, LinkedIn-profil, länk till kommentaren.
+3. Demobyggaren tar fram förslaget enligt "Vad kunden får av oss".
+4. Förslaget skickas som DM på LinkedIn, men först när Mathias har sagt ja till just det DM:et.
+
 ## Regler för agenter
 
 1. Spelvärldens **kanalmatris är copy-lag**: Google-löften ENDAST på
