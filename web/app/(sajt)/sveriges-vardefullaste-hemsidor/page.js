@@ -6,9 +6,9 @@ import styles from '../forslag/forslag.module.css';
    maykagulo.se visas som vårt eget case (jäv), inte som rankad etta. Inga poäng,
    inga resultatsiffror, inga tankstreck. Vikterna nedan är metoden, inte mätdata. */
 
-const TITEL = 'Sveriges värdefullaste hemsidor: så mäter vi affärsvärde | Bahko Byrå';
+const TITEL = 'Sveriges värdefullaste hemsidor, vår metod | Bahko Byrå';
 const BESKRIVNING =
-  'Sveriges värdefullaste hemsidor är en lista över svenska småföretags hemsidor, bedömda efter affärsvärde och inte trafik. Öppen metod med sju kriterier och 0 till 100 poäng.';
+  'Lista över svenska småföretags hemsidor, bedömda efter affärsvärde och inte trafik. Öppen metod med sju kriterier och 0 till 100 poäng.';
 
 const OG_BILD = '/og/sveriges-vardefullaste-hemsidor.png';
 

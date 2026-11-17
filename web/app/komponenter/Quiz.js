@@ -200,7 +200,7 @@ export default function Quiz() {
                   onClick={() => valj('bransch', b.id)}
                 >
                   <span className={styles.marke}>
-                    <img src={`/img/nischer/${b.id}-3d.webp`} alt="" width="640" height="640" loading="lazy" decoding="async" />
+                    <img src={`/img/nischer/${b.id}-3d.webp`} alt={`3D-ikon för ${b.namn}`} width="640" height="640" loading="lazy" decoding="async" />
                   </span>
                   <span>{b.namn}</span>
                 </button>

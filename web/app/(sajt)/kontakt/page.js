@@ -5,9 +5,9 @@ import { NYCKEL_KONTAKT } from '../../formular';
 import styles from './kontakt.module.css';
 
 export const metadata = {
-  title: 'Kontakt: kostnadsfritt hemsideförslag från webbyrån i Huskvarna/Jönköping',
+  title: 'Kontakt: kostnadsfritt hemsideförslag',
   description:
-    'Berätta kort om ditt företag så bygger vi ett förslag på din nya hemsida inom 48 timmar, kostnadsfritt. Bahko Byrå, Kungsängsvägen 27 i Huskvarna, 076-254 09 51.',
+    'Berätta kort om ditt företag så bygger vi ett förslag på din hemsida inom 48 timmar, kostnadsfritt. Bahko Byrå, Kungsängsvägen 27 i Huskvarna, 076-254 09 51.',
   alternates: { canonical: '/kontakt/' },
 };
 

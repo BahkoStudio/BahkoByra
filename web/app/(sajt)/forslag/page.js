@@ -17,7 +17,7 @@ export const metadata = {
   title: { absolute: TITEL },
   description: BESKRIVNING,
   alternates: { canonical: '/forslag/' },
-  openGraph: { title: TITEL, description: BESKRIVNING, url: '/forslag/' },
+  openGraph: { title: TITEL, description: BESKRIVNING, url: '/forslag/', images: ['/brand/logo-raster-16x9.png'] },
 };
 
 const TITTAR = [

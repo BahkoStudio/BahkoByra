@@ -1197,6 +1197,13 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
+/* På den mörka quizrutan räcker inte --em-deep (#047857) mot --bas (kontrast 2,71).
+   Varumärkesgrönt --em (#10b981) klarar 4,5:1 (SEO-granskning 2026-11-17). */
+.gratisQuiz .gratisTagg {
+  color: var(--em);
+  background: rgba(16, 185, 129, 0.22);
+}
+
 .gratisQuiz:hover {
   border-color: var(--em);
 }

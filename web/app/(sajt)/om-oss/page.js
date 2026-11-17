@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import Maskot from '../../komponenter/Maskot';
+import RubrikMedMaskot from '../../komponenter/RubrikMedMaskot';
 import styles from './om.module.css';
 
 export const metadata = {
-  title: 'Om Bahko Byrå, webbyrå i Huskvarna/Jönköping för hemsidor och Google-synlighet',
+  title: 'Om Bahko Byrå, webbyrå i Huskvarna',
   description:
-    'Bahko Byrå är en webbyrå i Huskvarna/Jönköping som bygger hemsidor åt hantverkare och lokala företag i hela Sverige. Du ser sidan innan du betalar och äger allt.',
+    'Bahko Byrå är en webbyrå i Huskvarna som bygger hemsidor åt hantverkare och lokala företag i hela Sverige. Du ser sidan innan du betalar och äger allt.',
   alternates: { canonical: '/om-oss/' },
 };
 
@@ -40,10 +40,9 @@ export default function OmOss() {
       <section className={`mork ${styles.topp}`}>
         <div className="wrap">
           <span className="eyebrow">Om byrån</span>
-          <h1>
-            <Maskot pose="vinkar" stil="liten" alt="Bahko-maskoten hälsar" />{' '}
+          <RubrikMedMaskot pose="vinkar" alt="Bahko-maskoten hälsar">
             Vi bygger sidor för folk som <span className="accent">jobbar med händerna.</span>
-          </h1>
+          </RubrikMedMaskot>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
             Bahko Byrå är en liten svensk byrå med en tydlig nisch: bygg och hantverk. Vi gör
             hemsidor som gör det lätt för kunden att höra av sig, och vi visar dem innan ni betalar.

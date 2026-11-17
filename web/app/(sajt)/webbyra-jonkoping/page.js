@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Faq from '../../komponenter/Faq';
-import Maskot from '../../komponenter/Maskot';
+import RubrikMedMaskot from '../../komponenter/RubrikMedMaskot';
 import styles from './jonkoping.module.css';
 // Paketkorten delar stil med /tjanster/hemsidor/, så att priserna ser likadana ut på båda sidorna.
 import paketStil from '../tjanster/[slug]/tjanst.module.css';
@@ -15,7 +15,7 @@ const [UNDERHALL, GOOGLE] = TILLAGG;
 
 export const metadata = {
   /* absolute: layoutens mall lägger annars till "| Bahko Byrå" en gång till. */
-  title: { absolute: `Webbyrå i Jönköping: hemsidor och webbdesign från ${BAS.pris} | Bahko Byrå` },
+  title: { absolute: `Webbyrå i Jönköping: hemsidor från ${BAS.pris} | Bahko Byrå` },
   description:
     'Webbyrå i Jönköping med kontor i Huskvarna. Hemsidor och webbdesign för företag till fast pris från 10 000 kr ex moms. Färdigt förslag inom 48 timmar.',
   alternates: { canonical: '/webbyra-jonkoping/' },
@@ -244,10 +244,9 @@ export default function Jonkoping() {
             <span aria-hidden="true">/</span>
             <span>Webbyrå i Jönköping</span>
           </nav>
-          <h1>
-            <Maskot pose="vinkar" stil="liten" alt="Bahko-maskoten hälsar" />{' '}
+          <RubrikMedMaskot pose="vinkar" alt="Bahko-maskoten hälsar">
             Webbyrå och webbdesign i Jönköping
-          </h1>
+          </RubrikMedMaskot>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
             Bahko Byrå är en webbyrå med kontor i Huskvarna, nära Jönköping, som gör webbdesign och
             bygger hemsidor för bygg- och hantverksföretag och andra lokala företag. Vill ni köpa en

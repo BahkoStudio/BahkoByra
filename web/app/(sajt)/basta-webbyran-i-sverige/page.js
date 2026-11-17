@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Faq from '../../komponenter/Faq';
-import Maskot from '../../komponenter/Maskot';
+import RubrikMedMaskot from '../../komponenter/RubrikMedMaskot';
 import styles from '../vad-kostar-en-hemsida/prisguide.module.css';
 
 /* Guide för sökningen "bästa webbyrå i Sverige". Sidan påstår ALDRIG att Bahko
@@ -10,9 +10,9 @@ import styles from '../vad-kostar-en-hemsida/prisguide.module.css';
    företagare (Mathias 2026-10-07). Bromma-siffrorna är belagda (BevisBromma.js). */
 
 export const metadata = {
-  title: 'Bästa webbyrå i Sverige? Så väljer du rätt som lokal företagare',
+  title: 'Bästa webbyrå i Sverige? Så väljer du rätt',
   description:
-    'Det finns ingen bästa webbyrå i Sverige för alla. För en lokal företagare är den bästa byrån den som får telefonen att ringa. Sju saker att kontrollera innan du väljer.',
+    'Det finns ingen bästa webbyrå i Sverige för alla. För en lokal företagare är den bästa den som får telefonen att ringa. Sju saker att kolla innan du väljer.',
   alternates: { canonical: '/basta-webbyran-i-sverige/' },
 };
 
@@ -105,10 +105,9 @@ export default function BastaWebbyran() {
             <span aria-hidden="true">/</span>
             <span>Bästa webbyrå i Sverige</span>
           </nav>
-          <h1>
-            <Maskot pose="pekar" stil="liten" alt="Bahko-maskoten visar vägen" /> Bästa webbyrå i
-            Sverige? Så väljer du rätt som lokal företagare
-          </h1>
+          <RubrikMedMaskot pose="pekar" alt="Bahko-maskoten visar vägen">
+            Bästa webbyrå i Sverige? Så väljer du rätt som lokal företagare
+          </RubrikMedMaskot>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
             Det finns ingen bästa webbyrå i Sverige för alla. För en lokal företagare är den bästa
             byrån den som får telefonen att ringa, och som låter dig se arbetet innan du betalar.

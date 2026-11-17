@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import Faq from '../../komponenter/Faq';
-import Maskot from '../../komponenter/Maskot';
+import RubrikMedMaskot from '../../komponenter/RubrikMedMaskot';
 import styles from '../vad-kostar-en-hemsida/prisguide.module.css';
 
 export const metadata = {
   title: 'Kan en SEO-expert rädda min hemsida?',
   description:
-    'Ja, om problemet är att ingen hittar sidan. Nej, om problemet är att de som hittar den inte ringer. Så ser du skillnaden, och vad en SEO-expert faktiskt gör för en hantverksfirma.',
+    'Ja, om ingen hittar sidan. Nej, om de som hittar den inte ringer. Så ser du skillnaden, och vad en SEO-expert gör för en hantverksfirma.',
   alternates: { canonical: '/kan-en-seo-expert-radda-min-hemsida/' },
 };
 
@@ -102,10 +102,9 @@ export default function SeoExpertRadda() {
             <span aria-hidden="true">/</span>
             <span>Kan en SEO-expert rädda min hemsida?</span>
           </nav>
-          <h1>
-            <Maskot pose="undersoker" stil="liten" alt="Bahko-maskoten granskar en hemsida" />{' '}
+          <RubrikMedMaskot pose="undersoker" alt="Bahko-maskoten granskar en hemsida">
             Kan en SEO-expert rädda min hemsida?
-          </h1>
+          </RubrikMedMaskot>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
             Ja, om problemet är att ingen hittar sidan. Nej, om problemet är att de som hittar den
             inte ringer. Då behöver sidan göras om, och ingen mängd SEO ändrar på det. Så här ser

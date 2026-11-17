@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Faq from './Faq';
-import Maskot from './Maskot';
+import RubrikMedMaskot from './RubrikMedMaskot';
 import styles from './NischSida.module.css';
 
 const PIL = (
@@ -26,10 +26,9 @@ export default function NischSida({ nisch }) {
             <span aria-hidden="true">/</span>
             <span>{nisch.h1}</span>
           </nav>
-          <h1>
-            <Maskot pose="vinkar" stil="liten" alt="Bahko-maskoten hälsar" />{' '}
+          <RubrikMedMaskot pose="vinkar" alt="Bahko-maskoten hälsar">
             {nisch.h1}
-          </h1>
+          </RubrikMedMaskot>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
             {nisch.ingress}
             {/* Ort i första stycket (SEO-disken 2026-11-04) */}

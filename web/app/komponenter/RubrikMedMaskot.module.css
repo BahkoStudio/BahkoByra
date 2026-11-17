@@ -1,0 +1,9 @@
+.rad {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.rad h1 {
+  min-width: 0;
+}

@@ -25,7 +25,7 @@ export const metadata = {
   title: { absolute: TITEL },
   description: BESKRIVNING,
   alternates: { canonical: '/seo-jonkoping/' },
-  openGraph: { title: TITEL, description: BESKRIVNING, url: '/seo-jonkoping/' },
+  openGraph: { title: TITEL, description: BESKRIVNING, url: '/seo-jonkoping/', images: ['/brand/logo-raster-16x9.png'] },
 };
 
 const PIL = (

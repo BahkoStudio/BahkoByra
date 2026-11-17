@@ -18,22 +18,35 @@ export function generateStaticParams() {
   return TJANSTER.map((t) => ({ slug: t.slug }));
 }
 
+/* Kortade titlar och metabeskrivningar under 65/160 tecken inkl. mallens suffix
+   (SEO-granskning 2026-11-17). Övriga tjänster behåller texten i data.js. */
+const TITLAR = {
+  hemsidor: 'Hemsida för hantverkare i Jönköping, från 10 000 kr',
+};
+const BESKRIVNINGAR = {
+  hemsidor:
+    'Köp en hemsida för ditt hantverks- eller lokala företag hos Bahko Byrå i Huskvarna. Tre paket från 10 000 kr ex moms, förslag inom 48 timmar.',
+  appar:
+    'Egen app till företaget för bokningar, avtal och återkommande kunder. Bahko Byrå i Huskvarna bygger bara när det lönar sig. Fråga oss om din idé.',
+};
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const t = TJANSTER.find((x) => x.slug === slug);
   if (!t) return {};
   return {
     // SEO-briefen 2026-10-20: tjänsten och sökordet först. Suffixet "| Bahko Byrå" läggs på av layoutens mall.
-    title: t.title || t.rubrik,
-    description: t.meta || t.ingress,
+    title: TITLAR[t.slug] || t.title || t.rubrik,
+    description: BESKRIVNINGAR[t.slug] || t.meta || t.ingress,
     alternates: { canonical: `/tjanster/${t.slug}/` },
   };
 }
 
 /* Strukturerad data per tjänst: Service (pekar på organisationen), BreadcrumbList
    (Start → tjänsten; det finns ingen /tjanster/-sida att lägga emellan) och FAQPage
-   byggd ur samma frågelista som visas på sidan. Paketen blir Offer-noder. */
-function schema(t) {
+   byggd ur samma frågelista som visas på sidan (t.fragor, annars de första fyra
+   från startsidans FAQ). Paketen blir Offer-noder. */
+function schema(t, fragor) {
   const url = `${SAJT}/tjanster/${t.slug}/`;
   const graf = [
     {
@@ -76,11 +89,11 @@ function schema(t) {
       ],
     },
   ];
-  if (t.fragor) {
+  if (fragor.length) {
     graf.push({
       '@type': 'FAQPage',
       '@id': `${url}#faq`,
-      mainEntity: t.fragor.map((f) => ({
+      mainEntity: fragor.map((f) => ({
         '@type': 'Question',
         name: f.fraga,
         acceptedAnswer: { '@type': 'Answer', text: f.svar },
@@ -100,7 +113,7 @@ export default async function Tjanst({ params }) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema(t)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema(t, fragor)) }} />
 
       <section className={`mork ${styles.topp}`}>
         <div className="wrap" data-trapp>

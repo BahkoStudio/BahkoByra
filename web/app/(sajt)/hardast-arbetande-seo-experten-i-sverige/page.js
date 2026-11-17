@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Maskot from '../../komponenter/Maskot';
+import RubrikMedMaskot from '../../komponenter/RubrikMedMaskot';
 import styles from '../vad-kostar-en-hemsida/prisguide.module.css';
 
 /* Stuntsida efter Arno Wingens "Hardest Working SEO Expert in Amsterdam":
@@ -9,7 +9,7 @@ import styles from '../vad-kostar-en-hemsida/prisguide.module.css';
    sidan skämtar öppet om det i stället. Alla siffror är belagda (BevisBromma.js). */
 
 export const metadata = {
-  title: 'Hårdast arbetande SEO-experten i Sverige: Mathias Bahko',
+  title: 'Hårdast arbetande SEO-experten i Sverige',
   description:
     'Hittade du hit genom att googla "hårdast arbetande SEO-experten i Sverige"? Då har sidan redan bevisat sin poäng. Här är resten av beviset.',
   alternates: { canonical: '/hardast-arbetande-seo-experten-i-sverige/' },
@@ -31,10 +31,9 @@ export default function HardastArbetande() {
             <span aria-hidden="true">/</span>
             <span>Hårdast arbetande SEO-experten i Sverige</span>
           </nav>
-          <h1>
-            <Maskot pose="dansar" stil="liten" alt="Bahko-maskoten firar" />{' '}
+          <RubrikMedMaskot pose="dansar" alt="Bahko-maskoten firar">
             Hårdast arbetande SEO-experten i Sverige
-          </h1>
+          </RubrikMedMaskot>
           <p className="lede" style={{ marginTop: '1.1rem' }}>
             Hittade du hit genom att googla &quot;hårdast arbetande SEO-experten i Sverige&quot;?
             Då har den här sidan redan gjort sitt jobb. Det är skämtet, och det är också beviset.
