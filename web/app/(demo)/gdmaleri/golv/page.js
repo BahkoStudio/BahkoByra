@@ -49,6 +49,13 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
    golv-slipat-efter.webp flyttade från de utvalda till bildbandet så att de utvalda
    fortfarande är tre.
 
+   NYA BILDER (2026-11-18, daglig IG-koll): inlägget Dfz6AbikQBr (publicerat 2026-11-17),
+   ordagrant: "Golvläggning 12,5 kvm klart i Bromma". Karusell med två bilder, före
+   (inbränd text Före) och efter (Efter). golv-bromma-fore-efter.webp = SAMMANSATT, före
+   överst och efter nederst, beskurna 3:2 vardera; bildtexten säger att det är två foton.
+   Ytan 12,5 kvm står i inlägget. Troligen samma kök som golv-bromma-kok.webp (Bromma,
+   klart 2026-11-16), men det är inte bekräftat. Lagt som utvalt jobb nummer två.
+
    OPTIMERING: egen titel och beskrivning, JSON-LD Service som pekar på samma
    HousePainter-entitet (@id gdmaleri.se/#business), inget betygsschema, noindex
    som huvudsidan tills flytten till gdmaleri.se.
@@ -106,6 +113,7 @@ const data = {
     // sedan Ghandis golvfoton 2026-10-30, Östermalm, klart 2026-10-24 (Mathias 2026-10-30).
     utvalda: [
       { src: `${M}/golv-bromma-kok.webp`, w: 720, h: 960, etikett: 'Bromma, nytt golv i köket', txt: 'Nytt golv lagt i ett kök i Bromma, klart 16 november 2026.', alt: 'Nylagt ljust golv med grå ådring i ett kök i Bromma, med tvättmaskin, ljusa köksluckor och träbänkskiva under två fönster' },
+      { src: `${M}/golv-bromma-fore-efter.webp`, w: 900, h: 1200, etikett: 'Bromma, 12,5 kvm', txt: 'Golvläggning, 12,5 kvm klart i Bromma. Två foton: före överst, efter nederst.', alt: 'Sammansatt före/efter-bild av ett kök i Bromma: övre halvan ett slitet beigt golv framför spis och kylskåp, nedre halvan ett nylagt ljust golv med grå ådring vid tvättmaskin och köksö med träbänkskiva', lank: { href: 'https://www.instagram.com/p/Dfz6AbikQBr/', txt: 'Se jobbet på Instagram' } },
       { src: `${M}/golv-fore-efter.webp`, w: 900, h: 1200, etikett: 'Östermalm, före och efter', txt: 'Slitet, gulnat trägolv slipat ljust, klart 24 oktober 2026. Två foton: före överst, efter nederst.', alt: 'Sammansatt före/efter-bild av ett trägolv i en lägenhet på Östermalm: övre halvan ett slitet och gulnat golv i ett rum med fönster och radiator, nedre halvan ett nyslipat ljust trägolv i ett rum med radiator' },
       { src: `${M}/golv-brador-byte.webp`, w: 900, h: 1200, etikett: 'Östermalm, byte av golvbrädor', txt: 'Skadade brädor byttes mot nya i samma lägenhet. Under arbetet överst, klart nederst.', alt: 'Sammansatt bild från en lägenhet på Östermalm: övre halvan ett öppnat trägolv med bjälkar, isolering och nya brädor på väg in, nedre halvan det färdiga golvet med nya brädor i en hall' },
     ],
