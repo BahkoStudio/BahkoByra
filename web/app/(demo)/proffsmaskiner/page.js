@@ -2,7 +2,6 @@ import Image from 'next/image';
 import localFont from 'next/font/local';
 import styles from './proffsmaskiner.module.css';
 import DemoFormular from '../../komponenter/DemoFormular';
-import { arKunddoman } from './kunddoman';
 import Matning from './Matning';
 
 /* ===========================================================================
@@ -91,8 +90,8 @@ const ui = localFont({
 });
 
 const META = {
-  // SOP steg 4.1 (2026-11-17): huvudsökordet först, sedan de mest hyrda maskinerna, sist firmanamnet.
-  title: 'Maskinuthyrning i Sollentuna | Hyr sågar, kärnborrar och bilningshammare | Proffsmaskiner Sverige AB',
+  // SOP steg 4.1 (2026-11-17): huvudsökordet först, sist firmanamnet. Kortad 2026-11-17 (Mathias) så att Google inte kapar den.
+  title: 'Maskinuthyrning i Sollentuna | Proffsmaskiner Sverige AB',
   description:
     'Hyr och köp maskiner för bygg, rivning, sanering och håltagning i Sollentuna och Stockholm. Leverans till arbetsplatsen, servat före varje uthyrning.',
 };
@@ -112,37 +111,40 @@ const OG_BILD = {
   alt: 'Maskiner för bygg, rivning, sanering och håltagning från Proffsmaskiner i Sollentuna',
 };
 
-// Kunddomänen: indexeras med canonical proffsmaskiner.se. På bahkobyra.se/proffsmaskiner/: noindex.
-// Search Console-taggen får bara synas på proffsmaskiner.se, inte på bahkobyra.se/proffsmaskiner/.
-export async function generateMetadata() {
-  const openGraph = {
-    title: META.title,
-    description: META.description,
-    siteName: 'Proffsmaskiner Sverige AB',
-    locale: 'sv_SE',
-    type: 'website',
-    images: [OG_BILD],
-  };
-  const twitter = {
-    card: 'summary_large_image',
-    title: META.title,
-    description: META.description,
-    images: [OG_BILD.url],
-  };
-  if (await arKunddoman()) {
-    return {
-      ...META,
-      metadataBase: new URL('https://proffsmaskiner.se'),
-      alternates: { canonical: 'https://proffsmaskiner.se/' },
-      robots: { index: true, follow: true },
-      verification: { google: 'LeRDFrGYgt9P87Tg0a5ONPO9OHKHFRPYTz23H7cwSDs' },
-      icons: ICONS,
-      openGraph: { ...openGraph, url: 'https://proffsmaskiner.se/' },
-      twitter,
-    };
-  }
-  return { ...META, robots: { index: false, follow: false }, icons: ICONS, openGraph, twitter };
-}
+const OPEN_GRAPH = {
+  title: META.title,
+  description: META.description,
+  siteName: 'Proffsmaskiner Sverige AB',
+  locale: 'sv_SE',
+  type: 'website',
+  images: [OG_BILD],
+};
+
+const TWITTER = {
+  card: 'summary_large_image',
+  title: META.title,
+  description: META.description,
+  images: [OG_BILD.url],
+};
+
+/* Metadatan är statisk (SEO 2026-11-17). Förut läste generateMetadata request headers (kunddoman.js),
+   och då strömmar Next 15.5 metadatan in i <body> i stället för <head>: Google ser då ingen canonical.
+   Nu finns två statiska sidor med samma innehåll:
+   - bahkobyra.se/proffsmaskiner/ (den här filen): noindex, ingen canonical, ingen Search Console-tagg.
+   - proffsmaskiner.se/ serveras från ./kund/page.js (middleware skriver om / dit): index, canonical
+     proffsmaskiner.se, Search Console-taggen och GA4 med samtycke. */
+export const metadata = { ...META, robots: { index: false, follow: false }, icons: ICONS, openGraph: OPEN_GRAPH, twitter: TWITTER };
+
+export const KUND_METADATA = {
+  ...META,
+  metadataBase: new URL('https://proffsmaskiner.se'),
+  alternates: { canonical: 'https://proffsmaskiner.se/' },
+  robots: { index: true, follow: true },
+  verification: { google: 'LeRDFrGYgt9P87Tg0a5ONPO9OHKHFRPYTz23H7cwSDs' },
+  icons: ICONS,
+  openGraph: { ...OPEN_GRAPH, url: 'https://proffsmaskiner.se/' },
+  twitter: TWITTER,
+};
 
 // Web3Forms-nyckel för peter@proffsmaskiner.se (formuläret "proffsmaskiner" i Bahkos Web3Forms-konto,
 // Pro, Peter verifierade adressen 2026-11-10). Mottagare i panelen: bara peter@. Nyckeln är publik av design.
@@ -276,8 +278,9 @@ const FAQ_SCHEMA = {
   })),
 };
 
-export default async function ProffsmaskinerDemo() {
-  const kund = await arKunddoman();
+// Startsidans innehåll, samma på båda adresserna. kund = besöket kommer på proffsmaskiner.se (./kund/page.js):
+// bara då visas cookielänken och laddas samtyckesrutan och GA4.
+export function ProffsmaskinerSida({ kund = false }) {
   return (
     <div className={`${display.variable} ${displayKursiv.variable} ${ui.variable} ${styles.sida}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FORETAG_SCHEMA) }} />
@@ -476,4 +479,9 @@ export default async function ProffsmaskinerDemo() {
       {kund ? <Matning /> : null}
     </div>
   );
+}
+
+// bahkobyra.se/proffsmaskiner/: noindex-kopian (metadata ovan), utan mätning.
+export default function ProffsmaskinerDemo() {
+  return <ProffsmaskinerSida />;
 }
