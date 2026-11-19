@@ -37,7 +37,7 @@ export default function Sida() {
       punkter: [
         { rubrik: 'Ni behöver inte ringa', text: 'Vi följer vädret och kommer när det snöat eller fryst på, utan att ni hör av er.' },
         { rubrik: 'Halkbekämpning vid behov', text: 'Sandning eller grus när det fryser på, inte bara när det snöar.' },
-        { rubrik: 'Fyra personer', text: 'Blir någon sjuk röjs det ändå. Ett avtal blir aldrig liggande.' },
+        { rubrik: 'Ersättare vid sjukdom', text: 'Blir någon sjuk röjs det ändå. Ett avtal blir aldrig liggande.' },
         { rubrik: 'Egna maskiner', text: 'Avant kompaktlastare och minigrävare för stora ytor, handkraft vid entréerna.' },
       ] },
     om: { ...bas.om, rubrik: ['Snön är halva', 'jobbet'], stycken: [
