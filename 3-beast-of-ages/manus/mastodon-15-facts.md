@@ -47,13 +47,15 @@ Beast of Ages. Manus och leveranspaket i samma fil, paketet överst.
 **C. Miniatyr** (`OneDrive/2 Beast of Ages/Paket/Miniatyrer/mastodon-15-facts/`)
 - **Rekommenderad: `1-nobody-wants-it-back.jpg`.** Ramverk: **konflikt**. En mastodont står i ett majsfält i gryningen med en långtradare och ett köpcentrum bakom, text **NOBODY WANTS IT BACK** i översta tredjedelen. Säger något titeln inte säger, och ser inte ut som Facts Machines (de har studiosvart bakgrund, vi har en scen). Klarar 10-procentstestet: djuret och texten syns i 128 pixlar.
 - Alternativ: `2-named-after-this.jpg`. Ramverk: **nyfikenhetsgap**. En mastodontkindtand i en blå handske, text **NAMED AFTER / THIS** med pil. **Varning:** AI-tanden har för spetsiga knölar; en riktig mastodontmolar har parvisa, rundare åsar. Byt bild mot ett riktigt foto eller gör om innan den används, annars dömer faktakollarna den i kommentarerna.
+- **Ny 2026-11-19: `4-1801-vs-real.jpg`** (GPT Image 2.5). Byggd som kanalens bästa miniatyr (dire wolf DAY 30 → NOW): Peales skelett från 1801 med betarna nedåt till vänster, en levande mastodont till höger, "1801" → "REAL". Fakta ett. Djuret till höger är omgjort till mastodont (lågt platt huvud, kort päls), inte mammut.
+- **Uppladdningsordning i Test & Compare:** `4-1801-vs-real.jpg`, `3-not-a-mammoth.jpg`, `1-nobody-wants-it-back.jpg`. Tvåan används inte.
 - Referensen ligger bredvid som `referens-facts-machine.jpg` för Grindens steg 4.
 - Ladda upp tre när YouTube tillåter; den tredje kan vara en variant av ettan med texten **NOT A MAMMOTH**.
 
 **D. Beskrivning**
-> In September 2026 a geologist pulled a mastodon tooth out of a California creek and identified it with a reverse image search. Mastodons are the most common Ice Age giant in North America, the animal that taught the world extinction was real, and nobody has a plan to bring one back. Here are 15 facts about the mastodon that make no sense: the painter who built America's first fossil skeleton with the tusks upside down, the president who thought it was still alive, the name that means "mammoth", and the skeletons where more than half had tuberculosis.
+> In September 2026 a geologist pulled a mastodon tooth out of a California creek and identified it with a reverse image search. Mastodons are the most common Ice Age giant in North America, the animal that taught the world extinction was real, and nobody has a plan to bring one back. Here are 15 facts about the mastodon that make no sense: the painter who built America's first fossil skeleton with the tusks upside down, the president who thought it was still alive, the name that means "mammoth", and the skeletons where more than half carry the scar of tuberculosis.
 >
-> Sources: Midpeninsula Regional Open Space District and Stanford (Sept 2026); Miller et al., PNAS (2022); Rothschild & Laub; Dooley et al., PeerJ (2019); Karpinski et al., Science Advances (2025); Holen et al., Nature (2017); Semonin, *American Monster* (2000).
+> Sources: Midpeninsula Regional Open Space District and Stanford (Sept 2026); Rothschild & Laub (2006); Zazula et al., Nature Communications (2014); Fisher, University of Michigan; Dooley et al., PeerJ (2019); Karpinski et al., Science Advances (2025); Holen et al., Nature (2017); Semonin, *American Monster* (2000).
 
 **E. Fäst kommentar**
 > The mastodon's scientific name is Mammut. It literally means "mammoth", and it was given to the wrong animal first. Which of the 15 did you not know?
@@ -72,7 +74,7 @@ Fact 6: The London giant
 Fact 7: Written in the feet
 Fact 8: Every spring, a fight
 Fact 9: The milkman
-Fact 10: Still alive inside
+Fact 10: The last meal
 Fact 11: Arctic vacation
 Fact 12: Half a million years
 Fact 13: Named in 2019
