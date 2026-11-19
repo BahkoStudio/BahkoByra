@@ -287,9 +287,19 @@ const data = {
     videoAlt: 'Illustration: ett färdigt badrum i vit marmor och borstad guld, som slutar med Kakel 0413:s logotyp på en mörk kakelvägg',
   },
 
-  // Om oss borttagen helt (Mathias 2026-11-10, "Allt detta skulle bort"). Mallen kräver fältet,
-  // så det står tomt och sektionen #om döljs i stilblocket nedan. Ingen text, inget loggkort.
-  om: { eyebrow: '', rubrik: [''], stycken: [], bevis: [] },
+  // Om oss borttagen 2026-11-10. Sektionen #om används sedan 2026-11-19 för BKR-behörigheten:
+  // Nuhs egen text ordagrant, bara tankstrecket efter BBV utbytt mot komma.
+  om: {
+    eyebrow: 'Behörighet',
+    rubrik: ['Vi är ett', 'BKR‑behörigt företag'], // ‑ = hårt bindestreck, så BKR- inte hamnar ensamt på mobil
+    kortRad: 'Behörigt enligt Byggkeramikrådet',
+    stycken: [
+      'Vi på Kakel 0413 är stolta över att vara ett behörigt företag enligt Byggkeramikrådet (BKR).',
+      'Det innebär att vi har rätt utbildning och kompetens för att utföra våtrumsarbeten enligt branschreglerna BBV, Byggkeramikrådets Branschregler för Våtrum.',
+      'För dig som kund innebär det en extra trygghet när du anlitar oss för badrumsrenovering och plattsättning. Vi arbetar fackmässigt med fokus på kvalitet och säkerhet.',
+    ],
+    bevis: [],
+  },
 
   steg: {
     eyebrow: 'Så går det till',
@@ -391,11 +401,11 @@ const KUND_DATA = {
 export function Kakel0413Sida({ kund = false }) {
   return (
     <>
-      {/* Om oss borttagen helt (Mathias 2026-11-10): #om döljs och är tom, /om-oss/ omdirigeras till startsidan. Jobbanden och omdömena döljs tills Nuh har egna foton och riktiga omdömen (se FLAGGOR). */}
+      {/* Om oss borttagen (Mathias 2026-11-10), /om-oss/ omdirigeras till startsidan; #om visar sedan 2026-11-19 BKR-behörigheten. Jobbanden och omdömena döljs tills Nuh har egna foton och riktiga omdömen (se FLAGGOR). */}
       {/* Nuh v2: ingen stor logotyp i heron (den stora logotypen visas inte, headerns logga kvar)
           och inget telefonnummer i heron (Ring-knappen i headern kvar). H1 är texten i hero.rubrik (SEO 2026-11-17),
           i mindre storlek än mallens ortrad, och Nuhs mening står under den. */}
-      <style>{'#jobb,#omdomen,#om{display:none!important}#top p:has(>img){display:none!important}#top a[href^="tel:"]{display:none!important}#top h1[class*="heroRubrik"] span[class*="heroOrt"]{margin-top:clamp(1.2rem,3vh,2rem);font-size:clamp(1.6rem,4vw,3rem);letter-spacing:.04em;line-height:1.1}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}#varfor ul[class*="varforPunkter"]{gap:0.6rem}#varfor ul[class*="varforPunkter"] li{padding:0.75rem 1.1rem}#varfor ul[class*="varforPunkter"] li:last-child{display:block;padding:0.6rem 0 0;background:none;border:0;box-shadow:none;color:rgba(255,255,255,.85)}#varfor ul[class*="varforPunkter"] li:last-child svg{display:none}'}</style>
+      <style>{'#jobb,#omdomen{display:none!important}#top p:has(>img){display:none!important}#top a[href^="tel:"]{display:none!important}#top h1[class*="heroRubrik"] span[class*="heroOrt"]{margin-top:clamp(1.2rem,3vh,2rem);font-size:clamp(1.6rem,4vw,3rem);letter-spacing:.04em;line-height:1.1}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}#varfor ul[class*="varforPunkter"]{gap:0.6rem}#varfor ul[class*="varforPunkter"] li{padding:0.75rem 1.1rem}#varfor ul[class*="varforPunkter"] li:last-child{display:block;padding:0.6rem 0 0;background:none;border:0;box-shadow:none;color:rgba(255,255,255,.85)}#varfor ul[class*="varforPunkter"] li:last-child svg{display:none}'}</style>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FORETAG_SCHEMA) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }} />
       <DemoSida data={kund ? KUND_DATA : { ...data, kund: true }} />
