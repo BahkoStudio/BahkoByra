@@ -135,7 +135,7 @@ export const bas = {
     lead: 'Den som svarar i telefon är samma person som leder jobbet. På sommaren i trädgården, på vintern på uppfarten.',
     punkter: [
       { rubrik: 'En kontaktperson', text: 'Jens leder arbetet och är den du pratar med, från första besöket till sista lasset.' },
-      { rubrik: 'Ersättare vid sjukdom', text: 'Blir någon sjuk sätts en ersättare in. Ett bokat jobb blir inte liggande.' },
+      { rubrik: 'Pris innan start', text: 'Du får priset efter ett kostnadsfritt hembesök, innan vi börjar.' },
       { rubrik: 'Ansvarsförsäkrade', text: 'Händer något på tomten eller uppfarten är det vår försäkring som gäller, inte din.' },
       { rubrik: 'Egna maskiner', text: 'Minigrävare, Avant kompaktlastare och Husqvarna. Ingen väntan på inhyrd utrustning.' },
     ],
