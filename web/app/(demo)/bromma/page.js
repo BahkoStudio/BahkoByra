@@ -11,7 +11,7 @@ import SynligHero from './_synlig-hero';
 
    VERIFIERAT (allt ur den nuvarande brommatradgardsservice.se, index.html):
    070-766 65 14, jens@brommatradgardsservice.se, Jens Amnesten leder arbetet,
-   fyra personer i verksamheten, ansvarsförsäkring. Snöröjning och
+   ansvarsförsäkring (antalet personer ska INTE stå på sajten, Jens 2026-11-19). Snöröjning och
    halkbekämpning: "Uppfarter, gångar och parkeringar röjs genom
    vintersäsongen, med halkbekämpning vid behov. Samma firma och samma
    kontaktperson året om." BRF-avtal med snöröjning genom vintern.

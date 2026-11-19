@@ -17,7 +17,6 @@ const fragor = [
   { q: 'Får föreningen rutavdrag?', a: <>Nej. En bostadsrättsförening är en juridisk person, och skötsel av föreningens mark ger inget rutavdrag. Vi räknar därför alltid på bruttopris mot föreningar. Källa: <a href={SKV_BRF} target="_blank" rel="noopener">Skatteverket</a>.</> },
   { q: 'Hur ser avtalet ut?', a: 'Fast månadsavgift, tolv månaders avtal och tre månaders uppsägning.' },
   { q: 'Har ni gjort uppdrag åt föreningar tidigare?', a: 'Ja, bland annat åt BRF Körsbärsdalen i Bromma, med löpande trädgårdsskötsel, upprustning och underhåll. Referenser lämnas på förfrågan.' },
-  { q: 'Vad händer vid sjukdom eller semester?', a: 'Fyra personer arbetar i verksamheten, så avtalad skötsel genomförs enligt plan.' },
 ];
 
 export default function Sida() {
@@ -40,7 +39,7 @@ export default function Sida() {
     varfor: { ...bas.varfor, eyebrow: 'Varför oss för föreningen', rubrik: ['En leverantör,', 'inte två'], lead: 'Styrelsen slipper hålla isär sommarfirman och snöfirman. Samma person ansvarar för gården året om.',
       punkter: [
         { rubrik: 'En kontaktperson', text: 'Jens leder arbetet och är den styrelsen ringer, oavsett årstid.' },
-        { rubrik: 'Fyra personer', text: 'Blir någon sjuk sätts en ersättare in. Gården blir inte liggande.' },
+        { rubrik: 'Pris innan start', text: 'Du får priset efter ett kostnadsfritt hembesök, innan vi börjar.' },
         { rubrik: 'Ansvarsförsäkrade', text: 'Händer något på gården är det vår försäkring som gäller.' },
         { rubrik: 'Egna maskiner', text: 'Kompaktlastare för parkeringarna, minigrävare för planteringarna. Inget inhyrt.' },
       ] },

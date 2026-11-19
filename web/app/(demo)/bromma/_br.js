@@ -135,7 +135,7 @@ export const bas = {
     lead: 'Den som svarar i telefon är samma person som leder jobbet. På sommaren i trädgården, på vintern på uppfarten.',
     punkter: [
       { rubrik: 'En kontaktperson', text: 'Jens leder arbetet och är den du pratar med, från första besöket till sista lasset.' },
-      { rubrik: 'Fyra personer', text: 'Blir någon sjuk sätts en ersättare in. Ett bokat jobb blir inte liggande.' },
+      { rubrik: 'Pris innan start', text: 'Du får priset efter ett kostnadsfritt hembesök, innan vi börjar.' },
       { rubrik: 'Ansvarsförsäkrade', text: 'Händer något på tomten eller uppfarten är det vår försäkring som gäller, inte din.' },
       { rubrik: 'Egna maskiner', text: 'Minigrävare, Avant kompaktlastare och Husqvarna. Ingen väntan på inhyrd utrustning.' },
     ],
@@ -234,6 +234,15 @@ export const bas = {
 
   footer: {
     text: 'Snöröjning, halkbekämpning och trädgårdsservice i Bromma och hela Storstockholm. Kostnadsfritt hembesök och pris innan start.',
+    /* Mathias 2026-11-19: en bild på Stockholm i footern. Stadshuset över Riddarfjärden i skymning.
+       Foto: Philip Myrtorp på Unsplash, https://unsplash.com/photos/JebUD5fN8aw, Unsplash License
+       (fri för kommersiellt bruk, ingen attribution krävs), hämtad 2026-11-19. Inte samma bild som GD Måleri.
+       footer-stockholm.webp = 2,4:1, 1920×800; footer-stockholm-mobil.webp = 3:4 runt tornet, 900×1200. */
+    bild: {
+      src: `${M}/footer-stockholm.webp`,
+      srcMobil: `${M}/footer-stockholm-mobil.webp`,
+      alt: 'Stockholms stadshus vid Riddarfjärden i skymning, med tornet speglat i vattnet.',
+    },
   },
 
   kund: true,
