@@ -1,215 +1,143 @@
-# SOP: Kalla samtal — säljare (anställd)
+# SOP: Ringmanuset. Kallt samtal som bokar ett möte
 
-**För vem:** ny säljare på Bahko Byrå som ringer kalla samtal.
-**Vad vi säljer:** hemsidor. Ingenting annat nämns i samtalet. Inte SEO, inte Google-ranking,
-inte annonser. Det är intern leverans och uppsell långt senare, aldrig säljbudskap.
-**Nisch:** lokala företag. Kärnan är bygg och hantverk (byggfirmor, målare, takläggare, mark, rör,
-el, snickare), men städ, flytt och restaurang ingår när Mathias godkänt listan. Säg alltid deras
-egen bransch i samtalet, aldrig "hantverksföretag" till en städfirma.
-**Erbjudandet i samtalet:** en helt skräddarsydd ny hemsida för deras firma, gratis, levererad
-på mejl inom 48 timmar. Kärnprodukten (hemsida 15 000 kr, engångs) säljs i 15-minuterssamtalet som bokas
-EFTER att de sett demon, aldrig i det kalla samtalet.
+**För vem:** den som ringer kalla samtal för Bahko Byrå.
+**Samtalets enda mål:** ett bokat möte på 15 minuter. Mötet bokas när de har bekräftat mejlet, medan ni fortfarande pratar.
+**Vad vi säljer:** hemsidor. Säg alltid deras egen bransch, aldrig "hantverksföretag" till en städfirma.
+**Varför de ska ta mötet:** de får se ett förslag på en ny hemsida, byggt för just deras firma. Det kostar ingenting.
 
-**Telefonsamtalets enda mål: få mejladressen och ett svar på testmejlet.**
-Inte boka möte. Inte sälja. Mejl in, svar tillbaka, klart. När kunden sett och gillat demon
-bokas **15-minuterssamtalet** (se eget avsnitt) — där, och först där, nämns priset 15 000 kr.
+Ordningen är alltid densamma:
 
----
+1. Du ringer och säger en konkret sak du sett på deras sida.
+2. Du erbjuder förslaget och 15 minuter där du visar det.
+3. Du tar mejladressen och skickar ett kort mejl medan ni pratar.
+4. De svarar på mejlet. Ett ord räcker. Nu är mejlet bekräftat.
+5. Du bokar mötet och skickar kalenderinbjudan till samma adress.
 
-## 1. Innan du ringer: variablerna
-
-Manuset innehåller fyra variabler. Du fyller i dem INNAN du slår numret, aldrig under samtalet.
-Förberedelsen tar 3 till 5 minuter per lead. Ring aldrig oförberedd, ett samtal utan konkret
-observation låter som alla andra säljsamtal de får varje vecka.
-
-### [FÖRETAG]
-Firmans namn som de själva skriver det. Kolla deras sajt eller Google-profil, inte bara
-CRM-raden. Säger du fel namn är samtalet över innan det börjat.
-
-### [NAMN]
-Namnet på personen du ringer, oftast ägaren.
-
-- Finns i CRM eller på sajtens "Om oss"/kontaktsida: använd förnamnet. "Hej Johan!"
-- Finns inget namn: öppna med bara "Hej!" och fråga dig fram: "jag söker den som äger firman."
-- Gissa aldrig ett namn. Fel namn är värre än inget namn.
-
-### [SMÄRTA]
-Den viktigaste variabeln. En konkret sak på DERAS sajt som kostar dem kunder.
-Så här hittar du den:
-
-**Öppna deras hemsida i mobilen.** Inte på datorn. Deras kunder söker "takläggare Västerås"
-i soffan med telefonen, så det är mobilvyn som räknas.
-
-**Läs den som en kund, inte som en säljare.** Föreställ dig: ditt tak läcker, du har tre
-flikar öppna med tre firmor. Skulle du ringa den här? Varför inte? Det du snubblar på är
-smärtan. Ställ dig frågorna i ordning:
-
-1. **Hittar jag telefonnumret direkt?** Utan att scrolla, utan att öppna en meny.
-   Vanligaste felet: numret göms bakom hamburgarmenyn.
-2. **Förstår jag inom 5 sekunder vad de gör och var?** "Välkommen till oss" säger ingenting.
-   "Takläggare i Västerås" säger allt.
-3. **Finns bilder på riktiga jobb?** Före och efter är guld. Stockfoton på leende modeller
-   i hjälm är ett minus, det ser alla igenom.
-4. **Är det för mycket text?** Väggar av text som ingen läser. En hantverkarsajt ska visa,
-   inte förklara.
-5. **Finns ett sätt att begära offert?** En knapp, ett formulär, något. Eller måste jag
-   leta upp en mejladress och skriva själv?
-6. **Ser den gammal ut?** Byggd 2012, inte anpassad för mobil, trasiga bilder, "senaste
-   nytt" från för tre år sen.
-7. **Har de ingen sajt alls?** Också en smärta, ofta den enklaste att prata om: de finns
-   bara på Facebook eller en Google-profil utan länk.
-
-**Jämför med våra byggda sajter** (lista i avsnitt 2). Öppna sajten för deras bransch bredvid
-deras egen. Skillnaden du ser är exakt det du ska kunna beskriva i telefon.
-
-**Skriv ner smärtan i EN mening innan du ringer.** Konkret och neutral, aldrig nedlåtande:
-
-- Bra: "offertknappen syns inte på mobilen, man måste öppna menyn för att hitta numret"
-- Bra: "det finns inga bilder på utförda jobb fast ni gjort massor"
-- Bra: "sajten är inte anpassad för mobil, texten blir pytteliten"
-- Dåligt: "er hemsida är ful och gammal" (förolämpning, inte observation)
-- Dåligt: "ni borde synas bättre på Google" (fel erbjudande, vi säljer hemsidor)
-
-**Skulle du köpa?** Avsluta förberedelsen med den frågan. Om svaret är "faktiskt ja, sajten
-är riktigt bra" — ring nästa lead istället. Vi ringer bara firmor vi faktiskt kan hjälpa.
-
-### [LÖSNING]
-Beviset som sägs direkt efter smärtan. Standardraden (enda siffran du får använda):
-**"Vi har byggt åt en målare i Jönköping, en trädgårdsfirma i Stockholm och en restaurang. Trädgårdsfirman
-hamnade först på Google och fick 35+ förfrågningar via hemsidan på två månader."** Sägs lugnt, i förbifarten, erfarenhet
-inte löfte. Flera kunder nämns alltid, det är beviset. Hitta aldrig på siffror eller kunder.
+Ingen bekräftelse betyder inget möte. Pris, paket och detaljer tas på mötet.
 
 ---
 
-## 2. Våra byggda sajter — kunna utantill
+## 1. Innan du ringer (3 minuter per firma)
 
-Öppna alltid sajten för rätt bransch INNAN samtalet, så du kan beskriva den konkret om
-frågan kommer. Länkarna används som referens i förberedelsen och kan visas på mötet.
-**De skickas ALDRIG i första mejlet** (se avsnitt 3, mejlet är ren text utan länkar).
+Fyll i fyra saker innan du slår numret.
 
-### Demosajter (visningsexempel, påhittade firmor)
+**[FÖRETAG]** Namnet som de själva skriver det på sin sida eller Google-profil.
 
-| Bransch | Sajt | Länk |
-|---|---|---|
-| Bygg / totalentreprenad | GRANIT Bygg & Entreprenad — **huvuddemot** | https://www.bahkobyra.se/cloud/bygg/ |
-| Badrum / renovering | Tryggbyggservice | https://www.bahkobyra.se/cloud/tryggbyggservice/ |
-| Nybyggnation / renovering | Vajje Bygg | https://www.bahkobyra.se/cloud/vajjebygg/ |
-| Mark / grund / dränering | Österlunds Jordbyggnad | https://www.bahkobyra.se/cloud/osterlunds/ |
-| Allservice / hantverk | Alfred Allservice | https://www.bahkobyra.se/cloud/alfredallservice/ |
-| Rör / relining | Asmar Relining | https://www.bahkobyra.se/cloud/asmar/ |
-| Transport / kranbil | KMC Transport | https://www.bahkobyra.se/cloud/kmctransport/ |
+**[NAMN]** Ägarens förnamn om det står på sidan eller i CRM. Saknas det: säg "Hej!" och fråga efter den som äger firman. Gissa aldrig ett namn.
 
-### Levererade kundsajter (riktiga kunder, starkaste beviset)
+**[SMÄRTA]** En sak på deras sida som kostar dem kunder. Öppna sidan i mobilen och läs den som en kund med tre flikar öppna. Gå igenom frågorna i ordning och stanna vid den första som brister:
 
-| Bransch | Kund | Länk |
-|---|---|---|
-| Måleri / tak | Smålands Måleri, Jönköping | https://smamaleri.se |
-| Trädgård / mark | Bromma Trädgårdsservice, Stockholm | https://brommatradgardsservice.se |
+1. Hittar jag telefonnumret direkt, utan att öppna en meny?
+2. Förstår jag på fem sekunder vad de gör och var?
+3. Finns bilder på riktiga jobb?
+4. Finns en knapp eller ett formulär för offert?
+5. Ser sidan gammal ut, eller fungerar den dåligt i mobilen?
+6. Har de ingen sida alls, bara Facebook eller en Google-profil?
 
-Kundsajterna väger tyngst: "det här byggde vi åt en målare i Jönköping" slår varje demo.
-Använd den som ligger närmast prospektets bransch när du beskriver vad vi gör.
+Skriv smärtan i en mening, konkret och neutral:
+
+- Bra: "man måste öppna menyn för att hitta numret i mobilen"
+- Bra: "det finns inga bilder på jobb ni har gjort"
+- Dåligt: "er hemsida är ful och gammal"
+
+Hittar du inget fel ringer du nästa firma. Vi ringer bara dem vi kan hjälpa.
+
+**[BEVIS]** En rad, alltid samma:
+
+> "Vi har byggt åt målare i Jönköping och Stockholm och åt en trädgårdsfirma i Stockholm. Trädgårdsfirman fick över 30 förfrågningar via hemsidan inom två månader."
+
+Hitta aldrig på en kund eller en siffra. Vill du se sidorna före passet: smamaleri.se, gdmaleri.se och brommatradgardsservice.se.
+
+**Två tider.** Ha två lediga mötestider klara i kalendern innan du ringer, inom de närmaste tre arbetsdagarna.
 
 ---
 
-## 3. Manuset
+## 2. Manuset
 
-Tala lugnt, som en människa. Läs inte innantill, kunna stommen och säg den med egna ord.
-Ler du när du pratar hörs det, det är inte en myt.
+Lär dig stommen och säg den med egna ord. Tala lugnt.
 
 ### Öppning (10 sekunder)
 
-> "Hej [NAMN]! [Ditt förnamn] heter jag, jag ringer från Bahko Byrå. Är det du som har hand
-> om hemsidan på [FÖRETAG]?"
+> "Hej [NAMN]! [Ditt förnamn] heter jag, jag ringer från Bahko Byrå. Är det du som har hand om hemsidan på [FÖRETAG]?"
 
-- **Ja:** vidare till kroppen.
-- **Nej:** "Inga problem! Vem ska jag prata med om sånt?" Få ett namn, tacka, lägg på, logga.
-- **"Vad gäller det?":** gå direkt på kroppen, det är samma sak som ett ja.
+- **Ja, eller "vad gäller det?":** gå vidare.
+- **Nej:** "Inga problem. Vem ska jag prata med om den?" Ta namnet, tacka och logga.
 
-### Kroppen (30 sekunder)
+### Anledningen (20 sekunder)
 
-> "Jag ska vara snabb. Jag kikade på er hemsida innan jag ringde och la märke till att
-> [SMÄRTA]. Det är en sån grej som gör att folk ringer nästa firma istället, fast ni
-> antagligen gör ett bättre jobb.
+> "Jag ska vara snabb. Jag tittade på er hemsida innan jag ringde och såg att [SMÄRTA]. Sånt gör att folk ringer nästa firma, fast ni antagligen gör ett bättre jobb.
 >
-> [LÖSNING] Vi har haft kunder med en sida som liknar er, där små justeringar gett tolv
-> procent fler kundförfrågningar.
+> [BEVIS]"
+
+### Erbjudandet (15 sekunder)
+
+> "Jag vill ta fram ett förslag på en ny hemsida för [FÖRETAG]. Det kostar ingenting. Sen tar vi 15 minuter där jag visar det, och du bestämmer själv om det är något för er.
 >
-> Vi bygger hemsidor för just bygg- och hantverksfirmor. Det jag vill göra är att ta fram
-> en helt skräddarsydd ny hemsida för [FÖRETAG], helt gratis. Ni får den inom 48 timmar,
-> ni kikar på den i mobilen, och sen bestämmer ni själva om det är intressant.
->
-> Jag skickar över den på mejl. Vad har ni för mejladress?"
+> Jag skickar en bekräftelse på mejl. Vad har ni för mejladress?"
 
-**Sen är du tyst.** Den som pratar först efter frågan förlorar. Fyll inte tystnaden.
+Var tyst efter frågan. Fyll inte tystnaden.
 
-### Ta mejlen (kritiskt moment)
+### Mejlet (medan ni pratar)
 
-Skriv ner adressen och **läs upp den tillbaka**, tecken för tecken. En feltagen mejladress
-är ett bortkastat samtal och en byggd demo som aldrig kommer fram.
+Skriv adressen och läs upp den, tecken för tecken.
 
 > "Då tar jag den: [läs upp adressen]. Stämmer det?"
 
-### Testmejlet (direkt efter, medan ni pratar)
+Skicka mejlet direkt. Säg exakt vad de ska leta efter och vad de ska göra:
 
-> "Toppen. Då gör vi så här: jag skickar ett kort mejl till dig nu direkt, bara vanlig
-> text utan länkar eller bilagor, så det inte fastnar i skräpposten. Svara kort på det,
-> ett ok räcker, så vet jag att det kommit fram till rätt adress.
->
-> Vi gör så för att se vilka som är med på riktigt, så vi inte lägger tid på att bygga
-> en sida som sen aldrig öppnas. Så fort du svarat sätter vi igång, och inom 48 timmar
-> har du den nya hemsidan i inkorgen."
+> "Nu skickade jag det. Det heter 'Svara OK' och kommer från Bahko Byrå. Öppna det, tryck på svara, skriv ok och skicka. Mer är det inte. Jag väntar kvar."
 
-**Skicka testmejlet MEDAN ni fortfarande pratar**, eller inom fem minuter efter samtalet.
-Mall (ren text, ingen länk, ingen bild, ingen signatur med logga):
+Mejlet är för att se vilka som är seriösa.
 
-> **Ämne:** Ny hemsida till [FÖRETAG]
+> **Ämne:** Svara OK: [FÖRETAG]
 >
-> Hejsan [NAMN]!
+> Svara OK på det här mejlet.
 >
-> Tack för snacket nyss. Svara kort på det här mejlet, så vet jag att det kom fram
-> till rätt adress. Sen bygger vi och du har den nya hemsidan här inom 48 timmar.
->
-> Vänliga hälsningar
 > [Ditt förnamn], Bahko Byrå
 
-### Avslutning av samtalet
+**Allt räknas som ett ok.** "Ok", "ja", en tumme upp eller ett tomt svar. Kommer det ett svar från adressen är mejlet bekräftat.
 
-> "Då säger vi så! Håll utkik efter mejlet, det kommer nu på en gång. Så fort du svarat
-> är vi igång. Ha en bra dag!"
+Vänta kvar i luren tills svaret syns i inkorgen. Går det trögt hjälper du till, i den här ordningen:
 
-**Inget möte bokas i det här samtalet.** Mötet kommer efter demon:
+1. **"Jag ser inget mejl."** "Det kan ta en halv minut. Dra ner i inkorgen så den uppdateras."
+2. **Fortfarande inget.** "Kolla i skräpposten, det heter 'Svara OK'."
+3. **Inte där heller.** Läs upp adressen en gång till. Var den fel: rätta och skicka om. Var den rätt: "Har du en annan mejl vi kan ta?"
+4. **De sitter i bilen eller har händerna fulla.** Gå till "Om de inte kan kolla mejlen nu" längre ner.
 
-1. Prospekten svarar på testmejlet → vi bygger (max 48 timmar)
-2. Demon levereras på mejl med JA-protokollet (nedan)
-3. Dag 1–2 efter leverans: uppföljning → DÅ bokas mötet, när de sett vad vi kan
+Skriv aldrig svaret åt dem och räkna aldrig ett muntligt "ja" som bekräftelse. Svaret ska ligga i inkorgen.
 
-### När demon levereras — JA-protokollet
+### Boka mötet (när svaret har kommit)
 
-Demomejlet följer alltid JA-protokollet. Tre saker, i ordning. Ingen pitch, ingen hype,
-inget "hör av dig!".
+> "Där kom det, tack. Då bokar vi de 15 minuterna. Passar [dag] klockan [tid] eller [dag] klockan [tid] bäst?"
 
-1. **Instruktion:** "Kika på den i mobilen, och lägg märke till hur snabbt man hittar
-   telefonnumret och offertknappen."
-2. **Kvalificering, en enkel fråga:** "Bara så jag förstår, ser du samma sak på er egen
-   sida idag?"
-3. **Optionalitet:** "Om det stämmer när du kollat kan jag visa nästa steg. Helt upp
-   till dig."
+Ge alltid två tider. Fråga aldrig "när passar det?".
 
-### Uppföljning efter demon → boka mötet
+> "Bra, då säger vi [dag] klockan [tid]. Inbjudan kommer till samma mejl nu. Jag ringer dig på det här numret, och då har du förslaget framför dig."
 
-Dag 1–2 efter att demon skickats, sms eller telefon:
+Skicka kalenderinbjudan innan du lägger på. Rubrik: "Hemsida till [FÖRETAG], 15 minuter". Lägg in deras telefonnummer i inbjudan.
 
-> "Hej [NAMN]! Hann du kika på hemsidan vi byggde åt er? Om du gillar den tar vi 15
-> minuter så går jag igenom hur vi gör den skarp. Passar tisdag eller torsdag bäst?"
+### Avslut
 
-Ge två val i taget, aldrig en öppen fråga ("när passar det?" ger "jag återkommer").
+> "Då hörs vi [dag]. Ha en bra dag!"
 
-Vid tystnad, EN påminnelse (dag 3, sms, max 40 ord):
+### Om de inte kan kolla mejlen nu
 
-> "Tjena [NAMN]! Vet inte om du hann se hemsidan vi byggde åt er. Den visar exakt varför
-> kunden ska välja just er. Ta den i mobilen, tar en minut. /[Ditt förnamn]"
+> "Inga problem. Svara ok när du ser det, så skickar jag två tider på sms."
 
-Sen tystnad från vår sida — lägg leadet på is: sätt ett ring tillbaka-datum en månad fram i CRM:et.
+Boka inget möte i samtalet. När svaret kommer skickar du samma dag:
+
+> "Hej [NAMN]! Mejlet kom fram, tack. Passar [dag] klockan [tid] eller [dag] klockan [tid] för de 15 minuterna? /[Ditt förnamn], Bahko Byrå"
+
+Kommer inget svar på två dagar skickar du en påminnelse på sms. Sen lägger du firman på is en månad.
+
+---
+
+## 3. Efter samtalet
+
+- **Samma dag:** säg till Mathias att ett möte är bokat, med firmans namn, sida, smärtan och mötestiden. Förslaget ska vara klart före mötet.
+- **Dagen före mötet:** sms. "Hej [NAMN]! Vi hörs i morgon klockan [tid], förslaget är klart. /[Ditt förnamn]"
+- **Mötet:** följer säljstrukturen i `sales_methodology.md`, avsnitt 5. Där tas priset upp, aldrig tidigare.
+- **Svarar de inte på mötestiden:** ring en gång till efter fem minuter, skicka sedan ett sms med två nya tider. Uteblir de en andra gång läggs firman på is.
 
 ---
 
@@ -254,113 +182,43 @@ när vi ses". Stå fast, vänligt.)*
 
 ---
 
-## 5. 15-minuterssamtalet: här stängs affären
+## 5. Logga i CRM
 
-Kunden har sett demon och svarat positivt. Boka 15 minuter (två tider att välja på).
-**Enda stället där priset nämns.** Mål: ja + sammanfattning och faktura samma dag.
-Samtalet följer Mathias säljstruktur (`1-byran/intern-tillvaxt/sales_methodology.md`, avsnitt 5). Kortversion:
+Logga direkt efter varje samtal.
 
-1. **Kontrollera samtalet (1 min):** "Vi har 15 minuter, låter det bra? Jag ställer några frågor
-   för att förstå er situation och vad den kostar er. Passar det berättar jag exakt vad jag
-   rekommenderar och vi bestämmer nästa steg tillsammans. Är det inte rätt för er säger jag det
-   direkt. Låter det rimligt?" En personlig fråga ("hur kom det sig att du valde måleri?").
-2. **Beslutskarta (1 min):** "Om vi går vidare, vem godkänner det? Behöver det gå vidare
-   någonstans? Vad brukar stoppa sånt här?"
-3. **Diagnos (4 min):** öppna i deras demo, "vad fastnade du för själv?" Sen: vad funkar inte i
-   dag, var tappar ni kunden (sidan, Google-profilen, annat), vad kostar det er per månad, vad
-   har ni provat, varför är det viktigt nu. Fördjupa med "berätta mer" och "ge mig ett exempel".
-4. **Kvantifiera och kvalificera (2 min):** summera symptom, brytpunkt, kostnad. "Om ni låg på
-   första sidan och hade en modern sida, hur många fler jobb per månad?" "Hur viktigt är det att
-   börja få fler förfrågningar just nu, direkt eller vänta?"
-5. **Värderam (3 min):** "Det riktiga problemet är X, kostnaden är Y. Målet är fler
-   kundförfrågningar och en bättre plats på Google, ingen utlovad siffra. Vi bygger en SEO-driven hemsida på
-   nyckelord, struktur, trovärdighet och design." Ingår: auto-mejl med direkt svar och kopia till
-   er, blixtsnabb hemsida, optimerad för första sidan på Google. Leverans: testversion inom 2
-   dagar, dag 2 till 4 jämför vi mot konkurrenterna, live inom 7 dagar. Ni äger allt.
-6. **Priset (1 min):** "15 000 kronor. En gång. Ingen bindning, inga månadsavgifter." Räkneexemplet:
-   ett enda jobb betalar sidan. Riskreverseringen: når vi inte målet jobbar vi vidare utan extra kostnad.
-7. **Commitment (2 min):** "Nästa steg blir att sätta upp hemsidan och optimera er Google-profil
-   direkt, för att minska risken. När resultaten kommer in tar vi beslut om att expandera. Låter
-   det rimligt? Toppen. Då skickar jag en sammanfattning av vad vi pratat om, vad som ingår,
-   leveransen och tidsplanen. Sedan kommer fakturan."
-8. **Uppföljning samma dag (1 min efter):** mejl med beslut, siffror, nästa steg, datum, tid och
-   ansvar. Offertmallen i CRM:et ("Kopiera offert") → status **Offert skickad** → betald →
-   **Kund** → bygg, live inom 7 dagar.
-
-**Invändningar i samtalet:** klargör ("mer än väntat eller mer än det är värt?"), isolera ("är det
-det enda?"), reframe (tillbaka till det de själva gillade i demon och sa i diagnosen), få bekräftelse
-("löser vi det, kör vi då?"). Vi prutar aldrig, samma pris för alla. En invändning är ett kvitto
-på ett steg du hoppade över. **Exit:** är caset svagt (ingen prioritet, ingen beslutsrätt), diska
-det rent och håll pipelinen ren.
-
-## 6. Dina verktyg: CRM och mejlkontot
-
-**CRM:** https://www.bahkobyra.se/crm-f2822a6f3a/ — här bor leadlistan, cadence-spårningen och
-alla skript. Sparas i webbläsaren, så jobba alltid från samma dator och ta en backup
-(knappen "Backup" i CRM-verktygsraden) i slutet av varje vecka.
-
-**Instagram:** https://www.instagram.com/bahkobyra1/ — prospekt kollar upp oss innan de
-svarar på testmejlet; kika på flödet innan ett ringpass.
-
-**Mejlkontot du ringer med:** `kontakta@bahkobyra.se` — testmejl och demoleveranser skickas
-härifrån, aldrig från din privata adress. Lösenordet får du av Mathias vid onboarding,
-det står medvetet inte i det här dokumentet.
-
-### Efter varje samtal: logga i CRM
-
-Logga direkt efter varje samtal, inte i slutet av dagen. Minnet ljuger redan efter tre samtal.
-
-| Utfall | Åtgärd i CRM |
+| Utfall | I CRM |
 |---|---|
-| Inte nådd | Kvar i **Ny** · öka ringförsök · sätt ring tillbaka-datum (t.ex. Fredag). Max 3 |
-| Fick annat namn | Nytt namn + "ring [namn] [dag]" |
-| Mejl tagen, testmejl skickat | Dra till **Mejl tagen** · fyll i e-posten |
-| Svar på testmejl | Dra till **Svarat** — 48h-klockan startar automatiskt. Säg till Mathias samma dag |
-| Demo levererad | Dra till **Demo skickad** — uppföljning dag 2 sätts automatiskt |
-| 15-minuterssamtal bokat | Dra till **Möte bokat** + datum · efter mötet: Kopiera offert → **Offert skickad** |
-| Inte intresserad | Dra till **Nej tack** + en rad om varför |
-
-**Svar på testmejl är startskottet.** Samma dag som svaret kommer ska demobygget beställas
-av Mathias, annars spricker 48-timmarslöftet — och det löftet är hela erbjudandet.
+| Inte nådd | Kvar i **Ny**, öka ringförsök, sätt ring tillbaka-datum. Max tre försök |
+| Fick annat namn | Nytt namn och "ring [namn] [dag]" |
+| Mejl taget, inget svar än | **Mejl tagen**, fyll i adressen |
+| Svarat ok, inget möte än | **Svarat**, skicka två tider på sms samma dag |
+| Möte bokat | **Möte bokat** med datum och tid. Säg till Mathias samma dag |
+| Nej | **Nej tack** och en rad om varför |
 
 ---
 
-## 7. Regler som aldrig bryts
+## 6. Regler
 
-1. **Vi säljer hemsidor.** Orden "SEO", "Google-ranking", "synlighet på Google" finns inte
-   i dina samtal. Kommer frågan: "det ingår att sajten byggs rätt tekniskt, men det vi
-   visar är hur den ser ut och hur den säljer."
-2. **Aldrig pris i kalla samtalet.** Priset (15 000 kr) nämns först i 15-minuterssamtalet, efter demon.
-3. **En konkret observation per samtal.** Utan [SMÄRTA] ringer du inte.
-4. **Ljug aldrig om vad du sett.** Har du inte hittat något fel, ring nästa lead.
-5. **Testmejlet är alltid ren text utan länkar**, så det inte fastnar i skräpposten och
-   så att svaret mäter intresse, inte klickvana.
-6. **Inget svar på testmejlet = ingen demo byggs.** Regeln finns för att skydda din och
-   Mathias tid. Gör inga undantag, hur trevligt samtalet än var.
-7. **48-timmarslöftet hålls.** Rapportera svar på testmejl samma dag.
-8. **Max två invändningsrundor**, sen tackar du för tiden. Trötta prospekt köper inte,
-   och de pratar med varandra i branschen.
-9. **Respektera nej.** Ett nej loggas och lämnas. Vi ringer inte samma firma igen på
-   6 månader.
+1. **Samtalet bokar ett möte.** Du säljer ingenting i telefon.
+2. **Inget möte utan bekräftat mejl.** Hur trevligt samtalet än var.
+3. **Aldrig pris i det kalla samtalet.** Priset tas på mötet.
+4. **En konkret observation per samtal.** Utan [SMÄRTA] ringer du inte.
+5. **Ljug aldrig om vad du har sett.** Hittar du inget fel ringer du nästa firma.
+6. **Bara beviset som står i avsnitt 1.** Inga egna siffror, inga egna kunder.
+7. **Vi säljer hemsidor.** Prata inte om SEO eller annonser i samtalet.
+8. **Två invändningar, sen tackar du för tiden.**
+9. **Ett nej är ett nej.** Samma firma rings inte igen på sex månader.
 
 ---
 
-## 8. Tider, volym och mål
+## 7. Tider och mål
 
-- **Ring tisdag till torsdag.** Hantverkare svarar bäst **07:00–09:00** (innan de börjar)
-  och **16:00–17:30** (efter arbetsdagen). Undvik lunch och fredag eftermiddag.
-- **Volym: 10–20 samtal per dag.** Förberedelse inräknad är det 2–3 timmar.
-- **Mål: 2 mejladresser per 10 nådda, 1 svar på testmejl per 2 tagna mejl.**
-- Nå-frekvens under 40 %? Byt ringtider innan du byter manus.
+- **Ring tisdag till torsdag.** Hantverkare svarar bäst 07.00 till 09.00 och 16.00 till 17.30. Undvik lunch och fredag eftermiddag.
+- **10 till 20 samtal per dag.** Med förberedelsen tar det två till tre timmar.
+- **Startmål: ett bokat möte per tio nådda.** Justera när du har två veckors siffror.
 
-### Dagslogg
-
-Fylls i löpande under dagen, summeras innan du slutar. Den skrivbara versionen finns i
-webbversionen av denna SOP (sparar i webbläsaren, funkar offline).
-
-| Datum | Ringda | Nådda | Mejl tagna | Svar på testmejl | Demo skickade | Möten bokade | Anteckning |
+| Datum | Ringda | Nådda | Mejl tagna | Bekräftade | Möten bokade | Möten hållna | Anteckning |
 |---|---|---|---|---|---|---|---|
 | | | | | | | | |
 
-Siffrorna avgör vad vi ändrar: få nådda = ringtider, många nådda men få mejl = manus/smärta,
-många mejl men få svar = testmejlets formulering, många demos men inga möten = uppföljningen.
+Siffrorna visar vad som ska ändras. Få nådda: byt ringtider. Många nådda men få mejl: byt smärta eller öppning. Många mejl men få bekräftade: du lägger på för tidigt, vänta kvar i luren. Många bokade men få hållna: skicka påminnelsen dagen före.
