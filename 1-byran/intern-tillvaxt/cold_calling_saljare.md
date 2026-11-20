@@ -7,7 +7,7 @@
 
 Ordningen är alltid densamma:
 
-1. Du ringer och säger en konkret sak du sett på deras sida.
+1. Du ringer och säger en konkret sak du sett på deras sida. Inga kundcase, inga siffror.
 2. Du erbjuder förslaget och 15 minuter där du visar det.
 3. Du tar mejladressen och skickar ett kort mejl medan ni pratar.
 4. De svarar på mejlet. Ett ord räcker. Nu är mejlet bekräftat.
@@ -19,7 +19,7 @@ Ingen bekräftelse betyder inget möte. Pris, paket och detaljer tas på mötet.
 
 ## 1. Innan du ringer (3 minuter per firma)
 
-Fyll i fyra saker innan du slår numret.
+Fyll i tre saker och ha två tider klara innan du slår numret.
 
 **[FÖRETAG]** Namnet som de själva skriver det på sin sida eller Google-profil.
 
@@ -42,12 +42,6 @@ Skriv smärtan i en mening, konkret och neutral:
 
 Hittar du inget fel ringer du nästa firma. Vi ringer bara dem vi kan hjälpa.
 
-**[BEVIS]** En rad, alltid samma:
-
-> "Vi har byggt åt målare i Jönköping och Stockholm och åt en trädgårdsfirma i Stockholm. Trädgårdsfirman fick över 30 förfrågningar via hemsidan inom två månader."
-
-Hitta aldrig på en kund eller en siffra. Vill du se sidorna före passet: smamaleri.se, gdmaleri.se och brommatradgardsservice.se.
-
 **Två tider.** Ha två lediga mötestider klara i kalendern innan du ringer, inom de närmaste tre arbetsdagarna.
 
 ---
@@ -65,13 +59,14 @@ Lär dig stommen och säg den med egna ord. Tala lugnt.
 
 ### Anledningen (20 sekunder)
 
-> "Jag ska vara snabb. Jag tittade på er hemsida innan jag ringde och såg att [SMÄRTA]. Sånt gör att folk ringer nästa firma, fast ni antagligen gör ett bättre jobb.
->
-> [BEVIS]"
+> "Jag kikade på er hemsida och märkte att [SMÄRTA]. Det är lite därför jag ringer. Har du en minut över för att kanske hitta en lösning?"
+
+- **Ja:** gå vidare till erbjudandet.
+- **Nej:** tacka vänligt och logga.
 
 ### Erbjudandet (15 sekunder)
 
-> "Jag vill ta fram ett förslag på en ny hemsida för [FÖRETAG]. Det kostar ingenting. Sen tar vi 15 minuter där jag visar det, och du bestämmer själv om det är något för er.
+> "Sånt gör att folk ringer nästa firma, fast ni antagligen gör ett bättre jobb. Jag vill ta fram ett förslag på en ny hemsida för [FÖRETAG]. Det kostar ingenting. Sen tar vi 15 minuter där jag visar det, och du bestämmer själv om det är något för er.
 >
 > Jag skickar en bekräftelse på mejl. Vad har ni för mejladress?"
 
@@ -204,7 +199,7 @@ Logga direkt efter varje samtal.
 3. **Aldrig pris i det kalla samtalet.** Priset tas på mötet.
 4. **En konkret observation per samtal.** Utan [SMÄRTA] ringer du inte.
 5. **Ljug aldrig om vad du har sett.** Hittar du inget fel ringer du nästa firma.
-6. **Bara beviset som står i avsnitt 1.** Inga egna siffror, inga egna kunder.
+6. **Inga kundcase och inga siffror i samtalet.** De hör hemma på mötet.
 7. **Vi säljer hemsidor.** Prata inte om SEO eller annonser i samtalet.
 8. **Två invändningar, sen tackar du för tiden.**
 9. **Ett nej är ett nej.** Samma firma rings inte igen på sex månader.
