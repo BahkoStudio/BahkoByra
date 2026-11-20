@@ -10,7 +10,7 @@ Ordningen är alltid densamma:
 1. Du ringer och säger en konkret sak du sett på deras sida.
 2. Du erbjuder förslaget och 15 minuter där du visar det.
 3. Du tar mejladressen och skickar ett kort mejl medan ni pratar.
-4. De svarar "ok" på mejlet. Nu är mejlet bekräftat.
+4. De svarar på mejlet. Ett ord räcker. Nu är mejlet bekräftat.
 5. Du bokar mötet och skickar kalenderinbjudan till samma adress.
 
 Ingen bekräftelse betyder inget möte. Pris, paket och detaljer tas på mötet.
@@ -83,22 +83,28 @@ Skriv adressen och läs upp den, tecken för tecken.
 
 > "Då tar jag den: [läs upp adressen]. Stämmer det?"
 
-Skicka mejlet direkt och säg vad du gör:
+Skicka mejlet direkt. Säg exakt vad de ska leta efter och vad de ska göra:
 
-> "Jag skickar ett kort mejl nu, bara text. Svara ok på det, så ser jag att det kom till rätt adress. Jag väntar kvar medan du kollar."
+> "Nu skickade jag det. Det heter 'Svara OK' och kommer från Bahko Byrå. Öppna det, tryck på svara, skriv ok och skicka. Mer är det inte. Jag väntar kvar."
 
-Mejlet är ren text. Ingen länk, ingen bild, ingen logga.
+Mejlet är ren text. Ingen länk, ingen bild, ingen logga. Det ska gå att förstå utan att öppna det, så uppmaningen står redan i ämnesraden.
 
-> **Ämne:** Hemsida till [FÖRETAG]
+> **Ämne:** Svara OK: [FÖRETAG]
 >
-> Hej [NAMN]!
+> Svara OK på det här mejlet.
 >
-> Tack för samtalet. Svara ok på det här mejlet, så vet jag att det kom till rätt adress.
->
-> Vänliga hälsningar
 > [Ditt förnamn], Bahko Byrå
 
-Vänta kvar i luren tills svaret syns i inkorgen.
+**Allt räknas som ett ok.** "Ok", "ja", en tumme upp eller ett tomt svar. Kommer det ett svar från adressen är mejlet bekräftat.
+
+Vänta kvar i luren tills svaret syns i inkorgen. Går det trögt hjälper du till, i den här ordningen:
+
+1. **"Jag ser inget mejl."** "Det kan ta en halv minut. Dra ner i inkorgen så den uppdateras."
+2. **Fortfarande inget.** "Kolla i skräpposten, det heter 'Svara OK'."
+3. **Inte där heller.** Läs upp adressen en gång till. Var den fel: rätta och skicka om. Var den rätt: "Har du en annan mejl vi kan ta?"
+4. **De sitter i bilen eller har händerna fulla.** Gå till "Om de inte kan kolla mejlen nu" längre ner.
+
+Skriv aldrig svaret åt dem och räkna aldrig ett muntligt "ja" som bekräftelse. Svaret ska ligga i inkorgen.
 
 ### Boka mötet (när svaret har kommit)
 
