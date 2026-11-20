@@ -8,7 +8,7 @@
 Ordningen är alltid densamma:
 
 1. Du ringer och säger en konkret sak du sett på deras sida. Inga kundcase, inga siffror.
-2. Du erbjuder förslaget och 15 minuter där du visar det.
+2. Du erbjuder förslaget.
 3. Du tar mejladressen och skickar ett kort mejl medan ni pratar.
 4. De svarar på mejlet. Ett ord räcker. Nu är mejlet bekräftat.
 5. Du bokar mötet och skickar kalenderinbjudan till samma adress.
@@ -66,7 +66,7 @@ Lär dig stommen och säg den med egna ord. Tala lugnt.
 
 ### Erbjudandet (15 sekunder)
 
-> "Sånt gör att folk ringer nästa firma, fast ni antagligen gör ett bättre jobb. Jag vill ta fram ett förslag på en ny hemsida för [FÖRETAG]. Det kostar ingenting. Sen tar vi 15 minuter där jag visar det, och du bestämmer själv om det är något för er.
+> "Sånt gör att folk ringer nästa firma, fast ni antagligen gör ett bättre jobb. Jag vill ta fram ett förslag på en ny hemsida för [FÖRETAG]. Det kostar ingenting, och du bestämmer själv om det är något för er.
 >
 > Jag skickar en bekräftelse på mejl. Vad har ni för mejladress?"
 
@@ -103,7 +103,7 @@ Skriv aldrig svaret åt dem och räkna aldrig ett muntligt "ja" som bekräftelse
 
 ### Boka mötet (när svaret har kommit)
 
-> "Där kom det, tack. Då bokar vi de 15 minuterna. Passar [dag] klockan [tid] eller [dag] klockan [tid] bäst?"
+> "Där kom det, tack. Då bokar vi 15 minuter där jag visar förslaget. Passar [dag] klockan [tid] eller [dag] klockan [tid] bäst?"
 
 Ge alltid två tider. Fråga aldrig "när passar det?".
 
