@@ -59,14 +59,14 @@ Lär dig stommen och säg den med egna ord. Tala lugnt.
 
 ### Anledningen (20 sekunder)
 
-> "Jag tittade på er hemsida innan jag ringde och såg att [SMÄRTA]. Sånt gör att folk ringer nästa firma, fast ni antagligen gör ett bättre jobb. Har du en minut över för att höra en lösning?"
+> "Jag kikade på er hemsida och märkte att [SMÄRTA]. Det är lite därför jag ringer. Har du en minut över för att kanske hitta en lösning?"
 
 - **Ja:** gå vidare till erbjudandet.
 - **Nej:** tacka vänligt och logga.
 
 ### Erbjudandet (15 sekunder)
 
-> "Jag vill ta fram ett förslag på en ny hemsida för [FÖRETAG]. Det kostar ingenting. Sen tar vi 15 minuter där jag visar det, och du bestämmer själv om det är något för er.
+> "Sånt gör att folk ringer nästa firma, fast ni antagligen gör ett bättre jobb. Jag vill ta fram ett förslag på en ny hemsida för [FÖRETAG]. Det kostar ingenting. Sen tar vi 15 minuter där jag visar det, och du bestämmer själv om det är något för er.
 >
 > Jag skickar en bekräftelse på mejl. Vad har ni för mejladress?"
 
