@@ -87,7 +87,7 @@ Skicka mejlet direkt. Säg exakt vad de ska leta efter och vad de ska göra:
 
 > "Nu skickade jag det. Det heter 'Svara OK' och kommer från Bahko Byrå. Öppna det, tryck på svara, skriv ok och skicka. Mer är det inte. Jag väntar kvar."
 
-Mejlet är ren text. Ingen länk, ingen bild, ingen logga. Det ska gå att förstå utan att öppna det, så uppmaningen står redan i ämnesraden.
+Mejlet är för att se vilka som är seriösa.
 
 > **Ämne:** Svara OK: [FÖRETAG]
 >
