@@ -59,7 +59,10 @@ Lär dig stommen och säg den med egna ord. Tala lugnt.
 
 ### Anledningen (20 sekunder)
 
-> "Jag ska vara snabb. Jag tittade på er hemsida innan jag ringde och såg att [SMÄRTA]. Sånt gör att folk ringer nästa firma, fast ni antagligen gör ett bättre jobb."
+> "Jag tittade på er hemsida innan jag ringde och såg att [SMÄRTA]. Sånt gör att folk ringer nästa firma, fast ni antagligen gör ett bättre jobb. Har du en minut över för att höra en lösning?"
+
+- **Ja:** gå vidare till erbjudandet.
+- **Nej:** tacka vänligt och logga.
 
 ### Erbjudandet (15 sekunder)
 
