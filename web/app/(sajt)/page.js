@@ -191,7 +191,7 @@ export default function Start() {
               ortsneutrala tjänstesidan, den här raden till ortssidan. */}
           <p className={styles.tjanstLokal}>
             Har du ditt företag i Jönköpingstrakten? Läs om{' '}
-            <Link href="/seo-jonkoping/" className="textlank">SEO i Jönköping</Link>, hur vi får dig att
+            <Link href="/seo-jonkoping/" className="textlank">SEO-byrå i Jönköping</Link>, hur vi får dig att
             synas när kunder i närheten söker.
           </p>
         </div>

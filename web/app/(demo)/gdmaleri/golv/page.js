@@ -174,7 +174,7 @@ const data = {
       { q: 'När betalar jag?', a: 'Du får fakturan när arbetet är klart, ingen förskottsbetalning.' },
       { q: 'Vad händer om något oväntat dyker upp?', a: 'Då hör vi av oss direkt och föreslår en lösning. Vi gör inga extraarbeten utan ditt godkännande.' },
       { q: 'Är ni försäkrade?', a: 'Ja. Vi har F-skatt och är fullt försäkrade via Trygg-Hansa.' },
-      { q: 'Var arbetar ni?', a: 'I hela Stockholm.' },
+      { q: 'Var arbetar ni?', a: <>I hela Stockholm. Det gäller också Södertälje, där firman har sitt säte: läs mer om oss som <a href="/gdmaleri/malare-sodertalje/">golvmålare i Södertälje</a>.</> },
     ],
   },
 

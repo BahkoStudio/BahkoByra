@@ -144,7 +144,7 @@ const data = {
       { q: 'Målar ni fönster inifrån också?', a: 'Ja. Vi målar både inomhus- och utomhussnickerier: fönsterbågar, karmar och foder på båda sidor, innerdörrar, ytterdörrar och lister.' },
       { q: 'Kan ni ta fönstren i samma jobb som fasaden?', a: <>Ja, och det är det vanliga. Senast målade GD Måleri Sthlm AB fönsterkarmar, vindskivor och takfot tillsammans med väggarna på en fasad på 234 kvm i Bromma. Läs mer om <a href="/gdmaleri/fasad/">fasadmålning i Stockholm</a>.</> },
       { q: 'Byter ni ruttna foder?', a: 'Ja. Är ett foder ruttet byts det innan vi målar, och det står med i offerten så att inget extra görs utan ditt ja.' },
-      { q: 'Var arbetar ni?', a: 'I hela Stockholm. I år har GD Måleri Sthlm AB bland annat målat fasader i Bromma, Täby kyrkby och på Värmdö, i Bromma med fönsterkarmar, vindskivor och takfot.' },
+      { q: 'Var arbetar ni?', a: <>I hela Stockholm. I år har GD Måleri Sthlm AB bland annat målat fasader i Bromma, Täby kyrkby och på Värmdö, i Bromma med fönsterkarmar, vindskivor och takfot. Vi tar också <a href="/gdmaleri/fasadmalning-sollentuna/">fasadmålning i Sollentuna</a>.</> },
     ],
   },
 

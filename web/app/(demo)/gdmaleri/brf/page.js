@@ -246,7 +246,7 @@ const data = {
   varfor: {
     eyebrow: 'Därför GD Måleri',
     rubrik: ['Fyra saker styrelsen', 'kan räkna med'],
-    lead: 'GD Måleri är en målerifirma i Stockholm. De flesta av våra jobb har varit åt privatkunder, och föreningen får samma upplägg.',
+    lead: <>GD Måleri är en målerifirma i Stockholm och tar också <a href="/gdmaleri/fasadmalning-lidingo/">fasadmålning på Lidingö</a>. De flesta av våra jobb har varit åt privatkunder, och föreningen får samma upplägg.</>,
     punkter: [
       { rubrik: 'Allt med i offerten', text: 'Material, arbete, förarbete som tvätt och skrapning, städning och bortforsling räknas in från början. Offerten är kostnadsfri.' },
       { rubrik: 'Inget extra utan ert ja', text: 'Dyker något oväntat upp hör vi av oss direkt. Vi gör inga extraarbeten utan styrelsens godkännande.' },

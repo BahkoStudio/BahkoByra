@@ -141,7 +141,7 @@ const data = {
       { q: 'Kan jag beställa bara taktvätt, utan målning?', a: 'Ja. Taktvätt går att beställa för sig hos GD Måleri Sthlm AB. Taket på bilderna under Tjänster är tvättat, inte målat.' },
       { q: 'Kan ni måla taket efter tvätten?', a: <>Ja, takmålning är ett tillval. Ska taket målas görs tvätten först, och takfot och vindskivor kan ingå i samma offert. Läs mer om <a href="/gdmaleri/tak/">takmålning i Stockholm</a>.</> },
       { q: 'När betalar jag?', a: 'Du får fakturan från GD Måleri Sthlm AB när arbetet är klart och vi har gått igenom resultatet tillsammans, ingen förskottsbetalning.' },
-      { q: 'Var arbetar ni?', a: 'I hela Stockholm. I år har GD Måleri Sthlm AB bland annat jobbat på hus i Bromma, Täby kyrkby och på Värmdö.' },
+      { q: 'Var arbetar ni?', a: <>I hela Stockholm. I år har GD Måleri Sthlm AB bland annat jobbat på hus i Bromma, Täby kyrkby och på Värmdö. Läs mer om <a href="/gdmaleri/fasadmalning-bromma/">fasadmålning i Bromma</a>.</> },
     ],
   },
 

@@ -39,7 +39,7 @@ export default function Sida() {
       ] },
     om: { ...bas.om, rubrik: ['Häckar är det', 'vi får mest beröm för'], stycken: [
       'Tujahäcken i Rönninge och häckbytet med rothals är två av de jobb kunderna skrivit mest om på Google.',
-      'Bromma Trädgårdsservice klipper, planterar och tar bort häckar åt villor och föreningar i hela Storstockholm.',
+      <>Bromma Trädgårdsservice klipper, planterar och tar bort häckar åt villor och föreningar i hela Storstockholm. Häcken kan också ingå i <a href="/bromma/tradgardsskotsel/">trädgårdsskötsel i Bromma</a>.</>,
     ] },
     steg: null,
     instagram: null,

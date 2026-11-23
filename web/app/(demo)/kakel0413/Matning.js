@@ -3,8 +3,9 @@
 /* GA4 med samtycke för kakel0413.se (SEO 2026-11-17, Mathias ja). Samma beteende som på
    proffsmaskiner.se och de andra kundsajterna: ingen mätkod, inga kakor och ingen begäran till
    Google innan besökaren sagt ja. Valet sparas i localStorage under k0413-consent.
-   Monteras bara på kunddomänen (./kund/page.js), inte på bahkobyra.se/kakel0413/.
-   Bara sidvisningar (gtag config), inga egna händelser i den här omgången.
+   Monteras bara på kunddomänen (./kund/page.js och undersidor), inte på bahkobyra.se/kakel0413/.
+   Sidvisningar (gtag config) plus samma händelser som på proffsmaskiner.se: tel_klick, mejl_klick,
+   generate_lead (när formuläret skickats, via bb:skickat) och form_forsok. Bara efter samtycke.
    Länken "Cookieinställningar" i footern (#cookieval) öppnar rutan igen. */
 import { useEffect, useState } from 'react';
 
@@ -25,6 +26,12 @@ function laddaGA() {
   window.gtag = function () { window.dataLayer.push(arguments); };
   window.gtag('js', new Date());
   window.gtag('config', GA4);
+}
+
+function track(namn, params = {}) {
+  if (typeof window !== 'undefined' && window.gtag && window.__k0413GaLaddad) {
+    window.gtag('event', namn, params);
+  }
 }
 
 // Färgerna följer sidans tema (mörk skiffer, loggans orange som knapp).
@@ -54,9 +61,25 @@ export default function Matning() {
         setVisa(true);
         return;
       }
+      if (href.startsWith('tel:')) track('tel_klick', { sida: location.pathname });
+      else if (href.startsWith('mailto:')) track('mejl_klick', { sida: location.pathname });
+    };
+    const skickat = (e) => {
+      track('generate_lead', { formular: (e && e.detail) || 'okant', sida: location.pathname });
+    };
+    const skicka = (e) => {
+      if (e.target && e.target.tagName === 'FORM') {
+        track('form_forsok', { form_id: e.target.id || 'okand', sida: location.pathname });
+      }
     };
     addEventListener('click', klick);
-    return () => removeEventListener('click', klick);
+    addEventListener('bb:skickat', skickat);
+    addEventListener('submit', skicka);
+    return () => {
+      removeEventListener('click', klick);
+      removeEventListener('bb:skickat', skickat);
+      removeEventListener('submit', skicka);
+    };
   }, []);
 
   const svara = (ok) => {

@@ -38,7 +38,7 @@ export default function Sida() {
       ] },
     om: { ...bas.om, rubrik: ['Trädgårdar är', 'där vi började'], stycken: [
       'Bromma Trädgårdsservice började med gräsklippning och häckar åt villaägare i Bromma, och det är fortfarande kärnan i verksamheten.',
-      'I dag sköter vi trädgårdar åt villor och föreningar i hela Storstockholm, och tar snön på samma tomter när vintern kommer.',
+      <>I dag sköter vi trädgårdar åt villor och föreningar i hela Storstockholm, och gör <a href="/bromma/snorojning/">snöröjning i Bromma</a> på samma tomter när vintern kommer.</>,
     ] },
     steg: null,
     instagram: null,
