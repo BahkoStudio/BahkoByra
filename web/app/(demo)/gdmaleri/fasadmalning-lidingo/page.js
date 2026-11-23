@@ -30,7 +30,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
 
 export const metadata = {
   ...sidaMeta({
-    title: 'Fasadmålning på Lidingö – målare för fasad och hus | GD Måleri',
+    title: 'Fasadmålning på Lidingö: målare för fasad och hus | GD Måleri',
     description:
       'Fasadmålning på Lidingö: tvätt, skrapning och ny färg på trä, puts, tegel och plåt. Kostnadsfritt hembesök, faktura när jobbet är klart och ROT på fakturan.',
     sokvag: '/fasadmalning-lidingo/',
@@ -55,7 +55,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadmålning på Lidingö', svar: 'Villor & föreningar.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning på Lidingö', svar: 'Villor & föreningar.' }, ingress: 'Vi målar fasader åt villaägare och föreningar på Lidingö, med hembesök utan kostnad.' },
   tejp: ['Fasadmålning på Lidingö', 'Hembesök utan kostnad', 'Trä, puts, tegel och plåt', 'Tvätt för sig eller före målning', 'Ingen förskottsbetalning', 'Ett års garanti', 'Rekommenderat företag 2024–2026', 'ROT på fakturan'],
 
   tjanster: {
@@ -100,6 +100,7 @@ const data = {
   instagram: { ...instagramBas, koder: ['Dd-zVd3ggOI', 'Dc1IM7Pgpeh', 'DcmMHrIEbrF'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Frågor om fasad på Lidingö',
     rubrik: ['Det du kanske undrar', 'om du bor på Lidingö'],
     lead: 'Raka svar, också om vad vi kan visa och inte.',

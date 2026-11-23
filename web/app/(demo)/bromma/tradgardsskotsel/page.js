@@ -20,7 +20,7 @@ const fragor = [
 
 export default function Sida() {
   return <Landning schema={{ slug: 'tradgardsskotsel', namn: 'Trädgårdsskötsel', typ: 'Trädgårdsskötsel', beskrivning: metadata.description }} sida={{
-    hero: { ...bas.hero, rubrik: { fraga: 'Trädgårdsskötsel i Bromma', svar: 'Gräs & Häck.' } },
+    hero: { ...bas.hero, rubrik: { fraga: 'Trädgårdsskötsel i Bromma', svar: 'Gräs & Häck.' }, ingress: 'Vi klipper gräs och häckar, rensar ogräs och tar löven på tomter i Bromma och Storstockholm.' },
     tejp: ['Gräsklippning', 'Häckklippning', 'Ogräsrensning', 'Beskärning', 'Löv och krattning', 'Snöröjning', 'Rutavdrag på arbetet'],
     tjanster: { ...bas.tjanster, eyebrow: 'Skötsel', rubrik: ['Tomten i skick', 'år efter år'], lead: 'Skötsel är det som håller tomten jämn. Du väljer fast intervall eller att vi kommer när det behövs.', kolumner: 3,
       kort: [

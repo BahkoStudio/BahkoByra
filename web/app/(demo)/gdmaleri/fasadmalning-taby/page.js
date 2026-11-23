@@ -27,7 +27,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
 
 export const metadata = {
   ...sidaMeta({
-    title: 'Fasadmålning i Täby – 350 kvm i Täby kyrkby | GD Måleri',
+    title: 'Fasadmålning i Täby: 350 kvm i Täby kyrkby | GD Måleri',
     description:
       'Fasadmålning i Täby: 350 kvm träfasad i Täby kyrkby, klar i september 2026. Tvätt, skrapning och målning i samma offert, och ROT på fakturan.',
     sokvag: '/fasadmalning-taby/',
@@ -52,7 +52,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Täby', svar: 'Träfasad & vindskivor.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Täby', svar: 'Träfasad & vindskivor.' }, ingress: 'Vi målar fasader i Täby. I september 2026 blev 350 kvm träfasad klar i Täby kyrkby.' },
   tejp: ['Fasadmålning i Täby', '350 kvm i Täby kyrkby', 'Träfasad i grått', 'Tvätt, skrapning och lagning', 'Fönster och vindskivor', 'Ingen förskottsbetalning', '4,9 av 5 på Reco', 'ROT på småhus'],
 
   tjanster: {
@@ -95,6 +95,7 @@ const data = {
   instagram: { ...instagramBas, lead: 'Täby-inlägget först, sedan fler jobb från vårt konto.', koder: ['Dc1IM7Pgpeh', 'Dd-zVd3ggOI', 'DeNI1zEkcpW'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Frågor om fasaden i Täby',
     rubrik: ['Det Täbybor', 'undrar om fasaden'],
     lead: 'Om jobbet i Täby kyrkby, om resten av kommunen och om vad det kostar.',

@@ -21,7 +21,7 @@ const fragor = [
 
 export default function Sida() {
   return <Landning schema={{ slug: 'tradgardsskotsel-brf', namn: 'Skötselavtal för BRF och fastighetsägare', typ: 'Utemiljöskötsel och snöröjning', beskrivning: metadata.description }} sida={{
-    hero: { ...bas.hero, rubrik: { fraga: 'BRF-avtal i Stockholm', svar: 'Gård & Snö.' } },
+    hero: { ...bas.hero, rubrik: { fraga: 'BRF-avtal i Stockholm', svar: 'Gård & Snö.' }, ingress: 'Vi sköter föreningens gård på sommaren och snön på vintern i Stockholm, i ett avtal med en kontaktperson.' },
     tejp: ['BRF-avtal', 'Snöröjning ingår', 'Halkbekämpning', 'Gräs och häckar', 'Löv och höststädning', 'En kontaktperson', 'Fast månadsavgift'],
     tjanster: { ...bas.tjanster, eyebrow: 'BRF och fastighet', rubrik: ['Ett avtal,', 'hela året'], lead: 'Två leverantörer betyder två avtal och två parter att ringa. Vi tar både sommaren och snön, och det är samma person som svarar i juli och i januari.', kolumner: 3,
       kort: [

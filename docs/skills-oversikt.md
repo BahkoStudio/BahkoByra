@@ -70,7 +70,8 @@ Bild/video/3D/ljud-generering via Higgsfield AI.
 | `os-audit` | Skrivskyddad granskning av ett projekts uppsättning — inaktuell data, trasig routing, dubbletter. |
 | `skill` *(intern namn `skill-builder`)* | Skapar/granskar Claude Code-skills enligt best practice. |
 | `rensa` | Destillerar aktiv uppgift + låsta beslut till `.tmp/session-context.md` före `/clear`. |
-| `optimering` *(projektlokal)* | SEO/GEO/AEO/lokal sökoptimering för kundsajter. |
+| `optimering-general` *(projektlokal)* | Allmän SEO för en sajt enligt General SEO SOP: audit med visuell rapport, pengasidor, interna länkar, quick win, trafiktapp. |
+| `optimering-local` *(projektlokal)* | Lokal SEO enligt lokala SOP:en: Google Företagsprofil, heatmap, kartan, citeringar, Cowork-uppdrag. |
 
 Källa: `C:\Users\mathi\.claude\skills\` (33 skills, användarnivå) +
 `.claude\skills\` i `bahko-crm` (20 skills, mest junctions till samma filer,

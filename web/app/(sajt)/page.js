@@ -343,6 +343,9 @@ export default function Start() {
             <Link href="/vad-kostar-en-hemsida/" className="textlank">vad en hemsida kostar</Link>, gör{' '}
             <Link href="/mobiltestet/" className="textlank">mobiltestet</Link> på din nuvarande sida eller se{' '}
             <Link href="/basta-webbyran-i-sverige/" className="textlank">hur du väljer webbyrå</Link>.
+            Vill du veta vad vi själva har gjort: här är siffrorna bakom{' '}
+            <Link href="/hardast-arbetande-webbyran-i-sverige/" className="textlank">hårdast arbetande webbyrån i Sverige</Link> och{' '}
+            <Link href="/hardast-arbetande-seo-experten-i-sverige/" className="textlank">hårdast arbetande SEO-experten i Sverige</Link>.
           </p>
         </div>
       </section>

@@ -8,7 +8,7 @@ bara för verifiering och står medvetet inte publikt på sajten.
 **Källa till tjänster och kontaktuppgifter:** kundens egen sajt smamaleri.se samt demon i `bahkobyra/cloud/smamaleri/`
 
 Profilen är det enskilt viktigaste i hela uppdraget. Lokala Maps-träffar och AI-svar hämtar
-härifrån, inte från sajtens HTML. *Dokumenterat.* Se `.claude/skills/optimering/` steg 3.
+härifrån, inte från sajtens HTML. *Dokumenterat.* Se `.claude/skills/optimering-local/` steg 3.
 
 ---
 

@@ -32,7 +32,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
 
 export const metadata = {
   ...sidaMeta({
-    title: 'Fasadmålning i Danderyd – målare för fasad och villa | GD Måleri',
+    title: 'Fasadmålning i Danderyd: målare för fasad och villa | GD Måleri',
     description:
       'Fasadmålning i Danderyd, Djursholm, Stocksund och Enebyberg: fasad, takfot och dörrar. Ingen förskottsbetalning, ett års garanti och ROT på fakturan.',
     sokvag: '/fasadmalning-danderyd/',
@@ -57,7 +57,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Danderyd', svar: 'Fasad & ytterdörrar.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Danderyd', svar: 'Fasad & ytterdörrar.' }, ingress: 'Vi målar fasader, ytterdörrar och fönster på villor i Danderyd, med kostnadsfri offert efter hembesök.' },
   tejp: ['Fasadmålning i Danderyd', 'Djursholm, Stocksund och Enebyberg', 'Takfot och vindskivor', 'Ytterdörrar och fönster', 'Ingen förskottsbetalning', 'Ett års garanti', 'Rekommenderat företag på Reco', 'ROT på småhus'],
 
   tjanster: {
@@ -100,6 +100,7 @@ const data = {
   instagram: { ...instagramBas, koder: ['Dc1IM7Pgpeh', 'Dd-zVd3ggOI', 'DeNI1zEkcpW'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Frågor om fasad i Danderyd',
     rubrik: ['Det villaägare i Danderyd', 'frågar oss'],
     lead: 'Om var vi jobbar, hur du betalar och vad vi kan visa.',
