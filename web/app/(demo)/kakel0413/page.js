@@ -65,6 +65,8 @@ import Matning from './Matning';
    - RÄTTNING (Mathias 2026-11-10, kundens skärmdumpar): Badrumsrenovering säger nu
      "Kakel på vägg och klinker på golv". Om oss (Om Nuh på startsidan och /om-oss/) borttagen helt,
      /om-oss/ går med 308 till startsidan och är struken ur kakel0413.se:s sitemap. Logga överallt: logo.webp / logo-ljus.webp.
+   - BKR (pausad 2026-11-23, Nuh SMS via Mathias): sektionen #om med BKR-behörigheten är dold
+     tills Nuh fått BKR-diplom. Texten ligger kvar i OM_BKR. Sätt VISA_BKR till true för att visa den igen.
    =========================================================================== */
 
 const META = {
@@ -123,6 +125,31 @@ export const KUND_METADATA = {
 };
 
 const M = '/kakel0413/media';
+
+// Pausad 2026-11-23 tills Nuh fått BKR-diplom (Nuh SMS, Mathias: lägg BKR-texten på paus tills vidare).
+// Sätt VISA_BKR till true för att visa sektionen #om igen. Mallen kräver fältet om, därför finns OM_DOLJD.
+const VISA_BKR = false;
+
+const OM_BKR = {
+  eyebrow: 'Behörighet',
+  rubrik: ['Vi är ett', 'BKR‑behörigt företag'], // ‑ = hårt bindestreck, så BKR- inte hamnar ensamt på mobil
+  kortRad: 'Behörigt enligt Byggkeramikrådet',
+  stycken: [
+    'Vi på Kakel 0413 är stolta över att vara ett behörigt företag enligt Byggkeramikrådet (BKR).',
+    'Det innebär att vi har rätt utbildning och kompetens för att utföra våtrumsarbeten enligt branschreglerna BBV, Byggkeramikrådets Branschregler för Våtrum.',
+    'För dig som kund innebär det en extra trygghet när du anlitar oss för badrumsrenovering och plattsättning. Vi arbetar fackmässigt med fokus på kvalitet och säkerhet.',
+  ],
+  bevis: [],
+};
+
+const OM_DOLJD = {
+  eyebrow: '',
+  rubrik: [''],
+  kortRad: '',
+  stycken: [],
+  bevis: [],
+};
+
 
 // Företagsschema (lokal SEO-SOP, easy-win-checken punkt 4, 2026-11-17). Bara uppgifter som redan står på sidan.
 // Ingen gatuadress: Nuh har ingen butik och adressen är dold i Google-profilen. Inget betyg, inga omdömen.
@@ -289,17 +316,8 @@ const data = {
 
   // Om oss borttagen 2026-11-10. Sektionen #om används sedan 2026-11-19 för BKR-behörigheten:
   // Nuhs egen text ordagrant, bara tankstrecket efter BBV utbytt mot komma.
-  om: {
-    eyebrow: 'Behörighet',
-    rubrik: ['Vi är ett', 'BKR‑behörigt företag'], // ‑ = hårt bindestreck, så BKR- inte hamnar ensamt på mobil
-    kortRad: 'Behörigt enligt Byggkeramikrådet',
-    stycken: [
-      'Vi på Kakel 0413 är stolta över att vara ett behörigt företag enligt Byggkeramikrådet (BKR).',
-      'Det innebär att vi har rätt utbildning och kompetens för att utföra våtrumsarbeten enligt branschreglerna BBV, Byggkeramikrådets Branschregler för Våtrum.',
-      'För dig som kund innebär det en extra trygghet när du anlitar oss för badrumsrenovering och plattsättning. Vi arbetar fackmässigt med fokus på kvalitet och säkerhet.',
-    ],
-    bevis: [],
-  },
+  // Pausad 2026-11-23 tills Nuh fått BKR-diplom (se VISA_BKR).
+  om: VISA_BKR ? OM_BKR : OM_DOLJD,
 
   steg: {
     eyebrow: 'Så går det till',
@@ -401,11 +419,11 @@ const KUND_DATA = {
 export function Kakel0413Sida({ kund = false }) {
   return (
     <>
-      {/* Om oss borttagen (Mathias 2026-11-10), /om-oss/ omdirigeras till startsidan; #om visar sedan 2026-11-19 BKR-behörigheten. Jobbanden och omdömena döljs tills Nuh har egna foton och riktiga omdömen (se FLAGGOR). */}
+      {/* Om oss borttagen (Mathias 2026-11-10), /om-oss/ omdirigeras till startsidan. BKR-sektionen #om är pausad 2026-11-23 tills Nuh fått BKR-diplom (se VISA_BKR). Jobbanden och omdömena döljs tills Nuh har egna foton och riktiga omdömen (se FLAGGOR). */}
       {/* Nuh v2: ingen stor logotyp i heron (den stora logotypen visas inte, headerns logga kvar)
           och inget telefonnummer i heron (Ring-knappen i headern kvar). H1 är texten i hero.rubrik (SEO 2026-11-17),
           i mindre storlek än mallens ortrad, och Nuhs mening står under den. */}
-      <style>{'#jobb,#omdomen{display:none!important}#top p:has(>img){display:none!important}#top a[href^="tel:"]{display:none!important}#top h1[class*="heroRubrik"] span[class*="heroOrt"]{margin-top:clamp(1.2rem,3vh,2rem);font-size:clamp(1.6rem,4vw,3rem);letter-spacing:.04em;line-height:1.1}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}#varfor ul[class*="varforPunkter"]{gap:0.6rem}#varfor ul[class*="varforPunkter"] li{padding:0.75rem 1.1rem}#varfor ul[class*="varforPunkter"] li:last-child{display:block;padding:0.6rem 0 0;background:none;border:0;box-shadow:none;color:rgba(255,255,255,.85)}#varfor ul[class*="varforPunkter"] li:last-child svg{display:none}'}</style>
+      <style>{`#jobb,#omdomen${VISA_BKR ? '' : ',#om'}{display:none!important}#top p:has(>img){display:none!important}#top a[href^="tel:"]{display:none!important}#top h1[class*="heroRubrik"] span[class*="heroOrt"]{margin-top:clamp(1.2rem,3vh,2rem);font-size:clamp(1.6rem,4vw,3rem);letter-spacing:.04em;line-height:1.1}[class*="mobilMenyPanel"]>a[href="#fragor"]{display:none!important}[class*="mobilMenyPanel"]>a[href="#fragor"]~a[href="#fragor"]{display:flex!important}#fragor aside[class*="fragaKort"],#form-not,footer p[class*="ftrText"]{display:none!important}#varfor ul[class*="varforPunkter"]{gap:0.6rem}#varfor ul[class*="varforPunkter"] li{padding:0.75rem 1.1rem}#varfor ul[class*="varforPunkter"] li:last-child{display:block;padding:0.6rem 0 0;background:none;border:0;box-shadow:none;color:rgba(255,255,255,.85)}#varfor ul[class*="varforPunkter"] li:last-child svg{display:none}`}</style>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FORETAG_SCHEMA) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }} />
       <DemoSida data={kund ? KUND_DATA : { ...data, kund: true }} />
