@@ -81,7 +81,7 @@ const data = {
     extra: menyExtra(),
   },
 
-  hero: { ...hero, rubrik: { fraga: 'Bästa målaren i Stockholm?', svar: 'Så väljer du rätt målerifirma.' } },
+  hero: { ...hero, rubrik: { fraga: 'Bästa målaren i Stockholm?', svar: 'Så väljer du rätt målerifirma.' }, ingress: 'GD Måleri är en målerifirma i Stockholm. Här är sex saker att jämföra innan du anlitar en målare, oss inräknade.' },
   tejp: ['Så väljer du målare', 'Verifierade omdömen', 'F-skatt och försäkring', 'Allt med i offerten', 'Ingen förskottsbetalning', 'ROT direkt på fakturan', 'Ett års garanti', '4,9 av 5 på Reco'],
 
   tjanster: {
@@ -201,6 +201,7 @@ const data = {
   instagram: { ...instagramBas, koder: ['Dd-zVd3ggOI', 'Dc1IM7Pgpeh', 'DeNI1zEkcpW'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Frågor om att välja målare',
     rubrik: ['Det folk undrar', 'innan de anlitar en målare'],
     lead: 'Korta svar, med källa där det finns en.',

@@ -68,7 +68,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/taktvatt/') },
 
-  hero: { ...hero, rubrik: { fraga: 'Taktvätt i Stockholm', svar: 'Mossa bort & Rent tak.' } },
+  hero: { ...hero, rubrik: { fraga: 'Taktvätt i Stockholm', svar: 'Mossa bort & Rent tak.' }, ingress: 'Vi tvättar bort mossa, alger och smuts från tak i Stockholm, för sig eller inför målning.' },
   tejp: ['Taktvätt', 'Mossa och alger bort', 'Tvätt för sig', 'Eller inför takmålning', 'Takfot och vindskivor', 'ROT på småhus', '4,9 av 5 på Reco', 'Kostnadsfri offert'],
 
   tjanster: {
@@ -130,6 +130,7 @@ const data = {
   instagram: { ...instagramBas, koder: ['Dcja9QqkbrR', 'Dd-zVd3ggOI', 'DcmMHrIEbrF'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Vanliga frågor om taktvätt',
     rubrik: ['Det ni brukar', 'fråga om taket'],
     lead: 'Pengar och risk först, det praktiska sedan.',

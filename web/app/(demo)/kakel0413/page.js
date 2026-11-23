@@ -259,13 +259,12 @@ const data = {
     // Nuhs budskap i heron (Mathias 2026-10-22), samma stil som förut.
     // SEO 2026-11-17 (Mathias ja): text-H1 med tjänst och ort. Mallens valfria hero.rubrik gör h1 till text
     // och logotypen till <p>, som inte visas (Nuh v2: ingen stor logotyp i heron; headerns logga kvar, se stilblocket).
-    // Frågan blir H1-raden, svaret är Nuhs mening. hero.tjanster används inte när rubrik finns.
+    // Frågan är H1, Nuhs mening ligger i hero.ingress. hero.tjanster används inte när rubrik finns.
     rubrik: {
       fraga: 'Kakelsättare i Eslöv och Skåne',
-      svar: (
-        <span style={{ display: 'block', maxWidth: '36rem', marginInline: 'auto', marginTop: '0.9rem', marginBottom: '0.9rem', fontFamily: 'var(--f-text, inherit)', fontStyle: 'normal', fontWeight: 500, color: '#F3F4F5', fontSize: 'clamp(1rem, 1.6vw, 1.15rem)', lineHeight: 1.5 }}>Att renovera ett badrum är ett stort beslut. Därför är det viktigt att du känner dig trygg med den som utför arbetet.</span>
-      ),
     },
+    // Nuhs mening ordagrant, under h1 i stället för i den (SEO-auditen 2026-11-23). Samma utseende.
+    ingress: 'Att renovera ett badrum är ett stort beslut. Därför är det viktigt att du känner dig trygg med den som utför arbetet.',
     tjanster: ['', ''],
     video: `${M}/video-hero.mp4`,
     videoMobil: `${M}/video-hero-mobil.mp4`,
@@ -337,6 +336,7 @@ const data = {
   omdomen: { eyebrow: '', rubrik: [''], lista: [], not: '' },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Vanliga frågor',
     rubrik: ['Det du kanske', 'undrar först'],
     kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring och fråga, så får du besked om just ditt jobb.' },

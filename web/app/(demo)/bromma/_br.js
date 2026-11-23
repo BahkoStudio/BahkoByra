@@ -88,6 +88,7 @@ export const bas = {
 
   hero: {
     rubrik: { fraga: 'Snöröjning och trädgård i Bromma', svar: 'Året om.' },
+    ingress: 'Vi röjer snö och sköter trädgårdar i Bromma och hela Storstockholm, åt villor, föreningar och företag.',
     video: `${M}/video-hero.mp4`,
     videoMobil: `${M}/video-hero-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
@@ -203,6 +204,7 @@ export const bas = {
   },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Vanliga frågor',
     rubrik: ['Frågor vi', 'får ofta'],
     kort: { rubrik: 'Hittar du inte svaret?', text: 'Ring 070-766 65 14 så får du besked direkt.' },

@@ -31,7 +31,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
 
 export const metadata = {
   ...sidaMeta({
-    title: 'Fasadmålning i Sollentuna – målare för villa | GD Måleri',
+    title: 'Fasadmålning i Sollentuna: målare för villa | GD Måleri',
     description:
       'Fasadmålning i Sollentuna: genomgång, tvätt, skrapning och ny färg på villan. I Täby kan vi visa 350 kvm träfasad. Kostnadsfri offert och ROT på fakturan.',
     sokvag: '/fasadmalning-sollentuna/',
@@ -56,7 +56,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Sollentuna', svar: 'Tvätt & ny färg.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Sollentuna', svar: 'Tvätt & ny färg.' }, ingress: 'Vi tvättar och målar fasader, fönster och snickerier i Sollentuna. Offerten är kostnadsfri.' },
   tejp: ['Fasadmålning i Sollentuna', 'Genomgång före målning', 'Fönster och snickerier', 'Fasadtvätt', 'Kostnadsfri offert', 'Faktura när jobbet är klart', 'F-skatt och Trygg-Hansa', '4,8 av 5 på Google'],
 
   tjanster: {
@@ -99,6 +99,7 @@ const data = {
   instagram: { ...instagramBas, koder: ['Dc1IM7Pgpeh', 'Dd-zVd3ggOI', 'DcmMHrIEbrF'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Frågor om fasad i Sollentuna',
     rubrik: ['Det Sollentunabor', 'brukar fråga'],
     lead: 'Om vi kommer hit, vad vi kan visa och hur det går till.',

@@ -240,6 +240,8 @@ const FRAGOR = [
   { q: 'Hyr ni ut till privatpersoner?', a: 'Vi är byggda för företag och proffs, men hör av dig så säger vi vad som går.' },
   { q: 'Kan jag ladda elbilen hos er?', a: 'Ja. Kunder laddar gratis när de besöker oss på Bäckvägen.' },
   { q: 'Var finns ni?', a: 'Bäckvägen 20 i Sollentuna, med leverans i Stockholm med omnejd. Ligger jobbet längre bort får du säga var, så säger vi om vi kan ta det.' },
+  // Tiderna enligt Google-profilen (avlästa 2026-11-17).
+  { q: 'Vilka öppettider har ni?', a: 'Måndag till fredag 06 till 16. Lördag och söndag är det stängt.' },
 ];
 
 const FORETAG_SCHEMA = {
@@ -264,6 +266,9 @@ const FORETAG_SCHEMA = {
   areaServed: [
     { '@type': 'City', name: 'Sollentuna' },
     { '@type': 'City', name: 'Stockholm' },
+  ],
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '06:00', closes: '16:00' },
   ],
   sameAs: ['https://www.instagram.com/proffsmaskinerab/'],
 };
@@ -304,6 +309,7 @@ export function ProffsmaskinerSida({ kund = false }) {
             <p className={styles.heroLogo}><Image src="/proffsmaskiner/media/logo-proffsmaskiner-vit.svg" alt="Proffsmaskiner Sverige AB" width={255} height={142} priority unoptimized /></p>
             <p className={styles.heroTjanster}>Bygg · Rivning · Sanering · Håltagning</p>
             <h1 className={styles.heroRubrik}>Maskinuthyrning i Sollentuna och Stockholm</h1>
+            <p className={styles.heroIngress}>Vi hyr ut och säljer maskiner för bygg, rivning, sanering och håltagning från Bäckvägen 20 i Sollentuna, med leverans i Stockholm med omnejd.</p>
             <div className={styles.heroCta}>
               <a className={styles.btn} href="#kontakt">Få offert på maskin</a>
               <a className={`${styles.btn} ${styles.btnGhost}`} href={TEL_HREF}>Ring {TEL}</a>
@@ -418,7 +424,7 @@ export function ProffsmaskinerSida({ kund = false }) {
         <div className={styles.wrap}>
           <div className={styles.sekHuvud}><p className={styles.eyebrow}>Vanliga frågor</p><h2 className={styles.h2}>Det ni brukar fråga först</h2><p className={styles.sekLead}>Konto, leverans och vad som händer om något går sönder. Gäller det just ert jobb är telefonen snabbare än en sida.</p></div>
           <div className={styles.fragorGrid}>
-            <div className={styles.fragor}>{FRAGOR.map((f) => <details className={styles.fraga} name="faq" key={f.q}><summary>{f.q}<span className={styles.fragaIkon} aria-hidden="true" /></summary><p>{f.a}</p></details>)}</div>
+            <div className={styles.fragor}>{FRAGOR.map((f) => <details className={styles.fraga} open key={f.q}><summary>{f.q}<span className={styles.fragaIkon} aria-hidden="true" /></summary><p>{f.a}</p></details>)}</div>
             <aside className={styles.fragaKort}><h3>Hittar du inte svaret?</h3><p>Ring och fråga rakt ut. Vi säger vilken maskin jobbet kräver.</p><a className={`${styles.btn} ${styles.btnMork}`} href={TEL_HREF}>Ring {TEL}</a></aside>
           </div>
         </div>

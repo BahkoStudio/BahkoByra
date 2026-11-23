@@ -87,7 +87,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/golv/') },
 
-  hero: { ...hero, rubrik: { fraga: 'Golv i Stockholm', svar: 'Läggning & Slipning.' } },
+  hero: { ...hero, rubrik: { fraga: 'Golv i Stockholm', svar: 'Läggning & Slipning.' }, ingress: 'Vi lägger, slipar och målar golv i Stockholm, gärna i samma offert som väggarna.' },
   tejp: ['Golvläggning', 'Golvslipning', 'Golvmålning', 'Golv och väggar i samma jobb', '4,9 av 5 på Reco', 'Rekommenderat tre år i rad', 'ROT direkt på fakturan', 'Kostnadsfri offert'],
 
   tjanster: {
@@ -161,6 +161,7 @@ const data = {
   instagram: { ...instagramBas, koder: ['DeNI1zEkcpW', 'DcmMHrIEbrF', 'Dd-zVd3ggOI'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Vanliga frågor om golv',
     rubrik: ['Det ni brukar', 'fråga om golvet'],
     lead: 'Pengar och risk först, det praktiska sedan.',

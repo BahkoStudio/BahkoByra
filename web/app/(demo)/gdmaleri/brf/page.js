@@ -149,7 +149,7 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerB
 
 export const metadata = {
   ...sidaMeta({
-    title: 'Målare för BRF i Stockholm – trapphus och fasad | GD Måleri',
+    title: 'Målare för BRF i Stockholm: trapphus och fasad | GD Måleri',
     description:
       'Målning för bostadsrättsföreningar i Stockholm: trapphus, entréer, fasader och fönster. Rekommenderat på Reco tre år i rad, 4,9 av 5. Kostnadsfri offert.',
     sokvag: '/brf/',
@@ -284,6 +284,7 @@ const data = {
   },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Frågor från styrelser',
     rubrik: ['Det styrelsen', 'brukar fråga'],
     lead: 'Pengar och risk först, det praktiska sedan.',

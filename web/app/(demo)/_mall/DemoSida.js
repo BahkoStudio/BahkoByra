@@ -97,7 +97,8 @@ const Stjarnor = ({ tomma, etikett, antal }) => (<span className={`${s.stjarnor}
 const Rubrik = ({ r, mork }) => (
   <div className={`${s.sekHuvud} ${mork ? s.paMork : ''}`}>
     <p className={s.eyebrow}>{r.eyebrow}</p>
-    <h2 className={s.h2}>{r.rubrik[0]}{r.rubrik[1] ? <> <em>{r.rubrik[1]}</em></> : null}{r.rubrik[2] || null}</h2>
+    {/* Ingen tom h2 när sektionen saknar rubrik (dolda sektioner, Kakel 0413). */}
+    {r.rubrik[0] ? <h2 className={s.h2}>{r.rubrik[0]}{r.rubrik[1] ? <> <em>{r.rubrik[1]}</em></> : null}{r.rubrik[2] || null}</h2> : null}
     {r.lead ? <p className={s.sekLead}>{r.lead}</p> : null}
   </div>
 );
@@ -405,7 +406,8 @@ function Fragor({ d, t, k, harTel }) {
                 {d.bokning?.kortTxt ? (d.bokning.inbaddad ? <a className={s.pilLank} href="#boka">{d.bokning.kortTxt}</a> : <a className={s.pilLank} href={d.bokning.url} target="_blank" rel="noopener">{d.bokning.kortTxt}</a>) : null}
               </aside>
             </div>
-            <div className={s.fragor}>{d.fragor.lista.map((f) => <details className={s.fraga} name="faq" key={f.q}><summary>{f.q}<span className={s.fragaIkon} aria-hidden="true" /></summary><p>{f.a}</p></details>)}</div>
+            {/* Valfritt fragor.oppna (SEO-auditen 2026-11-23): alla svar visas öppna och går att fälla ihop. Utan fältet: ett i taget, som förut. */}
+            <div className={s.fragor}>{d.fragor.lista.map((f) => <details key={f.q} className={s.fraga} open={d.fragor.oppna || undefined} name={d.fragor.oppna ? undefined : 'faq'}><summary>{f.q}<span className={s.fragaIkon} aria-hidden="true" /></summary><p>{f.a}</p></details>)}</div>
           </div>
         </div>
       </section>
@@ -769,7 +771,7 @@ export default function DemoSida({ data: d }) {
                   : h1Rader.map((rad, i) => <span className={rad.liten ? s.h1Liten : undefined} key={i}>{rad.txt || rad}</span>)}
               </HeroLogoTagg>
               {d.hero.rubrik ? (
-                <h1 className={s.heroRubrik}><span className={s.heroOrt}>{d.hero.rubrik.fraga}</span> <span className={s.heroTjanster}>{d.hero.rubrik.svar}</span></h1>
+                <h1 className={s.heroRubrik}><span className={s.heroOrt}>{d.hero.rubrik.fraga}</span>{d.hero.rubrik.svar ? <> <span className={s.heroTjanster}>{d.hero.rubrik.svar}</span></> : null}</h1>
               ) : (
                 <>
                   {/* Entrén (Mathias 2026-11-11): orten bokstav för bokstav, tjänsteraden ord för ord. Spannen bär bara fördröjningen (--i). */}
@@ -777,6 +779,8 @@ export default function DemoSida({ data: d }) {
                   <p className={s.heroTjanster}><span className={s.heroOrd} style={{ '--i': 0 }}>{d.hero.tjanster[0]}</span> <span className={s.heroOrd} style={{ '--i': 1 }}>&amp;</span> <span className={s.heroOrd} style={{ '--i': 2 }}>{d.hero.tjanster[1]}.</span></p>
                 </>
               )}
+              {/* Valfritt hero.ingress (SEO-auditen 2026-11-23): en mening under rubriken om vad företaget gör och var. */}
+              {d.hero.ingress ? <p className={s.heroIngress}>{d.hero.ingress}</p> : null}
               <div className={s.heroCta}>
                 <a className={s.btn} href="#kontakt">{d.cta.txt}</a>
                 <a className={`${s.btn} ${s.btnKontur}`} href={andraVag.href} {...(andraVag.ny ? { target: '_blank', rel: 'noopener' } : {})}>{andraVag.ikon}{andraVag.txt}</a>
@@ -914,7 +918,7 @@ export default function DemoSida({ data: d }) {
               </div>
               <div className={s.omTxt}>
                 <p className={s.eyebrow}>{d.om.eyebrow}</p>
-                <h2 className={s.h2}>{d.om.rubrik[0]}{d.om.rubrik[1] ? <> <em>{d.om.rubrik[1]}</em></> : null}</h2>
+                {d.om.rubrik[0] ? <h2 className={s.h2}>{d.om.rubrik[0]}{d.om.rubrik[1] ? <> <em>{d.om.rubrik[1]}</em></> : null}</h2> : null}
                 {/* Ett stycke får vara JSX med en länk (GD Måleri 2026-10-14); strängar som förut. */}
                 <div className={s.stycken}>{d.om.stycken.map((st, i) => <p key={typeof st === 'string' ? st.slice(0, 24) : i}>{st}</p>)}</div>
                 {d.om.bevis?.length ? <div className={s.omBevis}>{d.om.bevis.map((b) => <div key={b.ord}><b>{b.ord}</b><span>{b.text}</span></div>)}</div> : null}

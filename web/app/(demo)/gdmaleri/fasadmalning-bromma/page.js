@@ -33,7 +33,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
 
 export const metadata = {
   ...sidaMeta({
-    title: 'Fasadmålning i Bromma – 234 kvm klart 2026 | GD Måleri',
+    title: 'Fasadmålning i Bromma: 234 kvm klart 2026 | GD Måleri',
     description:
       'Fasadmålning i Bromma: senast 234 kvm väggar, vindskivor, takfot och fönsterkarmar, klart hösten 2026. Kostnadsfritt hembesök och ROT på fakturan.',
     sokvag: '/fasadmalning-bromma/',
@@ -58,7 +58,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Bromma', svar: 'Fasad & fönsterkarmar.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Bromma', svar: 'Fasad & fönsterkarmar.' }, ingress: 'Vi tvättar, skrapar och målar fasader i Bromma. Senast 234 kvm väggar, vindskivor, takfot och fönsterkarmar.' },
   tejp: ['Fasadmålning i Bromma', '234 kvm klart 2026', 'Väggar och vindskivor', 'Takfot och fönsterkarmar', 'Trä, puts, tegel och plåt', 'Färg från Flügger', 'ROT på småhus', 'Kostnadsfritt hembesök'],
 
   tjanster: {
@@ -104,6 +104,7 @@ const data = {
   instagram: { ...instagramBas, lead: 'Bromma-jobbet först, sedan fler jobb från vårt konto.', koder: ['Dd-zVd3ggOI', 'Dc1IM7Pgpeh', 'DeNI1zEkcpW'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Frågor om fasaden i Bromma',
     rubrik: ['Det Bromma-bor', 'brukar fråga'],
     lead: 'Om jobbet vi har gjort här, och om hur du får en offert på ditt eget hus.',
