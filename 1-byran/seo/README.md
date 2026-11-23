@@ -7,7 +7,7 @@ offer i outreach.
 | Vad | Var |
 |---|---|
 | Hur leveransen görs, steg för steg | `local_seo_delivery.md` |
-| Kontrollera om en SEO-åtgärd fungerar eller är en myt | skillen `/optimering` |
+| Kontrollera om en SEO-åtgärd fungerar eller är en myt | skillen `/optimering-general` (sajten) och `/optimering-local` (Google-profilen) |
 | Lokal SEO-metoden (källdokument) | `reference/Local_SEO_Workflow.pdf` |
 | Varje kunds underlag | `2-kunder/kunder/<kund>/seo-geo-aeo.md` |
 | Veckorapport med Google-siffror (GD Måleri) | `tools/gd-rapport/` |

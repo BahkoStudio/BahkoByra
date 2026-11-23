@@ -1,4 +1,4 @@
-# Optimering — referens
+# Optimering general — referens
 
 Detaljunderlag till [SKILL.md](SKILL.md). Läses vid behov, inte varje gång.
 
@@ -198,7 +198,7 @@ Varje tjänstesida får eget `Service`-schema som pekar tillbaka på huvudentite
 ## Teknisk checklista
 
 **Innehåll i rå HTML**
-- [ ] Nyckelinnehåll syns utan JavaScript (kör skriptet i SKILL.md Steg 2)
+- [ ] Nyckelinnehåll syns utan JavaScript (kör skriptet i SKILL.md, Del B)
 - [ ] En `<h1>`, logisk `<h2>`/`<h3>`-hierarki
 - [ ] Semantiska taggar: `article`, `section`, `details`
 - [ ] Listor är riktiga `<ul>`/`<ol>`, inte `<div>`-rader
@@ -228,7 +228,7 @@ Varje tjänstesida får eget `Service`-schema som pekar tillbaka på huvudentite
 
 **Ordning vid uppsättning**
 1. Primärkategori, exakt matchande huvudtjänsten
-2. Totalt 5–6 kategorier som stämmer med vad kunden gör (SOP 2026-11-13, se SKILL.md Steg 3)
+2. Totalt 5–6 kategorier som stämmer med vad kunden gör (lokala SOP:en, se skillen optimering-local Steg 3)
 3. Fullständig NAP, identisk med sajt och kataloger
 4. Tjänsteområden som orter, bara där kunden faktiskt jobbar
 5. Öppettider
