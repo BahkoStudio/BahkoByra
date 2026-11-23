@@ -37,6 +37,11 @@ const KUNDER = [
     rad: 'GD Måleri: hemsida och Google, Stockholm',
   },
   {
+    namn: 'Kakel 0413 AB',
+    bild: { src: '/img/kunder/kakel0413.webp', w: 1000, h: 265 },
+    rad: 'Ny hemsida, kakelsättare i Eslöv',
+  },
+  {
     namn: 'Mayka Gulo',
     ord: 'Mayka Gulo',
     mark: 'kock',
