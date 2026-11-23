@@ -183,7 +183,7 @@ const data = {
       { q: 'När betalar jag?', a: 'Du får fakturan när arbetet är klart, ingen förskottsbetalning.' },
       { q: 'Har ni garanti?', a: 'Ja, ett år på måleriarbetet. Behöver något åtgärdas under den tiden gör vi det utan extra kostnad.' },
       { q: 'Målar ni kontor också?', a: 'Ja. Vi målar hemma hos privatpersoner och åt företag, från lägenheter och villor till kontorslokaler.' },
-      { q: 'Var arbetar ni?', a: 'I hela Stockholm. I år har vi bland annat målat tak och väggar på 180 kvm i Södertälje.' },
+      { q: 'Var arbetar ni?', a: <>I hela Stockholm. I år har vi bland annat målat tak och väggar på 180 kvm som <a href="/gdmaleri/malare-sodertalje/">målare i Södertälje</a>.</> },
     ],
   },
 

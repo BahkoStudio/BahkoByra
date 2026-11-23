@@ -90,7 +90,7 @@ const data = {
   jobb: {
     eyebrow: 'Våra jobb',
     rubrik: ['Fasader vi har', 'tvättat och målat'],
-    lead: 'Senast 234 kvm i Bromma, och innan dess 350 kvm i Täby kyrkby. Alla bilder är från våra egna projekt.',
+    lead: <>Senast 234 kvm i Bromma, och innan dess 350 kvm i Täby kyrkby. Läs mer om <a href="/gdmaleri/fasadmalning-taby/">fasadmålning i Täby</a>. Alla bilder är från våra egna projekt.</>,
     not: 'Före/efter-bilden är två foton av samma gavel, tagna före och efter jobbet (tvätt, skrapning och målning) och satta ihop på mitten. Fler jobb finns på vårt Instagram.',
     utvalda: [
       { src: `${M}/fasad-fore-efter.webp`, w: 900, h: 1200, etikett: 'Före och efter', txt: 'Bromma, 234 kvm. Samma gavel: vänster halva före, höger halva efter jobbet.', alt: 'Sammansatt före/efter-bild av samma gavel i Bromma: vänster halva visar smutsig, flagnande grå färg och en byggställning, höger halva den rena, nymålade ljusgrå panelen med vita fönster', lank: { href: 'https://www.instagram.com/p/Dd-zVd3ggOI/', txt: 'Se jobbet på Instagram' } },

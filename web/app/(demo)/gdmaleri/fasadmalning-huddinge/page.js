@@ -30,9 +30,9 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
 
 export const metadata = {
   ...sidaMeta({
-    title: 'Fasadmålning i Huddinge – målare för fasad och hus | GD Måleri',
+    title: 'Fasadmålning i Huddinge, ROT på fakturan | GD Måleri',
     description:
-      'Fasadmålning i Huddinge: fasad och tak på villan, offererat vid ett hembesök utan kostnad. Inget extra utan ditt ja, och ROT direkt på fakturan.',
+      'Fasadmålning i Huddinge: kostnadsfri offert efter hembesök, ingen förskottsbetalning och ROT direkt på fakturan. Inget extra utan ditt ja.',
     sokvag: '/fasadmalning-huddinge/',
   }),
   robots: { index: false, follow: false },
