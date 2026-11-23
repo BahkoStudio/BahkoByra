@@ -24,7 +24,7 @@ const fragor = [
 
 export default function Sida() {
   return <Landning schema={{ slug: 'snorojning', namn: 'Snöröjning och halkbekämpning', typ: 'Snöröjning', beskrivning: metadata.description }} sida={{
-    hero: { ...bas.hero, rubrik: { fraga: 'Snöröjning i Bromma och Stockholm', svar: 'Snö & Halka.' } },
+    hero: { ...bas.hero, rubrik: { fraga: 'Snöröjning i Bromma och Stockholm', svar: 'Snö & Halka.' }, ingress: 'Vi röjer uppfarter, gångar, entréer och parkeringar i Bromma och Storstockholm, med halkbekämpning vid behov.' },
     tejp: ['Snöröjning', 'Halkbekämpning', 'Uppfarter', 'Gångar och entréer', 'Parkeringar', 'Villor och BRF', 'Samma kontaktperson året om'],
     tjanster: { ...bas.tjanster, eyebrow: 'Snöröjning', rubrik: ['Snö i vinter,', 'trädgård när den smält'], lead: 'En uppfart som är röjd när du ska till jobbet. En entré där ingen halkar. Vi tar snön genom hela säsongen, och halkan när det behövs.', kolumner: 3,
       kort: [

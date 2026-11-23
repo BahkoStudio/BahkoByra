@@ -50,7 +50,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
 
 export const metadata = {
   ...sidaMeta({
-    title: 'Fasadmålning i Stockholm – trä, puts och fönster | GD Måleri',
+    title: 'Fasadmålning i Stockholm: trä, puts och fönster | GD Måleri',
     description:
       'Fasadtvätt och fasadmålning i Stockholm på trä, puts, tegel och plåt, med fönster och takfot. Senast 234 kvm i Bromma. Kostnadsfri offert och ROT på småhus.',
     sokvag: '/fasad-malning/',
@@ -74,7 +74,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/fasad/') },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Stockholm', svar: 'Tvätt & Målning.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Stockholm', svar: 'Tvätt & Målning.' }, ingress: 'Vi tvättar, skrapar och målar fasader av trä, puts, tegel och plåt i hela Stockholm och Södertälje.' },
   tejp: ['Fasadtvätt', 'Fasadmålning', 'Trä, puts, tegel och plåt', 'Vindskivor och takfot', 'Fönsterkarmar', 'Färg från Flügger', '4,9 av 5 på Reco', 'ROT på småhus'],
 
   tjanster: {
@@ -144,6 +144,7 @@ const data = {
   instagram: { ...instagramBas, koder: ['Dd-zVd3ggOI', 'Dc1IM7Pgpeh', 'DcmMHrIEbrF'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Vanliga frågor om fasad',
     rubrik: ['Det ni brukar', 'fråga om fasaden'],
     lead: 'Pengar och risk först, det praktiska sedan.',

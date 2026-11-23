@@ -87,7 +87,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/invandig-malning/') },
 
-  hero: { ...hero, rubrik: { fraga: 'Målare inomhus i Stockholm', svar: 'Invändig målning & Tapet.' } },
+  hero: { ...hero, rubrik: { fraga: 'Målare inomhus i Stockholm', svar: 'Invändig målning & Tapet.' }, ingress: 'Vi spacklar, tapetserar och målar väggar, tak och snickerier inomhus i hela Stockholm.' },
   tejp: ['Väggar', 'Innertak', 'Tapetsering', 'Bredspackling', 'Tapetborttagning', 'Dörrar och lister', '4,9 av 5 på Reco', 'ROT direkt på fakturan'],
 
   tjanster: {
@@ -171,6 +171,7 @@ const data = {
   instagram: { ...instagramBas, koder: ['DeoISssEUS9', 'DeNI1zEkcpW', 'Dd-zVd3ggOI'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Vanliga frågor om invändig målning',
     rubrik: ['Det ni brukar', 'fråga först'],
     lead: 'Pengar och risk först, det praktiska sedan.',

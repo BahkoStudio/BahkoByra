@@ -65,7 +65,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/tak/') },
 
-  hero: { ...hero, rubrik: { fraga: 'Takmålning i Stockholm', svar: 'Tvätt & Målning.' } },
+  hero: { ...hero, rubrik: { fraga: 'Takmålning i Stockholm', svar: 'Tvätt & Målning.' }, ingress: 'Vi tvättar bort mossa och lav och målar tak i Stockholm. På småhus dras ROT direkt på fakturan.' },
   tejp: ['Taktvätt', 'Takmålning', 'Mossa och lav bort', 'Takfot och vindskivor', 'ROT på småhus', '4,9 av 5 på Reco', 'Rekommenderat tre år i rad', 'Kostnadsfri offert'],
 
   tjanster: {
@@ -128,6 +128,7 @@ const data = {
   instagram: { ...instagramBas, koder: ['Dcja9QqkbrR', 'Dd-zVd3ggOI', 'DcmMHrIEbrF'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Vanliga frågor om tak',
     rubrik: ['Det ni brukar', 'fråga om taket'],
     lead: 'Pengar och risk först, det praktiska sedan.',

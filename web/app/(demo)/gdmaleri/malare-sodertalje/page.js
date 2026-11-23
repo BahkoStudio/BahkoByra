@@ -31,7 +31,7 @@ import { M, tema, logo, kontakt, cta, formular, bokning, kundtyp, formNot, epost
 
 export const metadata = {
   ...sidaMeta({
-    title: 'Målare i Södertälje – 180 kvm klart okt 2026 | GD Måleri',
+    title: 'Målare i Södertälje: 180 kvm klart okt 2026 | GD Måleri',
     description:
       'Målare i Södertälje, där GD Måleri har sitt säte: invändig målning, fasad och tak. Senast 180 kvm tak och väggar. Kostnadsfri offert och ROT på fakturan.',
     sokvag: '/malare-sodertalje/',
@@ -58,7 +58,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Målare i Södertälje', svar: 'Inne & ute.' } },
+  hero: { ...hero, rubrik: { fraga: 'Målare i Södertälje', svar: 'Inne & ute.' }, ingress: 'GD Måleri har sitt säte i Södertälje och målar inne och ute, här och i hela Stockholm.' },
   tejp: ['Målare i Södertälje', 'Vårt säte', '180 kvm tak och väggar', 'Invändig målning', 'Fasad och tak', 'Rekommenderat företag på Reco', 'Faktura när jobbet är klart', 'ROT på fakturan'],
 
   tjanster: {
@@ -106,6 +106,7 @@ const data = {
   instagram: { ...instagramBas, lead: 'Södertälje-jobbet först, sedan fler jobb från vårt konto.', koder: ['DeNI1zEkcpW', 'Dd-zVd3ggOI', 'Dc1IM7Pgpeh'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Frågor om målare i Södertälje',
     rubrik: ['Det folk i Södertälje', 'brukar fråga'],
     lead: 'Om firman, om jobbet här och om hur du får en offert.',

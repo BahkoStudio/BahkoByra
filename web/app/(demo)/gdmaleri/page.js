@@ -197,7 +197,7 @@ import { formular, bokning, kundtyp, formNot, epostNamn, footerTjanster, footerB
 
 export const metadata = {
   ...sidaMeta({
-    title: 'Målare i Stockholm – fasad, tak och invändig målning | GD Måleri',
+    title: 'Målare i Stockholm: fasad, tak och invändig målning | GD Måleri',
     description:
       'Målare i Stockholm: fasadmålning, taktvätt, invändig målning, tapetsering och golv. Kostnadsfri offert, ROT direkt på fakturan och 4,9 av 5 på Reco.',
     sokvag: '/',
@@ -282,6 +282,7 @@ const data = {
   hero: {
     // h1 är texten (mallfältet hero.rubrik), inte logotypen (SEO-auditen 2026-10-27, punkt 4).
     rubrik: { fraga: 'Målare i Stockholm', svar: 'Måleri & Fasad.' },
+    ingress: 'Vi målar fasader, tak och rum och lägger golv i hela Stockholm och Södertälje.',
     video: `${M}/video-hero.mp4`,
     videoMobil: `${M}/video-hero-mobil.mp4`,
     poster: `${M}/poster-hero.jpg`,
@@ -419,6 +420,7 @@ const data = {
   },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Vanliga frågor',
     rubrik: ['Det ni brukar', 'fråga först'],
     lead: 'Pengar och risk först, det praktiska sedan.',

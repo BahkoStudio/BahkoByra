@@ -1764,6 +1764,14 @@ a.kontaktRad b {
   line-height: 1.25;
   color: var(--ljus);
 }
+.heroIngress {
+  max-width: 38rem;
+  margin: 0 auto;
+  font-size: var(--tx-m, 1rem);
+  line-height: 1.5;
+  color: var(--ljus);
+  text-wrap: balance;
+}
 .heroLager .heroCta {
   margin-top: 1.2rem;
   justify-content: center;

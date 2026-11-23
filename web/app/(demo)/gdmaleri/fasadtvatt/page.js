@@ -71,7 +71,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/fasadtvatt/') },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadtvätt i Stockholm', svar: 'Tvätt & Förarbete.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadtvätt i Stockholm', svar: 'Tvätt & Förarbete.' }, ingress: 'Vi tvättar fasader av trä, puts, tegel och plåt i Stockholm, för sig eller inför målning.' },
   tejp: ['Fasadtvätt', 'Trä, puts, tegel och plåt', 'Tvätt för sig', 'Eller inför målning', 'Skrapning av lös färg', 'ROT på småhus', '4,9 av 5 på Reco', 'Kostnadsfri offert'],
 
   tjanster: {
@@ -137,6 +137,7 @@ const data = {
   instagram: { ...instagramBas, koder: ['Dd-zVd3ggOI', 'Dc1IM7Pgpeh', 'DcmMHrIEbrF'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Vanliga frågor om fasadtvätt',
     rubrik: ['Det ni brukar', 'fråga om tvätten'],
     lead: 'Pengar och risk först, det praktiska sedan.',

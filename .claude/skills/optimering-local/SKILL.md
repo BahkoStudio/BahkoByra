@@ -1,10 +1,12 @@
 ---
-name: optimering
-description: Använd när en kundsajt ska optimeras för Google, AI-svar eller konvertering — lokal SEO enligt SOP:en (benchmark med heatmap, easy-win-check, Google Företagsprofil med 5–6 kategorier och 30–40 tjänster, sajtens grunder, citeringar, veckorutin, tjänste- och ortssidor), GEO/AEO, schema markup, teknisk sajtgranskning, Cowork-uppdrag för Google-profilen. Trigga på "optimera sajten", "SEO för [kund]", "lokal SEO", "GEO/AEO", "schema markup", "ranka på Google", "synas i AI-svar", "Google Business Profile", "Google Företagsprofil", "cowork-instruktion", "heatmap", "varför syns vi inte", eller när någon föreslår en SEO-åtgärd och du behöver kontrollera om den faktiskt fungerar eller är en myt.
-argument-hint: [kund eller sajt, t.ex. "proffsmaskiner"]
+name: optimering-local
+description: Använd när en kund ska synas i Googles kartresultat, enligt lokala SEO-SOP:en — baslinje med heatmap, easy-win-check, Google Företagsprofil med 5–6 kategorier och 30–40 tjänster, kartan på sajten, citeringar, veckorutin, tjänste- och ortssidor, falska profiler, Cowork-uppdrag för Google-profilen. Trigga på "optimering local", "lokal SEO", "Google Företagsprofil", "Google Business Profile", "Google-profilen", "cowork-instruktion", "cowork-uppdrag", "heatmap", "kartlistan", "Google Maps", "citeringar", "ortssidor", "varför syns vi inte på kartan". Sajtgranskning, pengasidor, interna länkar, quick win och trafiktapp ligger i optimering-general.
+argument-hint: [kund, t.ex. "proffsmaskiner"]
 ---
 
-# Optimering — lokal SEO, GEO, AEO och sajt
+# Optimering local: Google Företagsprofil och kartan
+
+En av tre SEO-skills. **optimering-general** äger sajten (audit, pengasidor, interna länkar, quick win, trafiktapp) och den gemensamma svartlistan. **optimering-ai** är inte byggd än. Den här äger Google-profilen och allt lokalt.
 
 Två delar:
 
@@ -13,7 +15,7 @@ Två delar:
 
 **När en ny SOP-version kommer:** de nya stegen ersätter Del A helt. Del B behålls. Visa Mathias vad som ändrades. Står något i nya SOP:en som krockar med Del B (lag, Googles riktlinjer, våra fasta regler), behåll Del B-regeln och säg till.
 
-Detaljer, schema-mallar och full evidenstabell: [reference.md](reference.md).
+Detaljer, schema-mallar och full evidenstabell: [reference.md](../optimering-general/reference.md) i optimering-general.
 
 ## Grundregler (gäller alltid, före SOP:en)
 
@@ -165,7 +167,7 @@ Bara om Grund inte gav topp 3 inom några veckor.
 
 ### Schema
 
-LocalBusiness-schema (technicalseo.com:s generator fungerar, eller mallarna i reference.md) på sajten.
+LocalBusiness-schema (technicalseo.com:s generator fungerar, eller mallarna i optimering-generals reference.md) på sajten.
 
 ### Bygg ut sidorna
 
@@ -393,3 +395,4 @@ Rangordnad lista där varje punkt har: vad, evidensgrad, uppskattad effekt och v
 - 2026-11-12: Lokal SEO-SOP version 2026-11-06 inlagd som Del A (baslinje med heatmap och topp 3-punkter, easy-win-check, 5–6 kategorier, 30–40 tjänster med promptar och kundmejl, sajtens grunder, citeringar, veckorutin, tjänste- och ortssidor, interna länkar, falska profiler). Gamla innehållet blev Del B. Ändrat mot förr: "max tre underkategorier" borta, Q&A i profilen ersatt av FAQ på sajten, ny evidensgrad "Rapporterat". Svensk anpassning: inget "Bäst" i title, svenska kataloger i stället för Data Axle, helgdagar i Sverige, Cowork-uppdragen.
 - 2026-11-17: Del A uppdaterad till SOP-version 2026-11-13. Nytt: åtkomst som Ansvarig från eget Google-konto, aldrig kundens inloggning och aldrig Ägare; knappen Meddelande på Maps (Steg 3.10); kontroll att bokningslänken ger en fungerande Boka online-knapp; omdömen jämnt och aldrig i en skur från ett utskick, svar inom 48 timmar (veckorutinen har nu tre saker till kunden). Del B: ny tabell över de fyra kunder vi kör SOP:en på. Våra egna regler är oförändrade: fortfarande inget "Bäst" i title.
 - 2026-11-17 (kväll): Kakel 0413 tillagd som femte kund. Heatmap: GTrack gratisplan. Karta via cid inlagd på Proffsmaskiner, GD, Bromma och bahkobyra.se/webbyra-jonkoping/, och som valfritt fält i demomallen.
+- 2026-11-23: skillen `optimering` delad i tre. Den här heter nu **optimering-local** och har lokala SOP:en (version 2026-11-13) oförändrad. Allmän sajt-SEO flyttad till optimering-general. Del B står kvar här tills nästa lokala SOP-version läggs in.

@@ -74,7 +74,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/tapetsering/') },
 
-  hero: { ...hero, rubrik: { fraga: 'Tapetsering i Stockholm', svar: 'Tapet & Spackling.' } },
+  hero: { ...hero, rubrik: { fraga: 'Tapetsering i Stockholm', svar: 'Tapet & Spackling.' }, ingress: 'Vi tar bort gammal tapet, bredspacklar och sätter upp ny i Stockholm, med mönsterpassning.' },
   tejp: ['Tapetsering', 'Bredspackling', 'Tapetborttagning', 'Papperstapet, non-woven och vinyl', 'Mönsterpassning', '4,9 av 5 på Reco', 'ROT direkt på fakturan', 'Kostnadsfri offert'],
 
   tjanster: {
@@ -140,6 +140,7 @@ const data = {
   instagram: { ...instagramBas, koder: ['DeNI1zEkcpW', 'DcmMHrIEbrF', 'Dd-zVd3ggOI'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Vanliga frågor om tapet',
     rubrik: ['Det ni brukar', 'fråga om tapeten'],
     lead: 'Pengar och risk först, det praktiska sedan.',

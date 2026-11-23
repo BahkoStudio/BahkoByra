@@ -70,7 +70,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra('/gdmaleri/snickerier-fonster-malning/') },
 
-  hero: { ...hero, rubrik: { fraga: 'Fönstermålning i Stockholm', svar: 'Fönster & Snickerier.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fönstermålning i Stockholm', svar: 'Fönster & Snickerier.' }, ingress: 'Vi skrapar, slipar, grundar och målar fönster, dörrar och lister i Stockholm, inne och ute.' },
   tejp: ['Fönstermålning', 'Dörrar', 'Karmar och foder', 'Lister och vindskivor', 'Träfönster och metallfönster', 'Inne och ute', '4,9 av 5 på Reco', 'ROT direkt på fakturan'],
 
   tjanster: {
@@ -132,6 +132,7 @@ const data = {
   instagram: { ...instagramBas, koder: ['Dd-zVd3ggOI', 'Dc1IM7Pgpeh', 'DcmMHrIEbrF'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Vanliga frågor om fönster',
     rubrik: ['Det ni brukar', 'fråga om fönstren'],
     lead: 'Pengar och risk först, det praktiska sedan.',

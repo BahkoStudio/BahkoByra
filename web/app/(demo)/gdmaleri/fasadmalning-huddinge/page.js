@@ -55,7 +55,7 @@ const data = {
   bokning,
   nav: { ...navUndersida, extra: menyExtra() },
 
-  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Huddinge', svar: 'Fasad & tak.' } },
+  hero: { ...hero, rubrik: { fraga: 'Fasadmålning i Huddinge', svar: 'Fasad & tak.' }, ingress: 'Vi målar fasader och tvättar tak i Huddinge, med kostnadsfri offert efter hembesök.' },
   tejp: ['Fasadmålning i Huddinge', 'Fasad och tak', 'Taktvätt', 'Inget extra utan ditt ja', 'Slutbesiktning före fakturan', 'Färg från Flügger', '46 omdömen på Reco', 'ROT på småhus'],
 
   tjanster: {
@@ -100,6 +100,7 @@ const data = {
   instagram: { ...instagramBas, koder: ['DeNI1zEkcpW', 'Dd-zVd3ggOI', 'Dc1IM7Pgpeh'] },
 
   fragor: {
+    oppna: true,
     eyebrow: 'Frågor om fasad i Huddinge',
     rubrik: ['Det du vill veta', 'innan vi kommer till Huddinge'],
     lead: 'Om var vi jobbar, vad vi kan visa och vad som ingår.',

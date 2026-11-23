@@ -20,7 +20,7 @@ const fragor = [
 
 export default function Sida() {
   return <Landning schema={{ slug: 'hackklippning', namn: 'Häckklippning och häckplantering', typ: 'Häckklippning', beskrivning: metadata.description }} sida={{
-    hero: { ...bas.hero, rubrik: { fraga: 'Häckklippning i Bromma och Stockholm', svar: 'Klipp, plantering & borttagning.' } },
+    hero: { ...bas.hero, rubrik: { fraga: 'Häckklippning i Bromma och Stockholm', svar: 'Klipp, plantering & borttagning.' }, ingress: 'Vi klipper, planterar och tar bort häckar i Bromma och Stockholm, och kör bort riset.' },
     tejp: ['Häckklippning', 'Häckplantering', 'Tuja och liguster', 'Borttagning med rothals', 'Plantor och jord ingår', 'Bortforsling samma dag'],
     tjanster: { ...bas.tjanster, eyebrow: 'Häck', rubrik: ['Tre olika jobb', 'på samma häck'], lead: 'Klippa, plantera och ta bort skiljer sig i tid, pris och rutavdrag. Vi går igenom skillnaden innan du bestämmer dig.', kolumner: 3,
       kort: [

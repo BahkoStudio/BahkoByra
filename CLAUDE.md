@@ -167,7 +167,8 @@ Beast of Ages äldre manus från 2025 och kortformat-djurvideorna (`Short Djur`)
 | Ny lead i en nisch som redan har demo | `/demo-recopy` (0 credits) — **alltid detta först** |
 | Kvalitetsgranska en sida, demo eller dashboard mot ribban | `/design-loop` — ribban i `docs/design/bar.md` |
 | Göra en video till scroll-sajt | `/video-to-website` |
-| SEO, lokal SEO, GEO, AEO, Google Företagsprofil | `/optimering` |
+| SEO för en sajt: audit, pengasidor, interna länkar, quick win, trafiktapp | `/optimering-general` |
+| Lokal SEO: Google Företagsprofil, heatmap, kartan, Cowork-uppdrag | `/optimering-local` |
 | Konkurrensanalys, klientrapport, lead-profil | `/rapport` |
 | Instagram-content | `/instagram-engine` — handtag **@bahkobyra1** |
 | Animera loggan, reels-intro | `/motion-design` |
