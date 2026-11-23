@@ -12,6 +12,10 @@ const GOOGLE = 'https://g.page/r/CY8e778hr3z7EAE';
 
 const OMDOMEN = [
   {
+    namn: 'Kakel 0413 AB',
+    text: 'Vi på Kakel 0413 AB är jättenöjda med Bahko Byrå och Matias som har hjälpt oss med vår hemsida. Matias är väldigt trevlig, duktig och alltid hjälpsam. Oavsett vilken tid på dygnet vi behöver hjälp finns han där, även på kvällar och helger. Vi rekommenderar verkligen Matias och Bahko Byrå!',
+  },
+  {
     namn: 'Jens Amnesten',
     fran: 'Bromma Trädgårdsservice',
     text: 'Vi på Bromma Trädgårdsservice är väldigt glada över samarbetet med Bahko Byrå. Vi uppskattar hur lätt det är att bolla idéer med er och att ni tar er tid att förstå vad vi vill förmedla till våra kunder. Det märks att ni bryr er om både vårt företag och resultatet. Stort tack för ert engagemang och för hjälpen med att göra oss mer synliga på nätet. Vi ser fram emot att fortsätta jobba tillsammans och rekommenderar er varmt! ⭐',
