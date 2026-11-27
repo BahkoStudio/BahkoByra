@@ -51,7 +51,30 @@ Förbehåll: mastodonten är ett mer känt djur än kortnosbjörnen, och det fö
 
 Stämmer med våra egna siffror: *15 Mindblowing Facts About De-Extinct Dire-Wolf Pups* (85 903) handlar om tre namngivna, levande individer i dag. *15 Facts About the Tasmanian Tiger* (280) är en lista med saker. Era Swap gör samma tre saker ("You're a dodo", klockan, "Run six is still hunting").
 
+## Tredje PDF:en: "You're Looking at the Wrong Thing" (tillagd 2026-11-27)
+
+Titel och miniatyr spelar roll, men det större är om videon ger publiken det den kom för.
+
+Deras exempel, samma film, samma format (numrerad faktalista), samma publik:
+
+| | Visningar | Kanalens vanliga |
+|---|---|---|
+| Aliens (1986): 15 Shocking Facts You Didn't Know! | 3 000 | 10 000 |
+| Aliens (1986): 15 Hidden Secrets & Accidents that Made It Iconic! | 626 000 | 2 000 |
+
+Skillnaden: vinnaren hade **en berättelse publiken brydde sig om, och varje fakta matade den**. Floppen var bara en lista.
+
+Det här träffar vår serie "15 Facts … That Make No Sense" rakt av. Regel framåt: **en lista behöver en ryggrad.** Före manuset skrivs en mening: "Den här videon handlar om hur/varför …", och varje fakta ska föra den berättelsen framåt. Ett fakta som inte gör det stryks, hur bra det än är. Titeln får gärna bära ryggraden (deras: "… that Made It Iconic").
+
+Två arbetsregler ur samma PDF:
+- **Alltid i par.** En AI som får läsa en flopp ensam berömmer den och hittar på skäl. Jämför alltid vinnare mot flopp.
+- **Läs inte kommentarerna** som bevis för vad publiken vill ha. De som kommenterar är inte publiken.
+
+Steg 2 i deras metod: när formeln är klar, hitta andra ämnen som fungerar av samma skäl ("if Aliens worked, Predator might too") och visa hur varje del av formeln används där.
+
 ## Checklista före manus
+
+- [ ] RYGGRAD: en mening om vilken berättelse varje fakta matar. Finns den inte är det bara en lista.
 
 - [ ] Finns en jämförelse för idén (samma idé, olika resultat)? Om ja: läs båda manusen först.
 - [ ] SCEN: vem, var, vilket datum, i första meningen?
