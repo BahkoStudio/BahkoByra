@@ -15,7 +15,7 @@ på Mathias ok innan något manus skrivits kan ligga som egen fil här i `paket/
 | **Miniatyr** | Motivet hämtas ur manusets höjdpunkt, inte ur titeln. Texten ligger i översta tredjedelen. Bilden ska klara 50-procentstestet: publiken tittar på TV, där bara övre delen syns innan man trycker ned |
 | **Beskrivning** | Skriven för just den här videon. Kontrollera att kanalens standardbeskrivning inte följt med (det har hänt, se `../publicering/README.md`) |
 | **Fäst kommentar** | Högst två meningar |
-| **CTA** | Pekar **alltid** på kanalens senaste video, så kanalen ses som en serie. Hämta vilken den är med `vidiq_channel_videos({ videoFormat: 'long', popular: false })`, gissa aldrig. Kopplingen ska vara ett ämne, inte en artighetsfras. (Panelen 2026-11-07 föreslår "senaste avsnittet i samma serie"; ändras här först när Mathias sagt ja till `../youtube.md`-paketet) |
+| **CTA** | Pekar på **senaste avsnittet i samma serie** (samma format eller samma djur), och slutskärmen likaså. Finns inget sådant: kanalens senaste långvideo (beslut 2026-11-27, `../youtube.md`). Hämta vilken den är med `vidiq_channel_videos({ videoFormat: 'long', popular: false })`, gissa aldrig. Kopplingen ska vara ett ämne, inte en artighetsfras. (Panelen 2026-11-07 föreslår "senaste avsnittet i samma serie"; ändras här först när Mathias sagt ja till `../youtube.md`-paketet) |
 | **F. Fakta 16** (obligatorisk) | Ett oanvänt fakta ur faktabanken med källa, färdig engelsk text till community-inlägget dag 1 (`../publicering/README.md`, "Dag 1–2"), och tre till som Script & Sources-bilaga (`../strategi/medlemsstrategi-cowork.md`) |
 
 Förpackningen ska vara vår egen: titel och miniatyr hålls mot utliggarens i Grindens steg 4

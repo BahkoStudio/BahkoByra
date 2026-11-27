@@ -91,6 +91,10 @@ att kopiera här. Deras **titelmall** går: de kör en enda form över nästan a
 **Hantverket är inte problemet.** Gillningar per visning: 9–23 procent här, 2,1 procent på
 Edmund Extinctions 673k-video. De som hittar videorna gillar dem mer.
 
+Det gäller gillningar. Tittad andel är ett problem: 28–32 % mot ribban 45 % (90 dagar till
+2026-11-07), dodon under YouTube-snittet hela vägen. Första minuten och mittpartiet är
+arbetsområden.
+
 ## Hård regel för allt innehåll
 
 **Publiken är vuxna män, inte barn** — vilket tidigare antogs här. Uppmätt i YouTube
@@ -110,22 +114,18 @@ sprids snabbast och lever längst. Varje påstående ska gå att slå upp.
 Manuset i `manus/` gör det tre gånger, till exempel om pungvargens bettkraft:
 *"How hard it could actually bite, nobody agrees on, so nobody gets to hand you a number."*
 
-## Manusets status
+## Manusen
 
-**Klart att spela in.** 1 956 ord, snittmening 10,6 ord, längsta 24, noll meningar över 25,
-noll tankstreck, noll AI-mönster. Överlevnadstiderna faller monotont: tre veckor, elva
-dagar, nio timmar, elva minuter.
-
-Tre rundor manusloop och två rundor på paketet. Vad varje runda faktiskt rättade står i
-`manus/de-extinction-eras.md`, avsnittet "Vad de tre manusrundorna rättade" — läs det innan nästa manus, för två av felen är
-sådana jag gjorde i instruktionen och inte i texten.
+Status för varje manus står i `manus/README.md` (tabellen "Alla manus", kolumnerna "Ute på
+kanalen", "Bäst före" och "Spela in?"). Inspelningsordningen står i `publicering/ko.md`.
 
 ## Paketet skrivs före manuset
 
 Tio titlar, en thumbnail-prompt, en beskrivning, en pinnad kommentar på högst två meningar
-och en CTA. **CTA:n pekar alltid på kanalens senaste video** så kanalen ses som en serie —
-hämta vilken den är med `vidiq_channel_videos({ videoFormat: 'long', popular: false })`,
-gissa aldrig. Kopplingen ska vara ett ämne, inte en artighetsfras.
+och en CTA. **CTA:n och slutskärmens video pekar på senaste avsnittet i samma serie**
+(samma format eller samma djur). Finns inget sådant: kanalens senaste långvideo. Hämtas med
+`vidiq_channel_videos({ videoFormat: 'long', popular: false })`, gissas aldrig. Kopplingen
+ska vara ett ämne, inte en artighetsfras.
 
 **"Shocked" är brus, inte mekanism.** Midnight Zone har ett dussin titlar med ordet,
 spännvidd 107 till 1 005 832.
@@ -228,11 +228,13 @@ upptäcks genom att en enskild video går över ribban.
 
 ### Vad som gäller just nu
 
-Kanalens median är ungefär 1 300 och augustivideorna gav 17, 56, 69 och 81. **Beast of Ages
-är alltså i testläge, inte i dubbla ner-läge.** Det enda som passerat ribban på egen kraft
-är direktvargsspåret, och det har redan körts: 464 165 → 74 041 → 47 576 → 20 749 → 17 497
-→ 17 426 → 12 379 → 10 285 → 9 677. En obruten nedgång i nio steg. **Det spåret är slut.
-Sluta dubbla ner på det.**
+Medianen för en ny video är 168 visningar vid dag 28 (vidIQ 2026-11-07); livstidsmedianen
+1 300 beskriver vårens våg. **Beast of Ages är i testläge.** Mall E ("15 Facts About … That
+Make No Sense") passerade utliggarribban två gånger utan nyhetsvåg (moa 7 629, dodo 4 781
+på fyra dygn), men ingen av dem nådde 40 % tittad andel, och de två listorna därefter föll.
+Dire wolf-spåret (464 165 → 74 041 → 47 576 → 20 749 → 17 497 → 17 426 → 12 379 → 10 285 →
+9 677, nio steg nedåt) får ingen ny video utan ett levande nyhetsankare (A0 minst 6) och
+Grinden.
 
 **15 Facts-serien (Mall E) är avslutad, Mathias 2026-11-27** ("jag tror 15 fact-serien är
 död"). Siffrorna: dire wolf-valparna 85 903, moa 7 853, mammut 6 968, dodo 6 070, sedan
@@ -252,11 +254,15 @@ på kanalens starkaste djur.
 3. **Räkna med att en nedslagning ger färre visningar än originalet.** Det är normalt och
    betyder inte att den misslyckats. 300 000 följt av 50 000, 80 000, 10 000, 2 000 är en
    normal serie som ska avbrytas efter den fjärde. 10 000 följt av 4 000 ska avbrytas direkt.
-4. **Högst 1–3 videor i samma format.** Fungerade det inte första gången, inte andra gången
-   och möjligen inte tredje — gå vidare. Det vanligaste misstaget är tjugo videor fördelade
-   på tre format.
+4. **Högst 1–3 videor i ett format som INTE passerat ribban.** Fungerade det inte första
+   gången, inte andra gången och möjligen inte tredje — gå vidare. Det vanligaste misstaget
+   är tjugo videor fördelade på tre format. Ett format som passerat ribban följer regel 2
+   och en stoppregel: två videor i rad under formatets baslinje vid dag 28, och formatet
+   pausas. Så avslutades Mall E 2026-11-27 (baslinje mammutlistan 5 972).
 5. **Testa hela tiden parallellt**, även när en nedslagning fungerar. Varje nytt vinnande
    format läggs till i rotationen.
+6. **Mät dag 28 (vidIQ rapporterar dag 28)**, aldrig tidigare, och på median, aldrig snitt.
+   Loggen: `publicering/uppfoljning.md`.
 
 ### En rättelse av det jag skrev tidigare
 
