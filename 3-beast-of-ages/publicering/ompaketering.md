@@ -47,9 +47,11 @@ Måttstock: dodo 4,47 % och moa 4,85 % på 27 000–40 000 visningar i flödet.
 1. **Rhino, titel.** Nu: "The De-Extinction of a Rhino That Isn't Extinct Yet". Ny: **Only Two Northern White Rhinos Are Left. Both Are Female.** (titel 2 i manusets paket, hålls av kroken). Reserv: "15 Facts About the Northern White Rhino That Make No Sense".
 2. **Tasmanian tiger 15 facts, miniatyr.** Titeln är redan tillbaka i serien. Lägg `3-forty-to-sixty-thousand.jpg`, `4-46-teeth.jpg` och `5-genes-still-on.jpg` i Test & Compare.
 3. **Ranked, titel.** Ny: **The Mammoth Is Not the Best Animal to Bring Back. This One Is.** Reserver: "Scientists Wrote a Test for De-Extinction. The Mammoth Lands in the Bottom Half." och "Colossal's 6 Extinct Animals, Ranked by Scientists' Own Rules".
-4. **South Dakota, titel.** Skrivs efter att öppningen lästs om, så att de första 30 sekunderna håller löftet.
-5. **Why Were Mammoths So Big, miniatyr.**
-6. **Moa: build its egg, miniatyr.**
+4. **South Dakota, titel.** Ny: **61 Mammoths Died in One South Dakota Pond. Almost All Were Young Males.** Reserv: "Why Did 61 Mammoths Walk Into the Same Warm Pond?" (titel 5 och 8 i manusets paket). Miniatyrer finns: `mammoth-site-south-dakota/1-61-fell-in.jpg` med flera.
+5. **Why Were Mammoths So Big, miniatyr.** `mammoths-so-big/2-not-just-the-cold-lager.jpg` (lagerstil). Den ljusa `1-…` visar mammuten för stor mot mannen, använd inte.
+6. **Moa: build its egg, miniatyr.** `gamla-videor/09-moa-egg-no-bird-laid-this.jpg`.
+
+Nya miniatyrer 2026-11-27 i lagerstilen (ansiktet framför texten, Mathias önskemål): `northern-white-rhino-15-facts/4-only-two-left-lager.jpg`, `worth-bringing-back/3-not-the-mammoth-lager.jpg`. Ljusa varianter: `northern-white-rhino-15-facts/3-only-2-left-ljus.jpg`, `worth-bringing-back/2-not-the-mammoth.jpg`.
 
 ## Journal
 
