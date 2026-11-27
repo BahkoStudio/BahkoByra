@@ -57,6 +57,9 @@ Paketet ligger före manuset i flödet, för paketet skrivs före manuset (se ne
 | `reference/testa-vs-dubbla-ner.md` | Källdokumentet bakom testa/dubbla ner-ramverket, med Vintage Vehicles-fallstudien |
 | `reference/modellering-vs-kopiering.md` | Var gränsen går mellan att låna och att stjäla, med bevisbilder |
 | `reference/thumbnail-reglerna.md` | 50-procentstestet, fråga före relevans, referensinsamling |
+| `reference/jamforelsen-samma-titel.md` | ⭐ Jämförelsen (samma titel, olika resultat), formeln ryggrad + scen + stege + individ, checklistan före manus |
+| `reference/modell-era-swap.md` | Modellen med klocka och vinnare, ljus miniatyr med sann siffra |
+| `publicering/ompaketering.md` | Ny titel eller miniatyr på videor med lågt klick: rutin, kö, journal |
 | `konvertering.md` | Konvertering & tratt, väntar på beslut |
 
 **En fil per video.** Paketet och manuset bor tillsammans, för de dömdes mot varandra —
@@ -130,6 +133,55 @@ spännvidd 107 till 1 005 832.
 **Miniatyrmotivet hämtas ur manusets höjdpunkt**, inte ur titeln. Texten ligger i översta
 tredjedelen och bilden ska klara 50-procentstestet — publiken tittar på TV, där bara övre
 delen syns innan man trycker ned. Fulla reglerna: `reference/thumbnail-reglerna.md`.
+Stilarna som gäller sedan 2026-11-27 står under "Stilen sedan 2026-11-27" nedan.
+
+## Stilen sedan 2026-11-27: ryggrad, scen, stege, individ
+
+Mathias beslut 2026-11-27, efter Era Swap-modellen och Grow Channels tre fallstudier
+("spara denna stil och uppdatera allt"). Gäller varje nytt manus. Bakgrund och bevis:
+`reference/jamforelsen-samma-titel.md` och `reference/modell-era-swap.md`.
+
+**Det som avgör är om videon ger publiken det den kom för.** Titel och miniatyr får klicket,
+men en lista med fakta räcker inte för att hålla kvar tittaren.
+
+1. **Jämförelsen före manuset.** Hitta samma idé med olika resultat (helst samma kanal),
+   läs båda manusen sida vid sida och skriv ner vad vinnaren ger som floppen inte ger.
+   Alltid i par: en flopp som läses ensam ser bra ut. Kommentarer räknas inte som bevis.
+2. **Ryggrad.** En mening före manuset: "Den här videon handlar om hur eller varför …".
+   Varje fakta ska föra den berättelsen framåt. Ett fakta som inte gör det stryks.
+3. **Scen.** En namngiven människa eller ett namngivet djur, ett datum och en plats i de
+   första 20 sekunderna. Löftet (vad tittaren får veta sist) inom 40 sekunder.
+4. **Stege.** En gåta tittaren äger, ett utlovat antal steg, "anta att det gick, då kommer
+   nästa vägg", och minst en sak som planteras tidigt och betalas sent. När formen bär det:
+   en **motor** med klocka och vinnare (varje del får en tid och en resultatrad, och en
+   krok till nästa). Löftet förnyas runt 8:00.
+5. **Individ.** Ett enda djur med namn och ett öde, helst i tittarens egen värld (USA, i
+   dag), och det är där videon slutar. Tittaren får gärna rollen själv ("You're Romulus").
+6. **Ärlighet.** Det som är påhittat (ett utsläpp, en klocka, ett slut) sägs som påhittat i
+   öppningen och i beskrivningen. Allt annat går att slå upp, som alltid.
+7. **Slutet.** Den starkaste meningen står sist, direkt före CTA:n. Ingen sammanfattning.
+
+Formeln bygger på EN jämförelse i vår nisch (Facts Machine: mastodonten 1,56 miljoner mot
+kortnosbjörnen 50 000) och är en arbetshypotes. Den prövas mot utfallet på varje video.
+Första manuset i stilen: `manus/dire-wolf-yellowstone-winter.md`.
+
+**Miniatyrstilar godkända 2026-11-27** (minst en av de tre miniatyrerna i någon av dem):
+
+| Stil | Hur den ser ut |
+|---|---|
+| **Lager** | Svart bakgrund, extrem närbild på djurets huvud, tung vit versaltext staplad nere till vänster med sista ordet rött, och djurets nos eller horn ligger framför kanten på bokstäverna |
+| **Svartvit med lysande ögon** | Allt i svartvitt mot svart, djurets ögon lyser vitt, en rad text med ETT rött ord och en röd pil mot en liten sak i hörnet |
+| **Ljus scen** | Dagsljus eller färgscen sedd uppifrån, djuret gör något omöjligt i vår värld, gul och vit text med svart kant, vit pil mot djuret, högst fyra ord |
+
+Regler för alla tre: en sann siffra eller ett sant påstående i texten, texten får aldrig
+skäras av djuret (lagerstilen täcker bara kanten), ingen streckgubbe på de här videorna,
+och bilderna görs med GPT Image 2.5 (`hf.mjs --modell sunburst`). Lagerstilen har texten
+nere till vänster och bryter alltså mot "text i översta tredjedelen"; därför ska alltid
+minst en av de tre miniatyrerna ha texten upptill, och Test & Compare får avgöra.
+
+**Ompaketering.** En video som fått lågt klick efter en vecka får ny titel eller ny
+miniatyr, en sak i taget, mätt tre dagar före och efter. Rutin, kö och journal:
+`publicering/ompaketering.md`.
 
 ## Så hittas nya utliggare
 
@@ -143,6 +195,12 @@ leta utliggare att modellera (ju nyare desto bättre), gå sedan upp till **150 
 **Breakout-talet mäter avvikelse från kanalens eget snitt, inte om videon går att kopiera.**
 De två högsta talen i senaste körningen (243 och 232) var en filmtrailer och en riktig
 naturfilmsdokumentär. Kolla alltid format och genre innan en titel plockas.
+
+**Tre varningar (2026-11-27).** Lita inte på en utliggare som är yngre än en vecka. Lita
+inte på pyttekanaler där 2 000 visningar blir "tio gånger". Och kolla gilla per visning:
+ligger det långt under en halv procent kan publiken vara passiv eller trafiken köpt, och
+då är visningstalet inget bevis. Titta också utanför nischen: ett format som vinner hos
+grannen, flyttat till vårt djur, är vinkel C i Remixloopen.
 
 ## Remixregeln — före varje ny video (ersatte Unikhetsregeln 2026-10-18)
 
@@ -175,6 +233,15 @@ Kanalens median är ungefär 1 300 och augustivideorna gav 17, 56, 69 och 81. **
 är direktvargsspåret, och det har redan körts: 464 165 → 74 041 → 47 576 → 20 749 → 17 497
 → 17 426 → 12 379 → 10 285 → 9 677. En obruten nedgång i nio steg. **Det spåret är slut.
 Sluta dubbla ner på det.**
+
+**15 Facts-serien (Mall E) är avslutad, Mathias 2026-11-27** ("jag tror 15 fact-serien är
+död"). Siffrorna: dire wolf-valparna 85 903, moa 7 853, mammut 6 968, dodo 6 070, sedan
+pungvargen 280 efter 13 dagar och mastodonten 253 efter två. Inga nya "15 Facts"-manus
+skrivs. De publicerade videorna och serielistan ligger kvar. Idéer som loggats som "15
+Facts About …" (neandertalarna, sabeltandskatten) måste få en ny form i stilen ovan innan
+de byggs; faktabankerna återanvänds. Dire wolf som DJUR är inte stoppat: det som tog slut
+var nyhetsvågen, och `manus/dire-wolf-yellowstone-winter.md` är ett test av ett nytt format
+på kanalens starkaste djur.
 
 ### Reglerna
 

@@ -79,7 +79,8 @@ ribban.
 BÅDA: över 3 000 visningar dag 28 OCH tittad andel över 40 %. Klarar den bara visningarna är
 det en halvvinst: formatet behålls, öppningen byggs om innan nästa video i formatet. Baslinje
 för Mall E är mammutlistan 5 972 (första utan nyhetsvåg). Stoppregel: två listor i rad under
-5 972 vid dag 28 = Mall E pausas. Läget: moa 7 629 / 29,5 % och dodo 4 781 på fyra dygn /
+5 972 vid dag 28 = Mall E pausas. **Mall E avslutad 2026-11-27 (Mathias), se `../youtube.md`:
+pungvargen 280 och mastodonten 253.** Läget: moa 7 629 / 29,5 % och dodo 4 781 på fyra dygn /
 32,5 % klarar visningarna men inte behållningen; rankningen 2 741 / 22,5 % klarar ingen.
 
 Testa hela tiden parallellt, även när en nedslagning fungerar. Räkna med att en nedslagning

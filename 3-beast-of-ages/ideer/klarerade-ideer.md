@@ -27,6 +27,8 @@ får prövas igen som remix.
 | 2026-11-27 | Frostwild Nature (3 900 pren.) *An Arctic Wolf Gives Birth … But Her Pups Must Face Their First Winter* 382 500 + Animal Extinction (5 900) samma idé 436 200. Utanför nischen | C (format utifrån på vårt djur) | A Dire Wolf Gives Birth 13,000 Years Ago… Her Pups Must Survive the Ice Age | INTE körd. Två jämförbara kanaler = grönt på steg 3 | Idé |
 | 2026-11-27 | Past Facts (1 900 pren.) *All Ice Age 1 Animals in Real Life Explained in 7 Minutes* 21 300, breakout 109 (svagt belagd, pyttekanal). Ankare: *Ice Age: Boiling Point* på bio 2027-02-05 | C | Every Animal in the Ice Age Movies: What They Really Looked Like | INTE körd. Publicera sista veckan i januari 2027 | Idé, tidsbunden |
 
+**2026-11-27: 15 Facts-serien är avslutad.** Raderna ovan med titeln "15 Facts About …" (neandertalarna, sabeltandskatten) får inte byggas som listor. De behöver en ny titel och form enligt stilen i `../youtube.md` (ryggrad, scen, stege, individ) och en ny Grind.
+
 *Genererade och unikhetskontrollerade 2026-08-24 med `vidiq_youtube_search`, sorterat på
 visningar. Klarerad = ingen synlig eller färsk video med samma idé i engelsk långform.
 Publiken: män, 82 % över 35, största gruppen 65+.*

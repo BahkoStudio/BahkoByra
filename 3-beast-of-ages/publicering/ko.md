@@ -4,6 +4,17 @@
 utan att CTA-raden i manuset byts. Statusen per manus står i `../manus/README.md`
 ("Ute på kanalen", "Bäst före", "Spela in?"), tiderna i `studio-playbook.md` §10.*
 
+**Läget 2026-11-27.** Mastodonten (2026-11-25), pungvargen (2026-11-14) och noshörningen
+(2026-11-19, som *The De-Extinction of a Rhino That Isn't Extinct Yet*) är publicerade.
+15 Facts-serien är avslutad (`../youtube.md`). Kön nu:
+
+| Plats | Manus | Fönster | CTA-mål |
+|---|---|---|---|
+| 1 | `../manus/dire-wolf-yellowstone-winter.md`, *Could Colossal's Dire Wolves Survive One Winter in Yellowstone?* | Inom två veckor, senast 2026-12-11. Lördag 17:00 eller onsdag 19:00 | Mastodonten (senaste videon) |
+| 2 | `../manus/dodo-hatch-from-a-chicken.md`, *The Dodo Is Coming Back... But It Will Hatch From a Chicken* | Efter skräckvargen. A0 kontrolleras live samma dag | Skräckvargen i Yellowstone |
+
+Tabellen längre ner är den gamla kön från 2026-11-07 och står kvar som historik.
+
 **Regeln:** inga nya manus skrivs när fler än tre klara manus väntar på inspelning. Just nu
 väntar fyra, så Claude skriver inget nytt manus förrän kön är under tre. Tiden går till
 Dag 1–2-blocket (`README.md`), uppföljningsloggen (`uppfoljning.md`) och veckoplanen.

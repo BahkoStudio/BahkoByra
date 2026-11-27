@@ -30,9 +30,10 @@ Ladda upp tre miniatyrer, alltid, YouTube testar dem mot tittartid. Allt står i
 
 ## Miniatyrerna görs så här
 
-    node tools/hf-api/hf.mjs bild --modell qwen
+    node tools/hf-api/hf.mjs bild --modell sunburst --upplosning 2k --format 16:9
 
-Körs från repots rot. Qwen Image 3 i 2k, sparas som 1280×720 jpg. Nyckeln ligger i
+GPT Image 2.5 sedan 2026-11-11 (Mathias), inte Qwen. Körs från `Skrivbord/bahko-gd-wt`, där
+`hf.mjs` har modellen `sunburst`. Sparas som 1280×720 jpg. Nyckeln ligger i
 `tools/hf-api/.env.local` och läses eller skrivs aldrig ut.
 
 - **En bild i taget.** Parallella körningar har gett "fetch failed" och "temporarily
@@ -44,12 +45,20 @@ Körs från repots rot. Qwen Image 3 i 2k, sparas som 1280×720 jpg. Nyckeln lig
   i raden första gången (`../skills.md`, Budget per video).
 - `/higgsfield-youtube-thumbnail` används **inte**, se `../skills.md`.
 
-Två godkända stilar:
+Godkända stilar (de tre sista sedan 2026-11-27, och det är de som gäller för nya videor):
 
 | Stil | När | Hur den ser ut |
 |---|---|---|
 | **Streckgubbe** | Djuptidsvideor (som Tasmanien) och vardagsvideor | Platt tecknad stil, tjocka svarta konturer, vita streckgubbar, stor gul text med svart kant upptill. Referenser: Quiet Science, Poko, Wondrcore |
 | **Gorilla** | De-extinction och djur i närbild | Fotorealistiskt, svart bakgrund, djuret i profil på höger 60 %, vit serif-text till vänster, liten rad plus stor rad i versaler, röd dubbel penselstreck under |
+| **Lager** | Ett djur, ett påstående | Svart bakgrund, extrem närbild på huvudet, tung vit versaltext staplad nere till vänster med sista ordet rött, nosen eller hornet ligger framför kanten på bokstäverna |
+| **Svartvit med lysande ögon** | Hot, gåta, "X mot Y" | Allt svartvitt mot svart, ögonen lyser vitt, en rad text med ETT rött ord, röd pil mot en liten sak i hörnet |
+| **Ljus scen** | Djuret i vår värld | Dagsljus eller färgscen uppifrån, djuret gör något omöjligt i dag, gul och vit text med svart kant, vit pil, högst fyra ord |
+
+Fällor (2026-11-27): låt aldrig djuret skära genom texten (i lagerstilen täcks bara kanten),
+be om trubbig platt näbb på moan (blir annars en örn), be om bil utan märke, och kolla att
+djurets storlek mot en människa stämmer. Streckgubben används inte på de-extinction-videor
+(Mathias: "inte streckgubbe").
 
 ## Lokala miniatyrer
 

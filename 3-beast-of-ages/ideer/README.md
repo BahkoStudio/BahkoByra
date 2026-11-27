@@ -75,7 +75,7 @@ Everything Wrong With Hollywood* blev *Why The Rock Is Hollywood's Cancer*).
 | Vinkel | Vad | Exempel på vår kanal |
 |---|---|---|
 | **A. Samma ämne, byt egenskapen** | Behåll djuret, lyft en annan sanning om det | Deras *Thylacines Are Reappearing in Tasmania — And They Shouldn't Be This Big* → vår *The Tasmanian Tiger Weighed Half What Your Textbook Says* |
-| **B. Samma ämne, nytt format** | Behåll djuret, byt till ett format vi äger (15 Facts, "What It Was Like to Live…", en djupdykning) | Deras djupdykning om dodon → vår *15 Facts About the De-Extinct Dodo That Make No Sense* |
+| **B. Samma ämne, nytt format** | Behåll djuret, byt till ett format vi äger (klockan med vinnare som i `../manus/dire-wolf-yellowstone-winter.md`, "What It Was Like to Live…", en djupdykning; 15 Facts-listan är avslutad 2026-11-27) | Deras djupdykning om dodon → vår *15 Facts About the De-Extinct Dodo That Make No Sense* |
 | **C. Stapla ett andra bevisat ämne** | Lägg utliggarens djur ihop med ett ämne som redan bevisat sig hos **oss** (Colossal-nyheten, istiden, dire wolf-publiken) | Deras Garamba-video → vår noshörning + Colossals "de-extinction"-papper |
 
 Regel för vinkel C: det andra ämnet är ett **sammanhang**, inte ett djur till. Ett djur plus
@@ -89,6 +89,17 @@ kattdjur 33 971).
   Colossal-nyheter har burit alla kanalens sex största.
 - **Fart just nu**: drar utliggaren eller ämnet fortfarande visningar per timme? Ett ämne
   som dör hos konkurrenten dör hos oss.
+
+### Steg 2b. Jämförelsen (ny 2026-11-27)
+
+Innan paketet: sök på utliggarens exakta titel (`vidiq_youtube_search`) och leta efter
+samma idé med väldigt olika resultat, helst hos samma kanal eller där en senare version
+slog en tidigare. Läs båda manusen (`vidiq_video_transcript`, 5 krediter styck) sida vid
+sida och skriv i paketet vad vinnaren ger som floppen inte ger. Alltid i par. Finns ingen
+jämförelse: skriv det, och bygg på formeln i `../reference/jamforelsen-samma-titel.md`
+(ryggrad, scen, stege, individ). Tre varningar: utliggaren ska vara äldre än en vecka,
+kanalen ska inte vara en pyttekanal, och gilla per visning ska inte ligga långt under en
+halv procent.
 
 ### Steg 3. Förpacka först, sedan Grinden, sedan manuset som vanligt
 
@@ -110,7 +121,9 @@ paketet som förut.
 | **Attraktion** | Ett verktyg, inte en strategi. Används med avsikt, aldrig i desperation |
 
 Plus kanalens egna krav som gäller alltid: text i översta tredjedelen, 50-procentstestet för
-TV, motivet ur manusets höjdpunkt (`../reference/thumbnail-reglerna.md`). **Två tester innan
+TV, motivet ur manusets höjdpunkt (`../reference/thumbnail-reglerna.md`). De tre stilarna
+som är godkända sedan 2026-11-27 (lager, svartvit med lysande ögon, ljus scen) står i
+`../youtube.md`; minst en av de tre miniatyrerna görs i någon av dem. **Två tester innan
 den går live:**
 
 1. **Zooma till 10 procent.** Syns vinnaren fortfarande? Blir det gröt, rensa.

@@ -36,6 +36,11 @@ för de döms mot varandra: en titel får bara lova vad manuset betalar. Reglern
    fakta upp live (`../research/README.md`).
 10. **Ingen videoprompt.** Manusfilen innehåller paketet och manuset, inga Veo- eller andra
     videopromptar (Mathias 2026-10-14).
+11. **Stilen sedan 2026-11-27** (`../youtube.md`): en mening om ryggraden före manuset,
+    scen i de första 20 sekunderna, en stege med utlovat antal och något som planteras och
+    betalas, en individ med namn som videon slutar hos. Checklistan står i
+    `../reference/jamforelsen-samma-titel.md`. Det påhittade sägs som påhittat.
+12. **15 Facts-listan (Mall E) är avslutad 2026-11-27.** Inga nya manus i den formen.
 
 Den gamla mallens tidsindelning (hook 0:00–0:20, setup till 1:00, huvuddel till 9:00 i tre
 till fem underdelar med varsin liten payoff, höjdpunkt, avrundning, CTA) går att använda som
@@ -82,6 +87,7 @@ gammalt; "Spela in?" = JA / SENARE (villkor) / NEJ parkerad.
 | `dodo-15-facts.md` | 15 Facts About the De-Extinct Dodo That Make No Sense | Mall E, nyhetsankare Colossal 14 okt 2026 (GenoMorph, cirka 2 300 näbbrytare), faktabank `../research/dodo-15-facts.md`, 2 053 ord, tre rundor manusloop, alla fyra godkände i runda 3, paketet överst. Mathias beslut 2026-10-18: går ut FÖRE `dodo-hatch-from-a-chicken.md`, inte tätt efter varandra. Ordning: pungvargen, dodon, noshörningen (varje CTA pekar på den förra) | publicerad 2026-11-03, 4 782 visningar | – | publicerad |
 | `northern-white-rhino-15-facts.md` | 15 Facts About the Last Two Northern White Rhinos That Make No Sense | Mall E, nyhetsankare JRD-artikeln "De-extinction of the Northern white rhinoceros" (juni 2026), faktabank `../research/northern-white-rhino-15-facts.md`, 2 139 ord, tre rundor manusloop, alla fyra godkände i runda 3, ryktet om Fatu kontrollerat falskt 2026-10-18, paketet överst | inte publicerad | A0 2026-06-18 → 2026-07-16, passerat (var 5/10 den 18 okt) | SENARE: plats 3 i kön, A0 kontrolleras live samma dag; under 5/10 = parkeras |
 | `mastodon-15-facts.md` | 15 Facts About the Mastodon That Make No Sense | Första videon ur Remixloopen (utliggare: Facts Machine 885 229, vinkel B), faktabank `../research/mastodon-15-facts.md`, Grinden grön 2026-10-22, 2 240 ord (2026-11-07: CTA till dodon, prenumerationsmening efter fakta tre), tre rundor manusloop, alla fyra godkände i runda 3 (2026-10-24), paketet överst | inte publicerad | A0 2026-09-18 → 2026-10-16, passerat; A0 och Grindens steg 3 omkontrollerade 2026-11-07 (statusraden) | JA: plats 1, första möjliga fönster |
+| `dire-wolf-yellowstone-winter.md` | Could Colossal's Dire Wolves Survive One Winter in Yellowstone? | **Första manuset i stilen från 2026-11-27** (tre vargar, tre klockor, en vinter), faktabank `../research/dire-wolf-yellowstone-winter.md`, Grinden grön 2026-11-27, tre rundor manusloop, 1 810 ord | inte publicerad | 2026-12-11 (formen går hos små kanaler) | JA, först i kön |
 
 **De tio senaste manusen** (från `why-did-someone-paint…` och nedåt) kom in från den lokala grenen `main` 2026-10-14, där de låg opushade. Kolumnen "Ute på kanalen" bekräftades för dem 2026-11-07. Fyra klara manus väntar på inspelning (mastodont, pungvarg, noshörning, dodo-kyckling): manusstoppet gäller tills kön är under tre.
 

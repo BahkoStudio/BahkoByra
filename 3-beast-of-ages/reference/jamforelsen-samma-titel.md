@@ -64,7 +64,7 @@ Deras exempel, samma film, samma format (numrerad faktalista), samma publik:
 
 Skillnaden: vinnaren hade **en berättelse publiken brydde sig om, och varje fakta matade den**. Floppen var bara en lista.
 
-Det här träffar vår serie "15 Facts … That Make No Sense" rakt av. Regel framåt: **en lista behöver en ryggrad.** Före manuset skrivs en mening: "Den här videon handlar om hur/varför …", och varje fakta ska föra den berättelsen framåt. Ett fakta som inte gör det stryks, hur bra det än är. Titeln får gärna bära ryggraden (deras: "… that Made It Iconic").
+Det här träffar vår serie "15 Facts … That Make No Sense" rakt av. Mathias avslutade serien samma dag (2026-11-27, se `../youtube.md`); regeln nedan gäller alla framtida videor som räknar upp något. Regel framåt: **en lista behöver en ryggrad.** Före manuset skrivs en mening: "Den här videon handlar om hur/varför …", och varje fakta ska föra den berättelsen framåt. Ett fakta som inte gör det stryks, hur bra det än är. Titeln får gärna bära ryggraden (deras: "… that Made It Iconic").
 
 Två arbetsregler ur samma PDF:
 - **Alltid i par.** En AI som får läsa en flopp ensam berömmer den och hittar på skäl. Jämför alltid vinnare mot flopp.
